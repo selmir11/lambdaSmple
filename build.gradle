@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ****CUCUMBER****
+
+    // https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.5'
+
+// https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.11.1'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-java8
+    implementation group: 'io.cucumber', name: 'cucumber-java8', version: '7.13.0'
+
+    // https://mvnrepository.com/artifact/io.cucumber/gherkin
+    implementation group: 'io.cucumber', name: 'gherkin', version: '26.0.3'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-core
+    implementation group: 'io.cucumber', name: 'cucumber-core', version: '7.13.0'
+    implementation 'org.testng:testng:7.1.0'
+    implementation 'junit:junit:4.13.1'
+    implementation 'io.cucumber:cucumber-jvm:7.13.0'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.13.0'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer
+    implementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '7.11.2'
+// ****CUUCMBER****
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-testng
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.12.0'
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.11.0'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    implementation group: 'com.google.guava', name: 'guava', version: '32.1.2-jre'
+
+    // https://mvnrepository.com/artifact/com.google.apis/google-api-services-gmail
+    implementation group: 'com.google.apis', name: 'google-api-services-gmail', version: 'v1-rev110-1.25.0'
+
+    // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+    implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '12.4.0.jre11'
+
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.7.1'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
