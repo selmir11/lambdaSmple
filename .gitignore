@@ -68,3 +68,8 @@ localWritingTestFile
 testdata/
 **/application.local.properties
 
+logs/
+Log4j/log4j-application.log
+/src/main/resources/
+
+
