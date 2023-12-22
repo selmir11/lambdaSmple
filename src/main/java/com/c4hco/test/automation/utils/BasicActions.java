@@ -40,12 +40,6 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-    public Boolean waitForPageToLoad(String string) {
-        if (getCurrentUrl().contains(string)) {
-            return true;
-        } else return false;
-    }
-
     public String getUrlWithWait(String url, int waitTime) {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));

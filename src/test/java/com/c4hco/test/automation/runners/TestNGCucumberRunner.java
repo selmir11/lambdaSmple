@@ -8,7 +8,6 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/resources/features/",
         glue = {"com.c4hco.test.automation.stepDefinitions.cocoSteps","com.c4hco.test.automation.stepDefinitions.exchSteps","com.c4hco.test.automation.globalhooks"},
         plugin = {"pretty", "html:target/execution-reports.html", "testng:target/execution-reports.xml"}
-       // tags = "@n1"
 )
 public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
