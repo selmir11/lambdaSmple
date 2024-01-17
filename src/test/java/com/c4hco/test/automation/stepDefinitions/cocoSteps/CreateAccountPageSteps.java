@@ -21,5 +21,10 @@ public class CreateAccountPageSteps implements En {
             createAccountPage.validateHelpVerbiage();
         });
 
+        And("I enter a mandatory data for account creation", ()->{
+            // move steps to the right step definitions page. This belongs to login-portal page
+            createAccountPage.accountCreation();
+        });
+
     }
 }
