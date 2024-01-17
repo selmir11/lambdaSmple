@@ -6,13 +6,13 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        glue = {"org.c4hco.test.automation/stepDefinitions.cocoSteps","org.c4hco.test.automation/stepDefinitions.exchSteps","org.c4hco.test.automation/globalhooks/"},
+        glue = {"com.c4hco.test.automation.stepDefinitions.cocoSteps","com.c4hco.test.automation.stepDefinitions.exchSteps","com.c4hco.test.automation.globalhooks"},
         plugin = {"pretty", "html:target/execution-reports.html", "testng:target/execution-reports.xml"}
 )
 public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
     TestNGCucumberRunner(){
         String tags = ApplicationProperties.getInstance().getProperty("scenario.tags");
-        System.setProperty("cucumber.filter.tags", tags);
+        System.setProperty("cucumber.options", "--tags"+ tags);
     }
 }

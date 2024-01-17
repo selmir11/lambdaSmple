@@ -15,14 +15,10 @@ public class GlobalHooks implements En{
     public GlobalHooks() {
         Before((Scenario scenario) -> {
             System.out.println("Before Called");
-            PropertyFile getEnvironment = new PropertyFile(ApplicationProperties.getInstance().getProperty("env"));
-            String url = getEnvironment.getProperty("url");
-            System.out.println("ENV URL::"+url);
         });
         After((Scenario scenario) -> {
             this.basicActions.getInstance().closeBrowser();
             System.out.println("After Called");
-
         });
     }
 

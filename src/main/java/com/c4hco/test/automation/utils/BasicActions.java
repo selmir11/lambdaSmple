@@ -40,11 +40,7 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-    public Boolean waitForPageToLoad(String string) {
-        if (getCurrentUrl().contains(string)) {
-            return true;
-        } else return false;
-    }
+    // wait for page load
 
     public String getUrlWithWait(String url, int waitTime) {
         try {
