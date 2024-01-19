@@ -24,9 +24,6 @@ public class WelcomePage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void openPage(){
-        basicActions.getDriver().get("https://qa-aws.connectforhealthco.com/coco/WelcomePortal/welcome");
-    }
     public BasicActions getDriver(){
         return BasicActions.getInstance();
     }

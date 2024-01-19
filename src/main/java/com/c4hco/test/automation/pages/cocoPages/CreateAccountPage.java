@@ -94,8 +94,8 @@ public class CreateAccountPage {
     public static String strPhone = (String) generatePhoneNumber();
     public static String strPassword = "ALaska12!";
 
-    // Create an account method
-    public void accountCreation(){
+    // Create account methods
+    public void createGeneralAccount(){
         System.out.println("create account");
                 txtFirstName.sendKeys(strFn);
                 txtLastName.sendKeys(strLn);

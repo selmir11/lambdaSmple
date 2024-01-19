@@ -46,6 +46,8 @@ public class LoginPage {
     }
 
     public void validateLoginPage() {
+        System.out.println("validate login");
+        basicActions.getUrlWithWait("/login-portal/login", 10);
         Assert.assertTrue("Url doesn't have createAccount", basicActions.getCurrentUrl().contains("login"));
     }
 
@@ -59,15 +61,11 @@ public class LoginPage {
         }
     }
 
-    public void signInWithValidCredentials() {
-        System.out.println("sign in");
-        if (!basicActions.getUrlWithWait("login-portal/login", 10).isEmpty()) {
+    public void logInWithValidCredentials() {
+        System.out.println("log in");
             txtSiEmailUsername.sendKeys(strEmail);
             txtSiPassword.sendKeys(strPassword);
             btnSiSignIn.click();
-        } else {
-            Assert.assertTrue("The login page did not open", false);
-        }
     }
 
     // ############################## VALIDATION METHODS #########################

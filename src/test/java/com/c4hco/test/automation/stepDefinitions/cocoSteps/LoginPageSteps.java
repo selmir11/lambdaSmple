@@ -17,8 +17,8 @@ public class LoginPageSteps implements En {
             loginPage.validateLoginPage();
         });
 
-        And("I enter a pair of valid credentials", () -> {
-            loginPage.signInWithValidCredentials();
+        And("I enter valid credentials to login", () -> {
+            loginPage.logInWithValidCredentials();
         });
 
     }
