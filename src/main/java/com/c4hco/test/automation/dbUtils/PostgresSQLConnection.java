@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.dbUtils;
 
 import com.c4hco.test.automation.utils.ApplicationProperties;
+import com.c4hco.test.automation.utils.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +17,7 @@ public class PostgresSQLConnection {
     }
 
     public static Connection getInstance(){
+        Log.info("connection test");
         if(connection == null){
             initializeDBConnection();
         }
@@ -23,6 +25,7 @@ public class PostgresSQLConnection {
     }
 
     private static void initializeDBConnection(){
+        Log.info("initializing db connection");
         try {
             // Load the PostgreSQL JDBC driver
             Class.forName("org.postgresql.Driver");

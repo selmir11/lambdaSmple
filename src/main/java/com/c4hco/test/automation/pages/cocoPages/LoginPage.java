@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.dbUtils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
@@ -7,9 +8,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
-
-import java.util.List;
 
 public class LoginPage {
 
@@ -19,6 +17,7 @@ public class LoginPage {
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
+    private PostgresStatementExecutor executor = new PostgresStatementExecutor();
     private String env = ApplicationProperties.getInstance().getProperty("env");
     public LoginPage(){
           this.basicActions = BasicActions.getInstance();
