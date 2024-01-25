@@ -1,0 +1,63 @@
+package com.c4hco.test.automation.dbUtils;
+
+import com.c4hco.test.automation.utils.ApplicationProperties;
+import com.c4hco.test.automation.utils.Log;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+
+public class PostgresSQLConnection {
+
+    private static Connection connection;
+
+    private PostgresSQLConnection(){
+
+    }
+
+    public static Connection getInstance(){
+        Log.info("connection test");
+        if(connection == null){
+            initializeDBConnection();
+        }
+        return connection;
+    }
+
+    private static void initializeDBConnection(){
+        Log.info("initializing db connection");
+        try {
+            // Load the PostgreSQL JDBC driver
+            Class.forName("org.postgresql.Driver");
+
+            // Set the PostgreSQL connection properties
+            String host = ApplicationProperties.getInstance().getProperty("host");
+            String port = ApplicationProperties.getInstance().getProperty("port");
+            String dbname = ApplicationProperties.getInstance().getProperty("database");
+            String url = "jdbc:postgresql://"+host+":"+port+"/"+dbname;
+            String username = ApplicationProperties.getInstance().getProperty("username");;
+            String password = ApplicationProperties.getInstance().getProperty("password");;
+
+            // Create the database connection
+            connection = DriverManager.getConnection(url, username, password);
+
+            System.out.println("Connected to PostgreSQL database!");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize database connection");
+        }
+    }
+
+    public static void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Closed PostgreSQL database connection!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Failed to close database connection");
+            }
+        }
+    }
+}
