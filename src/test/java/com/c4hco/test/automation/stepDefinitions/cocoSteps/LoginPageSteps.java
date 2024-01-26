@@ -11,6 +11,15 @@ public class LoginPageSteps implements En {
         And("I click create a new account on login page", () -> {
             loginPage.clickCreateAccount();
         });
+
+        And("I enter valid credentials to login", () -> {
+            loginPage.logInWithValidCredentials();
+        });
+
+        // =================VALIDATION STEPS==============//
+        Then("I validate I am on the login page", () -> {
+            loginPage.validateLoginPage();
+        });
     }
 
 

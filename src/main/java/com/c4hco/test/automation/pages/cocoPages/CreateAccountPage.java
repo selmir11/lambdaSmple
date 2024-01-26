@@ -1,13 +1,16 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Random;
 
 public class CreateAccountPage {
 
@@ -16,6 +19,37 @@ public class CreateAccountPage {
 
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")
     List<WebElement> helpDrawerText;
+
+    @FindBy(id = "fn")
+    WebElement firstName;
+
+    @FindBy(id = "ln")
+    WebElement lastName;
+
+    @FindBy(id = "email")
+    WebElement email;
+
+    @FindBy(id = "phone")
+    WebElement phoneNumber;
+
+    @FindBy(id = "password")
+    WebElement password;
+
+    @FindBy(id = "confirm-password")
+    WebElement confirmPassword;
+
+    @FindBy(xpath = "//*[@for='English']")
+    WebElement preferredLanguageButtonEnglish;
+
+    @FindBy(id = "primaryUser-input")
+    WebElement primaryUserCheckbox;
+
+    @FindBy(id = "cocoUser-input")
+    WebElement cocoTermsOfUseCheckbox;
+
+    @FindBy(id = "submit-button")
+    WebElement submitButton;
+
     private BasicActions basicActions;
     public CreateAccountPage(){
         this.basicActions = BasicActions.getInstance();
@@ -26,16 +60,54 @@ public class CreateAccountPage {
         return BasicActions.getInstance();
     }
 
-    public void validateCreateAccountPage(){
-        Assert.assertTrue("Url doesn't have createAccount", basicActions.getCurrentUrl().contains("createAccount"));
-    }
 
     public void clickHelpIcon(){
         helpIcon.click();
     }
 
+    public static String getUniqueString(int length){
+        return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
+    }
+
+    public static String frstName = getUniqueString(8);
+    public static String lstName = getUniqueString(8);
+    public static String Initials = String.valueOf(frstName.charAt(1)+lstName.charAt(1));
+    public static String emailId = lstName + Initials + "@test.com";
+
+    public static CharSequence generatePhoneNumber(){
+        Random rand = new Random();
+        int num1 = (rand.nextInt(7)+1)*100;
+        int num2 = rand.nextInt(743);
+        int num3 = rand.nextInt(10000);
+        DecimalFormat df3 = new DecimalFormat("000");
+        DecimalFormat df4 = new DecimalFormat("0000");
+        String phoneNumber = df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
+        return phoneNumber;
+    }
+
+    public static String phnNumber = (String) generatePhoneNumber();
+    public static String pswrd = "ALaska12!";
+
+    // Create account methods
+    public void createGeneralAccount(){
+                firstName.sendKeys(frstName);
+                lastName.sendKeys(lstName);
+                email.sendKeys(emailId);
+                phoneNumber.sendKeys(phnNumber);
+                password.sendKeys(pswrd);
+                confirmPassword.sendKeys(pswrd);
+                preferredLanguageButtonEnglish.click();
+                primaryUserCheckbox.click();
+                cocoTermsOfUseCheckbox.click();
+                submitButton.click();
+    }
+
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+
+    public void validateCreateAccountPage(){
+        Assert.assertTrue("Create account page did not load", basicActions.getCurrentUrl().contains("createAccount"));
+    }
 
     public void validateHelpVerbiage(){
         String text = "Connect for Health Colorado is Colorado’s official health insurance marketplace. Since 2013, Connect for Health Colorado has been helping individuals, families and small employers compare plans, apply for financial help and buy health insurance.";

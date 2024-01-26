@@ -8,37 +8,55 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static com.c4hco.test.automation.pages.cocoPages.CreateAccountPage.*;
 
 public class LoginPage {
 
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
+    @FindBy(id = "email")
+    WebElement username;
+
+    @FindBy(id = "password")
+    WebElement password;
+
+    @FindBy(id = "main-sign-in")
+    WebElement signInButton;
+
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
     private String env = ApplicationProperties.getInstance().getProperty("env");
-    public LoginPage(){
-          this.basicActions = BasicActions.getInstance();
+
+    public LoginPage() {
+        this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void openPage(){
+    public LoginPage openPage() {
         basicActions.getDriver().get(utils.getBaseLoginUrl(env));
+        return new LoginPage();
     }
 
-    public void clickCreateAccount(){
-        // enhancement needed
-        System.out.println("click create account");
-        if(!basicActions.getUrlWithWait("login-portal/login", 10).isEmpty()){
+    public void clickCreateAccount() {
             createAccountLink.click();
-        }
-        else {
-            Assert.assertTrue("The login page did not open", false);
-        }
+    }
+
+    public void logInWithValidCredentials() {
+        // make this re-usable method - accept parameters email and password- enahancement - TO DO
+        // use getters/setter or world to import data rather than direct imports
+            username.sendKeys(emailId);
+            password.sendKeys(pswrd);
+            signInButton.click();
     }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+    public void validateLoginPage() {
+        basicActions.getUrlWithWait("/login-portal/login", 10);
+        Assert.assertTrue("Login page did not load", basicActions.getCurrentUrl().contains("login"));
+    }
+
 }
