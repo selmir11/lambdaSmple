@@ -34,7 +34,8 @@ public class AccountOverviewPage {
 
     // ================VALIDATION METHODS================//
     public void verifyAccountOverviewPageUrl(){
-        Assert.assertTrue("Account overview page is not loaded.", basicActions.getCurrentUrl().contains("nes/accountOverview"));
+        basicActions.getUrlWithWait("nes/accountOverview", 10);
+        Assert.assertTrue("Account Overview page did not load", basicActions.getCurrentUrl().contains("nes/accountOverview"));
     }
 
 

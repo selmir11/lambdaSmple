@@ -10,7 +10,7 @@ Feature: Create an exchange account
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the login page
     And  I enter valid credentials to login
-    Then I validate account overview page is loaded
+    Then I validate I am on Account Overview Page
  #   Then I Verify the header on myAccountOverview page
     And I apply for 2024
     Then I select No Thanks option from guide you section
