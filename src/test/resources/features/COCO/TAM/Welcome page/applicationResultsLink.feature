@@ -10,7 +10,7 @@ Feature: Tests related to the Application Results link
       Then I validate I am on the pre-screen page
       And I click create my account from pre-screen page
       Then I validate I am on the createAccount page
-      And I enter general mandatory data for account creation
+      And I enter general mandatory data for "coco" account creation
       Then I validate I am on the login page
       And  I enter valid credentials to login
       Then I validate I am on the welcome page

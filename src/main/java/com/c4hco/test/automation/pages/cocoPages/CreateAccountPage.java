@@ -47,6 +47,9 @@ public class CreateAccountPage {
     @FindBy(id = "cocoUser-input")
     WebElement cocoTermsOfUseCheckbox;
 
+    @FindBy(xpath = "//*[@id='exchUser-input']")
+    WebElement exchangeTermsOfUseCheckbox;
+
     @FindBy(id = "submit-button")
     WebElement submitButton;
 
@@ -89,17 +92,39 @@ public class CreateAccountPage {
     public static String pswrd = "ALaska12!";
 
     // Create account methods
-    public void createGeneralAccount(){
-                firstName.sendKeys(frstName);
-                lastName.sendKeys(lstName);
-                email.sendKeys(emailId);
-                phoneNumber.sendKeys(phnNumber);
-                password.sendKeys(pswrd);
-                confirmPassword.sendKeys(pswrd);
-                preferredLanguageButtonEnglish.click();
-                primaryUserCheckbox.click();
+    public void createGeneralAccount(String appType){
+        // Creates the primary user/Account holder
+//                firstName.sendKeys(frstName);
+//                lastName.sendKeys(lstName);
+//                email.sendKeys(emailId);
+//                phoneNumber.sendKeys(phnNumber);
+//                password.sendKeys(pswrd);
+//                confirmPassword.sendKeys(pswrd);
+//                preferredLanguageButtonEnglish.click();
+//                primaryUserCheckbox.click();
+        switch(appType){
+            case "coco":
+                addDetails();
                 cocoTermsOfUseCheckbox.click();
                 submitButton.click();
+                break;
+            case "exchange":
+                addDetails();
+                exchangeTermsOfUseCheckbox.click();
+                submitButton.click();
+        }
+
+    }
+
+    public void addDetails(){
+        firstName.sendKeys(frstName);
+        lastName.sendKeys(lstName);
+        email.sendKeys(emailId);
+        phoneNumber.sendKeys(phnNumber);
+        password.sendKeys(pswrd);
+        confirmPassword.sendKeys(pswrd);
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
     }
 
     // ############################## VALIDATION METHODS #########################

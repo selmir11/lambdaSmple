@@ -16,8 +16,8 @@ public class CreateAccountPageSteps implements En {
             createAccountPage.validateHelpVerbiage();
         });
 
-        And("I enter general mandatory data for account creation", ()->{
-            createAccountPage.createGeneralAccount();
+        And("I enter general mandatory data for \"([^\"]*)\" account creation", (String appType)->{
+            createAccountPage.createGeneralAccount(appType);
         });
 
         // =================== VALIDATION STEPS ===============//
