@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.dbUtils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
@@ -8,14 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import static com.c4hco.test.automation.pages.cocoPages.CreateAccountPage.*;
-
 
 public class LoginPage {
 
@@ -34,6 +32,7 @@ public class LoginPage {
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
+    private PostgresStatementExecutor executor = new PostgresStatementExecutor();
     private String env = ApplicationProperties.getInstance().getProperty("env");
 
     public LoginPage() {

@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.PrescreenPage;
 import io.cucumber.java8.En;
 import com.c4hco.test.automation.pages.cocoPages.LoginPage;
 
@@ -20,7 +19,6 @@ public class LoginPageSteps implements En {
         And("I enter valid credentials to login", () -> {
             loginPage.logInWithValidCredentials();
         });
-
     }
 
 
