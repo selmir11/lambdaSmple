@@ -22,7 +22,6 @@ public class PrescreenPage {
     }
 
     public void clickCreateAccountLink(){
-        System.out.println("click create account from pre screen page");
         createMyAccount.click();
     }
 
@@ -30,6 +29,6 @@ public class PrescreenPage {
     // Add only validation methods below this line
 
     public void validatePreScreenPage(){
-        Assert.assertTrue("url doesn't have preScreen", basicActions.getCurrentUrl().contains("prescreen"));
+        Assert.assertTrue("Prescreen page did not load", basicActions.getCurrentUrl().contains("prescreen"));
     }
 }

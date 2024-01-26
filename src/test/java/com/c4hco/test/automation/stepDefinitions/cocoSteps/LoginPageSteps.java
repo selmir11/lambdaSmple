@@ -12,12 +12,13 @@ public class LoginPageSteps implements En {
             loginPage.clickCreateAccount();
         });
 
-        Then("I validate I am on the login page", () -> {
-            loginPage.validateLoginPage();
-        });
-
         And("I enter valid credentials to login", () -> {
             loginPage.logInWithValidCredentials();
+        });
+
+        // =================VALIDATION STEPS==============//
+        Then("I validate I am on the login page", () -> {
+            loginPage.validateLoginPage();
         });
     }
 

@@ -11,9 +11,6 @@ import org.testng.asserts.SoftAssert;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class CreateAccountPage {
 
@@ -24,34 +21,34 @@ public class CreateAccountPage {
     List<WebElement> helpDrawerText;
 
     @FindBy(id = "fn")
-    WebElement txtFirstName;
+    WebElement firstName;
 
     @FindBy(id = "ln")
-    WebElement txtLastName;
+    WebElement lastName;
 
     @FindBy(id = "email")
-    WebElement txtEmail;
+    WebElement email;
 
     @FindBy(id = "phone")
-    WebElement txtPhoneNumber;
+    WebElement phoneNumber;
 
     @FindBy(id = "password")
-    WebElement txtPassword;
+    WebElement password;
 
     @FindBy(id = "confirm-password")
-    WebElement txtConfirmPassword;
+    WebElement confirmPassword;
 
     @FindBy(xpath = "//*[@for='English']")
-    WebElement btnEnglish;
+    WebElement preferredLanguageButtonEnglish;
 
     @FindBy(id = "primaryUser-input")
-    WebElement chkPrimaryUser;
+    WebElement primaryUserCheckbox;
 
     @FindBy(id = "cocoUser-input")
-    WebElement chkTermsOfUse;
+    WebElement cocoTermsOfUseCheckbox;
 
     @FindBy(id = "submit-button")
-    WebElement btnSubmit;
+    WebElement submitButton;
 
     private BasicActions basicActions;
     public CreateAccountPage(){
@@ -63,9 +60,6 @@ public class CreateAccountPage {
         return BasicActions.getInstance();
     }
 
-    public void validateCreateAccountPage(){
-        Assert.assertTrue("Url doesn't have createAccount", basicActions.getCurrentUrl().contains("createAccount"));
-    }
 
     public void clickHelpIcon(){
         helpIcon.click();
@@ -75,10 +69,10 @@ public class CreateAccountPage {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public static String strFn = getUniqueString(8);
-    public static String strLn = getUniqueString(8);
-    public static String Initials = String.valueOf(strFn.charAt(1)+strLn.charAt(1));
-    public static String strEmail = strLn + Initials + "@test.com";
+    public static String frstName = getUniqueString(8);
+    public static String lstName = getUniqueString(8);
+    public static String Initials = String.valueOf(frstName.charAt(1)+lstName.charAt(1));
+    public static String emailId = lstName + Initials + "@test.com";
 
     public static CharSequence generatePhoneNumber(){
         Random rand = new Random();
@@ -91,26 +85,29 @@ public class CreateAccountPage {
         return phoneNumber;
     }
 
-    public static String strPhone = (String) generatePhoneNumber();
-    public static String strPassword = "ALaska12!";
+    public static String phnNumber = (String) generatePhoneNumber();
+    public static String pswrd = "ALaska12!";
 
     // Create account methods
     public void createGeneralAccount(){
-        System.out.println("create account");
-                txtFirstName.sendKeys(strFn);
-                txtLastName.sendKeys(strLn);
-                txtEmail.sendKeys(strEmail);
-                txtPhoneNumber.sendKeys(strPhone);
-                txtPassword.sendKeys(strPassword);
-                txtConfirmPassword.sendKeys(strPassword);
-                btnEnglish.click();
-                chkPrimaryUser.click();
-                chkTermsOfUse.click();
-                btnSubmit.click();
+                firstName.sendKeys(frstName);
+                lastName.sendKeys(lstName);
+                email.sendKeys(emailId);
+                phoneNumber.sendKeys(phnNumber);
+                password.sendKeys(pswrd);
+                confirmPassword.sendKeys(pswrd);
+                preferredLanguageButtonEnglish.click();
+                primaryUserCheckbox.click();
+                cocoTermsOfUseCheckbox.click();
+                submitButton.click();
     }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+
+    public void validateCreateAccountPage(){
+        Assert.assertTrue("Create account page did not load", basicActions.getCurrentUrl().contains("createAccount"));
+    }
 
     public void validateHelpVerbiage(){
         String text = "Connect for Health Colorado is Colorado’s official health insurance marketplace. Since 2013, Connect for Health Colorado has been helping individuals, families and small employers compare plans, apply for financial help and buy health insurance.";

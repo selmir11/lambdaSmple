@@ -8,12 +8,7 @@ public class CreateAccountPageSteps implements En {
     public CreateAccountPageSteps(){
         CreateAccountPage createAccountPage = new CreateAccountPage();
 
-        When("I validate I am on the createAccount page", () -> {
-            createAccountPage.validateCreateAccountPage();
-        });
-
         And("I click on help icon", ()->{
-            // move steps to the right step definitions page. This belongs to login-portal page
             createAccountPage.clickHelpIcon();
         });
 
@@ -21,8 +16,13 @@ public class CreateAccountPageSteps implements En {
             createAccountPage.validateHelpVerbiage();
         });
 
-        And("I enter a mandatory data for account creation", ()->{
+        And("I enter general mandatory data for account creation", ()->{
             createAccountPage.createGeneralAccount();
+        });
+
+        // =================== VALIDATION STEPS ===============//
+        When("I validate I am on the createAccount page", () -> {
+            createAccountPage.validateCreateAccountPage();
         });
 
     }

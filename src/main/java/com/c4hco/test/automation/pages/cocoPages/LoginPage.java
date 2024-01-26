@@ -8,11 +8,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import static com.c4hco.test.automation.pages.cocoPages.CreateAccountPage.*;
 
 public class LoginPage {
@@ -21,13 +16,13 @@ public class LoginPage {
     WebElement createAccountLink;
 
     @FindBy(id = "email")
-    WebElement txtSiEmailUsername;
+    WebElement username;
 
     @FindBy(id = "password")
-    WebElement txtSiPassword;
+    WebElement password;
 
     @FindBy(id = "main-sign-in")
-    WebElement btnSiSignIn;
+    WebElement signInButton;
 
 
     private BasicActions basicActions;
@@ -40,34 +35,28 @@ public class LoginPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         basicActions.getDriver().get(utils.getBaseLoginUrl(env));
-    }
-
-    public void validateLoginPage() {
-        System.out.println("validate login");
-        basicActions.getUrlWithWait("/login-portal/login", 10);
-        Assert.assertTrue("Url doesn't have createAccount", basicActions.getCurrentUrl().contains("login"));
+        return new LoginPage();
     }
 
     public void clickCreateAccount() {
-        // enhancement needed
-        System.out.println("click create account");
-        if (!basicActions.getUrlWithWait("login-portal/login", 10).isEmpty()) {
             createAccountLink.click();
-        } else {
-            Assert.assertTrue("The login page did not open", false);
-        }
     }
 
     public void logInWithValidCredentials() {
-        System.out.println("log in");
-            txtSiEmailUsername.sendKeys(strEmail);
-            txtSiPassword.sendKeys(strPassword);
-            btnSiSignIn.click();
+        // make this re-usable method - accept parameters email and password- enahancement - TO DO
+        // use getters/setter or world to import data rather than direct imports
+            username.sendKeys(emailId);
+            password.sendKeys(pswrd);
+            signInButton.click();
     }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+    public void validateLoginPage() {
+        basicActions.getUrlWithWait("/login-portal/login", 10);
+        Assert.assertTrue("Login page did not load", basicActions.getCurrentUrl().contains("login"));
+    }
 
 }
