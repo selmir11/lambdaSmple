@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.PrescreenPage;
 import io.cucumber.java8.En;
 import com.c4hco.test.automation.pages.cocoPages.LoginPage;
 
@@ -13,6 +12,14 @@ public class LoginPageSteps implements En {
             loginPage.clickCreateAccount();
         });
 
+        And("I enter valid credentials to login", () -> {
+            loginPage.logInWithValidCredentials();
+        });
+
+        // =================VALIDATION STEPS==============//
+        Then("I validate I am on the login page", () -> {
+            loginPage.validateLoginPage();
+        });
     }
 
 
