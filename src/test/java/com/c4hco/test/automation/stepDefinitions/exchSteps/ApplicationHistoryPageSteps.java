@@ -1,0 +1,13 @@
+package com.c4hco.test.automation.stepDefinitions.exchSteps;
+
+import com.c4hco.test.automation.pages.exchPages.ApplicationHistoryPage;
+import io.cucumber.java.en.*;
+
+public class ApplicationHistoryPageSteps {
+    ApplicationHistoryPage applicationHistoryPage = new ApplicationHistoryPage();
+
+    @Then("I click on view results and shop")
+    public void clickViewResultsNSHop(){
+        applicationHistoryPage.clickViewResults();
+    }
+}

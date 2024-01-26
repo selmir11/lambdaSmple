@@ -51,29 +51,29 @@ public class ExCreateAccount {
     RandomDynamicData dataInstance = RandomDynamicData.getInstance();
 
 
-    public void createExAccount(){
-        System.out.println("Entering account details");
-        firstName.clear();
-        firstName.sendKeys(dataInstance.fname);
-        System.out.println("First Name: "+dataInstance.fname);
-        lastName.clear();
-        lastName.sendKeys(dataInstance.lname);
-        System.out.println("Last Name: "+dataInstance.lname);
-        email.clear();
-        email.sendKeys(dataInstance.fullEmail);
-        System.out.println("Email: "+ dataInstance.fullEmail);
-        phone.clear();
-        phone.sendKeys("723-333-2130");
-        password.clear();
-        password.sendKeys(dataInstance.loginPassword);
-        System.out.println("Password: "+dataInstance.loginPassword);
-        confirmPassword.clear();
-        confirmPassword.sendKeys(dataInstance.loginPassword);
-        System.out.println("Confirm Password: "+dataInstance.loginPassword);
-        btnEnglish.click();
-        chkPrimaryAccountHolder.click();
-        exchangeUserConsent.click();
-    }
+//    public void createExAccount(){
+//        System.out.println("Entering account details");
+//        firstName.clear();
+//        firstName.sendKeys(dataInstance.fname);
+//        System.out.println("First Name: "+dataInstance.fname);
+//        lastName.clear();
+//        lastName.sendKeys(dataInstance.lname);
+//        System.out.println("Last Name: "+dataInstance.lname);
+//        email.clear();
+//        email.sendKeys(dataInstance.fullEmail);
+//        System.out.println("Email: "+ dataInstance.fullEmail);
+//        phone.clear();
+//        phone.sendKeys("723-333-2130");
+//        password.clear();
+//        password.sendKeys(dataInstance.loginPassword);
+//        System.out.println("Password: "+dataInstance.loginPassword);
+//        confirmPassword.clear();
+//        confirmPassword.sendKeys(dataInstance.loginPassword);
+//        System.out.println("Confirm Password: "+dataInstance.loginPassword);
+//        btnEnglish.click();
+//        chkPrimaryAccountHolder.click();
+//        exchangeUserConsent.click();
+//    }
 
     public void submit() throws InterruptedException {
 

@@ -1,29 +1,31 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.CreateAccountPage;
-import io.cucumber.java8.En;
+import io.cucumber.java.en.*;
 
-public class CreateAccountPageSteps implements En {
+public class CreateAccountPageSteps {
 
-    public CreateAccountPageSteps(){
         CreateAccountPage createAccountPage = new CreateAccountPage();
 
-        And("I click on help icon", ()->{
+        @And("I click on help icon")
+            public void iClickHelpIcon(){
             createAccountPage.clickHelpIcon();
-        });
+        };
 
-        Then("I validate the default verbiage on help icon", () -> {
+        @Then("I validate the default verbiage on help icon")
+                public void iValidateHelpVerbiage(){
             createAccountPage.validateHelpVerbiage();
-        });
+        };
 
-        And("I enter general mandatory data for account creation", ()->{
-            createAccountPage.createGeneralAccount();
-        });
+        @Then("I enter general mandatory data for {string} account creation")
+        public void iEnterDataForAccCreation(String appType){
+            createAccountPage.createGeneralAccount(appType);
+        };
 
         // =================== VALIDATION STEPS ===============//
-        When("I validate I am on the createAccount page", () -> {
+       @ When("I validate I am on the createAccount page")
+        public void iValidateCreateAccountPage(){
             createAccountPage.validateCreateAccountPage();
-        });
+        };
 
     }
-}
