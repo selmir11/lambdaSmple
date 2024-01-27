@@ -4,6 +4,7 @@ package com.c4hco.test.automation.utils;
 import com.c4hco.test.automation.selenium.Selenese;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,6 +39,10 @@ public class BasicActions {
 
     public String getCurrentUrl() {
         return getDriver().getCurrentUrl();
+    }
+
+    public void clickButton(WebElement elementLocator){
+        elementLocator.click();
     }
 
     // wait for page load

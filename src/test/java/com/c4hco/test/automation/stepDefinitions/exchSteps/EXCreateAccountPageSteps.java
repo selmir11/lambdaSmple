@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.LoginPage;
-import com.c4hco.test.automation.pages.cocoPages.PrescreenPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.PrescreenPage;
 import com.c4hco.test.automation.pages.exchPages.ExCreateAccount;
 import com.c4hco.test.automation.utils.BasicActions;
 import io.cucumber.java.en.*;

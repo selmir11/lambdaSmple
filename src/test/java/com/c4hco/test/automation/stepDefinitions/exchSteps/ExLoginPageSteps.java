@@ -1,14 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.LoginPage;
-import com.c4hco.test.automation.pages.exchPages.ExCreateAccount;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
 import com.c4hco.test.automation.pages.exchPages.ExchLogin;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import static java.lang.Thread.sleep;
 

@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
