@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.dbUtils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.ApplicationProperties;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import static com.c4hco.test.automation.pages.cocoPages.CreateAccountPage.*;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
 
 public class LoginPage {
 

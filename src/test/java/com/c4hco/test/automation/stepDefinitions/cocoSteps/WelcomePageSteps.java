@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.LoginPage;
 import com.c4hco.test.automation.pages.cocoPages.WelcomePage;
 import io.cucumber.java8.En;
 

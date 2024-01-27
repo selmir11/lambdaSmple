@@ -1,0 +1,83 @@
+package com.c4hco.test.automation.pages.exchPages;
+
+import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+
+public class WhoAreYouPage {
+    private BasicActions basicActions;
+
+    public WhoAreYouPage() {
+        this.basicActions = BasicActions.getInstance();
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
+    public BasicActions getDriver(){
+        return BasicActions.getInstance();
+    }
+
+    @FindBy(xpath = "//input[starts-with(@id,'hhcYes')]")
+    WebElement member;
+    @FindBy(xpath = "//*[@id='firstName']")
+    WebElement memberFName;
+    @FindBy(xpath = "//*[@id='lastName']")
+    WebElement memberLName;
+    @FindBy(xpath = "//*[@id='streetAddressLine1']")
+    WebElement StreetAddress1;
+    @FindBy(xpath = "//*[@id='city']")
+    WebElement memberCity;
+    @FindBy(xpath = "//*[@id='state']")
+    WebElement memberState;
+    @FindBy(xpath = "//*[@id='zip']")
+    WebElement memberZip;
+    @FindBy(xpath = "//*[@id='county']")
+    WebElement memberCounty;
+    @FindBy(xpath = "//*[@id='dateOfBirth']")
+    WebElement memberDOB;
+    @FindBy(xpath = "//*[@id='ssn']")
+    WebElement memberSSN;
+    @FindBy(xpath = "//*[@value='Save and Continue']")
+    WebElement saveAndContinue;
+
+    @FindBy(css = ".input-group #county")
+    WebElement countyDropDown;
+
+    @FindBy(css = "#county option")
+    List<WebElement> countyDropdownOptions;
+
+    private String addressLine1= "1234 Road";
+    private String city ="Denver";
+    private String state = "CO";
+    private String zip = "80205";
+    private String county = "DENVER";
+    private String dob ="10011980";
+    private String SSNvalue = "653035280";
+
+
+    public void checkWhoAreYouOption(String whoAreYouOption){
+        switch(whoAreYouOption){
+            case "member":
+                // TO DO: update the locator-member to have list element and accept all the options
+            member.click();
+            break;
+        }
+    }
+
+    public void enterMemberDetails(){
+        StreetAddress1.sendKeys(addressLine1);
+        memberCity.sendKeys(city);
+        // utilize the basicActions stuff and update this
+        Select dropdown = new Select(memberState);
+        dropdown.selectByValue(state);
+        memberZip.sendKeys(zip);
+        // hacked to click the dropdown twice to work
+        countyDropDown.click();
+        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
+        memberDOB.sendKeys(dob);
+        memberSSN.sendKeys(SSNvalue);
+        saveAndContinue.click();
+    }
+}

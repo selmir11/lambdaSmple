@@ -17,7 +17,7 @@ public class GlobalHooks implements En{
             System.out.println("Before Called");
         });
         After((Scenario scenario) -> {
-            this.basicActions.getInstance().closeBrowser();
+         //   this.basicActions.getInstance().closeBrowser();
             System.out.println("After Called");
         });
     }
