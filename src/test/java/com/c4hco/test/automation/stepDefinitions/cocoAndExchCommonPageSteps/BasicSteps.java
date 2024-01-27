@@ -12,19 +12,18 @@ public class BasicSteps {
         String pageUrl= " ";
         switch(page){
             case "Login":
-                System.out.println("pageUrl 4===="+pageUrl);
                 pageUrl = "/login-portal/login";
-                System.out.println("pageUrl 5===="+pageUrl);
                 break;
             case "Account Overview":
-                System.out.println("pageUrl 1===="+pageUrl);
                  pageUrl = "nes/accountOverview";
-                System.out.println("pageUrl 2===="+pageUrl);
-
+                break;
+            case "Find Expert Help":
+                pageUrl = "find-expert-help";
+                break;
+            case "Start Shopping":
+                pageUrl = "PreShoppingPortal/startShopping";
                 break;
         }
-        System.out.println("pageUrl 3===="+pageUrl);
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 10).contains(pageUrl));
-       // return pageUrl;
     }
 }

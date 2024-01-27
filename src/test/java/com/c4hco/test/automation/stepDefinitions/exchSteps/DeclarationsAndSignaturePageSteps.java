@@ -10,7 +10,11 @@ public class DeclarationsAndSignaturePageSteps {
     public void iDeclareNSign() {
         declarationsAndSignaturePage.enterSignature();
         declarationsAndSignaturePage.submitApplication();
+    }
 
+    @And("I wait for hold on content to disappear")
+    public void iWaitForHoldOnContentToDisappear(){
+        declarationsAndSignaturePage.waitForHoldOnContentToDisappear();
     }
 
 

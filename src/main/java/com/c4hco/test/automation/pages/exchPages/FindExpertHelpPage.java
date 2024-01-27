@@ -4,6 +4,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 public class FindExpertHelpPage {
     private BasicActions basicActions;
@@ -15,13 +16,13 @@ public class FindExpertHelpPage {
     public BasicActions getDriver(){
         return BasicActions.getInstance();
     }
-
-    // update the below locator to have id
-    @FindBy(xpath = "//button[@id='contineOwn-button']")
-    WebElement continueOnMyOwn;
+    @FindBy(id = "contineOwn-button")
+    WebElement continueOnMyOwnButton;
 
     public void clickContinueOnOwnButton() {
-     //   Thread.sleep(2000);
-        continueOnMyOwn.click();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,10));
+        softAssert.assertAll();
+        continueOnMyOwnButton.click();
     }
 }

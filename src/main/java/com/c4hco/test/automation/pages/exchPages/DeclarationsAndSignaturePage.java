@@ -4,6 +4,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 public class DeclarationsAndSignaturePage {
     private BasicActions basicActions;
@@ -24,6 +25,9 @@ public class DeclarationsAndSignaturePage {
     @FindBy(xpath = "//*[@value='Continue']")
     WebElement submitContinue;
 
+    @FindBy(id = "holdon-content")
+    WebElement holdOnEllipsis;
+
 
 
     public void enterSignature(){
@@ -31,8 +35,12 @@ public class DeclarationsAndSignaturePage {
         signatureBox.sendKeys(signature);
     }
     public void submitApplication()  {
-        // remove thread and have a fluent wait for the page to load
         submitContinue.click();
-       // Thread.sleep(10000);
+    }
+
+    public void waitForHoldOnContentToDisappear(){
+        SoftAssert softAssert = new SoftAssert();
+    softAssert.assertTrue(basicActions.waitForElementToDisappear(holdOnEllipsis, 10));
+    softAssert.assertAll();
     }
 }

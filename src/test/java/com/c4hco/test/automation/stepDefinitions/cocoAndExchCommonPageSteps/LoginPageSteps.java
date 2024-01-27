@@ -18,9 +18,4 @@ public class LoginPageSteps {
         };
 
         // =================VALIDATION STEPS==============//
-        @Then("I validate I am on the login page")
-                public void iValidateLoginPage(){
-            loginPage.validateLoginPage();
-
-        };
     }

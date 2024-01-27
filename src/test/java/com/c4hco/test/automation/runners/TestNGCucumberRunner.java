@@ -15,7 +15,6 @@ public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
     TestNGCucumberRunner(){
         String tags = ApplicationProperties.getInstance().getProperty("scenario.tags");
-     //   System.setProperty("cucumber.options", "--tags"+ tags);
         System.setProperty("cucumber.filter.tags", tags);
 
     }

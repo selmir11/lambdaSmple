@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class WhoAreYouPage {
     private BasicActions basicActions;
 
@@ -40,6 +42,12 @@ public class WhoAreYouPage {
     @FindBy(xpath = "//*[@value='Save and Continue']")
     WebElement saveAndContinue;
 
+    @FindBy(css = ".input-group #county")
+    WebElement countyDropDown;
+
+    @FindBy(css = "#county option")
+    List<WebElement> countyDropdownOptions;
+
     private String addressLine1= "1234 Road";
     private String city ="Denver";
     private String state = "CO";
@@ -58,45 +66,18 @@ public class WhoAreYouPage {
         }
     }
 
-//    public void checkMember(){
-//        member.click();
-//    }
-
     public void enterMemberDetails(){
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys(city);
+        // utilize the basicActions stuff and update this
         Select dropdown = new Select(memberState);
         dropdown.selectByValue(state);
         memberZip.sendKeys(zip);
-        dropdown.selectByValue(county);
+        // hacked to click the dropdown twice to work
+        countyDropDown.click();
+        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
         memberDOB.sendKeys(dob);
         memberSSN.sendKeys(SSNvalue);
         saveAndContinue.click();
     }
-//    public void enterAddress1(){
-//        StreetAddress1.sendKeys(addressLine1);
-//    }
-//    public void enterCity(){
-//        memberCity.sendKeys(city);
-//    }
-//    public void selectState(){
-//        Select dropdown = new Select(memberState);
-//        dropdown.selectByValue(state);
-//    }
-//    public void enterZip(){
-//        memberZip.sendKeys(zip);
-//    }
-////    public void selectCounty(){
-////        Select dropdown = new Select(memberCounty);
-////        dropdown.selectByValue(county);
-////    }
-//    public void enterDOB(){
-//        memberDOB.sendKeys(dob);
-//    }
-//    public void enterSSN(){
-//        memberSSN.sendKeys(SSNvalue);
-//    }
-//    public void clickSaveContinue(){
-//        saveAndContinue.click();
-//    }
 }
