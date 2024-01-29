@@ -6,19 +6,46 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.text.DecimalFormat;
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
 public class CreateAccountPage {
 
     @FindBy(css = "app-create-account a em")
-    WebElement helpIcon;
+    public WebElement helpIcon;
 
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")
     List<WebElement> helpDrawerText;
+
+    @FindBy(xpath = "//label[@class='help-label ng-tns-c2-0']")
+    public WebElement helpIconSP;
+
+    @FindBy(id="globe-image")
+    public WebElement languageDrp;
+
+    @FindBy(xpath="//a[@class='btn btn-default btn-sm btn-override ng-tns-c2-0 ng-star-inserted']")
+    public WebElement closeHelpIcone;
+
+    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
+    public WebElement englishLanguage;
+
+    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
+    public WebElement spanishLanguage;
+
+    @FindBy(xpath = "//p[contains(text(),'Connect for Health Colorado es el mercado oficial ')]")
+    public WebElement helpDrawerTextSP;
+
+    @FindBy(xpath = "//em[@class='fas fa-question-circle']")
+    public WebElement helpDrawerButton;
+
+    @FindBy(xpath = "//div[13]/div[1]/em")
+    public WebElement helpDrawerButtonSP;
 
     @FindBy(id = "fn")
     WebElement firstName;
@@ -66,6 +93,10 @@ public class CreateAccountPage {
 
     public void clickHelpIcon(){
         helpIcon.click();
+    }
+
+    public void clickHelpIconButton(){
+        helpDrawerButton.click();
     }
 
     public static String getUniqueString(int length){
@@ -144,6 +175,30 @@ public class CreateAccountPage {
         softAssert.assertEquals(helpDrawerText.get(4).getText(), "Colorado Connect");
         softAssert.assertEquals(helpDrawerText.get(5).getText(), "Colorado Connect was created by Connect for Health Colorado to help more Coloradans enroll in health insurance. Starting in 2023, people who are undocumented can access health insurance through Colorado Connect. Financial help is also available for those who qualify. Personal information of customers who choose to share information only with Colorado Connect is stored separately from Connect for Health Colorado. Your personal information is not shared with federal partners for any purpose and cannot be used for immigration enforcement.");
         softAssert.assertAll();
+    }
+    public static void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }}
+
+    public void validateHelpVerbiageSP() {
+
+        SoftAssert softAssert = new SoftAssert();
+        System.out.println(helpDrawerTextSP.getText());
+        waitFor(3);
+        //Assert.assertTrue(each.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
+        softAssert.assertTrue(helpDrawerTextSP.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
+        System.out.println(helpDrawerTextSP.getText());
+    }
+
+
+
+
+    public  WebElement waitForClickablility(WebElement element, Duration timeout) {
+        WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeout);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
 
