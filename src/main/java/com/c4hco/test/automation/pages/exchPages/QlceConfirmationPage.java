@@ -35,15 +35,6 @@ public class QlceConfirmationPage {
 
     // move the code related to date to a method and naming conventions
 
-    // Create object of SimpleDateFormat class and decide the format
-    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
-
-    //get current date time with Date()
-    Date date = new Date();
-
-    // Now format the date
-   String date1 = dateFormat.format(date);
-
     public void selectLCE(String LCEtype) {
 
         switch (LCEtype) {
@@ -52,11 +43,19 @@ public class QlceConfirmationPage {
                 for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
                     allmembersBirthcheckbox.get(mc).click();
                     eventDate.click();
-                    eventDate.sendKeys(date1);
+            //        eventDate.sendKeys(getCurrentDate());
+                    eventDate.sendKeys("01/26/2024");
                     break;
                 }
-
         }
+    }
+
+    public String getCurrentDate(){
+        // Create object of SimpleDateFormat class and decide the format
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
+        Date date = new Date();
+        // Now format the date
+        return dateFormat.format(date);
     }
     public void saveNContinue(){
         saveAndContinue.click();

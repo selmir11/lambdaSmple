@@ -48,6 +48,7 @@ public class StartShoppingPage {
         btnContinue.click();
     }
     public void verifyTextOnTobaccoPage(){
+        // headerText is not found on the page
         String header  = headerText.getText();
         System.out.println(header);
         SoftAssert softAssert = new SoftAssert();

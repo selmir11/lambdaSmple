@@ -1,6 +1,6 @@
-package com.c4hco.test.automation.stepDefinitions.cocoSteps;
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.CreateAccountPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage;
 import io.cucumber.java.en.*;
 
 public class CreateAccountPageSteps {

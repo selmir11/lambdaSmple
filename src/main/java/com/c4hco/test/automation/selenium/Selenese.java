@@ -1,11 +1,13 @@
 package com.c4hco.test.automation.selenium;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Selenese {
     private WebDriver driver;
+    public static int WAIT_FOR_ELEMENT = 30;
 
     private Selenese(){
         ChromeOptions options = new ChromeOptions();
@@ -28,5 +30,9 @@ public class Selenese {
 
     public WebDriver getDriver(){
         return this.driver;
+    }
+
+    public String getText(WebElement webElement){
+        return webElement.getText();
     }
 }

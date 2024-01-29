@@ -13,15 +13,6 @@ public class WhoAreYouPageSteps {
     @And("I enter the details of the member and continue")
     public void iEnterMemberDetails(){
         whoAreYouPage.enterMemberDetails();
-//
-//        whoAreYouPage.enterAddress1();
-//        whoAreYouPage.enterCity();
-//        whoAreYouPage.enterZip();
-//        whoAreYouPage.selectState();
-//        whoAreYouPage.selectCounty();
-//        whoAreYouPage.enterDOB();
-//        whoAreYouPage.enterSSN();
-//        whoAreYouPage.clickSaveContinue();
     }
 
 }
