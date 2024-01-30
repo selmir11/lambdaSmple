@@ -1,10 +1,6 @@
 @helpDrawer
 Feature: Tests related to the help drawer
 
-  # Background: I go the login portal
-
-
-    # intermittent failures are noticed because of faster execution. Run the scenario multiple times to make sure
   Scenario: Validate the default verbiage on the help drawer
     Given I open the login page on the login portal
     When I click create a new account on login page
@@ -38,9 +34,7 @@ Feature: Tests related to the help drawer
     And I click on help icon "Spanish"
     And I validate the default verbiage on help icon in "Spanish"
     Then logout from Admin Portal
-
-
-
+    
   Scenario: Validate the default verbiage on the help drawer button in Admin Portal
     Given I open the login page on the admin portal
     When I login as Admin User
