@@ -13,55 +13,35 @@ public class LifeChangeEventsPageSteps {
             case "Birth":
                 lcePage.birthLCE();
                 break;
-
+            case "Pregnancy":
+                lcePage.pregnancyLCE();
+                break;
+            case "Marriage":
+                lcePage.marriageLCE();
+                break;
+            case "LossOfCoverageLCE":
+                lcePage.lossOfCoverageLCE();
+                break;
+            case "ImmigrationLCE":
+                lcePage.immigrationLCE();
+                break;
+            case "AlaskaNativeLCE":
+                lcePage.alaskaNativeLCE();
+                break;
+            case "MovedToCOLCE":
+                lcePage.movedToCOLCE();
+                break;
+            case "IncarcerationStatus":
+                lcePage.incarcerationStatus();
+                break;
+            case "Other":
+                lcePage.other();
+                break;
+            case "None":
+                lcePage.none();
+                break;
         }
         lcePage.clickContinue();
     }
-
-//    @And("I report a QLCE - birth and click continue")
-//    public void checkReportBirthLCE(){
-//        lce.birthLCE();
-//        lce.clickContinue();
-//        System.out.println("Checked birth LCE");
-//    }
- /*
-    public void checkPregnancy(){
-        lce.pregnancyLCE();
-        lce.clickContinue();
-    }
-    public void checkMarriedDivorce(){
-        lce.marriageLCE();
-        lce.clickContinue();
-    }
-    public void checkLossCoverage(){
-        lce.lossOfCoverageLCE();
-        lce.clickContinue();
-    }
-    public void checkImmigration(){
-        lce.immigrationLCE();
-        lce.clickContinue();
-    }
-    public void checkAlaskanNative(){
-        lce.alaskaNativeLCE();
-        lce.clickContinue();
-    }
-    public void checkMovedToCO(){
-        lce.movedToCOLCE();
-        lce.clickContinue();
-    }
-    public void checkIncarceration(){
-        lce.incarcerationStatus();
-        lce.clickContinue();
-    }
-    public void checkOther(){
-        lce.other();
-        lce.clickContinue();
-    }
-    public void checkNone(){
-        lce.none();
-        lce.clickContinue();
-    }
-
-  */
 
 }

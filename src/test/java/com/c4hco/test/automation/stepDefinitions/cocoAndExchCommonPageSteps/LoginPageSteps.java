@@ -6,6 +6,7 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
 public class LoginPageSteps {
 
         LoginPage loginPage = new LoginPage();
+        BasicSteps basicSteps = new BasicSteps();
 
         @When("I click create a new account on login page")
                 public void iClickCreateAccount(){

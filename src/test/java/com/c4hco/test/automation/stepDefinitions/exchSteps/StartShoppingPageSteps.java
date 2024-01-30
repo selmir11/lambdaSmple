@@ -1,11 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.StartShoppingPage;
+import com.c4hco.test.automation.utils.BasicActions;
 import io.cucumber.java.en.*;
 
 public class StartShoppingPageSteps {
     StartShoppingPage startShoppingPage = new StartShoppingPage();
-
+    BasicActions basicActions = new BasicActions();
 
     public void clickNoAndContinue() {
       //  Thread.sleep(3000);
@@ -23,6 +24,11 @@ public class StartShoppingPageSteps {
     public void clickNoAndSaveNExit() {
       //  Thread.sleep(3000);
         startShoppingPage.clickBtnSaveNExit();
+    }
+
+    @And("I close the browser")
+    public void closeBrowser(){
+        basicActions.closeBrowser();
     }
 
 

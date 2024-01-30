@@ -34,15 +34,11 @@ public class TellUsAboutYourselfPage {
     @FindBy(xpath = "//*[@id='ssn']")
     WebElement ssn;
 
-    public void chooseMale(){
-        sexMale.click();
-    }
+    public void chooseMale() { sexMale.click(); }
     public void chooseFemale(){
         sexFemale.click();
     }
-    public void chooseApplyYes(){
-        applyingYes.click();
-    }
+    public void chooseApplyYes(){ applyingYes.click(); }
     public void chooseApplyNo(){
         applyingNo.click();
     }

@@ -2,6 +2,10 @@ package com.c4hco.test.automation.utils;
 
 import org.apache.commons.lang.RandomStringUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RandomDynamicData {
 
     public static String randomStringEmail;
@@ -21,8 +25,6 @@ public class RandomDynamicData {
         System.out.println("String for Email: " + randomStringEmail);
         fullEmail = randomStringEmail + "@gmail.com";
     }
-
-
 
     public String loginPassword = "ALaska12!";
 
