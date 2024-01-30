@@ -30,20 +30,22 @@ public class CreateAccountPageSteps {
 
     @Then("I click on help icon button")
     public void i_click_on_help_icon_button() {
+        waitFor(2);
         createAccountPage.helpDrawerButton.click();
     }
 
-    @Then("I click on help icon button {string}")
+    @And("I click on help icon button {string}")
     public void i_click_on_help_icon_button(String Language) {
             switch (Language){
                 case "Spanish" :
-                    waitFor(1);
+
                     createAccountPage.waitForClickablility(createAccountPage.languageDrp, Duration.ofSeconds(1000));
                     createAccountPage.languageDrp.click();
-                    waitFor(1);
                     createAccountPage.spanishLanguage.click();
-                    waitFor(1);
+                    createAccountPage.scrollToElement(createAccountPage.helpDrawerButton);
                     createAccountPage.clickHelpIconButton();
+
+                    break;
 
 
                 case "English" :
@@ -54,6 +56,8 @@ public class CreateAccountPageSteps {
                     createAccountPage.englishLanguage.click();
                     createAccountPage.helpDrawerButton.click();
                     waitFor(2);
+
+                    break;
             }
 
 

@@ -24,6 +24,16 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signInButton;
 
+    @FindBy(id = "email")
+    public WebElement usernameAdmin;
+
+    @FindBy(id = "password")
+    public WebElement passwordAdmin;
+
+    @FindBy(id = "main-sign-in")
+    public WebElement signAdmin;
+
+
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
@@ -40,7 +50,16 @@ public class LoginPage {
         return new LoginPage();
     }
 
+    public void refreshPage(){
+        basicActions.getDriver().navigate().refresh();
+    }
+
+    public void OpenAdminPortal(){
+        basicActions.getDriver().get("https://qa-aws.connectforhealthco.com/AdminPortal");
+    }
+
     public void clickCreateAccount() {
+            waitFor(2);
             createAccountLink.click();
     }
 
@@ -58,5 +77,7 @@ public class LoginPage {
         basicActions.getUrlWithWait("/login-portal/login", 10);
         Assert.assertTrue("Login page did not load", basicActions.getCurrentUrl().contains("login"));
     }
+
+
 
 }

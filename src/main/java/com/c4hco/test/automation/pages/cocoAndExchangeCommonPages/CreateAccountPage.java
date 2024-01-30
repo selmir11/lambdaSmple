@@ -3,6 +3,8 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -92,10 +94,12 @@ public class CreateAccountPage {
 
 
     public void clickHelpIcon(){
+        waitFor(2);
         helpIcon.click();
     }
 
     public void clickHelpIconButton(){
+        waitForVisibility(helpDrawerButton, Duration.ofSeconds(1000));
         helpDrawerButton.click();
     }
 
@@ -193,12 +197,19 @@ public class CreateAccountPage {
         System.out.println(helpDrawerTextSP.getText());
     }
 
-
+    public WebElement waitForVisibility(WebElement element, Duration timeToWaitInSec) {
+        WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeToWaitInSec);
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
 
 
     public  WebElement waitForClickablility(WebElement element, Duration timeout) {
         WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeout);
         return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public  void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
 
