@@ -60,7 +60,6 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
 
-    // move the code related to date to a method and naming conventions
     public String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
         Date date = new Date();

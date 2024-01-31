@@ -90,7 +90,6 @@ public class CreateAccountPage {
         return phoneNumber;
     }
 
-    // Create account methods
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
         switch(appType){

@@ -9,8 +9,7 @@ public class StartShoppingPageSteps {
     BasicActions basicActions = new BasicActions();
 
     public void clickNoAndContinue() {
-      //  Thread.sleep(3000);
-        startShoppingPage.clickContinue();
+            startShoppingPage.clickContinue();
     }
     public void clickYesAndContinue(){
         startShoppingPage.clickYes();
@@ -25,12 +24,5 @@ public class StartShoppingPageSteps {
       //  Thread.sleep(3000);
         startShoppingPage.clickBtnSaveNExit();
     }
-
-    @And("I close the browser")
-    public void closeBrowser(){
-        basicActions.closeBrowser();
-    }
-
-
 
 }

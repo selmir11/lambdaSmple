@@ -24,7 +24,6 @@ public class LawfulPresencePage {
     @FindBy(xpath = "//*[@value='Save and Continue']")
     WebElement saveContinue;
 
-    // update the naming convention for below
     public void usCitizen(){ citizenYes.click(); }
     public void naturalizedCitizen(){
         naturalizedCitizen.click();
