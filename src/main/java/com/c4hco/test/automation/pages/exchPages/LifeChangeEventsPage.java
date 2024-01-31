@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class LifeChangeEventsPage {
 
     private BasicActions basicActions;
@@ -17,62 +19,21 @@ public class LifeChangeEventsPage {
         return BasicActions.getInstance();
     }
 
-    // TO-DO :: Have a list Element for all the LCE's
-    @FindBy(id ="birthLce")
-    WebElement checkBirthLCE;
-    @FindBy(id = "pregnancyLce")
-    WebElement checkPregnancyLCE;
-    @FindBy(id = "marriageDivorceLce")
-    WebElement checkMarriageDivorceLCE;
-    @FindBy(id = "lossEmpCovg")
-    WebElement checkLossOfCoverageLCE;
-    @FindBy(id = "eligibleImmigrationStatus")
-    WebElement checkImmigrationStatusLCE;
-    @FindBy(id = "gainOfAmericanIndianAlaskaNative")
-    WebElement checkAlaskaNativeLCE;
-    @FindBy(id = "movedColorado")
-    WebElement checkMovedToColoradoLCE;
-    @FindBy(id = "incarcerated")
-    WebElement checkIncarceratedStatusLCE;
-    @FindBy(id = "other")
-    WebElement otherLCE;
-    @FindBy(id = "noneOfThese")
-    WebElement noneOfThese;
+    @FindBy(css = ".input-checkbox")
+    List<WebElement> lceInputCheckbox;
+
     @FindBy(id = "continueButton")
     WebElement saveAndContinueButton;
 
-
-    public void birthLCE(){
-        checkBirthLCE.click();
-    }
-    public void pregnancyLCE(){
-        checkPregnancyLCE.click();
-    }
-    public void marriageLCE(){
-        checkMarriageDivorceLCE.click();
-    }
-    public void lossOfCoverageLCE(){
-        checkLossOfCoverageLCE.click();
-    }
-    public void immigrationLCE(){
-        checkImmigrationStatusLCE.click();
-    }
-    public void alaskaNativeLCE(){
-        checkAlaskaNativeLCE.click();
-    }
-    public void movedToCOLCE(){
-        checkMovedToColoradoLCE.click();
-    }
-    public void incarcerationStatus(){
-        checkIncarceratedStatusLCE.click();
-    }
-    public void other(){
-        otherLCE.click();
-    }
-    public void none(){
-        noneOfThese.click();
-    }
-    public void clickContinue(){
+    public void selectLCE(String lceOption){
+        switch(lceOption){
+                case "Birth":
+                    lceInputCheckbox.get(0).click();
+                    break;
+                case "Pregnancy":
+                    lceInputCheckbox.get(1).click();
+                    break;
+            }
         saveAndContinueButton.click();
     }
 }

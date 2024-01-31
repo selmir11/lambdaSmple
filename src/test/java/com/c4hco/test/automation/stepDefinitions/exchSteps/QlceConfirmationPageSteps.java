@@ -3,13 +3,14 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.QlceConfirmationPage;
 import io.cucumber.java.en.*;
 
-public class TellUsAboutLifeChangesSteps_LR {
+public class QlceConfirmationPageSteps {
 
     QlceConfirmationPage qlceConfirmationPage = new QlceConfirmationPage();
 
     @Then("I select {string} QLCE on tell us about life changes page")
-    public void birthLifeChange(String QLCEType){
-        qlceConfirmationPage.selectLCE("Birth");
+    public void selectQlceType(String qlceOption){
+        qlceConfirmationPage.selectQLCE(qlceOption);
+        // Move the below to a different step
         qlceConfirmationPage.saveNContinue();
     }
 }

@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.RandomDynamicData;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -67,8 +66,8 @@ public class QlceConfirmationPage {
         return dateFormat.format(date);
     }
 
-    public void selectLCE(String QLCEType) {
-
+    public void selectQLCE(String QLCEType) {
+// TO DO: Optimize the below code
         switch (QLCEType) {
             case "Birth":
                 birthQLCE.click();
