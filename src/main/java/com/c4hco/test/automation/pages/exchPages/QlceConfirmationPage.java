@@ -67,6 +67,7 @@ public class QlceConfirmationPage {
         // Now format the date
         return dateFormat.format(date);
     }
+
     public void selectLCE(String QLCEType) {
 
         switch (QLCEType) {
