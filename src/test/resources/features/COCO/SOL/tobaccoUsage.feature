@@ -15,7 +15,6 @@ Feature: Tobacco Usage page related tests
     And I apply for 2024
     Then I select No Thanks option from guide you section
     And I click on save and continue button
-    #  Then I validate before you begin page is loaded
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
@@ -29,7 +28,7 @@ Feature: Tobacco Usage page related tests
     And I enter citizenship details and click continue
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select birth QLCE on tell us about life changes page
+    Then I select "Birth" QLCE on tell us about life changes page
     And I Declare and sign
     And I wait for hold on content to disappear
     Then I click on view results and shop

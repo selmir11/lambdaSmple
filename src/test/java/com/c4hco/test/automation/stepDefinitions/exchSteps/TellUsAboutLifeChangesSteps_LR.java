@@ -7,9 +7,8 @@ public class TellUsAboutLifeChangesSteps_LR {
 
     QlceConfirmationPage qlceConfirmationPage = new QlceConfirmationPage();
 
-    @Then("I select birth QLCE on tell us about life changes page")
-    public void birthLifeChange(){
-        // have reusable method and naming convention
+    @Then("I select {string} QLCE on tell us about life changes page")
+    public void birthLifeChange(String QLCEType){
         qlceConfirmationPage.selectLCE("Birth");
         qlceConfirmationPage.saveNContinue();
     }

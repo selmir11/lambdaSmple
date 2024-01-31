@@ -24,7 +24,7 @@ public class QlceConfirmationPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//*[@id='birth']")
+    @FindBy(id="birth")
     WebElement birthQLCE;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
     List<WebElement> allmembersBirthcheckbox;
@@ -56,7 +56,6 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
     WebElement deathEventDate;
-    //Change of primary residence
 
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
@@ -68,9 +67,9 @@ public class QlceConfirmationPage {
         // Now format the date
         return dateFormat.format(date);
     }
-    public void selectLCE(String LCEtype) {
+    public void selectLCE(String QLCEType) {
 
-        switch (LCEtype) {
+        switch (QLCEType) {
             case "Birth":
                 birthQLCE.click();
                 for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {

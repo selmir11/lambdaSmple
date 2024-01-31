@@ -119,7 +119,6 @@ public class CreateAccountPage {
     }
 
     // ############################## VALIDATION METHODS #########################
-    // Add only validation methods below this line
 
     public void validateCreateAccountPage(){
         Assert.assertTrue("Create account page did not load", basicActions.getCurrentUrl().contains("createAccount"));
