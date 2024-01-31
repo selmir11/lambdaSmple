@@ -60,9 +60,6 @@ public class AddAddressPage {
         city.sendKeys(mailingCity);
         state.sendKeys(mailingState);
         zip.sendKeys(mailingZip);
-        // wait for dropDown to load - have a method
-      //  Thread.sleep(1000);
-
     }
     public void selectCounty(){
         county.click();
