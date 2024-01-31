@@ -12,9 +12,9 @@ public class PreScreenPageSteps {
             prescreenPage.clickCreateAccountLink();
         };
     // =================VALIDATION STEPS==============//
-        @And("I validate I am on the pre-screen page")
-        public void iValidatePreScreenPage(String page){
-            basicSteps.iValidatePage("Prescreen");
-        }
+//        @And("I validate I am on the pre-screen page")
+//        public void iValidatePreScreenPage(String page){
+//            basicSteps.iValidatePage("Prescreen");
+//        }
 
     }
