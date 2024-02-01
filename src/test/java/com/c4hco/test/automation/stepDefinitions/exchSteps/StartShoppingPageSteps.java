@@ -21,7 +21,6 @@ public class StartShoppingPageSteps {
     }
     @Then("I choose no tobacco usage and click save and exit on start shopping page")
     public void clickNoAndSaveNExit() {
-      //  Thread.sleep(3000);
         startShoppingPage.clickBtnSaveNExit();
     }
 

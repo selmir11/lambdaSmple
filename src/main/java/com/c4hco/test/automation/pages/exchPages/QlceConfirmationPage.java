@@ -105,7 +105,7 @@ public class QlceConfirmationPage {
         }
     }
 
-    public void saveNContinue(){
+    public void saveAndContinue(){
         saveAndContinue.click();
     }
 }

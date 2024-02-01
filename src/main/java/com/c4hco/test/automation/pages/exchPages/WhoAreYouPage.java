@@ -81,7 +81,6 @@ public class WhoAreYouPage {
         Select dropdown = new Select(memberState);
         dropdown.selectByValue(state);
         memberZip.sendKeys(zip);
-        // hacked to click the dropdown twice to work
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
         memberDOB.sendKeys(dob);

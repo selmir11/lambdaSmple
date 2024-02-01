@@ -5,12 +5,12 @@ import io.cucumber.java.en.*;
 
 public class PreScreenPageSteps {
         PrescreenPage prescreenPage = new PrescreenPage();
-    BasicSteps basicSteps = new BasicSteps();
+        BasicSteps basicSteps = new BasicSteps();
 
         @And("I click create my account from pre-screen page")
         public void iClickCreateAccountLink(){
             prescreenPage.clickCreateAccountLink();
-        };
+        }
     // =================VALIDATION STEPS==============//
 
 

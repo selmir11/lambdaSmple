@@ -10,7 +10,9 @@ public class QlceConfirmationPageSteps {
     @Then("I select {string} QLCE on tell us about life changes page")
     public void selectQlceType(String qlceOption){
         qlceConfirmationPage.selectQLCE(qlceOption);
-        // Move the below to a different step
-        qlceConfirmationPage.saveNContinue();
+    }
+    @Then("I click on Save and Continue")
+    public void saveAndContinue(){
+        qlceConfirmationPage.saveAndContinue();
     }
 }

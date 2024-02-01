@@ -11,11 +11,6 @@ public class ExLoginPageSteps {
     LoginPage loginPage = new LoginPage();
     ExchLogin exLoginPage = new ExchLogin();
 
-//    @Given("I am on login page")
-//    public void validateHeaderLoginPage() throws InterruptedException {
-//        //loginPage.openPage();
-//        //exLoginPage.validateLoginPage();
-//    };
     @Then("I enter user name")
     public void enterUserName(){
         exLoginPage.username();
