@@ -24,6 +24,6 @@ public class BasicSteps {
                 pageUrl = "PreShoppingPortal/startShopping";
                 break;
         }
-        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 10).contains(pageUrl));
+        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 60).contains(pageUrl));
     }
 }

@@ -11,6 +11,10 @@ public class IncomeOptOutPage {
 
     @FindBy(xpath = "//*[@value='purchase a plan without financial help.']")
     WebElement noThanks;
+
+    @FindBy(xpath = "//input[@value='Apply for financial help.']")
+    WebElement apply;
+
     private BasicActions basicActions;
 
     public IncomeOptOutPage() {
@@ -24,5 +28,10 @@ public class IncomeOptOutPage {
     @And("I Apply for no financial help")
     public void chooseNoFinancialHelp(){
         noThanks.click();
+    }
+
+    @And("I Apply for financial help")
+    public void chooseApply(){
+        apply.click();
     }
 }

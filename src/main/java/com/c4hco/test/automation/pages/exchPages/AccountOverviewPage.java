@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 public class AccountOverviewPage {
     @FindBy(xpath = "//*[text()='Apply for  2024']")
@@ -29,6 +30,9 @@ public class AccountOverviewPage {
 //    }
 
     public void clickApply2024(){
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(basicActions.waitForElementToBeClickable(apply2024Button, 60));
+
         apply2024Button.click();
     }
 

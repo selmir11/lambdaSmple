@@ -1,12 +1,15 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Random;
 
 public class WhoAreYouPage {
     private BasicActions basicActions;
@@ -56,7 +59,6 @@ public class WhoAreYouPage {
     private String dob ="10011980";
     private String SSNvalue = "653035280";
 
-
     public void checkWhoAreYouOption(String whoAreYouOption){
         switch(whoAreYouOption){
             case "member":
@@ -77,6 +79,23 @@ public class WhoAreYouPage {
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
         memberDOB.sendKeys(dob);
+        memberSSN.sendKeys(SSNvalue);
+        saveAndContinue.click();
+    }
+
+    public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
+        StreetAddress1.sendKeys(addressLine1);
+        memberCity.sendKeys("Denver");
+
+        Select dropdown = new Select(memberState);
+        dropdown.selectByValue("CO");
+
+        memberZip.sendKeys(zipcode);
+
+        countyDropDown.click();
+        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
+
+        memberDOB.sendKeys(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
         saveAndContinue.click();
     }
