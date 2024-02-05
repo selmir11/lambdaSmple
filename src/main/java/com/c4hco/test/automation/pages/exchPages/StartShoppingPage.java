@@ -50,7 +50,6 @@ public class StartShoppingPage {
 
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){
-        // headerText is not found on the page
         getDriver().waitForElementToBePresent(headerText,10);
         String header  = headerText.getText();
         SoftAssert softAssert = new SoftAssert();
