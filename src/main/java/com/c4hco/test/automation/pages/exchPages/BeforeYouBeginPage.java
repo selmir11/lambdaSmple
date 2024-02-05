@@ -21,7 +21,6 @@ public class BeforeYouBeginPage {
 
 
     public void clickContinueWithApplicationButton(){
-        // TO DO - create a resuable method in utils to click a button/element
-        continueWithApplication.click();
+            continueWithApplication.click();
     }
 }

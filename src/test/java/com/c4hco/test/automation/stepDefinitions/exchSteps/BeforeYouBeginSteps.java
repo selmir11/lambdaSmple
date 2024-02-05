@@ -7,7 +7,7 @@ public class BeforeYouBeginSteps {
 
     BeforeYouBeginPage beforeYouBeginPage = new BeforeYouBeginPage();
 
-@Then("I click on continue with  application button on Before you begin page")
+    @Then("I click on continue with  application button on Before you begin page")
     public void iClickContinueWithApplicationButton(){
     beforeYouBeginPage.clickContinueWithApplicationButton();
 

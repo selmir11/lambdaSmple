@@ -18,33 +18,19 @@ public class MemberIdProofingPage {
     }
 
     @FindBy(xpath = "//div/input[@id='answer11']")
-    WebElement employerName;
+    WebElement firstOptionInEmployerName;
     @FindBy(xpath = "//div/input[@id='answer21']")
-    WebElement homeAddress;
+    WebElement firstOptionInHomeAddress;
     @FindBy(xpath = "//div/input[@id='answer31']")
-    WebElement carLoanBank;
+    WebElement firstOptionInCarLoanBank;
     @FindBy(xpath = "//input[@value='Save and Continue']")
     WebElement saveContinue;
 
     public void selectFirstOptionToAll(){
-        // update the names of the locators to reflect they all are first available options
-        employerName.click();
-        homeAddress.click();
-        carLoanBank.click();
+        firstOptionInEmployerName.click();
+        firstOptionInHomeAddress.click();
+        firstOptionInCarLoanBank.click();
         saveContinue.click();
     }
-
-//    public void selectEmployerName(){
-//        employerName.click();
-//    }
-//    public void selectHomeAddress(){
-//        homeAddress.click();
-//    }
-//    public void selectBank(){
-//        carLoanBank.click();
-//    }
-//    public void clickSaveContinue(){
-//        saveContinue.click();
-//    }
 
 }

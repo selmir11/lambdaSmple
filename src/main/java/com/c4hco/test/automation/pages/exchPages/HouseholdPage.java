@@ -20,7 +20,7 @@ public class HouseholdPage {
     @FindBy(xpath = "//*[@value='Save and Continue']")
     WebElement saveAndContinue;
 
-    @FindBy(xpath = "//*[@id='submitButton_AddMember']")
+    @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
     public void clickContinue(){
