@@ -49,7 +49,7 @@ public class StartShoppingPage {
     }
 
     //-----------------------Validations------------------------//
-    public void verifyTextOnTobaccoPage(){
+    public void verifyTextOnTobaccoPage(){ 
         getDriver().waitForElementToBePresent(headerText,10);
         String header  = headerText.getText();
         SoftAssert softAssert = new SoftAssert();

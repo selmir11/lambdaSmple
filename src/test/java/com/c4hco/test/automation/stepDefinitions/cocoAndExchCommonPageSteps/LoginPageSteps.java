@@ -2,6 +2,8 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import io.cucumber.java.en.*;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
 
 public class LoginPageSteps {
 
@@ -14,7 +16,7 @@ public class LoginPageSteps {
 
         @And("I enter valid credentials to login")
                 public void iEnterValidCredentials(){
-            loginPage.logInWithValidCredentials();
+            loginPage.logInWithValidCredentials(emailId,pswrd);
         }
 
         // =================VALIDATION STEPS==============//
