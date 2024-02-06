@@ -17,9 +17,10 @@ public class CreateAccountPageSteps {
         };
 
         @Then("I validate the default verbiage on help icon")
-                public void iValidateHelpVerbiage(){
+        public void iValidateHelpVerbiage(){
+            createAccountPage.implicitWait(2000);
             createAccountPage.validateHelpVerbiage();
-            waitFor(1);
+            createAccountPage.waitForClickablility(createAccountPage.closeHelpIcone,Duration.ofSeconds(2000));
             createAccountPage.closeHelpIcone.click();
         }
 
@@ -30,7 +31,7 @@ public class CreateAccountPageSteps {
 
     @Then("I click on help icon button")
     public void i_click_on_help_icon_button() {
-        waitFor(2);
+        createAccountPage.waitForClickablility(createAccountPage.helpDrawerButton,Duration.ofSeconds(2000));
         createAccountPage.helpDrawerButton.click();
     }
 
@@ -49,13 +50,13 @@ public class CreateAccountPageSteps {
 
 
                 case "English" :
-                    waitFor(2);
+                    createAccountPage.implicitWait(2000);
                     createAccountPage.waitForClickablility(createAccountPage.languageDrp, Duration.ofSeconds(1000));
                     createAccountPage.languageDrp.click();
                     createAccountPage.waitForClickablility(createAccountPage.spanishLanguage, Duration.ofSeconds(1000));
                     createAccountPage.englishLanguage.click();
                     createAccountPage.helpDrawerButton.click();
-                    waitFor(2);
+                    createAccountPage.implicitWait(2000);
 
                     break;
             }
@@ -95,7 +96,7 @@ public class CreateAccountPageSteps {
                     createAccountPage.closeHelpIcone.click();
                     break;
                 case "Spanish":
-                    waitFor(2);
+                    createAccountPage.implicitWait(2000);
                     createAccountPage.validateHelpVerbiageSP();
                     createAccountPage.waitForClickablility(createAccountPage.closeHelpIcone, Duration.ofSeconds(1000));
                     createAccountPage.closeHelpIcone.click();

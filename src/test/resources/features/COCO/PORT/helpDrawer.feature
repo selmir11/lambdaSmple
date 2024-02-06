@@ -34,7 +34,7 @@ Feature: Tests related to the help drawer
     And I click on help icon "Spanish"
     And I validate the default verbiage on help icon in "Spanish"
     Then logout from Admin Portal
-    
+
   Scenario: Validate the default verbiage on the help drawer button in Admin Portal
     Given I open the login page on the admin portal
     When I login as Admin User

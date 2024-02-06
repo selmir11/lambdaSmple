@@ -24,14 +24,13 @@ public class AdminPageSteps {
 
     @Then("logout from Admin Portal")
     public void logout_from_admin_portal() {
-        waitFor(2);
+        createAccountPage.implicitWait(2000);
         adminPage.navigateToPreviousPage();
-        waitFor(1);
+        createAccountPage.waitForClickablility(adminPage.dropdownArrow, Duration.ofSeconds(2000));
         adminPage.dropdownArrow.click();
-        waitFor(1);
-        createAccountPage.waitForVisibility(adminPage.logoutAdmin, Duration.ofSeconds(1000));
+        createAccountPage.waitForVisibility(adminPage.logoutAdmin, Duration.ofSeconds(2000));
         adminPage.logoutAdmin.click();
-        waitFor(2);
+        createAccountPage.implicitWait(2000);
        // adminPage.closeBrowser();
     }
 }

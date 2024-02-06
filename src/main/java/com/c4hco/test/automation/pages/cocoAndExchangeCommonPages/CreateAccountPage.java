@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class CreateAccountPage {
 
@@ -189,6 +190,10 @@ public class CreateAccountPage {
     public WebElement waitForVisibility(WebElement element, Duration timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeToWaitInSec);
         return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void implicitWait(int second){
+       basicActions.getDriver().manage().timeouts().implicitlyWait(second, TimeUnit.SECONDS);
     }
 
 
