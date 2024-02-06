@@ -12,12 +12,12 @@ public class LoginPageSteps {
         @When("I click create a new account on login page")
                 public void iClickCreateAccount(){
             loginPage.clickCreateAccount();
-        };
+        }
 
         @And("I enter valid credentials to login")
                 public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
-        };
+        }
 
     @Given("I open the login page on the admin portal")
     public void i_open_the_login_page_on_the_admin_portal() {

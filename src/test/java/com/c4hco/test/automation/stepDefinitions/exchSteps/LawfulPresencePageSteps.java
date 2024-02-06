@@ -9,8 +9,8 @@ public class LawfulPresencePageSteps {
 
     @And("I enter citizenship details and click continue")
     public void citizenshipPage(){
-        lawfulPresencePage.citizen();
-        lawfulPresencePage.naturalized();
+        lawfulPresencePage.usCitizen();
+        lawfulPresencePage.naturalizedCitizen();
         lawfulPresencePage.save();
     }
 }

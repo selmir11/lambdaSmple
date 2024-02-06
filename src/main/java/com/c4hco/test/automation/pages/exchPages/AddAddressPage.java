@@ -16,34 +16,32 @@ public class AddAddressPage {
         return BasicActions.getInstance();
     }
 
-    // update locators to have ids
-
-@FindBy(xpath = "//*[@id='mailingAddrLine1']")
+    @FindBy(id="mailingAddrLine1")
     WebElement AddrLine1;
 
-    @FindBy(xpath = "//*[@id='mailingAddrCity']")
+    @FindBy(id="mailingAddrCity")
     WebElement city;
 
-    @FindBy(xpath = "//*[@id='mailingAddrState']")
+    @FindBy(id="mailingAddrState")
     WebElement state;
 
-    @FindBy(xpath = "//*[@id='mailingAddrCounty']")
+    @FindBy(id="mailingAddrCounty")
     WebElement county;
 
-    @FindBy(xpath = "//*[@id='mailingAddrZip']")
+    @FindBy(id="mailingAddrZip")
     WebElement zip;
 
-    @FindBy(xpath = "//*[@id='coResidentYes']")
+    @FindBy(id="coResidentYes")
     WebElement coloradoResidentYes;
-    @FindBy(xpath = "//*[@id='tribeNo']")
+    @FindBy(id="tribeNo")
     WebElement tribeNo;
-    @FindBy(xpath = "//*[@id='hardshipExemptionNo']")
+    @FindBy(id="hardshipExemptionNo")
     WebElement hardshipExemptionNo;
-    @FindBy(xpath = "//*[@id='areYouDisabilityNo']")
+    @FindBy(id="areYouDisabilityNo")
     WebElement disabilityNo;
-    @FindBy(xpath = "//*[@id='medicaidOrChpDeniedNo']")
+    @FindBy(id="medicaidOrChpDeniedNo")
     WebElement medicaidDenied;
-    @FindBy(xpath = "//*[@id='areYouIncarceratedNo']")
+    @FindBy(id="areYouIncarceratedNo")
     WebElement notIncarcerated;
     @FindBy(xpath = "//*[@value='Save and Continue']")
     WebElement saveContinue;
@@ -60,9 +58,6 @@ public class AddAddressPage {
         city.sendKeys(mailingCity);
         state.sendKeys(mailingState);
         zip.sendKeys(mailingZip);
-        // wait for dropDown to load - have a method
-      //  Thread.sleep(1000);
-
     }
     public void selectCounty(){
         county.click();
@@ -72,7 +67,6 @@ public class AddAddressPage {
     public void coloradoResidentYes(){
         coloradoResidentYes.click();
     }
-
     public void tribeNo(){
         tribeNo.click();
     }
@@ -91,7 +85,5 @@ public class AddAddressPage {
     public void saveContinue(){
         saveContinue.click();
     }
-
-
 
 }
