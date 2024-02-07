@@ -24,14 +24,12 @@ public class IncomeOptOutPage {
         return BasicActions.getInstance();
     }
 
-    //Refactor needed
-
     public void chooseNoFinancialHelp(){
         noThanks.click();
     }
 
     public void chooseApply(){
-        basicActions.waitForElementToBeClickable(apply, 30);
+        basicActions.waitForElementToBeClickable(apply, 15);
         apply.click();
     }
 }

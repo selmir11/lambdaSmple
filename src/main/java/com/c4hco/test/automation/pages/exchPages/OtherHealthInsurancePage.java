@@ -17,9 +17,6 @@ public class OtherHealthInsurancePage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(id = "noneOfThese")
-    WebElement chkbxNoneOfThese;
-
     @FindBy(css = "#otherHealthInsurance .input-checkbox")
     List<WebElement> insuranceOptionsCheckBox;
 

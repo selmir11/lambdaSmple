@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class IncomeSummaryPage {
     private BasicActions basicActions;
     public IncomeSummaryPage(){
@@ -18,13 +16,10 @@ public class IncomeSummaryPage {
     }
 
     @FindBy(id ="ELIG-summaryDetails-YesButton")
-    WebElement btnYesProjectedDiff;
-
-    @FindBy(css = "lib-option-buttons button")
-    List<WebElement> projectedIncomeOptions;
+    WebElement projectedIncomeYes;
 
     @FindBy(id = "ELIG-summaryDetails-NoButton")
-    WebElement projectIncomeNo;
+    WebElement projectedIncomeNo;
 
     @FindBy(id = "pageId-SaveAndContinue")
     WebElement saveAndContinueBtn;
@@ -32,8 +27,8 @@ public class IncomeSummaryPage {
     public void selectProjectedIncome(String projectedIncomeOption){
         switch(projectedIncomeOption){
             case "No":
-                basicActions.waitForElementToBePresent(projectIncomeNo, 30);
-                projectIncomeNo.click();
+                basicActions.waitForElementToBePresent(projectedIncomeNo, 15);
+                projectedIncomeNo.click();
                 break;
         }
         saveAndContinueBtn.click();

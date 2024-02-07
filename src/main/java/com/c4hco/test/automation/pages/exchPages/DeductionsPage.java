@@ -26,7 +26,6 @@ public class DeductionsPage {
     public void selectAddtlDeductionOption(String addtlDeductionOption){
         switch(addtlDeductionOption){
             case "None of these":
-                System.out.println("deductions length-----"+addtlDeductionOptionsCheckbox.size());
                 addtlDeductionOptionsCheckbox.get(10).click();
                 break;
         }

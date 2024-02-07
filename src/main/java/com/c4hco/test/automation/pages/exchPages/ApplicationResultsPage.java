@@ -29,9 +29,7 @@ public class ApplicationResultsPage {
     }
 
     public void validateAPTC(String expectedAPTC){
-       // SoftAssert softAssert = new SoftAssert();
-     //   softAssert.assertTrue(basicActions.waitForElementToBeClickable(lblAPTCValue, 120));
-
+        basicActions.waitForElementToBePresent(lblAPTCValue, 15);
         String APTC = lblAPTCValue.getText();
         Assert.assertTrue("Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.", APTC.contains(expectedAPTC));
     }

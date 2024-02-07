@@ -21,17 +21,8 @@ public class TaxStatusPage {
     @FindBy(id = "filingStatus")
     WebElement selectFilingStatus;
 
-    @FindBy(id = "exceptionalCircumstances1")
-    WebElement rdobtnExceptionalCircumstances;
-
-    @FindBy(css = "#ClaimedAsDependentGroup .claimedAsDependent")
-    List<WebElement> claimAsDependentRadioBtn;
-
     @FindBy(css = "#filingReturnGroup input")
     List<WebElement> fileFedIncomeTaxRadioBtn;
-
-    @FindBy(css = "#ClaimDependentsQGroup input")
-    List<WebElement> claimDependentsRadioBtn;
 
     @FindBy(id = "claimedAsDependentNo")
     WebElement claimAsDependentNoRadioBtn;
@@ -39,14 +30,13 @@ public class TaxStatusPage {
     @FindBy(id = "claimDependentsNo")
     WebElement claimDependentNoRadioBtn;
 
-
     @FindBy(id = "preSubmitButton")
     WebElement saveAndContinueBtn;
 
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
             case "No":
-                basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 30);
+                basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 10);
                 claimAsDependentNoRadioBtn.click();
                 break;
         }

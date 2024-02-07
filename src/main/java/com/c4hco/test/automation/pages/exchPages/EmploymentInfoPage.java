@@ -1,14 +1,10 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.asserts.SoftAssert;
 
 
 public class EmploymentInfoPage {
@@ -23,12 +19,6 @@ public class EmploymentInfoPage {
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsEmployed-YesButton")
     WebElement btnYesEmployed;
-
-    @FindBy(id = "")
-    WebElement btnNoEmployed;
-
-    @FindBy(id = "")
-    WebElement btnYesSelfEmployed;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsSelfEmployment-NoButton")
     WebElement btnNoSelfEmployed;
@@ -73,8 +63,7 @@ public class EmploymentInfoPage {
     WebElement btnContinue;
 
     public void addEmploymentInfo(String Salary){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(btnYesEmployed, 60));
+        basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
 
         btnYesEmployed.click();
         btnNoSelfEmployed.click();
