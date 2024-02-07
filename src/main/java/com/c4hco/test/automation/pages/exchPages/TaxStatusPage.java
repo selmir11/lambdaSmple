@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class TaxStatusPage {
     private BasicActions basicActions;
@@ -17,44 +18,70 @@ public class TaxStatusPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(id = "claimedAsDependentYes")
-    WebElement rdobtnYesClaimedDependent;
-
-    @FindBy(id = "claimedAsDependentNo")
-    WebElement rdobtnNoClaimedDependent;
-
-    @FindBy(id = "fileTaxReturnYes")
-    WebElement rdobtnYesFileReturn;
-
-    @FindBy(id = "fileTaxReturnNo")
-    WebElement rdobtnNoFileReturn;
-
     @FindBy(id = "filingStatus")
     WebElement selectFilingStatus;
 
     @FindBy(id = "exceptionalCircumstances1")
     WebElement rdobtnExceptionalCircumstances;
 
-    @FindBy(id = "claimDependentsYes")
-    WebElement rdobtnYesClaimDependents;
+    @FindBy(css = "#ClaimedAsDependentGroup .claimedAsDependent")
+    List<WebElement> claimAsDependentRadioBtn;
 
-    @FindBy(id = "claimDependentsNo")
-    WebElement rdobtnNoClaimDependent;
+    @FindBy(css = "#filingReturnGroup input")
+    List<WebElement> fileFedIncomeTaxRadioBtn;
+
+    @FindBy(css = "#ClaimDependentsQGroup input")
+    List<WebElement> claimDependentsRadioBtn;
+
+
 
     @FindBy(id = "preSubmitButton")
-    WebElement btnContinue;
+    WebElement saveAndContinueBtn;
 
-    public void notClaimedNoDependents(String FilingStatus){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(rdobtnNoClaimedDependent, 60));
-
-        rdobtnNoClaimedDependent.click();
-        rdobtnYesFileReturn.click();
-
-        Select dropdown = new Select(selectFilingStatus);
-        dropdown.selectByVisibleText(FilingStatus);
-
-        rdobtnNoClaimDependent.click();
-        btnContinue.click();
+    public void claimAsDependent(String claimAsDependentOption){
+        switch(claimAsDependentOption){
+            case "No":
+                claimAsDependentRadioBtn.get(1).click();
+                break;
+        }
     }
+
+    public void fileFedIncomeTaxReturn(String fileFedIncomeTaxReturnOption){
+        switch(fileFedIncomeTaxReturnOption){
+            case "Yes":
+                fileFedIncomeTaxRadioBtn.get(0).click();
+                break;
+        }
+    }
+
+    public void selectTaxFilingOption(String taxFilingOption){
+        Select dropdown = new Select(selectFilingStatus);
+        dropdown.selectByVisibleText(taxFilingOption);
+    }
+
+    public void selectDependentsOption(String dependentsOption){
+        switch (dependentsOption){
+            case "No":
+                claimDependentsRadioBtn.get(1).click();
+                break;
+        }
+    }
+
+    public void selectSaveAndContinue(){
+        saveAndContinueBtn.click();
+    }
+
+//
+//    public void notClaimedNoDependents(String FilingStatus){
+//        SoftAssert softAssert = new SoftAssert();
+//        softAssert.assertTrue(basicActions.waitForElementToBeClickable(rdobtnNoClaimedDependent, 60));
+//
+//        rdobtnNoClaimedDependent.click();
+//        rdobtnYesFileReturn.click();
+//
+//
+//
+//        rdobtnNoClaimDependent.click();
+//        btnContinue.click();
+//    }
 }

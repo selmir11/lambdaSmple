@@ -4,7 +4,8 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class AdditionalIncomePage {
 
@@ -17,17 +18,19 @@ public class AdditionalIncomePage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(id = "ELIG-AdditionalIncome-NoIncome-checkBoxButton")
-    WebElement chkbxNoneOfThese;
 
     @FindBy(id = "AdditionalIncome-SaveAndContinue")
-    WebElement btnContinue;
+    WebElement saveAndContinueBtn;
 
-    public void noAdditionalIncome(){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(chkbxNoneOfThese, 60));
+    @FindBy(css = ".additional-income-row button")
+    List<WebElement> addtlIncomeOptionsCheckbox;
 
-        chkbxNoneOfThese.click();
-        btnContinue.click();
+    public void selectAddtlIncomeOption(String addtlIncomeOption){
+        switch(addtlIncomeOption){
+            case "None of these":
+                addtlIncomeOptionsCheckbox.get(12).click();
+                break;
+        }
+        saveAndContinueBtn.click();
     }
 }

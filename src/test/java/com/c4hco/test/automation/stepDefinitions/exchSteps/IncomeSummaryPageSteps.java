@@ -6,6 +6,8 @@ import io.cucumber.java.en.Then;
 public class IncomeSummaryPageSteps {
     IncomeSummaryPage incomeSummaryPage = new IncomeSummaryPage();
 
-    @Then("I have no projected income changes")
-    public void iContinueIncomeSummary(){incomeSummaryPage.noProjectedDiff();}
+    @Then("I select the projected income option {string} and continue")
+    public void iSelectProjectedIncomeOption(String projectedIncomeOption){
+        incomeSummaryPage.selectProjectedIncome(projectedIncomeOption);
+    }
 }

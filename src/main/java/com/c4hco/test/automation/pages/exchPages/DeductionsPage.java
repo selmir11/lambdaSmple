@@ -4,7 +4,8 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class DeductionsPage {
     private BasicActions basicActions;
@@ -16,17 +17,18 @@ public class DeductionsPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(id = "ELIG-Deductions-NoDeductions-checkBoxButton")
-    WebElement chkbxNoDeductions;
+    @FindBy(css = "app-deductions .additional-income-row button")
+    List<WebElement> addtlDeductionOptionsCheckbox;
 
     @FindBy(id = "Deductions-SaveAndContinue")
-    WebElement btnContinue;
+    WebElement saveAndContinueBtn;
 
-    public void noDeductions(){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(chkbxNoDeductions, 60));
-
-        chkbxNoDeductions.click();
-        btnContinue.click();
+    public void selectAddtlDeductionOption(String addtlDeductionOption){
+        switch(addtlDeductionOption){
+            case "None of these":
+                addtlDeductionOptionsCheckbox.get(10).click();
+                break;
+        }
+        saveAndContinueBtn.click();
     }
 }

@@ -4,7 +4,8 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class IncomeSummaryPage {
     private BasicActions basicActions;
@@ -19,17 +20,18 @@ public class IncomeSummaryPage {
     @FindBy(id ="ELIG-summaryDetails-YesButton")
     WebElement btnYesProjectedDiff;
 
-    @FindBy(id = "ELIG-summaryDetails-NoButton")
-    WebElement btnNoProjectedDiff;
+    @FindBy(css = "lib-option-buttons button")
+    List<WebElement> projectedIncomeOptions;
 
     @FindBy(id = "pageId-SaveAndContinue")
-    WebElement btnContinue;
+    WebElement saveAndContinueBtn;
 
-    public void noProjectedDiff(){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(btnNoProjectedDiff, 60));
-
-        btnNoProjectedDiff.click();
-        btnContinue.click();
+    public void selectProjectedIncome(String projectedIncomeOption){
+        switch(projectedIncomeOption){
+            case "No":
+                projectedIncomeOptions.get(1).click();
+                break;
+        }
+        saveAndContinueBtn.click();
     }
 }
