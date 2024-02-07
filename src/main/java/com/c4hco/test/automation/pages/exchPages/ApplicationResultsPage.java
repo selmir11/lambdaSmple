@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
 public class ApplicationResultsPage {
 
@@ -30,8 +29,8 @@ public class ApplicationResultsPage {
     }
 
     public void validateAPTC(String expectedAPTC){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(lblAPTCValue, 120));
+       // SoftAssert softAssert = new SoftAssert();
+     //   softAssert.assertTrue(basicActions.waitForElementToBeClickable(lblAPTCValue, 120));
 
         String APTC = lblAPTCValue.getText();
         Assert.assertTrue("Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.", APTC.contains(expectedAPTC));

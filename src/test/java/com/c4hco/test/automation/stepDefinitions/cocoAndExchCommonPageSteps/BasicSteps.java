@@ -26,7 +26,15 @@ public class BasicSteps {
             case "Start Shopping":
                 pageUrl = "PreShoppingPortal/startShopping";
                 break;
+            case "Deductions":
+                pageUrl = "/IncomePortal/deductions";
+                break;
+            case "Financial Help":
+                pageUrl = "IncomePortal/financialHelp";
+                break;
+            case "Income Summary":
+                pageUrl = "IncomePortal/summaryDetails";
         }
-        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 60).contains(pageUrl));
+        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
 }

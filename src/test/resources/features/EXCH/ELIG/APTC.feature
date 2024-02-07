@@ -26,12 +26,15 @@ Feature: UI Tests related to APTC
     Then I enter Additional details and click continue on add address page
     And I enter citizenship details and click continue
     Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I enter employment details with "3700000" annual income
     Then I click continue on the Employment Summary Page
     Then I click "None of these" as additional income option and continue
+    Then I validate I am on the "Deductions" page
     Then I click "None of these" as deduction option and continue
     Then I select the projected income option "No" and continue
+    Then I validate I am on the "Income Summary" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -39,6 +42,8 @@ Feature: UI Tests related to APTC
     And I click save and continue on tax status page
     Then Then I select "None of these" as health insurance option and continue
     Then I click continue on family overview page
-    # Then I select "Birth" QLCE on tell us about life changes page
-    # And I Declare and sign
-    # Then I validate that my APTC value is "$327.63/mo"
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    And I Declare and sign
+    And I wait for hold on content to disappear
+    Then I validate that my APTC value is "$327.63/mo"

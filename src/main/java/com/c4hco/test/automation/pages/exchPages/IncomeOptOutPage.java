@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.java.en.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,7 +11,7 @@ public class IncomeOptOutPage {
     @FindBy(xpath = "//*[@value='purchase a plan without financial help.']")
     WebElement noThanks;
 
-    @FindBy(xpath = "//input[@value='Apply for financial help.']")
+    @FindBy(id = "ApplyForFinancialHelp")
     WebElement apply;
 
     private BasicActions basicActions;
@@ -25,13 +24,14 @@ public class IncomeOptOutPage {
         return BasicActions.getInstance();
     }
 
-    @And("I Apply for no financial help")
+    //Refactor needed
+
     public void chooseNoFinancialHelp(){
         noThanks.click();
     }
 
-    @And("I Apply for financial help")
     public void chooseApply(){
+        basicActions.waitForElementToBeClickable(apply, 30);
         apply.click();
     }
 }

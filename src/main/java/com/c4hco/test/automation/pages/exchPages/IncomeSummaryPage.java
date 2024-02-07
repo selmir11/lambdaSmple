@@ -23,13 +23,17 @@ public class IncomeSummaryPage {
     @FindBy(css = "lib-option-buttons button")
     List<WebElement> projectedIncomeOptions;
 
+    @FindBy(id = "ELIG-summaryDetails-NoButton")
+    WebElement projectIncomeNo;
+
     @FindBy(id = "pageId-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
     public void selectProjectedIncome(String projectedIncomeOption){
         switch(projectedIncomeOption){
             case "No":
-                projectedIncomeOptions.get(1).click();
+                basicActions.waitForElementToBePresent(projectIncomeNo, 30);
+                projectIncomeNo.click();
                 break;
         }
         saveAndContinueBtn.click();

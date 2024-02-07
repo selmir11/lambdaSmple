@@ -28,10 +28,7 @@ public class TaxStatusPageSteps {
     }
 
     @And("I click save and continue on tax status page")
-    public void iClickSaveAndContinue(String dependentsOption){
+    public void iClickSaveAndContinue(){
         taxStatusPage.selectSaveAndContinue();
     }
-
-   // @Then("My marital status is {string} and I am filing with no dependents")
-  //  public void filingNoDependents(String FilingStatus){taxStatusPage.notClaimedNoDependents(FilingStatus);}
 }

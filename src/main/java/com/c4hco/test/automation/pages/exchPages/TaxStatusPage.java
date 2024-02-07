@@ -33,6 +33,11 @@ public class TaxStatusPage {
     @FindBy(css = "#ClaimDependentsQGroup input")
     List<WebElement> claimDependentsRadioBtn;
 
+    @FindBy(id = "claimedAsDependentNo")
+    WebElement claimAsDependentNoRadioBtn;
+
+    @FindBy(id = "claimDependentsNo")
+    WebElement claimDependentNoRadioBtn;
 
 
     @FindBy(id = "preSubmitButton")
@@ -41,7 +46,8 @@ public class TaxStatusPage {
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
             case "No":
-                claimAsDependentRadioBtn.get(1).click();
+                basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 30);
+                claimAsDependentNoRadioBtn.click();
                 break;
         }
     }
@@ -62,7 +68,7 @@ public class TaxStatusPage {
     public void selectDependentsOption(String dependentsOption){
         switch (dependentsOption){
             case "No":
-                claimDependentsRadioBtn.get(1).click();
+                claimDependentNoRadioBtn.click();
                 break;
         }
     }
