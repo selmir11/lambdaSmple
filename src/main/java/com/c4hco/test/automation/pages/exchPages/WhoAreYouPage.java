@@ -60,7 +60,6 @@ public class WhoAreYouPage {
     private String dob ="10011980";
     private String SSNvalue = "653035280";
 
-
     public void checkWhoAreYouOption(String whoAreYouOption){
         switch(whoAreYouOption){
             case "member":
@@ -75,15 +74,19 @@ public class WhoAreYouPage {
         }
     }
 
-    public void enterMemberDetails(){
+    public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
         StreetAddress1.sendKeys(addressLine1);
-        memberCity.sendKeys(city);
+        memberCity.sendKeys("Denver");
+
         Select dropdown = new Select(memberState);
-        dropdown.selectByValue(state);
-        memberZip.sendKeys(zip);
+        dropdown.selectByValue("CO");
+
+        memberZip.sendKeys(zipcode);
+
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
-        memberDOB.sendKeys(dob);
+
+        memberDOB.sendKeys(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
         saveAndContinue.click();
     }
