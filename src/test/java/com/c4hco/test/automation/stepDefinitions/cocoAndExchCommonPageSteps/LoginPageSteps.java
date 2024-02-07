@@ -10,12 +10,12 @@ public class LoginPageSteps {
         @When("I click create a new account on login page")
                 public void iClickCreateAccount(){
             loginPage.clickCreateAccount();
-        };
+        }
 
         @And("I enter valid credentials to login")
                 public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
-        };
+        }
 
         // =================VALIDATION STEPS==============//
     }

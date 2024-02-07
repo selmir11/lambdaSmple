@@ -1,15 +1,15 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.StartShoppingPage;
+import com.c4hco.test.automation.utils.BasicActions;
 import io.cucumber.java.en.*;
 
 public class StartShoppingPageSteps {
     StartShoppingPage startShoppingPage = new StartShoppingPage();
-
+    BasicActions basicActions = new BasicActions();
 
     public void clickNoAndContinue() {
-      //  Thread.sleep(3000);
-        startShoppingPage.clickContinue();
+            startShoppingPage.clickContinue();
     }
     public void clickYesAndContinue(){
         startShoppingPage.clickYes();
@@ -21,10 +21,7 @@ public class StartShoppingPageSteps {
     }
     @Then("I choose no tobacco usage and click save and exit on start shopping page")
     public void clickNoAndSaveNExit() {
-      //  Thread.sleep(3000);
         startShoppingPage.clickBtnSaveNExit();
     }
-
-
 
 }

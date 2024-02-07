@@ -47,10 +47,11 @@ public class StartShoppingPage {
     public void clickContinue(){
         btnContinue.click();
     }
+
+    //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){
-        // headerText is not found on the page
+        getDriver().waitForElementToBePresent(headerText,10);
         String header  = headerText.getText();
-        System.out.println(header);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
         softAssert.assertEquals(secondLineText.getText(), "First, we need to ask you about tobacco usage.");
@@ -61,6 +62,5 @@ public class StartShoppingPage {
         softAssert.assertEquals(nextYouWillReviewText.getText(), "Next, you'll review your plan options and pick an insurance plan that fits your needs.");
         softAssert.assertEquals(notReady.getText(), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
-
     }
 }

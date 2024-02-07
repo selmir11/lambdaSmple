@@ -14,6 +14,9 @@ public class BasicSteps {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
+            case "Prescreen":
+                pageUrl = "/prescreen";
+                break;
             case "Account Overview":
                  pageUrl = "nes/accountOverview";
                 break;

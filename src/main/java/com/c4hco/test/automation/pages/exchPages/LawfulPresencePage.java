@@ -17,18 +17,15 @@ public class LawfulPresencePage {
     }
 
     //update the locators to have ids
-    @FindBy(xpath = "//*[@id='usCitizenYes']")
+    @FindBy(id = "usCitizenYes")
     WebElement citizenYes;
-    @FindBy(xpath = "//*[@id='naturalizedCitizenNo']")
+    @FindBy(id = "naturalizedCitizenNo")
     WebElement naturalizedCitizen;
     @FindBy(xpath = "//*[@value='Save and Continue']")
     WebElement saveContinue;
 
-    // update the naming convention for below
-    public void citizen(){
-        citizenYes.click();
-    }
-    public void naturalized(){
+    public void usCitizen(){ citizenYes.click(); }
+    public void naturalizedCitizen(){
         naturalizedCitizen.click();
     }
     public  void save(){

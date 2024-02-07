@@ -28,7 +28,5 @@ public class PrescreenPage {
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
 
-    public void validatePreScreenPage(){
-        Assert.assertTrue("Prescreen page did not load", basicActions.getCurrentUrl().contains("prescreen"));
-    }
+
 }

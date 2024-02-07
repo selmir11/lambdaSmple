@@ -24,6 +24,10 @@ public class WhoAreYouPage {
 
     @FindBy(xpath = "//input[starts-with(@id,'hhcYes')]")
     WebElement member;
+    @FindBy(id ="selectedAuthorizedRepInput")
+    WebElement newAuthorizedRepresentative;
+    @FindBy(id ="selectedSomeoneElseInput")
+    WebElement someoneElse;
     @FindBy(xpath = "//*[@id='firstName']")
     WebElement memberFName;
     @FindBy(xpath = "//*[@id='lastName']")
@@ -62,20 +66,23 @@ public class WhoAreYouPage {
     public void checkWhoAreYouOption(String whoAreYouOption){
         switch(whoAreYouOption){
             case "member":
-                // TO DO: update the locator-member to have list element and accept all the options
-            member.click();
-            break;
+                member.click();
+                break;
+            case "New Authorized Representative":
+                newAuthorizedRepresentative.click();
+                break;
+            case "Someone Else":
+                someoneElse.click();
+                break;
         }
     }
 
     public void enterMemberDetails(){
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys(city);
-        // utilize the basicActions stuff and update this
         Select dropdown = new Select(memberState);
         dropdown.selectByValue(state);
         memberZip.sendKeys(zip);
-        // hacked to click the dropdown twice to work
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
         memberDOB.sendKeys(dob);

@@ -24,15 +24,8 @@ public class AccountOverviewPage {
         return BasicActions.getInstance();
     }
 
-
-//    public void verifyHeader(){
-//        Assert.assertTrue("This is not Welcome Page.", header.getText().contains("Welcome to Connect"));
-//    }
-
     public void clickApply2024(){
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(apply2024Button, 60));
-
+        getDriver().waitForElementToBePresent(apply2024Button,10);
         apply2024Button.click();
     }
 

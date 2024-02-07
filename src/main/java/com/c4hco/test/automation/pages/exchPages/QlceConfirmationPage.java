@@ -23,41 +23,63 @@ public class QlceConfirmationPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//*[@id='birth']")
+    @FindBy(id="birth")
     WebElement birthQLCE;
-
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
     List<WebElement> allmembersBirthcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
-    WebElement eventDate;
+    List<WebElement> birthEventDate;
+
+    //Marriage
+    @FindBy(id ="marriage")
+    WebElement marriageLce;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Marriage')]")
+    List<WebElement> allmemberMarriagecheckbox;
+
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'Marriage')]")
+    List<WebElement> marriageEventDate;
+
+    //Divorce
+    @FindBy(id ="divorce")
+    WebElement divorceLce;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Divorce')]")
+    List<WebElement> allmemberDivorcecheckbox;
+
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'Divorce')]")
+    List<WebElement> divorceEventDate;
+
+    //Death
+    @FindBy(id ="death")
+    WebElement deathLce;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Death')]")
+    List<WebElement> allmemberDeathcheckbox;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
+    WebElement deathEventDate;
+
     @FindBy(xpath = "//*[@id='continueButton']")
-            WebElement saveAndContinue;
-
-    // move the code related to date to a method and naming conventions
-
-    public void selectLCE(String LCEtype) {
-
-        switch (LCEtype) {
-            case "Birth":
-                birthQLCE.click();
-                for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
-                    allmembersBirthcheckbox.get(mc).click();
-                    eventDate.click();
-            //        eventDate.sendKeys(getCurrentDate());
-                    eventDate.sendKeys("01/26/2024");
-                    break;
-                }
-        }
-    }
+    WebElement saveAndContinue;
 
     public String getCurrentDate(){
-        // Create object of SimpleDateFormat class and decide the format
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
         Date date = new Date();
         // Now format the date
         return dateFormat.format(date);
     }
-    public void saveNContinue(){
+
+    public void selectQLCE(String QLCEType) {
+        switch (QLCEType) {
+            case "Birth":
+                birthQLCE.click();
+                for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
+                    allmembersBirthcheckbox.get(mc).click();
+                    birthEventDate.get(mc).click();
+                    birthEventDate.get(mc).sendKeys(getCurrentDate());
+                }
+                break;
+        }
+    }
+
+    public void saveAndContinue(){
         saveAndContinue.click();
     }
 }
