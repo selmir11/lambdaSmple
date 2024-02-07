@@ -1,15 +1,12 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.Random;
 
 public class WhoAreYouPage {
     private BasicActions basicActions;
@@ -75,19 +72,6 @@ public class WhoAreYouPage {
                 someoneElse.click();
                 break;
         }
-    }
-
-    public void enterMemberDetails(){
-        StreetAddress1.sendKeys(addressLine1);
-        memberCity.sendKeys(city);
-        Select dropdown = new Select(memberState);
-        dropdown.selectByValue(state);
-        memberZip.sendKeys(zip);
-        countyDropDown.click();
-        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
-        memberDOB.sendKeys(dob);
-        memberSSN.sendKeys(SSNvalue);
-        saveAndContinue.click();
     }
 
     public void specificMemberDetails(String zipcode, String county, String dateOfBirth){

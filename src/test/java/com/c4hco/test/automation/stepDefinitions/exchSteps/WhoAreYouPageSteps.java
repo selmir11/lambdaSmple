@@ -10,10 +10,7 @@ public class WhoAreYouPageSteps {
     public void checkWhoAreYouBox(String whoAreYouOption){
         whoAreYouPage.checkWhoAreYouOption(whoAreYouOption);
     }
-    @And("I enter the details of the member and continue")
-    public void iEnterMemberDetails(){
-        whoAreYouPage.enterMemberDetails();
-    }
+
     @And("I am a member with dob {string} in county {string} with zipcode {string}")
     public void enterSpecificMemberDetails(String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetails(zipcode, county, dateOfBirth);}
 
