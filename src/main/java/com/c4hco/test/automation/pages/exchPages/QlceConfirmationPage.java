@@ -55,6 +55,13 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
     WebElement deathEventDate;
+    //Moved to Colorado
+    @FindBy(id="changeOfAddress")
+    WebElement addressChangeLce;
+    @FindBy(xpath="//input[contains(@class,'checkbox')and contains(@id,'ChangeOfResidence')]")
+    List<WebElement> memberCheckboxChangeOfAddress;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'ChangeOfResidence')]")
+    List<WebElement> changeOfAddressEventDate;
 
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
@@ -69,6 +76,7 @@ public class QlceConfirmationPage {
     public void selectQLCE(String QLCEType) {
         switch (QLCEType) {
             case "Birth":
+                getDriver().waitForElementToBePresent(birthQLCE,10);
                 birthQLCE.click();
                 for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
                     allmembersBirthcheckbox.get(mc).click();
@@ -76,6 +84,16 @@ public class QlceConfirmationPage {
                     birthEventDate.get(mc).sendKeys(getCurrentDate());
                 }
                 break;
+            case "MoveToCO":
+                getDriver().waitForElementToBePresent(addressChangeLce,10);
+                addressChangeLce.click();
+                for (var mc = 0; mc < memberCheckboxChangeOfAddress.size(); mc++) {
+                    memberCheckboxChangeOfAddress.get(mc).click();
+                    changeOfAddressEventDate.get(mc).click();
+                    changeOfAddressEventDate.get(mc).sendKeys(getCurrentDate());
+                }
+
+
         }
     }
 

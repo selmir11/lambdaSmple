@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class IncomeOptOutPage {
     // NFA Page
 
-    @FindBy(xpath = "//*[@value='purchase a plan without financial help.']")
+    @FindBy(id="NoFinancialHelpWanted")
     WebElement noThanks;
     private BasicActions basicActions;
 
@@ -23,6 +23,7 @@ public class IncomeOptOutPage {
 
     @And("I Apply for no financial help")
     public void chooseNoFinancialHelp(){
+        getDriver().waitForElementToBePresent(noThanks,10);
         noThanks.click();
     }
 }
