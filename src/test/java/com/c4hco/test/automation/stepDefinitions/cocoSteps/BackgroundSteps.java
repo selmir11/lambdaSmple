@@ -8,9 +8,9 @@ public class BackgroundSteps {
         LoginPage loginPage = new LoginPage();
         DataProviderDb_qa_coco dbDataProviderForQaCoco = new DataProviderDb_qa_coco();
 
-        @Given("I open the login page on the login portal")
-        public void openPage(){
-            loginPage.openPage();
+        @Given("I open the login page on the {string} portal")
+        public void openPage(String appType){
+            loginPage.openPage(appType);
         };
 
         @Given("I connect to the ob834_detail table")

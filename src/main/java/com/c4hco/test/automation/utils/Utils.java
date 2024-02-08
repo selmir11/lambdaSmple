@@ -1,37 +1,26 @@
 package com.c4hco.test.automation.utils;
 
 public class Utils {
+    private String env = ApplicationProperties.getInstance().getProperty("env");
 
     public Utils(){
     }
 
-    public String getBaseLoginUrl(String env){
+    public String getBaseLoginUrl(String appType){
         String baseUrl = "";
-        switch(env){
-            case "qa-login":
-                baseUrl = Constants.QA_LOGIN;
+        switch(appType){
+            case "login":
+                baseUrl = Constants.PROTOCOL+env+Constants.LOGIN;
+                break;
+            case "broker":
+                baseUrl = Constants.PROTOCOL+env+Constants.BROKER;
                 break;
 
-            case "qa-broker":
-                baseUrl = Constants.QA_BROKER;
-                break;
-
-            case "qa-admin":
-                baseUrl = Constants.QA_ADMIN;
-                break;
-
-            case "staging-login":
-                baseUrl = Constants.STAGING_LOGIN;
-                break;
-
-            case "staging-broker":
-                baseUrl = Constants.STAGING_BROKER;
-                break;
-
-            case "staging-admin":
-                baseUrl = Constants.STAGING_ADMIN;
+            case "admin":
+                baseUrl = Constants.PROTOCOL+env+Constants.ADMIN;
                 break;
         }
         return baseUrl;
     }
+
 }

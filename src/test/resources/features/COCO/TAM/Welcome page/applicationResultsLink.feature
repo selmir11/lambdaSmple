@@ -2,7 +2,7 @@
 Feature: Tests related to the Application Results link
 
   Background: I go to the login portal
-    Given I open the login page on the login portal
+    Given I open the login page on the "login" portal
 
     @SLCR-25-WIP
   Scenario: Validate Application Results link text

@@ -10,4 +10,9 @@ public class IncomeOptOutPageSteps {
     public void clickNoThanks(){
         incomeOptOutPage.chooseNoFinancialHelp();
     }
+
+    @And("I Apply for financial help")
+    public void clickApply(){
+        incomeOptOutPage.chooseApply();
+    }
 }

@@ -2,7 +2,7 @@
 Feature: Tests related to the help drawer
 
   Background: I go the login portal
-    Given I open the login page on the login portal
+    Given I open the login page on the "login" portal
 
     # intermittent failures are noticed because of faster execution. Run the scenario multiple times to make sure
   Scenario: Validate the default verbiage on the help drawer

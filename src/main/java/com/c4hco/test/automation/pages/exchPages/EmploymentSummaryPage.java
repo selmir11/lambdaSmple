@@ -5,18 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class IncomeOptOutPage {
-    // NFA Page
-
-    @FindBy(id="NoFinancialHelpWanted")
-    WebElement noThanks;
-
-    @FindBy(id = "ApplyForFinancialHelp")
-    WebElement apply;
-
+public class EmploymentSummaryPage {
     private BasicActions basicActions;
-
-    public IncomeOptOutPage() {
+    public EmploymentSummaryPage(){
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -24,13 +15,12 @@ public class IncomeOptOutPage {
         return BasicActions.getInstance();
     }
 
-    public void chooseNoFinancialHelp(){
-        basicActions.waitForElementToBeClickable(noThanks,10);
-        noThanks.click();
+    @FindBy(id = "EmploymentSummary-SaveAndContinue")
+    WebElement btnContinue;
+
+    public void clickContinue(){
+        basicActions.waitForElementToBeClickable(btnContinue, 10);
+        btnContinue.click();
     }
 
-    public void chooseApply(){
-        basicActions.waitForElementToBeClickable(apply, 15);
-        apply.click();
-    }
 }
