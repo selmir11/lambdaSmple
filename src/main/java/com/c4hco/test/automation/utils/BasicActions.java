@@ -2,7 +2,6 @@ package com.c4hco.test.automation.utils;
 
 
 import com.c4hco.test.automation.selenium.Selenese;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -92,6 +91,16 @@ public class BasicActions {
         return true;
     }
 
+    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
+            webElement.click();
+        } catch(TimeoutException ignore){
+            Log.info("Element is not clickable");
+        }
+
+    }
 
 
 }

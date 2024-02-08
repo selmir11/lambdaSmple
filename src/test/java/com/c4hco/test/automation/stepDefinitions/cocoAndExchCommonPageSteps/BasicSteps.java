@@ -34,6 +34,10 @@ public class BasicSteps {
                 break;
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
+                break;
+            case "Create Account":
+                pageUrl = "createAccount";
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

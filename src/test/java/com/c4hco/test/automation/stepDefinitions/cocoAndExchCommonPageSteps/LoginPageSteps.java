@@ -30,6 +30,7 @@ public class LoginPageSteps {
     public void i_login_as_admin_user() {
         utils.refreshPage();
         utils.waitForVisibility(loginPage.usernameAdmin,Duration.ofSeconds(2000));
+        // TO DO: Get the credentials coming from a different file
         loginPage.usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
         loginPage.passwordAdmin.sendKeys("ALaska12!");
         loginPage.signAdmin.click();

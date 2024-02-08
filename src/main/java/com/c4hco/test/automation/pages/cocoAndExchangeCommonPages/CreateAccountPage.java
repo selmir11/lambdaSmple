@@ -1,91 +1,84 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Utils;
+import lombok.Getter;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.text.DecimalFormat;
-import java.time.Duration;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import static com.c4hco.test.automation.utils.Utils.waitFor;
+// import static com.c4hco.test.automation.utils.Utils.waitFor;
 
-
+@Getter
 public class CreateAccountPage {
-    Utils utils = new Utils();
     @FindBy(css = "app-create-account a em")
-    public WebElement helpIcon;
+    WebElement helpIcon;
 
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")
-    List<WebElement> helpDrawerText;
+    private  List<WebElement> helpDrawerText;
 
     @FindBy(xpath = "//label[@class='help-label ng-tns-c2-0']")
-    public WebElement helpIconSP;
+    private WebElement helpIconSP;
 
     @FindBy(id="globe-image")
-    public WebElement languageDrp;
+    private WebElement languageDrp;
 
+// we should not have ng star inserted in any of the locators. They are angular specific and might change and not good to rely on them.
     @FindBy(xpath="//a[@class='btn btn-default btn-sm btn-override ng-tns-c2-0 ng-star-inserted']")
-    public WebElement closeHelpIcone;
+    private WebElement closeHelpIconEnglish;
 
     @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
-    public WebElement englishLanguage;
+    private WebElement englishLanguage;
 
     @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
-    public WebElement spanishLanguage;
+    private WebElement spanishLanguage;
 
     @FindBy(xpath = "//p[contains(text(),'Connect for Health Colorado es el mercado oficial ')]")
-    public WebElement helpDrawerTextSP;
+    private WebElement helpDrawerTextSP;
 
     @FindBy(xpath = "//em[@class='fas fa-question-circle']")
-    public WebElement helpDrawerButton;
+    private WebElement helpDrawerButton;
 
     @FindBy(xpath = "//div[13]/div[1]/em")
-    public WebElement helpDrawerButtonSP;
+    private WebElement helpDrawerButtonSP;
 
     @FindBy(id = "fn")
-    WebElement firstName;
+    private WebElement firstName;
 
     @FindBy(id = "ln")
-    WebElement lastName;
+    private WebElement lastName;
 
     @FindBy(id = "email")
-    WebElement email;
+    private WebElement email;
 
     @FindBy(id = "phone")
-    WebElement phoneNumber;
+    private WebElement phoneNumber;
 
     @FindBy(id = "password")
-    WebElement password;
+    private WebElement password;
 
     @FindBy(id = "confirm-password")
-    WebElement confirmPassword;
+    private WebElement confirmPassword;
 
     @FindBy(xpath = "//*[@for='English']")
-    WebElement preferredLanguageButtonEnglish;
+    private WebElement preferredLanguageButtonEnglish;
 
     @FindBy(id = "primaryUser-input")
-    WebElement primaryUserCheckbox;
+    private WebElement primaryUserCheckbox;
 
     @FindBy(id = "cocoUser-input")
-    WebElement cocoTermsOfUseCheckbox;
+    private WebElement cocoTermsOfUseCheckbox;
 
     @FindBy(xpath = "//*[@id='exchUser-input']")
-    WebElement exchangeTermsOfUseCheckbox;
+    private WebElement exchangeTermsOfUseCheckbox;
 
     @FindBy(id = "submit-button")
-    WebElement submitButton;
+    private WebElement submitButton;
 
     private BasicActions basicActions;
     public CreateAccountPage(){
@@ -97,14 +90,17 @@ public class CreateAccountPage {
         return BasicActions.getInstance();
     }
 
-
     public void clickHelpIcon(){
-        utils.waitForClickablility(helpIcon,Duration.ofSeconds(1000));
+        basicActions.waitForElementToBeClickable(helpIcon, 5);
         helpIcon.click();
     }
 
+    public void closeHelpIcon(){
+        closeHelpIconEnglish.click();
+    }
+
     public void clickHelpIconButton(){
-        utils.waitForVisibility(helpDrawerButton, Duration.ofSeconds(1000));
+      //  utils.waitForVisibility(helpDrawerButton, Duration.ofSeconds(1000));
         helpDrawerButton.click();
     }
 
@@ -159,13 +155,9 @@ public class CreateAccountPage {
 
     // ############################## VALIDATION METHODS #########################
 
-    public void validateCreateAccountPage(){
-        Assert.assertTrue("Create account page did not load", basicActions.getCurrentUrl().contains("createAccount"));
-    }
-
     public void validateHelpVerbiage(){
         String text = "Connect for Health Colorado is Colorado’s official health insurance marketplace. Since 2013, Connect for Health Colorado has been helping individuals, families and small employers compare plans, apply for financial help and buy health insurance.";
-        waitFor(1);
+      //  waitFor(1); //should remove wait here.
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(helpDrawerText.get(0).getText(), "Connect for Health Colorado and Colorado Connect are committed to protecting your privacy and will keep the information you provide private as required by law.");
         softAssert.assertEquals(helpDrawerText.get(1).getText(), "Connect for Health Colorado");
@@ -178,7 +170,7 @@ public class CreateAccountPage {
     public void validateHelpVerbiageSP() {
 
         SoftAssert softAssert = new SoftAssert();
-        waitFor(1);
+       // waitFor(1); // should remove wait here
         softAssert.assertTrue(helpDrawerTextSP.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
 
     }
