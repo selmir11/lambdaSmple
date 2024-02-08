@@ -13,10 +13,10 @@ import java.time.Duration;
 public class WelcomePage {
 
     @FindBy(id = "ELIG-WelcomePage-ApplyForInsurance-2024")
-    public WebElement applyFor2024Button;
+    private WebElement applyFor2024Button;
 
     @FindBy(id = "ELIG-WelcomePage-MyProfile")
-    public WebElement myProfileButton;
+    private WebElement myProfileButton;
 
     private BasicActions basicActions;
     public WelcomePage(){

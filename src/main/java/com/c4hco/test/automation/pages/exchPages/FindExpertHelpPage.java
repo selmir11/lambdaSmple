@@ -26,7 +26,7 @@ public class FindExpertHelpPage {
         continueOnMyOwnButton.click();
     }
     @FindBy(id = "BP-Findexperthelpnearyou-Back")
-    WebElement backButton;
+    private WebElement backButton;
 
     public void clickBackButton() {
         SoftAssert softAssert = new SoftAssert();
