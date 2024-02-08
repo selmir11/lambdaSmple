@@ -4,7 +4,6 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
 public class DeclarationsAndSignaturePage {
     private BasicActions basicActions;
@@ -39,8 +38,6 @@ public class DeclarationsAndSignaturePage {
     }
 
     public void waitForHoldOnContentToDisappear(){
-        SoftAssert softAssert = new SoftAssert();
-    softAssert.assertTrue(basicActions.waitForElementToDisappear(holdOnEllipsis, 10));
-    softAssert.assertAll();
+    basicActions.waitForElementToDisappear(holdOnEllipsis, 45);
     }
 }

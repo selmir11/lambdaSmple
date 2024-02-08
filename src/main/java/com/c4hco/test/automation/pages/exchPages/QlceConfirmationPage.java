@@ -28,7 +28,7 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
     List<WebElement> allmembersBirthcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
-    WebElement birthEventDate;
+    List<WebElement> birthEventDate;
 
     //Marriage
     @FindBy(id ="marriage")
@@ -37,7 +37,7 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberMarriagecheckbox;
 
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Marriage')]")
-    WebElement marriageEventDate;
+    List<WebElement> marriageEventDate;
 
     //Divorce
     @FindBy(id ="divorce")
@@ -46,7 +46,7 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberDivorcecheckbox;
 
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Divorce')]")
-    WebElement divorceEventDate;
+    List<WebElement> divorceEventDate;
 
     //Death
     @FindBy(id ="death")
@@ -67,41 +67,15 @@ public class QlceConfirmationPage {
     }
 
     public void selectQLCE(String QLCEType) {
-// TO DO: Optimize the below code
         switch (QLCEType) {
             case "Birth":
                 birthQLCE.click();
                 for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
                     allmembersBirthcheckbox.get(mc).click();
-                    birthEventDate.click();
-                    birthEventDate.sendKeys(getCurrentDate());
+                    birthEventDate.get(mc).click();
+                    birthEventDate.get(mc).sendKeys(getCurrentDate());
                 }
                 break;
-            case "Marriage":
-                marriageLce.click();
-                for (var mc = 0; mc < allmemberMarriagecheckbox.size(); mc++) {
-                    allmemberMarriagecheckbox.get(mc).click();
-                    marriageEventDate.click();
-                    marriageEventDate.sendKeys(getCurrentDate());
-                }
-                break;
-            case "Divorce":
-                divorceLce.click();
-                for (var mc = 0; mc < allmemberDivorcecheckbox.size(); mc++) {
-                    allmemberDivorcecheckbox.get(mc).click();
-                    divorceEventDate.click();
-                    divorceEventDate.sendKeys(getCurrentDate());
-                }
-                break;
-            case "Death":
-                deathLce.click();
-                for (var mc = 0; mc < allmemberDeathcheckbox.size(); mc++) {
-                    allmemberDeathcheckbox.get(mc).click();
-                    deathEventDate.click();
-                    deathEventDate.sendKeys(getCurrentDate());
-                }
-                break;
-
         }
     }
 

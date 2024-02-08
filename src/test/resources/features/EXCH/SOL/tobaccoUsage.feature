@@ -1,7 +1,7 @@
 Feature: Tobacco Usage page related tests
 
   Background:
-    Given I open the login page on the login portal
+    Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
     @SLER-20 @TobaccoUsageVerbiage
@@ -18,7 +18,7 @@ Feature: Tobacco Usage page related tests
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I enter the details of the member and continue
+    And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page

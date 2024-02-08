@@ -1,6 +1,10 @@
 @helpDrawer
 Feature: Tests related to the help drawer
 
+
+  Background: I go the login portal
+    Given I open the login page on the "login" portal
+
   Scenario: Validate the default verbiage on the help drawer
     Given I open the login page on the login portal
     When I click create a new account on login page

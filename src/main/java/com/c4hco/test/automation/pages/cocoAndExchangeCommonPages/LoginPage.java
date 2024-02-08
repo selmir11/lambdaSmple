@@ -1,15 +1,11 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.dbUtils.PostgresStatementExecutor;
-import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
 
 public class LoginPage {
 
@@ -38,16 +34,14 @@ public class LoginPage {
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
-    private PostgresStatementExecutor executor = new PostgresStatementExecutor();
-    private String env = ApplicationProperties.getInstance().getProperty("env");
 
     public LoginPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public LoginPage openPage() {
-        basicActions.getDriver().get(utils.getBaseLoginUrl(env));
+    public LoginPage openPage(String appType) {
+        basicActions.getDriver().get(utils.getBaseLoginUrl(appType));
         return new LoginPage();
     }
 
@@ -60,8 +54,10 @@ public class LoginPage {
     }
 
     public void clickCreateAccount() {
-            waitFor(2);
-            createAccountLink.click();
+
+        basicActions.waitForElementToBeClickable(createAccountLink, 30);
+        createAccountLink.click();
+
     }
 
     public void logInWithValidCredentials() {
