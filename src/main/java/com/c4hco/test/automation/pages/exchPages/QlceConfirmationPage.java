@@ -63,6 +63,8 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@type='date'and contains(@id,'ChangeOfResidence')]")
     List<WebElement> changeOfAddressEventDate;
 
+    @FindBy(xpath = "//*[@type='checkbox' and contains(@id, 'movedToColorado')]")
+    List<WebElement> movedToColoradoCheckbox;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
 
@@ -91,9 +93,10 @@ public class QlceConfirmationPage {
                     memberCheckboxChangeOfAddress.get(i).click();
                     changeOfAddressEventDate.get(i).click();
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
+                    movedToColoradoCheckbox.get(i).click();
+
                 }
-
-
+                break;
         }
     }
 
