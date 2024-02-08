@@ -25,4 +25,13 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
         continueOnMyOwnButton.click();
     }
+    @FindBy(id = "BP-Findexperthelpnearyou-Back")
+    WebElement backButton;
+
+    public void clickBackButton() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(basicActions.waitForElementToBeClickable(backButton,10));
+        softAssert.assertAll();
+        backButton.click();
+    }
 }
