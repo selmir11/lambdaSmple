@@ -3,14 +3,13 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.dbUtils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.RandomDynamicData;
 import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-//import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
-//import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
 
 public class LoginPage {
 
@@ -48,7 +47,7 @@ public class LoginPage {
             createAccountLink.click();
     }
 
-    public void logInWithValidCredentials(String emailId, String pswrd) {
+    public void logInWithValidCredentials() {
         // make this re-usable method - accept parameters email and password- enahancement - TO DO
         // use getters/setter or world to import data rather than direct imports
             username.sendKeys(emailId);

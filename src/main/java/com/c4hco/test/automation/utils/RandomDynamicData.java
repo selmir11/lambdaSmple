@@ -19,13 +19,12 @@ public class RandomDynamicData {
     }
     public String fname = "FN"+randomAlphanumericString();
     public String lname = "LN"+randomAlphanumericString();
-    public String  RandomDynamicDataEmail()
+    private  RandomDynamicData()
     {
         randomStringEmail = lname + ((int)(Math.random() * 1000));
         System.out.println("String for Email: " + randomStringEmail);
         fullEmail = randomStringEmail + "@gmail.com";
-        return fullEmail;
-    }
+       }
 
     public String loginPassword = "ALaska12!";
 

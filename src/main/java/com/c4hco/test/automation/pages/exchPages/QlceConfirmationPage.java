@@ -78,19 +78,19 @@ public class QlceConfirmationPage {
             case "Birth":
                 getDriver().waitForElementToBePresent(birthQLCE,10);
                 birthQLCE.click();
-                for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
-                    allmembersBirthcheckbox.get(mc).click();
-                    birthEventDate.get(mc).click();
-                    birthEventDate.get(mc).sendKeys(getCurrentDate());
+                for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
+                    allmembersBirthcheckbox.get(i).click();
+                    birthEventDate.get(i).click();
+                    birthEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
             case "MoveToCO":
                 getDriver().waitForElementToBePresent(addressChangeLce,10);
                 addressChangeLce.click();
-                for (var mc = 0; mc < memberCheckboxChangeOfAddress.size(); mc++) {
-                    memberCheckboxChangeOfAddress.get(mc).click();
-                    changeOfAddressEventDate.get(mc).click();
-                    changeOfAddressEventDate.get(mc).sendKeys(getCurrentDate());
+                for (var i = 0; i < memberCheckboxChangeOfAddress.size(); i++) {
+                    memberCheckboxChangeOfAddress.get(i).click();
+                    changeOfAddressEventDate.get(i).click();
+                    changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
                 }
 
 
