@@ -55,7 +55,16 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
     WebElement deathEventDate;
+    //Moved to Colorado
+    @FindBy(id="changeOfAddress")
+    WebElement addressChangeLce;
+    @FindBy(xpath="//input[contains(@class,'checkbox')and contains(@id,'ChangeOfResidence')]")
+    List<WebElement> memberCheckboxChangeOfAddress;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'ChangeOfResidence')]")
+    List<WebElement> changeOfAddressEventDate;
 
+    @FindBy(xpath = "//*[@type='checkbox' and contains(@id, 'movedToColorado')]")
+    List<WebElement> movedToColoradoCheckbox;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
 
@@ -69,11 +78,23 @@ public class QlceConfirmationPage {
     public void selectQLCE(String QLCEType) {
         switch (QLCEType) {
             case "Birth":
+                basicActions.waitForElementToBeClickable(birthQLCE,10);
                 birthQLCE.click();
-                for (var mc = 0; mc < allmembersBirthcheckbox.size(); mc++) {
-                    allmembersBirthcheckbox.get(mc).click();
-                    birthEventDate.get(mc).click();
-                    birthEventDate.get(mc).sendKeys(getCurrentDate());
+                for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
+                    allmembersBirthcheckbox.get(i).click();
+                    birthEventDate.get(i).click();
+                    birthEventDate.get(i).sendKeys(getCurrentDate());
+                }
+                break;
+            case "MoveToCO":
+                basicActions.waitForElementToBeClickable(addressChangeLce,10);
+                addressChangeLce.click();
+                for (var i = 0; i < memberCheckboxChangeOfAddress.size(); i++) {
+                    memberCheckboxChangeOfAddress.get(i).click();
+                    changeOfAddressEventDate.get(i).click();
+                    changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
+                    movedToColoradoCheckbox.get(i).click();
+
                 }
                 break;
         }

@@ -25,6 +25,7 @@ public class LoginPage {
     private BasicActions basicActions;
     private Utils utils = new Utils();
 
+
     public LoginPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);

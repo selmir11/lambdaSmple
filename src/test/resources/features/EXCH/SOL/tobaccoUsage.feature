@@ -16,7 +16,7 @@ Feature: Tobacco Usage page related tests
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
+    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -28,7 +28,7 @@ Feature: Tobacco Usage page related tests
     And I enter citizenship details and click continue
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "Birth" QLCE on tell us about life changes page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare and sign
     And I wait for hold on content to disappear

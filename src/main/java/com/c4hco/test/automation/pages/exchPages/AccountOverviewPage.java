@@ -25,7 +25,7 @@ public class AccountOverviewPage {
     }
 
     public void clickApply2024(){
-        getDriver().waitForElementToBePresent(apply2024Button,10);
+        basicActions.waitForElementToBeClickable(apply2024Button,10);
         apply2024Button.click();
     }
 
