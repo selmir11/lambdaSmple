@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class MedicalPlanResultsPage {
     private BasicActions basicActions;
 
@@ -25,10 +23,9 @@ public class MedicalPlanResultsPage {
     WebElement btnContinue;
 
     public void SelectFirstMedicalPlan(){
-        getDriver().waitForElementToBePresent(selectFirstPlan,10 );
+        basicActions.waitForElementToBePresent(selectFirstPlan,10 );
         selectFirstPlan.click();
         btnContinue.click();
-
     }
 
 

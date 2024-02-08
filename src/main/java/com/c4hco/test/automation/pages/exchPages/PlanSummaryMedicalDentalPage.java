@@ -19,7 +19,7 @@ public class PlanSummaryMedicalDentalPage {
     WebElement continueBtnOnPlanSummary;
 
     public void continuePlanSummaryPage(){
-        getDriver().waitForElementToBePresent(continueBtnOnPlanSummary,10);
+        basicActions.waitForElementToBeClickable(continueBtnOnPlanSummary,10);
         continueBtnOnPlanSummary.click();
     }
 }

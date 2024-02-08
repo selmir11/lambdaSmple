@@ -5,9 +5,9 @@ import io.cucumber.java.en.*;
 
 public class MedicalPlanResultsPageSteps {
 
-    MedicalPlanResultsPage medPlanResults = new MedicalPlanResultsPage();
+    MedicalPlanResultsPage medPlanResultsPage = new MedicalPlanResultsPage();
     @And("I select the first medical plan and continue")
     public void selectFirstMedicalPlanAndContinue(){
-        medPlanResults.SelectFirstMedicalPlan();
+        medPlanResultsPage.SelectFirstMedicalPlan();
     }
 }

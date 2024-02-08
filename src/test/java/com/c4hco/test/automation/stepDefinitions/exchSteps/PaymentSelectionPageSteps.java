@@ -6,9 +6,8 @@ import io.cucumber.java.en.*;
 public class PaymentSelectionPageSteps {
     PaymentSelectionPage paymentSelectionPage = new PaymentSelectionPage();
 
-    @And("I Verify the text on payment selection page and signout")
+    @And("I Verify the text on payment selection page")
     public void paymentModeSelection(){
-        paymentSelectionPage.PaybyCheckPageVerification();
-        paymentSelectionPage.signOutOnPaymentSelectionPage();
+        paymentSelectionPage.verifyTextWithCheckPayment();
     }
 }

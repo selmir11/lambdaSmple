@@ -28,14 +28,13 @@ public class PaymentSelectionPage {
     WebElement continueBtnPaymentSelection;
     @FindBy(id = "SOL-PaymentSelection-GoBack")
     WebElement backBtn;
-    @FindBy(xpath = "//*[text()='Sign Out']")
-    WebElement signOutBtn;
 
     public void paymentSelectionContinue(){
         continueBtnPaymentSelection.click();
     }
-    public void PaybyCheckPageVerification(){
-        getDriver().waitForElementToBePresent(text1,10);
+
+    public void verifyTextWithCheckPayment(){
+        basicActions.waitForElementToBePresent(text1,10);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(text1.getText(), "Currently,  Elevate by Denver Health Medical Plan  only accepts payment by check or Money Order.");
         softAssert.assertEquals(text2.getText(), "Please do not send a check until you receive a bill from Elevate by Denver Health Medical Plan.");
@@ -45,7 +44,5 @@ public class PaymentSelectionPage {
         softAssert.assertEquals(backBtn.getText(),"Go Back");
         softAssert.assertTrue(backBtn.isEnabled());
     }
-    public void signOutOnPaymentSelectionPage(){
-        signOutBtn.click();
-    }
+
 }

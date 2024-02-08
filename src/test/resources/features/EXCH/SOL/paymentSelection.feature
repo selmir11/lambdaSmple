@@ -1,4 +1,4 @@
-Feature: Pay By Check Page Verification
+Feature: Payment Selection page tests
 
   Background:
     Given I open the login page on the "login" portal
@@ -38,6 +38,7 @@ Feature: Pay By Check Page Verification
     Then I select No for tobacco usage and click continue
     And I select the first medical plan and continue
     Then I select first dental plan and continue
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
     Then I select make payment button to pay the premium
-    And I Verify the text on payment selection page and signout
+    And I Verify the text on payment selection page

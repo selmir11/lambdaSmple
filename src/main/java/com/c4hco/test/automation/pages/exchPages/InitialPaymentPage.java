@@ -20,7 +20,7 @@ public class InitialPaymentPage {
     WebElement makePaymentBtn;
 
     public void selectMakePaymentButton(){
-        getDriver().waitForElementToBePresent(makePaymentBtn,10);
+        basicActions.waitForElementToBePresent(makePaymentBtn,10);
         makePaymentBtn.click();
     }
 }

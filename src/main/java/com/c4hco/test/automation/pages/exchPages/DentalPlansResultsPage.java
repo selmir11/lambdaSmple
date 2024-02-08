@@ -21,7 +21,7 @@ public class DentalPlansResultsPage {
     @FindBy(id="SHP-DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
     public void selectFirstDentalPlan(){
-        getDriver().waitForElementToBePresent(selectFirstDentalPlanBtn,10);
+         basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
         selectFirstDentalPlanBtn.click();
         continueBtnOnDentalPlanResults.click();
 
