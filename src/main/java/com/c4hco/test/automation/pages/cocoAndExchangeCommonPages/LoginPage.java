@@ -5,9 +5,7 @@ import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
 
 public class LoginPage {
 
@@ -38,7 +36,8 @@ public class LoginPage {
     }
 
     public void clickCreateAccount() {
-            createAccountLink.click();
+        basicActions.waitForElementToBeClickable(createAccountLink, 30);
+        createAccountLink.click();
     }
 
     public void logInWithValidCredentials() {
