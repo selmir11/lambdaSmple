@@ -1,7 +1,7 @@
 Feature: Tobacco Usage page related tests
 
   Background:
-    Given I open the login page on the login portal
+    Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
     @SLER-20 @TobaccoUsageVerbiage
