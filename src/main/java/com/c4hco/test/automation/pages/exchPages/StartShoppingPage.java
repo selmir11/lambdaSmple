@@ -36,6 +36,7 @@ public class StartShoppingPage {
     WebElement notReady;
 
     public void clickNo(){
+        getDriver().waitForElementToBePresent(btnNo,10);
         btnNo.click();
     }
     public void clickYes(){

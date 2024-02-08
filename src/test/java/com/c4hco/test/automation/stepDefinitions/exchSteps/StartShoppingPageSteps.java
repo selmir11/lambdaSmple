@@ -7,10 +7,12 @@ import io.cucumber.java.en.*;
 public class StartShoppingPageSteps {
     StartShoppingPage startShoppingPage = new StartShoppingPage();
     BasicActions basicActions = new BasicActions();
-
+    @Then("I select No for tobacco usage and click continue")
     public void clickNoAndContinue() {
-            startShoppingPage.clickContinue();
+        startShoppingPage.clickNo();
+        startShoppingPage.clickContinue();
     }
+
     public void clickYesAndContinue(){
         startShoppingPage.clickYes();
         startShoppingPage.clickContinue();
