@@ -5,10 +5,16 @@ import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
 
-public class LoginPage {
 
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
+import static com.c4hco.test.automation.utils.Constants.*;
+
+public class LoginPage {
+    CreateAccountPage createAccountPage = new CreateAccountPage();
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
@@ -49,13 +55,11 @@ public class LoginPage {
         basicActions.getDriver().navigate().refresh();
     }
 
-    public void OpenAdminPortal(){
-        basicActions.getDriver().get("https://qa-aws.connectforhealthco.com/AdminPortal");
-    }
+
 
     public void clickCreateAccount() {
 
-        basicActions.waitForElementToBeClickable(createAccountLink, 30);
+        utils.implicitWait(2);
         createAccountLink.click();
 
     }

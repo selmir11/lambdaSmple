@@ -46,7 +46,7 @@ public class AdminPage {
 
 
     public void clickCreateAccount(){
-     createAccountPage.waitForVisibility(createAccountAdmin, Duration.ofSeconds(1000));
+        utils.waitForVisibility(createAccountAdmin, Duration.ofSeconds(1000));
      createAccountAdmin.click();
     }
 }

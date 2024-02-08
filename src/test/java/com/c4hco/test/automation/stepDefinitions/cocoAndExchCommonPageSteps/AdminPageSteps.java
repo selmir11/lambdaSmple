@@ -2,14 +2,16 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPage;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage;
+import com.c4hco.test.automation.utils.Utils;
 import io.cucumber.java.en.*;
 
 import java.time.Duration;
 
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.waitFor;
+
 
 public class AdminPageSteps {
         AdminPage adminPage = new AdminPage();
+        Utils utils = new Utils();
         CreateAccountPage createAccountPage = new CreateAccountPage();
 
     @Then("I click create account on admin portal")
@@ -24,13 +26,13 @@ public class AdminPageSteps {
 
     @Then("logout from Admin Portal")
     public void logout_from_admin_portal() {
-        createAccountPage.implicitWait(2000);
+        utils.implicitWait(2000);
         adminPage.navigateToPreviousPage();
-        createAccountPage.waitForClickablility(adminPage.dropdownArrow, Duration.ofSeconds(2000));
+        utils.waitForClickablility(adminPage.dropdownArrow, Duration.ofSeconds(2000));
         adminPage.dropdownArrow.click();
-        createAccountPage.waitForVisibility(adminPage.logoutAdmin, Duration.ofSeconds(2000));
+        utils.waitForVisibility(adminPage.logoutAdmin, Duration.ofSeconds(2000));
         adminPage.logoutAdmin.click();
-        createAccountPage.implicitWait(2000);
+        utils.implicitWait(2000);
        // adminPage.closeBrowser();
     }
 }
