@@ -1,7 +1,5 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.dbUtils.PostgresStatementExecutor;
-import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
@@ -27,8 +25,6 @@ public class LoginPage {
     private BasicActions basicActions;
     private Utils utils = new Utils();
 
-    private PostgresStatementExecutor executor = new PostgresStatementExecutor();
-    private String env = ApplicationProperties.getInstance().getProperty("env");
 
     public LoginPage() {
         this.basicActions = BasicActions.getInstance();

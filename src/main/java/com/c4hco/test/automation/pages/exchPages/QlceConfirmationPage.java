@@ -78,7 +78,7 @@ public class QlceConfirmationPage {
     public void selectQLCE(String QLCEType) {
         switch (QLCEType) {
             case "Birth":
-                getDriver().waitForElementToBePresent(birthQLCE,10);
+                basicActions.waitForElementToBeClickable(birthQLCE,10);
                 birthQLCE.click();
                 for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
                     allmembersBirthcheckbox.get(i).click();
@@ -87,7 +87,7 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "MoveToCO":
-                getDriver().waitForElementToBePresent(addressChangeLce,10);
+                basicActions.waitForElementToBeClickable(addressChangeLce,10);
                 addressChangeLce.click();
                 for (var i = 0; i < memberCheckboxChangeOfAddress.size(); i++) {
                     memberCheckboxChangeOfAddress.get(i).click();

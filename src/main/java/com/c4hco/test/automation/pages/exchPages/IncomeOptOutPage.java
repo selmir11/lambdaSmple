@@ -25,7 +25,7 @@ public class IncomeOptOutPage {
     }
 
     public void chooseNoFinancialHelp(){
-        getDriver().waitForElementToBePresent(noThanks,10);
+        basicActions.waitForElementToBeClickable(noThanks,10);
         noThanks.click();
     }
 

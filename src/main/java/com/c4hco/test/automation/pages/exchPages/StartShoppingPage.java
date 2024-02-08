@@ -50,7 +50,7 @@ public class StartShoppingPage {
 
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){ 
-        getDriver().waitForElementToBePresent(headerText,10);
+        basicActions.waitForElementToBePresent(headerText,10);
         String header  = headerText.getText();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
