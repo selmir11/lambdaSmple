@@ -13,4 +13,10 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.saveAndContinue();
 
     }
+    @Then("I enter details and I'm not applying for insurance on tell us about yourself page and continue")
+    public void provideDetailsOfYourselfNotApplyingForInsurance() {
+        tellUsAboutYourselfPage.chooseMale();
+        tellUsAboutYourselfPage.chooseApplyNo();
+        tellUsAboutYourselfPage.saveAndContinue();
+    }
 }

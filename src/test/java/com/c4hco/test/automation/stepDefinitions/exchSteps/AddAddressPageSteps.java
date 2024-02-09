@@ -31,4 +31,13 @@ public class AddAddressPageSteps {
         addAddressPage.notIncarcerated();
         addAddressPage.saveContinue();
     }
+
+    @Then("I enter Additional details for addresses, residency, federal tribe and click continue on add address page")
+    public void additionalDetailsForAddressesResidencyTribe() {
+        addAddressPage.mailingAddress();
+        addAddressPage.selectCounty();
+        addAddressPage.coloradoResidentYes();
+        addAddressPage.tribeNo();
+        addAddressPage.saveContinue();
+    }
 }
