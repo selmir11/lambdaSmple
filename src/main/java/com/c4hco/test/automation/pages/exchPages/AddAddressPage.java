@@ -33,6 +33,8 @@ public class AddAddressPage {
 
     @FindBy(id="coResidentYes")
     WebElement coloradoResidentYes;
+    @FindBy(id="coResidentNo")
+    WebElement coloradoResidentNo;
     @FindBy(id="tribeNo")
     WebElement tribeNo;
     @FindBy(id="hardshipExemptionNo")
@@ -66,6 +68,9 @@ public class AddAddressPage {
     }
     public void coloradoResidentYes(){
         coloradoResidentYes.click();
+    }
+    public void coloradoResidentNo() {
+        coloradoResidentNo.click();
     }
     public void tribeNo(){
         tribeNo.click();
