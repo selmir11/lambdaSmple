@@ -1,11 +1,11 @@
-Feature: Tobacco Usage page related tests
+Feature: Payment Selection page tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-    @SLER-20 @TobaccoUsageVerbiage
-  Scenario: Validate text on tobacco usage page
+  @SLER-30 @paymentPage
+  Scenario: Validate text on Payment by check page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -35,9 +35,10 @@ Feature: Tobacco Usage page related tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I verify text on tobacco usage page
-    Then I choose no tobacco usage and click save and exit on start shopping page
-#
-
-
-
+    Then I select No for tobacco usage and click continue
+    And I select the first medical plan and continue
+    Then I select first dental plan and continue
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I continue on plan summary page
+    Then I select make payment button to pay the premium
+    And I Verify the text on payment selection page

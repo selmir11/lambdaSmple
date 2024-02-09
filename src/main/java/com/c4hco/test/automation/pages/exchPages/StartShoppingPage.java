@@ -36,6 +36,7 @@ public class StartShoppingPage {
     WebElement notReady;
 
     public void clickNo(){
+        getDriver().waitForElementToBePresent(btnNo,10);
         btnNo.click();
     }
     public void clickYes(){
@@ -49,8 +50,8 @@ public class StartShoppingPage {
     }
 
     //-----------------------Validations------------------------//
-    public void verifyTextOnTobaccoPage(){
-        getDriver().waitForElementToBePresent(headerText,10);
+    public void verifyTextOnTobaccoPage(){ 
+        basicActions.waitForElementToBePresent(headerText,10);
         String header  = headerText.getText();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
