@@ -4,8 +4,8 @@ Feature: Dental Plans page tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-24 @VerifyDentalPlans
-  Scenario: Validate text on Payment by check page
+  @SLER-24-WIP @VerifyDentalPlans
+  Scenario: Verify Dental Plans
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -38,4 +38,3 @@ Feature: Dental Plans page tests
     Then I select No for tobacco usage and click continue
     And I select the first medical plan and continue
     Then I select first dental plan and continue
-   

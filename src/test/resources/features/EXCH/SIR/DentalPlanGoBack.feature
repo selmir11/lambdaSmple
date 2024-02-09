@@ -4,8 +4,8 @@ Feature: Dental Plans page tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-24-WIP @SelectGoBackOnDentalPages
-  Scenario: Vefiry Dental Plans
+  @SLER-WIP @SelectGoBackOnDentalPages
+  Scenario: Go Back Dental Pages
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
