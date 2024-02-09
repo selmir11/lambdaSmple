@@ -35,9 +35,9 @@ public class BasicActions {
         private static final BasicActions INSTANCE = new BasicActions();
     }
 
-    public void closeBrowser() {
+    public void closeBrowserTab() {
         if (this.driver != null) {
-            this.driver.quit();
+            this.driver.close();
         }
     }
 

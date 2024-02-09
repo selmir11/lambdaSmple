@@ -23,9 +23,11 @@ public class LoginPageSteps {
         }
 
         @And("I enter valid credentials to login")
+
            public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
         }
+
 
 
     @When("I login as Admin User")
