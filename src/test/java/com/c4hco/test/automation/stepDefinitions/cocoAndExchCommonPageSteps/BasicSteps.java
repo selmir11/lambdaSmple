@@ -35,6 +35,9 @@ public class BasicSteps {
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
+            case "planSummaryMedicalDental":
+                pageUrl ="planSummaryMedicalDental";
+                break;
             case "Create Account":
                 pageUrl = "createAccount";
                 break;

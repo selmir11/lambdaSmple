@@ -5,28 +5,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MedicalPlanResultsPage {
+public class DentalPlansResultsPage {
     private BasicActions basicActions;
 
-    public MedicalPlanResultsPage() {
+    public DentalPlansResultsPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
     }
     public BasicActions getDriver(){
         return BasicActions.getInstance();
     }
+    @FindBy(id="DentalPlanResults-SelectThisPlan_0")
+    WebElement selectFirstDentalPlanBtn;
 
-    @FindBy(id ="PlanResults-SelectThisPlan_0")
-    WebElement selectFirstPlan;
+    @FindBy(id="SHP-DentalPlanResults-Continue")
+    WebElement continueBtnOnDentalPlanResults;
+    public void selectFirstDentalPlan(){
+         basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
+        selectFirstDentalPlanBtn.click();
+        continueBtnOnDentalPlanResults.click();
 
-    @FindBy(id ="SHP-MedicalPlanResults-Continue")
-    WebElement btnContinue;
-
-    public void SelectFirstMedicalPlan(){
-        basicActions.waitForElementToBePresent(selectFirstPlan,10 );
-        selectFirstPlan.click();
-        btnContinue.click();
     }
-
-
 }
