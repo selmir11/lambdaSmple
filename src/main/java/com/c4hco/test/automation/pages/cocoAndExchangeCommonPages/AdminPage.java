@@ -35,9 +35,13 @@ public class AdminPage {
     @FindBy(xpath = "//div[@id='logout-link']")
     public WebElement logoutAdmin;
 
-
-    public void validateAdminPage(){
-        Assert.assertTrue("url doesn't have preScreen", basicActions.getCurrentUrl().contains("AdminPortal"));
+    public void logoutFromAdmin() {
+        basicActions.implicitWait(2000);
+        navigateToPreviousPage();
+        basicActions.waitForElementToBePresent(dropdownArrow,100);
+        dropdownArrow.click();
+        basicActions.waitForElementToBePresent(logoutAdmin,100);
+        logoutAdmin.click();
     }
 
     public void navigateToPreviousPage(){
@@ -46,7 +50,7 @@ public class AdminPage {
 
 
     public void clickCreateAccount(){
-        utils.waitForVisibility(createAccountAdmin, Duration.ofSeconds(1000));
-     createAccountAdmin.click();
+        basicActions.waitForElementToBePresent(createAccountAdmin,10);
+        createAccountAdmin.click();
     }
 }

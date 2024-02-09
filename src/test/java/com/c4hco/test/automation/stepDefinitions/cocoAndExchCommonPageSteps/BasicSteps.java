@@ -41,6 +41,8 @@ public class BasicSteps {
             case "Create Account":
                 pageUrl = "createAccount";
                 break;
+            case "Admin dashboard":
+                pageUrl = "AdminPortal";
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

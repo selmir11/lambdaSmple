@@ -60,7 +60,7 @@ public class LoginPage {
 
     public void clickCreateAccount() {
 
-        utils.implicitWait(2);
+        basicActions.implicitWait(2);
         createAccountLink.click();
 
     }
@@ -71,6 +71,14 @@ public class LoginPage {
             username.sendKeys(emailId);
             password.sendKeys(pswrd);
             signInButton.click();
+    }
+
+    public void loginAsAnAdminUser(){
+        basicActions.refreshPage();
+        basicActions.waitForElementToBePresent(usernameAdmin,10 );
+        usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        passwordAdmin.sendKeys("ALaska12!");
+        signAdmin.click();
     }
 
     // ############################## VALIDATION METHODS #########################

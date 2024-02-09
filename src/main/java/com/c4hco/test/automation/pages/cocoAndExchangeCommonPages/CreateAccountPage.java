@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import lombok.Getter;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,9 +12,11 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
 
+import static com.c4hco.test.automation.utils.Utils.waitFor;
+
 // import static com.c4hco.test.automation.utils.Utils.waitFor;
 
-@Getter
+
 public class CreateAccountPage {
     @FindBy(css = "app-create-account a em")
     WebElement helpIcon;
@@ -96,11 +98,12 @@ public class CreateAccountPage {
     }
 
     public void closeHelpIcon(){
+        basicActions.waitForElementToBeClickable(closeHelpIconEnglish, 5);
         closeHelpIconEnglish.click();
     }
 
     public void clickHelpIconButton(){
-      //  utils.waitForVisibility(helpDrawerButton, Duration.ofSeconds(1000));
+        basicActions.waitForElementToBePresent(helpDrawerButton,1000);
         helpDrawerButton.click();
     }
 
@@ -124,6 +127,24 @@ public class CreateAccountPage {
         DecimalFormat df4 = new DecimalFormat("0000");
         String phoneNumber = df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
         return phoneNumber;
+    }
+
+    public void changeLanguage(String Language){
+        basicActions.implicitWait(3000);
+        basicActions.waitForElementToBePresent( languageDrp,  100);
+        languageDrp.click();
+
+        switch(Language) {
+            case "English":
+                basicActions.waitForElementToBePresent( englishLanguage,  100);
+                englishLanguage.click();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent( englishLanguage,  100);
+                spanishLanguage.click();
+
+                break;
+        }
     }
 
     public void createGeneralAccount(String appType){
@@ -152,12 +173,24 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
     }
+    public void validateHelpText(String Language){
+     switch(Language) {
+        case "English":
+            validateHelpVerbiage();
+            break;
+        case "Spanish":
+            validateHelpVerbiageSP();
+            break;
+        default:
+            System.out.println("The wrong language option has been selected");
+        }
+    }
 
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpVerbiage(){
         String text = "Connect for Health Colorado is Colorado’s official health insurance marketplace. Since 2013, Connect for Health Colorado has been helping individuals, families and small employers compare plans, apply for financial help and buy health insurance.";
-      //  waitFor(1); //should remove wait here.
+        waitFor(1);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(helpDrawerText.get(0).getText(), "Connect for Health Colorado and Colorado Connect are committed to protecting your privacy and will keep the information you provide private as required by law.");
         softAssert.assertEquals(helpDrawerText.get(1).getText(), "Connect for Health Colorado");
@@ -170,10 +203,11 @@ public class CreateAccountPage {
     public void validateHelpVerbiageSP() {
 
         SoftAssert softAssert = new SoftAssert();
-       // waitFor(1); // should remove wait here
+        waitFor(1);
         softAssert.assertTrue(helpDrawerTextSP.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
 
     }
+
 
 
 

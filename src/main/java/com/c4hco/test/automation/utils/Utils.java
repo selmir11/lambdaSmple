@@ -43,27 +43,6 @@ public class Utils {
         }
     }
 
-    public void refreshPage(){
-        basicActions.getDriver().navigate().refresh();
-    }
 
-    public WebElement waitForVisibility(WebElement element, Duration timeToWaitInSec) {
-        WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeToWaitInSec);
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public void implicitWait(int second){
-        basicActions.getDriver().manage().timeouts().implicitlyWait(second, TimeUnit.SECONDS);
-    }
-
-
-    public  WebElement waitForClickablility(WebElement element, Duration timeout) {
-        WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeout);
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    public  void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
 
 }

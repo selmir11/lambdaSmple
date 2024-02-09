@@ -9,7 +9,6 @@ Feature: Tests related to the help drawer
     Then I validate I am on the "Create Account" page
     And I click on help icon
     Then I validate the default verbiage on help icon
-    And I close the help icon
     And I click on help icon "Spanish"
     Then I validate the default verbiage on help icon in "Spanish"
 
@@ -28,7 +27,7 @@ Feature: Tests related to the help drawer
   Scenario: Validate the default verbiage on the help drawer in Admin Portal
     Given I open the login page on the "admin" portal
     When I login as Admin User
-    And I validate I am on Admin dashboard
+    And I validate I am on the "Admin dashboard" page
     Then I click create account on admin portal
     And I click on help icon
     Then I validate the default verbiage on help icon
@@ -39,7 +38,7 @@ Feature: Tests related to the help drawer
   Scenario: Validate the default verbiage on the help drawer button in Admin Portal
     Given I open the login page on the "admin" portal
     When I login as Admin User
-    And I validate I am on Admin dashboard
+    And I validate I am on the "Admin dashboard" page
     Then I click create account on admin portal
     And I click on help icon button
     Then I validate the default verbiage on help icon
