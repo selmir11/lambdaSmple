@@ -1,38 +1,48 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.HeaderAndFooter;
+import com.c4hco.test.automation.pages.cocoPages.HeaderAndFooterPage;
 import io.cucumber.java.en.And;
 
 public class HeaderAndFooterSteps {
 
-    HeaderAndFooter headerAndFooter = new HeaderAndFooter();
+    HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage();
 
     @And("I click on the Colorado Connect or C4 Logo in the Header")
-    public void iClickConnectLogoLink(){ headerAndFooter.clickConnectLogoLink(); }
+    public void iClickConnectLogoLink(){ headerAndFooterPage.clickConnectLogoLink(); }
+
     @And("I click on Apply for Coverage in the Header")
-    public void iClickApplyForCoverageLink(){ headerAndFooter.clickApplyForCoverageLink(); }
+    public void iClickApplyForCoverageLink(){ headerAndFooterPage.clickApplyForCoverageLink(); }
+
     @And("I click on Find a Plan in the Header")
-    public void iClickFindAPlanLinkLink(){ headerAndFooter.clickFindAPlanLinkLink(); }
+    public void iClickFindAPlanLinkLink(){ headerAndFooterPage.clickFindAPlanLinkLink(); }
+
     @And("I click on My Account in the Header")
-    public void iClickMyAccountLink(){ headerAndFooter.clickMyAccountLink(); }
+    public void iClickMyAccountLink(){ headerAndFooterPage.clickMyAccountLink(); }
+
     @And("I click on Learn More in the Header")
-    public void iClickLearnMoreLink(){ headerAndFooter.clickLearnMoreLink(); }
+    public void iClickLearnMoreLink(){ headerAndFooterPage.clickLearnMoreLink(); }
+
     @And("I click on Get Assistance in the Header")
-    public void iClickGetAssistanceLink(){ headerAndFooter.clickGetAssistanceLink(); }
+    public void iClickGetAssistanceLink(){ headerAndFooterPage.clickGetAssistanceLink(); }
+
     @And("I click on Find Expert Assistance in the Header")
-    public void iClickFindExpertAssistanceLink(){ headerAndFooter.clickFindExpertAssistanceLink(); }
+    public void iClickFindExpertAssistanceLink(){ headerAndFooterPage.clickFindExpertAssistanceLink(); }
+
     @And("I click on the Username in the Header")
-    public void iClickUserNameLink(){ headerAndFooter.clickUserNameLink(); }
+    public void iClickUserNameLink(){ headerAndFooterPage.clickUserNameLink(); }
+
     @And("I click on Sign Out in the Header")
-    public void iClickSignOutLink(){ headerAndFooter.clickSignOutLink(); }
+    public void iClickSignOutLink(){ headerAndFooterPage.clickSignOutLink(); }
 
+        // =========FOOTER============== //
     @And("I click on Privacy Policy in the Footer")
-    public void iClickPrivacyPolicyLink(){ headerAndFooter.clickPrivacyPolicyLink(); }
-    @And("I click on Terms Of Use in the Footer")
-    public void iClickTermsOfUseLink(){ headerAndFooter.clickTermsOfUseLink(); }
-    @And("I click on Contact Us in the Footer")
-    public void iClickContactUsLink(){ headerAndFooter.clickContactUsLink(); }
+    public void iClickPrivacyPolicyLink(){ headerAndFooterPage.clickPrivacyPolicyLink(); }
 
+    @And("I click on Terms Of Use in the Footer")
+    public void iClickTermsOfUseLink(){ headerAndFooterPage.clickTermsOfUseLink(); }
+
+    @And("I click on Contact Us in the Footer")
+    public void iClickContactUsLink(){ headerAndFooterPage.clickContactUsLink(); }
 
 
 }

@@ -1,10 +1,9 @@
 Feature: Navigation-Welcome Page
 
-
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-    @SLCR-28: @TAM-PageNavigation-WelcomePage
+    @SLCR-28 @PageNavigationWelcomePage
   Scenario: Create CoCo Account and Login
     When I click create a new account on login page
     Then I click create my account from pre-screen page

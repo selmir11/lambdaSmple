@@ -1,44 +1,42 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class HeaderAndFooter {
+public class HeaderAndFooterPage {
     @FindBy(id = "logo-image")
-    private WebElement connectLogoLink;
+    WebElement connectLogoLink;
     @FindBy(xpath = "//*[text()=' Apply for Coverage']")
-    private WebElement applyForCoverageLink;
+    WebElement applyForCoverageLink;
     @FindBy(xpath = "//*[text()='Find a Plan']")
-    private WebElement findAPlanLink;
+    WebElement findAPlanLink;
     @FindBy(xpath = "//*[text()='My Account']")
-    private WebElement myAccountLink;
+    WebElement myAccountLink;
     @FindBy(xpath = "//*[text()=' Learn More']")
-    private WebElement learnMoreLink;
+    WebElement learnMoreLink;
     @FindBy(xpath = "//*[text()='Get Assistance']")
-    private WebElement getAssistanceLink;
+    WebElement getAssistanceLink;
     @FindBy(xpath = "//*[text()=' Find Expert Assistance in Your Community ']")
-    private WebElement findExpertAssistanceLink;
+    WebElement findExpertAssistanceLink;
     @FindBy(xpath = "//div[2]//div[3]/a")
-    private WebElement userNameLink;
+    WebElement userNameLink;
     @FindBy(xpath = "//a[normalize-space()='Sign Out']")
-    private WebElement signOutLink;
+    WebElement signOutLink;
 
     @FindBy(id = "privacyPolicyLink")
-    private WebElement privacyPolicyLink;
+    WebElement privacyPolicyLink;
     @FindBy(id = "termsOfUseLink")
-    private WebElement termsOfUseLink;
+    WebElement termsOfUseLink;
     @FindBy(id = "contactUsLink")
-    private WebElement contactUsLink;
+    WebElement contactUsLink;
 
 
     private BasicActions basicActions;
-    private Utils utils = new Utils();
 
-    public HeaderAndFooter() {
+    public HeaderAndFooterPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -78,9 +76,6 @@ public class HeaderAndFooter {
         basicActions.waitForElementToBeClickable(signOutLink, 20);
         signOutLink.click();
     }
-
-
-
 
     public void clickPrivacyPolicyLink() {
         basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);

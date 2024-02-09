@@ -2,7 +2,6 @@ package com.c4hco.test.automation.utils;
 
 
 import com.c4hco.test.automation.selenium.Selenese;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,11 +33,6 @@ public class BasicActions {
         private static final BasicActions INSTANCE = new BasicActions();
     }
 
-    public void closeBrowser() {
-        if (this.driver != null) {
-            this.driver.quit();
-        }
-    }
     public void closeBrowserTab() {
         if (this.driver != null) {
             this.driver.close();
