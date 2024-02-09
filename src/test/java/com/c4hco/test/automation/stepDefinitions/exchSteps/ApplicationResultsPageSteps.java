@@ -15,4 +15,10 @@ public class ApplicationResultsPageSteps {
 
     @Then("I validate that my APTC value is {string}")
     public void validateAPTC(String expectedAPTC){applicationResultsPage.validateAPTC(expectedAPTC);}
+
+    @Then("I verify text that the member don't qualify for a health plan on the app results page")
+    public void verifyTextDoNotQualifyForHealthPlan () {
+        applicationResultsPage.verifyTextNotQualifyForPlanOnAppResultsPage();
+
+    }
 }
