@@ -18,4 +18,17 @@ public class AddAddressPageSteps {
          addAddressPage.notIncarcerated();
          addAddressPage.saveContinue();
      }
+
+    @Then("I enter Additional details and I'm not Co resident and click continue on add address page")
+    public void additionalDetailsNotCoResident() {
+        addAddressPage.mailingAddress();
+        addAddressPage.selectCounty();
+        addAddressPage.coloradoResidentNo();
+        addAddressPage.tribeNo();
+        addAddressPage.hardshipExempNo();
+        addAddressPage.noDisability();
+        addAddressPage.deniedMedicaid();
+        addAddressPage.notIncarcerated();
+        addAddressPage.saveContinue();
+    }
 }
