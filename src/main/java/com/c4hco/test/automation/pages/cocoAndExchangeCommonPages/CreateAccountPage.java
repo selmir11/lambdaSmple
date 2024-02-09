@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,11 +10,6 @@ import org.testng.asserts.SoftAssert;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
-
-import static com.c4hco.test.automation.utils.Utils.waitFor;
-
-// import static com.c4hco.test.automation.utils.Utils.waitFor;
-
 
 public class CreateAccountPage {
     @FindBy(css = "app-create-account a em")
@@ -27,10 +21,8 @@ public class CreateAccountPage {
     @FindBy(xpath = "//label[@class='help-label ng-tns-c2-0']")
     private WebElement helpIconSP;
 
-
-// we should not have ng star inserted in any of the locators. They are angular specific and might change and not good to rely on them.
-    @FindBy(xpath="//a[@class='btn btn-default btn-sm btn-override ng-tns-c2-0 ng-star-inserted']")
-    private WebElement closeHelpIconEnglish;
+    @FindBy(xpath="//a[contains(@class, 'btn')]")
+    WebElement closeHelpIcon;
 
     @FindBy(xpath = "//p[contains(text(),'Connect for Health Colorado es el mercado oficial ')]")
     private WebElement helpDrawerTextSP;
@@ -90,12 +82,12 @@ public class CreateAccountPage {
     }
 
     public void closeHelpIcon(){
-        basicActions.waitForElementToBeClickable(closeHelpIconEnglish, 5);
-        closeHelpIconEnglish.click();
+        basicActions.waitForElementToBeClickable(closeHelpIcon, 60);
+        closeHelpIcon.click();
     }
 
     public void clickHelpIconButton(){
-        basicActions.waitForElementToBePresent(helpDrawerButton,1000);
+        basicActions.waitForElementToBeClickable(helpDrawerButton,1000);
         helpDrawerButton.click();
     }
 
@@ -163,8 +155,7 @@ public class CreateAccountPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpVerbiage(){
-        // TO DO - wait
-        waitFor(1);
+        basicActions.waitForElementToBePresent(helpDrawerText.get(0), 30);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(helpDrawerText.get(0).getText(), "Connect for Health Colorado and Colorado Connect are committed to protecting your privacy and will keep the information you provide private as required by law.");
         softAssert.assertEquals(helpDrawerText.get(1).getText(), "Connect for Health Colorado");
@@ -175,9 +166,8 @@ public class CreateAccountPage {
     }
 
     public void validateHelpVerbiageSP() {
-    // TO DO - wait
+        basicActions.waitForElementToBePresent(helpDrawerTextSP, 60);
         SoftAssert softAssert = new SoftAssert();
-        waitFor(1);
         softAssert.assertTrue(helpDrawerTextSP.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
 
     }

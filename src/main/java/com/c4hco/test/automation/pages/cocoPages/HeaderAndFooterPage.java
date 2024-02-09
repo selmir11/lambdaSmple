@@ -100,18 +100,16 @@ public class HeaderAndFooterPage {
     }
 
     public void changeLanguage(String language){
-        // TO DO::
-        basicActions.implicitWait(3000);
-        basicActions.waitForElementToBePresent( languageDrp,  100);
+        basicActions.waitForElementToBePresent( languageDrp,  60);
         languageDrp.click();
 
         switch(language) {
             case "English":
-                basicActions.waitForElementToBePresent( englishLanguage,  100);
+                basicActions.waitForElementToBePresent( englishLanguage,  60);
                 englishLanguage.click();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent( englishLanguage,  100);
+                basicActions.waitForElementToBePresent( spanishLanguage,  60);
                 spanishLanguage.click();
 
                 break;
