@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MedicalPlanResultsPage {
+public class InitialPaymentPage {
     private BasicActions basicActions;
 
-    public MedicalPlanResultsPage() {
+    public InitialPaymentPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -16,17 +16,11 @@ public class MedicalPlanResultsPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(id ="PlanResults-SelectThisPlan_0")
-    WebElement selectFirstPlan;
+    @FindBy(id="SOL-InitialPayment-MakePayment")
+    WebElement makePaymentBtn;
 
-    @FindBy(id ="SHP-MedicalPlanResults-Continue")
-    WebElement btnContinue;
-
-    public void SelectFirstMedicalPlan(){
-        basicActions.waitForElementToBePresent(selectFirstPlan,10 );
-        selectFirstPlan.click();
-        btnContinue.click();
+    public void selectMakePaymentButton(){
+        basicActions.waitForElementToBePresent(makePaymentBtn,10);
+        makePaymentBtn.click();
     }
-
-
 }
