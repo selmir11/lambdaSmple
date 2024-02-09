@@ -163,6 +163,7 @@ public class CreateAccountPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpVerbiage(){
+        // TO DO - wait
         waitFor(1);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(helpDrawerText.get(0).getText(), "Connect for Health Colorado and Colorado Connect are committed to protecting your privacy and will keep the information you provide private as required by law.");
@@ -174,7 +175,7 @@ public class CreateAccountPage {
     }
 
     public void validateHelpVerbiageSP() {
-
+    // TO DO - wait
         SoftAssert softAssert = new SoftAssert();
         waitFor(1);
         softAssert.assertTrue(helpDrawerTextSP.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
