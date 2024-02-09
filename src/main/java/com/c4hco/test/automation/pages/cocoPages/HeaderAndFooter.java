@@ -22,6 +22,10 @@ public class HeaderAndFooter {
     private WebElement getAssistanceLink;
     @FindBy(xpath = "//*[text()=' Find Expert Assistance in Your Community ']")
     private WebElement findExpertAssistanceLink;
+    @FindBy(xpath = "//div[2]//div[3]/a")
+    private WebElement userNameLink;
+    @FindBy(xpath = "//a[normalize-space()='Sign Out']")
+    private WebElement signOutLink;
 
     @FindBy(id = "privacyPolicyLink")
     private WebElement privacyPolicyLink;
@@ -65,6 +69,14 @@ public class HeaderAndFooter {
     public void clickFindExpertAssistanceLink() {
         basicActions.waitForElementToBeClickable(findExpertAssistanceLink, 20);
         findExpertAssistanceLink.click();
+    }
+    public void clickUserNameLink() {
+        basicActions.waitForElementToBeClickable(userNameLink, 20);
+        userNameLink.click();
+    }
+    public void clickSignOutLink() {
+        basicActions.waitForElementToBeClickable(signOutLink, 20);
+        signOutLink.click();
     }
 
 

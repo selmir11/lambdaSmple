@@ -29,9 +29,7 @@ public class FindExpertHelpPage {
     private WebElement backButton;
 
     public void clickBackButton() {
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(backButton,10));
-        softAssert.assertAll();
+        basicActions.waitForElementToBeClickable(backButton, 5);
         backButton.click();
     }
 }

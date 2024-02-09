@@ -21,8 +21,10 @@ public class HeaderAndFooterSteps {
     public void iClickGetAssistanceLink(){ headerAndFooter.clickGetAssistanceLink(); }
     @And("I click on Find Expert Assistance in the Header")
     public void iClickFindExpertAssistanceLink(){ headerAndFooter.clickFindExpertAssistanceLink(); }
-
-
+    @And("I click on the Username in the Header")
+    public void iClickUserNameLink(){ headerAndFooter.clickUserNameLink(); }
+    @And("I click on Sign Out in the Header")
+    public void iClickSignOutLink(){ headerAndFooter.clickSignOutLink(); }
 
     @And("I click on Privacy Policy in the Footer")
     public void iClickPrivacyPolicyLink(){ headerAndFooter.clickPrivacyPolicyLink(); }

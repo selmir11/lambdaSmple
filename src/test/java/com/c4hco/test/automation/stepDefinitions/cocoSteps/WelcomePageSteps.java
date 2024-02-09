@@ -4,7 +4,6 @@ import com.c4hco.test.automation.pages.cocoPages.WelcomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java8.En;
-import org.openqa.selenium.support.ui.Wait;
 
     public class WelcomePageSteps {
         WelcomePage welcomePage = new WelcomePage();

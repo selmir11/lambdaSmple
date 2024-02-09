@@ -20,7 +20,10 @@ public class BasicSteps {
                 pageUrl = "/prescreen";
                 break;
             case "Account Overview":
-                 pageUrl = "nes/accountOverview";
+                pageUrl = "nes/accountOverview";
+                break;
+            case "CoCo Welcome":
+                pageUrl = "/coco/WelcomePortal";
                 break;
             case "Find Expert Help":
                 pageUrl = "find-expert-help";
@@ -36,6 +39,9 @@ public class BasicSteps {
                 break;
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
+                break;
+            case "planSummaryMedicalDental":
+                pageUrl ="planSummaryMedicalDental";
                 break;
             case "Application Results":
                 pageUrl = "ApplicationResultsPortal/applicationResults";
