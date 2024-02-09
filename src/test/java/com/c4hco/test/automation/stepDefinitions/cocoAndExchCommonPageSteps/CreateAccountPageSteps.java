@@ -20,38 +20,28 @@ public class CreateAccountPageSteps {
         @Then("I validate the default verbiage on help icon")
         public void iValidateHelpVerbiage(){
             createAccountPage.validateHelpVerbiage();
+        }
+
+        @And("I close the help icon")
+        public void iCloseHelpIcon(){
             createAccountPage.closeHelpIcon();
         }
+
 
         @Then("I enter general mandatory data for {string} account creation")
         public void iEnterDataForAccCreation(String appType){
             createAccountPage.createGeneralAccount(appType);
         };
 
-    @Then("I click on help icon button")
-    public void i_click_on_help_icon_button() {
+    @And("I click on help icon button")
+    public void iClickOnHelpIconButton() {
         createAccountPage.clickHelpIconButton();
     }
 
 
-    @And("I click on help icon button {string}")
-    public void i_click_on_help_icon_button(String Language) {
-
-        createAccountPage.changeLanguage(Language);
-        createAccountPage.clickHelpIconButton();
-    }
-
-    @And("I click on help icon {string}")
-    public void i_click_on_help_icon(String Language) {
-                createAccountPage.changeLanguage(Language);
-                createAccountPage.clickHelpIconButton();
-
-    }
-
-    @Then("I validate the default verbiage on help icon in {string}")
-    public void i_validate_the_default_verbiage_on_help_icon_in(String Language) {
+    @Then("I validate the verbiage on help icon in {string}")
+    public void iValidateVerbiageOnHelpIcon(String Language) {
         createAccountPage.validateHelpText(Language);
-        createAccountPage.closeHelpIcon();
     }
 
 

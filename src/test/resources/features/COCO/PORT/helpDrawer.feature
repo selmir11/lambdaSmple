@@ -9,8 +9,11 @@ Feature: Tests related to the help drawer
     Then I validate I am on the "Create Account" page
     And I click on help icon
     Then I validate the default verbiage on help icon
-    And I click on help icon "Spanish"
-    Then I validate the default verbiage on help icon in "Spanish"
+    And I close the help icon
+    And I change the language from header to "Spanish"
+    And I click on help icon
+    Then I validate the verbiage on help icon in "Spanish"
+    And I close the help icon
 
   @SLCR-27
   Scenario: Validate the english and spanish verbiage on the help drawer button

@@ -27,18 +27,10 @@ public class CreateAccountPage {
     @FindBy(xpath = "//label[@class='help-label ng-tns-c2-0']")
     private WebElement helpIconSP;
 
-    @FindBy(id="globe-image")
-    private WebElement languageDrp;
 
 // we should not have ng star inserted in any of the locators. They are angular specific and might change and not good to rely on them.
     @FindBy(xpath="//a[@class='btn btn-default btn-sm btn-override ng-tns-c2-0 ng-star-inserted']")
     private WebElement closeHelpIconEnglish;
-
-    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
-    private WebElement englishLanguage;
-
-    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
-    private WebElement spanishLanguage;
 
     @FindBy(xpath = "//p[contains(text(),'Connect for Health Colorado es el mercado oficial ')]")
     private WebElement helpDrawerTextSP;
@@ -129,24 +121,6 @@ public class CreateAccountPage {
         return phoneNumber;
     }
 
-    public void changeLanguage(String Language){
-        basicActions.implicitWait(3000);
-        basicActions.waitForElementToBePresent( languageDrp,  100);
-        languageDrp.click();
-
-        switch(Language) {
-            case "English":
-                basicActions.waitForElementToBePresent( englishLanguage,  100);
-                englishLanguage.click();
-                break;
-            case "Spanish":
-                basicActions.waitForElementToBePresent( englishLanguage,  100);
-                spanishLanguage.click();
-
-                break;
-        }
-    }
-
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
         switch(appType){
@@ -189,7 +163,6 @@ public class CreateAccountPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpVerbiage(){
-        String text = "Connect for Health Colorado is Colorado’s official health insurance marketplace. Since 2013, Connect for Health Colorado has been helping individuals, families and small employers compare plans, apply for financial help and buy health insurance.";
         waitFor(1);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(helpDrawerText.get(0).getText(), "Connect for Health Colorado and Colorado Connect are committed to protecting your privacy and will keep the information you provide private as required by law.");
