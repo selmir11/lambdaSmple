@@ -39,6 +39,11 @@ public class BasicActions {
             this.driver.quit();
         }
     }
+    public void closeBrowserTab() {
+        if (this.driver != null) {
+            this.driver.close();
+        }
+    }
 
     public String getCurrentUrl() {
         return getDriver().getCurrentUrl();

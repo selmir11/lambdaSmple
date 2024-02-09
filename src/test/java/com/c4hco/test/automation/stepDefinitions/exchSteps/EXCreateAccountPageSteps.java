@@ -44,5 +44,9 @@ public class EXCreateAccountPageSteps {
     public void close_browser() {
         basicActions.closeBrowser();
     }
+    @Then("Close current browser tab")
+    public void closeBrowserTab() {
+        basicActions.closeBrowserTab();
+    }
 
 }

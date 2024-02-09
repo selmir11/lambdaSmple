@@ -18,6 +18,12 @@ public class WelcomePage {
     @FindBy(id = "ELIG-WelcomePage-MyProfile")
     private WebElement myProfileButton;
 
+    @FindBy(id = "ELIG-WelcomePage-ApplicationResults")
+    private WebElement applicationResultsButton;
+
+    @FindBy(id = "ELIG-WelcomePage-MyDocuments")
+    private WebElement myDocumentsButton;
+
     private BasicActions basicActions;
     public WelcomePage(){
         this.basicActions = BasicActions.getInstance();
@@ -30,6 +36,12 @@ public class WelcomePage {
     public void clickMyProfileButton() {
         basicActions.waitForElementToBeClickable(myProfileButton, 5);
         myProfileButton.click(); }
+    public void clickApplicationResultsButton() {
+        basicActions.waitForElementToBeClickable(applicationResultsButton, 5);
+        applicationResultsButton.click(); }
+    public void clickMyDocumentsButton() {
+        basicActions.waitForElementToBeClickable(myDocumentsButton, 5);
+        myDocumentsButton.click(); }
 
     public BasicActions getDriver(){
         return BasicActions.getInstance();

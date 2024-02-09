@@ -18,6 +18,12 @@ import org.openqa.selenium.support.ui.Wait;
         @Then("I click on My Profile Button CoCo")
             public void iClickMyProfileButton() { welcomePage.clickMyProfileButton(); }
 
+        @Then("I click on Application Results Button CoCo")
+        public void iClickApplicationResultsButton() { welcomePage.clickApplicationResultsButton(); }
+
+        @Then("I click on My Documents and Letters Button CoCo")
+        public void iClickMyDocumentsButton() { welcomePage.clickMyDocumentsButton(); }
+
 
     }
 
