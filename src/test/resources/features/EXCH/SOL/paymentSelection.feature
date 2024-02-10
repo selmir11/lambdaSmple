@@ -4,7 +4,7 @@ Feature: Payment Selection page tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-30-Add-signout @paymentPage
+  @SLER-30-WIP @paymentPage
   Scenario: Validate text on Payment by check page
     When I click create a new account on login page
     Then I click create my account from pre-screen page

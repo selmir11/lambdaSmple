@@ -5,10 +5,16 @@ import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
 
-public class LoginPage {
 
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
+import static com.c4hco.test.automation.utils.Constants.*;
+
+public class LoginPage {
+    CreateAccountPage createAccountPage = new CreateAccountPage();
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
@@ -20,6 +26,16 @@ public class LoginPage {
 
     @FindBy(id = "main-sign-in")
     WebElement signInButton;
+
+    @FindBy(id = "email")
+    public WebElement usernameAdmin;
+
+    @FindBy(id = "password")
+    public WebElement passwordAdmin;
+
+    @FindBy(id = "main-sign-in")
+    public WebElement signAdmin;
+
 
 
     private BasicActions basicActions;
@@ -36,9 +52,17 @@ public class LoginPage {
         return new LoginPage();
     }
 
+    public void refreshPage(){
+        basicActions.getDriver().navigate().refresh();
+    }
+
+
+
     public void clickCreateAccount() {
-        basicActions.waitForElementToBeClickable(createAccountLink, 30);
+
+        basicActions.implicitWait(2);
         createAccountLink.click();
+
     }
 
     public void logInWithValidCredentials() {
@@ -49,7 +73,17 @@ public class LoginPage {
             signInButton.click();
     }
 
+    public void loginAsAnAdminUser(){
+        basicActions.refreshPage();
+        basicActions.waitForElementToBePresent(usernameAdmin,10 );
+        usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        passwordAdmin.sendKeys("ALaska12!");
+        signAdmin.click();
+    }
+
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+
+
 
 }

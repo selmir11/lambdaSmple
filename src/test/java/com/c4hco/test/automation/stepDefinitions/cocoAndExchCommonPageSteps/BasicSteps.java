@@ -43,6 +43,12 @@ public class BasicSteps {
             case "planSummaryMedicalDental":
                 pageUrl ="planSummaryMedicalDental";
                 break;
+            case "Create Account":
+                pageUrl = "createAccount";
+                break;
+            case "Admin dashboard":
+                pageUrl = "AdminPortal";
+                break;
             case "Application Results":
                 pageUrl = "ApplicationResultsPortal/applicationResults";
                 break;
@@ -52,6 +58,7 @@ public class BasicSteps {
             case "My Documents":
                 pageUrl = "MyDocuments/home";
                 break;
+
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

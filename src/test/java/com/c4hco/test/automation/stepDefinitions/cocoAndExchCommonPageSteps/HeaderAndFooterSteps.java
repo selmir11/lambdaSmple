@@ -34,6 +34,9 @@ public class HeaderAndFooterSteps {
     @And("I click on Sign Out in the Header")
     public void iClickSignOutLink(){ headerAndFooterPage.clickSignOutLink(); }
 
+    @And("I change the language from header to {string}")
+    public void iChangeLanguage(String language){ headerAndFooterPage.changeLanguage(language);}
+
         // =========FOOTER============== //
     @And("I click on Privacy Policy in the Footer")
     public void iClickPrivacyPolicyLink(){ headerAndFooterPage.clickPrivacyPolicyLink(); }
