@@ -18,9 +18,6 @@ public class CreateAccountPage {
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")
     List<WebElement> helpDrawerText;
 
-    @FindBy(xpath = "//label[@class='help-label ng-tns-c2-0']")
-     WebElement helpIconSP;
-
     @FindBy(xpath="//a[contains(@class, 'btn')]")
     WebElement closeHelpIcon;
 
@@ -30,8 +27,8 @@ public class CreateAccountPage {
     @FindBy(xpath = "//em[@class='fas fa-question-circle']")
      WebElement helpDrawerButton;
 
-    @FindBy(xpath = "//div[13]/div[1]/em")
-     WebElement helpDrawerButtonSP;
+    @FindBy(css = ".boot-input-group .help-label")
+    WebElement helpLabel;
 
     @FindBy(id = "fn")
      WebElement firstName;
@@ -60,7 +57,7 @@ public class CreateAccountPage {
     @FindBy(id = "cocoUser-input")
      WebElement cocoTermsOfUseCheckbox;
 
-    @FindBy(xpath = "//*[@id='exchUser-input']")
+    @FindBy(id = "exchUser-input")
      WebElement exchangeTermsOfUseCheckbox;
 
     @FindBy(id = "submit-button")
@@ -77,13 +74,20 @@ public class CreateAccountPage {
     }
 
     public void clickHelpIcon(){
-        basicActions.waitForElementToBeClickable(helpIcon, 5);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(helpIcon, 20));
+        basicActions.waitForElementToBeClickable(helpIcon, 20);
         helpIcon.click();
+        basicActions.waitForElementToDisappear(helpIcon, 10);
     }
 
     public void closeHelpIcon(){
-        basicActions.waitForElementToBeClickable(closeHelpIcon, 60);
+       SoftAssert softAssert = new SoftAssert();
+       softAssert.assertTrue(basicActions.waitForElementToBePresent(closeHelpIcon, 20));
+        basicActions.waitForElementToBePresent(closeHelpIcon, 20);
+        basicActions.waitForElementToBeClickable(closeHelpIcon, 20);
         closeHelpIcon.click();
+        basicActions.waitForElementToBePresent(helpLabel, 30);
     }
 
     public void clickHelpIconButton(){
@@ -140,7 +144,6 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
     }
     public void validateHelpText(String Language){
-        basicActions.implicitWait(5000);
         switch(Language) {
         case "English":
             validateHelpVerbiage();

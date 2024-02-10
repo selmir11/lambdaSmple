@@ -6,15 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
-
-
 import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
 import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
-import static com.c4hco.test.automation.utils.Constants.*;
 
 public class LoginPage {
-    CreateAccountPage createAccountPage = new CreateAccountPage();
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
@@ -28,13 +23,13 @@ public class LoginPage {
     WebElement signInButton;
 
     @FindBy(id = "email")
-    public WebElement usernameAdmin;
+     WebElement usernameAdmin;
 
     @FindBy(id = "password")
-    public WebElement passwordAdmin;
+     WebElement passwordAdmin;
 
     @FindBy(id = "main-sign-in")
-    public WebElement signAdmin;
+     WebElement signAdmin;
 
 
 
@@ -59,10 +54,7 @@ public class LoginPage {
 
 
     public void clickCreateAccount() {
-
-        basicActions.implicitWait(2);
         createAccountLink.click();
-
     }
 
     public void logInWithValidCredentials() {
@@ -74,7 +66,7 @@ public class LoginPage {
     }
 
     public void loginAsAnAdminUser(){
-        basicActions.refreshPage();
+        // TO-DO:: Get the credentials from a different file
         basicActions.waitForElementToBePresent(usernameAdmin,10 );
         usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
         passwordAdmin.sendKeys("ALaska12!");
