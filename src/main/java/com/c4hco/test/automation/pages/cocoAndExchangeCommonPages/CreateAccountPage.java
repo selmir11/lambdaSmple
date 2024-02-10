@@ -16,55 +16,55 @@ public class CreateAccountPage {
     WebElement helpIcon;
 
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")
-    private  List<WebElement> helpDrawerText;
+    List<WebElement> helpDrawerText;
 
     @FindBy(xpath = "//label[@class='help-label ng-tns-c2-0']")
-    private WebElement helpIconSP;
+     WebElement helpIconSP;
 
     @FindBy(xpath="//a[contains(@class, 'btn')]")
     WebElement closeHelpIcon;
 
     @FindBy(xpath = "//p[contains(text(),'Connect for Health Colorado es el mercado oficial ')]")
-    private WebElement helpDrawerTextSP;
+     WebElement helpDrawerTextSP;
 
     @FindBy(xpath = "//em[@class='fas fa-question-circle']")
-    private WebElement helpDrawerButton;
+     WebElement helpDrawerButton;
 
     @FindBy(xpath = "//div[13]/div[1]/em")
-    private WebElement helpDrawerButtonSP;
+     WebElement helpDrawerButtonSP;
 
     @FindBy(id = "fn")
-    private WebElement firstName;
+     WebElement firstName;
 
     @FindBy(id = "ln")
-    private WebElement lastName;
+     WebElement lastName;
 
     @FindBy(id = "email")
-    private WebElement email;
+     WebElement email;
 
     @FindBy(id = "phone")
-    private WebElement phoneNumber;
+     WebElement phoneNumber;
 
     @FindBy(id = "password")
-    private WebElement password;
+     WebElement password;
 
     @FindBy(id = "confirm-password")
-    private WebElement confirmPassword;
+     WebElement confirmPassword;
 
     @FindBy(xpath = "//*[@for='English']")
-    private WebElement preferredLanguageButtonEnglish;
+     WebElement preferredLanguageButtonEnglish;
 
     @FindBy(id = "primaryUser-input")
-    private WebElement primaryUserCheckbox;
+     WebElement primaryUserCheckbox;
 
     @FindBy(id = "cocoUser-input")
-    private WebElement cocoTermsOfUseCheckbox;
+     WebElement cocoTermsOfUseCheckbox;
 
     @FindBy(xpath = "//*[@id='exchUser-input']")
-    private WebElement exchangeTermsOfUseCheckbox;
+     WebElement exchangeTermsOfUseCheckbox;
 
     @FindBy(id = "submit-button")
-    private WebElement submitButton;
+     WebElement submitButton;
 
     private BasicActions basicActions;
     public CreateAccountPage(){
@@ -167,8 +167,10 @@ public class CreateAccountPage {
 
     public void validateHelpVerbiageSP() {
         basicActions.waitForElementToBePresent(helpDrawerTextSP, 60);
+
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(helpDrawerTextSP.getText().contains("Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado"));
+basicActions.implicitWait(2000);
+softAssert.assertEquals(helpDrawerTextSP.getText(),"Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado");
 
     }
 
