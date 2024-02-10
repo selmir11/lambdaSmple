@@ -140,7 +140,8 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
     }
     public void validateHelpText(String Language){
-     switch(Language) {
+        basicActions.implicitWait(5000);
+        switch(Language) {
         case "English":
             validateHelpVerbiage();
             break;
@@ -167,9 +168,7 @@ public class CreateAccountPage {
 
     public void validateHelpVerbiageSP() {
         basicActions.waitForElementToBePresent(helpDrawerTextSP, 60);
-
         SoftAssert softAssert = new SoftAssert();
-basicActions.implicitWait(2000);
 softAssert.assertEquals(helpDrawerTextSP.getText(),"Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado");
 
     }
