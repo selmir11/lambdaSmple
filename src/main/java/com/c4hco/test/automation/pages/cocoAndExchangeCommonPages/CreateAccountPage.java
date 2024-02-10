@@ -144,7 +144,6 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
     }
     public void validateHelpText(String Language){
-      //  basicActions.implicitWait(5000);
         switch(Language) {
         case "English":
             validateHelpVerbiage();
