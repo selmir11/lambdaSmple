@@ -1,11 +1,11 @@
-Feature: Payment Selection page tests
+Feature: QLCE Birth during closed enrollment
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-30-WIP @paymentPage
-  Scenario: Validate text on Payment by check page
+  @SLER-27 @QLCE
+  Scenario: Validate Birth LCE allows user to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -16,7 +16,7 @@ Feature: Payment Selection page tests
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -28,18 +28,10 @@ Feature: Payment Selection page tests
     And I enter citizenship details and click continue
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare and sign
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select No for tobacco usage and click continue
-    And I select the first medical plan and continue
-    Then I select first dental plan and continue
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I Verify the text on payment selection page
-    And I click on Sign Out in the Header
