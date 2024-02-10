@@ -31,8 +31,6 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
      WebElement signAdmin;
 
-
-
     private BasicActions basicActions;
     private Utils utils = new Utils();
 
@@ -46,12 +44,6 @@ public class LoginPage {
         basicActions.getDriver().get(utils.getBaseLoginUrl(appType));
         return new LoginPage();
     }
-
-    public void refreshPage(){
-        basicActions.getDriver().navigate().refresh();
-    }
-
-
 
     public void clickCreateAccount() {
         createAccountLink.click();
@@ -75,7 +67,5 @@ public class LoginPage {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
-
-
 
 }
