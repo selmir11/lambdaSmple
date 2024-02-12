@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class TellUsAboutYourselfCoCoPage {
 
     @FindBy (id = "birthDate")
@@ -16,11 +18,8 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy (id = "ELIG-memberDetails-FemaleButton")
     WebElement genderFemaleButton;
 
-    @FindBy (xpath = "//*[contains(@class, 'yes-button')]")
-    WebElement yesButton;
-
-    @FindBy (xpath = "//*[contains(@class, 'no-button')]")
-    WebElement noButton;
+    @FindBy (id = "app-yes-no-option .button")
+    List<WebElement> applyButton;
 
     @FindBy (id = "ELIG-MemberDetails-SaveAndContinue")
     WebElement saveAndContinueButton;
@@ -51,13 +50,13 @@ public class TellUsAboutYourselfCoCoPage {
     }
 
     public void clickYesButton() {
-        basicActions.waitForElementToBeClickable(yesButton, 30);
-        yesButton.click();
+        basicActions.waitForElementListToBePresent(applyButton, 30);
+        applyButton.get(0).click();
     }
 
     public void clickNoButton() {
-        basicActions.waitForElementToBeClickable(noButton, 30);
-        noButton.click();
+        basicActions.waitForElementListToBePresent(applyButton, 30);
+        applyButton.get(1).click();
     }
 
     public void clickSaveAndContinueButton() {
