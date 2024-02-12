@@ -94,6 +94,17 @@ public class BasicActions {
         getDriver().navigate().refresh();
     }
 
+    public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
+        } catch(TimeoutException ignore){
+            Log.info("Element is not present");
+            return false;
+        }
+        return true;
+    }
+
 //    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
 //        try {
 //            new WebDriverWait(driver,
