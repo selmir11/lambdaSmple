@@ -36,26 +36,6 @@ public class TellUsAboutYourselfCoCoPage {
         memberDOBTbox.sendKeys(dateOfBirth);
     }
 
-    public void clickGenderMaleButton() {
-        basicActions.waitForElementListToBePresent(genderButton, 30);
-        genderButton.get(1).click();
-    }
-
-    public void clickGenderFemaleButton() {
-        basicActions.waitForElementListToBePresent(genderButton, 30);
-        genderButton.get(0).click();
-    }
-
-    public void clickYesButton() {
-        basicActions.waitForElementListToBePresent(applyButton, 30);
-        applyButton.get(0).click();
-    }
-
-    public void clickNoButton() {
-        basicActions.waitForElementListToBePresent(applyButton, 30);
-        applyButton.get(1).click();
-    }
-
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
@@ -69,23 +49,25 @@ public class TellUsAboutYourselfCoCoPage {
     }
 
     public void genderSelection(String gender) {
+        basicActions.waitForElementListToBePresent(genderButton, 30);
         switch (gender) {
             case "Male":
-                clickGenderMaleButton();
+                genderButton.get(1).click();
                 break;
             case "Female":
-                clickGenderFemaleButton();
+                genderButton.get(0).click();
                 break;
         }
     }
 
     public void applyingForCoverage(String applying) {
+        basicActions.waitForElementListToBePresent(applyButton, 30);
         switch (applying) {
             case "Yes":
-                clickYesButton();
+                applyButton.get(0).click();
                 break;
             case "No":
-                clickNoButton();
+                applyButton.get(1).click();
                 break;
         }
     }
