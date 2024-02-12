@@ -12,13 +12,10 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy (id = "birthDate")
     WebElement memberDOBTbox;
 
-    @FindBy (id = "ELIG-memberDetails-MaleButton")
-    WebElement genderMaleButton;
+    @FindBy (css = "app-male-female-option .button")
+    List<WebElement> genderButton;
 
-    @FindBy (id = "ELIG-memberDetails-FemaleButton")
-    WebElement genderFemaleButton;
-
-    @FindBy (id = "app-yes-no-option .button")
+    @FindBy (css = "app-yes-no-option .button")
     List<WebElement> applyButton;
 
     @FindBy (id = "ELIG-MemberDetails-SaveAndContinue")
@@ -40,13 +37,13 @@ public class TellUsAboutYourselfCoCoPage {
     }
 
     public void clickGenderMaleButton() {
-        basicActions.waitForElementToBeClickable(genderMaleButton, 30);
-        genderMaleButton.click();
+        basicActions.waitForElementListToBePresent(genderButton, 30);
+        genderButton.get(1).click();
     }
 
     public void clickGenderFemaleButton() {
-        basicActions.waitForElementToBeClickable(genderFemaleButton, 30);
-        genderFemaleButton.click();
+        basicActions.waitForElementListToBePresent(genderButton, 30);
+        genderButton.get(0).click();
     }
 
     public void clickYesButton() {
