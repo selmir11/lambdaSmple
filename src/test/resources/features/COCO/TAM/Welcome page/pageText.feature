@@ -13,8 +13,8 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
 
     Then I verify text on the Welcome page for first time signed into an account
-    Then I verify text on the CoCo Header
-    Then I verify text on the CoCo Footer
+    Then I verify text on the CoCo "Header"
+    Then I verify text on the CoCo "Footer"
     Then I click on My Profile Button CoCo
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
@@ -23,7 +23,7 @@ Feature: Page Text-Welcome Page
 
     And I apply for 2024 CoCo
     Then I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on the Family Overview page
+    Then I click Primary EditUpdate on the Family Overview page
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
 
 

@@ -38,8 +38,19 @@ public class HeaderAndFooterSteps {
     @And("I change the language from header to {string}")
     public void iChangeLanguage(String language){ headerAndFooterPage.changeLanguage(language);}
 
-    @Then("I verify text on the CoCo Header")
-    public void verifyHeaderText()  { headerAndFooterPage.verifyTextInCoCoHeader(); }
+
+    // =========HEADER AND FOOTER============== //
+    @Then("I verify text on the CoCo {string}")
+    public void verifyHeaderText(String HeaderOrFooter) {
+        switch (HeaderOrFooter) {
+            case "Header":
+                headerAndFooterPage.verifyTextInCoCoHeader();
+                break;
+            case "Footer":
+                headerAndFooterPage.verifyTextInCoCoFooter();
+                break;
+        }
+    }
 
 
         // =========FOOTER============== //
@@ -52,8 +63,6 @@ public class HeaderAndFooterSteps {
     @And("I click on Contact Us in the Footer")
     public void iClickContactUsLink(){ headerAndFooterPage.clickContactUsLink(); }
 
-    @Then("I verify text on the CoCo Footer")
-    public void verifyFooterText()  { headerAndFooterPage.verifyTextInCoCoFooter(); }
 
 
 }

@@ -6,10 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class FamilyOverviewPage {
+    @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
+    WebElement familyOverviewHeader;
 
     @FindBy (xpath = "//a[text()='Edit/Update']")
-    WebElement editUpdateLink;
+    List<WebElement> editUpdateLink;
 
 
     private BasicActions basicActions;
@@ -19,9 +23,9 @@ public class FamilyOverviewPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void clickEditUpdateLink() {
-        basicActions.waitForElementToBeClickable(editUpdateLink, 30);
-        editUpdateLink.click();
+    public void clickPrimaryEditUpdateLink() {
+        basicActions.waitForElementToBeClickable(familyOverviewHeader, 30);
+        editUpdateLink.get(0).click();
     }
 
 

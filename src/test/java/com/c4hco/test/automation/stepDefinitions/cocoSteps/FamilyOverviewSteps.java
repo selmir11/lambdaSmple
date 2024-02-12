@@ -8,8 +8,8 @@ import io.cucumber.java.en.Then;
 public class FamilyOverviewSteps {
     FamilyOverviewPage familyOverviewPage = new FamilyOverviewPage();
 
-    @Then("I click EditUpdate on the Family Overview page")
-    public void iClickEditUpdateLink(){ familyOverviewPage.clickEditUpdateLink(); }
+    @Then("I click Primary EditUpdate on the Family Overview page")
+    public void iClickPrimaryEditUpdateLink(){ familyOverviewPage.clickPrimaryEditUpdateLink(); }
 
 
 
