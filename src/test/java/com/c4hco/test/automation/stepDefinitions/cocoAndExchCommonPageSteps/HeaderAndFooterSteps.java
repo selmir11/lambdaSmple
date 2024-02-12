@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.HeaderAndFooterPage;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class HeaderAndFooterSteps {
 
@@ -37,6 +38,10 @@ public class HeaderAndFooterSteps {
     @And("I change the language from header to {string}")
     public void iChangeLanguage(String language){ headerAndFooterPage.changeLanguage(language);}
 
+    @Then("I verify text on the CoCo Header")
+    public void verifyHeaderText()  { headerAndFooterPage.verifyTextInCoCoHeader(); }
+
+
         // =========FOOTER============== //
     @And("I click on Privacy Policy in the Footer")
     public void iClickPrivacyPolicyLink(){ headerAndFooterPage.clickPrivacyPolicyLink(); }
@@ -46,6 +51,9 @@ public class HeaderAndFooterSteps {
 
     @And("I click on Contact Us in the Footer")
     public void iClickContactUsLink(){ headerAndFooterPage.clickContactUsLink(); }
+
+    @Then("I verify text on the CoCo Footer")
+    public void verifyFooterText()  { headerAndFooterPage.verifyTextInCoCoFooter(); }
 
 
 }
