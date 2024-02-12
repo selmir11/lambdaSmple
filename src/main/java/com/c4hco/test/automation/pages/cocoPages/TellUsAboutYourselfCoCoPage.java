@@ -10,10 +10,10 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy (id = "birthDate")
     WebElement memberDOBTbox;
 
-    @FindBy (xpath = "//*[contains(text(),'Male')]")
+    @FindBy (id = "ELIG-memberDetails-MaleButton")
     WebElement genderMaleButton;
 
-    @FindBy (xpath = "//*[contains(text(),'Female')]")
+    @FindBy (id = "ELIG-memberDetails-FemaleButton")
     WebElement genderFemaleButton;
 
     @FindBy (xpath = "//*[contains(@class, 'yes-button')]")
