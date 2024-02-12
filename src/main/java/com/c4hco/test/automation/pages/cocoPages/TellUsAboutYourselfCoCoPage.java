@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class TellUsAboutYourselfCoCoPage {
 
     @FindBy (id = "birthDate")
-    public WebElement memberDOBTbox;
+    WebElement memberDOBTbox;
 
     @FindBy (xpath = "//*[contains(text(),'Male')]")
     WebElement genderMaleButton;
@@ -22,6 +22,9 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy (xpath = "//*[contains(@class, 'no-button')]")
     WebElement noButton;
 
+    @FindBy (id = "ELIG-MemberDetails-SaveAndContinue")
+    WebElement saveAndContinueButton;
+
 
 
 
@@ -30,6 +33,11 @@ public class TellUsAboutYourselfCoCoPage {
     public TellUsAboutYourselfCoCoPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+    public void enterMemberDOBTbox(String dateOfBirth) {
+        basicActions.waitForElementToBeClickable(memberDOBTbox, 30);
+        memberDOBTbox.sendKeys(dateOfBirth);
     }
 
     public void clickGenderMaleButton() {
@@ -52,8 +60,19 @@ public class TellUsAboutYourselfCoCoPage {
         noButton.click();
     }
 
-    public void specificMemberDetails(String dateOfBirth, String gender, String applying) {
-        memberDOBTbox.sendKeys(dateOfBirth);
+    public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        saveAndContinueButton.click();
+    }
+
+    public void specificMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
+        enterMemberDOBTbox(dateOfBirth);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+        clickSaveAndContinueButton();
+    }
+
+    public void genderSelection(String gender) {
         switch (gender) {
             case "Male":
                 clickGenderMaleButton();
@@ -62,6 +81,9 @@ public class TellUsAboutYourselfCoCoPage {
                 clickGenderFemaleButton();
                 break;
         }
+    }
+
+    public void applyingForCoverage(String applying) {
         switch (applying) {
             case "Yes":
                 clickYesButton();

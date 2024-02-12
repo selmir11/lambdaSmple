@@ -9,8 +9,7 @@ public class TellUsAboutYourselfCoCoSteps {
     private BasicActions basicActions;
 
     @Then("I enter details on tell us about yourself page and continue with {string}, {string}, and applying {string}")
-    public void enterSpecificMemberDetails(String dateOfBirth, String gender, String applying){
-    }
+    public void EnterSpecificMemberDetailsCoCo(String dateOfBirth, String gender, String applying){tellUsAboutYourselfCoCoPage.specificMemberDetailsCoCo(dateOfBirth, gender, applying); }
 
 
 
