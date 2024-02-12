@@ -86,4 +86,9 @@ public class BasicSteps {
         basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }
+
+    @And("I refresh the page")
+    public void refreshPage(){
+        basicActions.refreshPage();
+    }
 }

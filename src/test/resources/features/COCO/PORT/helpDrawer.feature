@@ -1,9 +1,10 @@
 @helpDrawer
 Feature: Tests related to the help drawer
 
-  @SLCR-27 @n1
+  @SLCR-27
   Scenario: Validate the english and spanish verbiage on the help drawer
     Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
@@ -15,9 +16,10 @@ Feature: Tests related to the help drawer
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
 
-  @SLCR-27 @n1
+  @SLCR-27
   Scenario: Validate the english and spanish verbiage on the help drawer button
     Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
@@ -29,9 +31,10 @@ Feature: Tests related to the help drawer
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
 
-  @SLCR-27 @n1
+  @SLCR-27
   Scenario: Validate the verbiage on the help drawer in Admin Portal
     Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
     When I login as Admin User
     And I validate I am on the "Admin dashboard" page
     Then I click create account on admin portal
@@ -44,9 +47,11 @@ Feature: Tests related to the help drawer
     And I close the help icon
     Then logout from Admin Portal
 
-  @SLCR-27 @n1
+  @SLCR-27
   Scenario: Validate the verbiage on the help drawer button in Admin Portal
     Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
     When I login as Admin User
     And I validate I am on the "Admin dashboard" page
     Then I click create account on admin portal
