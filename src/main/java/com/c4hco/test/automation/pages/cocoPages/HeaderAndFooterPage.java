@@ -4,36 +4,37 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
+
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
 
 
 public class HeaderAndFooterPage {
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
+
     @FindBy(xpath = "//*[text()=' Apply for Coverage']")
     WebElement applyForCoverageLink;
+
     @FindBy(xpath = "//*[text()='Find a Plan']")
     WebElement findAPlanLink;
+
     @FindBy(xpath = "//*[text()='My Account']")
     WebElement myAccountLink;
+
     @FindBy(xpath = "//*[text()=' Learn More']")
     WebElement learnMoreLink;
+
     @FindBy(xpath = "//*[text()='Get Assistance']")
     WebElement getAssistanceLink;
+
     @FindBy(xpath = "//*[text()=' Find Expert Assistance in Your Community ']")
     WebElement findExpertAssistanceLink;
+
     @FindBy(xpath = "//div[2]//div[3]/a")
     WebElement userNameLink;
-    @FindBy(xpath = "//a[normalize-space()='Sign Out']")
-    WebElement signOutLink;
 
-    @FindBy(id = "privacyPolicyLink")
-    WebElement privacyPolicyLink;
-    @FindBy(id = "termsOfUseLink")
-    WebElement termsOfUseLink;
-    @FindBy(id = "contactUsLink")
-    WebElement contactUsLink;
-
-    @FindBy(id="globe-image")
+    @FindBy(id = "globe-image")
     WebElement languageDrp;
 
     @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
@@ -41,6 +42,23 @@ public class HeaderAndFooterPage {
 
     @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
     private WebElement spanishLanguage;
+
+    @FindBy(xpath = "//a[normalize-space()='Sign Out']")
+    WebElement signOutLink;
+
+    // =========FOOTER============== //
+    @FindBy(id = "privacyPolicyLink")
+    WebElement privacyPolicyLink;
+
+    @FindBy(id = "termsOfUseLink")
+    WebElement termsOfUseLink;
+
+    @FindBy(id = "contactUsLink")
+    WebElement contactUsLink;
+
+    @FindBy(xpath = "//span[contains (text(), 'ALL RIGHTS RESERVED')]")
+    WebElement copyRightCoCoText;
+
 
 
     private BasicActions basicActions;
@@ -81,11 +99,30 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBeClickable(userNameLink, 20);
         userNameLink.click();
     }
+
+    public void changeLanguage(String language) {
+        basicActions.waitForElementToBePresent(languageDrp, 60);
+        languageDrp.click();
+
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(englishLanguage, 60);
+                englishLanguage.click();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(spanishLanguage, 60);
+                spanishLanguage.click();
+
+                break;
+        }
+    }
+
     public void clickSignOutLink() {
         basicActions.waitForElementToBeClickable(signOutLink, 20);
         signOutLink.click();
     }
 
+    // =========FOOTER============== //
     public void clickPrivacyPolicyLink() {
         basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
         privacyPolicyLink.click();
@@ -99,21 +136,15 @@ public class HeaderAndFooterPage {
         contactUsLink.click();
     }
 
-    public void changeLanguage(String language){
-        basicActions.waitForElementToBePresent( languageDrp,  60);
-        languageDrp.click();
-
-        switch(language) {
-            case "English":
-                basicActions.waitForElementToBePresent( englishLanguage,  60);
-                englishLanguage.click();
-                break;
-            case "Spanish":
-                basicActions.waitForElementToBePresent( spanishLanguage,  60);
-                spanishLanguage.click();
-
-                break;
-        }
+    public void verifyTextInCoCoFooter(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        String header  = connectLogoLink.getText();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
+        softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
+        softAssert.assertEquals(contactUsLink.getText(), "Contact Us");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. ALL RIGHTS RESERVED.");
+        softAssert.assertAll();
     }
 
 }
