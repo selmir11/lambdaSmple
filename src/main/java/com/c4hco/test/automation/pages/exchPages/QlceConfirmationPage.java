@@ -120,6 +120,7 @@ public class QlceConfirmationPage {
             case "NoneOfThese":
                 basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
                 noneOfTheseLCE.click();
+                break;
         }
     }
 
