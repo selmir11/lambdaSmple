@@ -73,6 +73,9 @@ public class QlceConfirmationPage {
     List<WebElement> allMemberLostCoverageCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> lostCoverageEventDate;
+    //None of These
+    @FindBy(id ="noneOfThese")
+    WebElement noneOfTheseLCE;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
 
@@ -114,6 +117,9 @@ public class QlceConfirmationPage {
                     lostCoverageEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
+            case "NoneOfThese":
+                basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
+                noneOfTheseLCE.click();
         }
     }
 
