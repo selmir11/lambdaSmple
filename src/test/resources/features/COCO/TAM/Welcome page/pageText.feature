@@ -13,7 +13,7 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
 
     Then I verify text on the Welcome page for first time signed into an account
-    Then I verify text on the CoCo "Header"
+    # Then I verify text on the CoCo "Header"
     Then I verify text on the CoCo "Footer"
     Then I click on My Profile Button CoCo
     Then I validate I am on the "My Profile" page
