@@ -4,7 +4,7 @@ Feature: Dental Plans page tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-35 WIP @SelectGoBackOnDentalPages
+  @SLER-35-WIP @SelectGoBackOnDentalPages
   Scenario: Go Back Dental Pages
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -37,5 +37,5 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     Then I select No for tobacco usage and click continue
     And I select the first medical plan and continue
-    Then I select first dental plan and continue
+    Then I select first dental plan and go back
     Then I click Go Back on Dental Plan Results Page
