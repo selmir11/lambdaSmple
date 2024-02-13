@@ -15,7 +15,6 @@ public class BackgroundSteps {
 
         @Given("I connect to the ob834_detail table")
                 public void iGetDataFromOb834DetailTable() {
-            // move this step around - To DO
             dbDataProviderForQaCoco.getDataFromob834_detail();
         };
 }

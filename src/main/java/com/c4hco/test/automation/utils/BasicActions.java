@@ -13,7 +13,6 @@ import java.util.List;
 
 public class BasicActions {
     private WebDriver driver;
-    public static int WAIT_FOR_ELEMENT=30;
     private Selenese selenese = Selenese.getInstance();
 
 
@@ -91,7 +90,50 @@ public class BasicActions {
         return true;
     }
 
+    public void refreshPage(){
+        getDriver().navigate().refresh();
+    }
 
+    public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
+        } catch(TimeoutException ignore){
+            Log.info("Element is not present");
+            return false;
+        }
+        return true;
+    }
+
+//    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
+//        try {
+//            new WebDriverWait(driver,
+//                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
+//            webElement.click();
+//        } catch(TimeoutException ignore){
+//            Log.info("Element is not clickable");
+//        }
+//
+//    }
+//
+//    public  void scrollToElement(WebElement element) {
+//        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+//    }
+
+//    public  void switchToWindow(String targetTitle) {
+//        String origin = getDriver().getWindowHandle();
+//        for (String handle :getDriver().getWindowHandles()) {
+//            getDriver().switchTo().window(handle);
+//            if (getDriver().getTitle().equals(targetTitle)) {
+//                return;
+//            }
+//        }
+//        getDriver().switchTo().window(origin);
+//    }
+
+//    public void implicitWait(int second){
+//        getDriver().manage().timeouts().implicitlyWait(second, TimeUnit.SECONDS);
+//    }
 
 }
 

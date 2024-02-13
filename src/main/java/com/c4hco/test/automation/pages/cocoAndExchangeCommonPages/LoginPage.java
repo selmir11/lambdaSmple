@@ -5,10 +5,11 @@ import com.c4hco.test.automation.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
+
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
 
 public class LoginPage {
-
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
@@ -21,6 +22,14 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signInButton;
 
+    @FindBy(id = "email")
+     WebElement usernameAdmin;
+
+    @FindBy(id = "password")
+     WebElement passwordAdmin;
+
+    @FindBy(id = "main-sign-in")
+     WebElement signAdmin;
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
@@ -37,7 +46,6 @@ public class LoginPage {
     }
 
     public void clickCreateAccount() {
-        basicActions.waitForElementToBeClickable(createAccountLink, 30);
         createAccountLink.click();
     }
 
@@ -47,6 +55,14 @@ public class LoginPage {
             username.sendKeys(emailId);
             password.sendKeys(pswrd);
             signInButton.click();
+    }
+
+    public void loginAsAnAdminUser(){
+        // TO-DO:: Get the credentials from a different file
+        basicActions.waitForElementToBePresent(usernameAdmin,10 );
+        usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        passwordAdmin.sendKeys("ALaska12!");
+        signAdmin.click();
     }
 
     // ############################## VALIDATION METHODS #########################

@@ -33,6 +33,15 @@ public class HeaderAndFooterPage {
     @FindBy(id = "contactUsLink")
     WebElement contactUsLink;
 
+    @FindBy(id="globe-image")
+    WebElement languageDrp;
+
+    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
+    private WebElement englishLanguage;
+
+    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
+    private WebElement spanishLanguage;
+
 
     private BasicActions basicActions;
 
@@ -88,6 +97,23 @@ public class HeaderAndFooterPage {
     public void clickContactUsLink() {
         basicActions.waitForElementToBeClickable(contactUsLink, 10);
         contactUsLink.click();
+    }
+
+    public void changeLanguage(String language){
+        basicActions.waitForElementToBePresent( languageDrp,  60);
+        languageDrp.click();
+
+        switch(language) {
+            case "English":
+                basicActions.waitForElementToBePresent( englishLanguage,  60);
+                englishLanguage.click();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent( spanishLanguage,  60);
+                spanishLanguage.click();
+
+                break;
+        }
     }
 
 }
