@@ -21,8 +21,6 @@ public class CompletedPeakApplicationPage {
     @FindBy(xpath = "//*[@id='completedApplicationQYes']")
     WebElement yesImNew;
 
-//    @FindBy(xpath = "//*[@id='completedApplicationQNo']")
-//    WebElement noThanksRadioButton;
     @FindBy(id = "completedApplicationQNo")
     WebElement noThanksRadioButton;
     @FindBy(xpath = "//*[@name='saveAndContinue']")
@@ -43,31 +41,31 @@ public class CompletedPeakApplicationPage {
     @FindBy(xpath = "//a[@class='icon-link language']")
     WebElement languageToggleLink;
 
-    @FindBy(xpath = "/html/body/div[2]/div[1]/header/div[2]/div/nav/ul/li[2]/ul/li[2]/a")
+    @FindBy(xpath = "//nav//ul/li[2]/ul/li[2]") //this is the only locator that is working
     WebElement spanishLocaleLink;
 
-    @FindBy(xpath = "//a[contains(text(), 'In English')]")
+    @FindBy(xpath = "a[onclick*='changeLocale\\('en'\\);']")
     WebElement englishLocaleLink;
 
-    @FindBy(xpath = "//h1[@class='c4PageHeader']")
+    @FindBy(css = "span.c4BodyText1[onclick*=\"'Yes, I have a completed application'\"]")
     WebElement pageHeaderPermitanosGuiarlo;
 
-    @FindBy(xpath = "//span[@class='c4BodyText1']")
+    @FindBy(xpath = "//span[contains(@class, 'c4BodyText1') and contains(text(),'Si nunca se ha')]")
     WebElement enrollmentInfoMessageEs;
 
-    @FindBy(xpath = "//*[@id=\"peakApplicationQuestion\"]/div[1]/label/span[2]")
+    @FindBy(xpath = "//span[contains(text(),'Necesitar')]")
     WebElement caseIDInfoMessageEs;
 
-    @FindBy(xpath = "//*[@id=\"peakApplicationQuestion\"]/div[1]/div/div[1]/label/span")
+    @FindBy(css = "span.c4BodyText1[onclick*=\"'Yes, I have a completed application'\"]")
     WebElement yesImNewEs;
 
-    @FindBy(xpath = "//*[@id=\"peakApplicationQuestion\"]/div[1]/div/div[2]/label/span")
+    @FindBy(css = "span.c4BodyText1[onclick*='No, I have not completed an application and need to start one']")
     WebElement noThanksRadioButtonEs;
 
-    @FindBy(xpath = "//*[@class='back-button-link']")
+    @FindBy(css = "input.back-button-link")
     WebElement backButtonLinkEs;
 
-    @FindBy(xpath = "//*[@id='submitButton']")
+    @FindBy(css = "input.btn.btn-c4primary[value='Guardar y Continuar']")
     WebElement saveAndContinueButtonEs;
     public void setYesImNew(){
         yesImNew.click();

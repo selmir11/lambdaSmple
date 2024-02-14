@@ -4,7 +4,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-WIP @PageText
+  @SLER-38 @PageText
   Scenario: Verify all English and Spanish Text on the Let us guide you page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
