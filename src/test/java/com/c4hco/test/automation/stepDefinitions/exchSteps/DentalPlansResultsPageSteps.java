@@ -10,4 +10,7 @@ public class DentalPlansResultsPageSteps {
     public void selectDentalPlan(){
         dentalPlansResultsPage.selectFirstDentalPlan();
     }
+
+    @Then("I select go back")
+    public void selectGoBack(){dentalPlansResultsPage.selectGoBack();}
 }

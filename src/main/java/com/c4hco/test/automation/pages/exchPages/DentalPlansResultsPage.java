@@ -26,4 +26,13 @@ public class DentalPlansResultsPage {
         continueBtnOnDentalPlanResults.click();
 
     }
+
+
+    @FindBy(id="SHP-DentalPlanResults-Go Back")
+    WebElement selectGoBackBtn;
+    public void selectGoBack(){
+        basicActions.waitForElementToBePresent(selectGoBackBtn,10);
+        selectGoBackBtn.click();
+
+    }
 }
