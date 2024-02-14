@@ -43,6 +43,9 @@ public class HeaderAndFooterSteps {
     @Then("I verify text on the CoCo {string}")
     public void verifyHeaderText(String HeaderOrFooter) {
         switch (HeaderOrFooter) {
+            case "Header":
+                headerAndFooterPage.verifyTextInCoCoHeader();
+                break;
             case "Footer":
                 headerAndFooterPage.verifyTextInCoCoFooter();
                 break;

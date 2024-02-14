@@ -37,11 +37,11 @@ public class HeaderAndFooterPage {
     @FindBy(id = "globe-image")
     WebElement languageDrp;
 
-    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
-    private WebElement englishLanguage;
+    @FindBy(xpath = "//p[normalize-space()='English']")
+    WebElement englishLanguage;
 
-    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
-    private WebElement spanishLanguage;
+    @FindBy(xpath = "//p[normalize-space()='En espa\u00f1ol']")
+    WebElement spanishLanguage;
 
     @FindBy(xpath = "//a[normalize-space()='Sign Out']")
     WebElement signOutLink;
@@ -100,6 +100,11 @@ public class HeaderAndFooterPage {
         userNameLink.click();
     }
 
+    public void clickLanguageDrp() {
+        basicActions.waitForElementToBePresent(languageDrp, 60);
+        languageDrp.click();
+    }
+
     public void changeLanguage(String language) {
         basicActions.waitForElementToBePresent(languageDrp, 60);
         languageDrp.click();
@@ -120,6 +125,27 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink() {
         basicActions.waitForElementToBeClickable(signOutLink, 20);
         signOutLink.click();
+    }
+
+    public void verifyTextInCoCoHeader(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        String header  = connectLogoLink.getText();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(applyForCoverageLink.getText(), "Apply for Coverage");
+        softAssert.assertEquals(findAPlanLink.getText(), "Find a Plan");
+        softAssert.assertEquals(myAccountLink.getText(), "My Account");
+        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+        clickGetAssistanceLink();
+        softAssert.assertEquals(findExpertAssistanceLink.getText(), "Find Expert Assistance in Your Community");
+        softAssert.assertEquals(userNameLink.getText(), emailId);
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp();
+        softAssert.assertEquals(englishLanguage.getText(), "English");
+        softAssert.assertEquals(spanishLanguage.getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+        softAssert.assertAll();
     }
 
     // =========FOOTER============== //
