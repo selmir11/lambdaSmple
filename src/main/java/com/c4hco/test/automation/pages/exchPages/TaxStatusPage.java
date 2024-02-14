@@ -27,14 +27,24 @@ public class TaxStatusPage {
     @FindBy(id = "claimedAsDependentNo")
     WebElement claimAsDependentNoRadioBtn;
 
+    @FindBy(id = "claimedAsDependentYes")
+    WebElement claimAsDependentYesRadioBtn;
+
     @FindBy(id = "claimDependentsNo")
     WebElement claimDependentNoRadioBtn;
 
     @FindBy(id = "preSubmitButton")
     WebElement saveAndContinueBtn;
 
+    @FindBy(id = "selectedClaimedByMemberId1")
+    WebElement lblheadOfHousehold;
+
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
+            case "Yes":
+                basicActions.waitForElementToBeClickable(claimAsDependentYesRadioBtn, 10);
+                claimAsDependentYesRadioBtn.click();
+                break;
             case "No":
                 basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 10);
                 claimAsDependentNoRadioBtn.click();
@@ -63,21 +73,14 @@ public class TaxStatusPage {
         }
     }
 
+    public void whoWillClaimDependent(){
+        //Determine best path to parameterize - current solution is a work around.
+        ////input[@name = 'selectedClaimedByMemberId']/..//label//span[text()='bqrgpfrv mnrgamlw']
+        lblheadOfHousehold.click();
+    }
+
     public void selectSaveAndContinue(){
         saveAndContinueBtn.click();
     }
 
-//
-//    public void notClaimedNoDependents(String FilingStatus){
-//        SoftAssert softAssert = new SoftAssert();
-//        softAssert.assertTrue(basicActions.waitForElementToBeClickable(rdobtnNoClaimedDependent, 60));
-//
-//        rdobtnNoClaimedDependent.click();
-//        rdobtnYesFileReturn.click();
-//
-//
-//
-//        rdobtnNoClaimDependent.click();
-//        btnContinue.click();
-//    }
 }

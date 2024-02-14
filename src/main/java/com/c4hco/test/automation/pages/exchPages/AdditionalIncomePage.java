@@ -26,6 +26,8 @@ public class AdditionalIncomePage {
     List<WebElement> addtlIncomeOptionsCheckbox;
 
     public void selectAddtlIncomeOption(String addtlIncomeOption){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
+
         switch(addtlIncomeOption){
             case "None of these":
                 addtlIncomeOptionsCheckbox.get(12).click();
