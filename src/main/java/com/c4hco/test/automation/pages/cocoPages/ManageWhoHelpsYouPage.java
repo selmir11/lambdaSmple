@@ -1,0 +1,38 @@
+package com.c4hco.test.automation.pages.cocoPages;
+
+import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class ManageWhoHelpsYouPage {
+    private BasicActions basicActions;
+    public ManageWhoHelpsYouPage(){
+        this.basicActions = BasicActions.getInstance();
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+    @FindBy(id = "contineOwn-button")
+    WebElement continueOnMyOwnButton;
+
+    @FindBy(id = "BP-Findexperthelpnearyou-Back")
+    WebElement backButton;
+
+
+    public void clickContinueOnOwnButton() {
+        basicActions.waitForElementToBeClickable(continueOnMyOwnButton, 5);
+        continueOnMyOwnButton.click();
+    }
+
+    public void clickBackButton() {
+        basicActions.waitForElementToBeClickable(backButton, 5);
+        backButton.click();
+    }
+
+
+
+
+
+
+
+}

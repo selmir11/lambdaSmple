@@ -30,7 +30,7 @@ public class DentalPlansResultsPage {
 
     @FindBy(id="SHP-DentalPlanResults-Go Back")
     WebElement selectGoBackBtn;
-    public void selectGoBack() {
+    public void selectGoBack(){
         basicActions.waitForElementToBePresent(selectGoBackBtn,10);
         selectGoBackBtn.click();
 
