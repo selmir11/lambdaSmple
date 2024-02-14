@@ -1,7 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,17 +18,42 @@ public class MedicalPlanResultsPage {
         return BasicActions.getInstance();
     }
 
+    @FindBy(xpath = "//span[@class='metal-chip']")
+    WebElement verifyAnthem;
+
+    @FindBy(xpath = "col-sm-12 header-3")
+    WebElement AnthemPlanName1;
+
     @FindBy(id ="PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
 
     @FindBy(id ="SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
+    @FindBy(id ="SHP-PlanResults-InsuranceCompany")
+    WebElement insuranceCompanyDropdown;
+
+    @FindBy(id = "SHP-PlanResults-InsuranceCompany_0-input")
+    WebElement box1AnthemProvider;
+
     public void SelectFirstMedicalPlan(){
-        basicActions.waitForElementToBePresent(selectFirstPlan,10 );
+        basicActions.waitForElementToBePresent(selectFirstPlan,10);
         selectFirstPlan.click();
         btnContinue.click();
     }
 
+    public void verifyAnthemPlan1(){
+        AnthemPlanName1.isDisplayed();
+        }
 
+    public void clickInsuranceCompanyDropdown(){
+        insuranceCompanyDropdown.click();
+    }
+    public void selectAnthemProvider() {
+        box1AnthemProvider.click();
+    }
+
+    public void setVerifyAnthem(){
+        verifyAnthem.click();
+    }
 }

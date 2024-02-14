@@ -12,6 +12,11 @@ public class StartShoppingPageSteps {
         startShoppingPage.clickNo();
         startShoppingPage.clickContinue();
     }
+    @And("I leave it at Default No and Click Continue")
+    public void ClickContinue() {
+
+        startShoppingPage.clickContinue();
+    }
 
     public void clickYesAndContinue(){
         startShoppingPage.clickYes();
