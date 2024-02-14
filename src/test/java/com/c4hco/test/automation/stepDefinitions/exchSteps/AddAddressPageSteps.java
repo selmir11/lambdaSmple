@@ -40,4 +40,16 @@ public class AddAddressPageSteps {
         addAddressPage.tribeNo();
         addAddressPage.saveContinue();
     }
+
+    @Then("I select the Household address for additional member and click continue on add address page")
+    public void additionalDetailsForAdditionalHouseholdMember(){
+         addAddressPage.selectHouseholdAddress();
+         addAddressPage.coloradoResidentYes();
+         addAddressPage.tribeNo();
+         addAddressPage.hardshipExempNo();
+         addAddressPage.noDisability();
+         addAddressPage.deniedMedicaid();
+         addAddressPage.notIncarcerated();
+         addAddressPage.saveContinue();
+     }
 }

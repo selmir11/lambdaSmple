@@ -16,6 +16,8 @@ public class AddAddressPage {
         return BasicActions.getInstance();
     }
 
+    @FindBy(id = "retrieveResidentialAddress")
+    WebElement rdobtnHouseholdResidentialAddress;
     @FindBy(id="mailingAddrLine1")
     WebElement AddrLine1;
 
@@ -91,4 +93,8 @@ public class AddAddressPage {
         saveContinue.click();
     }
 
+    public void selectHouseholdAddress(){
+        rdobtnHouseholdResidentialAddress.click();
+    }
 }
+

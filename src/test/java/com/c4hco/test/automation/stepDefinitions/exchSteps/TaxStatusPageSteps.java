@@ -12,6 +12,9 @@ public class TaxStatusPageSteps {
         taxStatusPage.claimAsDependent(claimAsDependentOption);
     }
 
+    @And("I select the Head of House as who will claim dependent member")
+    public void selectWhoWillClaim(){taxStatusPage.whoWillClaimDependent();}
+
     @And("I select the option {string} to file federal income tax return next year")
     public void selectFedIncomeTaxReturn(String fileFedIncomeTaxReturnOption){
         taxStatusPage.fileFedIncomeTaxReturn(fileFedIncomeTaxReturnOption);
