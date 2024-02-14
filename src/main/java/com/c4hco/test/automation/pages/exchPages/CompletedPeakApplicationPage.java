@@ -4,6 +4,9 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import  java.time.Duration;
 
 public class CompletedPeakApplicationPage {
     private BasicActions basicActions;
@@ -20,11 +23,52 @@ public class CompletedPeakApplicationPage {
 
 //    @FindBy(xpath = "//*[@id='completedApplicationQNo']")
 //    WebElement noThanksRadioButton;
-@FindBy(id = "completedApplicationQNo")
-WebElement noThanksRadioButton;
+    @FindBy(id = "completedApplicationQNo")
+    WebElement noThanksRadioButton;
     @FindBy(xpath = "//*[@name='saveAndContinue']")
     WebElement saveAndContinueButton;
 
+    @FindBy(xpath = "//input[@class='back-button-link']")
+    WebElement backButtonLink;
+
+    @FindBy(xpath = "//h1[@class='c4PageHeader'][text()='Let us guide you']")
+    WebElement pageHeaderLetUsGuideYou;
+
+    @FindBy(xpath = "//span[@class='c4BodyText1']")
+    WebElement enrollmentInfoMessage;
+
+    @FindBy(xpath = "//span[@class='c4BodyText1' and contains(text(), 'You will need your Case ID')]")
+    WebElement caseIDInfoMessage;
+
+    @FindBy(xpath = "//a[@class='icon-link language']")
+    WebElement languageToggleLink;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/header/div[2]/div/nav/ul/li[2]/ul/li[2]/a")
+    WebElement spanishLocaleLink;
+
+    @FindBy(xpath = "//a[contains(text(), 'In English')]")
+    WebElement englishLocaleLink;
+
+    @FindBy(xpath = "//h1[@class='c4PageHeader']")
+    WebElement pageHeaderPermitanosGuiarlo;
+
+    @FindBy(xpath = "//span[@class='c4BodyText1']")
+    WebElement enrollmentInfoMessageEs;
+
+    @FindBy(xpath = "//*[@id=\"peakApplicationQuestion\"]/div[1]/label/span[2]")
+    WebElement caseIDInfoMessageEs;
+
+    @FindBy(xpath = "//*[@id=\"peakApplicationQuestion\"]/div[1]/div/div[1]/label/span")
+    WebElement yesImNewEs;
+
+    @FindBy(xpath = "//*[@id=\"peakApplicationQuestion\"]/div[1]/div/div[2]/label/span")
+    WebElement noThanksRadioButtonEs;
+
+    @FindBy(xpath = "//*[@class='back-button-link']")
+    WebElement backButtonLinkEs;
+
+    @FindBy(xpath = "//*[@id='submitButton']")
+    WebElement saveAndContinueButtonEs;
     public void setYesImNew(){
         yesImNew.click();
     }
@@ -38,4 +82,76 @@ WebElement noThanksRadioButton;
 
     }
 
+    public boolean verifyPageHeaderLetUsGuideYouText(String expectedText) {
+        return basicActions.verifyElementText(pageHeaderLetUsGuideYou, expectedText);
+    }
+
+    public boolean verifyEnrollmentInfoMessageText(String expectedText) {
+        return basicActions.verifyElementText(enrollmentInfoMessage, expectedText);
+    }
+
+    public boolean verifyCaseIDInfoMessageText(String expectedText) {
+        return basicActions.verifyElementText(caseIDInfoMessage, expectedText);
+    }
+
+    public boolean verifyYesImNewText(String expectedText) {
+        return basicActions.verifyElementText(yesImNew, expectedText);
+    }
+
+    public boolean verifyNoThanksRadioButtonText(String expectedText) {
+        return basicActions.verifyElementText(noThanksRadioButton, expectedText);
+    }
+
+    public boolean verifyBackButtonLinkText(String expectedText) {
+        return basicActions.verifyElementText(backButtonLink, expectedText);
+    }
+
+    public boolean isSaveAndContinueButtonInteractable() {
+        return saveAndContinueButton.isEnabled();
+    }
+
+    public void selectLocale(String locale) {
+        // Click on the language toggle link to open the language dropdown
+        languageToggleLink.click();
+
+        // Determine the locale to select based on the parameter
+        if (locale.equalsIgnoreCase("Spanish")) {
+            // Click on the Spanish locale link
+            spanishLocaleLink.click();
+        } else if (locale.equalsIgnoreCase("English")) {
+            // Click on the English locale link
+            englishLocaleLink.click();
+        } else {
+            // Handle invalid locale parameter (Optional: throw an exception or log a warning)
+            System.out.println("Invalid locale parameter provided: " + locale);
+        }
+    }
+
+    public boolean verifyPageHeaderPermitanosGuiarlo(String expectedText){
+        return basicActions.verifyElementText(pageHeaderPermitanosGuiarlo, expectedText);
+    }
+
+    public boolean verifyEnrollmentInfoMessageEs(String expectedText){
+        return basicActions.verifyElementText(enrollmentInfoMessageEs, expectedText);
+    }
+
+    public boolean verifyCaseIDInfoMessageEs(String expectedText){
+        return basicActions.verifyElementText(caseIDInfoMessageEs, expectedText);
+    }
+
+    public boolean verifyYesImNewTextEs(String expectedText){
+        return basicActions.verifyElementText(yesImNewEs, expectedText);
+    }
+
+    public boolean verifyNoGraciasEs(String expectedText){
+        return basicActions.verifyElementText(noThanksRadioButtonEs, expectedText);
+    }
+
+    public boolean verifyBackButtonEs(String expectedText){
+        return basicActions.verifyElementText(backButtonLinkEs, expectedText);
+    }
+
+    public boolean isSaveAndContinueButtonInteractableEs(){
+        return saveAndContinueButtonEs.isEnabled();
+    }
 }

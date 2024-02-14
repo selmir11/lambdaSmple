@@ -13,11 +13,14 @@ import java.util.List;
 
 public class BasicActions {
     private WebDriver driver;
+    private WebDriverWait wait;
+    public static int WAIT_FOR_ELEMENT=30;
     private Selenese selenese = Selenese.getInstance();
 
 
     public BasicActions() {
         this.driver = selenese.getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public WebDriver getDriver() {
@@ -90,8 +93,15 @@ public class BasicActions {
         return true;
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         getDriver().navigate().refresh();
+    }
+
+    // Private helper method to verify if the text of a WebElement matches the expected text
+    public Boolean verifyElementText(WebElement element, String expectedText){
+        wait.until(ExpectedConditions.visibilityOf(element));
+        String actualText = element.getText().trim();
+        return actualText.equals(expectedText.trim());
     }
 
     public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){
