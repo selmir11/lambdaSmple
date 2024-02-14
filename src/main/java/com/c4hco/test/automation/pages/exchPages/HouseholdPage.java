@@ -23,6 +23,7 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
+    public void clickAddMember(){addAdditionalMember.click();}
     public void clickContinue(){
         saveAndContinue.click();
     }

@@ -10,4 +10,8 @@ public class HouseHoldPageSteps {
     public void iClickContinue(){
         houseHoldPage.clickContinue();
     }
+
+    @Then("I click Add Another Family Member")
+    public void iClickAddFamilyMember(){houseHoldPage.clickAddMember();}
 }
+
