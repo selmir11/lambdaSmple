@@ -12,7 +12,7 @@ public class ApplicationResultsPage {
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
 
-    @FindBy(xpath = "//*[@name='redirectToShoppingPortal']")
+    @FindBy(xpath = "//*[text()='Continue']")
     WebElement continueBtn;
 
     @FindBy(xpath = "//*[contains(text(),\"Here's what your household qualifies\")]")
