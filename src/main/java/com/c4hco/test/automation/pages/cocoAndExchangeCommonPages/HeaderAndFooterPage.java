@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
@@ -38,9 +38,15 @@ public class HeaderAndFooterPage {
     WebElement languageDrp;
 
     @FindBy(xpath = "//p[normalize-space()='English']")
-    WebElement englishLanguage;
+    WebElement englishLanguageCoCo;
 
     @FindBy(xpath = "//p[normalize-space()='En espa\u00f1ol']")
+    WebElement spanishLanguageCoCo;
+
+    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
+    WebElement englishLanguage;
+
+    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
     WebElement spanishLanguage;
 
     @FindBy(xpath = "//a[normalize-space()='Sign Out']")
@@ -142,8 +148,8 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(userNameLink.getText(), emailId);
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
-        softAssert.assertEquals(englishLanguage.getText(), "English");
-        softAssert.assertEquals(spanishLanguage.getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(englishLanguageCoCo.getText(), "English");
+        softAssert.assertEquals(spanishLanguageCoCo.getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertAll();
     }

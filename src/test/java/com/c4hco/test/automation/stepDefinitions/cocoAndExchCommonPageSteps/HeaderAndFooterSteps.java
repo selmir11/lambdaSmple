@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
-import com.c4hco.test.automation.pages.cocoPages.HeaderAndFooterPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
