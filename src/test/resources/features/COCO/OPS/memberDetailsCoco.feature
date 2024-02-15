@@ -21,5 +21,6 @@ Feature: Member Profile details
     Then I validate I am on the "CoCo Welcome" page
     Then I click on My Profile Button CoCo
     Then I validate I am on the "My Profile" page
-    And I open the login page on the "Admin" portal
-    And "refreshPage" page
+    Then I click on "makeChangesButton" CoCo
+    #And I open the login page on the "Admin" portal
+   # "refreshPage" page

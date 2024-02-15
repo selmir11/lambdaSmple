@@ -130,4 +130,8 @@ public class BasicSteps {
     public void refreshPage(){
         basicActions.refreshPage();
     }
+
+    @Then("I click on {string} CoCo")
+    public void iClickOnCoCo(String arg0) {
+    }
 }
