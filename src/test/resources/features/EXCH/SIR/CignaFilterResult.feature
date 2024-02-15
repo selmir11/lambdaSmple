@@ -40,6 +40,4 @@ Feature: Medical Plan Verification test
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Anthem" to filter for desired plan provider
-
-
+    And I select "Cigna" to filter for desired plan provider

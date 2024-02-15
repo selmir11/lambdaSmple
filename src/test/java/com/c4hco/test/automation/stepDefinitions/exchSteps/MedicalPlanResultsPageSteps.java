@@ -21,4 +21,13 @@ public class MedicalPlanResultsPageSteps {
     public void selectAnthemProvider() {
         medPlanResultsPage.selectAnthemProvider();
     }
+
+    @And("I select the Cigna Insurance Company box")
+    public void selectCignaProvider() {
+        medPlanResultsPage.selectCignaProvider();
+    }
+    @And("I select {string} to filter for desired plan provider")
+    public void selectfromProviderList(String Selecting) {
+        medPlanResultsPage.selectfromProviderList(Selecting);
+    }
 }
