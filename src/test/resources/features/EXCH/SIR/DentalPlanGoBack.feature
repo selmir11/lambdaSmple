@@ -38,4 +38,4 @@ Feature: Dental Plans page tests
     Then I select No for tobacco usage and click continue
     And I select the first medical plan and continue
     Then I click on back button on dental Plan Results
-
+    Then I validate I am on the "Medical Plan Results" page
