@@ -78,12 +78,5 @@ public class MedicalPlanResultsPage {
     public void clickInsuranceCompanyDropdown(){
         insuranceCompanyDropdown.click();
     }
-    public void selectAnthemProvider() {
-        box1AnthemProvider.click();
-    }
-    public void selectCignaProvider() {
-        box2CignaProvider.click();
-    }
 
-
-}
+    }

@@ -17,15 +17,6 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.clickInsuranceCompanyDropdown();
     }
 
-    @And("I select the Anthem Insurance Company box")
-    public void selectAnthemProvider() {
-        medPlanResultsPage.selectAnthemProvider();
-    }
-
-    @And("I select the Cigna Insurance Company box")
-    public void selectCignaProvider() {
-        medPlanResultsPage.selectCignaProvider();
-    }
     @And("I select {string} to filter for desired plan provider")
     public void selectfromProviderList(String Selecting) {
         medPlanResultsPage.selectfromProviderList(Selecting);
