@@ -11,6 +11,10 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.selectFirstDentalPlan();
     }
 
-    @Then("I select go back")
-    public void selectGoBack(){dentalPlansResultsPage.selectGoBack();}
+    @Then("I click on back button on dental Plan Results")
+    public void clickGoBackButton(){
+        dentalPlansResultsPage.clickGoBack();
+    }
+
+
 }

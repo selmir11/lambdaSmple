@@ -37,5 +37,5 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     Then I select No for tobacco usage and click continue
     And I select the first medical plan and continue
-    Then I select go back
+    Then I click on back button on dental Plan Results
 
