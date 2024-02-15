@@ -33,6 +33,9 @@ public class LifeChangeEventsPage {
                 case "Pregnancy":
                     lceInputCheckbox.get(1).click();
                     break;
+            case "Marriage":
+                lceInputCheckbox.get(2).click();
+                break;
             case "LostCoverage":
                 lceInputCheckbox.get(3).click();
                 break;
