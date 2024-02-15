@@ -91,4 +91,9 @@ public class completedPeakApplicationSteps {
     public void iShouldSeeTheTextOnTheContinueButtonInSpanish(String expectedSaveButtonText) {
         completedApplicationPage.isSaveAndContinueButtonInteractableEs();
     }
+
+    @And("I select Yes, I'm new to Connect for Health Colorado option")
+    public void iSelectYesIMNewToConnectForHealthColoradoOption() {
+        completedApplicationPage.setYesImNew();
+    }
 }

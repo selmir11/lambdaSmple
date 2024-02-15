@@ -4,9 +4,6 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import  java.time.Duration;
 
 public class CompletedPeakApplicationPage {
     private BasicActions basicActions;
@@ -18,7 +15,7 @@ public class CompletedPeakApplicationPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//*[@id='completedApplicationQYes']")
+    @FindBy(id="completedApplicationQYes")
     WebElement yesImNew;
 
     @FindBy(id = "completedApplicationQNo")
@@ -152,4 +149,5 @@ public class CompletedPeakApplicationPage {
     public boolean isSaveAndContinueButtonInteractableEs(){
         return saveAndContinueButtonEs.isEnabled();
     }
+
 }

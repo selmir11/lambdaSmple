@@ -13,6 +13,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for 2024
+    Then I validate I am on the "Let us guide you" page
     Then I should see the header text "Let us guide you" on Let us guide you page
     And I should see the enrollment info message "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?"
     And I should see the case ID info message "You will need your Case ID, which can be found on your Health First Colorado eligibility notice."
@@ -29,5 +30,4 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I should see the no radio button in Spanish "No gracias, lléveme a la aplicación"
     And I should see the text on the back button in Spanish "< Atrás"
     And I should see the text on the Continue button in Spanish "Guardar y Continuar"
-
 
