@@ -1,24 +1,24 @@
-Feature: Dental Plans page tests
+@helpDrawer
+Feature: Tests related to the help drawer on ELMO pages
 
-  Background:
+  Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-35 @SelectGoBackOnDentalPages
-  Scenario: Go Back Dental Pages
+  @SLER-42-WIP
+  Scenario: Open and display help drawer on the ELMO Income page (non self-employment view) when the primary help text icon is selected
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    And I apply for 2024
+    Then I apply for 2024
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -27,15 +27,7 @@ Feature: Dental Plans page tests
     Then I enter Additional details and click continue on add address page
     And I enter citizenship details and click continue
     Then I click continue on family overview page
-    And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    And I Declare and sign
-    And I wait for hold on content to disappear
-    Then I click on view results and shop
-    And I click continue on application results page
-    Then I validate I am on the "Start Shopping" page
-    Then I select No for tobacco usage and click continue
-    And I select the first medical plan and continue
-    Then I click on back button on dental Plan Results
-    Then I validate I am on the "Medical Plan Results" page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment

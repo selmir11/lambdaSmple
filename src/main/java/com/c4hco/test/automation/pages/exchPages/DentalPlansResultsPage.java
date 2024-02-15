@@ -21,7 +21,7 @@ public class DentalPlansResultsPage {
     @FindBy(id="SHP-DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
 
-    @FindBy(id="SHP-DentalPlanResults-Go Back")
+    @FindBy(id="SHP-DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
     public void selectFirstDentalPlan(){
