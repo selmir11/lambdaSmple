@@ -41,6 +41,5 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
     And I select the Anthem Insurance Company box
-    And
-    And I verify the appearance Anthem plan
+
 

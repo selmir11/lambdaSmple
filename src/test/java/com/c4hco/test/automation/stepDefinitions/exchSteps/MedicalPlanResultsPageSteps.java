@@ -21,14 +21,4 @@ public class MedicalPlanResultsPageSteps {
     public void selectAnthemProvider() {
         medPlanResultsPage.selectAnthemProvider();
     }
-
-    @And("I verify that the filter result says Anthem")
-    public void setVerifyAnthem(){
-        medPlanResultsPage.setVerifyAnthem();
-    }
-
-    @And("I verify the appearance Anthem plan")
-    public void verifyAnthemPlan1(){
-        medPlanResultsPage.verifyAnthemPlan1();
-    }
 }

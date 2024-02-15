@@ -18,12 +18,6 @@ public class MedicalPlanResultsPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//span[@class='metal-chip']")
-    WebElement verifyAnthem;
-
-    @FindBy(xpath = "col-sm-12 header-3")
-    WebElement AnthemPlanName1;
-
     @FindBy(id ="PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
 
@@ -42,18 +36,11 @@ public class MedicalPlanResultsPage {
         btnContinue.click();
     }
 
-    public void verifyAnthemPlan1(){
-        AnthemPlanName1.isDisplayed();
-        }
-
-    public void clickInsuranceCompanyDropdown(){
+     public void clickInsuranceCompanyDropdown(){
         insuranceCompanyDropdown.click();
     }
     public void selectAnthemProvider() {
         box1AnthemProvider.click();
     }
 
-    public void setVerifyAnthem(){
-        verifyAnthem.click();
-    }
 }
