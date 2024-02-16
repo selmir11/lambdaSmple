@@ -6,17 +6,12 @@ import io.cucumber.java.en.*;
 public class TellUsAboutYourselfPageSteps {
     TellUsAboutYourselfPage tellUsAboutYourselfPage = new TellUsAboutYourselfPage();
 
-    @And("I enter details on tell us about yourself page and continue")
-    public void additionaldetailsOfYourself(){
-        tellUsAboutYourselfPage.chooseMale();
-        tellUsAboutYourselfPage.chooseApplyYes();
-        tellUsAboutYourselfPage.saveAndContinue();
+    @Then("I select {string} as sex option")
+    public void userSexQuestion(String Sex){tellUsAboutYourselfPage.userSexQuestion(Sex);}
 
-    }
-    @Then("I enter details and I'm not applying for insurance on tell us about yourself page and continue")
-    public void provideDetailsOfYourselfNotApplyingForInsurance() {
-        tellUsAboutYourselfPage.chooseMale();
-        tellUsAboutYourselfPage.chooseApplyNo();
-        tellUsAboutYourselfPage.saveAndContinue();
-    }
+    @Then("I select {string} to Are You Applying")
+    public void isUserApplyingForInsurance(String YNApplying){tellUsAboutYourselfPage.isUserApplyingForHealthInsurance(YNApplying);}
+
+    @Then("I click continue on Tell us about yourself page")
+    public void clickContinue(){tellUsAboutYourselfPage.saveAndContinue();}
 }
