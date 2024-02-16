@@ -20,6 +20,10 @@ public class DentalPlansResultsPage {
 
     @FindBy(id="SHP-DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
+
+    @FindBy(id="SHP-DentalPlanResults-GoBack")
+    WebElement btnGoBack;
+
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
         selectFirstDentalPlanBtn.click();
@@ -27,12 +31,9 @@ public class DentalPlansResultsPage {
 
     }
 
-
-    @FindBy(id="SHP-DentalPlanResults-Go Back")
-    WebElement selectGoBackBtn;
-    public void selectGoBack(){
-        basicActions.waitForElementToBePresent(selectGoBackBtn,10);
-        selectGoBackBtn.click();
+    public void clickGoBack(){
+        basicActions.waitForElementToBePresent(btnGoBack,10);
+        btnGoBack.click();
 
     }
 }

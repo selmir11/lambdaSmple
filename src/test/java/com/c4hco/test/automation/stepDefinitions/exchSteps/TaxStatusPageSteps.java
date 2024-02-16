@@ -12,6 +12,10 @@ public class TaxStatusPageSteps {
         taxStatusPage.claimAsDependent(claimAsDependentOption);
     }
 
+    //The Option is based on the order that the Radio Buttons appear on the page, starting with 1.
+    @And("I select the {string} option for Who Will Claim as Dependent")
+    public void selectWhoWillClaim(String IDByOrder){taxStatusPage.whoWillClaimDependent(IDByOrder);}
+
     @And("I select the option {string} to file federal income tax return next year")
     public void selectFedIncomeTaxReturn(String fileFedIncomeTaxReturnOption){
         taxStatusPage.fileFedIncomeTaxReturn(fileFedIncomeTaxReturnOption);

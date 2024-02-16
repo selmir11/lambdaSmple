@@ -1,11 +1,11 @@
-Feature: Dental Plans page tests
+Feature: Medical Plan Results page related tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-35 @SelectGoBackOnDentalPages
-  Scenario: Go Back Dental Pages
+  @SLER-46-WIP @ComparePlansLink
+  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -28,7 +28,7 @@ Feature: Dental Plans page tests
     And I enter citizenship details and click continue
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare and sign
     And I wait for hold on content to disappear
@@ -36,6 +36,8 @@ Feature: Dental Plans page tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I select No for tobacco usage and click continue
-    And I select the first medical plan and continue
-    Then I click on back button on dental Plan Results
-    Then I validate I am on the "Medical Plan Results" page
+    Then I choose no tobacco usage and click save and exit on start shopping page
+#
+
+
+

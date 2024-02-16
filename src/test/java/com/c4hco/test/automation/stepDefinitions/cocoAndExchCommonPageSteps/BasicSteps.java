@@ -64,7 +64,9 @@ public class BasicSteps {
             case "Enter Case ID":
                 pageUrl = "nes/enterCaseId";
                 break;
-
+            case "Medical Plan Results":
+                pageUrl = "PlanSelectionPortal/medicalPlanResults";
+                break;
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
