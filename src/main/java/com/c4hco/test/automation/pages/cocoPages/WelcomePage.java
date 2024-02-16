@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.frstName;
 
 public class WelcomePage {
@@ -46,14 +48,19 @@ public class WelcomePage {
     @FindBy(id = "ELIG-WelcomePage-ApplicationResults")
     WebElement applicationResultsButton;
 
+    //change the locator below
     @FindBy(xpath = "//app-container//div[4]")
     WebElement viewTheBenefitsText;
 
     @FindBy(id = "ELIG-WelcomePage-MyDocuments")
     WebElement myDocumentsButton;
 
+    //change the locator below
     @FindBy(xpath = "//app-container//div[6]")
     WebElement viewYourDocumentsText;
+
+    @FindBy(css = ".action-link")
+    List<WebElement> actionLinks;
 
     private BasicActions basicActions;
     public WelcomePage(){
@@ -76,6 +83,18 @@ public class WelcomePage {
     public void clickMyDocumentsButton() {
         basicActions.waitForElementToBeClickable(myDocumentsButton, 5);
         myDocumentsButton.click(); }
+
+    public void clickActionLinks(String actionLink) {
+        basicActions.waitForElementListToBePresent(actionLinks, 5);
+        switch(actionLink) {
+            case "Application Results":
+                actionLinks.get(1).click();
+                break;
+            case "My Documents and Letters":
+                actionLinks.get(2).click();
+                break;
+        }
+    }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line

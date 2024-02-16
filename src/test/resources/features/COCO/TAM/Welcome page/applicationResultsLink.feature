@@ -14,3 +14,11 @@ Feature: Tests related to the Application Results link
       Then I validate I am on the "Login" page
       And  I enter valid credentials to login
       Then I validate I am on the "CoCo Welcome" page
+      And I click on "Application Results" link on welcome page
+      Then I validate I am on the "Application Results" page
+      And I click on Go back to Welcome page Button on Application Results page CoCo
+      Then I validate I am on the "CoCo Welcome" page
+      And I click on "My Documents and Letters" link on welcome page
+      Then I validate I am on the "My Documents" page
+      And I click on Apply for Coverage in the Header
+      Then I validate I am on the "CoCo Welcome" page
