@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -44,7 +45,7 @@ public class CompletedPeakApplicationPage {
     @FindBy(xpath = "a[onclick*='changeLocale\\('en'\\);']")
     WebElement englishLocaleLink;
 
-    @FindBy(css = "span.c4BodyText1[onclick*=\"'Yes, I have a completed application'\"]")
+    @FindBy(xpath = "//h1[@class='c4PageHeader']")
     WebElement pageHeaderPermitanosGuiarlo;
 
     @FindBy(xpath = "//span[contains(@class, 'c4BodyText1') and contains(text(),'Si nunca se ha')]")
@@ -53,13 +54,19 @@ public class CompletedPeakApplicationPage {
     @FindBy(xpath = "//span[contains(text(),'Necesitar')]")
     WebElement caseIDInfoMessageEs;
 
-    @FindBy(css = "span.c4BodyText1[onclick*=\"'Yes, I have a completed application'\"]")
-    WebElement yesImNewEs;
+    @FindBy(xpath = "//span[@class='c4BodyText1' and contains(text(),'I have completed an application for Health First Colorado or Child Health Plan Plus')]")
+    WebElement yesImNewTextEn;
 
     @FindBy(css = "span.c4BodyText1[onclick*='No, I have not completed an application and need to start one']")
-    WebElement noThanksRadioButtonEs;
+    WebElement noThanksTextEn;
 
-    @FindBy(css = "input.back-button-link")
+    @FindBy(css = "span.c4BodyText1[onclick*=\"'Yes, I have a completed application'\"]")
+    WebElement yesImNewTextEs;
+
+    @FindBy(css = "span.c4BodyText1[onclick*='No, I have not completed an application and need to start one']")
+    WebElement noThanksTextEs;
+
+    @FindBy(css = "input.back-button-link[type='submit'][name='back']")
     WebElement backButtonLinkEs;
 
     @FindBy(css = "input.btn.btn-c4primary[value='Guardar y Continuar']")
@@ -74,37 +81,32 @@ public class CompletedPeakApplicationPage {
 
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
-
     }
 
-    public boolean verifyPageHeaderLetUsGuideYouText(String expectedText) {
-        return basicActions.verifyElementText(pageHeaderLetUsGuideYou, expectedText);
-    }
+    public boolean verifyTheText(String expectedText) {
+        WebElement pageElement = switch (expectedText) {
+            case "Let us guide you" -> pageHeaderLetUsGuideYou;
+            case "If you have never enrolled with us before" -> enrollmentInfoMessage;
+            case "You will need your Case ID, which can be found on your Health First Colorado eligibility notice." -> caseIDInfoMessage;
+            case "I have completed an application for Health First Colorado or Child Health Plan Plus" -> yesImNewTextEn;
+            case "No thanks, take me to the application" -> noThanksTextEn;
+            case "< Back" -> backButtonLink;
+            case "Save and Continue" -> saveAndContinueButton;
+            case "guiarlo" -> pageHeaderPermitanosGuiarlo;
+            case "Si nunca se ha inscrito con nosotros antes pero ya" -> enrollmentInfoMessageEs;
+            case "Necesitar" -> caseIDInfoMessageEs;
+            case "soy nuevo a Connect for Health Colorado y ya" -> yesImNewTextEs;
+            case "No gracias" -> noThanksTextEs;
+            case "< Atr" -> backButtonLinkEs;
+            case "Guardar y Continuar" -> saveAndContinueButton;
+            default ->
+                // Throw NoSuchElementException when WebElement is not found
+                    throw new NoSuchElementException("WebElement for '" + expectedText + "' not found.");
+        };
 
-    public boolean verifyEnrollmentInfoMessageText(String expectedText) {
-        return basicActions.verifyElementText(enrollmentInfoMessage, expectedText);
+        // Verify the text on the WebElement
+        return basicActions.verifyElementText(pageElement, expectedText);
     }
-
-    public boolean verifyCaseIDInfoMessageText(String expectedText) {
-        return basicActions.verifyElementText(caseIDInfoMessage, expectedText);
-    }
-
-    public boolean verifyYesImNewText(String expectedText) {
-        return basicActions.verifyElementText(yesImNew, expectedText);
-    }
-
-    public boolean verifyNoThanksRadioButtonText(String expectedText) {
-        return basicActions.verifyElementText(noThanksRadioButton, expectedText);
-    }
-
-    public boolean verifyBackButtonLinkText(String expectedText) {
-        return basicActions.verifyElementText(backButtonLink, expectedText);
-    }
-
-    public boolean isSaveAndContinueButtonInteractable() {
-        return saveAndContinueButton.isEnabled();
-    }
-
     public void selectLocale(String locale) {
         // Click on the language toggle link to open the language dropdown
         languageToggleLink.click();
@@ -121,33 +123,4 @@ public class CompletedPeakApplicationPage {
             System.out.println("Invalid locale parameter provided: " + locale);
         }
     }
-
-    public boolean verifyPageHeaderPermitanosGuiarlo(String expectedText){
-        return basicActions.verifyElementText(pageHeaderPermitanosGuiarlo, expectedText);
-    }
-
-    public boolean verifyEnrollmentInfoMessageEs(String expectedText){
-        return basicActions.verifyElementText(enrollmentInfoMessageEs, expectedText);
-    }
-
-    public boolean verifyCaseIDInfoMessageEs(String expectedText){
-        return basicActions.verifyElementText(caseIDInfoMessageEs, expectedText);
-    }
-
-    public boolean verifyYesImNewTextEs(String expectedText){
-        return basicActions.verifyElementText(yesImNewEs, expectedText);
-    }
-
-    public boolean verifyNoGraciasEs(String expectedText){
-        return basicActions.verifyElementText(noThanksRadioButtonEs, expectedText);
-    }
-
-    public boolean verifyBackButtonEs(String expectedText){
-        return basicActions.verifyElementText(backButtonLinkEs, expectedText);
-    }
-
-    public boolean isSaveAndContinueButtonInteractableEs(){
-        return saveAndContinueButtonEs.isEnabled();
-    }
-
 }

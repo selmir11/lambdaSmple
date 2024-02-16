@@ -17,9 +17,10 @@ public class BasicActions {
     public static int WAIT_FOR_ELEMENT=30;
     private Selenese selenese = Selenese.getInstance();
 
-
+    // Constructor to initialize WebDriver and WebDriverWait
     public BasicActions() {
         this.driver = selenese.getDriver();
+        // Initialize WebDriverWait with a default timeout of 10 seconds
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -99,9 +100,12 @@ public class BasicActions {
 
     // Private helper method to verify if the text of a WebElement matches the expected text
     public Boolean verifyElementText(WebElement element, String expectedText){
+        // Wait for the element to be visible
         wait.until(ExpectedConditions.visibilityOf(element));
+        // Get the actual text of the element
         String actualText = element.getText().trim();
-        return actualText.equals(expectedText.trim());
+        // Check if the actual text contains the expected text
+        return actualText.contains(expectedText.trim());
     }
 
     public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){

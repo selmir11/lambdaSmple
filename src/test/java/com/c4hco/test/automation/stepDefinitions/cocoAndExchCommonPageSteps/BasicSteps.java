@@ -64,6 +64,10 @@ public class BasicSteps {
             case "Enter Case ID":
                 pageUrl = "nes/enterCaseId";
                 break;
+
+            case "Spanish":
+                pageUrl = "lang=es";
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
