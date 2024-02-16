@@ -24,6 +24,9 @@ Feature: Medical Plan Verification test
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -32,14 +35,9 @@ Feature: Medical Plan Verification test
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I click continue on family overview page
-    And I Apply for no financial help
     Then I click continue on family overview page
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -59,7 +57,7 @@ Feature: Medical Plan Verification test
 
 
   @SLER-44-WIP @SelectVerifyCignaMedicalResults
-  Scenario: SelectAnthem
+  Scenario: SelectCigna
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -77,6 +75,9 @@ Feature: Medical Plan Verification test
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -85,9 +86,6 @@ Feature: Medical Plan Verification test
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
