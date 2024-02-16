@@ -5,7 +5,7 @@ Feature: Tests related to the Application Results link
     Given I open the login page on the "login" portal
 
     @SLCR-25-WIP
-  Scenario: Validate Application Results link text
+  Scenario: Validate Action links navigation and text with no applications in English
       When I click create a new account on login page
       Then I validate I am on the "Prescreen" page
       And I click create my account from pre-screen page
@@ -22,3 +22,5 @@ Feature: Tests related to the Application Results link
       Then I validate I am on the "My Documents" page
       And I click on Apply for Coverage in the Header
       Then I validate I am on the "CoCo Welcome" page
+      Then I validate "Application Results" link text on welcome page
+      Then I validate "My Documents and Letters" link text on welcome page
