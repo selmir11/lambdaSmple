@@ -24,3 +24,9 @@ Feature: Tests related to the Application Results link
       Then I validate I am on the "CoCo Welcome" page
       Then I validate "Application Results" link text on welcome page
       Then I validate "My Documents and Letters" link text on welcome page
+      # Enroll into a plan
+      And I apply for the current year in CoCo
+      Then I validate I am on the "Find Expert Help" page
+      And I click Continue on my own button from Manage who helps you page
+      And I click Primary EditUpdate on the Family Overview page
+      And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
