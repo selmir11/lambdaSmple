@@ -11,8 +11,8 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
 
-    @Then("I select the compare")
-    public void selectCompare() {
+    @Then("I select the compare on medical Plan Results")
+    public void selectComparebtn() {
         medPlanResultsPage.SelectCompare();
     }
 }
