@@ -10,4 +10,9 @@ public class MedicalPlanResultsPageSteps {
     public void selectFirstMedicalPlanAndContinue(){
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
+
+    @Then("I select the compare")
+    public void selectCompare() {
+        medPlanResultsPage.SelectCompare();
+    }
 }

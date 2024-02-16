@@ -22,10 +22,18 @@ public class MedicalPlanResultsPage {
     @FindBy(id ="SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
+    @FindBy(id ="PlanResults-Compare_0")
+    WebElement selectCompare;
+
     public void SelectFirstMedicalPlan(){
         basicActions.waitForElementToBePresent(selectFirstPlan,10 );
         selectFirstPlan.click();
         btnContinue.click();
+    }
+
+    public void SelectCompare() {
+        basicActions.waitForElementToBePresent(selectCompare, 10);
+        selectCompare.click();
     }
 
 

@@ -36,7 +36,7 @@ Feature: Medical Plan Results page related tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I select No for tobacco usage and click continue
-    Then I choose no tobacco usage and click save and exit on start shopping page
+    Then I select the compare
 #
 
 
