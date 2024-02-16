@@ -62,6 +62,8 @@ public class WelcomePage {
     @FindBy(css = ".action-link")
     List<WebElement> actionLinks;
 
+    SoftAssert softAssert = new SoftAssert();
+
     private BasicActions basicActions;
     public WelcomePage(){
         this.basicActions = BasicActions.getInstance();
@@ -101,7 +103,6 @@ public class WelcomePage {
     public void verifyTextOnWelcomePageFirstTime(){
         basicActions.waitForElementToBePresent(applyFor2024Button,10);
         String header  = applyFor2024Button.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome to Colorado Connect!");
         softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
@@ -123,7 +124,6 @@ public class WelcomePage {
     public void verifyTextOnWelcomePageNoPolicy(){
         basicActions.waitForElementToBePresent(applyFor2024Button,10);
         String header  = applyFor2024Button.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+frstName+"!");
         softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
@@ -140,6 +140,20 @@ public class WelcomePage {
         softAssert.assertEquals(myDocumentsButton.getText(), "My Documents and Letters");
         softAssert.assertEquals(viewYourDocumentsText.getText(), "View your documents");
         softAssert.assertAll();
+    }
+
+    public void validateActionLinksText(String actionLink) {
+        basicActions.waitForElementListToBePresent(actionLinks, 5);
+        switch(actionLink) {
+            case "Application Results":
+                softAssert.assertTrue(actionLinks.get(1).getText().equals(actionLink));
+                softAssert.assertAll();
+                break;
+            case "My Documents and Letters":
+                softAssert.assertTrue(actionLinks.get(2).getText().equals(actionLink));
+                softAssert.assertAll();
+                break;
+        }
     }
 }
 
