@@ -5,7 +5,7 @@ Feature: Medical Plan Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-36 @SelectVerifyAnthemMedicalResults
+  @SLER-36-WIP @SelectVerifyAnthemMedicalResults
   Scenario: SelectAnthem
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -47,7 +47,7 @@ Feature: Medical Plan Verification test
 @MedicalPlanResultsVerification
 Feature: Medical Plan Verification test
 
-  @SLER-44 @SelectVerifyCignaMedicalResults
+  @SLER-44-WIP @SelectVerifyCignaMedicalResults
   Scenario: SelectAnthem
     When I click create a new account on login page
     Then I click create my account from pre-screen page
