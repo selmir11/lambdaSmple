@@ -8,8 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 public class AccountOverviewPage {
-    @FindBy(xpath = "//*[text()='Apply for  2024']")
-    WebElement apply2024Button;
+    @FindBy(name = "applyForCurrentYear")
+    WebElement btnApplyForCurrentYear;
 
     @FindBy(xpath = "//*[@class='c4PageHeader-large']")
     WebElement header;
@@ -24,9 +24,9 @@ public class AccountOverviewPage {
         return BasicActions.getInstance();
     }
 
-    public void clickApply2024(){
-        basicActions.waitForElementToBeClickable(apply2024Button,10);
-        apply2024Button.click();
+    public void clickApplyForCurrentYear(){
+        basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,10);
+        btnApplyForCurrentYear.click();
     }
 
     // ================VALIDATION METHODS================//

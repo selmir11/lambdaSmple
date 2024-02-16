@@ -17,33 +17,56 @@ public class TellUsAboutYourselfPage {
         return BasicActions.getInstance();
     }
 
-    // update the below locators to have ids
+    @FindBy(id = "firstName")
+    WebElement txtFirstName;
 
-    @FindBy(xpath = "//*[@id='genderMale']")
-    WebElement sexMale;
+    @FindBy(id = "middleName")
+    WebElement txtMiddleName;
 
-    @FindBy(xpath = "//*[@id='genderFemale']")
-    WebElement sexFemale;
+    @FindBy(id = "lastName")
+    WebElement txtLastName;
 
-    @FindBy(xpath = "//*[@id='coverageYes']")
-    WebElement applyingYes;
-    @FindBy(xpath = "//*[@id='coverageNo']")
-    WebElement applyingNo;
-    @FindBy(xpath = "//*[@id='continueButton']")
-    WebElement saveContinue;
-    @FindBy(xpath = "//*[@id='ssn']")
-    WebElement ssn;
+    @FindBy(id = "nameSuffix")
+    WebElement selectSuffix;
 
-    public void chooseMale() { sexMale.click(); }
-    public void chooseFemale(){
-        sexFemale.click();
+    @FindBy(id = "genderFemale")
+    WebElement rdobtnSexFemale;
+    @FindBy(id = "genderMale")
+    WebElement rdobtnSexMale;
+
+    @FindBy(id = "coverageYes")
+    WebElement rdobtnApplyingYes;
+    @FindBy(id = "coverageNo")
+    WebElement rdobtnApplyingNo;
+
+    @FindBy(id = "ssn")
+    WebElement txtSSN;
+    @FindBy(id = "continueButton")
+    WebElement btnSaveAndContinue;
+
+    public void userSexQuestion(String Sex)
+    {
+        switch (Sex) {
+            case "Female":
+                rdobtnSexFemale.click();
+                break;
+            case "Male":
+                rdobtnSexMale.click();
+                break;
+        }
     }
-    public void chooseApplyYes(){ applyingYes.click(); }
-    public void chooseApplyNo(){
-        applyingNo.click();
+
+    public void isUserApplyingForHealthInsurance(String YNApplying){
+        switch(YNApplying){
+            case "Yes":
+                rdobtnApplyingYes.click();
+                break;
+            case "No":
+                rdobtnApplyingNo.click();
+                break;
+        }
     }
-    public void saveAndContinue(){
-        saveContinue.click();
-    }
+
+    public void saveAndContinue(){btnSaveAndContinue.click();}
 
 }
