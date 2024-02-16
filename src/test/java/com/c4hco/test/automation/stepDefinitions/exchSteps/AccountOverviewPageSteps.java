@@ -5,8 +5,7 @@ import io.cucumber.java.en.*;
 
 public class AccountOverviewPageSteps {
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage();
-    @And("I apply for 2024")
-    public void iApplyFor2024(){
-        accountOverviewPage.clickApply2024();
-    }
+
+    @Then("I apply for the current year")
+    public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 }
