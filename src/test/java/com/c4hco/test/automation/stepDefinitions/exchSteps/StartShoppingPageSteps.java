@@ -12,7 +12,7 @@ public class StartShoppingPageSteps {
         startShoppingPage.iSelectTobaccoUsage(option);
     }
     @Then("I click continue on start shopping page")
-    public void clickContinueTobaccoPage(){
+    public void clickContinueStartShoppingPage(){
         startShoppingPage.clickContinue();
     }
 
