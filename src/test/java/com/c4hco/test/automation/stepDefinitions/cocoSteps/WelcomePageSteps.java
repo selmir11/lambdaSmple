@@ -19,6 +19,9 @@ import io.cucumber.java.en.Then;
         @Then("I click on My Documents and Letters Button CoCo")
         public void iClickMyDocumentsButton() { welcomePage.clickMyDocumentsButton(); }
 
+        @And("I click on {string} link on welcome page")
+        public void iClickActionLink(String actionLink) { welcomePage.clickActionLinks(actionLink); }
+
 // ############################## VALIDATION STEPS #########################
         // Add only validation methods below this line
     @Then("I verify text on the Welcome page for first time signed into an account")
@@ -27,6 +30,8 @@ import io.cucumber.java.en.Then;
     @Then("I verify text on the Welcome page for an account without a policy")
     public void verifyNoPolicyText()  { welcomePage.verifyTextOnWelcomePageNoPolicy(); }
 
+    @Then("I validate {string} link text on welcome page")
+    public void verifyActionLinkText(String actionLink)  { welcomePage.validateActionLinksText(actionLink); }
 
 
 
