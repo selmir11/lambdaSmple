@@ -1,4 +1,4 @@
-@MedicalPlanResultsVerification
+@medicalPlanFilterResults
 Feature: Medical Plan Verification test
 
   Background:
@@ -44,7 +44,7 @@ Feature: Medical Plan Verification test
     And I select "Anthem" to filter for desired plan provider
 
 
-@MedicalPlanResultsVerification
+@medicalPlanFilterResults
 Feature: Medical Plan Verification test
 
   @SLER-44-WIP @SelectVerifyCignaMedicalResults
