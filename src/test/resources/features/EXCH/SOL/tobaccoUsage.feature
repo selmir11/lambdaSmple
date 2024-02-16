@@ -35,8 +35,8 @@ Feature: Tobacco Usage page related tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I verify text on tobacco usage page
-    Then I click continue on tobacco usage page
+    Then I verify text on start shopping page
+    Then I click continue on start shopping page
 #
 
 

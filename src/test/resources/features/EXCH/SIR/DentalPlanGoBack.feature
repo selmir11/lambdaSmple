@@ -35,7 +35,7 @@ Feature: Dental Plans page tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click continue on tobacco usage page
+    Then I click continue on start shopping page
     And I select the first medical plan and continue
     Then I click on back button on dental Plan Results
     Then I validate I am on the "Medical Plan Results" page
