@@ -112,7 +112,7 @@ Feature: UI Tests related to APTC
     And I select "No" to claim dependents
     And I click save and continue on tax status page
     Then I select the option "Yes" to claim as dependent
-    And I select the Head of House as who will claim dependent member
+    And I select the "1" option for Who Will Claim as Dependent
     And I click save and continue on tax status page
     Then I select "None of these" as health insurance option and continue
     Then I select "None of these" as health insurance option and continue
