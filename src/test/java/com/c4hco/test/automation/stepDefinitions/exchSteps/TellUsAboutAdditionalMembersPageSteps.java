@@ -11,7 +11,7 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter member details with {string} date of birth")
     public void iEnterMemberDetailsDOB(String DOB){tellUsAboutAdditionalMemberPage.enterMemberDetails(DOB);}
 
-    @And("I select {string} as sex option")
+    @And("I select {string} as member's sex option")
     public void selectSexOption(String sexOption){tellUsAboutAdditionalMemberPage.selectSex(sexOption);}
 
     @And("I select {string} as relationship option")
