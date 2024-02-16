@@ -36,7 +36,7 @@ Feature: Tobacco Usage page related tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I verify text on tobacco usage page
-    Then I choose no tobacco usage and click save and exit on start shopping page
+    Then I click continue on tobacco usage page
 #
 
 

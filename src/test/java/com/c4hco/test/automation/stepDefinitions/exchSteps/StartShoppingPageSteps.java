@@ -7,22 +7,21 @@ import io.cucumber.java.en.*;
 public class StartShoppingPageSteps {
     StartShoppingPage startShoppingPage = new StartShoppingPage();
     BasicActions basicActions = new BasicActions();
-    @Then("I select No for tobacco usage and click continue")
-    public void clickNoAndContinue() {
-        startShoppingPage.clickNo();
+    @Then("I select {string} for tobacco usage page")
+    public void selectTobaccoUsage(String option) {
+        startShoppingPage.iSelectTobaccoUsage(option);
+    }
+    @Then("I click continue on tobacco usage page")
+    public void clickContinueTobaccoPage(){
         startShoppingPage.clickContinue();
     }
 
-    public void clickYesAndContinue(){
-        startShoppingPage.clickYes();
-        startShoppingPage.clickContinue();
-    }
     @Then("I verify text on tobacco usage page")
     public void verifyText()  {
         startShoppingPage.verifyTextOnTobaccoPage();
     }
-    @Then("I choose no tobacco usage and click save and exit on start shopping page")
-    public void clickNoAndSaveNExit() {
+    @Then("I click save and exit on start shopping page")
+    public void clickSaveAndExit() {
         startShoppingPage.clickBtnSaveNExit();
     }
 
