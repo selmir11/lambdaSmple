@@ -14,7 +14,6 @@ import java.util.List;
 public class BasicActions {
     private WebDriver driver;
     private WebDriverWait wait;
-    public static int WAIT_FOR_ELEMENT=30;
     private Selenese selenese = Selenese.getInstance();
 
     // Constructor to initialize WebDriver and WebDriverWait
