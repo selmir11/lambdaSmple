@@ -37,7 +37,7 @@ Feature: Medical Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I leave it at Default No and Click Continue
+    And I leave it at Default No and Click Continue
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
@@ -79,7 +79,7 @@ Feature: Medical Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I leave it at Default No and Click Continue
+    And I leave it at Default No and Click Continue
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
