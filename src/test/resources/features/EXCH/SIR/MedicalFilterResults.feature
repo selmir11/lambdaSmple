@@ -57,8 +57,6 @@ Feature: Medical Plan Verification test
     And I select "Anthem" to filter for desired plan provider
 
 
-@medicalPlanFilterResults
-Feature: Medical Plan Verification test
 
   @SLER-44-WIP @SelectVerifyCignaMedicalResults
   Scenario: SelectAnthem
