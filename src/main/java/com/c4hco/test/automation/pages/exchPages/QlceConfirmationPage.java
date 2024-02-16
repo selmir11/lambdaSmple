@@ -73,6 +73,9 @@ public class QlceConfirmationPage {
     List<WebElement> allMemberLostCoverageCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> lostCoverageEventDate;
+    //None of These
+    @FindBy(id ="noneOfThese")
+    WebElement noneOfTheseLCE;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
 
@@ -94,6 +97,15 @@ public class QlceConfirmationPage {
                     birthEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
+            case "Marriage":
+                basicActions.waitForElementToBeClickable(marriageLce,10);
+                marriageLce.click();
+                for (var i = 0; i < allmemberMarriagecheckbox.size(); i++) {
+                    allmemberMarriagecheckbox.get(i).click();
+                    marriageEventDate.get(i).click();
+                    marriageEventDate.get(i).sendKeys(getCurrentDate());
+                }
+                break;
             case "MoveToCO":
                 basicActions.waitForElementToBeClickable(addressChangeLce,10);
                 addressChangeLce.click();
@@ -113,6 +125,10 @@ public class QlceConfirmationPage {
                     lostCoverageEventDate.get(i).click();
                     lostCoverageEventDate.get(i).sendKeys(getCurrentDate());
                 }
+                break;
+            case "NoneOfThese":
+                basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
+                noneOfTheseLCE.click();
                 break;
         }
     }

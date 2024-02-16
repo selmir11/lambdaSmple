@@ -6,7 +6,7 @@ import io.cucumber.java.en.Then;
 public class OtherHealthInsurancePageSteps {
     OtherHealthInsurancePage otherHealthInsurancePage = new OtherHealthInsurancePage();
 
-    @Then("Then I select {string} as health insurance option and continue")
+    @Then("I select {string} as health insurance option and continue")
     public void noOtherHealthInsurance(String insuranceOption){
         otherHealthInsurancePage.selectInsuranceOption( insuranceOption);
     }
