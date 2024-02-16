@@ -7,8 +7,8 @@ import io.cucumber.java.en.Then;
     public class WelcomePageSteps {
         WelcomePage welcomePage = new WelcomePage();
 
-        @And("I apply for 2024 CoCo")
-            public void iClickApply2024CoCo() { welcomePage.clickApply2024CoCo(); }
+        @And("I apply for the current year in CoCo")
+        public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}
 
         @Then("I click on My Profile Button CoCo")
             public void iClickMyProfileButton() { welcomePage.clickMyProfileButton(); }
