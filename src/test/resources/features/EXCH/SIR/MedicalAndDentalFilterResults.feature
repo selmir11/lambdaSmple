@@ -13,7 +13,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for 2024
+    And I apply for the current year
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -24,9 +24,22 @@ Feature: Medical Plan Verification test
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
-    And I enter details on tell us about yourself page and continue
-    Then I enter Additional details and click continue on add address page
-    And I enter citizenship details and click continue
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for no financial help
     Then I click continue on family overview page
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -37,7 +50,7 @@ Feature: Medical Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    And I leave it at Default No and Click Continue
+    And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
@@ -55,7 +68,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for 2024
+    And I apply for the current year
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -66,9 +79,20 @@ Feature: Medical Plan Verification test
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
-    And I enter details on tell us about yourself page and continue
-    Then I enter Additional details and click continue on add address page
-    And I enter citizenship details and click continue
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -79,7 +103,7 @@ Feature: Medical Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    And I leave it at Default No and Click Continue
+    And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown

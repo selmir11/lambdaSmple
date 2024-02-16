@@ -15,11 +15,6 @@ public class StartShoppingPageSteps {
     public void clickContinueStartShoppingPage(){
         startShoppingPage.clickContinue();
     }
-    @And("I leave it at Default No and Click Continue")
-    public void ClickContinue() {
-
-        startShoppingPage.clickContinue();
-    }
 
     @Then("I verify text on start shopping page")
     public void verifyText()  {
