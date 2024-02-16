@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -73,10 +74,9 @@ public class TaxStatusPage {
         }
     }
 
-    public void whoWillClaimDependent(){
-        //Determine best path to parameterize - current solution is a work around.
-        ////input[@name = 'selectedClaimedByMemberId']/..//label//span[text()='bqrgpfrv mnrgamlw']
-        lblheadOfHousehold.click();
+    public void whoWillClaimDependent(String memberId){
+        String clalimedDependentOption = "selectedClaimedByMemberId"+memberId;
+        basicActions.getDriver().findElement(By.id(clalimedDependentOption)).click();
     }
 
     public void selectSaveAndContinue(){
