@@ -6,8 +6,19 @@ import io.cucumber.java.en.*;
 public class MedicalPlanResultsPageSteps {
 
     MedicalPlanResultsPage medPlanResultsPage = new MedicalPlanResultsPage();
+
     @And("I select the first medical plan and continue")
-    public void selectFirstMedicalPlanAndContinue(){
+    public void selectFirstMedicalPlanAndContinue() {
         medPlanResultsPage.SelectFirstMedicalPlan();
+    }
+
+    @And("I select the Insurance Company dropdown")
+    public void clickInsuranceProvider() {
+        medPlanResultsPage.clickInsuranceCompanyDropdown();
+    }
+
+    @And("I select {string} to filter for desired plan provider")
+    public void selectfromProviderList(String Selecting) {
+        medPlanResultsPage.selectfromProviderList(Selecting);
     }
 }

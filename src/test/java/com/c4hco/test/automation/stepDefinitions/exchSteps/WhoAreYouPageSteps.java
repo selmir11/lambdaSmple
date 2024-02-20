@@ -11,6 +11,7 @@ public class WhoAreYouPageSteps {
         whoAreYouPage.checkWhoAreYouOption(whoAreYouOption);
     }
 
+    //include that you are clicking on Continue button in the step below
     @And("I am a member with dob {string} in county {string} with zipcode {string}")
     public void enterSpecificMemberDetails(String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetails(zipcode, county, dateOfBirth);}
 
