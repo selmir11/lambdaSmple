@@ -38,6 +38,9 @@ public class ApplicationResultsPage {
     @FindBy(xpath = "//*[contains(text(),\"Find medical care and enrollment assistance\")]")
     WebElement findMedicalCare;
 
+    @FindBy(xpath = "//td[contains(text(), 'Health First Colorado or CHP')]")
+    WebElement textMAEligibility;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage() {
@@ -76,5 +79,10 @@ public class ApplicationResultsPage {
         softAssert.assertEquals(callUsToReviewApplication.getText(), "Call us at 855-PLANS-4-YOU (855-752-6749) to review your application results and qualifications to buy a health plan.");
         softAssert.assertEquals(findMedicalCare.getText(), "Find medical care and enrollment assistance in your community.");
         softAssert.assertAll();
+    }
+
+    public void verifyTextMAEligibility() {
+        basicActions.waitForElementToBePresent(textMAEligibility, 10);
+        Assert.assertEquals(textMAEligibility.getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
     }
 }
