@@ -77,7 +77,7 @@ Feature: QLCE Birth during closed enrollment
         Then I validate I am on the "Login" page
         And  I enter valid credentials to login
         Then I validate I am on the "Account Overview" page
-        And I apply for 2024
+        And I apply for the current year
         Then I select No Thanks option from guide you section
         And I click on save and continue button
         Then I click on continue with  application button on Before you begin page
