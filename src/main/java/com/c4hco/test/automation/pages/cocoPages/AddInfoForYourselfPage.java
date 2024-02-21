@@ -98,10 +98,6 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementToBePresent(countyDropdown, 30);
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
-
-        mailingAddressSelection("Yes");
-        liveInColoradoSelection("Yes");
-        clickSaveAndContinueButton();
     }
 
 }
