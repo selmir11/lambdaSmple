@@ -25,7 +25,6 @@ public class StartShoppingPage {
     WebElement btnYes;
     @FindBy(xpath = "//*[text()='Save and Exit']")
     WebElement saveAndExitButton;
-
     @FindBy(xpath = "//*[@class='header-1 center']")
     WebElement headerText;
     @FindBy(xpath = "//div[normalize-space()='First, we need to ask you about tobacco usage.']")
@@ -35,12 +34,17 @@ public class StartShoppingPage {
     @FindBy(xpath = "//*[contains(text(),\"Not ready to shop?\")]")
     WebElement notReady;
 
-    public void clickNo(){
-        getDriver().waitForElementToBePresent(btnNo,10);
-        btnNo.click();
-    }
-    public void clickYes(){
-        btnYes.click();
+    public void iSelectTobaccoUsage(String option) {
+        switch (option) {
+            case "Yes":
+                basicActions.waitForElementToBeClickable(btnYes,10);
+                btnYes.click();
+                break;
+            case "No":
+                basicActions.waitForElementToBeClickable(btnNo,10);
+                btnNo.click();
+                break;
+        }
     }
     public void clickBtnSaveNExit(){
         saveAndExitButton.click();

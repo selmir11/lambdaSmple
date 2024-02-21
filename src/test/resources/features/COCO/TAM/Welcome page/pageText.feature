@@ -21,7 +21,7 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
     Then I verify text on the Welcome page for an account without a policy
 
-    And I apply for 2024 CoCo
+    And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
