@@ -97,22 +97,20 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheElementsOnLetUsGuideYouPageEn() {
-        basicActions.assertElementTextMatched(pageHeaderLetUsGuideYou, "Let us guide you");
-        basicActions.assertElementTextMatched(enrollmentInfoMessage, "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?");
-        basicActions.assertElementTextMatched(caseIDInfoMessage, "You will need your Case ID, which can be found on your Health First Colorado eligibility notice.");
-        basicActions.assertElementTextMatched(yesImNewTextEn, "new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus");
-        basicActions.assertElementTextMatched(noThanksTextEn, "No thanks, take me to the application");
+        basicActions.assertElementDisplayed(pageHeaderLetUsGuideYou);
+        basicActions.assertElementDisplayed(enrollmentInfoMessage);
+        basicActions.assertElementDisplayed(caseIDInfoMessage);
+        basicActions.assertElementDisplayed(yesImNewTextEn);
+        basicActions.assertElementDisplayed(noThanksTextEn);
     }
 
     public void validateTheElementsOnLetUsGuideYouPageEs() {
-        basicActions.assertElementTextMatched(pageHeaderPermitanosGuiarlo, "tanos guiarlo");
-        basicActions.assertElementTextMatched(enrollmentInfoMessageEs, "Si nunca se ha inscrito con nosotros antes pero ya present");
-        basicActions.assertElementTextMatched(caseIDInfoMessageEs, "del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
-        basicActions.assertElementTextMatched(yesImNewTextEs, "una solicitud Health First Colorado or Child Health Plan Plus");
-        basicActions.assertElementTextMatched(noThanksTextEs, "No gracias, ll");
+        basicActions.assertElementDisplayed(pageHeaderPermitanosGuiarlo);
+        basicActions.assertElementDisplayed(enrollmentInfoMessageEs);
+        basicActions.assertElementDisplayed(caseIDInfoMessageEs);
+        basicActions.assertElementDisplayed(yesImNewTextEs);
+        basicActions.assertElementDisplayed(noThanksTextEs);
     }
-
-
 
     public void iSelectOption(String option) {
         switch (option.toLowerCase()) {

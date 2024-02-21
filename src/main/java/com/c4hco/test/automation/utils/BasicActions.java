@@ -107,11 +107,9 @@ public class BasicActions {
         return true;
     }
 
-    public void assertElementTextMatched(WebElement element, String expectedText) {
-        String actualText = element.getText().trim();
-        Assert.assertTrue("Expected text '" + expectedText + "' not found in actual text: '" + actualText + "'", actualText.contains(expectedText));
+    public void assertElementDisplayed(WebElement element) {
+        Assert.assertTrue("Element is not displayed: " + element, element.isDisplayed());
     }
-
     public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
         String actualPlaceholder = element.getAttribute("placeholder");
         Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);

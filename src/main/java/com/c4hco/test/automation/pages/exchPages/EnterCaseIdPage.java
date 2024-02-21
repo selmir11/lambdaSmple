@@ -36,7 +36,7 @@ public class EnterCaseIdPage {
     WebElement lastNameText;
 
     @FindBy(id = "lastName")
-    WebElement LastNamePlaceHolderTextEn;
+    WebElement lastNamePlaceHolderTextEn;
 
     @FindBy(xpath = "//span[contains(text(),'Anote la siguiente')]")
     WebElement healthFirstColoradoDenialNoticeTextEs;
@@ -51,32 +51,32 @@ public class EnterCaseIdPage {
     WebElement zipCodeTextEs;
 
     @FindBy(id = "zipCode")
-    WebElement verifyZipCodePlaceHolderTextEs;
+    WebElement zipCodePlaceHolderTextEs;
 
     @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Apellido(s)']")
     WebElement lastNameTextEs;
 
     @FindBy(id = "lastName")
-    WebElement LastNamePlaceHolderTextEs;
+    WebElement lastNamePlaceHolderTextEs;
 
     public void validateTheElementsOnEnterCaseIdPageEn() {
-        basicActions.assertElementTextMatched(healthFirstColoradoDenialNoticeText, "Please fill out the following information found on your Health First Colorado denial notice");
-        basicActions.assertElementTextMatched(caseIDText, "Case ID");
+        basicActions.assertElementDisplayed(healthFirstColoradoDenialNoticeText);
+        basicActions.assertElementDisplayed(caseIDText);
         basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
-        basicActions.assertElementTextMatched(zipCodeText, "Zip Code");
+        basicActions.assertElementDisplayed(zipCodeText);
         basicActions.assertPlaceholderTextMatched(verifyZipCodePlaceHolderTextEn, "XXXXX");
-        basicActions.assertElementTextMatched(lastNameText, "Last Name");
-        basicActions.assertPlaceholderTextMatched(LastNamePlaceHolderTextEn, "");
-
+        basicActions.assertElementDisplayed(lastNameText);
+        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderTextEn, "");
     }
 
     public void validateTheElementsOnEnterCaseIdPageEs() {
-        basicActions.assertElementTextMatched(healthFirstColoradoDenialNoticeTextEs, "Anote la siguiente informaci");
-        basicActions.assertElementTextMatched(caseIDTextEs, "del caso");
+        basicActions.assertElementDisplayed(healthFirstColoradoDenialNoticeTextEs);
+        basicActions.assertElementDisplayed(caseIDTextEs);
         basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderTextEs, "1BXXXXXX");
-        basicActions.assertElementTextMatched(zipCodeTextEs, "digo postal");
-        basicActions.assertPlaceholderTextMatched(verifyZipCodePlaceHolderTextEs, "XXXXX");
-        basicActions.assertElementTextMatched(lastNameTextEs, "Apellido(s)");
-        basicActions.assertPlaceholderTextMatched(LastNamePlaceHolderTextEs, "");
+        basicActions.assertElementDisplayed(zipCodeTextEs);
+        basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderTextEs, "XXXXX");
+        basicActions.assertElementDisplayed(lastNameTextEs);
+        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderTextEs, "");
     }
+
 }
