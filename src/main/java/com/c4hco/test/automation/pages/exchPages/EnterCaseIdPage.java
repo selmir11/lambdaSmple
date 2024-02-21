@@ -1,9 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.NoSuchElementException;
 import com.c4hco.test.automation.utils.BasicActions;
 
 public class EnterCaseIdPage {
@@ -23,7 +23,7 @@ public class EnterCaseIdPage {
     @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Case ID']")
     WebElement caseIDText;
 
-    @FindBy(id = "caseId")
+    @FindBy(xpath = "//input[@id='caseId' and @class='form-control' and @type='text' and @maxlength='8' and @placeholder='1BXXXXXX' and @name='caseId']") //
     WebElement caseIDPlaceHolderText;
 
     @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Zip Code']")
@@ -37,12 +37,6 @@ public class EnterCaseIdPage {
 
     @FindBy(id = "lastName")
     WebElement LastNamePlaceHolderTextEn;
-
-    @FindBy(xpath = "//*[@name='saveAndContinue']")
-    WebElement saveAndContinueButton;
-
-    @FindBy(xpath = "//input[@class='back-button-link' and @type='submit' and @name='back']")
-    WebElement backButtonLink;
 
     @FindBy(xpath = "//span[contains(text(),'Anote la siguiente')]")
     WebElement healthFirstColoradoDenialNoticeTextEs;
@@ -65,35 +59,34 @@ public class EnterCaseIdPage {
     @FindBy(id = "lastName")
     WebElement LastNamePlaceHolderTextEs;
 
-    @FindBy(xpath = "//input[contains(@class, 'back-button-link')]")
-    WebElement backButtonLinkEs;
+    public void validateTheElementsOnEnterCaseIdPageEn() {
+        assertElementText(healthFirstColoradoDenialNoticeText, "Please fill out the following information found on your Health First Colorado denial notice");
+        assertElementText(caseIDText, "Case ID");
+        assertPlaceholderText(caseIDPlaceHolderText, "1BXXXXXX");
+        assertElementText(zipCodeText, "Zip Code");
+        assertPlaceholderText(verifyZipCodePlaceHolderTextEn, "XXXXX");
+        assertElementText(lastNameText, "Last Name");
+        assertPlaceholderText(LastNamePlaceHolderTextEn, "");
 
-    // Determine the WebElement based on the expected text using switch-case
-    public boolean verifyTheText(String expectedText) {
-        WebElement pageElement = switch (expectedText) {
-            case "Please fill out the following information found on your Health First Colorado denial notice" ->
-                    healthFirstColoradoDenialNoticeText;
-            case "Case ID" -> caseIDText;
-            case "1BXXXXXX" -> caseIDPlaceHolderText;
-            case "Zip Code" -> zipCodeText;
-            case "XXXXX" -> verifyZipCodePlaceHolderTextEn;
-            case "Last Name" -> lastNameText;
-            case "" -> LastNamePlaceHolderTextEn;
-            case "< Back" -> backButtonLink;
-            case "Save and Continue" -> saveAndContinueButton;
-            case "Anote la siguiente" -> healthFirstColoradoDenialNoticeTextEs;
-            case "Identificaci" -> caseIDTextEs;
-            case "digo postal" -> zipCodeTextEs;
-            case "Apellido(s)" -> lastNameTextEs;
-            case "< Atr" -> backButtonLinkEs;
-            case "Guardar y Continuar" -> saveAndContinueButton;
-            default ->
-                // Throw NoSuchElementException when WebElement is not found
-                    throw new NoSuchElementException("WebElement for '" + expectedText + "' not found.");
-        };
+    }
 
-        // Verify the text on the WebElement
-        return basicActions.verifyElementText(pageElement, expectedText);
+    public void validateTheElementsOnEnterCaseIdPageEs() {
+        assertElementText(healthFirstColoradoDenialNoticeTextEs, "Anote la siguiente informaci");
+        assertElementText(caseIDTextEs, "del caso");
+        assertPlaceholderText(caseIDPlaceHolderTextEs, "1BXXXXXX");
+        assertElementText(zipCodeTextEs, "digo postal");
+        assertPlaceholderText(verifyZipCodePlaceHolderTextEs, "XXXXX");
+        assertElementText(lastNameTextEs, "Apellido(s)");
+        assertPlaceholderText(LastNamePlaceHolderTextEs, "");
+    }
+    private void assertElementText(WebElement element, String expectedText) {
+        String actualText = element.getText().trim();
+        Assert.assertTrue("Expected text '" + expectedText + "' not found in actual text: '" + actualText + "'", actualText.contains(expectedText));
+    }
+
+    private void assertPlaceholderText(WebElement element, String expectedPlaceholder) {
+        String actualPlaceholder = element.getAttribute("placeholder");
+        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
     }
 
 }

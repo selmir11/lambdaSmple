@@ -17,18 +17,23 @@ public class completedPeakApplicationSteps {
         completedApplicationPage.clickSaveAndContinueButton();
     }
 
-    @And("I should see the following text on the Let us guide you page {string}")
-    public void iShouldSeeTheText(String expectedText) {
-        completedApplicationPage.verifyTheText(expectedText);
-    }
-
     @When("I switch to {string}")
     public void iSwitchTo(String switchTo) {
         completedApplicationPage.selectLocale(switchTo);
     }
 
-    @And("I select Yes, I'm new to Connect for Health Colorado option")
-    public void iSelectYesIMNewToConnectForHealthColoradoOption() {
-        completedApplicationPage.setYesImNew();
+    @And("I validate the elements on Let us guide you page in english")
+    public void iValidateTheElementsOnLetUsGuideYouPage() {
+        completedApplicationPage.validateTheElementsOnLetUsGuideYouPageEn();
+    }
+
+    @And("I validate the elements on Let us guide you page in spanish")
+    public void iValidateTheElementsOnSpanishLetUsGuideYouPage() {
+        completedApplicationPage.validateTheElementsOnLetUsGuideYouPageEs();
+    }
+
+    @And("I select {string} option on the Let us guide you page")
+    public void iSelectOptionOnTheLetUsGuideYouPage(String option) {
+        completedApplicationPage.iSelectOption(option);
     }
 }
