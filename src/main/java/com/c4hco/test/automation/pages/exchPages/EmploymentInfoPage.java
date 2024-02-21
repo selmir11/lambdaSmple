@@ -69,11 +69,8 @@ public class EmploymentInfoPage {
     @FindBy(id = "ExchEmploymentIncomeJob-SaveAndContinue")
     WebElement btnContinue;
 
-    @FindBy(xpath = "//*[contains(@class, 'btn btn-default btn-sm')]")
+    @FindBy(css = ".drawer-controls .btn")
     WebElement helpDrawerButton;
-
-    @FindBy(xpath = "//*[contains(@class, 'drawer-contents')]")
-    WebElement helpDrawerContent;
 
     public void isUserEmployed(String employmentOption){
         basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
