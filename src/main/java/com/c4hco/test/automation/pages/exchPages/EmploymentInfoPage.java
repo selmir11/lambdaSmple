@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 
 public class EmploymentInfoPage {
@@ -67,6 +68,12 @@ public class EmploymentInfoPage {
 
     @FindBy(id = "ExchEmploymentIncomeJob-SaveAndContinue")
     WebElement btnContinue;
+
+    @FindBy(xpath = "//*[contains(@class, 'btn btn-default btn-sm')]")
+    WebElement helpDrawerButton;
+
+    @FindBy(xpath = "//*[contains(@class, 'drawer-contents')]")
+    WebElement helpDrawerContent;
 
     public void isUserEmployed(String employmentOption){
         basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
@@ -132,4 +139,13 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue(){btnContinue.click();}
+
+    public void maximizeHeldDrawer(){
+        basicActions.waitForElementToBeClickable(helpDrawerButton, 10);
+        helpDrawerButton.click();
+    }
+
+    // ############################## VALIDATION METHODS #########################
+
+
 }
