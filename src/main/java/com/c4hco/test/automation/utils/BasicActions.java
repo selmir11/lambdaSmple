@@ -2,6 +2,7 @@ package com.c4hco.test.automation.utils;
 
 
 import com.c4hco.test.automation.selenium.Selenese;
+import org.junit.Assert;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -104,6 +105,16 @@ public class BasicActions {
             return false;
         }
         return true;
+    }
+
+    public void assertElementTextMatched(WebElement element, String expectedText) {
+        String actualText = element.getText().trim();
+        Assert.assertTrue("Expected text '" + expectedText + "' not found in actual text: '" + actualText + "'", actualText.contains(expectedText));
+    }
+
+    public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
+        String actualPlaceholder = element.getAttribute("placeholder");
+        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
     }
 
 //    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){

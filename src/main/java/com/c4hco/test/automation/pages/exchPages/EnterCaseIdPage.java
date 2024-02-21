@@ -60,33 +60,23 @@ public class EnterCaseIdPage {
     WebElement LastNamePlaceHolderTextEs;
 
     public void validateTheElementsOnEnterCaseIdPageEn() {
-        assertElementText(healthFirstColoradoDenialNoticeText, "Please fill out the following information found on your Health First Colorado denial notice");
-        assertElementText(caseIDText, "Case ID");
-        assertPlaceholderText(caseIDPlaceHolderText, "1BXXXXXX");
-        assertElementText(zipCodeText, "Zip Code");
-        assertPlaceholderText(verifyZipCodePlaceHolderTextEn, "XXXXX");
-        assertElementText(lastNameText, "Last Name");
-        assertPlaceholderText(LastNamePlaceHolderTextEn, "");
+        basicActions.assertElementTextMatched(healthFirstColoradoDenialNoticeText, "Please fill out the following information found on your Health First Colorado denial notice");
+        basicActions.assertElementTextMatched(caseIDText, "Case ID");
+        basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
+        basicActions.assertElementTextMatched(zipCodeText, "Zip Code");
+        basicActions.assertPlaceholderTextMatched(verifyZipCodePlaceHolderTextEn, "XXXXX");
+        basicActions.assertElementTextMatched(lastNameText, "Last Name");
+        basicActions.assertPlaceholderTextMatched(LastNamePlaceHolderTextEn, "");
 
     }
 
     public void validateTheElementsOnEnterCaseIdPageEs() {
-        assertElementText(healthFirstColoradoDenialNoticeTextEs, "Anote la siguiente informaci");
-        assertElementText(caseIDTextEs, "del caso");
-        assertPlaceholderText(caseIDPlaceHolderTextEs, "1BXXXXXX");
-        assertElementText(zipCodeTextEs, "digo postal");
-        assertPlaceholderText(verifyZipCodePlaceHolderTextEs, "XXXXX");
-        assertElementText(lastNameTextEs, "Apellido(s)");
-        assertPlaceholderText(LastNamePlaceHolderTextEs, "");
+        basicActions.assertElementTextMatched(healthFirstColoradoDenialNoticeTextEs, "Anote la siguiente informaci");
+        basicActions.assertElementTextMatched(caseIDTextEs, "del caso");
+        basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderTextEs, "1BXXXXXX");
+        basicActions.assertElementTextMatched(zipCodeTextEs, "digo postal");
+        basicActions.assertPlaceholderTextMatched(verifyZipCodePlaceHolderTextEs, "XXXXX");
+        basicActions.assertElementTextMatched(lastNameTextEs, "Apellido(s)");
+        basicActions.assertPlaceholderTextMatched(LastNamePlaceHolderTextEs, "");
     }
-    private void assertElementText(WebElement element, String expectedText) {
-        String actualText = element.getText().trim();
-        Assert.assertTrue("Expected text '" + expectedText + "' not found in actual text: '" + actualText + "'", actualText.contains(expectedText));
-    }
-
-    private void assertPlaceholderText(WebElement element, String expectedPlaceholder) {
-        String actualPlaceholder = element.getAttribute("placeholder");
-        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
-    }
-
 }
