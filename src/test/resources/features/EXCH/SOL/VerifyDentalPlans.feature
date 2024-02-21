@@ -1,3 +1,4 @@
+@YetTOTest
 Feature: Dental Plans page tests
 
   Background:

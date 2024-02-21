@@ -1,4 +1,4 @@
-@medicalPlanFilterResults
+@medicalPlanFilterResults @YetToTest
 Feature: Medical Plan Verification test
 
   Background:

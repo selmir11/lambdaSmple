@@ -1,4 +1,4 @@
-@helpDrawer @n1
+@helpDrawer
 Feature: Tests related to the help drawer
 
   @SLCR-27
