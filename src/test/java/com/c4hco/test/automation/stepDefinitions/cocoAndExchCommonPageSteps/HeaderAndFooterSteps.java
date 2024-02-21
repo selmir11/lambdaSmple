@@ -1,12 +1,13 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class HeaderAndFooterSteps {
 
-    HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage();
+    HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage(WebDriverManager.getDriver());
 
     @And("I click on the Colorado Connect or C4 Logo in the Header")
     public void iClickConnectLogoLink(){ headerAndFooterPage.clickConnectLogoLink(); }

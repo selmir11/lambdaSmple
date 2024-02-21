@@ -43,9 +43,8 @@ public class BasicActions {
     }
 
     public String getUrlWithWait(String url, int waitTime) {
-        System.out.println("URL-----"+url);
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
+            new WebDriverWait(this.driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
         } catch (TimeoutException ignore) {
             Log.info("The expected URL:" + url + "wasn't there after" + waitTime + "seconds");
             return "";

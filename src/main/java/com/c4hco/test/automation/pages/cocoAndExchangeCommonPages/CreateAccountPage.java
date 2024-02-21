@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -64,8 +65,8 @@ public class CreateAccountPage {
      WebElement submitButton;
 
     private BasicActions basicActions;
-    public CreateAccountPage(){
-        this.basicActions = BasicActions.getInstance();
+    public CreateAccountPage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 

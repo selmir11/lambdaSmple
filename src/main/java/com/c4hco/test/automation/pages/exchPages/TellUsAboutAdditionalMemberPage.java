@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,12 +11,9 @@ import org.openqa.selenium.support.ui.Select;
 public class TellUsAboutAdditionalMemberPage {
 
     private BasicActions basicActions;
-    public TellUsAboutAdditionalMemberPage() {
-        this.basicActions = BasicActions.getInstance();
+    public TellUsAboutAdditionalMemberPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(id = "firstName")
