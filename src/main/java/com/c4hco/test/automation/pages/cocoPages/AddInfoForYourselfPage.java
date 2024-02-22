@@ -89,9 +89,6 @@ public class AddInfoForYourselfPage {
         stateDropdown.click();
         basicActions.selectValueFromDropdown(stateDropdown, stateDropdownOptions, state);
 
-        basicActions.waitForElementToBePresent(countyDropdown, 30);
-        Select dropdown = new Select(countyDropdown);
-
         basicActions.waitForElementToBePresent(zipcodeInput, 30);
         zipcodeInput.sendKeys(zipcode);
 
