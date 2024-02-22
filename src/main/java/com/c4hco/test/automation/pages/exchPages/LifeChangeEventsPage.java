@@ -39,6 +39,9 @@ public class LifeChangeEventsPage {
             case "LostCoverage":
                 lceInputCheckbox.get(3).click();
                 break;
+            case "GainedLawfulPresence":
+                lceInputCheckbox.get(4).click();
+                break;
                 case "MovedToColorado":
                     lceInputCheckbox.get(6).click();
                     break;
