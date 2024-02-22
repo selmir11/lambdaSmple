@@ -6,6 +6,9 @@ import io.cucumber.java.en.*;
 public class ApplicationHistoryPageSteps {
     ApplicationHistoryPage applicationHistoryPage = new ApplicationHistoryPage();
 
+    @Then("I validate that my APTC value is {string}")
+    public void validateAPTC(String expectedAPTC){applicationHistoryPage.validateAPTC(expectedAPTC);}
+
     @Then("I click on view results and shop")
     public void clickViewResultsNSHop(){
         applicationHistoryPage.clickViewResults();
