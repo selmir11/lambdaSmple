@@ -21,4 +21,10 @@ public class MedicalPlanResultsPageSteps {
     public void selectfromProviderList(String Selecting) {
         medPlanResultsPage.selectfromProviderList(Selecting);
     }
+
+    @And("I validate the plan option {int} has text {string}")
+    public void validatePlanText(int Index, String planText){
+        medPlanResultsPage.validatePlanResults(Index, planText);
+    }
+
 }
