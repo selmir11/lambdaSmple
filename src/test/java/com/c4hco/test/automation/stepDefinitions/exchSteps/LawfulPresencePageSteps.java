@@ -13,6 +13,36 @@ public class LawfulPresencePageSteps {
     @Then("I select {string} for Naturalized Immigrant option")
     public void isMemberNaturalized(String YNNaturalized){lawfulPresencePage.isMemberNaturalized(YNNaturalized);}
 
+    @Then("I select {string} for Eligible Immigration Status option")
+    public void isMemberHaveEligibleImmigrationStatus(String YNEligibleImmigrationStatus) {
+        lawfulPresencePage.isMemberHaveEligibleImmigrationStatus(YNEligibleImmigrationStatus);
+    }
+
+    @Then("I select {string} as Document type")
+    public void selectDocumentType(String documentType) {
+        lawfulPresencePage.selectDocumentType(documentType);
+    }
+
+    @Then("I enter A-Number USCIS number")
+    public void enterANumberUSCISNumber() {
+        lawfulPresencePage.enterUSCISNumber();
+    }
+
+    @Then("I select {string} for the question have you lived in the US since 1996")
+    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
+        lawfulPresencePage.isMemberLivedInUSSince1996(YNLivedInUSSince1996);
+    }
+
+    @Then("I select {string} active-duty members of the military or honorably discharged veterans")
+    public void selectActiveDutyMilitaryOrHonorablyDischargedVeterans(String memberOptions) {
+        lawfulPresencePage.selectActiveDutyMilitaryOrHonorablyDischargedVeterans(memberOptions);
+    }
+
+    @Then("I select {string} for name matching the document")
+    public void selectNameMatchesDocument(String YNNameMatchesDocument) {
+        lawfulPresencePage.selectNameMatchesDocument(YNNameMatchesDocument);
+    }
+
     @Then("I click continue on the Citizenship page")
     public void clickContinue(){lawfulPresencePage.clickContinue();}
 }
