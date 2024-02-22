@@ -66,6 +66,15 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//*[@type='checkbox' and contains(@id, 'movedToColorado')]")
     List<WebElement> movedToColoradoCheckbox;
 
+    //Gain Lawful Immigration Status
+    @FindBy(id= "gainedLawfulPresence")
+    WebElement LawfulPresenceLCE;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForGainedLawfulPresence')]")
+    List<WebElement> allmemberLawfulPresencecheckbox;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForGainedLawfulPresence')]")
+    List<WebElement>  LawfulPresenceEventDate;
+
     //Lost Coverage
     @FindBy(id ="loseOrLostHealthInsurance")
     WebElement lostCoverageLCE;
@@ -115,6 +124,15 @@ public class QlceConfirmationPage {
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
                     movedToColoradoCheckbox.get(i).click();
 
+                }
+                break;
+            case "GainedLawfulPresence":
+                basicActions.waitForElementToBeClickable(LawfulPresenceLCE,10);
+                LawfulPresenceLCE.click();
+                for (var i = 0; i < allmemberLawfulPresencecheckbox.size(); i++) {
+                    allmemberLawfulPresencecheckbox.get(i).click();
+                    LawfulPresenceEventDate.get(i).click();
+                    LawfulPresenceEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
             case "LostCoverage":
