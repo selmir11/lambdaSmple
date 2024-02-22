@@ -84,17 +84,22 @@ public class CompletedPeakApplicationPage {
         languageToggleLink.click();
 
         // Determine the locale to select based on the parameter
-        if (locale.equalsIgnoreCase("Spanish")) {
-            // Click on the Spanish locale link
-            spanishLocaleLink.click();
-        } else if (locale.equalsIgnoreCase("English")) {
-            // Click on the English locale link
-            englishLocaleLink.click();
-        } else {
-            // Handle invalid locale parameter (Optional: throw an exception or log a warning)
-            System.out.println("Invalid locale parameter provided: " + locale);
+        switch (locale.toLowerCase()) {
+            case "spanish":
+                // Click on the Spanish locale link
+                spanishLocaleLink.click();
+                break;
+            case "english":
+                // Click on the English locale link
+                englishLocaleLink.click();
+                break;
+            default:
+                // Handle invalid locale parameter (Optional: throw an exception or log a warning)
+                System.out.println("Invalid locale parameter provided: " + locale);
+                break;
         }
     }
+
 
     public void validateTheElementsOnLetUsGuideYouPageEn() {
         basicActions.assertElementDisplayed(pageHeaderLetUsGuideYou);
