@@ -25,4 +25,7 @@ public class EmploymentInfoPageSteps {
 
     @And("I click continue on the Employment Info Page")
     public void saveAndContinue(){employmentInfoPage.saveAndContinue();}
+
+    @And("I maximize the help drawer on the Employment Info Page")
+    public void iMaximizeHelpDrawer(){employmentInfoPage.maximizeHeldDrawer();}
 }
