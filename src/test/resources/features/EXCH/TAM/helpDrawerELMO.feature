@@ -12,7 +12,7 @@ Feature: Tests related to the help drawer on ELMO pages
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I apply for 2024
+    Then I apply for the current year
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -23,11 +23,23 @@ Feature: Tests related to the help drawer on ELMO pages
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
-    And I enter details on tell us about yourself page and continue
-    Then I enter Additional details and click continue on add address page
-    And I enter citizenship details and click continue
+    Then I select "Male" as sex option
+    Then I select "Yes" to Are You Applying
+    Then I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    Then I select "Yes" for CO Resident option
+    Then I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Hardship Exemption option
+    Then I select "No" for Disability option
+    Then I select "No" to the recently denied medicaid question
+    Then I select "No" for Incarceration option
+    Then I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    Then I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
+    And I maximize the help drawer on the Employment Info Page

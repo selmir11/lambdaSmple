@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class ApplicationResultsPage {
 
     @FindBy(id = "month-pay")
@@ -37,6 +39,9 @@ public class ApplicationResultsPage {
     WebElement callUsToReviewApplication;
     @FindBy(xpath = "//*[contains(text(),\"Find medical care and enrollment assistance\")]")
     WebElement findMedicalCare;
+
+    @FindBy(css = ".tax-ben-table td")
+    List<WebElement> textMAEligibility;
 
     private BasicActions basicActions;
 
@@ -76,5 +81,10 @@ public class ApplicationResultsPage {
         softAssert.assertEquals(callUsToReviewApplication.getText(), "Call us at 855-PLANS-4-YOU (855-752-6749) to review your application results and qualifications to buy a health plan.");
         softAssert.assertEquals(findMedicalCare.getText(), "Find medical care and enrollment assistance in your community.");
         softAssert.assertAll();
+    }
+
+    public void verifyTextMAEligibility() {
+        basicActions.waitForElementListToBePresent(textMAEligibility, 10);
+        Assert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
     }
 }
