@@ -12,7 +12,7 @@ Feature: Navigation-Welcome Page
     And  I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
 
-    And I apply for 2024 CoCo
+    And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     Then I click the back button from Manage who helps you page
     Then I validate I am on the "CoCo Welcome" page

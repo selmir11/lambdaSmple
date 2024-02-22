@@ -34,3 +34,6 @@ Feature: Tests related to the Application Results link
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
