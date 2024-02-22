@@ -19,6 +19,10 @@ public class ApplicationResultsPageSteps {
     @Then("I verify text that the member don't qualify for a health plan on the app results page")
     public void verifyTextDoNotQualifyForHealthPlan () {
         applicationResultsPage.verifyTextNotQualifyForPlanOnAppResultsPage();
+    }
 
+    @Then("I verify text that the member eligible for MA on the app results page")
+    public void verifyTextMAEligibility() {
+        applicationResultsPage.verifyTextMAEligibility();
     }
 }
