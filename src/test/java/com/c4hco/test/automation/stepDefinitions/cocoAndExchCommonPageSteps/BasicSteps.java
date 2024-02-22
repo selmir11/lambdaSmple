@@ -78,6 +78,9 @@ public class BasicSteps {
             case "Contact Us":
                 pageUrl = "/InformationPortal/contactUs";
                 break;
+            case "We Can Help":
+                pageUrl = "/we-can-help/";
+                break;
         }
         String origin = basicActions.getDriver().getWindowHandle();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
