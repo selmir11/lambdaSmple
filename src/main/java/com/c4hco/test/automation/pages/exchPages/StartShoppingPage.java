@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 
 public class StartShoppingPage {
     private BasicActions basicActions;
-
+    SoftAssert softAssert = new SoftAssert();
     public StartShoppingPage() {
         this.basicActions = BasicActions.getInstance();
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -17,7 +17,7 @@ public class StartShoppingPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//*[text() = 'Continue']")
+    @FindBy(id = "SHP-StartShop-Continue")
     WebElement btnContinue;
     @FindBy(xpath = "//*[text() = 'No']")
     WebElement btnNo;
@@ -29,7 +29,7 @@ public class StartShoppingPage {
     WebElement headerText;
     @FindBy(xpath = "//div[normalize-space()='First, we need to ask you about tobacco usage.']")
     WebElement secondLineText;
-    @FindBy(xpath = "//div[contains(text(),\"Next, you'll review your plan options and pick an \")]")
+    @FindBy(xpath = "//div[contains(text(),\"Next, you'll set up your shopping groups.\")]")
     WebElement nextYouWillReviewText;
     @FindBy(xpath = "//*[contains(text(),\"Not ready to shop?\")]")
     WebElement notReady;
@@ -50,6 +50,8 @@ public class StartShoppingPage {
         saveAndExitButton.click();
     }
     public void clickContinue(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 20));
+        basicActions.waitForElementToBeClickable(btnContinue,10);
         btnContinue.click();
     }
 
@@ -64,7 +66,7 @@ public class StartShoppingPage {
         softAssert.assertEquals(btnYes.getText(), "Yes");
         softAssert.assertEquals(saveAndExitButton.getText(), "Save and Exit");
         softAssert.assertEquals(btnContinue.getText(), "Continue");
-        softAssert.assertEquals(nextYouWillReviewText.getText(), "Next, you'll review your plan options and pick an insurance plan that fits your needs.");
+        softAssert.assertEquals(nextYouWillReviewText.getText(), "Next, you'll set up your shopping groups.");
         softAssert.assertEquals(notReady.getText(), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
     }

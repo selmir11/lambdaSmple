@@ -61,7 +61,9 @@ public class BasicSteps {
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
-
+            case "Grouping Members Medical":
+                pageUrl = "groupingMembersMedical";
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

@@ -13,7 +13,10 @@ public class TellUsAboutAdditionalMembersPageSteps {
 
     @And("I select {string} as member's sex option")
     public void selectSexOption(String sexOption){tellUsAboutAdditionalMemberPage.selectSex(sexOption);}
-
+    @And("I mark the Additional member is pregnant as {string}")
+    public void selectPersonIsPregnant(String pregnant){
+        tellUsAboutAdditionalMemberPage.selectIsPersonPregnant(pregnant);
+    }
     @And("I select {string} as relationship option")
     public void selectRelationship(String Relationship){tellUsAboutAdditionalMemberPage.setSelectRelationship(Relationship);}
 
