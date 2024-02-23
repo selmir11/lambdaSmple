@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.utils;
 
+import org.junit.Assert;
+
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+
+import static org.testng.Assert.assertTrue;
 
 public class BasicActions {
     private WebDriver driver;
@@ -90,7 +94,7 @@ public class BasicActions {
         return true;
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         getDriver().navigate().refresh();
     }
 
@@ -103,6 +107,14 @@ public class BasicActions {
             return false;
         }
         return true;
+    }
+
+    public void assertContainsText(String actualText, String expectedSubstring) {
+        assertTrue(actualText.contains(expectedSubstring), "Expected text '" + expectedSubstring + "' not found in actual text: '" + actualText + "'");
+    }
+    public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
+        String actualPlaceholder = element.getAttribute("placeholder");
+        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
     }
 
 //    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
