@@ -65,7 +65,7 @@ Feature: UI Tests related to APTC
     And I wait for hold on content to disappear
     Then I validate that my APTC value is "$327.63/mo"
 
-  @SLER-26 @Failing
+  @SLER-26
   Scenario: 2 Members Mesa-APTC Calculator
     When I click create a new account on login page
     Then I click create my account from pre-screen page

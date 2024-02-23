@@ -25,13 +25,13 @@ public class ExchLogin extends ExCreateAccount{
     private BasicActions basicActions;
     RandomDynamicData dataInstance = RandomDynamicData.getInstance();
     public ExchLogin(WebDriver webDriver){
-        super();
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
     public void username(){
         uName.click();
+        // TO-DO :: Update this to get details from sharedData
         uName.sendKeys(dataInstance.fullEmail);
         System.out.println("Entered user name: "+dataInstance.fullEmail);
     }
@@ -43,6 +43,7 @@ public class ExchLogin extends ExCreateAccount{
 
 
     public void signIn() throws InterruptedException {
+        // TO DO:: Remove sleep here
         sleep(5000);
         btnSignIn.click();
     }

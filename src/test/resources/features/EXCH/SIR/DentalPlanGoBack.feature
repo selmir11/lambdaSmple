@@ -1,4 +1,3 @@
-#TEst
 Feature: Dental Plans page tests
 
   Background:

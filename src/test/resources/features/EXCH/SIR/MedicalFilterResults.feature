@@ -96,7 +96,6 @@ Feature: Medical Plan Verification test
     And I Declare and sign
     And I wait for hold on content to disappear
     Then I click on view results and shop
-    # The below step is failing
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
