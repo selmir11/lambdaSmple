@@ -1,14 +1,14 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.frstName;
 
 public class WelcomePage {
 
@@ -65,8 +65,8 @@ public class WelcomePage {
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
-    public WelcomePage(){
-        this.basicActions = BasicActions.getInstance();
+    public WelcomePage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -124,7 +124,7 @@ public class WelcomePage {
     public void verifyTextOnWelcomePageNoPolicy(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
         String header  = applyForCurrentYearButton.getText();
-        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+frstName+"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getFirstName() +"!");
         softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
