@@ -80,6 +80,9 @@ public class BasicSteps {
             case "We Can Help":
                 pageUrl = "/we-can-help/";
                 break;
+            case "Podemos ayudar":
+                pageUrl = "/es/podemos-ayudar/";
+                break;
         }
         String origin = basicActions.getDriver().getWindowHandle();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
