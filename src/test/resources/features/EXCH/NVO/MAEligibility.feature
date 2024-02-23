@@ -12,7 +12,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
