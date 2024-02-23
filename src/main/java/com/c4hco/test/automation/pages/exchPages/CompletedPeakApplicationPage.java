@@ -25,7 +25,6 @@ public class CompletedPeakApplicationPage {
     WebElement saveAndContinueButton;
 
     @FindBy(css = "h1")
-    //h1.c4PageHeader
     WebElement pageHeaderLetUsGuideYou;
 
     @FindBy(css = ".c4BodyText1")
