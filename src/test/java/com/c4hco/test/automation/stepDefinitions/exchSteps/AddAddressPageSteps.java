@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.AddAddressPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class AddAddressPageSteps {
-    AddAddressPage addAddressPage = new AddAddressPage();
+    AddAddressPage addAddressPage = new AddAddressPage(WebDriverManager.getDriver());
 
      //Handles the 'What is your residential address?' question.
      //Accepts 'Household' for first radio button or 'New' for the second.
