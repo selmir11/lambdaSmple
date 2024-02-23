@@ -15,7 +15,6 @@ public class StartShoppingPageSteps {
     public void clickContinueStartShoppingPage(){
         startShoppingPage.clickContinue();
     }
-
     @Then("I verify text on start shopping page")
     public void verifyText()  {
         startShoppingPage.verifyTextOnTobaccoPage();
