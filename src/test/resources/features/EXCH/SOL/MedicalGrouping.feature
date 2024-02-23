@@ -4,7 +4,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-40-WIP @MedicalGrouping
+  @SLER-40-WIP @MedicalGrouping @test
   Scenario: Validate text on Payment by check page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -12,8 +12,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
-    Then I select No Thanks option from guide you section
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -59,7 +59,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
-    And I Declare and sign
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page

@@ -68,7 +68,7 @@ public class BasicSteps {
                 break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
-				break;=======
+				break;
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
