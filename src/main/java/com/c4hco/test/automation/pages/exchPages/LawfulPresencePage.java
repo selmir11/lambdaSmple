@@ -16,19 +16,48 @@ public class LawfulPresencePage {
         return BasicActions.getInstance();
     }
 
-    //update the locators to have ids
     @FindBy(id = "usCitizenYes")
-    WebElement citizenYes;
+    WebElement rdobtnCitizenYes;
+
+    @FindBy(id = "usCitizenNo")
+    WebElement rdobtnCitizenNo;
+
+    @FindBy(id = "naturalizedCitizenYes")
+    WebElement rdobtnNaturalizedYes;
     @FindBy(id = "naturalizedCitizenNo")
-    WebElement naturalizedCitizen;
-    @FindBy(xpath = "//*[@value='Save and Continue']")
+    WebElement rdobtnnaturalizedNo;
+
+    @FindBy(id = "nonCitizenYes")
+    WebElement rdobtnEligibleImmigrantYes;
+
+    @FindBy(id = "nonCitzenNo")
+    WebElement rdobtnEligibleImmigrantNo;
+
+    @FindBy(id = "documentType")
+    WebElement selectDocType;
+
+    @FindBy(name = "saveAndContinue")
     WebElement saveContinue;
 
-    public void usCitizen(){ citizenYes.click(); }
-    public void naturalizedCitizen(){
-        naturalizedCitizen.click();
+    public void isMemberCitizen(String YNCitizen){
+        switch(YNCitizen){
+            case "Yes":
+                rdobtnCitizenYes.click();
+                break;
+            case "No":
+                rdobtnCitizenNo.click();
+        }
     }
-    public  void save(){
-        saveContinue.click();
+
+    public void isMemberNaturalized(String YNNaturalized){
+        switch(YNNaturalized){
+            case "Yes":
+                rdobtnNaturalizedYes.click();
+                break;
+            case "No":
+                rdobtnnaturalizedNo.click();
+                break;
+        }
     }
+    public  void clickContinue(){saveContinue.click();}
 }
