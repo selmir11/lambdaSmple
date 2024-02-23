@@ -8,11 +8,6 @@ import io.cucumber.java.en.When;
 
 public class completedPeakApplicationSteps {
     CompletedPeakApplicationPage completedApplicationPage = new CompletedPeakApplicationPage(WebDriverManager.getDriver());
-    @Then("I select No Thanks option from guide you section")
-    public void iSelectNoThanks(){
-        completedApplicationPage.selectNoThanksOption();
-    }
-
     @And("I click on save and continue button")
     public void selectSaveAndContinue(){
         completedApplicationPage.clickSaveAndContinueButton();
