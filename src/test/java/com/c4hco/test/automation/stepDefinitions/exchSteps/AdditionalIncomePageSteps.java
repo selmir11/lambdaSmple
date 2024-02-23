@@ -7,10 +7,19 @@ import io.cucumber.java.en.Then;
 public class AdditionalIncomePageSteps {
     AdditionalIncomePage additionalIncomePage = new AdditionalIncomePage(WebDriverManager.getDriver());
 
-    @Then("I click {string} as additional income option and continue")
-    public void noAdditionalIncome(String addtlIncomeOption) {
-        additionalIncomePage.selectAddtlIncomeOption(addtlIncomeOption);
+    @Then("I click {string} as additional income option with {string} amount at {string} frequency")
+    public void noAdditionalIncome(String addtlIncomeOption, String Amount, String Frequency) {
+        additionalIncomePage.selectAddtlIncomeOption(addtlIncomeOption, Amount, Frequency);
     }
+
+    @Then("I click None of these as additional income option and continue")
+    public void noAdditionalIncome() {
+        additionalIncomePage.selectNoneAddtlIncomeOption();
+    }
+
+    @Then("I click continue on the Additional Income page")
+    public void clickContinue(){additionalIncomePage.clickContinue();}
+
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
