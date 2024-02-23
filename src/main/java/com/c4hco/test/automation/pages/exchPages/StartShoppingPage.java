@@ -9,6 +9,7 @@ import org.testng.asserts.SoftAssert;
 
 public class StartShoppingPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
 
     public StartShoppingPage(WebDriver webDriver) {
