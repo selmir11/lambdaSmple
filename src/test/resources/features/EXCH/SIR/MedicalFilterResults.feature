@@ -14,7 +14,7 @@ Feature: Medical Plan Verification test
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -66,7 +66,7 @@ Feature: Medical Plan Verification test
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -118,7 +118,7 @@ Feature: Medical Plan Verification test
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -169,7 +169,7 @@ Feature: Medical Plan Verification test
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
