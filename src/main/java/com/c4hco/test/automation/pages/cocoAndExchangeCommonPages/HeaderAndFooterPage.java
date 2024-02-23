@@ -64,9 +64,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(xpath = "//span[contains (text(), 'ALL RIGHTS RESERVED')]")
     WebElement copyRightCoCoText;
-
-
-
+    
     private BasicActions basicActions;
 
     public HeaderAndFooterPage() {
@@ -123,7 +121,10 @@ public class HeaderAndFooterPage {
             case "Spanish":
                 basicActions.waitForElementToBePresent(spanishLanguage, 60);
                 spanishLanguage.click();
-
+                break;
+            case "Spanish COCO":
+                basicActions.waitForElementToBePresent(spanishLanguageCoCo, 10);
+                spanishLanguageCoCo.click();
                 break;
         }
     }
