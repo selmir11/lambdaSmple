@@ -1,12 +1,13 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.EmploymentInfoPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class EmploymentInfoPageSteps {
 
-    EmploymentInfoPage employmentInfoPage = new EmploymentInfoPage();
+    EmploymentInfoPage employmentInfoPage = new EmploymentInfoPage(WebDriverManager.getDriver());
 
     @Then("I select the option {string} to employment")
     public void selectEmployment(String Employment){employmentInfoPage.isUserEmployed(Employment);}
