@@ -12,9 +12,11 @@ public class ApplicationResultsPageSteps {
         applicationResultsPage.clickBtnContinue();
     }
 
+    @Then("I validate that my Tax Household's APTC value is {string}")
+    public void validateTHHAPTC(String expectedAPTC){applicationResultsPage.validateAPTCByTHH(expectedAPTC);}
 
-    @Then("I validate that my APTC value is {string}")
-    public void validateAPTC(String expectedAPTC){applicationResultsPage.validateAPTC(expectedAPTC);}
+    @Then("I change views to Tax Household {int}")
+    public void changeTaxHouseholdDropdown(int THHNum){applicationResultsPage.changeTaxHouseHold(THHNum);}
 
     @Then("I verify text that the member don't qualify for a health plan on the app results page")
     public void verifyTextDoNotQualifyForHealthPlan () {

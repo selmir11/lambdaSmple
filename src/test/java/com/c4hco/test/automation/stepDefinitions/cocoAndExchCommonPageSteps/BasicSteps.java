@@ -57,11 +57,20 @@ public class BasicSteps {
             case "My Documents":
                 pageUrl = "MyDocuments/home";
                 break;
+            case "Let us guide you":
+                pageUrl = "nes/completedPeakApplication";
+                break;
+            case "Enter Case ID":
+                pageUrl = "nes/enterCaseId";
+                break;
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
+				break;=======
+            case "Spanish":
+                pageUrl = "lang=es";
                 break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
