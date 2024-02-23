@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -65,6 +66,7 @@ public class CreateAccountPage {
      WebElement submitButton;
 
     private BasicActions basicActions;
+    private SharedData sharedData;
     public CreateAccountPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -100,6 +102,7 @@ public class CreateAccountPage {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
+
     public static String frstName = getUniqueString(8);
     public static String lstName = getUniqueString(8);
     public static String Initials = String.valueOf(frstName.charAt(1)+lstName.charAt(1));
@@ -120,18 +123,16 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        addDetails();
         switch(appType){
             case "coco":
-                addDetails();
                 cocoTermsOfUseCheckbox.click();
-                submitButton.click();
                 break;
             case "exchange":
-                addDetails();
                 exchangeTermsOfUseCheckbox.click();
-                submitButton.click();
+                break;
         }
-
+        submitButton.click();
     }
 
     public void addDetails(){
