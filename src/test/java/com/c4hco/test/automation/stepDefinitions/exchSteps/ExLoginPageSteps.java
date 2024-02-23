@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import static java.lang.Thread.sleep;
 
 public class ExLoginPageSteps {
-    LoginPage loginPage = new LoginPage();
     ExchLogin exLoginPage = new ExchLogin();
 
     @Then("I enter user name")

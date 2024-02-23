@@ -1,7 +1,7 @@
 @helpDrawer
 Feature: Tests related to the help drawer
 
-  @SLCR-27
+  @SLCR-27 @n1
   Scenario: Validate the english and spanish verbiage on the help drawer
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
