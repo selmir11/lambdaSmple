@@ -21,4 +21,20 @@ public class MedicalPlanResultsPageSteps {
     public void clickFirstTwoCompareButtons() {
         medPlanResultsPage.clickFirstTwoCompareButtons();
     }
+
+    @And("I select the Insurance Company dropdown")
+    public void clickInsuranceProvider() {
+        medPlanResultsPage.clickInsuranceCompanyDropdown();
+    }
+
+    @And("I select {string} to filter for desired plan provider")
+    public void selectfromProviderList(String Selecting) {
+        medPlanResultsPage.selectfromProviderList(Selecting);
+    }
+
+    @And("I validate the plan option {int} has text {string}")
+    public void validatePlanText(int Index, String planText){
+        medPlanResultsPage.validatePlanResults(Index, planText);
+    }
+
 }

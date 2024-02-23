@@ -59,7 +59,7 @@ public class BasicSteps {
                 pageUrl = "MyDocuments/home";
                 break;
             case "Medical Plan Results":
-                pageUrl = "PlanSelectionPortal/medicalPlanResults";
+                pageUrl = "medicalPlanResults";
                 break;
 
         }
