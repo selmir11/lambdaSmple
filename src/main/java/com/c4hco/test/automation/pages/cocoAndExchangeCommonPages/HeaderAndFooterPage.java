@@ -1,13 +1,12 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
-
 
 public class HeaderAndFooterPage {
     @FindBy(id = "logo-image")
@@ -65,12 +64,10 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//span[contains (text(), 'ALL RIGHTS RESERVED')]")
     WebElement copyRightCoCoText;
 
-
-
     private BasicActions basicActions;
 
-    public HeaderAndFooterPage() {
-        this.basicActions = BasicActions.getInstance();
+    public HeaderAndFooterPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
     public void clickConnectLogoLink() {
@@ -123,7 +120,6 @@ public class HeaderAndFooterPage {
             case "Spanish":
                 basicActions.waitForElementToBePresent(spanishLanguage, 60);
                 spanishLanguage.click();
-
                 break;
         }
     }
@@ -145,7 +141,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
         clickGetAssistanceLink();
         softAssert.assertEquals(findExpertAssistanceLink.getText(), "Find Expert Assistance in Your Community");
-        softAssert.assertEquals(userNameLink.getText(), emailId);
+        softAssert.assertEquals(userNameLink.getText(), SharedData.getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
         softAssert.assertEquals(englishLanguageCoCo.getText(), "English");
