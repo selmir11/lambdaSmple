@@ -12,7 +12,7 @@ Feature: Medical Plan Results page related tests
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Then I apply for current year
+    Then I apply for the current year
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -47,7 +47,7 @@ Feature: Medical Plan Results page related tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I select No for tobacco usage and click continue
-    Then I select the compare on medical Plan Results
+    And I click on the compare links on the first 2 medical plans
 #
 
 
