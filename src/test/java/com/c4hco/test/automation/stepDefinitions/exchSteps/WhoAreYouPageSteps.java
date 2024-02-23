@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.WhoAreYouPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class WhoAreYouPageSteps {
-    WhoAreYouPage whoAreYouPage = new WhoAreYouPage();
+    WhoAreYouPage whoAreYouPage = new WhoAreYouPage(WebDriverManager.getDriver());
 
     @Then("I select {string} from the who are you question")
     public void checkWhoAreYouBox(String whoAreYouOption){

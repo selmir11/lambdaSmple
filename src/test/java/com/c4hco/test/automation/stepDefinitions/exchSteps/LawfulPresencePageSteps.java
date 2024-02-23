@@ -1,11 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.LawfulPresencePage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class LawfulPresencePageSteps {
 
-    LawfulPresencePage lawfulPresencePage = new LawfulPresencePage();
+    LawfulPresencePage lawfulPresencePage = new LawfulPresencePage(WebDriverManager.getDriver());
 
     @Then("I select {string} for Citizen option")
     public void isMemberCitizen(String YNCitizen){lawfulPresencePage.isMemberCitizen(YNCitizen);}

@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.EthnicityAndRacePage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
 public class EthnicityAndRacePageSteps {
-    EthnicityAndRacePage ethnicityAndRacePage = new EthnicityAndRacePage();
+    EthnicityAndRacePage ethnicityAndRacePage = new EthnicityAndRacePage(WebDriverManager.getDriver());
 
     @And("I select {string} ethnicity option")
     public void iSelectMemberEthnicity(String memberEthnicity){ethnicityAndRacePage.ethnicitySelection(memberEthnicity);}
