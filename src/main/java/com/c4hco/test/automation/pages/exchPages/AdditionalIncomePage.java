@@ -19,42 +19,53 @@ public class AdditionalIncomePage {
     SoftAssert softAssert = new SoftAssert();
     @FindBy(id = "AdditionalIncome-SaveAndContinue")
     WebElement saveAndContinueBtn;
+
     @FindBy(id = "AdditionalIncome-GoBack")
     WebElement backBtn;
+
     @FindBy(css = ".additional-income-row button")
     List<WebElement> addtlIncomeOptionsCheckbox;
+
     @FindBy(xpath = "//span[@class='body-text-1']")
     List<WebElement> addtlIncomeOptionsName;
+
     @FindBy(xpath = "//div[@class='col monetary-input-container']//input")
     List<WebElement> addtlIncomeAmount;
+
     @FindBy(xpath = "//*[@errormessagekey='amountIsRequired']")
     List<WebElement> addtlIncomeAmountError;
+
     @FindBy(xpath = "//*[@controlname='frequency']")
     List<WebElement> additlIncomeFrequency;
+
     @FindBy(xpath = "//*[@errormessagekey='selectOneOptionBelow']//*[@class='error-message']")
     List<WebElement> additlIncomeFrequencyError;
+
     @FindBy(xpath = "//*[contains(@class, 'header-1')]")
     WebElement hdr_Income;
+
     @FindBy(xpath = "//*[contains(@class, 'header-2')]")
     WebElement hdr_AdditionalIncome;
+
     @FindBy(xpath = "//div[contains(@class, 'body-text-1')][1]")
     WebElement txtDoyoureceiveQs_ELMO;
+
     @FindBy(xpath = "//div[contains(@class, 'body-text-1')][2]")
     WebElement txtSelectAll_ELMO;
+
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement txtCapitalGainsAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-frequencySelect")
     WebElement selectCAPGFrequency;
     private BasicActions basicActions;
-	
+    public BasicActions getDriver(){
+        return BasicActions.getInstance();
+    }
+
     public AdditionalIncomePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     public void selectAddtlIncomeOption(String addtlIncomeOption, String Amount, String Frequency) {
