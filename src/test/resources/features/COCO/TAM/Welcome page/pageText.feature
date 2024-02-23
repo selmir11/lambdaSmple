@@ -3,7 +3,7 @@ Feature: Page Text-Welcome Page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-33-WIP @PageTextWelcomePage @Failing
+  @SLCR-33-WIP @PageTextWelcomePage
   Scenario: Create CoCo Account and Login
     When I click create a new account on login page
     Then I click create my account from pre-screen page

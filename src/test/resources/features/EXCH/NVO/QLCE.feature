@@ -4,8 +4,8 @@ Feature: QLCE Birth during closed enrollment
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-27 @QLCE
-  Scenario: Validate Birth LCE allows user to shop
+  @SLER-27 @QLCE @n1
+  Scenario Outline: Validate QLCE allows user to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -16,7 +16,7 @@ Feature: QLCE Birth during closed enrollment
     Then I select No Thanks option from guide you section
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
+    And I report "<qlceOption>" and click continue
     Then I select "member" from the who are you question
     And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -39,13 +39,20 @@ Feature: QLCE Birth during closed enrollment
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "Birth" QLCE on tell us about life changes page
+    Then I select "<qlceOption>" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare and sign
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Examples:
+    | qlceOption           |
+    | Birth                |
+    | LostCoverage         |
+    | Marriage             |
+    | GainedLawfulPresence |
+
 
     @SLER-32
     Scenario: Validate Loss of MEC LCE allows user to shop

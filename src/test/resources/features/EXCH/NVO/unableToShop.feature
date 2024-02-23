@@ -1,4 +1,3 @@
-@n1 @Failing
 Feature:  Unable to shop (not eligible for QHP)
 
   Background:
