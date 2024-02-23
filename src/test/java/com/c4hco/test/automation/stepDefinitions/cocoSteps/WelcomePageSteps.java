@@ -1,11 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.WelcomePage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
     public class WelcomePageSteps {
-        WelcomePage welcomePage = new WelcomePage();
+        WelcomePage welcomePage = new WelcomePage(WebDriverManager.getDriver());
 
         @And("I apply for the current year in CoCo")
         public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}

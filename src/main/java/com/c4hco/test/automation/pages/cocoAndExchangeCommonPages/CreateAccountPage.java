@@ -1,7 +1,9 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -64,13 +66,9 @@ public class CreateAccountPage {
      WebElement submitButton;
 
     private BasicActions basicActions;
-    public CreateAccountPage(){
-        this.basicActions = BasicActions.getInstance();
+    public CreateAccountPage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     public void clickHelpIcon(){
@@ -99,13 +97,6 @@ public class CreateAccountPage {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public static String frstName = getUniqueString(8);
-    public static String lstName = getUniqueString(8);
-    public static String Initials = String.valueOf(frstName.charAt(1)+lstName.charAt(1));
-    public static String emailId = lstName + Initials + "@test.com";
-    public static String phnNumber = (String) generatePhoneNumber();
-    public static String pswrd = "ALaska12!";
-
     public static CharSequence generatePhoneNumber(){
         Random rand = new Random();
         int num1 = (rand.nextInt(7)+1)*100;
@@ -119,27 +110,35 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        addDetails();
         switch(appType){
             case "coco":
-                addDetails();
                 cocoTermsOfUseCheckbox.click();
-                submitButton.click();
                 break;
             case "exchange":
-                addDetails();
                 exchangeTermsOfUseCheckbox.click();
-                submitButton.click();
+                break;
         }
+        submitButton.click();
+    }
 
+    public void initializeData(){
+        SharedData.setFirstName(getUniqueString(8));
+        SharedData.setLastName(getUniqueString(8));
+        SharedData.setInitials(String.valueOf(SharedData.getFirstName().charAt(1)+SharedData.getLastName().charAt(1)));
+        SharedData.setEmailId(SharedData.getLastName() + SharedData.getInitials() + "@test.com");
+        SharedData.setPhoneNumber((String) generatePhoneNumber());
+        SharedData.setPassword("ALaska12!");
     }
 
     public void addDetails(){
-        firstName.sendKeys(frstName);
-        lastName.sendKeys(lstName);
-        email.sendKeys(emailId);
-        phoneNumber.sendKeys(phnNumber);
-        password.sendKeys(pswrd);
-        confirmPassword.sendKeys(pswrd);
+        initializeData();
+        firstName.sendKeys(SharedData.getFirstName());
+        lastName.sendKeys(SharedData.getLastName());
+        email.sendKeys(SharedData.getEmailId());
+        phoneNumber.sendKeys(SharedData.getPhoneNumber());
+        password.sendKeys(SharedData.getPassword());
+        confirmPassword.sendKeys(SharedData.getPassword());
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
     }
