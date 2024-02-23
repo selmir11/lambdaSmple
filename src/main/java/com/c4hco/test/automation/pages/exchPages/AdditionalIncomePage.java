@@ -9,8 +9,9 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.frstName;
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.lstName;
+import static com.c4hco.test.automation.utils.SharedData.getFirstName;
+import static com.c4hco.test.automation.utils.SharedData.getLastName;
+
 
 public class AdditionalIncomePage {
 
@@ -68,7 +69,7 @@ public class AdditionalIncomePage {
         String header = saveAndContinueBtn.getText();
         switch (Language) {
             case "English":
-                softAssert.assertEquals(hdr_Income.getText(), "Income: " + frstName + " " + lstName);
+                softAssert.assertEquals(hdr_Income.getText(), "Income: " + getFirstName() + " " + getLastName());
                 softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
                 softAssert.assertEquals(txtDoyoureceiveQs_ELMO.getText(), "Did you receive any of the following income?");
                 softAssert.assertEquals(txtSelectAll_ELMO.getText(), "Select all that apply, and enter the amount of income received.");
@@ -152,7 +153,7 @@ public class AdditionalIncomePage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(hdr_Income.getText(), "Ingresos: " + frstName + " " + lstName);
+                softAssert.assertEquals(hdr_Income.getText(), "Ingresos: " + getFirstName() + " " + getLastName());
                 softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
                 softAssert.assertEquals(txtDoyoureceiveQs_ELMO.getText(), "\u00BFRecibi\u00F3 alguno de los ingresos siguientes?");
                 softAssert.assertEquals(txtSelectAll_ELMO.getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");
