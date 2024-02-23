@@ -57,6 +57,7 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementListToBePresent(comparePlanLinks, 10);
         comparePlanLinks.get(0).click();
         comparePlanLinks.get(1).click();
+    }
 
         public void clickInsuranceCompanyDropdown () {
             basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 10);
