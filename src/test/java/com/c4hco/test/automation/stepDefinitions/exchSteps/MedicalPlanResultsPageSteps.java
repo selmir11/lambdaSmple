@@ -1,11 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.MedicalPlanResultsPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class MedicalPlanResultsPageSteps {
 
-    MedicalPlanResultsPage medPlanResultsPage = new MedicalPlanResultsPage();
+    MedicalPlanResultsPage medPlanResultsPage = new MedicalPlanResultsPage(WebDriverManager.getDriver());
 
     @And("I select the first medical plan and continue")
     public void selectFirstMedicalPlanAndContinue() {
@@ -21,4 +22,10 @@ public class MedicalPlanResultsPageSteps {
     public void selectfromProviderList(String Selecting) {
         medPlanResultsPage.selectfromProviderList(Selecting);
     }
+
+    @And("I validate the plan option {int} has text {string}")
+    public void validatePlanText(int Index, String planText){
+        medPlanResultsPage.validatePlanResults(Index, planText);
+    }
+
 }

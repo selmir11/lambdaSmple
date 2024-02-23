@@ -1,11 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.ApplicationResultsPage;
-import io.cucumber.java.en.And;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.Then;
 
 public class ApplicationResultsPageSteps {
-    ApplicationResultsPage applicationResultsPage = new ApplicationResultsPage();
+    ApplicationResultsPage applicationResultsPage = new ApplicationResultsPage(WebDriverManager.getDriver());
 
     @Then("I click continue on application results page")
     public void iClickContinueOnApplicationResult(){
@@ -19,6 +19,10 @@ public class ApplicationResultsPageSteps {
     @Then("I verify text that the member don't qualify for a health plan on the app results page")
     public void verifyTextDoNotQualifyForHealthPlan () {
         applicationResultsPage.verifyTextNotQualifyForPlanOnAppResultsPage();
+    }
 
+    @Then("I verify text that the member eligible for MA on the app results page")
+    public void verifyTextMAEligibility() {
+        applicationResultsPage.verifyTextMAEligibility();
     }
 }
