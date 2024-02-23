@@ -49,7 +49,7 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
     WebElement spanishLanguage;
 
-    @FindBy(xpath = "//a[normalize-space()='Sign Out']")
+    @FindBy(xpath = "//div[@class='p-2 sign-out']//a[@class='toolbar-text clickable']")
     WebElement signOutLink;
 
     // =========FOOTER============== //
@@ -123,7 +123,14 @@ public class HeaderAndFooterPage {
             case "Spanish":
                 basicActions.waitForElementToBePresent(spanishLanguage, 60);
                 spanishLanguage.click();
-
+                break;
+            case "English ELMO":
+                basicActions.waitForElementToBePresent(englishLanguageCoCo, 60);
+                englishLanguageCoCo.click();
+                break;
+            case "Spanish ELMO":
+                basicActions.waitForElementToBePresent(spanishLanguageCoCo, 60);
+                spanishLanguageCoCo.click();
                 break;
         }
     }
