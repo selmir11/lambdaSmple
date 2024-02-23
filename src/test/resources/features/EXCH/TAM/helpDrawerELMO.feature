@@ -1,4 +1,4 @@
-@YetTOTest
+@YetTOTest @n1
 @helpDrawer
 Feature: Tests related to the help drawer on ELMO pages
 
