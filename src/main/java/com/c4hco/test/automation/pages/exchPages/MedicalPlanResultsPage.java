@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,14 +13,10 @@ import java.util.List;
 public class MedicalPlanResultsPage {
     private BasicActions basicActions;
 
-    public MedicalPlanResultsPage() {
-        this.basicActions = BasicActions.getInstance();
+    public MedicalPlanResultsPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
-
 
     @FindBy(id ="PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
