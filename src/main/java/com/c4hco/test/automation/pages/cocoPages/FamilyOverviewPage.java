@@ -15,7 +15,6 @@ public class FamilyOverviewPage {
     @FindBy (xpath = "//a[text()='Edit/Update']")
     List<WebElement> editUpdateLink;
 
-
     private BasicActions basicActions;
 
     public FamilyOverviewPage(WebDriver webDriver) {

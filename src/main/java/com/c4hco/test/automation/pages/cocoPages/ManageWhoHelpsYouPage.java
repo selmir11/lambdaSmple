@@ -7,7 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ManageWhoHelpsYouPage {
+
     private BasicActions basicActions;
+
     public ManageWhoHelpsYouPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -29,11 +31,5 @@ public class ManageWhoHelpsYouPage {
         basicActions.waitForElementToBeClickable(backButton, 5);
         backButton.click();
     }
-
-
-
-
-
-
 
 }

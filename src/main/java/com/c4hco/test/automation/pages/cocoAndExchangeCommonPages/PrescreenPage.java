@@ -17,10 +17,6 @@ public class PrescreenPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
-
     public void clickCreateAccountLink(){
         createMyAccount.click();
     }

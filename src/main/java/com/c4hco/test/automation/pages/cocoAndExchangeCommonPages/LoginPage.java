@@ -1,15 +1,12 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.Utils;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.emailId;
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.pswrd;
 
 public class LoginPage {
     @FindBy(id = "create-account-link")
@@ -51,10 +48,8 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
-        // make this re-usable method - accept parameters email and password- enahancement - TO DO
-        // use getters/setter or world to import data rather than direct imports
-            username.sendKeys(emailId);
-            password.sendKeys(pswrd);
+            username.sendKeys(SharedData.getEmailId());
+            password.sendKeys(SharedData.getPassword());
             signInButton.click();
     }
 

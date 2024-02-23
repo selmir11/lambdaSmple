@@ -11,6 +11,7 @@ public class ApplicationResultsCoCoPage {
     public WebElement backToWelcomeButton;
 
     private BasicActions basicActions;
+
     public ApplicationResultsCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
