@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static org.testng.Assert.assertTrue;
+
 public class BasicActions {
     private WebDriver driver;
     private Selenese selenese = Selenese.getInstance();
@@ -106,8 +108,8 @@ public class BasicActions {
         return true;
     }
 
-    public void assertElementDisplayed(WebElement element) {
-        Assert.assertTrue("Element is not displayed: " + element, element.isDisplayed());
+    public void assertContainsText(String actualText, String expectedSubstring) {
+        assertTrue(actualText.contains(expectedSubstring), "Expected text '" + expectedSubstring + "' not found in actual text: '" + actualText + "'");
     }
     public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
         String actualPlaceholder = element.getAttribute("placeholder");

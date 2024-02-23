@@ -14,10 +14,10 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I validate I am on the "Let us guide you" page
-    And I validate the elements on Let us guide you page in english
+    And I validate the verbiage on Let us guide you page in "English"
     When I switch to "Spanish"
     And I validate I am on the "Spanish" page
-    And I validate the elements on Let us guide you page in spanish
+    And I validate the verbiage on Let us guide you page in "Spanish"
 
 
   @SLER-47 @PageText
@@ -33,7 +33,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I select "Yes" option on the Let us guide you page
     And I click on save and continue button
     Then I validate I am on the "Enter Case ID" page
-    And I validate the elements on the Enter Case ID page in english
+    And I validate the verbiage on the Enter Case ID page in "English"
     When I switch to "Spanish"
     Then I validate I am on the "Spanish" page
-    And I validate the elements on the Enter Case ID page in spanish
+    And I validate the verbiage on the Enter Case ID page in "Spanish"

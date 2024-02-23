@@ -22,14 +22,9 @@ public class completedPeakApplicationSteps {
         completedApplicationPage.selectLocale(switchTo);
     }
 
-    @And("I validate the elements on Let us guide you page in english")
-    public void iValidateTheElementsOnLetUsGuideYouPage() {
-        completedApplicationPage.validateTheElementsOnLetUsGuideYouPageEn();
-    }
-
-    @And("I validate the elements on Let us guide you page in spanish")
-    public void iValidateTheElementsOnSpanishLetUsGuideYouPage() {
-        completedApplicationPage.validateTheElementsOnLetUsGuideYouPageEs();
+    @And("I validate the verbiage on Let us guide you page in {string}")
+    public void iValidateTheVerbiageOnLetUsGuideYouPage(String language) {
+        completedApplicationPage.validateTheVerbiageOnLetUsGuideYouPage(language);
     }
 
     @And("I select {string} option on the Let us guide you page")

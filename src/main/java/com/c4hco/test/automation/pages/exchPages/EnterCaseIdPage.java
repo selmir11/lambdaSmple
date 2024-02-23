@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.c4hco.test.automation.utils.BasicActions;
+
+import java.util.List;
 
 public class EnterCaseIdPage {
     private BasicActions basicActions;
@@ -17,66 +18,46 @@ public class EnterCaseIdPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Please fill out the following information found on your Health First Colorado denial notice']")
-    WebElement healthFirstColoradoDenialNoticeText;
+    @FindBy(css = ".c4BodyText1")
+    List <WebElement> bodyText;
 
-    @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Case ID']")
-    WebElement caseIDText;
-
-    @FindBy(xpath = "//input[@id='caseId' and @class='form-control' and @type='text' and @maxlength='8' and @placeholder='1BXXXXXX' and @name='caseId']") //
+    @FindBy(css = "input#caseId.form-control[type='text']")
     WebElement caseIDPlaceHolderText;
 
-    @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Zip Code']")
-    WebElement zipCodeText;
-
     @FindBy(id = "zipCode")
-    WebElement verifyZipCodePlaceHolderTextEn;
-
-    @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Last Name']")
-    WebElement lastNameText;
+    WebElement zipCodePlaceHolderText;
 
     @FindBy(id = "lastName")
-    WebElement lastNamePlaceHolderTextEn;
+    WebElement lastNamePlaceHolderText;
 
-    @FindBy(xpath = "//span[contains(text(),'Anote la siguiente')]")
-    WebElement healthFirstColoradoDenialNoticeTextEs;
-
-    @FindBy(xpath = "//span[contains(text(),'Identificaci')]")
-    WebElement caseIDTextEs;
-
-    @FindBy(id = "caseId")
-    WebElement caseIDPlaceHolderTextEs;
-
-    @FindBy(xpath = "//span[contains(text(),'digo postal')]")
-    WebElement zipCodeTextEs;
-
-    @FindBy(id = "zipCode")
-    WebElement zipCodePlaceHolderTextEs;
-
-    @FindBy(xpath = "//span[@class='c4BodyText1' and text()='Apellido(s)']")
-    WebElement lastNameTextEs;
-
-    @FindBy(id = "lastName")
-    WebElement lastNamePlaceHolderTextEs;
-
-    public void validateTheElementsOnEnterCaseIdPageEn() {
-        basicActions.assertElementDisplayed(healthFirstColoradoDenialNoticeText);
-        basicActions.assertElementDisplayed(caseIDText);
+    public void validateTheVerbiageOnEnterCaseIdPage(String language){
+        switch (language){
+            case "English":
+                validateTheVerbiageEn();
+                break;
+            case "Spanish":
+                validateTheVerbiageEs();
+                break;
+        }
+    }
+    public void validateTheVerbiageEn() {
+        basicActions.waitForElementToBePresent(bodyText.get(0), 30);
+        basicActions.assertContainsText(bodyText.get(0).getText(), "Please fill out the following information found on your Health First Colorado denial notice");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "Case ID");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "Zip Code");
+        basicActions.assertContainsText(bodyText.get(3).getText(), "Last Name");
         basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
-        basicActions.assertElementDisplayed(zipCodeText);
-        basicActions.assertPlaceholderTextMatched(verifyZipCodePlaceHolderTextEn, "XXXXX");
-        basicActions.assertElementDisplayed(lastNameText);
-        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderTextEn, "");
+        basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderText, "XXXXX");
+        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderText, "");
     }
 
-    public void validateTheElementsOnEnterCaseIdPageEs() {
-        basicActions.assertElementDisplayed(healthFirstColoradoDenialNoticeTextEs);
-        basicActions.assertElementDisplayed(caseIDTextEs);
-        basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderTextEs, "1BXXXXXX");
-        basicActions.assertElementDisplayed(zipCodeTextEs);
-        basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderTextEs, "XXXXX");
-        basicActions.assertElementDisplayed(lastNameTextEs);
-        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderTextEs, "");
+    public void validateTheVerbiageEs() {
+        basicActions.assertContainsText(bodyText.get(0).getText(), "Anote la siguiente informaci");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "Identificaci");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "digo postal");
+        basicActions.assertContainsText(bodyText.get(3).getText(), "Apellido(s)");
+        basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
+        basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderText, "XXXXX");
+        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderText, "");
     }
-
 }

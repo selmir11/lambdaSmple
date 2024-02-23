@@ -4,7 +4,8 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.junit.Assert;
+
+import java.util.List;
 
 public class CompletedPeakApplicationPage {
     private BasicActions basicActions;
@@ -25,47 +26,18 @@ public class CompletedPeakApplicationPage {
     @FindBy(xpath = "//*[@name='saveAndContinue']")
     WebElement saveAndContinueButton;
 
-    @FindBy(xpath = "//h1[@class='c4PageHeader'][text()='Let us guide you']")
+    @FindBy(css = "h1")
+    //h1.c4PageHeader
     WebElement pageHeaderLetUsGuideYou;
 
-    @FindBy(xpath = "//span[@class='c4BodyText1']")
-    WebElement enrollmentInfoMessage;
-
-    @FindBy(xpath = "//span[@class='c4BodyText1' and contains(text(), 'You will need your Case ID')]")
-    WebElement caseIDInfoMessage;
+    @FindBy(css = ".c4BodyText1")
+    List<WebElement> bodyText;
 
     @FindBy(xpath = "//a[@class='icon-link language']")
     WebElement languageToggleLink;
 
-    @FindBy(xpath = "//nav//ul/li[2]/ul/li[2]") //this is the only locator that is working
-    WebElement spanishLocaleLink;
-
-    @FindBy(xpath = "a[onclick*='changeLocale\\('en'\\);']")
-    WebElement englishLocaleLink;
-
-    @FindBy(xpath = "//h1[@class='c4PageHeader']")
-    WebElement pageHeaderPermitanosGuiarlo;
-
-    @FindBy(xpath = "//span[contains(@class, 'c4BodyText1') and contains(text(),'Si nunca se ha')]")
-    WebElement enrollmentInfoMessageEs;
-
-    @FindBy(xpath = "//span[contains(text(),'Necesitar')]")
-    WebElement caseIDInfoMessageEs;
-
-    @FindBy(xpath = "//span[@class='c4BodyText1' and contains(text(),'I have completed an application for Health First Colorado or Child Health Plan Plus')]")
-    WebElement yesImNewTextEn;
-
-    @FindBy(css = "span.c4BodyText1[onclick*='No, I have not completed an application and need to start one']")
-    WebElement noThanksTextEn;
-
-    @FindBy(css = "span.c4BodyText1[onclick*=\"'Yes, I have a completed application'\"]")
-    WebElement yesImNewTextEs;
-
-    @FindBy(css = "span.c4BodyText1[onclick*='No, I have not completed an application and need to start one']")
-    WebElement noThanksTextEs;
-
-    @FindBy(css = "input.back-button-link[type='submit'][name='back']")
-    WebElement backButtonLinkEs;
+    @FindBy(css = ".language-dropdown-content li")
+    List<WebElement> languageLocaleLink;
 
     public void setYesImNew(){
         yesImNew.click();
@@ -87,11 +59,11 @@ public class CompletedPeakApplicationPage {
         switch (locale.toLowerCase()) {
             case "spanish":
                 // Click on the Spanish locale link
-                spanishLocaleLink.click();
+                languageLocaleLink.get(1).click();
                 break;
             case "english":
                 // Click on the English locale link
-                englishLocaleLink.click();
+                languageLocaleLink.get(0).click();
                 break;
             default:
                 // Handle invalid locale parameter (Optional: throw an exception or log a warning)
@@ -100,21 +72,33 @@ public class CompletedPeakApplicationPage {
         }
     }
 
-
-    public void validateTheElementsOnLetUsGuideYouPageEn() {
-        basicActions.assertElementDisplayed(pageHeaderLetUsGuideYou);
-        basicActions.assertElementDisplayed(enrollmentInfoMessage);
-        basicActions.assertElementDisplayed(caseIDInfoMessage);
-        basicActions.assertElementDisplayed(yesImNewTextEn);
-        basicActions.assertElementDisplayed(noThanksTextEn);
+    public void validateTheVerbiageOnLetUsGuideYouPage(String language){
+        switch (language){
+            case "English":
+                validateTheVerbiageEn();
+                break;
+            case "Spanish":
+                validateTheVerbiageEs();
+                break;
+        }
     }
 
-    public void validateTheElementsOnLetUsGuideYouPageEs() {
-        basicActions.assertElementDisplayed(pageHeaderPermitanosGuiarlo);
-        basicActions.assertElementDisplayed(enrollmentInfoMessageEs);
-        basicActions.assertElementDisplayed(caseIDInfoMessageEs);
-        basicActions.assertElementDisplayed(yesImNewTextEs);
-        basicActions.assertElementDisplayed(noThanksTextEs);
+    public void validateTheVerbiageEn() {
+        basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou,30);
+        basicActions.assertContainsText(pageHeaderLetUsGuideYou.getText(), "Let us guide you");
+        basicActions.assertContainsText(bodyText.get(0).getText(), "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "You will need your Case ID, which can be found on your Health First Colorado eligibility notice.");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus");
+        basicActions.assertContainsText(bodyText.get(3).getText(), "No thanks, take me to the application");
+    }
+
+    public void validateTheVerbiageEs() {
+        basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou,30);
+        basicActions.assertContainsText(pageHeaderLetUsGuideYou.getText(), "tanos guiarlo");
+        basicActions.assertContainsText(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "soy nuevo a Connect for Health Colorado y ya present");
+        basicActions.assertContainsText(bodyText.get(3).getText(), "No gracias, ll");
     }
 
     public void iSelectOption(String option) {
