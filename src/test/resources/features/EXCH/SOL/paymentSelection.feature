@@ -1,4 +1,3 @@
-@YetTOTest
 Feature: Payment Selection page tests
 
   Background:
