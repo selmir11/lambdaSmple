@@ -16,9 +16,6 @@ public class AdditionalIncomePage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement txtCapitalGainsAmount;
