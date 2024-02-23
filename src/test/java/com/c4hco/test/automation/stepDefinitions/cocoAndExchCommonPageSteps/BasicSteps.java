@@ -1,13 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Utils;
-import io.cucumber.java.en.*;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import org.junit.Assert;
 
 public class BasicSteps {
-    BasicActions basicActions = new BasicActions();
-    private Utils utils = new Utils();
+    BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page){

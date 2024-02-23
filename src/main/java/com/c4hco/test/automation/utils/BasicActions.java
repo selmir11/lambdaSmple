@@ -1,8 +1,7 @@
 package com.c4hco.test.automation.utils;
 
-
-import com.c4hco.test.automation.selenium.Selenese;
 import org.junit.Assert;
+
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,15 +15,17 @@ import static org.testng.Assert.assertTrue;
 
 public class BasicActions {
     private WebDriver driver;
-    private Selenese selenese = Selenese.getInstance();
 
-    // Constructor to initialize WebDriver
-    public BasicActions() {
-        this.driver = selenese.getDriver();
+    public BasicActions(WebDriver webDriver) {
+        this.driver = webDriver;
+    }
+
+    public BasicActions(){
+
     }
 
     public WebDriver getDriver() {
-        return selenese.getDriver();
+        return this.driver;
     }
 
     public static BasicActions getInstance() {
@@ -47,7 +48,7 @@ public class BasicActions {
 
     public String getUrlWithWait(String url, int waitTime) {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
+            new WebDriverWait(this.driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
         } catch (TimeoutException ignore) {
             Log.info("The expected URL:" + url + "wasn't there after" + waitTime + "seconds");
             return "";

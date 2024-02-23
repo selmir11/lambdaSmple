@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.AddInfoForYourselfPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
 public class AddInfoForYourselfPageSteps {
-    AddInfoForYourselfPage addInfoForYourselfPage = new AddInfoForYourselfPage();
+    AddInfoForYourselfPage addInfoForYourselfPage = new AddInfoForYourselfPage(WebDriverManager.getDriver());
 
     @And("I enter my residential address {string}, {string}, {string}, {string}, {string}")
     public void enterMemberResidentialCOAddress(String addressLine1, String city, String state, String zipcode, String county){addInfoForYourselfPage.memberResidentialAddressCoCo(addressLine1, city, state, zipcode, county);}
