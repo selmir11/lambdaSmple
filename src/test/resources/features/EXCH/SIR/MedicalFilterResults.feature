@@ -56,7 +56,7 @@ Feature: Medical Plan Verification test
     And I validate the plan option 1 has text "Anthem Bronze Pathway Essentials HMO 9450 $0 Select Drugs"
 
 
-  @SLER-44-WIP @SelectVerifyCignaMedicalResults
+  @SLER-44 @SelectVerifyCignaMedicalResults
   Scenario: SelectCigna
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -104,3 +104,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
     And I select "Cigna" to filter for desired plan provider
+    And I validate the plan option 1 has text "Cigna Connect Colorado Option Bronze"
+
+
+
