@@ -1,12 +1,13 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.EmploymentInfoPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class EmploymentInfoPageSteps {
 
-    EmploymentInfoPage employmentInfoPage = new EmploymentInfoPage();
+    EmploymentInfoPage employmentInfoPage = new EmploymentInfoPage(WebDriverManager.getDriver());
 
     @Then("I select the option {string} to employment")
     public void selectEmployment(String Employment){employmentInfoPage.isUserEmployed(Employment);}
@@ -25,4 +26,7 @@ public class EmploymentInfoPageSteps {
 
     @And("I click continue on the Employment Info Page")
     public void saveAndContinue(){employmentInfoPage.saveAndContinue();}
+
+    @And("I maximize the help drawer on the Employment Info Page")
+    public void iMaximizeHelpDrawer(){employmentInfoPage.maximizeHeldDrawer();}
 }

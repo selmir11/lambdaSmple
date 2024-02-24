@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,12 +12,9 @@ public class LifeChangeEventsPage {
 
     private BasicActions basicActions;
 
-    public LifeChangeEventsPage() {
-        this.basicActions = BasicActions.getInstance();
+    public LifeChangeEventsPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(css = ".input-checkbox")
@@ -38,6 +36,9 @@ public class LifeChangeEventsPage {
                 break;
             case "LostCoverage":
                 lceInputCheckbox.get(3).click();
+                break;
+            case "GainedLawfulPresence":
+                lceInputCheckbox.get(4).click();
                 break;
                 case "MovedToColorado":
                     lceInputCheckbox.get(6).click();

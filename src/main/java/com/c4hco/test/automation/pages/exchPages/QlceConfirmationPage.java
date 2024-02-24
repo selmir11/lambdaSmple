@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,17 +15,14 @@ public class QlceConfirmationPage {
 
     private BasicActions basicActions;
 
-    public QlceConfirmationPage() {
-        this.basicActions = BasicActions.getInstance();
+    public QlceConfirmationPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-
-    public BasicActions getDriver() {
-        return BasicActions.getInstance();
     }
 
     @FindBy(id="birth")
     WebElement birthQLCE;
+
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
     List<WebElement> allmembersBirthcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
@@ -65,6 +63,15 @@ public class QlceConfirmationPage {
 
     @FindBy(xpath = "//*[@type='checkbox' and contains(@id, 'movedToColorado')]")
     List<WebElement> movedToColoradoCheckbox;
+
+    //Gain Lawful Immigration Status
+    @FindBy(id= "gainedLawfulPresence")
+    WebElement LawfulPresenceLCE;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForGainedLawfulPresence')]")
+    List<WebElement> allmemberLawfulPresencecheckbox;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForGainedLawfulPresence')]")
+    List<WebElement>  LawfulPresenceEventDate;
 
     //Lost Coverage
     @FindBy(id ="loseOrLostHealthInsurance")
@@ -115,6 +122,15 @@ public class QlceConfirmationPage {
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
                     movedToColoradoCheckbox.get(i).click();
 
+                }
+                break;
+            case "GainedLawfulPresence":
+                basicActions.waitForElementToBeClickable(LawfulPresenceLCE,10);
+                LawfulPresenceLCE.click();
+                for (var i = 0; i < allmemberLawfulPresencecheckbox.size(); i++) {
+                    allmemberLawfulPresencecheckbox.get(i).click();
+                    LawfulPresenceEventDate.get(i).click();
+                    LawfulPresenceEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
             case "LostCoverage":

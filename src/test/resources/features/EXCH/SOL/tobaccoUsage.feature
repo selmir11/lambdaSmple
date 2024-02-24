@@ -12,8 +12,8 @@ Feature: Tobacco Usage page related tests
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for 2024
-    Then I select No Thanks option from guide you section
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -35,8 +35,8 @@ Feature: Tobacco Usage page related tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I verify text on tobacco usage page
-    Then I choose no tobacco usage and click save and exit on start shopping page
+    Then I verify text on start shopping page
+    Then I click continue on start shopping page
 #
 
 

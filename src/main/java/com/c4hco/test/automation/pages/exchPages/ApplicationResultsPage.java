@@ -2,10 +2,16 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class ApplicationResultsPage {
 
@@ -38,10 +44,20 @@ public class ApplicationResultsPage {
     @FindBy(xpath = "//*[contains(text(),\"Find medical care and enrollment assistance\")]")
     WebElement findMedicalCare;
 
+    @FindBy(css = ".tax-ben-table td")
+    List<WebElement> textMAEligibility;
+
+    @FindBy(id = "taxHouseholdsDropdown")
+    WebElement selectTaxHouseHold;
+
+    @FindBy(xpath = "(//*[@class='tot-sav-head-right'])[1]")
+    WebElement lblTHHTotalSavings;
+
+
     private BasicActions basicActions;
 
-    public ApplicationResultsPage() {
-        this.basicActions = BasicActions.getInstance();
+    public ApplicationResultsPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
     public BasicActions getDriver(){
@@ -53,10 +69,16 @@ public class ApplicationResultsPage {
         continueBtn.click();
     }
 
-    public void validateAPTC(String expectedAPTC){
-        basicActions.waitForElementToBePresent(lblAPTCValue, 15);
-        String APTC = lblAPTCValue.getText();
-        Assert.assertTrue("Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.", APTC.contains(expectedAPTC));
+    public void validateAPTCByTHH(String expectedAPTC){
+        String aptcLocator = "//th[text()='"+expectedAPTC+"']";
+        basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath(aptcLocator)),15);
+    }
+
+    public void changeTaxHouseHold(int taxHH){
+        String taxHouseHold = "Tax Household #"+taxHH+" benefits";
+
+        Select dropdown = new Select(selectTaxHouseHold);
+        dropdown.selectByVisibleText(taxHouseHold);
     }
 
     //-----------------------Validations------------------------//
@@ -76,5 +98,10 @@ public class ApplicationResultsPage {
         softAssert.assertEquals(callUsToReviewApplication.getText(), "Call us at 855-PLANS-4-YOU (855-752-6749) to review your application results and qualifications to buy a health plan.");
         softAssert.assertEquals(findMedicalCare.getText(), "Find medical care and enrollment assistance in your community.");
         softAssert.assertAll();
+    }
+
+    public void verifyTextMAEligibility() {
+        basicActions.waitForElementListToBePresent(textMAEligibility, 10);
+        Assert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
     }
 }

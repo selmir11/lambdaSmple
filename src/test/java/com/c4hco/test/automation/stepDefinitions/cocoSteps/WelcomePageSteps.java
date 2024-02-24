@@ -1,14 +1,15 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.WelcomePage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
     public class WelcomePageSteps {
-        WelcomePage welcomePage = new WelcomePage();
+        WelcomePage welcomePage = new WelcomePage(WebDriverManager.getDriver());
 
-        @And("I apply for 2024 CoCo")
-            public void iClickApply2024CoCo() { welcomePage.clickApply2024CoCo(); }
+        @And("I apply for the current year in CoCo")
+        public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}
 
         @Then("I click on My Profile Button CoCo")
             public void iClickMyProfileButton() { welcomePage.clickMyProfileButton(); }
@@ -19,6 +20,9 @@ import io.cucumber.java.en.Then;
         @Then("I click on My Documents and Letters Button CoCo")
         public void iClickMyDocumentsButton() { welcomePage.clickMyDocumentsButton(); }
 
+        @And("I click on {string} link on welcome page")
+        public void iClickActionLink(String actionLink) { welcomePage.clickActionLinks(actionLink); }
+
 // ############################## VALIDATION STEPS #########################
         // Add only validation methods below this line
     @Then("I verify text on the Welcome page for first time signed into an account")
@@ -27,6 +31,8 @@ import io.cucumber.java.en.Then;
     @Then("I verify text on the Welcome page for an account without a policy")
     public void verifyNoPolicyText()  { welcomePage.verifyTextOnWelcomePageNoPolicy(); }
 
+    @Then("I validate {string} link text on welcome page")
+    public void verifyActionLinkText(String actionLink)  { welcomePage.validateActionLinksText(actionLink); }
 
 
 
