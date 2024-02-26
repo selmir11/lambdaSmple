@@ -66,6 +66,9 @@ public class BasicSteps {
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
+            case "Grouping Members Medical":
+                pageUrl = "groupingMembersMedical";
+				break;
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
