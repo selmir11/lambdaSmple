@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,12 +12,9 @@ import java.util.List;
 
 public class TaxStatusPage {
     private BasicActions basicActions;
-    public TaxStatusPage(){
-        this.basicActions = BasicActions.getInstance();
+    public TaxStatusPage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(id = "filingStatus")
@@ -27,14 +26,24 @@ public class TaxStatusPage {
     @FindBy(id = "claimedAsDependentNo")
     WebElement claimAsDependentNoRadioBtn;
 
+    @FindBy(id = "claimedAsDependentYes")
+    WebElement claimAsDependentYesRadioBtn;
+
     @FindBy(id = "claimDependentsNo")
     WebElement claimDependentNoRadioBtn;
 
     @FindBy(id = "preSubmitButton")
     WebElement saveAndContinueBtn;
 
+    @FindBy(id = "selectedClaimedByMemberId1")
+    WebElement lblheadOfHousehold;
+
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
+            case "Yes":
+                basicActions.waitForElementToBeClickable(claimAsDependentYesRadioBtn, 10);
+                claimAsDependentYesRadioBtn.click();
+                break;
             case "No":
                 basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 10);
                 claimAsDependentNoRadioBtn.click();
@@ -63,21 +72,13 @@ public class TaxStatusPage {
         }
     }
 
+    public void whoWillClaimDependent(String memberId){
+        String clalimedDependentOption = "selectedClaimedByMemberId"+memberId;
+        basicActions.getDriver().findElement(By.id(clalimedDependentOption)).click();
+    }
+
     public void selectSaveAndContinue(){
         saveAndContinueBtn.click();
     }
 
-//
-//    public void notClaimedNoDependents(String FilingStatus){
-//        SoftAssert softAssert = new SoftAssert();
-//        softAssert.assertTrue(basicActions.waitForElementToBeClickable(rdobtnNoClaimedDependent, 60));
-//
-//        rdobtnNoClaimedDependent.click();
-//        rdobtnYesFileReturn.click();
-//
-//
-//
-//        rdobtnNoClaimDependent.click();
-//        btnContinue.click();
-//    }
 }

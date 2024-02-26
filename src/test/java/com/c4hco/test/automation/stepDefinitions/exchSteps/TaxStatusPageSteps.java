@@ -1,16 +1,21 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.TaxStatusPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
 
 public class TaxStatusPageSteps {
-    TaxStatusPage taxStatusPage = new TaxStatusPage();
+    TaxStatusPage taxStatusPage = new TaxStatusPage(WebDriverManager.getDriver());
 
     @And("I select the option {string} to claim as dependent")
     public void selectDependantClaim(String claimAsDependentOption){
         taxStatusPage.claimAsDependent(claimAsDependentOption);
     }
+
+    //The Option is based on the order that the Radio Buttons appear on the page, starting with 1.
+    @And("I select the {string} option for Who Will Claim as Dependent")
+    public void selectWhoWillClaim(String IDByOrder){taxStatusPage.whoWillClaimDependent(IDByOrder);}
 
     @And("I select the option {string} to file federal income tax return next year")
     public void selectFedIncomeTaxReturn(String fileFedIncomeTaxReturnOption){

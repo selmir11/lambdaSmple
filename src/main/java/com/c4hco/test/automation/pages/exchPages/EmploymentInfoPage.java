@@ -1,24 +1,29 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 
 public class EmploymentInfoPage {
     private BasicActions basicActions;
-    public EmploymentInfoPage(){
-        this.basicActions = BasicActions.getInstance();
+    public EmploymentInfoPage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsEmployed-YesButton")
     WebElement btnYesEmployed;
+
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsEmployed-NoButton")
+    WebElement btnNoEmployed;
+
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsSelfEmployment-YesButton")
+    WebElement btnYesSelfEmployed;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsSelfEmployment-NoButton")
     WebElement btnNoSelfEmployed;
@@ -62,11 +67,35 @@ public class EmploymentInfoPage {
     @FindBy(id = "ExchEmploymentIncomeJob-SaveAndContinue")
     WebElement btnContinue;
 
-    public void addEmploymentInfo(String Salary){
+    @FindBy(css = ".drawer-controls .btn")
+    WebElement helpDrawerButton;
+
+    public void isUserEmployed(String employmentOption){
         basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
 
-        btnYesEmployed.click();
-        btnNoSelfEmployed.click();
+        switch(employmentOption){
+            case "Yes":
+                btnYesEmployed.click();
+                break;
+            case "No":
+                btnNoEmployed.click();
+                break;
+        }
+    }
+
+    public void isUserSelfEmplyed(String selfEmploymentOption){
+        switch(selfEmploymentOption){
+            case "Yes":
+                btnYesSelfEmployed.click();
+                break;
+            case "No":
+                btnNoSelfEmployed.click();
+                break;
+        }
+    }
+
+    public void addEmploymentInfo(String Salary, String Frequency){
+
         txtCompanyName.sendKeys("Test Company Name");
         txtAddressOne.sendKeys("123 Test Address");
         txtAddressTwo.sendKeys("Test Suite 321");
@@ -79,11 +108,39 @@ public class EmploymentInfoPage {
         txtIncomeAmount.sendKeys(Salary);
 
         dropdown = new Select(selectIncomeFreq);
-        dropdown.selectByVisibleText(" Annually ");
-
-        btnIsSeasonalNo.click();
-        btnIncomeSameNo.click();
-
-        btnContinue.click();
+        dropdown.selectByVisibleText(" "+Frequency+" ");
     }
+
+    public void isUserEmploymentSeasonal(String seasonalEmploymentOption){
+        switch(seasonalEmploymentOption){
+            case "Yes":
+                btnIsSeasonalYes.click();
+                break;
+            case "No":
+                btnIsSeasonalNo.click();
+                break;
+        }
+    }
+
+    public void projectedIncomeQuestion(String projectedUncomeOption){
+        switch(projectedUncomeOption){
+            case "Yes":
+                btnIncomeSameYes.click();
+                break;
+            case "No":
+                btnIncomeSameNo.click();
+                break;
+        }
+    }
+
+    public void saveAndContinue(){btnContinue.click();}
+
+    public void maximizeHeldDrawer(){
+        basicActions.waitForElementToBeClickable(helpDrawerButton, 10);
+        helpDrawerButton.click();
+    }
+
+    // ############################## VALIDATION METHODS #########################
+
+
 }

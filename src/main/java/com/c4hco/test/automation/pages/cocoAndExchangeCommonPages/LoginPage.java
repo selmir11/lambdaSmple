@@ -1,14 +1,14 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.Utils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage.*;
 
 public class LoginPage {
-
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
@@ -21,32 +21,44 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signInButton;
 
+    @FindBy(id = "email")
+     WebElement usernameAdmin;
+
+    @FindBy(id = "password")
+     WebElement passwordAdmin;
+
+    @FindBy(id = "main-sign-in")
+     WebElement signAdmin;
 
     private BasicActions basicActions;
     private Utils utils = new Utils();
 
 
-    public LoginPage() {
-        this.basicActions = BasicActions.getInstance();
+    public LoginPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public LoginPage openPage(String appType) {
+    public void openPage(String appType) {
         basicActions.getDriver().get(utils.getBaseLoginUrl(appType));
-        return new LoginPage();
     }
 
     public void clickCreateAccount() {
-        basicActions.waitForElementToBeClickable(createAccountLink, 30);
         createAccountLink.click();
     }
 
     public void logInWithValidCredentials() {
-        // make this re-usable method - accept parameters email and password- enahancement - TO DO
-        // use getters/setter or world to import data rather than direct imports
-            username.sendKeys(emailId);
-            password.sendKeys(pswrd);
+            username.sendKeys(SharedData.getEmailId());
+            password.sendKeys(SharedData.getPassword());
             signInButton.click();
+    }
+
+    public void loginAsAnAdminUser(){
+        // TO-DO:: Get the credentials from a different file
+        basicActions.waitForElementToBePresent(usernameAdmin,10 );
+        usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        passwordAdmin.sendKeys("ALaska12!");
+        signAdmin.click();
     }
 
     // ############################## VALIDATION METHODS #########################

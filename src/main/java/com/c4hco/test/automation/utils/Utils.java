@@ -1,9 +1,14 @@
 package com.c4hco.test.automation.utils;
 
+import org.openqa.selenium.support.PageFactory;
+
 public class Utils {
     private String env = ApplicationProperties.getInstance().getProperty("env");
+    private BasicActions basicActions;
 
     public Utils(){
+        this.basicActions = BasicActions.getInstance();
+        PageFactory.initElements(basicActions.getDriver(), this);
     }
 
     public String getBaseLoginUrl(String appType){
@@ -22,5 +27,4 @@ public class Utils {
         }
         return baseUrl;
     }
-
 }

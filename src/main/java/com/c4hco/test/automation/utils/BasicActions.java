@@ -1,8 +1,7 @@
 package com.c4hco.test.automation.utils;
 
+import org.junit.Assert;
 
-import com.c4hco.test.automation.selenium.Selenese;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,18 +11,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static org.testng.Assert.assertTrue;
+
 public class BasicActions {
     private WebDriver driver;
-    public static int WAIT_FOR_ELEMENT=30;
-    private Selenese selenese = Selenese.getInstance();
 
+    public BasicActions(WebDriver webDriver) {
+        this.driver = webDriver;
+    }
 
-    public BasicActions() {
-        this.driver = selenese.getDriver();
+    public BasicActions(){
+
     }
 
     public WebDriver getDriver() {
-        return selenese.getDriver();
+        return this.driver;
     }
 
     public static BasicActions getInstance() {
@@ -34,9 +36,9 @@ public class BasicActions {
         private static final BasicActions INSTANCE = new BasicActions();
     }
 
-    public void closeBrowser() {
+    public void closeBrowserTab() {
         if (this.driver != null) {
-            this.driver.quit();
+            this.driver.close();
         }
     }
 
@@ -46,7 +48,7 @@ public class BasicActions {
 
     public String getUrlWithWait(String url, int waitTime) {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
+            new WebDriverWait(this.driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
         } catch (TimeoutException ignore) {
             Log.info("The expected URL:" + url + "wasn't there after" + waitTime + "seconds");
             return "";
@@ -92,7 +94,58 @@ public class BasicActions {
         return true;
     }
 
+    public void refreshPage() {
+        getDriver().navigate().refresh();
+    }
 
+    public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
+        } catch(TimeoutException ignore){
+            Log.info("Element is not present");
+            return false;
+        }
+        return true;
+    }
+
+    public void assertContainsText(String actualText, String expectedSubstring) {
+        assertTrue(actualText.contains(expectedSubstring), "Expected text '" + expectedSubstring + "' not found in actual text: '" + actualText + "'");
+    }
+    public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
+        String actualPlaceholder = element.getAttribute("placeholder");
+        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
+    }
+
+//    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
+//        try {
+//            new WebDriverWait(driver,
+//                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
+//            webElement.click();
+//        } catch(TimeoutException ignore){
+//            Log.info("Element is not clickable");
+//        }
+//
+//    }
+//
+//    public  void scrollToElement(WebElement element) {
+//        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+//    }
+
+//    public  void switchToWindow(String targetTitle) {
+//        String origin = getDriver().getWindowHandle();
+//        for (String handle :getDriver().getWindowHandles()) {
+//            getDriver().switchTo().window(handle);
+//            if (getDriver().getTitle().equals(targetTitle)) {
+//                return;
+//            }
+//        }
+//        getDriver().switchTo().window(origin);
+//    }
+
+//    public void implicitWait(int second){
+//        getDriver().manage().timeouts().implicitlyWait(second, TimeUnit.SECONDS);
+//    }
 
 }
 

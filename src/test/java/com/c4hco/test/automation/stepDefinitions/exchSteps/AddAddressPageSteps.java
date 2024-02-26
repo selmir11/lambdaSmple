@@ -1,34 +1,38 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.AddAddressPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class AddAddressPageSteps {
-    AddAddressPage addAddressPage = new AddAddressPage();
+    AddAddressPage addAddressPage = new AddAddressPage(WebDriverManager.getDriver());
 
-     @Then("I enter Additional details and click continue on add address page")
-    public void additionalDetails() {
-         addAddressPage.mailingAddress();
-         addAddressPage.selectCounty();
-         addAddressPage.coloradoResidentYes();
-         addAddressPage.tribeNo();
-         addAddressPage.hardshipExempNo();
-         addAddressPage.noDisability();
-         addAddressPage.deniedMedicaid();
-         addAddressPage.notIncarcerated();
-         addAddressPage.saveContinue();
-     }
+     //Handles the 'What is your residential address?' question.
+     //Accepts 'Household' for first radio button or 'New' for the second.
+     @Then("I select {string} for Residential Address")
+    public void memberResidentialAddress(String Address){addAddressPage.selectResidentialAddress(Address);}
 
-    @Then("I enter Additional details and I'm not Co resident and click continue on add address page")
-    public void additionalDetailsNotCoResident() {
-        addAddressPage.mailingAddress();
-        addAddressPage.selectCounty();
-        addAddressPage.coloradoResidentNo();
-        addAddressPage.tribeNo();
-        addAddressPage.hardshipExempNo();
-        addAddressPage.noDisability();
-        addAddressPage.deniedMedicaid();
-        addAddressPage.notIncarcerated();
-        addAddressPage.saveContinue();
-    }
+    @Then("I enter generic mailing address details")
+    public void addMailingAddressDetails(){addAddressPage.mailingAddress();}
+
+    @Then("I select {string} for CO Resident option")
+    public void isMemberCOResident(String YNResident){addAddressPage.isColoradoResident(YNResident);}
+
+    @Then("I select {string} for Federally Recognized Tribe option")
+    public void isMemberPartOfTribe(String YNTribe){addAddressPage.isFederallyRecognizedTribe(YNTribe);}
+
+    @Then("I select {string} for Hardship Exemption option")
+    public void isMemberHardshipExempt(String YNExempt){addAddressPage.isMemberHardshipExempt(YNExempt);}
+
+    @Then("I select {string} for Disability option")
+    public void isMemberDisabled(String YNDisabled){addAddressPage.isMemberDisabled(YNDisabled);}
+
+    @Then("I select {string} to the recently denied medicaid question")
+    public void hasMemberBeenDeniedRecently(String YNDenied){addAddressPage.hasUserBeenDeniedMedicaid(YNDenied);}
+
+    @Then("I select {string} for Incarceration option")
+    public void isMemberIncarcerated(String YNIncacerated){addAddressPage.isUserIncarcerated(YNIncacerated);}
+
+    @Then("I click continue on the Add Address page")
+    public void clickContinue(){addAddressPage.saveContinue();}
 }

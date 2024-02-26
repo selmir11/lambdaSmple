@@ -1,12 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class AccountOverviewPageSteps {
-    AccountOverviewPage accountOverviewPage = new AccountOverviewPage();
-    @And("I apply for 2024")
-    public void iApplyFor2024(){
-        accountOverviewPage.clickApply2024();
-    }
+    AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
+
+    @Then("I apply for the current year")
+    public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 }

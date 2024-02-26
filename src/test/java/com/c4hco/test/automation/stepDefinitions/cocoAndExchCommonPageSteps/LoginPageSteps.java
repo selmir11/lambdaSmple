@@ -1,21 +1,30 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
-import io.cucumber.java.en.*;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 
 public class LoginPageSteps {
 
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(WebDriverManager.getDriver());
 
-        @When("I click create a new account on login page")
-                public void iClickCreateAccount(){
-            loginPage.clickCreateAccount();
+        @Given("I open the login page on the {string} portal")
+        public void openPage(String appType){
+            loginPage.openPage(appType);
         }
+        
+        @When("I click create a new account on login page")
+            public void iClickCreateAccount(){ loginPage.clickCreateAccount();}
 
         @And("I enter valid credentials to login")
-                public void iEnterValidCredentials(){
+           public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
         }
+
+         @When("I login as Admin User")
+            public void i_login_as_admin_user() {loginPage.loginAsAnAdminUser();}
 
         // =================VALIDATION STEPS==============//
     }

@@ -1,15 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
 import com.c4hco.test.automation.pages.exchPages.ExchLogin;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-import static java.lang.Thread.sleep;
-
 public class ExLoginPageSteps {
-    LoginPage loginPage = new LoginPage();
-    ExchLogin exLoginPage = new ExchLogin();
+    ExchLogin exLoginPage = new ExchLogin(WebDriverManager.getDriver());
 
     @Then("I enter user name")
     public void enterUserName(){
@@ -23,6 +20,7 @@ public class ExLoginPageSteps {
     public void clickSignin() throws InterruptedException {
 
         exLoginPage.signIn();
+        // TO DO::: REMOVE THIS THREAD.SLEEP
         Thread.sleep(5000);
 
     }

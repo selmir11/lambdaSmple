@@ -2,27 +2,22 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.StartShoppingPage;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class StartShoppingPageSteps {
-    StartShoppingPage startShoppingPage = new StartShoppingPage();
+    StartShoppingPage startShoppingPage = new StartShoppingPage(WebDriverManager.getDriver());
     BasicActions basicActions = new BasicActions();
-    @Then("I select No for tobacco usage and click continue")
-    public void clickNoAndContinue() {
-        startShoppingPage.clickNo();
-        startShoppingPage.clickContinue();
+    @Then("I click continue on start shopping page")
+    public void clickContinueStartShoppingPage(){
+        startShoppingPage.iclickContinue();
     }
-
-    public void clickYesAndContinue(){
-        startShoppingPage.clickYes();
-        startShoppingPage.clickContinue();
-    }
-    @Then("I verify text on tobacco usage page")
+    @Then("I verify text on start shopping page")
     public void verifyText()  {
         startShoppingPage.verifyTextOnTobaccoPage();
     }
-    @Then("I choose no tobacco usage and click save and exit on start shopping page")
-    public void clickNoAndSaveNExit() {
+    @Then("I click save and exit on start shopping page")
+    public void clickSaveAndExit() {
         startShoppingPage.clickBtnSaveNExit();
     }
 
