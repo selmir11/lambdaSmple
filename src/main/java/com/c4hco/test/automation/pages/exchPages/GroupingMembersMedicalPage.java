@@ -34,12 +34,7 @@ public class GroupingMembersMedicalPage {
     public void clickContinue(){
         continueButton.click();
     }
-
-    public void clickGoBackButtonOnGroupingMembersMedicalPage(){
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(backAndSaveAndExitButtons.get(1), 30));
-        basicActions.waitForElementToBeClickable(backAndSaveAndExitButtons.get(1),10);
-        backAndSaveAndExitButtons.get(1).click();
-    }
+    
     public void clickOnEditMedicalGroupinglink(){
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
         editMyEnrollmentGroupsButton.click();
@@ -56,6 +51,7 @@ public class GroupingMembersMedicalPage {
         softAssert.assertEquals(backAndSaveAndExitButtons.get(1),"Save and Exit");
         softAssert.assertEquals(continueButton,"Continue");
         softAssert.assertTrue(glodeImageDropdown.isEnabled());
+        softAssert.assertAll();
     }
 
 }
