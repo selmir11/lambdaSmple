@@ -66,15 +66,26 @@ public class BasicSteps {
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
+            case "Grouping Members Medical":
+                pageUrl = "groupingMembersMedical";
+				break;
             case "Spanish":
                 pageUrl = "lang=es";
+                break;
+            case "CoCo Additional information for yourself":
+                pageUrl = "coco/member-details-portal/member-additional-information";
+                break;
+            case "CoCo Family Overview":
+                pageUrl = "coco/WelcomePortal/familyOverview";
+                break;
+            case "Before you begin":
+                pageUrl = "nes/beforeYouBegin";
                 break;
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
             default:
                 System.out.println("undefined page ");
-
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

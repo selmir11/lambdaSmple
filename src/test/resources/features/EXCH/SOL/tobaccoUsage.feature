@@ -23,21 +23,45 @@ Feature: Tobacco Usage page related tests
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
-    And I enter details on tell us about yourself page and continue
-    Then I enter Additional details and click continue on add address page
-    And I enter citizenship details and click continue
-    Then I click continue on family overview page
-    And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    And I Declare and sign
-    And I wait for hold on content to disappear
-    Then I click on view results and shop
-    And I click continue on application results page
-    Then I validate I am on the "Start Shopping" page
-    Then I verify text on start shopping page
-    Then I click continue on start shopping page
-#
-
-
-
+      Then I select "Male" as sex option
+      And I select "Yes" to Are You Applying
+      And I click continue on Tell us about yourself page
+      Then I enter generic mailing address details
+      And I select "Yes" for CO Resident option
+      And I select "No" for Federally Recognized Tribe option
+      And I select "No" for Hardship Exemption option
+      And I select "No" for Disability option
+      And I select "No" to the recently denied medicaid question
+      And I select "No" for Incarceration option
+      And I click continue on the Add Address page
+      Then I select "Yes" for Citizen option
+      And I select "No" for Naturalized Immigrant option
+      And I click continue on the Citizenship page
+      Then I click Add Another Family Member
+      And I enter member details with "01012010" date of birth
+      And I select "Male" as member's sex option
+      And I select "Son" as relationship option
+      And I select "Yes" to Is Member Applying
+      And I click continue on Tell us about additional members page
+      Then I select "Household" for Residential Address
+      And I select "Yes" for CO Resident option
+      And I select "No" for Federally Recognized Tribe option
+      And I select "No" for Hardship Exemption option
+      And I select "No" for Disability option
+      And I select "No" to the recently denied medicaid question
+      And I select "No" for Incarceration option
+      And I click continue on the Add Address page
+      Then I select "Yes" for Citizen option
+      And I select "No" for Naturalized Immigrant option
+      And I click continue on the Citizenship page
+      Then I click continue on family overview page
+      And I Apply for no financial help
+      Then I select "MoveToCO" QLCE on tell us about life changes page
+      Then I click on Save and Continue
+      And I Declare and sign
+      And I wait for hold on content to disappear
+      Then I click on view results and shop
+      And I click continue on application results page
+      Then I validate I am on the "Start Shopping" page
+      Then I verify text on start shopping page
+      Then I click continue on start shopping page
