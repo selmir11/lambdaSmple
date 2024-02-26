@@ -69,6 +69,9 @@ public class BasicSteps {
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
+            case "Before you begin":
+                pageUrl = "nes/beforeYouBegin";
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
