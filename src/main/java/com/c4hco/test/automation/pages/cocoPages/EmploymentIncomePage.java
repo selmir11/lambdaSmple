@@ -15,9 +15,6 @@ public class EmploymentIncomePage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-YesButton")
     WebElement employmentYesButton;
