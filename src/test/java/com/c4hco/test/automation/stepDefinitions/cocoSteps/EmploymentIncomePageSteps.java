@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.EmploymentIncomePage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
 public class EmploymentIncomePageSteps {
-    EmploymentIncomePage employmentIncomePage = new EmploymentIncomePage();
+    EmploymentIncomePage employmentIncomePage = new EmploymentIncomePage(WebDriverManager.getDriver());
 
     @And("I select {string} employment option")
     public void iSelectMemberEmployment(String memberEmployment){employmentIncomePage.answerEmploymentQs(memberEmployment);}

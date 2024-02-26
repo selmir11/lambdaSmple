@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,16 +11,19 @@ import java.util.List;
 public class EmploymentIncomePage {
     private BasicActions basicActions;
 
-    public EmploymentIncomePage() {
-        this.basicActions = BasicActions.getInstance();
+    public EmploymentIncomePage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
     public BasicActions getDriver(){
         return BasicActions.getInstance();
     }
 
-    @FindBy(css = "[controlname='isEmployed'] button")
-    List<WebElement> employmentButton;
+    @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-YesButton")
+    WebElement employmentYesButton;
+
+    @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-NoButton")
+    WebElement employmentNoButton;
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-amountInput")
     WebElement incomeInput;
@@ -30,11 +34,17 @@ public class EmploymentIncomePage {
     @FindBy(css = "lib-dropdown option")
     List<WebElement> incomeFrequencyOptions;
 
-    @FindBy(css = "[controlname='isIncomeSeasonal'] button")
-    List<WebElement> incomeSeasonalButton;
+    @FindBy(id = "ELIG-CocoEmploymentIncomeJob-SeasonalIncome-YesButton")
+    WebElement incomeSeasonalYesButton;
 
-    @FindBy(css = "[controlname='isIncomeSameNextYear'] button")
-    List<WebElement> incomeChangesButton;
+    @FindBy(id = "ELIG-CocoEmploymentIncomeJob-SeasonalIncome-NoButton")
+    WebElement incomeSeasonalNoButton;
+
+    @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeChangeEveryYear-YesButton")
+    WebElement incomeChangesYesButton;
+
+    @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeChangeEveryYear-NoButton")
+    WebElement incomeChangesNoButton;
 
     @FindBy(id = "EmploymentIncomeJob-SaveAndContinue")
     WebElement saveAndContinueButton;
@@ -45,13 +55,14 @@ public class EmploymentIncomePage {
     }
 
     public void answerEmploymentQs(String employment){
-        basicActions.waitForElementListToBePresent(employmentButton, 10);
         switch(employment) {
             case ("Yes"):
-                employmentButton.get(0).click();
+                basicActions.waitForElementToBePresent(employmentYesButton, 10);
+                employmentYesButton.click();
                 break;
             case ("No"):
-                employmentButton.get(1).click();
+                basicActions.waitForElementToBePresent(employmentNoButton, 10);
+                employmentNoButton.click();
                 break;
         }
     }
@@ -89,25 +100,27 @@ public class EmploymentIncomePage {
     }
 
     public void answerIsIncomeSeasonalQs(String seasonal){
-        basicActions.waitForElementListToBePresent(incomeSeasonalButton, 10);
         switch(seasonal) {
             case ("Yes"):
-                incomeSeasonalButton.get(0).click();
+                basicActions.waitForElementToBePresent(incomeSeasonalYesButton, 10);
+                incomeSeasonalYesButton.click();
                 break;
             case ("No"):
-                incomeSeasonalButton.get(1).click();
+                basicActions.waitForElementToBePresent(incomeSeasonalNoButton, 10);
+                incomeSeasonalNoButton.click();
                 break;
         }
     }
 
     public void answerIncomeChangesQs(String changes){
-        basicActions.waitForElementListToBePresent(incomeChangesButton, 10);
         switch(changes) {
             case ("Yes"):
-                incomeChangesButton.get(0).click();
+                basicActions.waitForElementToBePresent(incomeChangesYesButton, 10);
+                incomeChangesYesButton.click();
                 break;
             case ("No"):
-                incomeChangesButton.get(1).click();
+                basicActions.waitForElementToBePresent(incomeChangesNoButton, 10);
+                incomeChangesNoButton.click();
                 break;
         }
     }
