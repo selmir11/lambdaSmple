@@ -121,6 +121,11 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(spanishLanguage, 60);
                 spanishLanguage.click();
                 break;
+            case "Spanish COCO":
+                basicActions.waitForElementToBePresent(spanishLanguageCoCo, 10);
+                spanishLanguageCoCo.click();
+
+                break;
         }
     }
 
