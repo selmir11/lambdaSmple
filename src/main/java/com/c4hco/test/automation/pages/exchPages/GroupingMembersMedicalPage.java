@@ -46,7 +46,7 @@ public class GroupingMembersMedicalPage {
     }
 
     //--------------------------validations------------------------
-    public void verifyMedicalGroupingPage(){
+    public void verifyMedicalGroupingPageVerbiage(){
         softAssert.assertEquals(medicalEnrollmentGroupPageTitle, "Medical Enrollment Groups");
         softAssert.assertEquals(groupingPageText.get(0),"It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
         softAssert.assertEquals(groupingPageText.get(1),"Remember: Costs within a group count towards each group’s deductible and out of pocket maximum.");

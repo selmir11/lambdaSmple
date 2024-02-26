@@ -8,15 +8,11 @@ public class GroupingMembersMedicalSteps {
 
     @And("I verify text on Medical grouping page")
     public void medicalGroupingEnglish(){
-        groupingMembersMedical.verifyMedicalGroupingPage();
+        groupingMembersMedical.verifyMedicalGroupingPageVerbiage();
     }
     @Then("I click on edit enrollment groups link")
     public void clickOnEditEnrollmentgroupsLink(){
         groupingMembersMedical.clickOnEditMedicalGroupinglink();
-    }
-    @Then("I click on go back button on grouping members page")
-    public void clickGoBackButton(){
-        groupingMembersMedical.clickGoBackButtonOnGroupingMembersMedicalPage();
     }
 
 }

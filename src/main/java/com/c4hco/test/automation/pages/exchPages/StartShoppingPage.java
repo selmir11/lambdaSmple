@@ -25,7 +25,7 @@ public class StartShoppingPage {
     @FindBy(css = ".container .radio-button")
     List<WebElement> btnNoAndYes;
 
-     @FindBy(css = ".col-sm-9 .btn-secondary")
+    @FindBy(id = "SHP-StartShop-SaveAndExit")
     WebElement saveAndExitButton;
 
     @FindBy(css = ".container .header-1")
