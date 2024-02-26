@@ -69,6 +69,9 @@ public class BasicSteps {
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
+            case "Before you begin":
+                pageUrl = "nes/beforeYouBegin";
+                break;
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
