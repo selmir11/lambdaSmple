@@ -75,6 +75,11 @@ public class BasicSteps {
             case "CoCo Family Overview":
                 pageUrl = "coco/WelcomePortal/familyOverview";
                 break;
+            case "FindExpertHelpCoco":
+                pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
+                break;
+            default:
+                System.out.println("undefined page ");
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
