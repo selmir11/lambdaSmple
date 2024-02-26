@@ -18,7 +18,7 @@ public class BeforeYouBeginPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(css = "form#beforeYouBegin input[type='submit']")
+    @FindBy(css = "#beforeYouBegin .btn")
     WebElement continueWithApplication;
 
     @FindBy(css = "h1")
