@@ -74,6 +74,8 @@ public class BasicSteps {
                 break;
             case "CoCo Family Overview":
                 pageUrl = "coco/WelcomePortal/familyOverview";
+            case "Before you begin":
+                pageUrl = "nes/beforeYouBegin";
                 break;
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
