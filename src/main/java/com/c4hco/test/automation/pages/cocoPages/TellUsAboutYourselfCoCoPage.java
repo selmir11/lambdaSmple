@@ -22,6 +22,9 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy (id = "ELIG-MemberDetails-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy (id = "ELIG-MemberDetails-GoBack")
+    WebElement goBackButton;
+
     private BasicActions basicActions;
 
     public TellUsAboutYourselfCoCoPage(WebDriver webDriver) {
@@ -68,6 +71,11 @@ public class TellUsAboutYourselfCoCoPage {
                 applyButton.get(1).click();
                 break;
         }
+    }
+
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBeClickable(goBackButton, 30);
+        goBackButton.click();
     }
 
 }
