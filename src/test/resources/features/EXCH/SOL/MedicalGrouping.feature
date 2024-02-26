@@ -71,5 +71,3 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click Cancel button on Edit Grouping Members Medical page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on go back button on grouping members page
-    Then I click continue on start shopping page
-    Then I click on Sign Out in the Header

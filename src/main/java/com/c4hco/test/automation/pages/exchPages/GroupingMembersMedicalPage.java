@@ -6,21 +6,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
+
 public class GroupingMembersMedicalPage {
-    @FindBy(xpath = "//*[@class=\"th-title\"]")
-    WebElement medicalGroup1;
-    @FindBy(xpath = "//*[@class=\"header-1 mb-3\"]")
+    @FindBy(css = ".container .header-1")
     WebElement medicalEnrollmentGroupPageTitle;
-    @FindBy(xpath = "//*[@class=\"col-9 body-text-1\"]")
-    WebElement groupingPageText;
-    @FindBy(xpath = "//*[@class=\"imp-message body-text-1\"]")
-    WebElement rememberText;
-    @FindBy(id="SHP-MedicalGroupingMembers-EditMyEnrollmentGroups")
+    @FindBy(css = ".container .body-text-1")
+    List<WebElement> groupingPageText;
+    @FindBy(css = ".th-title")
+    WebElement medicalGroup1;
+    @FindBy(css = ".mb-2 .link-text-1")
     WebElement editMyEnrollmentGroupsButton;
-    @FindBy(xpath = "//div/button[@id='SHP-MedicalGroupingMembers-GoBack']")
-    WebElement goBackButton;
-    @FindBy(id= "SHP-MedicalGroupingMembers-SaveAndExit")
-    WebElement saveAndExitButton;
+    @FindBy(css = ".row .btn-secondary")
+    List<WebElement> backAndSaveAndExitButtons;
     @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
     WebElement continueButton;
     @FindBy(id = "globe-image")
@@ -31,18 +30,15 @@ public class GroupingMembersMedicalPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
     SoftAssert softAssert = new SoftAssert();
     public void clickContinue(){
         continueButton.click();
     }
 
     public void clickGoBackButtonOnGroupingMembersMedicalPage(){
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(goBackButton, 30));
-        basicActions.waitForElementToBeClickable(goBackButton,10);
-        goBackButton.click();
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(backAndSaveAndExitButtons.get(1), 30));
+        basicActions.waitForElementToBeClickable(backAndSaveAndExitButtons.get(1),10);
+        backAndSaveAndExitButtons.get(1).click();
     }
     public void clickOnEditMedicalGroupinglink(){
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
@@ -52,12 +48,12 @@ public class GroupingMembersMedicalPage {
     //--------------------------validations------------------------
     public void verifyMedicalGroupingPage(){
         softAssert.assertEquals(medicalEnrollmentGroupPageTitle, "Medical Enrollment Groups");
-        softAssert.assertEquals(groupingPageText,"It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
-        softAssert.assertEquals(rememberText,"Remember: Costs within a group count towards each group’s deductible and out of pocket maximum.");
+        softAssert.assertEquals(groupingPageText.get(0),"It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
+        softAssert.assertEquals(groupingPageText.get(1),"Remember: Costs within a group count towards each group’s deductible and out of pocket maximum.");
         softAssert.assertEquals(medicalGroup1,"Medical Group # 1");
         softAssert.assertEquals(editMyEnrollmentGroupsButton,"Edit my enrollment groups");
-        softAssert.assertEquals(goBackButton,"Go Back");
-        softAssert.assertEquals(saveAndExitButton,"Save and Exit");
+        softAssert.assertEquals(backAndSaveAndExitButtons.get(0),"Go Back");
+        softAssert.assertEquals(backAndSaveAndExitButtons.get(1),"Save and Exit");
         softAssert.assertEquals(continueButton,"Continue");
         softAssert.assertTrue(glodeImageDropdown.isEnabled());
     }

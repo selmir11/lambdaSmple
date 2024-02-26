@@ -19,43 +19,51 @@ public class StartShoppingPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
+    @FindBy(css = "button#SHP-StartShop-Continue")
     WebElement btnContinue;
 
-    @FindBy(xpath = "//*[@class='button-text-selected']")
-   List<WebElement> btnNo;
+    @FindBy(css = ".container .radio-button")
+    List<WebElement> btnNoAndYes;
 
-    @FindBy(xpath = "//*[@class='button-text-unselected']")
-    List<WebElement> btnYes;
-
-    @FindBy(xpath = "//*[text()='Save and Exit']")
+     @FindBy(css = ".col-sm-9 .btn-secondary")
     WebElement saveAndExitButton;
 
-    @FindBy(xpath = "//*[@class='header-1 center']")
+    @FindBy(css = ".container .header-1")
     WebElement headerText;
-    @FindBy(xpath = "//*[@class='body-text-1 center']")
+    @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
-    public void iSelectTobaccoUsage(String option) {
-        switch (option) {
-            case "Yes":
-                basicActions.waitForElementToBeClickable(btnYes.get(1),10);
-                btnYes.get(1).click();
-                break;
-            case "No":
-                basicActions.waitForElementToBeClickable(btnNo.get(1),10);
-                btnNo.get(1).click();
-                break;
+    public void clickYesOrNoOption(int initialValue){
+        basicActions.waitForElementToBeClickable(btnNoAndYes.get(initialValue), 10);
+        for (int i = initialValue; i < btnNoAndYes.size(); i += 2) {
+            btnNoAndYes.get(i).click();
         }
     }
+//    public void iSelectTobaccoUsage(String option) {
+//        switch (option) {
+//            case "Yes":
+//                for (int i = 0; i < btnNoAndYes.size(); i += 2) {
+//                    basicActions.waitForElementToBeClickable(btnNoAndYes.get(i), 10);
+//                    btnNoAndYes.get(i).click();
+//                }
+//                break;
+//            case "No":
+//                for (int i = 1; i < btnNoAndYes.size(); i += 2) {
+//                    basicActions.waitForElementToBeClickable(btnNoAndYes.get(i), 10);
+//                    btnNoAndYes.get(i).click();
+//                }
+//                break;
+//        }
+//    }
     public void clickBtnSaveNExit(){
         saveAndExitButton.click();
     }
     public void clickContinue(){
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 20));
-        basicActions.waitForElementToBeClickable(btnContinue,10);
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
+        basicActions.waitForElementToBeClickable(btnContinue,20);
         btnContinue.click();
     }
+
 
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){ 
@@ -63,10 +71,11 @@ public class StartShoppingPage {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
         softAssert.assertEquals(bodyText.get(1), "First, we need to ask you about tobacco usage.");
-        softAssert.assertEquals(btnNo.get(1), "No");
-        softAssert.assertEquals(btnYes.get(1), "Yes");
+        softAssert.assertEquals(bodyText.get(2),"Within the last 6 months, has any member of your household used tobacco products regularly");
+        softAssert.assertEquals(btnNoAndYes.get(1), "No");
+        softAssert.assertEquals(btnNoAndYes.get(2), "Yes");
         softAssert.assertEquals(saveAndExitButton.getText(), "Save and Exit");
-        softAssert.assertEquals(btnContinue.getText(), "Continue");
+        softAssert.assertEquals(btnContinue, "Continue");
         softAssert.assertEquals(bodyText.get(3), "Next, you'll set up your shopping groups.");
         softAssert.assertEquals(bodyText.get(4), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
