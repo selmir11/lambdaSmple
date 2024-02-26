@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.BeforeYouBeginPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class BeforeYouBeginSteps {
@@ -13,4 +14,9 @@ public class BeforeYouBeginSteps {
     beforeYouBeginPage.clickContinueWithApplicationButton();
 
 }
+
+    @And("I validate the verbiage on the Before you begin page in {string}")
+    public void iValidateTheVerbiageOnTheBeforeYouBeginPageIn(String language) {
+        beforeYouBeginPage.validateTheVerbiageOnBeforeYouBeginPage(language);
+    }
 }
