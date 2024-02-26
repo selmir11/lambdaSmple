@@ -83,7 +83,6 @@ public class BasicSteps {
                 break;
             default:
                 System.out.println("undefined page ");
-
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
