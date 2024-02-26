@@ -70,4 +70,3 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on edit enrollment groups link
     And I click Cancel button on Edit Grouping Members Medical page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I click on go back button on grouping members page

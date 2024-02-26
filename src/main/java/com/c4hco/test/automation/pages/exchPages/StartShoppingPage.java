@@ -33,32 +33,10 @@ public class StartShoppingPage {
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
-    public void clickYesOrNoOption(int initialValue){
-        basicActions.waitForElementToBeClickable(btnNoAndYes.get(initialValue), 10);
-        for (int i = initialValue; i < btnNoAndYes.size(); i += 2) {
-            btnNoAndYes.get(i).click();
-        }
-    }
-//    public void iSelectTobaccoUsage(String option) {
-//        switch (option) {
-//            case "Yes":
-//                for (int i = 0; i < btnNoAndYes.size(); i += 2) {
-//                    basicActions.waitForElementToBeClickable(btnNoAndYes.get(i), 10);
-//                    btnNoAndYes.get(i).click();
-//                }
-//                break;
-//            case "No":
-//                for (int i = 1; i < btnNoAndYes.size(); i += 2) {
-//                    basicActions.waitForElementToBeClickable(btnNoAndYes.get(i), 10);
-//                    btnNoAndYes.get(i).click();
-//                }
-//                break;
-//        }
-//    }
     public void clickBtnSaveNExit(){
         saveAndExitButton.click();
     }
-    public void clickContinue(){
+    public void iclickContinue(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         basicActions.waitForElementToBeClickable(btnContinue,20);
         btnContinue.click();
