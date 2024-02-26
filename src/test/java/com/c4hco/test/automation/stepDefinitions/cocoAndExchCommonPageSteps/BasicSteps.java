@@ -69,6 +69,12 @@ public class BasicSteps {
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
+            case "CoCo Additional information for yourself":
+                pageUrl = "coco/member-details-portal/member-additional-information";
+                break;
+            case "CoCo Family Overview":
+                pageUrl = "coco/WelcomePortal/familyOverview";
+                break;
             case "Before you begin":
                 pageUrl = "nes/beforeYouBegin";
                 break;
@@ -77,7 +83,6 @@ public class BasicSteps {
                 break;
             default:
                 System.out.println("undefined page ");
-
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
