@@ -1,13 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Utils;
-import io.cucumber.java.en.*;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import org.junit.Assert;
 
 public class BasicSteps {
-    BasicActions basicActions = new BasicActions();
-    private Utils utils = new Utils();
+    BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page){
@@ -58,10 +57,35 @@ public class BasicSteps {
             case "My Documents":
                 pageUrl = "MyDocuments/home";
                 break;
+            case "Let us guide you":
+                pageUrl = "nes/completedPeakApplication";
+                break;
+            case "Enter Case ID":
+                pageUrl = "nes/enterCaseId";
+                break;
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
-
+            case "Grouping Members Medical":
+                pageUrl = "groupingMembersMedical";
+				break;
+            case "Spanish":
+                pageUrl = "lang=es";
+                break;
+            case "CoCo Additional information for yourself":
+                pageUrl = "coco/member-details-portal/member-additional-information";
+                break;
+            case "CoCo Family Overview":
+                pageUrl = "coco/WelcomePortal/familyOverview";
+                break;
+            case "Before you begin":
+                pageUrl = "nes/beforeYouBegin";
+                break;
+            case "FindExpertHelpCoco":
+                pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
+                break;
+            default:
+                System.out.println("undefined page ");
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

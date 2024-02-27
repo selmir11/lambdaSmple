@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,12 +11,9 @@ import org.openqa.selenium.support.ui.Select;
 public class TellUsAboutAdditionalMemberPage {
 
     private BasicActions basicActions;
-    public TellUsAboutAdditionalMemberPage() {
-        this.basicActions = BasicActions.getInstance();
+    public TellUsAboutAdditionalMemberPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(id = "firstName")
@@ -35,7 +33,10 @@ public class TellUsAboutAdditionalMemberPage {
 
     @FindBy(id = "genderFemale")
     WebElement rdobtngenderFemale;
-
+    @FindBy(id = "isPregnantFalse")
+    WebElement IsPersonPregnentNo;
+    @FindBy(id = "isPregnantTrue")
+    WebElement IsPersonPregnentYes;
     @FindBy(id = "genderMale")
     WebElement rdobtngenderMale;
 
@@ -81,7 +82,16 @@ public class TellUsAboutAdditionalMemberPage {
                 break;
         }
     }
-
+    public void selectIsPersonPregnant(String pregnant){
+        switch(pregnant){
+            case "Yes":
+                IsPersonPregnentYes.click();
+                break;
+            case "No":
+                IsPersonPregnentNo.click();
+                break;
+        }
+    }
     public void setSelectRelationship(String Relation){
         basicActions.waitForElementToBePresent(selectRelationship, 15);
 

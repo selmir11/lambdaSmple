@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,13 +22,13 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy (id = "ELIG-MemberDetails-SaveAndContinue")
     WebElement saveAndContinueButton;
 
-
-
+    @FindBy (id = "ELIG-MemberDetails-GoBack")
+    WebElement goBackButton;
 
     private BasicActions basicActions;
 
-    public TellUsAboutYourselfCoCoPage() {
-        this.basicActions = BasicActions.getInstance();
+    public TellUsAboutYourselfCoCoPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -70,6 +71,11 @@ public class TellUsAboutYourselfCoCoPage {
                 applyButton.get(1).click();
                 break;
         }
+    }
+
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBeClickable(goBackButton, 30);
+        goBackButton.click();
     }
 
 }

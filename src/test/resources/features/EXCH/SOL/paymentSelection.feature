@@ -5,6 +5,7 @@ Feature: Payment Selection page tests
     And I validate I am on the "Login" page
 
   @SLER-30-WIP @paymentPage
+
   Scenario: Validate text on Payment by check page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -12,8 +13,8 @@ Feature: Payment Selection page tests
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for 2024
-    Then I select No Thanks option from guide you section
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue

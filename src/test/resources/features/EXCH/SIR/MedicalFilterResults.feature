@@ -5,7 +5,7 @@ Feature: Medical Plan Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-36-WIP @SelectVerifyAnthemMedicalResults
+  @SLER-36 @SelectVerifyAnthemMedicalResults
   Scenario: SelectAnthem
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -14,7 +14,7 @@ Feature: Medical Plan Verification test
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -53,10 +53,10 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
     And I select "Anthem" to filter for desired plan provider
+    And I validate the plan option 1 has text "Anthem Bronze Pathway Essentials HMO 9450 $0 Select Drugs"
 
 
-
-  @SLER-44-WIP @SelectVerifyCignaMedicalResults
+  @SLER-44 @SelectVerifyCignaMedicalResults
   Scenario: SelectCigna
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -65,7 +65,7 @@ Feature: Medical Plan Verification test
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-    Then I select No Thanks option from guide you section
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
@@ -104,3 +104,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
     And I select "Cigna" to filter for desired plan provider
+    And I validate the plan option 1 has text "Cigna Connect Colorado Option Bronze"
+
+
+

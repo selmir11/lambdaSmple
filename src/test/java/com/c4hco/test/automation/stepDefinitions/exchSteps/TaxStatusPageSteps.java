@@ -1,11 +1,12 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.TaxStatusPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
 
 public class TaxStatusPageSteps {
-    TaxStatusPage taxStatusPage = new TaxStatusPage();
+    TaxStatusPage taxStatusPage = new TaxStatusPage(WebDriverManager.getDriver());
 
     @And("I select the option {string} to claim as dependent")
     public void selectDependantClaim(String claimAsDependentOption){

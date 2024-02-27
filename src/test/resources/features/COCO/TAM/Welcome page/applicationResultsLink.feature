@@ -4,29 +4,42 @@ Feature: Tests related to the Application Results link
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-    @SLCR-25-WIP
+  @SLCR-25-WIP
   Scenario: Validate Action links navigation and text with no applications in English
-      When I click create a new account on login page
-      Then I validate I am on the "Prescreen" page
-      And I click create my account from pre-screen page
-      Then I validate I am on the "Create Account" page
-      And I enter general mandatory data for "coco" account creation
-      Then I validate I am on the "Login" page
-      And  I enter valid credentials to login
-      Then I validate I am on the "CoCo Welcome" page
-      And I click on "Application Results" link on welcome page
-      Then I validate I am on the "Application Results" page
-      And I click on Go back to Welcome page Button on Application Results page CoCo
-      Then I validate I am on the "CoCo Welcome" page
-      And I click on "My Documents and Letters" link on welcome page
-      Then I validate I am on the "My Documents" page
-      And I click on Apply for Coverage in the Header
-      Then I validate I am on the "CoCo Welcome" page
-      Then I validate "Application Results" link text on welcome page
-      Then I validate "My Documents and Letters" link text on welcome page
+    When I click create a new account on login page
+    Then I validate I am on the "Prescreen" page
+    And I click create my account from pre-screen page
+    Then I validate I am on the "Create Account" page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "Application Results" link on welcome page
+    Then I validate I am on the "Application Results" page
+    And I click on Go back to Welcome page Button on Application Results page CoCo
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Documents and Letters" link on welcome page
+    Then I validate I am on the "My Documents" page
+    And I click on Apply for Coverage in the Header
+    Then I validate I am on the "CoCo Welcome" page
+    Then I validate "Application Results" link text on welcome page
+    Then I validate "My Documents and Letters" link text on welcome page
       # Enroll into a plan
-      And I apply for the current year in CoCo
-      Then I validate I am on the "Find Expert Help" page
-      And I click Continue on my own button from Manage who helps you page
-      And I click Primary EditUpdate on the Family Overview page
-      And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    And I click Primary EditUpdate on the Family Overview page
+    And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+    And I select "Yes" employment option
+    And I enter "30,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
