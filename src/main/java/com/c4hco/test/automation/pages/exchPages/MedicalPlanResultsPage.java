@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.junit.Assert;
+import com.c4hco.test.automation.utils.SharedData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +17,9 @@ public class MedicalPlanResultsPage {
     }
 
     @FindBy(id ="PlanResults-SelectThisPlan_0")
-    WebElement selectFirstPlan;
+    WebElement selectThisPlanFirstButton;
+    @FindBy(id= "PlanResults-ProviderPlan_0")
+    WebElement firstMedicalPlanName;
 
     @FindBy(id ="SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
@@ -31,9 +33,16 @@ public class MedicalPlanResultsPage {
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
+    public void iGetFirstPlaneName(){
+        basicActions.waitForElementToBePresent(firstMedicalPlanName,10);
+        SharedData.setfirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
+    }
     public void SelectFirstMedicalPlan(){
-        basicActions.waitForElementToBePresent(selectFirstPlan,10);
-        selectFirstPlan.click();
+        iGetFirstPlaneName();
+        basicActions.waitForElementToBePresent(selectThisPlanFirstButton,10);
+        selectThisPlanFirstButton.click();
+    }
+    public void iclickContinue(){
         btnContinue.click();
     }
 
@@ -43,7 +52,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void validatePlanResults(int index, String planText){
-        basicActions.waitForElementToBePresent(selectFirstPlan,10);
+        basicActions.waitForElementToBePresent(selectThisPlanFirstButton,10);
         index = index-1; //Index of the page starts at 0, so we take the visible order and subtract 1
         String indexString = String.valueOf(index); //turns the int index into a string value.
         String planID = "PlanResults-ProviderPlan_"+indexString; //sets the ID String using the index

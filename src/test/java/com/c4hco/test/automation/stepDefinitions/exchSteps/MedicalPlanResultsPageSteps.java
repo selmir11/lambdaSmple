@@ -8,9 +8,13 @@ public class MedicalPlanResultsPageSteps {
 
     MedicalPlanResultsPage medPlanResultsPage = new MedicalPlanResultsPage(WebDriverManager.getDriver());
 
-    @And("I select the first medical plan and continue")
+    @And("I select the first medical plan")
     public void selectFirstMedicalPlanAndContinue() {
         medPlanResultsPage.SelectFirstMedicalPlan();
+    }
+    @Then("I click continue on medical plan results page")
+    public void selectContinueOnMedicalPlanResultsPage(){
+        medPlanResultsPage.iclickContinue();
     }
 
     @And("I select the Insurance Company dropdown")
