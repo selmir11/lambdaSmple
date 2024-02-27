@@ -27,7 +27,7 @@ public class MedicalPlanResultsPage {
     WebElement btnContinue;
 
     @FindBy(id ="SHP-PlanResults-ComparePlans")
-    WebElement selectCompare;
+    WebElement clickCompare;
 
     @FindBy(xpath ="//a[contains(@id,'PlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
@@ -60,8 +60,9 @@ public class MedicalPlanResultsPage {
         btnContinue.click();
     }
 
-    public void selectCompare() {
-        basicActions.waitForElementToBePresent(selectCompare, 10);
+    public void clickCompare() {
+        basicActions.waitForElementToBePresent(clickCompare, 10);
+        clickCompare.click();
     }
 
     public void clickFirstTwoCompareButtons() {

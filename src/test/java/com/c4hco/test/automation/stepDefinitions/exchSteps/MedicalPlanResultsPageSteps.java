@@ -18,8 +18,8 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @Then("I click on the compare button")
-    public void selectCompare() {
-        medPlanResultsPage.selectCompare();}
+    public void btnCompare() {
+        medPlanResultsPage.clickCompare();}
 
     @Then("I click on the compare links on the first 2 medical plans")
     public void clickFirstTwoCompareButtons() {
