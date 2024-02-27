@@ -17,6 +17,12 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.iclickContinue();
     }
 
+
+    @Then("I click on the compare links on the first 2 medical plans")
+    public void clickFirstTwoCompareButtons() {
+        medPlanResultsPage.clickFirstTwoCompareButtons();
+    }
+
     @And("I select the Insurance Company dropdown")
     public void clickInsuranceProvider() {
         medPlanResultsPage.clickInsuranceCompanyDropdown();
