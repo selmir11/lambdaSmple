@@ -7,69 +7,55 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class StartShoppingPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
+
 
     public StartShoppingPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(xpath = "//*[text() = 'Continue']")
+    @FindBy(css = "button#SHP-StartShop-Continue")
     WebElement btnContinue;
 
-    @FindBy(xpath = "//*[text() = 'No']")
-    WebElement btnNo;
+    @FindBy(css = ".container .radio-button")
+    List<WebElement> btnNoAndYes;
 
-    @FindBy(xpath = "//*[text() = 'Yes ']")
-    WebElement btnYes;
-
-    @FindBy(xpath = "//*[text()='Save and Exit']")
+    @FindBy(id = "SHP-StartShop-SaveAndExit")
     WebElement saveAndExitButton;
 
-    @FindBy(xpath = "//*[@class='header-1 center']")
+    @FindBy(css = ".container .header-1")
     WebElement headerText;
+    @FindBy(css = ".container .body-text-1")
+    List<WebElement> bodyText;
 
-    @FindBy(xpath = "//div[normalize-space()='First, we need to ask you about tobacco usage.']")
-    WebElement secondLineText;
-
-    @FindBy(xpath = "//div[contains(text(),\"Next, you'll review your plan options and pick an \")]")
-    WebElement nextYouWillReviewText;
-
-    @FindBy(xpath = "//*[contains(text(),\"Not ready to shop?\")]")
-    WebElement notReady;
-
-    public void iSelectTobaccoUsage(String option) {
-        switch (option) {
-            case "Yes":
-                basicActions.waitForElementToBeClickable(btnYes,10);
-                btnYes.click();
-                break;
-            case "No":
-                basicActions.waitForElementToBeClickable(btnNo,10);
-                btnNo.click();
-                break;
-        }
-    }
     public void clickBtnSaveNExit(){
         saveAndExitButton.click();
     }
-    public void clickContinue(){
+    public void iclickContinue(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
+        basicActions.waitForElementToBeClickable(btnContinue,20);
         btnContinue.click();
     }
+
 
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){ 
         basicActions.waitForElementToBePresent(headerText,10);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
-        softAssert.assertEquals(secondLineText.getText(), "First, we need to ask you about tobacco usage.");
-        softAssert.assertEquals(btnNo.getText(), "No");
-        softAssert.assertEquals(btnYes.getText(), "Yes");
+        softAssert.assertEquals(bodyText.get(1), "First, we need to ask you about tobacco usage.");
+        softAssert.assertEquals(bodyText.get(2),"Within the last 6 months, has any member of your household used tobacco products regularly");
+        softAssert.assertEquals(btnNoAndYes.get(1), "No");
+        softAssert.assertEquals(btnNoAndYes.get(2), "Yes");
         softAssert.assertEquals(saveAndExitButton.getText(), "Save and Exit");
-        softAssert.assertEquals(btnContinue.getText(), "Continue");
-        softAssert.assertEquals(nextYouWillReviewText.getText(), "Next, you'll review your plan options and pick an insurance plan that fits your needs.");
-        softAssert.assertEquals(notReady.getText(), "Not ready to shop? Now's a good time to save your progress.");
+        softAssert.assertEquals(btnContinue, "Continue");
+        softAssert.assertEquals(bodyText.get(3), "Next, you'll set up your shopping groups.");
+        softAssert.assertEquals(bodyText.get(4), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
     }
 }

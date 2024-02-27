@@ -37,3 +37,9 @@ Feature: Tests related to the Application Results link
     And I select "I prefer not to answer" ethnicity option
     And I select "I prefer not to answer" race option
     And I click continue on the Ethnicity and race page
+    And I select "Yes" employment option
+    And I enter "30,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
