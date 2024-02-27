@@ -18,6 +18,7 @@ public class PlanSummaryMedicalDentalPage {
     WebElement continueBtnOnPlanSummary;
 
     public void continuePlanSummaryPage(){
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary,10);
         basicActions.waitForElementToBeClickable(continueBtnOnPlanSummary,10);
         continueBtnOnPlanSummary.click();
     }

@@ -7,6 +7,14 @@ public class SharedData {
     private static String initials;
     private static String phNumber;
     private static String password;
+    private static String firstPlanNameOnMedicalResultsPage;
+    public static String getfirstPlanNameOnMedicalResultsPage() {
+        return firstPlanNameOnMedicalResultsPage;
+    }
+
+    public static void setfirstPlanNameOnMedicalResultsPage(String firstPlanNameOnMedicalResultsPage) {
+        SharedData.firstPlanNameOnMedicalResultsPage = firstPlanNameOnMedicalResultsPage;
+    }
 
     public static String getFirstName(){ return fName; }
 
