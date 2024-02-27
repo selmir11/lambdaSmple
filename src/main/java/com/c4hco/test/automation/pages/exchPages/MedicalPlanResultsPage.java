@@ -25,6 +25,8 @@ public class MedicalPlanResultsPage {
     @FindBy(id ="SHP-PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
+    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    WebElement filterResetButton;
 
     public void selectfromProviderList(String Selecting){
         String providerPath = "//span[text()='"+Selecting+"']";
@@ -42,6 +44,10 @@ public class MedicalPlanResultsPage {
         insuranceCompanyDropdown.click();
     }
 
+    public void clickFilterReset(){
+        basicActions.waitForElementToBeClickable(filterResetButton, 10);
+        filterResetButton.click();
+    }
     public void validatePlanResults(int index, String planText){
         basicActions.waitForElementToBePresent(selectFirstPlan,10);
         index = index-1; //Index of the page starts at 0, so we take the visible order and subtract 1

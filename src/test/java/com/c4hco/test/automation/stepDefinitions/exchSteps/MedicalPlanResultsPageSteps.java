@@ -14,9 +14,10 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @And("I select the Insurance Company dropdown")
-    public void clickInsuranceProvider() {
-        medPlanResultsPage.clickInsuranceCompanyDropdown();
-    }
+    public void clickInsuranceProvider() { medPlanResultsPage.clickInsuranceCompanyDropdown(); }
+
+    @Then("I select the reset filter button")
+    public void clickFilterReset(){ medPlanResultsPage.clickFilterReset(); }
 
     @And("I select {string} to filter for desired plan provider")
     public void selectfromProviderList(String Selecting) {
