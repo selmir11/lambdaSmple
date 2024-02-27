@@ -79,25 +79,28 @@ public class EmploymentInfoPage {
     @FindBy(css = ".drawer-controls .btn")
     WebElement helpDrawerButton;
 
-    @FindBy(css = "[class='drawer-heading ng-tns-c3-1'] div")
+    @FindBy(css = ".drawer-heading .body-text-1")
     WebElement helpDrawerHeaderHelp;
 
-    @FindBy(css = "[class='drawer-heading ng-tns-c3-1'] h3")
+    @FindBy(css = ".drawer-heading .drawer-title")
     WebElement helpDrawerHeaderIncome;
 
-    @FindBy(css = "[class='drawer-text-content body-text-1 ng-tns-c3-1'] div")
-    List<WebElement> helpDrawerBodyHeaders;
+    @FindBy(css = ".drawer .header-1")
+    List<WebElement> helpDrawerMainHeaders;
 
-    @FindBy(css = "[class='drawer-text-content body-text-1 ng-tns-c3-1'] p")
+    @FindBy(css = ".drawer .header-2")
+    List<WebElement> helpDrawerOverviewHeaders;
+
+    @FindBy(css = ".drawer-text-content p")
     List<WebElement> helpDrawerBodyParagraphs;
 
-    @FindBy(css = "[class='drawer-text-content body-text-1 ng-tns-c3-1'] li")
+    @FindBy(css = ".drawer-text-content li")
     List<WebElement> helpDrawerBodyPoints;
 
-    @FindBy(css = "[class='ng-tns-c3-1'] h3")
+    @FindBy(css = ".drawer-footer h3")
     WebElement helpDrawerFooter;
 
-    @FindBy(css = "[class='ng-tns-c3-1'] a")
+    @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
     public void isUserEmployed(String employmentOption) {
@@ -213,13 +216,10 @@ public class EmploymentInfoPage {
             case "English":
                 basicActions.waitForElementListToBePresent(languageOption, 10);
                 languageOption.get(0).click();
-                basicActions.waitForElementListToBePresent(helpDrawerBodyHeaders, 10);
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(0).getText(), "Income");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(1).getText(), "Overview");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(2).getText(), "Employment");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(3).getText(), "Overview");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(4).getText(), "Employment");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(5).getText(), "Overview");
+                basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText()+" "+helpDrawerOverviewHeaders.get(2).getText(), "Employment Overview");
                 basicActions.waitForElementListToBePresent(helpDrawerBodyParagraphs, 10);
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know about the company you work for.");
@@ -246,13 +246,10 @@ public class EmploymentInfoPage {
             case "Spanish":
                 basicActions.waitForElementListToBePresent(languageOption, 10);
                 languageOption.get(1).click();
-                basicActions.waitForElementListToBePresent(helpDrawerBodyHeaders, 10);
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(0).getText(), "Ingreso");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(1).getText(), "Resumen");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(2).getText(), "Empleo");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(3).getText(), "Resumen");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(4).getText(), "Empleo");
-                softAssert.assertEquals(helpDrawerBodyHeaders.get(5).getText(), "Resumen");
+                basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText()+" "+helpDrawerOverviewHeaders.get(2).getText(), "Empleo Resumen");
                 basicActions.waitForElementListToBePresent(helpDrawerBodyParagraphs, 10);
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Necesitamos saber cu\u00E1nto ganan usted y los miembros de su familia en su(s) trabajo(s).");
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
