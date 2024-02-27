@@ -13,6 +13,7 @@ import java.util.List;
 
 public class EmploymentInfoPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public EmploymentInfoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -183,7 +184,6 @@ public class EmploymentInfoPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpHeaderVerbiage(String language) {
-        SoftAssert softAssert = new SoftAssert();
         basicActions.waitForElementToBePresent(globeIcon, 10);
         globeIcon.click();
         switch (language) {
@@ -208,11 +208,23 @@ public class EmploymentInfoPage {
         }
     }
 
-    public void validateGeneralHelpBodyVerbiageEng() {
-        SoftAssert softAssert = new SoftAssert();
+    public void validateGeneralHelpBodyVerbiage(String language){
         basicActions.waitForElementToBePresent(globeIcon, 10);
         globeIcon.click();
-                basicActions.waitForElementListToBePresent(languageOption, 10);
+        basicActions.waitForElementListToBePresent(languageOption, 10);
+        switch(language){
+            case "English":
+                validateGeneralHelpBodyVerbiageEng();
+                break;
+            case "Spanish":
+                validateGeneralHelpBodyVerbiageSp();
+                default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+        }
+    }
+
+    public void validateGeneralHelpBodyVerbiageEng() {
                 languageOption.get(0).click();
                 basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
                 softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
@@ -243,8 +255,6 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        SoftAssert softAssert = new SoftAssert();
-        basicActions.waitForElementListToBePresent(languageOption, 10);
         languageOption.get(1).click();
         basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
