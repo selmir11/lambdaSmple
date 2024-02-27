@@ -36,6 +36,9 @@ public class BasicSteps {
             case "Financial Help":
                 pageUrl = "IncomePortal/financialHelp";
                 break;
+            case "Additional income":
+                pageUrl = "IncomePortal/additionalIncome";
+                break;
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
