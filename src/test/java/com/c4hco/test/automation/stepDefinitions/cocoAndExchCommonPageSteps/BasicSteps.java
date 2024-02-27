@@ -84,6 +84,9 @@ public class BasicSteps {
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
+            case "CoCo Deductions":
+                pageUrl = "coco/income-portal/deductions";
+                break;
             default:
                 System.out.println("undefined page ");
         }
