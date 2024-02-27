@@ -45,11 +45,6 @@ public class MedicalPlanResultsPage {
         btnContinue.click();
     }
 
-    public void SelectCompare() {
-        basicActions.waitForElementToBePresent(selectCompare, 10);
-        selectCompare.click();
-    }
-
     public void clickFirstTwoCompareButtons() {
         basicActions.waitForElementListToBePresent(comparePlanLinks, 10);
         comparePlanLinks.get(0).click();
