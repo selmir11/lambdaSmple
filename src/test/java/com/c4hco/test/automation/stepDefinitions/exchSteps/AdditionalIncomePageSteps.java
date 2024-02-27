@@ -19,4 +19,14 @@ public class AdditionalIncomePageSteps {
 
     @Then("I click continue on the Additional Income page")
     public void clickContinue(){additionalIncomePage.clickContinue();}
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @Then("I verify {string} text on the Additional Income page with errors")
+    public void verifyFirstTimeText(String Language)  { additionalIncomePage.verifyTextOnAdditionalIncomeWithErrors(Language); }
+
+
+
+
 }
