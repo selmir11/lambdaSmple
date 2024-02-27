@@ -14,17 +14,15 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @And("I select the Insurance Company dropdown")
-    public void clickInsuranceProvider() { medPlanResultsPage.clickInsuranceCompanyDropdown(); }
-
-    @Then("I select the reset filter button")
-    public void clickFilterReset(){ medPlanResultsPage.clickFilterReset(); }
+    public void clickInsuranceCompanyDropdown() {
+        medPlanResultsPage.clickInsuranceCompanyDropdown(); }
 
     @And("I select {string} to filter for desired plan provider")
-    public void selectfromProviderList(String Selecting) {
-        medPlanResultsPage.selectfromProviderList(Selecting);
+    public void selectfromProviderList(String carrierOption) {
+        medPlanResultsPage.selectfromProviderList(carrierOption);
     }
 
-    @And("I validate the plan option {int} has text {string}")
+       @And("I validate the plan option {int} has text {string}")
     public void validatePlanText(int Index, String planText){
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
