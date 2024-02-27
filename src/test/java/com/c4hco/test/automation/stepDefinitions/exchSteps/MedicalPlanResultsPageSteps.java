@@ -31,8 +31,17 @@ public class MedicalPlanResultsPageSteps {
     public void selectfromProviderList(String carrierOption) {
         medPlanResultsPage.selectfromProviderList(carrierOption);
     }
+    @And("I select the Metal Tier dropdown")
+    public void clickMetalTierDropdown(){
+        medPlanResultsPage.clickMetalTierDropdown();
+    }
 
-       @And("I validate the plan option {int} has text {string}")
+    @And("I select {string} to filter for a Metal Tier plan")
+    public void selectfromMetalTierList(String metalOption) {
+        medPlanResultsPage.selectfromMetalTierList(metalOption);
+    }
+
+    @And("I validate the plan option {int} has text {string}")
     public void validatePlanText(int Index, String planText){
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
