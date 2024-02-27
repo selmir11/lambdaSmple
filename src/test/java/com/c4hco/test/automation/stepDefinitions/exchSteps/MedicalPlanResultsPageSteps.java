@@ -13,6 +13,9 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
 
+    @Then("I click on the compare button")
+    public void selectCompare() {
+        medPlanResultsPage.selectCompare();}
 
     @Then("I click on the compare links on the first 2 medical plans")
     public void clickFirstTwoCompareButtons() {
