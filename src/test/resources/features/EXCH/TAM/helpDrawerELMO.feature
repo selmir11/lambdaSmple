@@ -6,7 +6,7 @@ Feature: Tests related to the help drawer on ELMO pages
     And I validate I am on the "Login" page
 
   @SLER-42-WIP
-  Scenario: Open and display help drawer on the ELMO Income page (non self-employment view) when the primary help text icon is selected
+  Scenario: Validate help drawer text on the ELMO Employment Income Details page (non self-employment view)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -41,5 +41,15 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I select the option "Yes" to employment
-    And I select the option "Yes" to self employment
+    And I select the option "No" to self employment
     And I maximize the help drawer on the Employment Info Page
+    Then I validate help drawer header verbiage in "English"
+    Then I validate general help drawer body verbiage in "English"
+    Then I validate help drawer footer verbiage in "English"
+    And I click Contact Us link in help drawer footer
+    And I validate I am on the "We Can Help" page and close tab
+    Then I validate help drawer header verbiage in "Spanish"
+    Then I validate general help drawer body verbiage in "Spanish"
+    Then I validate help drawer footer verbiage in "Spanish"
+    And I click Contact Us link in help drawer footer
+    And I validate I am on the "Podemos ayudar" page and close tab

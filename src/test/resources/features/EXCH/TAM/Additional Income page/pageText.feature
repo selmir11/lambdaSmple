@@ -1,22 +1,22 @@
-Feature: Payment Selection page tests
+Feature: Page Text-Additional Income Page
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-30 @paymentPage
-  Scenario: Validate text on Payment by check page
+  @SLER-52 @PageTextAdditionalIncomePage
+  Scenario: I can review and update the income information in English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for the current year
+    Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -38,22 +38,13 @@ Feature: Payment Selection page tests
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
-    And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    Then I click on view results and shop
-    And I click continue on application results page
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on start shopping page
-    And I select the first medical plan
-    Then I click continue on medical plan results page
-    Then I select first dental plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I Verify the text on payment selection page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I validate I am on the "Additional income" page
+    Then I verify "English" text on the Additional Income page with errors
+    And I change the language from header to "Spanish ELMO"
+    Then I verify "Spanish" text on the Additional Income page with errors
+
     And I click on Sign Out in the Header
+    Then I validate I am on the "Login" page

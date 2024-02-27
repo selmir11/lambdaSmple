@@ -43,3 +43,8 @@ Feature: Tests related to the Application Results link
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
