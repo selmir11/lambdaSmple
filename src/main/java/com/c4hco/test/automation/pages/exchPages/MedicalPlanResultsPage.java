@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.junit.Assert;
+import com.c4hco.test.automation.utils.SharedData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +20,8 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id ="PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
+    @FindBy(id= "PlanResults-ProviderPlan_0")
+    WebElement firstMedicalPlanName;
 
     @FindBy(id ="SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
@@ -39,9 +41,16 @@ public class MedicalPlanResultsPage {
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
+    public void iGetFirstPlaneName(){
+        basicActions.waitForElementToBePresent(firstMedicalPlanName,10);
+        SharedData.setfirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
+    }
     public void SelectFirstMedicalPlan(){
+        iGetFirstPlaneName();
         basicActions.waitForElementToBePresent(selectFirstPlan,10);
         selectFirstPlan.click();
+    }
+    public void iclickContinue(){
         btnContinue.click();
     }
 

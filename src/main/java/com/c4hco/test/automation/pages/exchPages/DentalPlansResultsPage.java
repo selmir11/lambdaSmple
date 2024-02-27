@@ -26,8 +26,9 @@ public class DentalPlansResultsPage {
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
         selectFirstDentalPlanBtn.click();
+    }
+    public void iclickContinueOnDentalResultsPage(){
         continueBtnOnDentalPlanResults.click();
-
     }
 
     public void clickGoBack(){
