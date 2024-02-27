@@ -4,7 +4,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-40-WIP @MedicalGrouping @test
+  @SLER-40-WIP @MedicalGrouping
   Scenario: Validate text on Payment by check page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
