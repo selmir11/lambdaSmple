@@ -18,12 +18,12 @@ public class MedicalPlanResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id ="PlanResults-SelectThisPlan_0")
+    @FindBy(id = "PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
     @FindBy(id= "PlanResults-ProviderPlan_0")
     WebElement firstMedicalPlanName;
 
-    @FindBy(id ="SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
     @FindBy(id ="PlanResults-Compare_0")
@@ -33,11 +33,17 @@ public class MedicalPlanResultsPage {
     List<WebElement> comparePlanLinks;
 
     @FindBy(id ="SHP-PlanResults-InsuranceCompany")
+
     WebElement insuranceCompanyDropdown;
 
+    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    WebElement filterResetButton;
 
-    public void selectfromProviderList(String Selecting){
-        String providerPath = "//span[text()='"+Selecting+"']";
+    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
+    WebElement InsuranceCompanyDropdown;
+
+    public void selectfromProviderList(String Selecting) {
+        String providerPath = "//span[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
@@ -76,3 +82,4 @@ public class MedicalPlanResultsPage {
             expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
         }
     }
+
