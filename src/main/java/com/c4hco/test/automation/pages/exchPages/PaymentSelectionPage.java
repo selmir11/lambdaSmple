@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-
 
 public class PaymentSelectionPage {
     private BasicActions basicActions;
@@ -43,28 +41,26 @@ public class PaymentSelectionPage {
         String[] pnSubstring = pn.split(" ");
         provider = pnSubstring[0];
 
-        switch (pnSubstring[0]) {
+        switch (provider) {
             case "Elevate":
                 provider = "Elevate by Denver Health Medical Plan";
-                basicActions.waitForElementToBePresent(text1,10);
-                softAssert.assertEquals(text1.getText(), "Currently,  "+provider+"  only accepts payment by check or Money Order.");
-                softAssert.assertEquals(text2.getText(), "Please do not send a check until you receive a bill from "+provider+".");
                 break;
             case "KP":
                 provider = "Kaiser Permanente Colorado";
-                basicActions.waitForElementToBePresent(text1,10);
-                softAssert.assertEquals(text1.getText(), "Currently,  "+provider+"  only accepts payment by check or Money Order.");
-                softAssert.assertEquals(text2.getText(), "Please do not send a check until you receive a bill from "+provider+".");
                 break;
     }
-    return pnSubstring[0];
+    return provider;
 }
     public void verifyTextWithCheckPayment(){
         extractProviderName();
+        basicActions.waitForElementToBePresent(text1,10);
+        softAssert.assertEquals(text1.getText(), "Currently, "+provider+" only accepts payment by check or Money Order.");
+        softAssert.assertEquals(text2.getText(), "Please do not send a check until you receive a bill from "+provider+".");
         softAssert.assertEquals(text3.getText(), "You must submit full payment in order for your coverage to begin.");
         softAssert.assertEquals(continueBtnPaymentSelection.getText(),"Continue");
         softAssert.assertTrue(continueBtnPaymentSelection.isEnabled());
         softAssert.assertEquals(backBtn.getText(),"Go Back");
         softAssert.assertTrue(backBtn.isEnabled());
+        softAssert.assertAll();
     }
 }
