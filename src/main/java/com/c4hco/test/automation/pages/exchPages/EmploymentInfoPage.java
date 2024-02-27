@@ -218,6 +218,7 @@ public class EmploymentInfoPage {
                 break;
             case "Spanish":
                 validateGeneralHelpBodyVerbiageSp();
+                break;
                 default:
                 throw new IllegalArgumentException("Invalid option: " + language);
 
@@ -285,7 +286,6 @@ public class EmploymentInfoPage {
     }
 
     public void validateHelpFooterVerbiage(String language) {
-        SoftAssert softAssert = new SoftAssert();
         basicActions.waitForElementToBePresent(globeIcon, 10);
         globeIcon.click();
         switch (language) {
