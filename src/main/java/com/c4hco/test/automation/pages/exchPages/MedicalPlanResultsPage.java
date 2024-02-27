@@ -17,7 +17,7 @@ public class MedicalPlanResultsPage {
     }
 
     @FindBy(id ="PlanResults-SelectThisPlan_0")
-    WebElement selectThisPlanFirstButton;
+    WebElement selectFirstPlan;
     @FindBy(id= "PlanResults-ProviderPlan_0")
     WebElement firstMedicalPlanName;
 
@@ -39,8 +39,8 @@ public class MedicalPlanResultsPage {
     }
     public void SelectFirstMedicalPlan(){
         iGetFirstPlaneName();
-        basicActions.waitForElementToBePresent(selectThisPlanFirstButton,10);
-        selectThisPlanFirstButton.click();
+        basicActions.waitForElementToBePresent(selectFirstPlan,10);
+        selectFirstPlan.click();
     }
     public void iclickContinue(){
         btnContinue.click();
@@ -52,7 +52,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void validatePlanResults(int index, String planText){
-        basicActions.waitForElementToBePresent(selectThisPlanFirstButton,10);
+        basicActions.waitForElementToBePresent(selectFirstPlan,10);
         index = index-1; //Index of the page starts at 0, so we take the visible order and subtract 1
         String indexString = String.valueOf(index); //turns the int index into a string value.
         String planID = "PlanResults-ProviderPlan_"+indexString; //sets the ID String using the index

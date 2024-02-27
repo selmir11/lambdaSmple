@@ -44,14 +44,14 @@ public class GroupingMembersMedicalPage {
     public void verifyMedicalGroupingPageVerbiage(){
         softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText(), "Medical Enrollment Groups");
         softAssert.assertEquals(groupingPageText.get(0).getText(),"It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
-        softAssert.assertEquals(groupingPageText.get(1).getText(),"Remember: Costs within a group count towards each group’s deductible and out of pocket maximum.");
-        //softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
+        softAssert.assertEquals(groupingPageText.get(1).getText(),"Remember: Costs within a group count towards each group’\"s deductible and out of pocket maximum.");
+        softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
         softAssert.assertEquals(editMyEnrollmentGroupsButton,"Edit my enrollment groups");
         softAssert.assertEquals(backAndSaveAndExitButtons.get(0).getText(),"Go Back");
         softAssert.assertEquals(backAndSaveAndExitButtons.get(1).getText(),"Save and Exit");
         softAssert.assertEquals(continueButton.getText(),"Continue");
         softAssert.assertTrue(glodeImageDropdown.isEnabled());
-        //softAssert.assertAll();
+        softAssert.assertAll();
     }
 
 }
