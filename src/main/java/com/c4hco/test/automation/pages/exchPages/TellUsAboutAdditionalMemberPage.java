@@ -33,7 +33,10 @@ public class TellUsAboutAdditionalMemberPage {
 
     @FindBy(id = "genderFemale")
     WebElement rdobtngenderFemale;
-
+    @FindBy(id = "isPregnantFalse")
+    WebElement IsPersonPregnentNo;
+    @FindBy(id = "isPregnantTrue")
+    WebElement IsPersonPregnentYes;
     @FindBy(id = "genderMale")
     WebElement rdobtngenderMale;
 
@@ -79,7 +82,16 @@ public class TellUsAboutAdditionalMemberPage {
                 break;
         }
     }
-
+    public void selectIsPersonPregnant(String pregnant){
+        switch(pregnant){
+            case "Yes":
+                IsPersonPregnentYes.click();
+                break;
+            case "No":
+                IsPersonPregnentNo.click();
+                break;
+        }
+    }
     public void setSelectRelationship(String Relation){
         basicActions.waitForElementToBePresent(selectRelationship, 15);
 

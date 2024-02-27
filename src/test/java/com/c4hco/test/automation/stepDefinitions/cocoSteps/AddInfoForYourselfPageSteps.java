@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.AddInfoForYourselfPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class AddInfoForYourselfPageSteps {
     AddInfoForYourselfPage addInfoForYourselfPage = new AddInfoForYourselfPage(WebDriverManager.getDriver());
@@ -18,4 +19,9 @@ public class AddInfoForYourselfPageSteps {
 
     @And("I click continue on the Add info for yourself page")
     public void clickContinue(){addInfoForYourselfPage.clickSaveAndContinueButton();}
+
+    @Then("I click Go Back on the additional information for yourself page")
+    public void clickGoBack() {
+        addInfoForYourselfPage.clickGoBackButton();
+    }
 }

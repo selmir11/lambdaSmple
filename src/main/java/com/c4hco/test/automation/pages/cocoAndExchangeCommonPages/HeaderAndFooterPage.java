@@ -128,6 +128,9 @@ public class HeaderAndFooterPage {
             case "Spanish ELMO":
                 basicActions.waitForElementToBePresent(spanishLanguageCoCo, 60);
                 spanishLanguageCoCo.click();
+            case "Spanish COCO":
+                basicActions.waitForElementToBePresent(spanishLanguageCoCo, 10);
+                spanishLanguageCoCo.click();
                 break;
         }
     }

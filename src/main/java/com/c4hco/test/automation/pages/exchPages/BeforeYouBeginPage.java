@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BeforeYouBeginPage {
 
-    @FindBy(xpath = "//*[@value='Continue with application']")
-    WebElement continueWithApplication;
     private BasicActions basicActions;
 
     public BeforeYouBeginPage(WebDriver webDriver) {
@@ -20,8 +18,39 @@ public class BeforeYouBeginPage {
         return BasicActions.getInstance();
     }
 
+    @FindBy(css = "#beforeYouBegin .btn")
+    WebElement continueWithApplication;
+
+    @FindBy(css = "h1")
+    WebElement beforeYouBeginText;
+
+    @FindBy(css = "p.c4BodyText1")
+    WebElement bodyText;
 
     public void clickContinueWithApplicationButton(){
             continueWithApplication.click();
+    }
+
+    public void validateTheVerbiageOnBeforeYouBeginPage(String language) {
+        switch (language){
+            case "English":
+                validateTheVerbiageEn();
+                break;
+            case "Spanish":
+                validateTheVerbiageEs();
+                break;
+        }
+    }
+
+    private void validateTheVerbiageEn() {
+        basicActions.assertContainsText(beforeYouBeginText.getText(), "Before you begin");
+        basicActions.assertContainsText(bodyText.getText(), "If you provided information in a previous session or filled out an application in PEAK, your answers will be shown here. Don't worry, you can confirm or change your answers as you go. At the end of the application, we will use the information you provided to see if you qualify for financial help to reduce your monthly health insurance costs.");
+        basicActions.assertContainsText(continueWithApplication.getAttribute("value"), "Continue with application");
+    }
+
+    private void validateTheVerbiageEs() {
+        basicActions.assertContainsText(beforeYouBeginText.getText(), "Antes de empezar");
+        basicActions.assertContainsText(bodyText.getText(), "confirmar o cambiar sus respuestas conforme avance. Al terminar la solicitud, utilizaremos la informaci");
+        basicActions.assertContainsText(continueWithApplication.getAttribute("value"), "Continuar con la solicitud");
     }
 }

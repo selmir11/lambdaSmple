@@ -46,6 +46,9 @@ public class AddInfoForYourselfPage {
     @FindBy(id = "ELIG-additionalInformation-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(id = "ELIG-additionalInformation-GoBack")
+    WebElement goBackButton;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
@@ -92,6 +95,11 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementToBePresent(countyDropdown, 30);
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
+    }
+
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBeClickable(goBackButton, 30);
+        goBackButton.click();
     }
 
 }
