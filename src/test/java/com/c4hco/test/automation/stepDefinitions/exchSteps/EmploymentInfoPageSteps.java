@@ -29,4 +29,16 @@ public class EmploymentInfoPageSteps {
 
     @And("I maximize the help drawer on the Employment Info Page")
     public void iMaximizeHelpDrawer(){employmentInfoPage.maximizeHeldDrawer();}
+
+    @Then("I validate help drawer header verbiage in {string}")
+    public void iValidateHelpHeader(String languageSelection){employmentInfoPage.validateHelpHeaderVerbiage(languageSelection);}
+
+    @Then("I validate general help drawer body verbiage in {string}")
+    public void iValidateGeneralHelpBodyEng(String language){employmentInfoPage.validateGeneralHelpBodyVerbiage(language);}
+
+    @Then("I validate help drawer footer verbiage in {string}")
+    public void iValidateHelpFooter(String languageSelection){employmentInfoPage.validateHelpFooterVerbiage(languageSelection);}
+
+    @And("I click Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){employmentInfoPage.clickHelpContactUsNavigation();}
 }

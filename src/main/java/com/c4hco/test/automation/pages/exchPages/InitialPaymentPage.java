@@ -18,7 +18,7 @@ public class InitialPaymentPage {
     WebElement makePaymentBtn;
 
     public void selectMakePaymentButton(){
-        basicActions.waitForElementToBePresent(makePaymentBtn,10);
+        basicActions.waitForElementToBeClickable(makePaymentBtn,20);
         makePaymentBtn.click();
     }
 }
