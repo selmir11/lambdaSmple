@@ -13,7 +13,7 @@ public class AdditionalIncomeCoCoPageSteps {
         additionalIncomeCoCoPage.selectAddIncomeOption(addtlIncomeOption, Amount, Frequency);
     }
 
-    @And("I select None of these as additional income option and continue")
+    @And("I select None of these as additional income option")
     public void noneAdditionalIncome() {
         additionalIncomeCoCoPage.selectNoneAddIncomeOption();
     }

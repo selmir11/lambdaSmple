@@ -52,8 +52,6 @@ public class AdditionalIncomeCoCoPage {
     public void selectNoneAddIncomeOption(){
         basicActions.waitForElementListToBePresent(addIncomeButton, 30);
         addIncomeButton.get(12).click();
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
-        saveAndContinueButton.click();
     }
 
 }
