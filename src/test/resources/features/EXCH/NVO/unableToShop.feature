@@ -41,7 +41,8 @@ Feature:  Unable to shop (not eligible for QHP)
     And I Apply for no financial help
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
-    And I Declare and sign
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
@@ -76,7 +77,8 @@ Feature:  Unable to shop (not eligible for QHP)
     And I Apply for no financial help
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
-    And I Declare and sign
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
@@ -123,9 +125,9 @@ Feature:  Unable to shop (not eligible for QHP)
       And I select the option "No" to projected income
       And I click continue on the Employment Info Page
       Then I click continue on the Employment Summary Page
-      Then I click "None of these" as additional income option and continue
+      Then I click None of these as additional income option and continue
       Then I validate I am on the "Deductions" page
-      Then I click "None of these" as deduction option and continue
+      Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
       Then I validate I am on the "Income Summary" page
       And I select the option "No" to claim as dependent
@@ -137,7 +139,8 @@ Feature:  Unable to shop (not eligible for QHP)
       Then I click continue on family overview page
       Then I select "NoneOfThese" QLCE on tell us about life changes page
       Then I click on Save and Continue
-      And I Declare and sign
+      Then I Declare as Tax Household 1
+      And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page
