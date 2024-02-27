@@ -48,7 +48,7 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
     WebElement spanishLanguage;
 
-    @FindBy(xpath = "//div[@class='p-2 sign-out']//a[@class='toolbar-text clickable']")
+    @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
 
     // =========FOOTER============== //

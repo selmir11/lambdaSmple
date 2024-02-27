@@ -24,38 +24,36 @@ public class AdditionalIncomePage {
     @FindBy(css = ".additional-income-row button")
     List<WebElement> addtlIncomeOptionsCheckbox;
 
-    @FindBy(xpath = "//span[@class='body-text-1']")
+    @FindBy(css = ".checkbox-description .body-text-1")
     List<WebElement> addtlIncomeOptionsName;
 
-    @FindBy(xpath = "//div[@class='col monetary-input-container']//input")
+    @FindBy(css = ".monetary-input-container input")
     List<WebElement> addtlIncomeAmount;
 
-    @FindBy(xpath = "//*[@errormessagekey='amountIsRequired']")
+    @FindBy(css = "lib-input .error-message")
     List<WebElement> addtlIncomeAmountError;
 
-    @FindBy(xpath = "//*[@controlname='frequency']")
+    @FindBy(css = ".col .form-select")
     List<WebElement> additlIncomeFrequency;
 
-    @FindBy(xpath = "//*[@errormessagekey='selectOneOptionBelow']//*[@class='error-message']")
+    @FindBy(css = "lib-dropdown .error-message")
     List<WebElement> additlIncomeFrequencyError;
 
-    @FindBy(xpath = "//*[contains(@class, 'header-1')]")
+    @FindBy(css = ".header-1")
     WebElement hdr_Income;
 
-    @FindBy(xpath = "//*[contains(@class, 'header-2')]")
+    @FindBy(css = ".header-2")
     WebElement hdr_AdditionalIncome;
 
-    @FindBy(xpath = "//div[contains(@class, 'body-text-1')][1]")
-    WebElement txtDoyoureceiveQs_ELMO;
-
-    @FindBy(xpath = "//div[contains(@class, 'body-text-1')][2]")
-    WebElement txtSelectAll_ELMO;
+    @FindBy(css = ".body-text-1")
+    List <WebElement> txtAdditionalIncomeText;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement txtCapitalGainsAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-frequencySelect")
     WebElement selectCAPGFrequency;
+
     private BasicActions basicActions;
     public BasicActions getDriver(){
         return BasicActions.getInstance();
@@ -106,8 +104,8 @@ public class AdditionalIncomePage {
     public void verifyTextOnAdditionalIncomeWithErrorsEnglish(){
         softAssert.assertEquals(hdr_Income.getText(), "Income: " + SharedData.getFirstName() + " " + SharedData.getLastName());
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
-        softAssert.assertEquals(txtDoyoureceiveQs_ELMO.getText(), "Did you receive any of the following income?");
-        softAssert.assertEquals(txtSelectAll_ELMO.getText(), "Select all that apply, and enter the amount of income received.");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(), "Did you receive any of the following income?");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(), "Select all that apply, and enter the amount of income received.");
         softAssert.assertEquals(addtlIncomeOptionsName.get(0).getText(), "Alimony Received");
         addtlIncomeOptionsCheckbox.get(0).click();
         softAssert.assertEquals(addtlIncomeAmount.get(0).getAttribute("placeholder"), "amount");
@@ -156,7 +154,7 @@ public class AdditionalIncomePage {
         addtlIncomeOptionsCheckbox.get(11).click();
         softAssert.assertEquals(addtlIncomeAmount.get(11).getAttribute("placeholder"), "amount");
         softAssert.assertEquals(additlIncomeFrequency.get(11).getText(), "Select Option\nAnnually\nEvery 2 weeks\nMonthly\nTwice a month\nWeekly");
-        saveAndContinueBtn.click();
+        clickContinue();
         softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Amount is required");
         softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Please select one of the options below");
         softAssert.assertEquals(addtlIncomeAmountError.get(1).getText(), "Amount is required");
@@ -191,8 +189,8 @@ public class AdditionalIncomePage {
     public void verifyTextOnAdditionalIncomeWithErrorsSpanish(){
         softAssert.assertEquals(hdr_Income.getText(), "Ingresos: " + SharedData.getFirstName() + " " + SharedData.getLastName());
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
-        softAssert.assertEquals(txtDoyoureceiveQs_ELMO.getText(), "\u00BFRecibi\u00F3 alguno de los ingresos siguientes?");
-        softAssert.assertEquals(txtSelectAll_ELMO.getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(), "\u00BFRecibi\u00F3 alguno de los ingresos siguientes?");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");
         softAssert.assertEquals(addtlIncomeOptionsName.get(0).getText(), "Pensi\u00F3n alimenticia recibida");
         addtlIncomeOptionsCheckbox.get(0).click();
         softAssert.assertEquals(addtlIncomeAmount.get(0).getAttribute("placeholder"), "cantidad");
@@ -241,7 +239,7 @@ public class AdditionalIncomePage {
         addtlIncomeOptionsCheckbox.get(11).click();
         softAssert.assertEquals(addtlIncomeAmount.get(11).getAttribute("placeholder"), "cantidad");
         softAssert.assertEquals(additlIncomeFrequency.get(11).getText(), "Seleccionar opci\u00F3n\nAnualmente\nCada dos semanas\nMensualmente\nDos veces por mes\nSemanalmente");
-        saveAndContinueBtn.click();
+        clickContinue();
         softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Esta cantidad es obligatoria");
         softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Seleccione una de las siguientes opciones");
         softAssert.assertEquals(addtlIncomeAmountError.get(1).getText(), "Esta cantidad es obligatoria");
