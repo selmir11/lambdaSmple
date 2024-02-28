@@ -114,6 +114,11 @@ public class BasicSteps {
             case "Podemos ayudar":
                 pageUrl = "/es/podemos-ayudar/";
                 break;
+            case "Financial Help":
+                pageUrl = "/financial-help/get-financial-help/";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
         String origin = basicActions.getDriver().getWindowHandle();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
