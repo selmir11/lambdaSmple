@@ -144,8 +144,8 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
     }
-    public void validateHelpText(String Language){
-        switch(Language) {
+    public void validateHelpText(String language){
+        switch(language) {
         case "English":
             validateHelpVerbiage();
             break;
@@ -153,7 +153,7 @@ public class CreateAccountPage {
             validateHelpVerbiageSP();
             break;
         default:
-            System.out.println("The wrong language option has been selected");
+            throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
