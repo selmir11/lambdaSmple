@@ -52,9 +52,9 @@ public class EnterCaseIdPage {
     }
 
     public void validateTheVerbiageEs() {
-        basicActions.assertContainsText(bodyText.get(0).getText(), "Anote la siguiente informaci");
-        basicActions.assertContainsText(bodyText.get(1).getText(), "Identificaci");
-        basicActions.assertContainsText(bodyText.get(2).getText(), "digo postal");
+        basicActions.assertContainsText(bodyText.get(0).getText(), "Anote la siguiente informaci\u00f3n que aparece en su aviso de negaci\u00f3n de Health First Colorado");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "Identificaci\u00f3n del caso");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "C\u00f3digo postal");
         basicActions.assertContainsText(bodyText.get(3).getText(), "Apellido(s)");
         basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
         basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderText, "XXXXX");
