@@ -146,6 +146,8 @@ public class QlceConfirmationPage {
                 basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
                 noneOfTheseLCE.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
 

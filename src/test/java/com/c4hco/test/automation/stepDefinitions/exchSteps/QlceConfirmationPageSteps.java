@@ -12,6 +12,7 @@ public class QlceConfirmationPageSteps {
     public void selectQlceType(String qlceOption){
         qlceConfirmationPage.selectQLCE(qlceOption);
     }
+
     @Then("I click on Save and Continue")
     public void saveAndContinue(){
         qlceConfirmationPage.saveAndContinue();

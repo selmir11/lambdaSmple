@@ -27,8 +27,8 @@ public class EmploymentInfoPageSteps {
     @And("I click continue on the Employment Info Page")
     public void saveAndContinue(){employmentInfoPage.saveAndContinue();}
 
-    @And("I maximize the help drawer on the Employment Info Page")
-    public void iMaximizeHelpDrawer(){employmentInfoPage.maximizeHeldDrawer();}
+    @And("I select {string} icon on the Employment Info Page")
+    public void iSelectGeneralHelpIcon(String labelIcon){employmentInfoPage.clickHelpIcon(labelIcon);}
 
     @Then("I validate help drawer header verbiage in {string}")
     public void iValidateHelpHeader(String languageSelection){employmentInfoPage.validateHelpHeaderVerbiage(languageSelection);}
@@ -41,4 +41,7 @@ public class EmploymentInfoPageSteps {
 
     @And("I click Contact Us link in help drawer footer")
     public void iClickHelpContactUsLink(){employmentInfoPage.clickHelpContactUsNavigation();}
+
+    @Then("I validate job question verbiage in {string}")
+    public void iValidateJobQsHelpVerbiage(String languageSelection){employmentInfoPage.validateJobQuestionsHelpVerbiage(languageSelection);};
 }

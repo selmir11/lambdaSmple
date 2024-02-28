@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,13 +10,10 @@ import java.util.List;
 
 public class EnterCaseIdPage {
     private BasicActions basicActions;
-    public EnterCaseIdPage(){
-        this.basicActions = BasicActions.getInstance();
+    public EnterCaseIdPage(WebDriver webDriver){
+        this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
 
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(css = ".c4BodyText1")
@@ -38,6 +36,8 @@ public class EnterCaseIdPage {
             case "Spanish":
                 validateTheVerbiageEs();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
     public void validateTheVerbiageEn() {
@@ -52,9 +52,9 @@ public class EnterCaseIdPage {
     }
 
     public void validateTheVerbiageEs() {
-        basicActions.assertContainsText(bodyText.get(0).getText(), "Anote la siguiente informaci");
-        basicActions.assertContainsText(bodyText.get(1).getText(), "Identificaci");
-        basicActions.assertContainsText(bodyText.get(2).getText(), "digo postal");
+        basicActions.assertContainsText(bodyText.get(0).getText(), "Anote la siguiente informaci\u00f3n que aparece en su aviso de negaci\u00f3n de Health First Colorado");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "Identificaci\u00f3n del caso");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "C\u00f3digo postal");
         basicActions.assertContainsText(bodyText.get(3).getText(), "Apellido(s)");
         basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
         basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderText, "XXXXX");

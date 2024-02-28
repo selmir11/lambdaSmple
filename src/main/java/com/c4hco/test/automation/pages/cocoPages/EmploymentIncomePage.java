@@ -53,14 +53,16 @@ public class EmploymentIncomePage {
 
     public void answerEmploymentQs(String employment){
         switch(employment) {
-            case ("Yes"):
+            case "Yes":
                 basicActions.waitForElementToBePresent(employmentYesButton, 10);
                 employmentYesButton.click();
                 break;
-            case ("No"):
+            case "No":
                 basicActions.waitForElementToBePresent(employmentNoButton, 10);
                 employmentNoButton.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + employment);
         }
     }
 
@@ -75,50 +77,56 @@ public class EmploymentIncomePage {
 
         basicActions.waitForElementListToBePresent(incomeFrequencyOptions, 10);
         switch(frequencyOfIncome) {
-            case ("Select Option"):
+            case "Select Option":
                 incomeFrequencyOptions.get(0).click();
                 break;
-            case ("Annually"):
+            case "Annually":
                 incomeFrequencyOptions.get(1).click();
                 break;
-            case ("Every 2 weeks"):
+            case "Every 2 weeks":
                 incomeFrequencyOptions.get(2).click();
                 break;
-            case ("Monthly"):
+            case "Monthly":
                 incomeFrequencyOptions.get(3).click();
                 break;
-            case ("Twice a month"):
+            case "Twice a month":
                 incomeFrequencyOptions.get(4).click();
                 break;
-            case ("Weekly"):
+            case "Weekly":
                 incomeFrequencyOptions.get(5).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + frequencyOfIncome);
         }
     }
 
     public void answerIsIncomeSeasonalQs(String seasonal){
         switch(seasonal) {
-            case ("Yes"):
+            case "Yes":
                 basicActions.waitForElementToBePresent(incomeSeasonalYesButton, 10);
                 incomeSeasonalYesButton.click();
                 break;
-            case ("No"):
+            case "No":
                 basicActions.waitForElementToBePresent(incomeSeasonalNoButton, 10);
                 incomeSeasonalNoButton.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + seasonal);
         }
     }
 
     public void answerIncomeChangesQs(String changes){
         switch(changes) {
-            case ("Yes"):
+            case "Yes":
                 basicActions.waitForElementToBePresent(incomeChangesYesButton, 10);
                 incomeChangesYesButton.click();
                 break;
-            case ("No"):
+            case "No":
                 basicActions.waitForElementToBePresent(incomeChangesNoButton, 10);
                 incomeChangesNoButton.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + changes);
         }
     }
 }

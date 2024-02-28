@@ -77,6 +77,8 @@ public class CompletedPeakApplicationPage {
             case "Spanish":
                 validateTheVerbiageEs();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -91,11 +93,11 @@ public class CompletedPeakApplicationPage {
 
     public void validateTheVerbiageEs() {
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou,30);
-        basicActions.assertContainsText(pageHeaderLetUsGuideYou.getText(), "tanos guiarlo");
-        basicActions.assertContainsText(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present");
-        basicActions.assertContainsText(bodyText.get(1).getText(), "del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
-        basicActions.assertContainsText(bodyText.get(2).getText(), "soy nuevo a Connect for Health Colorado y ya present");
-        basicActions.assertContainsText(bodyText.get(3).getText(), "No gracias, ll");
+        basicActions.assertContainsText(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo");
+        basicActions.assertContainsText(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present\u00f3 una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la informaci\u00f3n que envi\u00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y cambiar su informaci\u00f3n seg\u00fan sea necesario. \u00bfDesea buscar una solicitud previamente completada?");
+        basicActions.assertContainsText(bodyText.get(1).getText(), "Necesitar\u00e1 su identificaci\u00f3n del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
+        basicActions.assertContainsText(bodyText.get(2).getText(), "S\u00ed, soy nuevo a Connect for Health Colorado y ya present\u00e9 una solicitud Health First Colorado or Child Health Plan Plus");
+        basicActions.assertContainsText(bodyText.get(3).getText(), "No gracias, ll\u00e9veme a la aplicaci\u00f3n");
     }
 
     public void iSelectOption(String option) {

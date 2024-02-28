@@ -34,6 +34,8 @@ public class ImmigrationStatusPage {
                 break;
             case "No":
                 rdobtnLprNo.click();
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNLawfulPermanentResident);
         }
     }
 

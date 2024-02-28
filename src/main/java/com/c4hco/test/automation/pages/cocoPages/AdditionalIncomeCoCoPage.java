@@ -46,6 +46,9 @@ public class AdditionalIncomeCoCoPage {
                 Select dropdown = new Select(cashSupportFrequency);
                 dropdown.selectByVisibleText(" " + Frequency + " ");
                 break;
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }
     }
 
