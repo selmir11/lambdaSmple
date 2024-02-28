@@ -48,3 +48,6 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "CoCo Deductions" page
     And I select None of these as deductions option
     And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
