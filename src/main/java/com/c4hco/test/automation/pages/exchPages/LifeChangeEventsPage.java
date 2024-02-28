@@ -90,6 +90,8 @@ public class LifeChangeEventsPage {
             case "Spanish":
                 validateTheVerbiageEs();
                 break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
