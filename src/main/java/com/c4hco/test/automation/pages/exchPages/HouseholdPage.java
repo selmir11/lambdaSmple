@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class HouseholdPage {
     // Family Overview Page
     private BasicActions basicActions;
@@ -20,9 +22,14 @@ public class HouseholdPage {
 
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
+    @FindBy(css = ".memberBasicRow  #editBasicInfo")
+    List<WebElement> memberBasicInformation;
 
     public void clickAddMember(){addAdditionalMember.click();}
     public void clickContinue(){
         saveAndContinue.click();
+    }
+    public void clickBasicInfoMember1Button(int member){
+        memberBasicInformation.get(member).click();
     }
 }

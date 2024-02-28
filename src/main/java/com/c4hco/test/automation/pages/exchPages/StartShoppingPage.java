@@ -19,7 +19,7 @@ public class StartShoppingPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "button#SHP-StartShop-Continue")
+    @FindBy(id = "SHP-StartShop-Continue")
     WebElement btnContinue;
 
     @FindBy(css = ".container .radio-button")
@@ -37,6 +37,7 @@ public class StartShoppingPage {
         saveAndExitButton.click();
     }
     public void iclickContinue(){
+        basicActions.waitForElementListToBePresent(btnNoAndYes,10);
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         basicActions.waitForElementToBeClickable(btnContinue,20);
         btnContinue.click();
@@ -45,7 +46,7 @@ public class StartShoppingPage {
 
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){ 
-        basicActions.waitForElementToBePresent(headerText,10);
+        basicActions.waitForElementToBePresent(headerText,30);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
         softAssert.assertEquals(bodyText.get(1), "First, we need to ask you about tobacco usage.");

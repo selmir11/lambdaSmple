@@ -18,6 +18,9 @@ public class BasicSteps {
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
+            case "Add Member":
+                pageUrl = "nes/addMember";
+                break;
             case "Account Overview":
                 pageUrl = "nes/accountOverview";
                 break;
@@ -72,6 +75,9 @@ public class BasicSteps {
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
 				break;
+            case "Edit Grouping Members Medical":
+                pageUrl = "editGroupingMembersMedical";
+                break;
             case "Spanish":
                 pageUrl = "lang=es";
                 break;

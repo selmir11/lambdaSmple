@@ -11,4 +11,11 @@ public class EditGroupingMembersMedicalPageSteps {
     public void editGroupingMedicalPage(){
         editGroupingMembersMedicalPage.cancelEditGroupingMembers();
     }
+    @Then("I drag and drop a member to make new group")
+    public void dragMemberToDiffGroup(){
+        editGroupingMembersMedicalPage.dragAndDropMembersCreateGroup();
+        editGroupingMembersMedicalPage.getElementCoordi();
+        editGroupingMembersMedicalPage.iClickSaveButton();
+        editGroupingMembersMedicalPage.errorMessageOnGrouping();
+    }
 }

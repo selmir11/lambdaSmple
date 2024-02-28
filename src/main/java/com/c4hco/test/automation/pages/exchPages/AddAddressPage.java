@@ -79,6 +79,11 @@ public class AddAddressPage {
     @FindBy(id = "areYouDisabilityNo")
     WebElement rdobtnDisabilityNo;
 
+    @FindBy(id = "livedinFosterCareYes")
+    WebElement rdobtnFosterCareYes;
+    @FindBy(id="livedinFosterCareNo")
+    WebElement rdobtnFosterCareNo;
+
     @FindBy(id = "medicaidOrChpDeniedYes")
     WebElement rdobtnMedicaidDeniedYes;
     @FindBy(id = "medicaidOrChpDeniedNo")
@@ -90,10 +95,6 @@ public class AddAddressPage {
     WebElement rdobtnIncarceratedNo;
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
-
-    public void selectHouseholdAddress(){
-        rdobtnHouseholdResidentialAddress.click();
-    }
 
     public void selectResidentialAddress(String Index){
         switch(Index){
@@ -193,6 +194,17 @@ public class AddAddressPage {
                 break;
             case "No":
                 rdobtnIncarceratedNo.click();
+                break;
+        }
+    }
+
+    public void isUserInFosterCare(String YNFosterCare){
+        switch(YNFosterCare){
+            case "Yes":
+                rdobtnFosterCareYes.click();
+                break;
+            case "No":
+                rdobtnFosterCareNo.click();
                 break;
         }
     }
