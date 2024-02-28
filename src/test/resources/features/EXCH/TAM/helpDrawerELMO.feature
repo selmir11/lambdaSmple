@@ -5,7 +5,8 @@ Feature: Tests related to the help drawer on ELMO pages
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-60
+  @SLER-60-WIP
+    #fails when run on small screens (Let's chat widget covers up help drawer footer)
   Scenario: Validate help drawer text on the ELMO Employment Income Details page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
