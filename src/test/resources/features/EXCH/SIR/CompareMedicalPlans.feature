@@ -50,7 +50,6 @@ Feature: Medical Plan Results page related tests
     Then I click continue on start shopping page
     And I click on the compare links on the first 2 medical plans
     Then I click on the compare button
-#
 
 
 
