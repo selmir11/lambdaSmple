@@ -48,6 +48,8 @@ public class TaxStatusPage {
                 basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 10);
                 claimAsDependentNoRadioBtn.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + claimAsDependentOption);
         }
     }
 
@@ -56,6 +58,8 @@ public class TaxStatusPage {
             case "Yes":
                 fileFedIncomeTaxRadioBtn.get(0).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + fileFedIncomeTaxReturnOption);
         }
     }
 
@@ -69,6 +73,8 @@ public class TaxStatusPage {
             case "No":
                 claimDependentNoRadioBtn.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dependentsOption);
         }
     }
 

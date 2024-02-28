@@ -42,6 +42,8 @@ public class EthnicityAndRacePage {
             case "I prefer not to answer":
                 ethnicityButton.get(2).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + ethnicity);
         }
     }
 
@@ -69,6 +71,8 @@ public class EthnicityAndRacePage {
             case "I prefer not to answer":
                 raceButton.get(6).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + race);
         }
     }
 
