@@ -51,6 +51,8 @@ public class TellUsAboutYourselfPage {
             case "Male":
                 rdobtnSexMale.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Sex);
         }
     }
 
@@ -62,6 +64,8 @@ public class TellUsAboutYourselfPage {
             case "No":
                 rdobtnApplyingNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNApplying);
         }
     }
 

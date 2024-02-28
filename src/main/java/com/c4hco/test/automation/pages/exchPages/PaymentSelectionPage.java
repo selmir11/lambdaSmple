@@ -48,6 +48,8 @@ public class PaymentSelectionPage {
             case "KP":
                 provider = "Kaiser Permanente Colorado";
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + provider);
     }
     return provider;
 }

@@ -28,6 +28,8 @@ public class IncomeSummaryPage {
                 basicActions.waitForElementToBePresent(projectedIncomeNo, 15);
                 projectedIncomeNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + projectedIncomeNo);
         }
         saveAndContinueBtn.click();
     }
