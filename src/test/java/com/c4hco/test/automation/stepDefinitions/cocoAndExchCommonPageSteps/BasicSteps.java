@@ -36,6 +36,9 @@ public class BasicSteps {
             case "Financial Help":
                 pageUrl = "IncomePortal/financialHelp";
                 break;
+            case "Additional income":
+                pageUrl = "IncomePortal/additionalIncome";
+                break;
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
@@ -84,6 +87,9 @@ public class BasicSteps {
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
+            case "CoCo Deductions":
+                pageUrl = "coco/income-portal/deductions";
+                break;
             default:
                 System.out.println("undefined page ");
         }
@@ -101,6 +107,12 @@ public class BasicSteps {
                 break;
             case "Contact Us":
                 pageUrl = "/InformationPortal/contactUs";
+                break;
+            case "We Can Help":
+                pageUrl = "/we-can-help/";
+                break;
+            case "Podemos ayudar":
+                pageUrl = "/es/podemos-ayudar/";
                 break;
         }
         String origin = basicActions.getDriver().getWindowHandle();

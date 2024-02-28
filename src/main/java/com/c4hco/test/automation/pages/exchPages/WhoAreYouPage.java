@@ -51,11 +51,6 @@ public class WhoAreYouPage {
     List<WebElement> countyDropdownOptions;
 
     private String addressLine1= "1234 Road";
-    private String city ="Denver";
-    private String state = "CO";
-    private String zip = "80205";
-    private String county = "DENVER";
-    private String dob ="10011980";
     private String SSNvalue = "653035280";
 
     public void checkWhoAreYouOption(String whoAreYouOption){
@@ -69,6 +64,8 @@ public class WhoAreYouPage {
             case "Someone Else":
                 someoneElse.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + whoAreYouOption);
         }
     }
 

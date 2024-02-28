@@ -11,6 +11,7 @@ public class FindExpertHelpPageSteps {
     public void iClickContinueOnOwnButton() {
         findExpertHelpPage.clickContinueOnOwnButton();
     }
+
     @Then("I click the back button from Find Expert Help page")
     public void iClickBackButton() {
         findExpertHelpPage.clickBackButton();

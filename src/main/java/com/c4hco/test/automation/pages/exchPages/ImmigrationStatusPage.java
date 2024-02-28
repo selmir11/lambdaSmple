@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,12 +10,9 @@ import org.openqa.selenium.support.ui.Select;
 public class ImmigrationStatusPage {
 
     private BasicActions basicActions;
-    public ImmigrationStatusPage(){
-        this.basicActions = BasicActions.getInstance();
+    public ImmigrationStatusPage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(id = "lprYes")
@@ -36,6 +34,8 @@ public class ImmigrationStatusPage {
                 break;
             case "No":
                 rdobtnLprNo.click();
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNLawfulPermanentResident);
         }
     }
 
