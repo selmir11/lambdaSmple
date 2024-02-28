@@ -12,11 +12,15 @@ public class MedicalPlanResultsPageSteps {
     public void selectFirstMedicalPlanAndContinue() {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
+
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage(){
         medPlanResultsPage.iclickContinue();
     }
 
+    @Then("I click on the compare button")
+    public void btnCompare() {
+        medPlanResultsPage.clickCompare();}
 
     @Then("I click on the compare links on the first 2 medical plans")
     public void clickFirstTwoCompareButtons() {
@@ -24,16 +28,15 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @And("I select the Insurance Company dropdown")
-    public void clickInsuranceProvider() {
-        medPlanResultsPage.clickInsuranceCompanyDropdown();
-    }
+    public void clickInsuranceCompanyDropdown() {
+        medPlanResultsPage.clickInsuranceCompanyDropdown(); }
 
     @And("I select {string} to filter for desired plan provider")
-    public void selectfromProviderList(String Selecting) {
-        medPlanResultsPage.selectfromProviderList(Selecting);
+    public void selectfromProviderList(String carrierOption) {
+        medPlanResultsPage.selectfromProviderList(carrierOption);
     }
 
-    @And("I validate the plan option {int} has text {string}")
+       @And("I validate the plan option {int} has text {string}")
     public void validatePlanText(int Index, String planText){
         medPlanResultsPage.validatePlanResults(Index, planText);
     }

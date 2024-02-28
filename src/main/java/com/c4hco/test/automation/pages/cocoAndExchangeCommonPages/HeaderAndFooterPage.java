@@ -11,6 +11,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 public class HeaderAndFooterPage {
+    SoftAssert softAssert = new SoftAssert();
+
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
 
@@ -119,6 +121,8 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(languageDrpOptionCreatePage.get(1), 60);
                 languageDrpOptionCreatePage.get(1).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -129,8 +133,6 @@ public class HeaderAndFooterPage {
 
     public void verifyTextInCoCoHeader(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
-        String header  = connectLogoLink.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
@@ -164,8 +166,6 @@ public class HeaderAndFooterPage {
 
     public void verifyTextInCoCoFooter(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
-        String header  = connectLogoLink.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
         softAssert.assertEquals(contactUsLink.getText(), "Contact Us");

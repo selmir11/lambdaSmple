@@ -18,26 +18,32 @@ public class MedicalPlanResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id ="PlanResults-SelectThisPlan_0")
+    @FindBy(id = "PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
     @FindBy(id= "PlanResults-ProviderPlan_0")
     WebElement firstMedicalPlanName;
 
-    @FindBy(id ="SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id ="PlanResults-Compare_0")
-    WebElement selectCompare;
+    @FindBy(id ="SHP-PlanResults-ComparePlans")
+    WebElement clickCompare;
 
     @FindBy(xpath ="//a[contains(@id,'PlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
 
     @FindBy(id ="SHP-PlanResults-InsuranceCompany")
+
     WebElement insuranceCompanyDropdown;
 
+    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    WebElement filterResetButton;
 
-    public void selectfromProviderList(String Selecting){
-        String providerPath = "//span[text()='"+Selecting+"']";
+    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
+    WebElement InsuranceCompanyDropdown;
+
+    public void selectfromProviderList(String Selecting) {
+        String providerPath = "//span[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
@@ -52,6 +58,11 @@ public class MedicalPlanResultsPage {
     }
     public void iclickContinue(){
         btnContinue.click();
+    }
+
+    public void clickCompare() {
+        basicActions.waitForElementToBePresent(clickCompare, 10);
+        clickCompare.click();
     }
 
     public void clickFirstTwoCompareButtons() {
@@ -76,3 +87,4 @@ public class MedicalPlanResultsPage {
             expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
         }
     }
+

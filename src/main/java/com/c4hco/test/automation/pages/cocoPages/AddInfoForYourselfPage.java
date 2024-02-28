@@ -63,6 +63,8 @@ public class AddInfoForYourselfPage {
             case "No":
                 mailingAddressButtons.get(1).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + mailingAddress);
         }
     }
 
@@ -75,6 +77,9 @@ public class AddInfoForYourselfPage {
             case "No":
                 liveInColoradoButtons.get(1).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + liveInColorado);
+
         }
     }
 
