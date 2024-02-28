@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,5 +33,11 @@ public class ApplicationHistoryPage {
         basicActions.waitForElementToBePresent(lblAPTCValue, 15);
         String APTC = lblAPTCValue.getText();
         Assert.assertTrue("Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.", APTC.contains(expectedAPTC));
+    }
+
+    public void validateTextOnPage(String Text){
+        basicActions.waitForElementToBePresent(lblAPTCValue, 15);
+
+        basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath("//*[text()='"+Text+"']")), 15);
     }
 }
