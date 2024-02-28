@@ -90,6 +90,9 @@ public class BasicSteps {
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
+            case "Who Are You":
+                pageUrl = "nes/idProofing";
+                break;
             default:
                 System.out.println("undefined page ");
         }

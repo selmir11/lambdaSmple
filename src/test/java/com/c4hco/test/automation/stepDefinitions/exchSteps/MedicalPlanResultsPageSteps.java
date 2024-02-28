@@ -50,4 +50,10 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
 
+    @And("I click the HSA dropdown")
+    public void clickHSADropdown() {medPlanResultsPage.clickHSADropdown();}
+
+    @And ("I select the HSA option")
+    public void selectHSAOption() {medPlanResultsPage.selectHSAOption();}
 }
+
