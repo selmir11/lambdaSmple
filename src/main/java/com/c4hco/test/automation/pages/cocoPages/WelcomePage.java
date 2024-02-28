@@ -95,6 +95,8 @@ public class WelcomePage {
             case "My Documents and Letters":
                 actionLinks.get(2).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + actionLink);
         }
     }
 
@@ -102,7 +104,6 @@ public class WelcomePage {
     // Add only validation methods below this line
     public void verifyTextOnWelcomePageFirstTime(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        String header  = applyForCurrentYearButton.getText();
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome to Colorado Connect!");
         softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
@@ -123,7 +124,6 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePageNoPolicy(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        String header  = applyForCurrentYearButton.getText();
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getFirstName() +"!");
         softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
@@ -153,6 +153,8 @@ public class WelcomePage {
                 softAssert.assertTrue(actionLinks.get(2).getText().equals(actionLink));
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + actionLink);
         }
     }
 }

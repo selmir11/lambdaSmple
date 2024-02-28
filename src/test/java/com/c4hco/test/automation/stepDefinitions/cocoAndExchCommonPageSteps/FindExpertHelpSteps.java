@@ -1,10 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.FindExpertHelpPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class FindExpertHelpSteps {
-        FindExpertHelpPage findExpertHelpPage = new FindExpertHelpPage();
+        FindExpertHelpPage findExpertHelpPage = new FindExpertHelpPage(WebDriverManager.getDriver());
         @Then("I verify Find Expert Help header Text in {string}")
         public void IVerifyFindExpertHelpHeaderTextIn(String Language) {
                 findExpertHelpPage.verifyHeaderPage(Language);

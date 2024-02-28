@@ -110,6 +110,7 @@ public class BasicActions {
     }
 
     public void assertContainsText(String actualText, String expectedSubstring) {
+        // TO DO: Validate this works for negative conditions as well - no false positives
         assertTrue(actualText.contains(expectedSubstring), "Expected text '" + expectedSubstring + "' not found in actual text: '" + actualText + "'");
     }
     public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {

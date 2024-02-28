@@ -12,6 +12,7 @@ public class MedicalPlanResultsPageSteps {
     public void selectFirstMedicalPlanAndContinue() {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
+
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage(){
         medPlanResultsPage.iclickContinue();

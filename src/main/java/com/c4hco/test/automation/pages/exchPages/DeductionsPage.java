@@ -38,6 +38,8 @@ public class DeductionsPage {
                 Select dropdown = new Select(selectAOSSFrequency);
                 dropdown.selectByVisibleText(" "+Frequency+" ");
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlDeductionOption);
         }
     }
 

@@ -58,6 +58,8 @@ public class TellUsAboutYourselfCoCoPage {
             case "Female":
                 genderButton.get(0).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + gender);
         }
     }
 
@@ -70,6 +72,8 @@ public class TellUsAboutYourselfCoCoPage {
             case "No":
                 applyButton.get(1).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + applying);
         }
     }
 

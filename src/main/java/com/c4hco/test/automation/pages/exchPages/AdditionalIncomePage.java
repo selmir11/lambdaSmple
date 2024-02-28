@@ -76,9 +76,11 @@ public class AdditionalIncomePage {
                 Select dropdown = new Select(selectCAPGFrequency);
                 dropdown.selectByVisibleText(" " + Frequency + " ");
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }
     }
-
+// TO DO: update below code - seperate clicking on save and continue
     public void selectNoneAddtlIncomeOption(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
         addtlIncomeOptionsCheckbox.get(12).click();
@@ -88,16 +90,17 @@ public class AdditionalIncomePage {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
-    public void verifyTextOnAdditionalIncomeWithErrors(String Language) {
+    public void verifyTextOnAdditionalIncomeWithErrors(String language) {
         basicActions.waitForElementToBePresent(saveAndContinueBtn, 10);
-        String header = saveAndContinueBtn.getText();
-        switch (Language) {
+        switch (language) {
             case "English":
                 verifyTextOnAdditionalIncomeWithErrorsEnglish();
                 break;
             case "Spanish":
                 verifyTextOnAdditionalIncomeWithErrorsSpanish();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
         }
     }
 
