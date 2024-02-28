@@ -91,32 +91,18 @@ public class AddAddressPage {
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
 
-    public void selectHouseholdAddress(){
-        rdobtnHouseholdResidentialAddress.click();
-    }
-
-    public void selectResidentialAddress(String Index){
-        switch(Index){
+    public void selectResidentialAddress(String index){
+        switch(index){
             case "Household":
                 rdobtnHouseholdResidentialAddress.click();
                 break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + index);
         }
 
-    }
-
-    public void residentialAddress(){
-        txtNewAddressLine1.sendKeys("1234 New Road");
-        txtNewAddressLine2.sendKeys("Apt 1234567890");
-        txtNewAddressCity.sendKeys("Denver");
-        selectNewAddressState.sendKeys("CO");
-        txtNewAddressZip.sendKeys("80205");
-
-        selectNewAddressCounty.click();
-        Select dropdown = new Select(selectNewAddressCounty);
-        dropdown.selectByValue("DENVER");
     }
 
     public void mailingAddress(){
@@ -139,6 +125,8 @@ public class AddAddressPage {
             case "No":
                 rdobtnIsColoradoResidentNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNCOResident);
         }
     }
 
@@ -150,6 +138,8 @@ public class AddAddressPage {
             case "No":
                 rdobtnPartOfTribeNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNTribe);
         }
     }
 
@@ -161,6 +151,8 @@ public class AddAddressPage {
             case "No":
                 rdobtnHardshipExemptionNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNExempt);
         }
     }
 
@@ -172,6 +164,8 @@ public class AddAddressPage {
             case "No":
                 rdobtnDisabilityNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNDisabled);
         }
     }
 
@@ -183,6 +177,8 @@ public class AddAddressPage {
             case "No":
                 rdobtnMedicaidDeniedNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNDenied);
         }
     }
 
@@ -194,6 +190,8 @@ public class AddAddressPage {
             case "No":
                 rdobtnIncarceratedNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNIncarcerated);
         }
     }
 

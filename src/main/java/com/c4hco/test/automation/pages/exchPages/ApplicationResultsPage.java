@@ -1,20 +1,20 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class ApplicationResultsPage {
+    SoftAssert softAssert = new SoftAssert();
 
+// TO DO: Update all the below locators
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
 
@@ -50,9 +50,6 @@ public class ApplicationResultsPage {
     @FindBy(id = "taxHouseholdsDropdown")
     WebElement selectTaxHouseHold;
 
-    @FindBy(xpath = "(//*[@class='tot-sav-head-right'])[1]")
-    WebElement lblTHHTotalSavings;
-
 
     private BasicActions basicActions;
 
@@ -84,8 +81,6 @@ public class ApplicationResultsPage {
     //-----------------------Validations------------------------//
     public void verifyTextNotQualifyForPlanOnAppResultsPage(){
         basicActions.waitForElementToBePresent(headerText,10);
-        String header  = headerText.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "Here's what your household qualifies for");
         softAssert.assertEquals(youDoNotQualify.getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
         softAssert.assertEquals(submitNewApplication.getText(), "Submit a new application if your situation changes - you can re-apply and newly qualify for a health plan or financial help.");
@@ -102,6 +97,7 @@ public class ApplicationResultsPage {
 
     public void verifyTextMAEligibility() {
         basicActions.waitForElementListToBePresent(textMAEligibility, 10);
-        Assert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
+        softAssert.assertAll();
     }
 }

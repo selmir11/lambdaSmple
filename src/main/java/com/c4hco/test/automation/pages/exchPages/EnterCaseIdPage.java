@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,13 +10,10 @@ import java.util.List;
 
 public class EnterCaseIdPage {
     private BasicActions basicActions;
-    public EnterCaseIdPage(){
-        this.basicActions = BasicActions.getInstance();
+    public EnterCaseIdPage(WebDriver webDriver){
+        this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
 
-    }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
     }
 
     @FindBy(css = ".c4BodyText1")
@@ -38,6 +36,8 @@ public class EnterCaseIdPage {
             case "Spanish":
                 validateTheVerbiageEs();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
     public void validateTheVerbiageEn() {

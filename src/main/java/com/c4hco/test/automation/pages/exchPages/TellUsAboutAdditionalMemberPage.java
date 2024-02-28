@@ -80,6 +80,8 @@ public class TellUsAboutAdditionalMemberPage {
             case "Male":
                 rdobtngenderMale.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Sex);
         }
     }
     public void selectIsPersonPregnant(String pregnant){
@@ -90,6 +92,8 @@ public class TellUsAboutAdditionalMemberPage {
             case "No":
                 IsPersonPregnentNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + pregnant);
         }
     }
     public void setSelectRelationship(String Relation){
@@ -107,6 +111,8 @@ public class TellUsAboutAdditionalMemberPage {
             case "No":
                 rdobtnIsMemberApplyingNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Applying);
         }
     }
 

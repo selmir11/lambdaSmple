@@ -39,6 +39,8 @@ public class BeforeYouBeginPage {
             case "Spanish":
                 validateTheVerbiageEs();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 

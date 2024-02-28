@@ -46,7 +46,6 @@ public class StartShoppingPage {
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){ 
         basicActions.waitForElementToBePresent(headerText,10);
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
         softAssert.assertEquals(bodyText.get(1), "First, we need to ask you about tobacco usage.");
         softAssert.assertEquals(bodyText.get(2),"Within the last 6 months, has any member of your household used tobacco products regularly");

@@ -10,6 +10,7 @@ public class GroupingMembersMedicalSteps {
     public void medicalGroupingEnglish(){
         groupingMembersMedical.verifyMedicalGroupingPageVerbiage();
     }
+
     @Then("I click on edit enrollment groups link")
     public void clickOnEditEnrollmentgroupsLink(){
         groupingMembersMedical.clickOnEditMedicalGroupinglink();

@@ -117,6 +117,8 @@ public class EmploymentInfoPage {
             case "No":
                 btnNoEmployed.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + employmentOption);
         }
     }
 
@@ -128,6 +130,8 @@ public class EmploymentInfoPage {
             case "No":
                 btnNoSelfEmployed.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + selfEmploymentOption);
         }
     }
 
@@ -156,17 +160,21 @@ public class EmploymentInfoPage {
             case "No":
                 btnIsSeasonalNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + seasonalEmploymentOption);
         }
     }
 
-    public void projectedIncomeQuestion(String projectedUncomeOption) {
-        switch (projectedUncomeOption) {
+    public void projectedIncomeQuestion(String projectedIncomeOption) {
+        switch (projectedIncomeOption) {
             case "Yes":
                 btnIncomeSameYes.click();
                 break;
             case "No":
                 btnIncomeSameNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + projectedIncomeOption);
         }
     }
 
@@ -218,6 +226,8 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -315,6 +325,8 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 

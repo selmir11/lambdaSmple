@@ -12,11 +12,15 @@ public class MedicalPlanResultsPageSteps {
     public void selectFirstMedicalPlanAndContinue() {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
+
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage(){
         medPlanResultsPage.iclickContinue();
     }
 
+    @Then("I click on the compare button")
+    public void btnCompare() {
+        medPlanResultsPage.clickCompare();}
 
     @Then("I click on the compare links on the first 2 medical plans")
     public void clickFirstTwoCompareButtons() {

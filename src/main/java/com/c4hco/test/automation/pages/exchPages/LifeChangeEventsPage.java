@@ -43,6 +43,8 @@ public class LifeChangeEventsPage {
                 case "MovedToColorado":
                     lceInputCheckbox.get(6).click();
                     break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
         saveAndContinueButton.click();
     }

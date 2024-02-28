@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 public class HeaderAndFooterPage {
+    SoftAssert softAssert = new SoftAssert();
+
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
 
@@ -133,6 +135,8 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(spanishLanguageCoCo, 10);
                 spanishLanguageCoCo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -143,8 +147,6 @@ public class HeaderAndFooterPage {
 
     public void verifyTextInCoCoHeader(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
-        String header  = connectLogoLink.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(applyForCoverageLink.getText(), "Apply for Coverage");
         softAssert.assertEquals(findAPlanLink.getText(), "Find a Plan");
@@ -178,8 +180,6 @@ public class HeaderAndFooterPage {
 
     public void verifyTextInCoCoFooter(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
-        String header  = connectLogoLink.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
         softAssert.assertEquals(contactUsLink.getText(), "Contact Us");
