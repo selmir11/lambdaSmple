@@ -93,6 +93,9 @@ public class BasicSteps {
             case "Who Are You":
                 pageUrl = "nes/idProofing";
                 break;
+            case "Report a life change":
+                pageUrl = "nes/lifeChangeEvents";
+                break;
             default:
                 System.out.println("undefined page ");
         }
