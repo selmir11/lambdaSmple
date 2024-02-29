@@ -33,14 +33,19 @@ public class MedicalPlanResultsPage {
     List<WebElement> comparePlanLinks;
 
     @FindBy(id ="SHP-PlanResults-InsuranceCompany")
-
     WebElement insuranceCompanyDropdown;
 
     @FindBy(id = "SHP-PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
-    WebElement InsuranceCompanyDropdown;
+    @FindBy(id = "SHP-PlanResults-MetalTier")
+    WebElement metalTierDropdown;
+
+    @FindBy(id = "SHP-PlanResults-HSAFilter")
+    WebElement hsaDropdown;
+
+    @FindBy(id ="SHP-PlanResults-HSAFilter-input")
+    WebElement hsaOption;
 
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";
@@ -75,8 +80,27 @@ public class MedicalPlanResultsPage {
             basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 10);
             insuranceCompanyDropdown.click();
 
-        }
+    }
 
+        public void clickMetalTierDropdown(){
+        basicActions.waitForElementToBeClickable(metalTierDropdown, 10);
+            metalTierDropdown.click();
+
+    }
+
+    public void clickHSADropdown() {
+        basicActions.waitForElementToBeClickable(hsaDropdown, 10);
+        hsaDropdown.click();
+    }
+     public void selectHSAOption(){
+        basicActions.waitForElementToBeClickable(hsaOption, 10);
+         hsaOption.click();
+     }
+
+    public void selectfromMetalTierList(String Selecting) {
+        String providerPath = "//span[text()='" + Selecting + "']";
+        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+    }
         public void validatePlanResults ( int index, String planText){
             basicActions.waitForElementToBePresent(selectFirstPlan, 10);
             index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1

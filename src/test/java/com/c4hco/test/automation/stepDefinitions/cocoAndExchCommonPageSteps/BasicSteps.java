@@ -90,6 +90,12 @@ public class BasicSteps {
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
+            case "Who Are You":
+                pageUrl = "nes/idProofing";
+                break;
+            case "Report a life change":
+                pageUrl = "nes/lifeChangeEvents";
+                break;
             default:
                 System.out.println("undefined page ");
         }
@@ -114,6 +120,11 @@ public class BasicSteps {
             case "Podemos ayudar":
                 pageUrl = "/es/podemos-ayudar/";
                 break;
+            case "Financial Help":
+                pageUrl = "/financial-help/get-financial-help/";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
         String origin = basicActions.getDriver().getWindowHandle();
         for (String handle : basicActions.getDriver().getWindowHandles()) {

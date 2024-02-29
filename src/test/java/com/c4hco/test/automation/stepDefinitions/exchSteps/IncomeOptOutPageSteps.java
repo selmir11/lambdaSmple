@@ -16,4 +16,10 @@ public class IncomeOptOutPageSteps {
     public void clickApply(){
         incomeOptOutPage.chooseApply();
     }
+
+    @And("I verify the {string} text on the Income Opt Out page")
+    public void verifyPageText(String Language){incomeOptOutPage.verifyPageText(Language);}
+
+    @And("I click on financial help link within text")
+    public void clickFinancialHelpWithinText(){incomeOptOutPage.financialHelpWithinText();}
 }

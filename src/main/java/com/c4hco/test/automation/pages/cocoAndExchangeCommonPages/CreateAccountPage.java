@@ -119,6 +119,7 @@ public class CreateAccountPage {
                 exchangeTermsOfUseCheckbox.click();
                 break;
             default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
 
         }
         submitButton.click();
