@@ -124,7 +124,7 @@ Feature: Medical Plan Verification test
     |Gold             |Elevate Health Plans Colorado Option Gold  |
 
 
-  @SLER-72-WIP @SelectVerifyHSAResults @test
+  @SLER-72-WIP @SelectVerifyHSAResults
   Scenario: SelectVerifyHSAResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
