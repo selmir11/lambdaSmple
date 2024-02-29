@@ -11,7 +11,7 @@ Feature: Tests related to the help drawer
     And I click on help icon
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish Create"
+    And I change the language from header to "Spanish NonElmo"
     And I click on help icon
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
@@ -26,7 +26,7 @@ Feature: Tests related to the help drawer
     And I click on help icon button
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish Create"
+    And I change the language from header to "Spanish NonElmo"
     And I click on help icon button
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
@@ -41,7 +41,7 @@ Feature: Tests related to the help drawer
     And I click on help icon
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish Create"
+    And I change the language from header to "Spanish NonElmo"
     And I click on help icon
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
@@ -58,7 +58,7 @@ Feature: Tests related to the help drawer
     And I click on help icon button
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish Create"
+    And I change the language from header to "Spanish NonElmo"
     And I click on help icon button
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
