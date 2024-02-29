@@ -99,8 +99,12 @@ public class BasicSteps {
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
+            case "Compare":
+                pageUrl = "compare";
+                break;
             default:
                 System.out.println("undefined page ");
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
