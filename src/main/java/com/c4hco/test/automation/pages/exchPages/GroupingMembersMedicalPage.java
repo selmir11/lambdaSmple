@@ -16,7 +16,7 @@ public class GroupingMembersMedicalPage {
     List<WebElement> groupingPageText;
     @FindBy(css = ".th-title")
     WebElement medicalGroup1;
-    @FindBy(css = ".mb-2 .link-text-1")
+    @FindBy(id = "SHP-MedicalGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
@@ -36,8 +36,10 @@ public class GroupingMembersMedicalPage {
     }
     
     public void clickOnEditMedicalGroupinglink(){
+        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton,10);
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
         editMyEnrollmentGroupsButton.click();
+        System.out.println("edit enroll");
     }
 
     //--------------------------validations------------------------

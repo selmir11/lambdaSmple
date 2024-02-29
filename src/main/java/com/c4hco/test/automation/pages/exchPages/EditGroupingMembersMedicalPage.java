@@ -24,9 +24,15 @@ public class EditGroupingMembersMedicalPage {
     List<WebElement> dragAMemberHere;
     @FindBy(css = ".row .redTxt")
     WebElement errorText;
-
+    @FindBy(css = ".container .groupHeading")
+    List<WebElement> noOfmedicalGroups;
+    @FindBy(id="SHP-EditMedicalGroupingMembers-CreateANewGroup")
+    WebElement createNewGroup;
     @FindBy(id ="SHP-EditMedicalGroupingMembers-Save")
     WebElement saveButtonOnEditGroupingPage;
+
+    @FindBy(id = "SHP-EditMedicalGroupingMembers-ResetTheGroups")
+    WebElement resetgroupsButton;
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     Actions builder;
@@ -35,30 +41,44 @@ public class EditGroupingMembersMedicalPage {
         builder  = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-
+     public void ivalidateImOnEditGroupingMedicalPage(){
+        System.out.println(createNewGroup.getText());
+         createNewGroup.isDisplayed();
+         createNewGroup.isEnabled();
+     }
     public void cancelEditGroupingMembers(){
         basicActions.waitForElementToBePresent(canceButtonOnEditEnrollmentPage,20);
         basicActions.waitForElementToBeClickable(canceButtonOnEditEnrollmentPage,10);
         canceButtonOnEditEnrollmentPage.click();
         basicActions.waitForElementToDisappear(createNewGroupLink,10);
     }
-    //Actions builder = new Actions(basicActions.getDriver());
-    public void dragAndDropMembersCreateGroup(){
+    public void iGetNumberOfGroups(int groups){
+       System.out.println(noOfmedicalGroups.size());
+       softAssert.assertEquals(noOfmedicalGroups.size(),groups);
+    }
+    public void dragAndDropMembersCreateGroup() throws InterruptedException {
+        basicActions.waitForElementToBePresent(groupingMemebers.get(3),10);
+        basicActions.waitForElementToBePresent(dragAMemberHere.get(1),10 );
           builder.clickAndHold(groupingMemebers.get(3))
-                .moveToElement(dragAMemberHere.get(2))
-                .release(dragAMemberHere.get(2))
-                .build().perform();
+                .moveToElement(dragAMemberHere.get(1))
+                .release(dragAMemberHere.get(1))
+                .perform();
+          Thread.sleep(5000);
+          System.out.println("Drag and dropped.");
     }
-    public void getElementCoordi(){
-    Point point   = groupingMemebers.get(3).getLocation();
-    System.out.println(point);
+    public void iClickresetGroupsButton(){
+        resetgroupsButton.isEnabled();
     }
-
-    public void iClickSaveButton(){
+      public void iClickSaveButton(){
+        softAssert.assertTrue(saveButtonOnEditGroupingPage.isEnabled());
+        basicActions.waitForElementToBePresent(saveButtonOnEditGroupingPage,20);
+        basicActions.waitForElementToBeClickable(saveButtonOnEditGroupingPage,20);
         saveButtonOnEditGroupingPage.click();
     }
     public void errorMessageOnGrouping(){
-        softAssert.assertEquals(errorText,"The group(s) highlighted below in red are not valid groupings. Please move around your members to create valid groups.");
+        softAssert.assertEquals(errorText.getText(),"The group(s) highlighted below in red are not valid groupings. Please move around your members to create valid groups.");
+        softAssert.assertAll();
+        System.out.println("error message");
     }
 
 
