@@ -75,3 +75,25 @@ Feature: Verify all English and Spanish Text on ELIG pages
     When I switch to "Spanish"
     Then I validate I am on the "Spanish" page
     And I validate the verbiage on the Report a life change page in "Spanish"
+
+  @SLER-75 @PageText
+  Scenario: Verify all English and Spanish Text on the Identity Proofing - Initial page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I validate I am on the "Identity Proofing - Initial Questions" page
+    And I validate the verbiage on the Identity Proofing - Initial page in "English"
+    When I switch to "Spanish"
+    Then I validate I am on the "Spanish" page
+    Then I select "member" from the who are you question
+    And I validate the verbiage on the Identity Proofing - Initial page in "Spanish"
+
