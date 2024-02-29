@@ -3,8 +3,8 @@ Feature: Page Text-Welcome Page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-33-WIP @PageTextWelcomePageEnglish
-  Scenario: Create CoCo Account and Login
+  @SLCR-33-WIP @PageTextWelcomePage
+  Scenario: Check Welcome Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -29,9 +29,13 @@ Feature: Page Text-Welcome Page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+#    Complete plan selection and check Welcome again
 
-  @SLCR-33-WIP @PageTextWelcomePageSpanish
-  Scenario: Create CoCo Account and Login
+    And I click on Sign Out in the Header
+    Then I validate I am on the "Login" page
+
+  @SLCR-33-WIP @PageTextWelcomePage
+  Scenario: Check Welcome Page Text in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -43,8 +47,10 @@ Feature: Page Text-Welcome Page
     Then I verify text on the Welcome page for first time signed into an account in "Spanish"
     Then I verify text on the "CoCo" "Header" in "Spanish"
     Then I verify text on the "CoCo" "Footer" in "Spanish"
+#    Complete plan selection and check Welcome again
 
-
+    And I click on Sign Out in the Header
+    Then I validate I am on the "Login" page
 
 
 
