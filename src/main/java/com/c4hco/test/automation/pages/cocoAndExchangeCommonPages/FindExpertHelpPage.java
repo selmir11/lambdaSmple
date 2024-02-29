@@ -12,8 +12,8 @@ public class FindExpertHelpPage {
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
 
-    @FindBy(xpath ="//h2[@id='experthelp-title']")
-    WebElement pageHeader;
+    @FindBy(xpath ="//h2[@class='header-2']")
+    public WebElement pageHeader;
 
     @FindBy(id ="experthelp-text")
     WebElement pageTitle;
@@ -42,7 +42,6 @@ public class FindExpertHelpPage {
 
     public void verifyHeaderPage(String language){
         String ExpectedTitle = "";
-        basicActions.waitForElementToBePresent(pageHeader,10);
         String ActualTitle =pageHeader.getText();
 
         switch (language) {

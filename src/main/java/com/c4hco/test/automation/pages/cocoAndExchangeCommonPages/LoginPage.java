@@ -55,8 +55,9 @@ public class LoginPage {
 
     public void loginAsAnAdminUser(){
         // TO-DO:: Get the credentials from a different file
-        basicActions.waitForElementToBePresent(usernameAdmin,10 );
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
         passwordAdmin.sendKeys("ALaska12!");
         signAdmin.click();
     }
