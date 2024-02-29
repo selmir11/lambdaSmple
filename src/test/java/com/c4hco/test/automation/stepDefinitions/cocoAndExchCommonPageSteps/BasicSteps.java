@@ -96,8 +96,12 @@ public class BasicSteps {
             case "Report a life change":
                 pageUrl = "nes/lifeChangeEvents";
                 break;
+            case "Compare":
+                pageUrl = "compare";
+                break;
             default:
                 System.out.println("undefined page ");
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
