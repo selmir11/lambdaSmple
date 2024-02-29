@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -83,21 +84,27 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEn() {
-        basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou,30);
-        basicActions.assertContainsText(pageHeaderLetUsGuideYou.getText(), "Let us guide you");
-        basicActions.assertContainsText(bodyText.get(0).getText(), "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?");
-        basicActions.assertContainsText(bodyText.get(1).getText(), "You will need your Case ID, which can be found on your Health First Colorado eligibility notice.");
-        basicActions.assertContainsText(bodyText.get(2).getText(), "new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus");
-        basicActions.assertContainsText(bodyText.get(3).getText(), "No thanks, take me to the application");
+        SoftAssert softAssert = new SoftAssert();
+
+        basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
+        softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Let us guide you", "Header text mismatch: Let us guide you");
+        softAssert.assertEquals(bodyText.get(0).getText(), "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?", "Body text mismatch: If you have never enrolled...");
+        softAssert.assertEquals(bodyText.get(1).getText(), "You will need your Case ID, which can be found on your Health First Colorado eligibility notice.", "Body text mismatch: You will need your Case ID...");
+        softAssert.assertEquals(bodyText.get(2).getText(), "Yes, I\u2019m new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus", "Body text mismatch: Yes, I'm new to Connect for Health Colorado...");
+        softAssert.assertEquals(bodyText.get(3).getText(), "No thanks, take me to the application", "Body text mismatch: No thanks, take me to the application");
+        softAssert.assertAll();
     }
 
     public void validateTheVerbiageEs() {
-        basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou,30);
-        basicActions.assertContainsText(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo");
-        basicActions.assertContainsText(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present\u00f3 una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la informaci\u00f3n que envi\u00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y cambiar su informaci\u00f3n seg\u00fan sea necesario. \u00bfDesea buscar una solicitud previamente completada?");
-        basicActions.assertContainsText(bodyText.get(1).getText(), "Necesitar\u00e1 su identificaci\u00f3n del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
-        basicActions.assertContainsText(bodyText.get(2).getText(), "S\u00ed, soy nuevo a Connect for Health Colorado y ya present\u00e9 una solicitud Health First Colorado or Child Health Plan Plus");
-        basicActions.assertContainsText(bodyText.get(3).getText(), "No gracias, ll\u00e9veme a la aplicaci\u00f3n");
+        SoftAssert softAssert = new SoftAssert();
+
+        basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
+        softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo", "Header text mismatch: Perm\u00edtanos guiarlo");
+        softAssert.assertEquals(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present\u00f3 una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la informaci\u00f3n que envi\u00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y cambiar su informaci\u00f3n seg\u00fan sea necesario. \u00bfDesea buscar una solicitud previamente completada?", "Body text mismatch: Si nunca se ha inscrito...");
+        softAssert.assertEquals(bodyText.get(1).getText(), "Necesitar\u00e1 su identificaci\u00f3n del caso que aparece en su aviso de elegibilidad de Health First Colorado.", "Body text mismatch: Necesitar\u00e1 su identificaci\u00f3n del caso...");
+        softAssert.assertEquals(bodyText.get(2).getText(), "S\u00ed, soy nuevo a Connect for Health Colorado y ya present\u00e9 una solicitud Health First Colorado or Child Health Plan Plus", "Body text mismatch: S\u00ed, soy nuevo...");
+        softAssert.assertEquals(bodyText.get(3).getText(), "No gracias, ll\u00e9veme a la aplicaci\u00f3n", "Body text mismatch: No gracias, ll\u00e9veme a la aplicaci\u00f3n");
+        softAssert.assertAll();
     }
 
     public void iSelectOption(String option) {
