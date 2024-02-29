@@ -25,8 +25,8 @@ import io.cucumber.java.en.Then;
 
 // ############################## VALIDATION STEPS #########################
         // Add only validation methods below this line
-    @Then("I verify text on the Welcome page for first time signed into an account")
-    public void verifyFirstTimeText()  { welcomePage.verifyTextOnWelcomePageFirstTime(); }
+    @Then("I verify text on the Welcome page for first time signed into an account in {string}")
+    public void verifyFirstTimeText(String language)  { welcomePage.verifyTextOnWelcomePageFirstTime(language); }
 
     @Then("I verify text on the Welcome page for an account without a policy")
     public void verifyNoPolicyText()  { welcomePage.verifyTextOnWelcomePageNoPolicy(); }
