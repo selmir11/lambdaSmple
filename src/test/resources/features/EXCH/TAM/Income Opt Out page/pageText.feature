@@ -39,17 +39,17 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
-    And I verify text on the Exch "Header" in "English"
+    And I verify text on the "Exch" "Header" in "English"
     And I verify the "English" text on the Income Opt Out page
     And I click on financial help link within text
     And I validate I am on the "Financial Help" page and close tab
-    And I verify text on the Exch "Footer" in "English"
+    And I verify text on the "Exch" "Footer" in "English"
     And I change the language from header to "Spanish"
-    And I verify text on the Exch "Header" in "Spanish"
+    And I verify text on the "Exch" "Header" in "Spanish"
     And I verify the "Spanish" text on the Income Opt Out page
     And I click on financial help link within text
     And I validate I am on the "Financial Help" page and close tab
-    And I verify text on the Exch "Footer" in "Spanish"
+    And I verify text on the "Exch" "Footer" in "Spanish"
 
     And I click on Sign Out in the Header
     Then I validate I am on the "Login" page

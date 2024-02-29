@@ -56,7 +56,7 @@ public class HeaderAndFooterPage {
     @FindBy(id = "contactUsLink")
     WebElement contactUsLink;
 
-    @FindBy(css = ".flex-row .copyright")
+    @FindBy(id = "contactUsFooterLink")
     WebElement contactUsLinkExch;
 
     @FindBy(css = ".terms-container .copyright")
@@ -177,6 +177,25 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
+    public void verifyTextInCoCoHeaderSpanish(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+        clickGetAssistanceLink();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+        softAssert.assertEquals(userNameLink.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp();
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+        softAssert.assertAll();
+    }
+
     public void verifyTextInExchHeader(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
         softAssert.assertEquals(connectLogoLink.getText(), "");
@@ -219,13 +238,39 @@ public class HeaderAndFooterPage {
 
 
     // =========HEADER AND FOOTER============== //
-    public void verifyHeaderFooterText(String HeaderOrFooter) {
+    public void verifyHeaderFooterText(String appType, String HeaderOrFooter, String language) {
+        switch (appType) {
+            case "Exch":
+                verifyExchHeaderFooterText(HeaderOrFooter, language);
+                break;
+            case "CoCo":
+                verifyCoCoHeaderFooterText(HeaderOrFooter, language);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+        }
+    }
+
+    public void verifyCoCoHeaderFooterTextEnglish(String HeaderOrFooter) {
         switch (HeaderOrFooter) {
             case "Header":
                 verifyTextInCoCoHeader();
                 break;
             case "Footer":
                 verifyTextInCoCoFooter();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+        }
+    }
+
+    public void verifyCoCoHeaderFooterTextSpanish(String HeaderOrFooter) {
+        switch (HeaderOrFooter) {
+            case "Header":
+                verifyTextInCoCoHeaderSpanish();
+                break;
+            case "Footer":
+                verifyTextInCoCoFooterSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
@@ -271,6 +316,19 @@ public class HeaderAndFooterPage {
         }
     }
 
+    public void verifyCoCoHeaderFooterText(String language, String HeaderOrFooter) {
+        switch (language) {
+            case "English":
+                verifyCoCoHeaderFooterTextEnglish(HeaderOrFooter);
+                break;
+            case "Spanish":
+                verifyCoCoHeaderFooterTextSpanish(HeaderOrFooter);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
 
     // =========FOOTER============== //
     public void clickPrivacyPolicyLink() {
@@ -292,6 +350,15 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
         softAssert.assertEquals(contactUsLink.getText(), "Contact Us");
         softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. ALL RIGHTS RESERVED.");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInCoCoFooterSpanish(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(privacyPolicyLink.getText(), "Pol\u00EDtica de privacidad");
+        softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos de uso");
+        softAssert.assertEquals(contactUsLink.getText(), "P\u00F3ngase en contacto");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. Todos los derechos reservados.");
         softAssert.assertAll();
     }
 
