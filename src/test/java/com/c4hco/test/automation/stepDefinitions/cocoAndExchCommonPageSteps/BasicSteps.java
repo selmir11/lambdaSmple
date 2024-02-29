@@ -99,8 +99,12 @@ public class BasicSteps {
             case "Identity Proofing - Initial Questions":
                 pageUrl = "nes/memberIdProofing";
                 break;
+            case "Compare":
+                pageUrl = "compare";
+                break;
             default:
                 System.out.println("undefined page ");
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
