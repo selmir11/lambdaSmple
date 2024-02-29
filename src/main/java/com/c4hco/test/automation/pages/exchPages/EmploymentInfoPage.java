@@ -77,8 +77,8 @@ public class EmploymentInfoPage {
     @FindBy(id = "ExchEmploymentIncomeJob-SaveAndContinue")
     WebElement btnContinue;
 
-    @FindBy(css = ".drawer-controls .btn")
-    WebElement helpDrawerButton;
+    @FindBy(css = "lib-help-icon a")
+    List<WebElement> helpIcons;
 
     @FindBy(css = ".drawer-heading .body-text-1")
     WebElement helpDrawerHeaderHelp;
@@ -91,6 +91,9 @@ public class EmploymentInfoPage {
 
     @FindBy(css = ".drawer .header-2")
     List<WebElement> helpDrawerOverviewHeaders;
+
+    @FindBy(css = ".drawer-body .drawer-text-content")
+    WebElement jobQuestionsHelpText;
 
     @FindBy(css = ".drawer-text-content p")
     List<WebElement> helpDrawerBodyParagraphs;
@@ -179,9 +182,19 @@ public class EmploymentInfoPage {
         btnContinue.click();
     }
 
-    public void maximizeHeldDrawer() {
-        basicActions.waitForElementToBeClickable(helpDrawerButton, 10);
-        helpDrawerButton.click();
+    public void clickHelpIcon(String label) {
+        basicActions.waitForElementListToBePresent(helpIcons, 10);
+        switch(label){
+            case "General help":
+                helpIcons.get(0).click();
+                break;
+            case "Do you have job":
+                helpIcons.get(1).click();
+                break;
+            case "Is it self-employment":
+                helpIcons.get(2).click();
+                break;
+        }
     }
 
     public void clickHelpContactUsNavigation() {
@@ -314,6 +327,38 @@ public class EmploymentInfoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateJobQuestionsHelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(globeIcon, 10);
+        globeIcon.click();
+        switch (language) {
+            case "English":
+                basicActions.waitForElementListToBePresent(languageOption, 10);
+                languageOption.get(0).click();
+                basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employment");
+                basicActions.waitForElementToBePresent(jobQuestionsHelpText, 10);
+                softAssert.assertEquals(jobQuestionsHelpText.getText(), "Does this person earn money through a job or by being self-employed?");
+                basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementListToBePresent(languageOption, 10);
+                languageOption.get(1).click();
+                basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Empleo");
+                basicActions.waitForElementToBePresent(jobQuestionsHelpText, 10);
+                softAssert.assertEquals(jobQuestionsHelpText.getText(), "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertAll();
+                break;
         }
     }
 
