@@ -14,4 +14,7 @@ public class ApplicationHistoryPageSteps {
     public void clickViewResultsNSHop(){
         applicationHistoryPage.clickViewResults();
     }
+
+    @Then("I validate that {string} text displays on the Application History page")
+    public void validateText(String Text){applicationHistoryPage.validateTextOnPage(Text);}
 }
