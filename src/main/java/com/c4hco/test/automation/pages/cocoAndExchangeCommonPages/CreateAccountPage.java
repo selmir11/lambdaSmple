@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Random;
 
 public class CreateAccountPage {
+    SoftAssert softAssert = new SoftAssert();
+
     @FindBy(css = "app-create-account a em")
     WebElement helpIcon;
 
@@ -72,7 +74,6 @@ public class CreateAccountPage {
     }
 
     public void clickHelpIcon(){
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(basicActions.waitForElementToBePresent(helpIcon, 20));
         basicActions.waitForElementToBeClickable(helpIcon, 20);
         helpIcon.click();
@@ -80,7 +81,6 @@ public class CreateAccountPage {
     }
 
     public void closeHelpIcon(){
-       SoftAssert softAssert = new SoftAssert();
        softAssert.assertTrue(basicActions.waitForElementToBePresent(closeHelpIcon, 20));
         basicActions.waitForElementToBePresent(closeHelpIcon, 20);
         basicActions.waitForElementToBeClickable(closeHelpIcon, 20);
@@ -118,6 +118,9 @@ public class CreateAccountPage {
             case "exchange":
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+
         }
         submitButton.click();
     }
@@ -142,8 +145,8 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
     }
-    public void validateHelpText(String Language){
-        switch(Language) {
+    public void validateHelpText(String language){
+        switch(language) {
         case "English":
             validateHelpVerbiage();
             break;
@@ -151,7 +154,7 @@ public class CreateAccountPage {
             validateHelpVerbiageSP();
             break;
         default:
-            System.out.println("The wrong language option has been selected");
+            throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -159,7 +162,6 @@ public class CreateAccountPage {
 
     public void validateHelpVerbiage(){
         basicActions.waitForElementToBePresent(helpDrawerText.get(0), 30);
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(helpDrawerText.get(0).getText(), "Connect for Health Colorado and Colorado Connect are committed to protecting your privacy and will keep the information you provide private as required by law.");
         softAssert.assertEquals(helpDrawerText.get(1).getText(), "Connect for Health Colorado");
         softAssert.assertEquals(helpDrawerText.get(3).getText(), "Customers who apply through Connect for Health Colorado may be subject to eligibility verification, including information matching with state and federal partners. Personal information, including information about immigration status, cannot be used for immigration enforcement.");
@@ -170,9 +172,8 @@ public class CreateAccountPage {
 
     public void validateHelpVerbiageSP() {
         basicActions.waitForElementToBePresent(helpDrawerTextSP, 60);
-        SoftAssert softAssert = new SoftAssert();
-softAssert.assertEquals(helpDrawerTextSP.getText(),"Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado");
-
+        softAssert.assertEquals(helpDrawerTextSP.getText(),"Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado");
+        softAssert.assertAll();
     }
 
 

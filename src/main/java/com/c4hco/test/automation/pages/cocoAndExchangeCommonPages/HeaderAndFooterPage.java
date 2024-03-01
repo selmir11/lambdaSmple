@@ -8,47 +8,42 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class HeaderAndFooterPage {
+    SoftAssert softAssert = new SoftAssert();
+
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
 
-    @FindBy(xpath = "//*[text()=' Apply for Coverage']")
-    WebElement applyForCoverageLink;
+    @FindBy(css = ".center-links .clickable")
+    List<WebElement> centerHeaderLink;
 
-    @FindBy(xpath = "//*[text()='Find a Plan']")
-    WebElement findAPlanLink;
-
-    @FindBy(xpath = "//*[text()='My Account']")
-    WebElement myAccountLink;
-
-    @FindBy(xpath = "//*[text()=' Learn More']")
+    @FindBy(css = ".learnmore-getassistance-flex-item .learn-more")
     WebElement learnMoreLink;
 
-    @FindBy(xpath = "//*[text()='Get Assistance']")
+    @FindBy(css = ".learnmore-getassistance-flex-item .get-assistance")
     WebElement getAssistanceLink;
 
-    @FindBy(xpath = "//*[text()=' Find Expert Assistance in Your Community ']")
-    WebElement findExpertAssistanceLink;
+    @FindBy(css = ".dropdown .clickable")
+    List<WebElement> getAssistanceLinkOption;
 
-    @FindBy(xpath = "//div[2]//div[3]/a")
+    @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
+
+    @FindBy(css = ".toolbar-content .toolbar-text .toolbar-text")
+    WebElement userNameLinkExch;
 
     @FindBy(id = "globe-image")
     WebElement languageDrp;
 
-    @FindBy(xpath = "//p[normalize-space()='English']")
-    WebElement englishLanguageCoCo;
+    @FindBy(css = "#globe p")
+    List<WebElement> languageDrpOption;
 
-    @FindBy(xpath = "//p[normalize-space()='En espa\u00f1ol']")
-    WebElement spanishLanguageCoCo;
+    @FindBy(css = "#globe a")
+    List<WebElement> languageDrpOptionNonElmo;
 
-    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'English')]")
-    WebElement englishLanguage;
-
-    @FindBy(xpath = "//div[@class='dropdown-content-lang']//a[contains(text(),'Spanish')]")
-    WebElement spanishLanguage;
-
-    @FindBy(xpath = "//a[normalize-space()='Sign Out']")
+    @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
 
     // =========FOOTER============== //
@@ -61,8 +56,32 @@ public class HeaderAndFooterPage {
     @FindBy(id = "contactUsLink")
     WebElement contactUsLink;
 
-    @FindBy(xpath = "//span[contains (text(), 'ALL RIGHTS RESERVED')]")
+    @FindBy(id = "contactUsFooterLink")
+    WebElement contactUsLinkExch;
+
+    @FindBy(css = ".terms-container .copyright")
     WebElement copyRightCoCoText;
+
+    @FindBy(css = ".content-container .follow-us")
+    WebElement followUsText;
+
+    @FindBy(id = "facebook-img")
+    WebElement FacebookIcon;
+
+    @FindBy(id = "x-img")
+    WebElement xIcon;
+
+    @FindBy(id = "youtube-img")
+    WebElement YouTubeIcon;
+
+    @FindBy(id = "LinkedIn-img")
+    WebElement LinkedInIcon;
+
+    @FindBy(id = "threads-img")
+    WebElement ThreadsIcon;
+
+    @FindBy(id = "instagram-img")
+    WebElement InstagramIcon;
 
     private BasicActions basicActions;
 
@@ -75,28 +94,28 @@ public class HeaderAndFooterPage {
         connectLogoLink.click();
     }
     public void clickApplyForCoverageLink() {
-        basicActions.waitForElementToBeClickable(applyForCoverageLink, 10);
-        applyForCoverageLink.click();
+        basicActions.waitForElementToBeClickable(centerHeaderLink.get(0), 90);
+        centerHeaderLink.get(0).click();
     }
     public void clickFindAPlanLinkLink() {
-        basicActions.waitForElementToBeClickable(findAPlanLink, 10);
-        findAPlanLink.click();
+        basicActions.waitForElementToBeClickable(centerHeaderLink.get(1), 90);
+        centerHeaderLink.get(1).click();
     }
     public void clickMyAccountLink() {
-        basicActions.waitForElementToBeClickable(myAccountLink, 10);
-        myAccountLink.click();
+        basicActions.waitForElementToBeClickable(centerHeaderLink.get(2), 90);
+        centerHeaderLink.get(2).click();
     }
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickable(learnMoreLink, 10);
+        basicActions.waitForElementToBeClickable(learnMoreLink, 90);
         learnMoreLink.click();
     }
     public void clickGetAssistanceLink() {
-        basicActions.waitForElementToBeClickable(getAssistanceLink, 10);
+        basicActions.waitForElementToBeClickable(getAssistanceLink, 90);
         getAssistanceLink.click();
     }
     public void clickFindExpertAssistanceLink() {
-        basicActions.waitForElementToBeClickable(findExpertAssistanceLink, 20);
-        findExpertAssistanceLink.click();
+        basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(0), 20);
+        getAssistanceLinkOption.get(0).click();
     }
     public void clickUserNameLink() {
         basicActions.waitForElementToBeClickable(userNameLink, 20);
@@ -114,18 +133,23 @@ public class HeaderAndFooterPage {
 
         switch (language) {
             case "English":
-                basicActions.waitForElementToBePresent(englishLanguage, 60);
-                englishLanguage.click();
+                basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
+                languageDrpOption.get(0).click();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(spanishLanguage, 60);
-                spanishLanguage.click();
+                basicActions.waitForElementToBePresent(languageDrpOption.get(1), 60);
+                languageDrpOption.get(1).click();
                 break;
-            case "Spanish COCO":
-                basicActions.waitForElementToBePresent(spanishLanguageCoCo, 10);
-                spanishLanguageCoCo.click();
-
+            case "English NonElmo":
+                basicActions.waitForElementToBePresent(languageDrpOptionNonElmo.get(0), 60);
+                languageDrpOptionNonElmo.get(0).click();
                 break;
+            case "Spanish NonElmo":
+                basicActions.waitForElementToBePresent(languageDrpOptionNonElmo.get(1), 60);
+                languageDrpOptionNonElmo.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -136,24 +160,175 @@ public class HeaderAndFooterPage {
 
     public void verifyTextInCoCoHeader(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
-        String header  = connectLogoLink.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(applyForCoverageLink.getText(), "Apply for Coverage");
-        softAssert.assertEquals(findAPlanLink.getText(), "Find a Plan");
-        softAssert.assertEquals(myAccountLink.getText(), "My Account");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
         softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
         clickGetAssistanceLink();
-        softAssert.assertEquals(findExpertAssistanceLink.getText(), "Find Expert Assistance in Your Community");
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
         softAssert.assertEquals(userNameLink.getText(), SharedData.getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
-        softAssert.assertEquals(englishLanguageCoCo.getText(), "English");
-        softAssert.assertEquals(spanishLanguageCoCo.getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertAll();
     }
+
+    public void verifyTextInCoCoHeaderSpanish(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+        clickGetAssistanceLink();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+        softAssert.assertEquals(userNameLink.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp();
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchHeader(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp();
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+        clickGetAssistanceLink();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchHeaderSpanish(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp();
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+        clickGetAssistanceLink();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+        softAssert.assertAll();
+    }
+
+
+    // =========HEADER AND FOOTER============== //
+    public void verifyHeaderFooterText(String appType, String HeaderOrFooter, String language) {
+        switch (appType) {
+            case "Exch":
+                verifyExchHeaderFooterText(HeaderOrFooter, language);
+                break;
+            case "CoCo":
+                verifyCoCoHeaderFooterText(HeaderOrFooter, language);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+        }
+    }
+
+    public void verifyCoCoHeaderFooterTextEnglish(String HeaderOrFooter) {
+        switch (HeaderOrFooter) {
+            case "Header":
+                verifyTextInCoCoHeader();
+                break;
+            case "Footer":
+                verifyTextInCoCoFooter();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+        }
+    }
+
+    public void verifyCoCoHeaderFooterTextSpanish(String HeaderOrFooter) {
+        switch (HeaderOrFooter) {
+            case "Header":
+                verifyTextInCoCoHeaderSpanish();
+                break;
+            case "Footer":
+                verifyTextInCoCoFooterSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+        }
+    }
+
+        public void verifyExchHeaderFooterTextEnglish(String HeaderOrFooter){
+            switch (HeaderOrFooter) {
+                case "Header":
+                    verifyTextInExchHeader();
+                    break;
+                case "Footer":
+                    verifyTextInExchFooter();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+            }
+    }
+
+    public void verifyExchHeaderFooterTextSpanish(String HeaderOrFooter){
+        switch (HeaderOrFooter) {
+            case "Header":
+                verifyTextInExchHeaderSpanish();
+                break;
+            case "Footer":
+                verifyTextInExchFooterSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+        }
+    }
+
+    public void verifyExchHeaderFooterText(String language, String HeaderOrFooter) {
+        switch (language) {
+            case "English":
+                verifyExchHeaderFooterTextEnglish(HeaderOrFooter);
+                break;
+            case "Spanish":
+                verifyExchHeaderFooterTextSpanish(HeaderOrFooter);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyCoCoHeaderFooterText(String language, String HeaderOrFooter) {
+        switch (language) {
+            case "English":
+                verifyCoCoHeaderFooterTextEnglish(HeaderOrFooter);
+                break;
+            case "Spanish":
+                verifyCoCoHeaderFooterTextSpanish(HeaderOrFooter);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
 
     // =========FOOTER============== //
     public void clickPrivacyPolicyLink() {
@@ -171,12 +346,51 @@ public class HeaderAndFooterPage {
 
     public void verifyTextInCoCoFooter(){
         basicActions.waitForElementToBePresent(connectLogoLink,10);
-        String header  = connectLogoLink.getText();
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
         softAssert.assertEquals(contactUsLink.getText(), "Contact Us");
         softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. ALL RIGHTS RESERVED.");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInCoCoFooterSpanish(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(privacyPolicyLink.getText(), "Pol\u00EDtica de privacidad");
+        softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos de uso");
+        softAssert.assertEquals(contactUsLink.getText(), "P\u00F3ngase en contacto");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. Todos los derechos reservados.");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchFooter(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
+        softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
+        softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
+        softAssert.assertEquals(followUsText.getText(), "Follow Us:");
+        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
+        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
+        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
+        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
+        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
+        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchFooterSpanish(){
+        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
+        softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
+        softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
+        softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
+        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
+        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
+        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
+        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
+        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
+        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
         softAssert.assertAll();
     }
 

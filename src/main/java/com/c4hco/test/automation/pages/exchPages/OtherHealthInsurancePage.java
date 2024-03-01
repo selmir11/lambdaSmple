@@ -26,6 +26,8 @@ public class OtherHealthInsurancePage {
             case "None of these":
                 insuranceOptionsCheckBox.get(11).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + insuranceOption);
 
         }
         saveAndContinueBtn.click();

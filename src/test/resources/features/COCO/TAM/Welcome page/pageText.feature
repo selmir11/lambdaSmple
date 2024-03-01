@@ -4,7 +4,7 @@ Feature: Page Text-Welcome Page
     Given I open the login page on the "login" portal
 
   @SLCR-33-WIP @PageTextWelcomePage
-  Scenario: Create CoCo Account and Login
+  Scenario: Check Welcome Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -12,9 +12,9 @@ Feature: Page Text-Welcome Page
     And  I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
 
-    Then I verify text on the Welcome page for first time signed into an account
-    Then I verify text on the CoCo "Header"
-    Then I verify text on the CoCo "Footer"
+    Then I verify text on the Welcome page for first time signed into an account in "English"
+    Then I verify text on the "CoCo" "Header" in "English"
+    Then I verify text on the "CoCo" "Footer" in "English"
     Then I click on My Profile Button CoCo
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
@@ -29,8 +29,28 @@ Feature: Page Text-Welcome Page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+#    Complete plan selection and check Welcome again
 
+    And I click on Sign Out in the Header
+    Then I validate I am on the "Login" page
 
+  @SLCR-33-WIP @PageTextWelcomePage
+  Scenario: Check Welcome Page Text in Spanish
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+    And I change the language from header to "Spanish"
+
+    Then I verify text on the Welcome page for first time signed into an account in "Spanish"
+    Then I verify text on the "CoCo" "Header" in "Spanish"
+    Then I verify text on the "CoCo" "Footer" in "Spanish"
+#    Complete plan selection and check Welcome again
+
+    And I click on Sign Out in the Header
+    Then I validate I am on the "Login" page
 
 
 

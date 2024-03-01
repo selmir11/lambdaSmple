@@ -4,7 +4,7 @@ Feature: Medical Plan Results page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-46-WIP @ComparePlansLink
+  @SLER-46 @ComparePlansLink
   Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -47,10 +47,10 @@ Feature: Medical Plan Results page related tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select "No" for tobacco usage on start shopping page
     Then I click continue on start shopping page
     And I click on the compare links on the first 2 medical plans
-#
+    Then I click on the compare button
+    Then I validate I am on the "Compare" page
 
 
 

@@ -15,8 +15,8 @@ public class WelcomePage {
     @FindBy(xpath = "//div[@class='header-1']")
     WebElement welcomeToConnectText;
 
-    @FindBy(xpath = "//div[@class='header-2 content-center']")
-    WebElement applyForHealthInsuranceText;
+    @FindBy(css = ".container .header-2")
+    List <WebElement> containerHeaderText;
 
     @FindBy(xpath = "//div[@class='body-text-1 apply-text-body']")
     WebElement theAnnualOpenEnrollmentText;
@@ -24,25 +24,19 @@ public class WelcomePage {
     @FindBy(css = ".apply-button-container button")
     WebElement applyForCurrentYearButton;
 
-    @FindBy(xpath = "//div[.=' Your current plan(s) ']")
-    WebElement yourCurrentPlansText;
-
-    @FindBy(xpath = "//div[*='Plan Year']/label")
+    @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
 
-    @FindBy(xpath = "//*[@id='plan-year-selector']")
+    @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
 
     @FindBy(xpath = "//div[@class='no-plans plans-container']")
     WebElement youHaveNotEnrolled;
 
-    @FindBy (xpath = "//span[.='Additional Resources']")
-    WebElement additionalResourcesText;
-
     @FindBy(id = "ELIG-WelcomePage-MyProfile")
     WebElement myProfileButton;
 
-    @FindBy(xpath = "//div[.='View and update your account information']")
+    @FindBy(xpath = "//app-additional-resources//div[2]/div[2]")
     WebElement viewAndUpdateText;
 
     @FindBy(id = "ELIG-WelcomePage-ApplicationResults")
@@ -95,23 +89,37 @@ public class WelcomePage {
             case "My Documents and Letters":
                 actionLinks.get(2).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + actionLink);
         }
     }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
-    public void verifyTextOnWelcomePageFirstTime(){
+    public void verifyTextOnWelcomePageFirstTime(String language) {
+        switch (language) {
+            case "English":
+                verifyTextOnWelcomePageFirstTimeEnglish();
+                break;
+            case "Spanish":
+                verifyTextOnWelcomePageFirstTimeSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyTextOnWelcomePageFirstTimeEnglish(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        String header  = applyForCurrentYearButton.getText();
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome to Colorado Connect!");
-        softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
+        softAssert.assertEquals(containerHeaderText.get(0).getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
-        softAssert.assertEquals(yourCurrentPlansText.getText(), "Your current plan(s)");
+        softAssert.assertEquals(containerHeaderText.get(1).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
         softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
-        softAssert.assertEquals(additionalResourcesText.getText(), "Additional Resources");
+        softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
         softAssert.assertEquals(myProfileButton.getText(), "My Profile");
         softAssert.assertEquals(viewAndUpdateText.getText(), "View and update your account information");
         softAssert.assertEquals(applicationResultsButton.getText(), "Application Results");
@@ -121,18 +129,37 @@ public class WelcomePage {
         softAssert.assertAll();
     }
 
+    public void verifyTextOnWelcomePageFirstTimeSpanish(){
+        basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
+        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido a Colorado Connect!");
+        softAssert.assertEquals(containerHeaderText.get(0).getText(), "Solicite un seguro de salud");
+        softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para comenzar.");
+        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
+        softAssert.assertEquals(containerHeaderText.get(1).getText(), "Sus planes actuales");
+        softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
+        softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");
+        softAssert.assertEquals(myProfileButton.getText(), "Mi perfil");
+        softAssert.assertEquals(viewAndUpdateText.getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
+        softAssert.assertEquals(applicationResultsButton.getText(), "Resultados de la solicitud");
+        softAssert.assertEquals(viewTheBenefitsText.getText(), "Ver los beneficios a los que califica");
+        softAssert.assertEquals(myDocumentsButton.getText(), "Mis Documentos y Cartas");
+        softAssert.assertEquals(viewYourDocumentsText.getText(), "Vea sus documentos");
+        softAssert.assertAll();
+    }
+
     public void verifyTextOnWelcomePageNoPolicy(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        String header  = applyForCurrentYearButton.getText();
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getFirstName() +"!");
-        softAssert.assertEquals(applyForHealthInsuranceText.getText(), "Apply for health insurance");
+        softAssert.assertEquals(containerHeaderText.get(0).getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
-        softAssert.assertEquals(yourCurrentPlansText.getText(), "Your current plan(s)");
+        softAssert.assertEquals(containerHeaderText.get(1).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
         softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
-        softAssert.assertEquals(additionalResourcesText.getText(), "Additional Resources");
+        softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
         softAssert.assertEquals(myProfileButton.getText(), "My Profile");
         softAssert.assertEquals(viewAndUpdateText.getText(), "View and update your account information");
         softAssert.assertEquals(applicationResultsButton.getText(), "Application Results");
@@ -153,6 +180,8 @@ public class WelcomePage {
                 softAssert.assertTrue(actionLinks.get(2).getText().equals(actionLink));
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + actionLink);
         }
     }
 }

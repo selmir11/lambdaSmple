@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.junit.Assert;
+import com.c4hco.test.automation.utils.SharedData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,14 +18,16 @@ public class MedicalPlanResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id ="PlanResults-SelectThisPlan_0")
+    @FindBy(id = "PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
+    @FindBy(id= "PlanResults-ProviderPlan_0")
+    WebElement firstMedicalPlanName;
 
-    @FindBy(id ="SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id ="PlanResults-Compare_0")
-    WebElement selectCompare;
+    @FindBy(id ="SHP-PlanResults-ComparePlans")
+    WebElement clickCompare;
 
     @FindBy(xpath ="//a[contains(@id,'PlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
@@ -33,16 +35,39 @@ public class MedicalPlanResultsPage {
     @FindBy(id ="SHP-PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
+    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    WebElement filterResetButton;
 
-    public void selectfromProviderList(String Selecting){
-        String providerPath = "//span[text()='"+Selecting+"']";
+    @FindBy(id = "SHP-PlanResults-MetalTier")
+    WebElement metalTierDropdown;
+
+    @FindBy(id = "SHP-PlanResults-HSAFilter")
+    WebElement hsaDropdown;
+
+    @FindBy(id ="SHP-PlanResults-HSAFilter-input")
+    WebElement hsaOption;
+
+    public void selectfromProviderList(String Selecting) {
+        String providerPath = "//span[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
+    public void iGetFirstPlaneName(){
+        basicActions.waitForElementToBePresent(firstMedicalPlanName,10);
+        SharedData.setfirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
+    }
     public void SelectFirstMedicalPlan(){
+        iGetFirstPlaneName();
         basicActions.waitForElementToBePresent(selectFirstPlan,10);
         selectFirstPlan.click();
+    }
+    public void iclickContinue(){
         btnContinue.click();
+    }
+
+    public void clickCompare() {
+        basicActions.waitForElementToBePresent(clickCompare, 10);
+        clickCompare.click();
     }
 
     public void clickFirstTwoCompareButtons() {
@@ -55,8 +80,27 @@ public class MedicalPlanResultsPage {
             basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 10);
             insuranceCompanyDropdown.click();
 
-        }
+    }
 
+        public void clickMetalTierDropdown(){
+        basicActions.waitForElementToBeClickable(metalTierDropdown, 10);
+            metalTierDropdown.click();
+
+    }
+
+    public void clickHSADropdown() {
+        basicActions.waitForElementToBeClickable(hsaDropdown, 10);
+        hsaDropdown.click();
+    }
+     public void selectHSAOption(){
+        basicActions.waitForElementToBeClickable(hsaOption, 10);
+         hsaOption.click();
+     }
+
+    public void selectfromMetalTierList(String Selecting) {
+        String providerPath = "//span[text()='" + Selecting + "']";
+        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+    }
         public void validatePlanResults ( int index, String planText){
             basicActions.waitForElementToBePresent(selectFirstPlan, 10);
             index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
@@ -67,3 +111,4 @@ public class MedicalPlanResultsPage {
             expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
         }
     }
+

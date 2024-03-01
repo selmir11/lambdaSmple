@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class LawfulPresencePage {
@@ -86,6 +85,8 @@ public class LawfulPresencePage {
             case "No":
                 rdobtnnaturalizedNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNNaturalized);
         }
     }
 
@@ -97,6 +98,8 @@ public class LawfulPresencePage {
             case "No":
                 rdobtnEligibleImmigrantNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNEligibleImmigrationStatus);
         }
     }
 
@@ -126,6 +129,8 @@ public class LawfulPresencePage {
             case "No":
                 livedSince1996No.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNLivedInUSSince1996);
         }
     }
 
@@ -143,6 +148,8 @@ public class LawfulPresencePage {
             case "None of the above":
                 chkBoxNoneOfTheAbove.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + memberOptions);
         }
     }
 
@@ -154,6 +161,8 @@ public class LawfulPresencePage {
             case "No":
                 nameMatchesNo.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNNameMatchesDocument);
         }
     }
 

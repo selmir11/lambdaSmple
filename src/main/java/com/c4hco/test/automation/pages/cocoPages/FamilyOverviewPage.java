@@ -15,6 +15,9 @@ public class FamilyOverviewPage {
     @FindBy (xpath = "//a[text()='Edit/Update']")
     List<WebElement> editUpdateLink;
 
+    @FindBy(id = "familyOverview-SaveAndContinue")
+    WebElement continueButton;
+
     private BasicActions basicActions;
 
     public FamilyOverviewPage(WebDriver webDriver) {
@@ -27,6 +30,9 @@ public class FamilyOverviewPage {
         editUpdateLink.get(0).click();
     }
 
-
+    public void clickContinueButton() {
+        basicActions.waitForElementToBeClickable(continueButton, 30);
+        continueButton.click();
+    }
 
 }
