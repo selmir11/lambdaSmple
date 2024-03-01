@@ -149,7 +149,20 @@ public class WelcomePage {
         softAssert.assertAll();
     }
 
-    public void verifyTextOnWelcomePageNoPolicy(){
+    public void verifyTextOnWelcomePageNoPolicy(String language){
+        switch(language) {
+        case "English":
+            verifyTextOnWelcomePageNoPolicyEnglish();
+            break;
+        case "Spanish":
+            verifyTextOnWelcomePageNoPolicySpanish();
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyTextOnWelcomePageNoPolicyEnglish(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
         softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getFirstName() +"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Apply for health insurance");
@@ -166,6 +179,26 @@ public class WelcomePage {
         softAssert.assertEquals(viewTheBenefitsText.getText(), "View the benefits you're qualified for");
         softAssert.assertEquals(myDocumentsButton.getText(), "My Documents and Letters");
         softAssert.assertEquals(viewYourDocumentsText.getText(), "View your documents");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextOnWelcomePageNoPolicySpanish(){
+        basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
+        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getFirstName() +"!");
+        softAssert.assertEquals(containerHeaderText.get(0).getText(), "Solicite un seguro de salud");
+        softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para comenzar.");
+        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
+        softAssert.assertEquals(containerHeaderText.get(1).getText(), "Sus planes actuales");
+        softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
+        softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");
+        softAssert.assertEquals(myProfileButton.getText(), "Mi perfil");
+        softAssert.assertEquals(viewAndUpdateText.getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
+        softAssert.assertEquals(applicationResultsButton.getText(), "Resultados de la solicitud");
+        softAssert.assertEquals(viewTheBenefitsText.getText(), "Ver los beneficios a los que califica");
+        softAssert.assertEquals(myDocumentsButton.getText(), "Mis Documentos y Cartas");
+        softAssert.assertEquals(viewYourDocumentsText.getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
 
