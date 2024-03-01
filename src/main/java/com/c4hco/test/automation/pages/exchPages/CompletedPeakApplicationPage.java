@@ -31,12 +31,6 @@ public class CompletedPeakApplicationPage {
     @FindBy(css = ".c4BodyText1")
     List<WebElement> bodyText;
 
-    @FindBy(xpath = "//a[@class='icon-link language']")
-    WebElement languageToggleLink;
-
-    @FindBy(css = ".language-dropdown-content li")
-    List<WebElement> languageLocaleLink;
-
     public void setYesImNew(){
         yesImNew.click();
     }
@@ -47,27 +41,6 @@ public class CompletedPeakApplicationPage {
 
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
-    }
-
-    public void selectLocale(String locale) {
-        // Click on the language toggle link to open the language dropdown
-        languageToggleLink.click();
-
-        // Determine the locale to select based on the parameter
-        switch (locale.toLowerCase()) {
-            case "spanish":
-                // Click on the Spanish locale link
-                languageLocaleLink.get(1).click();
-                break;
-            case "english":
-                // Click on the English locale link
-                languageLocaleLink.get(0).click();
-                break;
-            default:
-                // Handle invalid locale parameter (Optional: throw an exception or log a warning)
-                System.out.println("Invalid locale parameter provided: " + locale);
-                break;
-        }
     }
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language){

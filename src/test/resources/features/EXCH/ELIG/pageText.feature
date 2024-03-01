@@ -15,7 +15,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I apply for the current year
     Then I validate I am on the "Let us guide you" page
     And I validate the verbiage on Let us guide you page in "English"
-    When I switch to "Spanish"
+    When I change the language from header to "Spanish NonElmo"
     And I validate I am on the "Spanish" page
     And I validate the verbiage on Let us guide you page in "Spanish"
 
@@ -34,7 +34,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I click on save and continue button
     Then I validate I am on the "Enter Case ID" page
     And I validate the verbiage on the Enter Case ID page in "English"
-    When I switch to "Spanish"
+    When I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Spanish" page
     And I validate the verbiage on the Enter Case ID page in "Spanish"
 
@@ -52,7 +52,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I click on save and continue button
     Then I validate I am on the "Before you begin" page
     And I validate the verbiage on the Before you begin page in "English"
-    When I switch to "Spanish"
+    When I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Spanish" page
     And I validate the verbiage on the Before you begin page in "Spanish"
 
@@ -72,7 +72,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
     And I validate the verbiage on the Report a life change page in "English"
-    When I switch to "Spanish"
+    When I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Spanish" page
     And I validate the verbiage on the Report a life change page in "Spanish"
 
@@ -92,7 +92,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     And I validate the verbiage on the Identity Proofing - Initial page in "English"
-    When I switch to "Spanish"
+    When I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Spanish" page
     Then I select "member" from the who are you question
     And I validate the verbiage on the Identity Proofing - Initial page in "Spanish"
