@@ -12,6 +12,7 @@ import java.util.List;
 public class LifeChangeEventsPage {
 
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public LifeChangeEventsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -156,6 +157,31 @@ public class LifeChangeEventsPage {
         softAssert.assertEquals(textHelpDrawerFooter.getText(), "\u00bfNecesitas m\u00e1s ayuda?", "Need more help? text mismatch");
         softAssert.assertEquals(lnkHelpDrawerContactUs.getText(), "Cont\u00e1ctenos", "Contáctenos text mismatch");
 
+        softAssert.assertAll();
+    }
+
+    public void validateTheHeaderOnReportALifeChangePage(String language) {
+        switch (language){
+            case "English":
+                validateTheHeaderEn();
+                break;
+            case "Spanish":
+                validateTheHeaderEs();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    public void validateTheHeaderEn() {
+        basicActions.waitForElementToBePresent(textReportLifeChangeHeader,10);
+        softAssert.assertEquals(textReportLifeChangeHeader.getText(), "Tell us about life changes");
+        softAssert.assertAll();
+    }
+
+    private void validateTheHeaderEs() {
+        basicActions.waitForElementToBePresent(textReportLifeChangeHeader,10);
+        softAssert.assertEquals(textReportLifeChangeHeader.getText(), "Inf\u00F3rmenos sobre los cambios importantes en la vida");
         softAssert.assertAll();
     }
 }

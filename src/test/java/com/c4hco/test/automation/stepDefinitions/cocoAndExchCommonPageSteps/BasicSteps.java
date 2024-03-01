@@ -96,6 +96,15 @@ public class BasicSteps {
             case "Report a life change":
                 pageUrl = "nes/lifeChangeEvents";
                 break;
+            case "CoCo Declarations and Signature":
+                pageUrl = "WelcomePortal/declarationsAndSignature";
+                break;
+            case "Compare":
+                pageUrl = "compare";
+                break;
+            case "Tell us about life changes":
+                pageUrl = "nes/qlceConfirmation";
+                break;
             default:
                 System.out.println("undefined page ");
         }
@@ -120,6 +129,11 @@ public class BasicSteps {
             case "Podemos ayudar":
                 pageUrl = "/es/podemos-ayudar/";
                 break;
+            case "Financial Help":
+                pageUrl = "/financial-help/get-financial-help/";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
         String origin = basicActions.getDriver().getWindowHandle();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
