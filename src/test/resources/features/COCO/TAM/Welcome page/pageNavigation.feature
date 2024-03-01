@@ -64,5 +64,5 @@ Feature: Navigation-Welcome Page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
 
-    And I click on Sign Out in the Header
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

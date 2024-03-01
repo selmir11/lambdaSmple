@@ -17,7 +17,7 @@ public class HouseholdPage {
     }
 
     // update locators to ids and rename methods
-    @FindBy(xpath = "//*[@value='Save and Continue']")
+    @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
     @FindBy(id = "submitButton_AddMember")

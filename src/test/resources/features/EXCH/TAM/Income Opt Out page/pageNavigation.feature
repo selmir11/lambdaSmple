@@ -1,23 +1,24 @@
-@medicalPlanFilterResults
-Feature: Medical Plan Verification test
+Feature: Page Navigation-Income Opt Out Page
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
-  Scenario Outline: SelectVerifyCarrierfilterResults
+  @SLER-76-WIP @PageNavigationIncomeOptOutPage
+  Scenario: I Navigate to the Tell us about life changes page after choosing NFA - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for the current year
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the page is in "Spanish"
+    Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -39,29 +40,13 @@ Feature: Medical Plan Verification test
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
+
     And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    And I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    Then I click on view results and shop
-    And I click continue on application results page
+    Then I validate I am on the "Tell us about life changes" page
+    And I validate the header on the Report a life change in "Spanish"
 
-    Then I validate I am on the "Start Shopping" page
-    And I click continue on start shopping page
 
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the Insurance Company dropdown
-    And I select "<carrierOption>" to filter for desired plan provider
-    And I validate the plan option 1 has text "<planText>"
+    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "Login" page
 
-    Examples:
-      | carrierOption               | planText                                                          |
-      | Anthem                      | Anthem Bronze Pathway Essentials HMO 9450 $0 Select Drugs         |
-      | Cigna                       | Cigna Connect Colorado Option Bronze                              |
-      | Denver Health               | Elevate Health Plans Bronze HDHP                                  |
-      | Kaiser Permanente           | KP Select CO Bronze 8500/50                                       |
-      | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Bronze                 |
-      | Select Health               | Select Health Value Bronze $6900 Medical Deductible               |
 

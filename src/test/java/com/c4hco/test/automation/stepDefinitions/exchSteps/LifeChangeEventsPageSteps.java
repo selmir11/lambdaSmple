@@ -18,4 +18,9 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.validateTheVerbiageOnReportALifeChangePage(language);
     }
 
+    @And("I validate the header on the Report a life change in {string}")
+    public void iValidateTheHeaderOnReportALifeChangePage(String language) {
+        lifeChangeEventsPage.validateTheHeaderOnReportALifeChangePage(language);
+    }
+
 }

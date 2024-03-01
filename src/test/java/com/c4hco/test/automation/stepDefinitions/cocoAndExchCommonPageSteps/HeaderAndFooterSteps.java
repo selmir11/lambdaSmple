@@ -33,25 +33,16 @@ public class HeaderAndFooterSteps {
     @And("I click on the Username in the Header")
     public void iClickUserNameLink(){ headerAndFooterPage.clickUserNameLink(); }
 
-    @And("I click on Sign Out in the Header")
-    public void iClickSignOutLink(){ headerAndFooterPage.clickSignOutLink(); }
+    @And("I click on Sign Out in the Header for {string}")
+    public void iClickSignOutLink(String pageType){ headerAndFooterPage.clickSignOutLink(pageType); }
 
     @And("I change the language from header to {string}")
     public void iChangeLanguage(String language){ headerAndFooterPage.changeLanguage(language);}
 
 
     // =========HEADER AND FOOTER============== //
-    @Then("I verify text on the CoCo {string}")
-    public void verifyHeaderText(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                headerAndFooterPage.verifyTextInCoCoHeader();
-                break;
-            case "Footer":
-                headerAndFooterPage.verifyTextInCoCoFooter();
-                break;
-        }
-    }
+    @And("I verify text on the {string} {string} in {string}")
+    public void verifyExchHeaderText(String appType, String HeaderOrFooter, String language) {headerAndFooterPage.verifyHeaderFooterText(appType,language, HeaderOrFooter);}
 
 
         // =========FOOTER============== //

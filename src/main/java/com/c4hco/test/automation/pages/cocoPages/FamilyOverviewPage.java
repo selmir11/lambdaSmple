@@ -12,7 +12,7 @@ public class FamilyOverviewPage {
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
     WebElement familyOverviewHeader;
 
-    @FindBy (xpath = "//a[text()='Edit/Update']")
+    @FindBy (css = "app-family-member-overview a.edit-update-btn")
     List<WebElement> editUpdateLink;
 
     @FindBy(id = "familyOverview-SaveAndContinue")
