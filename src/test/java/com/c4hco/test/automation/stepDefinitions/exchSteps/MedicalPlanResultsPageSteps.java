@@ -14,13 +14,14 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @Then("I click continue on medical plan results page")
-    public void selectContinueOnMedicalPlanResultsPage(){
+    public void selectContinueOnMedicalPlanResultsPage() {
         medPlanResultsPage.iclickContinue();
     }
 
     @Then("I click on the compare button")
     public void btnCompare() {
-        medPlanResultsPage.clickCompare();}
+        medPlanResultsPage.clickCompare();
+    }
 
     @Then("I click on the compare links on the first 2 medical plans")
     public void clickFirstTwoCompareButtons() {
@@ -29,14 +30,16 @@ public class MedicalPlanResultsPageSteps {
 
     @And("I select the Insurance Company dropdown")
     public void clickInsuranceCompanyDropdown() {
-        medPlanResultsPage.clickInsuranceCompanyDropdown(); }
+        medPlanResultsPage.clickInsuranceCompanyDropdown();
+    }
 
     @And("I select {string} to filter for desired plan provider")
     public void selectfromProviderList(String carrierOption) {
         medPlanResultsPage.selectfromProviderList(carrierOption);
     }
+
     @And("I select the Metal Tier dropdown")
-    public void clickMetalTierDropdown(){
+    public void clickMetalTierDropdown() {
         medPlanResultsPage.clickMetalTierDropdown();
     }
 
@@ -46,14 +49,30 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @And("I validate the plan option {int} has text {string}")
-    public void validatePlanText(int Index, String planText){
+    public void validatePlanText(int Index, String planText) {
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
 
     @And("I click the HSA dropdown")
-    public void clickHSADropdown() {medPlanResultsPage.clickHSADropdown();}
+    public void clickHSADropdown() {
+        medPlanResultsPage.clickHSADropdown();
+    }
 
-    @And ("I select the HSA option")
-    public void selectHSAOption() {medPlanResultsPage.selectHSAOption();}
+    @And("I select the HSA option")
+    public void selectHSAOption() {
+        medPlanResultsPage.selectHSAOption();
+    }
+
+    @And("I click the Colorado Option dropdown")
+    public void clickColoradoOptionDropdown() {
+        medPlanResultsPage.clickColoradoOptionDropdown();
+    }
+
+    @And("I select the Colorado Option")
+    public void selectColoradoOptionSelection() {
+        medPlanResultsPage.selectColoradoOptionSelection();
+    }
 }
+
+
 

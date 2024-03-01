@@ -47,6 +47,12 @@ public class MedicalPlanResultsPage {
     @FindBy(id ="SHP-PlanResults-HSAFilter-input")
     WebElement hsaOption;
 
+    @FindBy(id = "SHP-PlanResults-CoOptionPlans")
+    WebElement coloradoOptionDropdown;
+
+    @FindBy(id = "SHP-PlanResults-CoOptionPlans")
+    WebElement coloradoOptionSelection;
+
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
@@ -95,6 +101,16 @@ public class MedicalPlanResultsPage {
      public void selectHSAOption(){
         basicActions.waitForElementToBeClickable(hsaOption, 10);
          hsaOption.click();
+     }
+
+     public void clickColoradoOptionDropdown(){
+        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 10);
+         coloradoOptionDropdown.click();
+     }
+     public void selectColoradoOptionSelection(){
+        basicActions.waitForElementToBeClickable(coloradoOptionSelection, 10);
+        coloradoOptionSelection.click();
+
      }
 
     public void selectfromMetalTierList(String Selecting) {
