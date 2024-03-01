@@ -42,6 +42,7 @@ public class FindExpertHelpPage {
 
     public void verifyHeaderPage(String language){
         String ExpectedTitle = "";
+        basicActions.waitForElementToBePresent(pageHeader,20);
         String ActualTitle =pageHeader.getText();
 
         switch (language) {
