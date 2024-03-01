@@ -58,6 +58,9 @@ public class TaxStatusPage {
             case "Yes":
                 fileFedIncomeTaxRadioBtn.get(0).click();
                 break;
+            case "No":
+                fileFedIncomeTaxRadioBtn.get(1).click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + fileFedIncomeTaxReturnOption);
         }
