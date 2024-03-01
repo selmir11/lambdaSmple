@@ -17,4 +17,7 @@ public class ApplicationHistoryPageSteps {
 
     @Then("I validate that {string} text displays on the Application History page")
     public void validateText(String Text){applicationHistoryPage.validateTextOnPage(Text);}
+
+    @Then("I validate that {string} text does not display on the Application History page")
+    public void validateTextDNI(String Text){applicationHistoryPage.validateTextDoesNotExistOnPage(Text);}
 }
