@@ -96,6 +96,9 @@ public class BasicSteps {
             case "Report a life change":
                 pageUrl = "nes/lifeChangeEvents";
                 break;
+            case "CoCo Declarations and Signature":
+                pageUrl = "WelcomePortal/declarationsAndSignature";
+                break;
             case "Compare":
                 pageUrl = "compare";
                 break;
