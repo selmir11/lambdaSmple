@@ -41,8 +41,8 @@ public class WhoAreYouPage {
     WebElement memberDOB;
     @FindBy(xpath = "//*[@id='ssn']")
     WebElement memberSSN;
-    @FindBy(xpath = "//*[@value='Save and Continue']")
-    WebElement saveAndContinue;
+    @FindBy(id = "submitButton")
+    List <WebElement> backSaveAndContinue;
 
     @FindBy(css = ".input-group #county")
     WebElement countyDropDown;
@@ -83,6 +83,6 @@ public class WhoAreYouPage {
 
         memberDOB.sendKeys(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
-        saveAndContinue.click();
+        backSaveAndContinue.get(1).click();
     }
 }

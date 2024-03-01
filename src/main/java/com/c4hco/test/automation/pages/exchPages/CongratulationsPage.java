@@ -17,7 +17,7 @@ public class CongratulationsPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(xpath = "//*[@value='Save and Continue']")
+    @FindBy(id = "submitButton")
     WebElement saveAndContinue;
 
     public void clickSaveContinue(){
