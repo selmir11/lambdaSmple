@@ -99,6 +99,9 @@ public class BasicSteps {
             case "Identity Proofing - Initial Questions":
                 pageUrl = "nes/memberIdProofing";
                 break;
+            case "CoCo Declarations and Signature":
+                pageUrl = "WelcomePortal/declarationsAndSignature";
+                break;
             case "Compare":
                 pageUrl = "compare";
                 break;
