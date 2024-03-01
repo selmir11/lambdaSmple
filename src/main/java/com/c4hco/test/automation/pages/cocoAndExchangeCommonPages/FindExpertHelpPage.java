@@ -13,7 +13,7 @@ public class FindExpertHelpPage {
     private BasicActions basicActions;
 
     @FindBy(xpath ="//h2[@class='header-2']")
-    public WebElement pageHeader;
+    WebElement pageHeader;
 
     @FindBy(id ="experthelp-text")
     WebElement pageTitle;
