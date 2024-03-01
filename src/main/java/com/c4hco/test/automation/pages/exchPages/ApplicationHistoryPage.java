@@ -40,4 +40,10 @@ public class ApplicationHistoryPage {
 
         basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath("//*[text()='"+Text+"']")), 15);
     }
+
+    public void validateTextDoesNotExistOnPage(String Text){
+        basicActions.waitForElementToBePresent(viewResultsAndShop, 15);
+        String validateText = "//*[text()='"+Text+"']";
+        Assert.assertEquals(0, basicActions.getDriver().findElements(By.xpath(validateText)).size());
+    }
 }
