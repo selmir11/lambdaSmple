@@ -5,7 +5,7 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Login" page
 
   @SLER-57 @PageTextIncomeOptOutPage
-  Scenario: I can review and update the income information in English and Spanish
+  Scenario: I can see page in English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -51,5 +51,5 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Financial Help" page and close tab
     And I verify text on the "Exch" "Footer" in "Spanish"
 
-    And I click on Sign Out in the Header
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

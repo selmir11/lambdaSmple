@@ -37,14 +37,29 @@ public class HeaderAndFooterPage {
     @FindBy(id = "globe-image")
     WebElement languageDrp;
 
+    @FindBy(css = "a[class='icon-link language']")
+    WebElement languageDrpNonElmo;
+
+    @FindBy(id = "langDropdown")
+    WebElement languageDrpSignIn;
+
     @FindBy(css = "#globe p")
     List<WebElement> languageDrpOption;
 
     @FindBy(css = "#globe a")
+    List<WebElement> languageDrpOption2;
+
+    @FindBy(css = "header  > div > .dropdown-item")
+    List<WebElement> languageDrpOptionSignIn;
+
+    @FindBy(css = "li[class='vertical-ruler'] li")
     List<WebElement> languageDrpOptionNonElmo;
 
     @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
+
+    @FindBy(css = ".toolbar > div > nav > ul > li:nth-child(3) > a")
+    WebElement signOutLinkNonElmo;
 
     // =========FOOTER============== //
     @FindBy(id = "privacyPolicyLink")
@@ -128,34 +143,78 @@ public class HeaderAndFooterPage {
     }
 
     public void changeLanguage(String language) {
-        basicActions.waitForElementToBePresent(languageDrp, 60);
-        languageDrp.click();
+//        "English" and "Spanish" for CoCo and Exch Elmo pages
+////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
+//        "English Login" and "Spanish Login" is for the Login page
+//        "English ExpertHelp" and "Spanish ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
 
         switch (language) {
             case "English":
+                basicActions.waitForElementToBePresent(languageDrp, 60);
+                languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
                 break;
             case "Spanish":
+                basicActions.waitForElementToBePresent(languageDrp, 60);
+                languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(1), 60);
                 languageDrpOption.get(1).click();
                 break;
             case "English NonElmo":
+                basicActions.waitForElementToBePresent(languageDrpNonElmo, 60);
+                languageDrpNonElmo.click();
                 basicActions.waitForElementToBePresent(languageDrpOptionNonElmo.get(0), 60);
                 languageDrpOptionNonElmo.get(0).click();
                 break;
             case "Spanish NonElmo":
+                basicActions.waitForElementToBePresent(languageDrpNonElmo, 60);
+                languageDrpNonElmo.click();
                 basicActions.waitForElementToBePresent(languageDrpOptionNonElmo.get(1), 60);
                 languageDrpOptionNonElmo.get(1).click();
+                break;
+            case "English Login":
+                basicActions.waitForElementToBePresent(languageDrpSignIn, 60);
+                languageDrpSignIn.click();
+                basicActions.waitForElementToBePresent(languageDrpOptionSignIn.get(0), 60);
+                languageDrpOptionSignIn.get(0).click();
+                break;
+            case "Spanish Login":
+                basicActions.waitForElementToBePresent(languageDrpSignIn, 60);
+                languageDrpSignIn.click();
+                basicActions.waitForElementToBePresent(languageDrpOptionSignIn.get(1), 60);
+                languageDrpOptionSignIn.get(1).click();
+                break;
+            case "English ExpertHelp":
+                basicActions.waitForElementToBePresent(languageDrp, 60);
+                languageDrp.click();
+                basicActions.waitForElementToBePresent(languageDrpOption2.get(0), 60);
+                languageDrpOption2.get(0).click();
+                break;
+            case "Spanish ExpertHelp":
+                basicActions.waitForElementToBePresent(languageDrp, 60);
+                languageDrp.click();
+                basicActions.waitForElementToBePresent(languageDrpOption2.get(1), 60);
+                languageDrpOption2.get(1).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void clickSignOutLink() {
-        basicActions.waitForElementToBeClickable(signOutLink, 20);
-        signOutLink.click();
+    public void clickSignOutLink(String pageType) {
+        switch (pageType) {
+            case "Elmo":
+                basicActions.waitForElementToBeClickable(signOutLink, 20);
+                signOutLink.click();
+                break;
+            case "NonElmo":
+                basicActions.waitForElementToBeClickable(signOutLinkNonElmo, 20);
+                signOutLinkNonElmo.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
     }
 
     public void verifyTextInCoCoHeader(){
