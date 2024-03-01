@@ -70,12 +70,8 @@ public class TellUsAboutAdditionalMemberPage {
         String lastName = getUniqueString(12);
 
         txtfirstName.sendKeys(frstName);
-        System.out.println(frstName);
         txtmiddleName.sendKeys(mdlName);
-        System.out.println(mdlName);
         txtlastName.sendKeys(lastName);
-        System.out.println(lastName);
-
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
     }

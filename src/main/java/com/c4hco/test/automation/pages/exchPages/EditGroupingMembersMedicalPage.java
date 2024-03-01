@@ -42,7 +42,6 @@ public class EditGroupingMembersMedicalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
      public void ivalidateImOnEditGroupingMedicalPage(){
-        System.out.println(createNewGroup.getText());
          createNewGroup.isDisplayed();
          createNewGroup.isEnabled();
      }
@@ -53,7 +52,6 @@ public class EditGroupingMembersMedicalPage {
         basicActions.waitForElementToDisappear(createNewGroupLink,10);
     }
     public void iGetNumberOfGroups(int groups){
-       System.out.println(noOfmedicalGroups.size());
        softAssert.assertEquals(noOfmedicalGroups.size(),groups);
     }
     public void dragAndDropMembersCreateGroup() throws InterruptedException {
@@ -61,10 +59,9 @@ public class EditGroupingMembersMedicalPage {
         basicActions.waitForElementToBePresent(dragAMemberHere.get(1),10 );
           builder.clickAndHold(groupingMemebers.get(3))
                 .moveToElement(dragAMemberHere.get(1))
-                .release(dragAMemberHere.get(1))
+                .release(dragAMemberHere.get(1)).build()
                 .perform();
-          Thread.sleep(5000);
-          System.out.println("Drag and dropped.");
+          Thread.sleep(3000);
     }
     public void iClickresetGroupsButton(){
         resetgroupsButton.isEnabled();
@@ -76,9 +73,9 @@ public class EditGroupingMembersMedicalPage {
         saveButtonOnEditGroupingPage.click();
     }
     public void errorMessageOnGrouping(){
+        basicActions.waitForElementToBePresent(errorText,10);
         softAssert.assertEquals(errorText.getText(),"The group(s) highlighted below in red are not valid groupings. Please move around your members to create valid groups.");
         softAssert.assertAll();
-        System.out.println("error message");
     }
 
 

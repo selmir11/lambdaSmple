@@ -39,7 +39,6 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton,10);
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
         editMyEnrollmentGroupsButton.click();
-        System.out.println("edit enroll");
     }
 
     //--------------------------validations------------------------
