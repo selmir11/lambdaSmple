@@ -102,6 +102,9 @@ public class BasicSteps {
             case "Compare":
                 pageUrl = "compare";
                 break;
+            case "RIDP - Congratulations":
+                pageUrl = "nes/IdProofingSecondaryRequest";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
