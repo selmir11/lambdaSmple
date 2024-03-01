@@ -43,7 +43,6 @@ public class ApplicationHistoryPage {
 
     public void validateTextDoesNotExistOnPage(String Text){
         basicActions.waitForElementToBePresent(viewResultsAndShop, 15);
-        String validateText = "//*[text()='"+Text+"']";
-        Assert.assertEquals(0, basicActions.getDriver().findElements(By.xpath(validateText)).size());
+        Assert.assertEquals(0, basicActions.getDriver().findElements(By.xpath("//*[text()='"+Text+"']")).size());
     }
 }
