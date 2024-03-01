@@ -4,7 +4,7 @@ Feature: Page Navigation-Income Opt Out Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-57-WIP @PageNavigationIncomeOptOutPageNfaSpanish
+  @SLER-76-WIP @PageNavigationIncomeOptOutPage
   Scenario: I Navigate to the Tell us about life changes page after choosing NFA - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
