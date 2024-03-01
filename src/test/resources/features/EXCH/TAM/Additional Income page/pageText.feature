@@ -46,5 +46,5 @@ Feature: Page Text-Additional Income Page
     And I change the language from header to "Spanish"
     Then I verify "Spanish" text on the Additional Income page with errors
 
-    And I click on Sign Out in the Header
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
