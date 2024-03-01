@@ -105,9 +105,11 @@ public class BasicSteps {
             case "RIDP - Congratulations":
                 pageUrl = "nes/IdProofingSecondaryRequest";
                 break;
+            case "Tell us about life changes":
+                pageUrl = "nes/qlceConfirmation";
+                break;
             default:
                 System.out.println("undefined page ");
-                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }

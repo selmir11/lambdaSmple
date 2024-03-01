@@ -21,7 +21,7 @@ public class MemberIdProofingPage {
     WebElement firstOptionInHomeAddress;
     @FindBy(xpath = "//div/input[@id='answer31']")
     WebElement firstOptionInCarLoanBank;
-    @FindBy(xpath = "//input[@value='Save and Continue']")
+    @FindBy(id = "submitButton")
     WebElement saveContinue;
 
     public void selectFirstOptionToAll(){

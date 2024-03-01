@@ -26,7 +26,7 @@ public class CongratulationsPage {
     @FindBy(css = ".panel-body .c4BodyText1")
     List <WebElement> textPanelBody;
 
-    @FindBy(xpath = "//*[@value='Save and Continue']")
+    @FindBy(id = "submitButton")
     WebElement saveAndContinue;
 
     public void clickSaveContinue(){
