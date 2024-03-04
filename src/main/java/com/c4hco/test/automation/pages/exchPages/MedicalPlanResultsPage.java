@@ -50,7 +50,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-CoOptionPlans")
     WebElement coloradoOptionDropdown;
 
-    @FindBy(id = "SHP-PlanResults-CoOptionPlans")
+    @FindBy(id = "SHP-PlanResults-CoOptionPlans-input")
     WebElement coloradoOptionSelection;
 
     public void selectfromProviderList(String Selecting) {
