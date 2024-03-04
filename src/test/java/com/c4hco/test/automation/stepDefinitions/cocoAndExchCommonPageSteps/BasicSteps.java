@@ -105,6 +105,9 @@ public class BasicSteps {
             case "Compare":
                 pageUrl = "compare";
                 break;
+            case "RIDP - Congratulations":
+                pageUrl = "nes/IdProofingSecondaryRequest";
+                break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
