@@ -19,7 +19,7 @@ Feature: Page Text-Ethnicity And Race page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I verify "English" text on the Ethnicity And Race page
+    Then I verify text on the Ethnicity And Race page in "English"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
