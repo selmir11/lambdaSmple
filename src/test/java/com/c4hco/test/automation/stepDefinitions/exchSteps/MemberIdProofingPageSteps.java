@@ -12,4 +12,8 @@ public class MemberIdProofingPageSteps {
         memberIdProofingPage.selectFirstOptionToAll();
     }
 
+    @And("I validate the verbiage on the Identity Proofing - Initial page in {string}")
+    public void iValidateTheVerbiageOnTheIdentityProofingInitialPageIn(String language) {
+        memberIdProofingPage.validateTheVerbiageOnTheIdentityProofingInitialPage(language);
+    }
 }

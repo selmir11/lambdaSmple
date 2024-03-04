@@ -96,11 +96,17 @@ public class BasicSteps {
             case "Report a life change":
                 pageUrl = "nes/lifeChangeEvents";
                 break;
+            case "Identity Proofing - Initial Questions":
+                pageUrl = "nes/memberIdProofing";
+                break;
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
             case "Compare":
                 pageUrl = "compare";
+                break;
+            case "RIDP - Congratulations":
+                pageUrl = "nes/IdProofingSecondaryRequest";
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";

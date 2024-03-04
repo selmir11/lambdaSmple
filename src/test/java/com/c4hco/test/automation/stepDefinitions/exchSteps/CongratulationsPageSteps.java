@@ -11,4 +11,9 @@ public class CongratulationsPageSteps {
     public void iClickContinue(){
         congratulationsPage.clickSaveContinue();
     }
+
+    @And("I validate the verbiage on the RIDP - Congratulations page in {string}")
+    public void iValidateTheVerbiageOnTheRIDPCongratulationsPage(String language) {
+        congratulationsPage.validateTheVerbiageOnTheRIDPCongratulationsPage(language);
+    }
 }
