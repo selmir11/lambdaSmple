@@ -1,8 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
+
 import com.c4hco.test.automation.pages.exchPages.EditGroupingMembersMedicalPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class EditGroupingMembersMedicalPageSteps {
     EditGroupingMembersMedicalPage editGroupingMembersMedicalPage = new EditGroupingMembersMedicalPage(WebDriverManager.getDriver());
@@ -35,6 +36,7 @@ public class EditGroupingMembersMedicalPageSteps {
     public void clickCreateNewGroup(){
         editGroupingMembersMedicalPage.iCreateNewGroup();
     }
+
     @Then("I drag and drop both the children into the third group")
     public void groupChildrenTogether() throws InterruptedException {
         editGroupingMembersMedicalPage.dragAndDropChildrenToSeparateGroup();

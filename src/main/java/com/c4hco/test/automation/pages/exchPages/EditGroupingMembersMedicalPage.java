@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -55,9 +54,12 @@ public class EditGroupingMembersMedicalPage {
         cancelButtonOnEditEnrollmentPage.click();
         basicActions.waitForElementToDisappear(createNewGroupLink,10);
     }
+
     public void iGetNumberOfGroups(int groups){
        softAssert.assertEquals(noOfmedicalGroups.size(),groups);
+       softAssert.assertAll();
     }
+
     public void dragAndDropMembersCreateGroup() throws InterruptedException {
         basicActions.waitForElementToBePresent(groupingMemebers.get(3),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(1),10 );
@@ -67,6 +69,7 @@ public class EditGroupingMembersMedicalPage {
                 .perform();
           Thread.sleep(3000);
     }
+
     public void iClickresetGroupsButton(){
         resetgroupsButton.isEnabled();
     }
