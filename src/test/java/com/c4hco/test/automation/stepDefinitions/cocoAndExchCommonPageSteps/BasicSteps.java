@@ -4,6 +4,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import org.junit.Assert;
+import org.openqa.selenium.Dimension;
 
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
@@ -156,4 +157,7 @@ public class BasicSteps {
     public void refreshPage(){
         basicActions.refreshPage();
     }
+
+    @And("I set the browser resolution to 1920 x 1080")
+    public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));}
 }

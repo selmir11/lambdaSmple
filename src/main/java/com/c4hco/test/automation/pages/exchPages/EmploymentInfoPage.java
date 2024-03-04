@@ -205,12 +205,8 @@ public class EmploymentInfoPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpHeaderVerbiage(String language) {
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
         switch (language) {
             case "English":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(0).click();
                 basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
@@ -218,8 +214,6 @@ public class EmploymentInfoPage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(1).click();
                 basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
@@ -231,25 +225,7 @@ public class EmploymentInfoPage {
         }
     }
 
-    public void validateGeneralHelpBodyVerbiage(String language){
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
-        basicActions.waitForElementListToBePresent(languageOption, 10);
-        switch(language){
-            case "English":
-                validateGeneralHelpBodyVerbiageEng();
-                break;
-            case "Spanish":
-                validateGeneralHelpBodyVerbiageSp();
-                break;
-                default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-
-        }
-    }
-
     public void validateGeneralHelpBodyVerbiageEng() {
-                languageOption.get(0).click();
                 basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
                 softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
                 softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
@@ -279,7 +255,6 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        languageOption.get(1).click();
         basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
         softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
@@ -309,19 +284,13 @@ public class EmploymentInfoPage {
     }
 
     public void validateHelpFooterVerbiage(String language) {
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
         switch (language) {
             case "English":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(0).click();
                 basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
                 softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(1).click();
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
@@ -331,12 +300,8 @@ public class EmploymentInfoPage {
     }
 
     public void validateJobQuestionsHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
         switch (language) {
             case "English":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(0).click();
                 basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
@@ -348,8 +313,6 @@ public class EmploymentInfoPage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(1).click();
                 basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
