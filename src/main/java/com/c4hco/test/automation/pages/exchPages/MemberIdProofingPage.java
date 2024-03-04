@@ -5,15 +5,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class MemberIdProofingPage {
 
     private BasicActions basicActions;
+    private WhoAreYouPage whoAreYouPage;
 
     public MemberIdProofingPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
+        whoAreYouPage = new WhoAreYouPage(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy (css = ".container h1")
+    WebElement textIdProofingInitialQuestionHeader;
+
+    @FindBy (css = ".form-group .control-label")
+    List<WebElement> textQuestions;
+
+    @FindBy(css = ".radioGrp label")
+    List<WebElement> textAnswers;
 
     @FindBy(xpath = "//div/input[@id='answer11']")
     WebElement firstOptionInEmployerName;
@@ -31,4 +45,66 @@ public class MemberIdProofingPage {
         saveContinue.click();
     }
 
+    public void validateTheVerbiageOnTheIdentityProofingInitialPage(String language) {
+        switch (language){
+            case "English":
+                validateTheVerbiageEn();
+                break;
+            case "Spanish":
+                validateTheVerbiageEs();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    private void validateTheVerbiageEn() {
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(textIdProofingInitialQuestionHeader.getText(), "Identity Proofing - Initial Questions", "Identity Proofing - Initial Questions text mismatch");
+
+        softAssert.assertEquals(textQuestions.get(0).getText(), "01 What is your Employer Name", "01 What is your Employer Name text mismatch");
+        softAssert.assertEquals(textQuestions.get(1).getText(), "02 What is your Home Address", "02 What is your Home Address text mismatch");
+        softAssert.assertEquals(textQuestions.get(2).getText(), "03 Do you have car loan with any of the following bank", "03 Do you have car loan with any of the following bank text mismatch");
+
+        softAssert.assertEquals(textAnswers.get(0).getText(), "01 CGI", "01 CGI text mismatch");
+        softAssert.assertEquals(textAnswers.get(1).getText(), "02 Accenture", "02 Accenture text mismatch");
+        softAssert.assertEquals(textAnswers.get(2).getText(), "03 C4HCO", "03 C4HCO text mismatch");
+        softAssert.assertEquals(textAnswers.get(3).getText(), "04 CapGemini", "04 CapGemini text mismatch");
+        softAssert.assertEquals(textAnswers.get(4).getText(), "01 Littleton Address", "01 Littleton Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(5).getText(), "02 Lakewood Address", "02 Lakewood Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(6).getText(), "03 Englewood Address", "03 Englewood Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(7).getText(), "04 Denver Address", "04 Denver Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(8).getText(), "01 Bank Of America", "01 Bank Of America text mismatch");
+        softAssert.assertEquals(textAnswers.get(9).getText(), "02 CHASE", "02 CHASE text mismatch");
+        softAssert.assertEquals(textAnswers.get(10).getText(), "03 DCU", "03 DCU text mismatch");
+        softAssert.assertEquals(textAnswers.get(11).getText(), "04 First Bank", "04 First Bank text mismatch");
+    }
+
+    public void validateTheVerbiageEs() {
+        SoftAssert softAssert = new SoftAssert();
+        whoAreYouPage.ContinueId();
+
+        basicActions.waitForElementToBePresent(textIdProofingInitialQuestionHeader, 30);
+
+        softAssert.assertEquals(textIdProofingInitialQuestionHeader.getText(), "Identity Proofing - Initial Questions", "Identity Proofing - Initial Questions text mismatch");
+
+        softAssert.assertEquals(textQuestions.get(0).getText(), "01 What is your Employer Name", "01 What is your Employer Name text mismatch");
+        softAssert.assertEquals(textQuestions.get(1).getText(), "02 What is your Home Address", "02 What is your Home Address text mismatch");
+        softAssert.assertEquals(textQuestions.get(2).getText(), "03 Do you have car loan with any of the following bank", "03 Do you have car loan with any of the following bank text mismatch");
+
+        softAssert.assertEquals(textAnswers.get(0).getText(), "01 CGI", "01 CGI text mismatch");
+        softAssert.assertEquals(textAnswers.get(1).getText(), "02 Accenture", "02 Accenture text mismatch");
+        softAssert.assertEquals(textAnswers.get(2).getText(), "03 C4HCO", "03 C4HCO text mismatch");
+        softAssert.assertEquals(textAnswers.get(3).getText(), "04 CapGemini", "04 CapGemini text mismatch");
+        softAssert.assertEquals(textAnswers.get(4).getText(), "01 Littleton Address", "01 Littleton Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(5).getText(), "02 Lakewood Address", "02 Lakewood Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(6).getText(), "03 Englewood Address", "03 Englewood Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(7).getText(), "04 Denver Address", "04 Denver Address text mismatch");
+        softAssert.assertEquals(textAnswers.get(8).getText(), "01 Bank Of America", "01 Bank Of America text mismatch");
+        softAssert.assertEquals(textAnswers.get(9).getText(), "02 CHASE", "02 CHASE text mismatch");
+        softAssert.assertEquals(textAnswers.get(10).getText(), "03 DCU", "03 DCU text mismatch");
+        softAssert.assertEquals(textAnswers.get(11).getText(), "04 First Bank", "04 First Bank text mismatch");
+        softAssert.assertAll();
+    }
 }

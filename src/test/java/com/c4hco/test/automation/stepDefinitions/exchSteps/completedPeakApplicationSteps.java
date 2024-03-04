@@ -3,19 +3,12 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.CompletedPeakApplicationPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 
 public class completedPeakApplicationSteps {
     CompletedPeakApplicationPage completedApplicationPage = new CompletedPeakApplicationPage(WebDriverManager.getDriver());
     @And("I click on save and continue button")
     public void selectSaveAndContinue(){
         completedApplicationPage.clickSaveAndContinueButton();
-    }
-
-    @When("I switch to {string}")
-    public void iSwitchTo(String switchTo) {
-        completedApplicationPage.selectLocale(switchTo);
     }
 
     @And("I validate the verbiage on Let us guide you page in {string}")
