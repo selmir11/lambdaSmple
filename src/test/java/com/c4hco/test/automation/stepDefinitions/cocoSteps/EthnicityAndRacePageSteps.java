@@ -17,6 +17,6 @@ public class EthnicityAndRacePageSteps {
     @And("I click continue on the Ethnicity and race page")
     public void clickContinue(){ethnicityAndRacePage.clickSaveAndContinueButton();}
 
-    @Then("I verify {string} text on the Ethnicity And Race page")
+    @Then("I verify text on the Ethnicity And Race page in {string}")
     public void verifyEthnicityAndRacePageText(String Language)  { ethnicityAndRacePage.verifyTextOnEthnicityAndRace(Language); }
 }
