@@ -31,4 +31,12 @@ public class EditGroupingMembersMedicalPageSteps {
     public void errorMessage(){
         editGroupingMembersMedicalPage.errorMessageOnGrouping();
     }
+    @Then("I click on create new group button on edit enrollment groups page")
+    public void clickCreateNewGroup(){
+        editGroupingMembersMedicalPage.iCreateNewGroup();
+    }
+    @Then("I drag and drop both the children into the third group")
+    public void groupChildrenTogether() throws InterruptedException {
+        editGroupingMembersMedicalPage.dragAndDropChildrenToSeparateGroup();
+    }
 }

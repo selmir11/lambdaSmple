@@ -4,7 +4,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Given I open the login page on the "login" portal
           And I validate I am on the "Login" page
 
-  @SLER-54-WIP @GroupingScenario
+  @SLER-54-WIP @GroupingScenario @test
   Scenario: Validate text on Payment by check page
           When I click create a new account on login page
           Then I click create my account from pre-screen page
@@ -122,3 +122,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Then I validate I am on the "Edit Grouping Members Medical" page
           Then I click save button to save the groups
           Then I get error message as groups are invalid
+          And I click Cancel button on Edit Grouping Members Medical page
+          Then I click on edit enrollment groups link
+          Then I click on create new group button on edit enrollment groups page
+          Then I drag and drop both the children into the third group
+          Then I click save button to save the groups
