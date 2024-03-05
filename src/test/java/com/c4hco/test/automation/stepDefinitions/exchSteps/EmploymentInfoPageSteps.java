@@ -34,7 +34,7 @@ public class EmploymentInfoPageSteps {
     public void iValidateHelpHeader(String languageSelection){employmentInfoPage.validateHelpHeaderVerbiage(languageSelection);}
 
     @Then("I validate general help drawer body verbiage in {string}")
-    public void iValidateGeneralHelpBodyEng(String language){employmentInfoPage.validateGeneralHelpBodyVerbiage(language);}
+    public void iValidateGeneralHelpBody(String languageOption){employmentInfoPage.validateGeneralHelpBodyVerbiage(languageOption);}
 
     @Then("I validate help drawer footer verbiage in {string}")
     public void iValidateHelpFooter(String languageSelection){employmentInfoPage.validateHelpFooterVerbiage(languageSelection);}

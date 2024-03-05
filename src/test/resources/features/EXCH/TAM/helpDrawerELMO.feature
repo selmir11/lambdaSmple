@@ -5,7 +5,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-60-WIP
+  @SLER-60
     #fails when run on small screens (Let's chat widget covers up help drawer footer)
   Scenario: Validate help drawer text on the ELMO Employment Income Details page
     When I click create a new account on login page
@@ -41,6 +41,8 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+    And I set the browser resolution to 1920 x 1080
+    And I change the language from header to "English"
     Then I select the option "Yes" to employment
     And I select "General help" icon on the Employment Info Page
     Then I validate help drawer header verbiage in "English"
@@ -48,16 +50,19 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I validate help drawer footer verbiage in "English"
     And I click Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
+    And I change the language from header to "Spanish"
     Then I validate help drawer header verbiage in "Spanish"
     Then I validate general help drawer body verbiage in "Spanish"
     Then I validate help drawer footer verbiage in "Spanish"
     And I click Contact Us link in help drawer footer
     And I validate I am on the "Podemos ayudar" page and close tab
     And I select "Do you have job" icon on the Employment Info Page
-    Then I validate job question verbiage in "English"
     Then I validate job question verbiage in "Spanish"
+    And I change the language from header to "English"
+    Then I validate job question verbiage in "English"
     And I select "Is it self-employment" icon on the Employment Info Page
-    Then I validate job question verbiage in "Spanish"
     Then I validate job question verbiage in "English"
+    And I change the language from header to "Spanish"
+    Then I validate job question verbiage in "Spanish"
 
 
