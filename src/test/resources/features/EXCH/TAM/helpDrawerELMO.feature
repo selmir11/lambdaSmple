@@ -46,13 +46,13 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I select the option "Yes" to employment
     And I select "General help" icon on the Employment Info Page
     Then I validate help drawer header verbiage in "English"
-    Then I validate general help drawer body verbiage in English
+    Then I validate general help drawer body verbiage in "English"
     Then I validate help drawer footer verbiage in "English"
     And I click Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
     And I change the language from header to "Spanish"
     Then I validate help drawer header verbiage in "Spanish"
-    Then I validate general help drawer body verbiage in Spanish
+    Then I validate general help drawer body verbiage in "Spanish"
     Then I validate help drawer footer verbiage in "Spanish"
     And I click Contact Us link in help drawer footer
     And I validate I am on the "Podemos ayudar" page and close tab
