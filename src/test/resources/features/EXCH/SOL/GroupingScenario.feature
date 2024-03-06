@@ -4,7 +4,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Given I open the login page on the "login" portal
           And I validate I am on the "Login" page
 
-  @SLER-54 @GroupingScenario
+  @SLER-54 @GroupingScenario @test
           # Failing intermittently due to a defect # SOL-3596
           # Failing intermittently due to couple of other steps that doesn't belong to SOL.
   Scenario: Validate text on Payment by check page
@@ -28,6 +28,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Then I select "Male" as sex option
           And I select "Yes" to Are You Applying
           And I click continue on Tell us about yourself page
+          Then I validate I am on the "Add Address" page
           Then I enter generic mailing address details
           And I select "Yes" for CO Resident option
           And I select "No" for Federally Recognized Tribe option
@@ -36,6 +37,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "No" to the recently denied medicaid question
           And I select "No" for Incarceration option
           And I click continue on the Add Address page
+          Then I validate I am on the "Citizenship" page
           Then I select "Yes" for Citizen option
           And I select "No" for Naturalized Immigrant option
           And I click continue on the Citizenship page
@@ -46,6 +48,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I mark the Additional member is pregnant as "No"
           And I select "Mother" as relationship option
           And I select "Yes" to Is Member Applying
+          Then I validate I am on the "Add Member" page
           And I click continue on Tell us about additional members page
           Then I select "Household" for Residential Address
           And I select "Yes" for CO Resident option
@@ -65,6 +68,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "Son" as relationship option
           And I select "Grandson" as relationship one option
           And I select "Yes" to Is Member Applying
+          Then I validate I am on the "Add Member" page
           And I click continue on Tell us about additional members page
           Then I select "Household" for Residential Address
           And I select "Yes" for CO Resident option
@@ -88,6 +92,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "Grandson" as relationship one option
           And I select "Brother" as relationship two option
           And I select "Yes" to Is Member Applying
+          Then I validate I am on the "Add Member" page
 
           And I click continue on Tell us about additional members page
           Then I select "Household" for Residential Address

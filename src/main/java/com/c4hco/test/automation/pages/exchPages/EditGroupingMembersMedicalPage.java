@@ -32,14 +32,17 @@ public class EditGroupingMembersMedicalPage {
 
     @FindBy(id = "SHP-EditMedicalGroupingMembers-ResetTheGroups")
     WebElement resetgroupsButton;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     Actions builder;
+
     public EditGroupingMembersMedicalPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         builder  = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
      public void ivalidateImOnEditGroupingMedicalPage(){
          createNewGroup.isDisplayed();
          createNewGroup.isEnabled();
@@ -60,14 +63,14 @@ public class EditGroupingMembersMedicalPage {
        softAssert.assertAll();
     }
 
-    public void dragAndDropMembersCreateGroup() throws InterruptedException {
+    public void dragAndDropMembersCreateGroup() {
         basicActions.waitForElementToBePresent(groupingMemebers.get(3),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(1),10 );
           builder.clickAndHold(groupingMemebers.get(3))
                 .moveToElement(dragAMemberHere.get(1))
                 .release(dragAMemberHere.get(1)).build()
                 .perform();
-          Thread.sleep(3000);
+          basicActions.wait(3000);
     }
 
     public void iClickresetGroupsButton(){
@@ -85,23 +88,21 @@ public class EditGroupingMembersMedicalPage {
         softAssert.assertAll();
     }
 
-    public void dragAndDropChildrenToSeparateGroup() throws InterruptedException {
+    public void dragAndDropChildrenToSeparateGroup() {
         basicActions.waitForElementToBePresent(groupingMemebers.get(2),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(3),10 );
         builder.clickAndHold(groupingMemebers.get(1))
                 .moveToElement(dragAMemberHere.get(3))
                 .release(dragAMemberHere.get(3)).build()
                 .perform();
-        Thread.sleep(2000);
-        basicActions.waitForElementToBePresent(groupingMemebers.get(1),10);
+            basicActions.wait(2000);
+            basicActions.waitForElementToBePresent(groupingMemebers.get(1),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(3),10 );
         builder.clickAndHold(groupingMemebers.get(1))
                 .moveToElement(dragAMemberHere.get(3))
                 .release(dragAMemberHere.get(3)).build()
                 .perform();
-        Thread.sleep(3000);
-
+         basicActions.wait(3000);
     }
-
 
 }

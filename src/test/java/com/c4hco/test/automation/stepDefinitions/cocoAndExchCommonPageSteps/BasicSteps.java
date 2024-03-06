@@ -117,6 +117,12 @@ public class BasicSteps {
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
+            case "Add Address":
+                pageUrl = "nes/addAddress";
+                break;
+            case "Citizenship":
+                pageUrl = "nes/lawfulPresence";
+                break;
             default:
                 System.out.println("undefined page ");
         }
