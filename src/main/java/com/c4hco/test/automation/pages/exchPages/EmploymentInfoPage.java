@@ -194,6 +194,9 @@ public class EmploymentInfoPage {
             case "Is it self-employment":
                 helpIcons.get(2).click();
                 break;
+            case "Company Name":
+                helpIcons.get(3).click();
+                break;
         }
     }
 
