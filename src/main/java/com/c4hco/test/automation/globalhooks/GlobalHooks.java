@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.globalhooks;
 
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java8.En;
 import io.cucumber.java8.Scenario;
 
@@ -11,7 +12,7 @@ public class GlobalHooks implements En{
         });
 
         After((Scenario scenario) -> {
-        //    WebDriverManager.closeDriver();
+           WebDriverManager.closeDriver();
         });
     }
 
