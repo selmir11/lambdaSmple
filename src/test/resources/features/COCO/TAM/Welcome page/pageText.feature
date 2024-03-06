@@ -54,7 +54,7 @@ Feature: Page Text-Welcome Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-33-WIP @PageTextWelcomePage
+  @SLCR-39-WIP @PageTextWelcomePage
   Scenario: Check Welcome Page Text in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

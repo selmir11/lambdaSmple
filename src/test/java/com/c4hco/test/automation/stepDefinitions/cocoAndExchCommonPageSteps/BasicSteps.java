@@ -114,6 +114,9 @@ public class BasicSteps {
             case "dentalCompare":
                 pageUrl = "dentalCompare";
                 break;
+            case "Employment Income":
+                pageUrl = "employmentInfo";
+                break;
             default:
                 System.out.println("undefined page ");
         }
