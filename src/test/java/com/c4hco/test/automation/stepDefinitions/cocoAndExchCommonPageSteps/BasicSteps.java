@@ -112,6 +112,9 @@ public class BasicSteps {
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
+            case "Employment Income":
+                pageUrl = "employmentInfo";
+                break;
             default:
                 System.out.println("undefined page ");
         }

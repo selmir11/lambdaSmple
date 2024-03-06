@@ -44,4 +44,7 @@ public class EmploymentInfoPageSteps {
 
     @Then("I validate job question verbiage in {string}")
     public void iValidateJobQsHelpVerbiage(String languageSelection){employmentInfoPage.validateJobQuestionsHelpVerbiage(languageSelection);};
+
+    @Then("I validate Employment Info Page header in {string}")
+    public void iValidateHeaderOnEmploymentInfo(String languageSelection){employmentInfoPage.validateHeaderOnEmploymentInfo(languageSelection);};
 }
