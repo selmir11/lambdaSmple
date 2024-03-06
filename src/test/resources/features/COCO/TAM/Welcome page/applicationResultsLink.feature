@@ -56,3 +56,7 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    And I click Continue on the Tobacco Usage Page CoCo
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
