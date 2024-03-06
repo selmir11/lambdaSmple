@@ -12,6 +12,6 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     public void enterSignature() {declarationsAndSignaturePageCoCo.enterSignatureCoCo();}
 
     @And("I click Continue on the Declarations And Signature Page CoCo")
-    public void clickContinueButton(){declarationsAndSignaturePageCoCo.submitApplicationCoCo();}
+    public void selectContinueDeclarations(){declarationsAndSignaturePageCoCo.submitApplicationCoCo();}
 
 }
