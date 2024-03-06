@@ -58,5 +58,5 @@ Feature: Tests related to the Application Results link
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     And I click Continue on the Tobacco Usage Page CoCo
-    And I select "KP Colorado Option Bronze" medical plan option
+    And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo

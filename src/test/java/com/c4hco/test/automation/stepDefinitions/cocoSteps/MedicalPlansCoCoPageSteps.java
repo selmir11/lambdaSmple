@@ -7,8 +7,8 @@ import io.cucumber.java.en.And;
 public class MedicalPlansCoCoPageSteps {
     MedicalPlansCoCoPage medicalPlansCoCoPage = new MedicalPlansCoCoPage(WebDriverManager.getDriver());
 
-    @And("I select {string} medical plan option")
-    public void selectMedicalPlanOption(String medicalPlan){medicalPlansCoCoPage.selectMedicalPlan(medicalPlan);}
+    @And("I select the first medical plan option CoCo")
+    public void selectFirstMedicalPlanOption(){medicalPlansCoCoPage.selectFirstMedicalPlanCoCo();}
 
     @And("I click Continue on the Medical Plans Page CoCo")
     public void selectContinueMedPlansCoCo(){medicalPlansCoCoPage.selectContinueMedicalPlansCoCo();}
