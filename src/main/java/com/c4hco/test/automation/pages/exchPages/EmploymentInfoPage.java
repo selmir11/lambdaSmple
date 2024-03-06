@@ -26,6 +26,12 @@ public class EmploymentInfoPage {
     @FindBy(css = "[id='globe'] p")
     List<WebElement> languageOption;
 
+    @FindBy(css = "header-1 content-center")
+    WebElement txtHeaderPart1;
+
+    @FindBy(css = ".header-2.content-center > span")
+    WebElement txtHeaderPart2;
+
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsEmployed-YesButton")
     WebElement btnYesEmployed;
 
@@ -194,6 +200,9 @@ public class EmploymentInfoPage {
             case "Is it self-employment":
                 helpIcons.get(2).click();
                 break;
+            case "Company Name":
+                helpIcons.get(3).click();
+                break;
         }
     }
 
@@ -304,6 +313,22 @@ public class EmploymentInfoPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateHeaderOnEmploymentInfo(String language) {
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(txtHeaderPart2.getText(), "Employment Income");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(txtHeaderPart2.getText(), "Ingresos por empleo");
                 softAssert.assertAll();
                 break;
             default:
