@@ -5,7 +5,7 @@ Feature: Medical Plan Results page related tests
     And I validate I am on the "Login" page
 
   @SLER-80 @CompareDentalPlansLink
-  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical)
+  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
