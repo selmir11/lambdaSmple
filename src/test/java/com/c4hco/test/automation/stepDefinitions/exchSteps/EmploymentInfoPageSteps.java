@@ -47,4 +47,13 @@ public class EmploymentInfoPageSteps {
 
     @Then("I validate Employment Info Page header in {string}")
     public void iValidateHeaderOnEmploymentInfo(String languageSelection){employmentInfoPage.validateHeaderOnEmploymentInfo(languageSelection);};
+
+    @Then("I validate Company verbiage in {string}")
+    public void iValidateCompanyQsHelpVerbiage(String languageSelection){employmentInfoPage.validateCompanyHelpVerbiage(languageSelection);};
+
+    @Then("I validate Net Income verbiage in {string}")
+    public void iValidateNetIncomeQsHelpVerbiage(String languageSelection){employmentInfoPage.validateNetIncomeHelpVerbiage(languageSelection);};
+
+    @Then("I validate Income Change verbiage in {string}")
+    public void iValidateIncomeChangeQsHelpVerbiage(String languageSelection){employmentInfoPage.validateIncomeChangeHelpVerbiage(languageSelection);};
 }
