@@ -30,7 +30,7 @@ public class DeclarationsAndSignaturePageCoCo {
         label = label.replaceAll("Electronic Signature:", "");
         label = label.trim();
 
-        basicActions.waitForElementToBeClickable(signatureInputField, 10);
+        basicActions.waitForElementToBePresent(signatureInputField, 10);
         signatureInputField.click();
         signatureInputField.sendKeys(label);
     }
