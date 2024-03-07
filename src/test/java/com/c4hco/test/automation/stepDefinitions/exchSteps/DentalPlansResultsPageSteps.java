@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.DentalPlansResultsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class DentalPlansResultsPageSteps {
@@ -27,5 +28,13 @@ public class DentalPlansResultsPageSteps {
     @Then("I click on the compare dental button")
     public void clickCompareOnDentalPlanResults() {dentalPlansResultsPage.clickCompareOnDentalPlanResults();}
 
+    @And("I click the Coverage Level dropdown")
+    public void clickCoverageLevelDropdown() {
+        dentalPlansResultsPage.clickCoverageLevelDropdown();
+    }
 
+    @And("I select {string} to filter for a Coverage Level plan")
+    public void selectfromCoverageLevelList(String coverageLevel) {
+        dentalPlansResultsPage.selectfromCoverageLevelList(coverageLevel);
+    }
 }
