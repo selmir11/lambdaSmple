@@ -22,7 +22,7 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "My Documents" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
-    Then I validate "Spanish" link text on welcome page
+    Then I validate action link text on welcome page in "Spanish"
     And I change the language from header to "English"
     And I click on "Application Results" link on welcome page
     Then I validate I am on the "Application Results" page
@@ -31,7 +31,7 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "My Documents" page
     And I click on Apply for Coverage in the Header
     Then I validate I am on the "CoCo Welcome" page
-    Then I validate "English" link text on welcome page
+    Then I validate action link text on welcome page in "English"
       # Enroll into a plan
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -88,7 +88,7 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "My Documents" page
     And I click on the Colorado Connect or C4 Logo in the Header
     Then I validate I am on the "CoCo Welcome" page
-    Then I validate "Spanish" link text on welcome page
+    Then I validate action link text on welcome page in "Spanish"
     And I change the language from header to "English"
     And I click on "Application Results" link on welcome page
     Then I validate I am on the "Application Results" page
@@ -97,4 +97,4 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "My Documents" page
     And I click on the Colorado Connect or C4 Logo in the Header
     Then I validate I am on the "CoCo Welcome" page
-    Then I validate "English" link text on welcome page
+    Then I validate action link text on welcome page in "English"
