@@ -115,17 +115,21 @@ public class HeaderAndFooterPage {
         connectLogoLink.click();
     }
     public void clickApplyForCoverageLink(String pageType) {
+//        "Elmo" for CoCo and Exch Elmo pages
+////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
+//        "ENonElmo" non Elmo pages (not listed above)
+//        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType){
             case "Elmo":
-                basicActions.waitForElementListToBePresent(centerHeaderLink, 9999);
+                basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
                 centerHeaderLink.get(0).click();
                 break;
             case "NonElmo":
-                basicActions.waitForElementListToBePresent(centerHeaderLinkNonElmo, 9999);
+                basicActions.waitForElementListToBePresent(centerHeaderLinkNonElmo, 15);
                 centerHeaderLinkNonElmo.get(0).click();
                 break;
             case "ExpertHelp":
-                basicActions.waitForElementListToBePresent(centerHeaderLinkExpertHelp, 9999);
+                basicActions.waitForElementListToBePresent(centerHeaderLinkExpertHelp, 15);
                 centerHeaderLinkExpertHelp.get(0).click();
                 break;
             default:
@@ -133,19 +137,19 @@ public class HeaderAndFooterPage {
         }
     }
     public void clickFindAPlanLinkLink() {
-        basicActions.waitForElementListToBePresent(centerHeaderLink, 9999);
+        basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
         centerHeaderLink.get(1).click();
     }
     public void clickMyAccountLink() {
-        basicActions.waitForElementListToBePresent(centerHeaderLink, 9999);
+        basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
         centerHeaderLink.get(2).click();
     }
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickable(learnMoreLink, 9999);
+        basicActions.waitForElementToBeClickable(learnMoreLink, 15);
         learnMoreLink.click();
     }
     public void clickGetAssistanceLink() {
-        basicActions.waitForElementToBeClickable(getAssistanceLink, 9999);
+        basicActions.waitForElementToBeClickable(getAssistanceLink, 15);
         getAssistanceLink.click();
     }
     public void clickFindExpertAssistanceLink(String pageType) {

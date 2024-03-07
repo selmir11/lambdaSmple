@@ -223,7 +223,7 @@ Feature: Page Navigation-Income Opt Out Page
 
     Then I validate I am on the "Financial Help" page
     And I click on the Colorado Connect or C4 Logo in the Header
-    Then I validate I am on the "Account Overview" page
+    Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -237,7 +237,7 @@ Feature: Page Navigation-Income Opt Out Page
 
     Then I validate I am on the "Financial Help" page
     And I click on Apply for Coverage in the "Elmo" Header
-    Then I validate I am on the "Account Overview" page
+    Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -266,7 +266,7 @@ Feature: Page Navigation-Income Opt Out Page
 
     Then I validate I am on the "Financial Help" page
     And I click on My Account in the Header
-    Then I validate I am on the "Account Overview" page
+    Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
