@@ -115,6 +115,10 @@ public class HeaderAndFooterPage {
         connectLogoLink.click();
     }
     public void clickApplyForCoverageLink(String pageType) {
+//        "Elmo" for CoCo and Exch Elmo pages
+////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
+//        "ENonElmo" non Elmo pages (not listed above)
+//        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType){
             case "Elmo":
                 basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
