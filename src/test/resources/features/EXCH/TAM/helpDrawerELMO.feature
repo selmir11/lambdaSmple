@@ -65,7 +65,7 @@ Feature: Tests related to the help drawer on ELMO pages
     And I change the language from header to "Spanish"
     Then I validate job question verbiage in "Spanish"
 
-  @SLER-61-WIP
+  @SLER-61
     #fails when run on small screens (Let's chat widget covers up help drawer footer)
   Scenario: Validate help drawer text on the ELMO Employment Income Details page (self-employment)
     When I click create a new account on login page
@@ -106,4 +106,15 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     And I select "Company Name" icon on the Employment Info Page
+    Then I validate Company verbiage in "English"
+    And I change the language from header to "Spanish"
+    Then I validate Company verbiage in "Spanish"
+    And I select "Net Income" icon on the Employment Info Page
+    Then I validate Net Income verbiage in "Spanish"
+    And I change the language from header to "English"
+    Then I validate Net Income verbiage in "English"
+    And I select "Income Change" icon on the Employment Info Page
+    Then I validate Income Change verbiage in "English"
+    And I change the language from header to "Spanish"
+    Then I validate Income Change verbiage in "Spanish"
 

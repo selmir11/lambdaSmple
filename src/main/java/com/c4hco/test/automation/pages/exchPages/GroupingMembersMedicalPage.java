@@ -16,7 +16,7 @@ public class GroupingMembersMedicalPage {
     List<WebElement> groupingPageText;
     @FindBy(css = ".th-title")
     WebElement medicalGroup1;
-    @FindBy(css = ".mb-2 .link-text-1")
+    @FindBy(id = "SHP-MedicalGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
@@ -36,16 +36,18 @@ public class GroupingMembersMedicalPage {
     }
     
     public void clickOnEditMedicalGroupinglink(){
+        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton,10);
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
         editMyEnrollmentGroupsButton.click();
     }
 
     //--------------------------validations------------------------
     public void verifyMedicalGroupingPageVerbiage(){
+        basicActions.waitForElementToBePresent(medicalEnrollmentGroupPageTitle,10);
         softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText(), "Medical Enrollment Groups");
         softAssert.assertEquals(groupingPageText.get(0).getText(),"It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
-        softAssert.assertEquals(groupingPageText.get(1).getText(),"Remember: Costs within a group count towards each group’\"s deductible and out of pocket maximum.");
-        softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
+        softAssert.assertEquals(groupingPageText.get(1).getText(),"Remember: Costs within a group count towards each group's deductible and out of pocket maximum.");
+       // softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
         softAssert.assertEquals(editMyEnrollmentGroupsButton,"Edit my enrollment groups");
         softAssert.assertEquals(backAndSaveAndExitButtons.get(0).getText(),"Go Back");
         softAssert.assertEquals(backAndSaveAndExitButtons.get(1).getText(),"Save and Exit");

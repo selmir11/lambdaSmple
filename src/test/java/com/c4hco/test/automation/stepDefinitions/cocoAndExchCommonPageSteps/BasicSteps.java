@@ -19,8 +19,11 @@ public class BasicSteps {
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
+            case "Add Member":
+                pageUrl = "nes/addMember";
+                break;
             case "Account Overview":
-                pageUrl = "nes/accountOverview";
+                pageUrl = "/nes/accountOverview";
                 break;
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
@@ -76,6 +79,9 @@ public class BasicSteps {
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
 				break;
+            case "Edit Grouping Members Medical":
+                pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
+                break;
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
@@ -103,6 +109,9 @@ public class BasicSteps {
             case "Report a life change":
                 pageUrl = "nes/lifeChangeEvents";
                 break;
+            case "EXCH Declarations and Signature":
+                pageUrl = "nes/declarationAndSignature";
+                break;
             case "Identity Proofing - Initial Questions":
                 pageUrl = "nes/memberIdProofing";
                 break;
@@ -129,6 +138,11 @@ public class BasicSteps {
                 break;
             case "Dental Plan Results":
                 pageUrl = "dentalPlanResults";
+            case "Add Address":
+                pageUrl = "nes/addAddress";
+                break;
+            case "Citizenship":
+                pageUrl = "nes/lawfulPresence";
                 break;
             default:
                 System.out.println("undefined page ");
