@@ -202,19 +202,21 @@ public class WelcomePage {
         softAssert.assertAll();
     }
 
-    public void validateActionLinksText(String actionLink) {
+    public void validateActionLinksText(String language) {
         basicActions.waitForElementListToBePresent(actionLinks, 5);
-        switch(actionLink) {
-            case "Application Results":
-                softAssert.assertTrue(actionLinks.get(1).getText().equals(actionLink));
+        switch(language) {
+            case "English":
+                softAssert.assertEquals(actionLinks.get(1).getText(), "Application Results");
+                softAssert.assertEquals(actionLinks.get(2).getText(), "My Documents and Letters");
                 softAssert.assertAll();
                 break;
-            case "My Documents and Letters":
-                softAssert.assertTrue(actionLinks.get(2).getText().equals(actionLink));
+            case "Spanish":
+                softAssert.assertEquals(actionLinks.get(1).getText(), "Resultados de la solicitud");
+                softAssert.assertEquals(actionLinks.get(2).getText(), "Mis Documentos y Cartas");
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + actionLink);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 }
