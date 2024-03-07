@@ -129,6 +129,7 @@ public class BasicSteps {
                 break;
             case "Application History":
                 pageUrl = "nes/applicationHistory";
+                break;
             case "Add Address":
                 pageUrl = "nes/addAddress";
                 break;
