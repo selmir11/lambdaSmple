@@ -23,7 +23,7 @@ public class BasicSteps {
                 pageUrl = "nes/addMember";
                 break;
             case "Account Overview":
-                pageUrl = "accountOverview";
+                pageUrl = "/nes/accountOverview";
                 break;
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
