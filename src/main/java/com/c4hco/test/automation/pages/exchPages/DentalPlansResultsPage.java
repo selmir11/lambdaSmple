@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,6 +32,10 @@ public class DentalPlansResultsPage {
     @FindBy(id ="SHP-DentalPlanResults-ComparePlans")
     WebElement btnCompareOnDentalPlanResults;
 
+    @FindBy(id = "SHP-DentalPlanResults-CoverageLevel")
+    WebElement dropdownCoverageLevel;
+
+
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
         selectFirstDentalPlanBtn.click();
@@ -53,4 +58,15 @@ public class DentalPlansResultsPage {
        basicActions.waitForElementToBePresent(btnCompareOnDentalPlanResults, 10);
        btnCompareOnDentalPlanResults.click();
     }
+
+    public void clickCoverageLevelDropdown(){
+        basicActions.waitForElementToBePresent(dropdownCoverageLevel, 10);
+        dropdownCoverageLevel.click();
+
+    }
+    public void selectfromCoverageLevelList(String coverageLevel) {
+        String coveragePath = "//span[text()='" + coverageLevel + "']";
+        basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
+    }
+
 }
