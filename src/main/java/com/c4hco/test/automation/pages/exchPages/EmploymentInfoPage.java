@@ -209,6 +209,8 @@ public class EmploymentInfoPage {
             case "Income Change":
                 helpIcons.get(5).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + label);
         }
     }
 
