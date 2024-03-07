@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.Utils;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,7 +32,7 @@ public class LoginPage {
      WebElement signAdmin;
 
     private BasicActions basicActions;
-    private Utils utils = new Utils();
+    private Utils utils = new Utils(WebDriverManager.getDriver());
 
 
     public LoginPage(WebDriver webDriver) {

@@ -14,5 +14,11 @@ public class HouseHoldPageSteps {
 
     @Then("I click Add Another Family Member")
     public void iClickAddFamilyMember(){houseHoldPage.clickAddMember();}
+
+    @Then("I click edit basic information icon for member {int}")
+    public void iclickBasicInformationIcon(int index){
+        houseHoldPage.clickBasicInfoMember1Button(index);
+
+    }
 }
 

@@ -1,13 +1,14 @@
 package com.c4hco.test.automation.utils;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class Utils {
     private String env = ApplicationProperties.getInstance().getProperty("env");
     private BasicActions basicActions;
 
-    public Utils(){
-        this.basicActions = BasicActions.getInstance();
+    public Utils(WebDriver webDriver){
+        this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
