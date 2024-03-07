@@ -1,11 +1,12 @@
-Feature: Dental Plans page tests
+@dentalPlanFilterResults
+Feature: Dental Plan Verification test
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-35 @SelectGoBackOnDentalPages
-  Scenario: Go Back Dental Pages
+  @SLER-81 @SelectVerifyDentalCoverageLevelFilterResults
+  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -15,16 +16,20 @@ Feature: Dental Plans page tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
+    Then I validate I am on the "Identify Proofing - Congratulations" page
     And I click continue button on Congratulations page
-    Then I validate I am on the "Find Expert Help" page
+    Then I validate I am on the "Find Expert Help Exch" page
     Then I click Continue on my own button from Find Expert Help page
-    And I select "Male" as sex option
-    Then I select "Yes" to Are You Applying
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
@@ -39,18 +44,25 @@ Feature: Dental Plans page tests
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "Birth" QLCE on tell us about life changes page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare as Tax Household 1
-    Then I click Continue on the Declarations And Signature Page
+    And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
+
     Then I validate I am on the "Start Shopping" page
-    Then I click continue on start shopping page
-    And I select the first medical plan
-    Then I click continue on medical plan results page
-    Then I click on back button on dental Plan Results
+    And I click continue on start shopping page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
+
+    Then I validate I am on the "Dental Plan Results" page
+    And I click the Coverage Level dropdown
+    And I select "<coverageLevel>" to filter for a Coverage Level plan
+    Examples:
+      |coverageLevel  |
+      |Low            |
+

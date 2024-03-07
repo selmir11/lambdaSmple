@@ -22,6 +22,9 @@ public class BasicSteps {
             case "Account Overview":
                 pageUrl = "nes/accountOverview";
                 break;
+            case "My Account Overview":
+                pageUrl = "nes/myAccountOverview";
+                break;
             case "CoCo Welcome":
                 pageUrl = "/coco/WelcomePortal";
                 break;
@@ -88,6 +91,9 @@ public class BasicSteps {
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
+            case "Find Expert Help Exch":
+                pageUrl = "broker-portal/individual/find-expert-help?";
+                 break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
@@ -100,6 +106,9 @@ public class BasicSteps {
             case "Identity Proofing - Initial Questions":
                 pageUrl = "nes/memberIdProofing";
                 break;
+            case "Identify Proofing - Congratulations":
+                pageUrl = "nes/IdProofingSecondaryRequest";
+                break;
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
@@ -111,11 +120,15 @@ public class BasicSteps {
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
+                break;
             case "dentalCompare":
                 pageUrl = "dentalCompare";
                 break;
             case "Employment Income":
                 pageUrl = "employmentInfo";
+                break;
+            case "Dental Plan Results":
+                pageUrl = "dentalPlanResults";
                 break;
             default:
                 System.out.println("undefined page ");
