@@ -19,7 +19,7 @@ public class StartShoppingPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "button#SHP-StartShop-Continue")
+    @FindBy(id = "SHP-StartShop-Continue")
     WebElement btnContinue;
 
     @FindBy(css = ".container .radio-button")
@@ -37,6 +37,7 @@ public class StartShoppingPage {
         saveAndExitButton.click();
     }
     public void iclickContinue(){
+        basicActions.waitForElementListToBePresent(btnNoAndYes,10);
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         basicActions.waitForElementToBeClickable(btnContinue,20);
         btnContinue.click();

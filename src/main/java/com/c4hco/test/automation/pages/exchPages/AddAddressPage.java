@@ -41,7 +41,7 @@ public class AddAddressPage {
     @FindBy(id = "residentialAddrCounty")
     WebElement selectNewAddressCounty;
 
-    @FindBy(id = "mailingAddrLine1")
+    @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
 
     @FindBy(id = "mailingAddrLine2")
@@ -79,6 +79,11 @@ public class AddAddressPage {
     @FindBy(id = "areYouDisabilityNo")
     WebElement rdobtnDisabilityNo;
 
+    @FindBy(id = "livedinFosterCareYes")
+    WebElement rdobtnFosterCareYes;
+    @FindBy(id="livedinFosterCareNo")
+    WebElement rdobtnFosterCareNo;
+
     @FindBy(id = "medicaidOrChpDeniedYes")
     WebElement rdobtnMedicaidDeniedYes;
     @FindBy(id = "medicaidOrChpDeniedNo")
@@ -90,6 +95,7 @@ public class AddAddressPage {
     WebElement rdobtnIncarceratedNo;
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
+
 
     public void selectResidentialAddress(String index){
         switch(index){
@@ -115,6 +121,7 @@ public class AddAddressPage {
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");
+        // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
 
     public void isColoradoResident(String YNCOResident){
@@ -192,6 +199,17 @@ public class AddAddressPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + YNIncarcerated);
+        }
+    }
+
+    public void isUserInFosterCare(String YNFosterCare){
+        switch(YNFosterCare){
+            case "Yes":
+                rdobtnFosterCareYes.click();
+                break;
+            case "No":
+                rdobtnFosterCareNo.click();
+                break;
         }
     }
 
