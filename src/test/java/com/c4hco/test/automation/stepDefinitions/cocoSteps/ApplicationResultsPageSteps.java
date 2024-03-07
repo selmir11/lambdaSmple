@@ -13,7 +13,8 @@ public class ApplicationResultsPageSteps {
         applicationResultsCoCoPage.backToWelcomeButton();
     }
 
-
+    @And("I click Continue on the Application Results Page CoCo")
+    public void clickContinueButton(){applicationResultsCoCoPage.continueWithApplication();}
 
 
 }

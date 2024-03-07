@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class DentalPlansResultsPage {
     private BasicActions basicActions;
 
@@ -23,6 +25,12 @@ public class DentalPlansResultsPage {
     @FindBy(id="SHP-DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
+    @FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
+    List<WebElement> comparePlanLinks;
+
+    @FindBy(id ="SHP-DentalPlanResults-ComparePlans")
+    WebElement btnCompareOnDentalPlanResults;
+
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
         selectFirstDentalPlanBtn.click();
@@ -35,5 +43,14 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(btnGoBack,10);
         btnGoBack.click();
 
+    }
+    public void clickFirstTwoCompareButtons() {
+        basicActions.waitForElementListToBePresent(comparePlanLinks, 10);
+        comparePlanLinks.get(0).click();
+        comparePlanLinks.get(1).click();
+    }
+    public void clickCompareOnDentalPlanResults() {
+       basicActions.waitForElementToBePresent(btnCompareOnDentalPlanResults, 10);
+       btnCompareOnDentalPlanResults.click();
     }
 }

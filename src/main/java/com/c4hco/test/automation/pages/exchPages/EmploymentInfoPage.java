@@ -26,6 +26,12 @@ public class EmploymentInfoPage {
     @FindBy(css = "[id='globe'] p")
     List<WebElement> languageOption;
 
+    @FindBy(css = "header-1 content-center")
+    WebElement txtHeaderPart1;
+
+    @FindBy(css = ".header-2.content-center > span")
+    WebElement txtHeaderPart2;
+
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsEmployed-YesButton")
     WebElement btnYesEmployed;
 
@@ -194,6 +200,9 @@ public class EmploymentInfoPage {
             case "Is it self-employment":
                 helpIcons.get(2).click();
                 break;
+            case "Company Name":
+                helpIcons.get(3).click();
+                break;
         }
     }
 
@@ -205,24 +214,16 @@ public class EmploymentInfoPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpHeaderVerbiage(String language) {
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
         switch (language) {
             case "English":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(0).click();
-                basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-                basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Income");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(1).click();
-                basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-                basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso");
                 softAssert.assertAll();
                 break;
@@ -235,6 +236,9 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(globeIcon, 10);
         globeIcon.click();
         basicActions.waitForElementListToBePresent(languageOption, 10);
+        basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
+        basicActions.waitForElementListToBePresent(helpDrawerBodyParagraphs, 10);
+        basicActions.waitForElementListToBePresent(helpDrawerBodyPoints, 10);
         switch(language){
             case "English":
                 validateGeneralHelpBodyVerbiageEng();
@@ -242,23 +246,19 @@ public class EmploymentInfoPage {
             case "Spanish":
                 validateGeneralHelpBodyVerbiageSp();
                 break;
-                default:
+            default:
                 throw new IllegalArgumentException("Invalid option: " + language);
 
         }
     }
 
     public void validateGeneralHelpBodyVerbiageEng() {
-                languageOption.get(0).click();
-                basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
                 softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
                 softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
                 softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText()+" "+helpDrawerOverviewHeaders.get(2).getText(), "Employment Overview");
-                basicActions.waitForElementListToBePresent(helpDrawerBodyParagraphs, 10);
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know about the company you work for.");
                 softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "We need to know how much money you make from self-employment.");
-                basicActions.waitForElementListToBePresent(helpDrawerBodyPoints, 10);
                 softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Employment\n" +
                         "Does this person earn money through a job or by being self-employed?");
                 softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Company Name\n" +
@@ -279,16 +279,12 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        languageOption.get(1).click();
-        basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
         softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
         softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText()+" "+helpDrawerOverviewHeaders.get(2).getText(), "Empleo Resumen");
-        basicActions.waitForElementListToBePresent(helpDrawerBodyParagraphs, 10);
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Necesitamos saber cu\u00E1nto ganan usted y los miembros de su familia en su(s) trabajo(s).");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Necesitamos saber cu\u00E1nto gana como trabajador independiente.");
-        basicActions.waitForElementListToBePresent(helpDrawerBodyPoints, 10);
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Empleo\n" +
                 "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Nombre de la empresa\n" +
@@ -309,19 +305,13 @@ public class EmploymentInfoPage {
     }
 
     public void validateHelpFooterVerbiage(String language) {
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
         switch (language) {
             case "English":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(0).click();
-                basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
                 softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(1).click();
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
@@ -330,31 +320,38 @@ public class EmploymentInfoPage {
         }
     }
 
-    public void validateJobQuestionsHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
+    public void validateHeaderOnEmploymentInfo(String language) {
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
         switch (language) {
             case "English":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(0).click();
-                basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+                softAssert.assertEquals(txtHeaderPart2.getText(), "Employment Income");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(txtHeaderPart2.getText(), "Ingresos por empleo");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateJobQuestionsHelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
+        basicActions.waitForElementToBePresent(jobQuestionsHelpText, 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        switch (language) {
+            case "English":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-                basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employment");
-                basicActions.waitForElementToBePresent(jobQuestionsHelpText, 10);
                 softAssert.assertEquals(jobQuestionsHelpText.getText(), "Does this person earn money through a job or by being self-employed?");
-                basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
                 softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementListToBePresent(languageOption, 10);
-                languageOption.get(1).click();
-                basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-                basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Empleo");
-                basicActions.waitForElementToBePresent(jobQuestionsHelpText, 10);
                 softAssert.assertEquals(jobQuestionsHelpText.getText(), "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
