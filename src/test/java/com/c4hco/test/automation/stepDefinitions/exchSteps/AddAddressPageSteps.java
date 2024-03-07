@@ -32,6 +32,10 @@ public class AddAddressPageSteps {
 
     @Then("I select {string} for Incarceration option")
     public void isMemberIncarcerated(String YNIncacerated){addAddressPage.isUserIncarcerated(YNIncacerated);}
+    @Then("I select {string} for Foster care in state of Colorado")
+    public void isMemberInFosterCare(String YNFosterCare){
+         addAddressPage.isUserInFosterCare(YNFosterCare);
+    }
 
     @Then("I click continue on the Add Address page")
     public void clickContinue(){addAddressPage.saveContinue();}

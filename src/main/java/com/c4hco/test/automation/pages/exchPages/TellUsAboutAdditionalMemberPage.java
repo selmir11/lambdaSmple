@@ -16,7 +16,7 @@ public class TellUsAboutAdditionalMemberPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "firstName")
+    @FindBy(css = ".input-group #firstName")
     WebElement txtfirstName;
 
     @FindBy(id = "middleName")
@@ -42,6 +42,11 @@ public class TellUsAboutAdditionalMemberPage {
 
     @FindBy(id = "memberRelationship0")
     WebElement selectRelationship;
+    @FindBy(id = "memberRelationship1")
+    WebElement selectRelationship1;
+    @FindBy(id = "memberRelationship2")
+    WebElement selectRelationship2;
+
 
     @FindBy(id = "coverageYes")
     WebElement rdobtnIsMemberApplingYes;
@@ -63,11 +68,10 @@ public class TellUsAboutAdditionalMemberPage {
         String frstName = getUniqueString(8);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
-
+        basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
-
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
     }
@@ -100,6 +104,19 @@ public class TellUsAboutAdditionalMemberPage {
         basicActions.waitForElementToBePresent(selectRelationship, 15);
 
         Select dropdown = new Select(selectRelationship);
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void setSelectRelationship1(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship1, 15);
+
+        Select dropdown = new Select(selectRelationship1);
+        dropdown.selectByVisibleText(Relation);
+    }
+    public void setSelectRelationship2(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship2, 15);
+
+        Select dropdown = new Select(selectRelationship2);
         dropdown.selectByVisibleText(Relation);
     }
 

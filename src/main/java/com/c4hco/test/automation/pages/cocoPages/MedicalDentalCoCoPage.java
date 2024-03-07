@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class TobaccoUsageCoCoPage {
+public class MedicalDentalCoCoPage {
     private BasicActions basicActions;
 
-    public TobaccoUsageCoCoPage(WebDriver webDriver) {
+    public MedicalDentalCoCoPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
-    public WebElement continueButton;
+    @FindBy(id = "SHP-PlanSummary-Continue")
+    WebElement continueButton;
 
-    public void selectContinueTobacco() {
-        basicActions.waitForElementToBePresent(continueButton, 5);
+    public void clickContinueButton() {
+        basicActions.waitForElementToBeClickable(continueButton, 5);
         continueButton.click();
     }
 }
