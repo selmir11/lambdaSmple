@@ -16,7 +16,7 @@ public class TellUsAboutAdditionalMemberPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "firstName")
+    @FindBy(css = ".input-group #firstName")
     WebElement txtfirstName;
 
     @FindBy(id = "middleName")
@@ -68,7 +68,7 @@ public class TellUsAboutAdditionalMemberPage {
         String frstName = getUniqueString(8);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
-
+        basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);

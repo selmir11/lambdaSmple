@@ -23,7 +23,7 @@ public class BasicSteps {
                 pageUrl = "nes/addMember";
                 break;
             case "Account Overview":
-                pageUrl = "nes/accountOverview";
+                pageUrl = "/nes/accountOverview";
                 break;
             case "CoCo Welcome":
                 pageUrl = "/coco/WelcomePortal";
@@ -120,6 +120,7 @@ public class BasicSteps {
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
+                break;
             case "dentalCompare":
                 pageUrl = "dentalCompare";
                 break;

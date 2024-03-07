@@ -41,7 +41,7 @@ public class AddAddressPage {
     @FindBy(id = "residentialAddrCounty")
     WebElement selectNewAddressCounty;
 
-    @FindBy(id = "mailingAddrLine1")
+    @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
 
     @FindBy(id = "mailingAddrLine2")

@@ -71,6 +71,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "Son" as relationship option
           And I select "Grandson" as relationship one option
           And I select "Yes" to Is Member Applying
+          Then I validate I am on the "Add Member" page
           And I click continue on Tell us about additional members page
           Then I validate I am on the "Add Address" page
           Then I select "Household" for Residential Address
