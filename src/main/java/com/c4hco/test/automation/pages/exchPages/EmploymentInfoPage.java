@@ -364,6 +364,8 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -387,6 +389,8 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -410,6 +414,8 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -433,6 +439,8 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
