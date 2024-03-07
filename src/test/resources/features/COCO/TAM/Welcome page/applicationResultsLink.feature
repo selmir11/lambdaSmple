@@ -20,7 +20,7 @@ Feature: Tests related to the Application Results link
     And I click on Go back to Welcome page Button on Application Results page CoCo
     And I click on "My Documents and Letters" link on welcome page
     Then I validate I am on the "My Documents" page
-    And I click on Apply for Coverage in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     Then I validate "Spanish" link text on welcome page
     And I change the language from header to "English"
