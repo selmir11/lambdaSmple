@@ -121,6 +121,7 @@ public class AddAddressPage {
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");
+        // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
 
     public void isColoradoResident(String YNCOResident){
