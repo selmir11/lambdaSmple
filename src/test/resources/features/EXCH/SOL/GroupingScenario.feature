@@ -43,13 +43,14 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I click continue on the Citizenship page
 
           Then I click Add Another Family Member
+          Then I validate I am on the "Add Member" page
           Then I enter member details with "10101945" date of birth
           And I select "Female" as sex option
           And I mark the Additional member is pregnant as "No"
           And I select "Mother" as relationship option
           And I select "Yes" to Is Member Applying
-          Then I validate I am on the "Add Member" page
           And I click continue on Tell us about additional members page
+          Then I validate I am on the "Add Address" page
           Then I select "Household" for Residential Address
           And I select "Yes" for CO Resident option
           And I select "No" for Federally Recognized Tribe option
@@ -58,18 +59,20 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "No" to the recently denied medicaid question
           And I select "No" for Incarceration option
           And I click continue on the Add Address page
+          Then I validate I am on the "Citizenship" page
           Then I select "Yes" for Citizen option
           And I select "No" for Naturalized Immigrant option
           And I click continue on the Citizenship page
 
           Then I click Add Another Family Member
+          Then I validate I am on the "Add Member" page
           Then I enter member details with "10102001" date of birth
           And I select "Male" as sex option
           And I select "Son" as relationship option
           And I select "Grandson" as relationship one option
           And I select "Yes" to Is Member Applying
-          Then I validate I am on the "Add Member" page
           And I click continue on Tell us about additional members page
+          Then I validate I am on the "Add Address" page
           Then I select "Household" for Residential Address
           And I select "Yes" for CO Resident option
           And I select "No" for Federally Recognized Tribe option
@@ -79,6 +82,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "No" to the recently denied medicaid question
           And I select "No" for Incarceration option
           And I click continue on the Add Address page
+          Then I validate I am on the "Citizenship" page
           Then I select "Yes" for Citizen option
           And I select "No" for Naturalized Immigrant option
           And I click continue on the Citizenship page
@@ -92,9 +96,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "Grandson" as relationship one option
           And I select "Brother" as relationship two option
           And I select "Yes" to Is Member Applying
-          Then I validate I am on the "Add Member" page
 
           And I click continue on Tell us about additional members page
+          Then I validate I am on the "Add Address" page
           Then I select "Household" for Residential Address
           And I select "Yes" for CO Resident option
           And I select "No" for Federally Recognized Tribe option
@@ -103,14 +107,18 @@ Feature: UI Page Validation - Grouping Members (Medical)
           And I select "No" to the recently denied medicaid question
           And I select "No" for Incarceration option
           And I click continue on the Add Address page
+          Then I validate I am on the "Citizenship" page
           Then I select "Yes" for Citizen option
           And I select "No" for Naturalized Immigrant option
           And I click continue on the Citizenship page
 
           Then I click continue on family overview page
+          Then I validate I am on the "Financial Help" page
           And I Apply for no financial help
+          Then I validate I am on the "Tell us about life changes" page
           Then I select "MoveToCO" QLCE on tell us about life changes page
           Then I click on Save and Continue
+          Then I validate I am on the "EXCH Declarations and Signature" page
           Then I Declare as Tax Household 1
           And I click Continue on the Declarations And Signature Page
           And I wait for hold on content to disappear

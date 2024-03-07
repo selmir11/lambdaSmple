@@ -102,6 +102,9 @@ public class BasicSteps {
             case "Report a life change":
                 pageUrl = "nes/lifeChangeEvents";
                 break;
+            case "EXCH Declarations and Signature":
+                pageUrl = "nes/declarationAndSignature";
+                break;
             case "Identity Proofing - Initial Questions":
                 pageUrl = "nes/memberIdProofing";
                 break;
