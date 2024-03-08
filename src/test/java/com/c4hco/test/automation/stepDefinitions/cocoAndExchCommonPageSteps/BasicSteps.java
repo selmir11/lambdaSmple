@@ -138,6 +138,7 @@ public class BasicSteps {
                 break;
             case "Dental Plan Results":
                 pageUrl = "dentalPlanResults";
+                break;
             case "Add Address":
                 pageUrl = "nes/addAddress";
                 break;

@@ -13,8 +13,8 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.selectFirstDentalPlan();
     }
     @Then("I click continue on dental plan results page")
-    public void iClickContinueOnDentalResultsPage(){
-        dentalPlansResultsPage.iclickContinueOnDentalResultsPage();
+    public void clickContinueOnDentalResultsPage(){
+    dentalPlansResultsPage.clickContinueOnDentalResultsPage();
     }
 
     @Then("I click on back button on dental Plan Results")
@@ -23,10 +23,12 @@ public class DentalPlansResultsPageSteps {
     }
 
     @Then("I click on the compare links on the first 2 dental plans")
-    public void clickFirstTwoCompareButtons() {dentalPlansResultsPage.clickFirstTwoCompareButtons();
+    public void clickFirstTwoCompareButtons() {
+        dentalPlansResultsPage.clickFirstTwoCompareButtons();
     }
     @Then("I click on the compare dental button")
-    public void clickCompareOnDentalPlanResults() {dentalPlansResultsPage.clickCompareOnDentalPlanResults();}
+    public void clickCompareOnDentalPlanResults() {
+        dentalPlansResultsPage.clickCompareOnDentalPlanResults();}
 
     @And("I click the Coverage Level dropdown")
     public void clickCoverageLevelDropdown() {
@@ -36,5 +38,9 @@ public class DentalPlansResultsPageSteps {
     @And("I select {string} to filter for a Coverage Level plan")
     public void selectfromCoverageLevelList(String coverageLevel) {
         dentalPlansResultsPage.selectfromCoverageLevelList(coverageLevel);
+    }
+    @And("I validate plan option {int} has plan {string} title")
+    public void validateDentalPlanText(int Index, String coverageLevelPlanText) {
+        dentalPlansResultsPage.validateDentalPlanText(Index, coverageLevelPlanText);
     }
 }

@@ -20,9 +20,6 @@ public class DentalPlansResultsPage {
     @FindBy(id="DentalPlanResults-SelectThisPlan_0")
     WebElement selectFirstDentalPlanBtn;
 
-    @FindBy(id="SHP-DentalPlanResults-Continue")
-    WebElement continueBtnOnDentalPlanResults;
-
     @FindBy(id="SHP-DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
@@ -35,12 +32,16 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-CoverageLevel")
     WebElement dropdownCoverageLevel;
 
+    @FindBy(id = "SHP-DentalPlanResults-Continue")
+    WebElement continueBtnOnDentalPlanResults;
+
 
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
         selectFirstDentalPlanBtn.click();
     }
-    public void iclickContinueOnDentalResultsPage(){
+    public void clickContinueOnDentalResultsPage(){
+        basicActions.waitForElementToBePresent(continueBtnOnDentalPlanResults,10);
         continueBtnOnDentalPlanResults.click();
     }
 
@@ -69,4 +70,14 @@ public class DentalPlansResultsPage {
         basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
     }
 
+    public void validateDentalPlanText (int index,String coverageLevelPlanText){
+        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn, 10);
+        index = index - 1;
+        String indexString = String.valueOf(index);
+        String planID = "DentalPlanResults-SelectThisPlan_" + indexString;
+        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        String expectedText = ePlanID.getText();
+        expectedText.equals(coverageLevelPlanText);
+
+    }
 }
