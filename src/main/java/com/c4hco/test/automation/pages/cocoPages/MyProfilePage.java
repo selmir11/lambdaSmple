@@ -19,4 +19,5 @@ public class MyProfilePage {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
         backToWelcomeButton.click();
     }
+
 }
