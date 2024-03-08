@@ -5,6 +5,7 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import com.c4hco.test.automation.sftpConfig.SftpConnection;
 
 public class LoginPageSteps {
 
@@ -13,6 +14,7 @@ public class LoginPageSteps {
         @Given("I open the login page on the {string} portal")
         public void openPage(String appType){
             loginPage.openPage(appType);
+            SftpConnection.main();
         }
         
         @When("I click create a new account on login page")

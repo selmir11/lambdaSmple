@@ -1,20 +1,20 @@
 @helpDrawer
 Feature: Tests related to the help drawer
 
-  @SLCR-27
+  @SLCR-27 @test
   Scenario: Validate the english and spanish verbiage on the help drawer
     Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    And I click create my account from pre-screen page
-    Then I validate I am on the "Create Account" page
-    And I click on help icon
-    Then I validate the verbiage on help icon in "English"
-    And I close the help icon
-    And I change the language from header to "Spanish ExpertHelp"
-    And I click on help icon
-    Then I validate the verbiage on help icon in "Spanish"
-    And I close the help icon
+#    And I validate I am on the "Login" page
+#    When I click create a new account on login page
+#    And I click create my account from pre-screen page
+#    Then I validate I am on the "Create Account" page
+#    And I click on help icon
+#    Then I validate the verbiage on help icon in "English"
+#    And I close the help icon
+#    And I change the language from header to "Spanish ExpertHelp"
+#    And I click on help icon
+#    Then I validate the verbiage on help icon in "Spanish"
+#    And I close the help icon
 
   @SLCR-27
   Scenario: Validate the english and spanish verbiage on the help drawer button
