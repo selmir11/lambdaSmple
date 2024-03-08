@@ -12,7 +12,7 @@ Feature: Dental Plan Verification test
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
+    And I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -62,7 +62,8 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     And I click the Coverage Level dropdown
     And I select "<coverageLevel>" to filter for a Coverage Level plan
+    And I validate plan option 1 has "<coverageLevelPlanText>"
     Examples:
-      |coverageLevel  |
-      |Low            |
-
+      |coverageLevel  |coverageLevelPlanText                                    |
+      |Low            |Cigna Dental Pediatric                                   |
+      |High           |Delta Dental of Colorado Pediatric Comprehensive Plan    |
