@@ -32,6 +32,7 @@ public class ChatWidgetPage {
         softAssert.assertEquals("Let's chat",ChatWidgetTitle.getText());
         basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);
         softAssert.assertEquals("We're Online",ChatWidgetSubtitle.getText());
+        softAssert.assertAll();
 
     }
     public void clickChatWidget(){
@@ -43,6 +44,8 @@ public class ChatWidgetPage {
         minimizeChatWindow.click();
         basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);
         softAssert.assertTrue(ChatWidgetSubtitle.isDisplayed());
+        softAssert.assertAll();
+
 
     }
 
