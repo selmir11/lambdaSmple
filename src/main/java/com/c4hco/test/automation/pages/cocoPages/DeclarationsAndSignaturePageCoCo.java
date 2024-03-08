@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 public class DeclarationsAndSignaturePageCoCo {
+
+    SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
 
     public DeclarationsAndSignaturePageCoCo(WebDriver webDriver) {
@@ -25,12 +28,13 @@ public class DeclarationsAndSignaturePageCoCo {
     WebElement continueButton;
 
     public void enterSignatureCoCo(){
-        basicActions.waitForElementToBePresent(signatureLabel, 10);
+        basicActions.waitForElementToBePresent(signatureLabel, 20);
         String label = signatureLabel.getText();
         label = label.replaceAll("Electronic Signature:", "");
         label = label.trim();
 
-        basicActions.waitForElementToBePresent(signatureInputField, 10);
+        basicActions.waitForElementToBePresent(signatureInputField, 20);
+        signatureInputField.clear();
         signatureInputField.click();
         signatureInputField.sendKeys(label);
     }

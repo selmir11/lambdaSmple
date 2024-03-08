@@ -26,5 +26,18 @@ public class LoginPageSteps {
          @When("I login as Admin User")
             public void i_login_as_admin_user() {loginPage.loginAsAnAdminUser();}
 
+    @When("I login as Broker User")
+    public void i_login_as_Broker_user() {loginPage.loginAsBrokerUser();}
+    @When("I click create forgot {string}")
+    public void i_click_create_forget(String credentials) {
+            switch (credentials){
+                case "password":
+                    loginPage.clickForgotPassword();
+                break;
+                case "username":
+                    loginPage.clickForgotUsername();
+                    break;}
+            }
+
         // =================VALIDATION STEPS==============//
     }
