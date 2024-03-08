@@ -5,11 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 
 public class ChatWidgetPage {
 
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
     public ChatWidgetPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -24,11 +26,13 @@ public class ChatWidgetPage {
     WebElement minimizeChatWindow;
 
     public void validateChatWidgetIsPresent()  {
+
         basicActions.getDriver().switchTo().frame(ChatWidgetIframe);
         basicActions.waitForElementToBePresent(ChatWidgetTitle,20);
-        Assert.assertEquals("Let's chat",ChatWidgetTitle.getText());
+        softAssert.assertEquals("Let's chat",ChatWidgetTitle.getText());
         basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);
-        Assert.assertEquals("We're Online",ChatWidgetSubtitle.getText());
+        softAssert.assertEquals("We're Online",ChatWidgetSubtitle.getText());
+
     }
     public void clickChatWidget(){
         basicActions.waitForElementToBePresent(ChatWidgetTitle,20);
@@ -37,6 +41,9 @@ public class ChatWidgetPage {
     public void minimizeChatWidget(){
         basicActions.waitForElementToBePresent(minimizeChatWindow,20);
         minimizeChatWindow.click();
+        basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);
+        softAssert.assertTrue(ChatWidgetSubtitle.isDisplayed());
+
     }
 
 
