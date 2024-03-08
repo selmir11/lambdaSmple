@@ -25,6 +25,9 @@ public class BasicSteps {
             case "Account Overview":
                 pageUrl = "/nes/accountOverview";
                 break;
+            case "My Account Overview":
+                pageUrl = "nes/myAccountOverview";
+                break;
             case "CoCo Welcome":
                 pageUrl = "/coco/WelcomePortal";
                 break;
@@ -94,6 +97,9 @@ public class BasicSteps {
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
+            case "Find Expert Help Exch":
+                pageUrl = "broker-portal/individual/find-expert-help?";
+                 break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
@@ -108,6 +114,9 @@ public class BasicSteps {
                 break;
             case "Identity Proofing - Initial Questions":
                 pageUrl = "nes/memberIdProofing";
+                break;
+            case "Identify Proofing - Congratulations":
+                pageUrl = "nes/IdProofingSecondaryRequest";
                 break;
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
@@ -126,6 +135,12 @@ public class BasicSteps {
                 break;
             case "Employment Income":
                 pageUrl = "employmentInfo";
+                break;
+            case "Application History":
+                pageUrl = "nes/applicationHistory";
+                break;
+            case "Dental Plan Results":
+                pageUrl = "dentalPlanResults";
                 break;
             case "Add Address":
                 pageUrl = "nes/addAddress";
@@ -167,6 +182,30 @@ public class BasicSteps {
                 break;
             case "Financial Help":
                 pageUrl = "/financial-help/get-financial-help/";
+                break;
+            case "Faqs":
+                pageUrl = "faqs";
+                break;
+            case "Customer Service":
+                pageUrl = "customer-service";
+                break;
+            case "Facebook":
+                pageUrl = "facebook.com/connectforhealthco";
+                break;
+            case "X":
+                pageUrl = "twitter.com/C4HCO";
+                break;
+            case "YouTube":
+                pageUrl = "youtube.com/user/ConnectForHealthCO";
+                break;
+            case "Instagram":
+                pageUrl = "instagram.com/c4hco/";
+                break;
+            case "LinkedIn":
+                pageUrl = "linkedin.com/company/connect-for-health-colorado";
+                break;
+            case "Threads":
+                pageUrl = "threads.net/@c4hco";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
