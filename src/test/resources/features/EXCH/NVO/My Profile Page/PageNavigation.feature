@@ -15,6 +15,6 @@ Feature: My profile page
     Then I click on My Profile Button Exch
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
-    Then I validate I am on the "Account Overview" page
-    And I click on My Account in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    And  I click on My Account in the "NonElmo" Header
     Then I validate I am on the "My Profile" page

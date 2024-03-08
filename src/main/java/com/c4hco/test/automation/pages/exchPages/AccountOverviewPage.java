@@ -7,13 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class AccountOverviewPage {
 
     @FindBy(name = "applyForCurrentYear")
     WebElement btnApplyForCurrentYear;
 
-    @FindBy(xpath = "(//b[.='Click here'])[1]")
-    WebElement MyProfileButtonExch;
+    @FindBy(css = "a.linkButton")
+    List<WebElement> MyProfileButtonExch;
 
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
@@ -36,8 +38,8 @@ public class AccountOverviewPage {
 
 
     public void clickMyProfileButtonExch() {
-        basicActions.waitForElementToBeClickable(MyProfileButtonExch, 5);
-        MyProfileButtonExch.click(); }
+        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 5);
+        MyProfileButtonExch.get(0).click(); }
 
     // ================VALIDATION METHODS================//
     public void verifyLanguageText(String language) {

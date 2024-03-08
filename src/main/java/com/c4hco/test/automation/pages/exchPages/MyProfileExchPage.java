@@ -6,11 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class MyProfileExchPage {
 
 
-    @FindBy(xpath = "//button[contains(@class,'btn-second-action-button btn-back-to-welcome')]")
-    public WebElement backToWelcomeButtonExch;
+    @FindBy(css = ".bottom_buttons_container button")
+    List<WebElement> backToWelcomeButtonExch;
 
     private BasicActions basicActions;
     public MyProfileExchPage(WebDriver webDriver) {
@@ -19,7 +21,7 @@ public class MyProfileExchPage {
     }
 
     public void backToWelcomeButtonExch() {
-        basicActions.waitForElementToBeClickable(backToWelcomeButtonExch, 5);
-        backToWelcomeButtonExch.click();
+        basicActions.waitForElementToBeClickable(backToWelcomeButtonExch.get(0), 5);
+        backToWelcomeButtonExch.get(0).click();
     }
 }
