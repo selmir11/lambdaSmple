@@ -22,7 +22,10 @@ public class ImmigrationStatusPage {
     WebElement rdobtnLprNo;
 
     @FindBy(id = "lprNoDropdown")
-    WebElement immigrationStatus;
+    WebElement immigrationStatusLPRNo;
+
+    @FindBy(id = "lprYesDropdown")
+    WebElement immigrationStatusLPRYes;
 
     @FindBy(name = "saveAndContinue")
     WebElement saveContinue;
@@ -34,16 +37,22 @@ public class ImmigrationStatusPage {
                 break;
             case "No":
                 rdobtnLprNo.click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + YNLawfulPermanentResident);
         }
     }
 
     public void selectImmigrationStatus(String selectImmigrationStatus){
-        basicActions.waitForElementToBePresent(immigrationStatus, 15);
-
-        Select dropdown = new Select(immigrationStatus);
-        dropdown.selectByVisibleText(selectImmigrationStatus);
+        if (rdobtnLprYes.isSelected()){
+             Select dropdown = new Select(immigrationStatusLPRYes);
+             dropdown.selectByVisibleText(selectImmigrationStatus);
+        } else if (rdobtnLprNo.isSelected()) {
+            Select dropdown = new Select(immigrationStatusLPRNo);
+            dropdown.selectByVisibleText(selectImmigrationStatus);
+        }else {
+            throw new IllegalStateException("Neither 'Yes' nor 'No' option is selected for Lawful Permanent Resident.");
+        }
     }
 
     public  void clickContinue(){saveContinue.click();}
