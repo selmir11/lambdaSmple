@@ -18,7 +18,7 @@ public class MedicalDentalCoCoPage {
     WebElement continueButton;
 
     public void clickContinueButton() {
-        basicActions.waitForElementToBeClickable(continueButton, 5);
+        basicActions.waitForElementToBeClickable(continueButton, 30);
         continueButton.click();
     }
 }

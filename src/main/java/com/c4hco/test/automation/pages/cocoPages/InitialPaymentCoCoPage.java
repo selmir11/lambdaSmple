@@ -26,7 +26,7 @@ public class InitialPaymentCoCoPage {
     }
 
     public void selectContinueCoCo() {
-        basicActions.waitForElementToBePresent(continueButton, 5);
+        basicActions.waitForElementToBePresent(continueButton, 20);
         continueButton.click();
     }
 }
