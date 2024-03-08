@@ -24,12 +24,12 @@ public class MedicalPlansCoCoPage {
     public WebElement continueButton;
 
     public void selectFirstMedicalPlanCoCo() {
-        basicActions.waitForElementToBePresent(selectFirstPlan, 10);
+        basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
     }
 
     public void selectContinueMedicalPlansCoCo() {
-        basicActions.waitForElementToBeClickable(continueButton, 5);
+        basicActions.waitForElementToBeClickable(continueButton, 20);
         continueButton.click();
     }
 }

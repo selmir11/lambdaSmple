@@ -26,7 +26,7 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void continueWithApplication()  {
-        basicActions.waitForElementToBeClickable(continueButton, 5);
+        basicActions.waitForElementToBeClickable(continueButton, 20);
         continueButton.click();
     }
 }
