@@ -31,6 +31,14 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
      WebElement signAdmin;
 
+    @FindBy(xpath = "//a[text()=' password']")
+     WebElement forgotPassword;
+
+    @FindBy(xpath = "//a[text()='username']")
+     WebElement forgotUsername;
+
+
+
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
 
@@ -62,6 +70,24 @@ public class LoginPage {
         passwordAdmin.sendKeys("ALaska12!");
         signAdmin.click();
     }
+
+    public void loginAsBrokerUser(){
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        usernameAdmin.sendKeys("soukainatesting+agencyQA@gmail.com");
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        passwordAdmin.sendKeys("ALaska16!");
+        signAdmin.click();
+    }
+
+    public void clickForgotPassword(){
+        basicActions.waitForElementToBePresent(forgotPassword,20 );
+        forgotPassword.click();
+    }
+    public void clickForgotUsername(){
+        basicActions.waitForElementToBePresent(forgotUsername,20 );
+        forgotUsername.click();
+    }
+
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line

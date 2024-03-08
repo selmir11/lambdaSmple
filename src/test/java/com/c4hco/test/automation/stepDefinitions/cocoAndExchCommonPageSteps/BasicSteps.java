@@ -132,6 +132,14 @@ public class BasicSteps {
                 break;
             case "Citizenship":
                 pageUrl = "nes/lawfulPresence";
+            case "forgotPassword":
+                pageUrl = "login-portal/forgotPassword";
+                break;
+            case "forgotUsername":
+                pageUrl = "login-portal/forgotEmail";
+                break;
+            case "MFA":
+                pageUrl = "login-portal/mfa";
                 break;
             default:
                 System.out.println("undefined page ");
