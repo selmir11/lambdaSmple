@@ -8,6 +8,11 @@ import com.jcraft.jsch.Session;
 public class SftpConnection {
 
     public static void main(){
+        // need to set the port number based on the app(exch, coco) and the env.
+       // username and privateKeypath should come from app.properties
+        // try to move app.properties to gitIgnore
+        // filename should come from the db - probably should add to sharedData
+        // local path - try to make it more specific like the reports - create a folder and add the files there !
         String localPath = "D:\\Users\\nkamireddy\\Desktop\\automation_files_from_sftp";
         String fileName = "834_DENVERHEALTH_C_2022120707080268_100000053_D_I";
         String sftpPath = "/inboundedi/mockediresponse/";
