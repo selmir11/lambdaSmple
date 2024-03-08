@@ -39,7 +39,7 @@ public class DentalPlansResultsPageSteps {
     public void selectfromCoverageLevelList(String coverageLevel) {
         dentalPlansResultsPage.selectfromCoverageLevelList(coverageLevel);
     }
-    @And("I validate plan option {int} has plan {string} title")
+    @And("I validate plan option {int} has {string}")
     public void validateDentalPlanText(int Index, String coverageLevelPlanText) {
         dentalPlansResultsPage.validateDentalPlanText(Index, coverageLevelPlanText);
     }
