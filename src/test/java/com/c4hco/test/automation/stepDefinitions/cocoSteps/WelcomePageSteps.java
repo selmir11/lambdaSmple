@@ -31,8 +31,8 @@ import io.cucumber.java.en.Then;
     @Then("I verify text on the Welcome page for an account without a policy in {string}")
     public void verifyNoPolicyText(String language)  { welcomePage.verifyTextOnWelcomePageNoPolicy(language); }
 
-    @Then("I validate {string} link text on welcome page")
-    public void verifyActionLinkText(String actionLink)  { welcomePage.validateActionLinksText(actionLink); }
+    @Then("I validate action link text on welcome page in {string}")
+    public void verifyActionLinkText(String language)  { welcomePage.validateActionLinksText(language); }
 
 
 

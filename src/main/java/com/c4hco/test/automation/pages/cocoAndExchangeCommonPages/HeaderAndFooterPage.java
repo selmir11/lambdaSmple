@@ -19,6 +19,12 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".center-links .clickable")
     List<WebElement> centerHeaderLink;
 
+    @FindBy(css = "div.top-navigation > div > nav > ul > li > a")
+    List<WebElement> centerHeaderLinkNonElmo;
+
+    @FindBy(css = "#navMenu > div > a")
+    List<WebElement> centerHeaderLinkExpertHelp;
+
     @FindBy(css = ".learnmore-getassistance-flex-item .learn-more")
     WebElement learnMoreLink;
 
@@ -108,33 +114,76 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBeClickable(connectLogoLink, 10);
         connectLogoLink.click();
     }
-    public void clickApplyForCoverageLink() {
-        basicActions.waitForElementToBeClickable(centerHeaderLink.get(0), 90);
-        centerHeaderLink.get(0).click();
+    public void clickApplyForCoverageLink(String pageType) {
+//        "Elmo" for CoCo and Exch Elmo pages
+////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
+//        "ENonElmo" non Elmo pages (not listed above)
+//        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
+        switch (pageType){
+            case "Elmo":
+                basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+                centerHeaderLink.get(0).click();
+                break;
+            case "NonElmo":
+                basicActions.waitForElementListToBePresent(centerHeaderLinkNonElmo, 15);
+                centerHeaderLinkNonElmo.get(0).click();
+                break;
+            case "ExpertHelp":
+                basicActions.waitForElementListToBePresent(centerHeaderLinkExpertHelp, 15);
+                centerHeaderLinkExpertHelp.get(0).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
     }
     public void clickFindAPlanLinkLink() {
-        basicActions.waitForElementToBeClickable(centerHeaderLink.get(1), 90);
+        basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
         centerHeaderLink.get(1).click();
     }
     public void clickMyAccountLink() {
-        basicActions.waitForElementToBeClickable(centerHeaderLink.get(2), 90);
+        basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
         centerHeaderLink.get(2).click();
     }
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickable(learnMoreLink, 90);
+        basicActions.waitForElementToBeClickable(learnMoreLink, 15);
         learnMoreLink.click();
     }
     public void clickGetAssistanceLink() {
-        basicActions.waitForElementToBeClickable(getAssistanceLink, 90);
+        basicActions.waitForElementToBeClickable(getAssistanceLink, 15);
         getAssistanceLink.click();
     }
-    public void clickFindExpertAssistanceLink() {
+    public void clickFindExpertAssistanceLink(String pageType) {
+        switch (pageType){
+            case "CoCo":
+                basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(0), 20);
+                getAssistanceLinkOption.get(0).click();
+                break;
+            case "Exch":
+                basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(1), 20);
+                getAssistanceLinkOption.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+
+        }
+    }
+    public void clickContactUsHeaderLink() {
         basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(0), 20);
         getAssistanceLinkOption.get(0).click();
     }
-    public void clickUserNameLink() {
-        basicActions.waitForElementToBeClickable(userNameLink, 20);
-        userNameLink.click();
+    public void clickUserNameLink(String pageType) {
+        switch (pageType){
+            case "CoCo":
+                basicActions.waitForElementToBeClickable(userNameLink, 90);
+                userNameLink.click();
+                break;
+            case "Exch":
+                basicActions.waitForElementToBeClickable(userNameLinkExch, 90);
+                userNameLinkExch.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
     }
 
     public void clickLanguageDrp() {
@@ -398,9 +447,49 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
         termsOfUseLink.click();
     }
-    public void clickContactUsLink() {
-        basicActions.waitForElementToBeClickable(contactUsLink, 10);
-        contactUsLink.click();
+    public void clickContactUsLink(String appType) {
+        switch(appType){
+            case "CoCo":
+                basicActions.waitForElementToBeClickable(contactUsLink, 10);
+                contactUsLink.click();
+                break;
+            case "Exch":
+                basicActions.waitForElementToBeClickable(contactUsLinkExch, 10);
+                contactUsLinkExch.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+        }
+    }
+    public void clickFacebookIcon(String MediaIcon) {
+        switch (MediaIcon){
+            case "Facebook":
+                basicActions.waitForElementToBeClickable(FacebookIcon, 10);
+                FacebookIcon.click();
+                break;
+            case "X":
+                basicActions.waitForElementToBeClickable(xIcon, 10);
+                xIcon.click();
+                break;
+            case "YouTube":
+                basicActions.waitForElementToBeClickable(YouTubeIcon, 10);
+                YouTubeIcon.click();
+                break;
+            case "Instagram":
+                basicActions.waitForElementToBeClickable(InstagramIcon, 10);
+                InstagramIcon.click();
+                break;
+            case "LinkedIn":
+                basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
+                LinkedInIcon.click();
+                break;
+            case "Threads":
+                basicActions.waitForElementToBeClickable(ThreadsIcon, 10);
+                ThreadsIcon.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + MediaIcon);
+        }
     }
 
     public void verifyTextInCoCoFooter(){

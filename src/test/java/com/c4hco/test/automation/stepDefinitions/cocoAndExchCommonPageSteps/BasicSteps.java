@@ -136,6 +136,9 @@ public class BasicSteps {
             case "Employment Income":
                 pageUrl = "employmentInfo";
                 break;
+            case "Application History":
+                pageUrl = "nes/applicationHistory";
+                break;
             case "Dental Plan Results":
                 pageUrl = "dentalPlanResults";
                 break;
@@ -171,6 +174,30 @@ public class BasicSteps {
                 break;
             case "Financial Help":
                 pageUrl = "/financial-help/get-financial-help/";
+                break;
+            case "Faqs":
+                pageUrl = "faqs";
+                break;
+            case "Customer Service":
+                pageUrl = "customer-service";
+                break;
+            case "Facebook":
+                pageUrl = "facebook.com/connectforhealthco";
+                break;
+            case "X":
+                pageUrl = "twitter.com/C4HCO";
+                break;
+            case "YouTube":
+                pageUrl = "youtube.com/user/ConnectForHealthCO";
+                break;
+            case "Instagram":
+                pageUrl = "instagram.com/c4hco/";
+                break;
+            case "LinkedIn":
+                pageUrl = "linkedin.com/company/connect-for-health-colorado";
+                break;
+            case "Threads":
+                pageUrl = "threads.net/@c4hco";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
