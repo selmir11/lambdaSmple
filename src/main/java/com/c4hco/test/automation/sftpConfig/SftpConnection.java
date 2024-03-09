@@ -6,6 +6,8 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
 public class SftpConnection {
+    private String sftpHostname = "localhost";
+
 
     public static void main(){
         // need to set the port number based on the app(exch, coco) and the env.
@@ -17,9 +19,9 @@ public class SftpConnection {
         String localPath = "D:\\Users\\nkamireddy\\Desktop\\automation_files_from_sftp";
         String fileName = "834_DENVERHEALTH_C_2022120707080268_100000053_D_I";
         String sftpPath = "/inboundedi/mockediresponse/";
-        String sftpHostname = "localhost";
         String sftpPort = "10023";
         String sftpUsername = "nkamireddy";
+        String sftpHostname = "localhost";
         // should give the private key path - Move to app.properties?
         String privateKeyPath = "D:\\Users\\nkamireddy\\Desktop\\public private keys\\niveditha_kamireddy_private.ppk";
 

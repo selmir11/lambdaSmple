@@ -12,7 +12,9 @@ import java.util.Date;
         features = "src/test/resources/features/",
         glue = {"com.c4hco.test.automation.stepDefinitions.cocoSteps","com.c4hco.test.automation.stepDefinitions.exchSteps",
                 "com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps",
-                "com.c4hco.test.automation.globalhooks"}
+                "com.c4hco.test.automation.stepDefinitions.sftpSteps",
+                "com.c4hco.test.automation.globalhooks"
+                }
 )
 public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
