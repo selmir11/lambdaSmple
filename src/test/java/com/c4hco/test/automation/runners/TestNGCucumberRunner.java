@@ -29,7 +29,7 @@ public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
     private String getReportPath(){
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
-        String reportFolderPath = "target/cucumber-reports/Execution-" + timestamp;
+        String reportFolderPath = "target/cucumber-reports/ExecutionReport` `-" + timestamp;
         // Create the timestamped folder
         File reportFolder = new File(reportFolderPath);
         if (!reportFolder.exists()) {
