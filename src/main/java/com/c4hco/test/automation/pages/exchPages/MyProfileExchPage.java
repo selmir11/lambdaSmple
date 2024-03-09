@@ -6,21 +6,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GoodNewsMAPage {
+import java.util.List;
+
+public class MyProfileExchPage {
+
+
+    @FindBy(css = ".bottom_buttons_container button")
+    List<WebElement> backToWelcomeButtonExch;
 
     private BasicActions basicActions;
-    public GoodNewsMAPage(WebDriver webDriver) {
+    public MyProfileExchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
 
-    @FindBy(name = "noThanksMA")
-    WebElement noThanks;
-
-    public void iClickNoThanks(){
-        noThanks.click();
+    public void backToWelcomeButtonExch() {
+        basicActions.waitForElementToBeClickable(backToWelcomeButtonExch.get(0), 5);
+        backToWelcomeButtonExch.get(0).click();
     }
 }
