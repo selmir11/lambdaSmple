@@ -29,13 +29,9 @@ public class SftpUtil {
     }
 
     private void initializeSftpConfiguration(){
-        //setting the sftp username
         sftpUsername = ApplicationProperties.getInstance().getProperty("sftpUsername");
-        //setting the sftp private key path
-        privateKeyPath =
-                 ApplicationProperties.getInstance().getProperty("sftpPrivateKeyPath");
-        //setting the local download path
-        localPath = getSftpDownloadPath();
+        privateKeyPath = ApplicationProperties.getInstance().getProperty("sftpPrivateKeyPath");
+        localPath = getLocalSftpDownloadPath();
         // setting the sftp port
         if(SharedData.getAppType().equals("coco")){
             if("qa".equals(env)){
@@ -80,11 +76,11 @@ public class SftpUtil {
         }
     }
 
-    public void downloadFileWithSftp(String remoteFilePath,String localFilePath) throws JSchException {
+    public void downloadFileWithSftp(String remoteFilePath, String fileNameToDownload, String localFilePath) throws JSchException {
         ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
         channelSftp.connect();
         try{
-            channelSftp.get(remoteFilePath+fileName, localFilePath);
+            channelSftp.get(remoteFilePath+fileNameToDownload, localFilePath);
         }catch(Exception e){
             e.printStackTrace();
         }finally {
@@ -110,7 +106,7 @@ public class SftpUtil {
         }
     }
 
-    private String getSftpDownloadPath(){
+    private String getLocalSftpDownloadPath(){
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
         String reportFolderPath = "target/sftp-downloads/download-" + timestamp;
         // Create the timestamped folder
