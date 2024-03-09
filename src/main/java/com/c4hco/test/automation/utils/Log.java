@@ -12,5 +12,4 @@ public class Log {
     // Info Level Logs
     public static void info(String message){ Log.info(message); }
 
-
 }
