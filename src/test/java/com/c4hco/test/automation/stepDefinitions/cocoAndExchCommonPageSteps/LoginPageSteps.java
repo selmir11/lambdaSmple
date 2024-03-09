@@ -12,8 +12,8 @@ public class LoginPageSteps {
         LoginPage loginPage = new LoginPage(WebDriverManager.getDriver());
 
         @Given("I open the login page on the {string} portal")
-        public void openPage(String appType){
-            loginPage.openPage(appType);
+        public void openPage(String portalType){
+            loginPage.openPage(portalType);
             SftpConnection.main();
         }
         

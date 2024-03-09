@@ -8,6 +8,8 @@ public class SharedData {
     private static String phNumber;
     private static String password;
     private static String firstPlanNameOnMedicalResultsPage;
+    private static String appType;
+
     public static String getfirstPlanNameOnMedicalResultsPage() {
         return firstPlanNameOnMedicalResultsPage;
     }
@@ -39,6 +41,10 @@ public class SharedData {
     public static String getPassword(){ return password;}
 
     public static void setPassword(String password){SharedData.password = password; }
+
+    public static String getAppType(){ return appType; }
+
+    public static void setAppType(){SharedData.appType = appType; }
 
     public static void reset(){
         emailId = null;
