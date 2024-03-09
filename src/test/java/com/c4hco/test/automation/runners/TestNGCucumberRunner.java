@@ -12,7 +12,9 @@ import java.util.Date;
         features = "src/test/resources/features/",
         glue = {"com.c4hco.test.automation.stepDefinitions.cocoSteps","com.c4hco.test.automation.stepDefinitions.exchSteps",
                 "com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps",
-                "com.c4hco.test.automation.globalhooks"}
+                "com.c4hco.test.automation.stepDefinitions.sftpSteps",
+                "com.c4hco.test.automation.globalhooks"
+                }
 )
 public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
@@ -27,7 +29,7 @@ public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 
     private String getReportPath(){
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
-        String reportFolderPath = "target/cucumber-reports/Execution-" + timestamp;
+        String reportFolderPath = "target/cucumber-reports/ExecutionReport-" + timestamp;
         // Create the timestamped folder
         File reportFolder = new File(reportFolderPath);
         if (!reportFolder.exists()) {

@@ -48,8 +48,8 @@ public class LoginPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void openPage(String appType) {
-        basicActions.getDriver().get(utils.getBaseLoginUrl(appType));
+    public void openPage(String portalType) {
+        basicActions.getDriver().get(utils.getBaseLoginUrl(portalType));
     }
 
     public void clickCreateAccount() {

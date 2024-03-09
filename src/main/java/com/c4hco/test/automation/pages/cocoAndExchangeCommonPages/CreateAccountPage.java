@@ -110,6 +110,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        SharedData.setAppType(appType);
         addDetails();
         switch(appType){
             case "coco":
