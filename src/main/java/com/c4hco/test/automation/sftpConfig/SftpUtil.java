@@ -16,11 +16,11 @@ public class SftpUtil {
     private String sftpHostname = "localhost";
     private int sftpPort;
     private String sftpUsername = "";
-    // should give the private key path - Move to app.properties?
     private String privateKeyPath = "";
     private Session session;
     private final String env = ApplicationProperties.getInstance().getProperty("env");
-    String localPath = "";
+    private String localPath = "";
+    // fileName and sftpPath should be removed. These hardcoded ones are only for code development
     String fileName = "834_DENVERHEALTH_I_2022111812540131_100000882_D_I";
     String sftpPath = "/inboundedi/mockediresponse/";
 

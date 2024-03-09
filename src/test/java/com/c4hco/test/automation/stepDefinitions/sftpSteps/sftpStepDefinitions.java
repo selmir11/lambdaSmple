@@ -9,6 +9,7 @@ public class sftpStepDefinitions {
 
     @Then("I go to the sftp path and download the file")
     public void goToSftpLocationAndDownload() throws JSchException {
+        // WIP
         sftpUtil.connectToSftp();
         sftpUtil.downloadFileWithSftp();
         sftpUtil.disconnectFromSftp();
