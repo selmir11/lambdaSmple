@@ -1,4 +1,4 @@
-@SLER-92 @test
+@SLER-92
 Feature:Chat Widget in Login Portal
 
   @SLER-92
