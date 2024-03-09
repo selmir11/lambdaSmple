@@ -65,12 +65,11 @@ ob834_output_file*
 **/QA_TEST/**
 testCreateEdi
 localWritingTestFile
+!**/src/main/resources/application.properties
 
 testdata/
-**/application.local.properties
 
 logs/
 Log4j/log4j-application.log
-/src/main/resources/
 
 
