@@ -12,6 +12,7 @@ public class SharedData {
     private static String fileNameToDownloadFromSftp;
     private static String sftpPathToDownload;
     private static String sftpPathToUpload;
+    private static String accountId;
 
     public static String getfirstPlanNameOnMedicalResultsPage() {
         return firstPlanNameOnMedicalResultsPage;
@@ -60,6 +61,10 @@ public class SharedData {
     public static String getSftpPathToUpload(){ return sftpPathToUpload; }
 
     public static void setSftpPathToUpload(String sftpPath){SharedData.sftpPathToUpload = sftpPath; }
+
+    public static String getAccountId(){ return accountId; }
+
+    public static void setAccountId(String accountId){SharedData.accountId = accountId; }
 
     public static void reset(){
         emailId = null;

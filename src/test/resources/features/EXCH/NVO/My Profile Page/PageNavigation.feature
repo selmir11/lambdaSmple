@@ -12,7 +12,7 @@ Feature: My profile page
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Then I click on My Profile Button Exch
+    Then I click on ClickHere link for "My Profile"
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
     Then I validate I am on the "My Account Overview" page

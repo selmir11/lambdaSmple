@@ -23,7 +23,7 @@ public class BasicSteps {
                 pageUrl = "nes/addMember";
                 break;
             case "Account Overview":
-                pageUrl = "/nes/accountOverview";
+                pageUrl = "nes/accountOverview";
                 break;
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
@@ -56,10 +56,10 @@ public class BasicSteps {
                 pageUrl = "createAccount";
                 break;
             case "Admin dashboard":
-                pageUrl = "AdminPortal";
+                pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
                 break;
             case "Application Results":
-                pageUrl = "ApplicationResultsPortal/applicationResults";
+                pageUrl = "nes/applicationResults";
                 break;
             case "My Profile":
                 pageUrl = "UserProfileAdmin/profile";
@@ -147,6 +147,7 @@ public class BasicSteps {
                 break;
             case "Citizenship":
                 pageUrl = "nes/lawfulPresence";
+                break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
                 break;
@@ -158,6 +159,7 @@ public class BasicSteps {
                 break;
             default:
                 System.out.println("undefined page ");
+                break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
@@ -210,6 +212,7 @@ public class BasicSteps {
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
+        // TO DO :: Move this code to be re-usable - move to basicActions.
         String origin = basicActions.getDriver().getWindowHandle();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
