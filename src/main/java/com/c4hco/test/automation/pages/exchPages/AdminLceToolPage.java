@@ -14,6 +14,7 @@ import java.util.List;
 public class AdminLceToolPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    private ArrayList<String> tabs;
 
     public AdminLceToolPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -41,9 +42,8 @@ public class AdminLceToolPage {
     @FindBy(id="addAdminButton")
     WebElement submitBtn;
 
-        public void lookUp(){
-            // TO DO:: rename method and split into smaller methods based on fucntionality
-            ArrayList<String> tabs = new ArrayList<String> (basicActions.getDriver().getWindowHandles());
+        public void lookUpAccId(){
+            tabs = new ArrayList<String> (basicActions.getDriver().getWindowHandles());
            basicActions.getDriver().switchTo().window(tabs.get(1)) ;
             softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
             softAssert.assertAll();
@@ -52,17 +52,24 @@ public class AdminLceToolPage {
             lookUpBtn.click();
             // validate look up returned results
             basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
+        }
+
+        public void changeEffectiveDate(String effectiveDate){
             basicActions.waitForElementToBePresent(planYrDropdown, 10);
             planYrDropdown.click();
 
             //FIND OUT :: First plan is going to be current year always??
             planYrDrpdwnOptions.get(1).click();
 
-            changeEffectiveDt.sendKeys("0101");
+            changeEffectiveDt.sendKeys(effectiveDate);
             submitBtn.click();
             basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
+            closeTabAndSwitchToCurrentWindow();
+        }
+
+        public void closeTabAndSwitchToCurrentWindow(){
+            // TO DO: Check if this can be made re-usable by moving it to basicActions.
             basicActions.closeBrowserTab();
             basicActions.getDriver().switchTo().window(tabs.get(0));
-
         }
 }

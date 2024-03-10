@@ -54,9 +54,11 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
     When I login as Admin User
     And I validate I am on the "Admin dashboard" page
 
-    # enter first name, last name and email id and search - to decompose below step
+    And I search for user and click email from search results
+    And I click Admin LCE from application links dropdown
+    And I look up with account id on admin tool page
+    And I change effective date to "0101" of current year from admin portal
 
-    And I Change Effective Date for account to first of January from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal

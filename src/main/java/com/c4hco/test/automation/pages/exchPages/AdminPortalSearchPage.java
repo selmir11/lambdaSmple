@@ -43,29 +43,31 @@ public class AdminPortalSearchPage {
     @FindBy(css = "#toolbar-app-dropdown .dropdown-option")
     List<WebElement> appLinksDropdownOptions;
 
-    public void changeEffectiveDate(){
-        // TO DO:: Rename the method name - and split the methods. - Entering data to look up and clicking on primary acc
-        // setting account Id
-        // clicking AdminLCE from toolbar dropdown
+    public void searchForUser(){
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         searchInputList.get(1).sendKeys(SharedData.getFirstName());
         searchInputList.get(2).sendKeys(SharedData.getLastName());
         searchInputList.get(3).sendKeys(SharedData.getEmailId());
-
         buttonsList.get(0).click();
+        setAccountId();
+    }
 
+    public void clickEmailLinkFrmSrchResults(){
         basicActions.waitForElementToBePresent(searchTable, 10);
+        primaryEmail.click();
+    }
 
-            primaryEmail.click();
-            basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
-       String currentUrl = basicActions.getCurrentUrl();
-       String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
-       SharedData.setAccountId(accId);
+    public void setAccountId(){
+        basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
+        String currentUrl = basicActions.getCurrentUrl();
+        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+        SharedData.setAccountId(accId);
+    }
 
+    public void clickAdminLceFromDropdown(){
+        // click AdminLce - click based on the option/Text we pass && should this/step be moved to a toolbar page?  -- TO DO
+        basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         appLinksDropDown.click();
-
-        // click AdminLce - click based on the option/Text we pass -- TO DO
         appLinksDropdownOptions.get(4).click(); //opens new tab
-
     }
 }
