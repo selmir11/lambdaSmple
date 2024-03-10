@@ -8,11 +8,26 @@ public class SharedData {
     private static String phNumber;
     private static String password;
     private static String firstPlanNameOnMedicalResultsPage;
+    private static String firstPlanNameOnDentalResultsPage;
     private static String appType;
     private static String fileNameToDownloadFromSftp;
     private static String sftpPathToDownload;
     private static String sftpPathToUpload;
     private static String accountId;
+//    private static String selectedMedicalPlanName;
+//    private static String selectedDentalPlanName;
+//    private static String selectedMedicalPlanStartDate;
+//    private static String selectedMedicalPlanEndDate;
+//    private static String selectedDentalPlanStartDate;
+//    private static String selectedDentalPlanEndDate;
+//    private static String medicalPremiumAmount;
+//    private static String medicalEAPID;
+//    private static String medicalBenefitStartDate;
+//    private static String medicalBenefitEndDate;
+//    private static String dentalBenefitStartDate;
+//    private static String dentalBenefitEndDate;
+//    private static String dentalPremiumAmount;
+//    private static String dentalEAPID;
 
     public static String getfirstPlanNameOnMedicalResultsPage() {
         return firstPlanNameOnMedicalResultsPage;

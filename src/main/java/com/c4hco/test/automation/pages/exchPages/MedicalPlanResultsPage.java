@@ -67,6 +67,11 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToBePresent(selectFirstPlan,10);
         selectFirstPlan.click();
     }
+
+    public void selectMedicalPlan(String medicalPlan){
+
+    }
+
     public void iclickContinue(){
         btnContinue.click();
     }

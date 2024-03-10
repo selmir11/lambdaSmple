@@ -1,6 +1,6 @@
 Feature: Seed01 - Exchange
 
-  @test
+  @test1
   Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -72,6 +72,8 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
+#  # test step - below
+#    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
 
 #    # select Elevate Health Plans Colorado Option Bronze plan
      And I select the first medical plan
@@ -96,13 +98,5 @@ Feature: Seed01 - Exchange
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
-
-
-
-#    Then verify plan enrollment on UI
-#  myPlansPage.populateMemberPlansData();
-#
-#  //Populates the members list with the subscriber. This is needed because a DB validation check, checks if
-#  //The members() list is empty.
-#  state.getMembers().add(state.getSubscriber());
-#    And I click on Sign Out in the Header for "NonElmo"
+#    Then verify plan enrollment on UI - what needs to be verified here?
+    And I click on Sign Out in the Header for "Elmo"

@@ -58,6 +58,8 @@ public class LoginPage {
 
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
+        System.out.println("email---"+SharedData.getEmailId());
+        System.out.println("pwd---"+SharedData.getPassword());
             username.sendKeys(SharedData.getEmailId());
             password.sendKeys(SharedData.getPassword());
             signInButton.click();
