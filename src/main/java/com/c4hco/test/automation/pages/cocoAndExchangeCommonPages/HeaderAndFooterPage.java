@@ -64,7 +64,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
 
-    @FindBy(css = ".toolbar > div > nav > ul > li:nth-child(3) > a")
+    @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
     // =========FOOTER============== //
@@ -117,7 +117,7 @@ public class HeaderAndFooterPage {
     public void clickApplyForCoverageLink(String pageType) {
 //        "Elmo" for CoCo and Exch Elmo pages
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
-//        "ENonElmo" non Elmo pages (not listed above)
+//        "NonElmo" non Elmo pages (not listed above)
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType){
             case "Elmo":

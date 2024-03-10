@@ -14,11 +14,12 @@ public class AccountOverviewPage {
     @FindBy(name = "applyForCurrentYear")
     WebElement btnApplyForCurrentYear;
 
-    @FindBy(css = "a.linkButton")
-    List<WebElement> MyProfileButtonExch;
+    @FindBy(css = ".linkButton")
+    List<WebElement> clickHereLinks; // profile, eligibility, documents, plans
 
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
+
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -27,19 +28,32 @@ public class AccountOverviewPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
 
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,10);
         btnApplyForCurrentYear.click();
     }
 
+    public void clickHereLinks(String clickHereOption){
+        basicActions.waitForElementListToBePresent(clickHereLinks, 10);
+        switch(clickHereOption){
+            case "My Profile":
+                clickHereLinks.get(0).click();
+                break;
+            case "My Eligibility":
+                clickHereLinks.get(1).click();
+                break;
+            case "My Documents":
+                clickHereLinks.get(2).click();
+                break;
+            case "My Plans":
+                clickHereLinks.get(3).click();
+                break;
+            default: throw new IllegalArgumentException("Entered Invalid option for clickHere link: " + clickHereOption);
+        }
 
-    public void clickMyProfileButtonExch() {
-        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 5);
-        MyProfileButtonExch.get(0).click(); }
+    }
+
 
     // ================VALIDATION METHODS================//
     public void verifyLanguageText(String language) {

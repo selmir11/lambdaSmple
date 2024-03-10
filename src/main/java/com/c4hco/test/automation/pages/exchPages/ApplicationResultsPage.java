@@ -57,10 +57,6 @@ public class ApplicationResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
-
 
     public void clickBtnContinue(){
         continueBtn.click();
