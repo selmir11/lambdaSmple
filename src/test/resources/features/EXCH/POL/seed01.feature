@@ -93,5 +93,16 @@ Feature: Seed01 - Exchange
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
+    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+
+
+
 #    Then verify plan enrollment on UI
+#  myPlansPage.populateMemberPlansData();
+#
+#  //Populates the members list with the subscriber. This is needed because a DB validation check, checks if
+#  //The members() list is empty.
+#  state.getMembers().add(state.getSubscriber());
 #    And I click on Sign Out in the Header for "NonElmo"
