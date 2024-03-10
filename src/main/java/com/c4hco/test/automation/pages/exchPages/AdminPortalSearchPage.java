@@ -43,13 +43,10 @@ public class AdminPortalSearchPage {
     @FindBy(css = "#toolbar-app-dropdown .dropdown-option")
     List<WebElement> appLinksDropdownOptions;
 
-    @FindBy(id = "accountId")
-    WebElement adminLCEToolAccountIdInput; // Admin LCE Tool PAGE
-
-    @FindBy(id = "#submitButton")
-    WebElement lookUpBtn; // Admin LCE Tool PAGE
-
     public void changeEffectiveDate(){
+        // TO DO:: Rename the method name - and split the methods. - Entering data to look up and clicking on primary acc
+        // setting account Id
+        // clicking AdminLCE from toolbar dropdown
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         searchInputList.get(1).sendKeys(SharedData.getFirstName());
         searchInputList.get(2).sendKeys(SharedData.getLastName());
@@ -60,51 +57,15 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementToBePresent(searchTable, 10);
 
             primaryEmail.click();
-
             basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
-            System.out.println("--dashboardHearder text"+accIdAndCaseId.getText());
-        accIdAndCaseId.getText();
        String currentUrl = basicActions.getCurrentUrl();
-       System.out.println("getAccIdFromUrl----"+ currentUrl.substring(currentUrl.lastIndexOf("/")+1));
        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
        SharedData.setAccountId(accId);
 
         appLinksDropDown.click();
 
-        // click AdminLce - click based on the option we pass -- TO DO
+        // click AdminLce - click based on the option/Text we pass -- TO DO
         appLinksDropdownOptions.get(4).click(); //opens new tab
-
-        // validte adminLCE page is opened
-//        softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
-
-        // FIND OUT -- ADMIN LCE Tool page - does this have to be a separate page?
-        // OPTIMISE THE BELOW CODE
-        // Switch window handle to newly opened tab - make this re-usable-it is also used in basic steps.
-//        String origin = basicActions.getDriver().getWindowHandle();
-//        for (String handle : basicActions.getDriver().getWindowHandles()) {
-//            basicActions.getDriver().switchTo().window(handle);
-//            basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
-//            adminLCEToolAccountIdInput.sendKeys(SharedData.getAccountId());
-//            lookUpBtn.click();
-         /*   adminLCEToolPage.selectCurrentYear();
-            adminLCEToolPage.enterEffectiveDate();
-
-            state.getSubscriber().setFinancialEffectiveDate("%s0101".formatted(Year.now().toString()));
-
-            adminLCEToolPage.clickSubmitButton();
-            adminLCEToolPage.closeWindow();
-            driver.switchTo().window(rootHandle); */
-//            break;
-//        }
-//        basicActions.closeBrowserTab();
-//        basicActions.getDriver().switchTo().window(origin);
-
-
-      //  softAssert.assertAll();
-            /*
-
-
-             */
 
     }
 }

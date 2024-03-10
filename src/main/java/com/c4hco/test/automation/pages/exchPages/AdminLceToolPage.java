@@ -42,6 +42,7 @@ public class AdminLceToolPage {
     WebElement submitBtn;
 
         public void lookUp(){
+            // TO DO:: rename method and split into smaller methods based on fucntionality
             ArrayList<String> tabs = new ArrayList<String> (basicActions.getDriver().getWindowHandles());
            basicActions.getDriver().switchTo().window(tabs.get(1)) ;
             softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
