@@ -157,6 +157,10 @@ public class BasicSteps {
             case "MFA":
                 pageUrl = "login-portal/mfa";
                 break;
+            case "Plan Summary":
+                pageUrl = "/planSummaryMedicalDental/";
+                break;
+
             default:
                 System.out.println("undefined page ");
                 break;

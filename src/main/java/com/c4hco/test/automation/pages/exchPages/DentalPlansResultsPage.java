@@ -16,10 +16,6 @@ public class DentalPlansResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-
-    @FindBy(xpath= "//a[normalize-space()='Sign out']")
-    WebElement btnSignOut;
-
     @FindBy(id="DentalPlanResults-SelectThisPlan_0")
     WebElement selectFirstDentalPlanBtn;
 
@@ -40,11 +36,6 @@ public class DentalPlansResultsPage {
 
     @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
-
-    public void clickSignOut(){
-        basicActions.waitForElementToBePresent(btnSignOut,10);
-        btnSignOut.click();
-    }
 
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);

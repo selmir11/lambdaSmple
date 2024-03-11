@@ -8,11 +8,6 @@ import io.cucumber.java.en.Then;
 public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
 
-    @And("I click on Sign Out in the Header on the Dental Results page")
-    public void clickSignOut() {
-        dentalPlansResultsPage.clickSignOut();
-    }
-
     @Then("I select first dental plan")
     public void selectDentalPlan() {
         dentalPlansResultsPage.selectFirstDentalPlan();
