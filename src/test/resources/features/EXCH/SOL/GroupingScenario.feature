@@ -4,7 +4,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Given I open the login page on the "login" portal
           And I validate I am on the "Login" page
 
-  @SLER-54-WIP @GroupingScenario
+  @SLER-54-WIP @GroupingScenario @test
           # Failing intermittently due to a defect # SOL-3596
           # Failing intermittently due to couple of other steps that doesn't belong to SOL.
           # looks like 2 scenarios - seperation of scenarios? Including Background?
@@ -144,4 +144,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Then I click on create new group button on edit enrollment groups page
           Then I drag and drop both the children into the third group
           Then I click save button to save the groups
-          And I validated success message on popup click continue that enrollment groupings are valid
+          And I validated message on success enrollment grouping pop-up
+          Then I click on continue button on success pop-up
+
+

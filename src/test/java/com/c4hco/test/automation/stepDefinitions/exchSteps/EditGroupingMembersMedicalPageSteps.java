@@ -41,8 +41,13 @@ public class EditGroupingMembersMedicalPageSteps {
     public void groupChildrenTogether()  {
         editGroupingMembersMedicalPage.dragAndDropChildrenToSeparateGroup();
     }
-    @And("I validated success message on popup click continue that enrollment groupings are valid")
+    @And("I validated message on success enrollment grouping pop-up")
     public void groupingSuccessMessage(){
-        editGroupingMembersMedicalPage.iValidateSuccessMessageAndClickContinue();
+        editGroupingMembersMedicalPage.iValidateSuccessMessage();
+    }
+    @Then("I click on continue button on success pop-up")
+    public void IContinue(){
+        editGroupingMembersMedicalPage.iClickContinueOnSuccessPopup();
+
     }
 }
