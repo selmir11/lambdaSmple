@@ -144,3 +144,4 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Then I click on create new group button on edit enrollment groups page
           Then I drag and drop both the children into the third group
           Then I click save button to save the groups
+          And I validated success message on popup click continue that enrollment groupings are valid

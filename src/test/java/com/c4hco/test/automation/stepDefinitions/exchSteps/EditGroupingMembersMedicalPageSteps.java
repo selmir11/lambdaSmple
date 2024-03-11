@@ -38,7 +38,11 @@ public class EditGroupingMembersMedicalPageSteps {
     }
 
     @Then("I drag and drop both the children into the third group")
-    public void groupChildrenTogether() throws InterruptedException {
+    public void groupChildrenTogether()  {
         editGroupingMembersMedicalPage.dragAndDropChildrenToSeparateGroup();
+    }
+    @And("I validated success message on popup click continue that enrollment groupings are valid")
+    public void groupingSuccessMessage(){
+        editGroupingMembersMedicalPage.iValidateSuccessMessageAndClickContinue();
     }
 }
