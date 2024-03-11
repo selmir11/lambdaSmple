@@ -120,7 +120,6 @@ public class BasicActions {
         } catch(Exception e){
             // Exception is supressed because it is just wait statement
         }
-
     }
 
 //    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
