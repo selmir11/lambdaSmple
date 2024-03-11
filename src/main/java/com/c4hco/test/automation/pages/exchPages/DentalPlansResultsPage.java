@@ -17,6 +17,9 @@ public class DentalPlansResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(xpath= "//a[normalize-space()='Sign out']")
+    WebElement btnSignOut;
+
     @FindBy(id="DentalPlanResults-SelectThisPlan_0")
     WebElement selectFirstDentalPlanBtn;
 
@@ -35,6 +38,13 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
 
+    @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
+    WebElement dropdownInsuranceCompany;
+
+    public void clickSignOut(){
+        basicActions.waitForElementToBePresent(btnSignOut,10);
+        btnSignOut.click();
+    }
 
     public void selectFirstDentalPlan(){
          basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
@@ -70,14 +80,24 @@ public class DentalPlansResultsPage {
         basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
     }
 
-    public void validateDentalPlanText (int index,String coverageLevelPlanText){
+    public void clickDentalInsuranceCompanyDropdown (){
+        basicActions.waitForElementToBePresent(dropdownInsuranceCompany, 10);
+        dropdownInsuranceCompany.click();
+    }
+
+    public void selectfromInsuranceCompanyList(String insuranceCompany){
+        String companyPath = "//span[text()='" + insuranceCompany + "']";
+        basicActions.getDriver().findElement(By.xpath(companyPath)).click();
+    }
+
+    public void validateDentalPlanText (int index,String dentalPlanText){
         basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn, 10);
         index = index - 1;
         String indexString = String.valueOf(index);
         String planID = "DentalPlanResults-SelectThisPlan_" + indexString;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         String expectedText = ePlanID.getText();
-        expectedText.equals(coverageLevelPlanText);
+        expectedText.equals(dentalPlanText);
 
     }
 }
