@@ -19,7 +19,7 @@ public class FamilyOverviewPage {
     @FindBy (xpath = "//a/parent::div/preceding-sibling::div/div[contains(text(), '$')]")
     WebElement annualIncomeAmount;
 
-    @FindBy (css = "div .family-overview-household-income")
+    @FindBy (css = ".container .family-overview-household-income")
     WebElement totalIncomeAmount;
 
     @FindBy(id = "familyOverview-SaveAndContinue")
