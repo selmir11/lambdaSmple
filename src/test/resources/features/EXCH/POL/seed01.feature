@@ -55,7 +55,8 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
     And I validate I am on the "Admin dashboard" page
 
     And I search for user and click email from search results
-    And I click Admin LCE from application links dropdown
+    And I click "Admin LCE" from application links dropdown
+
     And I look up with account id on admin tool page
     And I change effective date to "0101" of current year from admin portal
 
