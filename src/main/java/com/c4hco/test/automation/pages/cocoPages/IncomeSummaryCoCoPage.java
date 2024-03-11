@@ -20,6 +20,9 @@ public class IncomeSummaryCoCoPage {
     @FindBy(css = "lib-option-buttons button")
     List<WebElement> projectedIncomeButtons;
 
+    @FindBy(id = "ELIG-summaryDetails-incomeAmountInput")
+    WebElement projectedIncomeInput;
+
     @FindBy(id = "pageId-SaveAndContinue")
     WebElement saveAndContinueButton;
 
@@ -41,5 +44,10 @@ public class IncomeSummaryCoCoPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + projectedIncomeButtons);
         }
+    }
+
+    public void enterProjectedIncomeAmountCoCo(String amount){
+        basicActions.waitForElementToBePresent(projectedIncomeInput, 10);
+        projectedIncomeInput.sendKeys(amount);
     }
 }
