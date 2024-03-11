@@ -11,6 +11,9 @@ public class IncomeSummaryCoCoPageSteps {
     @Then("I select the projected income option {string} on Income Summary CoCo page")
     public void selectProjectedOptionCoCo(String projectedOption){incomeSummaryCoCoPage.selectProjectedIncome(projectedOption);}
 
+    @And("I enter {string} of projected income on Income Summary CoCo page")
+    public void enterProjectedIncome(String projectedAmount){incomeSummaryCoCoPage.enterProjectedIncomeAmountCoCo(projectedAmount);}
+
     @And("I select continue on the income Summary CoCo page")
     public void selectContinueIncomeSummary(){incomeSummaryCoCoPage.clickSaveAndContinueButton();}
 }
