@@ -7,6 +7,11 @@ import io.cucumber.java.en.*;
 public class PaymentSelectionPageSteps {
     PaymentSelectionPage paymentSelectionPage = new PaymentSelectionPage(WebDriverManager.getDriver());
 
+    @And("I click continue on payment selection page")
+    public void clickContinueOnMakePayment(){
+        paymentSelectionPage.clickContinueOnPaymentPage();
+    }
+
     @And("I Verify the text on payment selection page")
     public void paymentModeSelection(){
         paymentSelectionPage.verifyTextWithCheckPayment();

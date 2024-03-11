@@ -35,8 +35,8 @@ public class PostgresSQLConnection {
             String port = ApplicationProperties.getInstance().getProperty("port");
             String dbname = ApplicationProperties.getInstance().getProperty("database");
             String url = "jdbc:postgresql://"+host+":"+port+"/"+dbname;
-            String username = ApplicationProperties.getInstance().getProperty("username");;
-            String password = ApplicationProperties.getInstance().getProperty("password");;
+            String username = ApplicationProperties.getInstance().getProperty("dbUsername");;
+            String password = ApplicationProperties.getInstance().getProperty("dbPassword");;
 
             // Create the database connection
             connection = DriverManager.getConnection(url, username, password);

@@ -15,9 +15,6 @@ public class BeforeYouBeginPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
 
     @FindBy(css = "#beforeYouBegin .btn")
     WebElement continueWithApplication;

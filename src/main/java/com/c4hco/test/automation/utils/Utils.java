@@ -12,19 +12,19 @@ public class Utils {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public String getBaseLoginUrl(String appType){
+    public String getBaseLoginUrl(String portalType){
         String baseUrl = "";
-        switch(appType){
+        switch(portalType){
             case "login":
                 baseUrl = Constants.PROTOCOL+env+Constants.LOGIN;
                 break;
             case "broker":
                 baseUrl = Constants.PROTOCOL+env+Constants.BROKER;
                 break;
-
             case "admin":
                 baseUrl = Constants.PROTOCOL+env+Constants.ADMIN;
                 break;
+            default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
     }
