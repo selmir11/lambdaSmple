@@ -13,9 +13,6 @@ public class AddAddressPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    public BasicActions getDriver(){
-        return BasicActions.getInstance();
-    }
 
     @FindBy(id = "retrieveResidentialAddress")
     WebElement rdobtnHouseholdResidentialAddress;
@@ -112,6 +109,7 @@ public class AddAddressPage {
     }
 
     public void mailingAddress(){
+        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
         txtMailingCity.sendKeys("Denver");

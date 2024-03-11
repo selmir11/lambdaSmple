@@ -64,7 +64,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
 
-    @FindBy(css = ".toolbar > div > nav > ul > li:nth-child(3) > a")
+    @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
     // =========FOOTER============== //
@@ -117,7 +117,7 @@ public class HeaderAndFooterPage {
     public void clickApplyForCoverageLink(String pageType) {
 //        "Elmo" for CoCo and Exch Elmo pages
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
-//        "ENonElmo" non Elmo pages (not listed above)
+//        "NonElmo" non Elmo pages (not listed above)
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType){
             case "Elmo":
@@ -140,10 +140,25 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
         centerHeaderLink.get(1).click();
     }
-    public void clickMyAccountLink() {
-        basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
-        centerHeaderLink.get(2).click();
+    public void clickMyAccountLink(String pageType) {
+
+        // "Elmo" for CoCo and Exch Elmo pages
+////       Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
+//        "ENonElmo" non Elmo pages (not listed above)
+        switch (pageType) {
+            case "Elmo":
+                basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+                centerHeaderLink.get(2).click();
+                break;
+            case "NonElmo":
+                basicActions.waitForElementListToBePresent(centerHeaderLinkNonElmo, 15);
+                centerHeaderLinkNonElmo.get(2).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
     }
+
     public void clickLearnMoreLink() {
         basicActions.waitForElementToBeClickable(learnMoreLink, 15);
         learnMoreLink.click();

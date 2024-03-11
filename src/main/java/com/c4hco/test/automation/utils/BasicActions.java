@@ -64,6 +64,7 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch(TimeoutException ignore){
             Log.info("Element is not clickable");
+            Assert.fail("Element is not clickable");
             return false;
         }
         return true;
@@ -86,6 +87,7 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch(TimeoutException ignore){
             Log.info("Element is not present");
+            Assert.fail("Element waiting for is not displayed");
             return false;
         }
         return true;

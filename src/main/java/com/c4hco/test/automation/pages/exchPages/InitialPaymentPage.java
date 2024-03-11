@@ -17,8 +17,16 @@ public class InitialPaymentPage {
     @FindBy(id="SOL-InitialPayment-MakePayment")
     WebElement makePaymentBtn;
 
+    @FindBy(id = "SOL-InitialPayment-Continue")
+    WebElement continueBtn;
+
     public void selectMakePaymentButton(){
         basicActions.waitForElementToBeClickable(makePaymentBtn,20);
         makePaymentBtn.click();
+    }
+
+    public void clickContinue(){
+        basicActions.waitForElementToBeClickable(continueBtn, 10);
+        continueBtn.click();
     }
 }
