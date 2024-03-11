@@ -176,7 +176,7 @@ Feature: Medical Plan Verification test
     And I select the HSA option
     And I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
 
-  @SLER-74-WIP @SelectVerifyColoradoOptionResults
+  @SLER-74  @SelectVerifyColoradoOptionResults
   Scenario: SelectVerifyColoradoOptionResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -227,7 +227,6 @@ Feature: Medical Plan Verification test
     And I click the Colorado Option dropdown
     And I select the Colorado Option
     And I validate the plan option 1 has text "Elevate Health Plans Colorado Option Bronze"
-
 
 
 
