@@ -64,10 +64,10 @@ public class AdminPortalSearchPage {
         SharedData.setAccountId(accId);
     }
 
-    public void clickAdminLceFromDropdown(){
-        // click AdminLce - click based on the option/Text we pass -- TO DO
+    public void clickFromApplicationLinksDropdown(String dropdownOption){
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
-        appLinksDropDown.click();
-        appLinksDropdownOptions.get(4).click(); //opens new tab
+       appLinksDropDown.click();
+       basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
+        appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
     }
 }

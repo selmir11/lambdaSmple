@@ -14,9 +14,9 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.clickEmailLinkFrmSrchResults();
     }
 
-    @And("I click Admin LCE from application links dropdown")
-    public void selectOptionFromApplicationLinks(){
-        adminPortalSearchPage.clickAdminLceFromDropdown();
+    @And("I click {string} from application links dropdown")
+    public void selectOptionFromApplicationLinks(String appLinksDropdownOption){
+        adminPortalSearchPage.clickFromApplicationLinksDropdown(appLinksDropdownOption);
     }
 
 
