@@ -24,15 +24,19 @@ public class PaymentSelectionPage {
 
     @FindBy(id = "SOL-PaymentCheck-Paragraph2")
     WebElement text2;
+
     @FindBy(id = "SOL-PaymentCheck-Paragraph3")
     WebElement text3;
 
     @FindBy(id = "SOL-PaymentSelection-Continue")
     WebElement continueBtnPaymentSelection;
+
     @FindBy(id = "SOL-PaymentSelection-GoBack")
     WebElement backBtn;
 
-    public void paymentSelectionContinue() {
+
+    public void clickContinueOnPaymentPage() {
+        basicActions.waitForElementToBePresent(continueBtnPaymentSelection, 10);
         continueBtnPaymentSelection.click();
     }
 

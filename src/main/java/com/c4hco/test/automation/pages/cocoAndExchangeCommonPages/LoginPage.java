@@ -57,6 +57,7 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
+        basicActions.waitForElementToBePresent(username, 10);
             username.sendKeys(SharedData.getEmailId());
             password.sendKeys(SharedData.getPassword());
             signInButton.click();

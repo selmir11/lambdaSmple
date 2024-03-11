@@ -10,10 +10,8 @@ public class AccountOverviewPageSteps {
     @Then("I apply for the current year")
     public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 
-    @Then("I click on My Profile Button Exch")
-    public void iClickOnMyProfileButtonExch() {accountOverviewPage.clickMyProfileButtonExch();}
-
-
+    @Then("I click on ClickHere link for {string}")
+    public void clickHere(String clickOption) {accountOverviewPage.clickHereLinks(clickOption);}
 
     // ================VALIDATION METHODS================//
     @And("I validate the page is in {string}")
