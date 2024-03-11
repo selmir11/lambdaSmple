@@ -4,10 +4,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Given I open the login page on the "login" portal
           And I validate I am on the "Login" page
 
-  @SLER-54-WIP @GroupingScenario @test
-          # Failing intermittently due to a defect # SOL-3596
-          # Failing intermittently due to couple of other steps that doesn't belong to SOL.
-          # looks like 2 scenarios - seperation of scenarios? Including Background?
+  @SLER-54-WIP @GroupingScenario
   Scenario: Validate text on Payment by check page
           When I click create a new account on login page
           Then I click create my account from pre-screen page
