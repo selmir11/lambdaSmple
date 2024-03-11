@@ -29,7 +29,7 @@ public class AdminPortalSearchPage {
     List<WebElement> buttonsList; // search, reset, create Account buttons
 
     @FindBy(css = ".search-results-container .search-results-table")
-    WebElement searchTable;
+    WebElement searchResults;
 
     @FindBy(id = "email-shortened")
     WebElement primaryEmail;
@@ -49,12 +49,12 @@ public class AdminPortalSearchPage {
         searchInputList.get(2).sendKeys(SharedData.getLastName());
         searchInputList.get(3).sendKeys(SharedData.getEmailId());
         buttonsList.get(0).click();
-        setAccountId();
     }
 
     public void clickEmailLinkFrmSrchResults(){
-        basicActions.waitForElementToBePresent(searchTable, 10);
+        basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
+        setAccountId();
     }
 
     public void setAccountId(){
@@ -65,7 +65,7 @@ public class AdminPortalSearchPage {
     }
 
     public void clickAdminLceFromDropdown(){
-        // click AdminLce - click based on the option/Text we pass && should this/step be moved to a toolbar page?  -- TO DO
+        // click AdminLce - click based on the option/Text we pass -- TO DO
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         appLinksDropDown.click();
         appLinksDropdownOptions.get(4).click(); //opens new tab

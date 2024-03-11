@@ -87,7 +87,6 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
 
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
-    # Initial payment page and first month payment page - are they same or different? - TO FIND OUT
     And I click continue on initial payment page
 
     And I select "Terms of Use" agreement checkbox

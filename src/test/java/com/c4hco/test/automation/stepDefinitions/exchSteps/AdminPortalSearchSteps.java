@@ -12,7 +12,6 @@ public class AdminPortalSearchSteps {
     public void changeEffectiveDateForAccount(){
         adminPortalSearchPage.searchForUser();
         adminPortalSearchPage.clickEmailLinkFrmSrchResults();
-        adminPortalSearchPage.clickAdminLceFromDropdown();
     }
 
     @And("I click Admin LCE from application links dropdown")
