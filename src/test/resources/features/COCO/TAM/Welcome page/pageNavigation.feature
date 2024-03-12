@@ -21,7 +21,7 @@ Feature: Navigation-Welcome Page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
     Then I click on Application Results Button CoCo
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     Then I click on My Documents and Letters Button CoCo
@@ -44,10 +44,10 @@ Feature: Navigation-Welcome Page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I click on Find a Plan in the Header
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
-    And I click on My Account in the Header
+    And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
