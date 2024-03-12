@@ -38,7 +38,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(id="")
+    @FindBy(id="DentalPlanResults-ProviderPlan_0")
     WebElement firstDentalPlanName;
 
     public void iGetFirstDentalPlaneName() {
