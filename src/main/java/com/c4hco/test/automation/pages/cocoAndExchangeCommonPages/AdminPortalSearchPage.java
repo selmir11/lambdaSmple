@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.exchPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.SharedData;
@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -15,7 +14,6 @@ public class AdminPortalSearchPage {
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
-    SoftAssert softAssert = new SoftAssert();
 
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -43,6 +41,12 @@ public class AdminPortalSearchPage {
     @FindBy(css = "#toolbar-app-dropdown .dropdown-option")
     List<WebElement> appLinksDropdownOptions;
 
+    @FindBy(css = "#header-user span:nth-child(3)")
+    WebElement dropdownArrow;
+
+    @FindBy(id = "logout-link")
+    WebElement logoutAdmin;
+
     public void searchForUser(){
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         searchInputList.get(1).sendKeys(SharedData.getFirstName());
@@ -69,5 +73,22 @@ public class AdminPortalSearchPage {
        appLinksDropDown.click();
        basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
+    }
+
+    public void logoutFromAdmin() {
+        navigateToPreviousPage();
+        basicActions.waitForElementToBePresent(dropdownArrow,100);
+        dropdownArrow.click();
+        basicActions.waitForElementToBePresent(logoutAdmin,100);
+        logoutAdmin.click();
+    }
+
+    public void navigateToPreviousPage(){
+        basicActions.getDriver().navigate().back();
+    }
+
+    public void clickCreateAccount(){
+        basicActions.waitForElementListToBePresent(buttonsList,10);
+        buttonsList.get(2).click();
     }
 }

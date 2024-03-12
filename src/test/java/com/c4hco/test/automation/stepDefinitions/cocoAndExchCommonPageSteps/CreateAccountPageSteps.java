@@ -23,10 +23,11 @@ public class CreateAccountPageSteps {
          @And("I click on help icon button")
           public void iClickOnHelpIconButton() {createAccountPage.clickHelpIconButton();}
 
-        @Then("I validate the verbiage on help icon in {string}")
-         public void iValidateVerbiageOnHelpIcon(String Language) {createAccountPage.validateHelpText(Language);}
-
 
         // =================== VALIDATION STEPS ===============//
 
-    }
+        @Then("I validate the verbiage on help icon in {string}")
+        public void iValidateVerbiageOnHelpIcon(String Language) {createAccountPage.validateHelpText(Language);}
+
+
+}
