@@ -5,10 +5,13 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BasicActions {
     private WebDriver driver;
@@ -119,6 +122,18 @@ public class BasicActions {
         } catch(Exception e){
             // Exception is supressed because it is just wait statement
         }
+    }
+
+    public void click(WebElement element, int waitTime) {
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(waitTime))
+                .pollingEvery(Duration.ofMillis(100))
+                .ignoring(NoSuchElementException.class);
+
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        element.click();
     }
 
 //    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
