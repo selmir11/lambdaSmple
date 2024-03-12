@@ -14,7 +14,7 @@ public class BasicSteps {
     public void iSetTotalMembersNeededForTest(int totalMembers){
         SharedData.setTotalMembersOnTest(totalMembers);
     }
-    
+
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page){
         String pageUrl= " ";
