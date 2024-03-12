@@ -160,13 +160,15 @@ public class BasicSteps {
             case "Plan Summary":
                 pageUrl = "/planSummaryMedicalDental/";
                 break;
-
+            case "My Policies":
+                pageUrl = "enrollmentPortal/myPolicies";
             default:
                 System.out.println("undefined page ");
                 break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
+
     @And("I validate I am on the {string} page and close tab")
     public void iValidatePageAndClose(String page){
         String pageUrl= " ";

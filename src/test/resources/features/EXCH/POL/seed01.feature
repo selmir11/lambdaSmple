@@ -98,6 +98,12 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
 
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
+    # Validate the enrolled plans are displayed and details are correct
     Then I click on ClickHere link for "My Plans"
-#    Then verify plan enrollment on UI - what needs to be verified here?
+    Then I validate I am on the "My Policies" page
+    And I validate medical plan details from my policies page
+    # click view plan details from medical plan card and I go to a diff page and see the results are correct
+    # I come back to my policies page
+    And I validate dental plan details from my policies page
+    # click view plan details from dental plan card and I go to a diff page and see the results are correct
     And I click on Sign Out in the Header for "Elmo"
