@@ -108,15 +108,13 @@ public class EditGroupingMembersMedicalPage {
          basicActions.wait(3000);
     }
 
+
     public void ValidateTheVerbiagewhatworksbestforyou(){
-        case "what works best for you":
-            ValidateTheVerbiagewhatworksbestforyou();
-            break;
-        default:
-{
-    public void ValidateTheVerbiagewhatworksbestforyou()
         basicActions.waitForElementToBePresent(whatworksbestforyou, 10);
+        builder.moveToElement(whatworksbestforyou).build().perform();
+        System.out.println("getText----"+whatworksbestforyou.getText());
         softAssert.assertEquals(whatworksbestforyou.getText(), "Household members can only be grouped together if they are all immediate family members who live in the same rating area and could be covered by a single insurance plan. Immediate family members include spouses, children under the age of 26, and collateral dependents (non-married, disabled tax dependents of a group member). Frequently, living in the same rating area means that all of the individuals live at the same physical address or within the same zip code. You might not be able to group members of your household if they are not considered immediate family members. For assistance, please call our Service Center at 855-752-6749. ");
+    softAssert.assertAll();
     }
 }
 

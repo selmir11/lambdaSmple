@@ -43,6 +43,6 @@ public class EditGroupingMembersMedicalPageSteps {
     }
     @Then("I verify text in what works best for you popup")
     public void ValidateTheVerbiagewhatworksbestforyou() {
-        editGroupingMembersMedicalPage.getClass();
+        editGroupingMembersMedicalPage.ValidateTheVerbiagewhatworksbestforyou();
     }
 }
