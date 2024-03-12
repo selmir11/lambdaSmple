@@ -124,10 +124,10 @@ public class BasicActions {
         }
     }
 
-    public void click(WebElement element, int waitTime) {
+    public void click(WebElement element) {
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(waitTime))
+                .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(100))
                 .ignoring(NoSuchElementException.class);
 
