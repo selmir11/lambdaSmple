@@ -20,42 +20,56 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
-    @FindBy(id= "PlanResults-ProviderPlan_0")
+
+    @FindBy(id = "PlanResults-ProviderPlan_0")
     WebElement firstMedicalPlanName;
 
     @FindBy(id = "SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id ="SHP-PlanResults-ComparePlans")
+    @FindBy(id = "SHP-PlanResults-ComparePlans")
     WebElement clickCompare;
 
-    @FindBy(xpath ="//a[contains(@id,'PlanResults-Compare')]")
+    @FindBy(xpath = "//a[contains(@id,'PlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
 
-    @FindBy(id ="SHP-PlanResults-InsuranceCompany")
-
+    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
     @FindBy(id = "SHP-PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
-    WebElement InsuranceCompanyDropdown;
+    @FindBy(id = "SHP-PlanResults-MetalTier")
+    WebElement metalTierDropdown;
+
+    @FindBy(id = "SHP-PlanResults-HSAFilter")
+    WebElement hsaDropdown;
+
+    @FindBy(id = "SHP-PlanResults-HSAFilter-input")
+    WebElement hsaOption;
+
+    @FindBy(id = "SHP-PlanResults-CoOptionPlans")
+    WebElement coloradoOptionDropdown;
+
+    @FindBy(id = "SHP-PlanResults-CoOptionPlans-input")
+    WebElement coloradoOptionSelection;
 
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
-    public void iGetFirstPlaneName(){
-        basicActions.waitForElementToBePresent(firstMedicalPlanName,10);
+    public void iGetFirstPlaneName() {
+        basicActions.waitForElementToBePresent(firstMedicalPlanName, 10);
         SharedData.setfirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
-    public void SelectFirstMedicalPlan(){
+
+    public void SelectFirstMedicalPlan() {
         iGetFirstPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstPlan,10);
+        basicActions.waitForElementToBePresent(selectFirstPlan, 10);
         selectFirstPlan.click();
     }
+
     public void iclickContinue(){
         btnContinue.click();
     }
@@ -75,8 +89,37 @@ public class MedicalPlanResultsPage {
             basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 10);
             insuranceCompanyDropdown.click();
 
-        }
+    }
 
+        public void clickMetalTierDropdown(){
+        basicActions.waitForElementToBeClickable(metalTierDropdown, 10);
+            metalTierDropdown.click();
+
+    }
+
+    public void clickHSADropdown() {
+        basicActions.waitForElementToBeClickable(hsaDropdown, 10);
+        hsaDropdown.click();
+    }
+     public void selectHSAOption(){
+        basicActions.waitForElementToBeClickable(hsaOption, 10);
+         hsaOption.click();
+     }
+
+     public void clickColoradoOptionDropdown(){
+        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 10);
+         coloradoOptionDropdown.click();
+     }
+     public void selectColoradoOptionSelection(){
+        basicActions.waitForElementToBeClickable(coloradoOptionSelection, 10);
+        coloradoOptionSelection.click();
+
+     }
+
+    public void selectfromMetalTierList(String Selecting) {
+        String providerPath = "//span[text()='" + Selecting + "']";
+        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+    }
         public void validatePlanResults ( int index, String planText){
             basicActions.waitForElementToBePresent(selectFirstPlan, 10);
             index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1

@@ -22,11 +22,11 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
     Then I click on Application Results Button CoCo
     Then I validate I am on the "Application Results" page
-    And I click on Apply for Coverage in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     Then I click on My Documents and Letters Button CoCo
     Then I validate I am on the "My Documents" page
-    And I click on Apply for Coverage in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
 
     And I click on Privacy Policy in the Footer
@@ -35,17 +35,17 @@ Feature: Navigation-Welcome Page
     And I click on Terms Of Use in the Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "CoCo Welcome" page
-    And I click on Contact Us in the Footer
+    And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Welcome" page
 
     And I click on the Colorado Connect or C4 Logo in the Header
     Then I validate I am on the "CoCo Welcome" page
-    And I click on Apply for Coverage in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I click on Find a Plan in the Header
     Then I validate I am on the "Application Results" page
-    And I click on Apply for Coverage in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I click on My Account in the Header
     Then I validate I am on the "My Profile" page
@@ -55,14 +55,14 @@ Feature: Navigation-Welcome Page
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Welcome" page
     And I click on Get Assistance in the Header
-    And I click on Find Expert Assistance in the Header
+    And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "Find Expert Help" page
-    And I click on Apply for Coverage in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
-    And I click on the Username in the Header
+    And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
 
-    And I click on Sign Out in the Header
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

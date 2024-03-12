@@ -1,15 +1,18 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class EthnicityAndRacePage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public EthnicityAndRacePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -22,8 +25,18 @@ public class EthnicityAndRacePage {
     @FindBy(xpath = "//*[contains(@id, 'ELIG-Race-')]")
     List<WebElement> raceButton;
 
+    @FindBy(css = ".body-text-1")
+    List<WebElement> EthnicityAndRaceText;
+
+    @FindBy(css = ".header-1")
+    WebElement hdrEthnicityAndRace;
+
     @FindBy(id = "ELIG-RaceEthnicity-SaveAndContinue")
     WebElement saveAndContinueButton;
+
+    @FindBy(id = "ELIG-RaceEthnicity-GoBack")
+    WebElement goBackButton;
+
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
@@ -74,6 +87,39 @@ public class EthnicityAndRacePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + race);
         }
+    }
+
+    public void verifyTextOnEthnicityAndRace(String language) {
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+        switch (language) {
+            case "English":
+                verifyTextOnEthnicityAndRaceEnglish();
+                break;
+            //case "Spanish":
+            //    verifyTextOnEthnicityAndRaceSpanish();
+            //    break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyTextOnEthnicityAndRaceEnglish(){
+        softAssert.assertEquals(hdrEthnicityAndRace.getText(), "Ethnicity and Race: " +
+                Character.toUpperCase(SharedData.getFirstName().charAt(0)) + SharedData.getFirstName().substring(1) + " " +
+                Character.toUpperCase(SharedData.getLastName().charAt(0)) + SharedData.getLastName().substring(1));
+        softAssert.assertEquals(EthnicityAndRaceText.get(0).getText(), "Hispanic/Latino");
+        softAssert.assertEquals(EthnicityAndRaceText.get(1).getText(), "Non-Hispanic/Latino");
+        softAssert.assertEquals(EthnicityAndRaceText.get(2).getText(), "I prefer not to answer");
+        softAssert.assertEquals(EthnicityAndRaceText.get(3).getText(), "American Indian/Alaskan Native");
+        softAssert.assertEquals(EthnicityAndRaceText.get(4).getText(), "Asian");
+        softAssert.assertEquals(EthnicityAndRaceText.get(5).getText(), "Black/African American");
+        softAssert.assertEquals(EthnicityAndRaceText.get(6).getText(), "Native Hawaiian/Other Pacific Islander");
+        softAssert.assertEquals(EthnicityAndRaceText.get(7).getText(), "White/Caucasian");
+        softAssert.assertEquals(EthnicityAndRaceText.get(8).getText(), "Not listed");
+        softAssert.assertEquals(EthnicityAndRaceText.get(9).getText(), "I prefer not to answer");
+        softAssert.assertEquals(goBackButton.getText(), " Go Back");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertAll();
     }
 
 }

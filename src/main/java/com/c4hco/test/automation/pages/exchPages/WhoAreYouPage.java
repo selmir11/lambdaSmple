@@ -41,8 +41,12 @@ public class WhoAreYouPage {
     WebElement memberDOB;
     @FindBy(xpath = "//*[@id='ssn']")
     WebElement memberSSN;
-    @FindBy(xpath = "//*[@value='Save and Continue']")
+
+    @FindBy(css = "input.btn-c4primary")
     WebElement saveAndContinue;
+
+    @FindBy(id = "submitButton")
+    List <WebElement> backSaveAndContinue;
 
     @FindBy(css = ".input-group #county")
     WebElement countyDropDown;
@@ -83,6 +87,12 @@ public class WhoAreYouPage {
 
         memberDOB.sendKeys(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
+        backSaveAndContinue.get(1).click();
+    }
+
+    public void ContinueId() {
+        StreetAddress1.sendKeys(addressLine1);
+        memberCity.sendKeys("Denver");
         saveAndContinue.click();
     }
 }

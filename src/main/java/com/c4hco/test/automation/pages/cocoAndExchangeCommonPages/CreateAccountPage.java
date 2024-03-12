@@ -110,6 +110,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        SharedData.setAppType(appType);
         addDetails();
         switch(appType){
             case "coco":
@@ -119,6 +120,7 @@ public class CreateAccountPage {
                 exchangeTermsOfUseCheckbox.click();
                 break;
             default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
 
         }
         submitButton.click();
@@ -171,7 +173,7 @@ public class CreateAccountPage {
 
     public void validateHelpVerbiageSP() {
         basicActions.waitForElementToBePresent(helpDrawerTextSP, 60);
-        softAssert.assertEquals(helpDrawerTextSP.getText(),"Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado");
+        softAssert.assertEquals(helpDrawerTextSP.getText(),"Connect for Health Colorado es el mercado oficial de seguros de salud de Colorado. Desde 2013, Connect for Health ha estado ayudando a individuos, familias, y peque\u00f1as empresas a comparar planes, solicitar ayuda financiera y adquirir seguros de salud.");
         softAssert.assertAll();
     }
 

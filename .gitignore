@@ -28,6 +28,7 @@ out/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+!**/src/main/resources/application.properties
 
 ### NetBeans ###
 /nbproject/private/
@@ -67,10 +68,8 @@ testCreateEdi
 localWritingTestFile
 
 testdata/
-**/application.local.properties
 
 logs/
 Log4j/log4j-application.log
-/src/main/resources/
 
 

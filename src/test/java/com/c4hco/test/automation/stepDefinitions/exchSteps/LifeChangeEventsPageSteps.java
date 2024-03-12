@@ -13,4 +13,14 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.selectLCE(lceOption);
     }
 
+    @And("I validate the verbiage on the Report a life change page in {string}")
+    public void iValidateTheVerbiageOnTheReportALifeChangePageIn(String language) {
+        lifeChangeEventsPage.validateTheVerbiageOnReportALifeChangePage(language);
+    }
+
+    @And("I validate the header on the Report a life change in {string}")
+    public void iValidateTheHeaderOnReportALifeChangePage(String language) {
+        lifeChangeEventsPage.validateTheHeaderOnReportALifeChangePage(language);
+    }
+
 }

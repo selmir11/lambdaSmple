@@ -12,13 +12,13 @@ Feature: Find expert help page validation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I click on Get Assistance in the Header
-    And I click on Find Expert Assistance in the Header
+    And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I verify Find Expert Help header Text in "English"
     And I verify Find Expert Help page title Text in "English"
     Then I verify Find Expert Help page Text in "English"
     Then I verify Find Expert Help buttons in "English"
-    And I change the language from header to "Spanish COCO"
+    And I change the language from header to "Spanish"
     And I verify Find Expert Help header Text in "Spanish"
     And I verify Find Expert Help page title Text in "Spanish"
     Then I verify Find Expert Help page Text in "Spanish"

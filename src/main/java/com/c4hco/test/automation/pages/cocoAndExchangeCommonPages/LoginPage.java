@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.Utils;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,8 +31,16 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
      WebElement signAdmin;
 
+    @FindBy(xpath = "//a[text()=' password']")
+     WebElement forgotPassword;
+
+    @FindBy(xpath = "//a[text()='username']")
+     WebElement forgotUsername;
+
+
+
     private BasicActions basicActions;
-    private Utils utils = new Utils();
+    private Utils utils = new Utils(WebDriverManager.getDriver());
 
 
     public LoginPage(WebDriver webDriver) {
@@ -39,8 +48,8 @@ public class LoginPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void openPage(String appType) {
-        basicActions.getDriver().get(utils.getBaseLoginUrl(appType));
+    public void openPage(String portalType) {
+        basicActions.getDriver().get(utils.getBaseLoginUrl(portalType));
     }
 
     public void clickCreateAccount() {
@@ -48,6 +57,7 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
+        basicActions.waitForElementToBePresent(username, 10);
             username.sendKeys(SharedData.getEmailId());
             password.sendKeys(SharedData.getPassword());
             signInButton.click();
@@ -55,11 +65,30 @@ public class LoginPage {
 
     public void loginAsAnAdminUser(){
         // TO-DO:: Get the credentials from a different file
-        basicActions.waitForElementToBePresent(usernameAdmin,10 );
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
         passwordAdmin.sendKeys("ALaska12!");
         signAdmin.click();
     }
+
+    public void loginAsBrokerUser(){
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        usernameAdmin.sendKeys("soukainatesting+agencyQA@gmail.com");
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        passwordAdmin.sendKeys("ALaska16!");
+        signAdmin.click();
+    }
+
+    public void clickForgotPassword(){
+        basicActions.waitForElementToBePresent(forgotPassword,20 );
+        forgotPassword.click();
+    }
+    public void clickForgotUsername(){
+        basicActions.waitForElementToBePresent(forgotUsername,20 );
+        forgotUsername.click();
+    }
+
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line

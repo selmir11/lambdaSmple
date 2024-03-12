@@ -27,18 +27,33 @@ public class EmploymentInfoPageSteps {
     @And("I click continue on the Employment Info Page")
     public void saveAndContinue(){employmentInfoPage.saveAndContinue();}
 
-    @And("I maximize the help drawer on the Employment Info Page")
-    public void iMaximizeHelpDrawer(){employmentInfoPage.maximizeHeldDrawer();}
+    @And("I select {string} icon on the Employment Info Page")
+    public void iSelectGeneralHelpIcon(String labelIcon){employmentInfoPage.clickHelpIcon(labelIcon);}
 
     @Then("I validate help drawer header verbiage in {string}")
     public void iValidateHelpHeader(String languageSelection){employmentInfoPage.validateHelpHeaderVerbiage(languageSelection);}
 
     @Then("I validate general help drawer body verbiage in {string}")
-    public void iValidateGeneralHelpBodyEng(String language){employmentInfoPage.validateGeneralHelpBodyVerbiage(language);}
+    public void iValidateGeneralHelpBody(String languageOption){employmentInfoPage.validateGeneralHelpBodyVerbiage(languageOption);}
 
     @Then("I validate help drawer footer verbiage in {string}")
     public void iValidateHelpFooter(String languageSelection){employmentInfoPage.validateHelpFooterVerbiage(languageSelection);}
 
     @And("I click Contact Us link in help drawer footer")
     public void iClickHelpContactUsLink(){employmentInfoPage.clickHelpContactUsNavigation();}
+
+    @Then("I validate job question verbiage in {string}")
+    public void iValidateJobQsHelpVerbiage(String languageSelection){employmentInfoPage.validateJobQuestionsHelpVerbiage(languageSelection);};
+
+    @Then("I validate Employment Info Page header in {string}")
+    public void iValidateHeaderOnEmploymentInfo(String languageSelection){employmentInfoPage.validateHeaderOnEmploymentInfo(languageSelection);};
+
+    @Then("I validate Company verbiage in {string}")
+    public void iValidateCompanyQsHelpVerbiage(String languageSelection){employmentInfoPage.validateCompanyHelpVerbiage(languageSelection);};
+
+    @Then("I validate Net Income verbiage in {string}")
+    public void iValidateNetIncomeQsHelpVerbiage(String languageSelection){employmentInfoPage.validateNetIncomeHelpVerbiage(languageSelection);};
+
+    @Then("I validate Income Change verbiage in {string}")
+    public void iValidateIncomeChangeQsHelpVerbiage(String languageSelection){employmentInfoPage.validateIncomeChangeHelpVerbiage(languageSelection);};
 }

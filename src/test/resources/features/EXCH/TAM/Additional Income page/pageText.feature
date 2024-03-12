@@ -43,8 +43,8 @@ Feature: Page Text-Additional Income Page
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
     Then I verify "English" text on the Additional Income page with errors
-    And I change the language from header to "Spanish ELMO"
+    And I change the language from header to "Spanish"
     Then I verify "Spanish" text on the Additional Income page with errors
 
-    And I click on Sign Out in the Header
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
