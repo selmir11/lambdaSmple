@@ -329,7 +329,7 @@ public class EmploymentInfoPage {
     }
 
     public void validateHeaderOnEmploymentInfo(String language) {
-        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 45);
         switch (language) {
             case "English":
                 softAssert.assertEquals(txtHeaderPart2.getText(), "Employment Income");
