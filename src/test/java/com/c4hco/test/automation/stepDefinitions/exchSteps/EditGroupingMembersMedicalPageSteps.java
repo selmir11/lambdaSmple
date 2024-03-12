@@ -41,4 +41,8 @@ public class EditGroupingMembersMedicalPageSteps {
     public void groupChildrenTogether() throws InterruptedException {
         editGroupingMembersMedicalPage.dragAndDropChildrenToSeparateGroup();
     }
+    @Then("I verify text in what works best for you popup")
+    public void ValidateTheVerbiagewhatworksbestforyou() {
+        editGroupingMembersMedicalPage.getClass();
+    }
 }

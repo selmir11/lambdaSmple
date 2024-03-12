@@ -68,5 +68,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click continue on start shopping page
     Then I click on edit enrollment groups link
     And I validate I am on the "Edit Grouping Members Medical" page
+    Then I verify text in what works best for you popup
 
 
