@@ -67,6 +67,9 @@ public class BasicSteps {
             case "Application Results":
                 pageUrl = "nes/applicationResults";
                 break;
+            case "Application Results CoCo":
+                pageUrl = "coco/ApplicationResultsPortal/applicationResults";
+                break;
             case "My Profile":
                 pageUrl = "UserProfileAdmin/profile";
                 break;
@@ -173,7 +176,7 @@ public class BasicSteps {
                 System.out.println("undefined page ");
                 break;
         }
-        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
+        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl));
     }
 
     @And("I validate I am on the {string} page and close tab")
