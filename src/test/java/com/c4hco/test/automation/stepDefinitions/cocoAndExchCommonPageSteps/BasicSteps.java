@@ -167,7 +167,8 @@ public class BasicSteps {
                 pageUrl = "/planSummaryMedicalDental/";
                 break;
             case "My Policies":
-                pageUrl = "enrollmentPortal/myPolicies";
+                pageUrl = "/EnrollmentPortal/myPolicies";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

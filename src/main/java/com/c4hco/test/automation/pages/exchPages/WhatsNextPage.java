@@ -18,6 +18,7 @@ public class WhatsNextPage {
     WebElement welcomeBtn;
 
     public void clickWelcomeBtn(){
+        // TO DO:: Sometimes, feedback survey is popping - intercepting the click - pls have a solution for this
         basicActions.waitForElementToBePresent(welcomeBtn, 10);
         welcomeBtn.click();
     }
