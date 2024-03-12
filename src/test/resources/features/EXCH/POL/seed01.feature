@@ -1,6 +1,7 @@
 Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
-  
-  Scenario: Seed 01 For Exchange
+
+  @test
+  Scenario: Seed 01 For Exchange @test
     Given I set the total members for the test as 1
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -71,7 +72,7 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
     Then I click continue on application results page
     Then I click continue on start shopping page
  #    # test step - below
-  #  And I select "Elevate Health Plans Colorado Option Bronze" medical plan
+   And I select "Elevate Health Plans Bronze HDHP" medical plan
      And I select the first medical plan
      Then I click continue on medical plan results page
 #    # select Delta Dental of Colorado Family Basic Plan

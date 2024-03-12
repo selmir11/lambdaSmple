@@ -7,11 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public MedicalPlanResultsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -53,6 +58,12 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "SHP-PlanResults-CoOptionPlans-input")
     WebElement coloradoOptionSelection;
+
+    @FindBy(xpath = "//*[contains(@id, 'PlanResults-ProviderPlan_')]")
+    List<WebElement> medicalPlanNamesList;
+
+    @FindBy(css = "pagination-template .pagination-next a")
+    WebElement nextPageArrow;
 
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";
@@ -129,5 +140,46 @@ public class MedicalPlanResultsPage {
             String expectedText = ePlanID.getText();
             expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
         }
+
+        public void selectMedicalPlan(String planName){
+            getIndexOfMatchingPlanName(planName);
+
+        }
+
+    public void getIndexOfMatchingPlanName(String planName){
+        int totalPlans = 123;
+        int pages = 13;
+        // each page will have 10 names
+        boolean isPresent = false;
+        //get the first index page medical plan name list
+        do{
+            Optional<Integer> planNameIndex = checkIfPlanPresent(medicalPlanNamesList,planName);
+            if(planNameIndex.isPresent()){
+                //Here we click on add button
+                isPresent = planNameIndex.isPresent();
+               System.out.println( "index get---"+planNameIndex.get());
+
+            }else{
+                System.out.println( "index get---"+planNameIndex.get());
+                basicActions.wait(2000);
+                softAssert.assertTrue(nextPageArrow.isEnabled());
+                softAssert.assertAll();
+
+                nextPageArrow.click();
+                basicActions.wait(2000);
+                List<WebElement> nextPageList = new ArrayList<>();
+                medicalPlanNamesList = nextPageList;
+                isPresent = planNameIndex.isPresent();
+            }
+        }while (!isPresent);
+    }
+
+    private Optional<Integer> checkIfPlanPresent( List<WebElement> medicalPlanNamesList,String planName){
+        Optional<Integer> index = IntStream.range(0,medicalPlanNamesList.size())
+                .filter(i -> medicalPlanNamesList.get(i).getText().equals(planName))
+                .boxed()
+                .findFirst();
+        return index;
+    }
     }
 
