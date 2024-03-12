@@ -64,9 +64,9 @@ public class AdminLceToolPage {
             submitBtn.click();
             basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
             SharedData.setSelectedMedicalPlanStartDate("01/01/2024"); // TO DO: send the year as current year dynamically
-            SharedData.setSelectedMedicalPlanEndDate("01/01/2024");
+            SharedData.setSelectedMedicalPlanEndDate("12/31/2024");
             SharedData.setSelectedDentalPlanStartDate("01/01/2024");
-            SharedData.setSelectedDentalPlanEndDate("01/01/2024");
+            SharedData.setSelectedDentalPlanEndDate("12/31/2024");
             SharedData.setFinancialStartDate("01/01/2024");
             closeTabAndSwitchToCurrentWindow();
         }

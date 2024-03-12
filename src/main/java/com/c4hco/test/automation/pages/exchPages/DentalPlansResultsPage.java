@@ -38,12 +38,12 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(id="DentalPlanResults-ProviderPlan_0")
-    WebElement firstDentalPlanName;
+    @FindBy(css=".plan .header-3")
+    List<WebElement> dentalPlanNames;
 
     public void iGetFirstDentalPlaneName() {
-        basicActions.waitForElementToBePresent(firstDentalPlanName, 10);
-        SharedData.setFirstPlanNameOnDentalResultsPage(firstDentalPlanName.getText());
+        basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
+        SharedData.setFirstPlanNameOnDentalResultsPage(dentalPlanNames.get(0).getText());
     }
 
     public void selectFirstDentalPlan(){

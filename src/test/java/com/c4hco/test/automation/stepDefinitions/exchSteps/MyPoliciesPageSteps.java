@@ -17,7 +17,7 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.validateDentalPlanDetails();
     }
 
-    @And("I click view plan details link from medical plan card")
+    @And("I click View Plan History link from medical plan card")
     public void clickViewPlanHistory(){
         // To DO: Update this step -
         // get total links for all memebers - only 2 cards always? 1med and 1 -dental?
@@ -25,7 +25,7 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.clickViewPlanHistoryFromMed();
     }
 
-    @And("I click view plan details link from dental plan card")
+    @And("I click View Plan History link from dental plan card")
     public void clickViewPlanHistoryDental(){
         // To DO: Update this step -
         // get total links for all memebers
@@ -33,4 +33,18 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.clickViewPlanHistoryFromDental();
     }
 
+    @And("I validate medical plan details from plan history")
+    public void medPlanDetailsPlanHistory(){
+            myPoliciesPage.validateMedPlanDetailsFromPlanHistory();
+    }
+
+    @And("I click on to Back to Current Plan Details button")
+    public void clickBackToCurrentPlans(){
+        myPoliciesPage.clickBackButton();
+    }
+
+    @And("I validate dental plan details from plan history")
+    public void dentalPlanDetailsPlanHistory(){
+        myPoliciesPage.validateDentalPlanDetailsFromPlanHistory();
+    }
 }
