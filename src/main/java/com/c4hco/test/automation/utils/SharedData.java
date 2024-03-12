@@ -14,6 +14,8 @@ public class SharedData {
     private static String sftpPathToDownload;
     private static String sftpPathToUpload;
     private static String accountId;
+    private static int totalMembersOnTest;
+
 //    private static String selectedMedicalPlanName;
 //    private static String selectedDentalPlanName;
 //    private static String selectedMedicalPlanStartDate;
@@ -80,6 +82,10 @@ public class SharedData {
     public static String getAccountId(){ return accountId; }
 
     public static void setAccountId(String accountId){SharedData.accountId = accountId; }
+
+    public static int getTotalMembersOnTest(){ return totalMembersOnTest; }
+
+    public static int setTotalMembersOnTest(int totalMembersOnTest){ SharedData.totalMembersOnTest = totalMembersOnTest; }
 
     public static void reset(){
         emailId = null;
