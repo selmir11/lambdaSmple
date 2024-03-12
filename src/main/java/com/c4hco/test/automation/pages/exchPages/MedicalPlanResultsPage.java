@@ -20,19 +20,20 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "PlanResults-SelectThisPlan_0")
     WebElement selectFirstPlan;
-    @FindBy(id= "PlanResults-ProviderPlan_0")
+
+    @FindBy(id = "PlanResults-ProviderPlan_0")
     WebElement firstMedicalPlanName;
 
     @FindBy(id = "SHP-MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id ="SHP-PlanResults-ComparePlans")
+    @FindBy(id = "SHP-PlanResults-ComparePlans")
     WebElement clickCompare;
 
-    @FindBy(xpath ="//a[contains(@id,'PlanResults-Compare')]")
+    @FindBy(xpath = "//a[contains(@id,'PlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
 
-    @FindBy(id ="SHP-PlanResults-InsuranceCompany")
+    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
     @FindBy(id = "SHP-PlanResults-ResetFilters")
@@ -44,7 +45,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-HSAFilter")
     WebElement hsaDropdown;
 
-    @FindBy(id ="SHP-PlanResults-HSAFilter-input")
+    @FindBy(id = "SHP-PlanResults-HSAFilter-input")
     WebElement hsaOption;
 
     @FindBy(id = "SHP-PlanResults-CoOptionPlans")
@@ -58,18 +59,15 @@ public class MedicalPlanResultsPage {
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
-    public void iGetFirstPlaneName(){
-        basicActions.waitForElementToBePresent(firstMedicalPlanName,10);
+    public void iGetFirstPlaneName() {
+        basicActions.waitForElementToBePresent(firstMedicalPlanName, 10);
         SharedData.setfirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
-    public void SelectFirstMedicalPlan(){
+
+    public void SelectFirstMedicalPlan() {
         iGetFirstPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstPlan,10);
+        basicActions.waitForElementToBePresent(selectFirstPlan, 10);
         selectFirstPlan.click();
-    }
-
-    public void selectMedicalPlan(String medicalPlan){
-
     }
 
     public void iclickContinue(){

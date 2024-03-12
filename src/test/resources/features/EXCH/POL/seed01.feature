@@ -1,6 +1,7 @@
 Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
 
   Scenario: Seed 01 For Exchange
+    Given I set the total members for the test as 1
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -74,10 +75,10 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-#  # test step - below
-#    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
 
-#    # select Elevate Health Plans Colorado Option Bronze plan
+ #    # test step - below
+  #  And I select "Elevate Health Plans Colorado Option Bronze" medical plan
+
      And I select the first medical plan
      Then I click continue on medical plan results page
 #    # select Delta Dental of Colorado Family Basic Plan
@@ -98,6 +99,16 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
 
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
+   # And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
-#    Then verify plan enrollment on UI - what needs to be verified here?
+    Then I validate I am on the "My Policies" page
+    And I validate medical plan details from my policies page
+    And I validate dental plan details from my policies page
+    And I click view plan details link from medical plan card
+  #  And I validate I am on the "" page
+#    And I validate medical plan details from this page
+#    And I click on to go back to my policies page
+#    And I click view plan details from dental plan card
+#    And I validate I am on the "" page
+   # And I validate dental plan details from this page
     And I click on Sign Out in the Header for "Elmo"

@@ -3,7 +3,7 @@ import com.c4hco.test.automation.pages.exchPages.MyProfileExchPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.Then;
 
-public class MyProfileExchPageSteps {
+public class MyProfilePageSteps {
 
     MyProfileExchPage myProfileExchPage = new MyProfileExchPage(WebDriverManager.getDriver());
 

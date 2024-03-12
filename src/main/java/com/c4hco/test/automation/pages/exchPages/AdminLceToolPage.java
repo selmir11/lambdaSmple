@@ -58,12 +58,16 @@ public class AdminLceToolPage {
             basicActions.waitForElementToBePresent(planYrDropdown, 10);
             planYrDropdown.click();
 
-            //FIND OUT :: First plan is going to be current year always??
-            planYrDrpdwnOptions.get(1).click();
+            planYrDrpdwnOptions.get(1).click(); // selects current year
 
             changeEffectiveDt.sendKeys(effectiveDate);
             submitBtn.click();
             basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
+            SharedData.setSelectedMedicalPlanStartDate("01/01/2024"); // TO DO: send the year as current year dynamically
+            SharedData.setSelectedMedicalPlanEndDate("01/01/2024");
+            SharedData.setSelectedDentalPlanStartDate("01/01/2024");
+            SharedData.setSelectedDentalPlanEndDate("01/01/2024");
+            SharedData.setFinancialStartDate("01/01/2024");
             closeTabAndSwitchToCurrentWindow();
         }
 

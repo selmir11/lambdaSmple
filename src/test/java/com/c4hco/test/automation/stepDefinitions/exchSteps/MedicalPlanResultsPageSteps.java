@@ -13,10 +13,10 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
 
-    @And("I select {string} medical plan")
-    public void selectMedicalPlan(String medicalPlan) {
-        medPlanResultsPage.selectMedicalPlan(medicalPlan);
-    }
+//    @And("I select {string} medical plan")
+//    public void selectMedicalPlan(String medicalPlan) {
+//        medPlanResultsPage.selectMedicalPlan(medicalPlan);
+//    }
 
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage() {

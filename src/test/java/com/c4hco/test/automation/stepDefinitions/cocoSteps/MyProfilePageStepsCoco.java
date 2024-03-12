@@ -4,7 +4,7 @@ import com.c4hco.test.automation.pages.cocoPages.MyProfilePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.Then;
 
-public class MyProfilePageSteps {
+public class MyProfilePageStepsCoco {
 
     MyProfilePage myProfilePage = new MyProfilePage(WebDriverManager.getDriver());
 

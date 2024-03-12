@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import org.junit.Assert;
@@ -8,6 +9,11 @@ import org.openqa.selenium.Dimension;
 
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
+
+    @And("I set the total members for the test as {int}")
+    public void iSetTotalMembersNeededForTest(int totalMembers){
+        SharedData.setTotalMembersOnTest(totalMembers);
+    }
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page){
@@ -160,13 +166,15 @@ public class BasicSteps {
             case "Plan Summary":
                 pageUrl = "/planSummaryMedicalDental/";
                 break;
-
+            case "My Policies":
+                pageUrl = "enrollmentPortal/myPolicies";
             default:
                 System.out.println("undefined page ");
                 break;
         }
         Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
     }
+
     @And("I validate I am on the {string} page and close tab")
     public void iValidatePageAndClose(String page){
         String pageUrl= " ";
