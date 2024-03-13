@@ -6,7 +6,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I validate I am on the "Login" page
 
   @SLER-100-WIP @VerifyMedicalDentalPlanSummaryResults
-  Scenario: SelectVerifyColoradoOptionResults /* cloned from RT-1693 */
+  Scenario: VerifyMedicalDentalPlanSummaryResults /* cloned from RT-1693 */
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -53,11 +53,13 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I click the Colorado Option dropdown
-    And I select the Colorado Option
-    And I validate the plan option 1 has text "Elevate Health Plans Colorado Option Bronze"
     And I select the first medical plan
     And I click continue on medical plan results page
 
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    And I click continue on dental plan results page
+
     Then I validate I am on the "Plan Summary" page
+    And I verify medical and dental text on Plan Summary page
 
