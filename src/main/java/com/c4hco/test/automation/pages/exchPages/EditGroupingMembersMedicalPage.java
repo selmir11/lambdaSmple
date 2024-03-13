@@ -32,6 +32,10 @@ public class EditGroupingMembersMedicalPage {
 
     @FindBy(id = "SHP-EditMedicalGroupingMembers-ResetTheGroups")
     WebElement resetgroupsButton;
+    @FindBy(css = ".m-4")
+    List<WebElement> successMessage;
+    @FindBy(id="SHP-EditMedicalGroupingMembers-Continue")
+    WebElement successContinue;
 
     @FindBy(css = ".container div:nth-child(2) div span u")
     WebElement whatWorksBestLink;
@@ -110,6 +114,15 @@ public class EditGroupingMembersMedicalPage {
                 .perform();
          basicActions.wait(3000);
     }
+     public void iValidateSuccessMessage() {
+         basicActions.waitForElementListToBePresent(successMessage,10);
+         softAssert.assertEquals(successMessage.get(0).getText(), "Success");
+         softAssert.assertEquals(successMessage.get(1).getText(), "Success! Your enrollment groupings are valid and have been successfully saved. Click 'Continue' to go on.");
+         softAssert.assertAll();
+    }
+     public void iClickContinueOnSuccessPopup(){
+         successContinue.click();
+     }
 
 
     public void validateToolTipText(){
