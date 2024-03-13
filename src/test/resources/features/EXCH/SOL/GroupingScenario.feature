@@ -3,8 +3,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
   Background:
           Given I open the login page on the "login" portal
           And I validate I am on the "Login" page
-
-  @SLER-54-WIP @ValidateGroupingMembers
+        # Failing intermittently due to a defect # SOL-3596
+  @SLER-54 @ValidateGroupingMembers
   Scenario: Validate grouping members: Grandparent in 1 group, Parent+2 children in 1 group
           When I click create a new account on login page
           Then I click create my account from pre-screen page
@@ -143,5 +143,4 @@ Feature: UI Page Validation - Grouping Members (Medical)
           Then I click save button to save the groups
           And I validated message on success enrollment grouping pop-up
           Then I click on continue button on success pop-up
-
-
+          
