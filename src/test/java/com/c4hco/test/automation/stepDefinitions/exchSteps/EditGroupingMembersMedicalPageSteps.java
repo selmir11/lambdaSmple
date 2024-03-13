@@ -46,8 +46,9 @@ public class EditGroupingMembersMedicalPageSteps {
         editGroupingMembersMedicalPage.iValidateSuccessMessage();
     }
     @Then("I click on continue button on success pop-up")
-    public void IContinue(){
+    public void IContinue() {
         editGroupingMembersMedicalPage.iClickContinueOnSuccessPopup();
+    }
     @Then("I verify tool tip on the link- what works best for you")
     public void validateToolTipText() {
         editGroupingMembersMedicalPage.validateToolTipText();
