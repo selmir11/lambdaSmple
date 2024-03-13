@@ -145,7 +145,7 @@ public class MedicalPlanResultsPage {
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
-    public void selectPlan(String planName){
+    public void selectMedicalPlan(String planName){
         do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
