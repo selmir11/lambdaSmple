@@ -11,6 +11,9 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     @And("I enter a valid signature")
     public void enterSignature() {declarationsAndSignaturePageCoCo.enterSignatureCoCo();}
 
+    @And("I select Go Back on the Declarations and Signature page")
+    public void clickGoBackButton(){declarationsAndSignaturePageCoCo.goBack();}
+
     @And("I click Continue on the Declarations And Signature Page CoCo")
     public void selectContinueDeclarations(){declarationsAndSignaturePageCoCo.submitApplicationCoCo();}
 
