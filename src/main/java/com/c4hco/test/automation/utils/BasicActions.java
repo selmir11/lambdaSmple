@@ -137,17 +137,6 @@ public class BasicActions {
         element.click();
     }
 
-//    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
-//        try {
-//            new WebDriverWait(driver,
-//                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
-//            webElement.click();
-//        } catch(TimeoutException ignore){
-//            Log.info("Element is not clickable");
-//        }
-//
-//    }
-//
 //    public  void scrollToElement(WebElement element) {
 //        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
 //    }
@@ -161,10 +150,6 @@ public class BasicActions {
 //            }
 //        }
 //        getDriver().switchTo().window(origin);
-//    }
-
-//    public void implicitWait(int second){
-//        getDriver().manage().timeouts().implicitlyWait(second, TimeUnit.SECONDS);
 //    }
 
 }
