@@ -4,7 +4,7 @@ Feature: My profile page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-51 @WIP
+  @SLER-51
   Scenario: My Profile Page Navigation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -16,5 +16,8 @@ Feature: My profile page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
     Then I validate I am on the "My Account Overview" page
-    And  I click on My Account in the "NonElmo" Header
+    And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    And I click on Save Button
+    And  I validate chat widget is present

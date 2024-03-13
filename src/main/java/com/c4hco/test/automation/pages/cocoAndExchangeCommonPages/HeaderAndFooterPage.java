@@ -37,7 +37,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
 
-    @FindBy(css = ".toolbar-content .toolbar-text .toolbar-text")
+    @FindBy(css = "li.vertical-ruler")
     WebElement userNameLinkExch;
 
     @FindBy(id = "globe-image")
