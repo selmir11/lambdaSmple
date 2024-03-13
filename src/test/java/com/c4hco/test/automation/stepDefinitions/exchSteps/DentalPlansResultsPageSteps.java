@@ -13,7 +13,7 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.selectFirstDentalPlan();
     }
 
-    @And("I select {string} Plan")
+    @And("I select {string}")
     public void selectDentalPlan(String planName) {
         dentalPlansResultsPage.selectDentalPlan(planName);
     }

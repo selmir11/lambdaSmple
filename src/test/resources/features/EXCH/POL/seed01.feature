@@ -71,9 +71,11 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
+    And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
-    And I select "Delta Dental of Colorado Family Basic" Plan
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Delta Dental of Colorado Family Basic Plan"
      Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
