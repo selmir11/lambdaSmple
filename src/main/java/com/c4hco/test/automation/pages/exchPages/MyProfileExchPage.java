@@ -12,16 +12,27 @@ public class MyProfileExchPage {
 
 
     @FindBy(css = ".bottom_buttons_container button")
-    List<WebElement> backToWelcomeButtonExch;
+    List<WebElement> MyProfileButtonExch; /// Go back, Make changes, Save buttons
 
     private BasicActions basicActions;
+
     public MyProfileExchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
     public void backToWelcomeButtonExch() {
-        basicActions.waitForElementToBeClickable(backToWelcomeButtonExch.get(0), 5);
-        backToWelcomeButtonExch.get(0).click();
+        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 5);
+        MyProfileButtonExch.get(0).click();
+    }
+
+    public void clickMakeChangesButton() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 15);
+        MyProfileButtonExch.get(1).click();
+    }
+
+    public void clickSaveButton() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 15);
+        MyProfileButtonExch.get(1).click();
     }
 }
