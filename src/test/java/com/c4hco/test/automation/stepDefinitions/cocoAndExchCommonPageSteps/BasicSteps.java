@@ -112,6 +112,9 @@ public class BasicSteps {
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
+            case "CoCo life change event":
+                pageUrl = "coco/lce-portal/lces";
+                break;
             case "Who Are You":
                 pageUrl = "nes/idProofing";
                 break;

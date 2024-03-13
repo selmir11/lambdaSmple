@@ -87,6 +87,10 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(id = "LceOverview-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    //Go Back
+    @FindBy(id = "LceOverview-GoBack")
+    WebElement goBackButton;
+
     public String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
@@ -158,8 +162,18 @@ public class LifeChangeEventsCoCoPage {
         }
     }
 
+    public void selectNoneOfThese(){
+        basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
+        noneOfTheseLCE.click();
+    }
+
     public void saveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueButton,10);
         saveAndContinueButton.click();
+    }
+
+    public void goBack(){
+        basicActions.waitForElementToBeClickable(goBackButton, 10);
+        goBackButton.click();
     }
 }

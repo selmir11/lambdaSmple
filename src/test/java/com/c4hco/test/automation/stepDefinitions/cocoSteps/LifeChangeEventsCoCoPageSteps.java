@@ -12,6 +12,12 @@ public class LifeChangeEventsCoCoPageSteps {
         lifeChangeEventsCoCoPage.selectLCE(lceOption);
     }
 
+    @And("I select None of these life change event")
+    public void selectNoneOfTheseLCEOption(){lifeChangeEventsCoCoPage.selectNoneOfThese();}
+
     @And("I select continue on the LCE page")
     public void selectSaveAndContinue(){lifeChangeEventsCoCoPage.saveAndContinue();}
+
+    @And("I select Go Back on the LCE page")
+    public void selectGoBack(){lifeChangeEventsCoCoPage.goBack();}
 }
