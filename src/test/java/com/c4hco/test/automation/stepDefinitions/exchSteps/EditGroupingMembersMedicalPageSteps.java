@@ -41,4 +41,8 @@ public class EditGroupingMembersMedicalPageSteps {
     public void groupChildrenTogether() throws InterruptedException {
         editGroupingMembersMedicalPage.dragAndDropChildrenToSeparateGroup();
     }
+    @Then("I verify tool tip on the link- what works best for you")
+    public void validateToolTipText() {
+        editGroupingMembersMedicalPage.validateToolTipText();
+    }
 }
