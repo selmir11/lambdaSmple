@@ -169,6 +169,24 @@ public class BasicSteps {
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
                 break;
+            case "Tell us about yourself":
+                pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
+                break;
+            case "Additional information for yourself":
+                pageUrl = "nes/addAddress";
+                break;
+            case "Citizenship and immigration status":
+                pageUrl = "nes/lawfulPresence?memberId=";
+                break;
+            case "Family Overview":
+                pageUrl = "nes/household";
+                break;
+            case "Tax status":
+                pageUrl = "nes/taxReturns";
+                break;
+            case "Existing health insurance":
+                pageUrl = "nes/otherHealthInsuranceBegin";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
