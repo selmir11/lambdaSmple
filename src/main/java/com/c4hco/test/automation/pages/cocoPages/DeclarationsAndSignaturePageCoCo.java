@@ -24,6 +24,8 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "ELIG-DeclarationsAndSignature-signatureBox")
     WebElement signatureInputField;
 
+    @FindBy(id = "DeclarationsAndSignature-GoBack")
+    WebElement goBackButton;
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
@@ -37,6 +39,11 @@ public class DeclarationsAndSignaturePageCoCo {
         signatureInputField.clear();
         signatureInputField.click();
         signatureInputField.sendKeys(label);
+    }
+
+    public void goBack() {
+        basicActions.waitForElementToBeClickable(goBackButton,10);
+        goBackButton.click();
     }
 
     public void submitApplicationCoCo()  {
