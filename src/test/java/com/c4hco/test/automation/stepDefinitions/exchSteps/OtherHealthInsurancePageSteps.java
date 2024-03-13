@@ -11,4 +11,8 @@ public class OtherHealthInsurancePageSteps {
     public void noOtherHealthInsurance(String insuranceOption){
         otherHealthInsurancePage.selectInsuranceOption( insuranceOption);
     }
+    @Then("I select {string} as health insurance option")
+    public void iSelectInsuranceOptionOnly(String insuranceOption){
+        otherHealthInsurancePage.selectInsuranceOptionOnly(insuranceOption);
+    }
 }

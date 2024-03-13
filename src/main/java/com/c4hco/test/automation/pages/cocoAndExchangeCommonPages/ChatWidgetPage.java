@@ -25,8 +25,8 @@ public class ChatWidgetPage {
     @FindBy(id= "lcw-header-minimize-button")
     WebElement minimizeChatWindow;
 
-    public void validateChatWidgetIsPresent()  {
 
+    public void validateChatWidgetIsPresent()  {
         basicActions.getDriver().switchTo().frame(ChatWidgetIframe);
         basicActions.waitForElementToBePresent(ChatWidgetTitle,20);
         softAssert.assertEquals("Let's chat",ChatWidgetTitle.getText());
@@ -45,8 +45,7 @@ public class ChatWidgetPage {
         basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);
         softAssert.assertTrue(ChatWidgetSubtitle.isDisplayed());
         softAssert.assertAll();
-
-
+        basicActions.getDriver().switchTo().defaultContent();
     }
 
 
