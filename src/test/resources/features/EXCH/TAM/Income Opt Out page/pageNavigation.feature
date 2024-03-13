@@ -265,7 +265,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click continue on family overview page
 
     Then I validate I am on the "Financial Help" page
-    And I click on My Account in the Header
+    And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -444,7 +444,7 @@ Feature: Page Navigation-Income Opt Out Page
 
     Then I validate I am on the "Financial Help" page
     Then I validate I am on the "Spanish" page
-    And I click on My Account in the Header
+    And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I validate I am on the "Spanish" page
     Then I apply for the current year
