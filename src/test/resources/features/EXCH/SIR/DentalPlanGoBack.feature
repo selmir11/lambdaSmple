@@ -4,7 +4,7 @@ Feature: Dental Plans page tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-35 @SelectGoBackOnDentalPages
+  @SLER-35 @SelectGoBackOnDentalPages @test
   Scenario: Go Back Dental Pages
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -52,5 +52,6 @@ Feature: Dental Plans page tests
     Then I click continue on medical plan results page
     Then I click on back button on dental Plan Results
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select "Elevate Health Plans Bronze HDHP" medical plan
+   # And I select the first medical plan
     Then I click continue on medical plan results page
