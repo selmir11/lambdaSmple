@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.SharedData;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -70,8 +71,8 @@ public class AdminPortalSearchPage {
 
     public void clickFromApplicationLinksDropdown(String dropdownOption){
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
-       appLinksDropDown.click();
-       basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
+        basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
     }
 

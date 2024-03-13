@@ -67,6 +67,9 @@ public class BasicSteps {
             case "Application Results":
                 pageUrl = "nes/applicationResults";
                 break;
+            case "Application Results CoCo":
+                pageUrl = "coco/ApplicationResultsPortal/applicationResults";
+                break;
             case "My Profile":
                 pageUrl = "UserProfileAdmin/profile";
                 break;
@@ -108,6 +111,9 @@ public class BasicSteps {
                  break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
+                break;
+            case "CoCo life change event":
+                pageUrl = "coco/lce-portal/lces";
                 break;
             case "Who Are You":
                 pageUrl = "nes/idProofing";
@@ -187,11 +193,47 @@ public class BasicSteps {
             case "Existing health insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
+            case "Employment Summary":
+                pageUrl = "/employmentInfo/summary";
+                break;
+            case "Other Health Insurance":
+                pageUrl = "nes/otherHealthInsuranceBegin";
+                break;
+            case "ESI":
+                pageUrl = "otherHealthInsurance/employerSponsored";
+                break;
+            case "HRA":
+                pageUrl = "nes/memberHra";
+                break;
+            case "Medicare":
+                pageUrl = "nes/medicare";
+                break;
+            case "VA Healthcare":
+                pageUrl = "nes/vaHealth";
+                break;
+            case "COBRA":
+                pageUrl = "nes/cobra";
+                break;
+            case "Retiree Health Plan":
+                pageUrl = "nes/retireeHealth";
+                break;
+            case "TRICARE":
+                pageUrl = "nes/tricare";
+                break;
+            case "Peace Corps":
+                pageUrl = "nes/peaceCorps";
+                break;
+            case "Individual Insurance":
+                pageUrl = "nes/individualInsurance";
+                break;
+            case "Enrollment Agreements":
+                pageUrl = "PaymentPortal/enrollmentAgreements";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
         }
-        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
+        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl));
     }
 
     @And("I validate I am on the {string} page and close tab")
