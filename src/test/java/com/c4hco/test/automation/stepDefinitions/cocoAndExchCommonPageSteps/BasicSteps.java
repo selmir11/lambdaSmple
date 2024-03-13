@@ -172,6 +172,39 @@ public class BasicSteps {
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
                 break;
+            case "Employment Summary":
+                pageUrl = "/employmentInfo/summary";
+                break;
+            case "Other Health Insurance":
+                pageUrl = "nes/otherHealthInsuranceBegin";
+                break;
+            case "ESI":
+                pageUrl = "otherHealthInsurance/employerSponsored";
+                break;
+            case "HRA":
+                pageUrl = "nes/memberHra";
+                break;
+            case "Medicare":
+                pageUrl = "nes/medicare";
+                break;
+            case "VA Healthcare":
+                pageUrl = "nes/vaHealth";
+                break;
+            case "COBRA":
+                pageUrl = "nes/cobra";
+                break;
+            case "Retiree Health Plan":
+                pageUrl = "nes/retireeHealth";
+                break;
+            case "TRICARE":
+                pageUrl = "nes/tricare";
+                break;
+            case "Peace Corps":
+                pageUrl = "nes/peaceCorps";
+                break;
+            case "Individual Insurance":
+                pageUrl = "nes/individualInsurance";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
