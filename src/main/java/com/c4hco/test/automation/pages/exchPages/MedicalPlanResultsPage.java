@@ -2,22 +2,21 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.SharedData;
-import io.cucumber.java.bs.I;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
     private BasicActions basicActions;
-    Optional<Integer> optionalInt;
+     Optional<Integer> optionalInt;
     SoftAssert softAssert = new SoftAssert();
 
     public MedicalPlanResultsPage(WebDriver webDriver) {
@@ -146,33 +145,16 @@ public class MedicalPlanResultsPage {
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
-//    public void selectMedicalPlan(String planName) {
-//        getIndexOfMatchingPlanName(planName);
-//
-//    }
-
-//    public void getIndexOfMatchingPlanName(String planName) {
-//        boolean isPlanPresent = false;
-//        do {
-//            Optional<Integer> optionalInt = checkIfPlanPresent(planName);
-//            if (optionalInt.isPresent()) {
-//                isPlanPresent = optionalInt.isPresent();
-//                System.out.println("index get---" + optionalInt.get());
-//
-//            } else {
-//                System.out.println("index get---" + optionalInt.get());
-//                basicActions.wait(2000);
-//                softAssert.assertTrue(nextPageArrow.isEnabled());
-//                softAssert.assertAll();
-//
-//                nextPageArrow.click();
-//                basicActions.wait(2000);
-//                List<WebElement> nextPageList = new ArrayList<>();
-//                medicalPlanNamesList = nextPageList;
-//                isPlanPresent = optionalInt.isPresent();
-//            }
-//        } while (!isPlanPresent);
-//    }
+    public void selectPlan(String planName){
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get());
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+    }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
         return IntStream.range(0, medicalPlanNamesList.size())
@@ -181,29 +163,18 @@ public class MedicalPlanResultsPage {
                 .findFirst();
     }
 
-       public void selectPlan(String planName){
-        do {
-           optionalInt = checkIfPlanPresent(planName);
-            if (optionalInt.isPresent()) {
-                System.out.println("If block");
-                int index = optionalInt.get();
-                System.out.println("index---"+index);
-                // click the select plan button
-                String planID = "PlanResults-ProviderPlan_" + index;
-                WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
-                basicActions.waitForElementToBeClickable(ePlanID, 10);
-                ePlanID.click();
-
-            } else {
-                System.out.println("else block");
-                softAssert.assertTrue(nextPageArrow.isEnabled());
-                softAssert.assertAll();
-                nextPageArrow.click();
-
-                List<WebElement> nextPageList = new ArrayList<>();
-                medicalPlanNamesList = nextPageList;
-            }
-        } while(!optionalInt.isPresent());
+    private void clickPlanButton(int index){
+        String planID = "PlanResults-SelectThisPlan_" + index;
+        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        ePlanID.click();
     }
+
+    private void paginateRight(){
+        Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
+        nextPageArrow.click();
+    }
+
 }
+
 
