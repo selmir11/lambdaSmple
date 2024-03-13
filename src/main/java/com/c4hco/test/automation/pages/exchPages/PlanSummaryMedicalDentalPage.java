@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,8 +19,7 @@ public class PlanSummaryMedicalDentalPage {
     WebElement continueBtnOnPlanSummary;
 
     public void continuePlanSummaryPage(){
-        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary,10);
-        basicActions.waitForElementToBeClickable(continueBtnOnPlanSummary,10);
-        continueBtnOnPlanSummary.click();
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 10);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
 }

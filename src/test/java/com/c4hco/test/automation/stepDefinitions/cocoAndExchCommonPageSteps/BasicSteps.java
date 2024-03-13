@@ -208,6 +208,9 @@ public class BasicSteps {
             case "Individual Insurance":
                 pageUrl = "nes/individualInsurance";
                 break;
+            case "Enrollment Agreements":
+                pageUrl = "PaymentPortal/enrollmentAgreements";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
