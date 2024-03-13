@@ -136,9 +136,6 @@ public class BasicSteps {
             case "Compare":
                 pageUrl = "compare";
                 break;
-            case "RIDP - Congratulations":
-                pageUrl = "nes/IdProofingSecondaryRequest";
-                break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
@@ -178,20 +175,11 @@ public class BasicSteps {
             case "Tell us about yourself":
                 pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
                 break;
-            case "Additional information for yourself":
-                pageUrl = "nes/addAddress";
-                break;
-            case "Citizenship and immigration status":
-                pageUrl = "nes/lawfulPresence?memberId=";
-                break;
             case "Family Overview":
                 pageUrl = "nes/household";
                 break;
             case "Tax status":
                 pageUrl = "nes/taxReturns";
-                break;
-            case "Existing health insurance":
-                pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
