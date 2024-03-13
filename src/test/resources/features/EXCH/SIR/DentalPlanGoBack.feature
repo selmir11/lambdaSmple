@@ -52,6 +52,5 @@ Feature: Dental Plans page tests
     Then I click continue on medical plan results page
     Then I click on back button on dental Plan Results
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Bronze HDHP" medical plan
-   # And I select the first medical plan
+    And I select the first medical plan
     Then I click continue on medical plan results page
