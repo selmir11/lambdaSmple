@@ -14,18 +14,18 @@ public class SharedData {
     private static String sftpPathToDownload;
     private static String sftpPathToUpload;
     private static String accountId;
+    private static int totalMembersOnTest;
+
 //    private static String selectedMedicalPlanName;
 //    private static String selectedDentalPlanName;
-//    private static String selectedMedicalPlanStartDate;
-//    private static String selectedMedicalPlanEndDate;
-//    private static String selectedDentalPlanStartDate;
-//    private static String selectedDentalPlanEndDate;
+    // TO DO: Make the subscriber details a list
+    private static String selectedMedicalPlanStartDate;
+    private static String selectedMedicalPlanEndDate;
+    private static String selectedDentalPlanStartDate;
+    private static String selectedDentalPlanEndDate;
+    private static String financialStartDate;
 //    private static String medicalPremiumAmount;
 //    private static String medicalEAPID;
-//    private static String medicalBenefitStartDate;
-//    private static String medicalBenefitEndDate;
-//    private static String dentalBenefitStartDate;
-//    private static String dentalBenefitEndDate;
 //    private static String dentalPremiumAmount;
 //    private static String dentalEAPID;
 
@@ -80,6 +80,34 @@ public class SharedData {
     public static String getAccountId(){ return accountId; }
 
     public static void setAccountId(String accountId){SharedData.accountId = accountId; }
+
+    public static int getTotalMembersOnTest(){ return totalMembersOnTest; }
+
+    public static void setTotalMembersOnTest(int totalMembersOnTest){ SharedData.totalMembersOnTest = totalMembersOnTest; }
+
+    public static String getSelectedMedicalPlanStartDate(){ return selectedMedicalPlanStartDate; }
+
+    public static void setSelectedMedicalPlanStartDate(String startDate){ SharedData.selectedMedicalPlanStartDate = startDate; }
+
+    public static String getSelectedMedicalPlanEndDate(){ return selectedMedicalPlanEndDate; }
+
+    public static void setSelectedMedicalPlanEndDate(String endDate){ SharedData.selectedMedicalPlanEndDate = endDate; }
+
+    public static String getSelectedDentalPlanStartDate(){ return selectedDentalPlanStartDate; }
+
+    public static void setSelectedDentalPlanStartDate(String dentalStartDate){ SharedData.selectedDentalPlanStartDate = dentalStartDate; }
+
+    public static String getSelectedDentalPlanEndDate(){ return selectedDentalPlanEndDate; }
+
+    public static void setSelectedDentalPlanEndDate(String dentalPlanEndDate){ SharedData.selectedDentalPlanEndDate = dentalPlanEndDate; }
+
+    public static String getFirstPlanNameOnDentalResultsPage(){ return firstPlanNameOnDentalResultsPage; }
+
+    public static void setFirstPlanNameOnDentalResultsPage(String firstDentalPlan){ SharedData.firstPlanNameOnDentalResultsPage = firstDentalPlan; }
+
+    public static String getFinancialStartDate(){ return financialStartDate; }
+
+    public static void setFinancialStartDate(String financialStartDate){ SharedData.financialStartDate = financialStartDate; }
 
     public static void reset(){
         emailId = null;

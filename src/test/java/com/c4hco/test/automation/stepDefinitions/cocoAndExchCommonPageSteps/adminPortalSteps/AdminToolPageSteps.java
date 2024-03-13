@@ -1,6 +1,6 @@
-package com.c4hco.test.automation.stepDefinitions.exchSteps;
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 
-import com.c4hco.test.automation.pages.exchPages.AdminLceToolPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminLceToolPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 

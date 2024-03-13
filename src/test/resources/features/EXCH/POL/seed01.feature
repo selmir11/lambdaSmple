@@ -1,6 +1,8 @@
 Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
 
+  @test1
   Scenario: Seed 01 For Exchange
+    Given I set the total members for the test as 1
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -53,51 +55,49 @@ Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
     And I validate I am on the "Login" page
     When I login as Admin User
     And I validate I am on the "Admin dashboard" page
-
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
-
     And I look up with account id on admin tool page
     And I change effective date to "0101" of current year from admin portal
-
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
-
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-#  # test step - below
-#    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
-
-#    # select Elevate Health Plans Colorado Option Bronze plan
-     And I select the first medical plan
-     Then I click continue on medical plan results page
-#    # select Delta Dental of Colorado Family Basic Plan
+    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
+    Then I click continue on medical plan results page
+    And I select "Delta Dental of Colorado Family Basic" Plan
      Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
     And I click continue on initial payment page
-
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-
+    # validate welcome page and verbiage on this page (not covered by orion)
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
+   # And I Validate the correct enrolled plans are displayed on account overview page (not covered by orion)
     Then I click on ClickHere link for "My Plans"
-#    Then verify plan enrollment on UI - what needs to be verified here?
+    Then I validate I am on the "My Policies" page
+
+    And I validate medical plan details from my policies page
+    And I validate dental plan details from my policies page
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+   And I click on to Back to Current Plan Details button
+   And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"

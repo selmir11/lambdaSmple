@@ -83,7 +83,7 @@ public class MemberIdProofingPage {
 
     public void validateTheVerbiageEs() {
         SoftAssert softAssert = new SoftAssert();
-        whoAreYouPage.ContinueId();
+        whoAreYouPage.ContinueId(); // This should not be referenced here - please move from here :: TO DO
 
         basicActions.waitForElementToBePresent(textIdProofingInitialQuestionHeader, 30);
 
