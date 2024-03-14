@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.SharedData;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,7 +48,7 @@ public class AdminPortalSearchPage {
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
-    public void searchForUser() {
+    public void searchForUser(){
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         searchInputList.get(1).sendKeys(SharedData.getFirstName());
         searchInputList.get(2).sendKeys(SharedData.getLastName());
@@ -55,79 +56,40 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
-    public void clickEmailLinkFrmSrchResults() {
+    public void clickEmailLinkFrmSrchResults(){
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
 
-    public void setAccountId() {
+    public void setAccountId(){
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
-        String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
         SharedData.setAccountId(accId);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption) {
+    public void clickFromApplicationLinksDropdown(String dropdownOption){
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
-        appLinksDropDown.click();
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
     }
 
     public void logoutFromAdmin() {
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        basicActions.waitForElementToBePresent(dropdownArrow,100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        basicActions.waitForElementToBePresent(logoutAdmin,100);
         logoutAdmin.click();
     }
 
-    public void navigateToPreviousPage() {
+    public void navigateToPreviousPage(){
         basicActions.getDriver().navigate().back();
     }
 
-    public void clickCreateAccount() {
-        basicActions.waitForElementListToBePresent(buttonsList, 10);
+    public void clickCreateAccount(){
+        basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
-
-
-    @FindBy(css = "#broker")
-    WebElement cocoBroker;
-
-    @FindBy(css = "#programManager")
-    WebElement cocoProgramManager;
-
-    @FindBy(css = "#agency")
-    WebElement cocoAgency;
-
-    @FindBy(id = "cocoIndividual")
-    WebElement cocoIndividual;
-
-
-    public void checkUserTypeToSearch(String selectUserTypeToSearch) {
-        switch (selectUserTypeToSearch) {
-            case "cocoBroker":
-                basicActions.waitForElementToBePresent(cocoBroker, 15);
-                cocoBroker.click();
-                break;
-            case "cocoProgramManager":
-                basicActions.waitForElementToBePresent(cocoProgramManager, 15);
-                cocoProgramManager.click();
-                break;
-            case "cocoAgency":
-                basicActions.waitForElementToBePresent(cocoAgency, 15);
-                cocoAgency.click();
-                break;
-            case "cocoIndividual":
-                basicActions.waitForElementToBePresent(cocoIndividual, 15);
-                cocoIndividual.click();
-                break;
-
-
-        }
-    }
-
-
 }

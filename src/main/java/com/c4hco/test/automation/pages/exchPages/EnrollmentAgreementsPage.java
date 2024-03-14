@@ -20,9 +20,6 @@ public class EnrollmentAgreementsPage {
     @FindBy(css="mat-checkbox input")
     List<WebElement> agreementsChckbx;
 
-    @FindBy(id = "SOL-EnrollmentAgreements-AccountHolder")
-    WebElement signatureLabel;
-
     @FindBy(id = "SOL-EnrollmentAgreements-Signature")
     WebElement signatureInput;
 
@@ -51,7 +48,6 @@ public class EnrollmentAgreementsPage {
             basicActions.waitForElementToBeClickable(signatureInput, 10);
             signatureInput.click();
             signatureInput.sendKeys(signature);
-
     }
 
     public void clickContinue() {
