@@ -1,6 +1,6 @@
 Feature: Seed01 - Exchange --- WIP---WIP---WIP---WIP
 
-  @test1
+  @test
   Scenario: Seed 01 For Exchange
     Given I set the total members for the test as 1
     Given I open the login page on the "login" portal

@@ -27,7 +27,9 @@ public class EnrollmentAgreementsPage {
     WebElement continueBtn;
 
     public void selectAgreementsCheckbox(String checkbox) {
-        basicActions.waitForElementListToBePresent(agreementsChckbx, 20);
+        // TO DO: Update this method and remove the wait below
+        basicActions.wait(3000);
+       // basicActions.waitForElementListToBePresent(agreementsChckbx, 20);
         switch (checkbox) {
             case "Terms of Use":
                 agreementsChckbx.get(0).click();
