@@ -5,10 +5,13 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BasicActions {
     private WebDriver driver;
@@ -103,6 +106,7 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
         } catch(TimeoutException ignore){
             Log.info("Element is not present");
+            Assert.fail("Element waiting for is not displayed");
             return false;
         }
         return true;
@@ -121,17 +125,18 @@ public class BasicActions {
         }
     }
 
-//    public void waitForElementTobeClickableAndClick(WebElement webElement, int waitTime){
-//        try {
-//            new WebDriverWait(driver,
-//                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
-//            webElement.click();
-//        } catch(TimeoutException ignore){
-//            Log.info("Element is not clickable");
-//        }
-//
-//    }
-//
+    public void click(WebElement element) {
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(100))
+                .ignoring(NoSuchElementException.class);
+
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        element.click();
+    }
+
 //    public  void scrollToElement(WebElement element) {
 //        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
 //    }
@@ -145,10 +150,6 @@ public class BasicActions {
 //            }
 //        }
 //        getDriver().switchTo().window(origin);
-//    }
-
-//    public void implicitWait(int second){
-//        getDriver().manage().timeouts().implicitlyWait(second, TimeUnit.SECONDS);
 //    }
 
 }

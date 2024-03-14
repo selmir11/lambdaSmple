@@ -9,8 +9,13 @@ public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
 
     @Then("I select first dental plan")
-    public void selectDentalPlan() {
+    public void selectFirstDentalPlan() {
         dentalPlansResultsPage.selectFirstDentalPlan();
+    }
+
+    @And("I select {string}")
+    public void selectDentalPlan(String planName) {
+        dentalPlansResultsPage.selectDentalPlan(planName);
     }
 
     @Then("I click continue on dental plan results page")

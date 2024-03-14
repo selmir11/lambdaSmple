@@ -7,11 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class DentalPlansResultsPage {
     private BasicActions basicActions;
+    private Optional<Integer> optionalInt;
 
     public DentalPlansResultsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -40,6 +44,9 @@ public class DentalPlansResultsPage {
 
     @FindBy(css=".plan .header-3")
     List<WebElement> dentalPlanNames;
+
+    @FindBy(css = "pagination-template .pagination-next")
+    WebElement nextPageArrow;
 
     public void iGetFirstDentalPlaneName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
@@ -99,6 +106,39 @@ public class DentalPlansResultsPage {
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         String expectedText = ePlanID.getText();
         expectedText.equals(dentalPlanText);
-
     }
+
+
+    public void selectDentalPlan(String planName){
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get());
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+    }
+
+    private Optional<Integer> checkIfPlanPresent(String planName) {
+        basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
+        return IntStream.range(0, dentalPlanNames.size())
+                .filter(i -> dentalPlanNames.get(i).getText().equals(planName))
+                .boxed()
+                .findFirst();
+    }
+
+    private void clickPlanButton(int index){
+        String planID = "DentalPlanResults-SelectThisPlan_" + index;
+        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        ePlanID.click();
+    }
+
+    private void paginateRight(){
+        basicActions.waitForElementToBePresent(nextPageArrow, 10);
+        Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
+        nextPageArrow.click();
+    }
+
 }
