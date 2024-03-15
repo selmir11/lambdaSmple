@@ -1,5 +1,3 @@
-# new feature
-# Tags: optional
 
 Feature: checking Let's chat functionality on My Documents page
 
@@ -9,9 +7,10 @@ Feature: checking Let's chat functionality on My Documents page
   Then I login as Admin User
   And I validate I am on the "Admin dashboard" page
   Then I check "cocoIndividual" user type to search on Admin Portal dashboard
+  Then I click search button on admin portal
 
 
-   # Then I click "search"
+
    # Then I validate chat widget is present
    # And I open on chat widget
    # Then I minimize the chat window

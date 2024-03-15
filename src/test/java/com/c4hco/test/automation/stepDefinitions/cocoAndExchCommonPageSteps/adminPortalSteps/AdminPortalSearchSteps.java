@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adm
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalSearchPage;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -22,23 +23,24 @@ public class AdminPortalSearchSteps {
     }
 
     @And("I search for user and click email from search results")
-    public void changeEffectiveDateForAccount(){
+    public void changeEffectiveDateForAccount() {
         adminPortalSearchPage.searchForUser();
         adminPortalSearchPage.clickEmailLinkFrmSrchResults();
     }
 
     @And("I click {string} from application links dropdown")
-    public void selectOptionFromApplicationLinks(String appLinksDropdownOption){
+    public void selectOptionFromApplicationLinks(String appLinksDropdownOption) {
         adminPortalSearchPage.clickFromApplicationLinksDropdown(appLinksDropdownOption);
     }
 
     @And("I check {string} user type to search on Admin Portal dashboard")
-    public void cocoCheckUserTypeToSearch(String selectUserTypeToSearch ){
+    public void cocoCheckUserTypeToSearch(String selectUserTypeToSearch) {
         adminPortalSearchPage.checkUserTypeToSearch(selectUserTypeToSearch);
     }
 
+    @Then("I click search button on admin portal")
+    public void clickSearchOnAdminPortal() {
+        adminPortalSearchPage.clickSearchButtonOnAdminPortal();
+    }
 
 }
-
-
-
