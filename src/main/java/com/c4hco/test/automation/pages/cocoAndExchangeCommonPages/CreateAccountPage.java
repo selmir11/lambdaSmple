@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.PolicyMember;
 import com.c4hco.test.automation.utils.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
@@ -127,25 +128,29 @@ public class CreateAccountPage {
     }
 
     public void initializeData(){
-        SharedData.setFirstName(getUniqueString(8));
-        SharedData.setLastName(getUniqueString(8));
-        SharedData.setInitials(String.valueOf(SharedData.getFirstName().charAt(1)+SharedData.getLastName().charAt(1)));
-        SharedData.setEmailId(SharedData.getLastName() + SharedData.getInitials() + "@test.com");
-        SharedData.setPhoneNumber((String) generatePhoneNumber());
-        SharedData.setPassword("ALaska12!");
+        PolicyMember subscriber = new PolicyMember();
+        subscriber.setFirstName(getUniqueString(8)+"TestMember");
+        subscriber.setLastName(getUniqueString(8)+"Test");
+        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        SharedData.setSubscriber(subscriber);
     }
 
     public void addDetails(){
         initializeData();
-        firstName.sendKeys(SharedData.getFirstName());
-        lastName.sendKeys(SharedData.getLastName());
-        email.sendKeys(SharedData.getEmailId());
-        phoneNumber.sendKeys(SharedData.getPhoneNumber());
-        password.sendKeys(SharedData.getPassword());
-        confirmPassword.sendKeys(SharedData.getPassword());
+        PolicyMember subscriber = SharedData.getSubscriber();
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        email.sendKeys(subscriber.getEmailId());
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
+        SharedData.setSubscriber(subscriber);
     }
+
     public void validateHelpText(String language){
         switch(language) {
         case "English":

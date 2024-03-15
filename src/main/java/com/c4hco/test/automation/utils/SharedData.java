@@ -1,33 +1,24 @@
 package com.c4hco.test.automation.utils;
 
+import java.util.List;
+
 public class SharedData {
-    private static String emailId;
-    private static String fName;
-    private static String lName;
-    private static String initials;
-    private static String phNumber;
-    private static String password;
     private static String firstPlanNameOnMedicalResultsPage;
     private static String firstPlanNameOnDentalResultsPage;
     private static String appType;
     private static String fileNameToDownloadFromSftp;
     private static String sftpPathToDownload;
     private static String sftpPathToUpload;
-    private static String accountId;
-    private static int totalMembersOnTest;
 
-//    private static String selectedMedicalPlanName;
-//    private static String selectedDentalPlanName;
-    // TO DO: Make the subscriber details a list
+
     private static String selectedMedicalPlanStartDate;
     private static String selectedMedicalPlanEndDate;
     private static String selectedDentalPlanStartDate;
     private static String selectedDentalPlanEndDate;
     private static String financialStartDate;
-//    private static String medicalPremiumAmount;
-//    private static String medicalEAPID;
-//    private static String dentalPremiumAmount;
-//    private static String dentalEAPID;
+
+    private static PolicyMember subscriber;
+    private static List<PolicyMember> members;
 
     public static String getfirstPlanNameOnMedicalResultsPage() {
         return firstPlanNameOnMedicalResultsPage;
@@ -36,30 +27,6 @@ public class SharedData {
     public static void setfirstPlanNameOnMedicalResultsPage(String firstPlanNameOnMedicalResultsPage) {
         SharedData.firstPlanNameOnMedicalResultsPage = firstPlanNameOnMedicalResultsPage;
     }
-
-    public static String getFirstName(){ return fName; }
-
-    public static void setFirstName(String fName){ SharedData.fName = fName; }
-
-    public static String getLastName(){ return lName; }
-
-    public static void setLastName(String lName){ SharedData.lName = lName; }
-
-    public static String getInitials(){ return initials; }
-
-    public static void setInitials(String initials){ SharedData.initials = initials; }
-
-    public static String getEmailId(){ return emailId; }
-
-    public static void setEmailId(String emailId){ SharedData.emailId = emailId; }
-
-    public static String getPhoneNumber(){ return phNumber; }
-
-    public static void setPhoneNumber(String phNumber){ SharedData.phNumber = phNumber; }
-
-    public static String getPassword(){ return password;}
-
-    public static void setPassword(String password){SharedData.password = password; }
 
     public static String getAppType(){ return appType; }
 
@@ -76,14 +43,6 @@ public class SharedData {
     public static String getSftpPathToUpload(){ return sftpPathToUpload; }
 
     public static void setSftpPathToUpload(String sftpPath){SharedData.sftpPathToUpload = sftpPath; }
-
-    public static String getAccountId(){ return accountId; }
-
-    public static void setAccountId(String accountId){SharedData.accountId = accountId; }
-
-    public static int getTotalMembersOnTest(){ return totalMembersOnTest; }
-
-    public static void setTotalMembersOnTest(int totalMembersOnTest){ SharedData.totalMembersOnTest = totalMembersOnTest; }
 
     public static String getSelectedMedicalPlanStartDate(){ return selectedMedicalPlanStartDate; }
 
@@ -105,13 +64,14 @@ public class SharedData {
 
     public static void setFirstPlanNameOnDentalResultsPage(String firstDentalPlan){ SharedData.firstPlanNameOnDentalResultsPage = firstDentalPlan; }
 
-    public static String getFinancialStartDate(){ return financialStartDate; }
-
     public static void setFinancialStartDate(String financialStartDate){ SharedData.financialStartDate = financialStartDate; }
 
-    public static void reset(){
-        emailId = null;
-    }
+    public static void setSubscriber(PolicyMember subscriber){ SharedData.subscriber = subscriber; }
 
+    public static PolicyMember getSubscriber(){ return subscriber; }
+
+    public static void setMembers(List<PolicyMember> members){ SharedData.members = members; }
+
+    public static List<PolicyMember> getMembers() { return members; }
 
 }

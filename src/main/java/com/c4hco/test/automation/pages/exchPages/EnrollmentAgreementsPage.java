@@ -46,10 +46,8 @@ public class EnrollmentAgreementsPage {
     }
 
     public void enterSignature(){
-        String signature = SharedData.getFirstName()+ " "+SharedData.getLastName();
             basicActions.waitForElementToBeClickable(signatureInput, 10);
-            signatureInput.click();
-            signatureInput.sendKeys(signature);
+            signatureInput.sendKeys(SharedData.getSubscriber().getSignature());
     }
 
     public void clickContinue() {
