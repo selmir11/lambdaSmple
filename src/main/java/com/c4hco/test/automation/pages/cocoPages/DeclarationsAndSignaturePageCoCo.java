@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.utils.RandomDynamicData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,15 +32,8 @@ public class DeclarationsAndSignaturePageCoCo {
     WebElement continueButton;
 
     public void enterSignatureCoCo(){
-        basicActions.waitForElementToBePresent(signatureLabel, 20);
-        String label = signatureLabel.getText();
-        label = label.replaceAll("Electronic Signature:", "");
-        label = label.trim();
-
         basicActions.waitForElementToBePresent(signatureInputField, 20);
-        signatureInputField.clear();
-        signatureInputField.click();
-        signatureInputField.sendKeys(label);
+        signatureInputField.sendKeys(SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName());
     }
 
     public void goBack() {
@@ -47,6 +42,6 @@ public class DeclarationsAndSignaturePageCoCo {
     }
 
     public void submitApplicationCoCo()  {
-        continueButton.click();
+        basicActions.click(continueButton);
     }
 }
