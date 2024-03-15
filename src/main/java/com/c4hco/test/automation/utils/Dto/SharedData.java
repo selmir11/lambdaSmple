@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.utils;
+package com.c4hco.test.automation.utils.Dto;
 
 import java.util.List;
 
