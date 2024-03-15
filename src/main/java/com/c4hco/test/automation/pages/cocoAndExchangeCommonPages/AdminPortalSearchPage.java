@@ -49,7 +49,23 @@ public class AdminPortalSearchPage {
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
-    public void searchForUser(){
+    @FindBy(css = "#broker")
+    WebElement broker;
+
+    @FindBy(id = "programManager")
+    WebElement programManager;
+
+    @FindBy(css = "#agency")
+    WebElement agency;
+
+    @FindBy(id = "cocoIndividual")
+    WebElement cocoIndividual;
+
+    @FindBy(id = "individual")
+    WebElement exchangeIndividual;
+
+
+    public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         PolicyMember subscriber = SharedData.getSubscriber();
@@ -59,22 +75,22 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
-    public void clickEmailLinkFrmSrchResults(){
+    public void clickEmailLinkFrmSrchResults() {
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
 
-    public void setAccountId(){
+    public void setAccountId() {
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
-        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+        String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         PolicyMember subscriber = SharedData.getSubscriber();
         subscriber.setAccountId(accId);
         SharedData.setSubscriber(subscriber);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption){
+    public void clickFromApplicationLinksDropdown(String dropdownOption) {
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
@@ -83,18 +99,53 @@ public class AdminPortalSearchPage {
 
     public void logoutFromAdmin() {
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow,100);
+        basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin,100);
+        basicActions.waitForElementToBePresent(logoutAdmin, 100);
         logoutAdmin.click();
     }
 
-    public void navigateToPreviousPage(){
+    public void navigateToPreviousPage() {
         basicActions.getDriver().navigate().back();
     }
 
-    public void clickCreateAccount(){
-        basicActions.waitForElementListToBePresent(buttonsList,10);
+    public void clickCreateAccount() {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(2).click();
+    }
+
+    public void clickSearchButtonOnAdminPortal() {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
+        buttonsList.get(0).click();
+    }
+
+    public void checkUserTypeToSearch(String selectUserTypeToSearch) {
+        switch (selectUserTypeToSearch) {
+            case "broker":
+                basicActions.waitForElementToBePresent(broker, 15);
+                broker.click();
+                break;
+            case "cocoProgramManager":
+                basicActions.waitForElementToBePresent(programManager, 15);
+                programManager.click();
+                break;
+            case "cocoAgency":
+                basicActions.waitForElementToBePresent(agency, 15);
+                agency.click();
+                break;
+            case "cocoIndividual":
+                basicActions.waitForElementToBePresent(cocoIndividual, 15);
+                cocoIndividual.click();
+                break;
+            case "exchangeIndividual":
+                basicActions.waitForElementToBePresent(exchangeIndividual, 15);
+                exchangeIndividual.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
+
+
+        }
+
     }
 }

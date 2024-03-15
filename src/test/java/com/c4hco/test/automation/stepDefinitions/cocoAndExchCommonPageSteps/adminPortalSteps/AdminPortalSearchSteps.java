@@ -2,7 +2,6 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adm
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalSearchPage;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -34,7 +33,7 @@ public class AdminPortalSearchSteps {
     }
 
     @And("I check {string} user type to search on Admin Portal dashboard")
-    public void cocoCheckUserTypeToSearch(String selectUserTypeToSearch) {
+    public void checkUserTypeToSearch(String selectUserTypeToSearch) {
         adminPortalSearchPage.checkUserTypeToSearch(selectUserTypeToSearch);
     }
 
@@ -42,5 +41,6 @@ public class AdminPortalSearchSteps {
     public void clickSearchOnAdminPortal() {
         adminPortalSearchPage.clickSearchButtonOnAdminPortal();
     }
+
 
 }
