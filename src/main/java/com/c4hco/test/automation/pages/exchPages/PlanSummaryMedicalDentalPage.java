@@ -15,11 +15,12 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-PlanSummary-Continue")
+    // locator in stg is diff - @FindBy(id = "SHP-PlanSummary-Continue")
+    @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
     public void continuePlanSummaryPage(){
-        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 10);
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
 }

@@ -126,7 +126,6 @@ public class BasicActions {
     }
 
     public void click(WebElement element) {
-
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(100))
@@ -135,6 +134,15 @@ public class BasicActions {
         wait.until(ExpectedConditions.visibilityOf(element));
 
         element.click();
+    }
+
+    public void waitForPresence(WebElement webElement){
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(100))
+                .ignoring(NoSuchElementException.class);
+
+        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
 //    public  void scrollToElement(WebElement element) {

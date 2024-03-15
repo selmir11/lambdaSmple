@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

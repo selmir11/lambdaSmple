@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.utils.ApplicationProperties;
-import com.c4hco.test.automation.utils.SharedData;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;

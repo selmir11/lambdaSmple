@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -291,7 +291,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
         clickGetAssistanceLink();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
-        softAssert.assertEquals(userNameLink.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(userNameLink.getText(), SharedData.getSubscriber().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
@@ -310,7 +310,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
         clickGetAssistanceLink();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
-        softAssert.assertEquals(userNameLink.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(userNameLink.getText(), SharedData.getSubscriber().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
@@ -326,7 +326,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
         softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
-        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getSubscriber().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
@@ -346,7 +346,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
         softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
-        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getEmailId());
+        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getSubscriber().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp();
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");

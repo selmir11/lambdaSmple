@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
-import org.openqa.selenium.Alert;
+import com.c4hco.test.automation.utils.Dto.PolicyMember;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,43 +49,32 @@ public class AdminPortalSearchPage {
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
-    @FindBy(css = "#broker")
-    WebElement broker;
-
-    @FindBy(id = "programManager")
-    WebElement programManager;
-
-    @FindBy(css = "#agency")
-    WebElement agency;
-
-    @FindBy(id = "cocoIndividual")
-    WebElement cocoIndividual;
-
-    @FindBy(id = "individual")
-    WebElement exchIndividual;
-
-    public void searchForUser() {
+    public void searchForUser(){
+        // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
-        searchInputList.get(1).sendKeys(SharedData.getFirstName());
-        searchInputList.get(2).sendKeys(SharedData.getLastName());
-        searchInputList.get(3).sendKeys(SharedData.getEmailId());
+        PolicyMember subscriber = SharedData.getSubscriber();
+        searchInputList.get(1).sendKeys(subscriber.getFirstName());
+        searchInputList.get(2).sendKeys(subscriber.getLastName());
+        searchInputList.get(3).sendKeys(subscriber.getEmailId());
         buttonsList.get(0).click();
     }
 
-    public void clickEmailLinkFrmSrchResults() {
+    public void clickEmailLinkFrmSrchResults(){
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
 
-    public void setAccountId() {
+    public void setAccountId(){
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
-        String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-        SharedData.setAccountId(accId);
+        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+        PolicyMember subscriber = SharedData.getSubscriber();
+        subscriber.setAccountId(accId);
+        SharedData.setSubscriber(subscriber);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption) {
+    public void clickFromApplicationLinksDropdown(String dropdownOption){
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
@@ -94,52 +83,18 @@ public class AdminPortalSearchPage {
 
     public void logoutFromAdmin() {
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        basicActions.waitForElementToBePresent(dropdownArrow,100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        basicActions.waitForElementToBePresent(logoutAdmin,100);
         logoutAdmin.click();
     }
 
-    public void navigateToPreviousPage() {
+    public void navigateToPreviousPage(){
         basicActions.getDriver().navigate().back();
     }
 
-    public void clickCreateAccount() {
-        basicActions.waitForElementListToBePresent(buttonsList, 10);
+    public void clickCreateAccount(){
+        basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
-
-    public void clickSearchButtonOnAdminPortal() {
-        basicActions.waitForElementListToBePresent(buttonsList, 10);
-        buttonsList.get(0).click();
-    }
-
-    public void checkUserTypeToSearch(String selectUserTypeToSearch) {
-        switch (selectUserTypeToSearch) {
-             case "exchIndividual":
-                basicActions.waitForElementToBePresent(exchIndividual, 15);
-                exchIndividual.click();
-                break;
-             case "broker":
-                basicActions.waitForElementToBePresent(broker, 15);
-                broker.click();
-                break;
-            case "programManager":
-                basicActions.waitForElementToBePresent(programManager, 15);
-                programManager.click();
-                break;
-            case "agency":
-                basicActions.waitForElementToBePresent(agency, 15);
-                agency.click();
-                break;
-            case "cocoIndividual":
-                basicActions.waitForElementToBePresent(cocoIndividual, 15);
-                cocoIndividual.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
-
-        }
-    }
 }
-
