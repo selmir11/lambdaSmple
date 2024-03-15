@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.PolicyMember;
-import com.c4hco.test.automation.utils.SharedData;
+import com.c4hco.test.automation.utils.Dto.PolicyMember;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
