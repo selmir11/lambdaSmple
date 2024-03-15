@@ -16,4 +16,9 @@ public class GroupingMembersMedicalSteps {
         groupingMembersMedical.clickOnEditMedicalGroupinglink();
     }
 
+    @Then("I click continue on grouping medical members")
+    public void clickContinue(){
+        groupingMembersMedical.clickContinue();
+    }
+
 }
