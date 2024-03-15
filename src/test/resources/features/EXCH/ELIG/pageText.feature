@@ -112,7 +112,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I select "member" from the who are you question
     And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
-    Then I validate I am on the "RIDP - Congratulations" page
+    Then I validate I am on the "Identify Proofing - Congratulations" page
     And I validate the verbiage on the RIDP - Congratulations page in "English"
     When I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Spanish" page
