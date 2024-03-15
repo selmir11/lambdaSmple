@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -157,6 +157,7 @@ public class MedicalPlanResultsPage {
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
         return IntStream.range(0, medicalPlanNamesList.size())
                 .filter(i -> medicalPlanNamesList.get(i).getText().equals(planName))
                 .boxed()
@@ -171,6 +172,7 @@ public class MedicalPlanResultsPage {
     }
 
     private void paginateRight(){
+        basicActions.waitForElementToBePresent(nextPageArrow, 10);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
     }

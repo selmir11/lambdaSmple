@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import org.junit.Assert;
@@ -9,11 +8,6 @@ import org.openqa.selenium.Dimension;
 
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
-
-    @And("I set the total members for the test as {int}")
-    public void iSetTotalMembersNeededForTest(int totalMembers){
-        SharedData.setTotalMembersOnTest(totalMembers);
-    }
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page){
@@ -136,9 +130,6 @@ public class BasicSteps {
             case "Compare":
                 pageUrl = "compare";
                 break;
-            case "RIDP - Congratulations":
-                pageUrl = "nes/IdProofingSecondaryRequest";
-                break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
@@ -174,6 +165,51 @@ public class BasicSteps {
                 break;
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
+                break;
+            case "Tell us about yourself":
+                pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
+                break;
+            case "Family Overview":
+                pageUrl = "nes/household";
+                break;
+            case "Tax status":
+                pageUrl = "nes/taxReturns";
+                break;
+            case "Employment Summary":
+                pageUrl = "/employmentInfo/summary";
+                break;
+            case "Other Health Insurance":
+                pageUrl = "nes/otherHealthInsuranceBegin";
+                break;
+            case "ESI":
+                pageUrl = "otherHealthInsurance/employerSponsored";
+                break;
+            case "HRA":
+                pageUrl = "nes/memberHra";
+                break;
+            case "Medicare":
+                pageUrl = "nes/medicare";
+                break;
+            case "VA Healthcare":
+                pageUrl = "nes/vaHealth";
+                break;
+            case "COBRA":
+                pageUrl = "nes/cobra";
+                break;
+            case "Retiree Health Plan":
+                pageUrl = "nes/retireeHealth";
+                break;
+            case "TRICARE":
+                pageUrl = "nes/tricare";
+                break;
+            case "Peace Corps":
+                pageUrl = "nes/peaceCorps";
+                break;
+            case "Individual Insurance":
+                pageUrl = "nes/individualInsurance";
+                break;
+            case "Enrollment Agreements":
+                pageUrl = "PaymentPortal/enrollmentAgreements";
                 break;
             default:
                 System.out.println("undefined page ");

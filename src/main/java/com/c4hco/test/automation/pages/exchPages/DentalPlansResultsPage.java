@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.SharedData;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,7 +45,7 @@ public class DentalPlansResultsPage {
     @FindBy(css=".plan .header-3")
     List<WebElement> dentalPlanNames;
 
-    @FindBy(css = "pagination-template .pagination-next a")
+    @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
     public void iGetFirstDentalPlaneName() {
@@ -121,6 +121,7 @@ public class DentalPlansResultsPage {
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
+        basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
         return IntStream.range(0, dentalPlanNames.size())
                 .filter(i -> dentalPlanNames.get(i).getText().equals(planName))
                 .boxed()
@@ -135,6 +136,7 @@ public class DentalPlansResultsPage {
     }
 
     private void paginateRight(){
+        basicActions.waitForElementToBePresent(nextPageArrow, 10);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
     }
