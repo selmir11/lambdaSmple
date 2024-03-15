@@ -130,9 +130,6 @@ public class BasicSteps {
             case "Compare":
                 pageUrl = "compare";
                 break;
-            case "RIDP - Congratulations":
-                pageUrl = "nes/IdProofingSecondaryRequest";
-                break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
@@ -168,6 +165,15 @@ public class BasicSteps {
                 break;
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
+                break;
+            case "Tell us about yourself":
+                pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
+                break;
+            case "Family Overview":
+                pageUrl = "nes/household";
+                break;
+            case "Tax status":
+                pageUrl = "nes/taxReturns";
                 break;
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
