@@ -19,6 +19,7 @@ public class PlanSummaryMedicalDentalPage {
     WebElement continueBtnOnPlanSummary;
 
     public void continuePlanSummaryPage(){
+        // Intermittent Failure noticed
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }

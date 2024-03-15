@@ -50,7 +50,7 @@ public class MyPoliciesPage {
     public void validateEnrolledMedicalPlanDetails(){
         // **** Works when only one member with one medical plan **** //
         basicActions.waitForElementListToBePresent(memberNames, 10);
-        softAssert.assertEquals(memberNames.get(0).getText(), SharedData.getFirstName()+" "+SharedData.getLastName(), "Name did not match on medical card");
+        softAssert.assertEquals(memberNames.get(0).getText(), SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName(), "Name did not match on medical card");
 
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), SharedData.getSelectedMedicalPlanStartDate(), "medical plan date did not match");
         softAssert.assertEquals(planStartAndEndDate.get(1).getText(), SharedData.getSelectedMedicalPlanEndDate(), "medical plan end date did not match");
@@ -73,7 +73,7 @@ public class MyPoliciesPage {
     public void validateDentalPlanDetails(){
         // **** Works when only one member with one medical plan and one dental plan **** //
         basicActions.waitForElementListToBePresent(memberNames, 10);
-        softAssert.assertEquals(memberNames.get(1).getText(), SharedData.getFirstName()+" "+SharedData.getLastName(), "member name on dental card did not match");
+        softAssert.assertEquals(memberNames.get(1).getText(), SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName(), "member name on dental card did not match");
         softAssert.assertEquals(planNames.get(1).getText(), SharedData.getFirstPlanNameOnDentalResultsPage(),
                 "dental plan start date did not match. Actual on pagr::"+planNames.get(1).getText()+"::Expected::"+SharedData.getFirstPlanNameOnDentalResultsPage());
         softAssert.assertEquals(planStartAndEndDate.get(2).getText(), SharedData.getSelectedDentalPlanStartDate(), "Dental start date didn't match");
@@ -101,7 +101,7 @@ public class MyPoliciesPage {
     public void validateMedPlanDetailsFromPlanHistory(){
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(SharedData.getFirstName()+" "+SharedData.getLastName()));
+        softAssert.assertTrue(tableRecord.get(0).getText().equals(SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName()));
         softAssert.assertTrue(tableRecord.get(1).getText().equals(SharedData.getfirstPlanNameOnMedicalResultsPage()));
 //        // -- premium, financial help
 //        softAssert.assertTrue(tableRecord.get(2).getText().equals()));
@@ -119,7 +119,7 @@ public class MyPoliciesPage {
     public void validateDentalPlanDetailsFromPlanHistory(){
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(SharedData.getFirstName()+" "+SharedData.getLastName()));
+        softAssert.assertTrue(tableRecord.get(0).getText().equals(SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName()));
         softAssert.assertTrue(tableRecord.get(1).getText().equals(SharedData.getFirstPlanNameOnDentalResultsPage()));
 //        // -- premium, financial help
 //        softAssert.assertTrue(tableRecord.get(2).getText().equals()));

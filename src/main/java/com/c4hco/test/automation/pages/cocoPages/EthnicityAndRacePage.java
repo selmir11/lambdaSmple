@@ -105,8 +105,8 @@ public class EthnicityAndRacePage {
 
     public void verifyTextOnEthnicityAndRaceEnglish(){
         softAssert.assertEquals(hdrEthnicityAndRace.getText(), "Ethnicity and Race: " +
-                Character.toUpperCase(SharedData.getFirstName().charAt(0)) + SharedData.getFirstName().substring(1) + " " +
-                Character.toUpperCase(SharedData.getLastName().charAt(0)) + SharedData.getLastName().substring(1));
+                Character.toUpperCase(SharedData.getSubscriber().getFirstName().charAt(0)) + SharedData.getSubscriber().getFirstName().substring(1) + " " +
+                Character.toUpperCase(SharedData.getSubscriber().getLastName().charAt(0)) + SharedData.getSubscriber().getLastName().substring(1));
         softAssert.assertEquals(EthnicityAndRaceText.get(0).getText(), "Hispanic/Latino");
         softAssert.assertEquals(EthnicityAndRaceText.get(1).getText(), "Non-Hispanic/Latino");
         softAssert.assertEquals(EthnicityAndRaceText.get(2).getText(), "I prefer not to answer");

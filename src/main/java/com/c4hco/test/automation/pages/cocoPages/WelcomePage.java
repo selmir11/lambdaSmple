@@ -164,7 +164,7 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePageNoPolicyEnglish(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getFirstName() +"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getSubscriber().getFirstName() +"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Apply for health insurance");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to get started.");
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
@@ -184,7 +184,7 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePageNoPolicySpanish(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getFirstName() +"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getSubscriber().getFirstName() +"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Solicite un seguro de salud");
         softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para comenzar.");
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");

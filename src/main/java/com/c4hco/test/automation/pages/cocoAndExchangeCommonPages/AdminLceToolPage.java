@@ -48,7 +48,7 @@ public class AdminLceToolPage {
             softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
             softAssert.assertAll();
             basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
-            adminLCEToolAccountIdInput.sendKeys(SharedData.getAccountId());
+            adminLCEToolAccountIdInput.sendKeys(SharedData.getSubscriber().getAccountId());
             lookUpBtn.click();
             // validate look up returned results
             basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
