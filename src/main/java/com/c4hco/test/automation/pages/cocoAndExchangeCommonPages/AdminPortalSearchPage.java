@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.PolicyMember;
 import com.c4hco.test.automation.utils.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -49,10 +50,12 @@ public class AdminPortalSearchPage {
     WebElement logoutAdmin;
 
     public void searchForUser(){
+        // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
-        searchInputList.get(1).sendKeys(SharedData.getFirstName());
-        searchInputList.get(2).sendKeys(SharedData.getLastName());
-        searchInputList.get(3).sendKeys(SharedData.getEmailId());
+        PolicyMember subscriber = SharedData.getSubscriber();
+        searchInputList.get(1).sendKeys(subscriber.getFirstName());
+        searchInputList.get(2).sendKeys(subscriber.getLastName());
+        searchInputList.get(3).sendKeys(subscriber.getEmailId());
         buttonsList.get(0).click();
     }
 
@@ -66,7 +69,9 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
-        SharedData.setAccountId(accId);
+        PolicyMember subscriber = SharedData.getSubscriber();
+        subscriber.setAccountId(accId);
+        SharedData.setSubscriber(subscriber);
     }
 
     public void clickFromApplicationLinksDropdown(String dropdownOption){
