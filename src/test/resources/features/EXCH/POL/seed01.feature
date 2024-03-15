@@ -1,6 +1,7 @@
 Feature: Seed01 - Exchange
 
-  Background: Seed 01 For Exchange
+  @test1
+  Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -93,7 +94,7 @@ Feature: Seed01 - Exchange
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
 
-#    And I validate medical plan details from my policies page
+    And I validate medical plan details from my policies page
 #    And I validate dental plan details from my policies page
 #    And I click View Plan History link from medical plan card
 #    And I validate medical plan details from plan history
