@@ -125,9 +125,4 @@ public class MyPoliciesPage {
         backToCurPlansBtn.click();
     }
 
-    public void scrollUp(){
-
-    }
-
-
 }

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PostgresStatementExecutor {
-    public ResultSet executeQuery(String sql) throws SQLException {
+    public ResultSet executeQuery(String sql) {
         Connection connection = PostgresSQLConnection.getInstance();
         ResultSet resultSet = null;
 
@@ -23,5 +23,4 @@ public class PostgresStatementExecutor {
         return resultSet;
     }
 
-    // public List<policyTableMemberObj> getResultListFromPolicy
 }

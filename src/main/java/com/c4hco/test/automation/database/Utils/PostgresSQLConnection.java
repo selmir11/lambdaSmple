@@ -38,7 +38,6 @@ public class PostgresSQLConnection {
             String password = ApplicationProperties.getInstance().getProperty("dbPassword");;
 
             System.out.println("dbUname::"+username);
-            System.out.println("dbpwd::"+password);
             System.out.println("url::"+url
             );
             // Create the database connection
