@@ -12,6 +12,22 @@ public class PolicyMember {
     String ssn;
     String relationshipToSubscriber;
     String signature;
+    String dob;
+    String zipcode;
+    String mailingAddress;
+    String mailingZipCode;
+    String gender;
+    String medicalPlan;
+    String medicalPlanStartDate;
+    String medicalPlanEndDate;
+    String dentalPlan;
+    String dentalPlanStartDate;
+    String dentalPlanEndDate;
+    String financialStartDate;
+    String medicalPremiumAmt;
+    String dentalPremiumAmt;
+    String aptcAmt;
+    String isTobaccoUser;
 
     String accountId;
     String policyId;

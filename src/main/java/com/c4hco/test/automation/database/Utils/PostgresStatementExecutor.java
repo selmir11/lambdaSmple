@@ -1,8 +1,8 @@
-package com.c4hco.test.automation.dbUtils;
+package com.c4hco.test.automation.database.Utils;
 
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PostgresStatementExecutor {
@@ -22,4 +22,6 @@ public class PostgresStatementExecutor {
         }
         return resultSet;
     }
+
+    // public List<policyTableMemberObj> getResultListFromPolicy
 }

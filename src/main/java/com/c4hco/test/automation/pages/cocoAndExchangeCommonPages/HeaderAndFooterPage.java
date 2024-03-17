@@ -269,12 +269,11 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementToBeClickable(signOutLink, 20);
-                signOutLink.click();
+                basicActions.scrollToElement(signOutLink);
+                basicActions.click(signOutLink);
                 break;
             case "NonElmo":
-                basicActions.waitForElementToBeClickable(signOutLinkNonElmo, 20);
-                signOutLinkNonElmo.click();
+                basicActions.click(signOutLinkNonElmo);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

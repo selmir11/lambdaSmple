@@ -1,13 +1,16 @@
-package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.EdiSteps;
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.DatabaseSteps;
 
+import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 
-public class EdiSteps {
+public class DbSteps {
+private DbDataProvider_Exch exchDbData = new DbDataProvider_Exch();
 
-
-   @And("I verify member details exist in policy table")
+   @And("I validate the member details in policy table")
    public void isMemberInPolicyTable(){
+      exchDbData.getDataFromPolicyTable();
+
       // get plan id and acc Id from dto
 // create policyMemberEntity List - file/db record
 // Need to use policyMemberEntity List for both policyMembers and policyAccHolderMember
@@ -16,7 +19,7 @@ public class EdiSteps {
 
    }
 
-   @And("I verify member details exist in preEdi table")
+   @And("I validate the member details in pre-edi table")
    public void isMemberInPreEdiTable(){
       // get accountId from dto
       // create ob834DetailsEntity - account records

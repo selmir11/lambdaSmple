@@ -28,7 +28,6 @@ public class MyPoliciesPageSteps {
     @And("I click View Plan History link from dental plan card")
     public void clickViewPlanHistoryDental(){
         // To DO: Update this step -
-        // get total links for all memebers
         // click on all the links and validate you go to a diff page, validate details and come back.
         myPoliciesPage.clickViewPlanHistoryFromDental();
     }
