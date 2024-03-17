@@ -5,11 +5,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 
 public class DbSteps {
-private DbDataProvider_Exch exchDbData = new DbDataProvider_Exch();
+private DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
 
    @And("I validate the member details in policy table")
    public void isMemberInPolicyTable(){
-      exchDbData.getDataFromPolicyTable();
+      exchDbDataProvider.getDataFromPolicyTable();
+      // --- Pending Validation---//
 
       // get plan id and acc Id from dto
 // create policyMemberEntity List - file/db record
@@ -21,11 +22,14 @@ private DbDataProvider_Exch exchDbData = new DbDataProvider_Exch();
 
    @And("I validate the member details in pre-edi table")
    public void isMemberInPreEdiTable(){
-      // get accountId from dto
-      // create ob834DetailsEntity - account records
-// dto should have ob834DetailsEntity
+      exchDbDataProvider.getOb83Db4Details();
+      // --- Pending Validation---//
+
       // validate the entry exists in db
-      // set what you got from db to dto in ob834DetailsEntity - setter
+   }
+
+   @And("I get the file name from the pre-edi table")
+   public void getFileName(){
 
    }
 

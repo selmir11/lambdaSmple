@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.database.dbDataProvider;
+package com.c4hco.test.automation.database.dbHandler;
 
 import com.c4hco.test.automation.database.EntityObj.PolicyTableEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
