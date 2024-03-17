@@ -1,6 +1,5 @@
 Feature: Seed01 - Exchange
 
-  @test1
   Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -75,11 +74,12 @@ Feature: Seed01 - Exchange
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan"
-     Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
     Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
     And I click continue on payment selection page
     And I click continue on initial payment page
     And I select "Terms of Use" agreement checkbox
@@ -87,7 +87,6 @@ Feature: Seed01 - Exchange
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    # validate welcome page and verbiage on this page (not covered by orion)
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
    # And I Validate the correct enrolled plans are displayed on account overview page (not covered by orion)
@@ -95,17 +94,23 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "My Policies" page
 
     And I validate medical plan details from my policies page
-#    And I validate dental plan details from my policies page
-#    And I click View Plan History link from medical plan card
-#    And I validate medical plan details from plan history
-#   And I click on to Back to Current Plan Details button
-#   And I click View Plan History link from dental plan card
-#    And I validate dental plan details from plan history
+    And I validate dental plan details from my policies page
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
-    @RT-2246
+    @RT-2246 @test1
     Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
-      When member records are processed by OB834 EDI process
+      And I validate the member details in policy table
+      And I validate the member details in pre-edi table
+      And I get the file name from the pre-edi table
+      And I validate file exists on sftp server with location ""
+
+      # Create an object to store the results we get from the giant query - combined query.
+      # execute the query and save the results
 
 #      Then member policy records should have values:
 #        | firstNamePrefix | lastNamePrefix | policy_status | policy_start_date | policy_end_date  | member_financial_start_date | member_financial_end_date |
@@ -113,9 +118,7 @@ Feature: Seed01 - Exchange
 #      And member PRE-EDI (OB834) records should have values:
 #        | firstNamePrefix | lastNamePrefix | edi_status   | maintenance_type_code | benefit_begin_date | benefit_end_date | financial_effective_date | hd_maint_type_code |
 #        | TestSubscriber  | User           | EDI_COMPLETE | 021                   | [PLANYEAR-01-01]   | [PLANYEAR-12-31] | [PLANYEAR-01-01]         | 021                |
-#      And member's OB834 files should be valid
-#
-#
+
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login

@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Dto.PolicyMember;
 import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -146,7 +147,10 @@ public class MedicalPlanResultsPage {
     }
 
     public void selectMedicalPlan(String planName){
-        do {
+        PolicyMember subscriber = SharedData.getSubscriber();
+        subscriber.setMedicalPlan(planName);
+        SharedData.setSubscriber(subscriber);
+            do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
                 clickPlanButton(optionalInt.get());

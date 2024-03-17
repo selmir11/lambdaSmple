@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.utils;
 
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -145,9 +146,9 @@ public class BasicActions {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-//    public  void scrollToElement(WebElement element) {
-//        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-//    }
+    public  void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
 
 //    public  void switchToWindow(String targetTitle) {
 //        String origin = getDriver().getWindowHandle();

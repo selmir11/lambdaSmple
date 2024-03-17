@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.dbUtils;
+package com.c4hco.test.automation.database.Queries;
 
 public class DBQueries_qa_coco {
 

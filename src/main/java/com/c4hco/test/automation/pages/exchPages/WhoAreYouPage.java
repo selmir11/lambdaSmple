@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Dto.PolicyMember;
+import com.c4hco.test.automation.utils.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -74,6 +76,7 @@ public class WhoAreYouPage {
     }
 
     public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
+        PolicyMember accHolder = SharedData.getSubscriber();
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
 
@@ -81,16 +84,21 @@ public class WhoAreYouPage {
         dropdown.selectByValue("CO");
 
         memberZip.sendKeys(zipcode);
+        accHolder.setZipcode(zipcode);
 
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
 
         memberDOB.sendKeys(dateOfBirth);
+        accHolder.setDob(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
+        accHolder.setSsn(SSNvalue);
+        SharedData.setSubscriber(accHolder);
         backSaveAndContinue.get(1).click();
     }
 
     public void ContinueId() {
+        //TO DO: How is this continue diff from above backSaveAndContinue and click?
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
         saveAndContinue.click();

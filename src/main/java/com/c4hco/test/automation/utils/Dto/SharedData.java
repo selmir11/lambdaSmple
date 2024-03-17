@@ -15,7 +15,6 @@ public class SharedData {
     private static String selectedMedicalPlanEndDate;
     private static String selectedDentalPlanStartDate;
     private static String selectedDentalPlanEndDate;
-    private static String financialStartDate;
 
     private static PolicyMember subscriber;
     private static List<PolicyMember> members;
@@ -63,8 +62,6 @@ public class SharedData {
     public static String getFirstPlanNameOnDentalResultsPage(){ return firstPlanNameOnDentalResultsPage; }
 
     public static void setFirstPlanNameOnDentalResultsPage(String firstDentalPlan){ SharedData.firstPlanNameOnDentalResultsPage = firstDentalPlan; }
-
-    public static void setFinancialStartDate(String financialStartDate){ SharedData.financialStartDate = financialStartDate; }
 
     public static void setSubscriber(PolicyMember subscriber){ SharedData.subscriber = subscriber; }
 
