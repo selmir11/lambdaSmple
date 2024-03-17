@@ -1,11 +1,15 @@
 package com.c4hco.test.automation.database.Queries;
 
+import com.c4hco.test.automation.utils.Dto.SharedData;
+
 public class DbQueries_Exch {
+    // Find OUT -- if both exch and coco has same tables and columns - if yes - get appType and pass. If not, keep coco and exch queries seperate.
+    // get the env and pass it dynamically. So this works for both qa and staging - findOut the table names for qa_exch and qa_staging is correct
+    // Find Out: Will the commented out columns be used in tests later? - For all the queries
+
+    String acctId = SharedData.getSubscriber().getAccountId();
 
     public String policyTableMixedQuery() {
-        // Find OUT -- if both exch and coco has same tables and columns - if yes - get appType and pass. If not, keep coco and exch queries seperate.
-        // get the env and pass it dynamically. So this works for both qa and staging - findOut the table names for qa_exch and qa_staging is correct
-
         return "select eph.account_id, eph.application_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
                 "eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date, epfh.csr_level, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
                 "epfh.total_premium_reduction_amt, epfh.premium_reduction_type, epfh.total_csr_amt, epmch.policy_member_coverage_status, epmh.effectuated_ind, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
@@ -23,10 +27,16 @@ public class DbQueries_Exch {
                 "and epmch.policy_member_coverage_id = emcfh.policy_member_coverage_id\n" +
                 "and ep.policy_id = eph.policy_id\n" +
                 "and ep.policy_id = epfh.policy_id\n" +
-                "and eh.account_id = '"+ "3574105690" +"'\n" +
+                "and eh.account_id = '"+acctId+"'\n" +
                 "--and eph.current_ind = '1'\n" +
                 "--and ep.coverage_type = '1'\n" +
                 "ORDER BY eph.coverage_type ASC";
+    }
+
+    public String ob834Details(){
+     return "select * from qa_exch.ob834_detail\n"+
+             "where account_id = '"+acctId+"'\n"+
+             "order by date_created DESC";
     }
 
 }
