@@ -1,8 +1,10 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.utils.*;
-import com.c4hco.test.automation.utils.Dto.PolicyMember;
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.Utils;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,11 +38,8 @@ public class LoginPage {
     @FindBy(xpath = "//a[text()='username']")
      WebElement forgotUsername;
 
-
-
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
-
 
     public LoginPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -58,6 +57,7 @@ public class LoginPage {
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
         PolicyMember subscriber = SharedData.getSubscriber();
+        System.out.println("Email and pwd::"+subscriber.getEmailId()+"::"+subscriber.getPassword());
             username.sendKeys(subscriber.getEmailId());
             password.sendKeys(subscriber.getPassword());
             signInButton.click();

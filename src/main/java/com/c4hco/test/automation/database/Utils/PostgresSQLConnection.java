@@ -1,7 +1,6 @@
-package com.c4hco.test.automation.dbUtils;
+package com.c4hco.test.automation.database.Utils;
 
 import com.c4hco.test.automation.utils.ApplicationProperties;
-import com.c4hco.test.automation.utils.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +16,7 @@ public class PostgresSQLConnection {
     }
 
     public static Connection getInstance(){
-        Log.info("connection test");
+        System.out.println("Connecting to DB Table");
         if(connection == null){
             initializeDBConnection();
         }
@@ -25,7 +24,7 @@ public class PostgresSQLConnection {
     }
 
     private static void initializeDBConnection(){
-        Log.info("initializing db connection");
+        System.out.println("initializing db connection");
         try {
             // Load the PostgreSQL JDBC driver
             Class.forName("org.postgresql.Driver");
@@ -38,6 +37,9 @@ public class PostgresSQLConnection {
             String username = ApplicationProperties.getInstance().getProperty("dbUsername");;
             String password = ApplicationProperties.getInstance().getProperty("dbPassword");;
 
+            System.out.println("dbUname::"+username);
+            System.out.println("url::"+url
+            );
             // Create the database connection
             connection = DriverManager.getConnection(url, username, password);
 

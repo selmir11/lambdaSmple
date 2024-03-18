@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,8 +44,10 @@ public class TellUsAboutYourselfPage {
     @FindBy(id = "continueButton")
     WebElement btnSaveAndContinue;
 
-    public void userSexQuestion(String Sex)
-    {
+    public void userSexQuestion(String Sex) {
+        PolicyMember acctHolder = SharedData.getSubscriber();
+        acctHolder.setGender(Sex);
+        SharedData.setSubscriber(acctHolder);
         switch (Sex) {
             case "Female":
                 rdobtnSexFemale.click();
