@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.utils.Dto;
+package com.c4hco.test.automation.Dto;
 
 import java.util.List;
 
@@ -46,5 +46,6 @@ public class SharedData {
     public static void setMembers(List<PolicyMember> members){ SharedData.members = members; }
 
     public static List<PolicyMember> getMembers() { return members; }
+
 
 }

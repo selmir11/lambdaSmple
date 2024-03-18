@@ -1,14 +1,15 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Dto.PolicyMember;
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class AdminPortalSearchPage {
@@ -68,9 +69,10 @@ public class AdminPortalSearchPage {
     public void setAccountId(){
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
+
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
         PolicyMember subscriber = SharedData.getSubscriber();
-        subscriber.setAccountId(accId);
+        subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setSubscriber(subscriber);
     }
 

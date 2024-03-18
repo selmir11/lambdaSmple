@@ -1,13 +1,13 @@
 package com.c4hco.test.automation.database.Queries;
 
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.Dto.SharedData;
 
 public class DbQueries_Exch {
     // Find OUT -- if both exch and coco has same tables and columns - if yes - get appType and pass. If not, keep coco and exch queries seperate.
     // get the env and pass it dynamically. So this works for both qa and staging - findOut the table names for qa_exch and qa_staging is correct
     // Find Out: Will the commented out columns be used in tests later? - For all the queries
 
-    String acctId = SharedData.getSubscriber().getAccountId();
+    String acctId = String.valueOf(SharedData.getSubscriber().getAccount_id());
 
     public String policyTableMixedQuery() {
         return "select eph.account_id, eph.application_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
@@ -37,6 +37,11 @@ public class DbQueries_Exch {
      return "select * from qa_exch.ob834_detail\n"+
              "where account_id = '"+acctId+"'\n"+
              "order by date_created DESC";
+    }
+
+    public String getFileNameFromOb834Details(){
+        return "select fileName from qa_exch.ob834_detail od \n" +
+        "where account_id ='"+acctId+"'";
     }
 
 }
