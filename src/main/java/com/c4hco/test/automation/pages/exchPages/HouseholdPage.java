@@ -5,12 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class HouseholdPage {
     // Family Overview Page
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
     public HouseholdPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -22,8 +24,12 @@ public class HouseholdPage {
 
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
+
     @FindBy(css = ".memberBasicRow  #editBasicInfo")
     List<WebElement> memberBasicInformation;
+
+    @FindBy(css=".table-striped")
+    WebElement familyOverviewTable;
 
     public void clickAddMember(){addAdditionalMember.click();}
     public void clickContinue(){
@@ -31,5 +37,11 @@ public class HouseholdPage {
     }
     public void clickBasicInfoMember1Button(int member){
         memberBasicInformation.get(member).click();
+    }
+
+    public void iVerifyFamilyOverviewTablePresent(){
+        // TO DO:: Sometimes, rarely we see 2 tables here. Make sure the code doesn't break when we get 2 tables displayed
+        softAssert.assertTrue(familyOverviewTable.isDisplayed());
+        softAssert.assertAll();
     }
 }

@@ -113,19 +113,19 @@ Feature: Seed01 - Exchange
         And I validate I am on the "Login" page
         And I enter valid credentials to login
         Then I validate I am on the "Account Overview" page
-         # Then I click on make changes button
+          Then I click on make changes button
         Then I select "No" option on the Let us guide you page
         And I click on save and continue button
        Then I click on continue with  application button on Before you begin page
        And I report "MovedToColorado" and click continue
        Then I validate I am on the "Find Expert Help" page
        Then I click Continue on my own button from Find Expert Help page
-       #  Then I update SSN number to new SSN number
+      Then I update SSN number to new SSN number
       Then I click continue on Tell us about yourself page
       Then I click continue on the Add Address page
       Then I click continue on the Citizenship page
       Then I validate I am on the "Family Overview" page
-     # Then I verify the family overview table is present
+      Then I verify the family overview table is present
       Then I click continue on family overview page
       Then I validate I am on the "Tell us about life changes" page
       Then I select "MoveToCO" QLCE on tell us about life changes page
