@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -269,12 +269,11 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementToBeClickable(signOutLink, 20);
-                signOutLink.click();
+                basicActions.scrollToElement(signOutLink);
+                basicActions.click(signOutLink);
                 break;
             case "NonElmo":
-                basicActions.waitForElementToBeClickable(signOutLinkNonElmo, 20);
-                signOutLinkNonElmo.click();
+                basicActions.click(signOutLinkNonElmo);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
