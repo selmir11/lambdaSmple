@@ -19,6 +19,7 @@ public class WhoAreYouPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    // TO DO: Update the locators on this page
     @FindBy(xpath = "//input[starts-with(@id,'hhcYes')]")
     WebElement member;
     @FindBy(id ="selectedAuthorizedRepInput")
@@ -55,6 +56,9 @@ public class WhoAreYouPage {
 
     @FindBy(css = "#county option")
     List<WebElement> countyDropdownOptions;
+
+    @FindBy(id = "continueButton")
+    List<WebElement> saveAndContinueAfterUpdate;
 
     private String addressLine1= "1234 Road";
     private String SSNvalue = "653035280";
@@ -102,5 +106,17 @@ public class WhoAreYouPage {
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
         saveAndContinue.click();
+    }
+
+    public void iUpdateSSN(){
+        basicActions.waitForElementToBePresent(memberSSN, 20);
+        memberSSN.clear();
+        memberSSN.sendKeys("123-45-6789");
+    }
+
+    public void iClickContinueAfterSSNUpdate(){
+        // TO DO: Check if we can always use one method to click on continue or save and continue and create a step for it
+        basicActions.waitForElementListToBePresent(saveAndContinueAfterUpdate, 15);
+        saveAndContinueAfterUpdate.get(0).click();
     }
 }
