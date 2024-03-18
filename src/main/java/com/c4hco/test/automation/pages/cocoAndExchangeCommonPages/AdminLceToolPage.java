@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Dto.PolicyMember;
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,7 +49,7 @@ public class AdminLceToolPage {
             softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
             softAssert.assertAll();
             basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
-            adminLCEToolAccountIdInput.sendKeys(SharedData.getSubscriber().getAccountId());
+            adminLCEToolAccountIdInput.sendKeys( String.valueOf(SharedData.getSubscriber().getAccount_id()));
             lookUpBtn.click();
             // validate look up returned results
             basicActions.waitForElementToBePresent(lookUpSearchResults, 10);

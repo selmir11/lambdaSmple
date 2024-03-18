@@ -18,7 +18,7 @@ public class PostgresStatementExecutor {
         } finally {
             // Note: It's generally better to close the connection outside this class,
             // for example, in a higher-level module or test class.
-            PostgresSQLConnection.closeConnection();
+         //   PostgresSQLConnection.closeConnection();
         }
         return resultSet;
     }

@@ -1,6 +1,8 @@
-package com.c4hco.test.automation.utils.Dto;
+package com.c4hco.test.automation.Dto;
 
 import lombok.Data;
+
+import java.math.BigDecimal;
 
 @Data
 public class PolicyMember {
@@ -10,7 +12,7 @@ public class PolicyMember {
     String password = "ALaska12!";
     String phoneNumber;
     String ssn;
-    String relationshipToSubscriber;
+    String relation_to_subscriber;
     String signature;
     String dob;
     String zipcode;
@@ -27,8 +29,8 @@ public class PolicyMember {
     String medicalPremiumAmt;
     String dentalPremiumAmt;
     String aptcAmt;
-    String isTobaccoUser;
+    String tobacco_user;
 
-    String accountId;
+    BigDecimal account_id;
     String policyId;
 }

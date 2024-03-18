@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.support.ui.Select;
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.Dto.SharedData;
 
 import java.util.List;
 

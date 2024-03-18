@@ -1,15 +1,52 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.DatabaseSteps;
 
+import com.c4hco.test.automation.database.DbValidations.DbValidations;
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.sftpConfig.SftpUtil;
+import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 
+import java.util.List;
+
 public class DbSteps {
 private DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
+private DbValidations dbValidations = new DbValidations();
+SftpUtil sftpUtil = new SftpUtil();
+
+
+   @And("I validate member exists in policy table")
+   public void memberExistsInPolicyTable(){
+      dbValidations.validateMemberExistsInPolicyTable();
+   }
+
+   @And("I validate member exists in ob834_details table")
+   public void memberExistsInPreEdiTable(){
+      dbValidations.validateMemberExistsInOb834DetailsTable();
+   }
+
+   @And("I validate file exists on sftp server with location {string}")
+   public void validateFileExists(String sftpRemoteLocation) throws JSchException {
+      List<Ob834DetailsEntity> ob834DetailsEntityList = exchDbDataProvider.getFileNames();
+     String medicalPlanFile = ob834DetailsEntityList.get(0).getFile_name();
+     String dentalPlanFile = ob834DetailsEntityList.get(1).getFile_name();
+      sftpUtil.connectToSftp();
+      sftpUtil.downloadFileWithSftp(sftpRemoteLocation, medicalPlanFile);
+      sftpUtil.downloadFileWithSftp(sftpRemoteLocation, dentalPlanFile);
+      sftpUtil.disconnectFromSftp();
+   }
+
 
    @And("I validate the member details in policy table")
    public void isMemberInPolicyTable(){
-      exchDbDataProvider.getDataFromPolicyTable();
+      dbValidations.validatePolicyData();
+//      PolicyMember subscriber = SharedData.getSubscriber();
+//      List<PolicyTableEntity> policyTableEntityList = exchDbDataProvider.getDataFromPolicyTable();
+      // Instead of validating individual fields - can we validate the list to list (with more fields in subscriber)- find out: TO DO
+    //  Assert.assertEquals(subscriber.getFirstName(), policyTableEntityList.get(0).getFirst_name());
+
+
       // --- Pending Validation---//
 
       // get plan id and acc Id from dto
