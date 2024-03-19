@@ -275,7 +275,6 @@ public class HeaderAndFooterPage {
                 break;
             case "NonElmo":
                 basicActions.waitForElementToBePresent(signOutLinkNonElmo,10);
-                basicActions.scrollToElement(signOutLinkNonElmo);
                 basicActions.click(signOutLinkNonElmo);
                 break;
             default:
