@@ -16,6 +16,9 @@ public class DeclarationsAndSignaturePageCoCo {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = ".input-label")
+    WebElement signatureLabel;
+
     @FindBy(id = "ELIG-DeclarationsAndSignature-signatureBox")
     WebElement signatureInputField;
 
@@ -25,9 +28,26 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    public void enterSignatureCoCo(){
+    public void enterSignatureCoCo(String language){
+        basicActions.waitForElementToBePresent(signatureLabel, 30);
+        String label = signatureLabel.getText();
+        switch (language) {
+            case "English":
+                label = label.replaceAll("Electronic Signature:", "");
+                label = label.trim();
+                break;
+            case "Spanish":
+                label = label.replaceAll("Firma electr\u00F3nica:", "");
+                label = label.trim();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+
         basicActions.waitForElementToBePresent(signatureInputField, 20);
-        signatureInputField.sendKeys(SharedData.getSubscriber().getSignature());
+        signatureInputField.clear();
+        signatureInputField.click();
+        signatureInputField.sendKeys(label);
     }
 
     public void goBack() {

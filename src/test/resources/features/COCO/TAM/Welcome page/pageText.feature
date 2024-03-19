@@ -49,7 +49,26 @@ Feature: Page Text-Welcome Page
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-#    Complete plan selection and check Welcome again
+    And I enter a valid signature in "English"
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I click Continue on the Tobacco Usage Page CoCo
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select make payment button to pay the premium CoCo
+    And I select Continue button on the Payment Selection CoCo page
+    And I select continue button on the Initial Payment CoCo page
+    And I select "Terms of Use" agreement checkbox CoCo
+    And I select "Privacy Policy" agreement checkbox CoCo
+    And I select "Dental Coverage" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select continue button on the Enrollment Agreements CoCo page
+    And I click continue button on Congratulations page CoCo
+    Then I validate I am on the "CoCo Welcome" page
+
+    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -101,8 +120,27 @@ Feature: Page Text-Welcome Page
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature in "Spanish"
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I click Continue on the Tobacco Usage Page CoCo
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select make payment button to pay the premium CoCo
+    And I select Continue button on the Payment Selection CoCo page
+    And I select continue button on the Initial Payment CoCo page
+    And I select "Terms of Use" agreement checkbox CoCo
+    And I select "Privacy Policy" agreement checkbox CoCo
+    And I select "Dental Coverage" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select continue button on the Enrollment Agreements CoCo page
+    And I click continue button on Congratulations page CoCo
+    Then I validate I am on the "CoCo Welcome" page
 
-#    Complete plan selection and check Welcome again
+    And I change the language from header to "Spanish"
+    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

@@ -28,6 +28,9 @@ import io.cucumber.java.en.Then;
     @Then("I verify text on the Welcome page for first time signed into an account in {string}")
     public void verifyFirstTimeText(String language)  { welcomePage.verifyTextOnWelcomePageFirstTime(language); }
 
+        @Then("I verify text on the Welcome page with policy {string} {string} for ${string} in {string}")
+        public void iVerifyTextOnWelcomePagePolicy(String policyName, String policyLevel, String policyPremium, String language)  { welcomePage.verifyTextOnWelcomePagePolicy(policyName, policyLevel, policyPremium, language); }
+
     @Then("I verify text on the Welcome page for an account without a policy in {string}")
     public void verifyNoPolicyText(String language)  { welcomePage.verifyTextOnWelcomePageNoPolicy(language); }
 

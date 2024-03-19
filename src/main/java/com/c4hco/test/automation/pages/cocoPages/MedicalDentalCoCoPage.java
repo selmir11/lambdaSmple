@@ -14,7 +14,7 @@ public class MedicalDentalCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "PlanSummary-Continue")
+    @FindBy(id = "SHP-PlanSummary-Continue")
     WebElement continueButton;
 
     public void clickContinueButton() {
