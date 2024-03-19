@@ -39,14 +39,36 @@ Feature: QLCE Birth during closed enrollment
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
-    And I Apply for no financial help
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "3200000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Income Summary" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
+    Then I click continue on family overview page
     Then I select "<qlceOption>" QLCE on tell us about life changes page
     Then I click on Save and Continue
-    And I Declare and sign
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+
     Examples:
     | qlceOption           |
     | Birth                |
