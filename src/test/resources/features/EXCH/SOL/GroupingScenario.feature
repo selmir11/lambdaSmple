@@ -144,7 +144,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
 
-  @ValidateGroupingMembers-2 @test
+  @ValidateGroupingMembers-2
   Scenario: Validate grouping members: Father+Mother+son(80205) in group 1, Son(zip 80301) in Group 2
     When I click create a new account on login page
     Then I click create my account from pre-screen page
