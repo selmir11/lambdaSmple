@@ -12,7 +12,7 @@ public class GlobalHooks implements En{
         });
 
         After((Scenario scenario) -> {
-           WebDriverManager.closeDriver();
+          // WebDriverManager.closeDriver();
         });
     }
 
