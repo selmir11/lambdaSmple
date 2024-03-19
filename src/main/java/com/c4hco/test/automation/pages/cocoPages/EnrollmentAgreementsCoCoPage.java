@@ -29,7 +29,7 @@ public class EnrollmentAgreementsCoCoPage {
     WebElement continueButton;
 
     public void selectAgreementsCheckboxCoCo(String checkbox){
-        basicActions.waitForElementListToBePresent(agreementsCheckbox,20);
+        basicActions.waitForElementToBePresent(signatureLabel,20);
         switch(checkbox){
             case "Terms of Use":
                 agreementsCheckbox.get(0).click();
