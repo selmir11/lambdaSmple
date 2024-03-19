@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TellUsAboutAdditionalMemberPage {
 
@@ -74,6 +79,18 @@ public class TellUsAboutAdditionalMemberPage {
         txtlastName.sendKeys(lastName);
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
+
+        List<PolicyMember> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        PolicyMember member = new PolicyMember();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        memberList.add(member);
+        SharedData.setMembers(memberList);
     }
 
     public void selectSex(String Sex){
