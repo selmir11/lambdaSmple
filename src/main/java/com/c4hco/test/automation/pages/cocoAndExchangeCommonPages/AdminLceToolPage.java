@@ -1,7 +1,8 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Dto.SharedData;
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,18 +44,19 @@ public class AdminLceToolPage {
     WebElement submitBtn;
 
         public void lookUpAccId(){
-            tabs = new ArrayList<String> (basicActions.getDriver().getWindowHandles());
+            tabs = new ArrayList<> (basicActions.getDriver().getWindowHandles());
            basicActions.getDriver().switchTo().window(tabs.get(1)) ;
             softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
             softAssert.assertAll();
             basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
-            adminLCEToolAccountIdInput.sendKeys(SharedData.getSubscriber().getAccountId());
+            adminLCEToolAccountIdInput.sendKeys( String.valueOf(SharedData.getSubscriber().getAccount_id()));
             lookUpBtn.click();
             // validate look up returned results
             basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
         }
 
         public void changeEffectiveDate(String effectiveDate){
+            PolicyMember subscriber = SharedData.getSubscriber();
             basicActions.waitForElementToBePresent(planYrDropdown, 10);
             planYrDropdown.click();
 
@@ -63,11 +65,17 @@ public class AdminLceToolPage {
             changeEffectiveDt.sendKeys(effectiveDate);
             submitBtn.click();
             basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
-            SharedData.setSelectedMedicalPlanStartDate("01/01/2024"); // TO DO: send the year as current year dynamically
-            SharedData.setSelectedMedicalPlanEndDate("12/31/2024");
-            SharedData.setSelectedDentalPlanStartDate("01/01/2024");
-            SharedData.setSelectedDentalPlanEndDate("12/31/2024");
-            SharedData.setFinancialStartDate("01/01/2024");
+
+            subscriber.setMedicalPlanStartDate("01/01/2024"); // TO DO: send the year as current year dynamically
+            subscriber.setMedicalPlanEndDate("12/31/2024");
+
+            subscriber.setDentalPlanStartDate("01/01/2024");
+            subscriber.setDentalPlanEndDate("12/31/2024");
+
+            subscriber.setFinancialStartDate("01/01/2024");
+
+            SharedData.setSubscriber(subscriber);
+
             closeTabAndSwitchToCurrentWindow();
         }
 

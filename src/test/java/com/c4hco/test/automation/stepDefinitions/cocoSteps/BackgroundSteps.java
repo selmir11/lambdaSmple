@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
-import com.c4hco.test.automation.dbUtils.DataProviderDb_qa_coco;
+import com.c4hco.test.automation.database.dbDataProvider.DataProviderDb_qa_coco;
 import io.cucumber.java.en.Given;
 
 public class BackgroundSteps {

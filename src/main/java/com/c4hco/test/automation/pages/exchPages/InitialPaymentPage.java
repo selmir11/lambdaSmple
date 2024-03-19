@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class InitialPaymentPage {
     private BasicActions basicActions;
 
@@ -15,14 +17,20 @@ public class InitialPaymentPage {
     }
 
     @FindBy(id="SOL-InitialPayment-MakePayment")
-    WebElement makePaymentBtn;
+    List<WebElement> makePaymentBtn;
 
     @FindBy(id = "SOL-InitialPayment-Continue")
     WebElement continueBtn;
 
+    // TO DO: create a re-usable method for clicking on make payment button for all the plans.
     public void selectMakePaymentButton(){
-        basicActions.waitForElementToBeClickable(makePaymentBtn,20);
-        makePaymentBtn.click();
+        basicActions.waitForElementListToBePresent(makePaymentBtn,20);
+        makePaymentBtn.get(0).click();
+    }
+
+    public void clickSecondMakePaymentButton(){
+        basicActions.waitForElementListToBePresent(makePaymentBtn,20);
+        makePaymentBtn.stream().findFirst().ifPresent(WebElement::click);
     }
 
     public void clickContinue(){

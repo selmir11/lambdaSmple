@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +19,7 @@ public class WhoAreYouPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    // TO DO: Update the locators on this page
     @FindBy(xpath = "//input[starts-with(@id,'hhcYes')]")
     WebElement member;
     @FindBy(id ="selectedAuthorizedRepInput")
@@ -54,6 +57,9 @@ public class WhoAreYouPage {
     @FindBy(css = "#county option")
     List<WebElement> countyDropdownOptions;
 
+    @FindBy(id = "continueButton")
+    List<WebElement> saveAndContinueAfterUpdate;
+
     private String addressLine1= "1234 Road";
     private String SSNvalue = "653035280";
 
@@ -74,6 +80,7 @@ public class WhoAreYouPage {
     }
 
     public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
+        PolicyMember accHolder = SharedData.getSubscriber();
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
 
@@ -81,18 +88,35 @@ public class WhoAreYouPage {
         dropdown.selectByValue("CO");
 
         memberZip.sendKeys(zipcode);
+        accHolder.setZipcode(zipcode);
 
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
 
         memberDOB.sendKeys(dateOfBirth);
+        accHolder.setDob(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
+        accHolder.setSsn(SSNvalue);
+        SharedData.setSubscriber(accHolder);
         backSaveAndContinue.get(1).click();
     }
 
     public void ContinueId() {
+        //TO DO: How is this continue diff from above backSaveAndContinue and click?
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
         saveAndContinue.click();
+    }
+
+    public void iUpdateSSN(){
+        basicActions.waitForElementToBePresent(memberSSN, 20);
+        memberSSN.clear();
+        memberSSN.sendKeys("123-45-6789");
+    }
+
+    public void iClickContinueAfterSSNUpdate(){
+        // TO DO: Check if we can always use one method to click on continue or save and continue and create a step for it
+        basicActions.waitForElementListToBePresent(saveAndContinueAfterUpdate, 15);
+        saveAndContinueAfterUpdate.get(0).click();
     }
 }

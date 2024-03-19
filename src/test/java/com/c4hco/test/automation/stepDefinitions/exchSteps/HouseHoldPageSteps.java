@@ -18,7 +18,11 @@ public class HouseHoldPageSteps {
     @Then("I click edit basic information icon for member {int}")
     public void iclickBasicInformationIcon(int index){
         houseHoldPage.clickBasicInfoMember1Button(index);
+    }
 
+    @Then("I verify the family overview table is present")
+    public void IVerifyTablePresent(){
+        houseHoldPage.iVerifyFamilyOverviewTablePresent();
     }
 }
 
