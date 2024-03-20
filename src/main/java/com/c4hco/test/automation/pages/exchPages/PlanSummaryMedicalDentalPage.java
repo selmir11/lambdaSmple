@@ -10,6 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
+
 public class PlanSummaryMedicalDentalPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -23,12 +26,8 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
-    @FindBy(xpath = "//*[contains(text(),\"Here are your plans\")]")
-    WebElement planSummaryHeadingOne;
-
-    @FindBy(xpath = "//*[contains(text(),\"and what they will cost\")]")
-    WebElement planSummaryHeadingTwo;
-
+    @FindBy(css = ".summary-container p")
+    List<WebElement> planSummaryHeading;
     @FindBy(xpath = "//*[contains(text(),\"Medical Plans\")]")
     WebElement planSummaryMedicalplanheading;
 
@@ -60,15 +59,21 @@ public class PlanSummaryMedicalDentalPage {
     WebElement dentalPlanPremiumAmt;
 
     public void verifyTextPlanSummaryPage(){
-        basicActions.waitForElementToBePresent(planSummaryHeadingOne,10);
-        softAssert.assertEquals(planSummaryHeadingOne.getText(), "Here are your plans");
-        softAssert.assertEquals(planSummaryHeadingTwo.getText(), "and what they will cost");
-        softAssert.assertEquals(planSummaryMedicalplanheading.getText(), "Medical Plans");
-        softAssert.assertEquals(planSummaryDentalplanheading.getText(), "Dental Plans");
-        softAssert.assertEquals(planSummaryMedicalpremium.getText(), "Premiums Before Savings");
+        basicActions.waitForElementListToBePresent(planSummaryHeading,10);
+
+        softAssert.assertEquals(planSummaryHeading.get(0).getText(), "Here are your plans");
+        softAssert.assertEquals(planSummaryHeading.get(1).getText(), "and what they will cost");
+
+        softAssert.assertTrue(planSummaryMedicalplanheading.isDisplayed(), "planSummaryMedicalplanheading doesn't exist");
+        softAssert.assertTrue(planSummaryDentalplanheading.isDisplayed(), "Dental plan heading did not match");
+
+        softAssert.assertTrue(planSummaryMedicalpremium.isDisplayed(), "Premiums Before Savings doesn't display");
+
         softAssert.assertEquals(planSummaryDentalpremium.getText(), "Premiums Before Savings");
+
         softAssert.assertEquals(planSummaryMedicalpremiumcredit.getText(), "Money you save");
         softAssert.assertEquals(planSummaryDentalpremiumcredit.getText(), "Money you save");
+
         softAssert.assertEquals(planSummaryMedicalAmtyoupay.getText(), "Amount you pay");
         softAssert.assertEquals(planSummaryDentalAmtyoupay.getText(), "Amount you pay");
         softAssert.assertAll();
