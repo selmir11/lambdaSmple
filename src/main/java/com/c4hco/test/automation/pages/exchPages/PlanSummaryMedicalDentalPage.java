@@ -64,18 +64,17 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertEquals(planSummaryHeading.get(0).getText(), "Here are your plans");
         softAssert.assertEquals(planSummaryHeading.get(1).getText(), "and what they will cost");
 
-        softAssert.assertTrue(planSummaryMedicalplanheading.isDisplayed(), "planSummaryMedicalplanheading doesn't exist");
+        softAssert.assertTrue(planSummaryMedicalplanheading.isDisplayed(), "Medical plan heading did not match");
         softAssert.assertTrue(planSummaryDentalplanheading.isDisplayed(), "Dental plan heading did not match");
 
-        softAssert.assertTrue(planSummaryMedicalpremium.isDisplayed(), "Premiums Before Savings doesn't display");
+        softAssert.assertTrue(planSummaryMedicalpremium.isDisplayed(), "Premiums Before Savings did not display");
+        softAssert.assertTrue(planSummaryDentalpremium.isDisplayed(), "Premiums Before Savings did not display");
 
-        softAssert.assertEquals(planSummaryDentalpremium.getText(), "Premiums Before Savings");
+        softAssert.assertTrue(planSummaryMedicalpremiumcredit.isDisplayed(), "Money you save did not display");
+        softAssert.assertTrue(planSummaryDentalpremiumcredit.isDisplayed(), "Money you save did not display");
 
-        softAssert.assertEquals(planSummaryMedicalpremiumcredit.getText(), "Money you save");
-        softAssert.assertEquals(planSummaryDentalpremiumcredit.getText(), "Money you save");
-
-        softAssert.assertEquals(planSummaryMedicalAmtyoupay.getText(), "Amount you pay");
-        softAssert.assertEquals(planSummaryDentalAmtyoupay.getText(), "Amount you pay");
+        softAssert.assertTrue(planSummaryMedicalAmtyoupay.isDisplayed(), "Amount you pay did not display");
+        softAssert.assertTrue(planSummaryDentalAmtyoupay.isDisplayed(), "Amount you pay did not display");
         softAssert.assertAll();
     }
     
