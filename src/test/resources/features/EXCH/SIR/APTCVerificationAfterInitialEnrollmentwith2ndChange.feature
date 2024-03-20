@@ -1,28 +1,28 @@
-@medicalDentalPlanSummary
-Feature: Medical and Dental Plan Summary Verification test
+@APTC,@APTC-SIR
+Feature: UI Tests related to APTC after second enrollment change
 
-  Background:
+  Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-100 @VerifyMedicalDentalPlanSummaryResults
-  Scenario: VerifyMedicalDentalPlanSummaryResults
+  @SLER-131-WIP
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2349 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for the current year
+    Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
-    Then I validate I am on the "Who Are You" page
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with dob "01011983" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
     Then I select "Male" as sex option
@@ -40,20 +40,50 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
-    And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "5160000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Income Summary" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
-    And I Declare as Tax Household 1
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
+    Then I validate I am on the "Application History" page
     Then I click on view results and shop
-    And I click continue on application results page
+
+    Then I validate I am on the "Application Results" page
+    Then I validate that my Tax Household's APTC value is "$120.69/mo"
+    Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I validate the APTC credit is "$120.69 tax credit"
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
@@ -61,5 +91,6 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I verify medical and dental text on Plan Summary page
+    And I continue on plan summary page
+
 

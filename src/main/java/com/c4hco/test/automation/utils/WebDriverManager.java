@@ -21,6 +21,7 @@ public class WebDriverManager {
     private static WebDriver initializeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
+        options.addArguments("--incognito");
         return new ChromeDriver(options);
     }
 
