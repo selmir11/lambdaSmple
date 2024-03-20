@@ -37,7 +37,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
 
-    @FindBy(css = "li.vertical-ruler")
+    @FindBy(css = ".toolbar-content .toolbar-text .toolbar-text")
     WebElement userNameLinkExch;
 
     @FindBy(id = "globe-image")
@@ -269,10 +269,12 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
+                basicActions.waitForElementToBePresent(signOutLink,10);
                 basicActions.scrollToElement(signOutLink);
                 basicActions.click(signOutLink);
                 break;
             case "NonElmo":
+                basicActions.waitForElementToBePresent(signOutLinkNonElmo,10);
                 basicActions.click(signOutLinkNonElmo);
                 break;
             default:
