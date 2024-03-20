@@ -20,12 +20,6 @@ public class EmploymentInfoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "globe")
-    WebElement globeIcon;
-
-    @FindBy(css = "[id='globe'] p")
-    List<WebElement> languageOption;
-
     @FindBy(css = "header-1 content-center")
     WebElement txtHeaderPart1;
 
@@ -241,12 +235,9 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiage(String language){
-        basicActions.waitForElementToBePresent(globeIcon, 10);
-        globeIcon.click();
-        basicActions.waitForElementListToBePresent(languageOption, 10);
-        basicActions.waitForElementListToBePresent(helpDrawerMainHeaders, 10);
-        basicActions.waitForElementListToBePresent(helpDrawerBodyParagraphs, 10);
-        basicActions.waitForElementListToBePresent(helpDrawerBodyPoints, 10);
+        basicActions.click(helpDrawerMainHeaders.get(0));
+        basicActions.click(helpDrawerBodyParagraphs.get(0));
+        basicActions.click(helpDrawerBodyPoints.get(0));
         switch(language){
             case "English":
                 validateGeneralHelpBodyVerbiageEng();

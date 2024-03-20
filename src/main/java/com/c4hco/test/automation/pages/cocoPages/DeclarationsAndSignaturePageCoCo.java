@@ -36,6 +36,6 @@ public class DeclarationsAndSignaturePageCoCo {
     }
 
     public void submitApplicationCoCo()  {
-        continueButton.click();
+        basicActions.click(continueButton);
     }
 }

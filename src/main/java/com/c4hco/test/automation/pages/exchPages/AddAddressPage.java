@@ -1,11 +1,18 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class AddAddressPage {
     private BasicActions basicActions;
@@ -109,6 +116,7 @@ public class AddAddressPage {
     }
 
     public void mailingAddress(){
+        // TO DO:: Is this mailing address or residential address?
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
@@ -120,6 +128,24 @@ public class AddAddressPage {
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
+    }
+
+    public void addNewResidentialAddress(Map<String, String> addDetails, String relationshipToAccHoldr){
+        // If this method is applicable for adding new address to "SELF" then make sure we add sub check as well.
+        mailingAddress(); // TO DO::update this method to accept addDetails. Update the step and use one method for both new and firstTime entry as it is using the same locators
+
+        List<PolicyMember> membersList = SharedData.getMembers();
+    Optional requiredMem =  membersList.stream().filter(mem -> mem.getRelation_to_subscriber().equals(relationshipToAccHoldr)).findFirst();
+        if(requiredMem.isPresent()){
+          PolicyMember member =  (PolicyMember) requiredMem.get();
+          // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
+          member.setZipcode(addDetails.get("zipcode"));
+          membersList.add(member);
+          SharedData.setMembers(membersList);
+        }
+        else{
+            Assert.fail("Member with this relationship to account holder is not found!!");
+        }
     }
 
     public void isColoradoResident(String YNCOResident){
