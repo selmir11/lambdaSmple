@@ -18,6 +18,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.selectMedicalPlan(medicalPlan);
     }
 
+    @And("I validate the APTC credit is {string}")
+    public void validateAPTC(String aPTCredit) {
+        medPlanResultsPage.validateAPTC(aPTCredit);
+    }
+
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage() {
         medPlanResultsPage.iclickContinue();

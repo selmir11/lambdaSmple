@@ -12,4 +12,7 @@ public class PlanSummaryMedicalDentalPageSteps {
         planSummaryMedicalDentalPage.continuePlanSummaryPage();
     }
 
+    @And("I verify medical and dental text on Plan Summary page")
+    public void verifyTextPlanSummaryPage() {planSummaryMedicalDentalPage.verifyTextPlanSummaryPage();}
+
 }

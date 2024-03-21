@@ -66,7 +66,7 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
-
+    
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
