@@ -31,5 +31,21 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.clickFromApplicationLinksDropdown(appLinksDropdownOption);
     }
 
+    @Then("I validate {string} for Admin Portal")
+    public void HeaderValidation(String HeaderValidation) {
+        switch (HeaderValidation) {
+            case "Logo":
+                adminPortalSearchPage.ConnectForHealthLogoDisplay();
+                break;
+            case "clicking on logo navigates Connect For Health":
+                adminPortalSearchPage.navigateConnectForHealthPage();
+                break;
+            case "TitleTextValidate":
+                adminPortalSearchPage.titleTextValidate();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid header option : " + HeaderValidation);
+        }
+    }
 
 }
