@@ -211,6 +211,9 @@ public class BasicSteps {
             case "Enrollment Agreements":
                 pageUrl = "PaymentPortal/enrollmentAgreements";
                 break;
+            case "Good News":
+                pageUrl = "nes/applyMA";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
