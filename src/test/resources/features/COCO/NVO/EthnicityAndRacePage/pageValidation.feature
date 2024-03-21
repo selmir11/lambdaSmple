@@ -3,7 +3,7 @@ Feature: Page Validation-Ethnicity And Race page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-43-WIP @PageValidationEthnicityAndRacePage
+  @SLCR-43 @PageValidationEthnicityAndRacePage
   Scenario: Validation for Race and Ethnicity Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
