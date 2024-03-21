@@ -66,8 +66,10 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
     Then I click continue on medical plan results page
+    Then I click on dental edit enrollment groups link
+    And I validate I am on the "Edit Grouping Members Medical" page
+    Then I verify tool tip on the link- what works best for you
 
