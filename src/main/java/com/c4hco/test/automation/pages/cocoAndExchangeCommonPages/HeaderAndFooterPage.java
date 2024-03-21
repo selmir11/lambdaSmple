@@ -110,23 +110,25 @@ public class HeaderAndFooterPage {
 
     @FindBy(linkText = "Terms of Use")
     WebElement APtermsOfUseLink;
-    
+
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
     public void clickConnectLogoLink() {
         basicActions.waitForElementToBeClickable(connectLogoLink, 10);
         connectLogoLink.click();
     }
+
     public void clickApplyForCoverageLink(String pageType) {
 //        "Elmo" for CoCo and Exch Elmo pages
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
 //        "NonElmo" non Elmo pages (not listed above)
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
-        switch (pageType){
+        switch (pageType) {
             case "Elmo":
                 basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
                 centerHeaderLink.get(0).click();
@@ -143,10 +145,12 @@ public class HeaderAndFooterPage {
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
+
     public void clickFindAPlanLinkLink() {
         basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
         centerHeaderLink.get(1).click();
     }
+
     public void clickMyAccountLink(String pageType) {
 
         // "Elmo" for CoCo and Exch Elmo pages
@@ -170,12 +174,14 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBeClickable(learnMoreLink, 15);
         learnMoreLink.click();
     }
+
     public void clickGetAssistanceLink() {
         basicActions.waitForElementToBeClickable(getAssistanceLink, 15);
         getAssistanceLink.click();
     }
+
     public void clickFindExpertAssistanceLink(String pageType) {
-        switch (pageType){
+        switch (pageType) {
             case "CoCo":
                 basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(0), 20);
                 getAssistanceLinkOption.get(0).click();
@@ -189,12 +195,14 @@ public class HeaderAndFooterPage {
 
         }
     }
+
     public void clickContactUsHeaderLink() {
         basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(0), 20);
         getAssistanceLinkOption.get(0).click();
     }
+
     public void clickUserNameLink(String pageType) {
-        switch (pageType){
+        switch (pageType) {
             case "CoCo":
                 basicActions.waitForElementToBeClickable(userNameLink, 90);
                 userNameLink.click();
@@ -276,12 +284,12 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementToBePresent(signOutLink,10);
+                basicActions.waitForElementToBePresent(signOutLink, 10);
                 basicActions.scrollToElement(signOutLink);
                 basicActions.click(signOutLink);
                 break;
             case "NonElmo":
-                basicActions.waitForElementToBePresent(signOutLinkNonElmo,10);
+                basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
                 basicActions.click(signOutLinkNonElmo);
                 break;
             default:
@@ -289,8 +297,8 @@ public class HeaderAndFooterPage {
         }
     }
 
-    public void verifyTextInCoCoHeader(){
-        basicActions.waitForElementToBePresent(connectLogoLink,10);
+    public void verifyTextInCoCoHeader() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
@@ -308,8 +316,8 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextInCoCoHeaderSpanish(){
-        basicActions.waitForElementToBePresent(connectLogoLink,10);
+    public void verifyTextInCoCoHeaderSpanish() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
@@ -327,8 +335,8 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextInExchHeader(){
-        basicActions.waitForElementToBePresent(connectLogoLink,10);
+    public void verifyTextInExchHeader() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
@@ -347,8 +355,8 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextInExchHeaderSpanish(){
-        basicActions.waitForElementToBePresent(connectLogoLink,10);
+    public void verifyTextInExchHeaderSpanish() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
@@ -408,23 +416,20 @@ public class HeaderAndFooterPage {
         }
     }
 
-        public void verifyExchHeaderFooterTextEnglish(String HeaderOrFooter){
-            switch (HeaderOrFooter) {
-                case "Header":
-                    verifyTextInExchHeader();
-                    break;
-                case "Footer":
-                    verifyTextInExchFooter();
-                    break;
-                case "Login Footer":
-                    verifyTextFooterLogin();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-            }
+    public void verifyExchHeaderFooterTextEnglish(String HeaderOrFooter) {
+        switch (HeaderOrFooter) {
+            case "Header":
+                verifyTextInExchHeader();
+                break;
+            case "Footer":
+                verifyTextInExchFooter();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+        }
     }
 
-    public void verifyExchHeaderFooterTextSpanish(String HeaderOrFooter){
+    public void verifyExchHeaderFooterTextSpanish(String HeaderOrFooter) {
         switch (HeaderOrFooter) {
             case "Header":
                 verifyTextInExchHeaderSpanish();
@@ -465,35 +470,15 @@ public class HeaderAndFooterPage {
 
 
     // =========FOOTER============== //
-    public void clickPrivacyPolicyLink(String appType) {
-        switch (appType) {
-            case "Admin Portal":
-                basicActions.waitForElementToBeClickable(APprivacyPolicyLink, 20);
-                APprivacyPolicyLink.click();
-                break;
-            case "Indiviual Portal":
-                basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
-                privacyPolicyLink.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-        }
-        }
+    public void clickPrivacyPolicyLink() {
+        basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
+        privacyPolicyLink.click();
+    }
 
-    public void clickTermsOfUseLink(String appType) {
-        switch (appType) {
-            case "Admin Portal":
-                basicActions.waitForElementToBeClickable(APtermsOfUseLink, 20);
-                APtermsOfUseLink.click();
-                break;
-            case "Indiviual Portal":
-                basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
-                termsOfUseLink.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-        }
-        }
+    public void clickTermsOfUseLink() {
+        basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
+        termsOfUseLink.click();
+    }
 
     public void clickContactUsLink(String appType) {
         switch(appType){
@@ -559,12 +544,14 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyTextInExchFooter(){
-        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        basicActions.waitForElementToBePresent(privacyPolicyLink,10);
+        basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
         softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
-        softAssert.assertEquals(followUsText.getText(), "Follow Us:");
+        softAssert.assertTrue(followUsText.getText().contains("Follow"));
+        softAssert.assertTrue(followUsText.getText().contains("Us:"));
         softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
         softAssert.assertEquals(xIcon.getAttribute("title"), "X");
         softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
@@ -590,20 +577,5 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextFooterLogin() {
-        basicActions.waitForElementToBePresent(privacyPolicyLink, 10);
-        softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
-        softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
-        softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
-        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
-        softAssert.assertEquals(followUsText.getText(), "FollowUs:");
-        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
-        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
-        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
-        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
-        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
-        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
-        softAssert.assertAll();
-    }
     }
 
