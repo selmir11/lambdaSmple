@@ -103,14 +103,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(id = "instagram-img")
     WebElement InstagramIcon;
-
-    //Admin Portal Footer Links
-    @FindBy(linkText = "Privacy Policy")
-    WebElement APprivacyPolicyLink;
-
-    @FindBy(linkText = "Terms of Use")
-    WebElement APtermsOfUseLink;
-
+    
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
