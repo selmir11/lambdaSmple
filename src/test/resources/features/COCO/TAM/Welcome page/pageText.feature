@@ -2,10 +2,12 @@ Feature: Page Text-Welcome Page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
 
   @SLCR-33 @PageTextWelcomePage
   Scenario: Check Welcome Page Text in English
     When I click create a new account on login page
+    Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
