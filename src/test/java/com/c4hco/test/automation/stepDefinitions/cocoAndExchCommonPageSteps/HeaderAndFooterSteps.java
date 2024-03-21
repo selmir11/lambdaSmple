@@ -3,7 +3,6 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 
 public class HeaderAndFooterSteps {
 
@@ -50,11 +49,11 @@ public class HeaderAndFooterSteps {
 
 
         // =========FOOTER============== //
-    @And("I click on Privacy Policy in the Footer")
-    public void iClickPrivacyPolicyLink(){ headerAndFooterPage.clickPrivacyPolicyLink(); }
+    @And("I click on Privacy Policy in the {string} Footer")
+    public void iClickPrivacyPolicyLink(String appType){ headerAndFooterPage.clickPrivacyPolicyLink(appType); }
 
-    @And("I click on Terms Of Use in the Footer")
-    public void iClickTermsOfUseLink(){ headerAndFooterPage.clickTermsOfUseLink(); }
+    @And("I click on Terms Of Use in the {string} Footer")
+    public void iClickTermsOfUseLink(String appType){ headerAndFooterPage.clickTermsOfUseLink(appType); }
 
     @And("I click on Contact Us in the {string} Footer")
     public void iClickContactUsLink(String appType){ headerAndFooterPage.clickContactUsLink(appType); }

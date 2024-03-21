@@ -40,4 +40,23 @@ public class LoginPageSteps {
             }
 
         // =================VALIDATION STEPS==============//
+        @When("I click on sign in on login page")
+        public void iClickOnSignInonloginpage() {
+            loginPage.clickSignIn();
+        }
+
+    @And("I receive error message for Username")
+    public void iReceiveErrorMessageForUsername() {
+        loginPage.usernameRequiredMessage();
+    }
+
+    @And("I receive error message for Password")
+    public void iReceiveErrorMessageForPassword() {
+        loginPage.passwordRequiredMessage();
+    }
+
+    @And("I receive message I forgot username and password")
+    public void iReceiveMessageIForgotUsernameAndPassword() {
+        loginPage.usernameandpasswordRequiredMessage();
+    }
     }

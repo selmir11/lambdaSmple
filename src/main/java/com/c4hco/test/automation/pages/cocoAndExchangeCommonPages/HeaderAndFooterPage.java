@@ -104,6 +104,13 @@ public class HeaderAndFooterPage {
     @FindBy(id = "instagram-img")
     WebElement InstagramIcon;
 
+    //Admin Portal Footer Links
+    @FindBy(linkText = "Privacy Policy")
+    WebElement APprivacyPolicyLink;
+
+    @FindBy(linkText = "Terms of Use")
+    WebElement APtermsOfUseLink;
+    
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
@@ -409,6 +416,9 @@ public class HeaderAndFooterPage {
                 case "Footer":
                     verifyTextInExchFooter();
                     break;
+                case "Login Footer":
+                    verifyTextFooterLogin();
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
             }
@@ -455,14 +465,36 @@ public class HeaderAndFooterPage {
 
 
     // =========FOOTER============== //
-    public void clickPrivacyPolicyLink() {
-        basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
-        privacyPolicyLink.click();
-    }
-    public void clickTermsOfUseLink() {
-        basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
-        termsOfUseLink.click();
-    }
+    public void clickPrivacyPolicyLink(String appType) {
+        switch (appType) {
+            case "Admin Portal":
+                basicActions.waitForElementToBeClickable(APprivacyPolicyLink, 20);
+                APprivacyPolicyLink.click();
+                break;
+            case "Indiviual Portal":
+                basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
+                privacyPolicyLink.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+        }
+        }
+
+    public void clickTermsOfUseLink(String appType) {
+        switch (appType) {
+            case "Admin Portal":
+                basicActions.waitForElementToBeClickable(APtermsOfUseLink, 20);
+                APtermsOfUseLink.click();
+                break;
+            case "Indiviual Portal":
+                basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
+                termsOfUseLink.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+        }
+        }
+
     public void clickContactUsLink(String appType) {
         switch(appType){
             case "CoCo":
@@ -558,4 +590,20 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-}
+    public void verifyTextFooterLogin() {
+        basicActions.waitForElementToBePresent(privacyPolicyLink, 10);
+        softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
+        softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
+        softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
+        softAssert.assertEquals(followUsText.getText(), "FollowUs:");
+        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
+        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
+        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
+        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
+        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
+        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
+        softAssert.assertAll();
+    }
+    }
+
