@@ -16,7 +16,7 @@ Feature: My profile page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
     Then I validate I am on the "My Account Overview" page
-    And I click on the Username in the "Exch" Header
+    And I click on the Username Link Exch
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button
     And I click on Save Button
