@@ -20,6 +20,9 @@ public class AccountOverviewPage {
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
 
+    @FindBy(id = "submit-curr-yr-6")
+    WebElement makeChangesButton;
+
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -52,6 +55,10 @@ public class AccountOverviewPage {
             default: throw new IllegalArgumentException("Entered Invalid option for clickHere link: " + clickHereOption);
         }
 
+    }
+
+    public void iClickOnMakeChanges(){
+        basicActions.click(makeChangesButton);
     }
 
 

@@ -13,6 +13,11 @@ public class AccountOverviewPageSteps {
     @Then("I click on ClickHere link for {string}")
     public void clickHere(String clickOption) {accountOverviewPage.clickHereLinks(clickOption);}
 
+    @Then("I click on make changes button")
+    public void clickMakeChanges(){
+        accountOverviewPage.iClickOnMakeChanges();
+    }
+
     // ================VALIDATION METHODS================//
     @And("I validate the page is in {string}")
     public void iVerifyLanguageText(String language){accountOverviewPage.verifyLanguageText(language);}

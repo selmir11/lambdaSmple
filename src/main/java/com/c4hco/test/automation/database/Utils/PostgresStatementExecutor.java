@@ -1,12 +1,12 @@
-package com.c4hco.test.automation.dbUtils;
+package com.c4hco.test.automation.database.Utils;
 
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PostgresStatementExecutor {
-    public ResultSet executeQuery(String sql) throws SQLException {
+    public ResultSet executeQuery(String sql) {
         Connection connection = PostgresSQLConnection.getInstance();
         ResultSet resultSet = null;
 
@@ -18,8 +18,9 @@ public class PostgresStatementExecutor {
         } finally {
             // Note: It's generally better to close the connection outside this class,
             // for example, in a higher-level module or test class.
-            PostgresSQLConnection.closeConnection();
+         //   PostgresSQLConnection.closeConnection();
         }
         return resultSet;
     }
+
 }

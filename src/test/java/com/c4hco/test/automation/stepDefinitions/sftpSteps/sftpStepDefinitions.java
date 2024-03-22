@@ -11,7 +11,7 @@ public class sftpStepDefinitions {
     public void goToSftpLocationAndDownload() throws JSchException {
         // WIP
         sftpUtil.connectToSftp();
-        sftpUtil.downloadFileWithSftp();
+      //  sftpUtil.downloadFileWithSftp();
         sftpUtil.disconnectFromSftp();
         // should give sftpPath to download from and file name
         // these should have saved from else where accordingly - otherwise will end up having multiple steps for multiple scenarios

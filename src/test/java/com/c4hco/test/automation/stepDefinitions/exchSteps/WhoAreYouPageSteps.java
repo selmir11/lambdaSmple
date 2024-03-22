@@ -16,4 +16,13 @@ public class WhoAreYouPageSteps {
     @And("I am a member with dob {string} in county {string} with zipcode {string}")
     public void enterSpecificMemberDetails(String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetails(zipcode, county, dateOfBirth);}
 
+    @Then("I update SSN number to new SSN number")
+    public void updateSSN(){
+        // TO DO: Modify this method and step - separate continue
+        // Check if continue buttons are same always or it changes the button - continue, save and continue
+        whoAreYouPage.iUpdateSSN();
+        whoAreYouPage.iClickContinueAfterSSNUpdate();
+    }
+
+
 }
