@@ -28,7 +28,7 @@ public class PlanSummaryMedicalDentalPage {
 
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
-    @FindBy(xpath = "//*[contains(text(),\"Medical Plans\")]")
+    @FindBy(xpath = "//th[normalize-space()='Medical Plans']")
     WebElement planSummaryMedicalplanheading;
 
     @FindBy(xpath = "//*[contains(text(),\"Premiums Before Savings\")]")
@@ -40,10 +40,10 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(xpath = "//*[contains(text(),\"Amount you pay\")]")
     WebElement planSummaryMedicalAmtyoupay;
 
-    @FindBy(xpath = "//*[contains(text(),\"Dental Plans\")]")
+    @FindBy(xpath = "//th[normalize-space()='Dental Plans']")
     WebElement planSummaryDentalplanheading;
 
-    @FindBy(xpath = "//*[contains(text(),\"Premiums Before Savings\")]")
+    @FindBy(xpath = "//*[contains(text(),\"Premiums before savings\")]")
     WebElement planSummaryDentalpremium;
 
     @FindBy(xpath = "//*[contains(text(),\"Money you save\")]")
