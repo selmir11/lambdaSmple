@@ -42,5 +42,29 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.clickSearchButtonOnAdminPortal();
     }
 
+    @Then("I verify title text on the Individual search page")
+    public void iVerifyTextOnTheIndividualSearchPageForTitle() {
+        String searchTitle;
+    }
+
+    @Then("I enter account number for individual")
+    public void enterAcctIdIndividual(){
+          adminPortalSearchPage.iEnterAcctIdIndividual("8150738600");
+    }
+
+
+
+
+
+
+
+
+
 
 }
+
+
+// ############################## VALIDATION STEPS #########################
+
+
+
