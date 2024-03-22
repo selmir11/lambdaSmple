@@ -66,6 +66,19 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
+
+    @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
+    WebElement validateAPTC;
+
+    /*public void verifyAPTCAmt() {
+        basicActions.waitForElementListToBePresent(validateAPTC, 10);
+        softAssert.assertTrue(validateAPTC.isDisplayed(), "APTC amount did not match");
+    }*/
+
+    public void validateAPTC(String planResultsAPTCredit){
+        String aptCreditAmt = "//span[text()='" + planResultsAPTCredit + "']";
+        basicActions.getDriver().findElement(By.xpath(aptCreditAmt)).getText();
+    }
     
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";
