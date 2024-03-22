@@ -9,10 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 public class EditGroupingMembersDentalPage {
-
-    @FindBy(id="SHP-EditDentalGroupingMembers-CreateANewGroup")
-    WebElement createNewGroup;
-
+    
     @FindBy(css = ".container div:nth-child(2) div span u")
     WebElement whatWorksBestLink;
 
@@ -29,10 +26,6 @@ public class EditGroupingMembersDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-     public void ivalidateImOnEditGroupingDentalPage(){
-         createNewGroup.isDisplayed();
-         createNewGroup.isEnabled();
-     }
 
 
     public void validateToolTipText(){
