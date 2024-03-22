@@ -56,23 +56,29 @@ public class AddAddressPage {
 
     @FindBy(id = "mailingAddrState")
     WebElement selectMailingState;
-
     @FindBy(id="mailingAddrCounty")
     WebElement selectMailingCounty;
-
     @FindBy(id = "mailingAddrZip")
     WebElement txtMailingZip;
-
+    //mailing address
+    @FindBy(id = "newResidentialAddress.addressLine1")
+    WebElement newResidentialAddressline1;
+    @FindBy(id = "newResidentialAddress.city")
+    WebElement newResidentialAdressCity;
+    @FindBy(id = "residentialAddrState")
+    WebElement newResidentialAddressState;
+    @FindBy(id = "residentialAddrZip")
+    WebElement newResidentialAddressZip;
+    @FindBy(id = "residentialAddrCounty")
+    WebElement newResidentialAddressCounty;
     @FindBy(id = "coResidentYes")
     WebElement rdobtnIsColoradoResidentYes;
     @FindBy(id = "coResidentNo")
     WebElement rdobtnIsColoradoResidentNo;
-
     @FindBy(id = "tribeYes")
     WebElement rdobtnPartOfTribeYes;
     @FindBy(id = "tribeNo")
     WebElement rdobtnPartOfTribeNo;
-
     @FindBy(id = "hardshipExemptionYes")
     WebElement rdobtnHardshipExemptionYes;
     @FindBy(id = "hardshipExemptionNo")
@@ -130,22 +136,42 @@ public class AddAddressPage {
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
 
-    public void addNewResidentialAddress(Map<String, String> addDetails, String relationshipToAccHoldr){
+    public void addNewResidentialAddress(List<Map<String, String>> addDetails){
         // If this method is applicable for adding new address to "SELF" then make sure we add sub check as well.
-        mailingAddress(); // TO DO::update this method to accept addDetails. Update the step and use one method for both new and firstTime entry as it is using the same locators
+       // mailingAddress(); // TO DO::update this method to accept addDetails. Update the step and use one method for both new and firstTime entry as it is using the same locators
 
-        List<PolicyMember> membersList = SharedData.getMembers();
-    Optional requiredMem =  membersList.stream().filter(mem -> mem.getRelation_to_subscriber().equals(relationshipToAccHoldr)).findFirst();
-        if(requiredMem.isPresent()){
-          PolicyMember member =  (PolicyMember) requiredMem.get();
-          // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-          member.setZipcode(addDetails.get("zipcode"));
-          membersList.add(member);
-          SharedData.setMembers(membersList);
-        }
-        else{
-            Assert.fail("Member with this relationship to account holder is not found!!");
-        }
+        basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+        String  addressLine1 = addDetails.get(0).get("addressLine1");
+        String  city = addDetails.get(0).get("city");
+        String state = addDetails.get(0).get("state");
+        String  zipcode = addDetails.get(0).get("zipcode");
+        String county = addDetails.get(0).get("county");
+
+        newResidentialAddressline1.sendKeys(addressLine1);
+        newResidentialAdressCity.sendKeys(city);
+        newResidentialAddressState.sendKeys(state);
+        newResidentialAddressZip.sendKeys(zipcode);
+        newResidentialAddressCounty.click();
+        Select dropdown = new Select(newResidentialAddressCounty);
+        dropdown.selectByValue(county);
+
+        //If header has yourself then set data to the subscriber
+        // If header doesn't have yourself then get the signature from the member.
+
+//        List<PolicyMember> membersList = SharedData.getMembers();
+//        Optional requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(addDetails.get("dob")) &&
+//                mem.getSignature().contains(newResidentialAddressline1.getText())
+//        ).findFirst();
+//        if(requiredMem.isPresent()){
+//          PolicyMember member =  (PolicyMember) requiredMem.get();
+//          // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
+//          member.setZipcode(addDetails.get("zipcode"));
+//          membersList.add(member);
+//          SharedData.setMembers(membersList);
+//        }
+//        else{
+//            Assert.fail("Member with this relationship to account holder is not found!!");
+//        }
     }
 
     public void isColoradoResident(String YNCOResident){
