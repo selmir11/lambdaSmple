@@ -60,7 +60,6 @@ public class AddAddressPage {
     WebElement selectMailingCounty;
     @FindBy(id = "mailingAddrZip")
     WebElement txtMailingZip;
-    //mailing address
     @FindBy(id = "newResidentialAddress.addressLine1")
     WebElement newResidentialAddressline1;
     @FindBy(id = "newResidentialAddress.city")
