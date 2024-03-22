@@ -68,9 +68,9 @@ public class MedicalPlanResultsPage {
     WebElement nextPageArrow;
 
     @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
-    WebElement validateAPTC;
+    WebElement aptCreditAmt;
 
-    /*public void verifyAPTCAmt() {
+    /*public void aPTCredit() {
         basicActions.waitForElementListToBePresent(validateAPTC, 10);
         softAssert.assertTrue(validateAPTC.isDisplayed(), "APTC amount did not match");
     }*/
