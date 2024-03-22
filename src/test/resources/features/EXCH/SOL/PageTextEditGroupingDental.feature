@@ -70,6 +70,6 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click on dental edit enrollment groups link
-    And I validate I am on the "Edit Grouping Members Medical" page
-    Then I verify tool tip on the link- what works best for you
+    And I validate I am on the "Edit Grouping Members Dental" page
+    Then I verify dental tool tip on the link- what works best for you
 
