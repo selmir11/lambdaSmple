@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,11 +18,17 @@ public class AdminPortalSearchPage {
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
-
+    SoftAssert softAssert = new SoftAssert();
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy(xpath = "//img[@title='Connect for Health Colorado']")
+    WebElement connectForHealthLogo;
+
+    @FindBy(id = "title")
+    WebElement Title;
 
     @FindBy(css = ".search-input-and-label .search-input")
     List<WebElement> searchInputList;
@@ -99,4 +106,20 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
+
+    public void ConnectForHealthLogoDisplay()
+    { softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
+        softAssert.assertAll();
+    }
+
+    public void navigateConnectForHealthPage(){
+        connectForHealthLogo.click();
+        navigateToPreviousPage();
+    }
+    public void titleTextValidate(){
+        Title.isDisplayed();
+        softAssert.assertEquals(Title.getText(), "Sign in to your account");
+        softAssert.assertAll();
+    }
+
 }
