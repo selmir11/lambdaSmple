@@ -17,6 +17,7 @@ Feature: My profile page
     And I verify text on My profile page "English"
     And I change the language from header to "Spanish"
     And I verify text on My profile page "Spanish"
+    And I click on Make Changes Button
 
 
 

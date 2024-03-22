@@ -139,6 +139,7 @@ public class CreateAccountPage {
     public void addDetails(){
         initializeData();
         PolicyMember subscriber = SharedData.getSubscriber();
+        basicActions.waitForElementToBePresent(firstName, 60);
         firstName.sendKeys(subscriber.getFirstName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
