@@ -89,7 +89,10 @@ public class TellUsAboutAdditionalMemberPage {
         PolicyMember member = new PolicyMember();
         member.setFirstName(frstName);
         member.setLastName(lastName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
         memberList.add(member);
+
         SharedData.setMembers(memberList);
     }
 
