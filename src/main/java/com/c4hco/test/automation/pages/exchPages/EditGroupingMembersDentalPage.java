@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 public class EditGroupingMembersDentalPage {
-    
+
     @FindBy(css = ".container div:nth-child(2) div span u")
     WebElement whatWorksBestLink;
 
