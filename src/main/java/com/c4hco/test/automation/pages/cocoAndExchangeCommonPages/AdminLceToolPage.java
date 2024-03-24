@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,14 +49,14 @@ public class AdminLceToolPage {
             softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
             softAssert.assertAll();
             basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
-            adminLCEToolAccountIdInput.sendKeys( String.valueOf(SharedData.getSubscriber().getAccount_id()));
+            adminLCEToolAccountIdInput.sendKeys( String.valueOf(SharedData.getPrimaryMember().getAccount_id()));
             lookUpBtn.click();
             // validate look up returned results
             basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
         }
 
         public void changeEffectiveDate(String effectiveDate){
-            PolicyMember subscriber = SharedData.getSubscriber();
+            MemberDetails subscriber = SharedData.getPrimaryMember();
             basicActions.waitForElementToBePresent(planYrDropdown, 10);
             planYrDropdown.click();
 
@@ -74,7 +74,7 @@ public class AdminLceToolPage {
 
             subscriber.setFinancialStartDate("01/01/2024");
 
-            SharedData.setSubscriber(subscriber);
+            SharedData.setPrimaryMember(subscriber);
 
             closeTabAndSwitchToCurrentWindow();
         }

@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,7 +53,7 @@ public class MyPoliciesPage {
     @FindBy(xpath = "//div[contains(./span, 'Exchange Policy Number:')]/following-sibling::div/span")
     List<WebElement> EAPID; //exchange policy number for both medical and dental
 
-    PolicyMember primaryMember = SharedData.getSubscriber();
+    MemberDetails primaryMember = SharedData.getPrimaryMember();
 
     public void validateEnrolledMedicalPlanDetails(){
         // TO DO: Add other low priority validations as well

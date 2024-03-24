@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.DatabaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.ModelObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import com.jcraft.jsch.JSchException;

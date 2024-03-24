@@ -7,7 +7,7 @@ public class DbQueries_Exch {
     // get the env and pass it dynamically. So this works for both qa and staging - findOut the table names for qa_exch and qa_staging is correct
     // Find Out: Will the commented out columns be used in tests later? - For all the queries
 
-    String acctId = String.valueOf(SharedData.getSubscriber().getAccount_id());
+    String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
 
     public String policyTableMixedQuery() {
         return "select eph.account_id, eph.application_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +

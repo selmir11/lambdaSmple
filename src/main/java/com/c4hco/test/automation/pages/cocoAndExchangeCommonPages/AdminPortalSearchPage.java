@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -60,7 +60,7 @@ public class AdminPortalSearchPage {
     public void searchForUser(){
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         searchInputList.get(1).sendKeys(subscriber.getFirstName());
         searchInputList.get(2).sendKeys(subscriber.getLastName());
         searchInputList.get(3).sendKeys(subscriber.getEmailId());
@@ -78,9 +78,9 @@ public class AdminPortalSearchPage {
         String currentUrl = basicActions.getCurrentUrl();
 
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
-        SharedData.setSubscriber(subscriber);
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void clickFromApplicationLinksDropdown(String dropdownOption){

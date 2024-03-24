@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.database.dbDataProvider;
 
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
-import com.c4hco.test.automation.database.EntityObj.PolicyTableEntity;
+import com.c4hco.test.automation.database.ModelObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.ModelObj.PolicyTableEntity;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import com.c4hco.test.automation.database.dbHandler.Ob834DetailsDbHandler;
