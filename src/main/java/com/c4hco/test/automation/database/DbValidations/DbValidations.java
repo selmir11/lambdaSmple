@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.EntityObj.PolicyTableEntity;
@@ -15,7 +15,7 @@ public class DbValidations {
   SoftAssert softAssert = new SoftAssert();
 
     public void validatePolicyData(){
-      PolicyMember subscriber = SharedData.getSubscriber();
+      MemberDetails subscriber = SharedData.getPrimaryMember();
       List<PolicyTableEntity> policyEntity = exchDbDataProvider.getDataFromPolicyTable();
        softAssert.assertEquals( String.valueOf(subscriber.getAccount_id()), policyEntity.get(0).getAccount_id(), "acc id did not match");
        // Application Id

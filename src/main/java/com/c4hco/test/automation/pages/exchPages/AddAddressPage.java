@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
@@ -167,8 +167,8 @@ public class AddAddressPage {
         String getHeader = getNameFromHeader.getText();
         String name = getMemberName();
 
-        List<PolicyMember> membersList = SharedData.getMembers();
-        PolicyMember subscriber = SharedData.getSubscriber();
+        List<MemberDetails> membersList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
 
         if (getHeader.contains("Yourself")) {
             //set data for subscriber
@@ -179,7 +179,7 @@ public class AddAddressPage {
             ).findFirst();
 
             if(requiredMem.isPresent()){
-                PolicyMember member =  (PolicyMember) requiredMem.get();
+                MemberDetails member =  (MemberDetails) requiredMem.get();
                 // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
                 member.setZipcode(addDetails.get(0).get("zipcode"));
                 membersList.add(member);
