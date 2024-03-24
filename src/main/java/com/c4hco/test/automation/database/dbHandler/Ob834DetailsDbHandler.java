@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.database.dbHandler;
 
-import com.c4hco.test.automation.database.ModelObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 
 import java.lang.reflect.Field;

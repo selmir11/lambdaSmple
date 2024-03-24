@@ -2,8 +2,8 @@ package com.c4hco.test.automation.database.DbValidations;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.ModelObj.Ob834DetailsEntity;
-import com.c4hco.test.automation.database.ModelObj.PolicyTableEntity;
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.EntityObj.PolicyTableEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.junit.Assert;
 import org.testng.asserts.SoftAssert;

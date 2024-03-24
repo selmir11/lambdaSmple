@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.database.ModelObj;
+package com.c4hco.test.automation.database.EntityObj;
 
 import lombok.Data;
 
