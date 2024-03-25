@@ -278,7 +278,7 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePagePolicyEnglish(String policyName, String policyLevel, String policyPremium){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+SharedData.getSubscriber().getFirstName()+"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+SharedData.getPrimaryMember().getFirstName()+"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Make changes to your health insurance");
         String currentUrl = basicActions.getCurrentUrl();
         if(currentUrl == "https://staging") {
@@ -291,8 +291,8 @@ public class WelcomePage {
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getSubscriber().getFirstName());
-        softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName());
+        softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getPrimaryMember().getFirstName());
+        softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(policyMedicalPlan.getText(), "Medical Plan");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
@@ -312,7 +312,7 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePagePolicySpanish(String policyName, String policyLevel, String policyPremium){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getSubscriber().getFirstName() +"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getPrimaryMember().getFirstName() +"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Hacer cambios a su seguro de salud");
         String currentUrl = basicActions.getCurrentUrl();
         if(currentUrl == "https://staging") {
@@ -325,8 +325,8 @@ public class WelcomePage {
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getSubscriber().getFirstName());
-        softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getSubscriber().getFirstName()+" "+SharedData.getSubscriber().getLastName());
+        softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getPrimaryMember().getFirstName());
+        softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(policyMedicalPlan.getText(), "Plan m\u00E9dico");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
