@@ -1,11 +1,18 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class AddAddressPage {
     private BasicActions basicActions;
@@ -49,23 +56,28 @@ public class AddAddressPage {
 
     @FindBy(id = "mailingAddrState")
     WebElement selectMailingState;
-
     @FindBy(id="mailingAddrCounty")
     WebElement selectMailingCounty;
-
     @FindBy(id = "mailingAddrZip")
     WebElement txtMailingZip;
-
+    @FindBy(id = "newResidentialAddress.addressLine1")
+    WebElement newResidentialAddressline1;
+    @FindBy(id = "newResidentialAddress.city")
+    WebElement newResidentialAdressCity;
+    @FindBy(id = "residentialAddrState")
+    WebElement newResidentialAddressState;
+    @FindBy(id = "residentialAddrZip")
+    WebElement newResidentialAddressZip;
+    @FindBy(id = "residentialAddrCounty")
+    WebElement newResidentialAddressCounty;
     @FindBy(id = "coResidentYes")
     WebElement rdobtnIsColoradoResidentYes;
     @FindBy(id = "coResidentNo")
     WebElement rdobtnIsColoradoResidentNo;
-
     @FindBy(id = "tribeYes")
     WebElement rdobtnPartOfTribeYes;
     @FindBy(id = "tribeNo")
     WebElement rdobtnPartOfTribeNo;
-
     @FindBy(id = "hardshipExemptionYes")
     WebElement rdobtnHardshipExemptionYes;
     @FindBy(id = "hardshipExemptionNo")
@@ -93,6 +105,9 @@ public class AddAddressPage {
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
 
+    @FindBy(css = ".c4PageHeader1")
+    WebElement getNameFromHeader;
+
 
     public void selectResidentialAddress(String index){
         switch(index){
@@ -108,6 +123,13 @@ public class AddAddressPage {
 
     }
 
+    public String getMemberName(){
+        String getHeader = getNameFromHeader.getText();
+        String[] memNameSubstring = getHeader.split(" ");
+        String memFName = memNameSubstring[memNameSubstring.length-1];
+        System.out.println(memFName);
+        return memFName;
+    }
     public void mailingAddress(){
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
@@ -120,6 +142,53 @@ public class AddAddressPage {
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
+    }
+
+    public void addNewResidentialAddress(List<Map<String, String>> addDetails){
+
+        basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+        String addressLine1 = addDetails.get(0).get("addressLine1");
+        String city = addDetails.get(0).get("city");
+        String state = addDetails.get(0).get("state");
+        String zipcode = addDetails.get(0).get("zipcode");
+        String county = addDetails.get(0).get("county");
+
+        newResidentialAddressline1.sendKeys(addressLine1);
+        newResidentialAdressCity.sendKeys(city);
+        newResidentialAddressState.sendKeys(state);
+        newResidentialAddressZip.sendKeys(zipcode);
+        newResidentialAddressCounty.click();
+        Select dropdown = new Select(newResidentialAddressCounty);
+        dropdown.selectByValue(county);
+        setNewResidentialAddress(addDetails);
+    }
+
+    public void setNewResidentialAddress(List<Map<String,String>> addDetails){
+        String getHeader = getNameFromHeader.getText();
+        String name = getMemberName();
+
+        List<MemberDetails> membersList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+
+        if (getHeader.contains("Yourself")) {
+            //set data for subscriber
+        }else{
+           // filter by dob as it is unique
+            Optional requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(addDetails.get(0).get("dob")) &&
+                    mem.getSignature().contains(name)
+            ).findFirst();
+
+            if(requiredMem.isPresent()){
+                MemberDetails member =  (MemberDetails) requiredMem.get();
+                // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
+                member.setZipcode(addDetails.get(0).get("zipcode"));
+                membersList.add(member);
+                SharedData.setMembers(membersList);
+            }
+            else{
+                Assert.fail("Member with this relationship to account holder is not found!!");
+            }
+        }
     }
 
     public void isColoradoResident(String YNCOResident){

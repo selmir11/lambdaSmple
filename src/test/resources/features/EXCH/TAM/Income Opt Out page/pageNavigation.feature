@@ -319,10 +319,10 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click continue on family overview page
 
     Then I validate I am on the "Financial Help" page
-    And I click on Privacy Policy in the Footer
+    And  And I click on Privacy Policy in the Footer
     And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "Financial Help" page
-    And I click on Terms Of Use in the Footer
+    And And I click on Terms Of Use in the Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "Financial Help" page
     And I click on Contact Us in the "Exch" Footer

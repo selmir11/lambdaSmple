@@ -22,4 +22,10 @@ public class MyProfilePageSteps {
     public void iclickSaveButton() {
         myProfileExchPage.clickSaveButton();
     }
+
+
+///////////////////////////////////Validation Steps/////////////////
+
+    @And("I verify text on My profile page {string}")
+    public void verifyTextOnMyProfilePage(String language)  { myProfileExchPage.verifyTextOnMyProfileExchPage(language); }
 }

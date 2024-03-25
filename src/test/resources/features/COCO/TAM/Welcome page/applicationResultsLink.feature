@@ -16,7 +16,7 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from header to "Spanish"
     And I click on "Application Results" link on welcome page
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application Results CoCo" page
     And I click on Go back to Welcome page Button on Application Results page CoCo
     And I click on "My Documents and Letters" link on welcome page
     Then I validate I am on the "My Documents" page
@@ -25,7 +25,7 @@ Feature: Tests related to the Application Results link
     Then I validate action link text on welcome page in "Spanish"
     And I change the language from header to "English"
     And I click on "Application Results" link on welcome page
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application Results CoCo" page
     And I click on Go back to Welcome page Button on Application Results page CoCo
     And I click on "My Documents and Letters" link on welcome page
     Then I validate I am on the "My Documents" page
@@ -82,7 +82,7 @@ Feature: Tests related to the Application Results link
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from header to "Spanish"
     And I click on "Application Results" link on welcome page
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application Results CoCo" page
     And I click on the Colorado Connect or C4 Logo in the Header
     And I click on "My Documents and Letters" link on welcome page
     Then I validate I am on the "My Documents" page
@@ -91,7 +91,7 @@ Feature: Tests related to the Application Results link
     Then I validate action link text on welcome page in "Spanish"
     And I change the language from header to "English"
     And I click on "Application Results" link on welcome page
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application Results CoCo" page
     And I click on the Colorado Connect or C4 Logo in the Header
     And I click on "My Documents and Letters" link on welcome page
     Then I validate I am on the "My Documents" page

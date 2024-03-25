@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
@@ -128,17 +128,18 @@ public class CreateAccountPage {
     }
 
     public void initializeData(){
-        PolicyMember subscriber = new PolicyMember();
+        MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName(getUniqueString(8)+"TestMember");
         subscriber.setLastName(getUniqueString(8)+"Test");
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
-        SharedData.setSubscriber(subscriber);
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void addDetails(){
         initializeData();
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 60);
         firstName.sendKeys(subscriber.getFirstName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
@@ -149,7 +150,7 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
-        SharedData.setSubscriber(subscriber);
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void validateHelpText(String language){

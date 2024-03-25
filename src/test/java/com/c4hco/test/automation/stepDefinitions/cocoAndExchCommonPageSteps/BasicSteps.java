@@ -85,6 +85,9 @@ public class BasicSteps {
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
                 break;
+            case "Edit Grouping Members Dental":
+                pageUrl = "PreShoppingPortal/editGroupingMembersDental";
+                break;
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
@@ -210,6 +213,9 @@ public class BasicSteps {
                 break;
             case "Enrollment Agreements":
                 pageUrl = "PaymentPortal/enrollmentAgreements";
+                break;
+            case "Good News":
+                pageUrl = "nes/applyMA";
                 break;
             default:
                 System.out.println("undefined page ");

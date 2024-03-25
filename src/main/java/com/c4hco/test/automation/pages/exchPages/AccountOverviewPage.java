@@ -11,6 +11,9 @@ import java.util.List;
 
 public class AccountOverviewPage {
 
+    @FindBy(css = "li.vertical-ruler")
+    WebElement userNameExchLink;
+
     @FindBy(name = "applyForCurrentYear")
     WebElement btnApplyForCurrentYear;
 
@@ -26,6 +29,11 @@ public class AccountOverviewPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+
+    public void clickuserNameExchLink() {
+        basicActions.waitForElementToBeClickable(userNameExchLink, 15);
+        userNameExchLink.click();
+    }
 
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);

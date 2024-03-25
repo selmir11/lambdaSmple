@@ -4,7 +4,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-116-WIP @VerifyTestToolTip
+  @SLER-116 @VerifyTestToolTip
   Scenario: Validate the test tool tip on the edit Dental Grouping page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -66,9 +66,10 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I click continue on grouping medical members
+    Then I click continue on grouping Members Medical page
     And I select the first medical plan
     Then I click continue on medical plan results page
-    Then I click on edit enrollment groups link
-   
+    Then I click on dental edit enrollment groups link
+    And I validate I am on the "Edit Grouping Members Dental" page
+    Then I verify dental tool tip on the link- what works best for you
+
