@@ -56,7 +56,7 @@ public class NoticesPage {
 
 
     public String MFACode = "";
-    public void openGmailTab(){
+    public void openOutlookTab(){
         JavascriptExecutor jse = (JavascriptExecutor)basicActions.getDriver();
         jse.executeScript("window.open()");
         for (String handle : basicActions.getDriver().getWindowHandles()) {
