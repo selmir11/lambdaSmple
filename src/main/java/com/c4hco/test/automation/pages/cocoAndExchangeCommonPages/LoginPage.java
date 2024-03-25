@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.Utils;
 import com.c4hco.test.automation.utils.WebDriverManager;
@@ -9,8 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 public class LoginPage {
+
+    SoftAssert softAssert = new SoftAssert();
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
@@ -38,6 +41,15 @@ public class LoginPage {
     @FindBy(xpath = "//a[text()='username']")
      WebElement forgotUsername;
 
+    @FindBy(xpath = "//span[normalize-space()='Username is required']")
+    WebElement usernameError;
+
+    @FindBy(xpath = "//span[normalize-space()='Password is required']")
+    WebElement passwordError;
+
+    @FindBy(css = ".font-weight-bold")
+    WebElement iForgotUsernameandPassword;
+
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
 
@@ -56,7 +68,7 @@ public class LoginPage {
 
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         System.out.println("Email and pwd::"+subscriber.getEmailId()+"::"+subscriber.getPassword());
             username.sendKeys(subscriber.getEmailId());
             password.sendKeys(subscriber.getPassword());
@@ -89,8 +101,24 @@ public class LoginPage {
         forgotUsername.click();
     }
 
+    public void clickSignIn() {
+        signAdmin.click();
+    }
+    public void usernameRequiredMessage(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(usernameError, 20));
+        softAssert.assertAll();
+    }
+
+    public void passwordRequiredMessage(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(passwordError, 20));
+        softAssert.assertAll();
+    }
+
+    public void usernameandpasswordRequiredMessage(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(iForgotUsernameandPassword, 20));
+        softAssert.assertAll();
+    }
+}
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
-
-}

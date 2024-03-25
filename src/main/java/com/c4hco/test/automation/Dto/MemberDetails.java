@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class PolicyMember {
+public class MemberDetails {
     String firstName;
     String lastName;
     String emailId;
@@ -18,6 +18,11 @@ public class PolicyMember {
     String zipcode;
     String mailingAddress;
     String mailingZipCode;
+    String residentialAddressLine1;
+    String residentialAddressCity;
+    String residentialAddressState;
+    String residentialAddressCounty;
+    String residentialAddressZipcode;
     String gender;
     String medicalPlan;
     String medicalPlanStartDate;

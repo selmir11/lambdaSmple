@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,9 +45,9 @@ public class TellUsAboutYourselfPage {
     WebElement btnSaveAndContinue;
 
     public void userSexQuestion(String Sex) {
-        PolicyMember acctHolder = SharedData.getSubscriber();
+        MemberDetails acctHolder = SharedData.getPrimaryMember();
         acctHolder.setGender(Sex);
-        SharedData.setSubscriber(acctHolder);
+        SharedData.setPrimaryMember(acctHolder);
         switch (Sex) {
             case "Female":
                 rdobtnSexFemale.click();

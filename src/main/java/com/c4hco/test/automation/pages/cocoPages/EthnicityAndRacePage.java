@@ -31,6 +31,12 @@ public class EthnicityAndRacePage {
     @FindBy(css = ".header-1")
     WebElement hdrEthnicityAndRace;
 
+    @FindBy(css = "p.error-text")
+    List<WebElement> errorMessages;
+
+    @FindBy(css = ".svg-inline--fa.fa-exclamation-circle")
+    List<WebElement> exclamationMarkIcon;
+
     @FindBy(id = "ELIG-RaceEthnicity-SaveAndContinue")
     WebElement saveAndContinueButton;
 
@@ -103,10 +109,35 @@ public class EthnicityAndRacePage {
         }
     }
 
-    public void verifyTextOnEthnicityAndRaceEnglish(){
+    public void verifyErrorMessagesEthnicityAndRace(String language) {
+        basicActions.waitForElementListToBePresent(errorMessages, 10);
+        switch (language) {
+            case "English":
+                verifyErrorMessagesEthnicityAndRaceEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateTheSelectionOfOptions(String Section) {
+        basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 10);
+        switch (Section) {
+            case "Ethnicity":
+                validateTheSelectionOfOptionsEthnicity();
+                break;
+            case "Race":
+                validateTheSelectionOfOptionsRace();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Section);
+        }
+    }
+
+    public void verifyTextOnEthnicityAndRaceEnglish() {
         softAssert.assertEquals(hdrEthnicityAndRace.getText(), "Ethnicity and Race: " +
-                Character.toUpperCase(SharedData.getSubscriber().getFirstName().charAt(0)) + SharedData.getSubscriber().getFirstName().substring(1) + " " +
-                Character.toUpperCase(SharedData.getSubscriber().getLastName().charAt(0)) + SharedData.getSubscriber().getLastName().substring(1));
+                Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
+                Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1));
         softAssert.assertEquals(EthnicityAndRaceText.get(0).getText(), "Hispanic/Latino");
         softAssert.assertEquals(EthnicityAndRaceText.get(1).getText(), "Non-Hispanic/Latino");
         softAssert.assertEquals(EthnicityAndRaceText.get(2).getText(), "I prefer not to answer");
@@ -122,4 +153,56 @@ public class EthnicityAndRacePage {
         softAssert.assertAll();
     }
 
-}
+    public void verifyErrorMessagesEthnicityAndRaceEnglish() {
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Ethnicity is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(0).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Race is required (select all that apply)");
+        softAssert.assertTrue(exclamationMarkIcon.get(1).isDisplayed());
+        softAssert.assertAll();
+    }
+
+    public void validateTheSelectionOfOptionsEthnicity() {
+        for (int i = 0; i < 3; i++) {
+            ethnicityButton.get(i).click();
+        }
+
+        //Only 1 ethnicity option can be selected at a time
+        int selectedCount = 0;
+        for (WebElement button : ethnicityButton) {
+            if (button.getAttribute("class").contains("race-ethnicity-check-box-selected")) {
+                selectedCount++;
+            }
+        }
+
+        //Verify that only one option is selected
+        if (selectedCount != 1) {
+            throw new AssertionError("Expected only one ethnicity option to be selected, but found " + selectedCount);
+        }
+    }
+
+    public void validateTheSelectionOfOptionsRace() {
+        for (int i = 0; i < 6; i++) {
+            raceButton.get(i).click();
+        }
+
+        //For race options, more than 1 option can be selected (up to 6), but only if the 'I prefer not to answer' option is not selected
+        //If 'I prefer not to answer' is selected, then all other race options will be unselected
+        for (int i = 0; i < 6; i++) {
+            if (!raceButton.get(i).getAttribute("class").contains("race-ethnicity-check-box-selected")) {
+                throw new AssertionError("Race option " + (i + 1) + " is not selected.");
+            }
+        }
+
+        raceButton.get(6).click();
+
+        if (!raceButton.get(6).getAttribute("class").contains("race-ethnicity-check-box-selected")) {
+            throw new AssertionError("Race option 7 is not selected.");
+        }
+
+            for (int i = 0; i < 6; i++) {
+                if (raceButton.get(i).getAttribute("class").contains("race-ethnicity-check-box-selected")) {
+                    throw new AssertionError("Race option " + (i + 1) + " is selected, but it shouldn't be.");
+                }
+            }
+        }
+    }

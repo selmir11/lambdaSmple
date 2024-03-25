@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,9 +40,9 @@ public class IncomeOptOutPage {
 
     public void chooseNoFinancialHelp(){
         basicActions.waitForElementToBeClickable(noThanks,10);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAptcAmt("0");
-        SharedData.setSubscriber(subscriber);
+        SharedData.setPrimaryMember(subscriber);
         noThanks.click();
     }
 

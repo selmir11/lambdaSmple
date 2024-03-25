@@ -1,13 +1,14 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,11 +18,17 @@ public class AdminPortalSearchPage {
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
-
+    SoftAssert softAssert = new SoftAssert();
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy(xpath = "//img[@title='Connect for Health Colorado']")
+    WebElement connectForHealthLogo;
+
+    @FindBy(id = "title")
+    WebElement Title;
 
     @FindBy(css = ".search-input-and-label .search-input")
     List<WebElement> searchInputList;
@@ -53,7 +60,7 @@ public class AdminPortalSearchPage {
     public void searchForUser(){
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         searchInputList.get(1).sendKeys(subscriber.getFirstName());
         searchInputList.get(2).sendKeys(subscriber.getLastName());
         searchInputList.get(3).sendKeys(subscriber.getEmailId());
@@ -71,9 +78,9 @@ public class AdminPortalSearchPage {
         String currentUrl = basicActions.getCurrentUrl();
 
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
-        SharedData.setSubscriber(subscriber);
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void clickFromApplicationLinksDropdown(String dropdownOption){
@@ -99,4 +106,20 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
+
+    public void ConnectForHealthLogoDisplay()
+    { softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
+        softAssert.assertAll();
+    }
+
+    public void navigateConnectForHealthPage(){
+        connectForHealthLogo.click();
+        navigateToPreviousPage();
+    }
+    public void titleTextValidate(){
+        Title.isDisplayed();
+        softAssert.assertEquals(Title.getText(), "Sign in to your account");
+        softAssert.assertAll();
+    }
+
 }
