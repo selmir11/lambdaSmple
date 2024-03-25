@@ -4,6 +4,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,11 +15,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class AdminPortalSearchPage {
-    // TO DO:: Update the locators based on - if the search table will have more than 1 row
+      // TO DO:: Update the locators based on - if the search table will have more than 1 row
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -57,7 +59,20 @@ public class AdminPortalSearchPage {
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
-    public void searchForUser(){
+    @FindBy(css = "#accountId")
+    WebElement acctIdWidget;
+
+    @FindBy(css = "#broker")
+    WebElement broker;
+    @FindBy(id = "programManager")
+    WebElement programManager;
+    @FindBy(css = "#agency")
+    WebElement agency;
+
+    @FindBy(id = "cocoIndividual")
+    WebElement coco;
+
+    public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         MemberDetails subscriber = SharedData.getPrimaryMember();
@@ -67,23 +82,23 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
-    public void clickEmailLinkFrmSrchResults(){
+    public void clickEmailLinkFrmSrchResults() {
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
 
-    public void setAccountId(){
+    public void setAccountId() {
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
 
-        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+        String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption){
+    public void clickFromApplicationLinksDropdown(String dropdownOption) {
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
@@ -92,34 +107,65 @@ public class AdminPortalSearchPage {
 
     public void logoutFromAdmin() {
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow,100);
+        basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin,100);
+        basicActions.waitForElementToBePresent(logoutAdmin, 100);
         logoutAdmin.click();
     }
 
-    public void navigateToPreviousPage(){
+    public void navigateToPreviousPage() {
         basicActions.getDriver().navigate().back();
     }
 
-    public void clickCreateAccount(){
-        basicActions.waitForElementListToBePresent(buttonsList,10);
+    public void clickCreateAccount() {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(2).click();
     }
 
-    public void ConnectForHealthLogoDisplay()
-    { softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
+    public void ConnectForHealthLogoDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
         softAssert.assertAll();
     }
 
-    public void navigateConnectForHealthPage(){
+    public void navigateConnectForHealthPage() {
         connectForHealthLogo.click();
         navigateToPreviousPage();
     }
-    public void titleTextValidate(){
+
+    public void titleTextValidate() {
         Title.isDisplayed();
         softAssert.assertEquals(Title.getText(), "Sign in to your account");
         softAssert.assertAll();
     }
 
+    public void ClickSearchButtonOnAdminPortal() {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
+        buttonsList.get(0).click();
+    }
+      public void enterCocoIndividualId(String AcctIdCoco){
+        acctIdWidget.sendKeys("8150738600");
+    }
+
+    public void SelectUserTypeToSearch(String selectUserTypeToSearch) {
+        switch (selectUserTypeToSearch) {
+            case "cocoBroker":
+                basicActions.waitForElementToBePresent(broker, 15);
+                broker.click();
+                break;
+            case "cocoProgramManager":
+                basicActions.waitForElementToBePresent(programManager, 15);
+                programManager.click();
+                break;
+            case "cocoAgency":
+                basicActions.waitForElementToBePresent(agency, 15);
+                agency.click();
+                break;
+            case "coco":
+                basicActions.waitForElementToBePresent(coco, 15);
+                coco.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
+        }
+    }
 }

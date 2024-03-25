@@ -5,10 +5,10 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+
 public class AdminPortalSearchSteps {
 
     AdminPortalSearchPage adminPortalSearchPage = new AdminPortalSearchPage(WebDriverManager.getDriver());
-
 
     @Then("I click create account on admin portal")
     public void createAcctOnAdminPortal() {
@@ -47,5 +47,22 @@ public class AdminPortalSearchSteps {
                 throw new IllegalArgumentException("Invalid header option : " + HeaderValidation);
         }
     }
+
+
+     @Then("I check {string} user type to search on Admin Portal dashboard")
+     public void iSelectUserTypeToSearch(String selectUserTypeToSearch){
+        adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
+     }
+
+    @And("I enter specific account number for coco {string}")
+    public void iEnterSpecificAccountNumberForCoco(String AcctIdCoco) {
+        adminPortalSearchPage.enterCocoIndividualId(AcctIdCoco);
+    }
+
+    @Then("I click search button on admin portal")
+    public void iClickSearchAccount() {
+        adminPortalSearchPage.ClickSearchButtonOnAdminPortal();
+    }
+
 
 }

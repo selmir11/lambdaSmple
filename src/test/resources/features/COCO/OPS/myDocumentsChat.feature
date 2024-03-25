@@ -6,10 +6,9 @@ Feature: checking Let's chat functionality on My Documents page
   Given I open the login page on the "admin" portal
   Then I login as Admin User
   And I validate I am on the "Admin dashboard" page
-  Then I check "cocoIndividual" user type to search on Admin Portal dashboard
-  And I enter account number for individual
+  Then I check "coco" user type to search on Admin Portal dashboard
+  And I enter specific account number for coco "8150738600"
   Then I click search button on admin portal
-  And I search for user and click email from search results
 
 
 
