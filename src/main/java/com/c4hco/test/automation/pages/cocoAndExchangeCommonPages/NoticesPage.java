@@ -1,0 +1,137 @@
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Constants;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
+
+import java.util.Set;
+
+public class NoticesPage {
+
+    private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
+    public NoticesPage(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+    @FindBy(css= "#i0116")
+    WebElement email;
+    @FindBy(xpath = "//a[@aria-label='Sign in to Microsoft Outlook']")
+    WebElement loginMail;
+    @FindBy(xpath = "//input[@type='password']")
+    WebElement passwordEmail;
+    @FindBy(xpath = "//button[@type='submit']")
+    WebElement nextButton;
+    @FindBy(id = "declineButton")
+    WebElement btnStayNo;
+    @FindBy(xpath = "//div[2]/div[2]/div[2]//span[contains(text(), 'One-time verification')]")
+    WebElement noticeOkta;
+
+    @FindBy(xpath = "//div[@class='mfa-header']")
+    WebElement MFAHeader;
+    @FindBy(xpath = "//div[@class='body-text1 mb-2']")
+    WebElement MFAText;
+    @FindBy(id = "verification-label")
+    WebElement MFASubText;
+    @FindBy(id = "send-code-link")
+    WebElement sendNewCode;
+    @FindBy(id = "verificationCode")
+    WebElement boxVerificationCode;
+    @FindBy(xpath = "//div[@class='col-11 form-group body-text1']")
+     WebElement errorMsgText;
+    @FindBy(id = "main-sign-in")
+     WebElement btnVerify;
+    @FindBy(id = "send-code-link")
+     WebElement lnkSendNewCode;
+    @FindBy(id= "x_verification-code")
+     WebElement mfaCode;
+
+
+
+
+
+
+    public String MFACode = "";
+    public void openOutlookTab(){
+        JavascriptExecutor jse = (JavascriptExecutor)basicActions.getDriver();
+        jse.executeScript("window.open()");
+        for (String handle : basicActions.getDriver().getWindowHandles()) {
+            basicActions.getDriver().switchTo().window(handle);
+        }
+        basicActions.getDriver().get(Constants.Outlook);
+        }
+
+    public void signInEmail(String Gmail,String password) {
+       loginMail.click();
+        for (String handle : basicActions.getDriver().getWindowHandles()) {
+            basicActions.getDriver().switchTo().window(handle);
+            }
+        basicActions.waitForElementToBePresent(email,20);
+        email.sendKeys(Gmail);
+        basicActions.waitForElementToBePresent(nextButton,20);
+        nextButton.click();
+       basicActions.waitForElementToBePresent(passwordEmail,20);
+       passwordEmail.sendKeys(password);
+       passwordEmail.sendKeys(Keys.ENTER );
+       basicActions.waitForElementToBeClickable(btnStayNo,20);
+       btnStayNo.click();
+        }
+
+        public void verbiageValidation(){
+        basicActions.waitForElementToBePresent(MFAHeader,20);
+            softAssert.assertEquals(MFAHeader.getText(), "Verify with Email Authentication" );
+            softAssert.assertEquals(MFAText.getText(),"A verification code was sent to t*****@outlook.com. Check your email and enter code below.");
+            softAssert.assertEquals(MFASubText.getText(), "Verification Code:");
+            softAssert.assertEquals(sendNewCode.getText(), "Send me a new code");
+            softAssert.assertAll();
+        }
+
+    public void enterInvalidMFACode(){
+        basicActions.waitForElementToBePresent(boxVerificationCode,20);
+        boxVerificationCode.sendKeys("invalid");
+        basicActions.waitForElementToBePresent(btnVerify,20);
+        btnVerify.click();
+    }
+
+    public void verifyErrorText(){
+        basicActions.waitForElementToBePresent(errorMsgText,20);
+        softAssert.assertEquals(errorMsgText.getText(),"Your passcode doesn't match our records. Please try again.");
+        softAssert.assertAll();
+
+    }
+    public void openMFANotice(){
+        basicActions.waitForElementToBePresent(noticeOkta,20);
+        noticeOkta.click();
+    }
+
+    public void sendNewCode() {
+        basicActions.waitForElementToBePresent(lnkSendNewCode,20);
+        lnkSendNewCode.click();
+    }
+
+    public String getMfaCode(){
+        basicActions.waitForElementToBePresent(mfaCode,20);
+        MFACode = mfaCode.getText();
+       return  MFACode;
+
+    }
+
+
+
+    public void enterValidMfaCode(){
+        basicActions.switchToParentPage("LoginPortalUi");
+        basicActions.waitForElementToBePresent(boxVerificationCode,20);
+        boxVerificationCode.sendKeys(MFACode);
+        btnVerify.click();
+    }
+
+
+
+
+
+
+}

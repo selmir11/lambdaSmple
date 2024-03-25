@@ -83,10 +83,10 @@ public class CreateAccountPage {
 
     public void closeHelpIcon(){
        softAssert.assertTrue(basicActions.waitForElementToBePresent(closeHelpIcon, 20));
-        basicActions.waitForElementToBePresent(closeHelpIcon, 20);
-        basicActions.waitForElementToBeClickable(closeHelpIcon, 20);
+        basicActions.waitForElementToBePresent(closeHelpIcon, 60);
+        basicActions.waitForElementToBeClickable(closeHelpIcon, 60);
         closeHelpIcon.click();
-        basicActions.waitForElementToBePresent(helpLabel, 30);
+        basicActions.waitForElementToBePresent(helpLabel, 60);
     }
 
     public void clickHelpIconButton(){
