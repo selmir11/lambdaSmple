@@ -29,10 +29,10 @@ Feature: Navigation-Welcome Page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
 
-    And I click on Privacy Policy in the Footer
+      And I click on Privacy Policy in the Footer
     And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "CoCo Welcome" page
-    And I click on Terms Of Use in the Footer
+      And I click on Terms Of Use in the Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "CoCo Welcome" page
     And I click on Contact Us in the "CoCo" Footer

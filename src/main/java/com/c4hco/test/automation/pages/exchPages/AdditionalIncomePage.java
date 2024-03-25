@@ -105,7 +105,7 @@ public class AdditionalIncomePage {
     }
 
     public void verifyTextOnAdditionalIncomeWithErrorsEnglish(){
-        softAssert.assertEquals(hdr_Income.getText(), "Income: " + SharedData.getSubscriber().getFirstName() + " " + SharedData.getSubscriber().getLastName());
+        softAssert.assertEquals(hdr_Income.getText(), "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
         softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(), "Did you receive any of the following income?");
         softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(), "Select all that apply, and enter the amount of income received.");
@@ -190,7 +190,7 @@ public class AdditionalIncomePage {
     }
 
     public void verifyTextOnAdditionalIncomeWithErrorsSpanish(){
-        softAssert.assertEquals(hdr_Income.getText(), "Ingresos: " + SharedData.getSubscriber().getFirstName() + " " + SharedData.getSubscriber().getLastName());
+        softAssert.assertEquals(hdr_Income.getText(), "Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
         softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(), "\u00BFRecibi\u00F3 alguno de los ingresos siguientes?");
         softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");

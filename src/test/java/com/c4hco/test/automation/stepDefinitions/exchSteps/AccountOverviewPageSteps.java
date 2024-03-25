@@ -7,6 +7,9 @@ import io.cucumber.java.en.*;
 public class AccountOverviewPageSteps {
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
 
+    @And("I click on the Username Link Exch")
+    public void clickuserNameExchLink(){accountOverviewPage.clickuserNameExchLink();}
+
     @Then("I apply for the current year")
     public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 

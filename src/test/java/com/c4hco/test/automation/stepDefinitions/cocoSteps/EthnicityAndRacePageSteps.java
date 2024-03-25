@@ -19,4 +19,14 @@ public class EthnicityAndRacePageSteps {
 
     @Then("I verify text on the Ethnicity And Race page in {string}")
     public void verifyEthnicityAndRacePageText(String Language)  { ethnicityAndRacePage.verifyTextOnEthnicityAndRace(Language); }
+
+    @Then("I validate the error messages on the Ethnicity and Race page in {string}")
+    public void verifyErrorMessagesOnTheEthnicityAndRacePage(String Language) {
+        ethnicityAndRacePage.verifyErrorMessagesEthnicityAndRace(Language);
+    }
+
+    @And("I validate the selection options of the {string} question")
+    public void validateTheSelectionOfOptionsEthnicityAndRace(String Section) {
+        ethnicityAndRacePage.validateTheSelectionOfOptions(Section);
+    }
 }

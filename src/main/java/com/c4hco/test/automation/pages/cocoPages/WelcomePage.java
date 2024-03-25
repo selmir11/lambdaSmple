@@ -194,7 +194,7 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePageNoPolicyEnglish(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getSubscriber().getFirstName() +"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getPrimaryMember().getFirstName() +"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Apply for health insurance");
         String currentUrl = basicActions.getCurrentUrl();
         if(currentUrl == "https://staging") {
@@ -220,7 +220,7 @@ public class WelcomePage {
 
     public void verifyTextOnWelcomePageNoPolicySpanish(){
         basicActions.waitForElementToBePresent(applyForCurrentYearButton,10);
-        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getSubscriber().getFirstName() +"!");
+        softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getPrimaryMember().getFirstName() +"!");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Solicite un seguro de salud");
         String currentUrl = basicActions.getCurrentUrl();
         if(currentUrl == "https://staging") {

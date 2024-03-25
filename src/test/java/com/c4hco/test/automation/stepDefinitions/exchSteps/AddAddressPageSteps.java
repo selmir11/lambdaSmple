@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.exchPages.AddAddressPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
 import java.util.Map;
 
 public class AddAddressPageSteps {
@@ -15,9 +16,8 @@ public class AddAddressPageSteps {
     public void memberResidentialAddress(String Address){addAddressPage.selectResidentialAddress(Address);}
 
     @And("I enter the new residential address details")
-    public void addNewResidentialAddress(Map<String, String> addressDetails){
-         addAddressPage.addNewResidentialAddress(addressDetails, "son");
-
+    public void addNewResidentialAddress(List<Map<String, String>> addressDetails){
+         addAddressPage.addNewResidentialAddress(addressDetails);
     }
     @Then("I enter generic mailing address details")
     public void addMailingAddressDetails(){addAddressPage.mailingAddress();}

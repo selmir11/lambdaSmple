@@ -29,25 +29,8 @@ public class DeclarationsAndSignaturePageCoCo {
     WebElement continueButton;
 
     public void enterSignatureCoCo(String language){
-        basicActions.waitForElementToBePresent(signatureLabel, 30);
-        String label = signatureLabel.getText();
-        switch (language) {
-            case "English":
-                label = label.replaceAll("Electronic Signature:", "");
-                label = label.trim();
-                break;
-            case "Spanish":
-                label = label.replaceAll("Firma electr\u00F3nica:", "");
-                label = label.trim();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-
         basicActions.waitForElementToBePresent(signatureInputField, 20);
-        signatureInputField.clear();
-        signatureInputField.click();
-        signatureInputField.sendKeys(label);
+        signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
 
     public void goBack() {
