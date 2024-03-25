@@ -1,0 +1,26 @@
+@SLER-138
+Feature:Chat Widget in Login Portal
+  @SLER-138
+Scenario: MFA code
+  Given I open the login page on the "broker" portal
+  And I validate I am on the "Login" page
+  When I login as Broker User "testing.soukaina+test3@outlook.com" password "ALaska12!"
+  And  I validate I am on the "MFA" page
+  Then I validate the verbiage of the MFA page
+  And I enter Invalid Verification Code
+  Then I validate the error message on the MFA page
+  Then I click send new code
+  And I enter Invalid Verification Code
+  Then I validate the error message on the MFA page
+  Then I open Gmail Tab
+  And I sign in with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
+  Then I open the MFA notice
+  And I get the MFA code
+  Then I enter the MFA code and click Verify
+  And I validate I am on the "Broker Dashboard" page
+
+
+
+
+
+

@@ -214,6 +214,9 @@ public class BasicSteps {
             case "Good News":
                 pageUrl = "nes/applyMA";
                 break;
+            case "Broker Dashboard" :
+                pageUrl = "/broker-portal/broker";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
@@ -278,7 +281,8 @@ public class BasicSteps {
                 Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
             }
         }
-        basicActions.closeBrowserTab();
+      //  basicActions.closeBrowserTab(); need to uncomment this line
+       
         basicActions.getDriver().switchTo().window(origin);
     }
 

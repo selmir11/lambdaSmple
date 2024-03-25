@@ -66,17 +66,17 @@ public class LoginPage {
     public void loginAsAnAdminUser(){
         // TO-DO:: Get the credentials from a different file
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
+        usernameAdmin.sendKeys("C4testaduser123@gmail.com");
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        passwordAdmin.sendKeys("ALaska12!");
+        passwordAdmin.sendKeys("ALaska13!");
         signAdmin.click();
     }
 
-    public void loginAsBrokerUser(){
+    public void loginAsBrokerUser(String brokerUser,String Password){
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        usernameAdmin.sendKeys("soukainatesting+agencyQA@gmail.com");
+        usernameAdmin.sendKeys(brokerUser);
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        passwordAdmin.sendKeys("ALaska16!");
+        passwordAdmin.sendKeys(Password);
         signAdmin.click();
     }
 
