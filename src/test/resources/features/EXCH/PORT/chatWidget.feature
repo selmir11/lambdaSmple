@@ -44,7 +44,7 @@ Feature:Chat Widget in Login Portal
   Scenario: Validate Chat Widget in MFA page
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    When I login as Broker User
+    When I login as Broker User "testing.soukaina+test3@outlook.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I validate chat widget is present
     And I open on chat widget

@@ -217,6 +217,9 @@ public class BasicSteps {
             case "Good News":
                 pageUrl = "nes/applyMA";
                 break;
+            case "Broker Dashboard" :
+                pageUrl = "/broker-portal/broker";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
