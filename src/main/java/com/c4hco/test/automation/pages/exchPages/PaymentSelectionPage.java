@@ -41,7 +41,7 @@ public class PaymentSelectionPage {
     }
 
     public String extractProviderName() {
-        String pn = SharedData.getfirstPlanNameOnMedicalResultsPage();
+        String pn = SharedData.getFirstPlanNameOnMedicalResultsPage();
         String[] pnSubstring = pn.split(" ");
         provider = pnSubstring[0];
 

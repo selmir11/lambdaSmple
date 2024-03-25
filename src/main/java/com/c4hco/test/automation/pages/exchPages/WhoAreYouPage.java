@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,7 +80,7 @@ public class WhoAreYouPage {
     }
 
     public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
-        PolicyMember accHolder = SharedData.getSubscriber();
+        MemberDetails accHolder = SharedData.getPrimaryMember();
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
 
@@ -97,7 +97,7 @@ public class WhoAreYouPage {
         accHolder.setDob(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
         accHolder.setSsn(SSNvalue);
-        SharedData.setSubscriber(accHolder);
+        SharedData.setPrimaryMember(accHolder);
         backSaveAndContinue.get(1).click();
     }
 

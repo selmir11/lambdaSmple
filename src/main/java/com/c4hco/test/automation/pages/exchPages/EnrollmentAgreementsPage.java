@@ -47,7 +47,7 @@ public class EnrollmentAgreementsPage {
 
     public void enterSignature(){
             basicActions.waitForElementToBeClickable(signatureInput, 10);
-            signatureInput.sendKeys(SharedData.getSubscriber().getSignature());
+            signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
 
     public void clickContinue() {

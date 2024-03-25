@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -80,13 +80,13 @@ public class TellUsAboutAdditionalMemberPage {
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
 
-        List<PolicyMember> memberList = SharedData.getMembers();
+        List<MemberDetails> memberList = SharedData.getMembers();
 
         if (memberList == null) {
             memberList = new ArrayList<>();
         }
 
-        PolicyMember member = new PolicyMember();
+        MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
         member.setDob(DOB);
