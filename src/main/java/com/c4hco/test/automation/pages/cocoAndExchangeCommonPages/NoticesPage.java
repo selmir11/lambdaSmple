@@ -26,8 +26,7 @@ public class NoticesPage {
     WebElement passwordEmail;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement nextButton;
-
-    @FindBy(xpath = "//*[@id='declineButton']")
+    @FindBy(id = "declineButton")
     WebElement btnStayNo;
     @FindBy(xpath = "//div[2]/div[2]/div[2]//span[contains(text(), 'One-time verification')]")
     WebElement noticeOkta;
@@ -38,17 +37,17 @@ public class NoticesPage {
     WebElement MFAText;
     @FindBy(id = "verification-label")
     WebElement MFASubText;
-    @FindBy(xpath = "//*[@id='send-code-link']")
+    @FindBy(id = "send-code-link")
     WebElement sendNewCode;
-    @FindBy(xpath = "//input[@id='verificationCode']")
+    @FindBy(id = "verificationCode")
     WebElement boxVerificationCode;
     @FindBy(xpath = "//div[@class='col-11 form-group body-text1']")
      WebElement errorMsgText;
-    @FindBy(xpath = "//button[@id='main-sign-in']")
+    @FindBy(id = "main-sign-in")
      WebElement btnVerify;
-    @FindBy(xpath = "//a[@id='send-code-link']")
+    @FindBy(id = "send-code-link")
      WebElement lnkSendNewCode;
-    @FindBy(xpath = "//span[@id='x_verification-code']")
+    @FindBy(id= "x_verification-code")
      WebElement mfaCode;
 
 
@@ -124,7 +123,7 @@ public class NoticesPage {
 
 
     public void enterValidMfaCode(){
-        basicActions.switchToParentPage();
+        basicActions.switchToParentPage("LoginPortalUi");
         basicActions.waitForElementToBePresent(boxVerificationCode,20);
         boxVerificationCode.sendKeys(MFACode);
         btnVerify.click();

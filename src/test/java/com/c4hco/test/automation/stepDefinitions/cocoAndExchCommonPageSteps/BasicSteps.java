@@ -284,8 +284,7 @@ public class BasicSteps {
                 Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
             }
         }
-      //  basicActions.closeBrowserTab(); need to uncomment this line
-       
+        basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }
 

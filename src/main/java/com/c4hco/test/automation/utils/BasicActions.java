@@ -147,11 +147,11 @@ public class BasicActions {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public void switchToParentPage() {
+    public void switchToParentPage(String pageTitle) {
         Set<String> allWindowHandles = getDriver().getWindowHandles();
         for (String windowHandle : allWindowHandles) {
             getDriver().switchTo().window(windowHandle);
-            if (getDriver().getTitle().equals("LoginPortalUi")) {
+            if (getDriver().getTitle().equals(pageTitle)) {
                 break;
             }
         }
