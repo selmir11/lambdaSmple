@@ -46,4 +46,10 @@ public class LawfulPresencePageSteps {
 
     @Then("I click continue on the Citizenship page")
     public void clickContinue(){lawfulPresencePage.clickContinue();}
+
+    @And("I get the Primary Member ID")
+    public void iGetPrimaryMemberId(){lawfulPresencePage.getPrimaryMemberId();}
+
+    @And("I change the C4 URL to {string} PrimaryMemberId {string}")
+    public void iChangeUrl(String UrlStart, String UrlEnd){lawfulPresencePage.changeUrl(UrlStart, UrlEnd);}
 }

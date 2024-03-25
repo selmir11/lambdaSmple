@@ -11,6 +11,7 @@ import java.util.Random;
 
 public class LawfulPresencePage {
     private BasicActions basicActions;
+    String PrimaryMemberId = "";
 
     public LawfulPresencePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -167,4 +168,28 @@ public class LawfulPresencePage {
     }
 
     public  void clickContinue(){saveContinue.click();}
+
+    public String getPrimaryMemberId() {
+        String currentUrl = basicActions.getCurrentUrl();
+        if (currentUrl.contains("https://staging")) {
+            PrimaryMemberId = currentUrl.replace("https://staging-aws.connectforhealthco.com/nes/lawfulPresence?memberId=", "");
+            System.out.println(PrimaryMemberId);
+        }
+        else if (currentUrl.contains("https://qa")) {
+            PrimaryMemberId = currentUrl.replace("https://qa-aws.connectforhealthco.com/nes/lawfulPresence?memberId=", "");
+            System.out.println(PrimaryMemberId);
+        }
+        return PrimaryMemberId;
+    }
+
+    public void changeUrl(String UrlStart, String UrlEnd) {
+        String currentUrl = basicActions.getCurrentUrl();
+        if (currentUrl.contains("https://staging")) {
+            basicActions.getDriver().navigate().to("https://staging-aws." + UrlStart + PrimaryMemberId + UrlEnd);
+            System.out.println("https://staging-aws." + UrlStart + PrimaryMemberId + UrlEnd);
+        } else if (currentUrl.contains("https://qa")) {
+            basicActions.getDriver().navigate().to("https://qa-aws." + UrlStart + PrimaryMemberId + UrlEnd);
+            System.out.println("https://qa-aws." + UrlStart + PrimaryMemberId + UrlEnd);
+        }
+    }
 }
