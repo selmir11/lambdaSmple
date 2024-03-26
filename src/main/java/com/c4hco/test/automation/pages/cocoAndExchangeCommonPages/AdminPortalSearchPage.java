@@ -19,7 +19,6 @@ public class AdminPortalSearchPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
