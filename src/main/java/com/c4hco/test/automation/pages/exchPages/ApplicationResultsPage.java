@@ -18,7 +18,8 @@ public class ApplicationResultsPage {
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
 
-    @FindBy(xpath = "//*[text()='Continue']")
+    //@FindBy(xpath = "//*[text()='Continue']")
+    @FindBy(css = "#hiddenSubmitButton")
     WebElement continueBtn;
 
     @FindBy(xpath = "//*[contains(text(),\"Here's what your household qualifies\")]")

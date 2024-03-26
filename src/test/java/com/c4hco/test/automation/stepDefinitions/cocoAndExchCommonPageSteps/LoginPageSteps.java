@@ -26,8 +26,9 @@ public class LoginPageSteps {
          @When("I login as Admin User")
             public void i_login_as_admin_user() {loginPage.loginAsAnAdminUser();}
 
-    @When("I login as Broker User")
-    public void i_login_as_Broker_user() {loginPage.loginAsBrokerUser();}
+    @When("I login as Broker User {string} password {string}")
+    public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
+
     @When("I click create forgot {string}")
     public void i_click_create_forget(String credentials) {
             switch (credentials){
@@ -38,6 +39,7 @@ public class LoginPageSteps {
                     loginPage.clickForgotUsername();
                     break;}
             }
+
 
         // =================VALIDATION STEPS==============//
         @When("I click on sign in on login page")
@@ -59,4 +61,5 @@ public class LoginPageSteps {
     public void iReceiveMessageIForgotUsernameAndPassword() {
         loginPage.usernameandpasswordRequiredMessage();
     }
+
     }
