@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.ResidentialAddress;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -113,6 +115,7 @@ public class AddAddressPage {
         switch(index){
             case "Household":
                 rdobtnHouseholdResidentialAddress.click();
+                setResidentialAddress();
                 break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
@@ -130,6 +133,24 @@ public class AddAddressPage {
         System.out.println(memFName);
         return memFName;
     }
+
+    public void setResidentialAddress(){
+        String name = getMemberName();
+
+        ResidentialAddress primaryMemAddress = SharedData.getPrimaryMember().getResAddress();
+
+        List<MemberDetails>  membersList = SharedData.getMembers();
+        Optional requiredMem =  membersList.stream().filter(mem ->
+                mem.getSignature().contains(name)
+        ).findFirst();
+
+        if(requiredMem.isPresent()){
+            MemberDetails member =  (MemberDetails) requiredMem.get();
+            // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
+            member.setResAddress(primaryMemAddress);
+        }
+    }
+
     public void mailingAddress(){
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
@@ -153,6 +174,7 @@ public class AddAddressPage {
         String state = addDetails.get(0).get("state");
         String zipcode = addDetails.get(0).get("zipcode");
         String county = addDetails.get(0).get("county");
+        String dob =addDetails.get(0).get("dob");
 
         newResidentialAddressline1.sendKeys(addressLine1);
         newResidentialAdressCity.sendKeys(city);
@@ -161,10 +183,11 @@ public class AddAddressPage {
         newResidentialAddressCounty.click();
         Select dropdown = new Select(newResidentialAddressCounty);
         dropdown.selectByValue(county);
-        setNewResidentialAddress(addDetails);
+        setNewResidentialAddress(addressLine1,city,state,zipcode,county,dob);
+        System.out.println(SharedData.getMembers());
     }
 
-    public void setNewResidentialAddress(List<Map<String,String>> addDetails){
+    public void setNewResidentialAddress(String addressLine1, String city, String state, String zipcode, String county, String dob){
         String getHeader = getNameFromHeader.getText();
         String name = getMemberName();
 
@@ -175,16 +198,22 @@ public class AddAddressPage {
             //set data for subscriber
         }else{
            // filter by dob as it is unique
-            Optional requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(addDetails.get(0).get("dob")) &&
+            Optional requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(dob) &&
                     mem.getSignature().contains(name)
             ).findFirst();
+
 
             if(requiredMem.isPresent()){
                 MemberDetails member =  (MemberDetails) requiredMem.get();
                 // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-                member.setZipcode(addDetails.get(0).get("zipcode"));
-                membersList.add(member);
-                SharedData.setMembers(membersList);
+                System.out.println(">>Member with different zipcode<< "+member.getFirstName());
+                ResidentialAddress residentialAddress = new ResidentialAddress();
+                residentialAddress.setResidentialAddressLine1(addressLine1);
+                residentialAddress.setResidentialAddressCity(city);
+                residentialAddress.setResidentialAddressState(state);
+                residentialAddress.setResidentialAddressZipcode(zipcode);
+                residentialAddress.setResidentialAddressCounty(county);
+                member.setResAddress(residentialAddress);
             }
             else{
                 Assert.fail("Member with this relationship to account holder is not found!!");
