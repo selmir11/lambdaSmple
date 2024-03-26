@@ -16,6 +16,9 @@ public class DeclarationsAndSignaturePageCoCo {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = ".input-label")
+    WebElement signatureLabel;
+
     @FindBy(id = "ELIG-DeclarationsAndSignature-signatureBox")
     WebElement signatureInputField;
 
@@ -25,7 +28,7 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    public void enterSignatureCoCo(){
+    public void enterSignatureCoCo(String language){
         basicActions.waitForElementToBePresent(signatureInputField, 20);
         signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
