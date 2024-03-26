@@ -36,7 +36,7 @@ public class AdminPortalSearchPage {
     List<WebElement> searchInputList;
 
     @FindBy(css = ".form-btn-group.big-screen button")
-    List<WebElement> buttonsList; // search, reset, create Account buttons
+    public List<WebElement> buttonsList; // search, reset, create Account buttons
 
     @FindBy(css = ".search-results-container .search-results-table")
     WebElement searchResults;
@@ -59,7 +59,7 @@ public class AdminPortalSearchPage {
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
-    @FindBy(css = "#accountId")
+    @FindBy(id = "accountId")
     WebElement acctIdWidget;
 
     @FindBy(css = "#broker")
@@ -71,6 +71,13 @@ public class AdminPortalSearchPage {
 
     @FindBy(id = "cocoIndividual")
     WebElement coco;
+
+    @FindBy(id = "individual")
+    WebElement individual;
+
+    @FindBy(css = "tbody td:nth-child(1)")
+    WebElement searchAcctResults;
+
 
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
@@ -143,11 +150,15 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
       public void enterCocoIndividualId(String AcctIdCoco){
-        acctIdWidget.sendKeys("8150738600");
+        acctIdWidget.sendKeys(AcctIdCoco);
     }
 
     public void SelectUserTypeToSearch(String selectUserTypeToSearch) {
         switch (selectUserTypeToSearch) {
+            case "individual":
+                basicActions.waitForElementToBePresent(individual, 15);
+                individual.click();
+                break;
             case "cocoBroker":
                 basicActions.waitForElementToBePresent(broker, 15);
                 broker.click();
@@ -168,4 +179,9 @@ public class AdminPortalSearchPage {
                 throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
         }
     }
+
+    public void clickAccountLinkSearchResults() {
+        basicActions.waitForElementToBePresent(searchAcctResults, 10);
+        searchAcctResults.click();
+        }
 }

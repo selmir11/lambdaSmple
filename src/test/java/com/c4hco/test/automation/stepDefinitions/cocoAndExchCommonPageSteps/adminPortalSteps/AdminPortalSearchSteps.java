@@ -49,19 +49,22 @@ public class AdminPortalSearchSteps {
     }
 
 
-     @Then("I check {string} user type to search on Admin Portal dashboard")
+     @Then("I check box {string} user type to search on Admin Portal dashboard")
      public void iSelectUserTypeToSearch(String selectUserTypeToSearch){
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
      }
 
-    @And("I enter specific account number for coco {string}")
+    @And("I enter specific {string} account number")
     public void iEnterSpecificAccountNumberForCoco(String AcctIdCoco) {
         adminPortalSearchPage.enterCocoIndividualId(AcctIdCoco);
     }
-
     @Then("I click search button on admin portal")
-    public void iClickSearchAccount() {
+    public void clickSearchAccount(){
         adminPortalSearchPage.ClickSearchButtonOnAdminPortal();
+    }
+    @Then("I click acct in Search Results table on admin portal")
+    public void iClickAccountLinkSearchResults() {
+        adminPortalSearchPage.clickAccountLinkSearchResults();
     }
 
 

@@ -1,12 +1,27 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 
 public class MyDocumentsPage {
-     @FindBy(xpath = "//h2[@class='header-1 my-documents']")
+
+    private BasicActions basicActions;
+    AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
+    public MyDocumentsPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+
+
+        @FindBy(xpath = "//h2[@class='header-1 my-documents']")
     WebElement myDocumentsTitle;
 
     @FindBy(xpath = "//div[@class='documents-notices-title header-2']")
@@ -16,13 +31,22 @@ public class MyDocumentsPage {
     WebElement documentsInfoMessage;
 
 
+    public void Click_link_my_docs_on_welcome_page() {
+        basicActions.switchToParentPage("accountOverview");
+        accountOverviewPage.clickHereLinks("My Documents");
+    }
 
 
 
 
-// =================VALIDATION STEPS==============//
 
-    public void verifyPageText(String language){
+
+
+
+                //============================VALIDATION STEPS==============//
+
+    public void verifyPageText(String language)
+        {
         SoftAssert softAssert = new SoftAssert();
         switch (language) {
             case "English":
@@ -38,12 +62,5 @@ public class MyDocumentsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
-    }
-
-
-
-
-
-
-
+     }
 }
