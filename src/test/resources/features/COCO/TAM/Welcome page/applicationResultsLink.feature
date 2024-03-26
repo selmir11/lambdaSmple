@@ -62,7 +62,7 @@ Feature: Tests related to the Application Results link
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature
+    And I enter a valid signature in "English"
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
