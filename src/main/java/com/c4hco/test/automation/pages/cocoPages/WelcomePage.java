@@ -39,37 +39,17 @@ public class WelcomePage {
     @FindBy(css = ".plan-member-container .plan-member-full-names")
     WebElement enrolledFullNames;
 
-    @FindBy(css = ".plan-sub-container > strong")
+    @FindBy(css = ".plan-inner-container > strong")
     WebElement policyMedicalPlan;
 
-    @FindBy(css = ".plan-sub-container > div")
+    @FindBy(css = ".plan-inner-container > div > div")
     List<WebElement> policyMedicalDetails;
 
     @FindBy(css = ".premium-container > span")
     List<WebElement> policyMonthlyDetails;
 
-    @FindBy(css = "app-plan-help .contact-us")
-    WebElement policyContactUs;
-
-    @FindBy(id = "ELIG-WelcomePage-MyProfile")
-    WebElement myProfileButton;
-
-    @FindBy(xpath = "//app-additional-resources//div[2]/div[2]")
-    WebElement viewAndUpdateText;
-
-    @FindBy(id = "ELIG-WelcomePage-ApplicationResults")
-    WebElement applicationResultsButton;
-
-    //change the locator below
-    @FindBy(xpath = "//app-container//div[2]/div[4]")
-    WebElement viewTheBenefitsText;
-
-    @FindBy(id = "ELIG-WelcomePage-MyDocuments")
-    WebElement myDocumentsButton;
-
-    //change the locator below
-    @FindBy(xpath = "//app-container//div[2]/div[6]")
-    WebElement viewYourDocumentsText;
+    @FindBy(css = ".resources-container > div > div.resources-text")
+    List <WebElement> viewAdditionalResourcesText;
 
     @FindBy(css = ".action-link")
     List<WebElement> actionLinks;
@@ -86,26 +66,20 @@ public class WelcomePage {
         basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 5);
         applyForCurrentYearButton.click(); }
 
-    public void clickMyProfileButton() {
-        basicActions.waitForElementToBeClickable(myProfileButton, 5);
-        myProfileButton.click(); }
-
-    public void clickApplicationResultsButton() {
-        basicActions.waitForElementToBeClickable(applicationResultsButton, 5);
-        applicationResultsButton.click(); }
-
-    public void clickMyDocumentsButton() {
-        basicActions.waitForElementToBeClickable(myDocumentsButton, 5);
-        myDocumentsButton.click(); }
-
     public void clickActionLinks(String actionLink) {
         basicActions.waitForElementListToBePresent(actionLinks, 5);
         switch(actionLink) {
+            case "My Profile":
+                actionLinks.get(0).click();
+                break;
             case "Application Results":
                 actionLinks.get(1).click();
                 break;
-            case "My Documents and Letters":
+            case "My Plans":
                 actionLinks.get(2).click();
+                break;
+            case "My Documents and Letters":
+                actionLinks.get(3).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + actionLink);
@@ -144,12 +118,14 @@ public class WelcomePage {
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
         softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
-        softAssert.assertEquals(myProfileButton.getText(), "My Profile");
-        softAssert.assertEquals(viewAndUpdateText.getText(), "View and update your account information");
-        softAssert.assertEquals(applicationResultsButton.getText(), "Application Results");
-        softAssert.assertEquals(viewTheBenefitsText.getText(), "View the benefits you're qualified for");
-        softAssert.assertEquals(myDocumentsButton.getText(), "My Documents and Letters");
-        softAssert.assertEquals(viewYourDocumentsText.getText(), "View your documents");
+        softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
+        softAssert.assertEquals(actionLinks.get(1).getText(), "Application Results");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(1).getText(), "View the benefits you're qualified for");
+        softAssert.assertEquals(actionLinks.get(2).getText(), "My Plans");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(2).getText(), "View past plans. View and cancel current plans.");
+        softAssert.assertEquals(actionLinks.get(3).getText(), "My Documents and Letters");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "View your documents");
         softAssert.assertAll();
     }
 
@@ -170,12 +146,14 @@ public class WelcomePage {
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
         softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");
-        softAssert.assertEquals(myProfileButton.getText(), "Mi perfil");
-        softAssert.assertEquals(viewAndUpdateText.getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
-        softAssert.assertEquals(applicationResultsButton.getText(), "Resultados de la solicitud");
-        softAssert.assertEquals(viewTheBenefitsText.getText(), "Ver los beneficios a los que califica");
-        softAssert.assertEquals(myDocumentsButton.getText(), "Mis Documentos y Cartas");
-        softAssert.assertEquals(viewYourDocumentsText.getText(), "Vea sus documentos");
+        softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
+        softAssert.assertEquals(actionLinks.get(1).getText(), "Resultados de la solicitud");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(1).getText(), "Ver los beneficios a los que califica");
+        softAssert.assertEquals(actionLinks.get(2).getText(), "Mis Planes");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(2).getText(), "Ver sus planes anteriores. Ver y cancelar sus planes actuales.");
+        softAssert.assertEquals(actionLinks.get(3).getText(), "Mis Documentos y Cartas");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
 
@@ -209,12 +187,14 @@ public class WelcomePage {
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
         softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
-        softAssert.assertEquals(myProfileButton.getText(), "My Profile");
-        softAssert.assertEquals(viewAndUpdateText.getText(), "View and update your account information");
-        softAssert.assertEquals(applicationResultsButton.getText(), "Application Results");
-        softAssert.assertEquals(viewTheBenefitsText.getText(), "View the benefits you're qualified for");
-        softAssert.assertEquals(myDocumentsButton.getText(), "My Documents and Letters");
-        softAssert.assertEquals(viewYourDocumentsText.getText(), "View your documents");
+        softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
+        softAssert.assertEquals(actionLinks.get(1).getText(), "Application Results");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(1).getText(), "View the benefits you're qualified for");
+        softAssert.assertEquals(actionLinks.get(2).getText(), "My Plans");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(2).getText(), "View past plans. View and cancel current plans.");
+        softAssert.assertEquals(actionLinks.get(3).getText(), "My Documents and Letters");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "View your documents");
         softAssert.assertAll();
     }
 
@@ -235,12 +215,14 @@ public class WelcomePage {
         softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
         softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");
-        softAssert.assertEquals(myProfileButton.getText(), "Mi perfil");
-        softAssert.assertEquals(viewAndUpdateText.getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
-        softAssert.assertEquals(applicationResultsButton.getText(), "Resultados de la solicitud");
-        softAssert.assertEquals(viewTheBenefitsText.getText(), "Ver los beneficios a los que califica");
-        softAssert.assertEquals(myDocumentsButton.getText(), "Mis Documentos y Cartas");
-        softAssert.assertEquals(viewYourDocumentsText.getText(), "Vea sus documentos");
+        softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
+        softAssert.assertEquals(actionLinks.get(1).getText(), "Resultados de la solicitud");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(1).getText(), "Ver los beneficios a los que califica");
+        softAssert.assertEquals(actionLinks.get(2).getText(), "Mis Planes");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(2).getText(), "Ver sus planes anteriores. Ver y cancelar sus planes actuales.");
+        softAssert.assertEquals(actionLinks.get(3).getText(), "Mis Documentos y Cartas");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
 
@@ -249,12 +231,14 @@ public class WelcomePage {
         switch(language) {
             case "English":
                 softAssert.assertEquals(actionLinks.get(1).getText(), "Application Results");
-                softAssert.assertEquals(actionLinks.get(2).getText(), "My Documents and Letters");
+                softAssert.assertEquals(actionLinks.get(2).getText(), "My Plans");
+                softAssert.assertEquals(actionLinks.get(3).getText(), "My Documents and Letters");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(actionLinks.get(1).getText(), "Resultados de la solicitud");
-                softAssert.assertEquals(actionLinks.get(2).getText(), "Mis Documentos y Cartas");
+                softAssert.assertEquals(actionLinks.get(2).getText(), "Mis Planes");
+                softAssert.assertEquals(actionLinks.get(3).getText(), "Mis Documentos y Cartas");
                 softAssert.assertAll();
                 break;
             default:
@@ -299,14 +283,15 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Monthly Plan Payment");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mo");
-        softAssert.assertEquals(policyContactUs.getText(), "If you need to cancel your plan(s), please contact our Customer Service Center at:\n855-675-2626");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
-        softAssert.assertEquals(myProfileButton.getText(), "My Profile");
-        softAssert.assertEquals(viewAndUpdateText.getText(), "View and update your account information");
-        softAssert.assertEquals(applicationResultsButton.getText(), "Application Results");
-        softAssert.assertEquals(viewTheBenefitsText.getText(), "View the benefits you're qualified for");
-        softAssert.assertEquals(myDocumentsButton.getText(), "My Documents and Letters");
-        softAssert.assertEquals(viewYourDocumentsText.getText(), "View your documents");
+        softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
+        softAssert.assertEquals(actionLinks.get(1).getText(), "Application Results");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(1).getText(), "View the benefits you're qualified for");
+        softAssert.assertEquals(actionLinks.get(2).getText(), "My Plans");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(2).getText(), "View past plans. View and cancel current plans.");
+        softAssert.assertEquals(actionLinks.get(3).getText(), "My Documents and Letters");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "View your documents");
         softAssert.assertAll();
     }
 
@@ -333,14 +318,15 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Pago mensual del plan");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mes");
-        softAssert.assertEquals(policyContactUs.getText(), "Si necesita cancelar sus planes, comun\u00EDquese con nuestro centro de atenci\u00F3n al cliente, llamando al:\n855-675-2626");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");
-        softAssert.assertEquals(myProfileButton.getText(), "Mi perfil");
-        softAssert.assertEquals(viewAndUpdateText.getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
-        softAssert.assertEquals(applicationResultsButton.getText(), "Resultados de la solicitud");
-        softAssert.assertEquals(viewTheBenefitsText.getText(), "Ver los beneficios a los que califica");
-        softAssert.assertEquals(myDocumentsButton.getText(), "Mis Documentos y Cartas");
-        softAssert.assertEquals(viewYourDocumentsText.getText(), "Vea sus documentos");
+        softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
+        softAssert.assertEquals(actionLinks.get(1).getText(), "Resultados de la solicitud");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(1).getText(), "Ver los beneficios a los que califica");
+        softAssert.assertEquals(actionLinks.get(2).getText(), "Mis Planes");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(2).getText(), "Ver sus planes anteriores. Ver y cancelar sus planes actuales.");
+        softAssert.assertEquals(actionLinks.get(3).getText(), "Mis Documentos y Cartas");
+        softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
 }
