@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.ResidentialAddress;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
+import java.util.*;
 
 public class WhoAreYouPage {
     private BasicActions basicActions;
@@ -97,7 +98,13 @@ public class WhoAreYouPage {
         accHolder.setDob(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
         accHolder.setSsn(SSNvalue);
-        SharedData.setPrimaryMember(accHolder);
+        ResidentialAddress residentialAddress = new ResidentialAddress();
+        residentialAddress.setResidentialAddressLine1(addressLine1);
+        residentialAddress.setResidentialAddressCity("Denver");
+        residentialAddress.setResidentialAddressState("CO");
+        residentialAddress.setResidentialAddressZipcode(zipcode);
+        residentialAddress.setResidentialAddressCounty(county);
+        accHolder.setResAddress(residentialAddress);
         backSaveAndContinue.get(1).click();
     }
 

@@ -18,11 +18,7 @@ public class MemberDetails {
     String zipcode;
     String mailingAddress;
     String mailingZipCode;
-    String residentialAddressLine1;
-    String residentialAddressCity;
-    String residentialAddressState;
-    String residentialAddressCounty;
-    String residentialAddressZipcode;
+    ResidentialAddress resAddress;
     String gender;
     String medicalPlan;
     String medicalPlanStartDate;
