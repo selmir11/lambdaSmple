@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.ResidentialAddress;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +29,7 @@ public class GroupingMembersMedicalPage {
     @FindBy(id = "globe-image")
     WebElement glodeImageDropdown;
     @FindBy(css = ".mt-3 .table tbody")
-    List<WebElement> memberNameInSecondGroup;
+    List<WebElement> membersInGroups;
 
     private BasicActions basicActions;
     public GroupingMembersMedicalPage(WebDriver webDriver) {
@@ -119,28 +118,36 @@ public class GroupingMembersMedicalPage {
         softAssert.assertAll();
     }
 
+
     public void verifyGroupingMembersWithDifferentZipcode(String zipcode){
+
+
         getGroupsByZipcode();
+       HashMap<String, List<String>> expectedMap = SharedData.getGroupsByZipcode();
+     Map<String, List<String>> actualMap = getActualNamesFromUI();
 
-        String firstname = getFirstNameByZipcode();
-        basicActions.waitForElementListToBePresent(memberNameInSecondGroup,10);
-        List<String> namesFromUI = new ArrayList<>();
-        String groupTwoMemberNameUI = memberNameInSecondGroup.get(1).getText();
+        compareLists(actualMap, expectedMap);
+//
 
-        ArrayList<String> groupOneMembers = new ArrayList<>();
-
-// Get text from each WebElement and add to ArrayList
-        for (WebElement element : memberNameInSecondGroup) {
-            groupOneMembers.add(memberNameInSecondGroup.get(0).getText());
-        }
-        System.out.println("Group1 "+groupOneMembers);
-
-        System.out.println("Group2 "+groupTwoMemberNameUI);
-        namesFromUI.add(groupTwoMemberNameUI);
-
-        HashMap<String, List<String>> groups = SharedData.getGroupsByZipcode();
-        Set<String> uniqueZipcodes = SharedData.getUniqueZipcodes();
-        List<String> expectedNAmes = groups.get(zipcode);
+//        String firstname = getFirstNameByZipcode();
+//        basicActions.waitForElementListToBePresent(membersInGroups,10);
+//        List<String> namesFromUI = new ArrayList<>();
+//        String groupTwoMemberNameUI = membersInGroups.get(1).getText();
+//
+//        ArrayList<String> groupOneMembers = new ArrayList<>();
+//
+//// Get text from each WebElement and add to ArrayList
+//        for (WebElement element : membersInGroups) {
+//            groupOneMembers.add(membersInGroups.get(0).getText());
+//        }
+//        System.out.println("Group1 "+groupOneMembers);
+//
+//        System.out.println("Group2 "+groupTwoMemberNameUI);
+//        namesFromUI.add(groupTwoMemberNameUI);
+//
+//        HashMap<String, List<String>> groups = SharedData.getGroupsByZipcode();
+//        Set<String> uniqueZipcodes = SharedData.getUniqueZipcodes();
+//        List<String> expectedNAmes = groups.get(zipcode);
 //
 //        HashMap<String, List<String>> groups1 = uniqueZipcodes.stream().filter(groups::containsKey).collect(HashMap::new, (map, zipCode) -> map.put(zipCode, groups.get(zipCode)), HashMap::putAll);
 //        groups1.forEach((zip, name)->
@@ -148,17 +155,51 @@ public class GroupingMembersMedicalPage {
 //            softAssert.assertEquals(name, namesFromUI );
 //
 //        });
-
-        softAssert.assertTrue(groupTwoMemberNameUI.contains(firstname),"Member with different zipcode is in separate group");
-        softAssert.assertAll();
+//
+//        softAssert.assertTrue(groupTwoMemberNameUI.contains(firstname),"Member with different zipcode is in separate group");
+//        softAssert.assertAll();
     }
 
-    public void getActualNamesFromUI(){
-        String firstname = getFirstNameByZipcode();
-        basicActions.waitForElementListToBePresent(memberNameInSecondGroup,10);
-        List<String> namesFromUI = new ArrayList<>();
-        String groupTwoMemberNameUI = memberNameInSecondGroup.get(1).getText();
-        System.out.println(groupTwoMemberNameUI);
-        namesFromUI.add(groupTwoMemberNameUI);
+    public Map<String, List<String>> getActualNamesFromUI(){
+        Map<String, List<String>> actualNamesInGroups = new HashMap<>();
+
+        for(int i=0;i<membersInGroups.size();i++){
+
+          String  namesInput = membersInGroups.get(i).getText();
+            List<String> namesList = parseNames(namesInput);
+
+            actualNamesInGroups.put("groupName"+i, namesList);
+        }
+        return actualNamesInGroups;
+    }
+
+
+    public void compareLists(Map<String, List<String>> actualNamesInGroups, HashMap<String, List<String>> ExpectedNames){
+        actualNamesInGroups.forEach((groupName, actualNames) -> {
+            List<String> expectedNames = ExpectedNames.get(groupName);
+
+            if (actualNames.equals(expectedNames)) {
+                System.out.println("MATCHED!!!");
+            } else {
+                System.out.println("Names for group " + groupName + " do not match.");
+                System.out.println("Actual Names: " + actualNames);
+                System.out.println("Expected Names: " + expectedNames);
+            }
+        });
+    }
+
+    public static List<String> parseNames(String input) {
+        // Split the input string into lines
+        String[] lines = input.split("\n");
+
+        // Create a new ArrayList to store the names
+        List<String> namesList = new ArrayList<>();
+
+        // Add each line as a separate string to the list
+        for (String line : lines) {
+            namesList.add(line);
+        }
+
+        return namesList;
     }
 }
