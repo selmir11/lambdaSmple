@@ -20,6 +20,8 @@ public class PaymentSelectionCoCoPage {
     WebElement continueBtnPaymentSelection;
 
     public void paymentSelectionContinueCoCo() {
+        basicActions.waitForElementToBeClickable(continueBtnPaymentSelection, 10);
+        basicActions.scrollToElement(continueBtnPaymentSelection);
         continueBtnPaymentSelection.click();
     }
 }

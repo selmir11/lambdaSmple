@@ -220,6 +220,9 @@ public class BasicSteps {
             case "Broker Dashboard" :
                 pageUrl = "/broker-portal/";
                 break;
+            case "My Plans CoCo" :
+                pageUrl = "coco/EnrollmentPortal/myPolicies";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
