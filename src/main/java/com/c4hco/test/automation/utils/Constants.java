@@ -5,5 +5,6 @@ public class Constants {
     public static String LOGIN = "-aws.connectforhealthco.com/login-portal/login";
     public static String BROKER = "-aws.connectforhealthco.com/broker-portal/";
     public  static String ADMIN = "-aws.connectforhealthco.com/AdminPortal";
+    public  static String Outlook= "https://www.microsoft.com/en-us/microsoft-365/outlook/log-in";
 }
 

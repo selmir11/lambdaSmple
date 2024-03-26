@@ -123,7 +123,7 @@ public class HeaderAndFooterPage {
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+                basicActions.waitForElementListToBePresent(centerHeaderLink, 25);
                 centerHeaderLink.get(0).click();
                 break;
             case "NonElmo":
@@ -464,7 +464,8 @@ public class HeaderAndFooterPage {
 
     // =========FOOTER============== //
     public void clickPrivacyPolicyLink() {
-        basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
+        basicActions.waitForElementToBeClickable(privacyPolicyLink, 15);
+        basicActions.scrollToElement(privacyPolicyLink);
         privacyPolicyLink.click();
     }
 
