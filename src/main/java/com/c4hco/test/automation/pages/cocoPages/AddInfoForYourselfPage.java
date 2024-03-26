@@ -97,7 +97,7 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementToBePresent(zipcodeInput, 30);
         zipcodeInput.sendKeys(zipcode);
 
-        basicActions.waitForElementToBePresent(countyDropdown, 30);
+        basicActions.waitForElementToBeClickable(countyDropdown, 30);
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
     }
