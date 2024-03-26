@@ -17,11 +17,8 @@ public class ApplicationResultsPage {
 // TO DO: Update all the below locators
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
-
-    //@FindBy(xpath = "//*[text()='Continue']")
     @FindBy(css = "#hiddenSubmitButton")
     WebElement continueBtn;
-
     @FindBy(xpath = "//*[contains(text(),\"Here's what your household qualifies\")]")
     WebElement headerText;
     @FindBy(xpath = "//*[contains(text(),\"you do not qualify for a health plan\")]")
