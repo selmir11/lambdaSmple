@@ -21,4 +21,17 @@ public class GroupingMembersMedicalSteps {
         groupingMembersMedical.clickContinue();
     }
 
+    @Then("I validate that there are {int} default groups with different zipcodes")
+    public void IvalidateNumberOfGroups(int groups){
+    groupingMembersMedical.getGroupsByUniqueZipCodes(groups);
+    }
+    @Then("I verify member with different zipcode {string} is in separate group")
+    public void verifyMemberInDiffGroup(String zipcode){
+        groupingMembersMedical.verifyGroupingMembersWithDifferentZipcode(zipcode);
+    }
+    @Then("I validate that there are 2 default groups")
+    public void verifyNumberOfDefaultGroups(){
+        groupingMembersMedical.noOfMedicalGroups();
+    }
+
 }

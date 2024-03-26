@@ -16,7 +16,7 @@ public class EditGroupingMembersMedicalPage {
     @FindBy(id ="SHP-EditMedicalGroupingMembers-CreateANewGroup")
     WebElement createNewGroupLink;
 
-    @FindBy(css = ".cdk-drag")
+    @FindBy(css = "div.cdk-drag")
     List<WebElement> groupingMemebers;
 
     @FindBy(css ="div.dragHere")
@@ -81,6 +81,14 @@ public class EditGroupingMembersMedicalPage {
                 .release(dragAMemberHere.get(1)).build()
                 .perform();
           basicActions.wait(3000);
+    }
+    public void IGroupParentWith26YearOldChild(){
+        basicActions.waitForElementListToBePresent(groupingMemebers,10);
+        builder.clickAndHold(groupingMemebers.get(1))
+                .moveToElement(dragAMemberHere.get(1))
+                .release(dragAMemberHere.get(1)).build().perform();
+        basicActions.wait(3000);
+
     }
 
     public void iClickresetGroupsButton(){
