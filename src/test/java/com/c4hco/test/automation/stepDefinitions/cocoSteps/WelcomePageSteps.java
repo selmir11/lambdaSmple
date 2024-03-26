@@ -11,15 +11,6 @@ import io.cucumber.java.en.Then;
         @And("I apply for the current year in CoCo")
         public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}
 
-        @Then("I click on My Profile Button CoCo")
-            public void iClickMyProfileButton() { welcomePage.clickMyProfileButton(); }
-
-        @Then("I click on Application Results Button CoCo")
-        public void iClickApplicationResultsButton() { welcomePage.clickApplicationResultsButton(); }
-
-        @Then("I click on My Documents and Letters Button CoCo")
-        public void iClickMyDocumentsButton() { welcomePage.clickMyDocumentsButton(); }
-
         @And("I click on {string} link on welcome page")
         public void iClickActionLink(String actionLink) { welcomePage.clickActionLinks(actionLink); }
 

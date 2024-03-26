@@ -8,6 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class TobaccoUsageCoCoPage {
+
+    @FindBy(id = "SHP-StartShop-Continue")
+    WebElement continueButton;
     private BasicActions basicActions;
 
     public TobaccoUsageCoCoPage(WebDriver webDriver) {
@@ -15,11 +18,9 @@ public class TobaccoUsageCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
-    public WebElement continueButton;
-
     public void selectContinueTobacco() {
-        basicActions.waitForElementToBeClickable(continueButton, 100);
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueButton);
+        basicActions.waitForElementToBeClickable(continueButton, 10);
+        basicActions.scrollToElement(continueButton);
+        continueButton.click();
     }
 }

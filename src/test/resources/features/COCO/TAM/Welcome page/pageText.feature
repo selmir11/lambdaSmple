@@ -17,7 +17,7 @@ Feature: Page Text-Welcome Page
     Then I verify text on the Welcome page for first time signed into an account in "English"
     Then I verify text on the "CoCo" "Header" in "English"
     Then I verify text on the "CoCo" "Footer" in "English"
-    Then I click on My Profile Button CoCo
+    And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
@@ -88,7 +88,7 @@ Feature: Page Text-Welcome Page
     Then I verify text on the Welcome page for first time signed into an account in "Spanish"
     Then I verify text on the "CoCo" "Header" in "Spanish"
     Then I verify text on the "CoCo" "Footer" in "Spanish"
-    Then I click on My Profile Button CoCo
+    And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
