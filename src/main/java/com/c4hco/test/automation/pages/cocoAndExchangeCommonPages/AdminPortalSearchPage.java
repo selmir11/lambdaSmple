@@ -86,13 +86,13 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
-    public void clickEmailLinkFrmSrchResults() {
+    public void clickEmailLinkFrmSrchResults(){
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
 
-    public void setAccountId() {
+    public void setAccountId(){
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
 
@@ -102,14 +102,14 @@ public class AdminPortalSearchPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption) {
+    public void clickFromApplicationLinksDropdown(String dropdownOption){
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
     }
 
-    public void logoutFromAdmin() {
+    public void logoutFromAdmin(){
         navigateToPreviousPage();
         basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();
@@ -117,21 +117,21 @@ public class AdminPortalSearchPage {
         logoutAdmin.click();
     }
 
-    public void navigateToPreviousPage() {
+    public void navigateToPreviousPage(){
         basicActions.getDriver().navigate().back();
     }
 
-    public void clickCreateAccount() {
+    public void clickCreateAccount(){
         basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(2).click();
     }
 
-    public void ConnectForHealthLogoDisplay() {
+    public void ConnectForHealthLogoDisplay(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
         softAssert.assertAll();
     }
 
-    public void navigateConnectForHealthPage() {
+    public void navigateConnectForHealthPage(){
         connectForHealthLogo.click();
         navigateToPreviousPage();
     }
