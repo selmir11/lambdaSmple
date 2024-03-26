@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -77,7 +76,6 @@ public class AdminPortalSearchPage {
 
     @FindBy(css = "tbody td:nth-child(1)")
     WebElement searchAcctResults;
-
 
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
