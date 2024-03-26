@@ -111,9 +111,9 @@ public class AdminPortalSearchPage {
 
     public void logoutFromAdmin(){
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        basicActions.waitForElementToBePresent(dropdownArrow,100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        basicActions.waitForElementToBePresent(logoutAdmin,100);
         logoutAdmin.click();
     }
 
@@ -122,12 +122,12 @@ public class AdminPortalSearchPage {
     }
 
     public void clickCreateAccount(){
-        basicActions.waitForElementListToBePresent(buttonsList, 10);
+        basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
 
     public void ConnectForHealthLogoDisplay(){
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo,10));
         softAssert.assertAll();
     }
 
