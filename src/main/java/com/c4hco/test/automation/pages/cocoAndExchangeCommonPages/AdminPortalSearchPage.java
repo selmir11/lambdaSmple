@@ -136,13 +136,13 @@ public class AdminPortalSearchPage {
         navigateToPreviousPage();
     }
 
-    public void titleTextValidate() {
+    public void titleTextValidate(){
         Title.isDisplayed();
         softAssert.assertEquals(Title.getText(), "Sign in to your account");
         softAssert.assertAll();
     }
 
-    public void ClickSearchButtonOnAdminPortal() {
+    public void ClickSearchButtonOnAdminPortal(){
         basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(0).click();
     }
@@ -150,7 +150,7 @@ public class AdminPortalSearchPage {
         acctIdWidget.sendKeys(AcctIdCoco);
     }
 
-    public void SelectUserTypeToSearch(String selectUserTypeToSearch) {
+    public void SelectUserTypeToSearch(String selectUserTypeToSearch){
         switch (selectUserTypeToSearch) {
             case "individual":
                 basicActions.waitForElementToBePresent(individual, 15);
