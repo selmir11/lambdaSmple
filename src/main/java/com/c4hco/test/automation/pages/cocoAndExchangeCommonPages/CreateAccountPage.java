@@ -147,6 +147,7 @@ public class CreateAccountPage {
         password.sendKeys(subscriber.getPassword());
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");

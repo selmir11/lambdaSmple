@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.*;
@@ -67,20 +68,7 @@ public class GroupingMembersMedicalPage {
         SharedData.setUniqueZipcodes(uniqueZipCodes);
     }
 
-    public  String getFirstNameByZipcode(){
-       List<MemberDetails> members = SharedData.getMembers();
-        String firstName = null;
-
-        for (MemberDetails member : members) {
-            if (member.getResAddress().getResidentialAddressZipcode().equals("80305")) {
-                firstName = member.getFirstName();
-                break;
-            }
-        }
-        return firstName;
-    }
-
-    public void getGroupsByZipcode(){
+    public  HashMap<String, List<String>> getGroupsByZipcode(){
         HashMap<String, List<String>> membersByZipcode = new HashMap<>();
         List<MemberDetails> members = SharedData.getMembers();
 
@@ -92,15 +80,15 @@ public class GroupingMembersMedicalPage {
 
             if(membersByZipcode.containsKey(zipcode)){
                 List<String> fullName = membersByZipcode.get(zipcode);
-                fullName.add(memberDetails.getSignature());
+                fullName.add(memberDetails.getFullName());
                 membersByZipcode.put(zipcode, fullName);
             } else{
                 List<String> fullName = new ArrayList<>();
-                fullName.add(memberDetails.getSignature());
+                fullName.add(memberDetails.getFullName());
                 membersByZipcode.put(zipcode, fullName);
             }
         }
-        SharedData.setGroupsByZipcode(membersByZipcode);
+        return membersByZipcode;
     }
 
     //--------------------------validations------------------------
@@ -119,73 +107,77 @@ public class GroupingMembersMedicalPage {
     }
 
 
-    public void verifyGroupingMembersWithDifferentZipcode(String zipcode){
-
-
-        getGroupsByZipcode();
-       HashMap<String, List<String>> expectedMap = SharedData.getGroupsByZipcode();
-     Map<String, List<String>> actualMap = getActualNamesFromUI();
-
-        compareLists(actualMap, expectedMap);
-//
-
-//        String firstname = getFirstNameByZipcode();
-//        basicActions.waitForElementListToBePresent(membersInGroups,10);
-//        List<String> namesFromUI = new ArrayList<>();
-//        String groupTwoMemberNameUI = membersInGroups.get(1).getText();
-//
-//        ArrayList<String> groupOneMembers = new ArrayList<>();
-//
-//// Get text from each WebElement and add to ArrayList
-//        for (WebElement element : membersInGroups) {
-//            groupOneMembers.add(membersInGroups.get(0).getText());
-//        }
-//        System.out.println("Group1 "+groupOneMembers);
-//
-//        System.out.println("Group2 "+groupTwoMemberNameUI);
-//        namesFromUI.add(groupTwoMemberNameUI);
-//
-//        HashMap<String, List<String>> groups = SharedData.getGroupsByZipcode();
-//        Set<String> uniqueZipcodes = SharedData.getUniqueZipcodes();
-//        List<String> expectedNAmes = groups.get(zipcode);
-//
-//        HashMap<String, List<String>> groups1 = uniqueZipcodes.stream().filter(groups::containsKey).collect(HashMap::new, (map, zipCode) -> map.put(zipCode, groups.get(zipCode)), HashMap::putAll);
-//        groups1.forEach((zip, name)->
-//        {
-//            softAssert.assertEquals(name, namesFromUI );
-//
-//        });
-//
-//        softAssert.assertTrue(groupTwoMemberNameUI.contains(firstname),"Member with different zipcode is in separate group");
-//        softAssert.assertAll();
-    }
-
     public Map<String, List<String>> getActualNamesFromUI(){
+        System.out.println("----Actual map method 1------------");
         Map<String, List<String>> actualNamesInGroups = new HashMap<>();
+        System.out.println("----Actual map method 2------------created empty map");
 
-        for(int i=0;i<membersInGroups.size();i++){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> members = SharedData.getMembers();
+        members.add(primaryMem);
+        String zipcode = "";
 
-          String  namesInput = membersInGroups.get(i).getText();
+        System.out.println("----Actual map method 3------------Got all the details from shared data");
+
+        basicActions.waitForElementListToBePresent(membersInGroups, 15);
+
+        for (WebElement membersInGroup : membersInGroups) {
+            System.out.println("----Actual map method 4------------for loop entry");
+
+
+            String namesInput = membersInGroup.getText();
             List<String> namesList = parseNames(namesInput);
+            System.out.println("----Actual map method 5------------parsed names");
 
-            actualNamesInGroups.put("groupName"+i, namesList);
+
+            Optional<MemberDetails> member = members.stream().filter(m -> !namesList.isEmpty() &&
+                    m.getFullName().equals(namesList.get(0))).findFirst();
+
+            System.out.println("----Actual map method 6------------after optional");
+
+            if (member.isPresent()) {
+                System.out.println("----Actual map method 7------------if entry");
+
+                MemberDetails mem = member.get();
+                zipcode = mem.getResAddress().getResidentialAddressZipcode();
+
+            } else {
+                Assert.fail(" Member searching for is not found");
+            }
+
+            System.out.println("----Actual map method 8------------before adding the entry to map");
+
+            actualNamesInGroups.put(zipcode, namesList);
+            System.out.println("----Actual map method 9------------entry added to map");
+
         }
+        System.out.println("----Actual map method 10------------out of loops - returning the map");
+
         return actualNamesInGroups;
     }
 
-
     public void compareLists(Map<String, List<String>> actualNamesInGroups, HashMap<String, List<String>> ExpectedNames){
-        actualNamesInGroups.forEach((groupName, actualNames) -> {
-            List<String> expectedNames = ExpectedNames.get(groupName);
+        System.out.println("actualNamesInGroups---"+actualNamesInGroups);
+        System.out.println("ExpectedNames---"+ExpectedNames);
+       Assert.assertEquals( actualNamesInGroups.keySet(), ExpectedNames.keySet());
+        for (String key : actualNamesInGroups.keySet()) {
+            List<String> list1 = actualNamesInGroups.get(key);
+            List<String> list2 = ExpectedNames.get(key);
+            Collections.sort(list1);
+            Collections.sort(list2);
+         Assert.assertEquals(list1, list2);
+        }
+    }
 
-            if (actualNames.equals(expectedNames)) {
-                System.out.println("MATCHED!!!");
-            } else {
-                System.out.println("Names for group " + groupName + " do not match.");
-                System.out.println("Actual Names: " + actualNames);
-                System.out.println("Expected Names: " + expectedNames);
-            }
-        });
+    public void verifyGroupingMembersWithDifferentZipcode(String zipcode){
+
+        HashMap<String, List<String>> expectedMap = getGroupsByZipcode();
+        Map<String, List<String>> actualMap = getActualNamesFromUI();
+
+System.out.println("expected map before compare::"+expectedMap);
+        System.out.println("actual map before compare::"+actualMap);
+
+        compareLists(actualMap, expectedMap);
     }
 
     public static List<String> parseNames(String input) {
