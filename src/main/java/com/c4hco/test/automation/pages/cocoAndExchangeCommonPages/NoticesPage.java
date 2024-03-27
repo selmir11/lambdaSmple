@@ -49,6 +49,8 @@ public class NoticesPage {
      WebElement lnkSendNewCode;
     @FindBy(id= "x_verification-code")
      WebElement mfaCode;
+    @FindBy(id= "id__30")
+     WebElement deleteBtn;
 
 
 
@@ -127,6 +129,11 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(boxVerificationCode,20);
         boxVerificationCode.sendKeys(MFACode);
         btnVerify.click();
+    }
+
+    public void deleteOpenNotice() {
+        basicActions.waitForElementToBePresent(deleteBtn,20);
+        deleteBtn.click();
     }
 
 

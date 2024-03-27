@@ -1,12 +1,16 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class TobaccoUsageCoCoPage {
+
+    @FindBy(id = "SHP-StartShop-Continue")
+    WebElement continueButton;
     private BasicActions basicActions;
 
     public TobaccoUsageCoCoPage(WebDriver webDriver) {
@@ -14,11 +18,9 @@ public class TobaccoUsageCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
-    public WebElement continueButton;
-
     public void selectContinueTobacco() {
-        basicActions.waitForElementToBeClickable(continueButton, 60);
+        basicActions.waitForElementToBeClickable(continueButton, 10);
+        basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
 }

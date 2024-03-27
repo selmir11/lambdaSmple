@@ -49,10 +49,10 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
         editMyEnrollmentGroupsButton.click();
     }
-    public void noOfMedicalGroups(){
+    public void noOfMedicalGroups(int totalGroups){
         basicActions.waitForElementListToBePresent(noOfGroups,10);
         int groupsSize = noOfGroups.size();
-        softAssert.assertEquals(groupsSize,2, "There are 2 groups");
+        softAssert.assertEquals(groupsSize,totalGroups, "There are 2 groups");
         softAssert.assertAll();
     }
     public void getGroupsByUniqueZipCodes(int expectedGroups){
