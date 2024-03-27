@@ -164,45 +164,54 @@ public class AdminPortalSearchPage {
     public void userNameDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(APtxtHello, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAPUserFName, 10));
+        softAssert.assertAll();
     }
 
     public void PersonSymbolDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAPPersonSymbol, 10));
+        softAssert.assertAll();
     }
 
     public void UserDropDownDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(userDropdown, 10));
         Assert.assertTrue("Account Information is not displaying on Search page", userDropdown.isDisplayed());
         userDropdown.click();
+        softAssert.assertAll();
     }
 
     public void accountInformationDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAccountInformation, 10));
         Assert.assertTrue("Account Information is not displaying on Search page", pnlAccountInformation.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void adminPortalTextDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAdminPortal, 10));
         Assert.assertTrue("Admin Portal Text is not displaying on Search page ", txtAdminPortal.isDisplayed());
+        softAssert.assertAll();
     }
 
 
     public void applicationLinksTextDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(AppLinkText, 10));
         Assert.assertTrue("Application Link Text is not displaying on Search page ", AppLinkText.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void applinkdroodowndisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(ApplicationLinksdropdown, 10));
         Assert.assertTrue("Application Link Arrow is displaying on Search page", ApplicationLinksdropdown.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void navigateUserDashboard() { basicActions.waitForElementToBeClickable(primaryEmail, 20);
-        primaryEmail.click();}
+        primaryEmail.click();
+        softAssert.assertAll();  }
 
     public void logoutButtonDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(logoutAdmin, 10));
         Assert.assertTrue("Logout is not visible on search page", logoutAdmin.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void selectCocoIndiviual() {

@@ -61,4 +61,3 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I click on Contact Us in the "Admin Portal" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "Exch" "Admin portal Footer" in "English"
-    
