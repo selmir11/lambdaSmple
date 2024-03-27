@@ -311,15 +311,15 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
         softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+        clickLanguageDrp();
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
         clickGetAssistanceLink();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
-        clickLanguageDrp();
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertAll();
     }
 
@@ -330,15 +330,15 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
         softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        clickLanguageDrp();
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
         softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
         clickGetAssistanceLink();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
-        clickLanguageDrp();
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
         softAssert.assertAll();
     }
 

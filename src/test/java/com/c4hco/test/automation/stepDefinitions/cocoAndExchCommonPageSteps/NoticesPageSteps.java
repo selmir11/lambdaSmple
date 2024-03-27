@@ -52,4 +52,7 @@ public class NoticesPageSteps {
         noticesPage.verifyErrorText();
     }
 
+    @And("I delete the open notice")
+    public void iDeleteTheOpenNotice() {noticesPage.deleteOpenNotice();}
+
 }

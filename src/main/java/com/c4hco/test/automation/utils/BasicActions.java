@@ -88,6 +88,17 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime){
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfAllElements(webElementList));
+        } catch(TimeoutException ignore){
+            Log.info("Element is still visible after the wait");
+            return false;
+        }
+        return true;
+    }
+
     public Boolean waitForElementToBePresent(WebElement webElement, int waitTime){
         try {
             new WebDriverWait(driver,

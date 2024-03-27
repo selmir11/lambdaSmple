@@ -18,7 +18,7 @@ public class CongratulationsCoCoPage {
     WebElement saveAndContinueBtn;
 
     public void clickSaveContinueCongratsCoCo(){
-        basicActions.waitForElementToBeClickable( saveAndContinueBtn, 10);
+        basicActions.waitForElementToBeClickable( saveAndContinueBtn, 60);
         saveAndContinueBtn.click();
 
     }
