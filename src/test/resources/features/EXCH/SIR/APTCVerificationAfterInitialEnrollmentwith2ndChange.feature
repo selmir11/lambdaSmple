@@ -95,6 +95,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I continue on plan summary page
 
     Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+
+    And I click continue on initial payment page
 
 
 
