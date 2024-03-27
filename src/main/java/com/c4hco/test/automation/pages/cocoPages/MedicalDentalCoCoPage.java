@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,11 +15,12 @@ public class MedicalDentalCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-PlanSummary-Continue")
+//    @FindBy(id = "SHP-PlanSummary-Continue")
+    @FindBy(id = "PlanSummary-Continue")
     WebElement continueButton;
 
     public void clickContinueButton() {
-        basicActions.waitForElementToBeClickable(continueButton, 60);
-        continueButton.click();
+        basicActions.waitForElementToBeClickable(continueButton, 100);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueButton);
     }
 }

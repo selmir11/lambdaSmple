@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.PolicyMember;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.Utils;
 import com.c4hco.test.automation.utils.WebDriverManager;
@@ -68,7 +68,7 @@ public class LoginPage {
 
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
-        PolicyMember subscriber = SharedData.getSubscriber();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         System.out.println("Email and pwd::"+subscriber.getEmailId()+"::"+subscriber.getPassword());
             username.sendKeys(subscriber.getEmailId());
             password.sendKeys(subscriber.getPassword());
@@ -80,15 +80,15 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        passwordAdmin.sendKeys("ALaska12!");
+        passwordAdmin.sendKeys("ALaska13!");
         signAdmin.click();
     }
 
-    public void loginAsBrokerUser(){
+    public void loginAsBrokerUser(String brokerUser,String Password){
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        usernameAdmin.sendKeys("soukainatesting+agencyQA@gmail.com");
+        usernameAdmin.sendKeys(brokerUser);
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        passwordAdmin.sendKeys("ALaska16!");
+        passwordAdmin.sendKeys(Password);
         signAdmin.click();
     }
 

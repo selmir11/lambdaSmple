@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class BasicActions {
     private WebDriver driver;
@@ -85,6 +86,17 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime){
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfAllElements(webElementList));
+        } catch(TimeoutException ignore){
+            Log.info("Element is still visible after the wait");
+            return false;
+        }
+        return true;
+    }
+
     public Boolean waitForElementToBePresent(WebElement webElement, int waitTime){
         try {
             new WebDriverWait(driver,
@@ -144,6 +156,16 @@ public class BasicActions {
                 .ignoring(NoSuchElementException.class);
 
         wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public void switchToParentPage(String pageTitle) {
+        Set<String> allWindowHandles = getDriver().getWindowHandles();
+        for (String windowHandle : allWindowHandles) {
+            getDriver().switchTo().window(windowHandle);
+            if (getDriver().getTitle().equals(pageTitle)) {
+                break;
+            }
+        }
     }
 
     public  void scrollToElement(WebElement element) {

@@ -1,3 +1,4 @@
+@TAM
 Feature: Page Navigation-Income Opt Out Page
 
   Background:
@@ -6,7 +7,7 @@ Feature: Page Navigation-Income Opt Out Page
 
 
   @SLER-76 @PageNavigationIncomeOptOutPage
-  Scenario: I Navigate to the Tell us about life changes page after choosing NFA - Spanish
+  Scenario: SLER-76 I Navigate to the Tell us about life changes page after choosing NFA - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -52,7 +53,7 @@ Feature: Page Navigation-Income Opt Out Page
 
 
   @SLER-87 @PageNavigationIncomeOptOutPage
-  Scenario: I Navigate to the Employer Details page after choosing FA - Spanish
+  Scenario: SLER-87 I Navigate to the Employer Details page after choosing FA - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -98,7 +99,7 @@ Feature: Page Navigation-Income Opt Out Page
 
 
   @SLER-88 @PageNavigationIncomeOptOutPage
-  Scenario: I Navigate to the Tell us about life changes page after choosing NFA - English
+  Scenario: SLER-88 I Navigate to the Tell us about life changes page after choosing NFA - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -142,7 +143,7 @@ Feature: Page Navigation-Income Opt Out Page
 
 
   @SLER-89 @PageNavigationIncomeOptOutPage
-  Scenario: I Navigate to the Employer Details page after choosing FA - English
+  Scenario: SLER-89 I Navigate to the Employer Details page after choosing FA - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -186,7 +187,7 @@ Feature: Page Navigation-Income Opt Out Page
 
 
   @SLER-90 @PageNavigationIncomeOptOutPage
-  Scenario: I Verify Nagivation for the header and footer in English
+  Scenario: SLER-90 I Verify Nagivation for the header and footer in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -319,10 +320,10 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click continue on family overview page
 
     Then I validate I am on the "Financial Help" page
-    And  And I click on Privacy Policy in the Footer
+    And I click on Privacy Policy in the Footer
     And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "Financial Help" page
-    And And I click on Terms Of Use in the Footer
+    And I click on Terms Of Use in the Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "Financial Help" page
     And I click on Contact Us in the "Exch" Footer
@@ -353,7 +354,7 @@ Feature: Page Navigation-Income Opt Out Page
 
 
   @SLER-91 @PageNavigationIncomeOptOutPage
-  Scenario: I Verify Nagivation for the header and footer in Spanish
+  Scenario: SLER-91 I Verify Nagivation for the header and footer in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

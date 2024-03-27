@@ -20,7 +20,7 @@ public class ChatWidgetSteps {
         chatWidgetPage.clickChatWidget();
     }
 
-    @Then("I minimize the chat window")
+  @Then("I minimize the chat window")
     public void i_minimize_the_chat_window() {
         chatWidgetPage.minimizeChatWidget();
     }
