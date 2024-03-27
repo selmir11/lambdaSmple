@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 
@@ -57,6 +58,9 @@ public class BasicSteps {
                 break;
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
+                break;
+            case "Admin search":
+                pageUrl = "/AdminPortal/search";
                 break;
             case "Application Results":
                 pageUrl = "nes/applicationResults";
@@ -273,6 +277,21 @@ public class BasicSteps {
             case "Threads":
                 pageUrl = "threads.net/@c4hco";
                 break;
+            case "Admin LCE":
+                pageUrl = "/nes/adminLce";
+                break;
+            case "CBMS Search":
+                pageUrl = "/AdminPortal/applinks/cbms-search";
+                break;
+            case "Document LookUp":
+                pageUrl = "/AdminPortal/applinks/doc-lookup";
+                break;
+            case "Okta Console":
+                pageUrl = "https://extconnectforhealth-admin.oktapreview.com/admin/users";
+                break;
+            case "On Behalf Of(OBO)":
+                pageUrl = "/coco/WelcomePortal/welcome";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
@@ -295,4 +314,9 @@ public class BasicSteps {
 
     @And("I set the browser resolution to 1920 x 1080")
     public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));}
+
+    @Then("I validate I am on active tab")
+    public void iValidateIAmOnActiveTab() {
+        basicActions.switchtoChildWindow();
+    }
 }

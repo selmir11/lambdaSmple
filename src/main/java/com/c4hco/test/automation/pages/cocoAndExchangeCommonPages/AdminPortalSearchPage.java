@@ -3,13 +3,13 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class AdminPortalSearchPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -54,10 +55,39 @@ public class AdminPortalSearchPage {
     @FindBy(css = "#header-user span:nth-child(3)")
     WebElement dropdownArrow;
 
+    @FindBy(xpath = "//span[contains(text(),'Hello')]")
+    WebElement APtxtHello;
+
+    @FindBy(id = "user-first-name")
+    WebElement txtAPUserFName;
+
+    @FindBy(css = "svg[data-prefix='far']")
+    WebElement pnlAPPersonSymbol;
+
+    @FindBy(xpath = "//div[normalize-space()='Account Information']")
+    WebElement pnlAccountInformation;
+
+    @FindBy(xpath = "//body//app-root//span[3]")
+    WebElement userDropdown;
+
+    //BlueBarLinks
+    @FindBy(xpath = "//strong[normalize-space()='Admin Portal']")
+    WebElement txtAdminPortal;
+
+    @FindBy(xpath = "//span[contains(text(),'Application Links')]")
+    WebElement AppLinkText;
+    @FindBy(xpath = "//span[@class='tollbar-app-links']//span")
+    public WebElement ApplicationLinksdropdown;
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
-    public void searchForUser(){
+    @FindBy(css = ".col.text-lg-right.p-0")
+    WebElement searchUser;
+    @FindBy(id = "cocoIndividual")
+    WebElement cocoAccount;
+
+
+    public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
         MemberDetails subscriber = SharedData.getPrimaryMember();
@@ -67,23 +97,23 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
-    public void clickEmailLinkFrmSrchResults(){
+    public void clickEmailLinkFrmSrchResults() {
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
 
-    public void setAccountId(){
+    public void setAccountId() {
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
 
-        String accId = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+        String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption){
+    public void clickFromApplicationLinksDropdown(String dropdownOption) {
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
@@ -92,34 +122,117 @@ public class AdminPortalSearchPage {
 
     public void logoutFromAdmin() {
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow,100);
+        basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin,100);
+        basicActions.waitForElementToBePresent(logoutAdmin, 100);
         logoutAdmin.click();
     }
 
-    public void navigateToPreviousPage(){
+    public void navigateToPreviousPage() {
         basicActions.getDriver().navigate().back();
     }
 
-    public void clickCreateAccount(){
-        basicActions.waitForElementListToBePresent(buttonsList,10);
+    public void clickSearch() {
+        basicActions.waitForElementToBePresent(searchUser, 10);
+        searchUser.click();
+
+    }
+
+    public void clickCreateAccount() {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(2).click();
     }
 
-    public void ConnectForHealthLogoDisplay()
-    { softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
+    public void ConnectForHealthLogoDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
         softAssert.assertAll();
     }
 
-    public void navigateConnectForHealthPage(){
+    public void navigateConnectForHealthPage() {
         connectForHealthLogo.click();
         navigateToPreviousPage();
     }
-    public void titleTextValidate(){
+
+    public void titleTextValidate() {
         Title.isDisplayed();
         softAssert.assertEquals(Title.getText(), "Sign in to your account");
         softAssert.assertAll();
     }
 
+    public void userNameDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(APtxtHello, 10));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAPUserFName, 10));
+
+    }
+
+
+    public void PersonSymbolDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAPPersonSymbol, 10));
+    }
+
+    public void UserDropDownDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(userDropdown, 10));
+        Assert.assertTrue("Account Information is not displaying on Search page", userDropdown.isDisplayed());
+        userDropdown.click();
+    }
+
+    public void accountInformationDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAccountInformation, 10));
+        Assert.assertTrue("Account Information is not displaying on Search page", pnlAccountInformation.isDisplayed());
+    }
+
+    public void adminPortalTextDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAdminPortal, 10));
+        Assert.assertTrue("Admin Portal Text is not displaying on Search page ", txtAdminPortal.isDisplayed());
+    }
+
+
+    public void applicationLinksTextDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(AppLinkText, 10));
+        Assert.assertTrue("Application Link Text is not displaying on Search page ", AppLinkText.isDisplayed());
+    }
+
+    public void applinkdroodowndisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(ApplicationLinksdropdown, 10));
+        Assert.assertTrue("Application Link Arrow is displaying on Search page", ApplicationLinksdropdown.isDisplayed());
+    }
+
+    public void navigateUserDashboard() { basicActions.waitForElementToBeClickable(primaryEmail, 20);
+        primaryEmail.click();}
+
+    public void logoutButtonDisplay() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(logoutAdmin, 10));
+        Assert.assertTrue("Logout is not visible on search page", logoutAdmin.isDisplayed());
+    }
+
+    public void selectCocoIndiviual() {
+        cocoAccount.click();
+    }
+
+ public void enterUserData(String userdata, String type) {
+
+    if(userdata.equals("accountID")) {
+
+        searchInputList.get(0).sendKeys(type);
+    }
+    else if(userdata.equals("FirstName")){
+        searchInputList.get(1).sendKeys(type);
+    }
+    else if(userdata.equals("LastName")){
+        searchInputList.get(2).sendKeys(type);
+    }
+    else if(userdata.equals("Email")){
+        searchInputList.get(3).sendKeys(type);
+    }
+    else if(userdata.equals("DOB")){
+        searchInputList.get(4).sendKeys(type);
+    }
+    else if(userdata.equals("PrimaryPhone")){
+        searchInputList.get(4).sendKeys(type);
+    }
+    else{
+        System.out.println("Invalid Userdata");
+     }
+
+ }
 }

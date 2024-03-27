@@ -21,13 +21,13 @@ public class AdminPortalSearchSteps {
     }
 
     @And("I search for user and click email from search results")
-    public void changeEffectiveDateForAccount(){
+    public void changeEffectiveDateForAccount() {
         adminPortalSearchPage.searchForUser();
         adminPortalSearchPage.clickEmailLinkFrmSrchResults();
     }
 
     @And("I click {string} from application links dropdown")
-    public void selectOptionFromApplicationLinks(String appLinksDropdownOption){
+    public void selectOptionFromApplicationLinks(String appLinksDropdownOption) {
         adminPortalSearchPage.clickFromApplicationLinksDropdown(appLinksDropdownOption);
     }
 
@@ -43,9 +43,57 @@ public class AdminPortalSearchSteps {
             case "TitleTextValidate":
                 adminPortalSearchPage.titleTextValidate();
                 break;
+            case "UserName Display":
+                adminPortalSearchPage.userNameDisplay();
+                break;
+            case "PersonSymbol Display":
+                adminPortalSearchPage.PersonSymbolDisplay();
+                break;
+            case "UserDropdown Display":
+                adminPortalSearchPage.UserDropDownDisplay();
+                break;
+            case "accountInformation Display":
+                adminPortalSearchPage.accountInformationDisplay();
+                break;
+            case "Logoutbutton Display":
+                adminPortalSearchPage.logoutButtonDisplay();
+                break;
+            case "Admin Portal Text Display":
+                adminPortalSearchPage.adminPortalTextDisplay();
+                break;
+            case "applicationLinkText Display":
+                adminPortalSearchPage.applicationLinksTextDisplay();
+                break;
+            case "applicationlinkarrow Display":
+                adminPortalSearchPage.applinkdroodowndisplay();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid header option : " + HeaderValidation);
         }
     }
 
+    @And("I click Colorado Connect to search user")
+    public void iClickColoradoConnectToSearchUser() {
+        adminPortalSearchPage.selectCocoIndiviual();
+    }
+
+//    @Then("I enter an account {string} to search user")
+//    public void iEnterAnAccountToSearchUser(String type) {//to do update feature step
+//       adminPortalSearchPage.enterUserData(type);
+//    }
+
+    @Then("I enter an {string} {string} to search user")
+    public void iEnterAnToSearchUser(String userdata,String type) {
+        adminPortalSearchPage.enterUserData(userdata,type);
+    }
+
+    @Then("I click on Search")
+    public void iClickOnSearch() {
+        adminPortalSearchPage.clickSearch();
+    }
+
+    @Then("I click on User to navigate user Dashboard")
+    public void iClickOnUserToNavigateUserDashboard() {
+        adminPortalSearchPage.navigateUserDashboard();
+    }
 }

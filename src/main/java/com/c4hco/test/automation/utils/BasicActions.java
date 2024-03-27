@@ -11,12 +11,14 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class BasicActions {
     private WebDriver driver;
+    WebDriverManager basicActions;
 
     public BasicActions(WebDriver webDriver) {
         this.driver = webDriver;
@@ -159,6 +161,22 @@ public class BasicActions {
 
     public  void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void switchtoChildWindow(){
+        String parent=
+                basicActions.getDriver().getWindowHandle();
+        Set<String> s=basicActions.getDriver().getWindowHandles();
+        Iterator<String> I1= s.iterator();
+        while(I1.hasNext())
+        {
+            String child_window=I1.next();
+            if(!parent.equals(child_window))
+            {
+                basicActions.getDriver().switchTo().window(child_window);
+                System.out.println(basicActions.getDriver().switchTo().window(child_window).getCurrentUrl());
+            }
+        }
     }
 
 //    public  void switchToWindow(String targetTitle) {
