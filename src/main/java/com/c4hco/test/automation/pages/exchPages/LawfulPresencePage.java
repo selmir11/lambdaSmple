@@ -173,30 +173,7 @@ public class LawfulPresencePage {
     public void getPrimaryMemberId() {
         String currentUrl = basicActions.getCurrentUrl();
        SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=')+1));
-        System.out.println(SharedData.getPrimaryMemberId());
+        System.out.println("Primary Member ID: "+SharedData.getPrimaryMemberId());
     }
 
-    public void changeToNewUrl(String page){
-        String currentUrl = basicActions.getCurrentUrl();
-        String primaryMemId = SharedData.getPrimaryMemberId();
-        switch(page){
-            case "New Other Health Insurance Page":
-               String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
-               currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
-                break;
-            default:
-        }
-    }
-
-    public void changeUrl(String UrlStart, String UrlEnd) {
-        String currentUrl = basicActions.getCurrentUrl();
-        String primaryMemId = SharedData.getPrimaryMemberId();
-        if (currentUrl.contains("https://staging")) {
-            basicActions.getDriver().navigate().to("https://staging-aws." + UrlStart + primaryMemId + UrlEnd);
-            System.out.println("https://staging-aws." + UrlStart + primaryMemId + UrlEnd);
-        } else if (currentUrl.contains("https://qa")) {
-            basicActions.getDriver().navigate().to("https://qa-aws." + UrlStart + primaryMemId + UrlEnd);
-            System.out.println("https://qa-aws." + UrlStart + primaryMemId + UrlEnd);
-        }
-    }
 }

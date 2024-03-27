@@ -1,3 +1,4 @@
+@TAM
 Feature: Page Text-Other Health Insurance Page
 
   Background:
@@ -5,7 +6,7 @@ Feature: Page Text-Other Health Insurance Page
     And I validate I am on the "Login" page
 
   @SLER-128 @PageTextOtherHealthInsurancePage
-  Scenario: I Validate the page text and checkboxes on the Other Health Insurance page
+  Scenario: SLER-128 I Validate the page text and checkboxes on the Other Health Insurance page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -56,7 +57,6 @@ Feature: Page Text-Other Health Insurance Page
     And I select "No" to claim dependents
     And I click save and continue on tax status page
     And I change the C4 url to "New Other Health Insurance Page"
-    And I change the C4 URL to "connectforhealthco.com/OtherHealthInsurancePortal/members/" PrimaryMemberId "/otherHealthInsurance"
     And I validate I am on the "New Other Health Insurance" page
     And I verify text on the Other Health Insurance page in "English"
     And I verify the checkboxes on the Other Health Insurance page

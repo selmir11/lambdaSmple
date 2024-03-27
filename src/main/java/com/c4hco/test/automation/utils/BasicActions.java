@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -182,6 +183,20 @@ public class BasicActions {
 //        }
 //        getDriver().switchTo().window(origin);
 //    }
+
+    public void changeToNewUrl(String page){
+        String currentUrl = getCurrentUrl();
+        String primaryMemId = SharedData.getPrimaryMemberId();
+        switch(page){
+            case "New Other Health Insurance Page":
+                String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+                newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + page);
+        }
+    }
 
 }
 

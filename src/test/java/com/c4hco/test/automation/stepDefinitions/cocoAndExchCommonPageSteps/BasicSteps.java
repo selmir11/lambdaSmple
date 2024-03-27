@@ -302,4 +302,7 @@ public class BasicSteps {
     @And("I set the browser resolution to 1920 x 1080")
     public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));}
 
+    @And("I change the C4 url to {string}")
+    public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
+
 }
