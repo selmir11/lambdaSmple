@@ -68,16 +68,11 @@ public class MedicalPlanResultsPage {
     WebElement nextPageArrow;
 
     @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
-    WebElement aptCreditAmt;
-
-    /*public void aPTCredit() {
-        basicActions.waitForElementListToBePresent(validateAPTC, 10);
-        softAssert.assertTrue(validateAPTC.isDisplayed(), "APTC amount did not match");
-    }*/
+    WebElement planResultsAPTC;
 
     public void validateAPTC(String planResultsAPTCredit){
-        String aptCreditAmt = "//span[text()='" + planResultsAPTCredit + "']";
-        basicActions.getDriver().findElement(By.xpath(aptCreditAmt)).getText();
+        basicActions.waitForElementToBePresent(planResultsAPTC, 100);
+        softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
     }
     
     public void selectfromProviderList(String Selecting) {
