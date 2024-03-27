@@ -45,14 +45,29 @@ public class AdditionalIncomePage {
     @FindBy(css = ".header-2")
     WebElement hdr_AdditionalIncome;
 
+    @FindBy(css = "lib-list-error .error-message")
+    WebElement additlIncomeSelectError;
+
     @FindBy(css = ".body-text-1")
     List <WebElement> txtAdditionalIncomeText;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement txtCapitalGainsAmount;
 
+    @FindBy(id = "ELIG-AdditionalIncome-IFRP-amountInput")
+    WebElement txtIncomeFromRentalPropertyAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-PENS-amountInput")
+    WebElement txtPrivateRetirementIncomeAmount;
+
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-frequencySelect")
     WebElement selectCAPGFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-IFRP-frequencySelect")
+    WebElement selectIFRPFrequency;
+    
+    @FindBy(id = "ELIG-AdditionalIncome-PENS-frequencySelect")
+    WebElement selectPENSFrequency;
 
     private BasicActions basicActions;
     public BasicActions getDriver(){
@@ -75,6 +90,22 @@ public class AdditionalIncomePage {
 
                 Select dropdown = new Select(selectCAPGFrequency);
                 dropdown.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Income from rental property":
+                addtlIncomeOptionsCheckbox.get(2).click();
+                basicActions.waitForElementToBeClickable(txtIncomeFromRentalPropertyAmount, 10);
+                txtIncomeFromRentalPropertyAmount.sendKeys(Amount);
+
+                Select dropdown3 = new Select(selectIFRPFrequency);
+                dropdown3.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Private Retirement income":
+                addtlIncomeOptionsCheckbox.get(4).click();
+                basicActions.waitForElementToBeClickable(txtPrivateRetirementIncomeAmount, 10);
+                txtPrivateRetirementIncomeAmount.sendKeys(Amount);
+
+                Select dropdown5 = new Select(selectPENSFrequency);
+                dropdown5.selectByVisibleText(" " + Frequency + " ");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
@@ -272,6 +303,137 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(backBtn.getText(), "  Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertAll();
+    }
+
+    public void selectAddtlIncomeOptionOnly(String addtlIncomeOption) {
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                addtlIncomeOptionsCheckbox.get(0).click();
+                break;
+            case "Capital Gains":
+                addtlIncomeOptionsCheckbox.get(1).click();
+                break;
+            case "Income from rental property":
+                addtlIncomeOptionsCheckbox.get(2).click();
+                break;
+            case "Pension":
+                addtlIncomeOptionsCheckbox.get(3).click();
+                break;
+            case "Private Retirement income":
+                addtlIncomeOptionsCheckbox.get(4).click();
+                break;
+            case "Income from Social Security":
+                addtlIncomeOptionsCheckbox.get(5).click();
+                break;
+            case "Unemployment insurance benefit":
+                addtlIncomeOptionsCheckbox.get(6).click();
+                break;
+            case "Investment Income":
+                addtlIncomeOptionsCheckbox.get(7).click();
+                break;
+            case "Cash Support":
+                addtlIncomeOptionsCheckbox.get(8).click();
+                break;
+            case "Untaxed foreign income":
+                addtlIncomeOptionsCheckbox.get(9).click();
+                break;
+            case "Royalty income":
+                addtlIncomeOptionsCheckbox.get(10).click();
+                break;
+            case "Taxable income from Tribal Sources":
+                addtlIncomeOptionsCheckbox.get(11).click();
+                break;
+            case "None of these":
+                addtlIncomeOptionsCheckbox.get(12).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
+    }
+
+    public void verifyAddtlIncomeOptionAmt1Error(String language){
+        switch (language) {
+            case "English":
+                verifyAddtlIncomeOptionAmt1ErrorEnglish();
+                break;
+            case "Spanish":
+                verifyAddtlIncomeOptionAmt1ErrorSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyAddtlIncomeOptionAmt1ErrorEnglish(){
+        basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
+        softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Amount is required");
+        softAssert.assertAll();
+    }
+
+    public void verifyAddtlIncomeOptionAmt1ErrorSpanish(){
+        basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
+        softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Esta cantidad es obligatoria");
+        softAssert.assertAll();
+    }
+
+    public void verifyAddtlIncomeOptionFreq1Error(String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
+                softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Please select one of the options below");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
+                softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyAddtlIncomeOptionNoError(){
+        basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
+        basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
+        softAssert.assertAll();
+    }
+
+    public void verifyAddtlIncomeEnteredData(String addtlIncomeOption, String Amount, String Frequency){
+//        Frequency will have a number ex: "3: Monthly"
+        switch (addtlIncomeOption) {
+            case "Private Retirement income":
+                basicActions.waitForElementToBePresent(txtPrivateRetirementIncomeAmount,20);
+                softAssert.assertEquals(txtPrivateRetirementIncomeAmount.getAttribute("value"), Amount);
+                softAssert.assertEquals(selectPENSFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
+    }
+
+    public void verifyAddtlIncomePageNoError(){
+        basicActions.waitForElementToDisappear(additlIncomeSelectError, 10);
+        softAssert.assertAll();
+    }
+
+    public void verifyAddtlIncomePageError(String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(additlIncomeSelectError,20);
+                softAssert.assertEquals(additlIncomeSelectError.getText(), "Please select one or more of the options below");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(additlIncomeSelectError,20);
+                softAssert.assertEquals(additlIncomeSelectError.getText(), "Seleccione una o más de las siguientes opciones");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
 
 }

@@ -11,15 +11,6 @@ import io.cucumber.java.en.Then;
         @And("I apply for the current year in CoCo")
         public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}
 
-        @Then("I click on My Profile Button CoCo")
-            public void iClickMyProfileButton() { welcomePage.clickMyProfileButton(); }
-
-        @Then("I click on Application Results Button CoCo")
-        public void iClickApplicationResultsButton() { welcomePage.clickApplicationResultsButton(); }
-
-        @Then("I click on My Documents and Letters Button CoCo")
-        public void iClickMyDocumentsButton() { welcomePage.clickMyDocumentsButton(); }
-
         @And("I click on {string} link on welcome page")
         public void iClickActionLink(String actionLink) { welcomePage.clickActionLinks(actionLink); }
 
@@ -27,6 +18,9 @@ import io.cucumber.java.en.Then;
         // Add only validation methods below this line
     @Then("I verify text on the Welcome page for first time signed into an account in {string}")
     public void verifyFirstTimeText(String language)  { welcomePage.verifyTextOnWelcomePageFirstTime(language); }
+
+        @Then("I verify text on the Welcome page with policy {string} {string} for ${string} in {string}")
+        public void iVerifyTextOnWelcomePagePolicy(String policyName, String policyLevel, String policyPremium, String language)  { welcomePage.verifyTextOnWelcomePagePolicy(policyName, policyLevel, policyPremium, language); }
 
     @Then("I verify text on the Welcome page for an account without a policy in {string}")
     public void verifyNoPolicyText(String language)  { welcomePage.verifyTextOnWelcomePageNoPolicy(language); }
