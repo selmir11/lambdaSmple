@@ -16,6 +16,7 @@ Scenario: MFA code
   And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
   Then I open the MFA notice
   And I get the MFA code
+  And I delete the open notice
   Then I enter the MFA code and click Verify
   And I validate I am on the "Broker Dashboard" page
 

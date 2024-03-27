@@ -50,7 +50,7 @@ public class AddInfoForYourselfPage {
     WebElement goBackButton;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
 

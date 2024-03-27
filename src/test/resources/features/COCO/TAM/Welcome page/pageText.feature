@@ -2,10 +2,12 @@ Feature: Page Text-Welcome Page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
 
-  @SLCR-33-WIP @PageTextWelcomePage
+  @SLCR-33 @PageTextWelcomePage
   Scenario: Check Welcome Page Text in English
     When I click create a new account on login page
+    Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
@@ -15,7 +17,7 @@ Feature: Page Text-Welcome Page
     Then I verify text on the Welcome page for first time signed into an account in "English"
     Then I verify text on the "CoCo" "Header" in "English"
     Then I verify text on the "CoCo" "Footer" in "English"
-    Then I click on My Profile Button CoCo
+    And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
@@ -49,12 +51,31 @@ Feature: Page Text-Welcome Page
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-#    Complete plan selection and check Welcome again
+    And I enter a valid signature in "English"
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I click Continue on the Tobacco Usage Page CoCo
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select make payment button to pay the premium CoCo
+    And I select Continue button on the Payment Selection CoCo page
+    And I select continue button on the Initial Payment CoCo page
+    And I select "Terms of Use" agreement checkbox CoCo
+    And I select "Privacy Policy" agreement checkbox CoCo
+    And I select "Dental Coverage" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select continue button on the Enrollment Agreements CoCo page
+    And I click continue button on Congratulations page CoCo
+    Then I validate I am on the "CoCo Welcome" page
+
+    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-39-WIP @PageTextWelcomePage
+  @SLCR-39 @PageTextWelcomePage
   Scenario: Check Welcome Page Text in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -67,7 +88,7 @@ Feature: Page Text-Welcome Page
     Then I verify text on the Welcome page for first time signed into an account in "Spanish"
     Then I verify text on the "CoCo" "Header" in "Spanish"
     Then I verify text on the "CoCo" "Footer" in "Spanish"
-    Then I click on My Profile Button CoCo
+    And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     Then I validate I am on the "CoCo Welcome" page
@@ -101,8 +122,27 @@ Feature: Page Text-Welcome Page
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature in "Spanish"
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I click Continue on the Tobacco Usage Page CoCo
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select make payment button to pay the premium CoCo
+    And I select Continue button on the Payment Selection CoCo page
+    And I select continue button on the Initial Payment CoCo page
+    And I select "Terms of Use" agreement checkbox CoCo
+    And I select "Privacy Policy" agreement checkbox CoCo
+    And I select "Dental Coverage" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select continue button on the Enrollment Agreements CoCo page
+    And I click continue button on Congratulations page CoCo
+    Then I validate I am on the "CoCo Welcome" page
 
-#    Complete plan selection and check Welcome again
+    And I change the language from header to "Spanish"
+    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
