@@ -270,7 +270,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups with different zipcodes
-    Then I verify member with different zipcode "80305" is in separate group
+    Then I verify member with different zipcode is in separate group
 
   @ValidateGroupingMembers-3 @test
   Scenario: A family of 2, both applying,One Parent and One 26 year old son/daughter

@@ -157,8 +157,6 @@ public class GroupingMembersMedicalPage {
     }
 
     public void compareLists(Map<String, List<String>> actualNamesInGroups, HashMap<String, List<String>> ExpectedNames){
-        System.out.println("actualNamesInGroups---"+actualNamesInGroups);
-        System.out.println("ExpectedNames---"+ExpectedNames);
        Assert.assertEquals( actualNamesInGroups.keySet(), ExpectedNames.keySet());
         for (String key : actualNamesInGroups.keySet()) {
             List<String> list1 = actualNamesInGroups.get(key);
@@ -169,13 +167,9 @@ public class GroupingMembersMedicalPage {
         }
     }
 
-    public void verifyGroupingMembersWithDifferentZipcode(String zipcode){
-
+    public void verifyGroupingMembersWithDifferentZipcode(){
         HashMap<String, List<String>> expectedMap = getGroupsByZipcode();
         Map<String, List<String>> actualMap = getActualNamesFromUI();
-
-System.out.println("expected map before compare::"+expectedMap);
-        System.out.println("actual map before compare::"+actualMap);
 
         compareLists(actualMap, expectedMap);
     }
