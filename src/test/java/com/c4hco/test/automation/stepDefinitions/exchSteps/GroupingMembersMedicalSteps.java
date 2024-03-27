@@ -29,9 +29,10 @@ public class GroupingMembersMedicalSteps {
     public void verifyMemberInDiffGroup(String zipcode){
         groupingMembersMedical.verifyGroupingMembersWithDifferentZipcode(zipcode);
     }
-    @Then("I validate that there are 2 default groups")
-    public void verifyNumberOfDefaultGroups(){
-        groupingMembersMedical.noOfMedicalGroups();
+    @Then("I validate that there are {int} default groups")
+    public void verifyNumberOfDefaultGroups(int groups){
+        groupingMembersMedical.noOfMedicalGroups(groups);
     }
+
 
 }

@@ -144,7 +144,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
 
-  @ValidateGroupingMembers-2  @test
+  @ValidateGroupingMembers-2
   Scenario: Validate grouping members: Father+Mother+son(80205) in group 1, Son(zip 80301) in Group 2
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -272,7 +272,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 2 default groups with different zipcodes
     Then I verify member with different zipcode "80305" is in separate group
 
-  @ValidateGroupingMembers-3
+  @ValidateGroupingMembers-3 @test
   Scenario: A family of 2, both applying,One Parent and One 26 year old son/daughter
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -349,6 +349,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 2 default groups
     Then I click on edit enrollment groups link
     Then I drag and drop a member to group with 26 year old
+    Then I click save button to save the groups
+    Then I get error message as groups are invalid
+
 
   @ValidateGroupingMembers-4
   Scenario: A family of 3 all applying for insurance,Two parents and one 29 year old son
@@ -440,11 +443,11 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
     Then I click on view results and shop
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 2 default groups with different zipcodes
-    Then I verify member with different zipcode is in separate group
+    Then I validate that there are 1 default groups
