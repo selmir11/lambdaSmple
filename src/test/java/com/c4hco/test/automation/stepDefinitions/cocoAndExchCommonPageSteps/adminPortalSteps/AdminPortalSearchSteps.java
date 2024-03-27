@@ -77,11 +77,6 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.selectCocoIndiviual();
     }
 
-//    @Then("I enter an account {string} to search user")
-//    public void iEnterAnAccountToSearchUser(String type) {//to do update feature step
-//       adminPortalSearchPage.enterUserData(type);
-//    }
-
     @Then("I enter an {string} {string} to search user")
     public void iEnterAnToSearchUser(String userdata,String type) {
         adminPortalSearchPage.enterUserData(userdata,type);
