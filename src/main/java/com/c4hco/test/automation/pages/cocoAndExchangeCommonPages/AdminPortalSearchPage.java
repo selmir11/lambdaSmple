@@ -34,7 +34,7 @@ public class AdminPortalSearchPage {
     List<WebElement> searchInputList;
 
     @FindBy(css = ".form-btn-group.big-screen button")
-    public List<WebElement> buttonsList; // search, reset, create Account buttons
+    List<WebElement> buttonsList; // search, reset, create Account buttons
 
     @FindBy(css = ".search-results-container .search-results-table")
     WebElement searchResults;
