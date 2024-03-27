@@ -111,9 +111,9 @@ public class AdminPortalSearchPage {
 
     public void logoutFromAdmin(){
         navigateToPreviousPage();
-        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        basicActions.waitForElementToBePresent(dropdownArrow,100);
         dropdownArrow.click();
-        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        basicActions.waitForElementToBePresent(logoutAdmin,100);
         logoutAdmin.click();
     }
 
@@ -122,12 +122,12 @@ public class AdminPortalSearchPage {
     }
 
     public void clickCreateAccount(){
-        basicActions.waitForElementListToBePresent(buttonsList, 10);
+        basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
 
     public void ConnectForHealthLogoDisplay(){
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo, 10));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo,10));
         softAssert.assertAll();
     }
 
@@ -136,13 +136,13 @@ public class AdminPortalSearchPage {
         navigateToPreviousPage();
     }
 
-    public void titleTextValidate() {
+    public void titleTextValidate(){
         Title.isDisplayed();
         softAssert.assertEquals(Title.getText(), "Sign in to your account");
         softAssert.assertAll();
     }
 
-    public void ClickSearchButtonOnAdminPortal() {
+    public void ClickSearchButtonOnAdminPortal(){
         basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(0).click();
     }
@@ -150,7 +150,7 @@ public class AdminPortalSearchPage {
         acctIdWidget.sendKeys(AcctIdCoco);
     }
 
-    public void SelectUserTypeToSearch(String selectUserTypeToSearch) {
+    public void SelectUserTypeToSearch(String selectUserTypeToSearch){
         switch (selectUserTypeToSearch) {
             case "individual":
                 basicActions.waitForElementToBePresent(individual, 15);
