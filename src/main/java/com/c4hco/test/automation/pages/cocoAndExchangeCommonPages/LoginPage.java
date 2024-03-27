@@ -80,7 +80,7 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        passwordAdmin.sendKeys("ALaska13!");
+        passwordAdmin.sendKeys("ALaska12!");
         signAdmin.click();
     }
 

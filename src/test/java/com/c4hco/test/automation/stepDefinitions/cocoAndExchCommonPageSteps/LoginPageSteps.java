@@ -61,5 +61,4 @@ public class LoginPageSteps {
     public void iReceiveMessageIForgotUsernameAndPassword() {
         loginPage.usernameandpasswordRequiredMessage();
     }
-
-    }
+ }

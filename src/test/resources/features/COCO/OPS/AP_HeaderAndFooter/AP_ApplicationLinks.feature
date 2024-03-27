@@ -33,7 +33,6 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I click "Okta Console" from application links dropdown
     And I validate I am on the "Okta Console" page and close tab
 
-
   @SLCR-34
   Scenario: Verify Header and Footer for Dashboard page and links for COCO Indiviual User
     Given I open the login page on the "admin" portal
@@ -62,5 +61,4 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I click on Contact Us in the "Admin Portal" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "Exch" "Admin portal Footer" in "English"
-
-
+    

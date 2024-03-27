@@ -76,13 +76,16 @@ public class AdminPortalSearchPage {
 
     @FindBy(xpath = "//span[contains(text(),'Application Links')]")
     WebElement AppLinkText;
+
     @FindBy(xpath = "//span[@class='tollbar-app-links']//span")
     public WebElement ApplicationLinksdropdown;
+
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
 
     @FindBy(css = ".col.text-lg-right.p-0")
     WebElement searchUser;
+
     @FindBy(id = "cocoIndividual")
     WebElement cocoAccount;
 
@@ -135,7 +138,6 @@ public class AdminPortalSearchPage {
     public void clickSearch() {
         basicActions.waitForElementToBePresent(searchUser, 10);
         searchUser.click();
-
     }
 
     public void clickCreateAccount() {
@@ -162,9 +164,7 @@ public class AdminPortalSearchPage {
     public void userNameDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(APtxtHello, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAPUserFName, 10));
-
     }
-
 
     public void PersonSymbolDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAPPersonSymbol, 10));
@@ -210,7 +210,6 @@ public class AdminPortalSearchPage {
     }
 
  public void enterUserData(String userdata, String type) {
-
     if(userdata.equals("accountID")) {
 
         searchInputList.get(0).sendKeys(type);
@@ -232,7 +231,4 @@ public class AdminPortalSearchPage {
     }
     else{
         System.out.println("Invalid Userdata");
-     }
-
- }
-}
+     } } }
