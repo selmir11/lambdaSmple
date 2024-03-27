@@ -22,11 +22,12 @@ public class GroupingMembersMedicalSteps {
     }
 
     @Then("I validate that there are {int} default groups with different zipcodes")
-    public void IvalidateNumberOfGroups(int groups){
-    groupingMembersMedical.getGroupsByUniqueZipCodes(groups);
+    public void validateNumberOfGroups(int groups){
+    groupingMembersMedical.getUniqueZipCodes(groups);
     }
     @Then("I verify member with different zipcode is in separate group")
     public void verifyMemberInDiffGroup(){
+        // Rename this step - we are validating names of all the members in all the groups.
         groupingMembersMedical.verifyGroupingMembersWithDifferentZipcode();
     }
     @Then("I validate that there are {int} default groups")

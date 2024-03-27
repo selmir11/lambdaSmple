@@ -33,29 +33,34 @@ public class GroupingMembersMedicalPage {
     List<WebElement> membersInGroups;
 
     private BasicActions basicActions;
+
     public GroupingMembersMedicalPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
     SoftAssert softAssert = new SoftAssert();
-    public void clickContinue(){
-        basicActions.waitForElementToBePresent(continueButton,10);
-        basicActions.waitForElementToBeClickable(continueButton,30);
+
+    public void clickContinue() {
+        basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.waitForElementToBeClickable(continueButton, 30);
         continueButton.click();
     }
-    
-    public void clickOnEditMedicalGroupinglink(){
-        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton,10);
-        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton,30);
+
+    public void clickOnEditMedicalGroupinglink() {
+        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 10);
+        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 30);
         editMyEnrollmentGroupsButton.click();
     }
-    public void noOfMedicalGroups(int totalGroups){
-        basicActions.waitForElementListToBePresent(noOfGroups,10);
+
+    public void noOfMedicalGroups(int totalGroups) {
+        basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        softAssert.assertEquals(groupsSize,totalGroups, "There are 2 groups");
+        softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
         softAssert.assertAll();
     }
-    public void getGroupsByUniqueZipCodes(int expectedGroups){
+
+    public void getUniqueZipCodes(int expectedGroups) {
         Set<String> uniqueZipCodes = new HashSet<>();
         String primaryMemZipCode = SharedData.getPrimaryMember().getResAddress().getResidentialAddressZipcode();
         List<MemberDetails> members = SharedData.getMembers();
@@ -65,24 +70,22 @@ public class GroupingMembersMedicalPage {
         int actualUniqueZipCodes = uniqueZipCodes.size();
         softAssert.assertEquals(actualUniqueZipCodes, expectedGroups, "Expected Groups did not match with actual");
         softAssert.assertAll();
-        SharedData.setUniqueZipcodes(uniqueZipCodes);
     }
 
-    public  HashMap<String, List<String>> getGroupsByZipcode(){
+    public HashMap<String, List<String>> getGroupsByZipcode() {
         HashMap<String, List<String>> membersByZipcode = new HashMap<>();
         List<MemberDetails> members = SharedData.getMembers();
-
         MemberDetails primaryMem = SharedData.getPrimaryMember();
-        members.add(primaryMem);
+        members.add(primaryMem); // To DO:: add only if it doesn't exist
 
-        for(MemberDetails memberDetails:members){
+        for (MemberDetails memberDetails : members) {
             String zipcode = memberDetails.getResAddress().getResidentialAddressZipcode();
 
-            if(membersByZipcode.containsKey(zipcode)){
+            if (membersByZipcode.containsKey(zipcode)) {
                 List<String> fullName = membersByZipcode.get(zipcode);
                 fullName.add(memberDetails.getFullName());
                 membersByZipcode.put(zipcode, fullName);
-            } else{
+            } else {
                 List<String> fullName = new ArrayList<>();
                 fullName.add(memberDetails.getFullName());
                 membersByZipcode.put(zipcode, fullName);
@@ -91,87 +94,43 @@ public class GroupingMembersMedicalPage {
         return membersByZipcode;
     }
 
-    //--------------------------validations------------------------
-    public void verifyMedicalGroupingPageVerbiage(){
-        basicActions.waitForElementToBePresent(medicalEnrollmentGroupPageTitle,10);
-        softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText(), "Medical Enrollment Groups");
-        softAssert.assertEquals(groupingPageText.get(0).getText(),"It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
-        softAssert.assertEquals(groupingPageText.get(1).getText(),"Remember: Costs within a group count towards each group's deductible and out of pocket maximum.");
-       // softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
-        softAssert.assertEquals(editMyEnrollmentGroupsButton,"Edit my enrollment groups");
-        softAssert.assertEquals(backAndSaveAndExitButtons.get(0).getText(),"Go Back");
-        softAssert.assertEquals(backAndSaveAndExitButtons.get(1).getText(),"Save and Exit");
-        softAssert.assertEquals(continueButton.getText(),"Continue");
-        softAssert.assertTrue(glodeImageDropdown.isEnabled());
-        softAssert.assertAll();
-    }
-
-
-    public Map<String, List<String>> getActualNamesFromUI(){
-        System.out.println("----Actual map method 1------------");
+    public Map<String, List<String>> getNamesInGroupsFromUI() {
         Map<String, List<String>> actualNamesInGroups = new HashMap<>();
-        System.out.println("----Actual map method 2------------created empty map");
 
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         List<MemberDetails> members = SharedData.getMembers();
         members.add(primaryMem);
         String zipcode = "";
 
-        System.out.println("----Actual map method 3------------Got all the details from shared data");
-
         basicActions.waitForElementListToBePresent(membersInGroups, 15);
 
         for (WebElement membersInGroup : membersInGroups) {
-            System.out.println("----Actual map method 4------------for loop entry");
-
-
             String namesInput = membersInGroup.getText();
             List<String> namesList = parseNames(namesInput);
-            System.out.println("----Actual map method 5------------parsed names");
-
-
             Optional<MemberDetails> member = members.stream().filter(m -> !namesList.isEmpty() &&
                     m.getFullName().equals(namesList.get(0))).findFirst();
-
-            System.out.println("----Actual map method 6------------after optional");
-
             if (member.isPresent()) {
-                System.out.println("----Actual map method 7------------if entry");
-
                 MemberDetails mem = member.get();
                 zipcode = mem.getResAddress().getResidentialAddressZipcode();
 
             } else {
                 Assert.fail(" Member searching for is not found");
             }
-
-            System.out.println("----Actual map method 8------------before adding the entry to map");
-
             actualNamesInGroups.put(zipcode, namesList);
-            System.out.println("----Actual map method 9------------entry added to map");
-
         }
-        System.out.println("----Actual map method 10------------out of loops - returning the map");
-
         return actualNamesInGroups;
     }
 
-    public void compareLists(Map<String, List<String>> actualNamesInGroups, HashMap<String, List<String>> ExpectedNames){
-       Assert.assertEquals( actualNamesInGroups.keySet(), ExpectedNames.keySet());
+
+    public void compareLists(Map<String, List<String>> actualNamesInGroups, HashMap<String, List<String>> ExpectedNames) {
+        Assert.assertEquals(actualNamesInGroups.keySet(), ExpectedNames.keySet());
         for (String key : actualNamesInGroups.keySet()) {
             List<String> list1 = actualNamesInGroups.get(key);
             List<String> list2 = ExpectedNames.get(key);
             Collections.sort(list1);
             Collections.sort(list2);
-         Assert.assertEquals(list1, list2);
+            Assert.assertEquals(list1, list2);
         }
-    }
-
-    public void verifyGroupingMembersWithDifferentZipcode(){
-        HashMap<String, List<String>> expectedMap = getGroupsByZipcode();
-        Map<String, List<String>> actualMap = getActualNamesFromUI();
-
-        compareLists(actualMap, expectedMap);
     }
 
     public static List<String> parseNames(String input) {
@@ -188,4 +147,26 @@ public class GroupingMembersMedicalPage {
 
         return namesList;
     }
+
+//--------------------------validations------------------------
+    public void verifyMedicalGroupingPageVerbiage() {
+        basicActions.waitForElementToBePresent(medicalEnrollmentGroupPageTitle, 10);
+        softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText(), "Medical Enrollment Groups");
+        softAssert.assertEquals(groupingPageText.get(0).getText(), "It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
+        softAssert.assertEquals(groupingPageText.get(1).getText(), "Remember: Costs within a group count towards each group's deductible and out of pocket maximum.");
+        // softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
+        softAssert.assertEquals(editMyEnrollmentGroupsButton, "Edit my enrollment groups");
+        softAssert.assertEquals(backAndSaveAndExitButtons.get(0).getText(), "Go Back");
+        softAssert.assertEquals(backAndSaveAndExitButtons.get(1).getText(), "Save and Exit");
+        softAssert.assertEquals(continueButton.getText(), "Continue");
+        softAssert.assertTrue(glodeImageDropdown.isEnabled());
+        softAssert.assertAll();
+    }
+
+    public void verifyGroupingMembersWithDifferentZipcode() {
+        HashMap<String, List<String>> expectedMap = getGroupsByZipcode();
+        Map<String, List<String>> actualMap = getNamesInGroupsFromUI();
+        compareLists(actualMap, expectedMap);
+    }
+
 }
