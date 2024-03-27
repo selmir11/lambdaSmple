@@ -74,9 +74,7 @@ public class GroupingMembersMedicalPage {
 
     public HashMap<String, List<String>> getGroupsByZipcode() {
         HashMap<String, List<String>> membersByZipcode = new HashMap<>();
-        List<MemberDetails> members = SharedData.getMembers();
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        members.add(primaryMem); // To DO:: add only if it doesn't exist
+        List<MemberDetails> members = basicActions.addPrimaryMemToMembersListIfAbsent();
 
         for (MemberDetails memberDetails : members) {
             String zipcode = memberDetails.getResAddress().getResidentialAddressZipcode();
@@ -94,12 +92,9 @@ public class GroupingMembersMedicalPage {
         return membersByZipcode;
     }
 
-    public Map<String, List<String>> getNamesInGroupsFromUI() {
+    public Map<String, List<String>> getGroupsByZipByUI() {
         Map<String, List<String>> actualNamesInGroups = new HashMap<>();
-
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        List<MemberDetails> members = SharedData.getMembers();
-        members.add(primaryMem);
+        List<MemberDetails> members =  basicActions.addPrimaryMemToMembersListIfAbsent();
         String zipcode = "";
 
         basicActions.waitForElementListToBePresent(membersInGroups, 15);
@@ -122,11 +117,11 @@ public class GroupingMembersMedicalPage {
     }
 
 
-    public void compareLists(Map<String, List<String>> actualNamesInGroups, HashMap<String, List<String>> ExpectedNames) {
-        Assert.assertEquals(actualNamesInGroups.keySet(), ExpectedNames.keySet());
-        for (String key : actualNamesInGroups.keySet()) {
-            List<String> list1 = actualNamesInGroups.get(key);
-            List<String> list2 = ExpectedNames.get(key);
+    public void compareLists(Map<String, List<String>> actualGroups, HashMap<String, List<String>> expectedGroups) {
+        Assert.assertEquals(actualGroups.keySet(), expectedGroups.keySet());
+        for (String key : actualGroups.keySet()) {
+            List<String> list1 = actualGroups.get(key);
+            List<String> list2 = expectedGroups.get(key);
             Collections.sort(list1);
             Collections.sort(list2);
             Assert.assertEquals(list1, list2);
@@ -163,9 +158,9 @@ public class GroupingMembersMedicalPage {
         softAssert.assertAll();
     }
 
-    public void verifyGroupingMembersWithDifferentZipcode() {
+    public void verifyGroupingMembersWithZipcodes() {
         HashMap<String, List<String>> expectedMap = getGroupsByZipcode();
-        Map<String, List<String>> actualMap = getNamesInGroupsFromUI();
+        Map<String, List<String>> actualMap = getGroupsByZipByUI();
         compareLists(actualMap, expectedMap);
     }
 

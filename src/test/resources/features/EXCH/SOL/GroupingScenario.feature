@@ -144,7 +144,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
 
-  @ValidateGroupingMembers-2
+  @SLER-161 @groupingBasedOnZipcode
   Scenario: Validate grouping members: Father+Mother+son(80205) in group 1, Son(zip 80301) in Group 2
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -270,9 +270,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups with different zipcodes
-    Then I verify member with different zipcode is in separate group
+    Then I verify that members are grouped together based on zipcodes
 
-  @ValidateGroupingMembers-3 @test
+  @SLER-163 @groupingBasedOnAge
   Scenario: A family of 2, both applying,One Parent and One 26 year old son/daughter
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -352,9 +352,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click save button to save the groups
     Then I get error message as groups are invalid
 
-
-  @ValidateGroupingMembers-4
-  Scenario: A family of 3 all applying for insurance,Two parents and one 29 year old son
+    # Failing because of defect
+  @SLER-165 @groupingBasedOnAgeAndDisability
+  Scenario: A family of 3 all applying for insurance,Two parents and one 29 year old son who is blind
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

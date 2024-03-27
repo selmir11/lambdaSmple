@@ -88,7 +88,6 @@ public class EditGroupingMembersMedicalPage {
                 .moveToElement(dragAMemberHere.get(1))
                 .release(dragAMemberHere.get(1)).build().perform();
         basicActions.wait(3000);
-
     }
 
     public void iClickresetGroupsButton(){
