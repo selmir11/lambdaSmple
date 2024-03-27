@@ -82,7 +82,7 @@ public class EditGroupingMembersMedicalPage {
                 .perform();
           basicActions.wait(3000);
     }
-    public void IGroupParentWith26YearOldChild(){
+    public void groupParentWith26YearOldChild(){
         basicActions.waitForElementListToBePresent(groupingMemebers,10);
         builder.clickAndHold(groupingMemebers.get(1))
                 .moveToElement(dragAMemberHere.get(1))

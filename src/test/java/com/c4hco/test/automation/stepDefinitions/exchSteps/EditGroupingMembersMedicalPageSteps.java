@@ -26,7 +26,7 @@ public class EditGroupingMembersMedicalPageSteps {
     }
     @Then("I drag and drop a member to group with 26 year old")
     public void groupInvalidParentAnd26Yearold(){
-        editGroupingMembersMedicalPage.IGroupParentWith26YearOldChild();
+        editGroupingMembersMedicalPage.groupParentWith26YearOldChild();
     }
     @Then("I click save button to save the groups")
     public void saveGroups(){
