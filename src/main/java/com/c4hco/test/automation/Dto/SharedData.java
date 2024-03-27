@@ -11,4 +11,5 @@ public class SharedData {
     @Getter @Setter private static String appType;
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
+    @Getter @Setter private static String primaryMemberId;
 }

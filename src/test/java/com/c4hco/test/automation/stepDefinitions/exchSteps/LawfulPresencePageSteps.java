@@ -50,6 +50,9 @@ public class LawfulPresencePageSteps {
     @And("I get the Primary Member ID")
     public void iGetPrimaryMemberId(){lawfulPresencePage.getPrimaryMemberId();}
 
+    @And("I change the C4 url to {string}")
+    public void iChangeToNewUrl(String page){lawfulPresencePage.changeToNewUrl(page);}
+
     @And("I change the C4 URL to {string} PrimaryMemberId {string}")
     public void iChangeUrl(String UrlStart, String UrlEnd){lawfulPresencePage.changeUrl(UrlStart, UrlEnd);}
 }

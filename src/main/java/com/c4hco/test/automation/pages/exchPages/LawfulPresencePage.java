@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 public class LawfulPresencePage {
     private BasicActions basicActions;
-    String PrimaryMemberId = "";
+   // String PrimaryMemberId = "";
 
     public LawfulPresencePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -169,27 +170,33 @@ public class LawfulPresencePage {
 
     public  void clickContinue(){saveContinue.click();}
 
-    public String getPrimaryMemberId() {
+    public void getPrimaryMemberId() {
         String currentUrl = basicActions.getCurrentUrl();
-        if (currentUrl.contains("https://staging")) {
-            PrimaryMemberId = currentUrl.replace("https://staging-aws.connectforhealthco.com/nes/lawfulPresence?memberId=", "");
-            System.out.println(PrimaryMemberId);
+       SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=')+1));
+        System.out.println(SharedData.getPrimaryMemberId());
+    }
+
+    public void changeToNewUrl(String page){
+        String currentUrl = basicActions.getCurrentUrl();
+        String primaryMemId = SharedData.getPrimaryMemberId();
+        switch(page){
+            case "New Other Health Insurance Page":
+               String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+               currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
+                break;
+            default:
         }
-        else if (currentUrl.contains("https://qa")) {
-            PrimaryMemberId = currentUrl.replace("https://qa-aws.connectforhealthco.com/nes/lawfulPresence?memberId=", "");
-            System.out.println(PrimaryMemberId);
-        }
-        return PrimaryMemberId;
     }
 
     public void changeUrl(String UrlStart, String UrlEnd) {
         String currentUrl = basicActions.getCurrentUrl();
+        String primaryMemId = SharedData.getPrimaryMemberId();
         if (currentUrl.contains("https://staging")) {
-            basicActions.getDriver().navigate().to("https://staging-aws." + UrlStart + PrimaryMemberId + UrlEnd);
-            System.out.println("https://staging-aws." + UrlStart + PrimaryMemberId + UrlEnd);
+            basicActions.getDriver().navigate().to("https://staging-aws." + UrlStart + primaryMemId + UrlEnd);
+            System.out.println("https://staging-aws." + UrlStart + primaryMemId + UrlEnd);
         } else if (currentUrl.contains("https://qa")) {
-            basicActions.getDriver().navigate().to("https://qa-aws." + UrlStart + PrimaryMemberId + UrlEnd);
-            System.out.println("https://qa-aws." + UrlStart + PrimaryMemberId + UrlEnd);
+            basicActions.getDriver().navigate().to("https://qa-aws." + UrlStart + primaryMemId + UrlEnd);
+            System.out.println("https://qa-aws." + UrlStart + primaryMemId + UrlEnd);
         }
     }
 }
