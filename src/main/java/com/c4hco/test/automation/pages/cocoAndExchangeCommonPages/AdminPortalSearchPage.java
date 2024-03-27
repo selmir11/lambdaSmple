@@ -219,25 +219,25 @@ public class AdminPortalSearchPage {
     }
 
  public void enterUserData(String userdata, String type) {
-    if(userdata.equals("accountID")) {
-
-        searchInputList.get(0).sendKeys(type);
-    }
-    else if(userdata.equals("FirstName")){
-        searchInputList.get(1).sendKeys(type);
-    }
-    else if(userdata.equals("LastName")){
-        searchInputList.get(2).sendKeys(type);
-    }
-    else if(userdata.equals("Email")){
-        searchInputList.get(3).sendKeys(type);
-    }
-    else if(userdata.equals("DOB")){
-        searchInputList.get(4).sendKeys(type);
-    }
-    else if(userdata.equals("PrimaryPhone")){
-        searchInputList.get(4).sendKeys(type);
-    }
-    else{
-        System.out.println("Invalid Userdata");
-     } } }
+        switch (userdata) {
+            case "accountID":
+                searchInputList.get(0).sendKeys(type);
+                break;
+            case "FirstName":
+                searchInputList.get(1).sendKeys(type);
+                break;
+            case "LastName":
+                searchInputList.get(2).sendKeys(type);
+                break;
+            case "Email":
+                searchInputList.get(3).sendKeys(type);
+                break;
+            case "DOB":
+                searchInputList.get(4).sendKeys(type);
+                break;
+            case "PrimaryPhone":
+                searchInputList.get(5).sendKeys(type);
+                break;
+            default: throw new IllegalArgumentException("Invalid header option : " + Userdata);
+        }
+     } }
