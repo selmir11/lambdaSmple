@@ -174,43 +174,41 @@ public class AdminPortalSearchPage {
 
     public void UserDropDownDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(userDropdown, 10));
-        Assert.assertTrue("Account Information is not displaying on Search page", userDropdown.isDisplayed());
+        softAssert.assertTrue(userDropdown.isDisplayed(),"Account Information is not displaying on Search page");
         userDropdown.click();
         softAssert.assertAll();
     }
 
     public void accountInformationDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAccountInformation, 10));
-        Assert.assertTrue("Account Information is not displaying on Search page", pnlAccountInformation.isDisplayed());
+        softAssert.assertTrue(pnlAccountInformation.isDisplayed(),"Account Information is not displaying on Search page");
         softAssert.assertAll();
     }
 
     public void adminPortalTextDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAdminPortal, 10));
-        Assert.assertTrue("Admin Portal Text is not displaying on Search page ", txtAdminPortal.isDisplayed());
+        softAssert.assertTrue(txtAdminPortal.isDisplayed(),"Admin Portal Text is not displaying on Search page ");
         softAssert.assertAll();
     }
 
-
     public void applicationLinksTextDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(AppLinkText, 10));
-        Assert.assertTrue("Application Link Text is not displaying on Search page ", AppLinkText.isDisplayed());
+        softAssert.assertTrue( AppLinkText.isDisplayed(),"Application Link Text is not displaying on Search page");
         softAssert.assertAll();
     }
 
     public void applinkdroodowndisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(ApplicationLinksdropdown, 10));
-        Assert.assertTrue("Application Link Arrow is displaying on Search page", ApplicationLinksdropdown.isDisplayed());
+        softAssert.assertTrue(ApplicationLinksdropdown.isDisplayed(),"Application Link Arrow is displaying on Search page");
         softAssert.assertAll();
     }
 
     public void navigateUserDashboard() { basicActions.waitForElementToBeClickable(primaryEmail, 20);
-        primaryEmail.click();
-        softAssert.assertAll();  }
+        primaryEmail.click();}
 
     public void logoutButtonDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(logoutAdmin, 10));
-        Assert.assertTrue("Logout is not visible on search page", logoutAdmin.isDisplayed());
+        softAssert.assertTrue(logoutAdmin.isDisplayed(),"Logout is not visible on search page");
         softAssert.assertAll();
     }
 
@@ -238,6 +236,6 @@ public class AdminPortalSearchPage {
             case "PrimaryPhone":
                 searchInputList.get(5).sendKeys(type);
                 break;
-            default: throw new IllegalArgumentException("Invalid header option : " + Userdata);
+            default: throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
      } }
