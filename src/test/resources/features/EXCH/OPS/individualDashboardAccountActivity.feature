@@ -11,4 +11,4 @@ Feature: Ind Dash: Verify Contact and Coverage Upserts
     Then I check box "individual" user type to search on Admin Portal dashboard
     And I enter specific "4006215397 " account number
     Then I click search button on admin portal
-
+    And I click acct in Search Results table on admin portal
