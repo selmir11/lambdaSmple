@@ -66,6 +66,14 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
+
+    @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
+    WebElement planResultsAPTC;
+
+    public void validateAPTC(String planResultsAPTCredit){
+        basicActions.waitForElementToBePresent(planResultsAPTC, 100);
+        softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
+    }
     
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//span[text()='" + Selecting + "']";

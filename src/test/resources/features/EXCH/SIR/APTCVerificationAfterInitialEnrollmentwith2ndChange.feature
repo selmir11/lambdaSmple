@@ -84,6 +84,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I validate the APTC credit is "$120.69 tax credit"
+    And I select the first medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
@@ -92,5 +93,12 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I continue on plan summary page
+
+    Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+
+    And I click continue on initial payment page
+
 
 
