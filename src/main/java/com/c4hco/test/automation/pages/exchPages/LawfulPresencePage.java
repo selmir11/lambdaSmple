@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class LawfulPresencePage {
     private BasicActions basicActions;
-   // String PrimaryMemberId = "";
 
     public LawfulPresencePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
