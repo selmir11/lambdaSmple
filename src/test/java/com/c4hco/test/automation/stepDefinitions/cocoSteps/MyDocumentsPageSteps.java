@@ -13,7 +13,7 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
 
     @Then("I click link my docs on accountOverview page")
     public void iClickLinkMyDocsOnAccountOverviewPage(){
-        myDocumentsPage.Click_link_my_docs_on_welcome_page();
+        myDocumentsPage.ClickLinkMyDocsWelcomePage();
     }
 
 }
