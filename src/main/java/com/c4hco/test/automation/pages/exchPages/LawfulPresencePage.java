@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -167,4 +168,11 @@ public class LawfulPresencePage {
     }
 
     public  void clickContinue(){saveContinue.click();}
+
+    public void getPrimaryMemberId() {
+        String currentUrl = basicActions.getCurrentUrl();
+       SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=')+1));
+        System.out.println("Primary Member ID: "+SharedData.getPrimaryMemberId());
+    }
+
 }
