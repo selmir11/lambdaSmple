@@ -23,11 +23,12 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     // locator in stg is diff - @FindBy(id = "SHP-PlanSummary-Continue")
-    @FindBy(id = "PlanSummary-Continue")
+    @FindBy(xpath = "//button[@id='SHP-PlanSummary-Continue']")
     WebElement continueBtnOnPlanSummary;
 
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
+
     @FindBy(xpath = "//div[@class='shopping-parent-container']")
     WebElement planSummaryMedicalplanheading;
 
@@ -78,7 +79,10 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
     
-
+    public void setContinueBtnOnPlanSummary(){
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 100);
+        continueBtnOnPlanSummary.click();
+    }
     public void continuePlanSummaryPage(){
         basicActions.waitForElementToBePresent(medicalPlanPremiumAmt, 10);
         setPlansPremiumAmt();

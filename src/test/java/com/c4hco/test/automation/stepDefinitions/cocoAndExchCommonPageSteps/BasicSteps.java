@@ -223,6 +223,12 @@ public class BasicSteps {
             case "My Plans CoCo" :
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
+            case "Financial Help Agreements" :
+                pageUrl = "PaymentPortal/agreements";
+                break;
+            case "Initial Payment" :
+                pageUrl = "PaymentPortal/paymentSelection";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

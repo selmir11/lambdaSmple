@@ -83,7 +83,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit is "$120.69 tax credit"
+    And I validate the APTC credit on the first plan is "$120.69 tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -96,9 +96,28 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I select make payment button to pay the premium
     And I select the Money Order button
+
+    Then I validate I am on the "Plan Selection" page
     And I click continue on payment selection page
 
+    Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
+
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the Terms and Use checkbox
+    And I fill out the Financial Help Agreements Signature field
+    Then I click continue on the Financial Help Agreements page
+
+    Then I validate I am on the "Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
+    Then I validate I am on the "That's Okay" page
+    And I click on Go To Welcome Page Button on whats next page
+
 
 
 
