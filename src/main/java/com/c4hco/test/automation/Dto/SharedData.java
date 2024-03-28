@@ -19,5 +19,6 @@ public class SharedData {
         appType = null;
         primaryMember = null;
         members = null;
+        primaryMemberId = null;
     }
 }
