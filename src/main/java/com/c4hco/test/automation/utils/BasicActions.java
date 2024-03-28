@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -172,6 +174,15 @@ public class BasicActions {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
+        List<MemberDetails> members = SharedData.getMembers();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        if (!members.contains(primaryMem)) {
+            members.add(primaryMem);
+        }
+        return members;
+    }
+
 //    public  void switchToWindow(String targetTitle) {
 //        String origin = getDriver().getWindowHandle();
 //        for (String handle :getDriver().getWindowHandles()) {
@@ -182,6 +193,20 @@ public class BasicActions {
 //        }
 //        getDriver().switchTo().window(origin);
 //    }
+
+    public void changeToNewUrl(String page){
+        String currentUrl = getCurrentUrl();
+        String primaryMemId = SharedData.getPrimaryMemberId();
+        switch(page){
+            case "New Other Health Insurance Page":
+                String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+                newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + page);
+        }
+    }
 
 }
 
