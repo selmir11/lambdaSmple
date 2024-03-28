@@ -194,5 +194,19 @@ public class BasicActions {
 //        getDriver().switchTo().window(origin);
 //    }
 
+    public void changeToNewUrl(String page){
+        String currentUrl = getCurrentUrl();
+        String primaryMemId = SharedData.getPrimaryMemberId();
+        switch(page){
+            case "New Other Health Insurance Page":
+                String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+                newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + page);
+        }
+    }
+
 }
 
