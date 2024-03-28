@@ -1,8 +1,10 @@
+@SOL
 Feature: UI Page Validation - Grouping Members (Medical)
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
+
         # Failing intermittently due to a defect # SOL-3596
   @SLER-54 @ValidateGroupingMembers
   Scenario: Validate grouping members: Grandparent in 1 group, Parent+2 children in 1 group
