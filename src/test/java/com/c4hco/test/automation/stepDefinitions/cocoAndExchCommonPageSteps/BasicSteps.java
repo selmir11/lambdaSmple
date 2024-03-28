@@ -164,7 +164,7 @@ public class BasicSteps {
                 pageUrl = "login-portal/mfa";
                 break;
             case "Plan Summary":
-                pageUrl = "/planSummaryMedicalDental/";
+                pageUrl = "planSummaryMedicalDental";
                 break;
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
@@ -229,8 +229,11 @@ public class BasicSteps {
             case "Financial Help Agreements" :
                 pageUrl = "PaymentPortal/agreements";
                 break;
-            case "Initial Payment" :
+            case "Payment Selection" :
                 pageUrl = "PaymentPortal/paymentSelection";
+                break;
+            case "Initial Payment" :
+                pageUrl = "PaymentPortal/initialPayment";
                 break;
             default:
                 System.out.println("undefined page ");
