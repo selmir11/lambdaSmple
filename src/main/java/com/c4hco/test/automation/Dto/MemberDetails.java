@@ -8,12 +8,14 @@ import java.math.BigDecimal;
 public class MemberDetails {
     String firstName;
     String lastName;
+    String middleName;
     String emailId;
     String password = "ALaska12!";
     String phoneNumber;
     String ssn;
     String relation_to_subscriber;
     String signature;
+    String fullName;
     String dob;
     String zipcode;
     String mailingAddress;

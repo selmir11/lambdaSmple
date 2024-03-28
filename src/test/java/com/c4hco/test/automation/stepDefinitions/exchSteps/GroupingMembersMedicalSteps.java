@@ -21,4 +21,18 @@ public class GroupingMembersMedicalSteps {
         groupingMembersMedical.clickContinue();
     }
 
+    @Then("I validate that there are {int} default groups with different zipcodes")
+    public void validateNumberOfGroups(int groups){
+    groupingMembersMedical.getUniqueZipCodes(groups);
+    }
+    @Then("I verify that members are grouped together based on zipcodes")
+    public void verifyMembersInGroups(){
+        groupingMembersMedical.verifyGroupingMembersWithZipcodes();
+    }
+    @Then("I validate that there are {int} default groups")
+    public void verifyNumberOfDefaultGroups(int groups){
+        groupingMembersMedical.noOfMedicalGroups(groups);
+    }
+
+
 }
