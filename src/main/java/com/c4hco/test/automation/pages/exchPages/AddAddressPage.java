@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -184,7 +183,6 @@ public class AddAddressPage {
         Select dropdown = new Select(newResidentialAddressCounty);
         dropdown.selectByValue(county);
         setNewResidentialAddress(addressLine1,city,state,zipcode,county,dob);
-        System.out.println(SharedData.getMembers());
     }
 
     public void setNewResidentialAddress(String addressLine1, String city, String state, String zipcode, String county, String dob){
@@ -198,7 +196,7 @@ public class AddAddressPage {
             //set data for subscriber
         }else{
            // filter by dob as it is unique
-            Optional requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(dob) &&
+            Optional<MemberDetails> requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(dob) &&
                     mem.getSignature().contains(name)
             ).findFirst();
 
@@ -206,7 +204,6 @@ public class AddAddressPage {
             if(requiredMem.isPresent()){
                 MemberDetails member =  (MemberDetails) requiredMem.get();
                 // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-                System.out.println(">>Member with different zipcode<< "+member.getFirstName());
                 ResidentialAddress residentialAddress = new ResidentialAddress();
                 residentialAddress.setResidentialAddressLine1(addressLine1);
                 residentialAddress.setResidentialAddressCity(city);
@@ -216,7 +213,7 @@ public class AddAddressPage {
                 member.setResAddress(residentialAddress);
             }
             else{
-                Assert.fail("Member with this relationship to account holder is not found!!");
+                Assert.fail("Member with this dob and name is not found!!");
             }
         }
     }

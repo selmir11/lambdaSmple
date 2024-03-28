@@ -21,8 +21,12 @@ public class EditGroupingMembersMedicalPageSteps {
         editGroupingMembersMedicalPage.iGetNumberOfGroups(groups);
     }
     @Then("I drag and drop a member to make new group")
-    public void dragMemberToDiffGroup() throws InterruptedException {
+    public void dragMemberToDiffGroup(){
         editGroupingMembersMedicalPage.dragAndDropMembersCreateGroup();
+    }
+    @Then("I drag and drop a member to group with 26 year old")
+    public void groupInvalidParentAnd26Yearold(){
+        editGroupingMembersMedicalPage.groupParentWith26YearOldChild();
     }
     @Then("I click save button to save the groups")
     public void saveGroups(){

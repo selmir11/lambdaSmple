@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
@@ -171,6 +172,15 @@ public class BasicActions {
 
     public  void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
+        List<MemberDetails> members = SharedData.getMembers();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        if (!members.contains(primaryMem)) {
+            members.add(primaryMem);
+        }
+        return members;
     }
 
 //    public  void switchToWindow(String targetTitle) {
