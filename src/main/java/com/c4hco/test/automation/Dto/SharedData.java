@@ -11,4 +11,12 @@ public class SharedData {
     @Getter @Setter private static String appType;
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
+
+    public static void reset(){
+        firstPlanNameOnMedicalResultsPage = null;
+        firstPlanNameOnDentalResultsPage = null;
+        appType = null;
+        primaryMember = null;
+        members = null;
+    }
 }
