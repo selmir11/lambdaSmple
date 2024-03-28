@@ -89,8 +89,10 @@ public class TellUsAboutAdditionalMemberPage {
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
+        member.setMiddleName(mdlName);
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
