@@ -16,9 +16,4 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.Click_link_my_docs_on_welcome_page();
     }
 
-
-
-
-
-
 }
