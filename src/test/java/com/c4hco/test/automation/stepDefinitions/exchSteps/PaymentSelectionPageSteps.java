@@ -8,12 +8,17 @@ public class PaymentSelectionPageSteps {
     PaymentSelectionPage paymentSelectionPage = new PaymentSelectionPage(WebDriverManager.getDriver());
 
     @And("I click continue on payment selection page")
-    public void clickContinueOnMakePayment(){
+    public void clickContinueOnMakePayment() {
         paymentSelectionPage.clickContinueOnPaymentPage();
     }
 
     @And("I Verify the text on payment selection page")
-    public void paymentModeSelection(){
+    public void paymentModeSelection() {
         paymentSelectionPage.verifyTextWithCheckPayment();
+    }
+
+    @And("I select the Money Order button")
+    public void clickMoneyOrderButton() {
+        paymentSelectionPage.clickMoneyOrderButton();
     }
 }

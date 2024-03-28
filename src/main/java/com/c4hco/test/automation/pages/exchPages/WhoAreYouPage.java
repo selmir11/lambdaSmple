@@ -91,6 +91,7 @@ public class WhoAreYouPage {
         memberZip.sendKeys(zipcode);
         accHolder.setZipcode(zipcode);
 
+        basicActions.waitForElementToBeClickable(countyDropDown,15);
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
 

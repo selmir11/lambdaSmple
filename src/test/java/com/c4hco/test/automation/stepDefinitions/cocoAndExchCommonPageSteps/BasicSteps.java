@@ -11,9 +11,9 @@ public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
 
     @And("I validate I am on the {string} page")
-    public void iValidatePage(String page){
-        String pageUrl= " ";
-        switch(page){
+    public void iValidatePage(String page) {
+        String pageUrl = " ";
+        switch (page) {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
@@ -51,7 +51,7 @@ public class BasicSteps {
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
             case "planSummaryMedicalDental":
-                pageUrl ="planSummaryMedicalDental";
+                pageUrl = "planSummaryMedicalDental";
                 break;
             case "Create Account":
                 pageUrl = "createAccount";
@@ -85,7 +85,7 @@ public class BasicSteps {
                 break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
-				break;
+                break;
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
                 break;
@@ -109,7 +109,7 @@ public class BasicSteps {
                 break;
             case "Find Expert Help Exch":
                 pageUrl = "broker-portal/individual/find-expert-help?";
-                 break;
+                break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
@@ -188,6 +188,9 @@ public class BasicSteps {
             case "Other Health Insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
+            case "New Other Health Insurance":
+                pageUrl = "/otherHealthInsurance";
+                break;
             case "ESI":
                 pageUrl = "otherHealthInsurance/employerSponsored";
                 break;
@@ -221,23 +224,23 @@ public class BasicSteps {
             case "Good News":
                 pageUrl = "nes/applyMA";
                 break;
-            case "Broker Dashboard" :
+            case "Broker Dashboard":
                 pageUrl = "/broker-portal/";
                 break;
-            case "My Plans CoCo" :
+            case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
             default:
                 System.out.println("undefined page ");
                 break;
         }
-        Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl));
+        Assert.assertTrue("expected page::" + pageUrl + "::did not load", basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl));
     }
 
     @And("I validate I am on the {string} page and close tab")
-    public void iValidatePageAndClose(String page){
-        String pageUrl= " ";
-        switch(page){
+    public void iValidatePageAndClose(String page) {
+        String pageUrl = " ";
+        switch (page) {
             case "Privacy Policy":
                 pageUrl = "/InformationPortal/privacyPolicy";
                 break;
@@ -303,7 +306,7 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue("expected page::"+ pageUrl+"::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
+                Assert.assertTrue("expected page::" + pageUrl + "::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
             }
         }
         basicActions.closeBrowserTab();
@@ -311,15 +314,21 @@ public class BasicSteps {
     }
 
     @And("I refresh the page")
-    public void refreshPage(){
+    public void refreshPage() {
         basicActions.refreshPage();
     }
 
     @And("I set the browser resolution to 1920 x 1080")
-    public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));}
+    public void setResolution() {
+        basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));
+    }
 
     @Then("I validate I am on active tab")
     public void iValidateIAmOnActiveTab() {
         basicActions.switchtoChildWindow();
     }
-}
+
+    @And("I change the C4 url to {string}")
+    public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
+
+ }

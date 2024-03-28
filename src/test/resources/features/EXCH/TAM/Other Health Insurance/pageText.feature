@@ -1,12 +1,12 @@
-@APTC,@APTC-SIR
-Feature: UI Tests related to APTC after second enrollment change
+@TAM
+Feature: Page Text-Other Health Insurance Page
 
-  Background: I go the login portal
+  Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-131-WIP
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2349 - 40 year old
+  @SLER-128 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-128 I Validate the page text and checkboxes on the Other Health Insurance page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -19,10 +19,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011983" in county "TELLER" with zipcode "80863"
+    And I am a member with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
-
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
     Then I select "Male" as sex option
@@ -38,67 +37,36 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
+    And I get the Primary Member ID
     And I click continue on the Citizenship page
     Then I click continue on family overview page
-
-    Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "5160000" income at "Annually" frequency
+    And I enter employment details with "2500000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-
-    Then I validate I am on the "Income Summary" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page
-    Then I click on Save and Continue
+    And I change the C4 url to "New Other Health Insurance Page"
+    And I validate I am on the "New Other Health Insurance" page
+    And I verify text on the Other Health Insurance page in "English"
+    And I verify the checkboxes on the Other Health Insurance page
+    And I verify help icons on the Other Health Insurance page
 
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
+    And I change the language from header to "Spanish"
+    Then I verify text on the Other Health Insurance page in "Spanish"
 
-    Then I validate I am on the "Application History" page
-    Then I click on view results and shop
+    And I click on Sign Out in the Header for "Elmo"
 
-    Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$120.69/mo"
-    Then I click continue on application results page
-
-    Then I validate I am on the "Start Shopping" page
-    And I click continue on start shopping page
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit is "$120.69 tax credit"
-    And I select the first medical plan
-    And I click continue on medical plan results page
-
-    Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
-    And I click continue on dental plan results page
-
-    Then I validate I am on the "Plan Summary" page
-    And I continue on plan summary page
-
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    And I click continue on initial payment page
 
 
 

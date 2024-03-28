@@ -158,6 +158,7 @@ public class AddAddressPage {
         selectMailingState.sendKeys("CO");
         txtMailingZip.sendKeys("80205");
 
+        basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");

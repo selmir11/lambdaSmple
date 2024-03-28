@@ -34,10 +34,17 @@ public class PaymentSelectionPage {
     @FindBy(id = "SOL-PaymentSelection-GoBack")
     WebElement backBtn;
 
+    @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder" )
+    WebElement moneyOrderBtn;
 
     public void clickContinueOnPaymentPage() {
         basicActions.waitForElementToBePresent(continueBtnPaymentSelection, 10);
         continueBtnPaymentSelection.click();
+    }
+
+    public void clickMoneyOrderButton() {
+        basicActions.waitForElementToBePresent(moneyOrderBtn, 10);
+        moneyOrderBtn.click();
     }
 
     public String extractProviderName() {
