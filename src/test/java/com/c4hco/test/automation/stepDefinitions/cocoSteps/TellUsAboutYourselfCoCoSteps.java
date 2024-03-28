@@ -12,9 +12,7 @@ public class TellUsAboutYourselfCoCoSteps {
         tellUsAboutYourselfCoCoPage.specificMemberDetailsCoCo(dateOfBirth, gender, applying); }
 
     @Then("I click Go Back on the tell us about yourself page")
-    public void clickGoBack() {
-        tellUsAboutYourselfCoCoPage.clickGoBackButton();
-    }
+    public void clickGoBack() { tellUsAboutYourselfCoCoPage.clickGoBackButton(); }
 
 
 
