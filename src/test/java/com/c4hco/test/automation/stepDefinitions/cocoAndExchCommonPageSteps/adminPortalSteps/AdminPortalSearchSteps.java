@@ -33,6 +33,7 @@ public class AdminPortalSearchSteps {
 
     @Then("I validate {string} for Admin Portal")
     public void HeaderValidation(String HeaderValidation) {
+
         switch (HeaderValidation) {
             case "Logo":
                 adminPortalSearchPage.ConnectForHealthLogoDisplay();
@@ -48,15 +49,6 @@ public class AdminPortalSearchSteps {
         }
     }
 
-
-    @And("I enter specific {string} account number")
-    public void iEnterSpecificAccountNumberForCoco(String AcctIdCoco) {
-        adminPortalSearchPage.enterCocoIndividualId(AcctIdCoco);
-    }
-    @Then("I click search button on admin portal")
-    public void clickSearchAccount(){
-        adminPortalSearchPage.ClickSearchButtonOnAdminPortal();
-    }
     @Then("I click acct in Search Results table on admin portal")
     public void iClickAccountLinkSearchResults() {
         adminPortalSearchPage.clickAccountLinkSearchResults();

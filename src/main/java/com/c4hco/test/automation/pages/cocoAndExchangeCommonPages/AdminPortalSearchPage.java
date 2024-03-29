@@ -26,53 +26,38 @@ public class AdminPortalSearchPage {
 
     @FindBy(xpath = "//img[@title='Connect for Health Colorado']")
     WebElement connectForHealthLogo;
-
     @FindBy(id = "title")
     WebElement Title;
-
     @FindBy(css = ".search-input-and-label .search-input")
     List<WebElement> searchInputList;
-
     @FindBy(css = ".form-btn-group.big-screen button")
     List<WebElement> buttonsList; // search, reset, create Account buttons
-
     @FindBy(css = ".search-results-container .search-results-table")
     WebElement searchResults;
-
     @FindBy(id = "email-shortened")
     WebElement primaryEmail;
-
     @FindBy(css = ".dashboardHeader2")
     WebElement accIdAndCaseId;
-
     @FindBy(css = ".tollbar-app-links span")
     WebElement appLinksDropDown;
-
     @FindBy(css = "#toolbar-app-dropdown .dropdown-option")
     List<WebElement> appLinksDropdownOptions;
-
     @FindBy(css = "#header-user span:nth-child(3)")
     WebElement dropdownArrow;
-
     @FindBy(id = "logout-link")
     WebElement logoutAdmin;
-
     @FindBy(id = "accountId")
     WebElement acctIdWidget;
-
     @FindBy(css = "#broker")
     WebElement broker;
     @FindBy(id = "programManager")
     WebElement programManager;
     @FindBy(css = "#agency")
     WebElement agency;
-
     @FindBy(id = "cocoIndividual")
     WebElement coco;
-
     @FindBy(id = "individual")
     WebElement individual;
-
     @FindBy(css = "tbody td:nth-child(1)")
     WebElement searchAcctResults;
 
@@ -85,13 +70,11 @@ public class AdminPortalSearchPage {
         searchInputList.get(3).sendKeys(subscriber.getEmailId());
         buttonsList.get(0).click();
     }
-
     public void clickEmailLinkFrmSrchResults(){
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
     }
-
     public void setAccountId(){
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
@@ -101,14 +84,12 @@ public class AdminPortalSearchPage {
         subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setPrimaryMember(subscriber);
     }
-
     public void clickFromApplicationLinksDropdown(String dropdownOption){
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
     }
-
     public void logoutFromAdmin(){
         navigateToPreviousPage();
         basicActions.waitForElementToBePresent(dropdownArrow,100);
@@ -116,40 +97,26 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementToBePresent(logoutAdmin,100);
         logoutAdmin.click();
     }
-
     public void navigateToPreviousPage(){
         basicActions.getDriver().navigate().back();
     }
-
     public void clickCreateAccount(){
         basicActions.waitForElementListToBePresent(buttonsList,10);
         buttonsList.get(2).click();
     }
-
     public void ConnectForHealthLogoDisplay(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(connectForHealthLogo,10));
         softAssert.assertAll();
     }
-
     public void navigateConnectForHealthPage(){
         connectForHealthLogo.click();
         navigateToPreviousPage();
     }
-
     public void titleTextValidate(){
         Title.isDisplayed();
         softAssert.assertEquals(Title.getText(), "Sign in to your account");
         softAssert.assertAll();
     }
-
-    public void ClickSearchButtonOnAdminPortal(){
-        basicActions.waitForElementListToBePresent(buttonsList, 10);
-        buttonsList.get(0).click();
-    }
-      public void enterCocoIndividualId(String AcctIdCoco){
-        acctIdWidget.sendKeys(AcctIdCoco);
-    }
-
     public void SelectUserTypeToSearch(String selectUserTypeToSearch){
         switch (selectUserTypeToSearch) {
             case "individual":
@@ -176,7 +143,6 @@ public class AdminPortalSearchPage {
                 throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
         }
     }
-
     public void clickAccountLinkSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
