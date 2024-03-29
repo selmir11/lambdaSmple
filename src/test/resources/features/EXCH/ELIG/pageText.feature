@@ -89,7 +89,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     And I validate the verbiage on the Identity Proofing - Initial page in "English"
     When I change the language from header to "Spanish NonElmo"
@@ -110,7 +110,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     Then I validate I am on the "Identify Proofing - Congratulations" page
     And I validate the verbiage on the RIDP - Congratulations page in "English"
