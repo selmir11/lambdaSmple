@@ -5,14 +5,12 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
-import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class DbValidations {
-  BasicActions basicActions;
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
   SoftAssert softAssert = new SoftAssert();
 
@@ -45,10 +43,6 @@ public class DbValidations {
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertAll();;
       }
-
-    }
-
-    public void getEdiFileName(){
 
     }
 
