@@ -119,6 +119,12 @@ public class LoginPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(iForgotUsernameandPassword, 20));
         softAssert.assertAll();
     }
+
+    public void loginAsExistingIndividual(String userIndividual, String passwordInd) {
+        username.sendKeys(userIndividual);
+        password.sendKeys(passwordInd);
+        basicActions.waitForElementToBePresent(signAdmin,10);
+        signAdmin.click();    }
 }
 
     // ############################## VALIDATION METHODS #########################
