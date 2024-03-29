@@ -19,7 +19,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011983" in county "TELLER" with zipcode "80863"
+    And I am a member with City "Denver" in State "CO" with "01011983" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
 
