@@ -55,6 +55,9 @@ public class WhoAreYouPage {
     @FindBy(css = ".input-group #county")
     WebElement countyDropDown;
 
+    @FindBy(css = "#state option")
+    List<WebElement> stateDropdownOptions;
+
     @FindBy(css = "#county option")
     List<WebElement> countyDropdownOptions;
 
@@ -80,13 +83,14 @@ public class WhoAreYouPage {
         }
     }
 
-    public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
+    public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
         MemberDetails accHolder = SharedData.getPrimaryMember();
         StreetAddress1.sendKeys(addressLine1);
-        memberCity.sendKeys("Denver");
+        memberCity.sendKeys(City);
 
-        Select dropdown = new Select(memberState);
-        dropdown.selectByValue("CO");
+        basicActions.waitForElementToBeClickable(memberState,15);
+        memberState.click();
+        basicActions.selectValueFromDropdown(memberState, stateDropdownOptions, State);
 
         memberZip.sendKeys(zipcode);
         accHolder.setZipcode(zipcode);
