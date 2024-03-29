@@ -15,7 +15,7 @@ Feature: Seed01 - Exchange
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011975" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011975" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -65,6 +65,7 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
+    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -100,12 +101,14 @@ Feature: Seed01 - Exchange
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
-   # And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "Elmo"
 
-    @RT-2246 @test1
+    @RT-2246
     Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
       And I validate the member details from few tables
       And I validate member details from ob834_details table
+  # Any validations needed from both the above tables as well as the SFTP File here? #
+
      And I validate file exists on sftp server with location "/outboundedi"
       # And I validate the contents of the file
        Given I open the login page on the "login" portal
