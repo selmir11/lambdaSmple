@@ -106,7 +106,7 @@ Feature: Seed01 - Exchange
     Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
       And I validate the member details from few tables
       And I validate member details from ob834_details table
-     And I validate file exists on sftp server with location "/outboundedi"
+     And I download the file from sftp server with location "/outboundedi"
       # And I validate the contents of the file
        Given I open the login page on the "login" portal
         And I validate I am on the "Login" page
