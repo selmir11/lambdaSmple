@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.Dto;
 
+import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -36,4 +37,14 @@ public class MemberDetails {
 
     BigDecimal account_id;
     String policyId;
+
+    public Boolean compareWithCombinedQueryData(MultipleTablesEntity multipleTablesEntity) {
+        // TO DO:: Add more fields to this
+        return String.valueOf(this.account_id).equals(multipleTablesEntity.getAccount_id()) &&
+                this.firstName.equals(multipleTablesEntity.getFirst_name()) &&
+                this.lastName.equals(multipleTablesEntity.getLast_name()) &&
+                this.emailId.equals(multipleTablesEntity.getPolicy_submitted_by()) &&
+                this.relation_to_subscriber.equals(multipleTablesEntity.getRelation_to_subscriber());
+    }
+
 }
