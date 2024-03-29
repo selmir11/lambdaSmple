@@ -226,6 +226,9 @@ public class BasicSteps {
             case "My Plans CoCo" :
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
+            case "Admin Portal search" :
+                pageUrl = "AdminPortal/search";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
