@@ -51,8 +51,10 @@ public class Ob834DetailsDbHandler {
                     }
                     dbDataList.add(ob834DetailsEntity);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
 
         return dbDataList;

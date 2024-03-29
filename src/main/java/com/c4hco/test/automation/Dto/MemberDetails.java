@@ -34,7 +34,7 @@ public class MemberDetails {
     String dentalPremiumAmt;
     String aptcAmt;
     String tobacco_user;
-
+    String application_id;
     BigDecimal account_id;
     String policyId;
 
