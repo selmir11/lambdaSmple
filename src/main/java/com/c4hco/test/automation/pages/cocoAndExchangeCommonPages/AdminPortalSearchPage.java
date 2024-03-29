@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -89,6 +88,21 @@ public class AdminPortalSearchPage {
     @FindBy(id = "cocoIndividual")
     WebElement cocoAccount;
 
+    //Select Check box to search user types
+    @FindBy(css = "#broker")
+    WebElement broker;
+
+    @FindBy(id = "programManager")
+    WebElement programManager;
+
+    @FindBy(css = "#agency")
+    WebElement agency;
+
+    @FindBy(id = "cocoIndividual")
+    WebElement coco;
+
+    @FindBy(id = "individual")
+    WebElement individual;
 
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
@@ -203,7 +217,7 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
-    public void navigateUserDashboard() { basicActions.waitForElementToBeClickable(primaryEmail, 20);
+    public void selectRecord() { basicActions.waitForElementToBeClickable(primaryEmail, 20);
         primaryEmail.click();}
 
     public void logoutButtonDisplay() {
@@ -216,6 +230,32 @@ public class AdminPortalSearchPage {
         cocoAccount.click();
     }
 
+    public void SelectUserTypeToSearch(String selectUserTypeToSearch){
+        switch (selectUserTypeToSearch) {
+            case "individual":
+                basicActions.waitForElementToBePresent(individual, 15);
+                individual.click();
+                break;
+            case "Broker":
+                basicActions.waitForElementToBePresent(broker, 15);
+                broker.click();
+                break;
+            case "ProgramManager":
+                basicActions.waitForElementToBePresent(programManager, 15);
+                programManager.click();
+                break;
+            case "Agency":
+                basicActions.waitForElementToBePresent(agency, 15);
+                agency.click();
+                break;
+            case "coco":
+                basicActions.waitForElementToBePresent(coco, 15);
+                coco.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
+        }
+    }
  public void enterUserData(String userdata, String type) {
         switch (userdata) {
             case "accountID":

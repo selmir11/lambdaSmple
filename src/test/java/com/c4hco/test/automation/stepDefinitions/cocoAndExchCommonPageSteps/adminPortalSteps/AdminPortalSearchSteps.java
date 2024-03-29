@@ -82,13 +82,18 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.enterUserData(userdata,type);
     }
 
-    @Then("I click on Search")
+    @Then("I click on Search Button")
     public void iClickOnSearch() {
         adminPortalSearchPage.clickSearch();
     }
 
-    @Then("I click on User to navigate user Dashboard")
-    public void iClickOnUserToNavigateUserDashboard() {
-        adminPortalSearchPage.navigateUserDashboard();
+    @Then("I select the first record from the search results")
+    public void iselectthefirstrecordfromthesearchresults() {
+        adminPortalSearchPage.selectRecord();
+    }
+
+    @And("I select {string} checkbox on Admin Portal Dashboard")
+    public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
+        adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
     }
 }
