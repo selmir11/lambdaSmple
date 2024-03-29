@@ -13,8 +13,8 @@ public class WhoAreYouPageSteps {
     }
 
     //include that you are clicking on Continue button in the step below
-    @And("I am a member with dob {string} in county {string} with zipcode {string}")
-    public void enterSpecificMemberDetails(String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetails(zipcode, county, dateOfBirth);}
+    @And("I am a member with City {string} in State {string} with dob {string} in county {string} with zipcode {string}")
+    public void enterSpecificMemberDetails(String City, String State, String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetails(City, State, zipcode, county, dateOfBirth);}
 
     @Then("I update SSN number to new SSN number")
     public void updateSSN(){
@@ -23,7 +23,4 @@ public class WhoAreYouPageSteps {
         whoAreYouPage.iUpdateSSN();
         whoAreYouPage.iClickContinueAfterSSNUpdate();
     }
-
-    @And("I am a member with City {string} in State {string} with dob {string} in county {string} with zipcode {string}")
-    public void enterSpecificMemberDetailsCityAndState(String City, String State, String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetailsWithCityAndState(City, State, zipcode, county, dateOfBirth);}
 }

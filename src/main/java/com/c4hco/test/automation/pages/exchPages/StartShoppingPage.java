@@ -40,7 +40,6 @@ public class StartShoppingPage {
     public void iclickContinue(){
         basicActions.waitForElementListToBePresent(btnNoAndYes,10);
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
-        basicActions.waitForElementToBeClickable(btnContinue,20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();
     }

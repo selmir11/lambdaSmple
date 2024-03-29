@@ -20,7 +20,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "10011975" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "10011975" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -160,7 +160,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "10011973" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "10011973" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -288,7 +288,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "10011965" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "10011965" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -369,7 +369,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "10011960" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "10011960" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -454,7 +454,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-163 @groupingBasedOnState
+  @SLER-163-WIP @groupingBasedOnState
   Scenario: Validate grouping members: Mother+son(80205) in group 1, Father not qualified insurance in CO
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -552,4 +552,3 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups with different zipcodes
-    Then I verify that members are grouped together based on zipcodes

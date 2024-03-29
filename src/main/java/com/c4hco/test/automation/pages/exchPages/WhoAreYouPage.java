@@ -83,36 +83,7 @@ public class WhoAreYouPage {
         }
     }
 
-    public void specificMemberDetails(String zipcode, String county, String dateOfBirth){
-        MemberDetails accHolder = SharedData.getPrimaryMember();
-        StreetAddress1.sendKeys(addressLine1);
-        memberCity.sendKeys("Denver");
-
-        Select dropdown = new Select(memberState);
-        dropdown.selectByValue("CO");
-
-        memberZip.sendKeys(zipcode);
-        accHolder.setZipcode(zipcode);
-
-        basicActions.waitForElementToBeClickable(countyDropDown,15);
-        countyDropDown.click();
-        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
-
-        memberDOB.sendKeys(dateOfBirth);
-        accHolder.setDob(dateOfBirth);
-        memberSSN.sendKeys(SSNvalue);
-        accHolder.setSsn(SSNvalue);
-        ResidentialAddress residentialAddress = new ResidentialAddress();
-        residentialAddress.setResidentialAddressLine1(addressLine1);
-        residentialAddress.setResidentialAddressCity("Denver");
-        residentialAddress.setResidentialAddressState("CO");
-        residentialAddress.setResidentialAddressZipcode(zipcode);
-        residentialAddress.setResidentialAddressCounty(county);
-        accHolder.setResAddress(residentialAddress);
-        backSaveAndContinue.get(1).click();
-    }
-
-    public void specificMemberDetailsWithCityAndState(String City, String State, String zipcode, String county, String dateOfBirth){
+    public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
         MemberDetails accHolder = SharedData.getPrimaryMember();
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys(City);
@@ -134,8 +105,8 @@ public class WhoAreYouPage {
         accHolder.setSsn(SSNvalue);
         ResidentialAddress residentialAddress = new ResidentialAddress();
         residentialAddress.setResidentialAddressLine1(addressLine1);
-        residentialAddress.setResidentialAddressCity(City);
-        residentialAddress.setResidentialAddressState(State);
+        residentialAddress.setResidentialAddressCity("Denver");
+        residentialAddress.setResidentialAddressState("CO");
         residentialAddress.setResidentialAddressZipcode(zipcode);
         residentialAddress.setResidentialAddressCounty(county);
         accHolder.setResAddress(residentialAddress);
