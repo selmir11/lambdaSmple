@@ -22,10 +22,11 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    // locator in stg is diff - @FindBy(id = "SHP-PlanSummary-Continue")
-    @FindBy(xpath = "//button[@id='PlanSummary-Continue']")
+    // locator in stg is diff - @FindBy(id = "PlanSummary-Continue")
+    //@FindBy(xpath = "//button[@id='PlanSummary-Continue']")
+    //WebElement continueBtnOnPlanSummary;
+    @FindBy(className = "btn-primary")
     WebElement continueBtnOnPlanSummary;
-
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
 
@@ -80,7 +81,7 @@ public class PlanSummaryMedicalDentalPage {
     }
     
     public void clickContinueBtnOnPlanSummary(){
-        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 100);
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 500);
         continueBtnOnPlanSummary.click();
     }
     public void continuePlanSummaryPage(){

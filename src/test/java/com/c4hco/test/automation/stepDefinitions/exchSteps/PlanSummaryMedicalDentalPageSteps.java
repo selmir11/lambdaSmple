@@ -13,7 +13,7 @@ public class PlanSummaryMedicalDentalPageSteps {
     }
 
     @And("I click Continue on plan summary page")
-    public void setContinueBtnOnPlanSummary() {
+    public void clickContinueBtnOnPlanSummary() {
         planSummaryMedicalDentalPage.clickContinueBtnOnPlanSummary();
 
     }
