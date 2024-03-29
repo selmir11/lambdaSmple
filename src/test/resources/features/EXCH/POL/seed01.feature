@@ -102,11 +102,10 @@ Feature: Seed01 - Exchange
     And I validate dental plan details from plan history
    # And I click on Sign Out in the Header for "Elmo"
 
-    @RT-2246 @test1
+    @RT-2246 @test
     Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
       And I validate the member details from few tables
       And I validate member details from ob834_details table
-  # Any validations needed from both the above tables as well as the SFTP File here? #
      And I validate file exists on sftp server with location "/outboundedi"
       # And I validate the contents of the file
        Given I open the login page on the "login" portal

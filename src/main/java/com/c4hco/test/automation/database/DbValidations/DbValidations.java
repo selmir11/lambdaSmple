@@ -5,12 +5,14 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class DbValidations {
+  BasicActions basicActions;
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
   SoftAssert softAssert = new SoftAssert();
 
@@ -35,13 +37,18 @@ public class DbValidations {
     public void validateOb834Data(){
       MemberDetails subscriber = SharedData.getPrimaryMember(); // TO DO:: Can do this globally?
       List<Ob834DetailsEntity> ob834DetailsEntity = exchDbDataProvider.getOb83Db4Details();
+
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntity){
+
         // TO DO:: Add More Assertions
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertAll();;
       }
 
+    }
+
+    public void getEdiFileName(){
 
     }
 
