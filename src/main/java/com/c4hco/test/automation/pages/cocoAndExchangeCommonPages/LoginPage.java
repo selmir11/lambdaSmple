@@ -67,11 +67,12 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
+        basicActions.waitForElementToBePresent(username, 10);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         System.out.println("Email and pwd::"+subscriber.getEmailId()+"::"+subscriber.getPassword());
-        basicActions.waitForElementToBePresent(username, 10);
             username.sendKeys(subscriber.getEmailId());
-            password.sendKeys(subscriber.getPassword());
+        basicActions.waitForElementToBePresent(password, 10);
+        password.sendKeys(subscriber.getPassword());
             signInButton.click();
     }
 

@@ -35,13 +35,14 @@ public class DbValidations {
     public void validateOb834Data(){
       MemberDetails subscriber = SharedData.getPrimaryMember(); // TO DO:: Can do this globally?
       List<Ob834DetailsEntity> ob834DetailsEntity = exchDbDataProvider.getOb83Db4Details();
+
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntity){
+
         // TO DO:: Add More Assertions
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertAll();;
       }
-
 
     }
 
