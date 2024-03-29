@@ -4,11 +4,7 @@ import lombok.Data;
 
 @Data
 public class Ob834DetailsEntity {
-    String id;
-    String date_created;
-    String date_updated;
     String updated_by;
-    String enroll_request_data_id;
     String plan_year;
     String account_id;
     String member_group;
