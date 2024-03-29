@@ -12,11 +12,11 @@ public class PlanSummaryMedicalDentalPageSteps {
        planSummaryMedicalDentalPage.continuePlanSummaryPage();
     }
 
-    @And("I click Continue on plan summary page")
-    public void clickContinueBtnOnPlanSummary() {
-        planSummaryMedicalDentalPage.clickContinueBtnOnPlanSummary();
+    /*@And("I click Continue on plan summary page")
+    public void continuePlanSummaryPage() {
+        planSummaryMedicalDentalPage.continuePlanSummaryPage();
 
-    }
+    }*/
 
     @And("I verify medical and dental text on Plan Summary page")
     public void verifyTextPlanSummaryPage() {

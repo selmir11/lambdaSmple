@@ -92,7 +92,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I click Continue on plan summary page
+    And I continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
