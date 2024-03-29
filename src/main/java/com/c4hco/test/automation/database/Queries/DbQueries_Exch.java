@@ -9,7 +9,7 @@ public class DbQueries_Exch {
 
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
 
-    public String policyTableMixedQuery() {
+    public String combinedQuery() {
         return "select eph.account_id, eph.application_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
                 "eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date, epfh.csr_level, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
                 "epfh.total_premium_reduction_amt, epfh.premium_reduction_type, epfh.total_csr_amt, epmch.policy_member_coverage_status, epmh.effectuated_ind, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
@@ -28,9 +28,10 @@ public class DbQueries_Exch {
                 "and ep.policy_id = eph.policy_id\n" +
                 "and ep.policy_id = epfh.policy_id\n" +
                 "and eh.account_id = '"+acctId+"'\n" +
-                "--and eph.current_ind = '1'\n" +
-                "--and ep.coverage_type = '1'\n" +
+                "and eph.current_ind = '1'\n" +
                 "ORDER BY eph.coverage_type ASC";
+
+        //    "--and ep.coverage_type = '1'\n" +
     }
 
     public String ob834Details(){
@@ -39,9 +40,9 @@ public class DbQueries_Exch {
              "order by date_created DESC";
     }
 
-    public String getFileNameFromOb834Details(){
-        return "select fileName from qa_exch.ob834_detail od \n" +
-        "where account_id ='"+acctId+"'";
-    }
+//    public String getFileNameFromOb834Details(){
+//        return "select fileName from qa_exch.ob834_detail od \n" +
+//        "where account_id ='"+acctId+"'";
+//    }
 
 }
