@@ -1,4 +1,4 @@
-Feature: Verify all Chat Widget on ELIG pages
+Feature: Page validations on ELIG pages
 
   Background:
     Given I open the login page on the "login" portal
@@ -99,7 +99,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
     And I report "Birth" and click continue
-    Then I validate I am on the "Who are you" page
+    Then I validate I am on the "Who Are You" page
     Then I validate chat widget is present
     And I open on chat widget
     Then I minimize the chat window
@@ -121,7 +121,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I validate I am on the "Report a life change" page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I validate chat widget is present
     And I open on chat widget
@@ -140,7 +140,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     Then I validate I am on the "Identify Proofing - Congratulations" page
     Then I validate chat widget is present
@@ -160,7 +160,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -183,7 +183,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -210,7 +210,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -245,7 +245,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -283,7 +283,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -322,7 +322,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -373,7 +373,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -430,7 +430,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -489,7 +489,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -550,7 +550,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -614,7 +614,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -682,7 +682,7 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -738,3 +738,31 @@ Feature: Verify all Chat Widget on ELIG pages
     Then I validate chat widget is present
     And I open on chat widget
     Then I minimize the chat window
+
+  @SLER-168 @PageValidation
+  Scenario: Validate Footer on the Account Overview page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I click on Privacy Policy in the Footer
+    And I validate I am on the "Privacy Policy" page and close tab
+    And I click on Terms Of Use in the Footer
+    And I validate I am on the "ELIG Terms of Use" page and close tab
+    And I click on Contact Us in the "Exch" Footer
+    And I validate I am on the "ELIG Contact Us" page and close tab
+    And I verify text on the "Exch" "Footer" in "English"
+    And I click on "Facebook" Icon in the Footer
+    And I validate I am on the "Facebook" page and close tab
+    And I click on "X" Icon in the Footer
+    And I validate I am on the "X" page and close tab
+    And I click on "YouTube" Icon in the Footer
+    And I validate I am on the "YouTube" page and close tab
+    And I click on "Instagram" Icon in the Footer
+    And I validate I am on the "Instagram" page and close tab
+    And I click on "LinkedIn" Icon in the Footer
+    And I validate I am on the "LinkedIn" page and close tab
+    And I click on "Threads" Icon in the Footer
+    And I validate I am on the "Threads" page and close tab

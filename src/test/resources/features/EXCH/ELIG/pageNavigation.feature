@@ -17,7 +17,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01012005" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01012005" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -83,7 +83,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011987" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01011987" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -148,7 +148,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "MESA" with zipcode "81643"
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "MESA" with zipcode "81643"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -241,7 +241,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01012005" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01012005" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -310,7 +310,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011987" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "01011987" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -378,7 +378,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with dob "01011980" in county "MESA" with zipcode "81643"
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "MESA" with zipcode "81643"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
