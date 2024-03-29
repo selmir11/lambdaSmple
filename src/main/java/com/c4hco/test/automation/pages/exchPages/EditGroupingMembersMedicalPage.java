@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -97,6 +98,7 @@ public class EditGroupingMembersMedicalPage {
         softAssert.assertTrue(saveButtonOnEditGroupingPage.isEnabled());
         basicActions.waitForElementToBePresent(saveButtonOnEditGroupingPage,20);
         basicActions.waitForElementToBeClickable(saveButtonOnEditGroupingPage,20);
+          ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", saveButtonOnEditGroupingPage);
         saveButtonOnEditGroupingPage.click();
     }
     public void errorMessageOnGrouping(){

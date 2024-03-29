@@ -55,6 +55,9 @@ public class WhoAreYouPage {
     @FindBy(css = ".input-group #county")
     WebElement countyDropDown;
 
+    @FindBy(css = "#state option")
+    List<WebElement> stateDropdownOptions;
+
     @FindBy(css = "#county option")
     List<WebElement> countyDropdownOptions;
 
@@ -103,6 +106,36 @@ public class WhoAreYouPage {
         residentialAddress.setResidentialAddressLine1(addressLine1);
         residentialAddress.setResidentialAddressCity("Denver");
         residentialAddress.setResidentialAddressState("CO");
+        residentialAddress.setResidentialAddressZipcode(zipcode);
+        residentialAddress.setResidentialAddressCounty(county);
+        accHolder.setResAddress(residentialAddress);
+        backSaveAndContinue.get(1).click();
+    }
+
+    public void specificMemberDetailsWithCityAndState(String City, String State, String zipcode, String county, String dateOfBirth){
+        MemberDetails accHolder = SharedData.getPrimaryMember();
+        StreetAddress1.sendKeys(addressLine1);
+        memberCity.sendKeys(City);
+
+        basicActions.waitForElementToBeClickable(memberState,15);
+        memberState.click();
+        basicActions.selectValueFromDropdown(memberState, stateDropdownOptions, State);
+
+        memberZip.sendKeys(zipcode);
+        accHolder.setZipcode(zipcode);
+
+        basicActions.waitForElementToBeClickable(countyDropDown,15);
+        countyDropDown.click();
+        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
+
+        memberDOB.sendKeys(dateOfBirth);
+        accHolder.setDob(dateOfBirth);
+        memberSSN.sendKeys(SSNvalue);
+        accHolder.setSsn(SSNvalue);
+        ResidentialAddress residentialAddress = new ResidentialAddress();
+        residentialAddress.setResidentialAddressLine1(addressLine1);
+        residentialAddress.setResidentialAddressCity(City);
+        residentialAddress.setResidentialAddressState(State);
         residentialAddress.setResidentialAddressZipcode(zipcode);
         residentialAddress.setResidentialAddressCounty(county);
         accHolder.setResAddress(residentialAddress);

@@ -24,5 +24,6 @@ public class WhoAreYouPageSteps {
         whoAreYouPage.iClickContinueAfterSSNUpdate();
     }
 
-
+    @And("I am a member with City {string} in State {string} with dob {string} in county {string} with zipcode {string}")
+    public void enterSpecificMemberDetailsCityAndState(String City, String State, String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetailsWithCityAndState(City, State, zipcode, county, dateOfBirth);}
 }
