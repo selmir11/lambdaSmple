@@ -49,6 +49,8 @@ public class LoginPage {
 
     @FindBy(css = ".font-weight-bold")
     WebElement iForgotUsernameandPassword;
+    @FindBy(id = "email")
+    WebElement userIndividual;
 
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
@@ -79,8 +81,15 @@ public class LoginPage {
         // TO-DO:: Get the credentials from a different file
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
-        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        basicActions.waitForElementToBePresent(passwordAdmin,20 );
         passwordAdmin.sendKeys("ALaska12!");
+        signAdmin.click();
+    }
+    public void loginAsExistingIndividual(String userIndividual,String password){
+        basicActions.waitForElementToBePresent(username,20 );
+        username.sendKeys(userIndividual);
+        basicActions.waitForElementToBePresent(passwordAdmin,20 );
+        passwordAdmin.sendKeys(password);
         signAdmin.click();
     }
 

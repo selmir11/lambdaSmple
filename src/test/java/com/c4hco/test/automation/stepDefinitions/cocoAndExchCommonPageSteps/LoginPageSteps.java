@@ -26,6 +26,10 @@ public class LoginPageSteps {
          @When("I login as Admin User")
             public void i_login_as_admin_user() {loginPage.loginAsAnAdminUser();}
 
+    @When("I login as {string} and {string} individual existing user")
+    public void iLoginAsExistingIndividual(String userIndividual,String password) {
+        loginPage.loginAsExistingIndividual(userIndividual, password);}
+
     @When("I login as Broker User {string} password {string}")
     public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
 
