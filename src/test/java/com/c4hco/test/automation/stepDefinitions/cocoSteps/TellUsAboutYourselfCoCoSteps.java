@@ -8,11 +8,12 @@ public class TellUsAboutYourselfCoCoSteps {
     TellUsAboutYourselfCoCoPage tellUsAboutYourselfCoCoPage = new TellUsAboutYourselfCoCoPage(WebDriverManager.getDriver());
 
     @Then("I enter details on tell us about yourself page and continue with {string}, {string}, and applying {string}")
-    public void EnterSpecificMemberDetailsCoCo(String dateOfBirth, String gender, String applying){
-        tellUsAboutYourselfCoCoPage.specificMemberDetailsCoCo(dateOfBirth, gender, applying); }
+    public void EnterSpecificMemberDetailsCoCo(String dateOfBirth, String gender, String applying){tellUsAboutYourselfCoCoPage.specificMemberDetailsCoCo(dateOfBirth, gender, applying); }
 
     @Then("I click Go Back on the tell us about yourself page")
-    public void clickGoBack() { tellUsAboutYourselfCoCoPage.clickGoBackButton(); }
+    public void clickGoBack() {
+        tellUsAboutYourselfCoCoPage.clickGoBackButton();
+    }
 
 
 
