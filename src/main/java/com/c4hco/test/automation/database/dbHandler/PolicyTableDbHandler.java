@@ -12,7 +12,7 @@ import java.util.List;
 public class PolicyTableDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
 
-    public List<MultipleTablesEntity> getPolicyTableDetails(String query, String appType)  {
+    public List<MultipleTablesEntity> getPolicyTableDetails(String query)  {
         List<MultipleTablesEntity> dbDataList = new ArrayList<>();
         ResultSet rs;
         try {

@@ -12,51 +12,79 @@ import java.util.List;
 public class Ob834DetailsDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
 
-    public List<Ob834DetailsEntity> getOb834DbDetails(String query, String appType)  {
+    public List<Ob834DetailsEntity> getOb834DbDetails(String query) {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
         ResultSet rs;
-        try {
-            rs = executor.executeQuery(query);
-            while (rs.next()) {
-                Ob834DetailsEntity ob834DetailsEntity = new Ob834DetailsEntity();
+            try {
+                rs = executor.executeQuery(query);
+                while (rs.next()) {
+                    Ob834DetailsEntity ob834DetailsEntity = new Ob834DetailsEntity();
 
-                // ---- Set all the values from db ---- //
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    String columnName = rs.getMetaData().getColumnName(i);
-                    Object columnValue = rs.getObject(i);
+                    // ---- Set all the values from db ---- //
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        String columnName = rs.getMetaData().getColumnName(i);
+                        Object columnValue = rs.getObject(i);
 
-                    // Set the field value using reflection
-                    try {
-                        Field field = Ob834DetailsEntity.class.getDeclaredField(columnName);
-                        field.setAccessible(true);
-                        if (columnValue != null) {
-                            // Perform type conversion based on field type
-                            if (field.getType() == String.class) {
-                                field.set(ob834DetailsEntity, columnValue.toString());
-                            } else if (field.getType() == BigDecimal.class && columnValue instanceof Number) {
-                                field.set(ob834DetailsEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
+                        // Set the field value using reflection
+                        try {
+                            Field field = Ob834DetailsEntity.class.getDeclaredField(columnName);
+                            field.setAccessible(true);
+                            if (columnValue != null) {
+                                // Perform type conversion based on field type
+                                if (field.getType() == String.class) {
+                                    field.set(ob834DetailsEntity, columnValue.toString());
+                                } else if (field.getType() == BigDecimal.class && columnValue instanceof Number) {
+                                    field.set(ob834DetailsEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
+                                } else {
+                                    // Handle other types as needed
+                                    field.set(ob834DetailsEntity, columnValue);
+                                }
                             } else {
-                                // Handle other types as needed
-                                field.set(ob834DetailsEntity, columnValue);
+                                // Handle the case where columnValue is null
+                                // For example, you could set a default value or leave the field uninitialized
+                                // field.set(policyTableEntity, defaultValue);
                             }
-                        } else {
-                            // Handle the case where columnValue is null
-                            // For example, you could set a default value or leave the field uninitialized
-                            // field.set(policyTableEntity, defaultValue);
+                        } catch (NoSuchFieldException e) {
+                            // Handle the case where the ResultSet column does not match a field in the object
+                            // You can ignore it or handle it according to your requirements
                         }
-                    } catch (NoSuchFieldException e) {
-                        // Handle the case where the ResultSet column does not match a field in the object
-                        // You can ignore it or handle it according to your requirements
                     }
+                    dbDataList.add(ob834DetailsEntity);
                 }
-                dbDataList.add(ob834DetailsEntity);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
             }
+
+        return dbDataList;
         }
-        catch(Exception e){
+
+
+    public List<Ob834DetailsEntity> getOb834DetalsAfterCompleted(String query) {
+        List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
+
+        try {
+            while (true) {
+                // Query the database to get the current status
+                dbDataList = getOb834DbDetails(query);
+
+                // Check if any of the entities have the status "completed"
+                boolean allCompleted = dbDataList.stream().allMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status()));
+
+                if (allCompleted) {
+
+                    // Exit the loop if all entities have the status "completed"
+                    break;
+                }
+
+                // Sleep for a short interval before polling again
+                Thread.sleep(25000);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return dbDataList;
     }
-
-
 }
