@@ -143,7 +143,7 @@ public class AdminPortalSearchPage {
                 throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
         }
     }
-    public void clickAccountLinkSearchResults() {
+    public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
         }

@@ -49,9 +49,9 @@ public class AdminPortalSearchSteps {
         }
     }
 
-    @Then("I click acct in Search Results table on admin portal")
-    public void iClickAccountLinkSearchResults() {
-        adminPortalSearchPage.clickAccountLinkSearchResults();
+    @Then("I click acct first row from Search Results table in admin portal")
+    public void iClickAccountLinkFirstRowFromSearchResults() {
+        adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
 
 
