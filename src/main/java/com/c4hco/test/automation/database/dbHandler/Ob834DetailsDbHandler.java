@@ -50,7 +50,6 @@ public class Ob834DetailsDbHandler {
                     }
                 }
                 dbDataList.add(ob834DetailsEntity);
-                System.out.println("ob834DetailsEntity---"+ob834DetailsEntity.getFile_name());
             }
         }
         catch(Exception e){
