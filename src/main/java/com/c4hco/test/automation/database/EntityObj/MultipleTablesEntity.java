@@ -3,7 +3,7 @@ package com.c4hco.test.automation.database.EntityObj;
 import lombok.Data;
 
 @Data
-public class PolicyTableEntity {
+public class MultipleTablesEntity {
     String account_id;
     String application_id;
     String first_name;
