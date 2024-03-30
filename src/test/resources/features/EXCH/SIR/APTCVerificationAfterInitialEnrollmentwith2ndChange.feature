@@ -96,11 +96,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
-    And I click continue on initial payment page
 
     Then I validate I am on the "Payment Selection" page
     And I select the Money Order button
     And I click continue on payment selection page
+
+    Then I validate I am on the "Initial Payment" page
+    And I click continue on initial payment page
 
     Then I validate I am on the "Financial Help Agreements" page
     And I select the Terms and Use checkbox

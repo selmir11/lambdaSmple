@@ -19,12 +19,16 @@ public class InitialPaymentPage {
     @FindBy(id="SOL-InitialPayment-MakePayment")
     List<WebElement> makePaymentBtn;
 
+    @FindBy(id = "SOL-InitialPayment-MakePayment")
+    WebElement makeIntialPymtBtn;
+
     @FindBy(id = "SOL-InitialPayment-Continue")
     WebElement continueBtn;
 
     // TO DO: create a re-usable method for clicking on make payment button for all the plans.
     public void selectMakePaymentButton(){
-        basicActions.waitForElementListToBePresent(makePaymentBtn,20);
+        basicActions.waitForElementToBePresent(makeIntialPymtBtn,20);
+        basicActions.waitForElementToBeClickable(makeIntialPymtBtn,20);
         makePaymentBtn.get(0).click();
     }
 
@@ -34,6 +38,7 @@ public class InitialPaymentPage {
     }
 
     public void clickContinue(){
+        /*basicActions.waitForElementToBePresent(continueBtn,20);*/
         basicActions.waitForElementToBeClickable(continueBtn, 10);
         continueBtn.click();
     }
