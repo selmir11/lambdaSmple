@@ -234,6 +234,8 @@ public class BasicSteps {
                 break;
             case "Initial Payment" :
                 pageUrl = "PaymentPortal/initialPayment";
+            case "Admin Portal search" :
+                pageUrl = "AdminPortal/search";
                 break;
             default:
                 System.out.println("undefined page ");
@@ -252,8 +254,14 @@ public class BasicSteps {
             case "Terms Of Use":
                 pageUrl = "/InformationPortal/termsOfUse";
                 break;
+            case "ELIG Terms of Use":
+                pageUrl = "/terms-of-use/";
+                break;
             case "Contact Us":
                 pageUrl = "/InformationPortal/contactUs";
+                break;
+            case "ELIG Contact Us":
+                pageUrl = "/contact-us/";
                 break;
             case "We Can Help":
                 pageUrl = "/we-can-help/";
@@ -274,7 +282,7 @@ public class BasicSteps {
                 pageUrl = "facebook.com/connectforhealthco";
                 break;
             case "X":
-                pageUrl = "twitter.com/C4HCO";
+                pageUrl = "twitter.com/i/flow/login?redirect_after_login=%2FC4HCO";
                 break;
             case "YouTube":
                 pageUrl = "youtube.com/user/ConnectForHealthCO";
@@ -283,7 +291,7 @@ public class BasicSteps {
                 pageUrl = "instagram.com/c4hco/";
                 break;
             case "LinkedIn":
-                pageUrl = "linkedin.com/company/connect-for-health-colorado";
+                pageUrl = "www.linkedin.com%2Fcompany%2Fconnect-for-health-colorado";
                 break;
             case "Threads":
                 pageUrl = "threads.net/@c4hco";

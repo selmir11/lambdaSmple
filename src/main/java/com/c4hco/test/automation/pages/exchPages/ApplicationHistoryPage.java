@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -8,12 +9,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class ApplicationHistoryPage {
 
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
     @FindBy(xpath = "//button[@name= 'viewResults']")
     WebElement viewResultsAndShop;
+    @FindBy(css = "table tbody  #align-right")
+    List<WebElement> applicationSummary;
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -23,6 +28,13 @@ public class ApplicationHistoryPage {
 
     public void clickViewResults(){
         viewResultsAndShop.click();
+    }
+    public void iSetData(){
+        iSetApplicationId();
+    }
+    public void iSetApplicationId(){
+        String applicationid = applicationSummary.get(0).getText();
+        SharedData.getPrimaryMember().setApplication_id(applicationid);
     }
 
     public void validateAPTC(String expectedAPTC){
