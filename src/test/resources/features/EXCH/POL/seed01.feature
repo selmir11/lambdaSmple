@@ -103,50 +103,53 @@ Feature: Seed01 - Exchange
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
-  @RT-2246
+  @RT-2246 @test
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     And I validate the member details from few tables
     And I validate member details from ob834_details table
-    And I download the file from sftp server with location "/outboundedi"
-      # And I validate the contents of the file
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    Then I click on make changes button
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
-    Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
-    Then I update SSN number to new SSN number
-    Then I click continue on Tell us about yourself page
-    Then I click continue on the Add Address page
-    Then I click continue on the Citizenship page
-    Then I validate I am on the "Family Overview" page
-    Then I verify the family overview table is present
-    Then I click continue on family overview page
-    Then I validate I am on the "Tell us about life changes" page
-    Then I select "MoveToCO" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-##      When member records are processed by OB834 EDI process
-##      Then member policy record for plan "Elevate Health Plans Colorado Option Bronze" should have values:
-##        | firstNamePrefix | lastNamePrefix | policy_status | policy_start_date | policy_end_date  | member_financial_start_date | member_financial_end_date |
-##        | TestSubscriber  | User           | SUBMITTED     | [PLANYEAR-01-01]  | [PLANYEAR-12-31] | [PLANYEAR-01-01]            | [PLANYEAR-12-31]          |
-##      And member policy record for plan "Delta Dental of Colorado Family Basic Plan" should have values:
-##        | firstNamePrefix | lastNamePrefix | policy_status | policy_start_date | policy_end_date  | member_financial_start_date | member_financial_end_date |
-##        | TestSubscriber  | User           | SUBMITTED     | [PLANYEAR-01-01]  | [PLANYEAR-12-31] | [PLANYEAR-01-01]            | [PLANYEAR-12-31]          |
-##      And member PRE-EDI (OB834) record for plan "Elevate Health Plans Colorado Option Bronze" should have values:
-##        | firstNamePrefix | lastNamePrefix | edi_status   | maintenance_type_code | benefit_begin_date | benefit_end_date | financial_effective_date | hd_maint_type_code  | maintenance_reas_code | sponsor_id | member_ssn | incorrect_entity_id_code | incorrect_id_code_qualifier | incorrect_id_code | addl_maint_reason  |
-##        | TestSubscriber  | User           | EDI_COMPLETE | 001                   | [PLANYEAR-01-01]   | [PLANYEAR-12-31] | [PLANYEAR-01-01]         | 001                 | 25                    | 123456789  | 123456789  | 70                       | 34                          | 879654321         | DEMOGRAPHIC CHANGE |
-##      And member PRE-EDI (OB834) record for plan "Delta Dental of Colorado Family Basic Plan" should have values:
-##        | firstNamePrefix | lastNamePrefix | edi_status   | maintenance_type_code | benefit_begin_date | benefit_end_date | financial_effective_date | hd_maint_type_code  | maintenance_reas_code | sponsor_id | member_ssn | incorrect_entity_id_code | incorrect_id_code_qualifier | incorrect_id_code | addl_maint_reason  |
-##        | TestSubscriber  | User           | EDI_COMPLETE | 001                   | [PLANYEAR-01-01]   | [PLANYEAR-12-31] | [PLANYEAR-01-01]         | 001                 | 25                    | 123456789  | 123456789  | 70                       | 34                          | 879654321         | DEMOGRAPHIC CHANGE |
-##      And member's OB834 files should be valid
-##      And log out of application
-#
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should have the values
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+
+#    Given I open the login page on the "login" portal
+#    And I validate I am on the "Login" page
+#    And I enter valid credentials to login
+#    Then I validate I am on the "Account Overview" page
+#    Then I click on make changes button
+#    Then I select "No" option on the Let us guide you page
+#    And I click on save and continue button
+#    Then I click on continue with  application button on Before you begin page
+#    And I report "MovedToColorado" and click continue
+#    Then I validate I am on the "Find Expert Help" page
+#    Then I click Continue on my own button from Find Expert Help page
+#    Then I update SSN number to new SSN number
+#    Then I click continue on Tell us about yourself page
+#    Then I click continue on the Add Address page
+#    Then I click continue on the Citizenship page
+#    Then I validate I am on the "Family Overview" page
+#    Then I verify the family overview table is present
+#    Then I click continue on family overview page
+#    Then I validate I am on the "Tell us about life changes" page
+#    Then I select "MoveToCO" QLCE on tell us about life changes page
+#    Then I click on Save and Continue
+#    Then I validate I am on the "EXCH Declarations and Signature" page
+#    Then I Declare as Tax Household 1
+#    And I click Continue on the Declarations And Signature Page
+#    And I wait for hold on content to disappear
+###      When member records are processed by OB834 EDI process
+###      Then member policy record for plan "Elevate Health Plans Colorado Option Bronze" should have values:
+###        | firstNamePrefix | lastNamePrefix | policy_status | policy_start_date | policy_end_date  | member_financial_start_date | member_financial_end_date |
+###        | TestSubscriber  | User           | SUBMITTED     | [PLANYEAR-01-01]  | [PLANYEAR-12-31] | [PLANYEAR-01-01]            | [PLANYEAR-12-31]          |
+###      And member policy record for plan "Delta Dental of Colorado Family Basic Plan" should have values:
+###        | firstNamePrefix | lastNamePrefix | policy_status | policy_start_date | policy_end_date  | member_financial_start_date | member_financial_end_date |
+###        | TestSubscriber  | User           | SUBMITTED     | [PLANYEAR-01-01]  | [PLANYEAR-12-31] | [PLANYEAR-01-01]            | [PLANYEAR-12-31]          |
+###      And member PRE-EDI (OB834) record for plan "Elevate Health Plans Colorado Option Bronze" should have values:
+###        | firstNamePrefix | lastNamePrefix | edi_status   | maintenance_type_code | benefit_begin_date | benefit_end_date | financial_effective_date | hd_maint_type_code  | maintenance_reas_code | sponsor_id | member_ssn | incorrect_entity_id_code | incorrect_id_code_qualifier | incorrect_id_code | addl_maint_reason  |
+###        | TestSubscriber  | User           | EDI_COMPLETE | 001                   | [PLANYEAR-01-01]   | [PLANYEAR-12-31] | [PLANYEAR-01-01]         | 001                 | 25                    | 123456789  | 123456789  | 70                       | 34                          | 879654321         | DEMOGRAPHIC CHANGE |
+###      And member PRE-EDI (OB834) record for plan "Delta Dental of Colorado Family Basic Plan" should have values:
+###        | firstNamePrefix | lastNamePrefix | edi_status   | maintenance_type_code | benefit_begin_date | benefit_end_date | financial_effective_date | hd_maint_type_code  | maintenance_reas_code | sponsor_id | member_ssn | incorrect_entity_id_code | incorrect_id_code_qualifier | incorrect_id_code | addl_maint_reason  |
+###        | TestSubscriber  | User           | EDI_COMPLETE | 001                   | [PLANYEAR-01-01]   | [PLANYEAR-12-31] | [PLANYEAR-01-01]         | 001                 | 25                    | 123456789  | 123456789  | 70                       | 34                          | 879654321         | DEMOGRAPHIC CHANGE |
+###      And member's OB834 files should be valid
+###      And log out of application
+##

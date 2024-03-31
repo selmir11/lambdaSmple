@@ -13,6 +13,7 @@ public class Utils {
     }
 
     public String getBaseLoginUrl(String portalType){
+        System.out.println("portalType--"+portalType);
         String baseUrl = "";
         switch(portalType){
             case "login":
@@ -26,6 +27,7 @@ public class Utils {
                 break;
             default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
+        System.out.println("==baseUrl=="+baseUrl);
         return baseUrl;
     }
 }

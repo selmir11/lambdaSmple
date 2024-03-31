@@ -1,7 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,7 +40,8 @@ public class PaymentSelectionPage {
 
     public void clickContinueOnPaymentPage() {
         basicActions.waitForElementToBePresent(continueBtnPaymentSelection, 10);
-        continueBtnPaymentSelection.click();
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnPaymentSelection);
+       // continueBtnPaymentSelection.click();
     }
 
     public void clickMoneyOrderButton() {

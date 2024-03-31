@@ -1,8 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -59,6 +58,7 @@ public class LoginPage {
     }
 
     public void openPage(String portalType) {
+        System.out.println("==portalType=="+portalType);
         basicActions.getDriver().get(utils.getBaseLoginUrl(portalType));
     }
 
@@ -67,13 +67,16 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
+
         basicActions.waitForElementToBePresent(username, 10);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        System.out.println("Email and pwd::"+subscriber.getEmailId()+"::"+subscriber.getPassword());
-            username.sendKeys(subscriber.getEmailId());
+        String emailId = SharedData.getPrimaryMember().getEmailId();
+        System.out.println("Email and pwd::"+emailId);
+        String pswd = SharedData.getPrimaryMember().getPassword();
+        basicActions.wait(2000);
+        username.sendKeys(emailId);
         basicActions.waitForElementToBePresent(password, 10);
-        password.sendKeys(subscriber.getPassword());
-            signInButton.click();
+        password.sendKeys(pswd);
+        signInButton.click();
     }
 
     public void loginAsAnAdminUser(){
