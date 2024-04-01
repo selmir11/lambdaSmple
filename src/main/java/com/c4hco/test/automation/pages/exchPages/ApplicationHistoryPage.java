@@ -2,12 +2,12 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class ApplicationHistoryPage {
     public void validateAPTC(String expectedAPTC){
         basicActions.waitForElementToBePresent(lblAPTCValue, 15);
         String APTC = lblAPTCValue.getText();
-        Assert.assertTrue("Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.", APTC.contains(expectedAPTC));
+        Assert.assertTrue(APTC.contains(expectedAPTC),"Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.");
     }
 
     public void validateTextOnPage(String Text){

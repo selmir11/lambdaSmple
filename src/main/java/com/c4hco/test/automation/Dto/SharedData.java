@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.Dto;
 
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,10 @@ public class SharedData {
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
     @Getter @Setter private static String primaryMemberId;
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities;
+    @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
+    @Getter @Setter private static String dentalFileName;
+    @Getter @Setter private static Ob834FileDetails ob834FileDetails;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;

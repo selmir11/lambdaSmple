@@ -57,6 +57,7 @@ public class Ob834DetailsDbHandler {
 
             }
 
+
         return dbDataList;
         }
 
@@ -68,23 +69,25 @@ public class Ob834DetailsDbHandler {
             while (true) {
                 // Query the database to get the current status
                 dbDataList = getOb834DbDetails(query);
+                System.out.println("edi status ----"+dbDataList.get(0).getEdi_status());
+                System.out.println("filen name from db ---"+dbDataList.get(0).getFilename());
 
                 // Check if any of the entities have the status "completed"
                 boolean allCompleted = dbDataList.stream().allMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status()));
 
                 if (allCompleted) {
-
                     // Exit the loop if all entities have the status "completed"
                     break;
                 }
 
                 // Sleep for a short interval before polling again
-                Thread.sleep(25000);
+                Thread.sleep(15000);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        System.out.println("filen name from db before returning data ---"+dbDataList.get(0).getFilename());
+        System.out.println("dbdata list - ob entity from db--"+dbDataList);
         return dbDataList;
     }
 }
