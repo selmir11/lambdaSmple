@@ -85,7 +85,7 @@ public class Ob834DetailsEntity {
     String interchange_ctrl_num;
     String ack_requested;
     String usage_indicator;
-    String file_name;
+    String filename;
     String sep_reason;
     String application_date;
     String current_ind;

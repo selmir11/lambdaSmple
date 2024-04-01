@@ -10,9 +10,11 @@ import java.util.Date;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        glue = {"com.c4hco.test.automation.stepDefinitions.cocoSteps","com.c4hco.test.automation.stepDefinitions.exchSteps",
-                "com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps",
+        glue = {"com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps",
+                "com.c4hco.test.automation.stepDefinitions.cocoSteps",
+                "com.c4hco.test.automation.stepDefinitions.exchSteps",
                 "com.c4hco.test.automation.stepDefinitions.sftpSteps",
+                "com.c4hco.test.automation.stepDefinitions.databaseSteps",
                 "com.c4hco.test.automation.globalhooks"
                 }
 )

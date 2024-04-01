@@ -5,7 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -32,11 +32,15 @@ public class DbValidations {
       }
     }
 
-    public void validateOb834Data(){
+    public void validateOb834FromDb(){
       MemberDetails subscriber = SharedData.getPrimaryMember(); // TO DO:: Can do this globally?
-      List<Ob834DetailsEntity> ob834DetailsEntity = exchDbDataProvider.getOb83Db4Details();
+     // List<Ob834DetailsEntity> ob834DetailsEntity = exchDbDataProvider.getOb83Db4Details();
 
-      for(Ob834DetailsEntity ob834Entity: ob834DetailsEntity){
+      List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
+      SharedData.setOb834DetailsEntities(ob834DetailsEntities);
+
+      System.out.println("obentity--"+ob834DetailsEntities);
+      for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
 
         // TO DO:: Add More Assertions
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
@@ -48,9 +52,7 @@ public class DbValidations {
 
   public void validateMemberExistsInPolicyTable(){
     List<MultipleTablesEntity> policyEntity = exchDbDataProvider.getDataFromMultipleTables();
-    Assert.assertFalse("No records exists with this account number in Policy table ", policyEntity.isEmpty());
+    Assert.assertFalse(policyEntity.isEmpty(), "No records exists with this account number in Policy table");
   }
-
-
 
 }
