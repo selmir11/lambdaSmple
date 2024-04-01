@@ -12,31 +12,40 @@ import java.util.Map;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
+    List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
 
     @And("I download the file(s) from sftp server with location {string}")
     public void downloadFiles(String remoteLocation) throws JSchException {
         List<String> ediFileNames = new ArrayList<>();
 
-      List<Ob834DetailsEntity> ob834Entries =  SharedData.getOb834DetailsEntities();
-      for(Ob834DetailsEntity entry: ob834Entries){
-         if(entry.getInsurance_line_code().equals("HLT")){
-             SharedData.setMedicalFileName(entry.getFilename());
-         } else if(entry.getInsurance_line_code().equals("DEN")) {
-             SharedData.setDentalFileName(entry.getFilename());
-         }
-          ediFileNames.add(entry.getFilename());
-      }
+        for (Ob834DetailsEntity entry : ob834Entries) {
+            if (entry.getInsurance_line_code().equals("HLT")) {
+                SharedData.setMedicalFileName(entry.getFilename());
+            } else if (entry.getInsurance_line_code().equals("DEN")) {
+                SharedData.setDentalFileName(entry.getFilename());
+            }
+            ediFileNames.add(entry.getFilename());
+        }
 
-        for(String filename: ediFileNames){
-          sftpUtil.downloadFileWithSftp(remoteLocation, filename);
-      }
+        for (String filename : ediFileNames) {
+            sftpUtil.downloadFileWithSftp(remoteLocation, filename);
+        }
 
     }
 
     @And("I validate the ob834 files should have the values")
-    public void validateOb834Records(List<Map<String, String>> expectedValues){
-        sftpUtil.readEdiFile(SharedData.getMedicalFileName());
-        sftpUtil.validateOb834Record(expectedValues);
+    public void validateOb834Records(List<Map<String, String>> expectedValues) {
+
+        for (Ob834DetailsEntity entry : ob834Entries) {
+            if (entry.getInsurance_line_code().equals("HLT")) {
+                sftpUtil.readEdiFile(SharedData.getMedicalFileName());
+            } else if (entry.getInsurance_line_code().equals("DEN")) {
+                sftpUtil.readEdiFile(SharedData.getDentalFileName());
+            }
+            sftpUtil.validateOb834Record(expectedValues);
+        }
+
+
     }
 
 }
