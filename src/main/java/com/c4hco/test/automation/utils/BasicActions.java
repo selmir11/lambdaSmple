@@ -176,21 +176,6 @@ public class BasicActions {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void switchtoChildWindow(){
-        String parent=
-                basicActions.getDriver().getWindowHandle();
-        Set<String> s=basicActions.getDriver().getWindowHandles();
-        Iterator<String> I1= s.iterator();
-        while(I1.hasNext())
-        {
-            String child_window=I1.next();
-            if(!parent.equals(child_window))
-            {
-                basicActions.getDriver().switchTo().window(child_window);
-                System.out.println(basicActions.getDriver().switchTo().window(child_window).getCurrentUrl());
-            }
-        }
-
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();
         MemberDetails primaryMem = SharedData.getPrimaryMember();

@@ -332,11 +332,6 @@ public class BasicSteps {
         basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));
     }
 
-    @Then("I validate I am on active tab")
-    public void iValidateIAmOnActiveTab() {
-        basicActions.switchtoChildWindow();
-    }
-
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
 
