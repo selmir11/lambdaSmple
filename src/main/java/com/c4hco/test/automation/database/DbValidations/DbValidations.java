@@ -5,7 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -52,9 +52,7 @@ public class DbValidations {
 
   public void validateMemberExistsInPolicyTable(){
     List<MultipleTablesEntity> policyEntity = exchDbDataProvider.getDataFromMultipleTables();
-    Assert.assertFalse("No records exists with this account number in Policy table ", policyEntity.isEmpty());
+    Assert.assertFalse(policyEntity.isEmpty(), "No records exists with this account number in Policy table");
   }
-
-
 
 }
