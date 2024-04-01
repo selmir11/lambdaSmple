@@ -3,7 +3,6 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
-import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
@@ -237,9 +236,7 @@ public class BasicSteps {
                 System.out.println("undefined page ");
                 break;
         }
-        Assert.assertTrue("expected page::" + pageUrl + "::did not load", basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl))
-        Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
-
+        Assert.assertTrue( basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
     }
 
     @And("I validate I am on the {string} page and close tab")
@@ -317,7 +314,6 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue("expected page::" + pageUrl + "::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
                 Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
             }
         }
