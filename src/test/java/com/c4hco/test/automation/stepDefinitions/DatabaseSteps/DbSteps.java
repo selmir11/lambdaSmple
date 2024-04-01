@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.DatabaseSteps;
+package com.c4hco.test.automation.stepDefinitions.DatabaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -15,11 +15,6 @@ private DbValidations dbValidations = new DbValidations();
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
    }
-
-//   @And("I validate member exists in ob834_details table")
-//   public void memberExistsInPreEdiTable(){
-//      dbValidations.validateMemberExistsInOb834DetailsTable();
-//   }
 
 //   @And("I validate file exists on sftp server with location {string}")
 //   public void validateFileExists(String sftpRemoteLocation) throws JSchException {
@@ -43,9 +38,5 @@ private DbValidations dbValidations = new DbValidations();
       dbValidations.validateOb834Data();
    }
 
-   @And("I get the file name from the pre-edi table")
-   public void getFileName(){
-
-   }
 
 }

@@ -578,7 +578,7 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBePresent(privacyPolicyLink,10);
         basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
-        softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
+        softAssert.assertEquals(termsOfUseLink.getText(), "Terms of Use");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
         softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
         softAssert.assertTrue(followUsText.getText().contains("Follow"));
@@ -593,7 +593,8 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyTextInExchFooterSpanish(){
-        basicActions.waitForElementToBePresent(connectLogoLink,10);
+        basicActions.waitForElementToBePresent(privacyPolicyLink,10);
+        basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
         softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
         softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");

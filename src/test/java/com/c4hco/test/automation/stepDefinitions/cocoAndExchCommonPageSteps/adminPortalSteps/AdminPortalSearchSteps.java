@@ -5,10 +5,10 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+
 public class AdminPortalSearchSteps {
 
     AdminPortalSearchPage adminPortalSearchPage = new AdminPortalSearchPage(WebDriverManager.getDriver());
-
 
     @Then("I click create account on admin portal")
     public void createAcctOnAdminPortal() {
@@ -33,6 +33,7 @@ public class AdminPortalSearchSteps {
 
     @Then("I validate {string} for Admin Portal")
     public void HeaderValidation(String HeaderValidation) {
+
         switch (HeaderValidation) {
             case "Logo":
                 adminPortalSearchPage.ConnectForHealthLogoDisplay();
@@ -95,5 +96,9 @@ public class AdminPortalSearchSteps {
     @And("I select {string} checkbox on Admin Portal Dashboard")
     public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
+    }
+    @Then("I click acct first row from Search Results table in admin portal")
+    public void iClickAccountLinkFirstRowFromSearchResults() {
+        adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
 }
