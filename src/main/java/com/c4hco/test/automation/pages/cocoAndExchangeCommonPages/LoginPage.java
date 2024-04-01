@@ -58,7 +58,6 @@ public class LoginPage {
     }
 
     public void openPage(String portalType) {
-        System.out.println("==portalType=="+portalType);
         basicActions.getDriver().get(utils.getBaseLoginUrl(portalType));
     }
 
@@ -67,10 +66,9 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
-
         basicActions.waitForElementToBePresent(username, 10);
         String emailId = SharedData.getPrimaryMember().getEmailId();
-        System.out.println("Email and pwd::"+emailId);
+        System.out.println("Email::"+emailId);
         String pswd = SharedData.getPrimaryMember().getPassword();
         basicActions.wait(2000);
         username.sendKeys(emailId);

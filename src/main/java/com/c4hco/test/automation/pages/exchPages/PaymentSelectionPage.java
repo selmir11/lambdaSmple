@@ -41,7 +41,6 @@ public class PaymentSelectionPage {
     public void clickContinueOnPaymentPage() {
         basicActions.waitForElementToBePresent(continueBtnPaymentSelection, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnPaymentSelection);
-       // continueBtnPaymentSelection.click();
     }
 
     public void clickMoneyOrderButton() {
