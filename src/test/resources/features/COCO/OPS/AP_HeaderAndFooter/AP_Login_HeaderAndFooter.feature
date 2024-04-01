@@ -11,9 +11,9 @@ Feature: AdminPortal: General: Header, footer, and error message validation on L
 
   Scenario: Validate Footer on Login screen
     Given I open the login page on the "admin" portal
-    And I click on Privacy Policy in the Footer
+    And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    And I click on Terms Of Use in the Footer
+    And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab

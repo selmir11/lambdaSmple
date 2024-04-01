@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
@@ -10,9 +11,9 @@ public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
 
     @And("I validate I am on the {string} page")
-    public void iValidatePage(String page){
-        String pageUrl= " ";
-        switch(page){
+    public void iValidatePage(String page) {
+        String pageUrl = " ";
+        switch (page) {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
@@ -50,13 +51,16 @@ public class BasicSteps {
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
             case "planSummaryMedicalDental":
-                pageUrl ="planSummaryMedicalDental";
+                pageUrl = "planSummaryMedicalDental";
                 break;
             case "Create Account":
                 pageUrl = "createAccount";
                 break;
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
+                break;
+            case "Admin search":
+                pageUrl = "/AdminPortal/search";
                 break;
             case "Application Results":
                 pageUrl = "nes/applicationResults";
@@ -81,7 +85,7 @@ public class BasicSteps {
                 break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
-				break;
+                break;
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
                 break;
@@ -105,7 +109,7 @@ public class BasicSteps {
                 break;
             case "Find Expert Help Exch":
                 pageUrl = "broker-portal/individual/find-expert-help?";
-                 break;
+                break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
@@ -220,10 +224,10 @@ public class BasicSteps {
             case "Good News":
                 pageUrl = "nes/applyMA";
                 break;
-            case "Broker Dashboard" :
+            case "Broker Dashboard":
                 pageUrl = "/broker-portal/";
                 break;
-            case "My Plans CoCo" :
+            case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
             case "Admin Portal search" :
@@ -233,13 +237,15 @@ public class BasicSteps {
                 System.out.println("undefined page ");
                 break;
         }
+        Assert.assertTrue("expected page::" + pageUrl + "::did not load", basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl))
         Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
+
     }
 
     @And("I validate I am on the {string} page and close tab")
-    public void iValidatePageAndClose(String page){
-        String pageUrl= " ";
-        switch(page){
+    public void iValidatePageAndClose(String page) {
+        String pageUrl = " ";
+        switch (page) {
             case "Privacy Policy":
                 pageUrl = "/InformationPortal/privacyPolicy";
                 break;
@@ -288,6 +294,21 @@ public class BasicSteps {
             case "Threads":
                 pageUrl = "threads.net/@c4hco";
                 break;
+            case "Admin LCE":
+                pageUrl = "/nes/adminLce";
+                break;
+            case "CBMS Search":
+                pageUrl = "/AdminPortal/applinks/cbms-search";
+                break;
+            case "Document LookUp":
+                pageUrl = "/AdminPortal/applinks/doc-lookup";
+                break;
+            case "Okta Console":
+                pageUrl = "https://extconnectforhealth-admin.oktapreview.com/admin/users";
+                break;
+            case "On Behalf Of(OBO)":
+                pageUrl = "/coco/WelcomePortal/welcome";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
@@ -296,6 +317,7 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
+                Assert.assertTrue("expected page::" + pageUrl + "::did not load", basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl));
                 Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
             }
         }
@@ -304,14 +326,16 @@ public class BasicSteps {
     }
 
     @And("I refresh the page")
-    public void refreshPage(){
+    public void refreshPage() {
         basicActions.refreshPage();
     }
 
     @And("I set the browser resolution to 1920 x 1080")
-    public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));}
+    public void setResolution() {
+        basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));
+    }
 
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
 
-}
+ }
