@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
@@ -174,6 +173,19 @@ public class BasicActions {
 
     public  void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void switchtoactiveTab() {
+        String parent =
+                basicActions.getDriver().getWindowHandle();
+        Set<String> s = basicActions.getDriver().getWindowHandles();
+        Iterator<String> I1 = s.iterator();
+        while (I1.hasNext()) {
+            String child_window = I1.next();
+            if (!parent.equals(child_window)) {
+                basicActions.getDriver().switchTo().window(child_window);
+            }
+        }
     }
 
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
