@@ -62,6 +62,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "Exch" "Admin portal Footer" in "English"
 
+  @SLCR-34
   Scenario: Verify Manage Plans page Header and Footer
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -93,6 +94,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Privacy Policy" page and close tab
     Then logout from Admin Portal
 
+  @SLCR-34
   Scenario: Verify Manage Account Access page Header and Footer
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -124,6 +126,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Privacy Policy" page and close tab
     Then logout from Admin Portal
 
+  @SLCR-34
   Scenario: Verify Manage Account Details page Header and Footer
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -155,6 +158,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Privacy Policy" page and close tab
     Then logout from Admin Portal
 
+  @SLCR-34
   Scenario: Verify EDI Transactions reports page Header and Footer
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -186,6 +190,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Privacy Policy" page and close tab
     Then logout from Admin Portal
 
+  @SLCR-34
   Scenario: Verify Detailed EDI report page Header and Footer
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -217,7 +222,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Privacy Policy" page and close tab
     Then logout from Admin Portal
 
-
+  @SLCR-34
   Scenario: Verify Account Activity report page Header and Footer
     Given I open the login page on the "admin" portal
     And I refresh the page
