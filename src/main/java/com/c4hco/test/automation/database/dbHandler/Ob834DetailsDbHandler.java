@@ -2,6 +2,7 @@ package com.c4hco.test.automation.database.dbHandler;
 
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
+import com.c4hco.test.automation.utils.BasicActions;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class Ob834DetailsDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
+    private BasicActions basicActions;
 
     public List<Ob834DetailsEntity> getOb834DbDetails(String query) {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
@@ -67,27 +69,17 @@ public class Ob834DetailsDbHandler {
 
         try {
             while (true) {
-                // Query the database to get the current status
                 dbDataList = getOb834DbDetails(query);
-                System.out.println("edi status ----"+dbDataList.get(0).getEdi_status());
-                System.out.println("filen name from db ---"+dbDataList.get(0).getFilename());
-
-                // Check if any of the entities have the status "completed"
                 boolean allCompleted = dbDataList.stream().allMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status()));
-
                 if (allCompleted) {
-                    // Exit the loop if all entities have the status "completed"
                     break;
                 }
 
-                // Sleep for a short interval before polling again
-                Thread.sleep(15000);
+                basicActions.wait(10000);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("filen name from db before returning data ---"+dbDataList.get(0).getFilename());
-        System.out.println("dbdata list - ob entity from db--"+dbDataList);
         return dbDataList;
     }
 }

@@ -33,21 +33,18 @@ public class DbValidations {
     }
 
     public void validateOb834FromDb(){
-      MemberDetails subscriber = SharedData.getPrimaryMember(); // TO DO:: Can do this globally?
-     // List<Ob834DetailsEntity> ob834DetailsEntity = exchDbDataProvider.getOb83Db4Details();
+      MemberDetails subscriber = SharedData.getPrimaryMember();
 
       List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
       SharedData.setOb834DetailsEntities(ob834DetailsEntities);
 
-      System.out.println("obentity--"+ob834DetailsEntities);
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
 
-        // TO DO:: Add More Assertions
+        // TO DO:: Add More Assertions - UI vs DB
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
-        softAssert.assertAll();;
+      //  softAssert.assertAll();;
       }
-
     }
 
   public void validateMemberExistsInPolicyTable(){

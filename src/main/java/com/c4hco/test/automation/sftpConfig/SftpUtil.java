@@ -28,7 +28,9 @@ import java.util.*;
 
 public class SftpUtil {
     private Session session;
-    private String sftpFolderPath;
+  //  private String sftpFolderPath;
+    SoftAssert softAssert = new SoftAssert();
+
 
     public SftpUtil(){
 
@@ -77,9 +79,8 @@ public class SftpUtil {
     }
 
     public void downloadFileWithSftp(String remoteFilePath, String fileNameToDownload) throws JSchException {
-     // separate from download? As we are downloading 2files, no need to connect twice!! connecting once is enough to download multiple files
-            connectToSftp();
-        String localPath = getLocalSftpDownloadPath();
+        connectToSftp();
+        String localPath = SharedData.getLocalPathToDownloadFile();
         ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
         channelSftp.connect();
         try{
@@ -100,11 +101,9 @@ public class SftpUtil {
         }
     }
 
-    private String getLocalSftpDownloadPath(){
+    public String getLocalSftpDownloadPath(){
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
-         sftpFolderPath = "target/sftp-downloads/download-" + timestamp;
-       // - local testing development -   sftpFolderPath = "target/sftp-downloads/download-03302024-095143";
-        // Create the timestamped folder
+        String sftpFolderPath = "target/sftp-downloads/download-" + timestamp;
         File reportFolder = new File(sftpFolderPath);
         if (!reportFolder.exists()) {
             boolean folderCreated = reportFolder.mkdirs();
@@ -116,18 +115,16 @@ public class SftpUtil {
     }
 
     public void readEdiFile(String filename){
-
-            try{
+        String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
+        try{
           File file = new File(sftpFolderPath+"\\"+filename);
           System.out.println("file ---"+file);
                 InputStream inputStream = new FileInputStream(file);
 
                 if (inputStream != null) {
-                    System.out.println("File found");
-
+                    System.out.println("EDI File Found on SFTP Server");
                     parseEdiFile(inputStream);
                 } else {
-                    // File not found
                     System.err.println("File not found in the resource folder.");
                 }
                 inputStream.close();
@@ -157,9 +154,7 @@ public class SftpUtil {
                 switch (reader.next()) {
                     case START_INTERCHANGE:
                         String standard = reader.getStandard();
-                        System.out.println("standard=="+standard);
                         break;
-
                     case START_SEGMENT:
                         currentSegmentName = reader.getText();
                         currentSegmentArray = objectMapper.createArrayNode();
@@ -169,7 +164,6 @@ public class SftpUtil {
                         String data = reader.getText();
                         currentSegmentArray.add(data);
                         break;
-
                     case END_SEGMENT:
                         if (currentSegmentName != null && currentSegmentArray != null) {
                             segmentData.put(currentSegmentName, currentSegmentArray);
@@ -198,12 +192,11 @@ public class SftpUtil {
     public void getSegments(JSONObject jsonObj) {
         // TO DO:: Move this to a diff file - set OB834 segments and values.
         // Validate - no null values - if null - proceed and save the others.
-        Ob834FileDetails ob834FileDetails = new Ob834FileDetails();
 
+        Ob834FileDetails ob834FileDetails = new Ob834FileDetails();
 
         // name segment
         JSONArray nameSegment = jsonObj.getJSONArray("N1");
-        System.out.println("N!---" + nameSegment);
         System.out.println(nameSegment.getJSONArray(0).get(1));
         ob834FileDetails.setSponsorName(String.valueOf(nameSegment.getJSONArray(0).get(1)));
         ob834FileDetails.setSponsorId(String.valueOf(nameSegment.getJSONArray(0).get(3)));
@@ -213,7 +206,6 @@ public class SftpUtil {
           ArrayList<?> addlMainObj = (ArrayList<?>) addlMainOptional.get();
           ob834FileDetails.setAddtl_maintreason((String) addlMainObj.get(0));
         }
-
 
         // Individual Relationship Segment
         JSONArray insSegment = jsonObj.getJSONArray("INS");
@@ -226,7 +218,6 @@ public class SftpUtil {
         // Date/Time Period Segment
         JSONArray dtpSegment = jsonObj.getJSONArray("DTP");
         System.out.println("dtp segment --" + dtpSegment); // JSONArray
-        System.out.println("dtp list --" + dtpSegment.toList()); // List<Object>
 
         Optional<Object> benefitBgnDtObj = dtpSegment.toList().stream()
                 .filter(obj -> obj.toString().contains("348"))
@@ -237,28 +228,17 @@ public class SftpUtil {
                 .findFirst();
 
         if (benefitBgnDtObj.isPresent()) {
-            System.out.println("optional get benefit::" + benefitBgnDtObj.get());
+            ArrayList<?> benefitBgnDrObj = (ArrayList<?>) benefitBgnDtObj.get();
 
-            ArrayList<?> variable = (ArrayList<?>) benefitBgnDtObj.get();
-            System.out.println("===variable==" + variable);
-
-            System.out.println("---get 2--" + variable.get(2));
-
-
-            String benefitBgnDate = (String) variable.get(2);
+            String benefitBgnDate = (String) benefitBgnDrObj.get(2);
             ob834FileDetails.setBenefit_startDate(benefitBgnDate);
         }
 
         if (benefitEndDtObj.isPresent()) {
-                System.out.println("optional get benefit end date::" + benefitEndDtObj.get());
 
-                ArrayList<?> variable1 = (ArrayList<?>) benefitEndDtObj.get();
-                System.out.println("===variable==" + variable1);
+                ArrayList<?> benefitEndObj = (ArrayList<?>) benefitEndDtObj.get();
 
-                System.out.println("---get 2--" + variable1.get(2));
-
-
-                String benefitEndDate = (String) variable1.get(2);
+                String benefitEndDate = (String) benefitEndObj.get(2);
                 ob834FileDetails.setBenefit_endDate(benefitEndDate);
 
             }
@@ -308,47 +288,62 @@ public class SftpUtil {
             ob834FileDetails.setIncorrectIdCode((String) incorrectEntityOptionalObj.get(8));
         }
 
-
-        SharedData.setOb834FileDetails(ob834FileDetails);
-
-
-            System.out.println("f name  ---" + SharedData.getOb834FileDetails().getFirstName());
-            System.out.println("l name  ---" + SharedData.getOb834FileDetails().getFirstName());
-        System.out.println(" ssn  ---" + SharedData.getOb834FileDetails().getSsn());
-
-        System.out.println("updated ssn  ---" + SharedData.getOb834FileDetails().getUpdatedSsn());
-
-        System.out.println("main tyoe code ---" + SharedData.getOb834FileDetails().getMaint_type_code());
-            System.out.println("benefit stat date ---" + SharedData.getOb834FileDetails().getBenefit_startDate());
-            System.out.println("benefit end date ---" + SharedData.getOb834FileDetails().getBenefit_endDate());
-        System.out.println("addl main code ---" + SharedData.getOb834FileDetails().getAddtl_maintreason());
+        List<Ob834FileDetails> ob834FileRecords = SharedData.getOb834FileDetails();
+        if(ob834FileRecords==null){
+            ob834FileRecords = new ArrayList<>();
+        }
+        ob834FileRecords.add(ob834FileDetails);
+        SharedData.setOb834FileDetails(ob834FileRecords);
 
 
     }
 
     public void validateOb834Record(List<Map<String, String>> expectedValues){
         // TO DO - Adjust the format - actual vs expected.
-        SoftAssert softAssert = new SoftAssert();
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        Ob834FileDetails ob834Record = SharedData.getOb834FileDetails();
         Map<String, String> medicalRecord = expectedValues.get(0);
+        Map<String, String> dentalRecord = expectedValues.get(1);
+        List<Ob834FileDetails> ob834Records = SharedData.getOb834FileDetails();
 
-        softAssert.assertEquals(subscriber.getFirstName(), ob834Record.getFirstName(), "First name did not match" );
-        softAssert.assertEquals(subscriber.getLastName(), ob834Record.getLastName(), "First name did not match" );
-        softAssert.assertEquals(subscriber.getSsn(), ob834Record.getSsn(), "First name did not match" );
-        softAssert.assertEquals(medicalRecord.get("maintenance_type_code"), ob834Record.getMaint_type_code(), "maint type code did not match");
-        softAssert.assertEquals(subscriber.getMedicalPlanStartDate(), ob834Record.getBenefit_startDate(), "benefit start date did not match");
-        softAssert.assertEquals(subscriber.getMedicalPlanEndDate(), ob834Record.getBenefit_endDate(), "benefit end date did not match");
-        softAssert.assertEquals(subscriber.getFinancialStartDate(), ob834Record.getFinancial_effectiveDate());
-        softAssert.assertEquals(medicalRecord.get("hd_maint_type_code"), ob834Record.getHd_maint_typeCode());
-        softAssert.assertEquals(medicalRecord.get("maintenance_reas_code"), ob834Record.getMaint_reasCode());
-        softAssert.assertEquals(medicalRecord.get("incorrect_entity_id_code"), ob834Record.getIncorrectEntityIdCode());
-        softAssert.assertEquals(medicalRecord.get("incorrect_id_code_qualifier"), ob834Record.getIncorrectIdCodeQualifier());
-        softAssert.assertEquals(medicalRecord.get("incorrect_entity_id_code"), ob834Record.getIncorrectEntityIdCode());
-        softAssert.assertEquals(medicalRecord.get("addl_maint_reason"), ob834Record.getAddtl_maintreason());
-      //  softAssert.assertAll();
+        Optional<Ob834FileDetails> actualMedicalFileDataOptional = ob834Records.stream().filter(e-> e.getInsurance_line_code().equals("HLT")).findFirst();
+       if(actualMedicalFileDataOptional.isPresent()){
+           Ob834FileDetails actualMedicalFileData = actualMedicalFileDataOptional.get();
+           validateMedicalRecord(actualMedicalFileData, medicalRecord);
+       }
+        Optional<Ob834FileDetails> actualDentalFileDataOptional = ob834Records.stream().filter(e-> e.getInsurance_line_code().equals("DEN")).findFirst();
+        if(actualDentalFileDataOptional.isPresent()){
+            Ob834FileDetails actualDentalFileData = actualDentalFileDataOptional.get();
+            validateMedicalRecord(actualDentalFileData, medicalRecord);
+            validateDentalRecord(actualDentalFileData, dentalRecord);
+        }
 
-        //  sponsor_id  | incorrect_id_code - Any other validations?
+        System.out.println("===ob834Record==="+ob834Records);
+
+        // validate the common data for both the records below - TO DO
+
+        for(Ob834FileDetails record: ob834Records){
+        softAssert.assertEquals(subscriber.getFirstName(), record.getFirstName(), "First name did not match" );
+        softAssert.assertEquals(subscriber.getLastName(), record.getLastName(), "First name did not match" );
+        softAssert.assertEquals(subscriber.getSsn(), record.getSsn(), "SSN did not match" );
+        softAssert.assertEquals(subscriber.getMedicalPlanStartDate(), record.getBenefit_startDate(), "benefit start date did not match");
+        softAssert.assertEquals(subscriber.getMedicalPlanEndDate(), record.getBenefit_endDate(), "benefit end date did not match");
+        softAssert.assertEquals(subscriber.getFinancialStartDate(), record.getFinancial_effectiveDate());
+            //  softAssert.assertAll();
+        }
     }
 
+    public void validateMedicalRecord( Ob834FileDetails ob834Record, Map<String, String> expectedResult){
+        softAssert.assertEquals(expectedResult.get("maintenance_type_code"), ob834Record.getMaint_type_code(), "maint type code did not match");
+        softAssert.assertEquals(expectedResult.get("hd_maint_type_code"), ob834Record.getHd_maint_typeCode());
+        softAssert.assertEquals(expectedResult.get("maintenance_reas_code"), ob834Record.getMaint_reasCode());
+        softAssert.assertEquals(expectedResult.get("incorrect_entity_id_code"), ob834Record.getIncorrectEntityIdCode());
+        softAssert.assertEquals(expectedResult.get("incorrect_id_code_qualifier"), ob834Record.getIncorrectIdCodeQualifier());
+        softAssert.assertEquals(expectedResult.get("incorrect_entity_id_code"), ob834Record.getIncorrectEntityIdCode());
+        softAssert.assertEquals(expectedResult.get("addl_maint_reason"), ob834Record.getAddtl_maintreason());
+        //  sponsor_id  | incorrect_id_code - Any other validations?
+        //  softAssert.assertAll();
+    }
+
+    public void validateDentalRecord(Ob834FileDetails ob834Record, Map<String, String> expectedResult){
+    }
 }

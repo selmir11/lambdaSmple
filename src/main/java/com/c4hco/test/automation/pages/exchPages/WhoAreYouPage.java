@@ -1,16 +1,15 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.ResidentialAddress;
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.ResidentialAddress;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
-import java.util.*;
+import java.util.List;
 
 public class WhoAreYouPage {
     private BasicActions basicActions;
@@ -60,9 +59,6 @@ public class WhoAreYouPage {
 
     @FindBy(css = "#county option")
     List<WebElement> countyDropdownOptions;
-
-    @FindBy(id = "continueButton")
-    List<WebElement> saveAndContinueAfterUpdate;
 
     private String addressLine1= "1234 Road";
     private String SSNvalue = "653035280";
@@ -120,15 +116,4 @@ public class WhoAreYouPage {
         saveAndContinue.click();
     }
 
-    public void iUpdateSSN(){
-        basicActions.waitForElementToBePresent(memberSSN, 20);
-        memberSSN.clear();
-        memberSSN.sendKeys("123-45-6789");
-    }
-
-    public void iClickContinueAfterSSNUpdate(){
-        // TO DO: Check if we can always use one method to click on continue or save and continue and create a step for it
-        basicActions.waitForElementListToBePresent(saveAndContinueAfterUpdate, 15);
-        saveAndContinueAfterUpdate.get(0).click();
-    }
 }
