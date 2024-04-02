@@ -28,4 +28,8 @@ public class MyProfilePageSteps {
 
     @And("I verify text on My profile page {string}")
     public void verifyTextOnMyProfilePage(String language)  { myProfileExchPage.verifyTextOnMyProfileExchPage(language); }
+
+
+@Then("I verify Password text on My profile page {string}")
+public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchPage.verifyPasswordTextOnMyProfileExchPage(language); }
 }
