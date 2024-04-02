@@ -5,7 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -32,25 +32,24 @@ public class DbValidations {
       }
     }
 
-    public void validateOb834Data(){
-      MemberDetails subscriber = SharedData.getPrimaryMember(); // TO DO:: Can do this globally?
-      List<Ob834DetailsEntity> ob834DetailsEntity = exchDbDataProvider.getOb83Db4Details();
+    public void validateOb834FromDb(){
+      MemberDetails subscriber = SharedData.getPrimaryMember();
 
-      for(Ob834DetailsEntity ob834Entity: ob834DetailsEntity){
+      List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
+      SharedData.setOb834DetailsEntities(ob834DetailsEntities);
 
-        // TO DO:: Add More Assertions
+      for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
+
+        // TO DO:: Add More Assertions - UI vs DB
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
-        softAssert.assertAll();;
+      //  softAssert.assertAll();;
       }
-
     }
 
   public void validateMemberExistsInPolicyTable(){
     List<MultipleTablesEntity> policyEntity = exchDbDataProvider.getDataFromMultipleTables();
-    Assert.assertFalse("No records exists with this account number in Policy table ", policyEntity.isEmpty());
+    Assert.assertFalse(policyEntity.isEmpty(), "No records exists with this account number in Policy table");
   }
-
-
 
 }

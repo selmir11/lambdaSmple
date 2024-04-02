@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,10 +38,12 @@ public class PaymentSelectionPage {
 
     @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder")
     WebElement moneyOrderBtn;
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
 
     public void clickContinueOnPaymentPage() {
-        basicActions.waitForElementToBePresent(continueBtnPaymentSelection, 20);
-        continueBtnPaymentSelection.click();
+        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.click(continueBtnPaymentSelection);
     }
 
     public void clickMoneyOrderButton() {

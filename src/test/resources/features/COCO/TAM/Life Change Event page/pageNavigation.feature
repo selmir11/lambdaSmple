@@ -39,10 +39,10 @@ Feature: Navigation-Life Change Event Page
     And I select continue on the Family Overview page
 
     # Test footer links
-    And I click on Privacy Policy in the Footer
+    And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "CoCo life change event" page
-    And I click on Terms Of Use in the Footer
+    And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "CoCo life change event" page
     And I click on Contact Us in the "CoCo" Footer

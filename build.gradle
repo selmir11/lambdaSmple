@@ -10,10 +10,8 @@ repositories {
 }
 
 dependencies {
-    // ****CUCUMBER****
-
     // https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
-    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.5'
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.8'
 
 // https://mvnrepository.com/artifact/io.cucumber/cucumber-java
     implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.11.1'
@@ -26,8 +24,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-core
     implementation group: 'io.cucumber', name: 'cucumber-core', version: '7.13.0'
-    implementation 'org.testng:testng:7.1.0'
-    implementation 'junit:junit:4.13.1'
+    implementation 'org.testng:testng:7.7.0'
     implementation 'io.cucumber:cucumber-jvm:7.13.0'
     implementation 'org.projectlombok:lombok:1.18.30'
 
@@ -40,7 +37,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer
     implementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '7.11.2'
-// ****CUUCMBER****
 
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-testng
     implementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.12.0'
@@ -54,28 +50,32 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.guava/guava
     implementation group: 'com.google.guava', name: 'guava', version: '32.1.2-jre'
 
-    // https://mvnrepository.com/artifact/com.google.apis/google-api-services-gmail
-    implementation group: 'com.google.apis', name: 'google-api-services-gmail', version: 'v1-rev110-1.25.0'
-
     // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
     implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '12.4.0.jre11'
 
     // https://mvnrepository.com/artifact/org.testng/testng
     testImplementation group: 'org.testng', name: 'testng', version: '7.7.1'
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.20.0'
+
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.2'
 
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
-    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.2'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.4.0'
 
     // https://mvnrepository.com/artifact/com.github.mwiede/jsch
     implementation group: 'com.github.mwiede', name: 'jsch', version: '0.2.16'
 
+    // https://mvnrepository.com/artifact/io.xlate/staedi
+    implementation group: 'io.xlate', name: 'staedi', version: '1.24.0'
+
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20240303'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 
 }
 

@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,8 +40,8 @@ public class TellUsAboutYourselfPage {
     WebElement rdobtnApplyingNo;
 
     @FindBy(id = "ssn")
-    WebElement txtSSN;
-    @FindBy(id = "continueButton")
+    WebElement ssn;
+    @FindBy(css = "#addMember #continueButton")
     WebElement btnSaveAndContinue;
 
     public void userSexQuestion(String Sex) {
@@ -73,6 +73,18 @@ public class TellUsAboutYourselfPage {
         }
     }
 
-    public void saveAndContinue(){btnSaveAndContinue.click();}
+    public void saveAndContinue(){
+        basicActions.waitForElementToBePresent(btnSaveAndContinue, 20);
+        btnSaveAndContinue.click();
+    }
+
+    public void iUpdateSSN(){
+        basicActions.waitForElementToBePresent(ssn, 20);
+        ssn.clear();
+        String newSsn = "123456789";
+        ssn.sendKeys(newSsn);
+        SharedData.getPrimaryMember().setSsn(newSsn);
+        System.out.println("ssn updated");
+    }
 
 }

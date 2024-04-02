@@ -68,6 +68,20 @@ public class HeaderAndFooterPage {
     WebElement signOutLinkNonElmo;
 
     // =========FOOTER============== //
+
+    //Admin Portal Footer Links
+    @FindBy(linkText = "Privacy Policy")
+    WebElement APprivacyPolicyLink;
+
+    @FindBy(linkText = "Terms of Use")
+    WebElement APtermsOfUseLink;
+
+    @FindBy(linkText = "Contact Us")
+    WebElement APcontactUsLink;
+
+    @FindBy(css = "div[class='copyright'] span")
+    WebElement APcopyRightText;
+
     @FindBy(id = "privacyPolicyLink")
     WebElement privacyPolicyLink;
 
@@ -417,6 +431,9 @@ public class HeaderAndFooterPage {
             case "Footer":
                 verifyTextInExchFooter();
                 break;
+            case "Admin portal Footer": //This is Admin portal Footer - displaying for all admin portal pages except admin login page - Admin login page use standard one so didnt add specific one for that.
+                verifyTextAPFooter(); /// this method name used as we are using it specific to admin portal text validation.
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
         }
@@ -463,15 +480,31 @@ public class HeaderAndFooterPage {
 
 
     // =========FOOTER============== //
-    public void clickPrivacyPolicyLink() {
-        basicActions.waitForElementToBeClickable(privacyPolicyLink, 15);
-        basicActions.scrollToElement(privacyPolicyLink);
-        privacyPolicyLink.click();
+
+    public void clickPrivacyPolicyLink(String appType) {
+        switch (appType) {
+            case "Admin Portal":
+                basicActions.waitForElementToBeClickable(APprivacyPolicyLink, 20);
+                APprivacyPolicyLink.click();
+                break;
+            case "Individual Portal":
+                basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
+                privacyPolicyLink.click();
+                break;
+        }
     }
 
-    public void clickTermsOfUseLink() {
-        basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
-        termsOfUseLink.click();
+    public void clickTermsOfUseLink(String appType) {
+        switch (appType) {
+            case "Admin Portal":
+                basicActions.waitForElementToBeClickable(APtermsOfUseLink, 20);
+                APtermsOfUseLink.click();
+                break;
+            case "Individual Portal":
+                basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
+                termsOfUseLink.click();
+                break;
+        }
     }
 
     public void clickContactUsLink(String appType) {
@@ -483,6 +516,10 @@ public class HeaderAndFooterPage {
             case "Exch":
                 basicActions.waitForElementToBeClickable(contactUsLinkExch, 10);
                 contactUsLinkExch.click();
+                break;
+            case "Admin Portal":
+                basicActions.waitForElementToBeClickable(APcontactUsLink, 10);
+                APcontactUsLink.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);
@@ -569,6 +606,15 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
         softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
         softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextAPFooter() {
+        basicActions.waitForElementToBePresent(APprivacyPolicyLink, 10);
+        softAssert.assertEquals(APprivacyPolicyLink.getText(), "Privacy Policy");
+        softAssert.assertEquals(APtermsOfUseLink.getText(), "Terms of Use");
+        softAssert.assertEquals(APcontactUsLink.getText(), "Contact Us");
+        softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
         softAssert.assertAll();
     }
 

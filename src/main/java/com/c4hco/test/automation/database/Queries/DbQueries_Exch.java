@@ -31,18 +31,12 @@ public class DbQueries_Exch {
                 "and eph.current_ind = '1'\n" +
                 "ORDER BY eph.coverage_type ASC";
 
-        //    "--and ep.coverage_type = '1'\n" +
     }
 
     public String ob834Details(){
      return "select * from qa_exch.ob834_detail\n"+
              "where account_id = '"+acctId+"'\n"+
-             "order by date_created DESC";
+             "and current_ind = '1'";
     }
-
-//    public String getFileNameFromOb834Details(){
-//        return "select fileName from qa_exch.ob834_detail od \n" +
-//        "where account_id ='"+acctId+"'";
-//    }
 
 }
