@@ -15,4 +15,10 @@ public class TellUsAboutYourselfPageSteps {
 
     @Then("I click continue on Tell us about yourself page")
     public void clickContinue(){tellUsAboutYourselfPage.saveAndContinue();}
+
+    @Then("I update SSN number to new SSN number")
+    public void updateSSN(){
+        tellUsAboutYourselfPage.iUpdateSSN();
+
+    }
 }
