@@ -554,7 +554,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 1 default groups with different zipcodes
 
   @SLER-209-WIP @ValidateGroupingMembersFamilyOf4
-  Scenario: Validate grouping members: Father+Mother+Child(80134) in group 1, 24 Year Old Child(80424) in group 2.
+  Scenario: A Family of 4 applying for health insurance in different zip codes, Father+Mother+Child(80134) in group 1, 24 Year Old Child(80424) in group 2.
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
