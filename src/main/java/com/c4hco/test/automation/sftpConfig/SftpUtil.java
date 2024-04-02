@@ -28,7 +28,6 @@ import java.util.*;
 
 public class SftpUtil {
     private Session session;
-  //  private String sftpFolderPath;
     SoftAssert softAssert = new SoftAssert();
 
 
