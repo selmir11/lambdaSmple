@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -53,7 +52,7 @@ public class BasicActions {
 
     public String getUrlWithWait(String url, int waitTime) {
         try {
-            new WebDriverWait(this.driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
+            new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
         } catch (TimeoutException ignore) {
             Log.info("The expected URL:" + url + "wasn't there after" + waitTime + "seconds");
             return "";

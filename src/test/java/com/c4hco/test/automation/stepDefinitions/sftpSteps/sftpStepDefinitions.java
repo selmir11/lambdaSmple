@@ -12,11 +12,12 @@ import java.util.Map;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
-    List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
 
     @And("I download the file(s) from sftp server with location {string}")
     public void downloadFiles(String remoteLocation) throws JSchException {
         List<String> ediFileNames = new ArrayList<>();
+        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
+        System.out.println("ob entries from sftp---"+ob834Entries);
 
         for (Ob834DetailsEntity entry : ob834Entries) {
             if (entry.getInsurance_line_code().equals("HLT")) {
@@ -27,6 +28,8 @@ public class sftpStepDefinitions {
             ediFileNames.add(entry.getFilename());
         }
 
+       String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
+        SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
         for (String filename : ediFileNames) {
             sftpUtil.downloadFileWithSftp(remoteLocation, filename);
         }
@@ -35,6 +38,7 @@ public class sftpStepDefinitions {
 
     @And("I validate the ob834 files should have the values")
     public void validateOb834Records(List<Map<String, String>> expectedValues) {
+        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
 
         for (Ob834DetailsEntity entry : ob834Entries) {
             if (entry.getInsurance_line_code().equals("HLT")) {
@@ -44,7 +48,6 @@ public class sftpStepDefinitions {
             }
             sftpUtil.validateOb834Record(expectedValues);
         }
-
 
     }
 

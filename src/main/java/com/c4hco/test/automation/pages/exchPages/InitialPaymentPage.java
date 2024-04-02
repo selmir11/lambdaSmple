@@ -22,8 +22,12 @@ public class InitialPaymentPage {
     @FindBy(id = "SOL-InitialPayment-Continue")
     WebElement continueBtn;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     // TO DO: create a re-usable method for clicking on make payment button for all the plans.
     public void selectMakePaymentButton(){
+        basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementListToBePresent(makePaymentBtn,20);
         makePaymentBtn.get(0).click();
     }
