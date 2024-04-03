@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Ob834DetailsDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
-    private BasicActions basicActions;
+    private final BasicActions  basicActions = new BasicActions();
 
     public List<Ob834DetailsEntity> getOb834DbDetails(String query) {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
@@ -70,6 +70,7 @@ public class Ob834DetailsDbHandler {
         try {
             while (true) {
                 dbDataList = getOb834DbDetails(query);
+                System.out.println("**** EDI STATUS FROM preEdi_details:::"+dbDataList.get(0).getEdi_status());
                 boolean allCompleted = dbDataList.stream().allMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status()));
                 if (allCompleted) {
                     break;
