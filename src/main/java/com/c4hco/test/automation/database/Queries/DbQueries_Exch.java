@@ -25,9 +25,7 @@ public class DbQueries_Exch {
                 "and ep.policy_id = eph.policy_id\n" +
                 "and ep.policy_id = epfh.policy_id\n" +
                 "and eh.account_id = '"+acctId+"'\n" +
-                "and eph.current_ind = '1'\n" +
-                "and eph.coverage_type =''";
-
+                "and eph.current_ind = '1'";
     }
 
     public String ob834Details(){
