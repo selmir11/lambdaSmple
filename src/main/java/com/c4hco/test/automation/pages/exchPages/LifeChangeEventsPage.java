@@ -25,6 +25,7 @@ public class LifeChangeEventsPage {
     @FindBy(css = ".label-checkbox")
     List<WebElement> textLceLable;
 
+//    @FindBy(css = ".form-group .btn-c4primary")
     @FindBy(id = "continueButton")
     WebElement saveAndContinueButton;
 
