@@ -127,11 +127,6 @@ public class BasicActions {
         return true;
     }
 
-    public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
-        String actualPlaceholder = element.getAttribute("placeholder");
-        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
-    }
-
     public void wait(int milliSeconds){
         try {
             Thread.sleep(milliSeconds);

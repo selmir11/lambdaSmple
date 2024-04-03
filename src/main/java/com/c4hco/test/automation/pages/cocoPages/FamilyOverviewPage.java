@@ -25,6 +25,9 @@ public class FamilyOverviewPage {
     @FindBy(id = "familyOverview-SaveAndContinue")
     WebElement continueButton;
 
+    @FindBy(id = "familyOverview-GoBack")
+    WebElement manageWhoHelpsYouButton;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -44,10 +47,41 @@ public class FamilyOverviewPage {
         continueButton.click();
     }
 
+    public void clickManageWhoHelpsYouButton() {
+        basicActions.waitForElementToBeClickable(manageWhoHelpsYouButton, 30);
+        manageWhoHelpsYouButton.click();
+    }
+
     public void validateTotalIncomeEqualsAnnualIncome(){
         basicActions.waitForElementToBePresent(annualIncomeAmount, 30);
         basicActions.waitForElementToBePresent(totalIncomeAmount, 30);
         softAssert.assertEquals(totalIncomeAmount.getText(), annualIncomeAmount.getText());
+        softAssert.assertAll();
+    }
+
+    public void verifyTextManageWhoHelpsYouButton(String language) {
+        basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 10);
+        switch (language) {
+            case "English":
+                verifyTextManageWhoHelpsYouButtonEnglish();
+                break;
+            case "Spanish":
+                verifyTextManageWhoHelpsYouButtonSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyTextManageWhoHelpsYouButtonEnglish(){
+        basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Manage who helps you" );
+        softAssert.assertAll();
+    }
+
+    public void verifyTextManageWhoHelpsYouButtonSpanish(){
+        basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar quién te ayuda");
         softAssert.assertAll();
     }
 }
