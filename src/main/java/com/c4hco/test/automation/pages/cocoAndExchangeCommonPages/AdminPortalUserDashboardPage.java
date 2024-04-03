@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import java.util.List;
 
 public class AdminPortalUserDashboardPage {
 
@@ -14,15 +15,6 @@ public class AdminPortalUserDashboardPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(xpath = "//a[normalize-space()='Manage Plans']")
-    WebElement ManagePlans;
-
-    @FindBy(xpath = "//a[normalize-space()='Manage Account Access']")
-    WebElement ManageAcctAccess;
-
-    @FindBy(xpath = "//a[normalize-space()='Manage Account Details']")
-    WebElement ManageAcctDetails;
-
     @FindBy(css = "a[routerlink='edi-transactions']")
     WebElement viewEDITransactions;
 
@@ -32,28 +24,12 @@ public class AdminPortalUserDashboardPage {
     @FindBy(css = "a[routerlink='activity-report']")
     WebElement viewAccountActivity;
 
-    public void clickManagePlans() {
-        basicActions.waitForElementToBeClickable(ManagePlans, 30);
-        ManagePlans.click();
-        basicActions.switchtoactiveTab();
-
-    }
-
-    public void clickManageAcctAccess() {
-        basicActions.waitForElementToBeClickable(ManageAcctAccess, 20);
-        ManageAcctAccess.click();
-        basicActions.switchtoactiveTab();
-    }
-
-    public void clickManageAcctDetails() {
-        basicActions.waitForElementToBeClickable(ManageAcctDetails, 20);
-        ManageAcctDetails.click();
-        basicActions.switchtoactiveTab();
-    }
-
+    @FindBy(xpath = "//*[contains(text(),'Manage')]")
+    List<WebElement> dashboardButtons;
+//
     public void clickEDITransaction() {
         basicActions.waitForElementToBeClickable(viewEDITransactions, 20);
-        ManageAcctDetails.click();
+        viewEDITransactions.click();
         basicActions.switchtoactiveTab();
     }
 
@@ -69,6 +45,11 @@ public class AdminPortalUserDashboardPage {
         basicActions.switchtoactiveTab();
     }
 
+    public void clickFromDashboardButtons(String DashboardButtons){
+        basicActions.waitForElementListToBePresent(dashboardButtons, 10);
+        dashboardButtons.stream().filter(dashboardButtons -> dashboardButtons.getText().equals(DashboardButtons)).findFirst().ifPresent(WebElement::click);
+        basicActions.switchtoactiveTab();
+    }
 }
 
 

@@ -73,7 +73,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     Then I enter an "accountID" "1108066870" to search user
     Then I click on Search Button
     Then I select the first record from the search results
-    Then I click on Manage plans button
+    Then I click on "Manage Plans" button
     Then I validate "Logo" for Admin Portal
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal
@@ -105,7 +105,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     Then I enter an "accountID" "1108066870" to search user
     Then I click on Search Button
     Then I select the first record from the search results
-    Then I click on Manage Account Access button
+    Then I click on "Manage Account Access" button
     Then I validate "Logo" for Admin Portal
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal
@@ -137,7 +137,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     Then I enter an "accountID" "1108066870" to search user
     Then I click on Search Button
     Then I select the first record from the search results
-    Then I click on Manage Account Details button
+    Then I click on "Manage Account Details" button
     Then I validate "Logo" for Admin Portal
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal

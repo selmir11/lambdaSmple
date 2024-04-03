@@ -7,22 +7,11 @@ import io.cucumber.java.en.Then;
 public class AdminPortalUserDashboardPageSteps {
 
 AdminPortalUserDashboardPage adminPortalUserDashboardPage = new AdminPortalUserDashboardPage(WebDriverManager.getDriver());
-    @Then("I click on Manage plans button")
-    public void iClickOnManagePlansButton() {
-        adminPortalUserDashboardPage.clickManagePlans();
+
+    @Then("I click on {string} button")
+    public void iClickOnButton(String DashboardButtons) {
+        adminPortalUserDashboardPage.clickFromDashboardButtons(DashboardButtons);
     }
-
-    @Then("I click on Manage Account Access button")
-    public void iClickOnManageAccountAccessbutton() {
-        adminPortalUserDashboardPage.clickManageAcctAccess();
-    }
-
-    @Then("I click on Manage Account Details button")
-    public void iClickOnManageAccountDetailsbutton() {
-        adminPortalUserDashboardPage.clickManageAcctDetails();
-    }
-
-
     @Then("I click on view button for EDI Transaction report")
     public void iClickOnViewButtonForEDITransactionReport() {
         adminPortalUserDashboardPage.clickEDITransaction();
@@ -37,5 +26,4 @@ AdminPortalUserDashboardPage adminPortalUserDashboardPage = new AdminPortalUserD
     public void iClickOnViewButtonForAccountActivityReport() {
         adminPortalUserDashboardPage.clickAccountActivity();
     }
-
 }
