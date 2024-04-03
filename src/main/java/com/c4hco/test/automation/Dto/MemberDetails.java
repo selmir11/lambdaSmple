@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.Dto;
 
-import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -30,6 +30,7 @@ public class MemberDetails {
     String dentalPlanStartDate;
     String dentalPlanEndDate;
     String financialStartDate;
+    String financialEndDate;
     String medicalPremiumAmt;
     String dentalPremiumAmt;
     String aptcAmt;
@@ -38,7 +39,7 @@ public class MemberDetails {
     BigDecimal account_id;
     String policyId;
 
-    public Boolean compareWithCombinedQueryData(MultipleTablesEntity multipleTablesEntity) {
+    public Boolean compareWithCombinedQueryData(PolicyTablesEntity multipleTablesEntity) {
         // TO DO:: Add more fields to this
         return String.valueOf(this.account_id).equals(multipleTablesEntity.getAccount_id()) &&
                 this.firstName.equals(multipleTablesEntity.getFirst_name()) &&
