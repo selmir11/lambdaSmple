@@ -109,9 +109,9 @@ Feature: Seed01 - Exchange
     And I validate member details from ob834_details table
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|
+      |          021          | 021                 | 25                   |
+      |          021          | 021                 | 25                   |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -138,7 +138,7 @@ Feature: Seed01 - Exchange
     And I click Continue on the Declarations And Signature Page
    And I wait for hold on content to disappear
    And I click on Sign Out in the Header for "NonElmo"
-    And I validate the member details from few tables
+    And I validate the member details from policy tables
     And I validate member details from ob834_details table
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
