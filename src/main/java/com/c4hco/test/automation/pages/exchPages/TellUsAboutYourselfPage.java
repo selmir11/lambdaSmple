@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -75,7 +76,8 @@ public class TellUsAboutYourselfPage {
 
     public void saveAndContinue(){
         basicActions.waitForElementToBePresent(btnSaveAndContinue, 20);
-        btnSaveAndContinue.click();
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", btnSaveAndContinue);
+        basicActions.waitForElementToDisappear(btnSaveAndContinue, 5);
     }
 
     public void iUpdateSSN(){

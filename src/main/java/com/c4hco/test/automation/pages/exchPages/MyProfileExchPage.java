@@ -27,6 +27,12 @@ public class MyProfileExchPage {
     @FindBy(css = "span.content_line_label")
     List<WebElement>  MyProfileContentline;  ///// Name, Date of Birth, Social security number, Email, Mobile phone, Home phone, Residential address, Username, Password, account number, Preferred language contact, Preferred contact Method
 
+    @FindBy(css = "div.change-password-container")
+    WebElement  PasswordButton;
+
+    @FindBy(css = "span.change-password-msg" )
+    WebElement PasswordMessage;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -115,6 +121,35 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Hacer Cambios");
         softAssert.assertAll();
     }
+
+    public void verifyPasswordTextOnMyProfileExchPage(String language) {
+        switch (language) {
+            case "English":
+                verifyPasswordTextOnMyProfilePageEnglish();
+                break;
+            case "Spanish":
+                verifyPasswordTextOnMyProfilePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyPasswordTextOnMyProfilePageEnglish(){
+        basicActions.waitForElementToBePresent(PasswordMessage,10);
+        softAssert.assertEquals(PasswordMessage.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");;
+        softAssert.assertEquals(PasswordButton.getText(), "Change Password");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyPasswordTextOnMyProfilePageSpanish(){
+        basicActions.waitForElementToBePresent(PasswordMessage,10);
+        softAssert.assertEquals(PasswordMessage.getText(), "Al hacer clic en Cambiar contrase\u00F1a se cerrar\u00E1 su sesi\u00F3n y lo llevar\u00E1 a la p\u00E1gina de Restablecer contrase\u00F1a");
+        softAssert.assertEquals(PasswordButton.getText(), "Cambiar Contrase\u00F1a");
+        softAssert.assertAll();
+    }
+
 
 }
 

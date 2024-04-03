@@ -316,10 +316,7 @@ public class SftpUtil {
             validateDentalRecord(actualDentalFileData, dentalRecord);
         }
 
-        System.out.println("===ob834Record==="+ob834Records);
-
         // validate the common data for both the records below - TO DO
-
         for(Ob834FileDetails record: ob834Records){
         softAssert.assertEquals(subscriber.getFirstName(), record.getFirstName(), "First name did not match" );
         softAssert.assertEquals(subscriber.getLastName(), record.getLastName(), "First name did not match" );
