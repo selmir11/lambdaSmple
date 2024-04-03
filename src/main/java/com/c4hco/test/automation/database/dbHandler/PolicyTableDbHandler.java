@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.database.dbHandler;
 
-import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 
 import java.lang.reflect.Field;
@@ -12,13 +12,13 @@ import java.util.List;
 public class PolicyTableDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
 
-    public List<MultipleTablesEntity> getPolicyTableDetails(String query)  {
-        List<MultipleTablesEntity> dbDataList = new ArrayList<>();
+    public List<PolicyTablesEntity> getPolicyTableDetails(String query)  {
+        List<PolicyTablesEntity> dbDataList = new ArrayList<>();
         ResultSet rs;
         try {
             rs = executor.executeQuery(query);
             while (rs.next()) {
-                MultipleTablesEntity policyTableEntity = new MultipleTablesEntity();
+                PolicyTablesEntity policyTableEntity = new PolicyTablesEntity();
 
                 /* ---- Set all the values from db ---- */
                 for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
@@ -27,7 +27,7 @@ public class PolicyTableDbHandler {
 
                     // Set the field value using reflection
                     try {
-                        Field field = MultipleTablesEntity.class.getDeclaredField(columnName);
+                        Field field = PolicyTablesEntity.class.getDeclaredField(columnName);
                         field.setAccessible(true);
                         if (columnValue != null) {
                             // Perform type conversion based on field type

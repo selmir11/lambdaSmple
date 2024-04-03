@@ -11,13 +11,13 @@ private final DbValidations dbValidations = new DbValidations();
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate the member details from few tables")
-   public void isMemberInPolicyTable(){
-      dbValidations.validateDataFromMultipleTables();
+   @And("I validate the member details from policy tables")
+   public void validateFromPolicyTables(){
+      dbValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")
-   public void isMemberInPreEdiTable(){
+   public void validateOb834Details(){
       dbValidations.validateOb834FromDb();
    }
 
