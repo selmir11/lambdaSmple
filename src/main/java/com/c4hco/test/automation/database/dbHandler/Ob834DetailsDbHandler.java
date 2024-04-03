@@ -66,17 +66,14 @@ public class Ob834DetailsDbHandler {
 
     public List<Ob834DetailsEntity> getOb834DetalsAfterCompleted(String query) {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
-
+        int iterationCount = 0;
         try {
-            while (true) {
-                dbDataList = getOb834DbDetails(query);
-                System.out.println("**** EDI STATUS FROM preEdi_details:::"+dbDataList.get(0).getEdi_status());
-                boolean allCompleted = dbDataList.stream().allMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status()));
-                if (allCompleted) {
-                    break;
-                }
-
+            while ( dbDataList.stream().noneMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status())) || iterationCount<25) {
                 basicActions.wait(10000);
+                dbDataList = getOb834DbDetails(query);
+                iterationCount++;
+                System.out.println("**** EDI STATUS FROM preEdi_details:::"+dbDataList.get(0).getEdi_status());
+
             }
         } catch (Exception e) {
             e.printStackTrace();
