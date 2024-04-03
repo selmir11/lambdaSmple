@@ -237,8 +237,15 @@ public class BasicSteps {
                 break;
             case "Initial Payment" :
                 pageUrl = "PaymentPortal/initialPayment";
+                break;
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
+                break;
+            case "Congratulations - What's Next?":
+                pageUrl = "whatsnext";
+                break;
+            case "Citizenship and Immigration Status":
+                pageUrl = "nes/lawfulPresence";
                 break;
             default:
                 System.out.println("undefined page ");
@@ -313,6 +320,9 @@ public class BasicSteps {
                 break;
             case "On Behalf Of(OBO)":
                 pageUrl = "/coco/WelcomePortal/welcome";
+                break;
+            case  "Good News":
+                pageUrl = "nes/applyMA";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);

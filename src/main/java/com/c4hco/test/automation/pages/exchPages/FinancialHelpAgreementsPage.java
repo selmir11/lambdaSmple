@@ -26,6 +26,13 @@ public class FinancialHelpAgreementsPage {
     @FindBy(id = "SOL-FinHelpAgreements-Signature")
     WebElement signatureInput;
 
+    @FindBy(id  = "SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
+    WebElement signatureFinHelpInput;
+
+    public void enterFinHelpSignature(){
+        basicActions.waitForElementToBePresent(signatureFinHelpInput, 10);
+        signatureFinHelpInput.sendKeys((SharedData.getPrimaryMember().getSignature()));
+    }
     public void enterSignature(){
         basicActions.waitForElementToBeClickable(signatureInput, 10);
         signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());

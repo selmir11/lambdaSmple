@@ -17,4 +17,10 @@ public class PlanSummaryMedicalDentalPageSteps {
        planSummaryMedicalDentalPage.verifyTextPlanSummaryPage();
     }
 
+
+    @And("I validate the APTC Credit on the Summary page is {string}")
+    public void verifyAPTCPlanSummaryAmt (String aPTCPlanSummaryAmt ) {
+        planSummaryMedicalDentalPage.verifyAPTCPlanSummaryAmt(aPTCPlanSummaryAmt); }
+
+
 }

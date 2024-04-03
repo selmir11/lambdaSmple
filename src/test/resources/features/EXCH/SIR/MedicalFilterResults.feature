@@ -20,7 +20,7 @@ Feature: Medical Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -73,7 +73,7 @@ Feature: Medical Plan Verification test
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I validate I am on the "My Account Overview" page
+    Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -81,7 +81,7 @@ Feature: Medical Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -139,7 +139,7 @@ Feature: Medical Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -191,7 +191,7 @@ Feature: Medical Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page

@@ -59,6 +59,13 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
 
+    @FindBy(id = "PlanSummary-TotalAmountYouSave")
+    WebElement aPTCPlanSummary;
+
+    public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt){
+        basicActions.waitForElementToBePresent(aPTCPlanSummary,10);
+        softAssert.assertEquals(aPTCPlanSummary.getText(),aPTCPlanSummaryAmt);
+    }
     public void verifyTextPlanSummaryPage(){
         basicActions.waitForElementListToBePresent(planSummaryHeading,10);
 

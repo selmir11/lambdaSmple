@@ -18,7 +18,7 @@ Feature: Dental Plans page tests
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -48,9 +48,9 @@ Feature: Dental Plans page tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
+    Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click on back button on dental Plan Results
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
     Then I click continue on medical plan results page

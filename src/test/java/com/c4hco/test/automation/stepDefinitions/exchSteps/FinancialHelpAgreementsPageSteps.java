@@ -14,7 +14,7 @@ public class FinancialHelpAgreementsPageSteps {
     @Then("I click continue on the Financial Help Agreements page")
     public void  setContinueButton() { financialHelpAgreementsPage.setContinueButton();}
 
-    @And("I fill out the Financial Help Agreements Signature field")
-    public void enterSignature() { financialHelpAgreementsPage.enterSignature();
+    @And("I enter householder signature on the the Financial Help Agreements page")
+    public void enterFinHelpSignature() { financialHelpAgreementsPage.enterFinHelpSignature();
     }
 }

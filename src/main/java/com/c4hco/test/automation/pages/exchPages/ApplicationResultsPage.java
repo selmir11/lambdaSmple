@@ -65,6 +65,12 @@ public class ApplicationResultsPage {
         basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath(aptcLocator)),15);
     }
 
+    public void validateAPTCNotAppearing(){
+      softAssert.assertFalse(basicActions.waitForElementToBePresent(lblAPTCValue,10));
+      softAssert.assertAll();
+
+    }
+
     public void changeTaxHouseHold(int taxHH){
         String taxHouseHold = "Tax Household #"+taxHH+" benefits";
 
