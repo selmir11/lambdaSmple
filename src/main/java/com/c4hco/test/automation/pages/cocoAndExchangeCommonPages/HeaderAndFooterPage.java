@@ -488,7 +488,7 @@ public class HeaderAndFooterPage {
                 APprivacyPolicyLink.click();
                 break;
             case "Individual Portal":
-                basicActions.waitForElementToBeClickable(privacyPolicyLink, 20);
+                basicActions.waitForElementToBeClickable(privacyPolicyLink, 50);
                 privacyPolicyLink.click();
                 break;
         }

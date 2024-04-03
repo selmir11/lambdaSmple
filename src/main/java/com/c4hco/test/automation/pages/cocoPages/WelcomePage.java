@@ -165,6 +165,16 @@ public class WelcomePage {
         case "Spanish":
             verifyTextOnWelcomePageNoPolicySpanish();
             break;
+            case "Header English":
+                basicActions.waitForElementToBePresent(welcomeToConnectText,10);
+                softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome back, "+ SharedData.getPrimaryMember().getFirstName() +"!");
+                softAssert.assertAll();
+                break;
+            case "Header Spanish":
+                basicActions.waitForElementToBePresent(welcomeToConnectText,10);
+                softAssert.assertEquals(welcomeToConnectText.getText(), "\u00A1Bienvenido/a de nuevo, "+ SharedData.getPrimaryMember().getFirstName() +"!");
+                softAssert.assertAll();
+                break;
         default:
             throw new IllegalArgumentException("Invalid option: " + language);
         }
