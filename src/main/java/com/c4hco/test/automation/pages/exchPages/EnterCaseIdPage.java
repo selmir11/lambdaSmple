@@ -49,9 +49,9 @@ public class EnterCaseIdPage {
         softAssert.assertEquals(bodyText.get(1).getText(), "Case ID", "Text not found: Case ID");
         softAssert.assertEquals(bodyText.get(2).getText(), "Zip Code", "Text not found: Zip Code");
         softAssert.assertEquals(bodyText.get(3).getText(), "Last Name", "Text not found: Last Name");
-        basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
-        basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderText, "XXXXX");
-        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderText, "");
+        softAssert.assertEquals(caseIDPlaceHolderText.getAttribute("placeholder"), "1BXXXXXX", "Case ID placeholder text mismatch");
+        softAssert.assertEquals(zipCodePlaceHolderText.getAttribute("placeholder"), "XXXXX", "Zip Code placeholder text mismatch");
+        softAssert.assertEquals(lastNamePlaceHolderText.getAttribute("placeholder"), "", "Last Name placeholder text mismatch");
         softAssert.assertAll();
     }
 
@@ -61,9 +61,9 @@ public class EnterCaseIdPage {
         softAssert.assertEquals(bodyText.get(1).getText(), "Identificaci\u00f3n del caso", "Text not found: Identificaci\u00f3n del caso");
         softAssert.assertEquals(bodyText.get(2).getText(), "C\u00f3digo postal", "Text not found: C\u00f3digo postal");
         softAssert.assertEquals(bodyText.get(3).getText(), "Apellido(s)", "Text not found: Apellido(s)");
-        basicActions.assertPlaceholderTextMatched(caseIDPlaceHolderText, "1BXXXXXX");
-        basicActions.assertPlaceholderTextMatched(zipCodePlaceHolderText, "XXXXX");
-        basicActions.assertPlaceholderTextMatched(lastNamePlaceHolderText, "");
+        softAssert.assertEquals(caseIDPlaceHolderText.getAttribute("placeholder"), "1BXXXXXX", "Case ID placeholder text mismatch");
+        softAssert.assertEquals(zipCodePlaceHolderText.getAttribute("placeholder"), "XXXXX", "Zip Code placeholder text mismatch");
+        softAssert.assertEquals(lastNamePlaceHolderText.getAttribute("placeholder"), "", "Last Name placeholder text mismatch");
         softAssert.assertAll();
     }
 
