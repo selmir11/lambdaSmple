@@ -13,18 +13,20 @@ import org.testng.asserts.SoftAssert;
 public class MyDocumentsPage {
 
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-        @FindBy(xpath = "//h2[@class='header-1 my-documents']")
+
+    @FindBy(css = ".primary-header-container > h2")
     WebElement myDocumentsTitle;
 
-    @FindBy(xpath = "//div[@class='documents-notices-title header-2']")
+    @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
 
-    @FindBy(xpath = "//p[contains(text(),'You do not have any Documents or Letters at this t')]")
+    @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -39,18 +41,20 @@ public class MyDocumentsPage {
 
     public void verifyPageText(String language)
         {
-        SoftAssert softAssert = new SoftAssert();
         switch (language) {
             case "English":
+                basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
                 softAssert.assertEquals(myDocumentsTitle.getText(),"My Documents and Letters");
-                softAssert.assertAll();
                 softAssert.assertEquals(myDocumentsSubTitle.getText(),"Past Documents and Letters");
                 softAssert.assertEquals(documentsInfoMessage.getText(),"You do not have any Documents or Letters at this time");
+                softAssert.assertAll();
                 break;
             case "Spanish":
+                basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
                 softAssert.assertEquals(myDocumentsTitle.getText(),"Mis Documentos y Cartas");
                 softAssert.assertEquals(myDocumentsSubTitle.getText(),"Documentos y Cartas Anteriores");
                 softAssert.assertEquals(documentsInfoMessage.getText(),"No tiene documentos ni cartas en este momento");
+                softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
