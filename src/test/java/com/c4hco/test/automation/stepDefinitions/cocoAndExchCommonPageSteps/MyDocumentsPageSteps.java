@@ -1,7 +1,8 @@
-package com.c4hco.test.automation.stepDefinitions.cocoSteps;
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class MyDocumentsPageSteps {
@@ -15,5 +16,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickLinkMyDocsOnAccountOverviewPage(){
         myDocumentsPage.ClickLinkMyDocsWelcomePage();
     }
+
+    @And("I verify the page text in {string} on the My Documents Page")
+    public void iVerifyPageText(String language){myDocumentsPage.verifyPageText(language);}
 
 }
