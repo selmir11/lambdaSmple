@@ -88,9 +88,9 @@ public class QlceConfirmationPage {
 
     public String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
-        Date date = new Date();
+        Date date = new Date();  Date  newdate=new Date(date.getTime() - 86400000);
         // Now format the date
-        return dateFormat.format(date);
+        return dateFormat.format(newdate);
     }
 
     public void selectQLCE(String QLCEType) {

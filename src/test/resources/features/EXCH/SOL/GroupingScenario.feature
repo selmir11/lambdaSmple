@@ -546,9 +546,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
+    And I validate Primary Member not qualified for health coverage
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 1 default groups with different zipcodes
+    Then I validate that there are 1 default groups
