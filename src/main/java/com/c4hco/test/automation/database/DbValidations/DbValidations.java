@@ -52,6 +52,12 @@ public class DbValidations {
       SharedData.setOb834DetailsEntities(ob834DetailsEntities);
 
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
+      if(ob834Entity.getInsurance_line_code().equals("HLT")){
+          // validate medical records
+        } else {
+         // validate dental records
+          softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
+        }
 
         // TO DO:: Add More Assertions - UI vs DB
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
