@@ -23,6 +23,10 @@ public class MyProfilePageSteps {
         myProfileExchPage.clickSaveButton();
     }
 
+    @And("I click the Change Password Button")
+    public void iclickChangePasswordButton() {myProfileExchPage.clickChangePasswordButton();
+    }
+
 
 ///////////////////////////////////Validation Steps/////////////////
 
