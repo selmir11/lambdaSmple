@@ -16,7 +16,6 @@ import java.util.*;
 
 public class BasicActions {
     private WebDriver driver;
-    WebDriverManager basicActions;
 
     public BasicActions(WebDriver webDriver) {
         this.driver = webDriver;
@@ -176,20 +175,6 @@ public class BasicActions {
         return members;
     }
 
-//    public void switchtoactiveTab() {
-//        String parent =
-////                basicActions.getDriver().getWindowHandle();
-////        Set<String> s = basicActions.getDriver().getWindowHandles();
-////        Iterator<String> I1 = s.iterator();
-////        while (I1.hasNext()) {
-////            String child_window = I1.next();
-////            if (!parent.equals(child_window)) {
-////                basicActions.getDriver().switchTo().window(child_window);
-//
-//                tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
-//        basicActions.getDriver().switchTo().window(tabs.get(1));
-//
-//    }
 
 //    public  void switchToWindow(String targetTitle) {
 //        String origin = getDriver().getWindowHandle();
@@ -215,6 +200,5 @@ public class BasicActions {
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
     }
-
 }
 
