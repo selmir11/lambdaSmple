@@ -30,9 +30,7 @@ public class SftpUtil {
     private Session session;
     SoftAssert softAssert = new SoftAssert();
 
-
     public SftpUtil(){
-
     }
 
     public int setSftpPort(){
@@ -57,12 +55,14 @@ public class SftpUtil {
     public void connectToSftp(){
         String sftpUsername = ApplicationProperties.getInstance().getProperty("sftpUsername");
         String privateKeyPath = ApplicationProperties.getInstance().getProperty("sftpPrivateKeyPath");
+        String passPhrase = ApplicationProperties.getInstance().getProperty("sftpPassphrase");
+
         int sftpPort = 10021;
                 // setSftpPort();
 
         try{
             JSch jsch = new JSch();
-            jsch.addIdentity(privateKeyPath);
+            jsch.addIdentity(privateKeyPath, passPhrase);
                 System.out.println("sftpusername::"+sftpUsername);
             System.out.println("sftpPort::"+sftpPort
             );
