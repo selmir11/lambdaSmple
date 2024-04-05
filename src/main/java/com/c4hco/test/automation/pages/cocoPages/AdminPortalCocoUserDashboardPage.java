@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminPortalCocoUserDashboardPage {
@@ -28,36 +27,28 @@ public class AdminPortalCocoUserDashboardPage {
     @FindBy(xpath = "//*[contains(text(),'Manage')]")
     List<WebElement> dashboardButtons;
 
-    private ArrayList<String> tabs;
-
-    //
     public void clickEDITransaction() {
         basicActions.waitForElementToBeClickable(viewEDITransactions, 20);
         viewEDITransactions.click();
-        switchtoactiveTab();
+        basicActions.switchtoactiveTab();
     }
 
     public void clickEDIDetails() {
         basicActions.waitForElementToBeClickable(viewEDIDetails, 20);
         viewEDIDetails.click();
-        switchtoactiveTab();
+        basicActions.switchtoactiveTab();
     }
 
     public void clickAccountActivity() {
         basicActions.waitForElementToBeClickable(viewAccountActivity, 20);
         viewAccountActivity.click();
-        switchtoactiveTab();
+        basicActions.switchtoactiveTab();
     }
 
     public void clickFromDashboardButtons(String DashboardButtons) {
         basicActions.waitForElementListToBePresent(dashboardButtons, 10);
         dashboardButtons.stream().filter(dashboardButtons -> dashboardButtons.getText().equals(DashboardButtons)).findFirst().ifPresent(WebElement::click);
-        switchtoactiveTab();
-    }
-
-    public void switchtoactiveTab() {
-        tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
-        basicActions.getDriver().switchTo().window(tabs.get(1));
+        basicActions.switchtoactiveTab();
     }
 
 }

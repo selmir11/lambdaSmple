@@ -17,11 +17,13 @@ import java.util.*;
 public class BasicActions {
     private WebDriver driver;
 
+    private ArrayList<String> tabs;
+
     public BasicActions(WebDriver webDriver) {
         this.driver = webDriver;
     }
 
-    public BasicActions(){
+    public BasicActions() {
 
     }
 
@@ -57,16 +59,16 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-    public void selectValueFromDropdown(WebElement dropdownElement, List<WebElement> dropdownOptionsElement, String text){
+    public void selectValueFromDropdown(WebElement dropdownElement, List<WebElement> dropdownOptionsElement, String text) {
         dropdownElement.click();
-        dropdownOptionsElement.stream().filter(e-> e.getText().equalsIgnoreCase(text)).forEach(WebElement::click);
+        dropdownOptionsElement.stream().filter(e -> e.getText().equalsIgnoreCase(text)).forEach(WebElement::click);
     }
 
-    public Boolean waitForElementToBeClickable(WebElement webElement, int waitTime){
+    public Boolean waitForElementToBeClickable(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is not clickable");
             Assert.fail("Element is not clickable");
             return false;
@@ -74,33 +76,33 @@ public class BasicActions {
         return true;
     }
 
-    public Boolean waitForElementToDisappear(WebElement webElement, int waitTime){
+    public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOf(webElement));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is still visible after the wait");
             return false;
         }
         return true;
     }
 
-    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime){
+    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfAllElements(webElementList));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is still visible after the wait");
             return false;
         }
         return true;
     }
 
-    public Boolean waitForElementToBePresent(WebElement webElement, int waitTime){
+    public Boolean waitForElementToBePresent(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is not present");
             Assert.fail("Element waiting for is not displayed");
             return false;
@@ -112,11 +114,11 @@ public class BasicActions {
         getDriver().navigate().refresh();
     }
 
-    public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){
+    public Boolean waitForElementListToBePresent(List<WebElement> webElementList, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is not present");
             Assert.fail("Element waiting for is not displayed");
             return false;
@@ -124,10 +126,10 @@ public class BasicActions {
         return true;
     }
 
-    public void wait(int milliSeconds){
+    public void wait(int milliSeconds) {
         try {
             Thread.sleep(milliSeconds);
-        } catch(Exception e){
+        } catch (Exception e) {
             // Exception is supressed because it is just wait statement
         }
     }
@@ -143,7 +145,7 @@ public class BasicActions {
         element.click();
     }
 
-    public void waitForPresence(WebElement webElement){
+    public void waitForPresence(WebElement webElement) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(100))
@@ -162,7 +164,8 @@ public class BasicActions {
         }
     }
 
-    public  void scrollToElement(WebElement element) {
+
+    public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
@@ -173,6 +176,11 @@ public class BasicActions {
             members.add(primaryMem);
         }
         return members;
+    }
+
+    public void switchtoactiveTab() {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(1));
     }
 
 
