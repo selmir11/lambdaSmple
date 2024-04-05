@@ -120,9 +120,15 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
+
+    Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
+
+    Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
 
 
@@ -145,6 +151,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click edit basic information icon for member 0
+
+    Then I validate I am on the "Application Summary" page
+    And I select the EditUpdate link for employer 0
+
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page

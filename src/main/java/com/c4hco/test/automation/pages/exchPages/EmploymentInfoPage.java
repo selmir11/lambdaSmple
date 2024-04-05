@@ -108,6 +108,14 @@ public class EmploymentInfoPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
+    WebElement EditUpdateLink;
+
+    public void clickEditUpdateLink(int employer){
+    basicActions.waitForElementToBeClickable(EditUpdateLink, 10);
+        EditUpdateLink.get(employer).click();
+    }
+
     public void isUserEmployed(String employmentOption) {
         basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
 

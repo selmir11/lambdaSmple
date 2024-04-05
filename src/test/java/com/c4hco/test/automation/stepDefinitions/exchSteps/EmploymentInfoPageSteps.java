@@ -56,4 +56,8 @@ public class EmploymentInfoPageSteps {
 
     @Then("I validate Income Change verbiage in {string}")
     public void iValidateIncomeChangeQsHelpVerbiage(String languageSelection){employmentInfoPage.validateIncomeChangeHelpVerbiage(languageSelection);};
+
+    @Then("I select the EditUpdate link for employer {int}")
+    public void iClickEditUpdateLink(int index){employmentInfoPage.clickEditUpdateLink(index);}
+
 }

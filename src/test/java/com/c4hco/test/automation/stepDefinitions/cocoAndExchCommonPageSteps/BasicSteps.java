@@ -247,6 +247,9 @@ public class BasicSteps {
             case "Citizenship and Immigration Status":
                 pageUrl = "nes/lawfulPresence";
                 break;
+            case "Application Summary":
+             pageUrl = "selectMember";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
