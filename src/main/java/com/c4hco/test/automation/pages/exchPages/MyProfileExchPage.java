@@ -55,23 +55,28 @@ public class MyProfileExchPage {
     public void clickSaveButton() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 15);
         MyProfileButtonExch.get(1).click();
+
+    }
+    public void clickChangePasswordButton() {
+        basicActions.waitForElementToBeClickable(PasswordButton, 15);
+            PasswordButton.click();
     }
 
 
 //////Validation Method/////////////////////////////////////////////
 
-    public void verifyTextOnMyProfileExchPage(String language) {
-        switch (language) {
-            case "English":
-                verifyTextOnMyProfilePageEnglish();
-                break;
-            case "Spanish":
-                verifyTextOnMyProfilePageSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
+    public void verifyTextOnMyProfileExchPage(String language){
+            switch (language) {
+                case "English":
+                    verifyTextOnMyProfilePageEnglish();
+                    break;
+                case "Spanish":
+                    verifyTextOnMyProfilePageSpanish();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + language);
+            }
         }
-    }
 
 
     public void verifyTextOnMyProfilePageEnglish(){
@@ -138,6 +143,9 @@ public class MyProfileExchPage {
     public void verifyPasswordTextOnMyProfilePageEnglish(){
         basicActions.waitForElementToBePresent(PasswordMessage,10);
         softAssert.assertEquals(PasswordMessage.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");;
+        softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
         softAssert.assertEquals(PasswordButton.getText(), "Change Password");
         softAssert.assertAll();
     }
