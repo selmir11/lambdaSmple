@@ -70,6 +70,9 @@ public class BasicSteps {
             case "My Profile":
                 pageUrl = "UserProfileAdmin/profile";
                 break;
+            case "Forgot my password":
+                pageUrl = "login-portal/forgotPassword";
+                break;
             case "My Documents":
                 pageUrl = "MyDocuments/home";
                 break;
