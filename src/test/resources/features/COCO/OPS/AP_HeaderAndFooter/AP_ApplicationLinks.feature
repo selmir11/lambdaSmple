@@ -33,7 +33,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I click "Okta Console" from application links dropdown
     And I validate I am on the "Okta Console" page and close tab
 
-  @SLCR-34
+
   Scenario: Verify Header and Footer for Dashboard page and links for COCO Indiviual User
     Given I open the login page on the "admin" portal
     And I refresh the page

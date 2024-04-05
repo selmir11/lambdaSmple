@@ -12,10 +12,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
 public class BasicActions {
     private WebDriver driver;
@@ -170,19 +167,6 @@ public class BasicActions {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void switchtoactiveTab() {
-        String parent =
-                basicActions.getDriver().getWindowHandle();
-        Set<String> s = basicActions.getDriver().getWindowHandles();
-        Iterator<String> I1 = s.iterator();
-        while (I1.hasNext()) {
-            String child_window = I1.next();
-            if (!parent.equals(child_window)) {
-                basicActions.getDriver().switchTo().window(child_window);
-            }
-        }
-    }
-
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
@@ -191,6 +175,21 @@ public class BasicActions {
         }
         return members;
     }
+
+//    public void switchtoactiveTab() {
+//        String parent =
+////                basicActions.getDriver().getWindowHandle();
+////        Set<String> s = basicActions.getDriver().getWindowHandles();
+////        Iterator<String> I1 = s.iterator();
+////        while (I1.hasNext()) {
+////            String child_window = I1.next();
+////            if (!parent.equals(child_window)) {
+////                basicActions.getDriver().switchTo().window(child_window);
+//
+//                tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
+//        basicActions.getDriver().switchTo().window(tabs.get(1));
+//
+//    }
 
 //    public  void switchToWindow(String targetTitle) {
 //        String origin = getDriver().getWindowHandle();

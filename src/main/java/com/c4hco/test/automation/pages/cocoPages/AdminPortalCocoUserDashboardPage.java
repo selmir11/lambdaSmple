@@ -1,16 +1,17 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdminPortalUserDashboardPage {
+public class AdminPortalCocoUserDashboardPage {
 
     public BasicActions basicActions;
 
-    public AdminPortalUserDashboardPage(WebDriver webDriver) {
+    public AdminPortalCocoUserDashboardPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -26,31 +27,43 @@ public class AdminPortalUserDashboardPage {
 
     @FindBy(xpath = "//*[contains(text(),'Manage')]")
     List<WebElement> dashboardButtons;
-//
+
+    private ArrayList<String> tabs;
+
+    //
     public void clickEDITransaction() {
         basicActions.waitForElementToBeClickable(viewEDITransactions, 20);
         viewEDITransactions.click();
-        basicActions.switchtoactiveTab();
+        switchtoactiveTab();
     }
 
     public void clickEDIDetails() {
         basicActions.waitForElementToBeClickable(viewEDIDetails, 20);
         viewEDIDetails.click();
-        basicActions.switchtoactiveTab();
+        switchtoactiveTab();
     }
 
     public void clickAccountActivity() {
         basicActions.waitForElementToBeClickable(viewAccountActivity, 20);
         viewAccountActivity.click();
-        basicActions.switchtoactiveTab();
+        switchtoactiveTab();
     }
 
-    public void clickFromDashboardButtons(String DashboardButtons){
+    public void clickFromDashboardButtons(String DashboardButtons) {
         basicActions.waitForElementListToBePresent(dashboardButtons, 10);
         dashboardButtons.stream().filter(dashboardButtons -> dashboardButtons.getText().equals(DashboardButtons)).findFirst().ifPresent(WebElement::click);
-        basicActions.switchtoactiveTab();
+        switchtoactiveTab();
     }
+
+    public void switchtoactiveTab() {
+        tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
+        basicActions.getDriver().switchTo().window(tabs.get(1));
+    }
+
 }
+
+
+
 
 
 
