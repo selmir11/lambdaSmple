@@ -1,11 +1,11 @@
-Feature: Payment Selection page tests
+Feature: Cancel Plans Spanish Translation
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-30 @paymentPage
-  Scenario: Validate text on Payment by check page
+  @SLER-232-WIP @CancelPlanPageSpanish
+  Scenario: Validate Spanish text on Cancel Plan Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -48,12 +48,23 @@ Feature: Payment Selection page tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-    And I select the first medical plan
+    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
-    Then I select first dental plan
+    And I select "Anthem Dental Family Value"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
     Then I select make payment button to pay the premium
-    And I Verify the text on payment selection page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+
+    #And I click on Sign Out in the Header for "Elmo"
