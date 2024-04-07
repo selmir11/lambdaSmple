@@ -95,7 +95,11 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "My Policies" page
 
     And I validate medical plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
     And I validate dental plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
     And I click View Plan History link from medical plan card
     And I validate medical plan details from plan history
     And I click on to Back to Current Plan Details button
