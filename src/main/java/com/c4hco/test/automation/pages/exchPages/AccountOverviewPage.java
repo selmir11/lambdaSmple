@@ -26,6 +26,9 @@ public class AccountOverviewPage {
     @FindBy(id = "submit-curr-yr-6")
     WebElement makeChangesButton;
 
+    @FindBy(css = ".c4PageHeader-large")
+    WebElement header;
+
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -41,6 +44,7 @@ public class AccountOverviewPage {
     }
 
     public void clickApplyForCurrentYear(){
+        basicActions.waitForElementToBePresent(header, 10);
         basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,10);
         btnApplyForCurrentYear.click();
     }
