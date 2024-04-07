@@ -33,14 +33,14 @@ public class AccountOverviewPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
-    public void clickuserNameExchLink() {
-        basicActions.waitForElementToBeClickable(userNameExchLink, 15);
-        userNameExchLink.click();
-    }
-
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+    public void clickuserNameExchLink() {
+        basicActions.waitForElementToBeClickable(userNameExchLink, 15);
+        userNameExchLink.click();
     }
 
     public void clickApplyForCurrentYear(){
@@ -70,6 +70,7 @@ public class AccountOverviewPage {
     }
 
     public void iClickOnMakeChanges(){
+        basicActions.waitForElementToBePresent(header, 10);
         basicActions.click(makeChangesButton);
     }
 
