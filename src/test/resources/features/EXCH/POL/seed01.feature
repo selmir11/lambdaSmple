@@ -107,7 +107,7 @@ Feature: Seed01 - Exchange
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
-  @RT-2246 @test
+  @RT-2246 @test1
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
