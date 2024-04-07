@@ -95,7 +95,11 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "My Policies" page
 
     And I validate medical plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
     And I validate dental plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
     And I click View Plan History link from medical plan card
     And I validate medical plan details from plan history
     And I click on to Back to Current Plan Details button
@@ -103,7 +107,7 @@ Feature: Seed01 - Exchange
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
-  @RT-2246 @test1
+  @RT-2246 @test
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     And I validate the member details from policy tables
     And I validate member details from ob834_details table

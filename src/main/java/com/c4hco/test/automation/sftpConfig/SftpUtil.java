@@ -323,7 +323,7 @@ public class SftpUtil {
         softAssert.assertEquals(subscriber.getSsn(), record.getSsn(), "SSN did not match" );
         softAssert.assertEquals(subscriber.getMedicalPlanStartDate(), record.getBenefit_startDate(), "benefit start date did not match");
         softAssert.assertEquals(subscriber.getMedicalPlanEndDate(), record.getBenefit_endDate(), "benefit end date did not match");
-        softAssert.assertEquals(subscriber.getFinancialStartDate(), record.getFinancial_effectiveDate());
+        softAssert.assertEquals(subscriber.getMedicalFinancialStartDate(), record.getFinancial_effectiveDate());
             //  softAssert.assertAll();
         }
     }
