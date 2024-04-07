@@ -92,7 +92,6 @@ Feature: Seed01 - Exchange
    # And I Validate the correct enrolled plans are displayed on account overview page (not covered by orion)
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-
     And I validate medical plan details from my policies page
       |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
       | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
