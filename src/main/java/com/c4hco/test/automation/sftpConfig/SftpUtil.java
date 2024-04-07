@@ -138,6 +138,8 @@ public class SftpUtil {
             ObjectNode segmentsObject = objectMapper.createObjectNode();
 
            ListValuedMap<String, ArrayNode> segmentData = new ArrayListValuedHashMap<>();
+           Boolean lsLoop = false;
+           int LXCOUNT = 0;
 
             String currentSegmentName = null;
             ArrayNode currentSegmentArray = objectMapper.createArrayNode();
@@ -150,10 +152,22 @@ public class SftpUtil {
                     case START_SEGMENT:
                         currentSegmentName = reader.getText();
                         currentSegmentArray = objectMapper.createArrayNode();
+                        if(currentSegmentName.equals("LS")){
+                            lsLoop = true;
+                        } else if(currentSegmentName.equals("LE")){
+                            lsLoop = false;
+                            LXCOUNT =0;
+                        }
                         break;
 
                     case ELEMENT_DATA:
                         String data = reader.getText();
+                        if(currentSegmentName.equals("LX")){
+                            LXCOUNT = Integer.parseInt(data);
+                        }
+                        if(lsLoop){
+                            currentSegmentArray.add("LX"+LXCOUNT);
+                        }
                         currentSegmentArray.add(data);
                         break;
                     case END_SEGMENT:
@@ -181,12 +195,25 @@ public class SftpUtil {
         }
     }
 
+    public void readEdiFromLocal(){
+        try{
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("834_DENVERHEALTH_I_2024040613502380_100004006_D_O");
+            if (inputStream != null) {
+                System.out.println("File found");
+                parseEdiFile(inputStream);
+            } else {
+                System.err.println("File 'edi_384' not found in the resource folder.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void getSegments(JSONObject jsonObj) {
         // TO DO:: Move this to a diff file - set OB834 segments and values.
         // Validate - no null values - if null - proceed and save the others.
-
         Ob834FileDetails ob834FileDetails = new Ob834FileDetails();
-
         // name segment
         JSONArray nameSegment = jsonObj.getJSONArray("N1");
         System.out.println(nameSegment.getJSONArray(0).get(1));
@@ -207,8 +234,6 @@ public class SftpUtil {
 
         // Date/Time Period Segment
         JSONArray dtpSegment = jsonObj.getJSONArray("DTP");
-        System.out.println("dtp segment --" + dtpSegment); // JSONArray
-
         Optional<Object> benefitBgnDtObj = dtpSegment.toList().stream()
                 .filter(obj -> obj.toString().contains("348"))
                 .findFirst();
@@ -280,8 +305,6 @@ public class SftpUtil {
         }
         ob834FileRecords.add(ob834FileDetails);
         SharedData.setOb834FileDetails(ob834FileRecords);
-
-
     }
 
     public void validateOb834Record(List<Map<String, String>> expectedValues){

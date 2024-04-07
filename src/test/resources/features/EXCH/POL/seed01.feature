@@ -105,7 +105,7 @@ Feature: Seed01 - Exchange
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
-  @RT-2246 @test1
+  @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
@@ -147,3 +147,7 @@ Feature: Seed01 - Exchange
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
+
+    @test1
+    Scenario: Test Only scenario- edi file in local location
+      And I read the edi file locally

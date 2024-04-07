@@ -112,6 +112,9 @@ public class MyPoliciesPage {
 
     public void validateDentalPlanDetails(List<Map<String, String>> expectedResult){
         // **** Works when only one member with one medical plan and one dental plan **** //
+
+        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("PlanStartDate"));
+        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("PlanEndDate"));
         basicActions.waitForElementListToBePresent(memberNames, 10);
         softAssert.assertEquals(memberNames.get(1).getText(), primaryMember.getSignature(), "member name on dental card did not match");
         softAssert.assertEquals(planNames.get(1).getText(), primaryMember.getDentalPlan() ,
@@ -120,8 +123,11 @@ public class MyPoliciesPage {
         softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getDentalPlanEndDate(), "Dental end date didnt match");
 
         softAssert.assertEquals(premiumAmt.get(1).getText(), primaryMember.getDentalPremiumAmt(), "Dental premium did not match");
+        softAssert.assertTrue(policyNumSubscriber.get(6).getText().equals("Exchange Policy Number:"));
+        softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
+        softAssert.assertTrue(policyNumSubscriber.get(10).getText().equals("Last Updated On:"));
+        //  softAssert.assertAll();
 
-//        softAssert.assertAll();
     }
 
     public void clickViewPlanHistoryFromMed(){

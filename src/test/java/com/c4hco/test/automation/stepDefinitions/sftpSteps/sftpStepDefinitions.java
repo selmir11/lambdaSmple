@@ -50,4 +50,9 @@ public class sftpStepDefinitions {
 
     }
 
+    @And("I read the edi file locally")
+    public void readEdiFile(){
+        sftpUtil.readEdiFromLocal();
+    }
+
 }
