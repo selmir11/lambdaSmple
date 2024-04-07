@@ -63,9 +63,6 @@ public class SftpUtil {
         try{
             JSch jsch = new JSch();
             jsch.addIdentity(privateKeyPath, passPhrase);
-                System.out.println("sftpusername::"+sftpUsername);
-            System.out.println("sftpPort::"+sftpPort
-            );
             session = jsch.getSession(sftpUsername,"localhost",sftpPort);
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
@@ -83,8 +80,6 @@ public class SftpUtil {
         ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
         channelSftp.connect();
         try{
-            System.out.println("remotepath and file---"+remoteFilePath+fileNameToDownload);
-            System.out.println("====localPath==="+localPath);
             channelSftp.get(remoteFilePath+fileNameToDownload, localPath);
         }catch(Exception e){
             e.printStackTrace();
@@ -139,12 +134,10 @@ public class SftpUtil {
             EDIStreamReader reader = factory.createEDIStreamReader(inputStream);
             // Create ObjectMapper for creating JSON objects
             ObjectMapper objectMapper = new ObjectMapper();
-
             // Create JSON object to hold segments
             ObjectNode segmentsObject = objectMapper.createObjectNode();
 
            ListValuedMap<String, ArrayNode> segmentData = new ArrayListValuedHashMap<>();
-
 
             String currentSegmentName = null;
             ArrayNode currentSegmentArray = objectMapper.createArrayNode();
@@ -208,10 +201,8 @@ public class SftpUtil {
 
         // Individual Relationship Segment
         JSONArray insSegment = jsonObj.getJSONArray("INS");
-        System.out.println("ins seg---" + insSegment);
         ob834FileDetails.setMaint_type_code(String.valueOf(insSegment.getJSONArray(0).get(2)));
         ob834FileDetails.setMaint_reasCode(String.valueOf(insSegment.getJSONArray(0).get(3)));
-
 
 
         // Date/Time Period Segment
@@ -234,23 +225,19 @@ public class SftpUtil {
         }
 
         if (benefitEndDtObj.isPresent()) {
-
                 ArrayList<?> benefitEndObj = (ArrayList<?>) benefitEndDtObj.get();
 
                 String benefitEndDate = (String) benefitEndObj.get(2);
                 ob834FileDetails.setBenefit_endDate(benefitEndDate);
-
             }
 
         // Hierarchy level segment
         JSONArray hdSegment = jsonObj.getJSONArray("HD");
-        System.out.println("HD---" + hdSegment);
         ob834FileDetails.setHd_maint_typeCode(String.valueOf(hdSegment.getJSONArray(0).get(0)));
         ob834FileDetails.setInsurance_line_code(String.valueOf(hdSegment.getJSONArray(0).get(2)));
 
         // NM1
         JSONArray nm1Segment = jsonObj.getJSONArray("NM1");
-        System.out.println("NM1---" + nm1Segment);
 
         Optional<Object> subscriberOptionalObj = nm1Segment.toList().stream()
                 .filter(obj -> obj.toString().contains("IL")).findFirst();
