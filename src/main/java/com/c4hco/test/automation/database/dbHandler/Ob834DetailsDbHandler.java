@@ -53,13 +53,9 @@ public class Ob834DetailsDbHandler {
                     }
                     dbDataList.add(ob834DetailsEntity);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
-
-
         return dbDataList;
         }
 
@@ -68,13 +64,12 @@ public class Ob834DetailsDbHandler {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
         int iterationCount = 0;
         try {
-            while ( dbDataList.stream().noneMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status())) || iterationCount<25) {
+            do {
                 basicActions.wait(10000);
                 dbDataList = getOb834DbDetails(query);
                 iterationCount++;
-                System.out.println("**** EDI STATUS FROM preEdi_details:::"+dbDataList.get(0).getEdi_status());
-
-            }
+                System.out.println("**** EDI STATUS FROM preEdi_details:::" + dbDataList.get(0).getEdi_status());
+            } while (!"EDI_COMPLETE".equals(dbDataList.get(0).getEdi_status()) && iterationCount < 25);
         } catch (Exception e) {
             e.printStackTrace();
         }
