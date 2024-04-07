@@ -112,7 +112,6 @@ public class SftpUtil {
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{
           File file = new File(sftpFolderPath+"\\"+filename);
-          System.out.println("file ---"+file);
                 InputStream inputStream = new FileInputStream(file);
 
                 if (inputStream != null) {
