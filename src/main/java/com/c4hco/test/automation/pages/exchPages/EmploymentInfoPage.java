@@ -109,10 +109,10 @@ public class EmploymentInfoPage {
     WebElement helpDrawerContactUsLink;
 
     @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
-    WebElement EditUpdateLink;
+    List<WebElement>EditUpdateLink;
 
     public void clickEditUpdateLink(int employer){
-    basicActions.waitForElementToBeClickable(EditUpdateLink, 10);
+    basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
         EditUpdateLink.get(employer).click();
     }
 

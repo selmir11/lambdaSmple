@@ -25,9 +25,14 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
-    @FindBy(css = ".memberBasicRow  #editBasicInfo")
-    List<WebElement> memberBasicInformation;
+    /*@FindBy(css = ".memberBasicRow  #editBasicInfo")
+    List<WebElement> memberBasicInformation;*/
 
+    @FindBy(id= "submitButton_Income {0}")
+    WebElement editIncomeLink;
+
+    @FindBy(xpath = "class = memberBasicRow addlRowClosed{0}")
+    List<WebElement> memberBasicInformation;
     @FindBy(css=".table-striped")
     WebElement familyOverviewTable;
 
@@ -44,4 +49,9 @@ public class HouseholdPage {
         softAssert.assertTrue(familyOverviewTable.isDisplayed());
         softAssert.assertAll();
     }
+    public void iClickEditIncomeLink(int index) {
+        editIncomeLink.isDisplayed();
+                editIncomeLink.click();
+    }
 }
+

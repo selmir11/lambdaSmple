@@ -24,5 +24,10 @@ public class HouseHoldPageSteps {
     public void IVerifyTablePresent(){
         houseHoldPage.iVerifyFamilyOverviewTablePresent();
     }
+
+    @And("I click the edit income {int}")
+    public void iClickEditIncomeLink(int index){
+        houseHoldPage.iClickEditIncomeLink(index);
+    }
 }
 

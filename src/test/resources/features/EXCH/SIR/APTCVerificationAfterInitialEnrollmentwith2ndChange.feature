@@ -156,8 +156,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click edit basic information icon for member 0
 
     Then I validate I am on the "Application Summary" page
-    And I select the EditUpdate link for employer 0
 
+    And I click the edit income 0
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
