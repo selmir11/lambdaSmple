@@ -98,7 +98,7 @@ public class ApplicationResultsPage {
     public void verifyPrimaryMemberNotQualified(){
         String PrimaryMemberFirstName = SharedData.getPrimaryMember().getFirstName();
         String Xvalue ="//span[text()='"+PrimaryMemberFirstName+" does not qualify for health coverage.']";
-        basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath(Xvalue)),15);
-        softAssert.assertTrue(basicActions.getDriver().findElement(By.xpath(Xvalue)).isDisplayed());
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath(Xvalue)),15));
+        softAssert.assertAll();
     }
 }

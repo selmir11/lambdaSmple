@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -87,10 +89,11 @@ public class QlceConfirmationPage {
     WebElement saveAndContinue;
 
     public String getCurrentDate(){
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
-        Date date = new Date();  Date  newdate=new Date(date.getTime() - 86400000);
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate currentDate = LocalDate.now(); //LocalDate previousDate = currentDate.minusDays(1);
         // Now format the date
-        return dateFormat.format(newdate);
+        return dateFormat.format(currentDate);
     }
 
     public void selectQLCE(String QLCEType) {
