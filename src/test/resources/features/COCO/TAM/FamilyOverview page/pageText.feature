@@ -1,11 +1,11 @@
-@pageText
+@TAM @pageText
 Feature: Tests related to the Application Results link
 
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-41
-  Scenario: Validate Total Income equals to Annual Income when only projected income is reported
+  Scenario: SLCR-41 Validate Total Income equals to Annual Income when only projected income is reported
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     And I click create my account from pre-screen page

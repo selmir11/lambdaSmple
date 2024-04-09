@@ -87,7 +87,7 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-weight"), "700");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Colorado’s Medicaid Program)");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Colorado\u2019s Medicaid Program)");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-weight"), "400");
@@ -157,7 +157,7 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getCssValue("font-weight"), "700");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getText(), "Health insurance purchased directly through an insurance company, through Healthcare.gov, or another state’s Marketplace.");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getText(), "Health insurance purchased directly through an insurance company, through Healthcare.gov, or another state\u2019s Marketplace.");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getCssValue("font-weight"), "400");
@@ -223,7 +223,7 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-weight"), "700");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Colorado’s Medicaid Program) (Spanish)");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Colorado\u2019s Medicaid Program) (Spanish)");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-weight"), "400");
@@ -293,7 +293,7 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getCssValue("font-weight"), "700");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getText(), "Health insurance purchased directly through an insurance company, through Healthcare.gov, or another state’s Marketplace. (Spanish)");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getText(), "Health insurance purchased directly through an insurance company, through Healthcare.gov, or another state\u2019s Marketplace. (Spanish)");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(15).getCssValue("font-weight"), "400");
