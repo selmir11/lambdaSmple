@@ -226,7 +226,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I click the Colorado Option dropdown
     And I select the Colorado Option
-    And I validate the plan option 1 has text "Elevate Health Plans Colorado Option Bronze"
+    And I validate the plan option 3 has text "RMHP Colorado Doctors Plan Colorado Option Bronze"
 
 
 

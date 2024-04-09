@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,13 +53,13 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-HSAFilter")
     WebElement hsaDropdown;
 
-    @FindBy(id = "SHP-PlanResults-HSAFilter-input")
+    @FindBy(xpath = "//*[contains(@id, 'SHP-PlanResults-HSAFilter")
     WebElement hsaOption;
 
     @FindBy(id = "SHP-PlanResults-CoOptionPlans")
     WebElement coloradoOptionDropdown;
 
-    @FindBy(id = "SHP-PlanResults-CoOptionPlans-input")
+    @FindBy(xpath = "//*[contains(@id, 'SHP-PlanResults-CoOptionPlans')]")
     WebElement coloradoOptionSelection;
 
     @FindBy(xpath = "//*[contains(@id, 'PlanResults-ProviderPlan_')]")
@@ -81,13 +82,13 @@ public class MedicalPlanResultsPage {
     }
 
     public void iGetFirstPlaneName() {
-        basicActions.waitForElementToBePresent(firstMedicalPlanName, 10);
+        basicActions.waitForElementToBePresent(firstMedicalPlanName, 100);
         SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
 
     public void SelectFirstMedicalPlan() {
         iGetFirstPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstPlan, 10);
+        basicActions.waitForElementToBePresent(selectFirstPlan, 100);
         selectFirstPlan.click();
     }
 
@@ -96,45 +97,48 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickCompare() {
-        basicActions.waitForElementToBePresent(clickCompare, 10);
+        basicActions.waitForElementToBePresent(clickCompare, 100);
         clickCompare.click();
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 10);
+        basicActions.waitForElementListToBePresent(comparePlanLinks, 100);
         comparePlanLinks.get(0).click();
         comparePlanLinks.get(1).click();
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 10);
+        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 100);
         insuranceCompanyDropdown.click();
 
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToBeClickable(metalTierDropdown, 10);
+        basicActions.waitForElementToBeClickable(metalTierDropdown, 100);
         metalTierDropdown.click();
 
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToBeClickable(hsaDropdown, 10);
+        basicActions.waitForElementToBeClickable(hsaDropdown, 100);
         hsaDropdown.click();
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToBeClickable(hsaOption, 10);
+        basicActions.waitForElementToBePresent(hsaOption,100);
+        basicActions.waitForElementToBeClickable(hsaOption, 100);
         hsaOption.click();
+
     }
 
     public void clickColoradoOptionDropdown() {
-        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 10);
+        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 100);
         coloradoOptionDropdown.click();
     }
 
     public void selectColoradoOptionSelection() {
-        basicActions.waitForElementToBeClickable(coloradoOptionSelection, 10);
+        basicActions.waitForElementToBePresent(coloradoOptionSelection,100);
+        basicActions.waitForElementToBeClickable(coloradoOptionSelection, 100);
         coloradoOptionSelection.click();
 
     }
