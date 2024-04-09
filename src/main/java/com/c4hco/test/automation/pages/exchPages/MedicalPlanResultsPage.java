@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,7 +60,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-CoOptionPlans")
     WebElement coloradoOptionDropdown;
 
-    @FindBy(xpath = "//*[contains(@id, 'SHP-PlanResults-CoOptionPlans')]")
+    @FindBy(css = ".mdc-checkbox #SHP-PlanResults-CoOptionPlans-input")
     WebElement coloradoOptionSelection;
 
     @FindBy(xpath = "//*[contains(@id, 'PlanResults-ProviderPlan_')]")
@@ -137,10 +138,8 @@ public class MedicalPlanResultsPage {
     }
 
     public void selectColoradoOptionSelection() {
-        basicActions.waitForElementToBePresent(coloradoOptionSelection,100);
-        basicActions.waitForElementToBeClickable(coloradoOptionSelection, 100);
-        coloradoOptionSelection.click();
-
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", coloradoOptionSelection);
+        Assert.assertTrue(coloradoOptionSelection.isSelected());
     }
 
     public void selectfromMetalTierList(String Selecting) {
