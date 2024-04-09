@@ -75,8 +75,6 @@ public class MyPoliciesPage {
         primaryMember.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate"));
         SharedData.setPrimaryMember(primaryMember);
 
-        Double totalAmtAfterReduction = 0.00;
-
         basicActions.waitForElementListToBePresent(memberNames, 10);
         softAssert.assertEquals(memberNames.get(0).getText(), primaryMember.getSignature(), "Enrolled Member did not match on medical card");
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getMedicalPlanStartDate(), "medical plan date did not match");
@@ -97,17 +95,23 @@ public class MyPoliciesPage {
         softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
         primaryMember.setMedicalEapid(policyNumSubscriber.get(1).getText());
 
+        String totalAmtAfterReduction;
+
         if(primaryMember.getAptcAmt().equals("$0")){
-            totalAmtAfterReduction = Double.parseDouble(primaryMember.getMedicalPremiumAmt().replace("$", ""));
+            String medicalPremiumAmt = primaryMember.getMedicalPremiumAmt();
+            totalAmtAfterReduction = medicalPremiumAmt.replace("$", "");
+
+            primaryMember.setTotalAmtAfterReduction(totalAmtAfterReduction);
+            SharedData.setPrimaryMember(primaryMember);
         } else{
             // TO DO:: Add more when needed
         }
-        primaryMember.setTotalAmtAfterReduction(String.valueOf(totalAmtAfterReduction));
-        SharedData.setPrimaryMember(primaryMember);
+        String premiumAfterAPTC = financialPremiumData.get(5).getText();
+        String premiumAmountAfterTrim = premiumAfterAPTC.replace("/mo", "").replace("$", "");
 
-        softAssert.assertEquals(financialPremiumData.get(5).getText(), "$"+totalAmtAfterReduction+"/mo", "financial help amount did not match");
-
-       // softAssert.assertAll();
+        String premiumFromSharedData = primaryMember.getTotalAmtAfterReduction();
+        softAssert.assertEquals(premiumAmountAfterTrim, premiumFromSharedData, "financial help amount did not match");
+        softAssert.assertAll();
     }
 
     public void validateDentalPlanDetails(List<Map<String, String>> expectedResult){
