@@ -1,3 +1,4 @@
+@TAM
 Feature: Page Text-Welcome Page
 
   Background: I go the login portal
@@ -5,7 +6,7 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "Login" page
 
   @SLCR-33 @PageTextWelcomePage
-  Scenario: Check Welcome Page Text in English
+  Scenario: SLCR-33 Check Welcome Page Text in English
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
@@ -76,7 +77,7 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "Login" page
 
   @SLCR-39 @PageTextWelcomePage
-  Scenario: Check Welcome Page Text in Spanish
+  Scenario: SLCR-39 Check Welcome Page Text in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
