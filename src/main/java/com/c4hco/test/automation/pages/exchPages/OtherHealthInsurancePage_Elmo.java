@@ -46,6 +46,27 @@ public class OtherHealthInsurancePage_Elmo {
 
     @FindBy(id = "existingOHI-SaveAndContinue")
     WebElement saveAndContinueBtn;
+
+    public void selectInsuranceOptionOnly(String insuranceOption){
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
+        switch(insuranceOption){
+            case "None of these":
+                basicActions.click(insuranceOptionsCheckBox.get(11));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + insuranceOption);
+        }
+    }
+
+
+
+
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
     
     public void verifyTextOnOtherHealthInsurancePage(String language){
         switch(language){
