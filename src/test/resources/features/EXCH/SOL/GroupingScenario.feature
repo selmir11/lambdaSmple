@@ -454,7 +454,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-163 @groupingBasedOnState
+  @SLER-163 @groupingBasedOnState @test
   Scenario: Validate grouping members: Mother+son(80205) in group 1, Father not qualified insurance in CO
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -553,3 +553,4 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
+    And I click on Sign Out in the Header for "Elmo"

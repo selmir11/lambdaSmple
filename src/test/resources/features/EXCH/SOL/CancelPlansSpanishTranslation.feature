@@ -4,7 +4,7 @@ Feature: Cancel Plans Spanish Translation
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-232-WIP @CancelPlanPageSpanish
+  @SLER-232-WIP @CancelPlanPageSpanish @test
   Scenario: Validate Spanish text on Cancel Plan Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -57,6 +57,7 @@ Feature: Cancel Plans Spanish Translation
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
     And I select second make payment button to pay the premium
+    And I select the Money Order button
     And I click continue on payment selection page
     And I click continue on initial payment page
     And I select "Terms of Use" agreement checkbox
@@ -66,5 +67,10 @@ Feature: Cancel Plans Spanish Translation
     And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
+    And I click on ClickHere link for "My Plans"
+    And I click on Cancel Medical Plan button
+    And I change the language from header to "Spanish"
+    Then Validate text in the "Medical Plan" Cancellation Page in "Spanish" Language
+
 
     #And I click on Sign Out in the Header for "Elmo"

@@ -49,6 +49,9 @@ public class ApplicationResultsPage {
     @FindBy(id = "taxHouseholdsDropdown")
     WebElement selectTaxHouseHold;
 
+    @FindBy(css = ".ben-container > table > tbody")
+    List<WebElement> ApplicationResultDetails;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage(WebDriver webDriver) {
@@ -97,8 +100,7 @@ public class ApplicationResultsPage {
 
     public void verifyPrimaryMemberNotQualified(){
         String PrimaryMemberFirstName = SharedData.getPrimaryMember().getFirstName();
-        String Xvalue ="//span[text()='"+PrimaryMemberFirstName+" does not qualify for health coverage.']";
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath(Xvalue)),15));
+        softAssert.assertEquals(ApplicationResultDetails.get(2).getText(), PrimaryMemberFirstName+" does not qualify for health coverage.");
         softAssert.assertAll();
     }
 }
