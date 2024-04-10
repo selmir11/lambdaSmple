@@ -428,7 +428,7 @@ public class AdditionalIncomePage {
                 break;
             case "Spanish":
                 basicActions.waitForElementToBePresent(additlIncomeSelectError,20);
-                softAssert.assertEquals(additlIncomeSelectError.getText(), "Seleccione una o más de las siguientes opciones");
+                softAssert.assertEquals(additlIncomeSelectError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones");
                 softAssert.assertAll();
                 break;
             default:

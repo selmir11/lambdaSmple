@@ -489,6 +489,7 @@ public class HeaderAndFooterPage {
                 break;
             case "Individual Portal":
                 basicActions.waitForElementToBeClickable(privacyPolicyLink, 50);
+                basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;
         }
