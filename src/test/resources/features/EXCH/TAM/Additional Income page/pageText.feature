@@ -1,3 +1,4 @@
+@TAM
 Feature: Page Text-Additional Income Page
 
   Background:
@@ -5,7 +6,7 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Login" page
 
   @SLER-52 @PageTextAdditionalIncomePage
-  Scenario: I can review and update the income information in English and Spanish
+  Scenario: SLER-52 I can review and update the income information in English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
