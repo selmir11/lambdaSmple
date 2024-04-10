@@ -63,9 +63,6 @@ public class SftpUtil {
         try{
             JSch jsch = new JSch();
             jsch.addIdentity(privateKeyPath, passPhrase);
-                System.out.println("sftpusername::"+sftpUsername);
-            System.out.println("sftpPort::"+sftpPort
-            );
             session = jsch.getSession(sftpUsername,"localhost",sftpPort);
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
@@ -83,8 +80,6 @@ public class SftpUtil {
         ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
         channelSftp.connect();
         try{
-            System.out.println("remotepath and file---"+remoteFilePath+fileNameToDownload);
-            System.out.println("====localPath==="+localPath);
             channelSftp.get(remoteFilePath+fileNameToDownload, localPath);
         }catch(Exception e){
             e.printStackTrace();
@@ -117,7 +112,6 @@ public class SftpUtil {
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{
           File file = new File(sftpFolderPath+"\\"+filename);
-          System.out.println("file ---"+file);
                 InputStream inputStream = new FileInputStream(file);
 
                 if (inputStream != null) {
@@ -139,12 +133,12 @@ public class SftpUtil {
             EDIStreamReader reader = factory.createEDIStreamReader(inputStream);
             // Create ObjectMapper for creating JSON objects
             ObjectMapper objectMapper = new ObjectMapper();
-
             // Create JSON object to hold segments
             ObjectNode segmentsObject = objectMapper.createObjectNode();
 
            ListValuedMap<String, ArrayNode> segmentData = new ArrayListValuedHashMap<>();
-
+           Boolean lsLoop = false;
+           int LXCOUNT = 0;
 
             String currentSegmentName = null;
             ArrayNode currentSegmentArray = objectMapper.createArrayNode();
@@ -157,10 +151,22 @@ public class SftpUtil {
                     case START_SEGMENT:
                         currentSegmentName = reader.getText();
                         currentSegmentArray = objectMapper.createArrayNode();
+                        if(currentSegmentName.equals("LS")){
+                            lsLoop = true;
+                        } else if(currentSegmentName.equals("LE")){
+                            lsLoop = false;
+                            LXCOUNT =0;
+                        }
                         break;
 
                     case ELEMENT_DATA:
                         String data = reader.getText();
+                        if(currentSegmentName.equals("LX")){
+                            LXCOUNT = Integer.parseInt(data);
+                        }
+                        if(lsLoop){
+                            currentSegmentArray.add("LX"+LXCOUNT);
+                        }
                         currentSegmentArray.add(data);
                         break;
                     case END_SEGMENT:
@@ -188,12 +194,25 @@ public class SftpUtil {
         }
     }
 
+    public void readEdiFromLocal(){
+        try{
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("834_DENVERHEALTH_I_2024040613502380_100004006_D_O");
+            if (inputStream != null) {
+                System.out.println("File found");
+                parseEdiFile(inputStream);
+            } else {
+                System.err.println("File 'edi_384' not found in the resource folder.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void getSegments(JSONObject jsonObj) {
         // TO DO:: Move this to a diff file - set OB834 segments and values.
         // Validate - no null values - if null - proceed and save the others.
-
         Ob834FileDetails ob834FileDetails = new Ob834FileDetails();
-
         // name segment
         JSONArray nameSegment = jsonObj.getJSONArray("N1");
         System.out.println(nameSegment.getJSONArray(0).get(1));
@@ -208,16 +227,12 @@ public class SftpUtil {
 
         // Individual Relationship Segment
         JSONArray insSegment = jsonObj.getJSONArray("INS");
-        System.out.println("ins seg---" + insSegment);
         ob834FileDetails.setMaint_type_code(String.valueOf(insSegment.getJSONArray(0).get(2)));
         ob834FileDetails.setMaint_reasCode(String.valueOf(insSegment.getJSONArray(0).get(3)));
 
 
-
         // Date/Time Period Segment
         JSONArray dtpSegment = jsonObj.getJSONArray("DTP");
-        System.out.println("dtp segment --" + dtpSegment); // JSONArray
-
         Optional<Object> benefitBgnDtObj = dtpSegment.toList().stream()
                 .filter(obj -> obj.toString().contains("348"))
                 .findFirst();
@@ -234,23 +249,19 @@ public class SftpUtil {
         }
 
         if (benefitEndDtObj.isPresent()) {
-
                 ArrayList<?> benefitEndObj = (ArrayList<?>) benefitEndDtObj.get();
 
                 String benefitEndDate = (String) benefitEndObj.get(2);
                 ob834FileDetails.setBenefit_endDate(benefitEndDate);
-
             }
 
         // Hierarchy level segment
         JSONArray hdSegment = jsonObj.getJSONArray("HD");
-        System.out.println("HD---" + hdSegment);
         ob834FileDetails.setHd_maint_typeCode(String.valueOf(hdSegment.getJSONArray(0).get(0)));
         ob834FileDetails.setInsurance_line_code(String.valueOf(hdSegment.getJSONArray(0).get(2)));
 
         // NM1
         JSONArray nm1Segment = jsonObj.getJSONArray("NM1");
-        System.out.println("NM1---" + nm1Segment);
 
         Optional<Object> subscriberOptionalObj = nm1Segment.toList().stream()
                 .filter(obj -> obj.toString().contains("IL")).findFirst();
@@ -293,8 +304,6 @@ public class SftpUtil {
         }
         ob834FileRecords.add(ob834FileDetails);
         SharedData.setOb834FileDetails(ob834FileRecords);
-
-
     }
 
     public void validateOb834Record(List<Map<String, String>> expectedValues){
@@ -323,7 +332,7 @@ public class SftpUtil {
         softAssert.assertEquals(subscriber.getSsn(), record.getSsn(), "SSN did not match" );
         softAssert.assertEquals(subscriber.getMedicalPlanStartDate(), record.getBenefit_startDate(), "benefit start date did not match");
         softAssert.assertEquals(subscriber.getMedicalPlanEndDate(), record.getBenefit_endDate(), "benefit end date did not match");
-        softAssert.assertEquals(subscriber.getFinancialStartDate(), record.getFinancial_effectiveDate());
+        softAssert.assertEquals(subscriber.getMedicalFinancialStartDate(), record.getFinancial_effectiveDate());
             //  softAssert.assertAll();
         }
     }

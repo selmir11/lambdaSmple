@@ -4,17 +4,20 @@ import com.c4hco.test.automation.pages.exchPages.MyPoliciesPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
+import java.util.List;
+import java.util.Map;
+
 public class MyPoliciesPageSteps {
     MyPoliciesPage myPoliciesPage = new MyPoliciesPage(WebDriverManager.getDriver());
 
     @And("I validate medical plan details from my policies page")
-    public void validateMedPlanDetails(){
-        myPoliciesPage.validateEnrolledMedicalPlanDetails();
+    public void validateMedPlanDetails(List<Map<String, String>> expectedResult){
+        myPoliciesPage.validateEnrolledMedicalPlanDetails(expectedResult);
     }
 
     @And("I validate dental plan details from my policies page")
-    public void validateDentalPlanDetails(){
-        myPoliciesPage.validateDentalPlanDetails();
+    public void validateDentalPlanDetails(List<Map<String, String>> expectedResult) {
+        myPoliciesPage.validateDentalPlanDetails(expectedResult);
     }
 
     @And("I click View Plan History link from medical plan card")

@@ -75,8 +75,6 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(password, 10);
         password.sendKeys(pswd);
         signInButton.click();
-        basicActions.waitForElementToDisappear(signInButton, 10);
-
     }
 
     public void loginAsAnAdminUser(){

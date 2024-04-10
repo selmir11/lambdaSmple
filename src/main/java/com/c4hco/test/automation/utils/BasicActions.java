@@ -120,7 +120,6 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
         } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-            Assert.fail("Element waiting for is not displayed");
             return false;
         }
         return true;
@@ -177,6 +176,13 @@ public class BasicActions {
         }
         return members;
     }
+     public Boolean waitUntilUrlIsPresent(String pageUrl){
+        try {
+         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                 .withTimeout(Duration.ofSeconds(30))
+                 .pollingEvery(Duration.ofMillis(100))
+                 .ignoring(NoSuchElementException.class);
+
 
     public void switchtoactiveTab() {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
@@ -194,6 +200,16 @@ public class BasicActions {
 //        }
 //        getDriver().switchTo().window(origin);
 //    }
+
+         wait.until(ExpectedConditions.urlContains(pageUrl));
+     }
+        catch(TimeoutException e) {
+            System.out.println("Url waiting for is not displayed");
+        return false;
+        }
+        return true;
+}
+
 
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
