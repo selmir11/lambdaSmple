@@ -20,4 +20,8 @@ public class DbDataProvider_Exch {
     public List<Ob834DetailsEntity> getOb83Db4Details(){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
     }
+
+    public List<PolicyTablesEntity> getEap_idFromPolicyTable(){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.eap_id());
+    }
 }

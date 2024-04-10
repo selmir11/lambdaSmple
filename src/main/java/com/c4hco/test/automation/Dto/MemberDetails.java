@@ -40,7 +40,8 @@ public class MemberDetails {
     String application_id;
     BigDecimal account_id;
     String policyId;
-    String totalAmtAfterReduction;
+    String totalMedAmtAfterReduction;
+    String totalDentalPremAfterReduction;
     String medicalEapid;
     String dentalEapid;
 
