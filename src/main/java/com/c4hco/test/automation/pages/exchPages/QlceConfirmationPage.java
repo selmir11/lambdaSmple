@@ -89,9 +89,8 @@ public class QlceConfirmationPage {
     WebElement saveAndContinue;
 
     public String getCurrentDate(){
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate currentDate = LocalDate.now(); //LocalDate previousDate = currentDate.minusDays(1);
+        LocalDate currentDate = LocalDate.now();
         // Now format the date
         return dateFormat.format(currentDate);
     }

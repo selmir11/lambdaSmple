@@ -39,7 +39,6 @@ public class CancellationRequestPage {
     }
 
     private void ValidateCancellationPageSpanishText(){
-        basicActions.wait(3000);
         basicActions.waitForElementToBePresent(planCancellationpageHeader, 10);
         softAssert.assertEquals(planCancellationpageHeader.getText(), "Solicitud de cancelación");
         softAssert.assertEquals(planCancellationPageTextDetails.get(1).getText(), "Para cancelar o terminar su(s) plan(es), revise y confirme la siguiente información. Esto cancelará los planes para todas las personas en la lista de abajo. Si desea quitar a una persona de sus planes, vuelva a My Account (Mi cuenta) y haga clic en el botón Make changes (Hacer cambios).");
