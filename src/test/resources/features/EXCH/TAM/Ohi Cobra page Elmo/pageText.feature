@@ -107,11 +107,11 @@ Feature: Page Text-Other Health Insurance Page
     And I change the C4 url to "Elmo COBRA"
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "No" on the Cobra page
-#Step 7
+
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHI Cobra page
-#Step 8
+
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -133,12 +133,12 @@ Feature: Page Text-Other Health Insurance Page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "Yes" on the Cobra page
     And I verify Insurance Ending in 60 days is "No" on the Cobra page
-#Step 9
+
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter end date of end of current month for COBRA
     Then I click "No" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHI Cobra page
-#  Step 10
+
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
