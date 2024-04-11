@@ -1,3 +1,4 @@
+@TAM
 Feature: TAM Chat Widget
 
   Background:
@@ -6,7 +7,7 @@ Feature: TAM Chat Widget
 
 
   @SLER-101 @ChatWidget
-  Scenario: I Navigate to the TAM pages and verify the Chat Widget
+  Scenario: SLER-101 I Navigate to the TAM pages and verify the Chat Widget
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

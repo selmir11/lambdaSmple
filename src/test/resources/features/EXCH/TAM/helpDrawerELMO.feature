@@ -1,4 +1,4 @@
-@helpDrawer
+@helpDrawer @TAM
 Feature: Tests related to the help drawer on ELMO pages
 
   Background: I go the login portal
@@ -7,7 +7,7 @@ Feature: Tests related to the help drawer on ELMO pages
 
   @SLER-60
     #fails when run on small screens (Let's chat widget covers up help drawer footer)
-  Scenario: Validate help drawer text on the ELMO Employment Income Details page
+  Scenario: SLER-60 Validate help drawer text on the ELMO Employment Income Details page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -67,7 +67,7 @@ Feature: Tests related to the help drawer on ELMO pages
 
   @SLER-61
     #fails when run on small screens (Let's chat widget covers up help drawer footer)
-  Scenario: Validate help drawer text on the ELMO Employment Income Details page (self-employment)
+  Scenario: SLER-61 Validate help drawer text on the ELMO Employment Income Details page (self-employment)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
