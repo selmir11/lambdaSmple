@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -104,38 +105,21 @@ public class DeductionsPage {
     // Add only validation methods below this line
 
     public void selectAddtlDeductionOptionOnly(String addtlDeductionOption){
-        switch(addtlDeductionOption){
-            case "Alimony or spousal support paid out":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(0).click();
-                break;
-            case "Domestic production activities":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(1).click();
-                break;
-            case "Health Savings Account contribution":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(2).click();
-                break;
-            case "Pre-tax retirement account contribution":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(3).click();
-                break;
-            case "School tuition and fees":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(4).click();
-                break;
-            case "Self-employment tax":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(5).click();
-                break;
-            case "None of these":
-                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
-                addtlDeductionOptionsCheckbox.get(10).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + addtlDeductionOption);
-        }
+//        Alimony or spousal support paid out = AOSS
+//        Domestic production activities = DPAC
+//        Health Savings Account contribution = HSAC
+//        Pre-tax retirement account contribution = PRAC
+//        School tuition and fees = STAF
+//        Self-employment tax = SETX
+//        Student loan interest = STLI
+//        Self-employment health insurance = SEHI
+//        Self-employment retirement plan = SERP
+//        Moving expenses = MOVE
+//        None of these = NoDeductions
+
+        basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 20);
+        WebElement addtlDeductionOptionBox = basicActions.getDriver().findElement(By.xpath("//*[@id='ELIG-Deductions-"+addtlDeductionOption+"-checkBoxButton']"));
+        addtlDeductionOptionBox.click();
     }
 
     public void verifyDeductionsOptionAmt1Error(String language){
