@@ -96,6 +96,7 @@ public class DeductionsPage {
     }
 
     public void clickContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         saveAndContinueBtn.click();
     }
 
