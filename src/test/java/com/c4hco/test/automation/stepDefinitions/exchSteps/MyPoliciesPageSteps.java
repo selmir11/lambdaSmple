@@ -49,4 +49,14 @@ public class MyPoliciesPageSteps {
     public void dentalPlanDetailsPlanHistory(){
         myPoliciesPage.validateDentalPlanDetailsFromPlanHistory();
     }
+
+    @And("I click on Cancel Medical Plan button")
+    public void clickMedicalPlansCancelButton(){
+        myPoliciesPage.clickMedicalPlanCancelButton();
+    }
+
+    @And("I click on Cancel Dental Plan button")
+    public void clickDentalPlansCancelButton(){
+        myPoliciesPage.clickDentalPlanCancelButton();
+    }
 }
