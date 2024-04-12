@@ -72,14 +72,15 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
     WebElement planResultsAPTC;
 
-    public void validateAPTC(String planResultsAPTCredit){
+       public void validateAPTC(String planResultsAPTCredit){
         basicActions.waitForElementToBePresent(planResultsAPTC, 100);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
     }
     
     public void selectfromProviderList(String Selecting) {
-        String providerPath = "//span[text()='" + Selecting + "']";
+        String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+
     }
 
     public void iGetFirstPlaneName() {
@@ -143,7 +144,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void selectfromMetalTierList(String Selecting) {
-        String providerPath = "//span[text()='" + Selecting + "']";
+        String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 

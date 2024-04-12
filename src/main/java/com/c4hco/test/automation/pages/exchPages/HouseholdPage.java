@@ -25,21 +25,24 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
-    /*@FindBy(css = ".memberBasicRow  #editBasicInfo")
-    List<WebElement> memberBasicInformation;*/
-
     @FindBy(id= "submitButton_Income {0}")
     WebElement editIncomeLink;
 
-    @FindBy(xpath = "class = memberBasicRow addlRowClosed{0}")
+    @FindBy(xpath = "input[@value, contains 'Test']{0}")
     List<WebElement> memberBasicInformation;
+//input[value='QAEXCHAARONFOURFOUR test (34)']
+//input[@value='QAEXCHAARONFOURFOUR test (34)']
+    //memberBasicRow addlRowClosed
+    //@FindBy(css = ".memberBasicRow  #editBasicInfo")
+    //List<WebElement> memberBasicInformation;
+
     @FindBy(css=".table-striped")
     WebElement familyOverviewTable;
 
     public void clickAddMember(){addAdditionalMember.click();}
-    public void clickContinue(){
-        saveAndContinue.click();
-    }
+
+    public void clickContinue(){saveAndContinue.click();}
+
     public void clickBasicInfoMember1Button(int member){
         memberBasicInformation.get(member).click();
     }
