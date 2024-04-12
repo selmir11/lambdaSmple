@@ -28,7 +28,6 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(id = "ELIG-Ohi-Esi-currEnrl-YesButton")
     WebElement esiCurrentlyEnrolledYesBtn;
 
-//    @FindBy(css = ".help-container .btn-default")
     @FindBy(css = ".drawer-controls > div > div")
     WebElement helpButton;
 
