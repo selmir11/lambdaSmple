@@ -43,7 +43,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(css=".plan .header-3")
+    @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']") //@FindBy(css=".plan .header-3")
     List<WebElement> dentalPlanNames;
 
     @FindBy(css = "pagination-template .pagination-next")

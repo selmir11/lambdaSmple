@@ -32,4 +32,8 @@ public class ApplicationResultsPageSteps {
     @And("I verify that the APTC amount does not appear on the app results page")
     public void validateAPTCNotAppearing() { applicationResultsPage.validateAPTCNotAppearing();}
 
+    @Then("I validate Primary Member not qualified for health coverage")
+    public void verifyPrimaryMemberNotQualifyForHealthPlan () {
+        applicationResultsPage.verifyPrimaryMemberNotQualified();
+    }
 }
