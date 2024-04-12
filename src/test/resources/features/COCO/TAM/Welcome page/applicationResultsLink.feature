@@ -1,11 +1,11 @@
-@applicationResultsLink
+@TAM @applicationResultsLink
 Feature: Tests related to the Application Results link
 
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-25
-  Scenario: Validate Action links navigation and text
+  Scenario: SLCR-25 Validate Action links navigation and text
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     And I click create my account from pre-screen page

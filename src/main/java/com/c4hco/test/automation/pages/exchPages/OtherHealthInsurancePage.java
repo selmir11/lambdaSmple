@@ -59,6 +59,12 @@ public class OtherHealthInsurancePage {
         }
         saveAndContinueBtn.click();
     }
+
+    public void clickSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        saveAndContinueBtn.click();
+    }
+
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
         switch(insuranceOption){

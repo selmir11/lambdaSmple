@@ -191,8 +191,11 @@ public class BasicSteps {
             case "Other Health Insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
-            case "New Other Health Insurance":
+            case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";
+                break;
+            case "Elmo COBRA":
+                pageUrl = "/otherHealthInsurance/cobra";
                 break;
             case "ESI":
                 pageUrl = "otherHealthInsurance/employerSponsored";

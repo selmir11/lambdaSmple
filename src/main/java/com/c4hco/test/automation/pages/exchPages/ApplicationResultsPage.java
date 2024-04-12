@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,6 +49,8 @@ public class ApplicationResultsPage {
     @FindBy(id = "taxHouseholdsDropdown")
     WebElement selectTaxHouseHold;
 
+    @FindBy(css = ".ben-container > table > tbody")
+    List<WebElement> ApplicationResultDetails;
 
     private BasicActions basicActions;
 
@@ -92,6 +95,12 @@ public class ApplicationResultsPage {
     public void verifyTextMAEligibility() {
         basicActions.waitForElementListToBePresent(textMAEligibility, 10);
         softAssert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
+        softAssert.assertAll();
+    }
+
+    public void verifyPrimaryMemberNotQualified(){
+        String PrimaryMemberFirstName = SharedData.getPrimaryMember().getFirstName();
+        softAssert.assertEquals(ApplicationResultDetails.get(2).getText(), PrimaryMemberFirstName+" does not qualify for health coverage.");
         softAssert.assertAll();
     }
 }

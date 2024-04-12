@@ -44,8 +44,8 @@ public class AccountOverviewPage {
     }
 
     public void clickApplyForCurrentYear(){
-        basicActions.waitForElementToBePresent(header, 50);
-        basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,10);
+        basicActions.waitForElementToBePresent(header, 10);
+        basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,40);
         btnApplyForCurrentYear.click();
     }
 
