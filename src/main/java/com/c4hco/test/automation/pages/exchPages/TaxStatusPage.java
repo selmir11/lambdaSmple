@@ -17,20 +17,23 @@ public class TaxStatusPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "filingStatus")
+    @FindBy(css = "#filingStatus")
     WebElement selectFilingStatus;
 
     @FindBy(css = "#filingReturnGroup input")
     List<WebElement> fileFedIncomeTaxRadioBtn;
 
-    @FindBy(id = "claimedAsDependentNo")
+    @FindBy(id = "selectedSpouseId1")
+    WebElement fileTaxesJointlyWithBtn;
+
+    @FindBy(css = "#claimedAsDependentNo")
     WebElement claimAsDependentNoRadioBtn;
 
-    @FindBy(id = "claimedAsDependentYes")
+    @FindBy(css = "#claimedAsDependentYes")
     WebElement claimAsDependentYesRadioBtn;
 
-    @FindBy(id = "claimDependentsNo")
-    WebElement claimDependentNoRadioBtn;
+    @FindBy(css = "#ClaimDependentsQGroup > div > div > input")
+    List <WebElement> claimDependentRadioBtn;
 
     @FindBy(id = "preSubmitButton")
     WebElement saveAndContinueBtn;
@@ -67,14 +70,25 @@ public class TaxStatusPage {
     }
 
     public void selectTaxFilingOption(String taxFilingOption){
+        basicActions.waitForElementToBePresent(selectFilingStatus, 20);
         Select dropdown = new Select(selectFilingStatus);
         dropdown.selectByVisibleText(taxFilingOption);
+    }
+
+    public void selectFileTaxesJointlyWith(){
+        basicActions.waitForElementToBePresent(fileTaxesJointlyWithBtn, 20);
+        fileTaxesJointlyWithBtn.click();
     }
 
     public void selectDependentsOption(String dependentsOption){
         switch (dependentsOption){
             case "No":
-                claimDependentNoRadioBtn.click();
+                basicActions.waitForElementListToBePresent(claimDependentRadioBtn,20);
+                claimDependentRadioBtn.get(1).click();
+                break;
+            case "Yes":
+                basicActions.waitForElementListToBePresent(claimDependentRadioBtn,20);
+                claimDependentRadioBtn.get(0).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dependentsOption);
@@ -84,6 +98,11 @@ public class TaxStatusPage {
     public void whoWillClaimDependent(String memberId){
         String clalimedDependentOption = "selectedClaimedByMemberId"+memberId;
         basicActions.getDriver().findElement(By.id(clalimedDependentOption)).click();
+    }
+
+    public void checkDependentClaimed(String memberId){
+        String clalimDependentOption = "selectedDependents"+memberId;
+        basicActions.getDriver().findElement(By.id(clalimDependentOption)).click();
     }
 
     public void selectSaveAndContinue(){
