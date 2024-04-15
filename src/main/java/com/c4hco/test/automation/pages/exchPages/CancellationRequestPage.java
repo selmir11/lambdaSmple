@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class CancellationRequestPage {
@@ -25,27 +26,34 @@ public class CancellationRequestPage {
     @FindBy(xpath = "//div[@class='container']/div")
     List<WebElement> planCancellationPageTextDetails;
 
-    public void ValidateCancellationPageText(String pageDetail,String language){
+    public void ValidateCancellationPageText(String language, List<String> data){
         switch (language){
             case "English":
-                ValidateCancellationPageEnglishText();
+                ValidateCancellationPageEnglishText(data);
                 break;
             case "Spanish":
-                ValidateCancellationPageSpanishText();
+                ValidateCancellationPageSpanishText(data);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
-    private void ValidateCancellationPageSpanishText(){
+    private void ValidateCancellationPageSpanishText(List<String> data){
         basicActions.waitForElementToBePresent(planCancellationpageHeader, 10);
-        softAssert.assertEquals(planCancellationpageHeader.getText(), "Solicitud de cancelación");
-        softAssert.assertEquals(planCancellationPageTextDetails.get(1).getText(), "Para cancelar o terminar su(s) plan(es), revise y confirme la siguiente información. Esto cancelará los planes para todas las personas en la lista de abajo. Si desea quitar a una persona de sus planes, vuelva a My Account (Mi cuenta) y haga clic en el botón Make changes (Hacer cambios).");
+        softAssert.assertEquals(planCancellationpageHeader.getText(), data.get(0));
+        System.out.println(planCancellationPageTextDetails.size());
+        softAssert.assertEquals(planCancellationPageTextDetails.get(1).getText(),data.get(1));
+        softAssert.assertEquals(planCancellationPageTextDetails.get(2).getText(),data.get(2));
+        softAssert.assertEquals(planCancellationPageTextDetails.get(3).getText(),data.get(3));
+        //softAssert.assertEquals(planCancellationPageTextDetails.get(4).getText(),data.get(4));
+        softAssert.assertEquals(planCancellationPageTextDetails.get(5).getText(),data.get(5));
+        //softAssert.assertEquals(planCancellationPageTextDetails.get(6).getText(),data.get(5));
+        //softAssert.assertEquals(planCancellationPageTextDetails.get(7).getText(),data.get(7));
         softAssert.assertAll();
     }
 
-    private void ValidateCancellationPageEnglishText(){
+    private void ValidateCancellationPageEnglishText(List<String> data){
         basicActions.waitForElementToBePresent(planCancellationpageHeader, 10);
         softAssert.assertEquals(planCancellationpageHeader.getText(), "Cancellation Request");
         softAssert.assertEquals(planCancellationPageTextDetails.get(1).getText(), "To cancel or terminate your plan(s), please review and confirm the information below. This will cancel the plan(s) for all of the people listed below. If you would like to remove one person from your plan(s), please return to My Account and click the Make changes button.");

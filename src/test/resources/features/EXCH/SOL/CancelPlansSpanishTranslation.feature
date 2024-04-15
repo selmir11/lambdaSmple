@@ -68,9 +68,15 @@ Feature: Cancel Plans Spanish Translation
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
-    And I click on Cancel Medical Plan button
+    And I click on "Cancel Medical Plan" button
     And I change the language from header to "Spanish"
-    Then Validate text in the "Medical Plan" Cancellation Page in "Spanish" Language
+    Then Validate text in the Cancellation Page in "Spanish" Language
+    |Solicitud de cancelación|
+    |Para cancelar o terminar su(s) plan(es), revise y confirme la siguiente información. Esto cancelará los planes para todas las personas en la lista de abajo. Si desea quitar a una persona de sus planes, vuelva a My Account (Mi cuenta) y haga clic en el botón Make changes (Hacer cambios).|
+    |Asegúrese de reportar cualquier cambio en su cuenta antes de cancelar su plan.|
+    |Importante: usted es responsable de pagar la prima completa del plan por el resto del mes, aunque haga su cancelación a principios de mes.|
+    |Nombre del plan Miembros inscritos Prima del plan Fecha de entrada en vigor de la cancelación|
+    |Si desea seleccionar un plan nuevo, solo podrá inscribirse durante el período de inscripción abierta anual o si tiene un evento de vida calificado como matrimonio o el nacimiento de un bebé. Consulte https://connectforhealthco.com/get-started/when-can-i-buy-insurance/ para más información sobre cómo puede inscribirse.\nEntiendo que al tomar esta acción, ya no tendré cobertura a través de Connect for Health Colorado.*\nEntiendo que una firma electrónica tiene el mismo efecto legal y puede hacerse cumplir de la misma manera que una firma escrita. Entiendo también que estoy firmando esta solicitud a nombre de todos los miembros de mi familia. Se requiere la firma del solicitante principal.|
 
 
     #And I click on Sign Out in the Header for "Elmo"

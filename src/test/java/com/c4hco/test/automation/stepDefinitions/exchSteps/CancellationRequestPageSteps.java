@@ -5,12 +5,14 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 
 public class CancellationRequestPageSteps {
     CancellationRequestPage cancellationRequestPage = new CancellationRequestPage(WebDriverManager.getDriver());
 
-    @Then("Validate text in the {string} Cancellation Page in {string} Language")
-    public void ValidateTextInCancellationPage(String pageDetail,String language){
-        cancellationRequestPage.ValidateCancellationPageText(pageDetail,language);
+    @Then("Validate text in the Cancellation Page in {string} Language")
+    public void ValidateTextInCancellationPage(String language, List<String> data){
+        cancellationRequestPage.ValidateCancellationPageText(language,data);
     }
 }
