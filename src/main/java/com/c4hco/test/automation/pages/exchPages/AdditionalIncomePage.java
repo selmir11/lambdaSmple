@@ -117,7 +117,10 @@ public class AdditionalIncomePage {
         addtlIncomeOptionsCheckbox.get(12).click();
         saveAndContinueBtn.click();
     }
-        public void clickContinue(){saveAndContinueBtn.click();}
+    public void clickContinue(){
+        basicActions.scrollToElement(saveAndContinueBtn);
+        saveAndContinueBtn.click();
+    }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
