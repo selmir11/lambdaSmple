@@ -16,13 +16,42 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     public void iSelectEmployer(){ohiEmployerSponsoredHealthInsurancePage.selectEmployer();
     }
 
-    @Then("I select the Are you currently enrolled Yes button on the ESI page")
-    public void iClickCurrentlyEnrolledYes(){ohiEmployerSponsoredHealthInsurancePage.clickCurrentlyEnrolledYes();
+    @Then("I select {string} for meet the Minimum Value Standard on the ESI page")
+    public void iClickMinValueStandard(String minValueStandard){ohiEmployerSponsoredHealthInsurancePage.clickMinValueStandard(minValueStandard);
     }
 
-    @Then("I select the Will Insurance End Yes button on the ESI page")
-    public void iClickInsuranceEndYes(){ohiEmployerSponsoredHealthInsurancePage.clickInsuranceEndYes();
+    @Then("I enter {string} for employee amount question on the ESI page")
+    public void iEnterMonthlyAmount(String employeeAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyAmount(employeeAmount);}
+
+    @Then("I enter the end date as the last day of the current month on the ESI page")
+    public void iEnterEndDate(){ohiEmployerSponsoredHealthInsurancePage.enterEndDate();}
+
+    @Then("I select the Are you voluntarily ending {string} button on the ESI page")
+    public void iClickVoluntarilyEnding(String voluntarilyEnding){ohiEmployerSponsoredHealthInsurancePage.clickVoluntarilyEnding(voluntarilyEnding);
     }
+
+    @Then("I select the Are you currently enrolled {string} button on the ESI page")
+    public void iClickCurrentlyEnrolled(String currentlyEnrolled){ohiEmployerSponsoredHealthInsurancePage.clickCurrentlyEnrolled(currentlyEnrolled);
+    }
+
+    @Then("I select the Will Insurance End {string} button on the ESI page")
+    public void iClickInsuranceEnd(String willEnd){ohiEmployerSponsoredHealthInsurancePage.clickInsuranceEnd(willEnd);
+    }
+
+    @Then("I click {string} for offer family plans question")
+    public void iClickFamilyPlansOffered(String currentlyOffered){ohiEmployerSponsoredHealthInsurancePage.clickFamilyPlansOffered(currentlyOffered);}
+
+    @Then("I enter {string} for offer family amount question")
+    public void iEnterMonthlyFamilyAmount(String familyAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyFamilyAmount(familyAmount);}
+
+    @Then("I click {string} enrollment status for first member question")
+    public void iClickFamilyEnrollmentStatusMember1(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMember1(enrollmentStatus);}
+
+    @Then("I click {string} enrollment status for second member question")
+    public void iClickFamilyEnrollmentStatusMember2(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMember2(enrollmentStatus);}
+
+    @Then("I click continue on the ESI page")
+    public void iClickSaveAndContinue(){ohiEmployerSponsoredHealthInsurancePage.clickSaveAndContinue();}
 
     @Then("I open or close the Help Drawer on the ESI page")
     public void iClickMainHelp(){ohiEmployerSponsoredHealthInsurancePage.clickMainHelp();
@@ -35,21 +64,6 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     @Then("I click on {string} link in Help Drawer on the ESI page")
     public void iClickHelpDrawerContactUs(String lnkName){ohiEmployerSponsoredHealthInsurancePage.clickHelpDrawerContactUs(lnkName);
     }
-
-    @Then("I click {string} for offer family plans question")
-    public void iClickFamilyPlansOffered(String currentlyOffered){ohiEmployerSponsoredHealthInsurancePage.clickFamilyPlansOffered(currentlyOffered);}
-
-    @Then("I enter {string} for offer family amount question")
-    public void iEnterMonthlyAmount(String familyAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyAmount(familyAmount);}
-
-    @Then("I click {string} enrollment status for first member question")
-    public void iClickFamilyEnrollmentStatusMember1(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMember1(enrollmentStatus);}
-
-    @Then("I click {string} enrollment status for second member question")
-    public void iClickFamilyEnrollmentStatusMember2(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMember2(enrollmentStatus);}
-
-    @Then("I click continue on the ESI page")
-    public void iClickSaveAndContinue(){ohiEmployerSponsoredHealthInsurancePage.clickSaveAndContinue();}
 
 
     // =================== VALIDATION STEPS ===============//

@@ -9,6 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class OhiEmployerSponsoredHealthInsurancePage {
@@ -22,11 +26,38 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "#ELIG-Ohi-Esi-employer")
     WebElement esiSelectEmployerDpd;
 
-    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-YesButton")
-    WebElement esiInsuranceEndYesBtn;
+    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-YesButton")
+    WebElement esiMinValueStandardYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-NoButton")
+    WebElement esiMinValueStandardNoBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-IDontKnowButton")
+    WebElement esiMinValueStandardDontKnowBtn;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgMonthlyPremium")
+    WebElement esiMonthlyAmountInput;
 
     @FindBy(id = "ELIG-Ohi-Esi-currEnrl-YesButton")
     WebElement esiCurrentlyEnrolledYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-currEnrl-NoButton")
+    WebElement esiCurrentlyEnrolledNoBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-YesButton")
+    WebElement esiInsuranceEndYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-NoButton")
+    WebElement esiInsuranceEndNoBtn;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-empSponsCovgEndDate")
+    WebElement esiEndDateInput;
+
+    @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-YesButton")
+    WebElement esiVoluntarilyEndingYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-NoButton")
+    WebElement esiVoluntarilyEndingNoBtn;
 
     @FindBy(id = "ELIG-Ohi-Esi-FamilyCoveragePlanOffered-YesButton")
     WebElement esiFamilyOfferedYesBtn;
@@ -35,7 +66,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     WebElement esiFamilyOfferedNoBtn;
 
     @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgFamilyMonthlyPremium")
-    WebElement esiMonthlyAmountInput;
+    WebElement esiMonthlyAmountFamilyInput;
 
     @FindBy(id = "-Esi.CoverageTypeEnrolledButton")
     List<WebElement> esiFamilyEnrolledBtn;
@@ -112,17 +143,87 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     }
 
     public void selectEmployer() {
+        basicActions.waitForElementToBeClickable(esiSelectEmployerDpd, 50);
         String setEmployerName = SharedData.getEmployerName();
         Select dropdown = new Select(esiSelectEmployerDpd);
         dropdown.selectByVisibleText(setEmployerName);
     }
 
-    public void clickCurrentlyEnrolledYes(){
-        basicActions.click(esiCurrentlyEnrolledYesBtn);
+    public void clickMinValueStandard(String minValueStandard){
+        switch (minValueStandard){
+            case "Yes":
+                basicActions.click(esiMinValueStandardYesBtn);
+                break;
+            case "No":
+                basicActions.click(esiMinValueStandardNoBtn);
+                break;
+            case "I don't know":
+                basicActions.click(esiMinValueStandardDontKnowBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + minValueStandard);
+        }
     }
 
-    public void clickInsuranceEndYes(){
-        basicActions.click(esiInsuranceEndYesBtn);
+    public void enterMonthlyAmount(String employeeAmount){
+        basicActions.waitForElementToBePresent(esiMonthlyAmountInput, 50);
+        esiMonthlyAmountInput.clear();
+        esiMonthlyAmountInput.sendKeys(employeeAmount);
+    }
+
+    public void clickCurrentlyEnrolled(String currentlyEnrolled){
+        switch (currentlyEnrolled){
+            case "Yes":
+                basicActions.click(esiCurrentlyEnrolledYesBtn);
+                break;
+            case "No":
+                basicActions.click(esiCurrentlyEnrolledNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + currentlyEnrolled);
+        }
+    }
+
+    public void clickInsuranceEnd(String willEnd){
+        switch (willEnd){
+            case "Yes":
+                basicActions.click(esiInsuranceEndYesBtn);
+                break;
+            case "No":
+                basicActions.click(esiInsuranceEndNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + willEnd);
+        }
+    }
+
+    public void enterEndDate(){
+        basicActions.waitForElementToBePresent(esiEndDateInput, 60);
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.add(Calendar.DATE, -1);
+        Date lastDayOfMonth = calendar.getTime();
+        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+
+        esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+    }
+
+    public void clickVoluntarilyEnding(String voluntarilyEnding) {
+        switch (voluntarilyEnding) {
+            case "Yes":
+                basicActions.waitForElementToBeClickable(esiVoluntarilyEndingYesBtn, 20);
+                basicActions.click(esiVoluntarilyEndingYesBtn);
+                break;
+            case "No":
+                basicActions.waitForElementToBeClickable(esiVoluntarilyEndingNoBtn, 20);
+                basicActions.click(esiVoluntarilyEndingNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + voluntarilyEnding);
+        }
     }
 
     public void clickFamilyPlansOffered(String currentlyOffered) {
@@ -140,10 +241,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         }
     }
 
-    public void enterMonthlyAmount(String familyAmount){
-        basicActions.waitForElementToBePresent(esiMonthlyAmountInput, 50);
-        esiMonthlyAmountInput.clear();
-        esiMonthlyAmountInput.sendKeys(familyAmount);
+    public void enterMonthlyFamilyAmount(String familyAmount){
+        basicActions.waitForElementToBePresent(esiMonthlyAmountFamilyInput, 50);
+        esiMonthlyAmountFamilyInput.clear();
+        esiMonthlyAmountFamilyInput.sendKeys(familyAmount);
     }
 
     public void clickFamilyEnrollmentStatusMember1(String enrollmentStatus) {
@@ -275,8 +376,8 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyMonthlyAmount(String familyAmount){
-        basicActions.waitForElementToBePresent(esiMonthlyAmountInput, 50);
-        softAssert.assertTrue(esiMonthlyAmountInput.getAttribute("value").contains(familyAmount));
+        basicActions.waitForElementToBePresent(esiMonthlyAmountFamilyInput, 50);
+        softAssert.assertTrue(esiMonthlyAmountFamilyInput.getAttribute("value").contains(familyAmount));
         softAssert.assertAll();
     }
 

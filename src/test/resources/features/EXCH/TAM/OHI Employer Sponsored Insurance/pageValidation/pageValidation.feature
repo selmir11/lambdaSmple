@@ -7,7 +7,6 @@ Feature: Page Text-Other Health Insurance Page
 
   @SLER-239 @PageTextOtherHealthInsurancePage
   Scenario: SLER-239 I Validate saved data on the ESI page for multiple members
-    Then I login as "AutomationUser.dygdinlrTest@test.com" and "ALaska12!" individual existing user
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -117,72 +116,82 @@ Feature: Page Text-Other Health Insurance Page
     And I select the "2" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
     Then I select "ESI" as health insurance option and continue
+    Then I select the employer on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "250.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    Then I enter the end date as the last day of the current month on the ESI page
+    Then I select the Are you voluntarily ending "Yes" button on the ESI page
+    Then I click "No" for offer family plans question
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    And I click on Apply for Coverage in the "NonElmo" Header
 
-#    Then I validate I am on the "Account Overview" page
-#    Then I apply for the current year
-#    Then I select "No" option on the Let us guide you page
-#    And I click on save and continue button
-#    Then I click on continue with  application button on Before you begin page
-#    And I report "Birth" and click continue
-#    Then I click Continue on my own button from Find Expert Help page
-#    And I click continue on Tell us about yourself page
-#    And I click continue on the Add Address page
-#    And I click continue on the Citizenship page
-#    Then I edit income for Primary member
-#    Then I click continue on the Employment Summary Page
-#    Then I click continue on the Additional Income page
-#    And I validate I am on the "Deductions" page
-#    Then I click continue on the Deductions page
-#    Then I select the projected income option "No" and continue
-#    And I validate I am on the "Tax status" page
-#    And I click save and continue on tax status page
-#    Then I click continue on the Other Health Insurance page
-##Step 1
-#    And I validate I am on the "ESI" page
-#    And I verify offer family health plans is "No" on the ESI page
-##Step 2
-#    Then I click continue on the ESI page
-##Step 3
-#    And I validate I am on the "New Other Health Insurance" page
-##Step 4
-#    Then I click Go Back on the Other Health Insurance page
-#    Then I click continue on the Other Health Insurance page
-#    And I validate I am on the "ESI" page
-#    And I verify offer family health plans is "No" on the ESI page
-#    Then I click "Yes" for offer family plans question
-#    Then I enter "650.00" for offer family amount question
-#    Then I click "Enrolled" enrollment status for first member question
-#    Then I click "Offered" enrollment status for second member question
-##Step 5
-#    Then I click continue on the ESI page
-#    And I validate I am on the "New Other Health Insurance" page
-##Step 6
-#    Then I click Go Back on the Other Health Insurance page
-#    Then I click continue on the Other Health Insurance page
-#    And I validate I am on the "ESI" page
-#    And I verify offer family health plans is "Yes" on the ESI page
-#    And I verify offered family amount is "650.00" on the ESI page
-#    And I verify "Enrolled" enrollment status for first member question
-#    And I verify "Offered" enrollment status for second member question
-##Step 7
-#    Then I enter "800.00" for offer family amount question
-#    Then I click "Offered" enrollment status for first member question
-#    Then I click "No Option" enrollment status for second member question
-#    Then I click continue on the ESI page
-#    And I validate I am on the "New Other Health Insurance" page
-#    Then I click Go Back on the Other Health Insurance page
-#    Then I click continue on the Other Health Insurance page
-#    And I validate I am on the "ESI" page
-#    And I verify offer family health plans is "Yes" on the ESI page
-#    And I verify offered family amount is "800.00" on the ESI page
-#    And I verify "Offered" enrollment status for first member question
-#    And I verify "No Option" enrollment status for second member question
-##Reset to No family ESI
-#    Then I click "No" for offer family plans question
-#    Then I click continue on the ESI page
-#    And I validate I am on the "New Other Health Insurance" page
-#
-#    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Find Expert Help page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    Then I edit income for Primary member
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    Then I click continue on the Other Health Insurance page
+#Step 1
+    And I validate I am on the "ESI" page
+    And I verify offer family health plans is "No" on the ESI page
+#Step 2
+    Then I click continue on the ESI page
+#Step 3
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+#Step 4
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify offer family health plans is "No" on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "650.00" for offer family amount question
+    Then I click "Enrolled" enrollment status for first member question
+    Then I click "Offered" enrollment status for second member question
+#Step 5
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+#Step 6
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify offer family health plans is "Yes" on the ESI page
+    And I verify offered family amount is "650.00" on the ESI page
+    And I verify "Enrolled" enrollment status for first member question
+    And I verify "Offered" enrollment status for second member question
+#Step 7
+    Then I enter "800.00" for offer family amount question
+    Then I click "Offered" enrollment status for first member question
+    Then I click "No Option" enrollment status for second member question
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify offer family health plans is "Yes" on the ESI page
+    And I verify offered family amount is "800.00" on the ESI page
+    And I verify "Offered" enrollment status for first member question
+    And I verify "No Option" enrollment status for second member question
+
+    And I click on Sign Out in the Header for "Elmo"
 
 
 
