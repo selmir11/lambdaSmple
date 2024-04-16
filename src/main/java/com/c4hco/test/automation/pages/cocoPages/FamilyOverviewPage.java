@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public class FamilyOverviewPage {
 
     @FindBy(id = "familyOverview-GoBack")
     WebElement manageWhoHelpsYouButton;
+
+    @FindBy(css = ".errorMessage.smaller")
+    WebElement noOneApplyingErrorText;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -82,6 +86,16 @@ public class FamilyOverviewPage {
     public void verifyTextManageWhoHelpsYouButtonSpanish(){
         basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
         softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar quién te ayuda");
+        softAssert.assertAll();
+    }
+
+    public void verifyContinueButtonIsDisabled() {
+        Assert.assertFalse(continueButton.isEnabled());
+    }
+
+    public void verifyNoOneIsApplyingText(){
+        basicActions.waitForElementToBePresent(noOneApplyingErrorText, 30);
+        softAssert.assertEquals(noOneApplyingErrorText.getText(), "You\u2019ve indicated that no one is applying for health insurance.\nTo continue, please indicate which member(s) are applying by clicking the \u201CEdit/Update\u201D button in the table below");
         softAssert.assertAll();
     }
 }
