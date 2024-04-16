@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class FamilyOverviewPage {
     @FindBy(id = "familyOverview-GoBack")
     WebElement manageWhoHelpsYouButton;
 
-    @FindBy(css = ".errorMessage.smaller.ng-star-inserted")
+    @FindBy(css = ".errorMessage.smaller")
     WebElement noOneApplyingErrorText;
 
     SoftAssert softAssert = new SoftAssert();
@@ -89,9 +90,7 @@ public class FamilyOverviewPage {
     }
 
     public void verifyContinueButtonIsDisabled() {
-        if (continueButton.isEnabled()) {
-            throw new AssertionError("Continue button is enabled when it should be disabled.");
-        }
+        Assert.assertFalse(continueButton.isEnabled());
     }
 
     public void verifyNoOneIsApplyingText(){
