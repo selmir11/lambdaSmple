@@ -118,8 +118,8 @@ Feature: Page Text-Other Health Insurance Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "New Other Health Insurance Page"
-    And I validate I am on the "New Other Health Insurance" page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
 
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
