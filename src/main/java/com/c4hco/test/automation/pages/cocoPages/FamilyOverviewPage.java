@@ -28,6 +28,9 @@ public class FamilyOverviewPage {
     @FindBy(id = "familyOverview-GoBack")
     WebElement manageWhoHelpsYouButton;
 
+    @FindBy(css = ".errorMessage.smaller.ng-star-inserted")
+    WebElement noOneApplyingErrorText;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -82,6 +85,18 @@ public class FamilyOverviewPage {
     public void verifyTextManageWhoHelpsYouButtonSpanish(){
         basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
         softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar quién te ayuda");
+        softAssert.assertAll();
+    }
+
+    public void verifyContinueButtonIsDisabled() {
+        if (continueButton.isEnabled()) {
+            throw new AssertionError("Continue button is enabled when it should be disabled.");
+        }
+    }
+
+    public void verifyNoOneIsApplyingText(){
+        basicActions.waitForElementToBePresent(noOneApplyingErrorText, 30);
+        softAssert.assertEquals(noOneApplyingErrorText.getText(), "You\u2019ve indicated that no one is applying for health insurance.\nTo continue, please indicate which member(s) are applying by clicking the \u201CEdit/Update\u201D button in the table below");
         softAssert.assertAll();
     }
 }
