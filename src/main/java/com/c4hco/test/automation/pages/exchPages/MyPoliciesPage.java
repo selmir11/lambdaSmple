@@ -65,7 +65,7 @@ public class MyPoliciesPage {
     @FindBy(id="Cancel 2024 Medical PlansButton")
     WebElement cancelMedicalPlanbtn;
 
-    @FindBy(id="Cancel 2024 Dental Plans")
+    @FindBy(id="Cancel 2024 Dental Plans Button")
     WebElement cancelDentalPlanbtn;
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?

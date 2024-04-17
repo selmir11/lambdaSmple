@@ -15,4 +15,11 @@ public class CancellationRequestPageSteps {
     public void ValidateTextInCancellationPage(String language, List<String> data){
         cancellationRequestPage.ValidateCancellationPageText(language,data);
     }
+
+    @Then("I click Go Back on medical plan Cancellation Page")
+    public void i_click_go_back_on_medical_plan_cancellation_page() {
+        cancellationRequestPage.clickGoBackbtn();
+    }
+
+
 }

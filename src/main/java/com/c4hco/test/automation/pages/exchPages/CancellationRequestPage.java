@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,38 +27,51 @@ public class CancellationRequestPage {
     @FindBy(xpath = "//div[@class='container']/div")
     List<WebElement> planCancellationPageTextDetails;
 
+    @FindBy(xpath = "//table[@summary='Plan Details']/tr/th")
+    List<WebElement> planCancellationPagePlanHeaderDetails;
+
+    @FindBy(css="input[type='text']")
+    WebElement placeHoldertxt;
+
+    @FindBy(id="goBackButton")
+    WebElement goBackbtn;
+
+    @FindBy(id="continueButton")
+    WebElement continuebtn;
+
     public void ValidateCancellationPageText(String language, List<String> data){
         switch (language){
-            case "English":
-                ValidateCancellationPageEnglishText(data);
-                break;
-            case "Spanish":
-                ValidateCancellationPageSpanishText(data);
+            case "English", "Spanish":
+                ValidateCancellationPageText(data);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
-    private void ValidateCancellationPageSpanishText(List<String> data){
-        basicActions.waitForElementToBePresent(planCancellationpageHeader, 10);
+    private void ValidateCancellationPageText(List<String> data){
+        basicActions.waitForElementToBePresent(planCancellationpageHeader, 20);
         softAssert.assertEquals(planCancellationpageHeader.getText(), data.get(0));
-        System.out.println(planCancellationPageTextDetails.size());
         softAssert.assertEquals(planCancellationPageTextDetails.get(1).getText(),data.get(1));
         softAssert.assertEquals(planCancellationPageTextDetails.get(2).getText(),data.get(2));
         softAssert.assertEquals(planCancellationPageTextDetails.get(3).getText(),data.get(3));
-        //softAssert.assertEquals(planCancellationPageTextDetails.get(4).getText(),data.get(4));
-        softAssert.assertEquals(planCancellationPageTextDetails.get(5).getText(),data.get(5));
-        //softAssert.assertEquals(planCancellationPageTextDetails.get(6).getText(),data.get(5));
-        //softAssert.assertEquals(planCancellationPageTextDetails.get(7).getText(),data.get(7));
+        softAssert.assertEquals(planCancellationPagePlanHeaderDetails.get(0).getText(),data.get(4));
+        softAssert.assertEquals(planCancellationPagePlanHeaderDetails.get(1).getText(),data.get(5));
+        softAssert.assertEquals(planCancellationPagePlanHeaderDetails.get(2).getText(),data.get(6));
+        softAssert.assertEquals(planCancellationPagePlanHeaderDetails.get(3).getText(),data.get(7));
+        softAssert.assertEquals(planCancellationPageTextDetails.get(5).getText(),data.get(8));
+        softAssert.assertTrue(planCancellationPageTextDetails.get(7).getText().contains(data.get(9)));
+        softAssert.assertEquals(placeHoldertxt.getAttribute("placeholder"),data.get(10));
+        softAssert.assertEquals(goBackbtn.getText(),data.get(11));
+        softAssert.assertEquals(continuebtn.getText(),data.get(12));
         softAssert.assertAll();
     }
 
-    private void ValidateCancellationPageEnglishText(List<String> data){
-        basicActions.waitForElementToBePresent(planCancellationpageHeader, 10);
-        softAssert.assertEquals(planCancellationpageHeader.getText(), "Cancellation Request");
-        softAssert.assertEquals(planCancellationPageTextDetails.get(1).getText(), "To cancel or terminate your plan(s), please review and confirm the information below. This will cancel the plan(s) for all of the people listed below. If you would like to remove one person from your plan(s), please return to My Account and click the Make changes button.");
-        softAssert.assertAll();
+    public void clickGoBackbtn(){
+        goBackbtn.click();
     }
 
+    public void clickContinuebtn(){
+        continuebtn.click();
+    }
 }

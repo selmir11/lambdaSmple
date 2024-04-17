@@ -239,6 +239,13 @@ public class BasicSteps {
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
                 break;
+            case "Cancellation Request":
+                pageUrl = "EnrollmentPortal/cancellationRequest";
+                Assert.assertTrue(basicActions.waitUntilUrlIsPresent(pageUrl));
+                break;
+            case "English":
+                pageUrl = "lang=en";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
