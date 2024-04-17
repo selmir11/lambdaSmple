@@ -218,6 +218,50 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageSpanish() {
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains("Ciudadan\u00EDa y estatus migratorio: "), "Page Header text mismatch");
+        softAssert.assertEquals(helpMeUnderstandLink.getText(), "Ayuda para entender esta p\u00E1gina", "Page Hyperlink text mismatch");
+        softAssert.assertEquals(usCitizenQuestionText.getText(), "\u00BFEs usted ciudadano/a de Estados Unidos?", "US Citizen Question text mismatch");
+        softAssert.assertEquals(textYesUSCitizen.getText(), "S\u00ED", "US Citizen - Yes RadioButton text mismatch");
+        softAssert.assertEquals(textNoUSCitizen.getText(), "No", "US Citizen - No RadioButton text mismatch");
+
+        // Select US Citizen - "Yes" RadioButton
+        rdobtnCitizenYes.click();
+
+        softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), "\u00bfEs usted ciudadano/a naturalizado(a) de Estados Unidos?", "Naturalized Citizen Question text mismatch");
+        softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), "S\u00ED", "Naturalized Citizen - Yes RadioButton text mismatch");
+        softAssert.assertEquals(naturalizedCitizenGroup.get(2).getText(), "No", "Naturalized Citizen - No RadioButton text mismatch");
+
+        // Select US Citizen - "No" RadioButton
+        rdobtnCitizenNo.click();
+
+        softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), "\u00bfTiene un estatus migratorio elegible?", "Immigration status Question text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), "S\u00ED", "Immigration status - Yes RadioButton text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), "No", "Immigration status - No RadioButton text mismatch");
+
+        //Select Immigration Status Yes
+        rdobtnEligibleImmigrantYes.click();
+
+        softAssert.assertTrue(textDocumentType.getText().contains("Tipo de documento"), "Document type text mismatch");
+
+        // Initialize Select class with the dropdown element
+        basicActions.waitForElementToBePresent(selectDocType, 15);
+        Select dropdown = new Select(selectDocType);
+
+        // Define the expected options
+        String[] expectedOptions = {"Seleccione", "Permiso de reingreso I-327", "Tarjeta de residente permanente I-551", "Documento de viaje para refugiado I-571", "Tarjeta de autorizaci\u00f3n de empleo I-766", "Visa de inmigrante legible por m\u00e1quina (con idioma temporal I-551)", "Sello temporal I-551 (en el pasaporte o I-94)", "I-94 (Registro de entrada/salida)", "I-94 (Registro de entrada/salida) en pasaporte extranjero vigente", "I-20 (Certificado de elegibilidad para estatus de estudiante no inmigrante; F-1)", "DS2019 (Certificado de elegibilidad para estatus de visitante de intercambio; J-1)", "Otro"};
+
+        // Verify each option is present in the dropdown
+        for (String option : expectedOptions) {
+            boolean optionExists = dropdown.getOptions().stream().anyMatch(e -> e.getText().equals(option));
+            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+        }
+
+        softAssert.assertEquals(btnBack.getAttribute("value"), "< Atr\u00e1s", "Back button text mismatch");
+        softAssert.assertEquals(saveContinue.getAttribute("value"), "Guardar y Continuar", "Continue button text mismatch");
+
+        softAssert.assertAll();
     }
 
     private void validateVerbiageEnglish() {
