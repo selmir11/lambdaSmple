@@ -87,6 +87,7 @@ public class TaxStatusPage {
     }
 
     public void selectSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         saveAndContinueBtn.click();
     }
 

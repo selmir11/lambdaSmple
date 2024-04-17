@@ -27,4 +27,9 @@ public class ApplicationResultsPageSteps {
     public void verifyTextMAEligibility() {
         applicationResultsPage.verifyTextMAEligibility();
     }
+
+    @Then("I validate Primary Member not qualified for health coverage")
+    public void verifyPrimaryMemberNotQualifyForHealthPlan () {
+        applicationResultsPage.verifyPrimaryMemberNotQualified();
+    }
 }
