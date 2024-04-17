@@ -11,6 +11,10 @@ public class OtherHealthInsurancePageSteps {
     public void noOtherHealthInsurance(String insuranceOption){
         otherHealthInsurancePage.selectInsuranceOption( insuranceOption);
     }
+
+    @Then("I click continue on the Other Health Insurance page")
+    public void IClickSaveAndContinue(){otherHealthInsurancePage.clickSaveAndContinue();}
+
     @Then("I select {string} as health insurance option")
     public void iSelectInsuranceOptionOnly(String insuranceOption){
         otherHealthInsurancePage.selectInsuranceOptionOnly(insuranceOption);

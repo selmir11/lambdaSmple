@@ -28,6 +28,9 @@ public class HouseHoldPageSteps {
     @And("I click the edit income {int}")
     public void iClickEditIncomeLink(int index){
         houseHoldPage.iClickEditIncomeLink(index);
+    @Then("I edit income for Primary member")
+    public void IEditPrimaryIncome(){
+        houseHoldPage.editPrimaryIncome();
     }
 }
 

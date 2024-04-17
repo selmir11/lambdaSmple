@@ -191,8 +191,11 @@ public class BasicSteps {
             case "Other Health Insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
-            case "New Other Health Insurance":
+            case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";
+                break;
+            case "Elmo COBRA":
+                pageUrl = "/otherHealthInsurance/cobra";
                 break;
             case "ESI":
                 pageUrl = "otherHealthInsurance/employerSponsored";
@@ -330,6 +333,8 @@ public class BasicSteps {
                 break;
             case  "Good News":
                 pageUrl = "nes/applyMA";
+            case "Employer Coverage":
+                pageUrl = "healthcare.gov/downloads/employer-coverage-tool.pdf";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
@@ -351,10 +356,11 @@ public class BasicSteps {
         basicActions.refreshPage();
     }
 
-    @And("I set the browser resolution to 1920 x 1080")
-    public void setResolution() {
-        basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));
-    }
+    @And("I set the browser resolution to 2000 x 800")
+    public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(2000, 800));}
+
+    @And("I set the browser resolution to Maximized")
+    public void setResolutionMax(){basicActions.getDriver().manage().window().maximize();}
 
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}

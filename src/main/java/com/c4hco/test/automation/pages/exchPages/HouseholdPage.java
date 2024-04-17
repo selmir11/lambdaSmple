@@ -30,6 +30,13 @@ public class HouseholdPage {
     WebElement editIncomeLink;
 
     @FindBy(xpath = "//input[contains(text(),'+TestMember+'][0]")
+    @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
+    List<WebElement> memberBasicRow;
+
+    @FindBy(css = "tr:nth-child(2) > td > input")
+    List<WebElement> memberBasicDetailsEdit;
+
+    @FindBy(css = ".memberBasicRow  #editBasicInfo")
     List<WebElement> memberBasicInformation;
     //input[value='QAEXCHAARONFOURFOUR test (34)']
     //input[@value='QAEXCHAARONFOURFOUR test (34)']
@@ -58,6 +65,12 @@ public class HouseholdPage {
     public void iClickEditIncomeLink(int index) {
         editIncomeLink.isDisplayed();
                 editIncomeLink.click();
+
+    public void editPrimaryIncome(){
+        basicActions.waitForElementListToBePresent(memberBasicRow, 20);
+        memberBasicRow.get(0).click();
+        basicActions.waitForElementListToBePresent(memberBasicDetailsEdit, 20);
+        memberBasicDetailsEdit.get(3).click();
     }
 }
 
