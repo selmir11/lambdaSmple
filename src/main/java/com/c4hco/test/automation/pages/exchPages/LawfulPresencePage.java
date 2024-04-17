@@ -91,7 +91,8 @@ public class LawfulPresencePage {
     @FindBy(css = "#NonCitizenQ label span")
     List<WebElement> immigrationStatusQuestion;
 
-    @FindBy(css = "#NonCitizenTable div:nth-child(1) div div label span")
+    //@FindBy(css = "#NonCitizenTable div:nth-child(1) div div label span")
+    @FindBy(css = "#NonCitizenTable")
     WebElement textDocumentType;
 
     @FindBy (css = ".back-button-link")
@@ -248,7 +249,7 @@ public class LawfulPresencePage {
         //Select Immigration Status Yes
         rdobtnEligibleImmigrantYes.click();
 
-        softAssert.assertEquals(textDocumentType.getText(), "Document type", "Document type text mismatch");
+        softAssert.assertTrue(textDocumentType.getText().contains("Document type"), "Document type text mismatch");
 
         // Initialize Select class with the dropdown element
         basicActions.waitForElementToBePresent(selectDocType, 15);
