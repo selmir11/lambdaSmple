@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class ApplicationResultsCoCoPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -24,6 +26,15 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css = ".container .header-1")
     WebElement applicationResultsHeader;
+
+    @FindBy(xpath = "//div[contains(text(), \"Here's what your household qualifies for\")]")
+    WebElement hereIsWhatYourHouseholdQualifiesHeader;
+
+    @FindBy(css = ".body-text-2")
+    List<WebElement> doNotQualifyForHealthPlanText;
+
+    @FindBy(css = ".body-text-1")
+    WebElement submitNewApplicationText;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -50,5 +61,14 @@ public class ApplicationResultsCoCoPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+    }
+
+    public void verifyTextNotQualifyForPlanOnAppResultsPage(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeader.getText(), "Here's what your household qualifies for");
+        softAssert.assertEquals(doNotQualifyForHealthPlanText.get(0).getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
+        softAssert.assertEquals(doNotQualifyForHealthPlanText.get(1).getText(), "You must live in Colorado");
+        softAssert.assertEquals(submitNewApplicationText.getText(), "If your situation changes you can submit a new application to re-apply and newly qualify.");
+        softAssert.assertAll();
     }
 }
