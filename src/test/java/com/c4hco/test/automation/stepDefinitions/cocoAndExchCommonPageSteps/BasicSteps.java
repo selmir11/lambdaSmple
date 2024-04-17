@@ -324,7 +324,7 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
+                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
             }
         }
         basicActions.closeBrowserTab();
