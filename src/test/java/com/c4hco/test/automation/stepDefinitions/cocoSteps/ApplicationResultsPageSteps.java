@@ -20,5 +20,9 @@ public class ApplicationResultsPageSteps {
     @Then("I verify the header in {string} on the Application Results Page CoCo")
     public void iVerifyHeader(String language){applicationResultsCoCoPage.verifyHeader(language);}
 
+    @Then("I verify text that the member don't qualify for a health plan on the App Results Page CoCo")
+    public void verifyTextDoNotQualifyForHealthPlan () {
+        applicationResultsCoCoPage.verifyTextNotQualifyForPlanOnAppResultsPage();
+    }
 
 }
