@@ -1,5 +1,5 @@
-@TAM @test
-Feature: Page Text-Additional Income Page
+@TAM
+Feature: Page Text-Deductions Page
 
   Background:
     Given I open the login page on the "login" portal
