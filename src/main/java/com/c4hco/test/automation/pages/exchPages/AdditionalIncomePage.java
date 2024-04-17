@@ -118,6 +118,7 @@ public class AdditionalIncomePage {
         saveAndContinueBtn.click();
     }
     public void clickContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
