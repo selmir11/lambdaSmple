@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class OhiEmployerSponsoredHealthInsurancePage {
     private BasicActions basicActions;
@@ -247,38 +248,29 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         esiMonthlyAmountFamilyInput.sendKeys(familyAmount);
     }
 
-    public void clickFamilyEnrollmentStatusMember1(String enrollmentStatus) {
-        switch (enrollmentStatus) {
-            case "Enrolled":
-                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
-                basicActions.click(esiFamilyEnrolledBtn.get(0));
-                break;
-            case "Offered":
-                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
-                basicActions.click(esiFamilyOfferedBtn.get(0));
-                break;
-            case "No Option":
-                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
-                basicActions.click(esiFamilyNoOptionBtn.get(0));
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + enrollmentStatus);
+    public void clickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
+        for(int i=0; i<expectedValues.size();i++){
+            System.out.println("value of i=="+i);
+            String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
+
+            System.out.println("--txtToClick--"+txtToClick);
+            clickFamilyEnrollmentStatusMember(txtToClick, i);
         }
     }
 
-    public void clickFamilyEnrollmentStatusMember2(String enrollmentStatus) {
+    public void clickFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
         switch (enrollmentStatus) {
             case "Enrolled":
                 basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
-                basicActions.click(esiFamilyEnrolledBtn.get(1));
+                basicActions.click(esiFamilyEnrolledBtn.get(memberIndex));
                 break;
             case "Offered":
                 basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
-                basicActions.click(esiFamilyOfferedBtn.get(1));
+                basicActions.click(esiFamilyOfferedBtn.get(memberIndex));
                 break;
             case "No Option":
                 basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
-                basicActions.click(esiFamilyNoOptionBtn.get(1));
+                basicActions.click(esiFamilyNoOptionBtn.get(memberIndex));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + enrollmentStatus);
@@ -381,43 +373,33 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyFamilyEnrollmentStatusMember1(String enrollmentStatus) {
-        switch (enrollmentStatus) {
-            case "Enrolled":
-                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
-                softAssert.assertTrue(esiFamilyEnrolledBtn.get(0).getAttribute("class").contains("selected"));
-                softAssert.assertAll();
-                break;
-            case "Offered":
-                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
-                softAssert.assertTrue(esiFamilyOfferedBtn.get(0).getAttribute("class").contains("selected"));
-                softAssert.assertAll();
-                break;
-            case "No Option":
-                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
-                softAssert.assertTrue(esiFamilyNoOptionBtn.get(0).getAttribute("class").contains("selected"));
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + enrollmentStatus);
+    public void verifyFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
+        for(int i=0; i<expectedValues.size();i++){
+            System.out.println("value of i=="+i);
+            String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
+
+            System.out.println("--txtToClick--"+txtToClick);
+            verifyFamilyEnrollmentStatusMember(txtToClick, i);
+
         }
+
     }
 
-    public void verifyFamilyEnrollmentStatusMember2(String enrollmentStatus) {
+    public void verifyFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
         switch (enrollmentStatus) {
             case "Enrolled":
                 basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
-                softAssert.assertTrue(esiFamilyEnrolledBtn.get(1).getAttribute("class").contains("selected"));
+                softAssert.assertTrue(esiFamilyEnrolledBtn.get(memberIndex).getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
             case "Offered":
                 basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
-                softAssert.assertTrue(esiFamilyOfferedBtn.get(1).getAttribute("class").contains("selected"));
+                softAssert.assertTrue(esiFamilyOfferedBtn.get(memberIndex).getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
             case "No Option":
                 basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
-                softAssert.assertTrue(esiFamilyNoOptionBtn.get(1).getAttribute("class").contains("selected"));
+                softAssert.assertTrue(esiFamilyNoOptionBtn.get(memberIndex).getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
             default:

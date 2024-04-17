@@ -5,6 +5,9 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+import java.util.Map;
+
 public class OhiEmployerSponsoredHealthInsuranceSteps {
     OhiEmployerSponsoredHealthInsurancePage ohiEmployerSponsoredHealthInsurancePage = new OhiEmployerSponsoredHealthInsurancePage(WebDriverManager.getDriver());
 
@@ -44,11 +47,9 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     @Then("I enter {string} for offer family amount question")
     public void iEnterMonthlyFamilyAmount(String familyAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyFamilyAmount(familyAmount);}
 
-    @Then("I click {string} enrollment status for first member question")
-    public void iClickFamilyEnrollmentStatusMember1(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMember1(enrollmentStatus);}
-
-    @Then("I click {string} enrollment status for second member question")
-    public void iClickFamilyEnrollmentStatusMember2(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMember2(enrollmentStatus);}
+    @Then("I click enrollment status for the members")
+    public void iClickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues)
+    {ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMembers(expectedValues);}
 
     @Then("I click continue on the ESI page")
     public void iClickSaveAndContinue(){ohiEmployerSponsoredHealthInsurancePage.clickSaveAndContinue();}
@@ -81,11 +82,9 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     @And("I verify offered family amount is {string} on the ESI page")
     public void iVerifyMonthlyAmount(String familyAmount){ohiEmployerSponsoredHealthInsurancePage.verifyMonthlyAmount(familyAmount);}
 
-    @And("I verify {string} enrollment status for first member question")
-    public void iVerifyFamilyEnrollmentStatusMember1(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.verifyFamilyEnrollmentStatusMember1(enrollmentStatus);}
-
-    @And("I verify {string} enrollment status for second member question")
-    public void iVerifyFamilyEnrollmentStatusMember2(String enrollmentStatus){ohiEmployerSponsoredHealthInsurancePage.verifyFamilyEnrollmentStatusMember2(enrollmentStatus);}
+    @Then("I verify enrollment status for the members")
+    public void iVerifyFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues)
+    {ohiEmployerSponsoredHealthInsurancePage.verifyFamilyEnrollmentStatusMembers(expectedValues);}
 
 
 }

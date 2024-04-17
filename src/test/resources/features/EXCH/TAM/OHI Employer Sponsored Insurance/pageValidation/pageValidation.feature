@@ -162,8 +162,10 @@ Feature: Page Text-Other Health Insurance Page
     And I verify offer family health plans is "No" on the ESI page
     Then I click "Yes" for offer family plans question
     Then I enter "650.00" for offer family amount question
-    Then I click "Enrolled" enrollment status for first member question
-    Then I click "Offered" enrollment status for second member question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      Enrolled         |
+      |      Offered          |
 #Step 5
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Insurance" page
@@ -174,12 +176,16 @@ Feature: Page Text-Other Health Insurance Page
     And I validate I am on the "ESI" page
     And I verify offer family health plans is "Yes" on the ESI page
     And I verify offered family amount is "650.00" on the ESI page
-    And I verify "Enrolled" enrollment status for first member question
-    And I verify "Offered" enrollment status for second member question
+    Then I verify enrollment status for the members
+      |   enrollmentStatus    |
+      |      Enrolled         |
+      |      Offered          |
 #Step 7
     Then I enter "800.00" for offer family amount question
-    Then I click "Offered" enrollment status for first member question
-    Then I click "No Option" enrollment status for second member question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      Offered          |
+      |      No Option        |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Insurance" page
     Then I select "None of these" as health insurance option
@@ -188,8 +194,10 @@ Feature: Page Text-Other Health Insurance Page
     And I validate I am on the "ESI" page
     And I verify offer family health plans is "Yes" on the ESI page
     And I verify offered family amount is "800.00" on the ESI page
-    And I verify "Offered" enrollment status for first member question
-    And I verify "No Option" enrollment status for second member question
+    Then I verify enrollment status for the members
+      |   enrollmentStatus    |
+      |      Offered          |
+      |      No Option        |
 
     And I click on Sign Out in the Header for "Elmo"
 
