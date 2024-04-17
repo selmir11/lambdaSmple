@@ -50,5 +50,9 @@ public class LawfulPresencePageSteps {
     @And("I get the Primary Member ID")
     public void iGetPrimaryMemberId(){lawfulPresencePage.getPrimaryMemberId();}
 
+    @And("I validate the verbiage on Citizenship and immigration status page in {string}")
+    public void iValidateTheVerbiageOnCitizenshipAndImmigrationStatusPageIn(String language) {
+            lawfulPresencePage.validateVerbiageOnCitizenshipAndImmigratioStatusPage(language);
+    }
 
 }

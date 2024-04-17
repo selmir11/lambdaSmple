@@ -7,7 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
+import java.util.List;
 import java.util.Random;
 
 public class LawfulPresencePage {
@@ -67,6 +69,33 @@ public class LawfulPresencePage {
 
     @FindBy(name = "saveAndContinue")
     WebElement saveContinue;
+
+    @FindBy(css = "h1.c4PageHeader")
+    WebElement citizenshipImmigrationStatusHeader;
+
+    @FindBy(css = "#overviewButton")
+    WebElement helpMeUnderstandLink;
+
+    @FindBy(xpath = "//label[@for='usCitizen']/span[@class='c4BodyText1']")
+    WebElement usCitizenQuestionText;
+
+    @FindBy(css = ".citizenGroup input#usCitizenYes + label span")
+    WebElement textYesUSCitizen;
+
+    @FindBy(css = ".citizenGroup input#usCitizenNo + label span")
+    WebElement textNoUSCitizen;
+
+    @FindBy(css = "#NaturalizedCitizenQ  label span")
+    List<WebElement> naturalizedCitizenGroup;
+
+    @FindBy(css = "#NonCitizenQ label span")
+    List<WebElement> immigrationStatusQuestion;
+
+    @FindBy(css = "#NonCitizenTable div:nth-child(1) div div label span")
+    WebElement textDocumentType;
+
+    @FindBy (css = ".back-button-link")
+    WebElement btnBack;
 
     public void isMemberCitizen(String YNCitizen){
         switch(YNCitizen){
@@ -173,6 +202,71 @@ public class LawfulPresencePage {
         String currentUrl = basicActions.getCurrentUrl();
        SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=')+1));
         System.out.println("Primary Member ID: "+SharedData.getPrimaryMemberId());
+    }
+
+    public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language) {
+        switch (language) {
+            case "English":
+                validateVerbiageEnglish();
+                break;
+            case "Spanish":
+                validateVerbiageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    private void validateVerbiageSpanish() {
+        SoftAssert softAssert = new SoftAssert();
+
+    }
+
+    private void validateVerbiageEnglish() {
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains("Citizenship and immigration status: "), "Page Header text mismatch");
+        softAssert.assertEquals(helpMeUnderstandLink.getText(), "Help me understand this page", "Page Hyperlink text mismatch");
+        softAssert.assertEquals(usCitizenQuestionText.getText(), "Are you a U.S. Citizen?", "US Citizen Question text mismatch");
+        softAssert.assertEquals(textYesUSCitizen.getText(), "Yes", "US Citizen - Yes RadioButton text mismatch");
+        softAssert.assertEquals(textNoUSCitizen.getText(), "No", "US Citizen - No RadioButton text mismatch");
+
+        // Select US Citizen - "Yes" RadioButton
+        rdobtnCitizenYes.click();
+
+        softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), "Are you a Naturalized Citizen?", "Naturalized Citizen Question text mismatch");
+        softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), "Yes", "Naturalized Citizen - Yes RadioButton text mismatch");
+        softAssert.assertEquals(naturalizedCitizenGroup.get(2).getText(), "No", "Naturalized Citizen - No RadioButton text mismatch");
+
+        // Select US Citizen - "No" RadioButton
+        rdobtnCitizenNo.click();
+
+        softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), "Do you have an eligible immigration status?", "Immigration status Question text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), "Yes", "Immigration status - Yes RadioButton text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), "No", "Immigration status - No RadioButton text mismatch");
+
+        //Select Immigration Status Yes
+        rdobtnEligibleImmigrantYes.click();
+
+        softAssert.assertEquals(textDocumentType.getText(), "Document type", "Document type text mismatch");
+
+        // Initialize Select class with the dropdown element
+        basicActions.waitForElementToBePresent(selectDocType, 15);
+        Select dropdown = new Select(selectDocType);
+
+        // Define the expected options
+        String[] expectedOptions = {"Select Option", "I-327 Reentry Permit", "I-551 Permanent Resident Card", "I-571 Refugee Travel Document", "I-766 Employment Authorization Card", "Machine Readable Immigrant Visa (with Temporary I-551 Language)", "Temporary I-551 Stamp (on passport or I-94)", "Temporary I-551 Stamp (on passport or I-94)", "I-94 (Arrival/Departure Record)", "I-94 (Arrival/Departure Record) in Unexpired Foreign Passport", "I-20 (Certificate of Eligibility for Nonimmigrant (F-1) Student Status)", "DS2019 (Certificate of Eligibility for Exchange Visitor (J-1) Status)", "Other"};
+
+        // Verify each option is present in the dropdown
+        for (String option : expectedOptions) {
+            boolean optionExists = dropdown.getOptions().stream().anyMatch(e -> e.getText().equals(option));
+            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+        }
+
+        softAssert.assertEquals(btnBack.getAttribute("value"), "< Back", "Back button text mismatch");
+        softAssert.assertEquals(saveContinue.getAttribute("value"), "Save and Continue", "Continue button text mismatch");
+
+        softAssert.assertAll();
     }
 
 }
