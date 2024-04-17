@@ -91,7 +91,6 @@ public class LawfulPresencePage {
     @FindBy(css = "#NonCitizenQ label span")
     List<WebElement> immigrationStatusQuestion;
 
-    //@FindBy(css = "#NonCitizenTable div:nth-child(1) div div label span")
     @FindBy(css = "#NonCitizenTable")
     WebElement textDocumentType;
 
@@ -219,8 +218,6 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageSpanish() {
-        SoftAssert softAssert = new SoftAssert();
-
     }
 
     private void validateVerbiageEnglish() {
