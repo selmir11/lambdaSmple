@@ -188,6 +188,7 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
+        basicActions.waitForElementToBeClickable(btnContinue,50);
         btnContinue.click();
     }
 
