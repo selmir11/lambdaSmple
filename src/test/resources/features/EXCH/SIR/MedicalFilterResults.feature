@@ -1,4 +1,4 @@
-@medicalPlanFilterResults
+@medicalPlanFilterResults @sir
 Feature: Medical Plan Verification test
 
   Background:

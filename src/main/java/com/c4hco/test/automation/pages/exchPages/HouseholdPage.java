@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.sql.Driver;
 import java.util.List;
 
 public class HouseholdPage {
@@ -28,13 +29,14 @@ public class HouseholdPage {
     @FindBy(id= "submitButton_Income {0}")
     WebElement editIncomeLink;
 
-    @FindBy(xpath = "input[@value, contains 'Test']{0}")
+    @FindBy(xpath = "//input[contains(text(),'+TestMember+'][0]")
     List<WebElement> memberBasicInformation;
-//input[value='QAEXCHAARONFOURFOUR test (34)']
-//input[@value='QAEXCHAARONFOURFOUR test (34)']
+    //input[value='QAEXCHAARONFOURFOUR test (34)']
+    //input[@value='QAEXCHAARONFOURFOUR test (34)']
     //memberBasicRow addlRowClosed
     //@FindBy(css = ".memberBasicRow  #editBasicInfo")
     //List<WebElement> memberBasicInformation;
+    //@FindBy(xpath = "input[@value, contains 'Test'][0]")
 
     @FindBy(css=".table-striped")
     WebElement familyOverviewTable;
@@ -44,7 +46,8 @@ public class HouseholdPage {
     public void clickContinue(){saveAndContinue.click();}
 
     public void clickBasicInfoMember1Button(int member){
-        memberBasicInformation.get(member).click();
+    basicActions.waitForElementListToBePresent(memberBasicInformation, 100);
+       memberBasicInformation.get(member).click();
     }
 
     public void iVerifyFamilyOverviewTablePresent(){
