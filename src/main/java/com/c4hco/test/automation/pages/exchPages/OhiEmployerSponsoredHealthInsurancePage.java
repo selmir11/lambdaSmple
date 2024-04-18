@@ -250,10 +250,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void clickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
         for(int i=0; i<expectedValues.size();i++){
-            System.out.println("value of i=="+i);
             String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
-
-            System.out.println("--txtToClick--"+txtToClick);
             clickFamilyEnrollmentStatusMember(txtToClick, i);
         }
     }
@@ -375,14 +372,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
         for(int i=0; i<expectedValues.size();i++){
-            System.out.println("value of i=="+i);
             String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
-
-            System.out.println("--txtToClick--"+txtToClick);
             verifyFamilyEnrollmentStatusMember(txtToClick, i);
-
         }
-
     }
 
     public void verifyFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
