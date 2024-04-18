@@ -716,24 +716,6 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-//    public void verifyTextInExchNonElmoFooter(){
-//        basicActions.waitForElementToBePresent(privacyPolicyLink,10);
-//        basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
-//        softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
-//        softAssert.assertEquals(termsOfUseLink.getText(), "Terms of Use");
-//        softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
-//        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
-//        softAssert.assertTrue(followUsText.getText().contains("Follow"));
-//        softAssert.assertTrue(followUsText.getText().contains("Us:"));
-//        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
-//        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
-//        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
-//        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
-//        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
-//        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
-//        softAssert.assertAll();
-//    }
-
     public void verifyTextInExchFooterSpanish(){
         basicActions.waitForElementToBePresent(privacyPolicyLink,10);
         basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
@@ -750,23 +732,6 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
         softAssert.assertAll();
     }
-
-//    public void verifyTextInExchNonElmoFooterSpanish(){
-//        basicActions.waitForElementToBePresent(privacyPolicyLink,10);
-//        basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
-//        softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
-//        softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
-//        softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
-//        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
-//        softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
-//        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
-//        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
-//        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
-//        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
-//        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
-//        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
-//        softAssert.assertAll();
-//    }
 
     public void verifyTextAPFooter() {
         basicActions.waitForElementToBePresent(APprivacyPolicyLink, 10);
