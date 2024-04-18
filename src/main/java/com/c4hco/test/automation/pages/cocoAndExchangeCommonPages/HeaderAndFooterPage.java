@@ -389,17 +389,17 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
-        softAssert.assertEquals(learnMoreLinkNonElmo.getText(), "Learn More");
+        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
         softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrpNonElmo.getText(), "");
+        softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOptionNonElmo.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOptionNonElmo.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLinkNonElmo.getText(), "Sign Out");
-        softAssert.assertEquals(getAssistanceLinkNonElmo.getText(), "Get Assistance");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
         clickGetAssistanceLink("Exch");
-        softAssert.assertEquals(getAssistanceLinkOptionNonElmo.getText(), "Contact Us");
-        softAssert.assertEquals(getAssistanceLinkOptionNonElmo1.getText(), "Find Expert Assistance in Your Community");
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
         softAssert.assertAll();
     }
 
