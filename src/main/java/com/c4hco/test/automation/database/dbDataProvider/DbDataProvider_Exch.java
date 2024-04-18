@@ -22,6 +22,6 @@ public class DbDataProvider_Exch {
     }
 
     public List<PolicyTablesEntity> getEap_idFromPolicyTable(){
-        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.eap_id());
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.getEAPID());
     }
 }
