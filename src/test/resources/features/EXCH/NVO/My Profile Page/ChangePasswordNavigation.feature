@@ -14,7 +14,8 @@ Feature: My profile page
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Profile"
     Then I validate I am on the "My Profile" page
+    And I change the language from header to "Spanish"
     And I click on Make Changes Button
-    Then I verify Password text on My profile page "English"
+    Then I verify Password text on My profile page "Spanish"
     And I click the Change Password Button
     Then I validate I am on the "Forgot my password" page
