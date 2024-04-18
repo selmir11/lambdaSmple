@@ -109,17 +109,7 @@ public class MyPoliciesPage {
         List<PolicyTablesEntity> policyEntity = exchDbDataProvider.getEap_idFromPolicyTable();
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
         primaryMember.setMedicalEapid(policyNumSubscriber.get(1).getText());
-        primaryMember.setDentalEapid(policyNumSubscriber.get(7).getText());
-
-        for(PolicyTablesEntity policyTablesEntity: policyEntity) {
-
-            if (policyTablesEntity.getCoverage_type() != null && policyTablesEntity.getCoverage_type().equals("1")) {
-                softAssert.assertEquals(primaryMember.getMedicalEapid(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID from DB");
-            }else {
-
-            }
-        }
-
+        softAssert.assertEquals(primaryMember.getMedicalEapid(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID from DB");
 
         //Validating Total Premium after APTC amount reduction
         String totalAmtAfterReduction=null;
@@ -130,14 +120,11 @@ public class MyPoliciesPage {
             // TO DO:: Add more when needed
         }
         String premiumAfterAPTC = financialPremiumData.get(5).getText();
-        //String premiumAmountAfterTrim = premiumAfterAPTC.replace("/mo", "").replace("$", "");
 
         primaryMember.setTotalMedAmtAfterReduction(totalAmtAfterReduction);
         SharedData.setPrimaryMember(primaryMember);
 
         String premiumFromSharedData = primaryMember.getTotalMedAmtAfterReduction();
-        System.out.println("totalAmtAfterReduction--"+totalAmtAfterReduction);
-        System.out.println(premiumFromSharedData);
         softAssert.assertEquals(premiumAfterAPTC, "$"+premiumFromSharedData+"/mo", "Total Premium amount after APTC reduction does not match from UI and DB");
         softAssert.assertAll();
     }
@@ -163,26 +150,15 @@ public class MyPoliciesPage {
         softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
         softAssert.assertTrue(policyNumSubscriber.get(10).getText().equals("Last Updated On:"));
 
+        String totalDenPremAmtAfterTrim = null;
         //Validating dental EAP_ID
-        List<PolicyTablesEntity> policyEntity = exchDbDataProvider.getEap_idFromPolicyTable();
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
         primaryMember.setDentalEapid(policyNumSubscriber.get(7).getText());
+        softAssert.assertEquals(primaryMember.getDentalEapid(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
 
-        for(PolicyTablesEntity policyTablesEntity: policyEntity) {
-
-            if (policyTablesEntity.getCoverage_type() != null && policyTablesEntity.getCoverage_type().equals("2")) {
-                softAssert.assertEquals(primaryMember.getDentalEapid(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
-            }else{
-
-            }
-        }
-
-        String totalDenPremAmtAfterTrim=null;
         if(primaryMember.getAptcAmt().equals("$0")){
             String dentalPremiumAmt = primaryMember.getDentalPremiumAmt();
-            System.out.println("dentalPremiumAmt :: "+dentalPremiumAmt);
             totalDenPremAmtAfterTrim = dentalPremiumAmt.replace("$", "");
-            System.out.println("totalDenPremAmtAfterTrim :: "+totalDenPremAmtAfterTrim);
         } else{
             // TO DO:: Add more when needed
         }

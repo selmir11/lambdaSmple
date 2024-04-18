@@ -27,6 +27,6 @@ public class AccountOverviewPageSteps {
 
     @And("I Validate the correct enrolled plans are displayed on account overview page")
     public void validatePlanInfo(){
-        accountOverviewPage.verifyMedPlanInfo();
+        accountOverviewPage.verifyPlanInfo();
     }
 }
