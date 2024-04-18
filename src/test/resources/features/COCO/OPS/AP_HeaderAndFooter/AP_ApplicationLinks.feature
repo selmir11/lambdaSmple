@@ -169,7 +169,8 @@ Feature: AdminPortal: General: Header, footer, and application links
     Then I enter an "accountID" "1108066870" to search user
     Then I click on Search Button
     Then I select the first record from the search results
-    Then I click on view button for EDI Transaction report
+    Then I click on view button for "EDI Transactions" report
+    Then I validate I am on the "EDI Transactions" page
     Then I validate "Logo" for Admin Portal
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal
@@ -201,7 +202,8 @@ Feature: AdminPortal: General: Header, footer, and application links
     Then I enter an "accountID" "1108066870" to search user
     Then I click on Search Button
     Then I select the first record from the search results
-    Then I click on view button for Detailed EDI report
+    Then I click on view button for "Detailed EDI" report
+    Then I validate I am on the "Detailed EDI" page
     Then I validate "Logo" for Admin Portal
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal
@@ -233,7 +235,8 @@ Feature: AdminPortal: General: Header, footer, and application links
     Then I enter an "accountID" "1108066870" to search user
     Then I click on Search Button
     Then I select the first record from the search results
-    Then I click on view button for Account Activity report
+    Then I click on view button for "Account Activity" report
+    Then I validate I am on the "Account Activity" page
     Then I validate "Logo" for Admin Portal
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal

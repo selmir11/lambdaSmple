@@ -162,8 +162,6 @@ public class BasicActions {
             }
         }
     }
-
-
     public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
@@ -182,7 +180,14 @@ public class BasicActions {
                  .withTimeout(Duration.ofSeconds(30))
                  .pollingEvery(Duration.ofMillis(100))
                  .ignoring(NoSuchElementException.class);
-
+            wait.until(ExpectedConditions.urlContains(pageUrl));
+        }
+        catch(TimeoutException e) {
+            System.out.println("Url waiting for is not displayed");
+            return false;
+        }
+         return true;
+     }
 
     public void switchtoactiveTab() {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
@@ -200,16 +205,6 @@ public class BasicActions {
 //        }
 //        getDriver().switchTo().window(origin);
 //    }
-
-         wait.until(ExpectedConditions.urlContains(pageUrl));
-     }
-        catch(TimeoutException e) {
-            System.out.println("Url waiting for is not displayed");
-        return false;
-        }
-        return true;
-}
-
 
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();

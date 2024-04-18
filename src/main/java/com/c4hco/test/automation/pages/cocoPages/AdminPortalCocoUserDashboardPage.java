@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,35 +16,11 @@ public class AdminPortalCocoUserDashboardPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "a[routerlink='edi-transactions']")
-    WebElement viewEDITransactions;
-
-    @FindBy(css = "a[target='_blank'][routerlink='detailed-edi']")
-    WebElement viewEDIDetails;
-
-    @FindBy(css = "a[routerlink='activity-report']")
-    WebElement viewAccountActivity;
-
     @FindBy(xpath = "//*[contains(text(),'Manage')]")
     List<WebElement> dashboardButtons;
 
-    public void clickEDITransaction() {
-        basicActions.waitForElementToBeClickable(viewEDITransactions, 20);
-        viewEDITransactions.click();
-        basicActions.switchtoactiveTab();
-    }
-
-    public void clickEDIDetails() {
-        basicActions.waitForElementToBeClickable(viewEDIDetails, 20);
-        viewEDIDetails.click();
-        basicActions.switchtoactiveTab();
-    }
-
-    public void clickAccountActivity() {
-        basicActions.waitForElementToBeClickable(viewAccountActivity, 20);
-        viewAccountActivity.click();
-        basicActions.switchtoactiveTab();
-    }
+    @FindBy(css = ".container-fluid .reports-container .link-section span:nth-child(1)")
+    List<WebElement> reportViewButtons;
 
     public void clickFromDashboardButtons(String DashboardButtons) {
         basicActions.waitForElementListToBePresent(dashboardButtons, 10);
@@ -51,6 +28,15 @@ public class AdminPortalCocoUserDashboardPage {
         basicActions.switchtoactiveTab();
     }
 
+    public void viewReportLinks(String searchText) {
+        basicActions.waitForElementListToBePresent(reportViewButtons, 20);
+        WebElement viewButton = basicActions.getDriver().findElement(By.xpath("//span[contains(normalize-space(), '" + searchText + "')]//following::span[1]"));
+        viewButton.click();
+        basicActions.switchtoactiveTab();
+    }
 }
+
+
+
 
 
