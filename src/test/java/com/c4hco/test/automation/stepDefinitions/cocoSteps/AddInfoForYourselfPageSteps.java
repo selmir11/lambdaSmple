@@ -14,6 +14,9 @@ public class AddInfoForYourselfPageSteps {
     @And("I select {string} for mailing address option")
     public void iAnswerMailingAddressQuestion(String YNMailingAddress){addInfoForYourselfPage.mailingAddressSelection(YNMailingAddress);}
 
+    @And("I enter my mailing address {string}, {string}, {string}, {string}, {string}")
+    public void enterMemberMailingCOAddress(String addressLine1, String city, String state, String zipcode, String county){addInfoForYourselfPage.memberMailingAddressCoCo(addressLine1, city, state, zipcode, county);}
+
     @And("I select {string} for live in Colorado option")
     public void iAnswerLiveInColoradoQuestion(String YNLiveInColorado){addInfoForYourselfPage.liveInColoradoSelection(YNLiveInColorado);}
 
@@ -24,4 +27,7 @@ public class AddInfoForYourselfPageSteps {
     public void clickGoBack() {
         addInfoForYourselfPage.clickGoBackButton();
     }
+
+    @Then("I verify text on the Additional information for yourself page in {string}")
+    public void verifyAddInfoForYourselfPageText(String Language)  { addInfoForYourselfPage.verifyTextOnAddInfoForYourself(Language); }
 }
