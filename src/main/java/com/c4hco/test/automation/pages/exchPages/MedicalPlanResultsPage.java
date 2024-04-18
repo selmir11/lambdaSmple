@@ -54,7 +54,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-HSAFilter")
     WebElement hsaDropdown;
 
-    @FindBy(xpath = "//*[contains(@id, 'SHP-PlanResults-HSAFilter")
+    @FindBy(xpath = "//label[@for='SHP-PlanResults-HSAFilter-input']")
     WebElement hsaOption;
 
     @FindBy(id = "SHP-PlanResults-CoOptionPlans")
