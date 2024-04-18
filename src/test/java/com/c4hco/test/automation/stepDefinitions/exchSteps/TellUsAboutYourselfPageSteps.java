@@ -21,4 +21,7 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.iUpdateSSN();
 
     }
+
+    @Then("I update Full Name to new Name")
+    public void iUpdateName(){tellUsAboutYourselfPage.updateName();}
 }

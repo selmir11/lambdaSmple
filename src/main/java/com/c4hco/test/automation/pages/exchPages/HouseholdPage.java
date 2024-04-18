@@ -25,6 +25,12 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
+    @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
+    List<WebElement> memberBasicRow;
+
+    @FindBy(css = "tr:nth-child(2) > td > input")
+    List<WebElement> memberBasicDetailsEdit;
+
     @FindBy(css = ".memberBasicRow  #editBasicInfo")
     List<WebElement> memberBasicInformation;
 
@@ -43,5 +49,12 @@ public class HouseholdPage {
         // TO DO:: Sometimes, rarely we see 2 tables here. Make sure the code doesn't break when we get 2 tables displayed
         softAssert.assertTrue(familyOverviewTable.isDisplayed());
         softAssert.assertAll();
+    }
+
+    public void editPrimaryIncome(){
+        basicActions.waitForElementListToBePresent(memberBasicRow, 20);
+        memberBasicRow.get(0).click();
+        basicActions.waitForElementListToBePresent(memberBasicDetailsEdit, 20);
+        memberBasicDetailsEdit.get(3).click();
     }
 }

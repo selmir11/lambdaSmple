@@ -18,6 +18,7 @@ public class SharedData {
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ob834FileDetails> ob834FileDetails;
     @Getter @Setter private static String localPathToDownloadFile;
+    @Getter @Setter private static String EmployerName;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -26,5 +27,6 @@ public class SharedData {
         primaryMember = null;
         members = null;
         primaryMemberId = null;
+        EmployerName = null;
     }
 }

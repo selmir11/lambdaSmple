@@ -64,6 +64,11 @@ public class MyPoliciesPage {
     @FindBy(css = ".current-policy div:nth-child(4) .txt-left span")
     List<WebElement> policyNumSubscriber; // policy num, subscriber, updated On for both medical and dental plans
 
+    @FindBy(id="Cancel 2024 Medical PlansButton")
+    WebElement cancelMedicalPlanbtn;
+
+    @FindBy(id="Cancel 2024 Dental Plans")
+    WebElement cancelDentalPlanbtn;
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
@@ -228,6 +233,16 @@ public class MyPoliciesPage {
     public void clickBackButton(){
         basicActions.waitForElementToBePresent(backToCurPlansBtn, 10);
         backToCurPlansBtn.click();
+    }
+
+    public void clickMedicalPlanCancelButton(){
+        basicActions.waitForElementToBePresent(cancelMedicalPlanbtn, 10);
+        cancelMedicalPlanbtn.click();
+    }
+
+    public void clickDentalPlanCancelButton(){
+        basicActions.waitForElementToBePresent(cancelDentalPlanbtn, 10);
+        cancelDentalPlanbtn.click();
     }
 
 }
