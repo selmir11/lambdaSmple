@@ -230,6 +230,11 @@ public class BasicActions {
                 newUrl3 = currentUrl.replace("nes/medicare", newUrl3);
                 getDriver().navigate().to(newUrl3);
                 break;
+            case "Elmo Ohi VA Healthcare Page":
+                String newUrl4 = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/vaHealthcare";
+                newUrl4 = currentUrl.replace("nes/vaHealth", newUrl4);
+                getDriver().navigate().to(newUrl4);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
