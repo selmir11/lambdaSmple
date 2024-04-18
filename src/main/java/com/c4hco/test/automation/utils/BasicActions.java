@@ -215,10 +215,15 @@ public class BasicActions {
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();
         switch(page){
-            case "New Other Health Insurance Page":
+            case "Elmo Other Health Insurance Page":
                 String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo COBRA":
+                String newUrl1 = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
+                newUrl1 = currentUrl.replace("nes/cobra", newUrl1);
+                getDriver().navigate().to(newUrl1);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);

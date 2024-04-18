@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class TellUsAboutYourselfPage {
 
     private BasicActions basicActions;
@@ -29,6 +31,9 @@ public class TellUsAboutYourselfPage {
 
     @FindBy(id = "nameSuffix")
     WebElement selectSuffix;
+
+    @FindBy(css = "#nameSuffix > option")
+    List<WebElement> suffixDropdownOptions;
 
     @FindBy(id = "genderFemale")
     WebElement rdobtnSexFemale;
@@ -87,6 +92,39 @@ public class TellUsAboutYourselfPage {
         ssn.sendKeys(newSsn);
         SharedData.getPrimaryMember().setSsn(newSsn);
         System.out.println("ssn updated");
+    }
+
+    public void updateName(){
+        MemberDetails subscriber = new MemberDetails();
+        basicActions.waitForElementToBePresent(txtFirstName, 50);
+        txtFirstName.clear();
+        String newFirstName = "Amend";
+        txtFirstName.sendKeys(newFirstName);
+        subscriber.setFirstName(newFirstName);
+        System.out.println("First Name updated to "+newFirstName);
+
+        txtMiddleName.clear();
+        String newMiddleName = "Revise";
+        txtMiddleName.sendKeys(newMiddleName);
+        subscriber.setMiddleName(newMiddleName);
+        subscriber.setMiddleInitial("R.");
+        System.out.println("Middle Name updated to "+newMiddleName);
+
+        txtLastName.clear();
+        String newLastName = "Improve";
+        txtLastName.sendKeys(newLastName);
+        subscriber.setLastName(newLastName);
+        System.out.println("Last Name updated to "+newLastName);
+
+        String newSuffix = "Sr.";
+        selectSuffix.click();
+        basicActions.selectValueFromDropdown(selectSuffix, suffixDropdownOptions, newSuffix);
+        subscriber.setSuffix(newSuffix);
+        System.out.println("Suffix updated to "+newSuffix);
+
+        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getMiddleInitial()+" "+subscriber.getLastName()+" "+subscriber.getSuffix());
+        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
+        SharedData.setPrimaryMember(subscriber);
     }
 
 }

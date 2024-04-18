@@ -1,3 +1,4 @@
+@TAM
 Feature: Page Text-Income Opt Out Page
 
   Background:
@@ -5,7 +6,7 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Login" page
 
   @SLER-57 @PageTextIncomeOptOutPage
-  Scenario: I can see page in English and Spanish
+  Scenario: SLER-57 I can see page in English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

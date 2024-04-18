@@ -24,5 +24,10 @@ public class HouseHoldPageSteps {
     public void IVerifyTablePresent(){
         houseHoldPage.iVerifyFamilyOverviewTablePresent();
     }
+
+    @Then("I edit income for Primary member")
+    public void IEditPrimaryIncome(){
+        houseHoldPage.editPrimaryIncome();
+    }
 }
 

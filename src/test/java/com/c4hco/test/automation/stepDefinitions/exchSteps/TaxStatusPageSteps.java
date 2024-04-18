@@ -27,10 +27,19 @@ public class TaxStatusPageSteps {
         taxStatusPage.selectTaxFilingOption(taxFilingOption);
     }
 
+    @And("I select spouse to file taxes jointly")
+    public void iSelectFileTaxesJointlyWith(){
+        taxStatusPage.selectFileTaxesJointlyWith();
+    }
+
     @And("I select {string} to claim dependents")
     public void selectDependents(String dependentsOption){
         taxStatusPage.selectDependentsOption(dependentsOption);
     }
+
+    //The Option is based on the order that the Radio Buttons appear on the page, starting with 1.
+    @And("I select the {string} option for Who Will Claim as Dependents")
+    public void iCheckDependentClaimed(String IDByOrder){taxStatusPage.checkDependentClaimed(IDByOrder);}
 
     @And("I click save and continue on tax status page")
     public void iClickSaveAndContinue(){

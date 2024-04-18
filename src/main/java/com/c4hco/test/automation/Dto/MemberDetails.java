@@ -10,6 +10,8 @@ public class MemberDetails {
     String firstName;
     String lastName;
     String middleName;
+    String middleInitial;
+    String suffix;
     String emailId;
     String password = "ALaska12!";
     String phoneNumber;

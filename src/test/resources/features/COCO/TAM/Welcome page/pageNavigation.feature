@@ -1,3 +1,4 @@
+@TAM
 Feature: Navigation-Welcome Page
 
   Background: I go the login portal
