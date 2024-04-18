@@ -24,4 +24,9 @@ public class AccountOverviewPageSteps {
     // ================VALIDATION METHODS================//
     @And("I validate the page is in {string}")
     public void iVerifyLanguageText(String language){accountOverviewPage.verifyLanguageText(language);}
+
+    @And("I Validate the correct enrolled plans are displayed on account overview page")
+    public void validatePlanInfo(){
+        accountOverviewPage.verifyMedPlanInfo();
+    }
 }
