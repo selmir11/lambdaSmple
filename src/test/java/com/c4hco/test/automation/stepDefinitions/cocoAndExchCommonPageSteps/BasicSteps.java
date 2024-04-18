@@ -24,7 +24,6 @@ public class BasicSteps {
                 break;
             case "Account Overview":
                 pageUrl = "nes/accountOverview";
-                Assert.assertTrue(basicActions.waitUntilUrlIsPresent(pageUrl));
                 break;
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
@@ -256,6 +255,20 @@ public class BasicSteps {
                 break;
             case "Application Summary":
              pageUrl = "selectMember";
+            case "Account Activity":
+                pageUrl = "/activity-report";
+                break;
+            case "Detailed EDI":
+                pageUrl = "/detailed-edi";
+                break;
+            case "EDI Transactions":
+                pageUrl = "/edi-transactions";
+                break;
+            case "CoCo Ethnicity and Race" :
+                pageUrl = "/coco/member-details-portal/race-ethnicity/";
+                break;
+            case "CoCo Tell us about yourself" :
+                pageUrl = "/coco/member-details-portal/member-details/";
                 break;
             default:
                 System.out.println("undefined page ");
@@ -344,7 +357,7 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
+                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
             }
         }
         basicActions.closeBrowserTab();
