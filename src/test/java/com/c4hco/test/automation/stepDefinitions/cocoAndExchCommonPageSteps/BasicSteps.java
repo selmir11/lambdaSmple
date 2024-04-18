@@ -247,6 +247,12 @@ public class BasicSteps {
             case "EDI Transactions":
                 pageUrl = "/edi-transactions";
                 break;
+            case "CoCo Ethnicity and Race" :
+                pageUrl = "/coco/member-details-portal/race-ethnicity/";
+                break;
+            case "CoCo Tell us about yourself" :
+                pageUrl = "/coco/member-details-portal/member-details/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
