@@ -9,7 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class OhiEmployerSponsoredHealthInsurancePage {
     private BasicActions basicActions;
@@ -22,11 +27,56 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "#ELIG-Ohi-Esi-employer")
     WebElement esiSelectEmployerDpd;
 
-    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-YesButton")
-    WebElement esiInsuranceEndYesBtn;
+    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-YesButton")
+    WebElement esiMinValueStandardYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-NoButton")
+    WebElement esiMinValueStandardNoBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-IDontKnowButton")
+    WebElement esiMinValueStandardDontKnowBtn;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgMonthlyPremium")
+    WebElement esiMonthlyAmountInput;
 
     @FindBy(id = "ELIG-Ohi-Esi-currEnrl-YesButton")
     WebElement esiCurrentlyEnrolledYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-currEnrl-NoButton")
+    WebElement esiCurrentlyEnrolledNoBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-YesButton")
+    WebElement esiInsuranceEndYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-NoButton")
+    WebElement esiInsuranceEndNoBtn;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-empSponsCovgEndDate")
+    WebElement esiEndDateInput;
+
+    @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-YesButton")
+    WebElement esiVoluntarilyEndingYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-NoButton")
+    WebElement esiVoluntarilyEndingNoBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-FamilyCoveragePlanOffered-YesButton")
+    WebElement esiFamilyOfferedYesBtn;
+
+    @FindBy(id = "ELIG-Ohi-Esi-FamilyCoveragePlanOffered-NoButton")
+    WebElement esiFamilyOfferedNoBtn;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgFamilyMonthlyPremium")
+    WebElement esiMonthlyAmountFamilyInput;
+
+    @FindBy(id = "-Esi.CoverageTypeEnrolledButton")
+    List<WebElement> esiFamilyEnrolledBtn;
+
+    @FindBy(id = "-Esi.CoverageTypeAccessButton")
+    List<WebElement> esiFamilyOfferedBtn;
+
+    @FindBy(id = "-Esi.CoverageTypeNoAccessButton")
+    List<WebElement> esiFamilyNoOptionBtn;
 
     @FindBy(css = ".drawer-controls > div > div")
     WebElement helpButton;
@@ -79,24 +129,149 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(id = "ELIG-Ohi-Esi-GoBack")
     WebElement goBackButton;
 
+    @FindBy(id = "ELIG-Ohi-Esi-SaveAndContinue")
+    WebElement saveAndContinueBtn;
+
 
 
     public void clickGoBack() {
         basicActions.click(goBackButton);
     }
 
+    public void clickSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        saveAndContinueBtn.click();
+    }
+
     public void selectEmployer() {
+        basicActions.waitForElementToBeClickable(esiSelectEmployerDpd, 50);
         String setEmployerName = SharedData.getEmployerName();
         Select dropdown = new Select(esiSelectEmployerDpd);
         dropdown.selectByVisibleText(setEmployerName);
     }
 
-    public void clickCurrentlyEnrolledYes(){
-        basicActions.click(esiCurrentlyEnrolledYesBtn);
+    public void clickMinValueStandard(String minValueStandard){
+        switch (minValueStandard){
+            case "Yes":
+                basicActions.click(esiMinValueStandardYesBtn);
+                break;
+            case "No":
+                basicActions.click(esiMinValueStandardNoBtn);
+                break;
+            case "I don't know":
+                basicActions.click(esiMinValueStandardDontKnowBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + minValueStandard);
+        }
     }
 
-    public void clickInsuranceEndYes(){
-        basicActions.click(esiInsuranceEndYesBtn);
+    public void enterMonthlyAmount(String employeeAmount){
+        basicActions.waitForElementToBePresent(esiMonthlyAmountInput, 50);
+        esiMonthlyAmountInput.clear();
+        esiMonthlyAmountInput.sendKeys(employeeAmount);
+    }
+
+    public void clickCurrentlyEnrolled(String currentlyEnrolled){
+        switch (currentlyEnrolled){
+            case "Yes":
+                basicActions.click(esiCurrentlyEnrolledYesBtn);
+                break;
+            case "No":
+                basicActions.click(esiCurrentlyEnrolledNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + currentlyEnrolled);
+        }
+    }
+
+    public void clickInsuranceEnd(String willEnd){
+        switch (willEnd){
+            case "Yes":
+                basicActions.click(esiInsuranceEndYesBtn);
+                break;
+            case "No":
+                basicActions.click(esiInsuranceEndNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + willEnd);
+        }
+    }
+
+    public void enterEndDate(){
+        basicActions.waitForElementToBePresent(esiEndDateInput, 60);
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.add(Calendar.DATE, -1);
+        Date lastDayOfMonth = calendar.getTime();
+        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+
+        esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+    }
+
+    public void clickVoluntarilyEnding(String voluntarilyEnding) {
+        switch (voluntarilyEnding) {
+            case "Yes":
+                basicActions.waitForElementToBeClickable(esiVoluntarilyEndingYesBtn, 20);
+                basicActions.click(esiVoluntarilyEndingYesBtn);
+                break;
+            case "No":
+                basicActions.waitForElementToBeClickable(esiVoluntarilyEndingNoBtn, 20);
+                basicActions.click(esiVoluntarilyEndingNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + voluntarilyEnding);
+        }
+    }
+
+    public void clickFamilyPlansOffered(String currentlyOffered) {
+        switch (currentlyOffered) {
+            case "Yes":
+                basicActions.waitForElementToBeClickable(esiFamilyOfferedYesBtn, 20);
+                basicActions.click(esiFamilyOfferedYesBtn);
+                break;
+            case "No":
+                basicActions.waitForElementToBeClickable(esiFamilyOfferedNoBtn, 20);
+                basicActions.click(esiFamilyOfferedNoBtn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + currentlyOffered);
+        }
+    }
+
+    public void enterMonthlyFamilyAmount(String familyAmount){
+        basicActions.waitForElementToBePresent(esiMonthlyAmountFamilyInput, 50);
+        esiMonthlyAmountFamilyInput.clear();
+        esiMonthlyAmountFamilyInput.sendKeys(familyAmount);
+    }
+
+    public void clickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
+        for(int i=0; i<expectedValues.size();i++){
+            String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
+            clickFamilyEnrollmentStatusMember(txtToClick, i);
+        }
+    }
+
+    public void clickFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
+        switch (enrollmentStatus) {
+            case "Enrolled":
+                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
+                basicActions.click(esiFamilyEnrolledBtn.get(memberIndex));
+                break;
+            case "Offered":
+                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
+                basicActions.click(esiFamilyOfferedBtn.get(memberIndex));
+                break;
+            case "No Option":
+                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
+                basicActions.click(esiFamilyNoOptionBtn.get(memberIndex));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + enrollmentStatus);
+        }
     }
 
     public void clickMainHelp() {
@@ -172,6 +347,58 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
 
     // =================== VALIDATION STEPS ===============//
+    public void verifyFamilyOfferedToEnrollOption(String currentlyOffered){
+        switch (currentlyOffered){
+            case "Yes":
+                basicActions.waitForElementToBePresent(esiFamilyOfferedYesBtn,15);
+                softAssert.assertTrue(esiFamilyOfferedYesBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(esiFamilyOfferedNoBtn,15);
+                softAssert.assertTrue(esiFamilyOfferedNoBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + currentlyOffered);
+        }
+    }
+
+    public void verifyMonthlyAmount(String familyAmount){
+        basicActions.waitForElementToBePresent(esiMonthlyAmountFamilyInput, 50);
+        softAssert.assertTrue(esiMonthlyAmountFamilyInput.getAttribute("value").contains(familyAmount));
+        softAssert.assertAll();
+    }
+
+    public void verifyFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
+        for(int i=0; i<expectedValues.size();i++){
+            String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
+            verifyFamilyEnrollmentStatusMember(txtToClick, i);
+        }
+    }
+
+    public void verifyFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
+        switch (enrollmentStatus) {
+            case "Enrolled":
+                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
+                softAssert.assertTrue(esiFamilyEnrolledBtn.get(memberIndex).getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "Offered":
+                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
+                softAssert.assertTrue(esiFamilyOfferedBtn.get(memberIndex).getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No Option":
+                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
+                softAssert.assertTrue(esiFamilyNoOptionBtn.get(memberIndex).getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + enrollmentStatus);
+        }
+    }
+
     public void verifyHelpDrawerStatus(String drawerStatus) {
         switch (drawerStatus) {
             case "Closed English":
