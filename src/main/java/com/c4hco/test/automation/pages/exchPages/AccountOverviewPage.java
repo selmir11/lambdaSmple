@@ -109,8 +109,6 @@ public class AccountOverviewPage {
     }
 
     public void verifyMedPlanInfo(){
-        System.out.println("MedPlan Name-->>"+planInformationTable.get(2).getText());
-        System.out.println("From SHared data med plan-->> "+ primaryMember.getMedicalPlan());
         softAssert.assertEquals(planInformationTable.get(1).getText(),primaryMember.getFirstName()+" "+primaryMember.getLastName(), "Primary member name does not match");
         softAssert.assertEquals(planInformationTable.get(2).getText(),primaryMember.getMedicalPlan(), "Medical Plan Name does not match" );
         softAssert.assertEquals(planInformationTable.get(3).getText(), primaryMember.getMedicalPremiumAmt(), "Medical premium amount does not match" );
