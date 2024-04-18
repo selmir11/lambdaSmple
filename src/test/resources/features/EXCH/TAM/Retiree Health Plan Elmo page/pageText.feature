@@ -1,5 +1,5 @@
 @TAM
-Feature: Page Text-Other Health Insurance Elmo Page
+Feature: Page Text-OHI Retiree Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
