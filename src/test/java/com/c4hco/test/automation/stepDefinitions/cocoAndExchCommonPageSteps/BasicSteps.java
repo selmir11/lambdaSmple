@@ -256,6 +256,9 @@ public class BasicSteps {
             case "Elmo Ohi Retiree":
                 pageUrl = "/otherHealthInsurance/retiree";
                 break;
+            case "Elmo Ohi Medicare":
+                pageUrl = "/otherHealthInsurance/medicare";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
