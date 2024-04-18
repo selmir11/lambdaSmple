@@ -5,7 +5,6 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-
 public class AdminPortalSearchSteps {
 
     AdminPortalSearchPage adminPortalSearchPage = new AdminPortalSearchPage(WebDriverManager.getDriver());
@@ -97,8 +96,10 @@ public class AdminPortalSearchSteps {
     public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
     }
+
     @Then("I click acct first row from Search Results table in admin portal")
     public void iClickAccountLinkFirstRowFromSearchResults() {
         adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
+
 }

@@ -238,6 +238,15 @@ public class BasicSteps {
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
                 break;
+            case "Account Activity":
+                pageUrl = "/activity-report";
+                break;
+            case "Detailed EDI":
+                pageUrl = "/detailed-edi";
+                break;
+            case "EDI Transactions":
+                pageUrl = "/edi-transactions";
+                break;
             case "CoCo Ethnicity and Race" :
                 pageUrl = "/coco/member-details-portal/race-ethnicity/";
                 break;
