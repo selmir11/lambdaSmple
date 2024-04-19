@@ -23,7 +23,8 @@ public class ManageWhoHelpsYouPage {
 
 
     public void clickContinueOnOwnButton() {
-        basicActions.waitForElementToBeClickable(continueOnMyOwnButton, 5);
+        basicActions.waitForElementToBeClickable(continueOnMyOwnButton, 50);
+        basicActions.scrollToElement(continueOnMyOwnButton);
         continueOnMyOwnButton.click();
     }
 
