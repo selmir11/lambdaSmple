@@ -135,7 +135,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(id = "instagram-img")
     WebElement InstagramIcon;
-    
+
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
@@ -202,11 +202,11 @@ public class HeaderAndFooterPage {
 
     public void clickGetAssistanceLink(String pageType) {
         switch (pageType){
-            case "Elmo":
+            case "Exch":
                 basicActions.waitForElementToBeClickable(getAssistanceLink, 15);
                 getAssistanceLink.click();
                 break;
-            case "NonElmo":
+            case "Exch NonElmo":
                 basicActions.waitForElementToBeClickable(getAssistanceLinkNonElmo, 15);
                 getAssistanceLinkNonElmo.click();
                 break;
@@ -742,5 +742,4 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    }
-
+}
