@@ -10,6 +10,9 @@ public class TellUsAboutYourselfCoCoSteps {
     @Then("I enter details on tell us about yourself page and continue with {string}, {string}, and applying {string}")
     public void EnterSpecificMemberDetailsCoCo(String dateOfBirth, String gender, String applying){tellUsAboutYourselfCoCoPage.specificMemberDetailsCoCo(dateOfBirth, gender, applying); }
 
+    @Then("I click Save and Continue only on the tell us about yourself page")
+    public void iClickSaveAndContinueButton(){tellUsAboutYourselfCoCoPage.clickSaveAndContinueButton();}
+
     @Then("I click Go Back on the tell us about yourself page")
     public void clickGoBack() {
         tellUsAboutYourselfCoCoPage.clickGoBackButton();

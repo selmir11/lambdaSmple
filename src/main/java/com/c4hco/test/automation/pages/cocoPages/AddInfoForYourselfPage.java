@@ -92,6 +92,7 @@ public class AddInfoForYourselfPage {
     List<WebElement> exclamationMarkIcon;
 
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
