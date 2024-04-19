@@ -193,6 +193,9 @@ public class BasicSteps {
             case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";
                 break;
+            case "Elmo ESI":
+                pageUrl = "/otherHealthInsurance/employerSponsored";
+                break;
             case "Elmo COBRA":
                 pageUrl = "/otherHealthInsurance/cobra";
                 break;
