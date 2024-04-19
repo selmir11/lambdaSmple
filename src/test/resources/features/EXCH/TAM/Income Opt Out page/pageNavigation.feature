@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Navigation-Income Opt Out Page
 
   Background:
