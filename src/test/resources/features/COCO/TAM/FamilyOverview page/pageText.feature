@@ -1,5 +1,5 @@
 @TAM @pageText
-Feature: Tests related to the Application Results link
+Feature: Tests related to the Family Overview page
 
   Background: I go to the login portal
     Given I open the login page on the "login" portal
