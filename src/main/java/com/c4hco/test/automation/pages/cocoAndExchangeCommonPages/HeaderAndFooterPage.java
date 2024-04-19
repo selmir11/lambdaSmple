@@ -202,11 +202,11 @@ public class HeaderAndFooterPage {
 
     public void clickGetAssistanceLink(String pageType) {
         switch (pageType){
-            case "Exch":
+            case "Elmo":
                 basicActions.waitForElementToBeClickable(getAssistanceLink, 15);
                 getAssistanceLink.click();
                 break;
-            case "Exch NonElmo":
+            case "NonElmo":
                 basicActions.waitForElementToBeClickable(getAssistanceLinkNonElmo, 15);
                 getAssistanceLinkNonElmo.click();
                 break;
