@@ -1,4 +1,4 @@
-@TAM @pageText @test
+@TAM @pageText
 Feature: Tests related to the Deductions page
 
   Background: I go to the login portal
