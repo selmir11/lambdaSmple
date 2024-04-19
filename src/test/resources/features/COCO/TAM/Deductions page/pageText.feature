@@ -1,11 +1,11 @@
-@TAM @pageText
-Feature: Tests related to the Additional Income page
+@TAM @pageText @test
+Feature: Tests related to the Deductions page
 
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-61 @PageTextAdditionalIncome
-  Scenario: SLCR-61 I can see Additional Income's Header and footer - English
+  @SLCR-63 @PageTextDeductions
+  Scenario: SLCR-63 I can see Deductions's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -25,12 +25,14 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Ethnicity and race page
     And I select "No" employment option
     And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
 
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
 
-    And I validate I am on the "CoCo Additional Income" page
+    And I validate I am on the "CoCo Deductions" page
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -42,24 +44,25 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Add info for yourself page
     And I click continue on the Ethnicity and race page
     And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
 
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
 
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-62 @PageTextAdditionalIncome
-  Scenario: SLCR-62 I can see Additional Income's Header and footer - Spanish
+  @SLCR-64 @PageTextDeductions
+  Scenario: SLCR-64 I can see Deductions's Header and footer - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -79,14 +82,16 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Ethnicity and race page
     And I select "No" employment option
     And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
 
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
 
-    And I validate I am on the "CoCo Additional Income" page
+    And I validate I am on the "CoCo Deductions" page
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -98,19 +103,20 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Add info for yourself page
     And I click continue on the Ethnicity and race page
     And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
 
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "CoCo Additional Income" page
+    Then I validate I am on the "CoCo Deductions" page
 
 
     And I click on Sign Out in the Header for "Elmo"
