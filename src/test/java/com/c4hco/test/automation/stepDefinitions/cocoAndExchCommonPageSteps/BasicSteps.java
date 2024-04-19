@@ -265,6 +265,9 @@ public class BasicSteps {
             case "Elmo Ohi Individual Insurance":
                 pageUrl = "/otherHealthInsurance/individual";
                 break;
+            case "Elmo Ohi Peace Corps":
+                pageUrl = "/otherHealthInsurance/peaceCorps";
+				break;
             case "Elmo Ohi Tricare":
                 pageUrl = "/otherHealthInsurance/tricare";
                 break;

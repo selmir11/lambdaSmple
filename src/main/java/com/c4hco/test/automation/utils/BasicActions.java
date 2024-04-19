@@ -241,6 +241,11 @@ public class BasicActions {
                 newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Elmo Ohi Peace Corps Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/peaceCorps";
+                newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
+                getDriver().navigate().to(newUrl);
+				break;
             case "Elmo Ohi Tricare Page":
                 newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/tricare";
                 newUrl = currentUrl.replace("nes/tricare", newUrl);
