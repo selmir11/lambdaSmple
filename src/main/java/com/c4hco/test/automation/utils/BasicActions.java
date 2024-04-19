@@ -216,7 +216,7 @@ public class BasicActions {
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
-            case "Elmo COBRA":
+            case "Elmo COBRA Page":
                 newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
                 newUrl = currentUrl.replace("nes/cobra", newUrl);
                 getDriver().navigate().to(newUrl);
