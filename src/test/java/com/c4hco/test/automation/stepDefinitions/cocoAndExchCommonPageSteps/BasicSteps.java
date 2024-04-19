@@ -271,6 +271,9 @@ public class BasicSteps {
             case "Elmo Ohi Tricare":
                 pageUrl = "/otherHealthInsurance/tricare";
                 break;
+            case "CoCo Employment Income":
+                pageUrl = "/employmentInfo";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
