@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Text-OHI ESI Page
 
   Background:
