@@ -58,7 +58,7 @@ Feature: Navigation-Welcome Page
     And I click on Learn More in the Header
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Welcome" page
-    And I click on Get Assistance in the Header
+    And I click on Get Assistance in the "Elmo" Header
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "Find Expert Help" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -151,7 +151,7 @@ Feature: Navigation-Welcome Page
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Welcome" page
     Then I verify text on the Welcome page for an account without a policy in "Header Spanish"
-    And I click on Get Assistance in the Header
+    And I click on Get Assistance in the "Elmo" Header
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "Find Expert Help" page
     Then I validate I am on the "Spanish" page

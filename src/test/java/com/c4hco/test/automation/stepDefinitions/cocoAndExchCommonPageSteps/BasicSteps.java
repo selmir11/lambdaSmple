@@ -259,6 +259,24 @@ public class BasicSteps {
             case "Elmo Ohi Medicare":
                 pageUrl = "/otherHealthInsurance/medicare";
                 break;
+            case "Elmo Ohi VA Healthcare":
+                pageUrl = "/otherHealthInsurance/vaHealthcare";
+                break;
+            case "Elmo Ohi Individual Insurance":
+                pageUrl = "/otherHealthInsurance/individual";
+                break;
+            case "Elmo Ohi Peace Corps":
+                pageUrl = "/otherHealthInsurance/peaceCorps";
+				break;
+            case "Elmo Ohi Tricare":
+                pageUrl = "/otherHealthInsurance/tricare";
+                break;
+            case "CoCo Employment Income":
+                pageUrl = "/employmentInfo";
+                break;
+            case "CoCo Additional Income":
+                pageUrl = "coco/income-portal/additionalIncome";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
