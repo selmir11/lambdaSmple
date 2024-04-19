@@ -238,11 +238,32 @@ public class BasicSteps {
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
                 break;
+            case "Account Activity":
+                pageUrl = "/activity-report";
+                break;
+            case "Detailed EDI":
+                pageUrl = "/detailed-edi";
+                break;
+            case "EDI Transactions":
+                pageUrl = "/edi-transactions";
+                break;
             case "CoCo Ethnicity and Race" :
                 pageUrl = "/coco/member-details-portal/race-ethnicity/";
                 break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
+                break;
+            case "Elmo Ohi Retiree":
+                pageUrl = "/otherHealthInsurance/retiree";
+                break;
+            case "Elmo Ohi Medicare":
+                pageUrl = "/otherHealthInsurance/medicare";
+                break;
+            case "Elmo Ohi VA Healthcare":
+                pageUrl = "/otherHealthInsurance/vaHealthcare";
+                break;
+            case "Elmo Ohi Individual Insurance":
+                pageUrl = "/otherHealthInsurance/individual";
                 break;
             default:
                 System.out.println("undefined page ");
