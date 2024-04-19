@@ -241,6 +241,11 @@ public class BasicActions {
                 newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Elmo Ohi Peace Corps Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/peaceCorps";
+                newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
