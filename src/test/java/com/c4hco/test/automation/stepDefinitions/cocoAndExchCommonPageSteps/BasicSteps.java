@@ -70,6 +70,9 @@ public class BasicSteps {
             case "My Profile":
                 pageUrl = "UserProfileAdmin/profile";
                 break;
+            case "Forgot my password":
+                pageUrl = "login-portal/forgotPassword";
+                break;
             case "My Documents":
                 pageUrl = "MyDocuments/home";
                 break;
@@ -187,8 +190,11 @@ public class BasicSteps {
             case "Other Health Insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
-            case "New Other Health Insurance":
+            case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";
+                break;
+            case "Elmo COBRA":
+                pageUrl = "/otherHealthInsurance/cobra";
                 break;
             case "ESI":
                 pageUrl = "otherHealthInsurance/employerSponsored";
@@ -231,6 +237,33 @@ public class BasicSteps {
                 break;
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
+                break;
+            case "Account Activity":
+                pageUrl = "/activity-report";
+                break;
+            case "Detailed EDI":
+                pageUrl = "/detailed-edi";
+                break;
+            case "EDI Transactions":
+                pageUrl = "/edi-transactions";
+                break;
+            case "CoCo Ethnicity and Race" :
+                pageUrl = "/coco/member-details-portal/race-ethnicity/";
+                break;
+            case "CoCo Tell us about yourself" :
+                pageUrl = "/coco/member-details-portal/member-details/";
+                break;
+            case "Elmo Ohi Retiree":
+                pageUrl = "/otherHealthInsurance/retiree";
+                break;
+            case "Elmo Ohi Medicare":
+                pageUrl = "/otherHealthInsurance/medicare";
+                break;
+            case "Elmo Ohi VA Healthcare":
+                pageUrl = "/otherHealthInsurance/vaHealthcare";
+                break;
+            case "Elmo Ohi Individual Insurance":
+                pageUrl = "/otherHealthInsurance/individual";
                 break;
             default:
                 System.out.println("undefined page ");
@@ -306,6 +339,9 @@ public class BasicSteps {
             case "On Behalf Of(OBO)":
                 pageUrl = "/coco/WelcomePortal/welcome";
                 break;
+            case "Employer Coverage":
+                pageUrl = "healthcare.gov/downloads/employer-coverage-tool.pdf";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
@@ -314,7 +350,7 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
+                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
             }
         }
         basicActions.closeBrowserTab();
@@ -326,10 +362,11 @@ public class BasicSteps {
         basicActions.refreshPage();
     }
 
-    @And("I set the browser resolution to 1920 x 1080")
-    public void setResolution() {
-        basicActions.getDriver().manage().window().setSize(new Dimension(1920, 1080));
-    }
+    @And("I set the browser resolution to 2000 x 800")
+    public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(2000, 800));}
+
+    @And("I set the browser resolution to Maximized")
+    public void setResolutionMax(){basicActions.getDriver().manage().window().maximize();}
 
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}

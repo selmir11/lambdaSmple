@@ -17,7 +17,6 @@ public class sftpStepDefinitions {
     public void downloadFiles(String remoteLocation) throws JSchException {
         List<String> ediFileNames = new ArrayList<>();
         List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
-        System.out.println("ob entries from sftp---"+ob834Entries);
 
         for (Ob834DetailsEntity entry : ob834Entries) {
             if (entry.getInsurance_line_code().equals("HLT")) {
@@ -49,6 +48,11 @@ public class sftpStepDefinitions {
             sftpUtil.validateOb834Record(expectedValues);
         }
 
+    }
+
+    @And("I read the edi file locally")
+    public void readEdiFile(){
+        sftpUtil.readEdiFromLocal();
     }
 
 }

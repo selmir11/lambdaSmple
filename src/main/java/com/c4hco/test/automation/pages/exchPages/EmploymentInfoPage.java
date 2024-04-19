@@ -1,6 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -136,9 +139,14 @@ public class EmploymentInfoPage {
         }
     }
 
+    public static String getUniqueString(int length){
+        return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
+    }
+
     public void addEmploymentInfo(String Salary, String Frequency) {
 
-        txtCompanyName.sendKeys("Test Company Name");
+        SharedData.setEmployerName(getUniqueString(8)+"Company");
+        txtCompanyName.sendKeys(SharedData.getEmployerName());
         txtAddressOne.sendKeys("123 Test Address");
         txtAddressTwo.sendKeys("Test Suite 321");
         txtCity.sendKeys("Denver");
@@ -180,6 +188,7 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
+        basicActions.waitForElementToBeClickable(btnContinue,50);
         btnContinue.click();
     }
 

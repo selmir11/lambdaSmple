@@ -24,8 +24,8 @@ public class HeaderAndFooterSteps {
     @And("I click on Learn More in the Header")
     public void iClickLearnMoreLink(){ headerAndFooterPage.clickLearnMoreLink(); }
 
-    @And("I click on Get Assistance in the Header")
-    public void iClickGetAssistanceLink(){ headerAndFooterPage.clickGetAssistanceLink(); }
+    @And("I click on Get Assistance in the {string} Header")
+    public void iClickGetAssistanceLink(String pageType){ headerAndFooterPage.clickGetAssistanceLink(pageType); }
 
     @And("I click on Find Expert Assistance in the {string} Header")
     public void iClickFindExpertAssistanceLink(String pageType){ headerAndFooterPage.clickFindExpertAssistanceLink(pageType); }

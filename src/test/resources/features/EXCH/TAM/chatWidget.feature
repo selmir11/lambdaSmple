@@ -1,3 +1,4 @@
+@TAM
 Feature: TAM Chat Widget
 
   Background:
@@ -6,7 +7,7 @@ Feature: TAM Chat Widget
 
 
   @SLER-101 @ChatWidget
-  Scenario: I Navigate to the TAM pages and verify the Chat Widget
+  Scenario: SLER-101 I Navigate to the TAM pages and verify the Chat Widget
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -19,7 +20,7 @@ Feature: TAM Chat Widget
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page

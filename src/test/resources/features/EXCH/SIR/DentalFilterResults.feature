@@ -21,7 +21,7 @@ Feature: Dental Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
     Then I validate I am on the "Identify Proofing - Congratulations" page
@@ -84,7 +84,7 @@ Feature: Dental Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
     Then I validate I am on the "Identify Proofing - Congratulations" page

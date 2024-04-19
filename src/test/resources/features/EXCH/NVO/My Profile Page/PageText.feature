@@ -4,7 +4,7 @@ Feature: My profile page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-129 @WIP
+  @SLER-129
   Scenario: My Profile Page Text English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -18,6 +18,10 @@ Feature: My profile page
     And I change the language from header to "Spanish"
     And I verify text on My profile page "Spanish"
     And I click on Make Changes Button
+    Then I verify Password text on My profile page "Spanish"
+    And I change the language from header to "English"
+    Then I verify Password text on My profile page "English"
+    And I click on Save Button
 
 
 

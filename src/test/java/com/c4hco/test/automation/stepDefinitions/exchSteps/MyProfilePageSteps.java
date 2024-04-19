@@ -23,9 +23,17 @@ public class MyProfilePageSteps {
         myProfileExchPage.clickSaveButton();
     }
 
+    @And("I click the Change Password Button")
+    public void iclickChangePasswordButton() {myProfileExchPage.clickChangePasswordButton();
+    }
+
 
 ///////////////////////////////////Validation Steps/////////////////
 
     @And("I verify text on My profile page {string}")
     public void verifyTextOnMyProfilePage(String language)  { myProfileExchPage.verifyTextOnMyProfileExchPage(language); }
+
+
+@Then("I verify Password text on My profile page {string}")
+public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchPage.verifyPasswordTextOnMyProfileExchPage(language); }
 }

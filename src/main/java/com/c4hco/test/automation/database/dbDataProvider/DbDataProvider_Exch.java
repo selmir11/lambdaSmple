@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.database.dbDataProvider;
 
-import com.c4hco.test.automation.database.EntityObj.MultipleTablesEntity;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.Ob834DetailsDbHandler;
@@ -13,8 +13,8 @@ public class DbDataProvider_Exch {
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
 
-    public List<MultipleTablesEntity> getDataFromMultipleTables(){
-        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.combinedQuery());
+    public List<PolicyTablesEntity> getDataFromPolicyTables(){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
 
     public List<Ob834DetailsEntity> getOb83Db4Details(){

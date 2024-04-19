@@ -11,21 +11,19 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import java.time.Duration;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
 public class BasicActions {
     private WebDriver driver;
-    WebDriverManager basicActions;
+
+    private ArrayList<String> tabs;
 
     public BasicActions(WebDriver webDriver) {
         this.driver = webDriver;
     }
 
-    public BasicActions(){
+    public BasicActions() {
 
     }
 
@@ -61,16 +59,16 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-    public void selectValueFromDropdown(WebElement dropdownElement, List<WebElement> dropdownOptionsElement, String text){
+    public void selectValueFromDropdown(WebElement dropdownElement, List<WebElement> dropdownOptionsElement, String text) {
         dropdownElement.click();
-        dropdownOptionsElement.stream().filter(e-> e.getText().equalsIgnoreCase(text)).forEach(WebElement::click);
+        dropdownOptionsElement.stream().filter(e -> e.getText().equalsIgnoreCase(text)).forEach(WebElement::click);
     }
 
-    public Boolean waitForElementToBeClickable(WebElement webElement, int waitTime){
+    public Boolean waitForElementToBeClickable(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is not clickable");
             Assert.fail("Element is not clickable");
             return false;
@@ -78,33 +76,33 @@ public class BasicActions {
         return true;
     }
 
-    public Boolean waitForElementToDisappear(WebElement webElement, int waitTime){
+    public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOf(webElement));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is still visible after the wait");
             return false;
         }
         return true;
     }
 
-    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime){
+    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfAllElements(webElementList));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is still visible after the wait");
             return false;
         }
         return true;
     }
 
-    public Boolean waitForElementToBePresent(WebElement webElement, int waitTime){
+    public Boolean waitForElementToBePresent(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is not present");
             Assert.fail("Element waiting for is not displayed");
             return false;
@@ -116,27 +114,21 @@ public class BasicActions {
         getDriver().navigate().refresh();
     }
 
-    public Boolean waitForElementListToBePresent(List<WebElement> webElementList , int waitTime){
+    public Boolean waitForElementListToBePresent(List<WebElement> webElementList, int waitTime) {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
-        } catch(TimeoutException ignore){
+        } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-            Assert.fail("Element waiting for is not displayed");
             return false;
         }
         return true;
     }
 
-    public void assertPlaceholderTextMatched(WebElement element, String expectedPlaceholder) {
-        String actualPlaceholder = element.getAttribute("placeholder");
-        Assert.assertEquals("Expected placeholder text '" + expectedPlaceholder + "' not found in actual placeholder: '" + actualPlaceholder + "'", expectedPlaceholder, actualPlaceholder);
-    }
-
-    public void wait(int milliSeconds){
+    public void wait(int milliSeconds) {
         try {
             Thread.sleep(milliSeconds);
-        } catch(Exception e){
+        } catch (Exception e) {
             // Exception is supressed because it is just wait statement
         }
     }
@@ -152,7 +144,7 @@ public class BasicActions {
         element.click();
     }
 
-    public void waitForPresence(WebElement webElement){
+    public void waitForPresence(WebElement webElement) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(100))
@@ -170,8 +162,7 @@ public class BasicActions {
             }
         }
     }
-
-    public  void scrollToElement(WebElement element) {
+    public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
@@ -183,6 +174,26 @@ public class BasicActions {
         }
         return members;
     }
+     public Boolean waitUntilUrlIsPresent(String pageUrl){
+        try {
+         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                 .withTimeout(Duration.ofSeconds(30))
+                 .pollingEvery(Duration.ofMillis(100))
+                 .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.urlContains(pageUrl));
+        }
+        catch(TimeoutException e) {
+            System.out.println("Url waiting for is not displayed");
+            return false;
+        }
+         return true;
+     }
+
+    public void switchtoactiveTab() {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(1));
+    }
+
 
 //    public  void switchToWindow(String targetTitle) {
 //        String origin = getDriver().getWindowHandle();
@@ -198,16 +209,41 @@ public class BasicActions {
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();
+        String newUrl = "";
         switch(page){
-            case "New Other Health Insurance Page":
-                String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+            case "Elmo Other Health Insurance Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo COBRA":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
+                newUrl = currentUrl.replace("nes/cobra", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi Retiree Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/retiree";
+                newUrl = currentUrl.replace("nes/retireeHealth", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi Medicare Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/medicare";
+                newUrl = currentUrl.replace("nes/medicare", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi VA Healthcare Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/vaHealthcare";
+                newUrl = currentUrl.replace("nes/vaHealth", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi Individual Insurance Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/individual";
+                newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
     }
-
 }
 

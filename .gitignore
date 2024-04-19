@@ -16,6 +16,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/
+/.idea/
 
 ### Eclipse ###
 .apt_generated
@@ -28,8 +29,7 @@ out/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-!**/src/main/resources/application.properties
-
+/src/main/resources/application.properties
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

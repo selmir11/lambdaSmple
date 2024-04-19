@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Ob834DetailsDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
-    private BasicActions basicActions;
+    private final BasicActions  basicActions = new BasicActions();
 
     public List<Ob834DetailsEntity> getOb834DbDetails(String query) {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
@@ -53,30 +53,23 @@ public class Ob834DetailsDbHandler {
                     }
                     dbDataList.add(ob834DetailsEntity);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
-
-
         return dbDataList;
         }
 
 
     public List<Ob834DetailsEntity> getOb834DetalsAfterCompleted(String query) {
         List<Ob834DetailsEntity> dbDataList = new ArrayList<>();
-
+        int iterationCount = 0;
         try {
-            while (true) {
-                dbDataList = getOb834DbDetails(query);
-                boolean allCompleted = dbDataList.stream().allMatch(entity -> "EDI_COMPLETE".equals(entity.getEdi_status()));
-                if (allCompleted) {
-                    break;
-                }
-
+            do {
                 basicActions.wait(10000);
-            }
+                dbDataList = getOb834DbDetails(query);
+                iterationCount++;
+                System.out.println("**** EDI STATUS FROM preEdi_details:::" + dbDataList.get(0).getEdi_status());
+            } while (!"EDI_COMPLETE".equals(dbDataList.get(0).getEdi_status()) && iterationCount < 25);
         } catch (Exception e) {
             e.printStackTrace();
         }

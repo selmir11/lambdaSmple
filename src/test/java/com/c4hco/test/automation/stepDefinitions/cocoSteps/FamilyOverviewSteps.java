@@ -17,12 +17,17 @@ public class FamilyOverviewSteps {
     @And("I select continue on the Family Overview page")
     public void selectContinueFamOverview(){familyOverviewPage.clickContinueButton();}
 
+    @Then("I click Manage who helps you on the Family Overview page")
+    public void clickManageWhoHelpsYouFamilyOverview(){ familyOverviewPage.clickManageWhoHelpsYouButton(); }
 
+    @Then("I verify button text Manage who helps you in {string}")
+    public void verifyButtonTextManageWhoHelpsYou(String language) { familyOverviewPage.verifyTextManageWhoHelpsYouButton(language); }
 
+    @Then("I verify continue button is disabled on the Family Overview page")
+    public void verifyContinueButtonIsDisabledFamOverview() { familyOverviewPage.verifyContinueButtonIsDisabled(); }
 
-
-
-
+    @Then("I verify no one is applying text on the Family Overview page")
+    public void verifyNoOneIsApplyingTextFamOverview() { familyOverviewPage.verifyNoOneIsApplyingText(); }
 
 
 

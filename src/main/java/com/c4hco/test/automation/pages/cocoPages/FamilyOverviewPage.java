@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -25,6 +26,12 @@ public class FamilyOverviewPage {
     @FindBy(id = "familyOverview-SaveAndContinue")
     WebElement continueButton;
 
+    @FindBy(id = "familyOverview-GoBack")
+    WebElement manageWhoHelpsYouButton;
+
+    @FindBy(css = ".errorMessage.smaller")
+    WebElement noOneApplyingErrorText;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -44,10 +51,51 @@ public class FamilyOverviewPage {
         continueButton.click();
     }
 
+    public void clickManageWhoHelpsYouButton() {
+        basicActions.waitForElementToBeClickable(manageWhoHelpsYouButton, 30);
+        manageWhoHelpsYouButton.click();
+    }
+
     public void validateTotalIncomeEqualsAnnualIncome(){
         basicActions.waitForElementToBePresent(annualIncomeAmount, 30);
         basicActions.waitForElementToBePresent(totalIncomeAmount, 30);
         softAssert.assertEquals(totalIncomeAmount.getText(), annualIncomeAmount.getText());
+        softAssert.assertAll();
+    }
+
+    public void verifyTextManageWhoHelpsYouButton(String language) {
+        basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 10);
+        switch (language) {
+            case "English":
+                verifyTextManageWhoHelpsYouButtonEnglish();
+                break;
+            case "Spanish":
+                verifyTextManageWhoHelpsYouButtonSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyTextManageWhoHelpsYouButtonEnglish(){
+        basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Manage who helps you" );
+        softAssert.assertAll();
+    }
+
+    public void verifyTextManageWhoHelpsYouButtonSpanish(){
+        basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar quién te ayuda");
+        softAssert.assertAll();
+    }
+
+    public void verifyContinueButtonIsDisabled() {
+        Assert.assertFalse(continueButton.isEnabled());
+    }
+
+    public void verifyNoOneIsApplyingText(){
+        basicActions.waitForElementToBePresent(noOneApplyingErrorText, 30);
+        softAssert.assertEquals(noOneApplyingErrorText.getText(), "You\u2019ve indicated that no one is applying for health insurance.\nTo continue, please indicate which member(s) are applying by clicking the \u201CEdit/Update\u201D button in the table below");
         softAssert.assertAll();
     }
 }

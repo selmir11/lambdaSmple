@@ -26,22 +26,26 @@ public class AccountOverviewPage {
     @FindBy(id = "submit-curr-yr-6")
     WebElement makeChangesButton;
 
+    @FindBy(css = ".c4PageHeader-large")
+    WebElement header;
+
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-
-    public void clickuserNameExchLink() {
-        basicActions.waitForElementToBeClickable(userNameExchLink, 15);
-        userNameExchLink.click();
-    }
 
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    public void clickuserNameExchLink() {
+        basicActions.waitForElementToBeClickable(userNameExchLink, 15);
+        userNameExchLink.click();
+    }
+
     public void clickApplyForCurrentYear(){
-        basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,10);
+        basicActions.waitForElementToBePresent(header, 10);
+        basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,40);
         btnApplyForCurrentYear.click();
     }
 
@@ -66,6 +70,7 @@ public class AccountOverviewPage {
     }
 
     public void iClickOnMakeChanges(){
+        basicActions.waitForElementToBePresent(header, 10);
         basicActions.click(makeChangesButton);
     }
 

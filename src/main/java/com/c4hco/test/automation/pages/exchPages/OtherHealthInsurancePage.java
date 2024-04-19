@@ -18,6 +18,9 @@ public class OtherHealthInsurancePage {
     @FindBy(css = "#otherHealthInsurance .input-checkbox")
     List<WebElement> insuranceOptionsCheckBox;
 
+    @FindBy(id = "submitButton")
+    WebElement goBackButton;
+
     @FindBy(name = "saveAndContinue")
     WebElement saveAndContinueBtn;
 
@@ -59,6 +62,18 @@ public class OtherHealthInsurancePage {
         }
         saveAndContinueBtn.click();
     }
+
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBeClickable(goBackButton, 30);
+        goBackButton.click();
+    }
+
+
+    public void clickSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        saveAndContinueBtn.click();
+    }
+
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
         switch(insuranceOption){
