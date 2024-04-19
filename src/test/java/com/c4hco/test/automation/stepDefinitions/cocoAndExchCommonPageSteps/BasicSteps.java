@@ -277,6 +277,9 @@ public class BasicSteps {
             case "CoCo Additional Income":
                 pageUrl = "coco/income-portal/additionalIncome";
                 break;
+            case "CoCo Income Summary":
+                pageUrl = "coco/income-portal/summaryDetails";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
