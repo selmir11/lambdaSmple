@@ -208,16 +208,37 @@ public class BasicActions {
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();
+        String newUrl = "";
         switch(page){
             case "Elmo Other Health Insurance Page":
-                String newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo COBRA":
-                String newUrl1 = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
-                newUrl1 = currentUrl.replace("nes/cobra", newUrl1);
-                getDriver().navigate().to(newUrl1);
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
+                newUrl = currentUrl.replace("nes/cobra", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi Retiree Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/retiree";
+                newUrl = currentUrl.replace("nes/retireeHealth", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi Medicare Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/medicare";
+                newUrl = currentUrl.replace("nes/medicare", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi VA Healthcare Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/vaHealthcare";
+                newUrl = currentUrl.replace("nes/vaHealth", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Elmo Ohi Individual Insurance Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/individual";
+                newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
+                getDriver().navigate().to(newUrl);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
