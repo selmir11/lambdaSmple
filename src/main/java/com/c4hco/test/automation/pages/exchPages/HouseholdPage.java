@@ -30,13 +30,16 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_Income {0}")
     WebElement editIncomeLink;
 
-    @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
+    @FindBy(className = "fa fa-minus-circle toggleAddlRow{0}")
+    List<WebElement> editPrimaryMember;
+
+    @FindBy(css = "td > .fa-plus-circle.toggleAddlRow{0}")
     List<WebElement> memberBasicRow;
 
     @FindBy(css = "tr:nth-child(2) > td > input")
     List<WebElement> memberBasicDetailsEdit;
 
-    @FindBy(css = ".memberBasicRow  #editBasicInfo")
+    @FindBy(css = ".memberBasicRow  #editBasicInfo{0}")
     List<WebElement> memberBasicInformation;
 
     @FindBy(css = ".table-striped")
@@ -65,5 +68,13 @@ public class HouseholdPage {
         editIncomeLink.isDisplayed();
         editIncomeLink.click();
     }
-}
+    public void iEditPrimaryIncome(){
+        editIncomeLink.isDisplayed();
+        editIncomeLink.click();}
 
+    public void iEditFOPrimaryMember(int index) {
+        basicActions.waitForElementListToBePresent(editPrimaryMember,20);
+        basicActions.waitForElementToBeClickable((WebElement) editPrimaryMember,20),(1);}
+
+
+    }
