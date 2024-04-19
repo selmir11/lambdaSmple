@@ -6,7 +6,7 @@ Feature: Page Text-Other Health Insurance Elmo Page
     And I validate I am on the "Login" page
 
   @SLER-267 @PageTextOtherHealthInsuranceElmo
-  Scenario: SLER-251 I can see Other Health Insurance's Header and footer - English
+  Scenario: SLER-267 I can see Other Health Insurance's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
