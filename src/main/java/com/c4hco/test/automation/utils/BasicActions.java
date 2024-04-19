@@ -216,7 +216,7 @@ public class BasicActions {
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
-            case "Elmo COBRA":
+            case "Elmo COBRA Page":
                 newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
                 newUrl = currentUrl.replace("nes/cobra", newUrl);
                 getDriver().navigate().to(newUrl);
@@ -244,6 +244,11 @@ public class BasicActions {
             case "Elmo Ohi Peace Corps Page":
                 newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/peaceCorps";
                 newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
+                getDriver().navigate().to(newUrl);
+				break;
+            case "Elmo Ohi Tricare Page":
+                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/tricare";
+                newUrl = currentUrl.replace("nes/tricare", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             default:
