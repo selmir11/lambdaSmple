@@ -1,5 +1,5 @@
 @SLER-293
-Feature:Create, reset password for Individual and broker accounts
+Feature:Create, reset password for Individual accounts
   
   @SLER-293
   Scenario: test Forgot password page and text
