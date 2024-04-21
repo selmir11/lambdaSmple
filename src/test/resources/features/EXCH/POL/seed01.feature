@@ -148,7 +148,3 @@ Feature: Seed01 - Exchange
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
-
-    @test1
-    Scenario: Test Only scenario- edi file in local location
-      And I read the edi file locally
