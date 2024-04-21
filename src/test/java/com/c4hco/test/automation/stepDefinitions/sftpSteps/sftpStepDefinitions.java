@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.edi.EdiValidations.Edi834Validations;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
-
+    Edi834Validations edi834Validations = new Edi834Validations();
     @And("I download the file(s) from sftp server with location {string}")
     public void downloadFiles(String remoteLocation) throws JSchException {
         List<String> ediFileNames = new ArrayList<>();
@@ -45,7 +46,7 @@ public class sftpStepDefinitions {
             } else if (entry.getInsurance_line_code().equals("DEN")) {
                 sftpUtil.readEdiFile(SharedData.getDentalFileName());
             }
-            sftpUtil.validateOb834Record(expectedValues);
+            edi834Validations.validateOb834Record(expectedValues);
         }
 
     }
