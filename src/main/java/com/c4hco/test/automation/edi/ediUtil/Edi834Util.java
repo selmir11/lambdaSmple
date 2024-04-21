@@ -33,7 +33,6 @@ public class Edi834Util {
             ObjectNode memberObject = objectMapper.createObjectNode();
             ObjectNode transactionObjectNode = objectMapper.createObjectNode();
 
-
             ArrayNode memberArrayNode = objectMapper.createArrayNode();
 
             ListValuedMap<String, ArrayNode> memberSegmentData = new ArrayListValuedHashMap<>();
@@ -42,7 +41,6 @@ public class Edi834Util {
             Boolean lsLoop = false;
             int LXCOUNT = 0;
 
-            Boolean insLoop = false;
             int insCount = 0;
             int previousIndex = 1;
             int stCount = 0;
@@ -98,7 +96,6 @@ public class Edi834Util {
                                     memberArrayNode.add(currentSegmentArray);
                                     memberSegmentData.put(currentSegmentName, currentSegmentArray);
                                 } else {
-                                    //memberSegmentData.put(currentSegmentName,memberArrayNode);
                                     String jsonString = objectMapper.writeValueAsString(memberSegmentData.asMap());
                                     JsonNode jsonNode = objectMapper.readTree(jsonString);
                                     memberObject.set("Member-" + previousIndex, jsonNode);
@@ -127,11 +124,9 @@ public class Edi834Util {
                 }
             }
 
-            String jsonString1 = objectMapper.writeValueAsString(transactionObjectNode);
             JSONObject jsonObj = new JSONObject(objectMapper.writeValueAsString(transactionObjectNode));
             System.out.println("file as transformed jsonObj--" + jsonObj);
             sendToDto(jsonObj);
-
             reader.close();
             inputStream.close();
         } catch (Exception e) {
