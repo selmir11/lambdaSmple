@@ -189,10 +189,10 @@ public class AddInfoForYourselfPage {
         softAssert.assertEquals(AddInfoForYourselfPageText.get(4).getText(), "State");
 
         String[] expectedOptionsStates = {
-                "Select Option", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS",
-                "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY",
-                "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV",
-                "WI", "WY"
+                "Select Option", "AA", "AE", "AP", "AK", "AL", "AR", "AS", "AZ", "CO", "CT", "DE", "FL", "FM", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS",
+                "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY",
+                "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV",
+                "WY"
         };
 
         for (String option : expectedOptionsStates) {
@@ -210,10 +210,10 @@ public class AddInfoForYourselfPage {
         softAssert.assertEquals(AddInfoForYourselfPageText.get(14).getText(), "State");
 
         String[] expectedOptionsStatesMailAddress = {
-                "Select Option", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS",
-                "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY",
-                "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV",
-                "WI", "WY"
+                "Select Option", "AA", "AE", "AP", "AK", "AL", "AR", "AS", "AZ", "CO", "CT", "DE", "FL", "FM", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS",
+                "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY",
+                "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV",
+                "WY"
         };
 
         for (String option : expectedOptionsStatesMailAddress) {
