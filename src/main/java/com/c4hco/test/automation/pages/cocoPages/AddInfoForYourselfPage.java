@@ -5,11 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class AddInfoForYourselfPage {
     private BasicActions basicActions;
+
+    SoftAssert softAssert = new SoftAssert();
 
     public AddInfoForYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -18,6 +21,9 @@ public class AddInfoForYourselfPage {
 
     @FindBy(id = "ELIG-Residential-AddressLine1")
     WebElement addressLine1Input;
+
+    @FindBy(id = "ELIG-Residential-AddressLine2")
+    WebElement addressLine2Input;
 
     @FindBy(id = "ELIG-Residential-AddressCity")
     WebElement cityInput;
@@ -37,6 +43,30 @@ public class AddInfoForYourselfPage {
     @FindBy(xpath = "//*[@id='ELIG-Residential-AddressCounty']/option")
     List<WebElement> countyDropdownOptions;
 
+    @FindBy(id = "ELIG-Mailing-AddressLine1")
+    WebElement mailingAddressLine1Input;
+
+    @FindBy(id = "ELIG-Mailing-AddressLine2")
+    WebElement mailingAddressLine2Input;
+
+    @FindBy(id = "ELIG-Mailing-AddressCity")
+    WebElement mailingCityInput;
+
+    @FindBy(id = "ELIG-Mailing-AddressState")
+    WebElement mailingStateDropdown;
+
+    @FindBy(xpath = "//*[@id='ELIG-Mailing-AddressState']/option")
+    List<WebElement> mailingStateDropdownOptions;
+
+    @FindBy(id = "ELIG-Mailing-AddressZipCode")
+    WebElement mailingZipcodeInput;
+
+    @FindBy(id = "ELIG-Mailing-AddressCounty")
+    WebElement mailingCountyDropdown;
+
+    @FindBy(xpath = "//*[@id='ELIG-Mailing-AddressCounty']/option")
+    List<WebElement> mailingCountyDropdownOptions;
+
     @FindBy(css = "[fieldname='mailingAddressSameAsResidence'] button")
     List<WebElement> mailingAddressButtons;
 
@@ -49,7 +79,20 @@ public class AddInfoForYourselfPage {
     @FindBy(id = "ELIG-additionalInformation-GoBack")
     WebElement goBackButton;
 
+    @FindBy(css = ".header-1")
+    WebElement hdrAddInfoForYourself;
+
+    @FindBy(css = ".body-text-1")
+    List<WebElement> AddInfoForYourselfPageText;
+
+    @FindBy(css = ".required")
+    List<WebElement> errorMessages;
+
+    @FindBy(css = ".svg-inline--fa.fa-exclamation-circle")
+    List<WebElement> exclamationMarkIcon;
+
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
@@ -102,9 +145,150 @@ public class AddInfoForYourselfPage {
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
     }
 
+    public void memberMailingAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
+        basicActions.waitForElementToBePresent(mailingAddressLine1Input, 30);
+        mailingAddressLine1Input.sendKeys(addressLine1);
+
+        basicActions.waitForElementToBePresent(mailingCityInput, 30);
+        mailingCityInput.sendKeys(city);
+
+        basicActions.waitForElementToBePresent(mailingStateDropdown, 30);
+        mailingStateDropdown.click();
+        basicActions.selectValueFromDropdown(mailingStateDropdown, mailingStateDropdownOptions, state);
+
+        basicActions.waitForElementToBePresent(mailingZipcodeInput, 30);
+        mailingZipcodeInput.sendKeys(zipcode);
+
+        basicActions.waitForElementToBeClickable(mailingCountyDropdown, 30);
+        mailingCountyDropdown.click();
+        basicActions.selectValueFromDropdown(mailingCountyDropdown, mailingCountyDropdownOptions, county);
+    }
+
     public void clickGoBackButton() {
         basicActions.waitForElementToBeClickable(goBackButton, 30);
         goBackButton.click();
+    }
+
+    public void verifyTextOnAddInfoForYourself(String language) {
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+        switch (language) {
+            case "English":
+                verifyTextOnAddInfoForYourselfEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyTextOnAddInfoForYourselfEnglish() {
+        softAssert.assertEquals(hdrAddInfoForYourself.getText(), "Additional information for yourself" );
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(0).getText(), "Enter your residential address");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(1).getText(), "Address line 1");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(2).getText(), "Address line 2");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(3).getText(), "City");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(4).getText(), "State");
+
+        String[] expectedOptionsStates = {
+                "Select Option", "AA", "AE", "AP", "AK", "AL", "AR", "AS", "AZ", "CO", "CT", "DE", "FL", "FM", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS",
+                "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY",
+                "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV",
+                "WY"
+        };
+
+        for (String option : expectedOptionsStates) {
+            boolean optionExists = AddInfoForYourselfPageText.get(5).getText().contains(option);
+            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+        }
+
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(6).getText(), "Zip code");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(7).getText(), "County");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(9).getText(), "Is your mailing address same as your residential address above?");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(10).getText(), "Enter your mailing address");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(11).getText(), "Address line 1");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(12).getText(), "Address line 2");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(13).getText(), "City");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(14).getText(), "State");
+
+        String[] expectedOptionsStatesMailAddress = {
+                "Select Option", "AA", "AE", "AP", "AK", "AL", "AR", "AS", "AZ", "CO", "CT", "DE", "FL", "FM", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS",
+                "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY",
+                "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV",
+                "WY"
+        };
+
+        for (String option : expectedOptionsStatesMailAddress) {
+            boolean optionExists = AddInfoForYourselfPageText.get(15).getText().contains(option);
+            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+        }
+
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(16).getText(), "Zip code");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(17).getText(), "County");
+        softAssert.assertEquals(AddInfoForYourselfPageText.get(19).getText(), "Do you live in Colorado?");
+        softAssert.assertEquals(goBackButton.getText(), " Go Back");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessagesAddInfoForYourself(String language) {
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+        switch (language) {
+            case "English":
+                verifyErrorMessagesOnAddInfoForYourselfEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyErrorMessagesOnAddInfoForYourselfEnglish() {
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Address line 1 is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(0).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(1).getText(), "City is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(1).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(2).getText(), "State is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(2).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(3).getText(), "Zip code is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(3).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(4).getText(), "County is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(4).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(5).getText(), "Please select one of the options below");
+        mailingAddressButtons.get(1).click();
+        softAssert.assertEquals(errorMessages.get(5).getText(), "Address line 1 is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(5).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(6).getText(), "City is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(6).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(7).getText(), "State is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(7).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(8).getText(), "Zip code is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(8).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(9).getText(), "County is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(9).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(10).getText(), "Please select one of the options below");
+        addressLine1Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Address line 1 must be at least 5 characters long");
+        addressLine1Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Special character is not allowed");
+        addressLine2Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Address line 2 must be at least 5 characters long");
+        addressLine2Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Special character is not allowed");
+        cityInput.sendKeys("W");
+        softAssert.assertEquals(errorMessages.get(2).getText(), "City must be at least 2 characters long");
+        zipcodeInput.sendKeys("1234");
+        softAssert.assertEquals(errorMessages.get(4).getText(), "Zip code must be 5 numbers");
+        mailingAddressLine1Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(6).getText(), "Address line 1 must be at least 5 characters long");
+        mailingAddressLine1Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(6).getText(), "Special character is not allowed");
+        mailingAddressLine2Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(7).getText(), "Address line 2 must be at least 5 characters long");
+        mailingAddressLine2Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(7).getText(), "Special character is not allowed");
+        mailingCityInput.sendKeys("W");
+        softAssert.assertEquals(errorMessages.get(8).getText(), "City must be at least 2 characters long");
+        mailingZipcodeInput.sendKeys("1234");
+        softAssert.assertEquals(errorMessages.get(10).getText(), "Zip code must be 5 numbers");
+        softAssert.assertAll();
     }
 
 }

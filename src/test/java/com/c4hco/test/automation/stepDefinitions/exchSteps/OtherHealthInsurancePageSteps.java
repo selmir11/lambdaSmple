@@ -19,4 +19,9 @@ public class OtherHealthInsurancePageSteps {
     public void iSelectInsuranceOptionOnly(String insuranceOption){
         otherHealthInsurancePage.selectInsuranceOptionOnly(insuranceOption);
     }
+
+    @Then("I click Go Back on the Other Health Insurance page")
+    public void clickGoBack() {
+        otherHealthInsurancePage.clickGoBackButton();
+    }
 }
