@@ -135,7 +135,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(id = "instagram-img")
     WebElement InstagramIcon;
-    
+
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
@@ -742,5 +742,4 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    }
-
+}
