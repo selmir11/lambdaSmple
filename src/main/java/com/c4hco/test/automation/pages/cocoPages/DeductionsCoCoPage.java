@@ -29,6 +29,7 @@ public class DeductionsCoCoPage {
     }
 
     public void selectNoneDeductionsOption(){
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.waitForElementListToBePresent(deductionButton, 30);
         deductionButton.get(10).click();
     }

@@ -284,12 +284,12 @@ Feature: Page Navigation-Income Opt Out Page
     And I validate I am on the "Faqs" page and close tab
 
     Then I validate I am on the "Financial Help" page
-    And I click on Get Assistance in the "Elmo" Header
+    And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
     Then I validate I am on the "Financial Help" page
-    And I click on Get Assistance in the "Elmo" Header
+    And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
     And I click on Apply for Coverage in the "ExpertHelp" Header
@@ -466,12 +466,12 @@ Feature: Page Navigation-Income Opt Out Page
     And I validate I am on the "Faqs" page and close tab
 
     Then I validate I am on the "Financial Help" page
-    And I click on Get Assistance in the "Elmo" Header
+    And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
     Then I validate I am on the "Financial Help" page
-    And I click on Get Assistance in the "Elmo" Header
+    And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
     Then I validate I am on the "Spanish" page
