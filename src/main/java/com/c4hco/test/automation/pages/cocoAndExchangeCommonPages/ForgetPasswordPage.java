@@ -22,7 +22,6 @@ public class ForgetPasswordPage {
     WebElement submitBtn;
     @FindBy(id ="fn")
     WebElement emailForgetPassword;
-  //  @FindBy(xpath ="//div[@class='help-block text-danger col-md-11 input-group mb-0 ng-star-inserted']")
     @FindBy(xpath ="//div[.=' Username is required']")
     WebElement errorUsername;
     @FindBy(xpath ="//div[contains(text(), 'An email has been sent to the address on file')]")
