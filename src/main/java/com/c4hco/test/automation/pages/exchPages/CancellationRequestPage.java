@@ -1,7 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,8 +38,17 @@ public class CancellationRequestPage {
     @FindBy(id="goBackButton")
     WebElement goBackbtn;
 
-    @FindBy(id="continueButton")
+    @FindBy(id = "continueButton")
     WebElement continuebtn;
+
+    @FindBy(css=".mdc-checkbox__native-control")
+    WebElement decCheckBox;
+
+    @FindBy(css=".requiredfield.ps-5")
+    WebElement validationMessagecheckBox;
+
+    @FindBy(css=".row.ps-3>div>span.requiredfield")
+    WebElement validationMessageTextBox;
 
     public void ValidateCancellationPageText(String language, List<String> data){
         switch (language){
@@ -68,10 +79,36 @@ public class CancellationRequestPage {
     }
 
     public void clickGoBackbtn(){
+        basicActions.waitForElementToBePresent(goBackbtn,10);
         goBackbtn.click();
     }
 
     public void clickContinuebtn(){
+        basicActions.waitForElementToBePresent(continuebtn,10);
+        basicActions.scrollToElement(continuebtn);
         continuebtn.click();
+    }
+
+    public void verifyValidationMessageText(List<String> data){
+        basicActions.waitForElementToBePresent(validationMessagecheckBox,10);
+        softAssert.assertEquals(validationMessagecheckBox.getText(), data.get(0));
+        softAssert.assertEquals(validationMessageTextBox.getText(), data.get(1));
+        basicActions.scrollToElement(decCheckBox); decCheckBox.click();
+        String PrimaryMemberFirstName = SharedData.getPrimaryMember().getFirstName();
+        placeHoldertxt.sendKeys(PrimaryMemberFirstName);
+        clickContinuebtn();
+        softAssert.assertEquals(validationMessageTextBox.getText(), data.get(2));
+        softAssert.assertAll();
+        basicActions.refreshPage();
+        basicActions.waitForElementToBePresent(continuebtn,10);
+        clickContinuebtn();
+    }
+
+    public void cancelActivePlan(){
+        basicActions.scrollToElement(decCheckBox);
+        decCheckBox.click();
+        String PrimaryMemberFullName = SharedData.getPrimaryMember().getFullName();
+        placeHoldertxt.sendKeys(PrimaryMemberFullName);
+        clickContinuebtn();
     }
 }

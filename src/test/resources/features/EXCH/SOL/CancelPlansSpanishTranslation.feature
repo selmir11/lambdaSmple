@@ -138,4 +138,16 @@ Feature: Cancel Plans Spanish Translation
       |Full name of primary contact|
       |Go Back|
       |Continue|
+    Then I click continue on Cancellation Request page
+    And Validate validation message displayed in expected Language
+    |Please read the above terms and select the checkbox to agree|
+    |Electronic Signature is required|
+    |Signature must match name|
+    And I change the language from header to "Spanish"
+    Then I validate I am on the "Spanish" page
+    And Validate validation message displayed in expected Language
+    |Lea los términos mencionados anteriormente y marque la casilla para aceptarlos|
+    |Se requiere firma electrónica|
+    |La firma debe coincidir con el nombre|
+    Then I cancel the active plan detail
     #And I click on Sign Out in the Header for "Elmo"

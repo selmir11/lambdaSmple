@@ -21,5 +21,19 @@ public class CancellationRequestPageSteps {
         cancellationRequestPage.clickGoBackbtn();
     }
 
+    @Then("I click continue on Cancellation Request page")
+    public void i_click_continue_on_Cancellation_Request_page(){
+        cancellationRequestPage.clickContinuebtn();
+    }
+
+    @Then("Validate validation message displayed in expected Language")
+    public void ValidateValidationMessage(List<String> data){
+        cancellationRequestPage.verifyValidationMessageText(data);
+    }
+
+    @Then("I cancel the active plan detail")
+    public void i_cancel_the_active_plan_detail(){
+        cancellationRequestPage.cancelActivePlan();
+    }
 
 }
