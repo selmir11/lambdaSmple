@@ -20,7 +20,7 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = "app-show-options button")
     List<WebElement> addIncomeButton;
 
-    @FindBy(id = "ELIG-AdditionalIncome-NoIncome-checkBoxButton")
+    @FindBy(id = "ELIG-AdditionalIncome-CASP-amountInput")
     WebElement cashSupportAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-CASP-frequencySelect")
