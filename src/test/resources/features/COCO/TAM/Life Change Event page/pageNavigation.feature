@@ -105,7 +105,7 @@ Feature: Navigation-Life Change Event Page
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo life change event" page
 
-    And I click on Get Assistance in the "Elmo" Header
+    And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "Find Expert Help" page
     And I click on Apply for Coverage in the "Elmo" Header
