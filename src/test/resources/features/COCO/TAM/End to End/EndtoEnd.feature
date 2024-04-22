@@ -5,6 +5,7 @@ Feature: End to End Testing
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
 
+  @SLCR-70 @EndToEndHIAE
   Scenario: SLCR-70 Check Primary Member HIAE, Off-Exchange eligible
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
