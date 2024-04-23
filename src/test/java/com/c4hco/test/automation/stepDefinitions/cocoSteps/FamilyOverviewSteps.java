@@ -11,6 +11,9 @@ public class FamilyOverviewSteps {
     @Then("I click Primary EditUpdate on the Family Overview page")
     public void iClickPrimaryEditUpdateLink(){ familyOverviewPage.clickPrimaryEditUpdateLink(); }
 
+    @Then("I validate the Total Income on the Family Overview page equals {string}")
+    public void validateTotalIncome(String Amount){ familyOverviewPage.validateTotalIncome(Amount);}
+
     @Then("I validate Total Income equals to annual income")
     public void validateTotalIncomeAmount(){ familyOverviewPage.validateTotalIncomeEqualsAnnualIncome(); }
 
