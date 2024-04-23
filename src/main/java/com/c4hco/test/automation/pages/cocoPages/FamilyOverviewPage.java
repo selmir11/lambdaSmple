@@ -56,6 +56,11 @@ public class FamilyOverviewPage {
         manageWhoHelpsYouButton.click();
     }
 
+    public void validateTotalIncome(String Amount){
+        basicActions.waitForElementToBePresent(totalIncomeAmount, 30);
+        softAssert.assertEquals(totalIncomeAmount.getText(), Amount);
+    }
+
     public void validateTotalIncomeEqualsAnnualIncome(){
         basicActions.waitForElementToBePresent(annualIncomeAmount, 30);
         basicActions.waitForElementToBePresent(totalIncomeAmount, 30);

@@ -5,17 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class IncomeSummaryCoCoPage {
 
+    SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
 
     public IncomeSummaryCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy(css = "div.total-income-width div")
+    WebElement totalAnnualIncome;
 
     @FindBy(css = "lib-option-buttons button")
     List<WebElement> projectedIncomeButtons;
@@ -25,6 +30,12 @@ public class IncomeSummaryCoCoPage {
 
     @FindBy(id = "pageId-SaveAndContinue")
     WebElement saveAndContinueButton;
+
+    public void verifyTotalAnnualIncome(String Amount){
+        basicActions.waitForElementToBePresent(totalAnnualIncome, 10);
+        softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
+        softAssert.assertAll();
+    }
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
