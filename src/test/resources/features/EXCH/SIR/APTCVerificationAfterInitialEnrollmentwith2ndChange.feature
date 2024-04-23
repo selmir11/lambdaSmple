@@ -5,7 +5,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-131-WIP
+  @SLER-131-WIP @sir
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2349 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -39,6 +39,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I validate I am on the "Financial Help" page
@@ -153,10 +155,23 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
+
     Then I click on the Member Row 1
+    And I click on the table dropdown
+    Then I click edit basic information icon for member 1
+    And I click the edit income 1
 
     Then I validate I am on the "Application Summary" page
     And I click the edit income 1
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "1000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
