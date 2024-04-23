@@ -30,8 +30,8 @@ public class DbDataProvider_Exch {
     public Map<String,String> getEap_id(){
         //This function works one medical EAPID and one dental EAPID
         Map<String,String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
-        primaryMember.setMedicalEapid(eapid.get("1"));
-        primaryMember.setDentalEapid(eapid.get("2"));
+        primaryMember.setMedicalEapid_db(eapid.get("1"));
+        primaryMember.setDentalEapid_db(eapid.get("2"));
         SharedData.setPrimaryMember(primaryMember);
         return eapid;
     }

@@ -101,14 +101,11 @@ public class MyPoliciesPage {
         softAssert.assertEquals(financialPremiumData.get(3).getText(), "After "+primaryMember.getAptcAmt()+" Financial Help", "financial help amount did not match");
 
         softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
-        primaryMember.setMedicalEapid(policyNumSubscriber.get(1).getText());
-
-
 
         //Validating medical EAP_ID
         exchDbDataProvider.getEap_id();
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        softAssert.assertEquals(primaryMember.getMedicalEapid(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+        softAssert.assertEquals(primaryMember.getMedicalEapid_db(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
 
 
         //Validating Total Premium after APTC amount reduction
@@ -152,7 +149,7 @@ public class MyPoliciesPage {
         String totalDenPremAmtAfterTrim = null;
         //Validating dental EAP_ID
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        softAssert.assertEquals(primaryMember.getDentalEapid(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
+        softAssert.assertEquals(primaryMember.getDentalEapid_db(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
 
         if(primaryMember.getAptcAmt().equals("$0")){
             String dentalPremiumAmt = primaryMember.getDentalPremiumAmt();
@@ -181,10 +178,10 @@ public class MyPoliciesPage {
         softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()));
         softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()));
         softAssert.assertTrue(tableRecord.get(2).getText().equals(primaryMember.getMedicalPremiumAmt()));
-//        softAssert.assertTrue(tableRecord.get(3).getText().equals()); // financial help
+        softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getAptcAmt()+".00")); // financial help
         softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getMedicalPlanStartDate()));
         softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getMedicalPlanEndDate()));
-    //    softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     public void clickViewPlanHistoryFromDental(){
