@@ -106,10 +106,10 @@ public class MyPoliciesPage {
 
 
         //Validating medical EAP_ID
-        List<PolicyTablesEntity> policyEntity = exchDbDataProvider.getEap_idFromPolicyTable();
+        exchDbDataProvider.getEap_id();
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        primaryMember.setMedicalEapid(policyNumSubscriber.get(1).getText());
-        softAssert.assertEquals(primaryMember.getMedicalEapid(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID from DB");
+        softAssert.assertEquals(primaryMember.getMedicalEapid(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+
 
         //Validating Total Premium after APTC amount reduction
         String totalAmtAfterReduction=null;
@@ -120,7 +120,6 @@ public class MyPoliciesPage {
             // TO DO:: Add more when needed
         }
         String premiumAfterAPTC = financialPremiumData.get(5).getText();
-
         primaryMember.setTotalMedAmtAfterReduction(totalAmtAfterReduction);
         SharedData.setPrimaryMember(primaryMember);
 
@@ -153,7 +152,6 @@ public class MyPoliciesPage {
         String totalDenPremAmtAfterTrim = null;
         //Validating dental EAP_ID
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        primaryMember.setDentalEapid(policyNumSubscriber.get(7).getText());
         softAssert.assertEquals(primaryMember.getDentalEapid(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
 
         if(primaryMember.getAptcAmt().equals("$0")){
