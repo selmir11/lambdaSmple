@@ -73,7 +73,7 @@ public class DocumentLookupPage {
     WebElement txtFileFormat;
 
     private BasicActions basicActions;
-    String currentUrl;
+    String currentUrl=null;
 
     public DocumentLookupPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
