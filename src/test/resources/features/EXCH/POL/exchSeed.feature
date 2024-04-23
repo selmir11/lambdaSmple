@@ -1,5 +1,5 @@
 Feature: All Seed tests in Exchange
-  @RT-2246
+  @SLER-289
   Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
