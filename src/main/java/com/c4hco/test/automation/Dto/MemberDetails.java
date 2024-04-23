@@ -38,6 +38,8 @@ public class MemberDetails {
     String medicalPremiumAmt;
     String dentalPremiumAmt;
     String aptcAmt;
+    String medicalAptcAmt;
+    String dentalAptcAmt;
     String tobacco_user;
     String application_id;
     BigDecimal account_id;
