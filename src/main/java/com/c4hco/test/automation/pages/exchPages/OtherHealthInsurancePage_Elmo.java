@@ -7,10 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-
+import java.util.Map;
 
 
 public class OtherHealthInsurancePage_Elmo {
@@ -37,6 +38,9 @@ public class OtherHealthInsurancePage_Elmo {
 
     @FindBy(css = "label > button")
     List<WebElement> insuranceOptionsCheckBox;
+    
+    @FindBy(css = "lib-checkbox-control > label")
+    List<WebElement> insuranceOptionsCheckBoxDetails;
 
     @FindBy(css = ".container .help-icon")
     List<WebElement> helpCircleButton;
@@ -50,12 +54,26 @@ public class OtherHealthInsurancePage_Elmo {
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
         switch(insuranceOption){
+            case "Medicare":
+                basicActions.click(insuranceOptionsCheckBox.get(2));
+                break;
+            case "Retiree Health Plan":
+                basicActions.click(insuranceOptionsCheckBox.get(6));
+                break;
+            case "TRICARE":
+                basicActions.click(insuranceOptionsCheckBox.get(9));
+                break;
             case "None of these":
                 basicActions.click(insuranceOptionsCheckBox.get(11));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
         }
+    }
+
+    public void clickSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        saveAndContinueBtn.click();
     }
 
 
@@ -457,5 +475,43 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(helpCircleButton.get(10).getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertAll();
     }
+    public void verifyHeadersOtherHealthInsurancePageEnglish(){
+        basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
+        softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertAll();
+    }
+
+    public void verifyCheckboxesAttribute(String checkboxExpected) {
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBoxDetails,20);
+        int[] uncheckedIndexes;
+        int[] checkedIndexes;
+
+        switch (checkboxExpected) {
+            case "unselected":
+                uncheckedIndexes = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+                checkedIndexes = new int[0];
+                break;
+            case "none of these":
+                uncheckedIndexes = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+                checkedIndexes = new int[]{11};
+                break;
+            case "Medicare, retiree, TRICARE":
+                uncheckedIndexes = new int[]{0, 1, 3, 4, 5, 7, 8, 10, 11};
+                checkedIndexes = new int[]{2, 6, 9};
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + checkboxExpected);
+        }
+
+        for (int i : uncheckedIndexes) {
+            softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container");
+        }
+        for (int i : checkedIndexes) {
+            softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container checked");
+        }
+    }
+
+
+
 
 }

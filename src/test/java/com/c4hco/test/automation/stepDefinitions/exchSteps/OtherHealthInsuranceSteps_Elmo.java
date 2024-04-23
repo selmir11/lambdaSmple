@@ -5,6 +5,9 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+import java.util.Map;
+
 public class OtherHealthInsuranceSteps_Elmo {
     OtherHealthInsurancePage_Elmo otherHealthInsurancePage_Elmo = new OtherHealthInsurancePage_Elmo(WebDriverManager.getDriver());
 
@@ -12,6 +15,10 @@ public class OtherHealthInsuranceSteps_Elmo {
     public void iSelectInsuranceOptionOnly(String insuranceOption){
         otherHealthInsurancePage_Elmo.selectInsuranceOptionOnly(insuranceOption);
     }
+
+
+    @Then("I click continue on the ELMO health insurance page")
+    public void iClickSaveAndContinue(){otherHealthInsurancePage_Elmo.clickSaveAndContinue();}
 
 
 
@@ -32,4 +39,10 @@ public class OtherHealthInsuranceSteps_Elmo {
     public void iVerifyHelpIconsOnOtherHealthInsurancePage(){
         otherHealthInsurancePage_Elmo.verifyHelIconsOnOtherHealthInsurancePage();
     }
+    @And("I verify the header for Primary Member on the Other Health Insurance page")
+    public void iVerifyHeadersOtherHealthInsurancePageEnglish(){otherHealthInsurancePage_Elmo.verifyHeadersOtherHealthInsurancePageEnglish();}
+    @And("I validate Other Health Insurance options load {string}")
+    public void iVerifyCheckboxesAttribute(String checkboxExpected){otherHealthInsurancePage_Elmo.verifyCheckboxesAttribute(checkboxExpected);}
+
+
 }
