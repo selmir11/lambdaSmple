@@ -34,4 +34,9 @@ public class DbQueries_Exch {
              "and current_ind = '1'";
     }
 
+    public String getEAPID(){
+        return "select exchange_assigned_policy_id, coverage_type from qa_exch.en_policy\n" +
+                "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
+    }
+
 }
