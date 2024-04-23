@@ -30,4 +30,7 @@ public class AddInfoForYourselfPageSteps {
 
     @Then("I verify text on the Additional information for yourself page in {string}")
     public void verifyAddInfoForYourselfPageText(String Language)  { addInfoForYourselfPage.verifyTextOnAddInfoForYourself(Language); }
+
+    @Then("I validate the error messages on the Add info for yourself page in {string}")
+    public void verifyErrorMessagesOnTheAddInfoForYourselfPage(String Language) { addInfoForYourselfPage.verifyErrorMessagesAddInfoForYourself(Language); }
 }

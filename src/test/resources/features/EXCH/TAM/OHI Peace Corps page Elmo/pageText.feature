@@ -1,12 +1,12 @@
 @TAM
-Feature: Page Text-Other Health Insurance Elmo Page
+Feature: Page Text-OHI Peace Corps Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-267 @PageTextOtherHealthInsuranceElmo
-  Scenario: SLER-267 I can see Other Health Insurance's Header and footer - English
+  @SLER-282 @PageTextOhiPeaceCorpsElmo
+  Scenario: SLER-282 I can see Peace Corps's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -51,14 +51,14 @@ Feature: Page Text-Other Health Insurance Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
+    Then I select "Peace Corps" as health insurance option and continue
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
-    And I validate I am on the "Elmo Other Health Insurance" page
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
-    And I validate I am on the "Elmo Other Health Insurance" page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -77,43 +77,44 @@ Feature: Page Text-Other Health Insurance Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
+    Then I click continue on the Other Health Insurance page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
-    And I validate I am on the "Elmo Other Health Insurance" page
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
 
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-268 @PageTextOtherHealthInsuranceElmo
-  Scenario: SLER-268 I can see Other Health Insurance's Header and footer - Spanish
+  @SLER-283 @PageTextOhiPeaceCorpsElmo
+  Scenario: SLER-283 I can see Peace Corps's Header and footer - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -158,16 +159,16 @@ Feature: Page Text-Other Health Insurance Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
+    Then I select "Peace Corps" as health insurance option and continue
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
-    And I validate I am on the "Elmo Other Health Insurance" page
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
-    And I validate I am on the "Elmo Other Health Insurance" page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -187,46 +188,47 @@ Feature: Page Text-Other Health Insurance Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
+    Then I click continue on the Other Health Insurance page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
-    And I validate I am on the "Elmo Other Health Insurance" page
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     And I validate I am on the "Spanish" page
 
 
