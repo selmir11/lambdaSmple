@@ -73,15 +73,13 @@ public class DocumentLookupPage {
     WebElement txtFileFormat;
 
     private BasicActions basicActions;
-
+    String currentUrl;
 
     public DocumentLookupPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
          currentUrl = basicActions.getDriver().getCurrentUrl();
     }
-
-    String currentUrl;
 
 
     public void validateTitle() {
@@ -125,49 +123,32 @@ public class DocumentLookupPage {
         softAssert.assertEquals(archivedDate.getText(), "Archived Date");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(fileFormat, 10));
         softAssert.assertEquals(fileFormat.getText(), "File Format");
+        softAssert.assertAll();
     }
 
-    public void verifycontent(){
+    public void verifycontent() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentfiletxt, 10));
         softAssert.assertEquals(documentfiletxt.getText(), "IND_1095A Dispu..");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentDisplayTxt, 10));
         softAssert.assertEquals(documentDisplayTxt.getText(), "1095A Dispute");
-        //Account no.
         softAssert.assertTrue(basicActions.waitForElementToBePresent(accountNo, 20));
-        if (currentUrl.startsWith("https://staging")){
-            softAssert.assertEquals(accountNo.getText(),"1907010548");}
-        else if (currentUrl.startsWith("https://qa")) {
-            softAssert.assertEquals(accountNo.getText(),"2719004301");}
-
-        //Document Display Name
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(documentDisplayNameTxt, 10));
-        if (currentUrl.startsWith("https://staging")){
-            softAssert.assertEquals(documentDisplayNameTxt.getText(),"Correction Requ..");}
-        else if (currentUrl.startsWith("https://qa")) {
-            softAssert.assertEquals(documentDisplayNameTxt.getText(),"Correction Proo..");}
-
-        //created date
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtCreateDate, 10));
-        if (currentUrl.startsWith("https://staging")){
-            softAssert.assertEquals(txtCreateDate.getText(),"10/26/2020 15:47:56");}
-        else if (currentUrl.startsWith("https://qa")) {
-            softAssert.assertEquals(txtCreateDate.getText(),"10/07/2020 14:04:03");}
-
-        //Archived date
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtArchivedDate, 10));
-        if (currentUrl.startsWith("https://staging")){
-            softAssert.assertEquals(txtArchivedDate.getText(),"10/26/2020 15:47:56");}
-        else if (currentUrl.startsWith("https://qa")) {
-            softAssert.assertEquals(txtArchivedDate.getText(),"10/07/2020 14:04:02");}
-
-        //File Format
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtFileFormat, 10));
-        if (currentUrl.startsWith("https://staging")){
-            softAssert.assertEquals(txtFileFormat.getText(),"DOCX");}
-        else if (currentUrl.startsWith("https://qa")) {
-            softAssert.assertEquals(txtFileFormat.getText(),"PNG");}
+        if (currentUrl.startsWith("https://staging")) {
+            softAssert.assertEquals(accountNo.getText(), "1907010548");
+            softAssert.assertEquals(documentDisplayNameTxt.getText(), "Correction Requ..");
+            softAssert.assertEquals(txtCreateDate.getText(), "10/26/2020 15:47:56");
+            softAssert.assertEquals(txtArchivedDate.getText(), "10/26/2020 15:47:56");
+            softAssert.assertEquals(txtFileFormat.getText(), "DOCX");
+            softAssert.assertAll();
+        } else {
+            softAssert.assertEquals(accountNo.getText(), "2719004301");
+            softAssert.assertEquals(documentDisplayNameTxt.getText(), "Correction Proo..");
+            softAssert.assertEquals(txtCreateDate.getText(), "10/07/2020 14:04:03");
+            softAssert.assertEquals(txtArchivedDate.getText(), "10/07/2020 14:04:02");
+            softAssert.assertEquals(txtArchivedDate.getText(), "10/07/2020 14:04:02");
+            softAssert.assertEquals(txtFileFormat.getText(), "PNG");
+            softAssert.assertAll();
+        }
     }
-
     public void clickDropdowns() {
         String Options[] = {"Exchange", "Individual", "SHOP", "Broker", "Navigator", "Carrier", "Appeal"};
         for (int i = 0; i < documentTypeDropdownOptions.size(); i++) {
