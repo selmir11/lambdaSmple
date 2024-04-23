@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.edi.ediUtil;
 
+import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.MemberSegments;
 import com.c4hco.test.automation.Dto.Ob834FileDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,15 +16,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Edi834Util {
 
 
     public void parseEdiFile(InputStream inputStream) {
-        //Notes::  transform as jsonObj
         try {
             EDIInputFactory factory = EDIInputFactory.newFactory();
             EDIStreamReader reader = factory.createEDIStreamReader(inputStream);
@@ -38,6 +37,7 @@ public class Edi834Util {
             ListValuedMap<String, ArrayNode> memberSegmentData = new ArrayListValuedHashMap<>();
 
             ListValuedMap<String, ArrayNode> segmentData = new ArrayListValuedHashMap<>();
+            ListValuedMap<String, ArrayNode> commonEdiSegments = new ArrayListValuedHashMap<>();
             Boolean lsLoop = false;
             int LXCOUNT = 0;
 
@@ -91,7 +91,6 @@ public class Edi834Util {
                     case END_SEGMENT:
                         if (currentSegmentName != null && currentSegmentArray != null) {
                             if (member != null) {
-                                //member segregate code start here
                                 if (insCount == previousIndex) {
                                     memberArrayNode.add(currentSegmentArray);
                                     memberSegmentData.put(currentSegmentName, currentSegmentArray);
@@ -103,10 +102,14 @@ public class Edi834Util {
                                     memberSegmentData = new ArrayListValuedHashMap<>();
                                     previousIndex = insCount;
                                 }
-                            } else {
-                                segmentData.put(currentSegmentName, currentSegmentArray);
+                            } else{
+                                if(currentSegmentName.equals("ISA") || currentSegmentName.equals("GS") ||
+                                        currentSegmentName.equals("GE") || currentSegmentName.equals("IEA")){
+                                    commonEdiSegments.put(currentSegmentName,currentSegmentArray);
+                                }else
+                                    segmentData.put(currentSegmentName, currentSegmentArray);
                             }
-                            segmentsObject.set(currentSegmentName, currentSegmentArray);
+                            segmentsObject.set(currentSegmentName,currentSegmentArray);
                             if (currentSegmentName.equals("SE")) {
                                 String jsonString = objectMapper.writeValueAsString(segmentData.asMap());
                                 JsonNode jsonCommonSegmentNode = objectMapper.readTree(jsonString);
@@ -123,6 +126,9 @@ public class Edi834Util {
                         break;
                 }
             }
+            String jsonCommonSegmentString = objectMapper.writeValueAsString(commonEdiSegments.asMap());
+            JsonNode jsonCommonSegmentNode = objectMapper.readTree(jsonCommonSegmentString);
+            transactionObjectNode.set("Common_EDI_Segments",jsonCommonSegmentNode);
 
             JSONObject jsonObj = new JSONObject(objectMapper.writeValueAsString(transactionObjectNode));
             System.out.println("file as transformed jsonObj--" + jsonObj);
@@ -132,21 +138,75 @@ public class Edi834Util {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
-    public void sendToDto(JSONObject jsonObject) {
-        System.out.println("jsonObj length--" + jsonObject.length());
-        jsonObject.length();
-        for (int i = 0; i <= jsonObject.length(); i++) {
+    public void new1(JSONObject json) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Edi834TransactionDetails myData = objectMapper.readValue(json.toString(), Edi834TransactionDetails.class);
 
-//            JSONObject transactionObject = jsonObject.getJSONObject("Transaction_"+i);
-//            for(int j=1;j<transactionObject.length();j++){
-//                JSONObject memberObj = transactionObject.getJSONObject("Member-"+j);
-//            }
+            Map<String, MemberSegments> memberDataMap = myData.getMemberSegmentsMap();
+            for (Map.Entry<String, MemberSegments> entry : memberDataMap.entrySet()) {
+                String memberId = entry.getKey();
+                MemberSegments memberData = entry.getValue();
+                System.out.println("Member ID: " + memberId);
+                System.out.println("DTP: " + memberData.getDTP());
+                System.out.println("LUI: " + memberData.getLUI());
+                // Similarly, print other fields
+                System.out.println();
+            }
 
+        } catch(Exception e){
+            e.printStackTrace();
         }
+    }
+
+
+    public void sendToDto(JSONObject jsonObject) {
+
+      Map<String, List<Edi834TransactionDetails>> allTransactionsWithKey = SharedData.getEdi834TransactionsList();
+
+      List<Edi834TransactionDetails> allTransactionsList = new ArrayList<>();
+        Edi834TransactionDetails edi834TransactionDetails = new Edi834TransactionDetails();
+        Map<String, JSONArray> memberSegmentsMap = edi834TransactionDetails.getNewMemberSegmentsMap();
+
+        Map<String, JSONArray> commonSegInTrans = edi834TransactionDetails.getNewCommonSegInTransMap();
+
+
+        for (int i = 1; i <= jsonObject.length()-1; i++) {
+
+            JSONObject transactionObject = jsonObject.getJSONObject("Transaction_"+i);
+            System.out.println("transaction_"+i+":::"+ transactionObject);
+
+//            for(int j=1; j<transactionObject.length()-1;j++){
+//                Object members = transactionObject.get("Member-"+j);
+//                System.out.println("members--"+members.toString());
+//                System.out.println("map-"+ ((JSONObject) members).toMap());
+//              Map<String, Object> mAP =  ((JSONObject) members).toMap();
+//               System.out.println( mAP.keySet());
+//                mAP.get("DTP");
+//                MemberSegments memberSegments = new MemberSegments();
+//                memberSegments.setDTP((List<List<String>>)mAP.get("DTP"));
+//                }
+
+
+//                memberSegmentsMap.put("Member-"+j, members);
+//                edi834TransactionDetails.setNewMemberSegmentsMap(memberSegmentsMap);
+//                allTransactionsList.add(edi834TransactionDetails);
+//                allTransactionsWithKey.put("Transaction-"+i, allTransactionsList);
+//                SharedData.setEdi834TransactionsList(allTransactionsWithKey);
+
+//            }
+//            JSONArray commonSeg = transactionObject.getJSONArray("Common_Segments");
+//            commonSegInTrans.put("CommonSegments", commonSeg);
+//            edi834TransactionDetails.setNewCommonSegInTransMap(commonSegInTrans);
+//            allTransactionsList.add(edi834TransactionDetails);
+//            allTransactionsWithKey.put("Transaction"+i, allTransactionsList);
+//            SharedData.setEdi834TransactionsList(allTransactionsWithKey);
+        }
+//
+//        Map<String, List<Edi834TransactionDetails>> getAllTransactions =  SharedData.getEdi834TransactionsList();
+//       System.out.println( getAllTransactions.get("Transaction-1"));
 
     }
 

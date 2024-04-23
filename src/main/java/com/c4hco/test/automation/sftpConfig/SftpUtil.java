@@ -123,7 +123,9 @@ public class SftpUtil {
     public void readEdiFromLocal(){
         try{
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("4STMultiINS");
+           // InputStream inputStream = classLoader.getResourceAsStream("4STMultiINS");
+            InputStream inputStream = classLoader.getResourceAsStream("1ST3INS");
+
             if (inputStream != null) {
                 System.out.println("File found");
                 edi834Util.parseEdiFile(inputStream);

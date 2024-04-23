@@ -1,10 +1,12 @@
 package com.c4hco.test.automation.Dto;
 
+import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 public class SharedData {
     @Getter @Setter private static String firstPlanNameOnMedicalResultsPage;
@@ -19,6 +21,7 @@ public class SharedData {
     @Getter @Setter private static List<Ob834FileDetails> ob834FileDetails;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static String EmployerName;
+    @Getter @Setter private static Map<String, List<Edi834TransactionDetails>> edi834TransactionsList;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -28,5 +31,6 @@ public class SharedData {
         members = null;
         primaryMemberId = null;
         EmployerName = null;
+        edi834TransactionsList = null;
     }
 }
