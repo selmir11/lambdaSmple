@@ -3,9 +3,11 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.FindExpertHelpPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
+import org.testng.asserts.SoftAssert;
 
 public class FindExpertHelpSteps {
         FindExpertHelpPage findExpertHelpPage = new FindExpertHelpPage(WebDriverManager.getDriver());
+
         @Then("I verify Find Expert Help header Text in {string}")
         public void IVerifyFindExpertHelpHeaderTextIn(String Language) {
                 findExpertHelpPage.verifyHeaderPage(Language);
@@ -23,6 +25,38 @@ public class FindExpertHelpSteps {
 
         @Then("I verify Find Expert Help buttons in {string}")
         public void i_verify_find_expert_help_buttons_in(String Language) {
-                 findExpertHelpPage.verifyButtontext(Language);
+                findExpertHelpPage.verifyButtontext(Language);
+        }
+
+        @And("I click on Find a Broker")
+        public void iClickOnFindABroker() {
+                findExpertHelpPage.clickFindBroker();
+        }
+
+        @Then("I Search authorized Broker {string}")
+        public void iSearchAuthorizedBroker(String brokerName) {
+                findExpertHelpPage.searchForBrokerName(brokerName);
+        }
+
+        @And("I click on Search button")
+        public void iClickOnSearchButton() {
+                findExpertHelpPage.clickSearchButton();
+        }
+
+        @And("I click more details from the first broker result container")
+        public void iClickMoreDetailsInTheBrokerResultContainer() {
+                findExpertHelpPage.clickMoreDetailsInTheBrokerContainer();
+        }
+
+        @Then("I click Authorized broker")
+        public void iClickAuthorizedBroker() {
+                findExpertHelpPage.clickAuthorizedBroker();
+        }
+
+
+
+        @And("I validate current Broker text exists")
+        public void iValidateCurrentBrokerTextExists() {
+                findExpertHelpPage.validateBrokerExists();
         }
 }
