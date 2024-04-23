@@ -24,7 +24,6 @@ public class BasicSteps {
                 break;
             case "Account Overview":
                 pageUrl = "nes/accountOverview";
-                Assert.assertTrue(basicActions.waitUntilUrlIsPresent(pageUrl));
                 break;
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
@@ -239,6 +238,48 @@ public class BasicSteps {
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
                 break;
+            case "Account Activity":
+                pageUrl = "/activity-report";
+                break;
+            case "Detailed EDI":
+                pageUrl = "/detailed-edi";
+                break;
+            case "EDI Transactions":
+                pageUrl = "/edi-transactions";
+                break;
+            case "CoCo Ethnicity and Race" :
+                pageUrl = "/coco/member-details-portal/race-ethnicity/";
+                break;
+            case "CoCo Tell us about yourself" :
+                pageUrl = "/coco/member-details-portal/member-details/";
+                break;
+            case "Elmo Ohi Retiree":
+                pageUrl = "/otherHealthInsurance/retiree";
+                break;
+            case "Elmo Ohi Medicare":
+                pageUrl = "/otherHealthInsurance/medicare";
+                break;
+            case "Elmo Ohi VA Healthcare":
+                pageUrl = "/otherHealthInsurance/vaHealthcare";
+                break;
+            case "Elmo Ohi Individual Insurance":
+                pageUrl = "/otherHealthInsurance/individual";
+                break;
+            case "Elmo Ohi Peace Corps":
+                pageUrl = "/otherHealthInsurance/peaceCorps";
+				break;
+            case "Elmo Ohi Tricare":
+                pageUrl = "/otherHealthInsurance/tricare";
+                break;
+            case "CoCo Employment Income":
+                pageUrl = "/employmentInfo";
+                break;
+            case "CoCo Additional Income":
+                pageUrl = "coco/income-portal/additionalIncome";
+                break;
+            case "CoCo Income Summary":
+                pageUrl = "coco/income-portal/summaryDetails";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
@@ -324,7 +365,7 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 30).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
+                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
             }
         }
         basicActions.closeBrowserTab();

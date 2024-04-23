@@ -49,6 +49,11 @@ public class EthnicityAndRacePage {
         saveAndContinueButton.click();
     }
 
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBeClickable(goBackButton, 30);
+        goBackButton.click();
+    }
+
     public void ethnicitySelection(String ethnicity){
         basicActions.waitForElementListToBePresent(ethnicityButton, 30);
         switch (ethnicity) {

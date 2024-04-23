@@ -21,6 +21,7 @@ Feature: My profile page
     Then I verify Password text on My profile page "Spanish"
     And I change the language from header to "English"
     Then I verify Password text on My profile page "English"
+    And I click on Save Button
 
 
 

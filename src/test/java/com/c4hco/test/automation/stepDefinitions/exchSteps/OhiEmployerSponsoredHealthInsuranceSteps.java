@@ -5,6 +5,9 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+import java.util.Map;
+
 public class OhiEmployerSponsoredHealthInsuranceSteps {
     OhiEmployerSponsoredHealthInsurancePage ohiEmployerSponsoredHealthInsurancePage = new OhiEmployerSponsoredHealthInsurancePage(WebDriverManager.getDriver());
 
@@ -16,13 +19,40 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     public void iSelectEmployer(){ohiEmployerSponsoredHealthInsurancePage.selectEmployer();
     }
 
-    @Then("I select the Are you currently enrolled Yes button on the ESI page")
-    public void iClickCurrentlyEnrolledYes(){ohiEmployerSponsoredHealthInsurancePage.clickCurrentlyEnrolledYes();
+    @Then("I select {string} for meet the Minimum Value Standard on the ESI page")
+    public void iClickMinValueStandard(String minValueStandard){ohiEmployerSponsoredHealthInsurancePage.clickMinValueStandard(minValueStandard);
     }
 
-    @Then("I select the Will Insurance End Yes button on the ESI page")
-    public void iClickInsuranceEndYes(){ohiEmployerSponsoredHealthInsurancePage.clickInsuranceEndYes();
+    @Then("I enter {string} for employee amount question on the ESI page")
+    public void iEnterMonthlyAmount(String employeeAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyAmount(employeeAmount);}
+
+    @Then("I enter the end date as the last day of the current month on the ESI page")
+    public void iEnterEndDate(){ohiEmployerSponsoredHealthInsurancePage.enterEndDate();}
+
+    @Then("I select the Are you voluntarily ending {string} button on the ESI page")
+    public void iClickVoluntarilyEnding(String voluntarilyEnding){ohiEmployerSponsoredHealthInsurancePage.clickVoluntarilyEnding(voluntarilyEnding);
     }
+
+    @Then("I select the Are you currently enrolled {string} button on the ESI page")
+    public void iClickCurrentlyEnrolled(String currentlyEnrolled){ohiEmployerSponsoredHealthInsurancePage.clickCurrentlyEnrolled(currentlyEnrolled);
+    }
+
+    @Then("I select the Will Insurance End {string} button on the ESI page")
+    public void iClickInsuranceEnd(String willEnd){ohiEmployerSponsoredHealthInsurancePage.clickInsuranceEnd(willEnd);
+    }
+
+    @Then("I click {string} for offer family plans question")
+    public void iClickFamilyPlansOffered(String currentlyOffered){ohiEmployerSponsoredHealthInsurancePage.clickFamilyPlansOffered(currentlyOffered);}
+
+    @Then("I enter {string} for offer family amount question")
+    public void iEnterMonthlyFamilyAmount(String familyAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyFamilyAmount(familyAmount);}
+
+    @Then("I click enrollment status for the members")
+    public void iClickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues)
+    {ohiEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMembers(expectedValues);}
+
+    @Then("I click continue on the ESI page")
+    public void iClickSaveAndContinue(){ohiEmployerSponsoredHealthInsurancePage.clickSaveAndContinue();}
 
     @Then("I open or close the Help Drawer on the ESI page")
     public void iClickMainHelp(){ohiEmployerSponsoredHealthInsurancePage.clickMainHelp();
@@ -37,8 +67,6 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     }
 
 
-
-
     // =================== VALIDATION STEPS ===============//
     @And("I verify the Help Drawer is {string} on the ESI page")
     public void iVerifyHelpDrawerStatus(String drawerStatus){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerStatus(drawerStatus);
@@ -47,6 +75,16 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     @And("I verify the Help Drawer {string} text in {string} on the ESI page")
     public void iVerifyHelpDrawerText(String drawerPage, String language){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerText(drawerPage, language);
     }
+
+    @And("I verify offer family health plans is {string} on the ESI page")
+    public void iVerifyFamilyOfferedToEnrollOption(String currentlyOffered){ohiEmployerSponsoredHealthInsurancePage.verifyFamilyOfferedToEnrollOption(currentlyOffered);}
+
+    @And("I verify offered family amount is {string} on the ESI page")
+    public void iVerifyMonthlyAmount(String familyAmount){ohiEmployerSponsoredHealthInsurancePage.verifyMonthlyAmount(familyAmount);}
+
+    @Then("I verify enrollment status for the members")
+    public void iVerifyFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues)
+    {ohiEmployerSponsoredHealthInsurancePage.verifyFamilyEnrollmentStatusMembers(expectedValues);}
 
 
 }
