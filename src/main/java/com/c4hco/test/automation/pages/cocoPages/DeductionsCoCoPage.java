@@ -20,6 +20,12 @@ public class DeductionsCoCoPage {
     @FindBy(css = "app-show-options button")
     List<WebElement> deductionButton;
 
+    @FindBy(id = "ELIG-Deductions-AOSS-amountInput")
+    WebElement alimonyAmount;
+
+    @FindBy(id = "ELIG-Deductions-AOSS-frequencySelect")
+    WebElement alimonyFrequency;
+
     @FindBy(id = "Deductions-SaveAndContinue")
     WebElement saveAndContinueButton;
 
@@ -32,5 +38,23 @@ public class DeductionsCoCoPage {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.waitForElementListToBePresent(deductionButton, 30);
         deductionButton.get(10).click();
+    }
+
+    public void selectDeductionOption(String deductionOption, String Amount, String Frequency){
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 10);
+
+        switch (deductionOption) {
+            case "Alimony":
+                deductionButton.get(0).click();
+                basicActions.waitForElementToBeClickable(alimonyAmount, 10);
+                alimonyAmount.sendKeys(Amount);
+
+                Select dropdown = new Select(alimonyFrequency);
+                dropdown.selectByVisibleText(" " + Frequency + " ");
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + deductionOption);
+        }
     }
 }
