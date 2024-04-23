@@ -38,6 +38,12 @@ public class OhiIndividualInsuranceSteps {
     @And("I verify Currently Enrolled is {string} on the Individual Insurance page")
     public void iVerifyCurrentlyEnrolledOption(String currentlyEnrolled){ohiIndividualInsurancePage.verifyCurrentlyEnrolledOption(currentlyEnrolled);}
 
+    @And("I verify {string} error in {string} on the Individual Insurance page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiIndividualInsurancePage.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for Individual Insurance page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiIndividualInsurancePage.verifyNoErrorMessage(errorType);}
+
     @And("I verify Insurance Ending in 60 days is {string} on the Individual Insurance page")
     public void iVerifyInsuranceEndingOption(String insuranceEnding){ohiIndividualInsurancePage.verifyInsuranceEndingOption(insuranceEnding);}
 
