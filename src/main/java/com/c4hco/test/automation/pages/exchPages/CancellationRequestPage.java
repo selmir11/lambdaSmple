@@ -12,6 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Set;
 
 public class CancellationRequestPage {
 
@@ -49,6 +50,18 @@ public class CancellationRequestPage {
 
     @FindBy(css=".row.ps-3>div>span.requiredfield")
     WebElement validationMessageTextBox;
+
+    @FindBy(css=".modal-content")
+    WebElement popUpCancellationPage;
+
+    @FindBy(css=".modal-content>div>div")
+    WebElement popUpheader;
+
+    @FindBy(css=".modal-content>div>div>div>span")
+    WebElement popUpcontentinfo;
+
+    @FindBy(css=".modal-content>div>div>div>button")
+    WebElement popUpOkbtn;
 
     public void ValidateCancellationPageText(String language, List<String> data){
         switch (language){
@@ -110,5 +123,26 @@ public class CancellationRequestPage {
         String PrimaryMemberFullName = SharedData.getPrimaryMember().getFullName();
         placeHoldertxt.sendKeys(PrimaryMemberFullName);
         clickContinuebtn();
+    }
+
+    public void cancellationPlanPoupMessage(List<String> data) throws InterruptedException {
+        basicActions.waitForElementToBePresent(popUpCancellationPage, 10);
+        String parentWindowHandle = basicActions.getDriver().getWindowHandle();
+        Set<String> allWindowHandles = basicActions.getDriver().getWindowHandles();
+        for (String handle : allWindowHandles) {
+            if (!handle.equals(parentWindowHandle)) {
+                basicActions.getDriver().switchTo().window(handle);
+                break;
+            }
+
+        }
+        softAssert.assertEquals(popUpheader.getText(), data.get(0));
+        softAssert.assertEquals(popUpcontentinfo.getText(), data.get(1));
+        softAssert.assertTrue(popUpcontentinfo.getText().contains(data.get(1)));
+        softAssert.assertEquals(popUpOkbtn.getText(), data.get(2));
+        softAssert.assertAll();
+        popUpOkbtn.click();
+        basicActions.getDriver().switchTo().window(parentWindowHandle);
+        basicActions.switchToParentPage("Enrollment Portal");
     }
 }

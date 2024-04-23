@@ -36,4 +36,9 @@ public class CancellationRequestPageSteps {
         cancellationRequestPage.cancelActivePlan();
     }
 
+    @Then("I validate Confirmation popup message displayed in expected Language")
+    public void i_validate_confirmation_popup_message_displayed_in_expected_language(List<String> data) throws InterruptedException {
+        cancellationRequestPage.cancellationPlanPoupMessage(data);
+    }
+
 }

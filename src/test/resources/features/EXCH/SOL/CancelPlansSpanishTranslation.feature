@@ -150,4 +150,17 @@ Feature: Cancel Plans Spanish Translation
     |Se requiere firma electrónica|
     |La firma debe coincidir con el nombre|
     Then I cancel the active plan detail
-    #And I click on Sign Out in the Header for "Elmo"
+    Then I validate Confirmation popup message displayed in expected Language
+    |¡Gracias!|
+    |Su solicitud está siendo procesada. Si tiene alguna pregunta o inquietud, comuníquese con Anthem Blue Cross & Blue Shield/RMH&MS al 8554537031|
+    |Aceptar|
+    And I change the language from header to "English"
+    Then I validate I am on the "English" page
+    And I click on "Cancel Medical Plan" button
+    Then I validate I am on the "Cancellation Request" page
+    Then I cancel the active plan detail
+    Then I validate Confirmation popup message displayed in expected Language
+    |Thank You!|
+    |Your request is being processed. Please reach out to Elevate by Denver Health Medical Plan at 303-602-2090 if you have any questions or concerns.|
+    |Okay|
+    And I click on Sign Out in the Header for "Elmo"

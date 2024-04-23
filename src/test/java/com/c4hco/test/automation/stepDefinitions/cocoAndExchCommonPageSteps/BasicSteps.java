@@ -280,6 +280,12 @@ public class BasicSteps {
             case "CoCo Income Summary":
                 pageUrl = "coco/income-portal/summaryDetails";
                 break;
+            case "Cancellation Request":
+                pageUrl = "EnrollmentPortal/cancellationRequest";
+                break;
+            case "English":
+                pageUrl = "lang=en";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
