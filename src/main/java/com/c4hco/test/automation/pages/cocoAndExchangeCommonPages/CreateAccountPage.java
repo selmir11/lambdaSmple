@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,21 +38,34 @@ public class CreateAccountPage {
 
     @FindBy(id = "fn")
      WebElement firstName;
-
+    @FindBy(id = "fn-label")
+     WebElement firstNameText;
+    @FindBy(id = "mn-label")
+     WebElement middleNameText;
     @FindBy(id = "ln")
      WebElement lastName;
+    @FindBy(xpath = "(//*[@id='fn-label'])[2]")
+     WebElement lastNameText;
 
     @FindBy(id = "email")
      WebElement email;
+    @FindBy(id = "email-label")
+     WebElement emailText;
 
     @FindBy(id = "phone")
      WebElement phoneNumber;
+    @FindBy(id = "phone-label")
+     WebElement phoneNumberTxt;
 
     @FindBy(id = "password")
      WebElement password;
+    @FindBy(id = "password-label")
+     WebElement passwordText;
 
     @FindBy(id = "confirm-password")
      WebElement confirmPassword;
+    @FindBy(id = "confirm-password-label")
+     WebElement confirmPasswordTxt;
 
     @FindBy(xpath = "//*[@for='English']")
      WebElement preferredLanguageButtonEnglish;
@@ -67,6 +81,23 @@ public class CreateAccountPage {
 
     @FindBy(id = "submit-button")
      WebElement submitButton;
+    @FindBy(css = " div.forgot-email-header")
+     WebElement headerCreateAccount;
+    @FindBy(xpath = "//span[@class='body-text-1']")
+     WebElement preferredLanguageTxt;
+    @FindBy(xpath = "(//label[@class='mdc-label'])[1]")
+     WebElement primaryAccountHolderTxt;
+    @FindBy(xpath= "(//label[@class='mdc-label'])[2]")
+     WebElement cSRTxt;
+    @FindBy(xpath= "(//span[@class='body-text-2'])[2]")
+     WebElement headerTxt;
+    @FindBy(xpath= "(//span[@class='body-text-1'])[2]")
+     WebElement optionTxt;
+    @FindBy(xpath= "(//label[@class='mdc-label'])[3]")
+     WebElement c4OptionTxt;
+    @FindBy(xpath= "(//label[@class='mdc-label'])[4]")
+     WebElement cocoOptionTxt;
+
 
     private BasicActions basicActions;
     public CreateAccountPage(WebDriver webDriver){
@@ -185,8 +216,89 @@ public class CreateAccountPage {
         softAssert.assertAll();
     }
 
+ HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage(WebDriverManager.getDriver());
+    public void verifyCreateYourAccountHeader(String language) {
+        switch (language){
+            case "English":
+                softAssert.assertEquals(headerCreateAccount.getText(),"Create your Account");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+              //  basicActions.waitForElementToBePresent(headerCreateAccount,60);
+                basicActions.wait(100);
+                softAssert.assertEquals(headerCreateAccount.getText(),"Crear su cuenta");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
 
 
+    public void verifyFieldHeaders(String language) {
+        switch(language){
+            case "English":
+                softAssert.assertEquals(firstNameText.getText(),"First Name");
+                softAssert.assertEquals(middleNameText.getText(),"Middle Name");
+                softAssert.assertEquals(lastNameText.getText(),"Last Name");
+                softAssert.assertEquals(emailText.getText(),"Email (This will be your Username)");
+                softAssert.assertEquals(phoneNumberTxt.getText(),"Phone Number");
+                softAssert.assertEquals(passwordText.getText(),"Password");
+                softAssert.assertEquals(confirmPasswordTxt.getText(),"Confirm Password");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(firstNameText.getText(),"Nombre");
+                softAssert.assertEquals(middleNameText.getText(),"Segundo nombre");
+                softAssert.assertEquals(lastNameText.getText(),"Apellido");
+                softAssert.assertEquals(emailText.getText(),"Correo electr\u00F3nico (Este ser\u00E1 su nombre de usuario)");
+                softAssert.assertEquals(phoneNumberTxt.getText(),"Tel\u00E9fono");
+                softAssert.assertEquals(passwordText.getText(),"Contrase\u00F1a");
+                softAssert.assertEquals(confirmPasswordTxt.getText(),"Confirmar contrase\u00F1a");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
 
+    public void verifyAccountHolderPreferences(String language) {
+        switch(language){
+                case "English":
+                    softAssert.assertEquals(preferredLanguageTxt.getText(),"Preferred Written Language");
+                    softAssert.assertEquals(primaryAccountHolderTxt.getText(),"I am the primary user/account holder");
+                    softAssert.assertEquals(cSRTxt.getText(),"I am a registered Customer Service Center Representative or Authorized Representative and have the authority to act on behalf on this individual");
+                    softAssert.assertAll();
+                    break;
+                case "Spanish":
+                    softAssert.assertEquals(preferredLanguageTxt.getText(),"Idioma escrito que prefiere");
+                    softAssert.assertEquals(primaryAccountHolderTxt.getText(),"Soy el usuario principal/titular de la cuenta");
+                    softAssert.assertEquals(cSRTxt.getText(),"Soy un representante registrado del Centro de atenci\u00F3n al cliente o representante autorizado y tengo la autoridad para actuar en nombre de esta persona");
+                    softAssert.assertAll();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + language);
+            }
+    }
+    public void verifyInformationSharingOptions(String language) {
+        switch(language){
+            case "English":
+                softAssert.assertEquals(headerTxt.getText(),"My Information Sharing Options");
+                softAssert.assertEquals(optionTxt.getText(),"Please select one of the options below");
+                softAssert.assertEquals(c4OptionTxt.getText(),"I want to share my information with Connect for Health Colorado, Colorado's official Affordable Care Act Marketplace. I agree to the Connect for Health Colorado Terms of Use and Privacy Policy. (This is the right choice for most customers.)");
+                softAssert.assertEquals(cocoOptionTxt.getText(),"I want to share my information with Colorado Connect, a partner of Connect for Health Colorado that provides health insurance options for people who are undocumented. I agree to the Colorado Connect Terms of Use and Privacy Policy.");
+                softAssert.assertAll();
+                break;
+
+            case "Spanish":
+                softAssert.assertEquals(headerTxt.getText(),"Opciones para compartir mi informaci\u00F3n");
+                softAssert.assertEquals(optionTxt.getText(),"Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(c4OptionTxt.getText(),"Deseo compartir mi informaci\u00F3n con Connect for Health Colorado, el Mercado oficial de la Ley del Cuidado de Salud a Bajo Precio (ACA) en Colorado. Acepto los T\u00E9rminos de uso y la Pol\u00EDtica de privacidad de Connect for Health Colorado. (Esta es la opci\u00F3n correcta para la mayor\u00EDa de nuestros clientes.)");
+                softAssert.assertEquals(cocoOptionTxt.getText(),"Deseo compartir mi informaci\u00F3n con Colorado Connect, socio de Connect for Health Colorado que proporciona opciones de seguro de salud para personas indocumentadas. Acepto los T\u00E9rminos de uso y la Pol\u00EDtica de privacidad de Connect for Health Colorado.");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);}
+    }
 
 }
