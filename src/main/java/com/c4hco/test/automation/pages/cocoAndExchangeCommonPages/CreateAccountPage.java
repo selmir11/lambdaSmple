@@ -44,7 +44,7 @@ public class CreateAccountPage {
      WebElement middleNameText;
     @FindBy(id = "ln")
      WebElement lastName;
-    @FindBy(xpath = "(//*[@id='fn-label'])[2]")
+    @FindBy(css = "div:nth-child(4) > label:nth-child(1)")
      WebElement lastNameText;
 
     @FindBy(id = "email")
@@ -224,8 +224,6 @@ public class CreateAccountPage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-              //  basicActions.waitForElementToBePresent(headerCreateAccount,60);
-                basicActions.wait(100);
                 softAssert.assertEquals(headerCreateAccount.getText(),"Crear su cuenta");
                 softAssert.assertAll();
                 break;
