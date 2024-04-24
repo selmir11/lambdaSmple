@@ -4,7 +4,6 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 public class DocumentLookupPageSteps {
 
     DocumentLookupPage documentLookupPage = new DocumentLookupPage(WebDriverManager.getDriver());
@@ -24,23 +23,15 @@ public class DocumentLookupPageSteps {
         documentLookupPage.clickdropdown();
     }
 
-    @Then("I select all dropdown options")
-    public void iSelectAllDropdownOptions() {
-       documentLookupPage.clickDropdowns();
-    }
-
     @Then("I search with Document Handle Number")
-    public void iSearchWithDocumentHandleNumber() {
-        documentLookupPage.searchDocumentHandle();
-    }
+    public void iSearchWithDocumentHandleNumber() {documentLookupPage.searchDocumentHandle();}
 
     @Then("I verify Admin Table columns")
-    public void iVerifyAdminTableColumns() {
-        documentLookupPage.verifyAdminTableColumns();
-    }
+    public void iVerifyAdminTableColumns() {documentLookupPage.verifyAdminTableColumns();}
 
     @Then("I verify Document Handle search columns")
-    public void iVerifyDocumentHandleSearchColumns() {
-        documentLookupPage.verifycontent();
-    }
+    public void iVerifyDocumentHandleSearchColumns() {documentLookupPage.verifycontent();}
+    @Then("I select {string} from dropdown options")
+    public void iSelectFromDropdownOptions(String text) { documentLookupPage.clickDropdowns(text);}
 }
+
