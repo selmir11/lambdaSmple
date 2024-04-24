@@ -81,7 +81,6 @@ public class DocumentLookupPage {
          currentUrl = basicActions.getDriver().getCurrentUrl();
     }
 
-
     public void validateTitle() {
         basicActions.switchtoactiveTab();
         softAssert.assertTrue(basicActions.waitForElementToBePresent(title, 10));
@@ -125,7 +124,6 @@ public class DocumentLookupPage {
         softAssert.assertEquals(fileFormat.getText(), "File Format");
         softAssert.assertAll();
     }
-
     public void verifycontent() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentfiletxt, 10));
         softAssert.assertEquals(documentfiletxt.getText(), "IND_1095A Dispu..");
@@ -149,15 +147,7 @@ public class DocumentLookupPage {
             softAssert.assertAll();
         }
     }
-    public void clickDropdowns() {
-        String Options[] = {"Exchange", "Individual", "SHOP", "Broker", "Navigator", "Carrier", "Appeal"};
-        for (int i = 0; i < documentTypeDropdownOptions.size(); i++) {
-            if (documentTypeDropdownOptions.get(i).getText().equals(Options[i])) {
-                documentTypeDropdownOptions.get(i).click();
-                documentTypeDropdown.click();
-            } else {
-                break;
-            }
-        }
+    public void clickDropdowns(String text) {
+        basicActions.selectValueFromDropdown(documentTypeDropdown, documentTypeDropdownOptions,text);
     }
 }
