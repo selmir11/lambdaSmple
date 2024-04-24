@@ -195,10 +195,10 @@ public class MyPoliciesPage {
         softAssert.assertEquals(tableRecord.get(0).getText(), primaryMember.getSignature(), "Name did not match");
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText(), primaryMember.getDentalPremiumAmt(), "Dental premium did not match" );
-//        softAssert.assertTrue(tableRecord.get(3).getText().equals()); //  financial help
+        softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getAptcAmt()+".00")); //  financial help
         softAssert.assertEquals(tableRecord.get(4).getText(), primaryMember.getDentalPlanStartDate(), "dental plan start date did not match");
         softAssert.assertEquals(tableRecord.get(5).getText(), primaryMember.getDentalPlanEndDate(), "dental plan end date did not match");
-  //      softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     public void clickBackButton(){
