@@ -1,16 +1,33 @@
 package com.c4hco.test.automation.Dto.Edi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.json.JSONArray;
+import lombok.NoArgsConstructor;
 
-import java.util.Map;
+import java.util.List;
 
-@Data @JsonIgnoreType
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreType
 public class Edi834TransactionDetails {
-    Map<String, JSONArray> newMemberSegmentsMap;
-    Map<String, JSONArray> newCommonSegInTransMap;
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
 
-    Map<String, MemberSegments> memberSegmentsMap;
-    Map<String, CommonSegments> commonSegmentsInTransMap;
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    public CommonEDISegments getCommonEDISegments() {
+        return commonEDISegments;
+    }
+
+    public void setCommonEDISegments(CommonEDISegments commonEDISegments) {
+        this.commonEDISegments = commonEDISegments;
+    }
+
+    private List<Transaction> transactionList;
+    private CommonEDISegments commonEDISegments;
 }

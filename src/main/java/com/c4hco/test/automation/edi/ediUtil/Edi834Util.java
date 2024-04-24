@@ -1,9 +1,9 @@
 package com.c4hco.test.automation.edi.ediUtil;
 
-import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
-import com.c4hco.test.automation.Dto.Edi.MemberSegments;
+import com.c4hco.test.automation.Dto.Edi.*;
 import com.c4hco.test.automation.Dto.Ob834FileDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -16,7 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class Edi834Util {
 
@@ -127,12 +130,9 @@ public class Edi834Util {
                 }
             }
             String jsonCommonSegmentString = objectMapper.writeValueAsString(commonEdiSegments.asMap());
-            JsonNode jsonCommonSegmentNode = objectMapper.readTree(jsonCommonSegmentString);
-            transactionObjectNode.set("Common_EDI_Segments",jsonCommonSegmentNode);
+            System.out.println("jsonCommonSegmentString::"+jsonCommonSegmentString);
 
-            JSONObject jsonObj = new JSONObject(objectMapper.writeValueAsString(transactionObjectNode));
-            System.out.println("file as transformed jsonObj--" + jsonObj);
-            sendToDto(jsonObj);
+            parseEdiJsonToModel(transactionObjectNode.toString());
             reader.close();
             inputStream.close();
         } catch (Exception e) {
@@ -140,75 +140,64 @@ public class Edi834Util {
         }
     }
 
-    public void new1(JSONObject json) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public void parseEdiJsonToModel(String jsonString){
+        Edi834TransactionDetails edi834TransactionDetails = new Edi834TransactionDetails();
         try {
-            Edi834TransactionDetails myData = objectMapper.readValue(json.toString(), Edi834TransactionDetails.class);
-
-            Map<String, MemberSegments> memberDataMap = myData.getMemberSegmentsMap();
-            for (Map.Entry<String, MemberSegments> entry : memberDataMap.entrySet()) {
-                String memberId = entry.getKey();
-                MemberSegments memberData = entry.getValue();
-                System.out.println("Member ID: " + memberId);
-                System.out.println("DTP: " + memberData.getDTP());
-                System.out.println("LUI: " + memberData.getLUI());
-                // Similarly, print other fields
-                System.out.println();
+            ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println("jsonString::"+jsonString);
+            Map<String, Map<String, Object>> transactions = objectMapper.readValue(jsonString, new TypeReference<Map<String, Map<String, Object>>>() {});
+            List<Transaction> transactionList = new ArrayList<>();
+            // Now you can access the parsed data using the transactions map
+            for (Map.Entry<String, Map<String, Object>> entry : transactions.entrySet()) {
+                String transactionId = entry.getKey();
+                Transaction transaction = new Transaction();
+                List<Member> memberList = new ArrayList<>();
+                Map<String, Object> transactionData = entry.getValue();
+                if(transactionId.equals("Common_EDI_Segments")){
+                    String commonEDISegmentsJson = new ObjectMapper().writeValueAsString(transactionData);
+                    CommonEDISegments commonEDISegments = objectMapper.readValue(commonEDISegmentsJson,CommonEDISegments.class);
+                    edi834TransactionDetails.setCommonEDISegments(commonEDISegments);
+                }
+                else{
+                    for(Map.Entry<String,Object> transactionEntry : transactionData.entrySet()){
+                        String transactionKeys = transactionEntry.getKey();
+                        Map<String, Object> membersObject = (Map<String, Object>) transactionEntry.getValue();
+                        String json = new ObjectMapper().writeValueAsString(membersObject);
+                        Member member = new Member();
+                        CommonSegments commonSegments = new CommonSegments();
+                        if(transactionKeys.equals("Common_Segments")){
+                            commonSegments = objectMapper.readValue(json,CommonSegments.class);
+                            transaction.setCommonSegments(commonSegments);
+                        }else {
+                            member = objectMapper.readValue(json, Member.class);
+                            memberList.add(member);
+                        }
+                    }
+                    transaction.setMembersList(memberList);
+                    transactionList.add(transaction);
+                }
             }
-
-        } catch(Exception e){
+            edi834TransactionDetails.setTransactionList(transactionList);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
+        readTheDataFromEDIModel();
     }
 
-
-    public void sendToDto(JSONObject jsonObject) {
-
-      Map<String, List<Edi834TransactionDetails>> allTransactionsWithKey = SharedData.getEdi834TransactionsList();
-
-      List<Edi834TransactionDetails> allTransactionsList = new ArrayList<>();
-        Edi834TransactionDetails edi834TransactionDetails = new Edi834TransactionDetails();
-        Map<String, JSONArray> memberSegmentsMap = edi834TransactionDetails.getNewMemberSegmentsMap();
-
-        Map<String, JSONArray> commonSegInTrans = edi834TransactionDetails.getNewCommonSegInTransMap();
-
-
-        for (int i = 1; i <= jsonObject.length()-1; i++) {
-
-            JSONObject transactionObject = jsonObject.getJSONObject("Transaction_"+i);
-            System.out.println("transaction_"+i+":::"+ transactionObject);
-
-//            for(int j=1; j<transactionObject.length()-1;j++){
-//                Object members = transactionObject.get("Member-"+j);
-//                System.out.println("members--"+members.toString());
-//                System.out.println("map-"+ ((JSONObject) members).toMap());
-//              Map<String, Object> mAP =  ((JSONObject) members).toMap();
-//               System.out.println( mAP.keySet());
-//                mAP.get("DTP");
-//                MemberSegments memberSegments = new MemberSegments();
-//                memberSegments.setDTP((List<List<String>>)mAP.get("DTP"));
-//                }
-
-
-//                memberSegmentsMap.put("Member-"+j, members);
-//                edi834TransactionDetails.setNewMemberSegmentsMap(memberSegmentsMap);
-//                allTransactionsList.add(edi834TransactionDetails);
-//                allTransactionsWithKey.put("Transaction-"+i, allTransactionsList);
-//                SharedData.setEdi834TransactionsList(allTransactionsWithKey);
-
-//            }
-//            JSONArray commonSeg = transactionObject.getJSONArray("Common_Segments");
-//            commonSegInTrans.put("CommonSegments", commonSeg);
-//            edi834TransactionDetails.setNewCommonSegInTransMap(commonSegInTrans);
-//            allTransactionsList.add(edi834TransactionDetails);
-//            allTransactionsWithKey.put("Transaction"+i, allTransactionsList);
-//            SharedData.setEdi834TransactionsList(allTransactionsWithKey);
+    public void readTheDataFromEDIModel(){
+        // WIP - move this to where we need validations
+        Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        List<Transaction> transactionList = edi834TransactionDetails.getTransactionList();
+        for(Transaction transaction : transactionList){
+            List<Member> memberList = transaction.getMembersList();
+            CommonSegments commonSegments = transaction.getCommonSegments();
         }
-//
-//        Map<String, List<Edi834TransactionDetails>> getAllTransactions =  SharedData.getEdi834TransactionsList();
-//       System.out.println( getAllTransactions.get("Transaction-1"));
-
+        CommonEDISegments commonEDISegments = edi834TransactionDetails.getCommonEDISegments();
+        List<List<String>> ISA = commonEDISegments.getISA();
     }
+
+
 
     public void getGe(JSONObject jsonObj) {
         Ob834FileDetails ob834FileDetails = new Ob834FileDetails();
