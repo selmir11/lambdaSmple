@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class AccountOverviewPage {
@@ -111,8 +112,17 @@ public class AccountOverviewPage {
     public void verifyPlanInfo(){
         softAssert.assertEquals(planInformationTable.get(1).getText(),primaryMember.getFirstName()+" "+primaryMember.getLastName(), "Primary member name does not match");
         softAssert.assertEquals(planInformationTable.get(2).getText(),primaryMember.getMedicalPlan(), "Medical Plan Name does not match" );
-        softAssert.assertEquals(planInformationTable.get(3).getText(), primaryMember.getMedicalPremiumAmt(), "Medical premium amount does not match" );
 
+        // Validating Medical Premium after APTC reduction and the Medical APTC amount
+        String medPremiumMinusAPTC = primaryMember.getTotalMedAmtAfterReduction().replace("$", "");
+        String medAPTCAmt = primaryMember.getMedicalAptcAmt().replace("$","");
+
+        BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC.replace("$", ""));
+        BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt.replace("$", ""));
+
+        BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add(bigDecimalmedAPTCAmt);
+
+        softAssert.assertEquals(planInformationTable.get(3).getText(), "$"+totalMedicalPremium, "Medical premium amount does not match" );
         softAssert.assertEquals(planInformationTable.get(7).getText(),primaryMember.getDentalPlan(), "Dental Plan Name does not match");
         softAssert.assertEquals(planInformationTable.get(8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Dental Premium amount does not match");
         softAssert.assertAll();

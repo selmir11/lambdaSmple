@@ -53,7 +53,10 @@ public class PlanSummaryMedicalDentalPage {
     WebElement planSummaryDentalAmtyoupay;
 
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
-    WebElement medicalPlanPremiumAmt;
+    WebElement medicalPremiumAfterAPTCAmt;
+
+    @FindBy(id="PlanSummary-MedicalPremiumReductionAmount_0")
+    WebElement medicalAPTCAmt;
 
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
@@ -80,7 +83,7 @@ public class PlanSummaryMedicalDentalPage {
     
 
     public void continuePlanSummaryPage(){
-        basicActions.waitForElementToBePresent(medicalPlanPremiumAmt, 10);
+        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         setPlansPremiumAmt();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
@@ -88,7 +91,8 @@ public class PlanSummaryMedicalDentalPage {
 
     public void setPlansPremiumAmt(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setMedicalPremiumAmt(medicalPlanPremiumAmt.getText());
+        subscriber.setTotalMedAmtAfterReduction(medicalPremiumAfterAPTCAmt.getText());
+        subscriber.setMedicalAptcAmt(medicalAPTCAmt.getText());
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
         SharedData.setPrimaryMember(subscriber);
     }
