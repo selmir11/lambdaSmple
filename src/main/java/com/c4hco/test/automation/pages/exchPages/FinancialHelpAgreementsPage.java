@@ -34,7 +34,7 @@ public class FinancialHelpAgreementsPage {
 
     public void clickContinue() {
         basicActions.waitForElementToBeClickable(continueButton, 5);
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueButton);
+        basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
 }
