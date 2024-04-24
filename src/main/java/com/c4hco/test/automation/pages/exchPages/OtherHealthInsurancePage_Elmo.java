@@ -50,6 +50,9 @@ public class OtherHealthInsurancePage_Elmo {
 
     @FindBy(id = "existingOHI-SaveAndContinue")
     WebElement saveAndContinueBtn;
+    
+    @FindBy(css = ".error-message")
+    WebElement errorMessageTxt;
 
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
@@ -509,6 +512,35 @@ public class OtherHealthInsurancePage_Elmo {
         for (int i : checkedIndexes) {
             softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container checked");
         }
+    }
+
+    public void verifyErrorMessage(String language) {
+        basicActions.waitForElementToBePresent(errorMessageTxt, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(errorMessageTxt.getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(errorMessageTxt.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyNoErrorMessage() {
+        basicActions.waitForElementToDisappear(errorMessageTxt, 10);
+        softAssert.assertAll();
     }
 
 
