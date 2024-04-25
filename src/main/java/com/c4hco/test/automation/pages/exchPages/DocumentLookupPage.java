@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.pages.exchPages;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -73,12 +74,10 @@ public class DocumentLookupPage {
     WebElement txtFileFormat;
 
     private BasicActions basicActions;
-    String currentUrl = null;
 
     public DocumentLookupPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-        currentUrl = basicActions.getDriver().getCurrentUrl();
     }
 
     public void validateTitle() {
@@ -102,10 +101,10 @@ public class DocumentLookupPage {
     public void searchDocumentHandle() {
         documentHandleSearch.click();
         basicActions.waitForElementToBePresent(documentHandle, 50);
-        if (currentUrl.startsWith("https://staging")) {
-            documentHandle.sendKeys("55510");
-        } else if (currentUrl.startsWith("https://qa")) {
+        if (SharedData.getEnv().equals("qa"))
             documentHandle.sendKeys("90159");
+        else{
+            documentHandle.sendKeys("55510");
         }
         submitButton.click();
     }
@@ -127,7 +126,7 @@ public class DocumentLookupPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentDisplayTxt, 10));
         softAssert.assertEquals(documentDisplayTxt.getText(), "1095A Dispute");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(accountNo, 20));
-        if (currentUrl.startsWith("https://staging")) {
+        if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(accountNo.getText(), "1907010548");
             softAssert.assertEquals(documentDisplayNameTxt.getText(), "Correction Requ..");
             softAssert.assertEquals(txtCreateDate.getText(), "10/26/2020 15:47:56");
