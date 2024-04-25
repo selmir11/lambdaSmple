@@ -131,6 +131,8 @@ public class Edi834Util {
             }
             String jsonCommonSegmentString = objectMapper.writeValueAsString(commonEdiSegments.asMap());
             System.out.println("jsonCommonSegmentString::"+jsonCommonSegmentString);
+            JSONObject commonEdiSegJsonObj = new JSONObject(jsonCommonSegmentString);
+            getCommonEdiSegments(commonEdiSegJsonObj);
 
             parseEdiJsonToModel(transactionObjectNode.toString());
             reader.close();
@@ -138,6 +140,13 @@ public class Edi834Util {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void getCommonEdiSegments(JSONObject jsonCommonSegmentString){
+        JSONArray isaSegment = jsonCommonSegmentString.getJSONArray("ISA");
+        JSONArray ieaSegment = jsonCommonSegmentString.getJSONArray("IEA");
+        JSONArray gsSegment = jsonCommonSegmentString.getJSONArray("GS");
+        JSONArray geSeg = jsonCommonSegmentString.getJSONArray("GE");
     }
 
     public void parseEdiJsonToModel(String jsonString){
