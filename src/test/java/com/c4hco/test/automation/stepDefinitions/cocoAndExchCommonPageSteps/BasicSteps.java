@@ -187,6 +187,12 @@ public class BasicSteps {
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
+            case "Additional Income":
+                pageUrl = "/IncomePortal/additionalIncome";
+                break;
+            case "Income Summary Detail":
+                pageUrl ="IncomePortal/summaryDetails";
+                break;
             case "Other Health Insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
@@ -254,7 +260,8 @@ public class BasicSteps {
                 pageUrl = "nes/lawfulPresence";
                 break;
             case "Application Summary":
-             pageUrl = "selectMember";
+                pageUrl = "selectMember";
+                break;
             case "Account Activity":
                 pageUrl = "/activity-report";
                 break;
@@ -296,6 +303,9 @@ public class BasicSteps {
                 break;
             case "CoCo Income Summary":
                 pageUrl = "coco/income-portal/summaryDetails";
+                break;
+            case "Employment Income Summary":
+                pageUrl = "employmentInfo/summary";
                 break;
             default:
                 System.out.println("undefined page ");

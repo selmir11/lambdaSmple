@@ -33,7 +33,7 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_Income")
     WebElement editIncomeLink;
 
-    @FindBy(xpath = "//input[@class='linkButton'")
+    @FindBy(css = ".memberBasicRow .linkButton")
     WebElement editPrimaryMember;
 
     @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
@@ -48,8 +48,7 @@ public class HouseholdPage {
     @FindBy(css = ".table-striped")
     WebElement familyOverviewTable;
 
-    //@FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
-    @FindBy(xpath = "'//i[@class=\'fa fa-plus-circle toggleAddlRow\']")
+    @FindBy(css = "i.fa.fa-plus-circle.toggleAddlRow")
     WebElement tableDropdown;
 
     public void clickAddMember() {
@@ -68,20 +67,13 @@ public class HouseholdPage {
 
 
     public void iEditFOPrimaryMember(int Index) {
-        basicActions.waitForElementToBePresent(editPrimaryMember,100);
+        basicActions.waitForElementToBePresent(editPrimaryMember,15);
         Index -= 1;
-        basicActions.getDriver().findElement(By.className("linkButton")).click();
-        //((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", editPrimaryMember);
-        //basicActions.click(editPrimaryMember);
-
+        editPrimaryMember.click();
     }
     public void iClickTableItem(){
-       // basicActions.waitForElementToBePresent(tableDropdown,100);
-       // basicActions.waitForElementToBeClickable(tableDropdown,100);
-       // basicActions.getDriver().findElement(By.xpath("i[@class='fa fa-plus-circle toggleAddlRow']"(iClickTableItem());
-        basicActions.getDriver().findElement(By.className("fa fa-plus-circle toggleAddlRow")).click();
-        //((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", tableDropdown);
-        //tableDropdown.click();
+        basicActions.waitForElementToBePresent(tableDropdown,15);
+        tableDropdown.click();
     }
     public void clickBasicInfoMember1Button(int member) {
         basicActions.waitForElementListToBePresent(memberBasicInformation, 100);

@@ -18,6 +18,9 @@ public class EmploymentInfoPageSteps {
     @And("I enter employment details with {string} income at {string} frequency")
     public void iEnterEmploymentDetails(String Salary, String Frequency){employmentInfoPage.addEmploymentInfo(Salary, Frequency);}
 
+    @And( "I edit the income level to {string}")
+    public void iEnterEmploymentIncome(String Salary){employmentInfoPage.enterEmploymentIncome(Salary);}
+
     @And("I select the option {string} to seasonal employment")
     public void selectSeasonalEmployment(String SeasonalEmployment){employmentInfoPage.isUserEmploymentSeasonal(SeasonalEmployment);}
 

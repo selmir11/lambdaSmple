@@ -155,23 +155,37 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-
-    Then I click on the Member Row 1
     And I click on the table dropdown
-    Then I click edit basic information icon for member 1
-    And I click the edit income 1
+    Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
-    And I click the edit income 1
+    Then I select the Edit Income link
 
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    And I enter employment details with "1000000" income at "Annually" frequency
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
+    Then I validate I am on the "Employment Income Summary" page
+    Then I click Edit on Income Summary row 1
+
+    Then I validate I am on the "Employment Income" page
+    And I edit the income level to ""
+    And I edit the income level to "5160000"
     And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Employment Income Summary" page
     Then I click continue on the Employment Summary Page
-    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Additional Income" page
+    Then I click continue on the Additional Income page
+
+    Then I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+
+    Then I validate I am on the "Income Summary Detail" page
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Tax status" page
+    Then I click save and continue on tax status page
+    
+    Then I validate I am on the "Other Health Insurance" page
+    Then I click continue on the Other Health Insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -184,9 +198,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-
-    Then I validate I am on the "Good News" page
-    Then I click on No Thanks on good news page
 
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
@@ -208,7 +219,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$120.69"
+    And I validate the APTC Credit on the Summary page is "120.69"
     And I continue on plan summary page
 
 
