@@ -153,6 +153,7 @@ public class DocumentLookupPage {
             basicActions.selectValueFromDropdown(documentTypeDropdown, documentTypeDropdownOptions, option);
             String selectedOptionText = documentTypeDropdown.getText();
             softAssert.assertTrue(selectedOptionText.equals(option));
+            softAssert.assertAll();
         }
     }
 }
