@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -216,7 +215,6 @@ public class CreateAccountPage {
         softAssert.assertAll();
     }
 
- HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage(WebDriverManager.getDriver());
     public void verifyCreateYourAccountHeader(String language) {
         switch (language){
             case "English":
