@@ -40,8 +40,14 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".top-navigation > div > nav > ul > span > li.stacked.dropdown > div:nth-child(1) > a")
     WebElement getAssistanceLinkNonElmo;
 
+    @FindBy(id = "get-assistance")
+    WebElement getAssistanceLinkLoginPortal;
+
     @FindBy(css = ".dropdown .clickable")
     List<WebElement> getAssistanceLinkOption;
+
+    @FindBy(xpath = "//div[@class='dropdown-menu show']//a")
+    List<WebElement> getAssistanceLoginPortalOption;
 
     @FindBy(css = ".stacked.dropdown > div.dropdown-content > a")
     WebElement getAssistanceLinkOptionNonElmo;
@@ -210,6 +216,10 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(getAssistanceLinkNonElmo, 15);
                 getAssistanceLinkNonElmo.click();
                 break;
+            case "Login Portal":
+                basicActions.waitForElementToBeClickable(getAssistanceLinkLoginPortal, 15);
+                getAssistanceLinkLoginPortal.click();
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
@@ -224,6 +234,10 @@ public class HeaderAndFooterPage {
             case "Exch":
                 basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(1), 20);
                 getAssistanceLinkOption.get(1).click();
+                break;
+            case "Login Portal":
+                basicActions.waitForElementToBeClickable(getAssistanceLoginPortalOption.get(1), 20);
+                getAssistanceLoginPortalOption.get(1).click();
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
