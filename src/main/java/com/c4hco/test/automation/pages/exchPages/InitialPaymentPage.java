@@ -42,7 +42,6 @@ public class InitialPaymentPage {
     }
 
     public void clickContinue(){
-        /*basicActions.waitForElementToBePresent(continueBtn,20);*/
         basicActions.waitForElementToBeClickable(continueBtn, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         continueBtn.click();

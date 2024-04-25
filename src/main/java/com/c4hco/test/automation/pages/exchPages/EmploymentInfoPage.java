@@ -169,8 +169,6 @@ public class EmploymentInfoPage {
         dropdown.selectByVisibleText(" " + Frequency + " ");
     }
 
-
-    //public void enterEmploymentIncome(String Salary, String Frequency) {
     public void enterEmploymentIncome(String Salary) {
         basicActions.waitForElementToBePresent(txtIncomeAmount,15);
         txtIncomeAmount.clear();

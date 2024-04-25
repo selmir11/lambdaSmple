@@ -16,17 +16,12 @@ public class FinancialHelpAgreementsPage {
         PageFactory.initElements(basicActions.getDriver(),  this);
 
     }
-    @FindBy(id = "SOL-FinHelpAgreements-HaveReadTermsAgree-input")
-    WebElement termsUsecheckbox;
 
     @FindBy(id ="SOL-FinHelpAgreements-Continue")
     WebElement continueButton;
 
     @FindBy(id = "SOL-FinHelpAgreements-Signature")
     WebElement signatureInput;
-
-    @FindBy(id  = "SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
-    WebElement signatureFinHelpInput;
 
     @FindBy(css="mat-checkbox input")
     WebElement termsAndAgreeChkbx;
@@ -36,7 +31,6 @@ public class FinancialHelpAgreementsPage {
         basicActions.waitForElementToBeClickable(signatureInput, 10);
         signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
-
 
     public void selectTermsAgreementsCheckbox(){
         termsAndAgreeChkbx.click();

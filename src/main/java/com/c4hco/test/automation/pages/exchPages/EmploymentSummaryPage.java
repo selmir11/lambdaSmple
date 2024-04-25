@@ -26,7 +26,7 @@ public class EmploymentSummaryPage {
 
     public void clickEditIncome(int Index){
         basicActions.waitForElementToBePresent(lnkEditIncome,10);
-        Index = Index -=1;
+        Index -=1;
         lnkEditIncome.click();
 
     }

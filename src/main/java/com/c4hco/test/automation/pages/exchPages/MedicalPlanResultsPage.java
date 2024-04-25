@@ -73,7 +73,7 @@ public class MedicalPlanResultsPage {
     WebElement planResultsAPTC;
 
        public void validateAPTC(String planResultsAPTCredit){
-        basicActions.waitForElementToBePresent(planResultsAPTC, 100);
+        basicActions.waitForElementToBePresent(planResultsAPTC, 30);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
     }
     
@@ -84,13 +84,13 @@ public class MedicalPlanResultsPage {
     }
 
     public void iGetFirstPlaneName() {
-        basicActions.waitForElementToBePresent(firstMedicalPlanName, 100);
+        basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
         SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
 
     public void SelectFirstMedicalPlan() {
         iGetFirstPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstPlan, 100);
+        basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }
 
@@ -99,42 +99,42 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickCompare() {
-        basicActions.waitForElementToBePresent(clickCompare, 100);
+        basicActions.waitForElementToBePresent(clickCompare, 30);
         clickCompare.click();
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 100);
+        basicActions.waitForElementListToBePresent(comparePlanLinks, 30);
         comparePlanLinks.get(0).click();
         comparePlanLinks.get(1).click();
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 100);
+        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 30);
         insuranceCompanyDropdown.click();
 
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToBeClickable(metalTierDropdown, 100);
+        basicActions.waitForElementToBeClickable(metalTierDropdown, 30);
         metalTierDropdown.click();
 
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToBeClickable(hsaDropdown, 100);
+        basicActions.waitForElementToBeClickable(hsaDropdown, 30);
         hsaDropdown.click();
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToBePresent(hsaOption,100);
+        basicActions.waitForElementToBePresent(hsaOption,30);
         basicActions.waitForElementToBeClickable(hsaOption, 100);
         hsaOption.click();
 
     }
 
     public void clickColoradoOptionDropdown() {
-        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 100);
+        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 30);
         coloradoOptionDropdown.click();
     }
 

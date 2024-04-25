@@ -22,7 +22,6 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    // locator in stg is diff - @FindBy(id = "PlanSummary-Continue")
     @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
