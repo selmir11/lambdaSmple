@@ -24,7 +24,10 @@ public class Utils {
             case "admin":
                 baseUrl = Constants.PROTOCOL+env+Constants.ADMIN;
                 break;
-            default: throw new IllegalArgumentException("Invalid option: " + portalType);
+            case "assistNet":
+                baseUrl = Constants.PROTOCOL+env+Constants.ASSISTER;
+                break;
+           default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
     }
