@@ -1,7 +1,6 @@
-Feature: Seed Tests - Exchange
+Feature: Seed02 - Exchange
 
-  @SLER-289
-  Scenario: Seed 01 For Exchange
+  Scenario: Seed 02 For Exchange- Single Applicant with FA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -16,16 +15,17 @@ Feature: Seed Tests - Exchange
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "10011975" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "03051989" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Find Expert Help page
-    Then I select "Male" as sex option
+    Then I select "Female" as sex option
+    And I mark the Additional member is pregnant as "No"
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    Then I enter generic mailing address details
+    Then I enter member with address line1 "P.O. BOX 1454" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -39,8 +39,26 @@ Feature: Seed Tests - Exchange
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
-    And I Apply for no financial help
-    Then I validate I am on the "Tell us about life changes" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "4000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Income Summary" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
+    Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -84,6 +102,9 @@ Feature: Seed Tests - Exchange
     And I select second make payment button to pay the premium
     And I click continue on payment selection page
     And I click continue on initial payment page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
@@ -91,22 +112,4 @@ Feature: Seed Tests - Exchange
     And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate medical plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-    And I validate dental plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
 
-  @test
-  Scenario: Test Only scenario- edi file in local location
-    And I read the edi file locally

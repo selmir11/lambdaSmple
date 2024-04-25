@@ -90,7 +90,7 @@ Feature: Seed01 - Exchange
     And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-   # And I Validate the correct enrolled plans are displayed on account overview page (not covered by orion)
+    And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate medical plan details from my policies page

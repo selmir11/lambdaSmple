@@ -17,6 +17,7 @@ public class PolicyTablesEntity
     String hios_plan_id;
     String rating_area_id;
     String policy_id;
+    String exchange_assigned_policy_id;
     String policy_status;
     String current_ind;
     String policy_start_date;

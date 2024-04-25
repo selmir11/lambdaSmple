@@ -92,7 +92,8 @@ public class EditGroupingMembersMedicalPage {
     }
 
     public void iClickresetGroupsButton(){
-        resetgroupsButton.isEnabled();
+        basicActions.waitForElementToBePresent(resetgroupsButton,20);
+        resetgroupsButton.click();
     }
       public void iClickSaveButton(){
         softAssert.assertTrue(saveButtonOnEditGroupingPage.isEnabled());
@@ -140,6 +141,16 @@ public class EditGroupingMembersMedicalPage {
         builder.moveToElement(whatWorksBestLink).perform();
         softAssert.assertEquals(tootlTip.getText(), expectedToolTipText, "Actual Text::"+tootlTip.getText()+"::did not match");
         softAssert.assertAll();
+    }
+
+    public void dragAndDropMember3CreateGroup() {
+        basicActions.waitForElementToBePresent(groupingMemebers.get(2),10);
+        basicActions.waitForElementToBePresent(dragAMemberHere.get(2),10 );
+        builder.clickAndHold(groupingMemebers.get(2))
+                .moveToElement(dragAMemberHere.get(2))
+                .release(dragAMemberHere.get(2)).build()
+                .perform();
+        basicActions.wait(3000);
     }
 }
 
