@@ -39,4 +39,10 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
 
+    public String getOhiRecords(){
+        return "Select ohi.*\n" +
+                "From qa_exch.es_member_other_health_ins ohi\n" +
+                "Where member_id = '"+SharedData.getPrimaryMemberId()+"'";
+    }
+
 }

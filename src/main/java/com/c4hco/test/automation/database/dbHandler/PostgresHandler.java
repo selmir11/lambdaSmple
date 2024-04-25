@@ -70,4 +70,21 @@ public class PostgresHandler {
         }
         return results;
     }
+
+    public Boolean dbRecordsExisting(String query) {
+        ResultSet rs = null;
+        Boolean hasRecords = null;
+        try {
+            rs =executor.executeQuery(query);
+            if (rs.next()) {
+                hasRecords = true;
+            } else {
+                hasRecords = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Assert.fail("Error with db occurred: " + e.getMessage());
+        }
+        return hasRecords;
+    }
 }
