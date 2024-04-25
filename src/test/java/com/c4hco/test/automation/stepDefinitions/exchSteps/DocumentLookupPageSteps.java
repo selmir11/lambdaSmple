@@ -26,12 +26,13 @@ public class DocumentLookupPageSteps {
     @Then("I search with Document Handle Number")
     public void iSearchWithDocumentHandleNumber() {documentLookupPage.searchDocumentHandle();}
 
-    @Then("I verify Admin Table columns")
-    public void iVerifyAdminTableColumns() {documentLookupPage.verifyAdminTableColumns();}
+    @Then("I select Document Type Group dropdown options")
+    public void iSelectDocumentTypeGroupDropdownOptions() {documentLookupPage.clickDropdowns();}
 
-    @Then("I verify Document Handle search columns")
-    public void iVerifyDocumentHandleSearchColumns() {documentLookupPage.verifycontent();}
-    @Then("I select {string} from dropdown options")
-    public void iSelectFromDropdownOptions(String text) { documentLookupPage.clickDropdowns(text);}
+    @Then("I verify Admin search results table columns")
+    public void iVerifyAdminSearchResultsTableColumns() {documentLookupPage.verifyAdminTableColumns();}
+
+    @Then("I verify Document Handle search result table columns")
+    public void iVerifyDocumentHandleSearchResultTableColumns() {documentLookupPage.verifycontent();}
 }
 
