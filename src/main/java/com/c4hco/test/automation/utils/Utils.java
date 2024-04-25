@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -10,6 +11,7 @@ public class Utils {
     public Utils(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+        SharedData.setEnv(env);
     }
 
     public String getBaseLoginUrl(String portalType){

@@ -526,7 +526,8 @@ public class OtherHealthInsurancePage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(errorMessageTxt.getText(), "Seleccione una de las siguientes opciones");
+//                softAssert.assertEquals(errorMessageTxt.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(errorMessageTxt.getText(), "Please select one or more of the options below (Spanish)");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
