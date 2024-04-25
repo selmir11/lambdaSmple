@@ -506,9 +506,11 @@ public class OtherHealthInsurancePage_Elmo {
 
         for (int i : uncheckedIndexes) {
             softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container");
+            softAssert.assertAll();
         }
         for (int i : checkedIndexes) {
             softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container checked");
+            softAssert.assertAll();
         }
     }
 
