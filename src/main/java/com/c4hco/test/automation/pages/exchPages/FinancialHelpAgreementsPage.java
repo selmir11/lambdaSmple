@@ -31,33 +31,15 @@ public class FinancialHelpAgreementsPage {
     @FindBy(css="mat-checkbox input")
     WebElement termsAndAgreeChkbx;
 
-    @FindBy(id="SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
-    WebElement signatureInputBox;
 
-    public void enterFinHelpSignature(){
-        basicActions.waitForElementToBePresent(signatureFinHelpInput, 10);
-        signatureFinHelpInput.sendKeys((SharedData.getPrimaryMember().getSignature()));
-    }
     public void enterSignature(){
         basicActions.waitForElementToBeClickable(signatureInput, 10);
         signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
-    }
-    public void selectTermsUsecheckbox() {
-        termsUsecheckbox.click();
-    }
-
-    public void setContinueButton() {
-        basicActions.waitForElementToBeClickable()setContinueButton();
-        setContinueButton();
     }
 
 
     public void selectTermsAgreementsCheckbox(){
         termsAndAgreeChkbx.click();
-    }
-    public void enterSignature(){
-        basicActions.waitForElementToBeClickable(signatureInputBox, 10);
-        signatureInputBox.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
 
     public void clickContinue() {
