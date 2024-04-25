@@ -151,16 +151,8 @@ public class DocumentLookupPage {
 
         for (String option : Options) {
             basicActions.selectValueFromDropdown(documentTypeDropdown, documentTypeDropdownOptions, option);
-
-            // Get the selected option text
             String selectedOptionText = documentTypeDropdown.getText();
-
-            // Compare with expected text
-            if (selectedOptionText.equals(option)) {
-                System.out.println("Option '" + option + "' selected successfully.");
-            } else {
-                System.out.println("Option '" + option + "' was not selected correctly. Expected: " + option + ", Actual: " + selectedOptionText);
-            }
+            softAssert.assertTrue(selectedOptionText.equals(option));
         }
     }
 }
