@@ -299,7 +299,7 @@ public class HeaderAndFooterPage {
             case "Spanish":
                 basicActions.waitForElementToBePresent(languageDrp, 60);
                 languageDrp.click();
-                basicActions.waitForElementToBePresent(languageDrpOption.get(1), 60);
+                basicActions.waitForElementToBePresent(languageDrpOption.get(1), 80);
                 languageDrpOption.get(1).click();
                 break;
             case "English NonElmo":
@@ -558,6 +558,9 @@ public class HeaderAndFooterPage {
             case "Footer":
                 verifyTextInExchFooterSpanish();
                 break;
+            case "Login Footer":
+                verifyTextInLoginPortalFooterSpanish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
         }
@@ -746,6 +749,23 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
         softAssert.assertAll();
     }
+    public void verifyTextInLoginPortalFooterSpanish(){
+        basicActions.waitForElementToBePresent(privacyPolicyLink,10);
+        basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
+        softAssert.assertEquals(privacyPolicyLink.getText(), "Poliza de privacidad");
+        softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
+        softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
+        softAssert.assertEquals(followUsText.getText(), "Siguenos en:");
+        softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
+        softAssert.assertEquals(xIcon.getAttribute("title"), "X");
+        softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
+        softAssert.assertEquals(InstagramIcon.getAttribute("title"), "Instagram");
+        softAssert.assertEquals(LinkedInIcon.getAttribute("title"), "LinkedIn");
+        softAssert.assertEquals(ThreadsIcon.getAttribute("title"), "Threads");
+        softAssert.assertAll();
+    }
+
 
     public void verifyTextAPFooter() {
         basicActions.waitForElementToBePresent(APprivacyPolicyLink, 10);
