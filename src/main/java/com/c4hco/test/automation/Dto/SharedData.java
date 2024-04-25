@@ -29,5 +29,7 @@ public class SharedData {
         members = null;
         primaryMemberId = null;
         EmployerName = null;
+        env = null;
+        ob834DetailsEntities = null;
     }
 }
