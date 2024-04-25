@@ -14,6 +14,10 @@ public class OtherHealthInsuranceSteps_Elmo {
     }
 
 
+    @Then("I click continue on the ELMO health insurance page")
+    public void iClickSaveAndContinue(){otherHealthInsurancePage_Elmo.clickSaveAndContinue();}
+
+
 
 
 
@@ -32,4 +36,10 @@ public class OtherHealthInsuranceSteps_Elmo {
     public void iVerifyHelpIconsOnOtherHealthInsurancePage(){
         otherHealthInsurancePage_Elmo.verifyHelIconsOnOtherHealthInsurancePage();
     }
+    @And("I verify the header for Primary Member on the Other Health Insurance page")
+    public void iVerifyHeadersOtherHealthInsurancePageEnglish(){otherHealthInsurancePage_Elmo.verifyHeadersOtherHealthInsurancePageEnglish();}
+    @And("I validate Other Health Insurance options load {string}")
+    public void iVerifyCheckboxesAttribute(String checkboxExpected){otherHealthInsurancePage_Elmo.verifyCheckboxesAttribute(checkboxExpected);}
+
+
 }
