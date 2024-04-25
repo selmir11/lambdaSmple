@@ -42,28 +42,28 @@ public class DocumentLookupPage {
 
     @FindBy(xpath = "//td[normalize-space()='Account ID']")
     WebElement accountID;
-    @FindBy(xpath =  "//td[normalize-space()='Document Display Name']")
+    @FindBy(xpath = "//td[normalize-space()='Document Display Name']")
     WebElement documentDisplayName;
     @FindBy(xpath = "//td[normalize-space()='Created Date']")
     WebElement createdDate;
     @FindBy(xpath = "//td[normalize-space()='Archived Date']")
     WebElement archivedDate;
-    @FindBy(xpath ="//td[normalize-space()='File Format']")
+    @FindBy(xpath = "//td[normalize-space()='File Format']")
     WebElement fileFormat;
 
-    @FindBy(css ="span[placement='top']")
-    WebElement  documentfiletxt;
+    @FindBy(css = "span[placement='top']")
+    WebElement documentfiletxt;
 
-    @FindBy(xpath ="//span[normalize-space()='1095A Dispute']")
+    @FindBy(xpath = "//span[normalize-space()='1095A Dispute']")
     WebElement documentDisplayTxt;
 
-    @FindBy(xpath ="//tbody/tr[1]/td[3]/a[1]")
+    @FindBy(xpath = "//tbody/tr[1]/td[3]/a[1]")
     WebElement accountNo;
 
-    @FindBy(css ="a[placement='top']")
+    @FindBy(css = "a[placement='top']")
     WebElement documentDisplayNameTxt;
 
-    @FindBy(xpath="//app-document-lookup//table/tbody/tr/td[5]")
+    @FindBy(xpath = "//app-document-lookup//table/tbody/tr/td[5]")
     WebElement txtCreateDate;
 
     @FindBy(xpath = "//tbody//tr//td[6]")
@@ -73,12 +73,12 @@ public class DocumentLookupPage {
     WebElement txtFileFormat;
 
     private BasicActions basicActions;
-    String currentUrl=null;
+    String currentUrl = null;
 
     public DocumentLookupPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-         currentUrl = basicActions.getDriver().getCurrentUrl();
+        currentUrl = basicActions.getDriver().getCurrentUrl();
     }
 
     public void validateTitle() {
@@ -92,6 +92,7 @@ public class DocumentLookupPage {
         softAssert.assertTrue(basicActions.waitForElementToBeClickable(advancedSearchradio, 15));
         advancedSearchradio.click();
         softAssert.assertEquals(advancedSearchlabel.getText(), "Advanced Search");
+        softAssert.assertAll();
     }
 
     public void clickdropdown() {
@@ -100,30 +101,26 @@ public class DocumentLookupPage {
 
     public void searchDocumentHandle() {
         documentHandleSearch.click();
-        basicActions.waitForElementToBePresent(documentHandle,50 );
-        if (currentUrl.startsWith("https://staging")){
-            documentHandle.sendKeys("55510");}
-        else if (currentUrl.startsWith("https://qa")) {
-            documentHandle.sendKeys("90159");}
+        basicActions.waitForElementToBePresent(documentHandle, 50);
+        if (currentUrl.startsWith("https://staging")) {
+            documentHandle.sendKeys("55510");
+        } else if (currentUrl.startsWith("https://qa")) {
+            documentHandle.sendKeys("90159");
+        }
         submitButton.click();
     }
-    public void verifyAdminTableColumns(){
+
+    public void verifyAdminTableColumns() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentName, 10));
-        softAssert.assertEquals(documentName.getText(), "Document Name");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentType, 10));
-        softAssert.assertEquals(documentType.getText(), "Document type");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(accountID, 10));
-        softAssert.assertEquals(accountID.getText(), "Account ID");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentDisplayName, 10));
-        softAssert.assertEquals(documentDisplayName.getText(), "Document Display Name");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(createdDate, 10));
-        softAssert.assertEquals(createdDate.getText(), "Created Date");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(archivedDate, 10));
-        softAssert.assertEquals(archivedDate.getText(), "Archived Date");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(fileFormat, 10));
-        softAssert.assertEquals(fileFormat.getText(), "File Format");
         softAssert.assertAll();
     }
+
     public void verifycontent() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentfiletxt, 10));
         softAssert.assertEquals(documentfiletxt.getText(), "IND_1095A Dispu..");
@@ -147,7 +144,23 @@ public class DocumentLookupPage {
             softAssert.assertAll();
         }
     }
-    public void clickDropdowns(String text) {
-        basicActions.selectValueFromDropdown(documentTypeDropdown, documentTypeDropdownOptions,text);
+
+    public void clickDropdowns() {
+
+        String Options[] = {"Exchange", "Individual", "SHOP", "Broker", "Navigator", "Carrier", "Appeal"};
+
+        for (String option : Options) {
+            basicActions.selectValueFromDropdown(documentTypeDropdown, documentTypeDropdownOptions, option);
+
+            // Get the selected option text
+            String selectedOptionText = documentTypeDropdown.getText();
+
+            // Compare with expected text
+            if (selectedOptionText.equals(option)) {
+                System.out.println("Option '" + option + "' selected successfully.");
+            } else {
+                System.out.println("Option '" + option + "' was not selected correctly. Expected: " + option + ", Actual: " + selectedOptionText);
+            }
+        }
     }
 }

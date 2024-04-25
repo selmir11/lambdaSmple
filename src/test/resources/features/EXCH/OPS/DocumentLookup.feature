@@ -10,16 +10,11 @@ Feature: Document Lookup page : Verify all data
     And I click "Document Lookup" from application links dropdown
     And I validate Document look Up page title is displaying on page
     And I click on Advanced search
-    Then I select "Exchange" from dropdown options
-    Then I select "Individual" from dropdown options
-    Then I select "SHOP" from dropdown options
-    Then I select "Broker" from dropdown options
-    Then I select "Navigator" from dropdown options
-    Then I select "Carrier" from dropdown options
-    Then I select "Appeal" from dropdown options
-    Then I verify Admin Table columns
+    Then I select Document Type Group dropdown options
+    Then I verify Admin search results table columns
     Then I search with Document Handle Number
-    Then I verify Document Handle search columns
+    Then I verify Admin search results table columns
+    Then I verify Document Handle search result table columns
 
 
 
