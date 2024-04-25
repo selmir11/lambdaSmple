@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -10,6 +11,7 @@ public class Utils {
     public Utils(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+        SharedData.setEnv(env);
     }
 
     public String getBaseLoginUrl(String portalType){
@@ -24,7 +26,10 @@ public class Utils {
             case "admin":
                 baseUrl = Constants.PROTOCOL+env+Constants.ADMIN;
                 break;
-            default: throw new IllegalArgumentException("Invalid option: " + portalType);
+            case "assistNet":
+                baseUrl = Constants.PROTOCOL+env+Constants.ASSISTER;
+                break;
+           default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
     }

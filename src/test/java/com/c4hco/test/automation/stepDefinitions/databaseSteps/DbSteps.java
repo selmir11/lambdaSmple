@@ -21,4 +21,8 @@ private final DbValidations dbValidations = new DbValidations();
       dbValidations.validateOb834FromDb();
    }
 
+   @And("I verify the OHI info in the DB")
+   public void validateOhiInfo(){
+      dbValidations.validateOhiDetails();
+   }
 }

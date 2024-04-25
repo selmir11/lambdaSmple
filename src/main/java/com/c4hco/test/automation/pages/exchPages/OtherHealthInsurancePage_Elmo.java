@@ -12,7 +12,6 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 
-
 public class OtherHealthInsurancePage_Elmo {
     BasicActions basicActions;
     Actions action;
@@ -37,6 +36,9 @@ public class OtherHealthInsurancePage_Elmo {
 
     @FindBy(css = "label > button")
     List<WebElement> insuranceOptionsCheckBox;
+    
+    @FindBy(css = "lib-checkbox-control > label")
+    List<WebElement> insuranceOptionsCheckBoxDetails;
 
     @FindBy(css = ".container .help-icon")
     List<WebElement> helpCircleButton;
@@ -46,16 +48,33 @@ public class OtherHealthInsurancePage_Elmo {
 
     @FindBy(id = "existingOHI-SaveAndContinue")
     WebElement saveAndContinueBtn;
+    
+    @FindBy(css = ".error-message")
+    WebElement errorMessageTxt;
 
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
         switch(insuranceOption){
+            case "Medicare":
+                basicActions.click(insuranceOptionsCheckBox.get(2));
+                break;
+            case "Retiree Health Plan":
+                basicActions.click(insuranceOptionsCheckBox.get(6));
+                break;
+            case "TRICARE":
+                basicActions.click(insuranceOptionsCheckBox.get(9));
+                break;
             case "None of these":
                 basicActions.click(insuranceOptionsCheckBox.get(11));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
         }
+    }
+
+    public void clickSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        saveAndContinueBtn.click();
     }
 
 
@@ -457,5 +476,74 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(helpCircleButton.get(10).getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertAll();
     }
+    public void verifyHeadersOtherHealthInsurancePageEnglish(){
+        basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
+        softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertAll();
+    }
+
+    public void verifyCheckboxesAttribute(String checkboxExpected) {
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBoxDetails,20);
+        int[] uncheckedIndexes;
+        int[] checkedIndexes;
+
+        switch (checkboxExpected) {
+            case "unselected":
+                uncheckedIndexes = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+                checkedIndexes = new int[0];
+                break;
+            case "none of these":
+                uncheckedIndexes = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+                checkedIndexes = new int[]{11};
+                break;
+            case "Medicare, retiree, TRICARE":
+                uncheckedIndexes = new int[]{0, 1, 3, 4, 5, 7, 8, 10, 11};
+                checkedIndexes = new int[]{2, 6, 9};
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + checkboxExpected);
+        }
+
+        for (int i : uncheckedIndexes) {
+            softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container");
+            softAssert.assertAll();
+        }
+        for (int i : checkedIndexes) {
+            softAssert.assertEquals(insuranceOptionsCheckBoxDetails.get(i).getAttribute("className"), "checkbox-container checked");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyErrorMessage(String language) {
+        basicActions.waitForElementToBePresent(errorMessageTxt, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(errorMessageTxt.getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(errorMessageTxt.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyNoErrorMessage() {
+        basicActions.waitForElementToDisappear(errorMessageTxt, 10);
+        softAssert.assertAll();
+    }
+
+
+
 
 }
