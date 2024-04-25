@@ -5,9 +5,6 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-import java.util.List;
-import java.util.Map;
-
 public class OtherHealthInsuranceSteps_Elmo {
     OtherHealthInsurancePage_Elmo otherHealthInsurancePage_Elmo = new OtherHealthInsurancePage_Elmo(WebDriverManager.getDriver());
 
