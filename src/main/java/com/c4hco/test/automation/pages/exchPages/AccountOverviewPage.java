@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,9 +31,14 @@ public class AccountOverviewPage {
     @FindBy(css = ".c4PageHeader-large")
     WebElement header;
 
+    @FindBy(css = ".table-bordered td b")
+    List<WebElement> planInformationTable;
+
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+
+    MemberDetails primaryMember = SharedData.getPrimaryMember();
 
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -98,6 +105,16 @@ public class AccountOverviewPage {
     public void validateNextStepSpanish() {
         basicActions.waitForElementToBePresent(txtNextStep,10);
         softAssert.assertEquals(txtNextStep.getText(), "Paso siguiente: Solicitar seguro de salud");
+        softAssert.assertAll();
+    }
+
+    public void verifyPlanInfo(){
+        softAssert.assertEquals(planInformationTable.get(1).getText(),primaryMember.getFirstName()+" "+primaryMember.getLastName(), "Primary member name does not match");
+        softAssert.assertEquals(planInformationTable.get(2).getText(),primaryMember.getMedicalPlan(), "Medical Plan Name does not match" );
+        softAssert.assertEquals(planInformationTable.get(3).getText(), primaryMember.getMedicalPremiumAmt(), "Medical premium amount does not match" );
+
+        softAssert.assertEquals(planInformationTable.get(7).getText(),primaryMember.getDentalPlan(), "Dental Plan Name does not match");
+        softAssert.assertEquals(planInformationTable.get(8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Dental Premium amount does not match");
         softAssert.assertAll();
     }
 

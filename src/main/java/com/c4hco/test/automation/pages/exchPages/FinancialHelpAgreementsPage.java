@@ -1,12 +1,11 @@
 package com.c4hco.test.automation.pages.exchPages;
-
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 public class FinancialHelpAgreementsPage {
 
 
@@ -29,6 +28,12 @@ public class FinancialHelpAgreementsPage {
     @FindBy(id  = "SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
     WebElement signatureFinHelpInput;
 
+    @FindBy(css="mat-checkbox input")
+    WebElement termsAndAgreeChkbx;
+
+    @FindBy(id="SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
+    WebElement signatureInputBox;
+
     public void enterFinHelpSignature(){
         basicActions.waitForElementToBePresent(signatureFinHelpInput, 10);
         signatureFinHelpInput.sendKeys((SharedData.getPrimaryMember().getSignature()));
@@ -42,6 +47,23 @@ public class FinancialHelpAgreementsPage {
     }
 
     public void setContinueButton() {
+        basicActions.waitForElementToBeClickable()setContinueButton();
+        setContinueButton();
+    }
+
+
+    public void selectTermsAgreementsCheckbox(){
+        termsAndAgreeChkbx.click();
+    }
+    public void enterSignature(){
+        basicActions.waitForElementToBeClickable(signatureInputBox, 10);
+        signatureInputBox.sendKeys(SharedData.getPrimaryMember().getSignature());
+    }
+
+    public void clickContinue() {
+        basicActions.waitForElementToBeClickable(continueButton, 5);
+        basicActions.scrollToElement(continueButton);
         continueButton.click();
+
     }
 }

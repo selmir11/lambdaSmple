@@ -61,4 +61,8 @@ public class EditGroupingMembersMedicalPageSteps {
     public void dragAndDropMember3CreateGroup(){
         editGroupingMembersMedicalPage.dragAndDropMember3CreateGroup();
     }
+    @Then("I click on reset groups button on edit enrollment groups page")
+    public void iClickresetGroupsButton(){
+        editGroupingMembersMedicalPage.iClickresetGroupsButton();
+    }
 }

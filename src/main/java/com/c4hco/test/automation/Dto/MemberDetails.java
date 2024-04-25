@@ -38,13 +38,16 @@ public class MemberDetails {
     String medicalPremiumAmt;
     String dentalPremiumAmt;
     String aptcAmt;
+    String medicalAptcAmt;
+    String dentalAptcAmt;
     String tobacco_user;
     String application_id;
     BigDecimal account_id;
     String policyId;
-    String totalAmtAfterReduction;
-    String medicalEapid;
-    String dentalEapid;
+    String totalMedAmtAfterReduction;
+    String totalDentalPremAfterReduction;
+    String medicalEapid_db;
+    String dentalEapid_db;
 
     public Boolean compareWithCombinedQueryData(PolicyTablesEntity multipleTablesEntity) {
         // TO DO:: Add more fields to this

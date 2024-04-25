@@ -92,7 +92,8 @@ public class EditGroupingMembersMedicalPage {
     }
 
     public void iClickresetGroupsButton(){
-        resetgroupsButton.isEnabled();
+        basicActions.waitForElementToBePresent(resetgroupsButton,20);
+        resetgroupsButton.click();
     }
       public void iClickSaveButton(){
         softAssert.assertTrue(saveButtonOnEditGroupingPage.isEnabled());
