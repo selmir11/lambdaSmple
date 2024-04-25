@@ -5,7 +5,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-131-WIP @sir
+  @SLER-131 @sir
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2349 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
