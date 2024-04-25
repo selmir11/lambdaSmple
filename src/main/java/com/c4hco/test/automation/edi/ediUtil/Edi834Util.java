@@ -153,12 +153,7 @@ public class Edi834Util {
                 Transaction transaction = new Transaction();
                 List<Member> memberList = new ArrayList<>();
                 Map<String, Object> transactionData = entry.getValue();
-                if(transactionId.equals("Common_EDI_Segments")){
-                    String commonEDISegmentsJson = new ObjectMapper().writeValueAsString(transactionData);
-                    CommonEDISegments commonEDISegments = objectMapper.readValue(commonEDISegmentsJson,CommonEDISegments.class);
-                    edi834TransactionDetails.setCommonEDISegments(commonEDISegments);
-                }
-                else{
+
                     for(Map.Entry<String,Object> transactionEntry : transactionData.entrySet()){
                         String transactionKeys = transactionEntry.getKey();
                         Map<String, Object> membersObject = (Map<String, Object>) transactionEntry.getValue();
@@ -172,7 +167,6 @@ public class Edi834Util {
                             member = objectMapper.readValue(json, Member.class);
                             memberList.add(member);
                         }
-                    }
                     transaction.setMembersList(memberList);
                     transactionList.add(transaction);
                 }
@@ -193,8 +187,8 @@ public class Edi834Util {
             List<Member> memberList = transaction.getMembersList();
             CommonSegments commonSegments = transaction.getCommonSegments();
         }
-        CommonEDISegments commonEDISegments = edi834TransactionDetails.getCommonEDISegments();
-        List<List<String>> ISA = commonEDISegments.getISA();
+//        CommonEDISegments commonEDISegments = edi834TransactionDetails.getCommonEDISegments();
+//        List<List<String>> ISA = commonEDISegments.getISA();
     }
 
 
