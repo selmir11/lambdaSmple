@@ -41,5 +41,11 @@ public class OtherHealthInsuranceSteps_Elmo {
     @And("I validate Other Health Insurance options load {string}")
     public void iVerifyCheckboxesAttribute(String checkboxExpected){otherHealthInsurancePage_Elmo.verifyCheckboxesAttribute(checkboxExpected);}
 
+    @And("I verify error message in {string} on the Other Health Insurance page")
+    public void iVerifyErrorMessage(String language){otherHealthInsurancePage_Elmo.verifyErrorMessage(language);}
+
+    @And("I verify error message does not show for Individual Insurance page")
+    public void iVerifyNoErrorMessage()  {otherHealthInsurancePage_Elmo.verifyNoErrorMessage();}
+
 
 }

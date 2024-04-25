@@ -35,4 +35,8 @@ public class DbDataProvider_Exch {
         SharedData.setPrimaryMember(primaryMember);
         return eapid;
     }
+
+    public Boolean getDataFromOhiTables(){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecords());
+    }
 }
