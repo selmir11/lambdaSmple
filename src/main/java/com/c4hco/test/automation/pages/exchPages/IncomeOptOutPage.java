@@ -41,6 +41,7 @@ public class IncomeOptOutPage {
     public void chooseNoFinancialHelp(){
         basicActions.waitForElementToBeClickable(noThanks,10);
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setAptcAmt("$0");
         subscriber.setFinancialHelp(false);
         SharedData.setPrimaryMember(subscriber);
         noThanks.click();
