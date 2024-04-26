@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -91,8 +92,24 @@ public class PlanSummaryMedicalDentalPage {
 
     public void setPlansPremiumAmt(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setTotalMedAmtAfterReduction(medicalPremiumAfterAPTCAmt.getText());
-        subscriber.setMedicalAptcAmt(medicalAPTCAmt.getText());
+        if(subscriber.getFinancialHelp()==Boolean.FALSE){
+            subscriber.setMedicalAptcAmt("0");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
+        }else{
+            String medAPTCAmt = medicalAPTCAmt.getText().replace("$","");
+            subscriber.setMedicalAptcAmt(medAPTCAmt);
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
+
+            BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add(bigDecimalmedAPTCAmt);
+            System.out.println(totalMedicalPremium);
+            subscriber.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+        }
+        subscriber.setDentalAptcAmt("$0");
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
         SharedData.setPrimaryMember(subscriber);
     }

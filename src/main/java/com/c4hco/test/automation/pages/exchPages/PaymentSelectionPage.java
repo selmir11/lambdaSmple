@@ -42,7 +42,8 @@ public class PaymentSelectionPage {
 
     public void clickContinueOnPaymentPage() {
         basicActions.waitForElementToDisappear(spinner, 15);
-        softAssert.assertTrue(continueBtnPaymentSelection.isEnabled()); softAssert.assertAll();
+        softAssert.assertTrue(continueBtnPaymentSelection.isEnabled());
+        softAssert.assertAll();
         basicActions.waitForElementToBePresent(continueBtnPaymentSelection,20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtnPaymentSelection);
         basicActions.click(continueBtnPaymentSelection);

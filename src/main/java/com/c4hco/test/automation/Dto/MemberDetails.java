@@ -2,6 +2,8 @@ package com.c4hco.test.automation.Dto;
 
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -48,6 +50,7 @@ public class MemberDetails {
     String totalDentalPremAfterReduction;
     String medicalEapid_db;
     String dentalEapid_db;
+    Boolean FinancialHelp;
 
     public Boolean compareWithCombinedQueryData(PolicyTablesEntity multipleTablesEntity) {
         // TO DO:: Add more fields to this
