@@ -73,4 +73,9 @@ public class DbValidations {
     Assert.assertFalse(policyEntity.isEmpty(), "No records exists with this account number in Policy table");
   }
 
+  public void validateOhiDetails(){
+      Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables();
+      Assert.assertFalse(hasRecords, "Query returned records");
+  }
+
 }
