@@ -37,7 +37,7 @@ public class LawfulPresencePage {
     @FindBy(id = "nonCitzenNo")
     WebElement rdobtnEligibleImmigrantNo;
 
-    @FindBy(id = "documentType")
+    @FindBy(css = "select#documentType")
     WebElement selectDocType;
 
     @FindBy(id = "alienNumberNonCitizen")
@@ -91,7 +91,7 @@ public class LawfulPresencePage {
     @FindBy(css = "#NonCitizenQ label span")
     List<WebElement> immigrationStatusQuestion;
 
-    @FindBy(css = "#NonCitizenTable")
+    @FindBy(css = "#NonCitizenTable .c4BodyText1")
     WebElement textDocumentType;
 
     @FindBy (css = ".back-button-link")
@@ -204,111 +204,107 @@ public class LawfulPresencePage {
         System.out.println("Primary Member ID: "+SharedData.getPrimaryMemberId());
     }
 
-    public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language) {
+    public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language, List<String> data) {
         switch (language) {
-            case "English":
-                validateVerbiageEnglish();
-                break;
-            case "Spanish":
-                validateVerbiageSpanish();
+            case "English", "Spanish":
+                validateVerbiageOnCitizenAndImmigratioStatusPage(data);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
-    private void validateVerbiageSpanish() {
+    private void validateVerbiageOnCitizenAndImmigratioStatusPage(List<String> data) {
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains("Ciudadan\u00EDa y estatus migratorio: "), "Page Header text mismatch");
-        softAssert.assertEquals(helpMeUnderstandLink.getText(), "Ayuda para entender esta p\u00E1gina", "Page Hyperlink text mismatch");
-        softAssert.assertEquals(usCitizenQuestionText.getText(), "\u00BFEs usted ciudadano/a de Estados Unidos?", "US Citizen Question text mismatch");
-        softAssert.assertEquals(textYesUSCitizen.getText(), "S\u00ED", "US Citizen - Yes RadioButton text mismatch");
-        softAssert.assertEquals(textNoUSCitizen.getText(), "No", "US Citizen - No RadioButton text mismatch");
-
-        // Select US Citizen - "Yes" RadioButton
-        rdobtnCitizenYes.click();
-
-        softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), "\u00bfEs usted ciudadano/a naturalizado(a) de Estados Unidos?", "Naturalized Citizen Question text mismatch");
-        softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), "S\u00ED", "Naturalized Citizen - Yes RadioButton text mismatch");
-        softAssert.assertEquals(naturalizedCitizenGroup.get(2).getText(), "No", "Naturalized Citizen - No RadioButton text mismatch");
-
-        // Select US Citizen - "No" RadioButton
-        rdobtnCitizenNo.click();
-
-        softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), "\u00bfTiene un estatus migratorio elegible?", "Immigration status Question text mismatch");
-        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), "S\u00ED", "Immigration status - Yes RadioButton text mismatch");
-        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), "No", "Immigration status - No RadioButton text mismatch");
-
-        //Select Immigration Status Yes
-        rdobtnEligibleImmigrantYes.click();
-
-        softAssert.assertTrue(textDocumentType.getText().contains("Tipo de documento"), "Document type text mismatch");
-
-        // Initialize Select class with the dropdown element
-        basicActions.waitForElementToBePresent(selectDocType, 15);
-        Select dropdown = new Select(selectDocType);
-
-        // Define the expected options
-        String[] expectedOptions = {"Seleccione", "Permiso de reingreso I-327", "Tarjeta de residente permanente I-551", "Documento de viaje para refugiado I-571", "Tarjeta de autorizaci\u00f3n de empleo I-766", "Visa de inmigrante legible por m\u00e1quina (con idioma temporal I-551)", "Sello temporal I-551 (en el pasaporte o I-94)", "I-94 (Registro de entrada/salida)", "I-94 (Registro de entrada/salida) en pasaporte extranjero vigente", "I-20 (Certificado de elegibilidad para estatus de estudiante no inmigrante; F-1)", "DS2019 (Certificado de elegibilidad para estatus de visitante de intercambio; J-1)", "Otro"};
-
-        // Verify each option is present in the dropdown
-        for (String option : expectedOptions) {
-            boolean optionExists = dropdown.getOptions().stream().anyMatch(e -> e.getText().equals(option));
-            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
-        }
-
-        softAssert.assertEquals(btnBack.getAttribute("value"), "< Atr\u00e1s", "Back button text mismatch");
-        softAssert.assertEquals(saveContinue.getAttribute("value"), "Guardar y Continuar", "Continue button text mismatch");
+        softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains(data.get(0)), "Page Header text mismatch");
+        softAssert.assertEquals(helpMeUnderstandLink.getText(), data.get(1), "Page Hyperlink text mismatch");
+        softAssert.assertEquals(usCitizenQuestionText.getText(), data.get(2), "US Citizen Question text mismatch");
+        softAssert.assertEquals(textYesUSCitizen.getText(), data.get(3), "US Citizen - Yes RadioButton text mismatch");
+        softAssert.assertEquals(textNoUSCitizen.getText(), data.get(4), "US Citizen - No RadioButton text mismatch");
 
         softAssert.assertAll();
     }
 
-    private void validateVerbiageEnglish() {
-        SoftAssert softAssert = new SoftAssert();
-
-        softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains("Citizenship and immigration status: "), "Page Header text mismatch");
-        softAssert.assertEquals(helpMeUnderstandLink.getText(), "Help me understand this page", "Page Hyperlink text mismatch");
-        softAssert.assertEquals(usCitizenQuestionText.getText(), "Are you a U.S. Citizen?", "US Citizen Question text mismatch");
-        softAssert.assertEquals(textYesUSCitizen.getText(), "Yes", "US Citizen - Yes RadioButton text mismatch");
-        softAssert.assertEquals(textNoUSCitizen.getText(), "No", "US Citizen - No RadioButton text mismatch");
-
-        // Select US Citizen - "Yes" RadioButton
-        rdobtnCitizenYes.click();
-
-        softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), "Are you a Naturalized Citizen?", "Naturalized Citizen Question text mismatch");
-        softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), "Yes", "Naturalized Citizen - Yes RadioButton text mismatch");
-        softAssert.assertEquals(naturalizedCitizenGroup.get(2).getText(), "No", "Naturalized Citizen - No RadioButton text mismatch");
-
-        // Select US Citizen - "No" RadioButton
-        rdobtnCitizenNo.click();
-
-        softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), "Do you have an eligible immigration status?", "Immigration status Question text mismatch");
-        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), "Yes", "Immigration status - Yes RadioButton text mismatch");
-        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), "No", "Immigration status - No RadioButton text mismatch");
-
-        //Select Immigration Status Yes
-        rdobtnEligibleImmigrantYes.click();
-
-        softAssert.assertTrue(textDocumentType.getText().contains("Document type"), "Document type text mismatch");
-
-        // Initialize Select class with the dropdown element
-        basicActions.waitForElementToBePresent(selectDocType, 15);
-        Select dropdown = new Select(selectDocType);
-
-        // Define the expected options
-        String[] expectedOptions = {"Select Option", "I-327 Reentry Permit", "I-551 Permanent Resident Card", "I-571 Refugee Travel Document", "I-766 Employment Authorization Card", "Machine Readable Immigrant Visa (with Temporary I-551 Language)", "Temporary I-551 Stamp (on passport or I-94)", "Temporary I-551 Stamp (on passport or I-94)", "I-94 (Arrival/Departure Record)", "I-94 (Arrival/Departure Record) in Unexpired Foreign Passport", "I-20 (Certificate of Eligibility for Nonimmigrant (F-1) Student Status)", "DS2019 (Certificate of Eligibility for Exchange Visitor (J-1) Status)", "Other"};
-
-        // Verify each option is present in the dropdown
-        for (String option : expectedOptions) {
-            boolean optionExists = dropdown.getOptions().stream().anyMatch(e -> e.getText().equals(option));
-            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+    public void validateVerbageForNaturalizedCitizenIn(String language, List<String> data) {
+        switch (language) {
+            case "English","Spanish":
+                validateVerbiageNaturalizedCitizen(data);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
         }
 
-        softAssert.assertEquals(btnBack.getAttribute("value"), "< Back", "Back button text mismatch");
-        softAssert.assertEquals(saveContinue.getAttribute("value"), "Save and Continue", "Continue button text mismatch");
+    }
+
+    private void validateVerbiageNaturalizedCitizen(List <String> data) {
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), data.get(0), "Naturalized Citizen Question text mismatch");
+        softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), data.get(1), "Naturalized Citizen - Yes RadioButton text mismatch");
+        softAssert.assertEquals(naturalizedCitizenGroup.get(2).getText(), data.get(2), "Naturalized Citizen - No RadioButton text mismatch");
 
         softAssert.assertAll();
     }
 
+    public void validateVerbiageForEligibleImmigrationStausIn(String language, List<String> data) {
+        switch (language) {
+            case "English", "Spanish":
+                validateVerbiageEligibleImmigrationStaus(data);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    private void validateVerbiageEligibleImmigrationStaus(List <String> data) {
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), data.get(0), "Immigration status Question text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), data.get(1), "Immigration status - Yes RadioButton text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), data.get(2), "Immigration status - No RadioButton text mismatch");
+
+        softAssert.assertAll();
+    }
+
+    public void validateVerbiageForDocumentTypeIn(String language, List<String> data) {
+        switch (language) {
+            case "English", "Spanish":
+                validateVerbiageDocumentType(data);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    private void validateVerbiageDocumentType(List<String> data) {
+        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader, 15);
+
+        SoftAssert softAssert = new SoftAssert();
+
+        List<WebElement> dropdownOptions = new Select(selectDocType).getOptions();
+        for (int i = 0; i < dropdownOptions.size(); i++) {
+            softAssert.assertEquals(dropdownOptions.get(i).getText(), data.get(i), "Mismatch at option " + i);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateDocumentTypeText(String language, List<String> data) {
+        switch (language) {
+            case "English", "Spanish":
+                validateDocumentTypeTextIn(data);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    private void validateDocumentTypeTextIn(List <String> data) {
+        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader, 15);
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(textDocumentType.getText(), data.get(0), "Document Type text mismatch");
+
+        softAssert.assertAll();
+    }
 }
