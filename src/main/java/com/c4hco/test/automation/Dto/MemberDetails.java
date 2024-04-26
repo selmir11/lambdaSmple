@@ -2,8 +2,6 @@ package com.c4hco.test.automation.Dto;
 
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 
