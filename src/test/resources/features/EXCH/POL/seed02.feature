@@ -50,8 +50,8 @@ Feature: Seed02 - Exchange
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
     Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -112,4 +112,19 @@ Feature: Seed02 - Exchange
     And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate medical plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+    And I validate dental plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
+    And I click on Sign Out in the Header for "Elmo"
 
