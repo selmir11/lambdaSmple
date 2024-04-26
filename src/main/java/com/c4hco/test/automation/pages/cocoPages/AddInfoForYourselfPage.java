@@ -248,6 +248,7 @@ public class AddInfoForYourselfPage {
         for (String option : expectedOptionsStates) {
             boolean optionExists = AddInfoForYourselfPageText.get(5).getText().contains(option);
             softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+            softAssert.assertAll();
         }
 
         softAssert.assertEquals(AddInfoForYourselfPageText.get(6).getText(), "Código postal");
@@ -270,6 +271,7 @@ public class AddInfoForYourselfPage {
         for (String option : expectedOptionsStatesMailAddress) {
             boolean optionExists = AddInfoForYourselfPageText.get(15).getText().contains(option);
             softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+            softAssert.assertAll();
         }
 
         softAssert.assertEquals(AddInfoForYourselfPageText.get(16).getText(), "Código postal");
