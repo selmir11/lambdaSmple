@@ -30,4 +30,23 @@ public class CreateAccountPageSteps {
         public void iValidateVerbiageOnHelpIcon(String Language) {createAccountPage.validateHelpText(Language);}
 
 
+    @And("I verify Create Your Account Header in {string}")
+    public void iVerifyCreateYourAccountHeaderIn(String language) {
+            createAccountPage.verifyCreateYourAccountHeader(language);
+    }
+
+    @Then("I verify field headers in {string}")
+    public void iVerifyFieldHeadersIn(String language) {
+            createAccountPage.verifyFieldHeaders(language);
+    }
+
+    @And("I verify account holder preferences in {string}")
+    public void iVerifyAccountHolderPreferencesIn(String language) {
+        createAccountPage.verifyAccountHolderPreferences(language);
+    }
+
+    @And("I verify information sharing options in {string}")
+    public void iVerifyInformationSharingOptionsIn(String language) {
+        createAccountPage.verifyInformationSharingOptions(language);
+    }
 }

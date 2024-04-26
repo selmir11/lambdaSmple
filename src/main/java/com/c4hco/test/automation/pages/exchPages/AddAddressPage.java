@@ -164,6 +164,18 @@ public class AddAddressPage {
         dropdown.selectByValue("DENVER");
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
+    public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
+        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
+        txtMailingAddrLine1.sendKeys(AddrLine1);
+        txtMailingCity.sendKeys(city);
+        selectMailingState.sendKeys(state);
+        txtMailingZip.sendKeys(zipcode);
+
+        basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
+        selectMailingCounty.click();
+        Select dropdown = new Select(selectMailingCounty);
+        dropdown.selectByValue(county);
+    }
 
     public void addNewResidentialAddress(List<Map<String, String>> addDetails){
 
