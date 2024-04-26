@@ -20,6 +20,8 @@ public class LawfulPresencePage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    SoftAssert softAssert = new SoftAssert();
+
     @FindBy(id = "usCitizenYes")
     WebElement rdobtnCitizenYes;
 
@@ -215,7 +217,6 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageOnCitizenAndImmigratioStatusPage(List<String> data) {
-        SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains(data.get(0)), "Page Header text mismatch");
         softAssert.assertEquals(helpMeUnderstandLink.getText(), data.get(1), "Page Hyperlink text mismatch");
@@ -238,7 +239,6 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageNaturalizedCitizen(List <String> data) {
-        SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), data.get(0), "Naturalized Citizen Question text mismatch");
         softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), data.get(1), "Naturalized Citizen - Yes RadioButton text mismatch");
@@ -258,7 +258,6 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageEligibleImmigrationStaus(List <String> data) {
-        SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), data.get(0), "Immigration status Question text mismatch");
         softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), data.get(1), "Immigration status - Yes RadioButton text mismatch");
@@ -278,15 +277,13 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageDocumentType(List<String> data) {
-        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader, 15);
-
-        SoftAssert softAssert = new SoftAssert();
-
         List<WebElement> dropdownOptions = new Select(selectDocType).getOptions();
-        for (int i = 0; i < dropdownOptions.size(); i++) {
-            softAssert.assertEquals(dropdownOptions.get(i).getText(), data.get(i), "Mismatch at option " + i);
+        int index = 0;
+        for (WebElement dropdownOption : dropdownOptions) {
+            softAssert.assertEquals(dropdownOption.getText(), data.get(index), "Mismatch at option " + index);
+            index++;
         }
-        softAssert.assertAll();
+        softAssert.assertAll(); // This should be here, after all the assertions have been made
     }
 
     public void validateDocumentTypeText(String language, List<String> data) {
@@ -300,9 +297,7 @@ public class LawfulPresencePage {
     }
 
     private void validateDocumentTypeTextIn(List <String> data) {
-        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader, 15);
 
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(textDocumentType.getText(), data.get(0), "Document Type text mismatch");
 
         softAssert.assertAll();
