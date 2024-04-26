@@ -187,12 +187,6 @@ public class BasicSteps {
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
-            case "Additional Income":
-                pageUrl = "/IncomePortal/additionalIncome";
-                break;
-            case "Income Summary Detail":
-                pageUrl ="IncomePortal/summaryDetails";
-                break;
             case "Other Health Insurance":
                 pageUrl = "nes/otherHealthInsuranceBegin";
                 break;
@@ -255,9 +249,6 @@ public class BasicSteps {
                 break;
             case "Congratulations - What's Next?":
                 pageUrl = "whatsnext";
-                break;
-            case "Citizenship and Immigration Status":
-                pageUrl = "nes/lawfulPresence";
                 break;
             case "Application Summary":
                 pageUrl = "selectMember";
@@ -380,9 +371,6 @@ public class BasicSteps {
                 break;
             case "On Behalf Of(OBO)":
                 pageUrl = "/coco/WelcomePortal/welcome";
-                break;
-            case  "Good News":
-                pageUrl = "nes/applyMA";
                 break;
             case "Employer Coverage":
                 pageUrl = "healthcare.gov/downloads/employer-coverage-tool.pdf";
