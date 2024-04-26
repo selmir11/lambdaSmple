@@ -48,6 +48,7 @@ public class MemberDetails {
     String totalDentalPremAfterReduction;
     String medicalEapid_db;
     String dentalEapid_db;
+    Boolean financialHelp;
 
     public Boolean compareWithCombinedQueryData(PolicyTablesEntity multipleTablesEntity) {
         // TO DO:: Add more fields to this
