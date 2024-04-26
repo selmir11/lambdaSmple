@@ -92,12 +92,13 @@ public class PlanSummaryMedicalDentalPage {
 
     public void setPlansPremiumAmt(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        if(!subscriber.getFinancialHelp()){
+        Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
+        if(!isGettingFinancialHelp){
             subscriber.setMedicalAptcAmt("0");
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
             subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
-        }else{
+        }else {
             String medAPTCAmt = medicalAPTCAmt.getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
