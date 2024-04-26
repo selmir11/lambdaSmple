@@ -222,6 +222,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "120.69"
     And I continue on plan summary page
 
+    Then I validate I am on the "Initial Payment" page
+    And I click on Sign Out in the Header for "Payment Portal"
+
 
 
 

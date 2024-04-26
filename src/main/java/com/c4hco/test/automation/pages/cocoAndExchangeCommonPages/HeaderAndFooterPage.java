@@ -91,6 +91,9 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
+    @FindBy(css = "div[class='p-2 sign-out'] a[class='toolbar-text clickable']")
+    WebElement signOutPaymentLink;
+
     // =========FOOTER============== //
 
     //Admin Portal Footer Links
@@ -353,6 +356,10 @@ public class HeaderAndFooterPage {
             case "NonElmo":
                 basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
                 basicActions.click(signOutLinkNonElmo);
+                break;
+            case "Payment Portal":
+                basicActions.waitForElementToBeClickable(signOutPaymentLink,10);
+                basicActions.click(signOutPaymentLink);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

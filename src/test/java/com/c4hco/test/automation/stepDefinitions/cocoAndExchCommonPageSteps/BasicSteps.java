@@ -383,6 +383,7 @@ public class BasicSteps {
                 break;
             case  "Good News":
                 pageUrl = "nes/applyMA";
+                break;
             case "Employer Coverage":
                 pageUrl = "healthcare.gov/downloads/employer-coverage-tool.pdf";
                 break;
