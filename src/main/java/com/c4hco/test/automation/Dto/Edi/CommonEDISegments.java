@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonIgnoreType
+@Data @NoArgsConstructor @AllArgsConstructor @JsonIgnoreType
 public class CommonEDISegments {
     @JsonProperty("ISA")
     private List<List<String>> ISA;
