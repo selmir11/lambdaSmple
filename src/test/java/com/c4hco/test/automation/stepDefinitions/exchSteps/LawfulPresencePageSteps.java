@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.exchPages.LawfulPresencePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+
 public class LawfulPresencePageSteps {
 
     LawfulPresencePage lawfulPresencePage = new LawfulPresencePage(WebDriverManager.getDriver());
@@ -50,5 +52,28 @@ public class LawfulPresencePageSteps {
     @And("I get the Primary Member ID")
     public void iGetPrimaryMemberId(){lawfulPresencePage.getPrimaryMemberId();}
 
+    @And("I verify the text on the Citizenship and Immigration Status page in {string}")
+    public void verifyTextOnCitizenshipAndImmigrationStatusPage(String language, List<String> data) {
+        lawfulPresencePage.validateVerbiageOnCitizenshipAndImmigratioStatusPage(language, data);
+    }
 
+    @And("I verify the text for Naturalized Citizen in {string}")
+    public void verifyTheTextForNaturalizedCitizenInEnglish(String language, List<String> data) {
+        lawfulPresencePage.validateVerbageForNaturalizedCitizenIn(language, data);
+    }
+
+    @And("I verify the text for Eligible Immigration Status in {string}")
+    public void iVerifyTheTextForEligibleImmigrationStatusIn(String language, List<String> data) {
+        lawfulPresencePage.validateVerbiageForEligibleImmigrationStausIn(language, data);
+    }
+
+    @Then("I verify the Document Type dropdown options in {string}")
+    public void iVerifyTheTextForDocumentTypeIn(String language, List<String> data) {
+        lawfulPresencePage.validateVerbiageForDocumentTypeIn(language, data);
+    }
+
+    @Then("I verify the text Document Type in {string}")
+    public void iValidateTheVerbiageOnTheCurrentPage(String language,List<String> data) {
+        lawfulPresencePage.validateDocumentTypeText(language, data);
+    }
 }

@@ -21,7 +21,7 @@ public class SharedData {
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static String EmployerName;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
-
+    @Getter @Setter private static String env;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -32,5 +32,7 @@ public class SharedData {
         primaryMemberId = null;
         EmployerName = null;
         edi834TransactionDetails = null;
+        env = null;
+        ob834DetailsEntities = null;
     }
 }
