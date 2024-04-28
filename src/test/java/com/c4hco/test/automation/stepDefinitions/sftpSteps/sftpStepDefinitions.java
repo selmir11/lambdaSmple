@@ -36,6 +36,13 @@ public class sftpStepDefinitions {
 
     }
 
+    @And("I validate the ob834 files should not be empty")
+    public void validateOb834RecordsNotNull(){
+        sftpUtil.validateFileIsNotEmpty(SharedData.getMedicalFileName());
+        sftpUtil.validateFileIsNotEmpty(SharedData.getDentalFileName());
+    }
+
+
     @And("I validate the ob834 files should have the values")
     public void validateOb834Records(List<Map<String, String>> expectedValues) {
         List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();

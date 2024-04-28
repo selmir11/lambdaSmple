@@ -100,6 +100,25 @@ public class SftpUtil {
         return sftpFolderPath;
     }
 
+    public void validateFileIsNotEmpty(String filename){
+        String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
+        try{
+            File file = new File(sftpFolderPath+"\\"+filename);
+            InputStream inputStream = new FileInputStream(file);
+
+            if (inputStream != null) {
+                System.out.println("EDI File Found on SFTP Server");
+                edi834Util.validateFileIsNotEmpty(inputStream);
+            } else {
+                System.err.println("File not found in the resource folder.");
+                Assert.fail("!!EDI File looking for is not found!!");
+            }
+            inputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void readEdiFile(String filename){
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{

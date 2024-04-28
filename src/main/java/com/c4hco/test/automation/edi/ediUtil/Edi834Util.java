@@ -1,6 +1,9 @@
 package com.c4hco.test.automation.edi.ediUtil;
 
-import com.c4hco.test.automation.Dto.Edi.*;
+import com.c4hco.test.automation.Dto.Edi.CommonSegments;
+import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.Member;
+import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.Ob834FileDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,6 +17,7 @@ import org.apache.commons.collections4.ListValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.testng.Assert;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,6 +26,22 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Edi834Util {
+
+    public void validateFileIsNotEmpty(InputStream inputStream){
+        Boolean isFileEmpty = true;
+        try {
+            EDIInputFactory factory = EDIInputFactory.newFactory();
+            EDIStreamReader reader = factory.createEDIStreamReader(inputStream);
+            if (reader.hasNext()) {
+                isFileEmpty = false;
+            } else {
+                isFileEmpty = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertFalse(isFileEmpty, "The EDI file is empty");
+    }
 
 
     public void parseEdiFile(InputStream inputStream) {

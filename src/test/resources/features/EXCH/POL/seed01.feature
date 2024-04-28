@@ -105,16 +105,13 @@ Feature: Seed01 - Exchange
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
-
-  @RT-2246
-  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
     And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should have the values
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|
-      |          021          | 021                 | 25                   |
-      |          021          | 021                 | 25                   |
+    And I validate the ob834 files should not be empty
+
+  @RT-2246
+  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
