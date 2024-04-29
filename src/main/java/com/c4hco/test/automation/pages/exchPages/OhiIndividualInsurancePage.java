@@ -28,11 +28,17 @@ public class OhiIndividualInsurancePage {
     @FindBy(css = ".container .header-2")
     WebElement ohiIndividualInsuranceHeader;
 
+    @FindBy(css = "#Ohi-Endable-enrolled-container span.error-message")
+    WebElement currentlyEnrolledError;
+
     @FindBy(id = "Ohi-Endable-enrolled-YesButton")
     WebElement currentlyEnrolledYes;
 
     @FindBy(id = "Ohi-Endable-enrolled-NoButton")
     WebElement currentlyEnrolledNo;
+    
+    @FindBy(css = "#Ohi-Endable-endsSoon-container span.error-message")
+    WebElement insuranceEndingError;
 
     @FindBy(id = "Ohi-Endable-endsSoon-YesButton")
     WebElement insuranceEndingYes;
@@ -40,16 +46,20 @@ public class OhiIndividualInsurancePage {
     @FindBy(id = "Ohi-Endable-endsSoon-NoButton")
     WebElement insuranceEndingNo;
 
+    @FindBy(css = "#Ohi-Endable-endDate-container span.error-message")
+    WebElement inputEndDateError;
+
     @FindBy(css = "#Ohi-Endable-endDate")
     WebElement inputEndDate;
+    
+    @FindBy(css = "#Ohi-Endable-endVoluntary-container span.error-message")
+    WebElement endVoluntaryError;
 
     @FindBy(id = "Ohi-Endable-endVoluntary-YesButton")
     WebElement endVoluntaryYes;
 
     @FindBy(id = "Ohi-Endable-endVoluntary-NoButton")
     WebElement endVoluntaryNo;
-
-
 
     @FindBy(id = "submitButton")
     List<WebElement> goBackAndContinueButton;
@@ -206,8 +216,154 @@ public void verifyHeadersIndividualInsuranceOhiPageEnglish(){
         }
     }
 
+    public void verifyErrorMessage(String errorType, String language) {
+        switch (errorType) {
+            case "Currently Enrolled":
+                verifyCurrentlyEnrolledError(language);
+                break;
+            case "Insurance Ending":
+                verifyinsuranceEndingError(language);
+                break;
+            case "Input Date":
+                verifyinputEndDateError(language);
+                break;
+            case "Voluntary End":
+                verifyendVoluntaryError(language);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + errorType);
+        }
+    }
+
+    public void verifyCurrentlyEnrolledError(String language) {
+        basicActions.waitForElementToBePresent(currentlyEnrolledError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(currentlyEnrolledError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(currentlyEnrolledError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyinsuranceEndingError(String language) {
+        basicActions.waitForElementToBePresent(insuranceEndingError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(insuranceEndingError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(insuranceEndingError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyinputEndDateError(String language) {
+        basicActions.waitForElementToBePresent(inputEndDateError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(inputEndDateError.getText(), "Date is required");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(inputEndDateError.getText(), "La fecha es obligatoria");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyendVoluntaryError(String language) {
+        basicActions.waitForElementToBePresent(endVoluntaryError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(endVoluntaryError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(endVoluntaryError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyNoErrorMessage(String errorType) {
+        switch (errorType) {
+            case "Currently Enrolled":
+                basicActions.waitForElementToDisappear(currentlyEnrolledError, 10);
+                softAssert.assertAll();
+                break;
+            case "Insurance Ending":
+                basicActions.waitForElementToDisappear(insuranceEndingError, 10);
+                softAssert.assertAll();
+                break;
+            case "Input Date":
+                basicActions.waitForElementToDisappear(inputEndDateError, 10);
+                softAssert.assertAll();
+                break;
+            case "Voluntary End":
+                basicActions.waitForElementToDisappear(endVoluntaryError, 10);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + errorType);
+        }
+    }
 
 
 
 
-}
+
+
+
+
+
+
+
+
+
+    }

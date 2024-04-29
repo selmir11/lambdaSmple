@@ -15,6 +15,7 @@ import java.util.Date;
                 "com.c4hco.test.automation.stepDefinitions.exchSteps",
                 "com.c4hco.test.automation.stepDefinitions.sftpSteps",
                 "com.c4hco.test.automation.stepDefinitions.databaseSteps",
+                "com.c4hco.test.automation.stepDefinitions.APISteps",
                 "com.c4hco.test.automation.globalhooks"
                 }
 )

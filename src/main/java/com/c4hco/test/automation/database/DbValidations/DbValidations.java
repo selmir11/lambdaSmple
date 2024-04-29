@@ -33,10 +33,7 @@ public class DbValidations {
           // validate dental specific detail
         }
 
-        subscriber.compareWithCombinedQueryData(policyTablesEntity); // may be get rid of this? - TO DO
-
         // To DO:: Add more validations here
-        // TO DO:: Remove duplicates from either compare method or here
         softAssert.assertEquals( String.valueOf(subscriber.getAccount_id()), policyTablesEntity.getAccount_id(), "acc id did not match");
         softAssert.assertEquals( subscriber.getFirstName(), policyTablesEntity.getFirst_name(), "First Name did not match");
         softAssert.assertEquals( subscriber.getLastName(), policyTablesEntity.getLast_name(), "Last Name did not match");
@@ -71,6 +68,11 @@ public class DbValidations {
   public void validateMemberExistsInPolicyTable(){
     List<PolicyTablesEntity> policyEntity = exchDbDataProvider.getDataFromPolicyTables();
     Assert.assertFalse(policyEntity.isEmpty(), "No records exists with this account number in Policy table");
+  }
+
+  public void validateOhiDetails(){
+      Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables();
+      Assert.assertFalse(hasRecords, "Query returned records");
   }
 
 }

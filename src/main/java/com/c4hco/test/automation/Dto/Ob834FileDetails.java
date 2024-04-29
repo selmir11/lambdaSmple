@@ -23,4 +23,6 @@ public class Ob834FileDetails {
     String incorrectIdCode;
     String incorrectEntityIdCode;
     String incorrectIdCodeQualifier;
+    String totalTransactions;
+    String ctrlGrpNum;
 }

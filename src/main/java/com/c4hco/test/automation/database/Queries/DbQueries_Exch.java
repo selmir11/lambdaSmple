@@ -34,4 +34,15 @@ public class DbQueries_Exch {
              "and current_ind = '1'";
     }
 
+    public String getEAPID(){
+        return "select exchange_assigned_policy_id, coverage_type from qa_exch.en_policy\n" +
+                "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
+    }
+
+    public String getOhiRecords(){
+        return "Select ohi.*\n" +
+                "From qa_exch.es_member_other_health_ins ohi\n" +
+                "Where member_id = '"+SharedData.getPrimaryMemberId()+"'";
+    }
+
 }
