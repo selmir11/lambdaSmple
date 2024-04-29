@@ -31,7 +31,6 @@ public class FinancialHelpAgreementsPage {
         basicActions.waitForElementToBeClickable(signatureInput, 10);
         signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
-
     public void selectTermsAgreementsCheckbox(){
         termsAndAgreeChkbx.click();
     }
