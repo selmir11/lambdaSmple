@@ -63,7 +63,7 @@ public class HouseholdPage {
     }
 
 
-    public void iEditFOPrimaryMember(int Index) {
+    public void iEditPrimaryMember(int Index) {
         basicActions.waitForElementToBePresent(editPrimaryMember,15);
         Index -= 1;
         editPrimaryMember.click();
