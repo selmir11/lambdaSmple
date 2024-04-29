@@ -122,7 +122,6 @@ public class CancellationRequestPage {
         decCheckBox.click();
         String PrimaryMemberFullName = SharedData.getPrimaryMember().getFullName();
         placeHoldertxt.sendKeys(PrimaryMemberFullName);
-        clickContinuebtn();
     }
 
     public void cancellationPlanPoupMessage(List<String> data) throws InterruptedException {
