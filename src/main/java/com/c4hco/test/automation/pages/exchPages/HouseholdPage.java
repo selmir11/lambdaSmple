@@ -73,13 +73,13 @@ public class HouseholdPage {
         tableDropdown.click();
     }
     public void clickBasicInfoMember1Button(int member) {
-        basicActions.waitForElementListToBePresent(memberBasicInformation, 100);
+        basicActions.waitForElementListToBePresent(memberBasicInformation, 15);
         memberBasicInformation.get(member).click();
     }
 
 
     public void iClickEditIncomeLink(int Index) {
-        basicActions.waitForElementToBePresent(editIncomeLink,100);
+        basicActions.waitForElementToBePresent(editIncomeLink,15);
         Index -= 1;
         editIncomeLink.isDisplayed();
         editIncomeLink.click();
