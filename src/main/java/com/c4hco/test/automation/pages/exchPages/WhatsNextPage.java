@@ -17,7 +17,6 @@ public class WhatsNextPage {
 
     @FindBy(id = "SOL-WhatsNext-Okay")
     WebElement welcomeBtn;
-
     public void clickWelcomeBtn(){
         // TO DO:: Sometimes, feedback survey is popping - intercepting the click - pls have a solution for this
         // TO DO:: sometimes, there is a loading spinner - make sure we wait until that disappears

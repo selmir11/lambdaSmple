@@ -50,6 +50,9 @@ public class BasicSteps {
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
+            case "Employment Info":
+                pageUrl = "IncomePortal/member";
+                break;
             case "planSummaryMedicalDental":
                 pageUrl = "planSummaryMedicalDental";
                 break;
@@ -171,7 +174,7 @@ public class BasicSteps {
                 pageUrl = "login-portal/mfa";
                 break;
             case "Plan Summary":
-                pageUrl = "/planSummaryMedicalDental/";
+                pageUrl = "planSummaryMedicalDental";
                 break;
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
@@ -236,8 +239,23 @@ public class BasicSteps {
             case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
+            case "Financial Help Agreements" :
+                pageUrl = "PaymentPortal/agreements";
+                break;
+            case "Payment Selection" :
+                pageUrl = "PaymentPortal/paymentSelection";
+                break;
+            case "Initial Payment" :
+                pageUrl = "PaymentPortal/initialPayment";
+                break;
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
+                break;
+            case "Congratulations - What's Next?":
+                pageUrl = "whatsnext";
+                break;
+            case "Application Summary":
+                pageUrl = "selectMember";
                 break;
             case "Account Activity":
                 pageUrl = "/activity-report";

@@ -23,12 +23,12 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    // locator in stg is diff - @FindBy(id = "SHP-PlanSummary-Continue")
-    @FindBy(id = "PlanSummary-Continue")
+    @FindBy(css = "#PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
+
     @FindBy(xpath = "//div[@class='shopping-parent-container']")
     WebElement planSummaryMedicalplanheading;
 
@@ -62,6 +62,14 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
 
+    @FindBy(css = "#PlanSummary-TotalAmountYouSave")
+    WebElement aPTCPlanSummary;
+
+    public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt){
+        basicActions.waitForElementToBePresent(aPTCPlanSummary,10);
+        softAssert.assertEquals(aPTCPlanSummary.getText(),aPTCPlanSummaryAmt);
+        softAssert.assertAll();
+    }
     public void verifyTextPlanSummaryPage(){
         basicActions.waitForElementListToBePresent(planSummaryHeading,10);
 
@@ -82,10 +90,7 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
     
-
     public void continuePlanSummaryPage(){
-        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
-        setPlansPremiumAmt();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
