@@ -20,8 +20,7 @@ public class HouseholdPage {
     }
 
     // update locators to ids and rename methods
-
-    @FindBy(xpath = "//input[@value ='Save and Continue']")
+    @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
     @FindBy(id = "submitButton_AddMember")
@@ -53,6 +52,7 @@ public class HouseholdPage {
     }
 
     public void clickContinue() {
+        basicActions.waitForElementToBePresent(saveAndContinue,15);
         saveAndContinue.click();
     }
 

@@ -149,7 +149,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     
-    Then I validate I am on the "Citizenship and Immigration Status" page
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -172,13 +172,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Employment Income Summary" page
     Then I click continue on the Employment Summary Page
 
-    Then I validate I am on the "Additional Income" page
+    Then I validate I am on the "Additional income" page
     Then I click continue on the Additional Income page
 
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
 
-    Then I validate I am on the "Income Summary Detail" page
+    Then I validate I am on the "Income Summary" page
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status" page
@@ -219,11 +219,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "120.69"
+    And I validate the APTC Credit on the Summary page is "-$120.69"
     And I continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
-    And I click on Sign Out in the Header for "Payment Portal"
+    And I click on Sign Out in the Header for "Elmo"
 
 
 

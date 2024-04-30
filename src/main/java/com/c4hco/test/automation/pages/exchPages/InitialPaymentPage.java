@@ -20,9 +20,6 @@ public class InitialPaymentPage {
     @FindBy(id="SOL-InitialPayment-MakePayment")
     List<WebElement> makePaymentBtn;
 
-    @FindBy(id = "SOL-InitialPayment-MakePayment")
-    WebElement makeIntialPymtBtn;
-
     @FindBy(id = "SOL-InitialPayment-Continue")
     WebElement continueBtn;
 
