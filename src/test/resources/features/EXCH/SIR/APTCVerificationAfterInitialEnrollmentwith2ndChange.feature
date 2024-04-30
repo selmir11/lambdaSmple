@@ -169,7 +169,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I edit the income level to "5160000"
     And I click continue on the Employment Info Page
 
-    Then I validate I am on the "Employment Income Summary" page
+    Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
 
     Then I validate I am on the "Additional income" page
