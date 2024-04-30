@@ -50,6 +50,9 @@ public class BasicSteps {
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
+            case "Employment Info":
+                pageUrl = "IncomePortal/member";
+                break;
             case "planSummaryMedicalDental":
                 pageUrl = "planSummaryMedicalDental";
                 break;

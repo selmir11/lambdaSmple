@@ -161,7 +161,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
 
-    Then I validate I am on the "Employment Income Summary" page
+    Then I validate I am on the "Employment Info" page
     Then I click Edit on Income Summary row 1
 
     Then I validate I am on the "Employment Income" page
