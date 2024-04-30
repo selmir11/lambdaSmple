@@ -299,6 +299,12 @@ public class BasicSteps {
             case "Employment Income Summary":
                 pageUrl = "employmentInfo/summary";
                 break;
+            case "Cancellation Request":
+                pageUrl = "EnrollmentPortal/cancellationRequest";
+                break;
+            case "English":
+                pageUrl = "lang=en";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
