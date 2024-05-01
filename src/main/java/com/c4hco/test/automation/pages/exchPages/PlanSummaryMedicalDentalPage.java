@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -22,12 +23,12 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    // locator in stg is diff - @FindBy(id = "SHP-PlanSummary-Continue")
-    @FindBy(id = "PlanSummary-Continue")
+    @FindBy(css = "#PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
+
     @FindBy(xpath = "//div[@class='shopping-parent-container']")
     WebElement planSummaryMedicalplanheading;
 
@@ -53,11 +54,22 @@ public class PlanSummaryMedicalDentalPage {
     WebElement planSummaryDentalAmtyoupay;
 
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
-    WebElement medicalPlanPremiumAmt;
+    WebElement medicalPremiumAfterAPTCAmt;
+
+    @FindBy(id="PlanSummary-MedicalPremiumReductionAmount_0")
+    WebElement medicalAPTCAmt;
 
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
 
+    @FindBy(css = "#PlanSummary-TotalAmountYouSave")
+    WebElement aPTCPlanSummary;
+
+    public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt){
+        basicActions.waitForElementToBePresent(aPTCPlanSummary,10);
+        softAssert.assertEquals(aPTCPlanSummary.getText(),aPTCPlanSummaryAmt);
+        softAssert.assertAll();
+    }
     public void verifyTextPlanSummaryPage(){
         basicActions.waitForElementListToBePresent(planSummaryHeading,10);
 
@@ -78,17 +90,32 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
     
-
     public void continuePlanSummaryPage(){
-        basicActions.waitForElementToBePresent(medicalPlanPremiumAmt, 10);
-        setPlansPremiumAmt();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
 
     public void setPlansPremiumAmt(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setMedicalPremiumAmt(medicalPlanPremiumAmt.getText());
+        Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
+        if(!isGettingFinancialHelp){
+            subscriber.setMedicalAptcAmt("0");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
+        }else {
+            String medAPTCAmt = medicalAPTCAmt.getText().replace("$","");
+            subscriber.setMedicalAptcAmt(medAPTCAmt);
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
+
+            BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add(bigDecimalmedAPTCAmt);
+            System.out.println(totalMedicalPremium);
+            subscriber.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+        }
+        subscriber.setDentalAptcAmt("$0");
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
         SharedData.setPrimaryMember(subscriber);
     }

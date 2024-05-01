@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.ApplicationResultsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class ApplicationResultsPageSteps {
@@ -27,6 +28,9 @@ public class ApplicationResultsPageSteps {
     public void verifyTextMAEligibility() {
         applicationResultsPage.verifyTextMAEligibility();
     }
+
+    @And("I verify that the APTC amount does not appear on the app results page")
+    public void validateAPTCNotAppearing() { applicationResultsPage.validateAPTCNotAppearing();}
 
     @Then("I validate Primary Member not qualified for health coverage")
     public void verifyPrimaryMemberNotQualifyForHealthPlan () {

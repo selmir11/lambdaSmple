@@ -7,12 +7,20 @@ import io.cucumber.java.en.*;
 public class PlanSummaryMedicalDentalPageSteps {
     PlanSummaryMedicalDentalPage planSummaryMedicalDentalPage = new PlanSummaryMedicalDentalPage(WebDriverManager.getDriver());
 
-    @And("I continue on plan summary page")
-    public void planSummaryPage(){
-        planSummaryMedicalDentalPage.continuePlanSummaryPage();
+   @And("I continue on plan summary page")
+    public void continuePlanSummaryPage(){
+       planSummaryMedicalDentalPage.continuePlanSummaryPage();
     }
 
     @And("I verify medical and dental text on Plan Summary page")
-    public void verifyTextPlanSummaryPage() {planSummaryMedicalDentalPage.verifyTextPlanSummaryPage();}
+    public void verifyTextPlanSummaryPage() {
+       planSummaryMedicalDentalPage.verifyTextPlanSummaryPage();
+    }
+
+
+    @And("I validate the APTC Credit on the Summary page is {string}")
+    public void verifyAPTCPlanSummaryAmt (String aPTCPlanSummaryAmt ) {
+        planSummaryMedicalDentalPage.verifyAPTCPlanSummaryAmt(aPTCPlanSummaryAmt); }
+
 
 }

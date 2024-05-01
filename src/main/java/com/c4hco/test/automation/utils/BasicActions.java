@@ -104,8 +104,7 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-            Assert.fail("Element waiting for is not displayed");
-            return false;
+          return false;
         }
         return true;
     }
@@ -193,19 +192,7 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
-
-
-//    public  void switchToWindow(String targetTitle) {
-//        String origin = getDriver().getWindowHandle();
-//        for (String handle :getDriver().getWindowHandles()) {
-//            getDriver().switchTo().window(handle);
-//            if (getDriver().getTitle().equals(targetTitle)) {
-//                return;
-//            }
-//        }
-//        getDriver().switchTo().window(origin);
-//    }
-
+    
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();

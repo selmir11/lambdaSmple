@@ -48,9 +48,9 @@ Feature: Dental Plans page tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
+    Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click on back button on dental Plan Results
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
     Then I click continue on medical plan results page

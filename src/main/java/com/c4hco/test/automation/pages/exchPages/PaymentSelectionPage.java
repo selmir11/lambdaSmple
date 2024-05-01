@@ -19,6 +19,8 @@ public class PaymentSelectionPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    @FindBy(id = "SOL-PaymentSelection-HowLikeToPay")
+    WebElement likeToPay;
 
     @FindBy(id = "SOL-PaymentCheck-Paragraph1")
     WebElement text1;
@@ -35,21 +37,23 @@ public class PaymentSelectionPage {
     @FindBy(id = "SOL-PaymentSelection-GoBack")
     WebElement backBtn;
 
-    @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder" )
+    @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder")
     WebElement moneyOrderBtn;
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
     public void clickContinueOnPaymentPage() {
         basicActions.waitForElementToDisappear(spinner, 15);
-        softAssert.assertTrue(continueBtnPaymentSelection.isEnabled()); softAssert.assertAll();
+        softAssert.assertTrue(continueBtnPaymentSelection.isEnabled());
+        softAssert.assertAll();
         basicActions.waitForElementToBePresent(continueBtnPaymentSelection,20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtnPaymentSelection);
         basicActions.click(continueBtnPaymentSelection);
     }
 
     public void clickMoneyOrderButton() {
-        basicActions.waitForElementToBePresent(moneyOrderBtn, 10);
+        basicActions.waitForElementToBePresent(moneyOrderBtn,  20 );
+        basicActions.waitForElementToBeClickable(moneyOrderBtn, 20);
         moneyOrderBtn.click();
     }
 
