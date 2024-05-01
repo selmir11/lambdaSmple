@@ -165,7 +165,43 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
     }
 
+    public void validateFindABrokerButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(FindBroker,100);
+            softAssert.assertEquals(FindBroker.getText(),"Find a Broker");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            try{
+                basicActions.getDriver().findElement(By.linkText("Find a Broker"));
+            } catch (NoSuchElementException  e) {
+                System.out.println("The Find a Broker button is absent - as expected");
+            }
+        }
+    }
 
+    public void validateHaveABrokerCallYouButtonExists(){
+        basicActions.waitForElementToBePresent(HaveBrokerCallYou,100);
+        softAssert.assertAll();
+    }
+
+    public void validateFindAnAssisterButtonExists(){
+        basicActions.waitForElementToBePresent(FindAnAssister,100);
+        softAssert.assertAll();
+    }
+
+    public void validateAuthorizeAssisterOrganizationButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(AuthorizeAssisterOrganization,100);
+            softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Authorize Assister Organization");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            try{
+                basicActions.getDriver().findElement(By.linkText("Authorize Assister Organization"));
+            } catch (NoSuchElementException  e) {
+                System.out.println("The Authorize Assister Organization button is absent - as expected");
+            }
+        }
+    }
 
 
 
