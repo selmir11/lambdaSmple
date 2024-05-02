@@ -16,4 +16,13 @@ public class FindExpertHelpPageSteps {
     public void iClickBackButton() {
         findExpertHelpPage.clickBackButton();
     }
+    @Then("I click Find a Broker button")
+    public void iClickfindABroker(){
+         findExpertHelpPage.clickFindABrokerBtn();
+    }
+     @And("I Find the broker by name {string}")
+    public void iFindBrokerByName(String brokerName){
+        findExpertHelpPage.findBrokerByName(brokerName);
+     }
+
 }

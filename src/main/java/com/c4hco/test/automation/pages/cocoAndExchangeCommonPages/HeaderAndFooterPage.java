@@ -91,7 +91,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
-    // =========FOOTER============== //
+   // =========FOOTER============== //
 
     //Admin Portal Footer Links
     @FindBy(linkText = "Privacy Policy")

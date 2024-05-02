@@ -8,7 +8,12 @@ public class IncomeSummaryPageSteps {
     IncomeSummaryPage incomeSummaryPage = new IncomeSummaryPage(WebDriverManager.getDriver());
 
     @Then("I select the projected income option {string} and continue")
-    public void iSelectProjectedIncomeOption(String projectedIncomeOption){
+    public void iSelectProjectedIncomeOption(String projectedIncomeOption) {
         incomeSummaryPage.selectProjectedIncome(projectedIncomeOption);
+
+    }
+    @Then("I click the save and continue button on the Income Summary Detail page")
+    public void iClickSaveandContinue(){
+        incomeSummaryPage.clickSaveandContinue();
     }
 }

@@ -104,7 +104,17 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-            Assert.fail("Element waiting for is not displayed");
+          return false;
+        }
+        return true;
+    }
+
+    public Boolean waitForElementPresence(WebElement webElement, int waitTime) {
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+        } catch (TimeoutException|NoSuchElementException ignore) {
+            Log.info("Element is not present");
             return false;
         }
         return true;

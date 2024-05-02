@@ -41,7 +41,7 @@ public class NoticesPage {
     WebElement sendNewCode;
     @FindBy(id = "verificationCode")
     WebElement boxVerificationCode;
-    @FindBy(xpath = "//div[@class='col-11 form-group body-text1']")
+    @FindBy(xpath = "//div[@class='col-11 mb-3 body-text1']")
      WebElement errorMsgText;
     @FindBy(id = "main-sign-in")
      WebElement btnVerify;

@@ -25,9 +25,18 @@ public class HouseHoldPageSteps {
         houseHoldPage.iVerifyFamilyOverviewTablePresent();
     }
 
-    @Then("I edit income for Primary member")
-    public void IEditPrimaryIncome(){
-        houseHoldPage.editPrimaryIncome();
+    @And("I click the edit income {int}")
+    public void iClickEditIncomeLink(int Index){
+        houseHoldPage.iClickEditIncomeLink(Index);}
+
+    @Then("I click on the Member Row {int}")
+    public void iEditPrimaryMember(int Index){
+        houseHoldPage.iEditPrimaryMember(Index);
     }
+
+    @And("I click on the table dropdown")
+    public void iClickTableItem(){
+        houseHoldPage.iClickTableItem();}
+
 }
 
