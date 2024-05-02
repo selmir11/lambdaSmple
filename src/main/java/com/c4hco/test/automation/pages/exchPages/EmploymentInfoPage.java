@@ -111,6 +111,14 @@ public class EmploymentInfoPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
+    List<WebElement>EditUpdateLink;
+
+    public void clickEditUpdateLink(int employer){
+    basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
+        EditUpdateLink.get(employer).click();
+    }
+
     public void isUserEmployed(String employmentOption) {
         basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
 
@@ -161,6 +169,13 @@ public class EmploymentInfoPage {
         dropdown.selectByVisibleText(" " + Frequency + " ");
     }
 
+    public void enterEmploymentIncome(String Salary) {
+        basicActions.waitForElementToBePresent(txtIncomeAmount,15);
+        txtIncomeAmount.clear();
+        txtIncomeAmount.click();
+        txtIncomeAmount.sendKeys(Salary);
+
+    }
     public void isUserEmploymentSeasonal(String seasonalEmploymentOption) {
         switch (seasonalEmploymentOption) {
             case "Yes":

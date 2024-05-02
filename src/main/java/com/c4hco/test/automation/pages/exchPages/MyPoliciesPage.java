@@ -67,7 +67,7 @@ public class MyPoliciesPage {
     @FindBy(id="Cancel 2024 Medical PlansButton")
     WebElement cancelMedicalPlanbtn;
 
-    @FindBy(id="Cancel 2024 Dental Plans")
+    @FindBy(id="Cancel 2024 Dental Plans Button")
     WebElement cancelDentalPlanbtn;
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
@@ -198,14 +198,21 @@ public class MyPoliciesPage {
         backToCurPlansBtn.click();
     }
 
-    public void clickMedicalPlanCancelButton(){
-        basicActions.waitForElementToBePresent(cancelMedicalPlanbtn, 10);
-        cancelMedicalPlanbtn.click();
+    public void clickPlanCancelButton(String btnDetail){
+        switch (btnDetail) {
+            case ("Cancel Medical Plan"):
+                basicActions.waitForElementToBePresent(cancelMedicalPlanbtn, 10);
+                cancelMedicalPlanbtn.click();
+            break;
+            case ("Cancel Dental Plan"):
+                basicActions.waitForElementToBePresent(cancelDentalPlanbtn, 10);
+                cancelDentalPlanbtn.click();
+            break;
+            default:
+            throw new IllegalArgumentException("Invalid option: " + btnDetail);
+        }
+
     }
 
-    public void clickDentalPlanCancelButton(){
-        basicActions.waitForElementToBePresent(cancelDentalPlanbtn, 10);
-        cancelDentalPlanbtn.click();
-    }
 
 }

@@ -18,7 +18,7 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.selectMedicalPlan(medicalPlan);
     }
 
-    @And("I validate the APTC credit is {string}")
+    @And("I validate the APTC credit on the first plan is {string}")
     public void validateAPTC(String aptCreditAmt) {
         medPlanResultsPage.validateAPTC(aptCreditAmt);
     }

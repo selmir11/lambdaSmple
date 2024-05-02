@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.Dto;
 
+import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class SharedData {
     @Getter @Setter private static List<Ob834FileDetails> ob834FileDetails;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static String EmployerName;
+    @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static String env;
 
     public static void reset(){
@@ -29,6 +31,7 @@ public class SharedData {
         members = null;
         primaryMemberId = null;
         EmployerName = null;
+        edi834TransactionDetails = null;
         env = null;
         ob834DetailsEntities = null;
     }

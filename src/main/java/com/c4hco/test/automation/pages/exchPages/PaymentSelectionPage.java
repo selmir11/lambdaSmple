@@ -19,6 +19,8 @@ public class PaymentSelectionPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    @FindBy(id = "SOL-PaymentSelection-HowLikeToPay")
+    WebElement likeToPay;
 
     @FindBy(id = "SOL-PaymentCheck-Paragraph1")
     WebElement text1;
@@ -35,7 +37,7 @@ public class PaymentSelectionPage {
     @FindBy(id = "SOL-PaymentSelection-GoBack")
     WebElement backBtn;
 
-    @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder" )
+    @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder")
     WebElement moneyOrderBtn;
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
@@ -50,7 +52,8 @@ public class PaymentSelectionPage {
     }
 
     public void clickMoneyOrderButton() {
-        basicActions.waitForElementToBePresent(moneyOrderBtn, 10);
+        basicActions.waitForElementToBePresent(moneyOrderBtn,  20 );
+        basicActions.waitForElementToBeClickable(moneyOrderBtn, 20);
         moneyOrderBtn.click();
     }
 
