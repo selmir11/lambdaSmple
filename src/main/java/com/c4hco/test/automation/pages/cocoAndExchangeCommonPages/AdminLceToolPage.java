@@ -42,6 +42,10 @@ public class AdminLceToolPage {
 
     @FindBy(id="addAdminButton")
     WebElement submitBtn;
+    @FindBy(css = "body > div.outer-container > div.container > h1")
+    WebElement titleAdminLceTool;
+    @FindBy(xpath = "//b[normalize-space()='Account Number']")
+    WebElement acctNumberLceTool;
 
         public void lookUpAccId(){
             tabs = new ArrayList<> (basicActions.getDriver().getWindowHandles());
@@ -77,4 +81,15 @@ public class AdminLceToolPage {
             basicActions.closeBrowserTab();
             basicActions.getDriver().switchTo().window(tabs.get(0));
         }
+    public void validatePageTitle(){
+        basicActions.waitForElementToBePresent(titleAdminLceTool,20);
+        softAssert.assertAll(); }
+
+    public void titleText() {
+        titleAdminLceTool.isDisplayed();
+        softAssert.assertEquals(titleAdminLceTool.getText(), "Admin LCE Tool");
+        softAssert.assertAll();     }
+    public void validateAccountNumberText() {
+        softAssert.assertTrue(acctNumberLceTool.isDisplayed());
+        softAssert.assertAll();     }
 }

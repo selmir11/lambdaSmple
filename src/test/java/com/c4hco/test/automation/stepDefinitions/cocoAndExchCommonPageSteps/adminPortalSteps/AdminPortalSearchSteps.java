@@ -96,10 +96,17 @@ public class AdminPortalSearchSteps {
     public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
     }
-
     @Then("I click acct first row from Search Results table in admin portal")
     public void iClickAccountLinkFirstRowFromSearchResults() {
         adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
+    @And("I validate {string} application link not display")
+    public void iValidateAppLinksIsNotDisplay(String option)    {
+            adminPortalSearchPage.validateAppLinksIsNotDisplay(option); }
 
+    @Then("I enter existing {string} account {string}")
+    public void iEnterExistingAccountID(String userdata,String type) {
+        adminPortalSearchPage.enterUserData(userdata, type);
+        adminPortalSearchPage.clickSearch();    }
 }
+

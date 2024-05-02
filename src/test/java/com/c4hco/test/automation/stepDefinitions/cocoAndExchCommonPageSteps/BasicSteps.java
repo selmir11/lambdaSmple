@@ -305,6 +305,12 @@ public class BasicSteps {
             case "English":
                 pageUrl = "lang=en";
                 break;
+            case "Admin LCE":
+                pageUrl = "/nes/adminLce";
+                break;
+            case "Admin Portal individual dashboard" :
+                pageUrl = "/AdminPortal/individual/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

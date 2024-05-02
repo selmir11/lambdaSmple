@@ -126,6 +126,11 @@ public class LoginPage {
         password.sendKeys(passwordInd);
         basicActions.waitForElementToBePresent(signAdmin,10);
         signAdmin.click();    }
+    public void loginAdminUser(String usernameAdmin, String passwordAdmin) {
+        username.sendKeys(usernameAdmin);
+        password.sendKeys(passwordAdmin);
+        basicActions.waitForElementToBePresent(signAdmin,10);
+        signAdmin.click();    }
 }
 
     // ############################## VALIDATION METHODS #########################

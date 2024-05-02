@@ -16,4 +16,14 @@ public class AdminToolPageSteps {
     public void changeEffDate(String monthDate){
             adminLceToolPage.changeEffectiveDate(monthDate);
     }
+
+    @And("I validate page title")
+    public void iValidateTitleAdminLceTool() {adminLceToolPage.validatePageTitle();}
+
+    @And("I validate page title text")
+    public void iValidatePageTitle() {
+        adminLceToolPage.titleText();      }
+    @And("I validate  Account Number text displays")
+    public void iValidateAccountNumberText() {
+        adminLceToolPage.validateAccountNumberText();      }
 }
