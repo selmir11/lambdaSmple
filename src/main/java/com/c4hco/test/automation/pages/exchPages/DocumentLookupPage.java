@@ -5,12 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import java.util.Comparator;
 import java.util.List;
-public class DocumentLookupPage {
+import java.util.stream.Collectors;
 
+public class DocumentLookupPage {
+    private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
+    public DocumentLookupPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
     @FindBy(css = ".search-title")
     WebElement title;
 
@@ -73,12 +81,23 @@ public class DocumentLookupPage {
     @FindBy(xpath = "//tbody//tr//td[7]")
     WebElement txtFileFormat;
 
-    private BasicActions basicActions;
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span")
+    List<WebElement> sortOption;
 
-    public DocumentLookupPage(WebDriver webDriver) {
-        basicActions = new BasicActions(webDriver);
-        PageFactory.initElements(basicActions.getDriver(), this);
-    }
+    @FindBy(xpath = "(//div[@class='drop-down-option drop-down-option-selected'])[3]")
+    WebElement sortDropdown;
+
+    @FindBy(xpath = "//tbody/tr/td[2]")
+    List <WebElement> documentTypecolumn;
+
+    @FindBy(xpath = "//tbody/tr/td[5]")
+    List <WebElement> createdDatecolumn;
+
+    @FindBy(xpath = "//input[@id='searchFrom']")
+    WebElement fromDate;
+
+    @FindBy(xpath = "//input[@id='searchTo']")
+    WebElement ToDate;
 
     public void validateTitle() {
         basicActions.switchtoactiveTab();
@@ -144,8 +163,78 @@ public class DocumentLookupPage {
         }
     }
 
-    public void clickDropdowns() {
+    public void selectoption(String text){
+        basicActions.selectValueFromDropdown(documentTypeDropdown,documentTypeDropdownOptions,text);
+    }
 
+    public void selectsortoption(String text) {
+        basicActions.selectValueFromDropdown(sortDropdown,sortOption,text);
+    }
+
+   public void clickSubmit(){
+       softAssert.assertTrue(basicActions.waitForElementToBeClickable(submitButton, 20));
+       submitButton.click();
+   }
+
+   public void inputdates(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(fromDate,20));
+        fromDate.sendKeys("03/01/2024");
+       softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate,20));
+       ToDate.sendKeys("05/01/2024");
+    }
+    public void verifysortoptionsasc(List<WebElement> options) {
+        List<String> OriginalList = options.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<String> NewList = OriginalList.stream().sorted().collect(Collectors.toList());
+        Assert.assertEquals(NewList, OriginalList);
+    }
+    public void verifysortoptionsdesc(List<WebElement> options) {
+        List<String> OriginalList = options.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<String> NewList = OriginalList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        Assert.assertEquals(NewList, OriginalList);
+    }
+        public void verifySortasc (String sortbyoptions){
+        clickSubmit();
+        basicActions.wait(10);
+            switch (sortbyoptions){
+                case "Document Type":
+                    verifysortoptionsasc(documentTypecolumn);
+                    break;
+                case "Created Date":
+                    verifysortoptionsasc(createdDatecolumn);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid sort option: " +sortbyoptions );
+            }
+    }
+
+    public void verifysortdesc(String sortbyoptions){
+          clickSubmit();
+        switch (sortbyoptions){
+            case "Document Type":
+                verifysortoptionsdesc(documentTypecolumn);
+                break;
+            case "Created Date":
+                verifysortoptionsdesc(createdDatecolumn);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort option: " +sortbyoptions );
+        }
+    }
+
+    public void verifysort(String ascdescoptions,String sortbyoptions){
+        switch(ascdescoptions) {
+            case "asc":
+                verifySortasc(sortbyoptions);
+                break;
+            case "desc":
+                verifysortdesc(sortbyoptions);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort option: " +ascdescoptions );
+
+        }
+    }
+    public void clickDropdowns() {
         String Options[] = {"Exchange", "Individual", "SHOP", "Broker", "Navigator", "Carrier", "Appeal"};
 
         for (String option : Options) {
