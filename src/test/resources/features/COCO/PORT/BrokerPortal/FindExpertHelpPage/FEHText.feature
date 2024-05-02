@@ -11,7 +11,7 @@ Feature: Find expert help page validation
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I click on Get Assistance in the Header
+    Then I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I verify Find Expert Help header Text in "English"
