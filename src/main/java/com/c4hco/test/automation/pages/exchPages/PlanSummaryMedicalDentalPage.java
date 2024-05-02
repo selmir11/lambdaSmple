@@ -91,6 +91,8 @@ public class PlanSummaryMedicalDentalPage {
     }
     
     public void continuePlanSummaryPage(){
+        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        setPlansPremiumAmt();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
