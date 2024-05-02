@@ -4,7 +4,7 @@ Feature:Chat Widget in Login Portal
 Scenario: MFA code
   Given I open the login page on the "broker" portal
   And I validate I am on the "Login" page
-  When I login as Broker User "testing.soukaina+test3@outlook.com" password "ALaska12!"
+  When I login as Broker User "testing.soukaina+stgmfa2@outlook.com" password "ALaska12!"
   And  I validate I am on the "MFA" page
   Then I validate the verbiage of the MFA page
   And I enter Invalid Verification Code
