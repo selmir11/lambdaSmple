@@ -167,25 +167,22 @@ public class FindExpertHelpPage {
 
     public void validateFindABrokerButtonExists(String expectedState){
         if(expectedState.equals("is")){
-            basicActions.waitForElementToBePresent(FindBroker,100);
+            basicActions.waitForElementToBePresent(FindBroker,30);
             softAssert.assertEquals(FindBroker.getText(),"Find a Broker");
             softAssert.assertAll();
         } else if (expectedState.equals("is not")) {
-            try{
-                basicActions.getDriver().findElement(By.linkText("Find a Broker"));
-            } catch (NoSuchElementException  e) {
-                System.out.println("The Find a Broker button is absent - as expected");
-            }
+            softAssert.assertFalse(basicActions.waitForElementPresence(FindBroker,30));
+            softAssert.assertAll();
         }
     }
 
     public void validateHaveABrokerCallYouButtonExists(){
-        basicActions.waitForElementToBePresent(HaveBrokerCallYou,100);
+        basicActions.waitForElementToBePresent(HaveBrokerCallYou,30);
         softAssert.assertAll();
     }
 
     public void validateFindAnAssisterButtonExists(){
-        basicActions.waitForElementToBePresent(FindAnAssister,100);
+        basicActions.waitForElementToBePresent(FindAnAssister,30);
         softAssert.assertAll();
     }
 
@@ -195,11 +192,8 @@ public class FindExpertHelpPage {
             softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Authorize Assister Organization");
             softAssert.assertAll();
         } else if (expectedState.equals("is not")) {
-            try{
-                basicActions.getDriver().findElement(By.linkText("Authorize Assister Organization"));
-            } catch (NoSuchElementException  e) {
-                System.out.println("The Authorize Assister Organization button is absent - as expected");
-            }
+            softAssert.assertFalse(basicActions.waitForElementPresence(AuthorizeAssisterOrganization,30));
+            softAssert.assertAll();
         }
     }
 
