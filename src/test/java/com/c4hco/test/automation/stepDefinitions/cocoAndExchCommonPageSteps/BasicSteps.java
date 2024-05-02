@@ -114,7 +114,10 @@ public class BasicSteps {
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
             case "Find Expert Help Exch":
-                pageUrl = "broker-portal/individual/find-expert-help?";
+                pageUrl = "/broker-portal/individual/find-expert-help?lang=en";
+                break;
+            case "Find Expert Help Exch Spanish":
+                pageUrl = "broker-portal/individual/find-expert-help?lang=es";
                 break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
