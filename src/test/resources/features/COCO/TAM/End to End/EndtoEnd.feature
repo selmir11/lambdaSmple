@@ -116,20 +116,20 @@ Feature: End to End Testing
     And I select "I prefer not to answer" race option
     And I click continue on the Ethnicity and race page
     And I select "Yes" employment option
-    And I enter "2,514.00" income amount
+    And I enter "51,414.00" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
-    And I select "Cash Support" as additional income option with "15,841.00" amount at "Annually" frequency
+    And I select "Cash Support" as additional income option with "9,851.00" amount at "Annually" frequency
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select "Alimony" as deduction option with "52.00" amount at "Annually" frequency
+    And I select "Alimony" as deduction option with "22,840.00" amount at "Annually" frequency
     And I select continue on the Deductions CoCo page
-    Then I verify the total annual income to be "18,303.00"
+    Then I verify the total annual income to be "54,414.00"
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
-    Then I validate the Total Income on the Family Overview page equals "18,303.00"
+    Then I validate the Total Income on the Family Overview page equals "54,414.00"
     And I select continue on the Family Overview page
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
