@@ -109,6 +109,17 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementPresence(WebElement webElement, int waitTime) {
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+        } catch (TimeoutException|NoSuchElementException ignore) {
+            Log.info("Element is not present");
+            return false;
+        }
+        return true;
+    }
+
     public void refreshPage() {
         getDriver().navigate().refresh();
     }

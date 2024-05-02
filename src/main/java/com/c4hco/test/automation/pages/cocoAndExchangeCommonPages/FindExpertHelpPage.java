@@ -165,7 +165,37 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
     }
 
+    public void validateFindABrokerButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(FindBroker,30);
+            softAssert.assertEquals(FindBroker.getText(),"Find a Broker");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            softAssert.assertFalse(basicActions.waitForElementPresence(FindBroker,30));
+            softAssert.assertAll();
+        }
+    }
 
+    public void validateHaveABrokerCallYouButtonExists(){
+        basicActions.waitForElementToBePresent(HaveBrokerCallYou,30);
+        softAssert.assertAll();
+    }
+
+    public void validateFindAnAssisterButtonExists(){
+        basicActions.waitForElementToBePresent(FindAnAssister,30);
+        softAssert.assertAll();
+    }
+
+    public void validateAuthorizeAssisterOrganizationButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(AuthorizeAssisterOrganization,100);
+            softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Authorize Assister Organization");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            softAssert.assertFalse(basicActions.waitForElementPresence(AuthorizeAssisterOrganization,30));
+            softAssert.assertAll();
+        }
+    }
 
 
 
