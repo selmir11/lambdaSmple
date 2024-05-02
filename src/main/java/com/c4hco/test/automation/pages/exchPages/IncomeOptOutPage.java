@@ -42,12 +42,15 @@ public class IncomeOptOutPage {
         basicActions.waitForElementToBeClickable(noThanks,10);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAptcAmt("$0");
+        subscriber.setFinancialHelp(false);
         SharedData.setPrimaryMember(subscriber);
         noThanks.click();
     }
 
     public void chooseApply(){
         basicActions.waitForElementToBeClickable(apply, 15);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setFinancialHelp(true);
         apply.click();
     }
 
