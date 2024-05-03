@@ -63,6 +63,15 @@ public class OhiMedicareSteps {
     @And("I verify Part {string} end date is the last day of the month on the Medicare page")
     public void iVerifyPartEndDate(String part){ohiMedicarePage.verifyPartEndDate(part);}
 
+    @And("I verify the {string} Medicare page data in {string}")
+    public void iVerifyRetireePageData(String dataToVerify, String language) {ohiMedicarePage.verifyMedicarePageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the Medicare page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiMedicarePage.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for Medicare page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiMedicarePage.verifyNoErrorMessage(errorType);}
+
     
 
 }
