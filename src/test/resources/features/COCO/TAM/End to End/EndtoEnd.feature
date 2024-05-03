@@ -93,3 +93,48 @@ Feature: End to End Testing
     And I enter a valid signature in "English"
     And I click Continue on the Declarations And Signature Page CoCo
     Then I verify text that the member don't qualify for a health plan on the App Results Page CoCo
+
+  @SLCR-75 @EndToEndHIAE
+  Scenario: SLCR-75 Check Primary Member Non-HIAE, CO resident
+    When I click create a new account on login page
+    Then I validate I am on the "Prescreen" page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click Primary EditUpdate on the Family Overview page
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+    And I select "Yes" employment option
+    And I enter "51,414.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select "Cash Support" as additional income option with "9,851.00" amount at "Annually" frequency
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "Alimony" as deduction option with "22,840.00" amount at "Annually" frequency
+    And I select continue on the Deductions CoCo page
+    Then I verify the total annual income to be "54,414.00"
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate the Total Income on the Family Overview page equals "54,414.00"
+    And I select continue on the Family Overview page
+    And I select "InsuranceLoss" life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature in "English"
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
