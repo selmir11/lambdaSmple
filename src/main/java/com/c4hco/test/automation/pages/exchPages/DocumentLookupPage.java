@@ -5,19 +5,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class DocumentLookupPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
     public DocumentLookupPage(WebDriver webDriver) {
-        basicActions = new BasicActions(webDriver);
-        PageFactory.initElements(basicActions.getDriver(), this);
+ basicActions = new BasicActions(webDriver);
+ PageFactory.initElements(basicActions.getDriver(), this);
     }
     @FindBy(css = ".search-title")
     WebElement title;
@@ -174,6 +174,7 @@ public class DocumentLookupPage {
    public void clickSubmit(){
        softAssert.assertTrue(basicActions.waitForElementToBeClickable(submitButton, 20));
        submitButton.click();
+       softAssert.assertAll();
    }
 
    public void inputdates(){
@@ -181,16 +182,19 @@ public class DocumentLookupPage {
         fromDate.sendKeys("03/01/2024");
        softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate,20));
        ToDate.sendKeys("05/01/2024");
+       softAssert.assertAll();
     }
     public void verifysortoptionsasc(List<WebElement> options) {
         List<String> OriginalList = options.stream().map(WebElement::getText).collect(Collectors.toList());
         List<String> NewList = OriginalList.stream().sorted().collect(Collectors.toList());
-        Assert.assertEquals(NewList, OriginalList);
+        softAssert.assertEquals(NewList, OriginalList);
+        softAssert.assertAll();
     }
     public void verifysortoptionsdesc(List<WebElement> options) {
         List<String> OriginalList = options.stream().map(WebElement::getText).collect(Collectors.toList());
         List<String> NewList = OriginalList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        Assert.assertEquals(NewList, OriginalList);
+        softAssert.assertEquals(NewList, OriginalList);
+        softAssert.assertAll();
     }
         public void verifySortasc (String sortbyoptions){
         clickSubmit();

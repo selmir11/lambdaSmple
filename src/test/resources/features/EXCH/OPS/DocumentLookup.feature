@@ -1,4 +1,4 @@
-@OPS @test
+@OPS @SLER-277  @SLER-303
 Feature: Document Lookup page : Verify all data
 
   @SLER-277
@@ -16,9 +16,18 @@ Feature: Document Lookup page : Verify all data
     Then I search with Document Handle Number
     Then I verify Admin search results table columns
     Then I verify Document Handle search result table columns
+    Then logout from Admin Portal
+
 
     @SLER-303
     Scenario: Verify sorting for advance search
+      Given I open the login page on the "admin" portal
+      And I refresh the page
+      And I validate I am on the "Login" page
+      When I login as Admin User
+      And I validate I am on the "Admin search" page
+      And I click "Document Lookup" from application links dropdown
+      And I validate Document look Up page title is displaying on page
       And I click on Advanced search
       Then I select "Exchange" from advanced search dropdown options
       And I enter from and to dates
