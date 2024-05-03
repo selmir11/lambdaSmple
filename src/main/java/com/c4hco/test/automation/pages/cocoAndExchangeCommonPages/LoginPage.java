@@ -48,6 +48,26 @@ public class LoginPage {
 
     @FindBy(css = ".font-weight-bold")
     WebElement iForgotUsernameandPassword;
+    @FindBy(id="title")
+    WebElement loginPageTitle;
+    @FindBy(id="email-label")
+    WebElement usernameText;
+    @FindBy(id="password-label")
+    WebElement passwordText;
+    @FindBy(id="peak-login")
+    WebElement peakTitleText;
+    @FindBy(id="peak-login-text")
+    WebElement peakDescriptionText;
+    @FindBy(id="exchNotice")
+    WebElement exchLegalNotice;
+    @FindBy(id="cocoNotice")
+    WebElement cocoLegalNotice;
+    @FindBy(id="password-expired")
+    WebElement passwordExpiredText;
+    @FindBy(css="form > div.ng-star-inserted > div:nth-child(2)")
+    WebElement passwordExpiredErrorText;
+
+
 
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
@@ -94,6 +114,22 @@ public class LoginPage {
         signAdmin.click();
     }
 
+    public void loginAsBrokerUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
+        if(SharedData.getEnv().equals("staging")){
+            basicActions.waitForElementToBePresent(usernameAdmin,20 );
+            usernameAdmin.sendKeys(stgUser);
+            basicActions.waitForElementToBePresent(usernameAdmin,20 );
+            passwordAdmin.sendKeys(stgPW);
+            signAdmin.click();
+        }else{
+            basicActions.waitForElementToBePresent(usernameAdmin,20 );
+            usernameAdmin.sendKeys(stgUser);
+            basicActions.waitForElementToBePresent(usernameAdmin,20 );
+            passwordAdmin.sendKeys(stgPW);
+            signAdmin.click();
+        }
+    }
+
     public void clickForgotPassword(){
         basicActions.waitForElementToBePresent(forgotPassword,20 );
         forgotPassword.click();
@@ -126,6 +162,98 @@ public class LoginPage {
         password.sendKeys(passwordInd);
         basicActions.waitForElementToBePresent(signAdmin,10);
         signAdmin.click();    }
+
+    public void validateTheTitleOfThePage(String language) {
+        basicActions.waitForElementToBePresent(loginPageTitle, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(loginPageTitle.getText(), "Sign in to your account");
+                softAssert.assertAll();
+            break;
+            case "Spanish":
+
+                softAssert.assertEquals(loginPageTitle.getText(), "Inicie sesi\u00F3n en su cuenta");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void ValidateTheUsernameAndPasswordText(String language) {
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(usernameText,10);
+                softAssert.assertEquals(usernameText.getText(), "Username");
+                softAssert.assertEquals(passwordText.getText(), "Password");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(usernameText,10);
+                softAssert.assertEquals(usernameText.getText(), "Nombre de usuario");
+                softAssert.assertEquals(passwordText.getText(), "Contrase\u00F1a");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+    }}
+
+    public void ValidatePEAKText(String language) {
+        basicActions.waitForElementToBePresent(peakTitleText,10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(peakTitleText.getText(), "Colorado PEAK Users");
+                softAssert.assertEquals(peakDescriptionText.getText(), "Looking to sign in with your Colorado PEAK account instead?");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(peakTitleText.getText(), "Usuarios de Colorado PEAK");
+                softAssert.assertEquals(peakDescriptionText.getText(), "\u00BFPrefiere ingresar con su cuenta de Colorado PEAK?");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+    }}
+
+    public void ValidateLegalNoticeText(String language) {
+        basicActions.waitForElementToBePresent(exchLegalNotice,10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(exchLegalNotice.getText(), "Connect for Health Colorado Login Notice: This system contains U.S. Government information. By accessing and using this system you are consenting to system monitoring for law enforcement and other purposes. Unauthorized use of or access to this computer system may subject you to State and Federal criminal prosecution as well as civil penalties.");
+                softAssert.assertEquals(cocoLegalNotice.getText(), "Colorado Connect Login Notice: By accessing and using this system you are consenting to system monitoring for security purposes. Unauthorized use of or access to this computer system may subject you to State and Federal criminal prosecution as well as civil penalties.");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(exchLegalNotice.getText(), "Aviso de acceso de Connect for Health Colorado: Este sistema contiene informaci\u00F3n del gobierno de Estados Unidos. Al acceder y utilizar este sistema, usted acepta la supervisi\u00F3n del sistema con fines de aplicaci\u00F3n de la ley y otros prop\u00F3sitos. El uso no autorizado de este sistema inform\u00E1tico o el acceso no autorizado a \u00E9l est\u00E1 sujeto a la interposici\u00F3n de acciones penales estatales o federales, as\u00ED como a la aplicaci\u00F3n de sanciones civiles.");
+                softAssert.assertEquals(cocoLegalNotice.getText(), "Aviso de acceso de Colorado Connect: Al acceder y utilizar este sistema, usted acepta la supervisi\u00F3n del sistema con fines de seguridad. El uso no autorizado de este sistema inform\u00E1tico o el acceso no autorizado a \u00E9l puede sujetarlo a usted a la interposici\u00F3n de acciones penales estatales o federales, as\u00ED como a la aplicaci\u00F3n de sanciones civiles.");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+
+    }
+
+    public void verifyExpiredPasswordErrorMessage(String language) {
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(passwordExpiredText,10);
+                softAssert.assertEquals(passwordExpiredText.getText(), "PASSWORD EXPIRED");
+                softAssert.assertEquals(passwordExpiredErrorText.getText(), "Your password has expired. In order to reset it, please click on the forgot password link below");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(passwordExpiredText,10);
+                softAssert.assertEquals(passwordExpiredText.getText(), "CONTRASE\u00D1A VENCIDA");
+                softAssert.assertEquals(passwordExpiredErrorText.getText(), "Su contrase\u00F1a ha vencido. Para reestablecerla, haga clic en el enlace 'olvid\u00E9 mi contrase\u00F1a' de abajo.");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);}
+    }
+
+
+
 }
 
     // ############################## VALIDATION METHODS #########################
