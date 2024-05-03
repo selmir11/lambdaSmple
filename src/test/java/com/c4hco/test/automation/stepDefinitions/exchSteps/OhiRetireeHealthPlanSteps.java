@@ -54,6 +54,17 @@ public class OhiRetireeHealthPlanSteps {
 
     @And("I verify Voluntarily Ending is {string} on the Retiree page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiRetireeHealthPlanPage.verifyVoluntaryEndingOption(voluntaryEnding);}
-    
-    
+
+    @And("I verify the {string} Retiree page data in {string}")
+    public void iVerifyRetireePageData(String dataToVerify, String language) {ohiRetireeHealthPlanPage.verifyRetireePageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the Retiree page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiRetireeHealthPlanPage.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for Retiree page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiRetireeHealthPlanPage.verifyNoErrorMessage(errorType);}
+
+
+
+
 }
