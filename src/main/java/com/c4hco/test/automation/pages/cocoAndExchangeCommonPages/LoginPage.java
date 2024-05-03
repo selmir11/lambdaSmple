@@ -115,19 +115,15 @@ public class LoginPage {
     }
 
     public void loginAsBrokerUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
+        basicActions.waitForElementToBePresent(usernameAdmin,40 );
         if(SharedData.getEnv().equals("staging")){
-            basicActions.waitForElementToBePresent(usernameAdmin,20 );
             usernameAdmin.sendKeys(stgUser);
-            basicActions.waitForElementToBePresent(usernameAdmin,20 );
             passwordAdmin.sendKeys(stgPW);
-            signAdmin.click();
         }else{
-            basicActions.waitForElementToBePresent(usernameAdmin,20 );
-            usernameAdmin.sendKeys(stgUser);
-            basicActions.waitForElementToBePresent(usernameAdmin,20 );
-            passwordAdmin.sendKeys(stgPW);
-            signAdmin.click();
+            usernameAdmin.sendKeys(qaUser);
+            passwordAdmin.sendKeys(qaPW);
         }
+        signAdmin.click();
     }
 
     public void clickForgotPassword(){
@@ -181,22 +177,21 @@ public class LoginPage {
     }
 
     public void ValidateTheUsernameAndPasswordText(String language) {
+        basicActions.waitForElementToBePresent(usernameText,20);
         switch (language) {
             case "English":
-                basicActions.waitForElementToBePresent(usernameText,10);
                 softAssert.assertEquals(usernameText.getText(), "Username");
                 softAssert.assertEquals(passwordText.getText(), "Password");
-                softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(usernameText,10);
                 softAssert.assertEquals(usernameText.getText(), "Nombre de usuario");
                 softAssert.assertEquals(passwordText.getText(), "Contrase\u00F1a");
-                softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-    }}
+    }
+        softAssert.assertAll();
+    }
 
     public void ValidatePEAKText(String language) {
         basicActions.waitForElementToBePresent(peakTitleText,10);
@@ -235,21 +230,20 @@ public class LoginPage {
     }
 
     public void verifyExpiredPasswordErrorMessage(String language) {
+        basicActions.waitForElementToBePresent(passwordExpiredText,10);
         switch (language) {
             case "English":
-                basicActions.waitForElementToBePresent(passwordExpiredText,10);
                 softAssert.assertEquals(passwordExpiredText.getText(), "PASSWORD EXPIRED");
                 softAssert.assertEquals(passwordExpiredErrorText.getText(), "Your password has expired. In order to reset it, please click on the forgot password link below");
-                softAssert.assertAll();
+
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(passwordExpiredText,10);
                 softAssert.assertEquals(passwordExpiredText.getText(), "CONTRASE\u00D1A VENCIDA");
                 softAssert.assertEquals(passwordExpiredErrorText.getText(), "Su contrase\u00F1a ha vencido. Para reestablecerla, haga clic en el enlace 'olvid\u00E9 mi contrase\u00F1a' de abajo.");
-                softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);}
+        softAssert.assertAll();
     }
 
 
