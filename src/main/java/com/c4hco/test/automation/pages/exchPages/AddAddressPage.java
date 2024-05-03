@@ -152,7 +152,7 @@ public class AddAddressPage {
 
     public void mailingAddress(){
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
-        txtMailingAddrLine1.sendKeys("1234 Road");
+        txtMailingAddrLine1.sendKeys("PO BOX 1454");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
         txtMailingCity.sendKeys("Denver");
         selectMailingState.sendKeys("CO");

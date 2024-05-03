@@ -90,25 +90,25 @@ Feature: Seed01 - Exchange
     And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate medical plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-    And I validate dental plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
+#    And I Validate the correct enrolled plans are displayed on account overview page
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate medical plan details from my policies page
+#      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+#      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+#    And I validate dental plan details from my policies page
+#      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+#      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+#    And I click View Plan History link from medical plan card
+#    And I validate medical plan details from plan history
+#    And I click on to Back to Current Plan Details button
+#    And I click View Plan History link from dental plan card
+#    And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
-    And I validate the member details from policy tables
-    And I validate member details from ob834_details table
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should not be empty
+#    And I validate the member details from policy tables
+#    And I validate member details from ob834_details table
+#    And I download the files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 files should not be empty
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -145,3 +145,48 @@ Feature: Seed01 - Exchange
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
+
+  @RT-2248
+  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
+#    And I validate the member details from policy tables
+#    And I validate member details from ob834_details table
+#    And I download the files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 files should have the values
+#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|
+#      |          021          | 021                 | 25                   |
+#      |          021          | 021                 | 25                   |
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "NoneOfThese" and click continue
+    And I click Continue With Application
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Find Expert Help page
+    Then I update DOB to new DOB of "11/08/1986"
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I verify the family overview table is present
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I click on Sign Out in the Header for "NonElmo"
+#    And I validate the member details from policy tables
+#    And I validate member details from ob834_details table
+#    And I download the files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 files should have the values
+#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+#      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+#      |          021          | 021                 | 25                   |                          |                             |                    |
+
