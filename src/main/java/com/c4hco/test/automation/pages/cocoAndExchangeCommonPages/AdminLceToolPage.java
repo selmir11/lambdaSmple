@@ -11,8 +11,6 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.c4hco.test.automation.utils.WebDriverManager.getDriver;
-
 public class AdminLceToolPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
