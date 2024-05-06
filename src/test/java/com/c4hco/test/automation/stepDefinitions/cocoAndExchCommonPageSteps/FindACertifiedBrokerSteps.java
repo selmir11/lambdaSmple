@@ -23,9 +23,13 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clearSearchForBrokerLocation();
     }
 
-    @Then("I verify the over 50 search results error {string} displayed in {string}")
-    public void IVerifyTheOver50SearchResultsErrorDisplayed(String expectedState, String language) {
-        findACertifiedBrokerPage.validateOver50SearchResultsErrorExists(expectedState, language);
+    @Then("I verify the over 50 search results error is displayed in {string}")
+    public void IVerifyTheOver50SearchResultsErrorDisplayed(String language) {
+        findACertifiedBrokerPage.validateOver50SearchResultsErrorExists(language);
     }
 
+    @Then("I verify the over 50 search results error does not display")
+    public void IVerifyTheOver50SearchResultsErrorDoesNotDisplay() {
+        findACertifiedBrokerPage.validateOver50SearchResultsErrorDoesNotExist();
+    }
 }

@@ -43,28 +43,22 @@ public class FindACertifiedBrokerPage {
         searchBrokerLocation.clear();
     }
 
-    public void validateOver50SearchResultsErrorExists(String expectedState, String language){
-        String ExpectedText = "";
+    public void validateOver50SearchResultsErrorExists(String language){
+        String ExpectedText = switch (language) {
+            case "English" ->
+                    "More than 50 search results were found and only the first 50 are shown. Please enter more specific search criteria if your desired result is not included.";
+            case "Spanish" ->
+                    "Se encontraron m\u00E1s de 50 resultados en la b\u00FAsqueda y solo se muestran los primeros 50. Si los resultados deseados no han sido incluidos, por favor ingrese criterios de b\u00FAsqueda m\u00E1s espec\u00EDficos.";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
 
-        switch (expectedState) {
-            case "is":
-                ExpectedText = switch (language) {
-                    case "English" ->
-                            "More than 50 search results were found and only the first 50 are shown. Please enter more specific search criteria if your desired result is not included.";
-                    case "Spanish" ->
-                            "Se encontraron m\u00E1s de 50 resultados en la b\u00FAsqueda y solo se muestran los primeros 50. Si los resultados deseados no han sido incluidos, por favor ingrese criterios de b\u00FAsqueda m\u00E1s espec\u00EDficos.";
-                    default -> throw new IllegalArgumentException("Invalid option: " + language);
-                };
+        basicActions.waitForElementToBePresent(over50SearchResultsError,30);
+        softAssert.assertEquals(over50SearchResultsError.getText(), ExpectedText);
+        softAssert.assertAll();
+    }
 
-                basicActions.waitForElementToBePresent(over50SearchResultsError,30);
-                softAssert.assertEquals(over50SearchResultsError.getText(), ExpectedText);
-                break;
-            case "is not":
-                softAssert.assertFalse(basicActions.waitForElementPresence(over50SearchResultsError,20));
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
+    public void validateOver50SearchResultsErrorDoesNotExist(){
+        softAssert.assertFalse(basicActions.waitForElementPresence(over50SearchResultsError,20));
         softAssert.assertAll();
     }
 }
