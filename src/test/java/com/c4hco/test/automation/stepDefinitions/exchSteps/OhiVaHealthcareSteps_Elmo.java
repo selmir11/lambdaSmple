@@ -43,6 +43,15 @@ public class OhiVaHealthcareSteps_Elmo {
     @And("I verify Voluntarily Ending is {string} on the VA Healthcare page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiVaHealthcarePage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
 
+    @And("I verify the {string} VA Healthcare page data in {string}")
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiVaHealthcarePage_Elmo.verifyVaHealthcarePageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the VA Healthcare page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiVaHealthcarePage_Elmo.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for VA Healthcare page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiVaHealthcarePage_Elmo.verifyNoErrorMessage(errorType);}
+
 
 
 
