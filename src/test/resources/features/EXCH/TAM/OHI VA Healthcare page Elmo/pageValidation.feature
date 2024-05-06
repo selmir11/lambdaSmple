@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Validation-OHI VA Healthcare Elmo Page
 
   Background:
