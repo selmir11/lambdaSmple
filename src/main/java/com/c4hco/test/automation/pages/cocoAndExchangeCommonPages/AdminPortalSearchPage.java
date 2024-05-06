@@ -144,8 +144,7 @@ public class AdminPortalSearchPage {
         basicActions.switchtoactiveTab();
     }
     public void logoutFromAdmin(){
-        navigateToPreviousPage();       //not all pages have Go Back button
-        basicActions.switchToParentPage("C4HCO Admin Portal");
+        navigateToPreviousPage();
         basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();
         basicActions.waitForElementToBePresent(logoutAdmin, 100);

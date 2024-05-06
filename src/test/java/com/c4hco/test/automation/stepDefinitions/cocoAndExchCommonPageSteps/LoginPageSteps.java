@@ -26,7 +26,7 @@ public class LoginPageSteps {
             public void i_login_as_admin_user() {loginPage.loginAsAnAdminUser();}
     @When("I login as Admin any User {string} and {string}")
     public void i_login_as_adminAnyUser(String usernameAdmin, String passwordAdmin) {
-        loginPage.loginAdminUser(usernameAdmin, passwordAdmin); }
+        loginPage.loginAsAdminAnyUser(usernameAdmin, passwordAdmin); }
 
     @When("I login as {string} and {string} individual existing user")
     public void iLoginAsExistingIndividual(String userIndividual,String password) {

@@ -27,8 +27,8 @@ public class AdminToolPageSteps {
     @And("I validate  Account Number text displays")
     public void iValidateAccountNumberText() {
         adminLceToolPage.validateAccountNumberText();      }
-    @Then("logout from Admin Portal LCE")
-    public void logoutAdminPortal() {
+    @Then("I logout from Admin Portal LCE")
+    public void iLogoutAdminPortal() {
         adminLceToolPage.logoutFromAdminLce();
     }
 }
