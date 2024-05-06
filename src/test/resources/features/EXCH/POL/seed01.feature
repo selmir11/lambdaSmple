@@ -146,7 +146,7 @@ Feature: Seed01 - Exchange
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
 
-  @SLER-296 WIP
+  @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
