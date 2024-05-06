@@ -98,4 +98,6 @@ public class AdminLceToolPage {
         basicActions.waitForElementToBePresent(logoutAdmin, 100);
         logoutAdmin.click();
     }
+    public void initiateIncomingPage() {
+        basicActions.switchtoactiveTab();   }
 }

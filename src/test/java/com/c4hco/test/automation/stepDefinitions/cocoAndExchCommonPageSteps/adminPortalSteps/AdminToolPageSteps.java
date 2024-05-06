@@ -26,4 +26,8 @@ public class AdminToolPageSteps {
     public void iLogoutAdminPortal() {
         adminLceToolPage.logoutFromAdminLce();
     }
+    @And("I initiate incoming page")
+    public void iInitiateIncomingPage() {
+        adminLceToolPage.initiateIncomingPage();
+    }
 }
