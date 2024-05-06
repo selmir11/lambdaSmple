@@ -59,4 +59,24 @@ public class FindExpertHelpSteps {
         public void iValidateCurrentBrokerTextExists() {
                 findExpertHelpPage.validateBrokerExists();
         }
+
+        @Then("I validate the Find a Broker button {string} displayed")
+        public void iValidateTheFindABrokerButtonDisplayed(String expectedState){
+                findExpertHelpPage.validateFindABrokerButtonExists(expectedState);
+        }
+
+        @Then("I validate the Have a Broker call you button is displayed")
+        public void iValidateTheHaveABrokerCallYouButtonExists(){
+                findExpertHelpPage.validateHaveABrokerCallYouButtonExists();
+        }
+
+        @Then("I validate the Find an Assister button is displayed")
+        public void iValidateTheFindAnAssisterButtonExists(){
+                findExpertHelpPage.validateFindAnAssisterButtonExists();
+        }
+
+        @Then("I validate the Authorize Assister Organization button {string} displayed")
+        public void iValidateTheAuthorizeAssisterOrganizationButtonDisplayed(String expectedState){
+                findExpertHelpPage.validateAuthorizeAssisterOrganizationButtonExists(expectedState);
+        }
 }

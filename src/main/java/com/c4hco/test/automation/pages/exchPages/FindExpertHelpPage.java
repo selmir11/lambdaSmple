@@ -17,9 +17,42 @@ public class FindExpertHelpPage {
     @FindBy(id = "contineOwn-button")
     WebElement continueOnMyOwnButton;
 
+    @FindBy(id = "broker-button")
+    WebElement findABrokerBtn;
+    @FindBy(id="findBroker-brokerName-agency-license-input")
+    WebElement searchBrokerNameBar;
+    @FindBy(id="findBroker-searchBroker-btn")
+    WebElement searchForBrokerBtn;
+    @FindBy(id="person-name")
+    WebElement nameOfBrokerFound;
+    @FindBy(css=".fa-chevron-down")
+    WebElement brokerMoreDetailsDrpDown;
+    @FindBy(id="agency-manage-account-button")
+    WebElement authorizeBtn;
+    @FindBy(id="terms-checkbox-input")
+    WebElement brokertermsCheckBox;
+    @FindBy(css=".primary-action-button .ng-star-inserted")
+    WebElement authorizeBrokerButton;
+    public void clickFindABrokerBtn(){
+        basicActions.waitForElementToBeClickable(findABrokerBtn,10);
+        findABrokerBtn.click();
+    }
+    public void findBrokerByName(String brokerName){
+        basicActions.waitForElementToBeClickable(searchBrokerNameBar,10);
+        searchBrokerNameBar.sendKeys(brokerName);
+        basicActions.waitForElementToBeClickable(searchForBrokerBtn,10);
+        searchForBrokerBtn.click();
+        basicActions.waitForElementToBePresent(nameOfBrokerFound,10);
+        brokerMoreDetailsDrpDown.click();
+        basicActions.waitForElementToBeClickable(authorizeBtn,10);
+        authorizeBtn.click();
+        brokertermsCheckBox.click();
+        authorizeBrokerButton.click();
+    }
+
     public void clickContinueOnOwnButton() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,10));
+        softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,20));
         softAssert.assertAll();
         continueOnMyOwnButton.click();
     }

@@ -105,7 +105,8 @@ Feature: Page Text-Additional Income Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     And I click continue on the Employment Info Page
 
     Then I validate I am on the "Additional income" page
@@ -199,7 +200,8 @@ Feature: Page Text-Additional Income Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     And I click continue on the Employment Info Page
 
     And I validate I am on the "Additional income" page
