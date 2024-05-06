@@ -79,7 +79,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "#globe a")
     List<WebElement> languageDrpOption2;
 
-    @FindBy(css = "header  > div > .dropdown-item")
+    @FindBy(css = ".dropdown-menu.lang-dropdown-div.shadow.show >a")
     List<WebElement> languageDrpOptionSignIn;
 
     @FindBy(css = "li[class='vertical-ruler'] li")

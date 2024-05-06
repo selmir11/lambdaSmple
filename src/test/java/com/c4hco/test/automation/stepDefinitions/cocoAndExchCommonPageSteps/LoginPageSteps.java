@@ -2,9 +2,8 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
+
 
 public class LoginPageSteps {
 
@@ -32,6 +31,11 @@ public class LoginPageSteps {
 
     @When("I login as Broker User {string} password {string}")
     public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
+
+    @And("I login as Broker User any environment {string} password {string} and {string} password {string}")
+    public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
+        loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
+    }
 
     @When("I click create forgot {string}")
     public void i_click_create_forget(String credentials) {
@@ -65,4 +69,36 @@ public class LoginPageSteps {
     public void iReceiveMessageIForgotUsernameAndPassword() {
         loginPage.usernameandpasswordRequiredMessage();
     }
- }
+
+    @Then("I validate the title of the page")
+    public void iValidateTheTitleOfThePage() {
+
+    }
+
+    @Then("I validate the title of the page in {string}")
+    public void iValidateTheTitleOfThePageIn(String language) {
+        loginPage.validateTheTitleOfThePage(language);
+    }
+
+    @And("I validate the username and password text in the login page in {string}")
+    public void iValidateTheUsernameAndPasswordTextInTheLoginPageIn(String language) {
+        loginPage.ValidateTheUsernameAndPasswordText(language);
+    }
+
+    @Then("I validate PEAK Text in {string}")
+    public void iValidatePEAKTextIn(String language) {
+        loginPage.ValidatePEAKText(language);
+    }
+
+    @And("I validate legal notice text in {string}")
+    public void iValidateLegalNoticeTextIn(String language) {
+        loginPage.ValidateLegalNoticeText(language);
+    }
+
+    @Then("I verify Expired Password error message in {string}")
+    public void iVerifyExpiredPasswordErrorMessageIn(String language) {
+        loginPage.verifyExpiredPasswordErrorMessage(language);
+    }
+
+
+}
