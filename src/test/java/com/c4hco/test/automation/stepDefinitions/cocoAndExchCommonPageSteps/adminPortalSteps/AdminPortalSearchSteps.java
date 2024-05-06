@@ -103,10 +103,5 @@ public class AdminPortalSearchSteps {
     @And("I validate {string} application link not display")
     public void iValidateAppLinksIsNotDisplay(String option)    {
             adminPortalSearchPage.validateAppLinksIsNotDisplay(option); }
-
-    @Then("I enter existing {string} account {string}")
-    public void iEnterExistingAccountID(String userdata,String type) {
-        adminPortalSearchPage.enterUserData(userdata, type);
-        adminPortalSearchPage.clickSearch();    }
 }
 

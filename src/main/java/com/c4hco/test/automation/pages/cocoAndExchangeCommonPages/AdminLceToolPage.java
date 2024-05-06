@@ -88,22 +88,12 @@ public class AdminLceToolPage {
         basicActions.getDriver().switchTo().window(tabs.get(0));
     }
 
-    public void validatePageTitle() {
-        basicActions.waitForElementToBePresent(titleAdminLceTool, 20);
-        softAssert.assertAll();
-    }
-
-    public void titleText() {
+    public void verifyAdminLceContainerTitle() {
         titleAdminLceTool.isDisplayed();
         softAssert.assertEquals(titleAdminLceTool.getText(), "Admin LCE Tool");
-        softAssert.assertAll();
-    }
-
-    public void validateAccountNumberText() {
         softAssert.assertTrue(acctNumberLceTool.isDisplayed());
         softAssert.assertAll();
     }
-
     public void logoutFromAdminLce() {
         basicActions.switchToParentPage("C4HCO Admin Portal");
         basicActions.waitForElementToBePresent(dropdownArrow, 100);
