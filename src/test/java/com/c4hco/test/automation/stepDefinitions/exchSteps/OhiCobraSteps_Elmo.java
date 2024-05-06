@@ -51,6 +51,15 @@ public class OhiCobraSteps_Elmo {
     @And("I verify Voluntarily Ending is {string} on the Cobra page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiCobraPage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
 
+    @And("I verify the {string} Cobra page data in {string}")
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiCobraPage_Elmo.verifyVaHealthcarePageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the Cobra page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiCobraPage_Elmo.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for Cobra page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiCobraPage_Elmo.verifyNoErrorMessage(errorType);}
+
 
 
 
