@@ -136,8 +136,8 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
-   And I wait for hold on content to disappear
-   And I click on Sign Out in the Header for "NonElmo"
+    And I wait for hold on content to disappear
+    And I click on Sign Out in the Header for "NonElmo"
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
     And I download the files from sftp server with location "/outboundedi/"
@@ -146,15 +146,8 @@ Feature: Seed01 - Exchange
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
 
-  @RT-2248
+  @SLER-296 WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
-#    And I validate the member details from policy tables
-#    And I validate member details from ob834_details table
-#    And I download the files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 files should have the values
-#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|
-#      |          021          | 021                 | 25                   |
-#      |          021          | 021                 | 25                   |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
