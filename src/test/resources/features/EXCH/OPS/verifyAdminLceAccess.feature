@@ -1,8 +1,7 @@
 @OPS
-@SLER-234
 
 Feature: This scenario checks Admin LCE Access role positive and negative scenario
-
+  @SLER-234 @AdminLCE
   Scenario: Verify admin LCE link and permission
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
