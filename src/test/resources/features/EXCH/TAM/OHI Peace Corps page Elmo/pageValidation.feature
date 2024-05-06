@@ -1,12 +1,12 @@
 @TAM
-Feature: Page Validation-OHI COBRA Elmo Page
+Feature: Page Validation-OHI Peace Corps Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-333 @PageValidationOhiCobraElmo
-  Scenario: SLER-333 I can see Cobra's standard errors consistently - English
+  @SLER-338 @PageValidationOhiPeaceCorpsElmo
+  Scenario: SLER-338 I can see Peace Corps' standard errors consistently - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -51,38 +51,38 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "COBRA" as health insurance option and continue
+    Then I select "Peace Corps" as health insurance option and continue
 
-    And I change the C4 url to "Elmo COBRA Page"
-    And I validate I am on the "Elmo COBRA" page
-    And I verify the "First Section" Cobra page data in "English"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Currently Enrolled" error in "English" on the Cobra page
-    Then I click "No" for currently enrolled in COBRA question
-    And I verify "Currently Enrolled" error does not show for Cobra page
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
+    And I verify the "First Section" Peace Corps page data in "English"
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Currently Enrolled" error in "English" on the Peace Corps page
+    Then I click "No" for currently enrolled in Peace Corps question
+    And I verify "Currently Enrolled" error does not show for Peace Corps page
 
-    Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section" Cobra page data in "English"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Insurance Ending" error in "English" on the Cobra page
-    Then I click "No" for insurance ending in 60 days in COBRA question
-    And I verify "Insurance Ending" error does not show for Cobra page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    And I verify the "Second Section" Peace Corps page data in "English"
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Insurance Ending" error in "English" on the Peace Corps page
+    Then I click "No" for insurance ending in 60 days in Peace Corps question
+    And I verify "Insurance Ending" error does not show for Peace Corps page
 
-    Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section" Cobra page data in "English"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "English" on the Cobra page
-    Then I enter end date of end of current month for COBRA
-    And I verify "Input Date" error does not show for Cobra page
-    And I verify "Voluntary End" error in "English" on the Cobra page
-    Then I click "No" for insurance ending voluntary for COBRA question
-    And I verify "Voluntary End" error does not show for Cobra page
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    And I verify the "Third Section" Peace Corps page data in "English"
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Input Date" error in "English" on the Peace Corps page
+    Then I enter end date of end of current month for Peace Corps
+    And I verify "Input Date" error does not show for Peace Corps page
+    And I verify "Voluntary End" error in "English" on the Peace Corps page
+    Then I click "No" for insurance ending voluntary for Peace Corps question
+    And I verify "Voluntary End" error does not show for Peace Corps page
 
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-334 @PageValidationOhiCobraElmo
-  Scenario: SLER-334 I can see Cobra's standard errors consistently - Spanish
+  @SLER-339 @PageValidationOhiPeaceCorpsElmo
+  Scenario: SLER-339 I can see Peace Corps' standard errors consistently - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -127,33 +127,33 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "COBRA" as health insurance option and continue
+    Then I select "Peace Corps" as health insurance option and continue
 
-    And I change the C4 url to "Elmo COBRA Page"
-    And I validate I am on the "Elmo COBRA" page
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify the "First Section" Cobra page data in "Spanish"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Currently Enrolled" error in "Spanish" on the Cobra page
-    Then I click "No" for currently enrolled in COBRA question
-    And I verify "Currently Enrolled" error does not show for Cobra page
+    And I verify the "First Section" Peace Corps page data in "Spanish"
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Currently Enrolled" error in "Spanish" on the Peace Corps page
+    Then I click "No" for currently enrolled in Peace Corps question
+    And I verify "Currently Enrolled" error does not show for Peace Corps page
 
-    Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section" Cobra page data in "Spanish"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Insurance Ending" error in "Spanish" on the Cobra page
-    Then I click "No" for insurance ending in 60 days in COBRA question
-    And I verify "Insurance Ending" error does not show for Cobra page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    And I verify the "Second Section" Peace Corps page data in "Spanish"
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Insurance Ending" error in "Spanish" on the Peace Corps page
+    Then I click "No" for insurance ending in 60 days in Peace Corps question
+    And I verify "Insurance Ending" error does not show for Peace Corps page
 
-    Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section" Cobra page data in "Spanish"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "Spanish" on the Cobra page
-    Then I enter end date of end of current month for COBRA
-    And I verify "Input Date" error does not show for Cobra page
-    And I verify "Voluntary End" error in "Spanish" on the Cobra page
-    Then I click "No" for insurance ending voluntary for COBRA question
-    And I verify "Voluntary End" error does not show for Cobra page
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    And I verify the "Third Section" Peace Corps page data in "Spanish"
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Input Date" error in "Spanish" on the Peace Corps page
+    Then I enter end date of end of current month for Peace Corps
+    And I verify "Input Date" error does not show for Peace Corps page
+    And I verify "Voluntary End" error in "Spanish" on the Peace Corps page
+    Then I click "No" for insurance ending voluntary for Peace Corps question
+    And I verify "Voluntary End" error does not show for Peace Corps page
 
     And I click on Sign Out in the Header for "Elmo"
