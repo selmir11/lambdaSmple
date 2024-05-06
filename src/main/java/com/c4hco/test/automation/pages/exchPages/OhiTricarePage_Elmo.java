@@ -220,30 +220,30 @@ public class OhiTricarePage_Elmo {
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (language){
             case "English":
-                verifyVaHealthcarePageDataEnglish(dataToVerify);
+                verifyTricarePageDataDataEnglish(dataToVerify);
                 break;
             case "Spanish":
-                verifyVaHealthcarePageDataSpanish(dataToVerify);
+                verifyTricarePageDataDataSpanish(dataToVerify);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyVaHealthcarePageDataEnglish(String dataToVerify){
+    public void verifyTricarePageDataDataEnglish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
             case "First Section":
-                verifyVaHealthcarePageFirstSectionDataEnglish();
+                verifyTricarePageDataFirstSectionDataEnglish();
                 break;
             case "Second Section":
-                verifyVaHealthcarePageFirstSectionDataEnglish();
-                verifyVaHealthcarePageSecondSectionDataEnglish();
+                verifyTricarePageDataFirstSectionDataEnglish();
+                verifyTricarePageDataSecondSectionDataEnglish();
                 break;
             case "Third Section":
-                verifyVaHealthcarePageFirstSectionDataEnglish();
-                verifyVaHealthcarePageSecondSectionDataEnglish();
-                verifyVaHealthcarePageThirdSectionDataEnglish();
+                verifyTricarePageDataFirstSectionDataEnglish();
+                verifyTricarePageDataSecondSectionDataEnglish();
+                verifyTricarePageDataThirdSectionDataEnglish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -253,7 +253,7 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageFirstSectionDataEnglish(){
+    public void verifyTricarePageDataFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiTricareHeader.getText(),"TRICARE");
@@ -264,7 +264,7 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageSecondSectionDataEnglish(){
+    public void verifyTricarePageDataSecondSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(TricareQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
@@ -272,7 +272,7 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageThirdSectionDataEnglish(){
+    public void verifyTricarePageDataThirdSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(TricareQuestionTxt.get(2).getText(),"What day will your coverage end?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
@@ -282,20 +282,20 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageDataSpanish(String dataToVerify){
+    public void verifyTricarePageDataDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
             case "First Section":
-                verifyVaHealthcarePageFirstSectionDataSpanish();
+                verifyTricarePageDataFirstSectionDataSpanish();
                 break;
             case "Second Section":
-                verifyVaHealthcarePageFirstSectionDataSpanish();
-                verifyVaHealthcarePageSecondSectionDataSpanish();
+                verifyTricarePageDataFirstSectionDataSpanish();
+                verifyTricarePageDataSecondSectionDataSpanish();
                 break;
             case "Third Section":
-                verifyVaHealthcarePageFirstSectionDataSpanish();
-                verifyVaHealthcarePageSecondSectionDataSpanish();
-                verifyVaHealthcarePageThirdSectionDataSpanish();
+                verifyTricarePageDataFirstSectionDataSpanish();
+                verifyTricarePageDataSecondSectionDataSpanish();
+                verifyTricarePageDataThirdSectionDataSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -305,7 +305,7 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageFirstSectionDataSpanish(){
+    public void verifyTricarePageDataFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName() + " (Spanish)"));
         softAssert.assertEquals(ohiTricareHeader.getText(),"Tricace (es)");
@@ -316,7 +316,7 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageSecondSectionDataSpanish(){
+    public void verifyTricarePageDataSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(TricareQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days? (es)");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
@@ -324,7 +324,7 @@ public class OhiTricarePage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyVaHealthcarePageThirdSectionDataSpanish(){
+    public void verifyTricarePageDataThirdSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(TricareQuestionTxt.get(2).getText(),"What day will your coverage end? (es)");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
