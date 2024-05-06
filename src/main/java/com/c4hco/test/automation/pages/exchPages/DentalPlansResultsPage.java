@@ -85,7 +85,7 @@ public class DentalPlansResultsPage {
 
     }
     public void selectfromCoverageLevelList(String coverageLevel) {
-        String coveragePath = "//span[text()='" + coverageLevel + "']";
+        String coveragePath = "//div[text()='" + coverageLevel + "']";
         basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
     }
 
@@ -95,7 +95,7 @@ public class DentalPlansResultsPage {
     }
 
     public void selectfromInsuranceCompanyList(String insuranceCompany){
-        String companyPath = "//span[text()='" + insuranceCompany + "']";
+        String companyPath = "//div[text()='" + insuranceCompany + "']";
         basicActions.getDriver().findElement(By.xpath(companyPath)).click();
     }
 

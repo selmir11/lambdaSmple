@@ -4,7 +4,7 @@ Feature: print functionality on the Colorado Connect My Clients page
   Scenario: print functionality on My Clients page
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    When I login as Broker User "testing.soukaina+test3@outlook.com" password "ALaska12!"
+    When I login as Broker User "testing.soukaina+teststg@outlook.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
