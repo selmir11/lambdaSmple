@@ -216,7 +216,7 @@ public class OhiTricarePage_Elmo {
         }
     }
 
-    public void verifyVaHealthcarePageData(String dataToVerify, String language){
+    public void verifyTricarePageData(String dataToVerify, String language){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (language){
             case "English":

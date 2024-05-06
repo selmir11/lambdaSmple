@@ -46,7 +46,7 @@ public class OhiTricareSteps_Elmo {
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiTricarePage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
 
     @And("I verify the {string} Tricare page data in {string}")
-    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiTricarePage_Elmo.verifyVaHealthcarePageData(dataToVerify, language);}
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiTricarePage_Elmo.verifyTricarePageData(dataToVerify, language);}
 
     @And("I verify {string} error in {string} on the Tricare page")
     public void iVerifyErrorMessage(String errorType, String language){ohiTricarePage_Elmo.verifyErrorMessage(errorType, language);}
