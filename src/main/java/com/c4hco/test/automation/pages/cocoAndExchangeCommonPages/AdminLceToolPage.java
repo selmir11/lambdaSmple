@@ -46,6 +46,10 @@ public class AdminLceToolPage {
     WebElement titleAdminLceTool;
     @FindBy(xpath = "//b[normalize-space()='Account Number']")
     WebElement acctNumberLceTool;
+    @FindBy(css = "#header-user span:nth-child(3)")
+    WebElement dropdownArrow;
+    @FindBy(id = "logout-link")
+    WebElement logoutAdmin;
 
         public void lookUpAccId(){
             tabs = new ArrayList<> (basicActions.getDriver().getWindowHandles());
@@ -92,4 +96,17 @@ public class AdminLceToolPage {
     public void validateAccountNumberText() {
         softAssert.assertTrue(acctNumberLceTool.isDisplayed());
         softAssert.assertAll();     }
+    public void logoutFromAdminLce(){
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        dropdownArrow.click();
+        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        logoutAdmin.click();
+    }
+//    public void switchToActivePage() {
+//        tabs = new ArrayList<>(getDriver().getWindowHandles());
+//        getDriver().switchTo().window(tabs.get(0));    //this is to use when page refresh is not helping
+//    }
+
+
 }

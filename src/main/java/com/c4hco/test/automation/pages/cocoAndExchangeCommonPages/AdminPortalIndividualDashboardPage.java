@@ -37,7 +37,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberAddress;
 
     public void checkingTitleIndividual() {
-        basicActions.switchToActivePage();
+        basicActions.switchtoactiveTab();
         basicActions.waitForElementToBePresent(memberPrimary, 10);
         softAssert.assertEquals("Primary Account Holder: ANNA Julyeighth", memberPrimary.getText());
         basicActions.waitForElementToBePresent(memberId, 10);

@@ -137,7 +137,6 @@ public class AdminPortalSearchPage {
     }
 
     public void clickFromApplicationLinksDropdown(String dropdownOption){
-
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
@@ -145,7 +144,7 @@ public class AdminPortalSearchPage {
         basicActions.switchtoactiveTab();
     }
     public void logoutFromAdmin(){
-       // navigateToPreviousPage();       //not all pages have Go Back button
+        navigateToPreviousPage();       //not all pages have Go Back button
         basicActions.switchToParentPage("C4HCO Admin Portal");
         basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();

@@ -17,4 +17,4 @@ Feature: This scenario checks Admin LCE Access role positive and negative scenar
     Then I login as Admin any User "C4test.sereport@gmail.com" and "ALaska12!"
     And I validate I am on the "Admin Portal search" page
     Then I validate "Admin LCE" application link not display
-    And logout from Admin Portal
+    And logout from Admin Portal LCE

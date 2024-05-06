@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adm
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminLceToolPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class AdminToolPageSteps {
     AdminLceToolPage adminLceToolPage = new AdminLceToolPage(WebDriverManager.getDriver());
@@ -26,4 +27,8 @@ public class AdminToolPageSteps {
     @And("I validate  Account Number text displays")
     public void iValidateAccountNumberText() {
         adminLceToolPage.validateAccountNumberText();      }
+    @Then("logout from Admin Portal LCE")
+    public void logoutAdminPortal() {
+        adminLceToolPage.logoutFromAdminLce();
+    }
 }

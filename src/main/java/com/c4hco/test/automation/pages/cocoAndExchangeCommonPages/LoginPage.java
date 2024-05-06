@@ -127,6 +127,7 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(signAdmin,10);
         signAdmin.click();    }
     public void loginAdminUser(String usernameAdmin, String passwordAdmin) {
+        basicActions.waitForElementToBePresent(username,10);
         username.sendKeys(usernameAdmin);
         password.sendKeys(passwordAdmin);
         basicActions.waitForElementToBePresent(signAdmin,10);
