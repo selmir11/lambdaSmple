@@ -49,6 +49,15 @@ public class OhiPeaceCorpsSteps_Elmo {
 
     @And("I verify Voluntarily Ending is {string} on the Peace Corps page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiPeaceCorpsPage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
+
+    @And("I verify the {string} Peace Corps page data in {string}")
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiPeaceCorpsPage_Elmo.verifyPeaceCorpsPageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the Peace Corps page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiPeaceCorpsPage_Elmo.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for Peace Corps page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiPeaceCorpsPage_Elmo.verifyNoErrorMessage(errorType);}
     
     
     
