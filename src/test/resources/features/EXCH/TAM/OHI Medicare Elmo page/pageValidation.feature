@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Validation-OHI Medicare Elmo Page
 
   Background:
