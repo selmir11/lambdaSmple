@@ -30,6 +30,7 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 /src/main/resources/application.properties
+/src/main/resources/application.local.properties.txt
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -71,5 +72,7 @@ testdata/
 
 logs/
 Log4j/log4j-application.log
+
+
 
 
