@@ -35,6 +35,9 @@ public class TellUsAboutYourselfPage {
     @FindBy(css = "#nameSuffix > option")
     List<WebElement> suffixDropdownOptions;
 
+    @FindBy(id = "dateOfBirth")
+    WebElement dob;
+
     @FindBy(id = "genderFemale")
     WebElement rdobtnSexFemale;
     @FindBy(id = "genderMale")
@@ -125,6 +128,14 @@ public class TellUsAboutYourselfPage {
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getMiddleInitial()+" "+subscriber.getLastName()+" "+subscriber.getSuffix());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         SharedData.setPrimaryMember(subscriber);
+    }
+
+    public void updateDOB(String newDob){
+        basicActions.waitForElementToBePresent(dob, 20);
+        dob.clear();
+        dob.sendKeys(newDob);
+        SharedData.getPrimaryMember().setDob(newDob);
+        System.out.println("dob updated");
     }
 
 }

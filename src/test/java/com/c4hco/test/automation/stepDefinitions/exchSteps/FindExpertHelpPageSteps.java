@@ -8,8 +8,8 @@ public class FindExpertHelpPageSteps {
     FindExpertHelpPage findExpertHelpPage = new FindExpertHelpPage(WebDriverManager.getDriver());
 
     @Then("I click Continue on my own button from Find Expert Help page")
-    public void iClickContinueOnOwnButton() {
-        findExpertHelpPage.clickContinueOnOwnButton();
+    public void iClickContinueOnMyOwnButton() {
+        findExpertHelpPage.clickContinueOnMyOwnButton();
     }
 
     @Then("I click the back button from Find Expert Help page")
