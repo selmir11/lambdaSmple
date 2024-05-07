@@ -1,6 +1,5 @@
-@OPS @SLER-277  @SLER-303
+@OPS
 Feature: Document Lookup page : Verify all data
-
   @SLER-277
   Scenario: Verify data
     Given I open the login page on the "admin" portal
@@ -17,7 +16,6 @@ Feature: Document Lookup page : Verify all data
     Then I verify Admin search results table columns
     Then I verify Document Handle search result table columns
     Then logout from Admin Portal
-
 
     @SLER-303
     Scenario: Verify sorting for advance search

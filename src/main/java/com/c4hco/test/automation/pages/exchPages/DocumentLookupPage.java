@@ -9,12 +9,13 @@ import org.testng.asserts.SoftAssert;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 public class DocumentLookupPage {
     private BasicActions basicActions;
+
     SoftAssert softAssert = new SoftAssert();
 
     public DocumentLookupPage(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
  PageFactory.initElements(basicActions.getDriver(), this);
     }
     @FindBy(css = ".search-title")
@@ -199,10 +200,10 @@ public class DocumentLookupPage {
         basicActions.wait(10);
             switch (sortbyoptions){
                 case "Document Type":
-                    verifysortoptionsasc(documentTypecolumn);
+                  verifysortoptionsasc(documentTypecolumn);
                     break;
                 case "Created Date":
-                    verifysortoptionsasc(createdDatecolumn);
+                   verifysortoptionsasc(createdDatecolumn);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid sort option: " +sortbyoptions );
@@ -213,10 +214,10 @@ public class DocumentLookupPage {
           clickSubmit();
         switch (sortbyoptions){
             case "Document Type":
-                verifysortoptionsdesc(documentTypecolumn);
+              verifysortoptionsdesc(documentTypecolumn);
                 break;
             case "Created Date":
-                verifysortoptionsdesc(createdDatecolumn);
+              verifysortoptionsdesc(createdDatecolumn);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort option: " +sortbyoptions );

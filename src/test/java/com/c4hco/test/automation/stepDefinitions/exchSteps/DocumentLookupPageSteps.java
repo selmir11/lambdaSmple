@@ -1,13 +1,10 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.DocumentLookupPage;
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 public class DocumentLookupPageSteps {
-
-    BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
 
     DocumentLookupPage documentLookupPage = new DocumentLookupPage(WebDriverManager.getDriver());
 
