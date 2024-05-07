@@ -452,7 +452,7 @@ public class OhiTricarePage_Elmo {
     public void verifyNoErrorMessage(String errorType) {
         switch (errorType) {
             case "Currently Enrolled":
-                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10));
                 softAssert.assertAll();
                 break;
             case "Insurance Ending":

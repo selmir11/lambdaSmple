@@ -455,7 +455,7 @@ public class OhiPeaceCorpsPage_Elmo {
     public void verifyNoErrorMessage(String errorType) {
         switch (errorType) {
             case "Currently Enrolled":
-                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10));
                 softAssert.assertAll();
                 break;
             case "Insurance Ending":
@@ -463,7 +463,7 @@ public class OhiPeaceCorpsPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Input Date":
-                softAssert.assertTrue(basicActions.waitForElementToDisappear(inputEndDateError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(inputEndDateError, 10));
                 softAssert.assertAll();
                 break;
             case "Voluntary End":
