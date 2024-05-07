@@ -7,7 +7,7 @@ public class AdminPortalCocoUserDashboardPageSteps {
 
     AdminPortalCocoUserDashboardPage adminPortalCocoUserDashboardPage = new AdminPortalCocoUserDashboardPage(WebDriverManager.getDriver());
 
-    @Then("I click on {string} button")
+    @Then("I click on {string} user dashboard button")
     public void iClickOnButton(String DashboardButtons) {
         adminPortalCocoUserDashboardPage.clickFromDashboardButtons(DashboardButtons);
     }
