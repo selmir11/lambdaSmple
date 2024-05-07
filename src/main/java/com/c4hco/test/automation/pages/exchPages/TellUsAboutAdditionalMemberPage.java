@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,5 +158,14 @@ public class TellUsAboutAdditionalMemberPage {
     }
 
     public void clickSaveAndContinue(){btnsaveAndContinue.click();}
+
+    public void memberDetailswithAge(int Age){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate DOBCalculate = currentDate.minusYears(Age);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String actualdob=dateFormat.format(DOBCalculate);
+        System.out.println(actualdob);
+        enterMemberDetails(actualdob);
+    }
 
 }
