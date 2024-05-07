@@ -881,7 +881,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-326_WIP
+  @SLER-326 @ValidateDefaultGroupingandEdit
   Scenario: Validate grouping members: Father+Mother+son in one group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1002,7 +1002,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 1 default groups
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-326_WIP
+  @SLER-344 @validateMedicalGroupingSkipped
   Scenario: Validate Medical Enrollment Groups page is skipped
     When I click create a new account on login page
     Then I click create my account from pre-screen page
