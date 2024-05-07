@@ -1,5 +1,4 @@
 package com.c4hco.test.automation.utils;
-
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
@@ -203,6 +202,7 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
+
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();
