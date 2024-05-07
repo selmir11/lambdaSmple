@@ -4,7 +4,6 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -15,13 +14,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class OhiCobraPage_Elmo {
-    BasicActions basicActions;
-    Actions action;
+public class OhiRetireeHealthPlanPage_Elmo {
+    private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    public OhiCobraPage_Elmo(WebDriver webDriver){
+    public OhiRetireeHealthPlanPage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
-        action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -29,13 +26,13 @@ public class OhiCobraPage_Elmo {
     WebElement ohiHeader;
 
     @FindBy(css = ".container .header-2")
-    WebElement ohiCobraHeader;
+    WebElement ohiRetireeHeader;
 
     @FindBy(css = ".ohi-container > div > span")
     WebElement pleaseEnterTxt;
 
     @FindBy(css = "div > label")
-    List<WebElement> CobraQuestionTxt;
+    List<WebElement> retireeQuestionTxt;
 
     @FindBy(css = "#Ohi-Endable-enrolled-container span.error-message")
     WebElement currentlyEnrolledError;
@@ -70,13 +67,17 @@ public class OhiCobraPage_Elmo {
     @FindBy(id = "Ohi-Endable-endVoluntary-NoButton")
     WebElement endVoluntaryNo;
 
-    @FindBy(id = "Ohi-Endable-GoBack")
-    WebElement goBackBtn;
-
     @FindBy(id = "Ohi-Endable-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
+    @FindBy(id = "Ohi-Endable-GoBack")
+    WebElement goBackBtn;
 
+
+
+    public void clickGoBack() {
+        basicActions.click(goBackBtn);
+    }
 
     public void clickSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
@@ -146,10 +147,10 @@ public class OhiCobraPage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    public void verifyHeadersCobraOhiPageEnglish(){
+    public void verifyHeadersRetireeOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA");
+        softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertAll();
     }
 
@@ -196,7 +197,7 @@ public class OhiCobraPage_Elmo {
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         calendar.add(Calendar.DATE, -1);
         Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("YYYY-MM-dd");
+        DateFormat endOfCurrentMonth = new SimpleDateFormat("YYY-MM-dd");
 
         softAssert.assertTrue(inputEndDate.getAttribute("value").contains(endOfCurrentMonth.format(lastDayOfMonth)));
         softAssert.assertAll();
@@ -219,34 +220,34 @@ public class OhiCobraPage_Elmo {
         }
     }
 
-    public void verifyCobraPageData(String dataToVerify, String language){
+    public void verifyRetireePageData(String dataToVerify, String language){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (language){
             case "English":
-                verifyCobraPageDataEnglish(dataToVerify);
+                verifyRetireePageDataEnglish(dataToVerify);
                 break;
             case "Spanish":
-                verifyCobraPageDataSpanish(dataToVerify);
+                verifyRetireePageDataSpanish(dataToVerify);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyCobraPageDataEnglish(String dataToVerify){
+    public void verifyRetireePageDataEnglish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
             case "First Section":
-                verifyCobraPageFirstSectionDataEnglish();
+                verifyRetireePageFirstSectionDataEnglish();
                 break;
             case "Second Section":
-                verifyCobraPageFirstSectionDataEnglish();
-                verifyCobraPageSecondSectionDataEnglish();
+                verifyRetireePageFirstSectionDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
                 break;
             case "Third Section":
-                verifyCobraPageFirstSectionDataEnglish();
-                verifyCobraPageSecondSectionDataEnglish();
-                verifyCobraPageThirdSectionDataEnglish();
+                verifyRetireePageFirstSectionDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
+                verifyRetireePageThirdSectionDataEnglish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -256,49 +257,49 @@ public class OhiCobraPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageFirstSectionDataEnglish(){
+    public void verifyRetireePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in COBRA coverage");
-        softAssert.assertEquals(CobraQuestionTxt.get(0).getText(),"Are you currently enrolled in COBRA coverage?");
+        softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in a retiree health plan.");
+        softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"Are you currently enrolled in a retiree health plan?");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageSecondSectionDataEnglish(){
+    public void verifyRetireePageSecondSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(CobraQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(retireeQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageThirdSectionDataEnglish(){
+    public void verifyRetireePageThirdSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(CobraQuestionTxt.get(2).getText(),"What day will your coverage end?");
+        softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"What day will your coverage end?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(CobraQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
         softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageDataSpanish(String dataToVerify){
+    public void verifyRetireePageDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
             case "First Section":
-                verifyCobraPageFirstSectionDataSpanish();
+                verifyRetireePageFirstSectionDataSpanish();
                 break;
             case "Second Section":
-                verifyCobraPageFirstSectionDataSpanish();
-                verifyCobraPageSecondSectionDataSpanish();
+                verifyRetireePageFirstSectionDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
                 break;
             case "Third Section":
-                verifyCobraPageFirstSectionDataSpanish();
-                verifyCobraPageSecondSectionDataSpanish();
-                verifyCobraPageThirdSectionDataSpanish();
+                verifyRetireePageFirstSectionDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
+                verifyRetireePageThirdSectionDataSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -308,30 +309,30 @@ public class OhiCobraPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageFirstSectionDataSpanish(){
+    public void verifyRetireePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName() + " (Spanish)"));
-        softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA (es)");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in COBRA (es)");
-        softAssert.assertEquals(CobraQuestionTxt.get(0).getText(),"Are you currently enrolled in COBRA coverage (es)?");
+        softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan (es)");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in a retiree health plan. (es)");
+        softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"Are you currently enrolled in a retiree health plan? (es)");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageSecondSectionDataSpanish(){
+    public void verifyRetireePageSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(CobraQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days? (es)");
+        softAssert.assertEquals(retireeQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days? (es)");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageThirdSectionDataSpanish(){
+    public void verifyRetireePageThirdSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(CobraQuestionTxt.get(2).getText(),"What day will your coverage end? (es)");
+        softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"What day will your coverage end? (es)");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(CobraQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance? (es)");
+        softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance? (es)");
         softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
@@ -343,13 +344,13 @@ public class OhiCobraPage_Elmo {
                 verifyCurrentlyEnrolledError(language);
                 break;
             case "Insurance Ending":
-                verifyInsuranceEndingError(language);
+                verifyinsuranceEndingError(language);
                 break;
             case "Input Date":
-                verifyInputEndDateError(language);
+                verifyinputEndDateError(language);
                 break;
             case "Voluntary End":
-                verifyEndVoluntaryError(language);
+                verifyendVoluntaryError(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
@@ -380,7 +381,7 @@ public class OhiCobraPage_Elmo {
         }
     }
 
-    public void verifyInsuranceEndingError(String language) {
+    public void verifyinsuranceEndingError(String language) {
         basicActions.waitForElementToBePresent(insuranceEndingError, 20);
         switch (language) {
             case "English":
@@ -404,7 +405,7 @@ public class OhiCobraPage_Elmo {
         }
     }
 
-    public void verifyInputEndDateError(String language) {
+    public void verifyinputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
         switch (language) {
             case "English":
@@ -428,7 +429,7 @@ public class OhiCobraPage_Elmo {
         }
     }
 
-    public void verifyEndVoluntaryError(String language) {
+    public void verifyendVoluntaryError(String language) {
         basicActions.waitForElementToBePresent(endVoluntaryError, 20);
         switch (language) {
             case "English":
@@ -474,7 +475,6 @@ public class OhiCobraPage_Elmo {
                 throw new IllegalArgumentException("Invalid option: " + errorType);
         }
     }
-
 
 
 
