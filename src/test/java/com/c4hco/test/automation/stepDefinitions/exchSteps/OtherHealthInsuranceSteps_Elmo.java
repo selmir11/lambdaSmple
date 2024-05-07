@@ -29,7 +29,7 @@ public class OtherHealthInsuranceSteps_Elmo {
 
     @Then("I verify help drawer body text in {string} on the Other Health Insurance page")
     public void iVerifyHelpDrawerBody(String language){
-        otherHealthInsurancePage_Elmo.verifyHelpDrawerHeaderBody(language);
+        otherHealthInsurancePage_Elmo.verifyHelpDrawerBodyText(language);
     }
 
     @Then("I verify help drawer footer text in {string} on the Other Health Insurance page")
