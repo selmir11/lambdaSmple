@@ -55,11 +55,13 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
 
     And I change the C4 url to "Elmo Ohi Individual Insurance Page"
     And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I verify the "First Section" Individual Insurance page data in "English"
     Then I click continue on the Elmo OHI Individual Insurance page
     And I verify "Currently Enrolled" error in "English" on the Individual Insurance page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify "Currently Enrolled" error does not show for Individual Insurance page
 
+    And I verify the "Second Section" Individual Insurance page data in "English"
     Then I click continue on the Elmo OHI Individual Insurance page
     And I verify "Insurance Ending" error in "English" on the Individual Insurance page
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
@@ -67,8 +69,13 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
 
     Then I click continue on the Elmo OHI Individual Insurance page
     And I verify "Input Date" error in "English" on the Individual Insurance page
-    Then I enter end date of end of current month for Individual Insurance
-    And I verify "Input Date" error does not show for Individual Insurance page
+    Then I enter the end date as "Prior Month" on the Individual Insurance page
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify "Input Date" error in "English Prior" on the Individual Insurance page
+    Then I enter the end date as "Future Month" on the Individual Insurance page
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify "Input Date" error in "English Future" on the Individual Insurance page
+    Then I enter the end date as "Current Month" on the Individual Insurance page
     And I verify "Voluntary End" error in "English" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
     And I verify "Voluntary End" error does not show for Individual Insurance page
@@ -129,11 +136,13 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
+    And I verify the "First Section" Individual Insurance page data in "Spanish"
     Then I click continue on the Elmo OHI Individual Insurance page
     And I verify "Currently Enrolled" error in "Spanish" on the Individual Insurance page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify "Currently Enrolled" error does not show for Individual Insurance page
 
+    And I verify the "Second Section" Individual Insurance page data in "Spanish"
     Then I click continue on the Elmo OHI Individual Insurance page
     And I verify "Insurance Ending" error in "Spanish" on the Individual Insurance page
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
@@ -141,8 +150,13 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
 
     Then I click continue on the Elmo OHI Individual Insurance page
     And I verify "Input Date" error in "Spanish" on the Individual Insurance page
-    Then I enter end date of end of current month for Individual Insurance
-    And I verify "Input Date" error does not show for Individual Insurance page
+    Then I enter the end date as "Prior Month" on the Individual Insurance page
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify "Input Date" error in "Spanish Prior" on the Individual Insurance page
+    Then I enter the end date as "Future Month" on the Individual Insurance page
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify "Input Date" error in "Spanish Future" on the Individual Insurance page
+    Then I enter the end date as "Current Month" on the Individual Insurance page
     And I verify "Voluntary End" error in "Spanish" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
     And I verify "Voluntary End" error does not show for Individual Insurance page
