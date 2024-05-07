@@ -10,13 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 public class DocumentLookupPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
     public DocumentLookupPage(WebDriver webDriver) {
- basicActions = new BasicActions(webDriver);
  PageFactory.initElements(basicActions.getDriver(), this);
     }
     @FindBy(css = ".search-title")
