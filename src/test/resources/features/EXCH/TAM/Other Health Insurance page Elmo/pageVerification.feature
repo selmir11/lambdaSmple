@@ -1,4 +1,4 @@
-@TAM
+@TAM @test
 Feature: Page Text-Other Health Insurance Page
 
   Background:
@@ -187,6 +187,7 @@ Feature: Page Text-Other Health Insurance Page
     And I change the C4 url to "Elmo Other Health Insurance Page"
     And I validate I am on the "Elmo Other Health Insurance" page
 
+    And I verify the text on Other Health Insurance page data in "English"
     Then I click continue on the ELMO health insurance page
     And I verify error message in "English" on the Other Health Insurance page
     And I verify the OHI info in the DB
@@ -253,6 +254,7 @@ Feature: Page Text-Other Health Insurance Page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
 
+    And I verify the text on Other Health Insurance page data in "Spanish"
     Then I click continue on the ELMO health insurance page
     And I verify error message in "Spanish" on the Other Health Insurance page
     And I verify the OHI info in the DB
