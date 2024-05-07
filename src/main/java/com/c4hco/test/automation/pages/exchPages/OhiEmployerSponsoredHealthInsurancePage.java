@@ -841,31 +841,24 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         switch (errorType) {
             case "Which Job":
                 basicActions.waitForElementToDisappear(whichJobError, 10);
-                softAssert.assertAll();
                 break;
             case "Min Value":
                 basicActions.waitForElementToDisappear(minValueError, 10);
-                softAssert.assertAll();
                 break;
             case "Amount":
                 basicActions.waitForElementToDisappear(amountError, 10);
-                softAssert.assertAll();
                 break;
             case "Currently Enrolled":
                 basicActions.waitForElementToDisappear(currentlyEnrolledError, 10);
-                softAssert.assertAll();
                 break;
             case "Insurance Ending":
                 basicActions.waitForElementToDisappear(insuranceEndingError, 10);
-                softAssert.assertAll();
                 break;
             case "Input Date":
                 basicActions.waitForElementToDisappear(inputEndDateError, 10);
-                softAssert.assertAll();
                 break;
             case "Voluntary End":
                 basicActions.waitForElementToDisappear(endVoluntaryError, 10);
-                softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
