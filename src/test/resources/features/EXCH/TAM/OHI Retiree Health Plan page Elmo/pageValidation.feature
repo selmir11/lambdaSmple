@@ -72,7 +72,13 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     And I verify the "Third Section" Retiree page data in "English"
     Then I click continue on the Elmo OHI Retiree page
     And I verify "Input Date" error in "English" on the Retiree page
-    Then I enter end date of end of current month for Retiree
+    Then I enter the end date as "Prior Month" on the Retiree page
+    Then I click continue on the Elmo OHI Retiree page
+    And I verify "Input Date" error in "English Prior" on the Retiree page
+    Then I enter the end date as "Future Month" on the Retiree page
+    Then I click continue on the Elmo OHI Retiree page
+    And I verify "Input Date" error in "English Future" on the Retiree page
+    Then I enter the end date as "Current Month" on the Retiree page
     And I verify "Input Date" error does not show for Retiree page
     And I verify "Voluntary End" error in "English" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
@@ -150,7 +156,13 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     And I verify the "Third Section" Retiree page data in "Spanish"
     Then I click continue on the Elmo OHI Retiree page
     And I verify "Input Date" error in "Spanish" on the Retiree page
-    Then I enter end date of end of current month for Retiree
+    Then I enter the end date as "Prior Month" on the Retiree page
+    Then I click continue on the Elmo OHI Retiree page
+    And I verify "Input Date" error in "Spanish Prior" on the Retiree page
+    Then I enter the end date as "Future Month" on the Retiree page
+    Then I click continue on the Elmo OHI Retiree page
+    And I verify "Input Date" error in "Spanish Future" on the Retiree page
+    Then I enter the end date as "Current Month" on the Retiree page
     And I verify "Input Date" error does not show for Retiree page
     And I verify "Voluntary End" error in "Spanish" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
