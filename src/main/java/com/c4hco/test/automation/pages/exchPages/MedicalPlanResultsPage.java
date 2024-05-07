@@ -63,7 +63,7 @@ public class MedicalPlanResultsPage {
     @FindBy(css = ".mdc-checkbox #SHP-PlanResults-CoOptionPlans-input")
     WebElement coloradoOptionSelection;
 
-    @FindBy(xpath = "//*[contains(@id, 'PlanResults-ProviderPlan_')]")
+    @FindBy(css = ".c4-type-header-sm")
     List<WebElement> medicalPlanNamesList;
 
     @FindBy(css = "pagination-template .pagination-next a")
@@ -165,7 +165,7 @@ public class MedicalPlanResultsPage {
             do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
-                clickPlanButton(optionalInt.get());
+                clickPlanButton(optionalInt.get()+1);
             } else {
                 paginateRight();
             }
