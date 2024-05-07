@@ -17,8 +17,8 @@ public class OhiIndividualInsuranceSteps_Elmo {
     @Then("I click {string} for insurance ending in 60 days in Individual Insurance question")
     public void iClickInsuranceEndingOption(String insuranceEnding){ohiIndividualInsurancePage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
-    @Then("I enter end date of end of current month for Individual Insurance")
-    public void iEnterEndDate(){ohiIndividualInsurancePage_Elmo.enterEndDate();}
+    @Then("I enter the end date as {string} on the Individual Insurance page")
+    public void iEnterEndDate(String endDate){ohiIndividualInsurancePage_Elmo.enterEndDate(endDate);}
 
     @Then("I click {string} for insurance ending voluntary for Individual Insurance question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiIndividualInsurancePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
@@ -48,6 +48,9 @@ public class OhiIndividualInsuranceSteps_Elmo {
 
     @And("I verify Voluntarily Ending is {string} on the Individual Insurance page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiIndividualInsurancePage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
+
+    @And("I verify the {string} Individual Insurance page data in {string}")
+    public void iVerifyIndividualInsurancePageData(String dataToVerify, String language) {ohiIndividualInsurancePage_Elmo.verifyIndividualInsurancePageData(dataToVerify, language);}
 
 
 

@@ -212,8 +212,6 @@ public class OhiRetireeHealthPlanPage_Elmo {
 
     public void verifyEndDate(){
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
         calendar.add(Calendar.MONTH, 1);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -429,7 +427,6 @@ public class OhiRetireeHealthPlanPage_Elmo {
 
     public void verifyinputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
-        Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         calendar.setTime(today);
         String formattedDate = dateFormat.format(today);
