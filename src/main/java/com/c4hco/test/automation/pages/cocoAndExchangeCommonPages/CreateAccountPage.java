@@ -17,7 +17,7 @@ import java.util.Random;
 public class CreateAccountPage {
     SoftAssert softAssert = new SoftAssert();
 
-    @FindBy(css = "app-create-account a em")
+    @FindBy(css = " a > label")
     WebElement helpIcon;
 
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")

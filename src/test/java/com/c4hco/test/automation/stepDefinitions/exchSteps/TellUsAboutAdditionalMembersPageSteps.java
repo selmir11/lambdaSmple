@@ -9,8 +9,15 @@ public class TellUsAboutAdditionalMembersPageSteps {
 
     TellUsAboutAdditionalMemberPage tellUsAboutAdditionalMemberPage = new TellUsAboutAdditionalMemberPage(WebDriverManager.getDriver());
 
+    @Then ("I enter member details with {string} first name")
+    public void iEnterMemberDetailsfirstName(String firstName){tellUsAboutAdditionalMemberPage.enterMemberDetails(firstName);}
+
+    @Then ("I enter member details with {string} last name")
+    public void iEnterMemberDetailslastName(String lastName){tellUsAboutAdditionalMemberPage.enterMemberDetails(lastName);}
+
     @Then("I enter member details with {string} date of birth")
     public void iEnterMemberDetailsDOB(String DOB){tellUsAboutAdditionalMemberPage.enterMemberDetails(DOB);}
+
 
     @And("I select {string} as member's sex option")
     public void selectSexOption(String sexOption){tellUsAboutAdditionalMemberPage.selectSex(sexOption);}
@@ -29,6 +36,13 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @And("I select {string} to Is Member Applying")
     public void isMemberApplying(String isApplying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(isApplying);}
 
+
+
     @And("I click continue on Tell us about additional members page")
     public void clickSaveAndContinue(){tellUsAboutAdditionalMemberPage.clickSaveAndContinue();}
-}
+
+    @Then ("I enter member details with {string} social security number")
+    public void iEnterMemberDetailsssn(String ssn){tellUsAboutAdditionalMemberPage.enterMemberDetails(ssn);}
+
+
+ }

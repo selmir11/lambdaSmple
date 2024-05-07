@@ -21,7 +21,6 @@ Feature:Verify the navigation from get assistance from my documents page and my 
     And I click the back button from Find Expert Help page
     Then I validate I am on the "Account Overview" page
 
-
   @SLER-314
   Scenario: Verify the navigation from get assistance from my profile page in both English and Spanish
     Given I open the login page on the "login" portal

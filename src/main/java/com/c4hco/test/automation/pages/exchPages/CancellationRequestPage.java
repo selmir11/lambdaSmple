@@ -65,7 +65,10 @@ public class CancellationRequestPage {
 
     public void ValidateCancellationPageText(String language, List<String> data){
         switch (language){
-            case "English", "Spanish":
+            case "Spanish":
+                ValidateCancellationPageText(data);
+                break;
+            case "English":
                 ValidateCancellationPageText(data);
                 break;
             default:
