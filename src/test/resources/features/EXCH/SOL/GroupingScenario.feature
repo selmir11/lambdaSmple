@@ -962,8 +962,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-
-
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
@@ -982,7 +980,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
     Then I click on edit enrollment groups link
-
     And I wait for hold on content to disappear
     Then I validate I am on the "Edit Grouping Members Medical" page
     And I validate there is create new group link
@@ -997,8 +994,13 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on edit enrollment groups link
     And I wait for hold on content to disappear
     Then I validate I am on the "Edit Grouping Members Medical" page
-    And I validate there is create new group link
+    And I validate there is Reset my groups to the suggested link
     Then I click on reset groups button on edit enrollment groups page
+    Then I click save button to save the groups
+    And I validated message on success enrollment grouping pop-up
+    Then I click on continue button on success pop-up
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate that there are 1 default groups
 
 
 
