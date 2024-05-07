@@ -65,4 +65,9 @@ public class EditGroupingMembersMedicalPageSteps {
     public void iClickresetGroupsButton(){
         editGroupingMembersMedicalPage.iClickresetGroupsButton();
     }
+
+    @And("I validate there is Reset my groups to the suggested link")
+    public void presenceOfResetmyGroup(){
+        editGroupingMembersMedicalPage.ivalidateResetGroupLink();
+    }
 }

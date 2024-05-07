@@ -152,5 +152,10 @@ public class EditGroupingMembersMedicalPage {
                 .perform();
         basicActions.wait(3000);
     }
+
+    public void ivalidateResetGroupLink(){
+        resetgroupsButton.isDisplayed();
+        resetgroupsButton.isEnabled();
+    }
 }
 

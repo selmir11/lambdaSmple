@@ -44,5 +44,9 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then ("I enter member details with {string} social security number")
     public void iEnterMemberDetailsssn(String ssn){tellUsAboutAdditionalMemberPage.enterMemberDetails(ssn);}
 
+    @Then("I enter member details with age as {int}")
+    public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}
 
- }
+
+
+}
