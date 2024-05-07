@@ -529,7 +529,7 @@ public class OtherHealthInsurancePage_Elmo {
     }
 
     public void verifyNoErrorMessage() {
-        basicActions.waitForElementToDisappear(errorMessageTxt, 10);
+        softAssert.assertTrue(basicActions.waitForElementToDisappear(errorMessageTxt, 10));
         softAssert.assertAll();
     }
 

@@ -685,23 +685,29 @@ public class OhiMedicarePage_Elmo {
     public void verifyNoErrorMessage(String errorType) {
         switch (errorType) {
             case "Currently Eligible":
-                basicActions.waitForElementToDisappear(currentlyEligibleError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEligibleError, 10));
+                softAssert.assertAll();
                 break;
             case "Part A":
-                basicActions.waitForElementToDisappear(InsuranceAmountError, 10);
-                basicActions.waitForElementToDisappear(partAInsuranceEndingError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(InsuranceAmountError, 10));
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(partAInsuranceEndingError, 10));
+                softAssert.assertAll();
                 break;
             case "Part A Amount Required":
-                basicActions.waitForElementToDisappear(InsuranceAmountError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(InsuranceAmountError, 10));
+                softAssert.assertAll();
                 break;
             case "Part A Date":
-                basicActions.waitForElementToDisappear(partAInsuranceEndInputError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(partAInsuranceEndInputError, 10));
+                softAssert.assertAll();
                 break;
             case "Part B":
-                basicActions.waitForElementToDisappear(partBInsuranceEndingError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(partBInsuranceEndingError, 10));
+                softAssert.assertAll();
                 break;
             case "Part B Date":
-                basicActions.waitForElementToDisappear(partBInsuranceEndInputError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(partBInsuranceEndInputError, 10));
+                softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
