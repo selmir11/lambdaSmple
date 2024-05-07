@@ -72,7 +72,13 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     And I verify the "Third Section" VA Healthcare page data in "English"
     Then I click continue on the Elmo OHI VA Healthcare page
     And I verify "Input Date" error in "English" on the VA Healthcare page
-    Then I enter end date of end of current month for VA Healthcare
+    Then I enter the end date as "Prior Month" on the VA Healthcare page
+    Then I click continue on the Elmo OHI VA Healthcare page
+    And I verify "Input Date" error in "English Prior" on the VA Healthcare page
+    Then I enter the end date as "Future Month" on the VA Healthcare page
+    Then I click continue on the Elmo OHI VA Healthcare page
+    And I verify "Input Date" error in "English Future" on the VA Healthcare page
+    Then I enter the end date as "Current Month" on the VA Healthcare page
     And I verify "Input Date" error does not show for VA Healthcare page
     And I verify "Voluntary End" error in "English" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
@@ -150,7 +156,13 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     And I verify the "Third Section" VA Healthcare page data in "Spanish"
     Then I click continue on the Elmo OHI VA Healthcare page
     And I verify "Input Date" error in "Spanish" on the VA Healthcare page
-    Then I enter end date of end of current month for VA Healthcare
+    Then I enter the end date as "Prior Month" on the VA Healthcare page
+    Then I click continue on the Elmo OHI VA Healthcare page
+    And I verify "Input Date" error in "Spanish Prior" on the VA Healthcare page
+    Then I enter the end date as "Future Month" on the VA Healthcare page
+    Then I click continue on the Elmo OHI VA Healthcare page
+    And I verify "Input Date" error in "Spanish Future" on the VA Healthcare page
+    Then I enter the end date as "Current Month" on the VA Healthcare page
     And I verify "Input Date" error does not show for VA Healthcare page
     And I verify "Voluntary End" error in "Spanish" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
