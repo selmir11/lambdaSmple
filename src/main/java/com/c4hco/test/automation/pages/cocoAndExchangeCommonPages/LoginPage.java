@@ -94,6 +94,7 @@ public class LoginPage {
         username.sendKeys(emailId);
         basicActions.waitForElementToBePresent(password, 10);
         password.sendKeys(pswd);
+        System.out.println("Password::"+pswd);
         signInButton.click();
     }
 

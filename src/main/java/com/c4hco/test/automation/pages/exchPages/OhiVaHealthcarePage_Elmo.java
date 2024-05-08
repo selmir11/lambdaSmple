@@ -17,6 +17,8 @@ import java.util.List;
 public class OhiVaHealthcarePage_Elmo {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    Calendar calendar = Calendar.getInstance();
+    Date today = new Date();
 
     public OhiVaHealthcarePage_Elmo(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -114,18 +116,38 @@ public class OhiVaHealthcarePage_Elmo {
         }
     }
 
-    public void enterEndDate() {
+    public void enterEndDate(String endDate) {
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
 
-        inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        switch (endDate){
+            case "Current Month":
+                calendar.add(Calendar.MONTH, 1);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfMonth = calendar.getTime();
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                break;
+            case "Prior Month":
+                calendar.add(Calendar.MONTH, 0);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfPriorMonth = calendar.getTime();
+                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                break;
+            case "Future Month":
+                calendar.add(Calendar.MONTH, 3);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfFutureMonth = calendar.getTime();
+                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + endDate);
+        }
     }
 
     public void clickEndVoluntaryOption(String voluntaryEnding) {
@@ -148,7 +170,7 @@ public class OhiVaHealthcarePage_Elmo {
 // Add only validation methods below this line
     public void verifyHeadersVaHealthcareOhiPageEnglish() {
         basicActions.waitForElementToBePresent(ohiHeader, 15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiVaHealthcareHeader.getText(), "VA Healthcare");
         softAssert.assertAll();
     }
@@ -189,8 +211,6 @@ public class OhiVaHealthcarePage_Elmo {
 
     public void verifyEndDate() {
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
         calendar.add(Calendar.MONTH, 1);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -258,7 +278,7 @@ public class OhiVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiVaHealthcareHeader.getText(),"VA Healthcare");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in VA Healthcare");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(0).getText(),"Are you currently enrolled in VA Healthcare?");
@@ -310,7 +330,7 @@ public class OhiVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName() + " (Spanish)"));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiVaHealthcareHeader.getText(),"VA Healthcare (spanish)");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in VA Healthcare (es)");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(0).getText(),"Are you currently enrolled in VA Healthcare? (es)");
@@ -406,6 +426,9 @@ public class OhiVaHealthcarePage_Elmo {
 
     public void verifyinputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        calendar.setTime(today);
+        String formattedDate = dateFormat.format(today);
         switch (language) {
             case "English":
                 softAssert.assertEquals(inputEndDateError.getText(), "Date is required");
@@ -417,6 +440,38 @@ public class OhiVaHealthcarePage_Elmo {
                 break;
             case "Spanish":
                 softAssert.assertEquals(inputEndDateError.getText(), "La fecha es obligatoria");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Please enter a value greater than or equal to "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "Date cannot exceed 60 days in the future");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "La fecha a seleccionar no puede exceder los 60 d\u00EDas");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
@@ -455,19 +510,19 @@ public class OhiVaHealthcarePage_Elmo {
     public void verifyNoErrorMessage(String errorType) {
         switch (errorType) {
             case "Currently Enrolled":
-                basicActions.waitForElementToDisappear(currentlyEnrolledError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10));
                 softAssert.assertAll();
                 break;
             case "Insurance Ending":
-                basicActions.waitForElementToDisappear(insuranceEndingError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(insuranceEndingError, 10));
                 softAssert.assertAll();
                 break;
             case "Input Date":
-                basicActions.waitForElementToDisappear(inputEndDateError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(inputEndDateError, 10));
                 softAssert.assertAll();
                 break;
             case "Voluntary End":
-                basicActions.waitForElementToDisappear(endVoluntaryError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(endVoluntaryError, 10));
                 softAssert.assertAll();
                 break;
             default:

@@ -17,8 +17,8 @@ public class OhiVaHealthcareSteps_Elmo {
     @Then("I click {string} for insurance ending in 60 days in VA Healthcare question")
     public void iClickInsuranceEndingOption(String insuranceEnding){ohiVaHealthcarePage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
-    @Then("I enter end date of end of current month for VA Healthcare")
-    public void iEnterEndDate(){ohiVaHealthcarePage_Elmo.enterEndDate();}
+    @Then("I enter the end date as {string} on the VA Healthcare page")
+    public void iEnterEndDate(String endDate){ohiVaHealthcarePage_Elmo.enterEndDate(endDate);}
 
     @Then("I click {string} for insurance ending voluntary for VA Healthcare question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiVaHealthcarePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
