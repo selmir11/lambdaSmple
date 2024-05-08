@@ -23,7 +23,7 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "#PlanSummary-Continue")
+    @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
     @FindBy(css = ".summary-container p")
@@ -62,7 +62,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
 
-    @FindBy(css = "#PlanSummary-TotalAmountYouSave")
+    @FindBy(css = "span#PlanSummary-TotalAmountYouSave")
     WebElement aPTCPlanSummary;
 
     public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt){
@@ -91,8 +91,7 @@ public class PlanSummaryMedicalDentalPage {
     }
     
     public void continuePlanSummaryPage(){
-        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
-        setPlansPremiumAmt();
+        basicActions.waitForElementToBePresent(planSummaryMedicalplanheading, 10);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }

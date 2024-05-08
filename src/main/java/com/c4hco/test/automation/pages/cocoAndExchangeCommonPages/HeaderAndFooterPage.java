@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.List;
 
 public class HeaderAndFooterPage {
@@ -90,6 +89,11 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
+
+    //@FindBy(xpath = "//a[normalize-space()='Sign Out']")
+    //@FindBy(css = ".p-2 sign-out")
+    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
+    WebElement signOutLinkPayment;
 
    // =========FOOTER============== //
 
@@ -353,6 +357,11 @@ public class HeaderAndFooterPage {
             case "NonElmo":
                 basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
                 basicActions.click(signOutLinkNonElmo);
+                break;
+            case "Payment":
+                basicActions.waitForElementToBePresent(signOutLinkPayment, 10);
+                basicActions.waitForElementToBeClickable(signOutLinkPayment,10);
+                basicActions.click(signOutLinkPayment);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
