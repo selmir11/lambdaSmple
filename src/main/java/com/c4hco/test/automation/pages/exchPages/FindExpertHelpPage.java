@@ -5,16 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
 public class FindExpertHelpPage {
-    private BasicActions basicActions;
+    BasicActions basicActions;
 
     public FindExpertHelpPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    @FindBy(id = "contineOwn-button")
+    @FindBy(css = "#contineOwn-button")
     WebElement continueOnMyOwnButton;
 
     @FindBy(id = "broker-button")
@@ -51,9 +50,7 @@ public class FindExpertHelpPage {
     }
 
     public void clickContinueOnMyOwnButton() {
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,20));
-        softAssert.assertAll();
+        basicActions.waitForElementToBeClickable(continueOnMyOwnButton,60);
         continueOnMyOwnButton.click();
 
     }

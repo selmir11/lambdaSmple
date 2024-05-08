@@ -1,6 +1,6 @@
 Feature: Seed01 - Exchange
 
-  Background: Seed 01 For Exchange
+  Scenario: Seed 01 For Exchange- Single Applicant NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -90,20 +90,20 @@ Feature: Seed01 - Exchange
     And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate medical plan details from my policies page
-#      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-#      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-#    And I validate dental plan details from my policies page
-#      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-#      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-#    And I click View Plan History link from medical plan card
-#    And I validate medical plan details from plan history
-#    And I click on to Back to Current Plan Details button
-#    And I click View Plan History link from dental plan card
-#    And I validate dental plan details from plan history
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate medical plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+    And I validate dental plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 #    And I validate the member details from policy tables
 #    And I validate member details from ob834_details table
