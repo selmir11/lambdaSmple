@@ -88,24 +88,6 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         txtMiddleName.sendKeys(mdlName);
         txtLastName.sendKeys(lastName);
         enterMemberDOB(dateOfBirth);
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(dateOfBirth);
-        member.setSignature(frstName + " " + lastName);
-        member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
         genderSelection(gender);
         applyingForCoverage(applying);
         setRelationshipOption(Relation);
