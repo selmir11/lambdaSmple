@@ -1,4 +1,4 @@
-@TAM
+@TAM @test
 Feature: Page Validation-OHI Peace Corps Elmo Page
 
   Background:
@@ -72,7 +72,13 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     And I verify the "Third Section" Peace Corps page data in "English"
     Then I click continue on the Elmo OHI Peace Corps page
     And I verify "Input Date" error in "English" on the Peace Corps page
-    Then I enter end date of end of current month for Peace Corps
+    Then I enter the end date as "Prior Month" on the Peace Corps page
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Input Date" error in "English Prior" on the Peace Corps page
+    Then I enter the end date as "Future Month" on the Peace Corps page
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Input Date" error in "English Future" on the Peace Corps page
+    Then I enter the end date as "Current Month" on the Peace Corps page
     And I verify "Input Date" error does not show for Peace Corps page
     And I verify "Voluntary End" error in "English" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
@@ -150,7 +156,13 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     And I verify the "Third Section" Peace Corps page data in "Spanish"
     Then I click continue on the Elmo OHI Peace Corps page
     And I verify "Input Date" error in "Spanish" on the Peace Corps page
-    Then I enter end date of end of current month for Peace Corps
+    Then I enter the end date as "Prior Month" on the Peace Corps page
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Input Date" error in "Spanish Prior" on the Peace Corps page
+    Then I enter the end date as "Future Month" on the Peace Corps page
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify "Input Date" error in "Spanish Future" on the Peace Corps page
+    Then I enter the end date as "Current Month" on the Peace Corps page
     And I verify "Input Date" error does not show for Peace Corps page
     And I verify "Voluntary End" error in "Spanish" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
