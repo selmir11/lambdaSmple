@@ -370,7 +370,7 @@ Feature: Page Text-OHI Peace Corps Elmo Page
     And I verify Insurance Ending in 60 days is "No" on the Peace Corps page
 
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
-    Then I enter end date of end of current month for Peace Corps
+    Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "Yes" for insurance ending voluntary for Peace Corps question
     Then I click continue on the Elmo OHI Peace Corps page
 

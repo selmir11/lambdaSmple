@@ -370,7 +370,7 @@ Feature: Page Text-OHI Tricare Elmo Page
     And I verify Insurance Ending in 60 days is "No" on the Tricare page
 
     Then I click "Yes" for insurance ending in 60 days in Tricare question
-    Then I enter end date of end of current month for Tricare
+    Then I enter the end date as "Current Month" on the Tricare page
     Then I click "Yes" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHI Tricare page
 

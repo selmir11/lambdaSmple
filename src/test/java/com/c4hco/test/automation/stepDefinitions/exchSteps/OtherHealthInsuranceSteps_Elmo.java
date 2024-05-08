@@ -17,7 +17,25 @@ public class OtherHealthInsuranceSteps_Elmo {
     @Then("I click continue on the ELMO health insurance page")
     public void iClickSaveAndContinue(){otherHealthInsurancePage_Elmo.clickSaveAndContinue();}
 
+    @Then("I verify help text in {string} for {string} question on the Other Health Insurance page")
+    public void iVerifyHelpTextForQuestions(String language, String insurance){
+        otherHealthInsurancePage_Elmo.verifyHelpDrawerTextForQuestions(language, insurance);
+    }
 
+    @Then("I verify help drawer header text in {string} on the Other Health Insurance page")
+    public void iVerifyHelpDrawerHeader(String language){
+        otherHealthInsurancePage_Elmo.verifyHelpDrawerHeaderText(language);
+    }
+
+    @Then("I verify help drawer body text in {string} on the Other Health Insurance page")
+    public void iVerifyHelpDrawerBody(String language){
+        otherHealthInsurancePage_Elmo.verifyHelpDrawerBodyText(language);
+    }
+
+    @Then("I verify help drawer footer text in {string} on the Other Health Insurance page")
+    public void iVerifyHelpDrawerFooter(String language){
+        otherHealthInsurancePage_Elmo.verifyHelpDrawerFooterText(language);
+    }
 
 
 
@@ -49,6 +67,16 @@ public class OtherHealthInsuranceSteps_Elmo {
 
     @And("I verify the text on Other Health Insurance page data in {string}")
     public void iVerifyVaHealthcarePageData(String language) {otherHealthInsurancePage_Elmo.verifyOhiPageData(language);}
+
+    @And("I click Help me understand this page link on the Other Health Insurance page")
+    public void iClickHelpMeUnderstandThisPageLink(){
+        otherHealthInsurancePage_Elmo.clickHelpMeUnderstandLink();
+    }
+
+    @And("I click Help side button on the Other Health Insurance page")
+    public void iClickHelpSideButton(){
+        otherHealthInsurancePage_Elmo.clickHelpSideButton();
+    }
 
 
 }
