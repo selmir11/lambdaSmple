@@ -152,7 +152,7 @@ public class EmploymentInfoPage {
     }
 
     public void addEmploymentInfo(String Salary, String Frequency) {
-
+        // Should not use this method anymore- should use genericEmploymentInfo method
         SharedData.setEmployerName(getUniqueString(8)+"Company");
         txtCompanyName.sendKeys(SharedData.getEmployerName());
         txtAddressOne.sendKeys("123 Test Address");
@@ -163,6 +163,22 @@ public class EmploymentInfoPage {
         dropdown.selectByVisibleText(" CO ");
 
         txtZip.sendKeys("80205");
+        txtIncomeAmount.sendKeys(Salary);
+
+        dropdown = new Select(selectIncomeFreq);
+        dropdown.selectByVisibleText(" " + Frequency + " ");
+    }
+
+    public void genericEmploymentInfo(String addressline1, String city,String state, String zipcode, String Salary, String Frequency){
+        SharedData.setEmployerName(getUniqueString(8)+" Company");
+        txtCompanyName.sendKeys(SharedData.getEmployerName());
+        txtAddressOne.sendKeys(addressline1);
+        txtCity.sendKeys(city);
+
+        Select dropdown = new Select(selectState);
+        dropdown.selectByVisibleText(state);
+
+        txtZip.sendKeys(zipcode);
         txtIncomeAmount.sendKeys(Salary);
 
         dropdown = new Select(selectIncomeFreq);

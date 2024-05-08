@@ -16,8 +16,8 @@ public class OhiTricareSteps_Elmo {
     @Then("I click {string} for insurance ending in 60 days in Tricare question")
     public void iClickInsuranceEndingOption(String insuranceEnding){ohiTricarePage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
-    @Then("I enter end date of end of current month for Tricare")
-    public void iEnterEndDate(){ohiTricarePage_Elmo.enterEndDate();}
+    @Then("I enter the end date as {string} on the Tricare page")
+    public void iEnterEndDate(String endDate){ohiTricarePage_Elmo.enterEndDate(endDate);}
 
     @Then("I click {string} for insurance ending voluntary for Tricare question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiTricarePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
@@ -45,11 +45,14 @@ public class OhiTricareSteps_Elmo {
     @And("I verify Voluntarily Ending is {string} on the Tricare page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiTricarePage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
 
+    @And("I verify the {string} Tricare page data in {string}")
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiTricarePage_Elmo.verifyTricarePageData(dataToVerify, language);}
 
+    @And("I verify {string} error in {string} on the Tricare page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiTricarePage_Elmo.verifyErrorMessage(errorType, language);}
 
-
-
-
+    @And("I verify {string} error does not show for Tricare page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiTricarePage_Elmo.verifyNoErrorMessage(errorType);}
 
 
 

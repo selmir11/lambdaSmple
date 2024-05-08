@@ -26,8 +26,8 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     @Then("I enter {string} for employee amount question on the ESI page")
     public void iEnterMonthlyAmount(String employeeAmount){ohiEmployerSponsoredHealthInsurancePage.enterMonthlyAmount(employeeAmount);}
 
-    @Then("I enter the end date as the last day of the current month on the ESI page")
-    public void iEnterEndDate(){ohiEmployerSponsoredHealthInsurancePage.enterEndDate();}
+    @Then("I enter the end date as {string} on the ESI page")
+    public void iEnterEndDate(String endDate){ohiEmployerSponsoredHealthInsurancePage.enterEndDate(endDate);}
 
     @Then("I select the Are you voluntarily ending {string} button on the ESI page")
     public void iClickVoluntarilyEnding(String voluntarilyEnding){ohiEmployerSponsoredHealthInsurancePage.clickVoluntarilyEnding(voluntarilyEnding);
@@ -85,6 +85,15 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     @Then("I verify enrollment status for the members")
     public void iVerifyFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues)
     {ohiEmployerSponsoredHealthInsurancePage.verifyFamilyEnrollmentStatusMembers(expectedValues);}
+
+    @And("I verify the {string} ESI page data in {string}")
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiEmployerSponsoredHealthInsurancePage.verifyEsiPageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the ESI page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiEmployerSponsoredHealthInsurancePage.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for ESI page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiEmployerSponsoredHealthInsurancePage.verifyNoErrorMessage(errorType);}
 
 
 }

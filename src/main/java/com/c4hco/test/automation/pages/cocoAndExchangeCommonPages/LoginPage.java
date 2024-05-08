@@ -94,6 +94,7 @@ public class LoginPage {
         username.sendKeys(emailId);
         basicActions.waitForElementToBePresent(password, 10);
         password.sendKeys(pswd);
+        System.out.println("Password::"+pswd);
         signInButton.click();
     }
 
@@ -105,7 +106,6 @@ public class LoginPage {
         passwordAdmin.sendKeys("ALaska12!");
         signAdmin.click();
     }
-
     public void loginAsBrokerUser(String brokerUser,String Password){
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys(brokerUser);
@@ -154,6 +154,7 @@ public class LoginPage {
     }
 
     public void loginAsExistingIndividual(String userIndividual, String passwordInd) {
+        basicActions.waitForElementToBePresent(username,10);
         username.sendKeys(userIndividual);
         password.sendKeys(passwordInd);
         basicActions.waitForElementToBePresent(signAdmin,10);
@@ -245,9 +246,13 @@ public class LoginPage {
                 throw new IllegalArgumentException("Invalid option: " + language);}
         softAssert.assertAll();
     }
-
-
-
+    public void loginAsAdminAnyUser(String adminUser,String adminPassword){
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        usernameAdmin.sendKeys(adminUser);
+        basicActions.waitForElementToBePresent(passwordAdmin,20 );
+        passwordAdmin.sendKeys(adminPassword);
+        signAdmin.click();
+    }
 }
 
     // ############################## VALIDATION METHODS #########################

@@ -8,20 +8,35 @@ public class TellUsAboutYourselfPageSteps {
     TellUsAboutYourselfPage tellUsAboutYourselfPage = new TellUsAboutYourselfPage(WebDriverManager.getDriver());
 
     @Then("I select {string} as sex option")
-    public void userSexQuestion(String Sex){tellUsAboutYourselfPage.userSexQuestion(Sex);}
+    public void userSexQuestion(String Sex) {
+        tellUsAboutYourselfPage.userSexQuestion(Sex);
+    }
 
     @Then("I select {string} to Are You Applying")
-    public void isUserApplyingForInsurance(String YNApplying){tellUsAboutYourselfPage.isUserApplyingForHealthInsurance(YNApplying);}
+    public void isUserApplyingForInsurance(String YNApplying) {
+        tellUsAboutYourselfPage.isUserApplyingForHealthInsurance(YNApplying);
+    }
 
     @Then("I click continue on Tell us about yourself page")
-    public void clickContinue(){tellUsAboutYourselfPage.saveAndContinue();}
+    public void clickContinue() {
+        tellUsAboutYourselfPage.saveAndContinue();
+    }
 
     @Then("I update SSN number to new SSN number")
-    public void updateSSN(){
+    public void updateSSN() {
         tellUsAboutYourselfPage.iUpdateSSN();
 
     }
 
     @Then("I update Full Name to new Name")
-    public void iUpdateName(){tellUsAboutYourselfPage.updateName();}
+    public void iUpdateName() {
+        tellUsAboutYourselfPage.updateName();
+    }
+
+    @Then("I update DOB to new DOB of {string}")
+    public void iUpdateDOB(String newDob) {
+        tellUsAboutYourselfPage.updateDOB(newDob);
+    }
+
+
 }

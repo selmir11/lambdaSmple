@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalSearchPage;
+import com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BasicSteps;
+import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -96,10 +98,12 @@ public class AdminPortalSearchSteps {
     public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
     }
-
     @Then("I click acct first row from Search Results table in admin portal")
     public void iClickAccountLinkFirstRowFromSearchResults() {
         adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
-
+    @And("I validate {string} application link not display")
+    public void iValidateAppLinksIsNotDisplay(String option)    {
+            adminPortalSearchPage.validateAppLinksIsNotDisplay(option); }
 }
+

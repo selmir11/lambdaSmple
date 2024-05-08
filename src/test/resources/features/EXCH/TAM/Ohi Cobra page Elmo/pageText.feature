@@ -138,7 +138,7 @@ Feature: Page Text-Other Health Insurance Page
     And I verify Insurance Ending in 60 days is "No" on the Cobra page
 
     Then I click "Yes" for insurance ending in 60 days in COBRA question
-    Then I enter end date of end of current month for COBRA
+    Then I enter the end date as "Current Month" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHI Cobra page
 

@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class AdminPortalSearchPage {
-      // TO DO:: Update the locators based on - if the search table will have more than 1 row
+    // TO DO:: Update the locators based on - if the search table will have more than 1 row
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
@@ -25,31 +25,31 @@ public class AdminPortalSearchPage {
 
     @FindBy(xpath = "//img[@title='Connect for Health Colorado']")
     WebElement connectForHealthLogo;
-  
+
     @FindBy(id = "title")
     WebElement Title;
-  
+
     @FindBy(css = ".search-input-and-label .search-input")
     List<WebElement> searchInputList;
-  
+
     @FindBy(css = ".form-btn-group.big-screen button")
     List<WebElement> buttonsList; // search, reset, create Account buttons
-  
+
     @FindBy(css = ".search-results-container .search-results-table")
     WebElement searchResults;
-  
+
     @FindBy(id = "email-shortened")
     WebElement primaryEmail;
-  
+
     @FindBy(css = ".dashboardHeader2")
     WebElement accIdAndCaseId;
-  
+
     @FindBy(css = ".tollbar-app-links span")
     WebElement appLinksDropDown;
-  
+
     @FindBy(css = "#toolbar-app-dropdown .dropdown-option")
     List<WebElement> appLinksDropdownOptions;
-  
+
     @FindBy(css = "#header-user span:nth-child(3)")
     WebElement dropdownArrow;
 
@@ -99,7 +99,7 @@ public class AdminPortalSearchPage {
 
     @FindBy(id = "individual")
     WebElement individual;
-  
+
     @FindBy(id = "accountId")
     WebElement acctIdWidget;
 
@@ -137,7 +137,6 @@ public class AdminPortalSearchPage {
     }
 
     public void clickFromApplicationLinksDropdown(String dropdownOption){
-
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
@@ -174,98 +173,98 @@ public class AdminPortalSearchPage {
         connectForHealthLogo.click();
         navigateToPreviousPage();
     }
-        public void titleTextValidate () {
-            Title.isDisplayed();
-            softAssert.assertEquals(Title.getText(), "Sign in to your account");
-            softAssert.assertAll();
+    public void titleTextValidate () {
+        Title.isDisplayed();
+        softAssert.assertEquals(Title.getText(), "Sign in to your account");
+        softAssert.assertAll();
+    }
+
+    public void userNameDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(APtxtHello, 10));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAPUserFName, 10));
+        softAssert.assertAll();
+    }
+
+    public void PersonSymbolDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAPPersonSymbol, 10));
+        softAssert.assertAll();
+    }
+
+    public void UserDropDownDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(userDropdown, 10));
+        softAssert.assertTrue(userDropdown.isDisplayed(), "Account Information is not displaying on Search page");
+        userDropdown.click();
+        softAssert.assertAll();
+    }
+
+    public void accountInformationDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAccountInformation, 10));
+        softAssert.assertTrue(pnlAccountInformation.isDisplayed(), "Account Information is not displaying on Search page");
+        softAssert.assertAll();
+    }
+
+    public void adminPortalTextDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAdminPortal, 10));
+        softAssert.assertTrue(txtAdminPortal.isDisplayed(), "Admin Portal Text is not displaying on Search page ");
+        softAssert.assertAll();
+    }
+
+    public void applicationLinksTextDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(AppLinkText, 10));
+        softAssert.assertTrue(AppLinkText.isDisplayed(), "Application Link Text is not displaying on Search page");
+        softAssert.assertAll();
+    }
+
+    public void applinkdroodowndisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(ApplicationLinksdropdown, 10));
+        softAssert.assertTrue(ApplicationLinksdropdown.isDisplayed(), "Application Link Arrow is displaying on Search page");
+        softAssert.assertAll();
+    }
+
+    public void selectRecord () {
+        basicActions.waitForElementToBeClickable(primaryEmail, 20);
+        primaryEmail.click();
+    }
+
+    public void logoutButtonDisplay () {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(logoutAdmin, 10));
+        softAssert.assertTrue(logoutAdmin.isDisplayed(), "Logout is not visible on search page");
+        softAssert.assertAll();
+    }
+
+    public void selectCocoIndiviual () {
+        coco.click();
+    }
+
+    public void SelectUserTypeToSearch (String selectUserTypeToSearch){
+        switch (selectUserTypeToSearch) {
+            case "individual":
+                basicActions.waitForElementToBePresent(individual, 15);
+                individual.click();
+                break;
+            case "Broker":
+                basicActions.waitForElementToBePresent(broker, 15);
+                broker.click();
+                break;
+            case "ProgramManager":
+                basicActions.waitForElementToBePresent(programManager, 15);
+                programManager.click();
+                break;
+            case "Agency":
+                basicActions.waitForElementToBePresent(agency,15);
+                agency.click();
+                break;
+            case "coco":
+                basicActions.waitForElementToBePresent(coco, 15);
+                coco.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
         }
-
-        public void userNameDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(APtxtHello, 10));
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAPUserFName, 10));
-            softAssert.assertAll();
-        }
-
-        public void PersonSymbolDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAPPersonSymbol, 10));
-            softAssert.assertAll();
-        }
-
-        public void UserDropDownDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(userDropdown, 10));
-            softAssert.assertTrue(userDropdown.isDisplayed(), "Account Information is not displaying on Search page");
-            userDropdown.click();
-            softAssert.assertAll();
-        }
-
-        public void accountInformationDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAccountInformation, 10));
-            softAssert.assertTrue(pnlAccountInformation.isDisplayed(), "Account Information is not displaying on Search page");
-            softAssert.assertAll();
-        }
-
-        public void adminPortalTextDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAdminPortal, 10));
-            softAssert.assertTrue(txtAdminPortal.isDisplayed(), "Admin Portal Text is not displaying on Search page ");
-            softAssert.assertAll();
-        }
-
-        public void applicationLinksTextDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(AppLinkText, 10));
-            softAssert.assertTrue(AppLinkText.isDisplayed(), "Application Link Text is not displaying on Search page");
-            softAssert.assertAll();
-        }
-
-        public void applinkdroodowndisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(ApplicationLinksdropdown, 10));
-            softAssert.assertTrue(ApplicationLinksdropdown.isDisplayed(), "Application Link Arrow is displaying on Search page");
-            softAssert.assertAll();
-        }
-
-        public void selectRecord () {
-            basicActions.waitForElementToBeClickable(primaryEmail, 20);
-            primaryEmail.click();
-        }
-
-        public void logoutButtonDisplay () {
-            softAssert.assertTrue(basicActions.waitForElementToBePresent(logoutAdmin, 10));
-            softAssert.assertTrue(logoutAdmin.isDisplayed(), "Logout is not visible on search page");
-            softAssert.assertAll();
-        }
-
-        public void selectCocoIndiviual () {
-            coco.click();
-        }
-
-        public void SelectUserTypeToSearch (String selectUserTypeToSearch){
-            switch (selectUserTypeToSearch) {
-                case "individual":
-                    basicActions.waitForElementToBePresent(individual, 15);
-                    individual.click();
-                    break;
-                case "Broker":
-                    basicActions.waitForElementToBePresent(broker, 15);
-                    broker.click();
-                    break;
-                case "ProgramManager":
-                    basicActions.waitForElementToBePresent(programManager, 15);
-                    programManager.click();
-                    break;
-                case "Agency":
-                    basicActions.waitForElementToBePresent(agency,15);
-                    agency.click();
-                    break;
-                case "coco":
-                    basicActions.waitForElementToBePresent(coco, 15);
-                    coco.click();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unsupported user type: " + selectUserTypeToSearch);
-            }
-        }
+    }
 
 
- public void enterUserData(String userdata, String type) {
+    public void enterUserData(String userdata, String type) {
         switch (userdata) {
             case "accountID":
                 searchInputList.get(0).sendKeys(type);
@@ -287,12 +286,19 @@ public class AdminPortalSearchPage {
                 break;
             default: throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
-     }
+    }
 
-  
+
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
-        }
+    }
+    public void validateAppLinksIsNotDisplay(String option) {
+        basicActions.waitForElementToBePresent(appLinksDropDown, 30);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
+        for (int i = 0; i < appLinksDropdownOptions.size(); i++) {
+            basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
+            softAssert.assertNotEquals(appLinksDropdownOptions.get(i).getText(), option);
+            softAssert.assertAll();     }
+    }
 }
-

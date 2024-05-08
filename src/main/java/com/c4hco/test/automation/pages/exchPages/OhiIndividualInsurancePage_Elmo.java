@@ -12,10 +12,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class OhiIndividualInsurancePage_Elmo {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    Calendar calendar = Calendar.getInstance();
+    Date today = new Date();
     public OhiIndividualInsurancePage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -26,6 +29,12 @@ public class OhiIndividualInsurancePage_Elmo {
 
     @FindBy(css = ".container .header-2")
     WebElement ohiIndividualInsuranceHeader;
+
+    @FindBy(css = ".ohi-container > div > span")
+    WebElement pleaseEnterTxt;
+
+    @FindBy(css = "div > label")
+    List<WebElement> IndividualInsuranceQuestionTxt;
 
     @FindBy(css = "#Ohi-Endable-enrolled-container span.error-message")
     WebElement currentlyEnrolledError;
@@ -59,6 +68,9 @@ public class OhiIndividualInsurancePage_Elmo {
 
     @FindBy(id = "Ohi-Endable-endVoluntary-NoButton")
     WebElement endVoluntaryNo;
+
+    @FindBy(id = "Ohi-Endable-GoBack")
+    WebElement goBackButton;
 
     @FindBy(id = "Ohi-Endable-SaveAndContinue")
     WebElement saveAndContinueBtn;
@@ -100,18 +112,38 @@ public class OhiIndividualInsurancePage_Elmo {
         }
     }
 
-    public void enterEndDate(){
+    public void enterEndDate(String endDate){
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
 
-        inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        switch (endDate){
+            case "Current Month":
+                calendar.add(Calendar.MONTH, 1);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfMonth = calendar.getTime();
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                break;
+            case "Prior Month":
+                calendar.add(Calendar.MONTH, 0);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfPriorMonth = calendar.getTime();
+                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                break;
+            case "Future Month":
+                calendar.add(Calendar.MONTH, 3);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfFutureMonth = calendar.getTime();
+                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + endDate);
+        }
     }
 
     public void clickEndVoluntaryOption(String voluntaryEnding) {
@@ -137,7 +169,7 @@ public class OhiIndividualInsurancePage_Elmo {
 // Add only validation methods below this line
     public void verifyHeadersIndividualInsuranceOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertAll();
     }
@@ -277,6 +309,9 @@ public class OhiIndividualInsurancePage_Elmo {
 
     public void verifyinputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        calendar.setTime(today);
+        String formattedDate = dateFormat.format(today);
         switch (language) {
             case "English":
                 softAssert.assertEquals(inputEndDateError.getText(), "Date is required");
@@ -288,6 +323,38 @@ public class OhiIndividualInsurancePage_Elmo {
                 break;
             case "Spanish":
                 softAssert.assertEquals(inputEndDateError.getText(), "La fecha es obligatoria");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Please enter a value greater than or equal to "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "Date cannot exceed 60 days in the future");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "La fecha a seleccionar no puede exceder los 60 d\u00EDas");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
@@ -326,24 +393,142 @@ public class OhiIndividualInsurancePage_Elmo {
     public void verifyNoErrorMessage(String errorType) {
         switch (errorType) {
             case "Currently Enrolled":
-                basicActions.waitForElementToDisappear(currentlyEnrolledError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10));
                 softAssert.assertAll();
                 break;
             case "Insurance Ending":
-                basicActions.waitForElementToDisappear(insuranceEndingError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(insuranceEndingError, 10));
                 softAssert.assertAll();
                 break;
             case "Input Date":
-                basicActions.waitForElementToDisappear(inputEndDateError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(inputEndDateError, 10));
                 softAssert.assertAll();
                 break;
             case "Voluntary End":
-                basicActions.waitForElementToDisappear(endVoluntaryError, 10);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(endVoluntaryError, 10));
                 softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
         }
+    }
+
+    public void verifyIndividualInsurancePageData(String dataToVerify, String language){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        switch (language){
+            case "English":
+                verifyIndividualInsurancePageDataEnglish(dataToVerify);
+                break;
+            case "Spanish":
+                verifyIndividualInsurancePageDataSpanish(dataToVerify);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyIndividualInsurancePageDataEnglish(String dataToVerify){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        switch (dataToVerify){
+            case "First Section":
+                verifyIndividualInsurancePageFirstSectionDataEnglish();
+                break;
+            case "Second Section":
+                verifyIndividualInsurancePageFirstSectionDataEnglish();
+                verifyIndividualInsurancePageSecondSectionDataEnglish();
+                break;
+            case "Third Section":
+                verifyIndividualInsurancePageFirstSectionDataEnglish();
+                verifyIndividualInsurancePageSecondSectionDataEnglish();
+                verifyIndividualInsurancePageThirdSectionDataEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        softAssert.assertEquals(goBackButton.getText(),"  Go Back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageFirstSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiIndividualInsuranceHeader.getText(),"Individual Insurance");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in health insurance purchased directly through an insurance company, through HealthCare.gov, or another state\u2019s Marketplace.");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"Are you currently enrolled in individual insurance?");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageSecondSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
+        softAssert.assertEquals(insuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageThirdSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(2).getText(),"What day will your coverage end?");
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageDataSpanish(String dataToVerify){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        switch (dataToVerify){
+            case "First Section":
+                verifyIndividualInsurancePageFirstSectionDataSpanish();
+                break;
+            case "Second Section":
+                verifyIndividualInsurancePageFirstSectionDataSpanish();
+                verifyIndividualInsurancePageSecondSectionDataSpanish();
+                break;
+            case "Third Section":
+                verifyIndividualInsurancePageFirstSectionDataSpanish();
+                verifyIndividualInsurancePageSecondSectionDataSpanish();
+                verifyIndividualInsurancePageThirdSectionDataSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        softAssert.assertEquals(goBackButton.getText(),"  Volver");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageFirstSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiIndividualInsuranceHeader.getText(),"Individual Insurance (es)");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in health insurance purchased directly through an insurance company, through HealthCare.gov, or another state\u2019s Marketplace. (es)");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"Are you currently enrolled in individual insurance? (es)");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageSecondSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days? (es)");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
+        softAssert.assertEquals(insuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageThirdSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(2).getText(),"What day will your coverage end? (es)");
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance? (es)");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
     }
 
 

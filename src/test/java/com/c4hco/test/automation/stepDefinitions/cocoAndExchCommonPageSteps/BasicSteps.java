@@ -92,6 +92,9 @@ public class BasicSteps {
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
                 break;
+            case "Grouping Members Dental":
+                pageUrl = "PreShoppingPortal/groupingMembersDental";
+                break;
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
                 break;
@@ -307,6 +310,12 @@ public class BasicSteps {
                 break;
             case "English":
                 pageUrl = "lang=en";
+                break;
+            case "Admin LCE":
+                pageUrl = "/nes/adminLce";
+                break;
+            case "Admin Portal individual dashboard" :
+                pageUrl = "/AdminPortal/individual/";
                 break;
             default:
                 System.out.println("undefined page ");
