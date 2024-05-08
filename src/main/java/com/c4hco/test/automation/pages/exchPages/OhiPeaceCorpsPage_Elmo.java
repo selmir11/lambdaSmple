@@ -19,6 +19,8 @@ public class OhiPeaceCorpsPage_Elmo {
     BasicActions basicActions;
     Actions action;
     SoftAssert softAssert = new SoftAssert();
+    Calendar calendar = Calendar.getInstance();
+    Date today = new Date();
     public OhiPeaceCorpsPage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
@@ -113,18 +115,38 @@ public class OhiPeaceCorpsPage_Elmo {
         }
     }
 
-    public void enterEndDate(){
+    public void enterEndDate(String endDate){
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
 
-        inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        switch (endDate){
+            case "Current Month":
+                calendar.add(Calendar.MONTH, 1);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfMonth = calendar.getTime();
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                break;
+            case "Prior Month":
+                calendar.add(Calendar.MONTH, 0);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfPriorMonth = calendar.getTime();
+                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                break;
+            case "Future Month":
+                calendar.add(Calendar.MONTH, 3);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfFutureMonth = calendar.getTime();
+                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + endDate);
+        }
     }
 
     public void clickEndVoluntaryOption(String voluntaryEnding) {
@@ -148,7 +170,7 @@ public class OhiPeaceCorpsPage_Elmo {
     // Add only validation methods below this line
     public void verifyHeadersPeaceCorpsOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertAll();
     }
@@ -258,7 +280,7 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage");
         softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage?");
@@ -310,7 +332,7 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName() + " (Spanish)"));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps (es)");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage (es)");
         softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage? (es)");
@@ -406,6 +428,9 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyInputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        calendar.setTime(today);
+        String formattedDate = dateFormat.format(today);
         switch (language) {
             case "English":
                 softAssert.assertEquals(inputEndDateError.getText(), "Date is required");
@@ -417,6 +442,38 @@ public class OhiPeaceCorpsPage_Elmo {
                 break;
             case "Spanish":
                 softAssert.assertEquals(inputEndDateError.getText(), "La fecha es obligatoria");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Please enter a value greater than or equal to "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "Date cannot exceed 60 days in the future");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "La fecha a seleccionar no puede exceder los 60 d\u00EDas");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
