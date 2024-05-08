@@ -371,7 +371,7 @@ Feature: Page Text-OHI Individual Insurance Elmo Page
     And I verify Insurance Ending in 60 days is "No" on the Individual Insurance page
 
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
-    Then I enter end date of end of current month for Individual Insurance
+    Then I enter the end date as "Current Month" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
     Then I click continue on the Elmo OHI Individual Insurance page
 

@@ -47,5 +47,8 @@ public class OtherHealthInsuranceSteps_Elmo {
     @And("I verify error message does not show for Individual Insurance page")
     public void iVerifyNoErrorMessage()  {otherHealthInsurancePage_Elmo.verifyNoErrorMessage();}
 
+    @And("I verify the text on Other Health Insurance page data in {string}")
+    public void iVerifyVaHealthcarePageData(String language) {otherHealthInsurancePage_Elmo.verifyOhiPageData(language);}
+
 
 }
