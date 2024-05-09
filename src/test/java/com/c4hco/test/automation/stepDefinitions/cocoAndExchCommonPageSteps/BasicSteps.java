@@ -278,6 +278,9 @@ public class BasicSteps {
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
+            case "CoCo Additional info for additional member" :
+                pageUrl = "/coco/member-details-portal/member-additional-information/";
+                break;
             case "Elmo Ohi Retiree":
                 pageUrl = "/otherHealthInsurance/retiree";
                 break;
