@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 import javax.management.relation.Relation;
 import java.util.ArrayList;
@@ -46,9 +47,13 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
     @FindBy(css = "select.input-select")
     WebElement RelationshipOption;
 
+    @FindBy(id = "ELIG-MemberDetails-GoBack")
+    WebElement GoBackButton;
+
     @FindBy(id = "ELIG-MemberDetails-SaveAndContinue")
     WebElement SaveandContinueButton;
 
+    SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
 
     public TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage(WebDriver webDriver) {
@@ -78,7 +83,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public void specificAdditionalMemberDetailsCoCo(String dateOfBirth, String gender, String Relation, String applying) {
+    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String applying) {
 
         String frstName = getUniqueString(8);
         String mdlName = getUniqueString(8);
@@ -87,11 +92,28 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         txtFirstName.sendKeys(frstName);
         txtMiddleName.sendKeys(mdlName);
         txtLastName.sendKeys(lastName);
-        enterMemberDOB(dateOfBirth);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
         genderSelection(gender);
         applyingForCoverage(applying);
         setRelationshipOption(Relation);
-        clickSaveandContinueButton();
 
     }
 
@@ -121,5 +143,25 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + applying);
         }
+    }
+///////Page Validation-------------------------------------------------------------------------------------
+    ///Text validation
+    public void verifyTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(){
+        basicActions.waitForElementToBePresent(PageTitle,10);
+        softAssert.assertEquals(PageTitle.getText(), "Tell us about additional members of your household");
+        specificAdditionalMemberDetailsCoCo("01011982","Male", "Spouse", "Yes");
+        softAssert.assertEquals(textValidation.get(0).getText(), "First name");
+        softAssert.assertEquals(textValidation.get(1).getText(), "Middle name or initial (optional)");
+        softAssert.assertEquals(textValidation.get(2).getText(), "Last name");
+        softAssert.assertEquals(textValidation.get(3).getText(), "Suffix optional");
+        softAssert.assertEquals(textValidation.get(4).getText(), "Date of birth");
+        softAssert.assertEquals(textValidation.get(5).getText(), "Sex");
+        softAssert.assertEquals(textValidation.get(6).getText(), SharedData.getMembers().get(0).getFirstName()+" "+SharedData.getMembers().get(0).getLastName()+" is "+Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
+                Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1)+"'s?");
+        softAssert.assertEquals(RelationshipOption.getText(), "Select Option\nSpouse\nParent or Guardian\nChild or Other dependent\nSibling\nStepparent\nStepchild\nPartner\nOther Relative\nUnrelated");
+        softAssert.assertEquals(textValidation.get(7).getText(), "Are you applying for health insurance?");
+        softAssert.assertEquals(GoBackButton.getText(), " Go Back");
+        softAssert.assertEquals(SaveandContinueButton.getText(), "Save and Continue");
+        softAssert.assertAll();
     }
 }

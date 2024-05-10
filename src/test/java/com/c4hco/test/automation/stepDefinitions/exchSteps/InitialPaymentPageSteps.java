@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class InitialPaymentPageSteps {
     // TO DO: Refactor to combine initials payment page and payment selection page - so we can click multiple make payments from one method.
     InitialPaymentPage initialPaymentPage = new InitialPaymentPage(WebDriverManager.getDriver());
@@ -22,5 +24,15 @@ public class InitialPaymentPageSteps {
     @And("I click continue on initial payment page")
     public void clickContinue(){
         initialPaymentPage.clickContinue();
+    }
+
+    @Then("Validate text in the Initial Payment Page")
+    public void ValidateTextInCancellationPage(List<String> data){
+        initialPaymentPage.ValidateInitialPaymentPageText(data);
+    }
+
+    @Then("Validate Continue button text in the Initial Payment Page")
+    public void ValidateContinueButtonText(){
+        initialPaymentPage.ValidateContinueButtonText();
     }
 }
