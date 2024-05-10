@@ -69,7 +69,5 @@ public class EditGroupingMembersMedicalPageSteps {
     @And("I validate there is Reset my groups to the suggested link")
     public void presenceOfResetmyGroup(){
         editGroupingMembersMedicalPage.ivalidateResetGroupLink();
-    @Then("I drag and drop member 2 to unassigned group")
-    public void dragAndDropMember2ToUnassignedGroup(){editGroupingMembersMedicalPage.dragAndDropMember2ToUnassignedGroup();
     }
 }

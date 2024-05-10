@@ -883,8 +883,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
 
   @SLER-326 @ValidateDefaultGroupingandEdit
   Scenario: Validate grouping members: Father+Mother+son in one group
-  @SLER-345 @groupingbyunassigningamember
-  Scenario: Validate grouping members: Two members in the household, Move member to unassigned group and save two groups should exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -898,7 +896,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011973" in county "DENVER" with zipcode "80205"
-    And I am a member with City "Denver" in State "CO" with dob "10011975" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -987,7 +984,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validate there is create new group link
     Then I click on create new group button on edit enrollment groups page
     Then I drag and drop member 3 to make new group
-    Then I drag and drop member 2 to unassigned group
     Then I validate I am on the "Edit Grouping Members Medical" page
     Then I click save button to save the groups
     And I validated message on success enrollment grouping pop-up
