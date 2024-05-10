@@ -72,6 +72,11 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         SaveandContinueButton.click();
     }
 
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBeClickable(GoBackButton, 30);
+        GoBackButton.click();
+    }
+
     public void setRelationshipOption(String Relation){
         basicActions.waitForElementToBePresent(RelationshipOption, 15);
 

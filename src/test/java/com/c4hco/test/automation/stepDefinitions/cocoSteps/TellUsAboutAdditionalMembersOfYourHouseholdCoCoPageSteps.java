@@ -19,4 +19,6 @@ public void EnterspecificAdditionalMemberDetailsCoCo(String DOB, String gender, 
    @And("I click continue on Tell us about additional members page")
    public void clickSaveAndContinue(){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.clickSaveandContinueButton();}
 
+   @And("I click Go Back on Tell us about additional members page")
+   public void clickGoBack(){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.clickGoBackButton();}
 }
