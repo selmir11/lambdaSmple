@@ -119,6 +119,9 @@ public class BasicSteps {
             case "Find Expert Help Exch":
                 pageUrl = "/broker-portal/individual/find-expert-help?lang=en";
                 break;
+                case "Find Expert Help Exch OBO":
+                pageUrl = "broker-portal/obo/find-expert-help";
+                break;
             case "Find Expert Help Exch Spanish":
                 pageUrl = "broker-portal/individual/find-expert-help?lang=es";
                 break;
