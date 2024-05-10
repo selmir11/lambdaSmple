@@ -57,3 +57,4 @@ Feature: Payment Selection page tests
     Then I select make payment button to pay the premium
     And I Verify the text on payment selection page
     And I click on Sign Out in the Header for "Elmo"
+
