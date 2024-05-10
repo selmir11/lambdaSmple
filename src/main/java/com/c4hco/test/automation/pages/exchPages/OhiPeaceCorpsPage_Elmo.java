@@ -170,7 +170,7 @@ public class OhiPeaceCorpsPage_Elmo {
     // Add only validation methods below this line
     public void verifyHeadersPeaceCorpsOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertAll();
     }
@@ -280,7 +280,7 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage");
         softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage?");
@@ -332,7 +332,7 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps (es)");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage (es)");
         softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage? (es)");
