@@ -16,8 +16,8 @@ public class OhiPeaceCorpsSteps_Elmo {
     @Then("I click {string} for insurance ending in 60 days in Peace Corps question")
     public void iClickInsuranceEndingOption(String insuranceEnding){ohiPeaceCorpsPage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
-    @Then("I enter end date of end of current month for Peace Corps")
-    public void iEnterEndDate(){ohiPeaceCorpsPage_Elmo.enterEndDate();}
+    @Then("I enter the end date as {string} on the Peace Corps page")
+    public void iEnterEndDate(String endDate){ohiPeaceCorpsPage_Elmo.enterEndDate(endDate);}
 
     @Then("I click {string} for insurance ending voluntary for Peace Corps question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiPeaceCorpsPage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}

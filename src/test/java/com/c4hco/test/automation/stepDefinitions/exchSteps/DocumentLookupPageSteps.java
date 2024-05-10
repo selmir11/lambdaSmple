@@ -34,5 +34,30 @@ public class DocumentLookupPageSteps {
 
     @Then("I verify Document Handle search result table columns")
     public void iVerifyDocumentHandleSearchResultTableColumns() {documentLookupPage.verifycontent();}
+
+    @Then("I select {string} from advanced search dropdown options")
+    public void iSelectFromAdvancedSearchDropdownOptions(String text) {documentLookupPage.selectoption(text);
+
+    }
+
+    @Then("I select {string} from sort options")
+    public void iSelectFromSortOptions(String text) {documentLookupPage.selectsortoption(text);
+    }
+
+    @Then("I click on submit button")
+    public void iClickOnSubmitButton() {
+        documentLookupPage.clickSubmit();
+    }
+
+    @And("I enter from and to dates")
+    public void iEnterFromAndToDates() {
+        documentLookupPage.inputdates();
+    }
+
+    @Then("I verify if DLT is sorted {string} by {string}")
+    public void iVerifyIfDLTIsSortedBy(String ascdescoptions, String sortbyoptions) {
+        documentLookupPage.verifysort(ascdescoptions,sortbyoptions);
+    }
 }
+
 

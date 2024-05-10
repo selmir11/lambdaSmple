@@ -16,8 +16,8 @@ public class OhiTricareSteps_Elmo {
     @Then("I click {string} for insurance ending in 60 days in Tricare question")
     public void iClickInsuranceEndingOption(String insuranceEnding){ohiTricarePage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
-    @Then("I enter end date of end of current month for Tricare")
-    public void iEnterEndDate(){ohiTricarePage_Elmo.enterEndDate();}
+    @Then("I enter the end date as {string} on the Tricare page")
+    public void iEnterEndDate(String endDate){ohiTricarePage_Elmo.enterEndDate(endDate);}
 
     @Then("I click {string} for insurance ending voluntary for Tricare question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiTricarePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}

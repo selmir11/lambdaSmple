@@ -20,7 +20,7 @@ public class FinancialHelpAgreementsPage {
     @FindBy(id ="SOL-FinHelpAgreements-Continue")
     WebElement continueButton;
 
-    @FindBy(id = "SOL-FinHelpAgreements-Signature")
+    @FindBy(id = "SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
     WebElement signatureInput;
 
     @FindBy(css="mat-checkbox input")
