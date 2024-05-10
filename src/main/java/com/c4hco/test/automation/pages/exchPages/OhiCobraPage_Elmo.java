@@ -170,7 +170,7 @@ public class OhiCobraPage_Elmo {
     // Add only validation methods below this line
     public void verifyHeadersCobraOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA");
         softAssert.assertAll();
     }
@@ -278,7 +278,7 @@ public class OhiCobraPage_Elmo {
 
     public void verifyCobraPageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in COBRA coverage");
         softAssert.assertEquals(CobraQuestionTxt.get(0).getText(),"Are you currently enrolled in COBRA coverage?");
@@ -330,10 +330,10 @@ public class OhiCobraPage_Elmo {
 
     public void verifyCobraPageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA (es)");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in COBRA (es)");
-        softAssert.assertEquals(CobraQuestionTxt.get(0).getText(),"Are you currently enrolled in COBRA coverage (es)?");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in COBRA coverage (es)");
+        softAssert.assertEquals(CobraQuestionTxt.get(0).getText(),"Are you currently enrolled in COBRA coverage? (es)");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
