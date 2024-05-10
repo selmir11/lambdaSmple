@@ -114,7 +114,6 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         genderSelection(gender);
         applyingForCoverage(applying);
         setRelationshipOption(Relation);
-        //clickSaveandContinueButton();
 
     }
 
