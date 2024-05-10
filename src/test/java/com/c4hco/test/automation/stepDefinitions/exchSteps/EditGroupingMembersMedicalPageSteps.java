@@ -70,4 +70,7 @@ public class EditGroupingMembersMedicalPageSteps {
     public void presenceOfResetmyGroup(){
         editGroupingMembersMedicalPage.ivalidateResetGroupLink();
     }
+    @Then("I drag and drop member 2 to unassigned group")
+    public void dragAndDropMember2ToUnassignedGroup(){editGroupingMembersMedicalPage.dragAndDropMember2ToUnassignedGroup();
+    }
 }

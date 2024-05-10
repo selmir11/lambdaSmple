@@ -157,5 +157,14 @@ public class EditGroupingMembersMedicalPage {
         resetgroupsButton.isDisplayed();
         resetgroupsButton.isEnabled();
     }
+    public void dragAndDropMember2ToUnassignedGroup() {
+        basicActions.waitForElementToBePresent(groupingMemebers.get(1),10);
+        basicActions.waitForElementToBePresent(dragAMemberHere.get(0),10 );
+        builder.clickAndHold(groupingMemebers.get(1))
+                .moveToElement(dragAMemberHere.get(0))
+                .release(dragAMemberHere.get(0)).build()
+                .perform();
+        basicActions.wait(3000);
+    }
 }
 
