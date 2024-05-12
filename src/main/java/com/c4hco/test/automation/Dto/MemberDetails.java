@@ -14,6 +14,7 @@ public class MemberDetails {
     String emailId;
     String password = "ALaska12!";
     String phoneNumber;
+    String alternatePhNum;
     String ssn;
     String relation_to_subscriber;
     String signature;
@@ -24,6 +25,7 @@ public class MemberDetails {
     String mailingZipCode;
     ResidentialAddress resAddress;
     String gender;
+    String race;
     String medicalPlan;
     String medicalPlanStartDate;
     String medicalPlanEndDate;
@@ -48,5 +50,11 @@ public class MemberDetails {
     String medicalEapid_db;
     String dentalEapid_db;
     Boolean financialHelp;
-
+    String fipcode;
+    String writtenLanguage;
+    String spokenLanguage;
+    String maritalStatus;
+    Boolean isMinor;
+    Boolean hasBroker;
+    Boolean hasIncorrectEntities;
 }

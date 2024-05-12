@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.Dto;
 
 import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
+import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class SharedData {
     @Getter @Setter private static String EmployerName;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static String env;
+    @Getter @Setter private static DbData dbData;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -34,5 +36,6 @@ public class SharedData {
         edi834TransactionDetails = null;
         env = null;
         ob834DetailsEntities = null;
+        dbData = null;
     }
 }
