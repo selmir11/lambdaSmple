@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -53,7 +54,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-HSAFilter")
     WebElement hsaDropdown;
 
-    @FindBy(id = "SHP-PlanResults-HSAFilter-input")
+    @FindBy(xpath = "//label[@for='SHP-PlanResults-HSAFilter-input']")
     WebElement hsaOption;
 
     @FindBy(id = "SHP-PlanResults-CoOptionPlans")
@@ -62,7 +63,7 @@ public class MedicalPlanResultsPage {
     @FindBy(css = ".mdc-checkbox #SHP-PlanResults-CoOptionPlans-input")
     WebElement coloradoOptionSelection;
 
-    @FindBy(xpath = "//*[contains(@id, 'PlanResults-ProviderPlan_')]")
+    @FindBy(css = ".c4-type-header-sm")
     List<WebElement> medicalPlanNamesList;
 
     @FindBy(css = "pagination-template .pagination-next a")
@@ -71,24 +72,25 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
     WebElement planResultsAPTC;
 
-    public void validateAPTC(String planResultsAPTCredit){
-        basicActions.waitForElementToBePresent(planResultsAPTC, 100);
+       public void validateAPTC(String planResultsAPTCredit){
+        basicActions.waitForElementToBePresent(planResultsAPTC, 30);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
     }
     
     public void selectfromProviderList(String Selecting) {
-        String providerPath = "//span[text()='" + Selecting + "']";
+        String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+
     }
 
     public void iGetFirstPlaneName() {
-        basicActions.waitForElementToBePresent(firstMedicalPlanName, 10);
+        basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
         SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
 
     public void SelectFirstMedicalPlan() {
         iGetFirstPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstPlan, 10);
+        basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }
 
@@ -97,40 +99,42 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickCompare() {
-        basicActions.waitForElementToBePresent(clickCompare, 10);
+        basicActions.waitForElementToBePresent(clickCompare, 30);
         clickCompare.click();
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 10);
+        basicActions.waitForElementListToBePresent(comparePlanLinks, 30);
         comparePlanLinks.get(0).click();
         comparePlanLinks.get(1).click();
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 10);
+        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 30);
         insuranceCompanyDropdown.click();
 
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToBeClickable(metalTierDropdown, 10);
+        basicActions.waitForElementToBeClickable(metalTierDropdown, 30);
         metalTierDropdown.click();
 
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToBeClickable(hsaDropdown, 10);
+        basicActions.waitForElementToBeClickable(hsaDropdown, 30);
         hsaDropdown.click();
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToBeClickable(hsaOption, 10);
+        basicActions.waitForElementToBePresent(hsaOption,30);
+        basicActions.waitForElementToBeClickable(hsaOption, 100);
         hsaOption.click();
+
     }
 
     public void clickColoradoOptionDropdown() {
-        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 10);
+        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 30);
         coloradoOptionDropdown.click();
     }
 
@@ -140,7 +144,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void selectfromMetalTierList(String Selecting) {
-        String providerPath = "//span[text()='" + Selecting + "']";
+        String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
@@ -149,7 +153,7 @@ public class MedicalPlanResultsPage {
         index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
         String indexString = String.valueOf(index); //turns the int index into a string value.
         String planID = "PlanResults-ProviderPlan_" + indexString; //sets the ID String using the index
-        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID)); //sets the Webelement based on the ID
+        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID)); //sets the Web element based on the ID
         String expectedText = ePlanID.getText();
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
@@ -161,7 +165,7 @@ public class MedicalPlanResultsPage {
             do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
-                clickPlanButton(optionalInt.get());
+                clickPlanButton(optionalInt.get()+1);
             } else {
                 paginateRight();
             }

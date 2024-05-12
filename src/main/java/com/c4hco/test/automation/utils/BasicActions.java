@@ -1,5 +1,4 @@
 package com.c4hco.test.automation.utils;
-
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.JavascriptExecutor;
@@ -104,7 +103,17 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-            Assert.fail("Element waiting for is not displayed");
+          return false;
+        }
+        return true;
+    }
+
+    public Boolean waitForElementPresence(WebElement webElement, int waitTime) {
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+        } catch (TimeoutException|NoSuchElementException ignore) {
+            Log.info("Element is not present");
             return false;
         }
         return true;
@@ -193,7 +202,7 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
-    
+
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();

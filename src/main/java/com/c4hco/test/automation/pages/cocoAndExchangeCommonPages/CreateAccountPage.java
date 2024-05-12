@@ -17,7 +17,7 @@ import java.util.Random;
 public class CreateAccountPage {
     SoftAssert softAssert = new SoftAssert();
 
-    @FindBy(css = "app-create-account a em")
+    @FindBy(css = " a > label")
     WebElement helpIcon;
 
     @FindBy(css = ".drawer-contents .drawer-body .drawer-text-content p")
@@ -71,6 +71,9 @@ public class CreateAccountPage {
 
     @FindBy(id = "primaryUser-input")
      WebElement primaryUserCheckbox;
+
+    @FindBy(id = "repUser-input")
+    WebElement onBehalfOfPrimaryUserCheckbox;
 
     @FindBy(id = "cocoUser-input")
      WebElement cocoTermsOfUseCheckbox;
@@ -148,6 +151,10 @@ public class CreateAccountPage {
                 cocoTermsOfUseCheckbox.click();
                 break;
             case "exchange":
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            case "Admin exchange":
+                onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();
                 break;
             default:

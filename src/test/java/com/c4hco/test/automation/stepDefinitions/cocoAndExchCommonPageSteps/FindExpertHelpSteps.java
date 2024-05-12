@@ -33,27 +33,25 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.clickFindBroker();
         }
 
-        @Then("I Search authorized Broker {string}")
-        public void iSearchAuthorizedBroker(String brokerName) {
-                findExpertHelpPage.searchForBrokerName(brokerName);
+        @Then("I validate the Find a Broker button {string} displayed")
+        public void iValidateTheFindABrokerButtonDisplayed(String expectedState){
+                findExpertHelpPage.validateFindABrokerButtonExists(expectedState);
         }
 
-        @And("I click on Search button")
-        public void iClickOnSearchButton() {
-                findExpertHelpPage.clickSearchButton();
+        @Then("I validate the Have a Broker call you button is displayed")
+        public void iValidateTheHaveABrokerCallYouButtonExists(){
+                findExpertHelpPage.validateHaveABrokerCallYouButtonExists();
         }
 
-        @And("I click more details from the first broker result container")
-        public void iClickMoreDetailsInTheBrokerResultContainer() {
-                findExpertHelpPage.clickMoreDetailsInTheBrokerContainer();
+        @Then("I validate the Find an Assister button is displayed")
+        public void iValidateTheFindAnAssisterButtonExists(){
+                findExpertHelpPage.validateFindAnAssisterButtonExists();
         }
 
-        @Then("I click Authorized broker")
-        public void iClickAuthorizedBroker() {
-                findExpertHelpPage.clickAuthorizedBroker();
+        @Then("I validate the Authorize Assister Organization button {string} displayed")
+        public void iValidateTheAuthorizeAssisterOrganizationButtonDisplayed(String expectedState){
+                findExpertHelpPage.validateAuthorizeAssisterOrganizationButtonExists(expectedState);
         }
-
-
 
         @And("I validate current Broker text exists")
         public void iValidateCurrentBrokerTextExists() {

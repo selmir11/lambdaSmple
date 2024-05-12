@@ -50,6 +50,9 @@ public class BasicSteps {
             case "Income Summary":
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
+            case "Employment Info":
+                pageUrl = "IncomePortal/member";
+                break;
             case "planSummaryMedicalDental":
                 pageUrl = "planSummaryMedicalDental";
                 break;
@@ -89,6 +92,9 @@ public class BasicSteps {
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
                 break;
+            case "Grouping Members Dental":
+                pageUrl = "PreShoppingPortal/groupingMembersDental";
+                break;
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
                 break;
@@ -111,7 +117,13 @@ public class BasicSteps {
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
             case "Find Expert Help Exch":
-                pageUrl = "broker-portal/individual/find-expert-help?";
+                pageUrl = "/broker-portal/individual/find-expert-help?lang=en";
+                break;
+                case "Find Expert Help Exch OBO":
+                pageUrl = "broker-portal/obo/find-expert-help";
+                break;
+            case "Find Expert Help Exch Spanish":
+                pageUrl = "broker-portal/individual/find-expert-help?lang=es";
                 break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
@@ -171,7 +183,7 @@ public class BasicSteps {
                 pageUrl = "login-portal/mfa";
                 break;
             case "Plan Summary":
-                pageUrl = "/planSummaryMedicalDental/";
+                pageUrl = "planSummaryMedicalDental";
                 break;
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
@@ -236,8 +248,23 @@ public class BasicSteps {
             case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
+            case "Financial Help Agreements" :
+                pageUrl = "PaymentPortal/agreements";
+                break;
+            case "Payment Selection" :
+                pageUrl = "PaymentPortal/paymentSelection";
+                break;
+            case "Initial Payment" :
+                pageUrl = "PaymentPortal/initialPayment";
+                break;
             case "Admin Portal search" :
                 pageUrl = "AdminPortal/search";
+                break;
+            case "Congratulations - What's Next?":
+                pageUrl = "whatsnext";
+                break;
+            case "Application Summary":
+                pageUrl = "selectMember";
                 break;
             case "Account Activity":
                 pageUrl = "/activity-report";
@@ -253,6 +280,12 @@ public class BasicSteps {
                 break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
+                break;
+            case "CoCo Tell us about additional members" :
+                pageUrl = "/coco/member-details-portal/additional-member-details/";
+                break;
+            case "CoCo Additional info for additional member" :
+                pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
             case "Elmo Ohi Retiree":
                 pageUrl = "/otherHealthInsurance/retiree";
@@ -280,6 +313,21 @@ public class BasicSteps {
                 break;
             case "CoCo Income Summary":
                 pageUrl = "coco/income-portal/summaryDetails";
+                break;
+            case "Cancellation Request":
+                pageUrl = "EnrollmentPortal/cancellationRequest";
+                break;
+            case "English":
+                pageUrl = "lang=en";
+                break;
+            case "Admin LCE":
+                pageUrl = "/nes/adminLce";
+                break;
+            case "Admin Portal individual dashboard" :
+                pageUrl = "/AdminPortal/individual/";
+                break;
+                case "LUGY Find expert help" :
+                pageUrl = "broker-portal/find-expert-help";
                 break;
             default:
                 System.out.println("undefined page ");

@@ -242,7 +242,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "Currently Enrolled" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed English" on the ESI page
-    Then I select the Are you currently enrolled Yes button on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I open or close the "End in 60 days" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "End in 60 days" text in "English" on the ESI page
@@ -251,7 +251,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "End in 60 days" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed English" on the ESI page
-    Then I select the Will Insurance End Yes button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
     Then I open or close the "Voluntarily Ending" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "Voluntarily Ending" text in "English" on the ESI page
@@ -382,7 +382,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "Currently Enrolled" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed Spanish" on the ESI page
-    Then I select the Are you currently enrolled Yes button on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I open or close the "End in 60 days" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "End in 60 days" text in "Spanish" on the ESI page
@@ -391,7 +391,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "End in 60 days" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed Spanish" on the ESI page
-    Then I select the Will Insurance End Yes button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
     Then I open or close the "Voluntarily Ending" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "Voluntarily Ending" text in "Spanish" on the ESI page

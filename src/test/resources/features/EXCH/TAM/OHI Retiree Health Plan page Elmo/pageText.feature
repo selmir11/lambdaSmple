@@ -71,7 +71,8 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     And I click continue on the Employment Info Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -182,7 +183,8 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     And I click continue on the Employment Info Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -304,7 +306,8 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -328,7 +331,8 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -353,7 +357,8 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -366,7 +371,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I verify Insurance Ending in 60 days is "No" on the Retiree page
 
     Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I enter end date of end of current month for Retiree
+    Then I enter the end date as "Current Month" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
     Then I click continue on the Elmo OHI Retiree page
 
@@ -380,7 +385,8 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    Then I edit income for Primary member
+    And I click on the table dropdown
+    And I click the edit income 1
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page

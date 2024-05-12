@@ -111,6 +111,14 @@ public class EmploymentInfoPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
+    List<WebElement>EditUpdateLink;
+
+    public void clickEditUpdateLink(int employer){
+    basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
+        EditUpdateLink.get(employer).click();
+    }
+
     public void isUserEmployed(String employmentOption) {
         basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
 
@@ -144,7 +152,7 @@ public class EmploymentInfoPage {
     }
 
     public void addEmploymentInfo(String Salary, String Frequency) {
-
+        // Should not use this method anymore- should use genericEmploymentInfo method
         SharedData.setEmployerName(getUniqueString(8)+"Company");
         txtCompanyName.sendKeys(SharedData.getEmployerName());
         txtAddressOne.sendKeys("123 Test Address");
@@ -161,6 +169,29 @@ public class EmploymentInfoPage {
         dropdown.selectByVisibleText(" " + Frequency + " ");
     }
 
+    public void genericEmploymentInfo(String addressline1, String city,String state, String zipcode, String Salary, String Frequency){
+        SharedData.setEmployerName(getUniqueString(8)+" Company");
+        txtCompanyName.sendKeys(SharedData.getEmployerName());
+        txtAddressOne.sendKeys(addressline1);
+        txtCity.sendKeys(city);
+
+        Select dropdown = new Select(selectState);
+        dropdown.selectByVisibleText(state);
+
+        txtZip.sendKeys(zipcode);
+        txtIncomeAmount.sendKeys(Salary);
+
+        dropdown = new Select(selectIncomeFreq);
+        dropdown.selectByVisibleText(" " + Frequency + " ");
+    }
+
+    public void enterEmploymentIncome(String Salary) {
+        basicActions.waitForElementToBePresent(txtIncomeAmount,15);
+        txtIncomeAmount.clear();
+        txtIncomeAmount.click();
+        txtIncomeAmount.sendKeys(Salary);
+
+    }
     public void isUserEmploymentSeasonal(String seasonalEmploymentOption) {
         switch (seasonalEmploymentOption) {
             case "Yes":

@@ -26,7 +26,7 @@ public class LifeChangeEventsPage {
     List<WebElement> textLceLable;
 
     @FindBy(id = "continueButton")
-    WebElement saveAndContinueButton;
+    List<WebElement> saveAndContinueButton;
 
     @FindBy(css = "h1.c4PageHeader")
     WebElement textReportLifeChangeHeader;
@@ -78,10 +78,18 @@ public class LifeChangeEventsPage {
                 case "MovedToColorado":
                     lceInputCheckbox.get(6).click();
                     break;
-            default:
+            case "NoneOfThese":
+                lceInputCheckbox.get(9).click();
+                break;
+
+                default:
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
-        saveAndContinueButton.click();
+        saveAndContinueButton.get(0).click();
+    }
+
+    public void clickContinueWithApplication(){
+        saveAndContinueButton.get(1).click();
     }
 
     public void validateTheVerbiageOnReportALifeChangePage(String language) {

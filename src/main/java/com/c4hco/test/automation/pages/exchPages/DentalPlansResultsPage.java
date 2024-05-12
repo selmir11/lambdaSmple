@@ -43,7 +43,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']") //@FindBy(css=".plan .header-3")
+    @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']")
     List<WebElement> dentalPlanNames;
 
     @FindBy(css = "pagination-template .pagination-next")
@@ -85,7 +85,7 @@ public class DentalPlansResultsPage {
 
     }
     public void selectfromCoverageLevelList(String coverageLevel) {
-        String coveragePath = "//span[text()='" + coverageLevel + "']";
+        String coveragePath = "//div[text()='" + coverageLevel + "']";
         basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
     }
 
@@ -95,7 +95,7 @@ public class DentalPlansResultsPage {
     }
 
     public void selectfromInsuranceCompanyList(String insuranceCompany){
-        String companyPath = "//span[text()='" + insuranceCompany + "']";
+        String companyPath = "//div[text()='" + insuranceCompany + "']";
         basicActions.getDriver().findElement(By.xpath(companyPath)).click();
     }
 

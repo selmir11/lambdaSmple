@@ -151,6 +151,7 @@ public class AddAddressPage {
     }
 
     public void mailingAddress(){
+        // Should not use this method anymore- should use genericMailingAddress method
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");

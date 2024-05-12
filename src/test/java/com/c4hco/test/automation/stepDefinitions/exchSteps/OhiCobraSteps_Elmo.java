@@ -17,8 +17,8 @@ public class OhiCobraSteps_Elmo {
     @Then("I click {string} for insurance ending in 60 days in COBRA question")
     public void iClickInsuranceEndingOption(String insuranceEnding){ohiCobraPage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
-    @Then("I enter end date of end of current month for COBRA")
-    public void iEnterEndDate(){ohiCobraPage_Elmo.enterEndDate();}
+    @Then("I enter the end date as {string} on the Cobra page")
+    public void iEnterEndDate(String endDate){ohiCobraPage_Elmo.enterEndDate(endDate);}
 
     @Then("I click {string} for insurance ending voluntary for COBRA question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiCobraPage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
@@ -50,6 +50,15 @@ public class OhiCobraSteps_Elmo {
 
     @And("I verify Voluntarily Ending is {string} on the Cobra page")
     public void iVerifyVoluntaryEndingOption(String voluntaryEnding){ohiCobraPage_Elmo.verifyVoluntaryEndingOption(voluntaryEnding);}
+
+    @And("I verify the {string} Cobra page data in {string}")
+    public void iVerifyVaHealthcarePageData(String dataToVerify, String language) {ohiCobraPage_Elmo.verifyCobraPageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the Cobra page")
+    public void iVerifyErrorMessage(String errorType, String language){ohiCobraPage_Elmo.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for Cobra page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohiCobraPage_Elmo.verifyNoErrorMessage(errorType);}
 
 
 

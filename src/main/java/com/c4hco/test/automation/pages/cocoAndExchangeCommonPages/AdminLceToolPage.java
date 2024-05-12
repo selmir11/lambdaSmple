@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,44 +36,68 @@ public class AdminLceToolPage {
     @FindBy(css = "#planYear option")
     List<WebElement> planYrDrpdwnOptions; // includes default text and years
 
-    @FindBy(id="changeEffDate")
+    @FindBy(id = "changeEffDate")
     WebElement changeEffectiveDt;
 
-    @FindBy(id="addAdminButton")
+    @FindBy(id = "addAdminButton")
     WebElement submitBtn;
+    @FindBy(css = "body > div.outer-container > div.container > h1")
+    WebElement titleAdminLceTool;
+    @FindBy(xpath = "//b[normalize-space()='Account Number']")
+    WebElement acctNumberLceTool;
+    @FindBy(css = "#header-user span:nth-child(3)")
+    WebElement dropdownArrow;
+    @FindBy(id = "logout-link")
+    WebElement logoutAdmin;
 
-        public void lookUpAccId(){
-            tabs = new ArrayList<> (basicActions.getDriver().getWindowHandles());
-           basicActions.getDriver().switchTo().window(tabs.get(1)) ;
-            softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
-            softAssert.assertAll();
-            basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
-            System.out.println("Account ID ::"+ SharedData.getPrimaryMember().getAccount_id());
-            adminLCEToolAccountIdInput.sendKeys( String.valueOf(SharedData.getPrimaryMember().getAccount_id()));
-            lookUpBtn.click();
-            // validate look up returned results
-            basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
-        }
+    public void lookUpAccId() {
+        tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
+        basicActions.getDriver().switchTo().window(tabs.get(1));
+        softAssert.assertEquals(basicActions.getCurrentUrl().contains("adminLce"), true);
+        softAssert.assertAll();
+        basicActions.waitForElementToBePresent(adminLCEToolAccountIdInput, 10);
+        System.out.println("Account ID ::" + SharedData.getPrimaryMember().getAccount_id());
+        adminLCEToolAccountIdInput.sendKeys(String.valueOf(SharedData.getPrimaryMember().getAccount_id()));
+        lookUpBtn.click();
+        // validate look up returned results
+        basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
+    }
 
-        public void changeEffectiveDate(String effectiveDate){
-            MemberDetails subscriber = SharedData.getPrimaryMember();
-            basicActions.waitForElementToBePresent(planYrDropdown, 10);
-            planYrDropdown.click();
+    public void changeEffectiveDate(String effectiveDate) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(planYrDropdown, 10);
+        planYrDropdown.click();
 
-            planYrDrpdwnOptions.get(1).click(); // selects current year
+        planYrDrpdwnOptions.get(1).click(); // selects current year
 
-            changeEffectiveDt.sendKeys(effectiveDate);
-            submitBtn.click();
-            basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
+        changeEffectiveDt.sendKeys(effectiveDate);
+        submitBtn.click();
+        basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
 
-            SharedData.setPrimaryMember(subscriber);
+        SharedData.setPrimaryMember(subscriber);
 
-            closeTabAndSwitchToCurrentWindow();
-        }
+        closeTabAndSwitchToCurrentWindow();
+    }
 
-        public void closeTabAndSwitchToCurrentWindow(){
-            // TO DO: Check if this can be made re-usable by moving it to basicActions.
-            basicActions.closeBrowserTab();
-            basicActions.getDriver().switchTo().window(tabs.get(0));
-        }
+    public void closeTabAndSwitchToCurrentWindow() {
+        // TO DO: Check if this can be made re-usable by moving it to basicActions.
+        basicActions.closeBrowserTab();
+        basicActions.getDriver().switchTo().window(tabs.get(0));
+    }
+
+    public void verifyAdminLceContainerTitle() {
+        titleAdminLceTool.isDisplayed();
+        softAssert.assertEquals(titleAdminLceTool.getText(), "Admin LCE Tool");
+        softAssert.assertTrue(acctNumberLceTool.isDisplayed());
+        softAssert.assertAll();
+    }
+    public void logoutFromAdminLce() {
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        dropdownArrow.click();
+        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        logoutAdmin.click();
+    }
+    public void initiateIncomingPage() {
+        basicActions.switchtoactiveTab();   }
 }

@@ -16,9 +16,19 @@ public class EmploymentSummaryPage {
     @FindBy(id = "EmploymentSummary-SaveAndContinue")
     WebElement btnContinue;
 
+    @FindBy(xpath = "//*[starts-with(@id,'edit')]")
+    WebElement lnkEditIncome;
+
     public void clickContinue(){
         basicActions.waitForElementToBeClickable(btnContinue, 10);
         btnContinue.click();
+    }
+
+    public void clickEditIncome(int Index){
+        basicActions.waitForElementToBePresent(lnkEditIncome,10);
+        Index -=1;
+        lnkEditIncome.click();
+
     }
 
 }

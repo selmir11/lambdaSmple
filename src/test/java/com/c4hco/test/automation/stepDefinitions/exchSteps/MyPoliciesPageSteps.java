@@ -50,13 +50,8 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.validateDentalPlanDetailsFromPlanHistory();
     }
 
-    @And("I click on Cancel Medical Plan button")
-    public void clickMedicalPlansCancelButton(){
-        myPoliciesPage.clickMedicalPlanCancelButton();
-    }
-
-    @And("I click on Cancel Dental Plan button")
-    public void clickDentalPlansCancelButton(){
-        myPoliciesPage.clickDentalPlanCancelButton();
+    @And("I click on {string} button")
+    public void clickMedicalPlansCancelButton(String btnDetail){
+        myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
 }
