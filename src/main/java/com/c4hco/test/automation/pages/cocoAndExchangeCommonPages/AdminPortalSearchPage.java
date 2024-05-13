@@ -287,7 +287,13 @@ public class AdminPortalSearchPage {
             default: throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
     }
-
+    public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
+        if (SharedData.getEnv().equals("stg")){
+            searchInputList.get(0).sendKeys(accountIdSTG);
+        }else {
+            searchInputList.get(0).sendKeys(accountIdQA);
+        }
+      }
 
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);

@@ -1,32 +1,17 @@
-Feature: Navigation - Family Overview page
+Feature: Page Text-Additional information for additional member page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-47 @PageNavigationFamilyOverview
-  Scenario: Navigation on the Tell us about yourself page
+  @SLCR-77-WIP @PageTextAddInfoForAddMember
+  Scenario: Verify Additional information for additional member Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
-    And I click Go Back on the tell us about yourself page
-    Then I validate I am on the "CoCo Family Overview" page
-    And I verify button text Manage who helps you in "English"
-    Then I click Manage who helps you on the Family Overview page
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-    And I change the language from header to "Spanish"
-    And I verify button text Manage who helps you in "Spanish"
-    Then I click Manage who helps you on the Family Overview page
-    Then I validate I am on the "Find Expert Help" page
-    And I change the language from header to "English"
-    And I click Continue on my own button from Manage who helps you page
+    Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -49,15 +34,6 @@ Feature: Navigation - Family Overview page
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
-    Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page and continue with "01011980", "Male", "Spouse", and applying "Yes"
-    And I click continue on Tell us about additional members page
     Then I validate I am on the "CoCo Additional info for additional member" page
-    Then I click Go Back on the Additional information for additional member page
-    Then I validate I am on the "CoCo Tell us about additional members" page
-    And I click Go Back on Tell us about additional members page
-    Then I validate I am on the "CoCo Family Overview" page
-    And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
-

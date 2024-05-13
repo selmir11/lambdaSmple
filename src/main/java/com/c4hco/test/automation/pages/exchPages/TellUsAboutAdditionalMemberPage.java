@@ -164,7 +164,6 @@ public class TellUsAboutAdditionalMemberPage {
         LocalDate DOBCalculate = currentDate.minusYears(Age);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob=dateFormat.format(DOBCalculate);
-        System.out.println(actualdob);
         enterMemberDetails(actualdob);
     }
 
