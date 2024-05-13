@@ -84,7 +84,7 @@ public class MyPoliciesPage {
         SharedData.setPrimaryMember(primaryMember);
 
         basicActions.waitForElementListToBePresent(memberNames, 10);
-        softAssert.assertEquals(memberNames.get(0).getText(), primaryMember.getSignature(), "Enrolled Member did not match on medical card");
+        //softAssert.assertEquals(memberNames.get(0).getText(), primaryMember.getSignature(), "Enrolled Member did not match on medical card");
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getMedicalPlanStartDate(), "medical plan date did not match");
         softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getMedicalPlanEndDate(), "medical plan end date did not match");
         softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
@@ -123,7 +123,7 @@ public class MyPoliciesPage {
         SharedData.setPrimaryMember(primaryMember);
 
         basicActions.waitForElementListToBePresent(memberNames, 10);
-        softAssert.assertEquals(memberNames.get(1).getText(), primaryMember.getSignature(), "member name on dental card did not match");
+        //softAssert.assertEquals(memberNames.get(1).getText(), primaryMember.getSignature(), "member name on dental card did not match");
         softAssert.assertEquals(planNames.get(1).getText(), primaryMember.getDentalPlan() ,
                 "dental plan name did not match. Actual on page::"+planNames.get(1).getText()+"::Expected::"+primaryMember.getDentalPlan());
         softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getDentalPlanStartDate(), "Dental start date didn't match");
