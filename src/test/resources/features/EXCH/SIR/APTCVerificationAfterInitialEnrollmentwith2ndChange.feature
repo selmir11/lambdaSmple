@@ -1745,7 +1745,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1,134.70/mo"
+    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1966,7 +1966,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1,134.70/mo"
+    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
