@@ -32,8 +32,8 @@ public class NoticesPageSteps {
         noticesPage.enterInvalidMFACode();
     }
 
-    @Then("I click send new code")
-    public void iClickSendNewCode() {
+    @Then("I click Didn't receive an email?")
+    public void iClickDidnTReceiveAnEmail() {
         noticesPage.sendNewCode();
     }
 
@@ -55,4 +55,14 @@ public class NoticesPageSteps {
     @And("I delete the open notice")
     public void iDeleteTheOpenNotice() {noticesPage.deleteOpenNotice();}
 
+
+    @And("I verify request new option is displayed")
+    public void iVerifyRequestNewOptionIsDisplayed() {
+        noticesPage.VerifyRequestNewOptionIsDisplayed();
+    }
+
+    @Then("I click request new code")
+    public void iClickRequestNewCode() {
+        noticesPage.clickRequestNewCode();
+    }
 }

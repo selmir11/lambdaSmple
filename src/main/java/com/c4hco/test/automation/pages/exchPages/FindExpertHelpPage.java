@@ -50,12 +50,14 @@ public class FindExpertHelpPage {
         authorizeBrokerButton.click();
     }
 
-    public void clickContinueOnOwnButton() {
+    public void clickContinueOnMyOwnButton() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,20));
         softAssert.assertAll();
         continueOnMyOwnButton.click();
+
     }
+
     @FindBy(id = "BP-Findexperthelpnearyou-Back")
     private WebElement backButton;
 

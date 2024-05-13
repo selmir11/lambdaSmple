@@ -13,6 +13,11 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.selectLCE(lceOption);
     }
 
+    @And("I click Continue With Application")
+    public void iClickContinueWithApplication(){
+        lifeChangeEventsPage.clickContinueWithApplication();
+    }
+
     @And("I validate the verbiage on the Report a life change page in {string}")
     public void iValidateTheVerbiageOnTheReportALifeChangePageIn(String language) {
         lifeChangeEventsPage.validateTheVerbiageOnReportALifeChangePage(language);

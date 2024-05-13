@@ -11,6 +11,18 @@ public class PreScreenPageSteps {
         public void iClickCreateAccountLink(){
             prescreenPage.clickCreateAccountLink();
         }
+
+    @Then("I verify sign in button is displayed")
+    public void iVerifySignInButtonIsDisplayed() {
+            prescreenPage.verifySignInDisplayed();
+    }
+
+    @Then("I click on Help me understand what I qualify for button")
+    public void iClickOnHelpMeUnderstandWhatIQualifyForButton() {
+            prescreenPage.clickOnHelpMeUnderstandWhatIQualifyFor();
+    }
+
+
     // =================VALIDATION STEPS==============//
 
 

@@ -19,13 +19,30 @@ import java.util.Map;
 public class OhiEmployerSponsoredHealthInsurancePage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    Calendar calendar = Calendar.getInstance();
+    Date today = new Date();
     public OhiEmployerSponsoredHealthInsurancePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = ".container .header-1")
+    WebElement ohiHeader;
+
+    @FindBy(css = ".container .header-2")
+    WebElement ohiEsiHeader;
+
+    @FindBy(css = "div > label")
+    List<WebElement> EsiQuestionTxt;
+
+    @FindBy(css ="#ELIG-Ohi-Esi-employer-container span.error-message")
+    WebElement whichJobError;
+
     @FindBy(css = "#ELIG-Ohi-Esi-employer")
     WebElement esiSelectEmployerDpd;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-minStdVal-container span.error-message")
+    WebElement minValueError;
 
     @FindBy(id = "ELIG-Ohi-Esi-minStdVal-YesButton")
     WebElement esiMinValueStandardYesBtn;
@@ -36,8 +53,14 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(id = "ELIG-Ohi-Esi-minStdVal-IDontKnowButton")
     WebElement esiMinValueStandardDontKnowBtn;
 
+    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgMonthlyPremium-container span.error-message")
+    WebElement amountError;
+
     @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgMonthlyPremium")
     WebElement esiMonthlyAmountInput;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-currEnrl-container span.error-message")
+    WebElement currentlyEnrolledError;
 
     @FindBy(id = "ELIG-Ohi-Esi-currEnrl-YesButton")
     WebElement esiCurrentlyEnrolledYesBtn;
@@ -45,14 +68,23 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(id = "ELIG-Ohi-Esi-currEnrl-NoButton")
     WebElement esiCurrentlyEnrolledNoBtn;
 
+    @FindBy(css = "#ELIG-Ohi-Esi-covgEndsSoon-container span.error-message")
+    WebElement insuranceEndingError;
+
     @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-YesButton")
     WebElement esiInsuranceEndYesBtn;
 
     @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-NoButton")
     WebElement esiInsuranceEndNoBtn;
 
+    @FindBy(css = "#ELIG-Ohi-Esi-empSponsCovgEndDate-container span.error-message")
+    WebElement inputEndDateError;
+
     @FindBy(css = "#ELIG-Ohi-Esi-empSponsCovgEndDate")
     WebElement esiEndDateInput;
+
+    @FindBy(css = "#ELIG-Ohi-Esi-empVoluntaryEnd-container span.error-message")
+    WebElement endVoluntaryError;
 
     @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-YesButton")
     WebElement esiVoluntarilyEndingYesBtn;
@@ -198,18 +230,38 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         }
     }
 
-    public void enterEndDate(){
+    public void enterEndDate(String endDate){
         basicActions.waitForElementToBePresent(esiEndDateInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
 
-        esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        switch (endDate){
+            case "Current Month":
+                calendar.add(Calendar.MONTH, 1);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfMonth = calendar.getTime();
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+                esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                break;
+            case "Prior Month":
+                calendar.add(Calendar.MONTH, 0);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfPriorMonth = calendar.getTime();
+                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
+                esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                break;
+            case "Future Month":
+                calendar.add(Calendar.MONTH, 3);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfFutureMonth = calendar.getTime();
+                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
+                esiEndDateInput.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + endDate);
+        }
     }
 
     public void clickVoluntarilyEnding(String voluntarilyEnding) {
@@ -399,6 +451,426 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         }
     }
 
+    public void verifyEsiPageData(String dataToVerify, String language){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        switch (language){
+            case "English":
+                verifyEsiPageDataEnglish(dataToVerify);
+                break;
+            case "Spanish":
+                verifyEsiPageDataSpanish(dataToVerify);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyEsiPageDataEnglish(String dataToVerify){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        switch (dataToVerify){
+            case "First Section":
+                verifyEsiPageFirstSectionDataEnglish();
+                break;
+            case "Second Section":
+                verifyEsiPageFirstSectionDataEnglish();
+                verifyEsiPageSecondSectionDataEnglish();
+                break;
+            case "Third Section":
+                verifyEsiPageFirstSectionDataEnglish();
+                verifyEsiPageSecondSectionDataEnglish();
+                verifyEsiPageThirdSectionDataEnglish();
+                break;
+            case "Fourth Section":
+                verifyEsiPageFirstSectionDataEnglish();
+                verifyEsiPageSecondSectionDataEnglish();
+                verifyEsiPageThirdSectionDataEnglish();
+                verifyEsiPageFourthSectionDataEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        softAssert.assertEquals(goBackButton.getText(),"  Go Back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFirstSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
+        softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
+        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Select an employer\n"+SharedData.getEmployerName());
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageSecondSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"Does this health insurance meet the Minimum Value Standard?");
+        softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
+        softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"I don't know");
+        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getEmployerName()+" just for yourself?");
+        softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"monthly amount");
+        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getEmployerName()+"?");
+        softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageThirdSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(4).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(esiInsuranceEndYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiInsuranceEndNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFourthSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"End Date:");
+        softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageDataSpanish(String dataToVerify){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        switch (dataToVerify){
+            case "First Section":
+                verifyEsiPageFirstSectionDataSpanish();
+                break;
+            case "Second Section":
+                verifyEsiPageFirstSectionDataSpanish();
+                verifyEsiPageSecondSectionDataSpanish();
+                break;
+            case "Third Section":
+                verifyEsiPageFirstSectionDataSpanish();
+                verifyEsiPageSecondSectionDataSpanish();
+                verifyEsiPageThirdSectionDataSpanish();
+                break;
+            case "Fourth Section":
+                verifyEsiPageFirstSectionDataSpanish();
+                verifyEsiPageSecondSectionDataSpanish();
+                verifyEsiPageThirdSectionDataSpanish();
+                verifyEsiPageFourthSectionDataSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        softAssert.assertEquals(goBackButton.getText(),"  Volver");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFirstSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
+        softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");
+        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Seleccionar un empleador\n"+SharedData.getEmployerName());
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageSecondSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"\u00BFCumple este seguro de salud el est\u00E1ndar de valor m\u00EDnimo?");
+        softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
+        softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"No s\u00E9");
+        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getEmployerName()+" solo para usted?");
+        softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"Cantidad mensual");
+        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getEmployerName()+"?");
+        softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageThirdSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(4).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
+        softAssert.assertEquals(esiInsuranceEndYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiInsuranceEndNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFourthSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
+        softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessage(String errorType, String language) {
+        switch (errorType) {
+            case "Which Job":
+                verifyWhichJobError(language);
+                break;
+            case "Min Value":
+                verifyMinValueError(language);
+                break;
+            case "Amount":
+                verifyAmountError(language);
+                break;
+            case "Currently Enrolled":
+                verifyCurrentlyEnrolledError(language);
+                break;
+            case "Insurance Ending":
+                verifyInsuranceEndingError(language);
+                break;
+            case "Input Date":
+                verifyInputEndDateError(language);
+                break;
+            case "Voluntary End":
+                verifyEndVoluntaryError(language);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + errorType);
+        }
+    }
+
+    public void verifyWhichJobError(String language) {
+        basicActions.waitForElementToBePresent(whichJobError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(whichJobError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(whichJobError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(whichJobError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(whichJobError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(whichJobError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(whichJobError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(whichJobError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(whichJobError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(whichJobError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(whichJobError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyMinValueError(String language) {
+        basicActions.waitForElementToBePresent(minValueError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(minValueError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(minValueError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(minValueError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(minValueError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(minValueError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(minValueError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(minValueError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(minValueError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(minValueError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(minValueError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyAmountError(String language) {
+        basicActions.waitForElementToBePresent(amountError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(amountError.getText(), "Amount is required");
+                softAssert.assertEquals(amountError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(amountError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(amountError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(amountError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(amountError.getText(), "Esta cantidad es obligatoria");
+                softAssert.assertEquals(amountError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(amountError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(amountError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(amountError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyCurrentlyEnrolledError(String language) {
+        basicActions.waitForElementToBePresent(currentlyEnrolledError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(currentlyEnrolledError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(currentlyEnrolledError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyInsuranceEndingError(String language) {
+        basicActions.waitForElementToBePresent(insuranceEndingError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(insuranceEndingError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(insuranceEndingError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyInputEndDateError(String language) {
+        basicActions.waitForElementToBePresent(inputEndDateError, 20);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        calendar.setTime(today);
+        String formattedDate = dateFormat.format(today);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(inputEndDateError.getText(), "Date is required");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(inputEndDateError.getText(), "La fecha es obligatoria");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Please enter a value greater than or equal to "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Prior":
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "English Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "Date cannot exceed 60 days in the future");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish Future":
+                softAssert.assertEquals(inputEndDateError.getText(), "La fecha a seleccionar no puede exceder los 60 d\u00EDas");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyEndVoluntaryError(String language) {
+        basicActions.waitForElementToBePresent(endVoluntaryError, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(endVoluntaryError.getText(), "Please select one of the options below");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(endVoluntaryError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyNoErrorMessage(String errorType) {
+        switch (errorType) {
+            case "Which Job":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(whichJobError, 10));
+                softAssert.assertAll();
+                break;
+            case "Min Value":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(minValueError, 10));
+                softAssert.assertAll();
+                break;
+            case "Amount":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(amountError, 10));
+                softAssert.assertAll();
+                break;
+            case "Currently Enrolled":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(currentlyEnrolledError, 10));
+                softAssert.assertAll();
+                break;
+            case "Insurance Ending":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(insuranceEndingError, 10));
+                softAssert.assertAll();
+                break;
+            case "Input Date":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(inputEndDateError, 10));
+                softAssert.assertAll();
+                break;
+            case "Voluntary End":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(endVoluntaryError, 10));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + errorType);
+        }
+    }
+
     public void verifyHelpDrawerStatus(String drawerStatus) {
         switch (drawerStatus) {
             case "Closed English":
@@ -507,7 +979,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(16).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(17).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(18).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA)");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -526,7 +998,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Your only option for getting health insurance is COBRA continuation coverage or retiree coverage.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet. When that waiting period ends, return to the application, report a life change, and enter your job\u2019s health insurance information here.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "A waiting period is the time that must pass before an employer offers an employee health coverage. Waiting periods can be 0-90 days.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -540,7 +1012,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "To find out if a plan meets the minimum value standard, check the Summary of Benefits and Coverage (SBC) from your job\u2019s plan, or ask them to fill out the Employer Coverage Tool.");
         softAssert.assertEquals(helpDrawerParagraphLnk1.getText(), "Employer Coverage Tool");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Print or download the Employer Coverage Tool.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -554,7 +1026,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Enter the amount of the lowest-cost plan offered by the employer that would cover only the employee.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "If the employer has wellness programs:\nEnter the premium this person would pay if they got the maximum discount for any tobacco cessation programs (counseling to stop smoking), but no other programs.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "These amounts should be listed in a notice from your employer. But, if you don't have a notice or you're not sure what these amounts are, ask your employer.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -564,7 +1036,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getEmployerName()+"?");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Enrollment:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -577,7 +1049,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "the company is no longer offering health insurance,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "or you won't qualify for it any longer,");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "select \"Yes\" and enter the date the insurance will end.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -589,7 +1061,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA).");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 

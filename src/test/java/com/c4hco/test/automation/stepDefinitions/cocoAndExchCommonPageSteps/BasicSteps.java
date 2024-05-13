@@ -92,6 +92,9 @@ public class BasicSteps {
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
                 break;
+            case "Grouping Members Dental":
+                pageUrl = "PreShoppingPortal/groupingMembersDental";
+                break;
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
                 break;
@@ -115,6 +118,9 @@ public class BasicSteps {
                 break;
             case "Find Expert Help Exch":
                 pageUrl = "/broker-portal/individual/find-expert-help?lang=en";
+                break;
+                case "Find Expert Help Exch OBO":
+                pageUrl = "broker-portal/obo/find-expert-help";
                 break;
             case "Find Expert Help Exch Spanish":
                 pageUrl = "broker-portal/individual/find-expert-help?lang=es";
@@ -275,6 +281,12 @@ public class BasicSteps {
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
+            case "CoCo Tell us about additional members" :
+                pageUrl = "/coco/member-details-portal/additional-member-details/";
+                break;
+            case "CoCo Additional info for additional member" :
+                pageUrl = "/coco/member-details-portal/member-additional-information/";
+                break;
             case "Elmo Ohi Retiree":
                 pageUrl = "/otherHealthInsurance/retiree";
                 break;
@@ -307,6 +319,15 @@ public class BasicSteps {
                 break;
             case "English":
                 pageUrl = "lang=en";
+                break;
+            case "Admin LCE":
+                pageUrl = "/nes/adminLce";
+                break;
+            case "Admin Portal individual dashboard" :
+                pageUrl = "/AdminPortal/individual/";
+                break;
+                case "LUGY Find expert help" :
+                pageUrl = "broker-portal/find-expert-help";
                 break;
             default:
                 System.out.println("undefined page ");
