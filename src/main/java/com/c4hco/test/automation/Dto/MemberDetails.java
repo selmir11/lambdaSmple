@@ -21,9 +21,9 @@ public class MemberDetails {
     String fullName;
     String dob;
     String zipcode;
-    String mailingAddress;
     String mailingZipCode;
     ResidentialAddress resAddress;
+    String malingAddress; //Set a Type for all mailing address fields.
     String gender;
     String race;
     String medicalPlan;
@@ -57,4 +57,7 @@ public class MemberDetails {
     Boolean isMinor;
     Boolean hasBroker;
     Boolean hasIncorrectEntities;
+    Boolean isMailingAddressDifferent;
+    String memberGroup;
+    String isSubscriber; // Values to set - Y or N
 }

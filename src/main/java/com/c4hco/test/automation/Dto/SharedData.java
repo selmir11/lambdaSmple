@@ -24,6 +24,12 @@ public class SharedData {
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
+    @Getter @Setter private static String totalGroups;
+    @Getter @Setter private static String totalSubscribers;
+    @Getter @Setter private static String totalDependents;
+    @Getter @Setter private static String planYear;
+    @Getter @Setter private static GroupDetails groupDetails;
+
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -37,5 +43,10 @@ public class SharedData {
         env = null;
         ob834DetailsEntities = null;
         dbData = null;
+        totalGroups = null;
+        totalSubscribers = null;
+        totalDependents= null;
+        planYear = null;
+        groupDetails = null;
     }
 }
