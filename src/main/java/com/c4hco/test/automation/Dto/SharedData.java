@@ -22,6 +22,7 @@ public class SharedData {
     @Getter @Setter private static String EmployerName;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static String env;
+    @Getter @Setter private static int groups;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
