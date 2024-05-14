@@ -41,3 +41,4 @@ Feature: Navigation - Tell us about additional members of your household page
     Then I validate I am on the "CoCo Tell us about additional members" page
     Then I enter details on tell us about additional members of your household page and continue with "01011980", "Male", "Spouse", and applying "Yes"
     And I click continue on Tell us about additional members of your household page
+    Then I validate I am on the "CoCo Tell us about additional members" page
