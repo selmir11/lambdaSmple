@@ -91,9 +91,6 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
-
-    //@FindBy(xpath = "//a[normalize-space()='Sign Out']")
-    //@FindBy(css = ".p-2 sign-out")
     @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
     WebElement signOutLinkPayment;
 
