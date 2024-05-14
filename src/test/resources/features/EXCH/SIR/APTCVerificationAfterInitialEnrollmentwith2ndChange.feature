@@ -98,7 +98,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -220,7 +220,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$139.14"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -318,7 +318,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -440,7 +440,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$265.98"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -539,7 +539,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -661,7 +661,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$837.85"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -760,7 +760,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -881,7 +881,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$944.39"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -980,7 +980,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -1101,7 +1101,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$642.40"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -1200,7 +1200,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -1321,7 +1321,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$379.36"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -1419,7 +1419,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -1541,7 +1541,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$717.10"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -1640,7 +1640,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -1762,7 +1762,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -1861,7 +1861,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -1983,7 +1983,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"

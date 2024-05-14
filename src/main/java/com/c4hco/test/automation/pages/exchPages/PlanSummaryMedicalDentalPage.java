@@ -96,8 +96,12 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
     
-    public void continuePlanSummaryPage(){
+    public void continueButton(){
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
+    }
+    public void continuePlanSummaryPage(){
         setPlansPremiumAmt();
         getmedGroup1MemNames();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
