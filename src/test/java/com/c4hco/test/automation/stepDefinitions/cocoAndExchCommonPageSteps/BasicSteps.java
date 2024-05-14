@@ -282,7 +282,7 @@ public class BasicSteps {
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
             case "CoCo Tell us about additional members" :
-                pageUrl = "/coco/member-details-portal/additional-member-details/";
+                pageUrl = "/coco/member-details-portal/additional-member-details";
                 break;
             case "CoCo Additional info for additional member" :
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
