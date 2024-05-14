@@ -27,10 +27,10 @@ public class MedicalPlanResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "PlanResults-SelectThisPlan_0")
+    @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement selectFirstPlan;
 
-    @FindBy(id = "PlanResults-ProviderPlan_0")
+    @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
 
     @FindBy(id = "SHP-MedicalPlanResults-Continue")
@@ -69,12 +69,17 @@ public class MedicalPlanResultsPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
-    @FindBy(xpath = "//span[@id='PlanResults-TaxCredit_0']")
+    @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
     WebElement planResultsAPTC;
 
-       public void validateAPTC(String planResultsAPTCredit){
+    public void validateAPTC(String planResultsAPTCredit){
         basicActions.waitForElementToBePresent(planResultsAPTC, 30);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
+    }
+    public void validateNoAPTC(String noAPTCCreditAmt) {
+        softAssert.assertFalse(basicActions.waitForElementPresence(planResultsAPTC, 20 ) );
+        softAssert.assertAll();
+
     }
     
     public void selectfromProviderList(String Selecting) {
