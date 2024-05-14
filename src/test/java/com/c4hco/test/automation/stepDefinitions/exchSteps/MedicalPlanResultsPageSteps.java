@@ -23,6 +23,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validateAPTC(aptCreditAmt);
     }
 
+    @And ("I validate there is no APTC credit {string} on the first plan")
+    public void validateNoAPTC(String noAPTCCreditAmt){
+        medPlanResultsPage.validateNoAPTC(noAPTCCreditAmt);
+    }
+
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage() {
         medPlanResultsPage.iclickContinue();

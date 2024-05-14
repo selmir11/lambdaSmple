@@ -16,9 +16,9 @@ public void EnterspecificAdditionalMemberDetailsCoCo(String DOB, String gender, 
    @And("I validate the page text on Tell us about additional members of your household")
    public void iverifyTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.verifyTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage();}
 
-   @And("I click continue on Tell us about additional members page")
+   @And("I click continue on Tell us about additional members of your household page")
    public void clickSaveAndContinue(){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.clickSaveandContinueButton();}
 
-   @And("I click Go Back on Tell us about additional members page")
+   @And("I click Go Back on Tell us about additional members of your household page")
    public void clickGoBack(){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.clickGoBackButton();}
 }

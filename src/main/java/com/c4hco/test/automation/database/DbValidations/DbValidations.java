@@ -25,7 +25,6 @@ public class DbValidations {
 
         if(policyTablesEntity.getCoverage_type().equals("1")){
 
-
           // validate medical specific details
 //        softAssert.assertEquals(subscriber.getMedicalPlanStartDate(), policyTablesEntity.getPolicy_start_date(), "Policy start date did not match");
 //        softAssert.assertEquals(subscriber.getMedicalPlanEndDate(), policyTablesEntity.getPolicy_end_date(), "Policy end date did not match");
