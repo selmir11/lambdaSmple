@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -147,7 +146,7 @@ public class AccountOverviewPage {
 
     public void verifyScenarioDetails(List<Map<String, String>> expectedResult) {
         String totalMembers = String.valueOf(medicalMemberNames.size());
-        String noOfGroups = String.valueOf(SharedData.getGroups());
+        String noOfGroups = String.valueOf(SharedData.getTotalGroups());
         softAssert.assertEquals(totalMembers, expectedResult.get(0).get("totalMembers"), "The total number of members on the application match.");
         softAssert.assertEquals(noOfGroups, expectedResult.get(0).get("totalMedGroups"), "The number of groups in grouping members match.");
         softAssert.assertAll();

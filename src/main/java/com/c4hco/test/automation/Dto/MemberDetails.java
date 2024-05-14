@@ -14,16 +14,18 @@ public class MemberDetails {
     String emailId;
     String password = "ALaska12!";
     String phoneNumber;
+    String alternatePhNum;
     String ssn;
     String relation_to_subscriber;
     String signature;
     String fullName;
     String dob;
     String zipcode;
-    String mailingAddress;
     String mailingZipCode;
     ResidentialAddress resAddress;
+    String malingAddress; //Set a Type for all mailing address fields.
     String gender;
+    String race;
     String medicalPlan;
     String medicalPlanStartDate;
     String medicalPlanEndDate;
@@ -48,5 +50,14 @@ public class MemberDetails {
     String medicalEapid_db;
     String dentalEapid_db;
     Boolean financialHelp;
-
+    String fipcode;
+    String writtenLanguage;
+    String spokenLanguage;
+    String maritalStatus;
+    Boolean isMinor;
+    Boolean hasBroker;
+    Boolean hasIncorrectEntities;
+    Boolean isMailingAddressDifferent;
+    String memberGroup;
+    String isSubscriber; // Values to set - Y or N
 }
