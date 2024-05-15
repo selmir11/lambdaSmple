@@ -105,5 +105,10 @@ public class AdminPortalSearchSteps {
     @And("I validate {string} application link not display")
     public void iValidateAppLinksIsNotDisplay(String option)    {
             adminPortalSearchPage.validateAppLinksIsNotDisplay(option); }
+
+    @Then("I enter an accountId in any Env {string} {string} to search user")
+    public void iEnterAnAccountIdInAnyEnvToSearchUser(String stgAccountId, String qaAccountId) {
+        adminPortalSearchPage.enterAccountIdToAnyENV(stgAccountId,qaAccountId);
+    }
 }
 

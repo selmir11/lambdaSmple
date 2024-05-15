@@ -4,6 +4,9 @@ import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+import java.util.Map;
+
 public class AccountOverviewPageSteps {
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
 
@@ -27,6 +30,11 @@ public class AccountOverviewPageSteps {
 
     @And("I Validate the correct enrolled plans are displayed on account overview page")
     public void validatePlanInfo(){
+        accountOverviewPage.verifyMemberNames();
         accountOverviewPage.verifyPlanInfo();
+    }
+    @And("I set the test scenario details")
+    public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
+        accountOverviewPage.verifyScenarioDetails(expectedResult);
     }
 }

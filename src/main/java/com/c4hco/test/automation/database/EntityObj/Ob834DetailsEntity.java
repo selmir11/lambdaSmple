@@ -35,6 +35,7 @@ public class Ob834DetailsEntity {
     String member_id;
     String member_last_name;
     String member_first_name;
+    String member_middle_name;
     String member_ssn;
     String primary_phone;
     String primary_email;
@@ -90,5 +91,18 @@ public class Ob834DetailsEntity {
     String application_date;
     String current_ind;
     String premium_reduction_type;
-    // incorrect firstname, lastname etc??
+    String marital_status_code;
+    String incorrect_entity_id_code;
+    String incorrect_entity_type_qualifier;
+    String incorrect_last_name;
+    String incorrect_first_name;
+    String incorrect_middle_name;
+    String incorrect_id_code_qualifier;
+    String incorrect_id_code;
+    String incorrect_dob;
+    String incorrect_gender;
+    String incorrect_marital_status_code;
+    String incorrect_race;
+    String date_created;
+    String date_updated;
 }

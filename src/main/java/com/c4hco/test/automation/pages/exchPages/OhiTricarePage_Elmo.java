@@ -167,7 +167,7 @@ public class OhiTricarePage_Elmo {
     // Add only validation methods below this line
     public void verifyHeadersTricareOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiTricareHeader.getText(),"TRICARE");
         softAssert.assertAll();
     }
@@ -277,7 +277,7 @@ public class OhiTricarePage_Elmo {
 
     public void verifyTricarePageDataFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiTricareHeader.getText(),"TRICARE");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in TRICARE");
         softAssert.assertEquals(TricareQuestionTxt.get(0).getText(),"Are you currently enrolled in TRICARE?");
@@ -329,10 +329,10 @@ public class OhiTricarePage_Elmo {
 
     public void verifyTricarePageDataFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiTricareHeader.getText(),"Tricace (es)");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Tricare (es)");
-        softAssert.assertEquals(TricareQuestionTxt.get(0).getText(),"Are you currently enrolled in Tricare? (es)");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in TRICARE (es)");
+        softAssert.assertEquals(TricareQuestionTxt.get(0).getText(),"Are you currently enrolled in TRICARE? (es)");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
