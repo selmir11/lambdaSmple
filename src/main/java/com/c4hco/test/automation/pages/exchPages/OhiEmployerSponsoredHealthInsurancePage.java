@@ -979,7 +979,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(16).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(17).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(18).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA)");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -998,7 +998,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Your only option for getting health insurance is COBRA continuation coverage or retiree coverage.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet. When that waiting period ends, return to the application, report a life change, and enter your job\u2019s health insurance information here.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "A waiting period is the time that must pass before an employer offers an employee health coverage. Waiting periods can be 0-90 days.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -1012,7 +1012,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "To find out if a plan meets the minimum value standard, check the Summary of Benefits and Coverage (SBC) from your job\u2019s plan, or ask them to fill out the Employer Coverage Tool.");
         softAssert.assertEquals(helpDrawerParagraphLnk1.getText(), "Employer Coverage Tool");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Print or download the Employer Coverage Tool.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -1026,7 +1026,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Enter the amount of the lowest-cost plan offered by the employer that would cover only the employee.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "If the employer has wellness programs:\nEnter the premium this person would pay if they got the maximum discount for any tobacco cessation programs (counseling to stop smoking), but no other programs.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "These amounts should be listed in a notice from your employer. But, if you don't have a notice or you're not sure what these amounts are, ask your employer.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -1036,7 +1036,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getEmployerName()+"?");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Enrollment:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -1049,7 +1049,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "the company is no longer offering health insurance,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "or you won't qualify for it any longer,");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "select \"Yes\" and enter the date the insurance will end.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 
@@ -1061,7 +1061,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA).");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
 

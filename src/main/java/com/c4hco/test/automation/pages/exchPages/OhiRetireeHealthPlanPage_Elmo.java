@@ -171,7 +171,7 @@ public class OhiRetireeHealthPlanPage_Elmo {
     // Add only validation methods below this line
     public void verifyHeadersRetireeOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertAll();
     }
@@ -279,7 +279,7 @@ public class OhiRetireeHealthPlanPage_Elmo {
 
     public void verifyRetireePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in a retiree health plan.");
         softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"Are you currently enrolled in a retiree health plan?");
@@ -331,7 +331,7 @@ public class OhiRetireeHealthPlanPage_Elmo {
 
     public void verifyRetireePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan (es)");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in a retiree health plan. (es)");
         softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"Are you currently enrolled in a retiree health plan? (es)");

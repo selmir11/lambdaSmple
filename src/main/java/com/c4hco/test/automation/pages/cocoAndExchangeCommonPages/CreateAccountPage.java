@@ -72,6 +72,9 @@ public class CreateAccountPage {
     @FindBy(id = "primaryUser-input")
      WebElement primaryUserCheckbox;
 
+    @FindBy(id = "repUser-input")
+    WebElement onBehalfOfPrimaryUserCheckbox;
+
     @FindBy(id = "cocoUser-input")
      WebElement cocoTermsOfUseCheckbox;
 
@@ -148,6 +151,10 @@ public class CreateAccountPage {
                 cocoTermsOfUseCheckbox.click();
                 break;
             case "exchange":
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            case "Admin exchange":
+                onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();
                 break;
             default:

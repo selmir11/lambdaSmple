@@ -9,8 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public class AccountOverviewPage {
 
@@ -34,6 +34,9 @@ public class AccountOverviewPage {
 
     @FindBy(css = ".table-bordered td b")
     List<WebElement> planInformationTable;
+
+    @FindBy(css = ".table-bordered tr:nth-child(1) td:nth-child(2) span b")
+    List<WebElement> medicalMemberNames;
 
 
     private BasicActions basicActions;
@@ -109,12 +112,43 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
-    public void verifyPlanInfo(){
-        softAssert.assertEquals(planInformationTable.get(1).getText(),primaryMember.getFirstName()+" "+primaryMember.getLastName(), "Primary member name does not match");
-        softAssert.assertEquals(planInformationTable.get(2).getText(),primaryMember.getMedicalPlan(), "Medical Plan Name does not match" );
-        softAssert.assertEquals(planInformationTable.get(3).getText(), "$"+primaryMember.getMedicalPremiumAmt(), "Medical premium amount does not match" );
-        softAssert.assertEquals(planInformationTable.get(7).getText(),primaryMember.getDentalPlan(), "Dental Plan Name does not match");
-        softAssert.assertEquals(planInformationTable.get(8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Dental Premium amount does not match");
+    public void verifyMemberNames() {
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        softAssert.assertEquals(medicalMemberNames.get(0).getText(), primaryMember.getFirstName() + " " + primaryMember.getLastName(), "Primary member name does not match");
+        if(memberDetailsList !=null) {
+            for (int i = 0; i < memberDetailsList.size(); i++) {
+                MemberDetails member = SharedData.getMembers().get(i);
+                softAssert.assertEquals(planInformationTable.get(i + 2).getText(), member.getFirstName() + " " + member.getLastName(), "Member name does not match");
+            }
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyPlanInfo() {
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        if(memberDetailsList !=null) {
+            int totalMembers = memberDetailsList.size();
+            for (int i = 0; i < totalMembers; i++) {
+                MemberDetails member = SharedData.getMembers().get(i);
+                softAssert.assertEquals(planInformationTable.get(i + 3).getText(), member.getMedicalPlan(), "Members Medical Plan Name does not match");
+                softAssert.assertEquals(planInformationTable.get(i + 4).getText(), "$" + member.getMedicalPremiumAmt(), "Members Medical premium amount does not match");
+                softAssert.assertEquals(planInformationTable.get(i + 9).getText(), member.getDentalPlan(), "Members Dental Plan Name does not match");
+                softAssert.assertEquals(planInformationTable.get(i + 10).getText() + ".00", member.getDentalPremiumAmt(), "Members Dental Premium amount does not match");
+            }
+        }else{
+            softAssert.assertEquals(planInformationTable.get(2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
+            softAssert.assertEquals(planInformationTable.get(3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
+            softAssert.assertEquals(planInformationTable.get(7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
+            softAssert.assertEquals(planInformationTable.get(8).getText() + ".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyScenarioDetails(List<Map<String, String>> expectedResult) {
+        String totalMembers = String.valueOf(medicalMemberNames.size());
+        String noOfGroups = String.valueOf(SharedData.getTotalGroups());
+        softAssert.assertEquals(totalMembers, expectedResult.get(0).get("totalMembers"), "The total number of members on the application match.");
+        softAssert.assertEquals(noOfGroups, expectedResult.get(0).get("totalMedGroups"), "The number of groups in grouping members match.");
         softAssert.assertAll();
     }
 

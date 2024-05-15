@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.List;
 
 public class HeaderAndFooterPage {
@@ -48,12 +47,14 @@ public class HeaderAndFooterPage {
 
     @FindBy(xpath = "//div[@class='dropdown-menu show']//a")
     List<WebElement> getAssistanceLoginPortalOption;
-
+    
     @FindBy(css = ".stacked.dropdown > div.dropdown-content > a")
     WebElement getAssistanceLinkOptionNonElmo;
 
     @FindBy(css = ".stacked.dropdown > div.dropdown-content > form > a")
     WebElement getAssistanceLinkOptionNonElmo1;
+    @FindBy(css = "div.dropdown-content > a:nth-child(2)")
+    WebElement findExpertAssistanceExpertHelp;
 
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
@@ -90,6 +91,8 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
+    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
+    WebElement signOutLinkPayment;
 
    // =========FOOTER============== //
 
@@ -239,6 +242,10 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(getAssistanceLoginPortalOption.get(1), 20);
                 getAssistanceLoginPortalOption.get(1).click();
                 break;
+            case "Exch ExpertHelp":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceExpertHelp, 20);
+                findExpertAssistanceExpertHelp.click();
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
 
@@ -353,6 +360,11 @@ public class HeaderAndFooterPage {
             case "NonElmo":
                 basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
                 basicActions.click(signOutLinkNonElmo);
+                break;
+            case "Payment":
+                basicActions.waitForElementToBePresent(signOutLinkPayment, 10);
+                basicActions.waitForElementToBeClickable(signOutLinkPayment,10);
+                basicActions.click(signOutLinkPayment);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

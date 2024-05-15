@@ -169,7 +169,7 @@ public class OhiIndividualInsurancePage_Elmo {
 // Add only validation methods below this line
     public void verifyHeadersIndividualInsuranceOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertAll();
     }
@@ -452,7 +452,7 @@ public class OhiIndividualInsurancePage_Elmo {
 
     public void verifyIndividualInsurancePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in health insurance purchased directly through an insurance company, through HealthCare.gov, or another state\u2019s Marketplace.");
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"Are you currently enrolled in individual insurance?");
@@ -504,7 +504,7 @@ public class OhiIndividualInsurancePage_Elmo {
 
     public void verifyIndividualInsurancePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiIndividualInsuranceHeader.getText(),"Individual Insurance (es)");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in health insurance purchased directly through an insurance company, through HealthCare.gov, or another state\u2019s Marketplace. (es)");
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"Are you currently enrolled in individual insurance? (es)");

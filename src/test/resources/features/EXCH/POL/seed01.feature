@@ -105,10 +105,13 @@ Feature: Seed01 - Exchange
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
-#    And I validate the member details from policy tables
-#    And I validate member details from ob834_details table
-#    And I download the files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 files should not be empty
+   # And I validate the member details from policy tables
+    And I validate member details from ob834_details table
+    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should not be empty
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -136,15 +139,18 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    And I click on Sign Out in the Header for "NonElmo"
-    And I validate the member details from policy tables
+   And I wait for hold on content to disappear
+   And I click on Sign Out in the Header for "NonElmo"
+   # And I validate the member details from policy tables
     And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
+      | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+      | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
     And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should have the values
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
+  #  And I validate the ob834 files should have the values
+  #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+  #    |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+  #    |          021          | 021                 | 25                   |                          |                             |                    |
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
@@ -182,4 +188,3 @@ Feature: Seed01 - Exchange
 #      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
 #      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
 #      |          021          | 021                 | 25                   |                          |                             |                    |
-

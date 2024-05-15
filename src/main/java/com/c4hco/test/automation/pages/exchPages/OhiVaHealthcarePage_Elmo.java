@@ -170,7 +170,7 @@ public class OhiVaHealthcarePage_Elmo {
 // Add only validation methods below this line
     public void verifyHeadersVaHealthcareOhiPageEnglish() {
         basicActions.waitForElementToBePresent(ohiHeader, 15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiVaHealthcareHeader.getText(), "VA Healthcare");
         softAssert.assertAll();
     }
@@ -278,7 +278,7 @@ public class OhiVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiVaHealthcareHeader.getText(),"VA Healthcare");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in VA Healthcare");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(0).getText(),"Are you currently enrolled in VA Healthcare?");
@@ -330,7 +330,7 @@ public class OhiVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiVaHealthcareHeader.getText(),"VA Healthcare (spanish)");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in VA Healthcare (es)");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(0).getText(),"Are you currently enrolled in VA Healthcare? (es)");
