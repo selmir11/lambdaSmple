@@ -4,6 +4,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class FindACertifiedBrokerPage {
@@ -14,6 +15,9 @@ public class FindACertifiedBrokerPage {
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy(xpath ="//h2[@class='row justify-content-center broker-title header-2']")
+    WebElement pageTitle;
 
     @FindBy(id ="findBroker-brokerName-agency-license-input")
     WebElement searchContainer;
@@ -29,7 +33,10 @@ public class FindACertifiedBrokerPage {
 
     @FindBy(xpath ="//mat-panel-title[.=' More Details ']")
     WebElement moreDetails;
-    
+
+    @FindBy(xpath ="//*[@id='mat-expansion-panel-header-0']/span/mat-panel-title")
+    WebElement hideDetails;
+
     @FindBy(xpath ="//*[@id='agency-manage-account-button']")
     WebElement authorizeBrokerButton;
 
@@ -38,6 +45,77 @@ public class FindACertifiedBrokerPage {
 
     @FindBy(id ="total-record-count")
     WebElement totalResultCount;
+
+    @FindBy(xpath ="//div[@class='drop-down-select']")
+    WebElement sortDropdown;
+
+    @FindBy(id ="findBroker.option.brokerA_Z-option")
+    WebElement sortResultsAZ;
+
+    @FindBy(id ="findBroker.option.brokerZ_A-option")
+    WebElement sortResultsZA;
+
+    @FindBy(id ="person-name")
+    WebElement brokerDisplayedName;
+
+    @FindBy(id ="agency-name")
+    WebElement agencyDisplayedName;
+
+    @FindBy(id ="business-address")
+    WebElement agencyAddress;
+
+    @FindBy(id ="broker-business-city-state-zip")
+    WebElement agencyCityStateZip;
+
+    @FindBy(id ="email-label")
+    WebElement emailLabel;
+
+    @FindBy(xpath ="//*[@id='broker-email']/a")
+    WebElement agencyEmail;
+
+    @FindBy(id ="broker-phone-number-label")
+    WebElement phoneNumberLabel;
+
+    @FindBy(id ="broker-phone-number")
+    WebElement phoneNumber;
+
+    @FindBy(id ="days-available-label")
+    WebElement availablityLabel;
+
+    @FindBy(xpath="//*[@id='broker-days-availability']/span")
+    WebElement availablityDays;
+
+    @FindBy(id ="hours-label")
+    WebElement hoursLabel;
+
+    @FindBy(id ="broker-hours-available")
+    WebElement availablityHours;
+
+    @FindBy(id ="license-number-label")
+    WebElement licenseNumberLabel;
+
+    @FindBy(id ="broker-license-number")
+    WebElement licenseNumber;
+
+    @FindBy(id ="language-label")
+    WebElement languageLabel;
+
+    @FindBy(id ="broker-languages-available")
+    WebElement availableLanguages;
+
+    public void FindABrokerPageTitle(String language){
+        String ExpectedText = switch (language) {
+            case "English" ->
+                    "Find a Certified Broker near you";
+            case "Spanish" ->
+                    "Encuentre un agente certificado cerca de usted";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+
+        basicActions.waitForElementToBePresent(pageTitle,30);
+        softAssert.assertEquals(pageTitle.getText(), ExpectedText);
+        softAssert.assertAll();
+    }
 
     public void searchForBrokerName(String brokerName) {
         basicActions.waitForElementToBePresent(searchContainer,60);
@@ -76,6 +154,11 @@ public class FindACertifiedBrokerPage {
         moreDetails.click();
     }
 
+    public void clickHideDetails() {
+        basicActions.waitForElementToBePresent(hideDetails,10);
+        hideDetails.click();
+    }
+
     public void clickAuthorizedBroker() {
         basicActions.waitForElementToBePresent(authorizeBrokerButton,60);
         authorizeBrokerButton.click();
@@ -85,6 +168,95 @@ public class FindACertifiedBrokerPage {
 
         WebElement test2 = basicActions.getDriver().findElement(By.xpath("//span[.='Authorize Broker']"));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()",test2 );
+    }
+
+    public void clickResultsSort(String sortOption) {
+        basicActions.waitForElementToBePresent(sortDropdown,100);
+        sortDropdown.click();
+
+        switch (sortOption) {
+            case "A-Z":
+                basicActions.waitForElementToBePresent(sortResultsAZ,100);
+                softAssert.assertEquals(sortResultsAZ.getText(),"Name A-Z");
+                sortResultsAZ.click();
+                break;
+            case "Z-A":
+                basicActions.waitForElementToBePresent(sortResultsZA,100);
+                softAssert.assertEquals(sortResultsZA.getText(),"Name Z-A");
+                sortResultsZA.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + sortOption);
+        }
+    }
+
+    public void validateBrokerDisplayedName(String brokerName){
+        basicActions.wait(10);
+        basicActions.waitForElementToBePresent(brokerDisplayedName,100);
+        softAssert.assertEquals(brokerDisplayedName.getText(),brokerName);
+        softAssert.assertAll();
+    }
+
+    public void validateAgencyDisplayedName(String agencyName){
+        basicActions.wait(10);
+        basicActions.waitForElementToBePresent(agencyDisplayedName,100);
+        softAssert.assertEquals(agencyDisplayedName.getText(),agencyName);
+        softAssert.assertAll();
+    }
+
+    public void validateAgencyAddress(String agencyStreetAddress){
+        basicActions.waitForElementToBePresent(agencyAddress,100);
+        softAssert.assertEquals(agencyAddress.getText(),agencyStreetAddress);
+        softAssert.assertAll();
+    }
+
+    public void validateAgencyCityStateZip(String cityStateZip){
+        basicActions.waitForElementToBePresent(agencyCityStateZip,100);
+        softAssert.assertEquals(agencyCityStateZip.getText(),cityStateZip);
+        softAssert.assertAll();
+    }
+
+    public void validateAgencyDetailsLabels(String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(emailLabel,100);
+                softAssert.assertEquals(emailLabel.getText(),"Email:");
+                softAssert.assertEquals(phoneNumberLabel.getText(),"Phone Number:");
+                softAssert.assertEquals(availablityLabel.getText(),"Available:");
+                softAssert.assertEquals(hoursLabel.getText(),"Hours:");
+                softAssert.assertEquals(licenseNumberLabel.getText(),"Colorado License Number:");
+                softAssert.assertEquals(languageLabel.getText(),"Languages:");
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(emailLabel,100);
+                softAssert.assertEquals(emailLabel.getText(),"Correo electr\u00F3nico:");
+                softAssert.assertEquals(phoneNumberLabel.getText(),"Tel\u00E9fono");
+                softAssert.assertEquals(availablityLabel.getText(),"Disponible:");
+                softAssert.assertEquals(hoursLabel.getText(),"Hours:");
+                softAssert.assertEquals(licenseNumberLabel.getText(),"N\u00FAmero de licencia de Colorado:");
+                softAssert.assertEquals(languageLabel.getText(),"Idiomas:");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String expectedLicenseNumber, String agencyLanguage){
+        basicActions.waitForElementToBePresent(emailLabel,100);
+        softAssert.assertEquals(agencyEmail.getText(),emailAddress);
+        softAssert.assertEquals(phoneNumber.getText(),expectedPhoneNumber);
+        softAssert.assertEquals(availablityDays.getText(),availability);
+        softAssert.assertEquals(availablityHours.getText(),officeHours);
+        softAssert.assertEquals(licenseNumber.getText(),expectedLicenseNumber);
+        softAssert.assertEquals(availableLanguages.getText(),agencyLanguage);
+        softAssert.assertAll();
+    }
+
+    public void validateAgencyDetailsHidden(){
+        String agencyDetailsContainer = basicActions.getDriver().findElement(By.id("cdk-accordion-child-0")).getAttribute("style");
+        softAssert.assertEquals(agencyDetailsContainer, "height: 0px; visibility: hidden;");
+        softAssert.assertAll();
     }
 
     public void validateOver50SearchResultsErrorExists(String language){
