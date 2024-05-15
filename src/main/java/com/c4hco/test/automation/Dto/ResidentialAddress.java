@@ -4,6 +4,7 @@ import lombok.Data;
 @Data
 public class ResidentialAddress {
     String residentialAddressLine1;
+    String residentialAddressLine2;
     String residentialAddressCity;
     String residentialAddressState;
     String residentialAddressCounty;

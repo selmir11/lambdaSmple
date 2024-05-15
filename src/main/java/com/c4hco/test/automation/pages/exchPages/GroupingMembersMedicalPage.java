@@ -58,6 +58,7 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
         softAssert.assertAll();
+        SharedData.setGroups(groupsSize);
     }
 
     public void getUniqueZipCodes(int expectedGroups) {

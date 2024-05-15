@@ -60,10 +60,10 @@ public class LifeChangeEventsPage {
 
     public void selectLCE(String lceOption){
         switch(lceOption){
-                case "Birth":
+            case "Birth":
                     lceInputCheckbox.get(0).click();
                     break;
-                case "Pregnancy":
+            case "Pregnancy":
                     lceInputCheckbox.get(1).click();
                     break;
             case "Marriage":
@@ -75,7 +75,7 @@ public class LifeChangeEventsPage {
             case "GainedLawfulPresence":
                 lceInputCheckbox.get(4).click();
                 break;
-                case "MovedToColorado":
+            case "MovedToColorado":
                     lceInputCheckbox.get(6).click();
                     break;
             case "NoneOfThese":
