@@ -119,6 +119,9 @@ public class BasicSteps {
             case "Find Expert Help Exch":
                 pageUrl = "/broker-portal/individual/find-expert-help?lang=en";
                 break;
+                case "Find Expert Help Exch OBO":
+                pageUrl = "broker-portal/obo/find-expert-help";
+                break;
             case "Find Expert Help Exch Spanish":
                 pageUrl = "broker-portal/individual/find-expert-help?lang=es";
                 break;
@@ -278,6 +281,12 @@ public class BasicSteps {
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
+            case "CoCo Tell us about additional members" :
+                pageUrl = "/coco/member-details-portal/additional-member-details";
+                break;
+            case "CoCo Additional info for additional member" :
+                pageUrl = "/coco/member-details-portal/member-additional-information/";
+                break;
             case "Elmo Ohi Retiree":
                 pageUrl = "/otherHealthInsurance/retiree";
                 break;
@@ -316,6 +325,9 @@ public class BasicSteps {
                 break;
             case "Admin Portal individual dashboard" :
                 pageUrl = "/AdminPortal/individual/";
+                break;
+                case "LUGY Find expert help" :
+                pageUrl = "broker-portal/find-expert-help";
                 break;
             default:
                 System.out.println("undefined page ");

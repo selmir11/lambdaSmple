@@ -72,7 +72,13 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I verify the "Third Section" Cobra page data in "English"
     Then I click continue on the Elmo OHI Cobra page
     And I verify "Input Date" error in "English" on the Cobra page
-    Then I enter end date of end of current month for COBRA
+    Then I enter the end date as "Prior Month" on the Cobra page
+    Then I click continue on the Elmo OHI Cobra page
+    And I verify "Input Date" error in "English Prior" on the Cobra page
+    Then I enter the end date as "Future Month" on the Cobra page
+    Then I click continue on the Elmo OHI Cobra page
+    And I verify "Input Date" error in "English Future" on the Cobra page
+    Then I enter the end date as "Current Month" on the Cobra page
     And I verify "Input Date" error does not show for Cobra page
     And I verify "Voluntary End" error in "English" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
@@ -150,7 +156,13 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I verify the "Third Section" Cobra page data in "Spanish"
     Then I click continue on the Elmo OHI Cobra page
     And I verify "Input Date" error in "Spanish" on the Cobra page
-    Then I enter end date of end of current month for COBRA
+    Then I enter the end date as "Prior Month" on the Cobra page
+    Then I click continue on the Elmo OHI Cobra page
+    And I verify "Input Date" error in "Spanish Prior" on the Cobra page
+    Then I enter the end date as "Future Month" on the Cobra page
+    Then I click continue on the Elmo OHI Cobra page
+    And I verify "Input Date" error in "Spanish Future" on the Cobra page
+    Then I enter the end date as "Current Month" on the Cobra page
     And I verify "Input Date" error does not show for Cobra page
     And I verify "Voluntary End" error in "Spanish" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question

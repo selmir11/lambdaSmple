@@ -24,4 +24,9 @@ public class ApplicationHistoryPageSteps {
 
     @Then("I validate that {string} text does not display on the Application History page")
     public void validateTextDNI(String Text){applicationHistoryPage.validateTextDoesNotExistOnPage(Text);}
+
+    @Then("I validate member is eligible for a Qualified Health Plan")
+    public void iValidateMemberIsEligibleForQHP() {
+        applicationHistoryPage.validateTextOnPage("Qualified Health Plan");
+    }
 }

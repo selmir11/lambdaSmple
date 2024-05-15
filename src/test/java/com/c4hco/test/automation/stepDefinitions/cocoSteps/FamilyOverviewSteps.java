@@ -20,6 +20,9 @@ public class FamilyOverviewSteps {
     @And("I select continue on the Family Overview page")
     public void selectContinueFamOverview(){familyOverviewPage.clickContinueButton();}
 
+    @Then("I select add another family member on the Family Overview page")
+    public void iClickaddAnotherMemberButton(){familyOverviewPage.clickaddAnotherMemberButton();}
+
     @Then("I click Manage who helps you on the Family Overview page")
     public void clickManageWhoHelpsYouFamilyOverview(){ familyOverviewPage.clickManageWhoHelpsYouButton(); }
 

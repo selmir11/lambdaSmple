@@ -23,7 +23,7 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "#PlanSummary-Continue")
+    @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
     @FindBy(css = ".summary-container p")
@@ -62,8 +62,14 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
 
-    @FindBy(css = "#PlanSummary-TotalAmountYouSave")
+    @FindBy(css = "span#PlanSummary-TotalAmountYouSave")
     WebElement aPTCPlanSummary;
+    @FindBy(css = "#PlanSummary-MedicalPlanName_0")
+    WebElement medicalPlanName;
+    @FindBy(css = "#PlanSummary-DentalPlanName_0")
+    WebElement dentalPlanName;
+    @FindBy(css = "#PlanSummary-MedicalGroupFullName_0")
+    WebElement medicalgroup1MemberNames;
 
     public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt){
         basicActions.waitForElementToBePresent(aPTCPlanSummary,10);
@@ -90,22 +96,60 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
     
-    public void continuePlanSummaryPage(){
+    public void continueButton(){
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
+    }
+    public void continuePlanSummaryPage(){
         setPlansPremiumAmt();
+        getmedGroup1MemNames();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
 
-    public void setPlansPremiumAmt(){
+    public void getmedGroup1MemNames() {
+        List<MemberDetails> memberslist = SharedData.getMembers();
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        String names = medicalgroup1MemberNames.getText();
+        String[] name = names.split("\\s*(,|and)\\s*");
+        for (String memName : name) {
+            String memFirstLastName = memName.trim();
+            String[] separateFirstLastNames = memFirstLastName.split(" ");
+            String memFirstName = separateFirstLastNames[0];
+            String memLastName = separateFirstLastNames[separateFirstLastNames.length - 1];
+            if (subscriber.getFirstName().equals(memFirstName) && subscriber.getLastName().equals(memLastName)) {
+                subscriber.setMedicalPlan(medicalPlanName.getText());
+                subscriber.setDentalPlan(dentalPlanName.getText());
+                continue;
+            }
+            for (int i = 0; i < memberslist.size(); i++) {
+                String Fname = memberslist.get(i).getFirstName();
+                String Lname = memberslist.get(i).getLastName();
+                if (Fname.equals(memFirstName) && Lname.equals(memLastName)) {
+                    memberslist.get(i).setMedicalPlan(medicalPlanName.getText());
+                    memberslist.get(i).setDentalPlan(dentalPlanName.getText());
+                }
+            }
+        }
+    }
+
+    public void setPlansPremiumAmt() {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> memberslist = SharedData.getMembers();
         Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
-        if(!isGettingFinancialHelp){
+        if(!isGettingFinancialHelp){//NFA
             subscriber.setMedicalAptcAmt("0");
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
             subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
-        }else {
+            if (memberslist != null) {
+                for (int i = 0; i < memberslist.size(); i++) {
+                    memberslist.get(i).setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+                    memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
+                }
+            }
+        }else {//FA
             String medAPTCAmt = medicalAPTCAmt.getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
@@ -114,8 +158,13 @@ public class PlanSummaryMedicalDentalPage {
             BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
 
             BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add(bigDecimalmedAPTCAmt);
-            System.out.println(totalMedicalPremium);
             subscriber.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+            if(memberslist !=null){
+            for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
+                memberslist.get(i).setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+                memberslist.get(i).setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
+            }
+            }
         }
         subscriber.setDentalAptcAmt("$0");
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
