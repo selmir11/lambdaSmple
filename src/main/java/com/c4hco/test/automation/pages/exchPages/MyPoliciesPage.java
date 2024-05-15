@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -82,22 +83,36 @@ public class MyPoliciesPage {
         primaryMember.setMedicalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate"));
         primaryMember.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate"));
         SharedData.setPrimaryMember(primaryMember);
-
+        //Validating member names from table - medical
         basicActions.waitForElementListToBePresent(memberNames, 10);
-        //softAssert.assertEquals(memberNames.get(0).getText(), primaryMember.getSignature(), "Enrolled Member did not match on medical card");
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        String[] medMemnames = memberNames.get(0).getText().split("\\s*(,|and)\\s*");
+        for (String memName : medMemnames) {
+            String memFirstLastName = memName.trim();
+            String[] memFullNames = memFirstLastName.split(" ");
+            String memFirstName = memFullNames[0];
+            String memLastName = memFullNames[memFullNames.length - 1];
+            if (subscriber.getFirstName().equals(memFirstName) && subscriber.getLastName().equals(memLastName)) {
+                softAssert.assertEquals(memFirstName+" "+memLastName, primaryMember.getSignature(),"Primary member name from current medical plans does not match-my policies page");
+            }else if (memberDetailsList !=null) {
+                for (int i = 0; i < memberDetailsList.size(); i++) {
+                    MemberDetails member = SharedData.getMembers().get(i);
+                    softAssert.assertEquals(memFirstName+" "+memLastName, member.getSignature(), "Member names from current medical plans does not match- my policies page");
+                }
+            }
+            softAssert.assertAll();
+        }
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getMedicalPlanStartDate(), "medical plan date did not match");
         softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getMedicalPlanEndDate(), "medical plan end date did not match");
         softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
         softAssert.assertEquals(premiumAmt.get(0).getText(), "$"+primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
         softAssert.assertTrue(policyNumSubscriber.get(2).getText().equals("Subscriber:"));
         softAssert.assertEquals(policyNumSubscriber.get(3).getText(), primaryMember.getSignature(), "Subscriber Name did not match on medical card");
-
         softAssert.assertTrue(policyNumSubscriber.get(4).getText().equals("Last Updated On:"));
         softAssert.assertEquals(policyNumSubscriber.get(5).getText(), lastUpdated, "Last Updated Date did not match");
-
         softAssert.assertEquals(financialPremiumData.get(0).getText(), "Applicable From: "+primaryMember.getMedicalFinancialStartDate(), "medical financial start date did not match");
         softAssert.assertEquals(financialPremiumData.get(3).getText(), "After $"+primaryMember.getMedicalAptcAmt()+" Financial Help", "financial help amount did not match");
-
         softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
 
         //Validating medical EAP_ID
@@ -115,7 +130,6 @@ public class MyPoliciesPage {
 
     public void validateDentalPlanDetails(List<Map<String, String>> expectedResult){
         // **** Works when only one member with one medical plan and one dental plan **** //
-
         primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate"));
         primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate"));
         primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("FinancialStartDate"));
