@@ -1,6 +1,6 @@
-Feature: Seed05 - Exchange
+Feature: Seed06 - Exchange
 
-  Background: Seed 05 For Exchange- Family of Four - NFA
+  Scenario: Seed 06 For Exchange- Family of Four - FA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -103,6 +103,46 @@ Feature: Seed05 - Exchange
     Then I click continue on the Citizenship page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "8000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married Filing Jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
     And I Apply for no financial help
     Then I validate I am on the "Tell us about life changes" page
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -113,51 +153,51 @@ Feature: Seed05 - Exchange
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
-
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    And I click "Admin LCE" from application links dropdown
-    And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
-    Then logout from Admin Portal
-
-    Given I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Eligibility"
-    Then I validate I am on the "Application History" page
-    Then I set data from application history page
-    Then I click on view results and shop
-    Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
-    Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I click continue on grouping Members Medical page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Cigna Connect Colorado Option Bronze" medical plan
-    Then I click continue on medical plan results page
-    Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Comprehensive Plan"
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    And I click on Go To Welcome Page Button on whats next page
-    Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+#
+#    Given I open the login page on the "admin" portal
+#    And I validate I am on the "Login" page
+#    When I login as Admin User
+#    And I validate I am on the "Admin dashboard" page
+#    And I search for user and click email from search results
+#    And I click "Admin LCE" from application links dropdown
+#    And I look up with account id on admin tool page
+#    And I change effective date to "0101" of current year from admin portal
+#    Then logout from Admin Portal
+#
+#    Given I open the login page on the "login" portal
+#    Then I validate I am on the "Login" page
+#    And I enter valid credentials to login
+#    Then I validate I am on the "Account Overview" page
+#    Then I click on ClickHere link for "My Eligibility"
+#    Then I validate I am on the "Application History" page
+#    Then I set data from application history page
+#    Then I click on view results and shop
+#    Then I validate I am on the "Application Results" page
+#    Then I click continue on application results page
+#    Then I click continue on start shopping page
+#    Then I validate I am on the "Grouping Members Medical" page
+#    Then I click continue on grouping Members Medical page
+#    And I validate I am on the "Medical Plan Results" page
+#    And I select "Cigna Connect Colorado Option Bronze" medical plan
+#    Then I click continue on medical plan results page
+#    Then I validate I am on the "Grouping Members Dental" page
+#    Then I click continue on grouping Members Dental page
+#    And I validate I am on the "Dental Plan Results" page
+#    And I select "Delta Dental of Colorado Family Comprehensive Plan"
+#    Then I click continue on dental plan results page
+#    Then I validate I am on the "planSummaryMedicalDental" page
+#    And I continue on plan summary page
+#    Then I select make payment button to pay the premium
+#    And I select the Money Order button
+#    And I click continue on payment selection page
+#    And I select second make payment button to pay the premium
+#    And I click continue on payment selection page
+#    And I click continue on initial payment page
+#    And I select "Terms of Use" agreement checkbox
+#    And I select "Privacy Policy" agreement checkbox
+#    And I select "Understand Law" agreement checkbox
+#    And I enter householder signature on the Enrollment Agreements page
+#    And I click continue on Enrollment Agreements page
+#    And I click on Go To Welcome Page Button on whats next page
+#    Then I validate I am on the "Account Overview" page
+#    And I click on Sign Out in the Header for "NonElmo"

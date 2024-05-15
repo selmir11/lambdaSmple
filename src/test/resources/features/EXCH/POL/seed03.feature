@@ -1,6 +1,6 @@
 Feature: Seed03 - Exchange
 
-  Scenario: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
+  Background: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
