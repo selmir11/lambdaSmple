@@ -28,3 +28,62 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     Then I validate agency address is "1234 Road, 1234 Road"
     Then I validate agency city state and zip is "Denver, CO 80205"
     And I validate the agency details are hidden
+
+  @SLER-380
+  Scenario: Search by Broker's Full Name in anonymous Find a Certified Broker page
+    Given I open the login page on the "login" portal
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I click on Get Assistance in the "Login Portal" Header
+    And I click on Find Expert Assistance in the "Login Portal" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Find a Broker
+    And I Search authorized Broker "soukaina agency"
+    And I click on Search button
+    And I click more details from the first broker result container
+    Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
+
+  @SLER-380
+  Scenario: Search by Broker's Full Name for Individual User
+    Given I open the login page on the "login" portal
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I click on Get Assistance in the "Exch NonElmo" Header
+    And I click on Find Expert Assistance in the "individual dashboard" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Find a Broker
+    And I Search authorized Broker "soukaina agency"
+    And I click on Search button
+    And I click more details from the first broker result container
+    Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
+
+  @SLER-380
+  Scenario: Search by Broker's Full Name for Admin User
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User
+    And I validate I am on the "Admin search" page
+    Then I enter an "Email" "johnc4hcoautomation+" to search user
+    And I click on Search Button
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I validate I am on the "Account Overview" page
+    And I click on Get Assistance in the "Exch NonElmo" Header
+    And I click on Find Expert Assistance in the "individual dashboard" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Find a Broker
+    And I Search authorized Broker "soukaina agency"
+    And I click on Search button
+    And I click more details from the first broker result container
+    Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
+
+
+
+
+
+
