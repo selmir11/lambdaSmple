@@ -19,7 +19,7 @@ Feature: Seed02 - Exchange
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
     And I mark the Additional member is pregnant as "No"
     And I select "Yes" to Are You Applying

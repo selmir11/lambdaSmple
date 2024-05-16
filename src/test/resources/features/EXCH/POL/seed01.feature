@@ -19,7 +19,7 @@ Feature: Seed01 - Exchange
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -125,7 +125,7 @@ Feature: Seed01 - Exchange
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I update SSN number to new SSN number
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
@@ -165,7 +165,7 @@ Feature: Seed01 - Exchange
     And I report "NoneOfThese" and click continue
     And I click Continue With Application
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I update DOB to new DOB of "11/08/1986"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
