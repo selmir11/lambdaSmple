@@ -27,7 +27,7 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Identify Proofing - Congratulations" page
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -90,7 +90,7 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Identify Proofing - Congratulations" page
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
