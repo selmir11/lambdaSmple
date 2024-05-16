@@ -48,5 +48,6 @@ public class SharedData {
         totalDependents= null;
         planYear = null;
         groupDetails = null;
+        dbName = null;
     }
 }
