@@ -1,9 +1,8 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
-
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.FindExpertHelpPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
-import org.testng.asserts.SoftAssert;
+
 
 public class FindExpertHelpSteps {
         FindExpertHelpPage findExpertHelpPage = new FindExpertHelpPage(WebDriverManager.getDriver());
