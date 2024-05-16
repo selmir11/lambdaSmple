@@ -4,8 +4,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
-    String env = SharedData.getEnv();
-    String dbName = env+"exch";
+    String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
 

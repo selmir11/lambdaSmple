@@ -29,6 +29,7 @@ public class SharedData {
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
+    @Getter @Setter private static String dbName;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
