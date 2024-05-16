@@ -141,6 +141,7 @@ public class AdminPortalSearchPage {
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
+        basicActions.switchtoactiveTab();
     }
     public void logoutFromAdmin(){
         navigateToPreviousPage();
@@ -288,7 +289,7 @@ public class AdminPortalSearchPage {
         }
     }
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
-        if (SharedData.getEnv().equals("stg")){
+        if (SharedData.getEnv().equals("staging")){
             searchInputList.get(0).sendKeys(accountIdSTG);
         }else {
             searchInputList.get(0).sendKeys(accountIdQA);
