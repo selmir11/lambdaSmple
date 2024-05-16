@@ -25,7 +25,7 @@ public class IncomeSummaryPage {
     public void selectProjectedIncome(String projectedIncomeOption){
         switch(projectedIncomeOption){
             case "No":
-                basicActions.waitForElementToBePresent(projectedIncomeNo, 15);
+                basicActions.waitForElementToBeClickable(projectedIncomeNo, 30);
                 projectedIncomeNo.click();
                 break;
             default:
