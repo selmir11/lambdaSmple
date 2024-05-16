@@ -162,7 +162,12 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click on view results and shop
     And I click continue on application results page
     And I wait for hold on content to disappear
-    And I click Continue on the Tobacco Usage Page Exch
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I verify that members are grouped together based on zipcodes
+
+
 
 
 
