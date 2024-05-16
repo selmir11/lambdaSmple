@@ -22,4 +22,9 @@ public class StartShoppingPageSteps {
         startShoppingPage.clickBtnSaveNExit();
     }
 
+    @Then("I select {string} {string} for Tobacco Use")
+    public void isMemberTobaccoUser(String member, String YNTobaccoUser){startShoppingPage.isMemberTobaccoUser(member, YNTobaccoUser);}
+
+
+
 }

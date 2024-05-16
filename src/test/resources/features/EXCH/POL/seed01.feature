@@ -1,6 +1,6 @@
 Feature: Seed01 - Exchange
 
-  Background: Seed 01 For Exchange
+  Scenario: Seed 01 For Exchange- Single Applicant NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
