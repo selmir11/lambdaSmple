@@ -164,7 +164,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I validate chat widget is present
     And I open on chat widget
@@ -187,7 +187,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -214,7 +214,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -249,7 +249,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -287,7 +287,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -326,7 +326,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -377,7 +377,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -434,7 +434,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -493,7 +493,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -554,7 +554,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -618,7 +618,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -686,7 +686,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1027,7 +1027,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -1066,7 +1066,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1109,7 +1109,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1160,7 +1160,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1214,7 +1214,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1269,7 +1269,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1336,7 +1336,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1409,7 +1409,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1484,7 +1484,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1561,7 +1561,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1641,7 +1641,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -1725,7 +1725,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2098,7 +2098,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     When I change the language from header to "Spanish NonElmo"
     And I validate I am on the "Spanish" page
@@ -2139,7 +2139,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2184,7 +2184,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2237,7 +2237,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2293,7 +2293,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2350,7 +2350,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2419,7 +2419,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2494,7 +2494,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2571,7 +2571,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2650,7 +2650,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2732,7 +2732,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -2818,7 +2818,7 @@ Feature: Page validations on ELIG pages
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying

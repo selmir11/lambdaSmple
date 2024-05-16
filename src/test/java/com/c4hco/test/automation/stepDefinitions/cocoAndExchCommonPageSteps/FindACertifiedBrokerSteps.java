@@ -37,7 +37,7 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.searchForBrokerLanguage(Language);
     }
 
-    @And("I click on Search button")
+    @And("I click on Search button in find certified broker page")
     public void iClickOnSearchButton() {
         findACertifiedBrokerPage.clickSearchButton();
     }
