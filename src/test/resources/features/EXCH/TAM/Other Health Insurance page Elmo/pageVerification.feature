@@ -264,7 +264,7 @@ Feature: Page Text-Other Health Insurance Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-347 @PageTextOtherHealthInsurancePage @test
+  @SLER-347 @PageTextOtherHealthInsurancePage
   Scenario: SLER-347 I validate save, update and remove on Other Health Insurance are updated in the DB
     When I click create a new account on login page
     Then I click create my account from pre-screen page
