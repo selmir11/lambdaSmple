@@ -12,7 +12,7 @@ Feature: Tests broker search result sorting on the anonymous Find a Certified Br
     And I click on Find Expert Assistance in the "Login Portal" Header
     And I click on Find a Broker
     Then I Search authorized Broker "oneninefiveeight"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify that a total of "2" results displays in "English"
     Then I validate broker name is "rt oneninefiveeightaaa"
     Then I validate agency name is "oneninefiveeightaaa"

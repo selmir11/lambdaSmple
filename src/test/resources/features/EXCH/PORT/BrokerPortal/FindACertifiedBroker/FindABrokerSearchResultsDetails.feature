@@ -13,7 +13,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I click on Find a Broker
     Then I validate the Find a Certified Broker near you page title in "English"
     Then I Search authorized Broker "Noah Trujillo"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify that a total of "1" results displays in "English"
     Then I validate broker name is "Noah Trujillo"
     Then I validate agency name is "Arrow Head Agency"
@@ -39,7 +39,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     And I Search authorized Broker "soukaina agency"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
 
@@ -57,7 +57,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     And I Search authorized Broker "soukaina agency"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
 
@@ -69,7 +69,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     When I login as Admin User
     And I validate I am on the "Admin search" page
     Then I enter an "Email" "johnc4hcoautomation+" to search user
-    And I click on Search Button
+    And I click on Search button in find certified broker page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I validate I am on the "Account Overview" page
@@ -78,7 +78,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     And I Search authorized Broker "soukaina agency"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
 
