@@ -103,6 +103,15 @@ public class FindACertifiedBrokerPage {
     @FindBy(id ="broker-languages-available")
     WebElement availableLanguages;
 
+    @FindBy(id ="findBroker-pageRight-btn")
+    WebElement findBrokerPaginationRight;
+
+    @FindBy(id ="findBroker-pageLeft-btn")
+    WebElement findBrokerPaginationLeft;
+
+    @FindBy(id ="current-page-num")
+    WebElement findBrokerCurrentPage;
+
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
             case "English" ->
@@ -297,6 +306,31 @@ public class FindACertifiedBrokerPage {
 
         basicActions.waitForElementToBePresent(totalResultCount,30);
         softAssert.assertEquals(totalResultCount.getText(), ExpectedText);
+        softAssert.assertAll();
+    }
+
+    public void clickRightPaginationArrowButtonFindBroker(int numberTimes){
+        basicActions.waitForElementToBePresent(findBrokerPaginationRight,30);
+        for(int i=0; i<=numberTimes; i++){
+            basicActions.waitForElementToBeClickable(findBrokerPaginationRight,10);
+            findBrokerPaginationRight.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void clickLeftPaginationArrowButtonFindBroker(int numberTimes){
+        basicActions.waitForElementToBePresent(findBrokerPaginationLeft,30);
+        for(int i=0; i<numberTimes; i++){
+            basicActions.waitForElementToBeClickable(findBrokerPaginationLeft,10);
+            findBrokerPaginationLeft.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void verifyCurrentBrokerResultsPage(String currentPage){
+        basicActions.waitForElementToBePresent(findBrokerCurrentPage,30);
+        basicActions.waitForElementToBeClickable(findBrokerCurrentPage,10);
+        softAssert.assertEquals(findBrokerCurrentPage.getText(), currentPage);
         softAssert.assertAll();
     }
 }
