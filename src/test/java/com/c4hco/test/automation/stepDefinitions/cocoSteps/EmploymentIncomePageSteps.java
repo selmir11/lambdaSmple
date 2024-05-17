@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.EmploymentIncomePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class EmploymentIncomePageSteps {
     EmploymentIncomePage employmentIncomePage = new EmploymentIncomePage(WebDriverManager.getDriver());
@@ -24,4 +25,10 @@ public class EmploymentIncomePageSteps {
 
     @And("I click continue on the Employment income page")
     public void clickContinue(){employmentIncomePage.clickSaveAndContinueButton();}
+
+    @Then("I validate no errors are displayed on the Employment income page")
+    public void iValidateNoErrorsPresent(){employmentIncomePage.verifyNoErrorMessage_EmploymentInfo();}
+
+    @Then("I validate {string} job option is selected on the Employment income page")
+    public void iValidateNoJobButton(String haveEmployment){employmentIncomePage.verifyJobOption_EmploymentInfo(haveEmployment);}
 }
