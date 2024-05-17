@@ -263,3 +263,189 @@ Feature: Page Text-Other Health Insurance Page
     And I verify error message does not show for Individual Insurance page
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-347 @PageTextOtherHealthInsurancePage @test
+  Scenario: SLER-347 I validate save, update and remove on Other Health Insurance are updated in the DB
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Find Expert Help page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I get the Primary Member ID
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "2500000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+
+    Then I select "Health First Colorado" as ELMO health insurance option
+    Then I select "CHP+" as ELMO health insurance option
+    Then I select "Medicare" as ELMO health insurance option
+    Then I select "job" as ELMO health insurance option
+    Then I select "HRA" as ELMO health insurance option
+    Then I select "Retiree Health Plan" as ELMO health insurance option
+    Then I select "Peace Corps" as ELMO health insurance option
+    Then I select "COBRA" as ELMO health insurance option
+    Then I select "VA Health Care" as ELMO health insurance option
+    Then I select "TRICARE" as ELMO health insurance option
+    Then I select "Other" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         1            |      1     |         1        |     1   |            1          |     1     |       1       |        1           |             1            |            1           |   1   |
+    Then I select "Health First Colorado" as ELMO health insurance option
+    Then I select "CHP+" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         1            |      1     |         1        |     1   |            1          |     1     |       1       |        0           |             0            |            1           |   1   |
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
+
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+  @SLER-386 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-386 I validate remove Medicare on Other Health Insurance is updated in the DB
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Find Expert Help page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I get the Primary Member ID
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "2500000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    Then I select "Medicare" as health insurance option and continue
+    And I change the C4 url to "Elmo Ohi Medicare Page"
+    And I validate I am on the "Elmo Ohi Medicare" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      1     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
+    Then I click "Yes" for currently eligible in Medicare question
+    Then  I check checkbox for Part "A"
+    Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
+    Then I enter Part A amount of "250.00"
+    Then  I check checkbox for Part "B"
+    Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |      1     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |         1        |         1        |           250         |           1            |              0             |              0             |
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Find Expert Help page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |         0        |         0        |           0         |           0            |              0             |              0             |
+
+    And I click on Sign Out in the Header for "Elmo"
+
