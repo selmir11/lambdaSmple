@@ -159,9 +159,16 @@ public class FindExpertHelpPage {
             softAssert.assertAll();
         }
     }
+    public void clickBackButton() {
+        basicActions.waitForElementToBeClickable(backButton, 5);
+        backButton.click();
+    }
 
+    public void clickContinueOnMyOwnButton() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,20));
+        softAssert.assertAll();
+        continueOnMyOwnButton.click();
 
-
-
-
+    }
 }

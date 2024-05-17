@@ -25,7 +25,8 @@ private final DbValidations dbValidations = new DbValidations();
    }
 
    @And("I verify the OHI info in the DB")
-   public void validateOhiInfo(){
-      dbValidations.validateOhiDetails();
-   }
+   public void validateOhiInfo(){dbValidations.validateOhiDetails();}
+
+   @And("I verify the OHI options selected in the DB")
+   public void iValidateOhiOptions(List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(expectedValues);}
 }

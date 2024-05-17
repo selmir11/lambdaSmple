@@ -1,9 +1,8 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
-
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.FindExpertHelpPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
-import org.testng.asserts.SoftAssert;
+
 
 public class FindExpertHelpSteps {
         FindExpertHelpPage findExpertHelpPage = new FindExpertHelpPage(WebDriverManager.getDriver());
@@ -56,5 +55,15 @@ public class FindExpertHelpSteps {
         @And("I validate current Broker text exists")
         public void iValidateCurrentBrokerTextExists() {
                 findExpertHelpPage.validateBrokerExists();
+        }
+
+        @Then("I click the back button from Find Expert Help page")
+        public void iClickBackButton() {
+                findExpertHelpPage.clickBackButton();
+        }
+
+        @Then("I click Continue on my own button from Manage who helps you page")
+        public void iClickContinueOnOwnButton() {
+                findExpertHelpPage.clickContinueOnMyOwnButton();
         }
 }

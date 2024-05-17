@@ -17,7 +17,7 @@ public class MedicalPlansCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "PlanResults-SelectThisPlan_0")
+    @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
     @FindBy(id = "SHP-MedicalPlanResults-Continue")

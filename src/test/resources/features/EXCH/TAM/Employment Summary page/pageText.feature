@@ -23,7 +23,7 @@ Feature: Page Text-Income Opt Out Page
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -60,7 +60,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
@@ -118,7 +118,7 @@ Feature: Page Text-Income Opt Out Page
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -158,7 +158,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page

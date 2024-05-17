@@ -3,6 +3,7 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
+import com.c4hco.test.automation.database.EntityObj.EsMemberOhiEntity;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -67,6 +68,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), subscriber.getMedicalPlanStartDate());
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), subscriber.getMedicalPlanEndDate());
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), subscriber.getMedicalFinancialStartDate());
+        softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear());
 
               validateDetailsFromStep(ob834Entity, expectedValues.get(0));
               validateResidentialAddress(subscriber, ob834Entity, dbData);
@@ -235,5 +237,43 @@ public class DbValidations {
       Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables();
       Assert.assertFalse(hasRecords, "Query returned records");
   }
+
+    public void validateOhiOptions(List<Map<String, String>> expectedValues) {
+        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables();
+        System.out.println(actualResult);
+
+        softAssert.assertEquals(actualResult.getEmp_sponsored_covg_ind(), expectedValues.get(0).get("emp_sponsored_covg_ind"));
+        softAssert.assertEquals(actualResult.getMedicare_ind(), expectedValues.get(0).get("medicare_ind"));
+        softAssert.assertEquals(actualResult.getVa_health_care_ind(), expectedValues.get(0).get("va_health_care_ind"));
+        softAssert.assertEquals(actualResult.getCobra_ind(), expectedValues.get(0).get("cobra_ind"));
+        softAssert.assertEquals(actualResult.getRetiree_health_plan_ind(), expectedValues.get(0).get("retiree_health_plan_ind"));
+        softAssert.assertEquals(actualResult.getTricare_ind(), expectedValues.get(0).get("tricare_ind"));
+        softAssert.assertEquals(actualResult.getPeace_corps_ind(), expectedValues.get(0).get("peace_corps_ind"));
+        softAssert.assertEquals(actualResult.getHealth_plus_plan_ind(), expectedValues.get(0).get("health_plus_plan_ind"));
+        softAssert.assertEquals(actualResult.getChild_health_plan_plus_ind(), expectedValues.get(0).get("child_health_plan_plus_ind"));
+        softAssert.assertEquals(actualResult.getIndividual_insurance_ind(), expectedValues.get(0).get("individual_insurance_ind"));
+        softAssert.assertEquals(actualResult.getHra_ind(), expectedValues.get(0).get("hra_ind"));
+        softAssert.assertAll();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

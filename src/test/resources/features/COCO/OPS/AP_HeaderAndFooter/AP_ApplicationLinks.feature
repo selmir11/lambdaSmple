@@ -42,7 +42,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I select "coco" checkbox on Admin Portal Dashboard
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I validate "UserName Display" for Admin Portal
     Then I validate "PersonSymbol Display" for Admin Portal
@@ -71,7 +71,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on "Manage Plans" user dashboard button
     Then I validate "Logo" for Admin Portal
@@ -103,7 +103,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on "Manage Account Access" user dashboard button
     Then I validate "Logo" for Admin Portal
@@ -135,7 +135,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on "Manage Account Details" user dashboard button
     Then I validate "Logo" for Admin Portal
@@ -167,7 +167,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on view button for "EDI Transactions" report
     Then I validate I am on the "EDI Transactions" page
@@ -200,7 +200,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on view button for "Detailed EDI" report
     Then I validate I am on the "Detailed EDI" page
@@ -233,7 +233,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
     Then I enter an "accountID" "1108066870" to search user
-    Then I click on Search Button
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on view button for "Account Activity" report
     Then I validate I am on the "Account Activity" page
