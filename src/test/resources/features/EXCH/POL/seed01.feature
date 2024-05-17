@@ -144,8 +144,8 @@ Feature: Seed01 - Exchange
    # And I validate the member details from policy tables
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-      | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
-      | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
     And I download the files from sftp server with location "/outboundedi/"
   #  And I validate the ob834 files should have the values
   #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
