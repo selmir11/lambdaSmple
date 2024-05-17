@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PostgresHandler {
-    private PostgresStatementExecutor executor = new PostgresStatementExecutor();
+    private static PostgresStatementExecutor executor = new PostgresStatementExecutor();
     public String getResultFor(String columnValue, String query) {
         String result = "";
         try {
@@ -87,4 +87,35 @@ public class PostgresHandler {
         }
         return hasRecords;
     }
+
+    public static Map<String, List<String>> getResultForMultipleColumnValuesInMap(String query, String[] columnValues) {
+        Map<String, List<String>> results = new HashMap<>();
+        try {
+            ResultSet rs = executor.executeQuery(query);
+            while (rs.next()) {
+                StringBuilder keyBuilder = new StringBuilder();
+                for (String columnValue : columnValues) {
+                    keyBuilder.append(rs.getString(columnValue)).append("_");
+                }
+                String key = keyBuilder.toString();
+                key = key.substring(0, key.length() - 1);
+
+                List<String> rowValues = new ArrayList<>();
+                for (String columnValue : columnValues) {
+                    rowValues.add(rs.getString(columnValue));
+                }
+                results.put(key, rowValues);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Assert.fail("Error with db occurred: " + e.getMessage());
+        }
+        return results;
+    }
+
+
+
+
+
+
 }
