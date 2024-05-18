@@ -116,7 +116,7 @@ public class DbValidations {
         // Based on relationship to subscriber - get the code based on the requirement and validate.
         //  softAssert.assertAll();
     }
-    public String getCurrentdateDB(){
+    public String getCurrentdate(){
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         DateTimeFormatter dateCreateUpdateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -125,13 +125,7 @@ public class DbValidations {
     }
 
     public void validateConstantFields(Ob834DetailsEntity ob834Entity){
-        String date = getCurrentdateDB();
-
-        String dateCreatedOb834 = ob834Entity.getDate_created();
-        String dateCreatedSubstringDB = dateCreatedOb834.substring(0,10);
-
-        String dateUpdatedOb834 = ob834Entity.getDate_updated();
-        String dateUpdatedSubstringDB = dateUpdatedOb834.substring(0,10);
+        String date = getCurrentdate();
 
         String appType = SharedData.getAppType();
         if(appType.equals("exchange")){
@@ -144,8 +138,8 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getAck_requested(), "0", "Ob834 Ack_requested does not match");
         softAssert.assertEquals(ob834Entity.getUsage_indicator(), "T", "Ob834 Usage_indicator does not match");
         softAssert.assertEquals(ob834Entity.getInterchange_date(), date,"Interchange_date does not match in with date ob834 entity");
-        softAssert.assertEquals(dateCreatedSubstringDB, formattedDate,"Date_created does not match with date in ob834 entity");
-        softAssert.assertEquals(dateUpdatedSubstringDB, formattedDate, "Date_updated does not match with date in ob834 entity");
+        softAssert.assertEquals(ob834Entity.getDate_created().substring(0,10), formattedDate,"Date_created does not match with date in ob834 entity");
+        softAssert.assertEquals(ob834Entity.getDate_updated().substring(0, 10), formattedDate, "Date_updated does not match with date in ob834 entity");
         softAssert.assertAll();
     }
 
