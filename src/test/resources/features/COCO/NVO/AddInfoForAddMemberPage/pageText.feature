@@ -3,7 +3,7 @@ Feature: Page Text-Additional information for additional member page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-77-WIP @PageTextAddInfoForAddMember
+  @SLCR-77 @PageTextAddInfoForAddMember
   Scenario: Verify Additional information for additional member Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -36,4 +36,8 @@ Feature: Page Text-Additional information for additional member page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page and continue with "01011980", "Male", "Spouse", and applying "Yes"
+    And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
+    And I validate the page text on the Additional information for add members in "English"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
