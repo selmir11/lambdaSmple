@@ -42,13 +42,13 @@ public class DocumentLookupPage {
     @FindBy(xpath = "//label[normalize-space()='Batch ID']")
     WebElement batchID;
 
-    @FindBy(id="receiveDate")
+    @FindBy(id = "receiveDate")
     WebElement receiveDate;
 
-    @FindBy(id ="documentSource")
+    @FindBy(id = "documentSource")
     WebElement documentSource;
 
-    @FindBy(id="documentAuthor")
+    @FindBy(id = "documentAuthor")
     WebElement documentAuthor;
 
     @FindBy(id = "documentHandle")
@@ -170,7 +170,8 @@ public class DocumentLookupPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(fileFormat, 10));
         softAssert.assertAll();
     }
-    public void verifyAdminSearchcriteria(){
+
+    public void verifyAdminSearchcriteria() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(accountID, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(batchID, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(fromDate, 10));
@@ -184,11 +185,12 @@ public class DocumentLookupPage {
         softAssert.assertAll();
     }
 
-    public void verifyDocumentTyperequireerror(){
+    public void verifyDocumentTyperequireerror() {
         clickSubmit();
         softAssert.assertTrue(basicActions.waitForElementToBePresent(docTypeGroupError, 10));
         softAssert.assertAll();
     }
+
     public void verifycontent() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentfiletxt, 10));
         softAssert.assertEquals(documentfiletxt.getText(), "IND_1095A Dispu..");
@@ -297,18 +299,10 @@ public class DocumentLookupPage {
         boolean isSelected = All.isSelected();
         assert !isSelected : "myBoolean is false";
     }
-
-    public void checkboxclick(){
+    public boolean checkboxclick() {
         for (int i = 1; i < Checkboxes.size(); i++) {
             Checkboxes.get(i).click();
-        }
-    }
-
-    public boolean isselected(){
-        for ( int i = 1; i < Checkboxes.size(); i++) {
-            if (Checkboxes.get(i).isSelected()) {
-               return true;
-            }
+            return Checkboxes.get(i).isSelected();
         }
         return false;
     }
@@ -320,7 +314,6 @@ public class DocumentLookupPage {
             List<String> optionslist = documentTypeOptions.stream().map(WebElement::getText).toList();
             unselectAllcheckbox();
             checkboxclick();
-            isselected();
                 switch (selectedOptionText) {
                     case "Exchange":
                         List<String> ExchExpectedList = List.of("EXC_General Feedback Form (AM-009-01)", "EXC_General Complaint Form (AM-009-02)", "EXC_General Complaint Form (AM-009-02)", "EXC_Physical Returned Mail (IN-002-01)", "EXC_New Account Created (AM-006-01)", "EXC_Account Update (AM-015-01)", "EXC_Create Back Office Exchange Account Form (AM-006-03)", "EXC_Create Employee Exchange Account Form (AM-006-01)", "EXC_Change Staff Account Request (AM-015-01)", "DELETE-EXC_Individual Life Change Event Form (AM-015-02)", "DELETE-EXC_Individual Appeal Exchange Subsidy Form (AM-009-01)", "EXC_Modify Back Office Exchange Account Form (AM-015-03)", "EXC_Manage Login (AM-016-06)", "EXC_Manage Password (AM-007-06)", "EXC_Create Staff Exchange Account (AM-006-01)",
