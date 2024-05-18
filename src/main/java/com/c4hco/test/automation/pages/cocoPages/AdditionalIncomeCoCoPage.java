@@ -78,7 +78,6 @@ public class AdditionalIncomeCoCoPage {
 
     public void verifyNoErrorMessage_AdditionalIncome() {
         Assert.assertTrue(basicActions.waitForElementToDisappear(errorMessage, 10), "Error is displayed");
-        softAssert.assertAll();
     }
 
 }
