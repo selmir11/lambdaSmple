@@ -79,6 +79,75 @@ public class PaymentSelectionPage {
     @FindBy(xpath = "//*[@id='SOL-BankDetails-State']/option")
     List<WebElement> stateDropdownOptions;
 
+    @FindBy(id = "SOL-PaymentSelection-CreditCardOrDebitCard")
+    WebElement creditCardBtn;
+
+    @FindBy(id="SOL-CreditDetails-CardNumberInput")
+    WebElement cardNumber;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-CardNumberInput']/parent::div/label")
+    WebElement cardNumberLabel;
+
+    @FindBy(id="SOL-CreditDetails-ExpirationInput")
+    WebElement expirationDate;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-ExpirationInput']/parent::div/label")
+    WebElement expirationDateLabel;
+
+    @FindBy(id="SOL-CreditDetails-SecurityCode")
+    WebElement securityCodeCVV;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-SecurityCode']/parent::div/label")
+    WebElement securityCodeCVVLabel;
+
+    @FindBy(id="SOL-CreditDetails-VisaOrMastercardInput")
+    WebElement acceptVisaoMastercard;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-VisaOrMastercardInput']/parent::div/label")
+    WebElement acceptVisaoMastercardLabel;
+
+    @FindBy(id="SOL-CreditDetails-Expiration")
+    WebElement invalidExpirationDateLabel;
+
+    @FindBy(id="SOL-CreditDetails-InvalidNameInput")
+    WebElement nameonCard;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-InvalidNameInput']/parent::div/label")
+    WebElement nameonCardLabel;
+
+    @FindBy(id="SOL-CreditDetails-BillingAddressForThisCard")
+    WebElement billingAddressLabel;
+
+    @FindBy(id="SOL-CreditDetails-InvalidAddressOneInput")
+    WebElement addressOne;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-InvalidAddressOneInput']/parent::div/label")
+    WebElement addressOneLabel;
+
+    @FindBy(id="SOL-CreditDetails-AddressTwoInput")
+    WebElement addressTwo;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-AddressTwoInput']/parent::div/label")
+    WebElement addressTwoLabel;
+
+    @FindBy(id="SOL-CreditDetails-CityInput")
+    WebElement city;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-CityInput']/parent::div/label")
+    WebElement cityLabel;
+
+    @FindBy(id="SOL-CreditDetails-StateSelect")
+    WebElement state;
+
+    @FindBy(xpath = "//select[@id='SOL-CreditDetails-StateSelect']/parent::div/label")
+    WebElement stateLabel;
+
+    @FindBy(id="SOL-CreditDetails-ZipInput")
+    WebElement zip;
+
+    @FindBy(xpath = "//input[@id='SOL-CreditDetails-ZipInput']/parent::div/label")
+    WebElement zipLabel;
+
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
@@ -146,6 +215,32 @@ public class PaymentSelectionPage {
         softAssert.assertTrue(continueBtnPaymentSelection.isEnabled());
         softAssert.assertEquals(backBtn.getText(),"Go Back");
         softAssert.assertTrue(backBtn.isEnabled());
+        softAssert.assertAll();
+    }
+
+    public void clickCreditCardButton() {
+        basicActions.waitForElementToDisappear(spinner,15);
+        basicActions.waitForElementToBeClickable(creditCardBtn, 20);
+        creditCardBtn.click();
+    }
+
+    public void verifyCreditPaymentLabelText(List<String> data){
+        basicActions.waitForElementToBePresent(cardNumber,10);
+        cardNumber.click();
+        expirationDate.click();
+        securityCodeCVV.click();
+        softAssert.assertEquals(cardNumberLabel.getText(),data.get(0));
+        softAssert.assertEquals(expirationDateLabel.getText(),data.get(1));
+        softAssert.assertEquals(securityCodeCVVLabel.getText(),data.get(2));
+        softAssert.assertEquals(acceptVisaoMastercardLabel.getText(),data.get(3));
+        softAssert.assertEquals(invalidExpirationDateLabel.getText(),data.get(4));
+        softAssert.assertEquals(nameonCardLabel.getText(),data.get(5));
+        softAssert.assertEquals(billingAddressLabel.getText(),data.get(6));
+        softAssert.assertEquals(addressOneLabel.getText(),data.get(7));
+        softAssert.assertEquals(addressTwoLabel.getText(),data.get(8));
+        softAssert.assertEquals(cityLabel.getText(),data.get(9));
+        softAssert.assertEquals(stateLabel.getText(),data.get(10));
+        softAssert.assertEquals(zipLabel.getText(),data.get(11));
         softAssert.assertAll();
     }
 }

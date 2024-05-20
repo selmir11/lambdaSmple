@@ -32,4 +32,14 @@ public class PaymentSelectionPageSteps {
     public void enterBankDetailsForWithdrawalFromBank(String accNumber, String bankName, String routingName, String address, String city, String zip, String state) {
         paymentSelectionPage.enterBankDetailsForBankWithdrawal(accNumber, bankName, routingName, address, city, zip, state);
     }
+
+    @And("I select Credit card payment type")
+    public void clickCreditCardButton() {
+        paymentSelectionPage.clickCreditCardButton();
+    }
+
+    @Then("Validate text in Credit Card Payment type")
+    public void ValidateTextInCreditCardPayment(List<String> data){
+        paymentSelectionPage.verifyCreditPaymentLabelText(data);
+    }
 }
