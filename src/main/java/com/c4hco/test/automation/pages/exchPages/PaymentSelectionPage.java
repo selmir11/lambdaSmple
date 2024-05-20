@@ -101,18 +101,18 @@ public class PaymentSelectionPage {
         basicActions.waitForElementToBeClickable(withdrawalFromBankBtn, 20);
         withdrawalFromBankBtn.click();
     }
-    public void enterBankDetailsForBankWithdrawal(List<String> data) {
+    public void enterBankDetailsForBankWithdrawal(String accNumber, String bankName, String routingName, String address, String city, String zip, String state) {
         basicActions.waitForElementToBePresent(selectBankTypeRdoBtn,  20 );
         basicActions.waitForElementToBeClickable(selectBankTypeRdoBtn, 20);
         selectBankTypeRdoBtn.click();
-        enterAccountNumber.sendKeys(data.get(0));
-        enterBankName.sendKeys(data.get(1));
-        enterBankRoutingNumber.sendKeys(data.get(2));
+        enterAccountNumber.sendKeys(accNumber);
+        enterBankName.sendKeys(bankName);
+        enterBankRoutingNumber.sendKeys(routingName);
         enterAccountHolderFirstName.sendKeys(SharedData.getPrimaryMember().getFirstName());
         enterAccountHolderLastName.sendKeys(SharedData.getPrimaryMember().getLastName());
-        addressLocatorForWithdrawalFromBank.sendKeys(data.get(3));
-        cityLocatorForWithdrawalFromBank.sendKeys(data.get(4));
-        zipLocatorForWithdrawalFromBank.sendKeys(data.get(5));
+        addressLocatorForWithdrawalFromBank.sendKeys(address);
+        cityLocatorForWithdrawalFromBank.sendKeys(city);
+        zipLocatorForWithdrawalFromBank.sendKeys(zip);
         basicActions.waitForElementToBePresent(stateLocatorForWithdrawalFromBank, 30);
         stateLocatorForWithdrawalFromBank.click();
         basicActions.selectValueFromDropdown(stateLocatorForWithdrawalFromBank, stateDropdownOptions, "CO");

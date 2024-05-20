@@ -177,28 +177,14 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Anthem Dental Family"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I select make payment button to pay the premium
     And I select Withdrawal from Bank Account button
-    And I enter Bank details for Withdrawal from Bank
-      |2095954        |
-      |PNC            |
-      |122000247      |
-      |101 User Drive |
-      |Denver         |
-      |80502          |
-      |CO             |
+    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
     Then I select second make payment button to pay the premium
     And I select Withdrawal from Bank Account button
-    And I enter Bank details for Withdrawal from Bank
-      |2095954        |
-      |PNC            |
-      |122000247      |
-      |101 User Drive |
-      |Denver         |
-      |80502          |
-      |CO             |
+    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
     And I click continue on initial payment page
     And I select "Terms of Use" agreement checkbox
     And I enter householder signature on the Financial Help Agreements page

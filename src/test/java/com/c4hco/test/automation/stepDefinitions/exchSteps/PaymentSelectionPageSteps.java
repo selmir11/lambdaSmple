@@ -28,8 +28,8 @@ public class PaymentSelectionPageSteps {
     public void clickWithdrawalFromBankButton() {
         paymentSelectionPage.clickWithdrawalFromBankButton();
     }
-    @And("I enter Bank details for Withdrawal from Bank")
-    public void enterBankDetailsForWithdrawalFromBank(List<String> data) {
-          paymentSelectionPage.enterBankDetailsForBankWithdrawal(data);
+    @And("I enter Bank details as Acc number {string} Bank Name {string} Routing number {string} Address {string} City {string} Zip {string} State {string} bank withdrawal")
+    public void enterBankDetailsForWithdrawalFromBank(String accNumber, String bankName, String routingName, String address, String city, String zip, String state) {
+        paymentSelectionPage.enterBankDetailsForBankWithdrawal(accNumber, bankName, routingName, address, city, zip, state);
     }
 }

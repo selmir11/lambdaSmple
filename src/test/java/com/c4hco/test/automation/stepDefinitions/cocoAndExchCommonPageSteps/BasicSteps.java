@@ -54,7 +54,6 @@ public class BasicSteps {
                 pageUrl = "IncomePortal/member";
                 break;
             case "planSummaryMedicalDental":
-                basicActions.wait(4000);
                 pageUrl = "planSummaryMedicalDental";
                 break;
             case "Create Account":
