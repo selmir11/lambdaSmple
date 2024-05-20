@@ -5,6 +5,7 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class PaymentSelectionPageSteps {
     PaymentSelectionPage paymentSelectionPage = new PaymentSelectionPage(WebDriverManager.getDriver());
@@ -23,14 +24,12 @@ public class PaymentSelectionPageSteps {
     public void clickMoneyOrderButton() {
         paymentSelectionPage.clickMoneyOrderButton();
     }
-
-    @And("I select Credit card payment type")
-    public void clickCreditCardButton() {
-        paymentSelectionPage.clickCreditCardButton();
+    @And("I select Withdrawal from Bank Account button")
+    public void clickWithdrawalFromBankButton() {
+        paymentSelectionPage.clickWithdrawalFromBankButton();
     }
-
-    @Then("Validate text in Credit Card Payment type")
-    public void ValidateTextInCreditCardPayment(List<String> data){
-        paymentSelectionPage.verifyCreditPaymentLabelText(data);
+    @And("I enter Bank details as Acc number {string} Bank Name {string} Routing number {string} Address {string} City {string} Zip {string} State {string} bank withdrawal")
+    public void enterBankDetailsForWithdrawalFromBank(String accNumber, String bankName, String routingName, String address, String city, String zip, String state) {
+        paymentSelectionPage.enterBankDetailsForBankWithdrawal(accNumber, bankName, routingName, address, city, zip, state);
     }
 }
