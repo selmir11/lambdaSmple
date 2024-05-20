@@ -103,6 +103,7 @@ public class LawfulPresencePage {
     public void isMemberCitizen(String YNCitizen){
         switch(YNCitizen){
             case "Yes":
+                basicActions.waitForElementToBePresent(rdobtnCitizenYes,50);
                 rdobtnCitizenYes.click();
                 break;
             case "No":

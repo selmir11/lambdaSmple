@@ -61,7 +61,7 @@ Feature: Navigation-Life Change Event Page
     Then I validate I am on the "CoCo life change event" page
 
     # Test header links
-    And I click on the Colorado Connect or C4 Logo in the Header
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "FindExpertHelpCoco" page

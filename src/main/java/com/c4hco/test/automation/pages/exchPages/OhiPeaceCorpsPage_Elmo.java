@@ -33,6 +33,9 @@ public class OhiPeaceCorpsPage_Elmo {
     @FindBy(css = ".container .header-2")
     WebElement ohiPeaceCorpsHeader;
 
+    @FindBy(css = ".header-3 .clickable")
+    WebElement helpMeLink;
+
     @FindBy(css = ".ohi-container > div > span")
     WebElement pleaseEnterTxt;
 
@@ -282,6 +285,7 @@ public class OhiPeaceCorpsPage_Elmo {
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage");
         softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage?");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
@@ -332,10 +336,11 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Peace Corps (es)");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage (es)");
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage? (es)");
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiPeaceCorpsHeader.getText(),"Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en la cobertura del Cuerpo de Paz.");
+        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en la cobertura del Cuerpo de Paz?");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
@@ -343,7 +348,7 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days? (es)");
+        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
@@ -351,9 +356,9 @@ public class OhiPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataThirdSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(2).getText(),"What day will your coverage end? (es)");
+        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance? (es)");
+        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
         softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
@@ -390,7 +395,7 @@ public class OhiPeaceCorpsPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(currentlyEnrolledError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(currentlyEnrolledError.getText(), "Por favor seleccione una opci\u00F3n");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
@@ -414,7 +419,7 @@ public class OhiPeaceCorpsPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(insuranceEndingError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(insuranceEndingError.getText(), "Por favor seleccione una opci\u00F3n");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
@@ -441,7 +446,7 @@ public class OhiPeaceCorpsPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(inputEndDateError.getText(), "La fecha es obligatoria");
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una fecha");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
@@ -497,7 +502,7 @@ public class OhiPeaceCorpsPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(endVoluntaryError.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(endVoluntaryError.getText(), "Por favor seleccione una opci\u00F3n");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
