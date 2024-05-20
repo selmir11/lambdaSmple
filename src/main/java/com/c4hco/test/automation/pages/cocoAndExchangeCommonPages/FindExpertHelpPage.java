@@ -15,8 +15,11 @@ public class FindExpertHelpPage {
     WebElement continueOnMyOwnButton;
     @FindBy(id = "BP-Findexperthelpnearyou-Back")
     WebElement backButton;
-    @FindBy(xpath ="//h2[@class='header-2']")
+    @FindBy(id ="experthelp-title")
     WebElement pageHeader;
+
+    @FindBy(id ="experthelp-manage")
+    WebElement pageHeaderManageWhoHelps;
 
     @FindBy(id ="experthelp-text")
     WebElement pageTitle;
@@ -43,6 +46,54 @@ public class FindExpertHelpPage {
     @FindBy(id ="broker-existing-title")
     WebElement brokerExistsText;
 
+    @FindBy(id ="broker-table-brokerName")
+    WebElement brokerNameColumnHeader;
+
+    @FindBy(id ="broker-table-agencyName")
+    WebElement agencyNameColumnHeader;
+
+    @FindBy(id ="broker-table-license")
+    WebElement licenseNumberColumnHeader;
+
+    @FindBy(id ="broker-table-zipCode")
+    WebElement zipCodeColumnHeader;
+
+    @FindBy(id ="broker-table-phone")
+    WebElement phoneNumberColumnHeader;
+
+    @FindBy(id ="broker-table-type")
+    WebElement typeColumnHeader;
+
+    @FindBy(id ="broker-table-status")
+    WebElement statusColumnHeader;
+
+    @FindBy(id ="broker-table-action")
+    WebElement actionColumnHeader;
+
+    @FindBy(id ="broker-organizationName")
+    WebElement currentBrokerName;
+
+    @FindBy(id ="broker-exchangeId")
+    WebElement currentAgencyName;
+
+    @FindBy(id ="broker-license")
+    WebElement currentBrokerLicense;
+
+    @FindBy(id ="broker-zipCode")
+    WebElement currentBrokerZipCode;
+
+    @FindBy(id ="broker-phoneNumber")
+    WebElement currentBrokerPhone;
+
+    @FindBy(id ="broker-helperType")
+    WebElement currentBrokerType;
+
+    @FindBy(id ="broker-status")
+    WebElement currentBrokerStatus;
+
+    @FindBy(id ="broker-action")
+    WebElement currentBrokerAction;
+
     public FindExpertHelpPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -66,16 +117,46 @@ public class FindExpertHelpPage {
         Assert.assertEquals(ExpectedTitle,ActualTitle);
     }
 
-    public void verifyTitlePage(String language){
+    public void verifyManageWhoHelpsYouHeaderText(String language){
         String ExpectedTitle = "";
-        String ActualTitle =pageTitle.getText();
+        basicActions.waitForElementToBePresent(pageHeaderManageWhoHelps,20);
+        String ActualTitle =pageHeaderManageWhoHelps.getText();
 
         switch (language) {
             case "English":
-                ExpectedTitle = "Colorado Connect offers a statewide network of certified experts who can help you complete your application and shop for a plan in person.";
+                ExpectedTitle = "Manage who helps you";
                 break;
             case "Spanish":
-                ExpectedTitle = "Colorado Connect ofrece una red estatal de expertos certificados que le pueden ayudar a completar su solicitud y buscar un plan en persona.";
+                ExpectedTitle = "administrar qui\u00E9n te ayuda";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        Assert.assertEquals(ExpectedTitle,ActualTitle);
+    }
+
+    public void verifyTitlePage(String Marketplace, String language){
+        String ExpectedTitle = "";
+        String ActualTitle =pageTitle.getText();
+        String market = "";
+
+        switch (Marketplace) {
+            case "Exch":
+                market = "Connect for Health Colorado";
+                break;
+            case "CoCo":
+                market = "Colorado Connect";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+
+        switch (language) {
+            case "English":
+                ExpectedTitle = market +" offers a statewide network of certified experts who can help you complete your application and shop for a plan in person.";
+                break;
+            case "Spanish":
+                ExpectedTitle = market +" ofrece una red estatal de expertos certificados que le pueden ayudar a completar su solicitud y buscar un plan en persona.";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -128,6 +209,32 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
     }
 
+    public void validateCurrentBrokerTableHeader(){
+        basicActions.waitForElementToBePresent(brokerNameColumnHeader,100);
+        softAssert.assertEquals(brokerNameColumnHeader.getText(),"Broker Name");
+        softAssert.assertEquals(agencyNameColumnHeader.getText(),"Agency Name");
+        softAssert.assertEquals(licenseNumberColumnHeader.getText(),"License Number");
+        softAssert.assertEquals(zipCodeColumnHeader.getText(),"Zip Code");
+        softAssert.assertEquals(phoneNumberColumnHeader.getText(),"Phone Number");
+        softAssert.assertEquals(typeColumnHeader.getText(),"Type");
+        softAssert.assertEquals(statusColumnHeader.getText(),"Status");
+        softAssert.assertEquals(actionColumnHeader.getText(),"Action");
+        softAssert.assertAll();
+    }
+
+    public void validateBrokerDetailsCurrentBrokerTable(String brokerName, String agencyName, String licenseNumber, String zipCode, String phoneNumber, String type, String status){
+        basicActions.waitForElementToBePresent(currentBrokerName,100);
+        softAssert.assertEquals(currentBrokerName.getText(),brokerName);
+        softAssert.assertEquals(currentAgencyName.getText(),agencyName);
+        softAssert.assertEquals(currentBrokerLicense.getText(),licenseNumber);
+        softAssert.assertEquals(currentBrokerZipCode.getText(),zipCode);
+        softAssert.assertEquals(currentBrokerPhone.getText(),phoneNumber);
+        softAssert.assertEquals(currentBrokerType.getText(),type);
+        softAssert.assertEquals(currentBrokerStatus.getText(),status);
+        softAssert.assertEquals(currentBrokerAction.getText(),"Remove");
+        softAssert.assertAll();
+    }
+
     public void validateFindABrokerButtonExists(String expectedState){
         if(expectedState.equals("is")){
             basicActions.waitForElementToBePresent(FindBroker,30);
@@ -174,5 +281,27 @@ public class FindExpertHelpPage {
         basicActions.waitForElementToBePresent(findBroker,30);
         softAssert.assertTrue(findBroker.isDisplayed());
         softAssert.assertAll();
+    }
+
+    public void validateContinueOnMyOwnButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(continueOnMyOwnButton,10);
+            softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue on my own");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            softAssert.assertFalse(basicActions.waitForElementPresence(continueOnMyOwnButton,10));
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateContinueWithMyApplicationButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(continueOnMyOwnButton,10);
+            softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue with my application");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            softAssert.assertFalse(basicActions.waitForElementPresence(continueOnMyOwnButton,10));
+            softAssert.assertAll();
+        }
     }
 }
