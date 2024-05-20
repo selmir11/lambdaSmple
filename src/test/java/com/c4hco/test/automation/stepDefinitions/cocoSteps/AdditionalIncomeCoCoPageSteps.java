@@ -21,4 +21,10 @@ public class AdditionalIncomeCoCoPageSteps {
     @And("I select continue on the Additional Income CoCO page")
     public void selectContinue(){additionalIncomeCoCoPage.clickSaveAndContinueButton();}
 
+    @And("I select Go Back on the Additional Income CoCo page")
+    public void selectGoBack(){additionalIncomeCoCoPage.clickGoBackButton();}
+
+    @Then("I validate no errors are displayed on the Additional Income CoCo page")
+    public void iValidateNoErrorsPresent(){additionalIncomeCoCoPage.verifyNoErrorMessage_AdditionalIncome();}
+
 }
