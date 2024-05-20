@@ -26,4 +26,14 @@ public class EsMemberOhiEntity {
     String emp_coverage_end_soon_ind3;
     String emp_coverage_min_std_ind3;
     String emp_coverage_monthly_prem_amt;
+    String cobra_enrl_covg_ind3;
+    String cobra_covg_end_soon_ind3;
+    String va_enrl_covg_ind3;
+    String va_covg_end_soon_ind3;
+    String retiree_enrl_covg_ind3;
+    String retiree_covg_end_soon_ind3;
+    String tricare_enrl_covg_ind3;
+    String tricare_covg_end_soon_ind3;
+    String peace_corps_enrl_covg_ind3;
+    String peace_corps_covg_end_soon_ind3;
 }
