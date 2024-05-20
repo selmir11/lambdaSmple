@@ -35,7 +35,7 @@ public class AdminPortalReportsPage {
         softAssert.assertEquals("Time",eventTime.getText());
         softAssert.assertAll(); }
     public void viewActivity(String activityText,String userData,String timeForEvent, String descriptionData) {
-        basicActions.waitForElementListToBePresent(eventCodeList,300);
+        basicActions.waitForElementListToBePresent(eventCodeList,3000);
         List<String> username = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::getUsername).toList();
         softAssert.assertTrue(username.contains(userData));
         List<String> time = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::gettime).toList();
