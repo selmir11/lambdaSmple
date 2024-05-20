@@ -45,7 +45,7 @@ public class MemberDetails {
     String application_id;
     BigDecimal account_id;
     String policyId;
-    String memberId;
+    String memberId; //excludes primary memberId
     String totalMedAmtAfterReduction;
     String totalDentalPremAfterReduction;
     String medicalEapid_db;
