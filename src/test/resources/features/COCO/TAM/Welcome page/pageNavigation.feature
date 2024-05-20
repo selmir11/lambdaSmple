@@ -43,7 +43,7 @@ Feature: Navigation-Welcome Page
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Welcome" page
 
-    And I click on the Colorado Connect or C4 Logo in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -128,7 +128,7 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
 
-    And I click on the Colorado Connect or C4 Logo in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
     And I click on Apply for Coverage in the "Elmo" Header

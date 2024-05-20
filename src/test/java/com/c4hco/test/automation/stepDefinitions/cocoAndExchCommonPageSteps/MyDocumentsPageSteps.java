@@ -9,9 +9,6 @@ public class MyDocumentsPageSteps {
 
 
 MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver());
-
-
-
     @Then("I click link my docs on accountOverview page")
     public void iClickLinkMyDocsOnAccountOverviewPage(){
         myDocumentsPage.ClickLinkMyDocsWelcomePage();
@@ -20,4 +17,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I verify the page text in {string} on the My Documents Page")
     public void iVerifyPageText(String language){myDocumentsPage.verifyPageText(language);}
 
+    @Then("I validate the notice {string} exist in my document letter Containers")
+    public void iValidateTheNoticeExistInMyDocumentLetter(String documentName) {
+        myDocumentsPage.validateTheNoticeExistInMyDocumentLetterPage(documentName);
+    }
 }

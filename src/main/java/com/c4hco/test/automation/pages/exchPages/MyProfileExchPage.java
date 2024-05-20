@@ -331,5 +331,15 @@ public class MyProfileExchPage {
     }
 
 
+    public void PreferredContactMethod(String contactPrefrences) {
+        clickPreferredContactDrp();
+        switch (contactPrefrences){
+            case "Email":
+                PreferredContactDrpOptions.get(1).click();
+                break;
+            case "Mail":
+                PreferredContactDrpOptions.get(2).click();
+        }
+    }
 }
 

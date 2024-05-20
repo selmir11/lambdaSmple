@@ -66,4 +66,9 @@ public class FindExpertHelpSteps {
         public void iClickContinueOnOwnButton() {
                 findExpertHelpPage.clickContinueOnMyOwnButton();
         }
+
+        @And("I validate no broker is authorized")
+        public void iValidateNoBrokerIsAuthorized() {
+                findExpertHelpPage.validateNoBrokerIsAuthorized();
+        }
 }
