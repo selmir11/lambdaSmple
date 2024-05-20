@@ -42,6 +42,11 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateFindABrokerButtonExists(expectedState);
         }
 
+        @Then("I validate the Change Broker button {string} displayed")
+        public void iValidateTheChangeBrokerButtonDisplayed(String expectedState){
+                findExpertHelpPage.validateChangeBrokerButtonExists(expectedState);
+        }
+
         @Then("I validate the Have a Broker call you button is displayed")
         public void iValidateTheHaveABrokerCallYouButtonExists(){
                 findExpertHelpPage.validateHaveABrokerCallYouButtonExists();
@@ -83,7 +88,12 @@ public class FindExpertHelpSteps {
         }
 
         @And("I validate no broker is authorized")
+
         public void iValidateNoBrokerIsAuthorized() {findExpertHelpPage.validateNoBrokerIsAuthorized();}
+
+        public void iValidateNoBrokerIsAuthorized() {
+                findExpertHelpPage.validateNoBrokerIsAuthorized();
+        }
 
         @Then("I validate the Continue with my application button {string} displayed")
         public void iValidateContinueWithMyApplicationButtonExists(String expectedState){
@@ -91,7 +101,7 @@ public class FindExpertHelpSteps {
         }
 
         @Then("I validate the Continue on my own button {string} displayed")
-        public void iValidateContineOnMyOwnButtonExists(String expectedState){
+        public void iValidateContinueOnMyOwnButtonExists(String expectedState){
                 findExpertHelpPage.validateContinueOnMyOwnButtonExists(expectedState);
         }
 }
