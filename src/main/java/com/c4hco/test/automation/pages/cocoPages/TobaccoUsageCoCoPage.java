@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class TobaccoUsageCoCoPage {
 
-    @FindBy(id = "SHP-StartShop-Continue")
+    @FindBy(css = "#SHP-StartShop-Continue")
     WebElement continueButton;
     private BasicActions basicActions;
 
@@ -19,7 +19,7 @@ public class TobaccoUsageCoCoPage {
     }
 
     public void selectContinueTobacco() {
-        basicActions.waitForElementToBeClickable(continueButton, 10);
+        basicActions.waitForElementToBeClickable(continueButton, 120);
         basicActions.scrollToElement(continueButton);
         continueButton.click();
     }

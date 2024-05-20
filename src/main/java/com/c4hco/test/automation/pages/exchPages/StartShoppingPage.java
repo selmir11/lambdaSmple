@@ -44,6 +44,38 @@ public class StartShoppingPage {
         btnContinue.click();
     }
 
+    public void isMemberTobaccoUser(String member, String YNTobaccoUser) {
+        basicActions.waitForElementListToBePresent(btnNoAndYes,20);
+        switch (member) {
+            case "member1":
+                switch (YNTobaccoUser) {
+                    case "Yes":
+                        btnNoAndYes.get(0).click();
+                        break;
+                    case "No":
+                        btnNoAndYes.get(1).click();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
+                }
+                break;
+            case "member2":
+                switch (YNTobaccoUser) {
+                    case "Yes":
+                        btnNoAndYes.get(2).click();
+                        break;
+                    case "No":
+                        btnNoAndYes.get(3).click();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
+                }
+                break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + member);
+        }
+    }
+
 
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage(){ 

@@ -145,4 +145,7 @@ public class ApplicationResultsPage {
         popUpBackButton.click();
     }
 
+    public void validateTextOnPage(String text) {
+        basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath("//*[contains(text(),\""+text+"\")]")), 15);
+    }
 }

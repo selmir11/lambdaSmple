@@ -13,7 +13,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
     Then I Search authorized Broker "Primary Rever"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
     And I validate current Broker text exists
@@ -51,7 +51,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
     Then I Search authorized Broker "Primary Rever"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
     And I validate current Broker text exists
@@ -89,7 +89,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
     Then I Search authorized Broker "Primary Rever"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
     And I validate current Broker text exists
@@ -119,7 +119,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
     Then I Search authorized Broker "Primary Rever"
-    And I click on Search button
+    And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
     And I validate current Broker text exists

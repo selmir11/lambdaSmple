@@ -1,6 +1,6 @@
 Feature: Seed01 - Exchange
 
-  Background: Seed 01 For Exchange
+  Scenario: Seed 01 For Exchange- Single Applicant NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -19,7 +19,7 @@ Feature: Seed01 - Exchange
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -125,7 +125,7 @@ Feature: Seed01 - Exchange
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I update SSN number to new SSN number
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
@@ -144,8 +144,8 @@ Feature: Seed01 - Exchange
    # And I validate the member details from policy tables
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-      | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
-      | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
     And I download the files from sftp server with location "/outboundedi/"
   #  And I validate the ob834 files should have the values
   #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
@@ -165,7 +165,7 @@ Feature: Seed01 - Exchange
     And I report "NoneOfThese" and click continue
     And I click Continue With Application
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I update DOB to new DOB of "11/08/1986"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page

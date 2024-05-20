@@ -55,6 +55,8 @@ public class HeaderAndFooterPage {
     WebElement getAssistanceLinkOptionNonElmo1;
     @FindBy(css = "div.dropdown-content > a:nth-child(2)")
     WebElement findExpertAssistanceExpertHelp;
+    @FindBy(xpath = "//span/li[2]/div[2]/form")
+    WebElement findExpertAssistanceIndividualDashboard;
 
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
@@ -245,6 +247,10 @@ public class HeaderAndFooterPage {
             case "Exch ExpertHelp":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceExpertHelp, 20);
                 findExpertAssistanceExpertHelp.click();
+                break;
+                case "individual dashboard":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceIndividualDashboard, 20);
+                findExpertAssistanceIndividualDashboard.click();
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import io.cucumber.java.en.Then;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,8 +23,7 @@ public class TellUsAboutAdditionalMemberPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-
-    @FindBy(css = ".input-group #firstName")
+    @FindBy(id = "firstName")
     WebElement txtfirstName;
 
     @FindBy(id = "middleName")
@@ -124,7 +124,7 @@ public class TellUsAboutAdditionalMemberPage {
                 throw new IllegalArgumentException("Invalid option: " + pregnant);
         }
     }
-    public void setSelectRelationship(String Relation){
+      public void setSelectRelationship(String Relation){
         basicActions.waitForElementToBePresent(selectRelationship, 15);
 
         Select dropdown = new Select(selectRelationship);

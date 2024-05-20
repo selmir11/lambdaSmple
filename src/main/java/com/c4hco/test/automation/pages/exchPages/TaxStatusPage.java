@@ -41,6 +41,15 @@ public class TaxStatusPage {
     @FindBy(id = "selectedClaimedByMemberId1")
     WebElement lblheadOfHousehold;
 
+    @FindBy(id = "selectedDependents1")
+    WebElement selectedDependents1;
+
+    @FindBy(id = "selectedDependents2")
+    WebElement selectedDependents2;
+
+    @FindBy(id = "selectedDependents3")
+    WebElement selectedDependents3;
+
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
             case "Yes":
@@ -103,6 +112,19 @@ public class TaxStatusPage {
     public void checkDependentClaimed(String memberId){
         String clalimDependentOption = "selectedDependents"+memberId;
         basicActions.getDriver().findElement(By.id(clalimDependentOption)).click();
+    }
+
+    public void iSelectDependent1(){
+        basicActions.waitForElementToBePresent(selectedDependents1, 20);
+        selectedDependents1.click();
+    }
+    public void iSelectDependent2(){
+        basicActions.waitForElementToBePresent(selectedDependents2, 20);
+        selectedDependents2.click();
+    }
+    public void iSelectDependent3(){
+        basicActions.waitForElementToBePresent(selectedDependents3, 20);
+        selectedDependents3.click();
     }
 
     public void selectSaveAndContinue(){
