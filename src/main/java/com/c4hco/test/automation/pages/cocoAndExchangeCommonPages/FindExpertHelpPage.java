@@ -43,6 +43,9 @@ public class FindExpertHelpPage {
     @FindBy(id ="broker-button")
     WebElement findBroker;
 
+    @FindBy(id ="broker-button-change")
+    WebElement ChangeBroker;
+
     @FindBy(id ="broker-existing-title")
     WebElement brokerExistsText;
 
@@ -242,6 +245,17 @@ public class FindExpertHelpPage {
             softAssert.assertAll();
         } else if (expectedState.equals("is not")) {
             softAssert.assertFalse(basicActions.waitForElementPresence(FindBroker,30));
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateChangeBrokerButtonExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(ChangeBroker,30);
+            softAssert.assertEquals(ChangeBroker.getText(),"Change Broker");
+            softAssert.assertAll();
+        } else if (expectedState.equals("is not")) {
+            softAssert.assertFalse(basicActions.waitForElementPresence(ChangeBroker,30));
             softAssert.assertAll();
         }
     }

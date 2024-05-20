@@ -16,7 +16,7 @@ Feature: Tests Continue with my application/Continue on my own button on the Fin
     And I click on Find Expert Assistance in the "individual dashboard" Header
     Then I verify Find Expert Help header Text in "English"
     Then I verify Find Expert Help page "Exch" title Text in "English"
-    Then I validate the Continue with my application button "is not" displayed
+    Then I validate the Continue on my own button "is not" displayed
 
   @SLER-474
   Scenario: Verifies the Continue on my own button on the Manage who helps you page
@@ -41,6 +41,6 @@ Feature: Tests Continue with my application/Continue on my own button on the Fin
     And I validate the current broker table header labels
     And I validate my broker details in the current broker table are "Margie Kellogg", "AAA Best Agency", "159753456", "80205", "303-123-7895", "BROKER", "Active"
     Then I verify Manage who helps you header text in "English"
-    Then I validate the Continue on my own button "is not" displayed
+    Then I validate the Continue with my application button "is not" displayed
     Then I click the back button from Find Expert Help page
     Then I validate I am on the "Account Overview" page
