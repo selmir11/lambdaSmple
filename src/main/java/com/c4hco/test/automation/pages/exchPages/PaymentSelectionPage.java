@@ -2,12 +2,16 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class PaymentSelectionPage {
@@ -39,6 +43,42 @@ public class PaymentSelectionPage {
 
     @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder")
     WebElement moneyOrderBtn;
+    @FindBy(id = "SOL-PaymentSelection-WithdrawalFromBankAccount")
+    WebElement withdrawalFromBankBtn;
+
+    @FindBy(id = "SOL-BankDetails-CheckingInput")
+    WebElement selectBankTypeRdoBtn;
+
+    @FindBy(id = "SOL-BankDetails-AccountNumberInput")
+    WebElement enterAccountNumber;
+
+    @FindBy(id = "SOL-BankDetails-BankNameInput")
+    WebElement enterBankName;
+
+    @FindBy(id = "SOL-BankDetails-RoutingNumberInput")
+    WebElement enterBankRoutingNumber;
+
+    @FindBy(id = "SOL-BankDetails-FirstNameInput")
+    WebElement enterAccountHolderFirstName;
+
+    @FindBy(id = "SOL-BankDetails-LastNameInput")
+    WebElement enterAccountHolderLastName;
+
+    @FindBy(id = "SOL-BankDetails-AddressOneInput")
+    WebElement addressLocatorForWithdrawalFromBank;
+
+    @FindBy(id = "SOL-BankDetails-City")
+    WebElement cityLocatorForWithdrawalFromBank;
+
+    @FindBy(id = "SOL-BankDetails-Zip")
+    WebElement zipLocatorForWithdrawalFromBank;
+
+    @FindBy(id = "SOL-BankDetails-State")
+    WebElement stateLocatorForWithdrawalFromBank;
+
+    @FindBy(xpath = "//*[@id='SOL-BankDetails-State']/option")
+    List<WebElement> stateDropdownOptions;
+
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
@@ -55,6 +95,28 @@ public class PaymentSelectionPage {
         basicActions.waitForElementToBePresent(moneyOrderBtn,  20 );
         basicActions.waitForElementToBeClickable(moneyOrderBtn, 20);
         moneyOrderBtn.click();
+    }
+    public void clickWithdrawalFromBankButton() {
+        basicActions.waitForElementToBePresent(withdrawalFromBankBtn,  20 );
+        basicActions.waitForElementToBeClickable(withdrawalFromBankBtn, 20);
+        withdrawalFromBankBtn.click();
+    }
+    public void enterBankDetailsForBankWithdrawal(List<String> data) {
+        basicActions.waitForElementToBePresent(selectBankTypeRdoBtn,  20 );
+        basicActions.waitForElementToBeClickable(selectBankTypeRdoBtn, 20);
+        selectBankTypeRdoBtn.click();
+        enterAccountNumber.sendKeys(data.get(0));
+        enterBankName.sendKeys(data.get(1));
+        enterBankRoutingNumber.sendKeys(data.get(2));
+        enterAccountHolderFirstName.sendKeys(SharedData.getPrimaryMember().getFirstName());
+        enterAccountHolderLastName.sendKeys(SharedData.getPrimaryMember().getLastName());
+        addressLocatorForWithdrawalFromBank.sendKeys(data.get(3));
+        cityLocatorForWithdrawalFromBank.sendKeys(data.get(4));
+        zipLocatorForWithdrawalFromBank.sendKeys(data.get(5));
+        basicActions.waitForElementToBePresent(stateLocatorForWithdrawalFromBank, 30);
+        stateLocatorForWithdrawalFromBank.click();
+        basicActions.selectValueFromDropdown(stateLocatorForWithdrawalFromBank, stateDropdownOptions, "CO");
+        continueBtnPaymentSelection.click();
     }
 
     public String extractProviderName() {

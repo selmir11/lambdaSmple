@@ -164,8 +164,56 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
+
     Then I validate I am on the "Grouping Members Medical" page
-    Then I verify that members are grouped together based on zipcodes
+    Then I validate that there are 1 default groups
+    Then I click continue on grouping Members Medical page
+    And I validate I am on the "Medical Plan Results" page
+    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Anthem Dental Family"
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I continue on plan summary page
+
+    Then I select make payment button to pay the premium
+    And I select Withdrawal from Bank Account button
+    And I enter Bank details for Withdrawal from Bank
+      |2095954        |
+      |PNC            |
+      |122000247      |
+      |101 User Drive |
+      |Denver         |
+      |80502          |
+      |CO             |
+    Then I select second make payment button to pay the premium
+    And I select Withdrawal from Bank Account button
+    And I enter Bank details for Withdrawal from Bank
+      |2095954        |
+      |PNC            |
+      |122000247      |
+      |101 User Drive |
+      |Denver         |
+      |80502          |
+      |CO             |
+    And I click continue on initial payment page
+    And I select "Terms of Use" agreement checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    And I click on ClickHere link for "My Plans"
+
+
+
 
 
 
