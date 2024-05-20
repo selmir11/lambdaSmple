@@ -10,12 +10,15 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
 public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
   SoftAssert softAssert = new SoftAssert();
+ String formattedDate; //formatted in YYYY-MM-DD
 
     public void validateDataFromPolicyTables(){
 
@@ -113,17 +116,31 @@ public class DbValidations {
         // Based on relationship to subscriber - get the code based on the requirement and validate.
         //  softAssert.assertAll();
     }
+    public String getCurrentdate(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        DateTimeFormatter dateCreateUpdateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        formattedDate = currentDate.format(dateCreateUpdateformat);
+        return currentDate.format(formatter);
+    }
 
     public void validateConstantFields(Ob834DetailsEntity ob834Entity){
-        softAssert.assertEquals(ob834Entity.getApplication_date(), "set this for today"); // WIP
-        softAssert.assertEquals(ob834Entity.getUpdated_by(), "JAVA_OB834");
-        softAssert.assertEquals(ob834Entity.getAck_requested(), "0");
-        softAssert.assertEquals(ob834Entity.getUsage_indicator(), "T");
-        softAssert.assertEquals(ob834Entity.getInterchange_sender_id(), "get the value for assertion"); // WIP
-        softAssert.assertEquals(ob834Entity.getInterchange_date(), "get the value for assertion"); // WIP
-        softAssert.assertEquals(ob834Entity.getDate_created(), "get the value for assertion"); // WIP
-        softAssert.assertEquals(ob834Entity.getDate_updated(), "get the value for assertion"); // WIP
-        //  softAssert.assertAll();
+        String date = getCurrentdate();
+
+        String appType = SharedData.getAppType();
+        if(appType.equals("exchange")){
+            softAssert.assertEquals(ob834Entity.getInterchange_sender_id(), "CNCT4HLTHCO");
+        }else if(appType.equals("coco")){
+            softAssert.assertEquals(ob834Entity.getInterchange_sender_id(), "COLOCONNECT");
+        }
+        softAssert.assertEquals(ob834Entity.getApplication_date(), date,"Application date does not match in ob834 entity");
+        softAssert.assertEquals(ob834Entity.getUpdated_by(), "JAVA_OB834", "Ob834 updated_by does not match");
+        softAssert.assertEquals(ob834Entity.getAck_requested(), "0", "Ob834 Ack_requested does not match");
+        softAssert.assertEquals(ob834Entity.getUsage_indicator(), "T", "Ob834 Usage_indicator does not match");
+        softAssert.assertEquals(ob834Entity.getInterchange_date(), date,"Interchange_date does not match in with date ob834 entity");
+        softAssert.assertEquals(ob834Entity.getDate_created().substring(0,10), formattedDate,"Date_created does not match with date in ob834 entity");
+        softAssert.assertEquals(ob834Entity.getDate_updated().substring(0, 10), formattedDate, "Date_updated does not match with date in ob834 entity");
+        softAssert.assertAll();
     }
 
     public void validatePersonalDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
