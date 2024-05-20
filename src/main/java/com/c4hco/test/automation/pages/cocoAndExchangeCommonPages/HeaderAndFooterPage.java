@@ -17,6 +17,8 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logo")
     WebElement connectLogoLinkNonElmo;
+    @FindBy(css = "#logo")
+    WebElement connectLogoLinkExpertHelp;
 
     @FindBy(css = ".center-links .clickable")
     List<WebElement> centerHeaderLink;
@@ -154,9 +156,20 @@ public class HeaderAndFooterPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void clickConnectLogoLink() {
-        basicActions.waitForElementToBeClickable(connectLogoLink, 10);
-        connectLogoLink.click();
+    public void clickConnectLogoLink(String pageType) {
+        switch (pageType){
+            case "Elmo":
+                basicActions.waitForElementToBeClickable(connectLogoLink, 10);
+                connectLogoLink.click();
+            break;
+            case "ExpertHelp":
+                basicActions.waitForElementToBePresent(connectLogoLinkExpertHelp,20);
+                connectLogoLinkExpertHelp.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
+
     }
 
     public void clickApplyForCoverageLink(String pageType) {
@@ -794,4 +807,8 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
+    public void clickConnectLogoLinkLinkForNonElmoPages() {
+        basicActions.waitForElementToBePresent(connectLogoLinkNonElmo,20);
+        connectLogoLinkNonElmo.click();
+    }
 }

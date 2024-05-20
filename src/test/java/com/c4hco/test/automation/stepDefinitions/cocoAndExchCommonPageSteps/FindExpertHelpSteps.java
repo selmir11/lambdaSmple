@@ -82,6 +82,10 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.clickContinueOnMyOwnButton();
         }
 
+        @And("I validate no broker is authorized")
+        public void iValidateNoBrokerIsAuthorized() {
+                findExpertHelpPage.validateNoBrokerIsAuthorized();
+
         @Then("I validate the Continue with my application button {string} displayed")
         public void iValidateContinueWithMyApplicationButtonExists(String expectedState){
                 findExpertHelpPage.validateContinueWithMyApplicationButtonExists(expectedState);

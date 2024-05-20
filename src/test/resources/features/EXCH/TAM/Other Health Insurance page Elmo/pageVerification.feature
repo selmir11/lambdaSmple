@@ -285,3 +285,228 @@ Feature: Page Text-Other Health Insurance Page
 
     And I click on Sign Out in the Header for "Elmo"
 
+
+
+
+  @SLER-473 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-473 I validate remove COBRA on Other Health Insurance is updated in the DB
+    Then I select "COBRA" as health insurance option and continue
+    And I change the C4 url to "Elmo COBRA Page"
+    And I validate I am on the "Elmo COBRA" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     1   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "No" for insurance ending in 60 days in COBRA question
+    Then I click continue on the Elmo OHI Cobra page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     1   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |           1        |           0            |
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                    |                        |
+
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+  @SLER-476 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-476 I validate remove VA Healthcare on Other Health Insurance is updated in the DB
+    Then I select "VA Healthcare" as health insurance option and continue
+    And I change the C4 url to "Elmo Ohi VA Healthcare Page"
+    And I validate I am on the "Elmo Ohi VA Healthcare" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         1        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
+    Then I click "Yes" for currently enrolled in VA Healthcare question
+    Then I click "No" for insurance ending in 60 days in VA Healthcare question
+    Then I click continue on the Elmo OHI VA Healthcare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|
+      |         0            |      0     |         1        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |         1       |         0           |
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                 |                     |
+
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+  @SLER-477 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-477 I validate remove Retiree Health Plan on Other Health Insurance is updated in the DB
+    Then I select "Retiree Health Plan" as health insurance option and continue
+    And I change the C4 url to "Elmo Ohi Retiree Page"
+    And I validate I am on the "Elmo Ohi Retiree" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            1          |     0     |       0       |        0           |             0            |            0           |   0   |
+    Then I click "Yes" for currently enrolled in Retiree question
+    Then I click "No" for insurance ending in 60 days in Retiree question
+    Then I click continue on the Elmo OHI Retiree page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_enrl_covg_ind3|retiree_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            1          |     0     |       0       |        0           |             0            |            0           |   0   |            1         |            0             |
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_enrl_covg_ind3|retiree_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                      |                          |
+
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+  @SLER-478 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-478 I validate remove TRICARE on Other Health Insurance is updated in the DB
+    Then I select "TRICARE" as health insurance option and continue
+    And I change the C4 url to "Elmo Ohi Tricare Page"
+    And I validate I am on the "Elmo Ohi Tricare" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            0          |     1     |       0       |        0           |             0            |            0           |   0   |
+    Then I click "Yes" for currently enrolled in Tricare question
+    Then I click "No" for insurance ending in 60 days in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     1     |       0       |        0           |             0            |            0           |   0   |            1         |            0             |
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                      |                          |
+
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+  @SLER-479 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-479 I validate remove Peace Corps on Other Health Insurance is updated in the DB
+    Then I select "Peace Corps" as health insurance option and continue
+    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    And I validate I am on the "Elmo Ohi Peace Corps" page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       1       |        0           |             0            |            0           |   0   |
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    Then I click "No" for insurance ending in 60 days in Peace Corps question
+    Then I click continue on the Elmo OHI Peace Corps page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       1       |        0           |             0            |            0           |   0   |              1           |              0               |
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                          |                              |
+
+    And I click on Sign Out in the Header for "Elmo"
+
