@@ -1,6 +1,6 @@
 Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
 
-  Background: EXCH intial application
+  Scenario: : EXCH intial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -19,7 +19,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -66,7 +66,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I enter new born with minus 5 days as DOB
     And I select "Male" as sex option
     And I select "Son" as relationship option
-    And I select "Son" as relationship option
+    And I select "Son" as relationship one option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -89,7 +89,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Uptown" and city as "Denver" and state as "CO" and zipcode as "80205" and income "250000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "250000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -99,4 +99,78 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
+
+
     Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "300000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the "2" option for Who Will Claim as Dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as health insurance option and continue
+    Then I click continue on family overview page
+
+    Then I select "Birth" QLCE on tell us about life changes page for new born
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical page
+    And I validate I am on the "Medical Plan Results" page
+    And I select "KP Select CO Bronze 8500/50" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Delta Dental of Colorado Plains Plan"
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I continue on plan summary page
+    Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+
+
+
+
+

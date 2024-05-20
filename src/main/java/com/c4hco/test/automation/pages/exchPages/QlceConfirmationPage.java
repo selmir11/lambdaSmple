@@ -152,6 +152,28 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
+    public void selectbirthlceformember3(String QLCEType){
+        switch (QLCEType) {
+            case "Birth":
+                basicActions.waitForElementToBeClickable(birthQLCE, 10);
+                birthQLCE.click();
+                for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
+
+                    if (i == 2) {
+                        allmembersBirthcheckbox.get(i).click();
+                        birthEventDate.get(i).click();
+                        birthEventDate.get(i).sendKeys(getCurrentDate());
+
+                    }
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + QLCEType);
+        }
+
+
+
+    }
 
     public void saveAndContinue(){
         saveAndContinue.click();
