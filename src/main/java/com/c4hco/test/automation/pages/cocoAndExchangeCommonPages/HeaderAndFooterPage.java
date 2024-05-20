@@ -55,7 +55,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".stacked.dropdown > div.dropdown-content > form > a")
     WebElement getAssistanceLinkOptionNonElmo1;
-    @FindBy(css = "div.dropdown-content > a:nth-child(2)")
+    @FindBy(xpath = "//*[@id='get-assistance']/div/a[2]")
     WebElement findExpertAssistanceExpertHelp;
     @FindBy(xpath = "//span/li[2]/div[2]/form")
     WebElement findExpertAssistanceIndividualDashboard;
