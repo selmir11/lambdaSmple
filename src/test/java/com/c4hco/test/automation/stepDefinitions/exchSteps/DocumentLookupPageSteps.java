@@ -26,9 +26,6 @@ public class DocumentLookupPageSteps {
     @Then("I search with Document Handle Number")
     public void iSearchWithDocumentHandleNumber() {documentLookupPage.searchDocumentHandle();}
 
-    @Then("I select Document Type Group dropdown options")
-    public void iSelectDocumentTypeGroupDropdownOptions() {documentLookupPage.clickDropdowns();}
-
     @Then("I verify Admin search results table columns")
     public void iVerifyAdminSearchResultsTableColumns() {documentLookupPage.verifyAdminTableColumns();}
 
@@ -36,9 +33,7 @@ public class DocumentLookupPageSteps {
     public void iVerifyDocumentHandleSearchResultTableColumns() {documentLookupPage.verifycontent();}
 
     @Then("I select {string} from advanced search dropdown options")
-    public void iSelectFromAdvancedSearchDropdownOptions(String text) {documentLookupPage.selectoption(text);
-
-    }
+    public void iSelectFromAdvancedSearchDropdownOptions(String text) {documentLookupPage.selectoption(text);}
 
     @Then("I select {string} from sort options")
     public void iSelectFromSortOptions(String text) {documentLookupPage.selectsortoption(text);
@@ -57,6 +52,16 @@ public class DocumentLookupPageSteps {
     @Then("I verify if DLT is sorted {string} by {string}")
     public void iVerifyIfDLTIsSortedBy(String ascdescoptions, String sortbyoptions) {
         documentLookupPage.verifysort(ascdescoptions,sortbyoptions);
+    }
+
+    @Then("I validate if I can select and unselect all checkboxes and verify their text")
+    public void iValidateIfICanSelectAndUnselectAllCheckboxesAndVerifyTheirText() {documentLookupPage.clickDropdowns();}
+
+    @Then("I verify advance search criteria from DLT page")
+    public void iVerifyAdvanceSearchCriteriaFromDLTPage() { documentLookupPage.verifyAdminSearchcriteria();}
+
+    @And("I verify error message for Advanced search on DLT page")
+    public void iVerifyErrorMessageForAdvancedSearchOnDLTPage() {documentLookupPage.verifyDocumentTyperequireerror();
     }
 }
 
