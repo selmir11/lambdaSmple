@@ -2,6 +2,7 @@
 Feature: Document Lookup page : Verify all data
   @SLER-277
   Scenario: SLER-277 Verify data for DLT page
+#    TODO: There is existing bug OPS-2181 and OPS-2451(story) to address this bug.
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

@@ -297,9 +297,9 @@ public class DocumentLookupPage {
         basicActions.waitForElementToBeClickable(All, 20);
         All.click();
         boolean isSelected = All.isSelected();
-        assert !isSelected : "myBoolean is false";
+        assert !isSelected : "All checkbox is not selected";
     }
-    public boolean checkboxclick() {
+    public Boolean checkboxclick() {
         for (int i = 1; i < Checkboxes.size(); i++) {
             Checkboxes.get(i).click();
             return Checkboxes.get(i).isSelected();
