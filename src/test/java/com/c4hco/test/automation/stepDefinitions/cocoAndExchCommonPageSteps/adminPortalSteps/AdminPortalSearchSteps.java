@@ -109,7 +109,9 @@ public class AdminPortalSearchSteps {
     public void iEnterAnAccountIdInAnyEnvToSearchUser(String stgAccountId, String qaAccountId) {
         adminPortalSearchPage.enterAccountIdToAnyENV(stgAccountId,qaAccountId);
     }
-
-
+    @Then("I logout from Admin Portal")
+    public void iLogoutAdminPortal() {
+        adminPortalSearchPage.logoutFromAdminPortalParentPage();
+    }
 }
 
