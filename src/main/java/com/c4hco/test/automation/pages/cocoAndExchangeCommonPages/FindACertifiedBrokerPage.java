@@ -102,6 +102,10 @@ public class FindACertifiedBrokerPage {
 
     @FindBy(id ="broker-languages-available")
     WebElement availableLanguages;
+    @FindBy(id ="action-link")
+    WebElement removeCurrentBroker;
+    @FindBy(xpath ="//*[@id='save-btn']/button")
+    WebElement okeyRemoveCurrentBroker;
 
     @FindBy(id ="findBroker-pageRight-btn")
     WebElement findBrokerPaginationRight;
@@ -333,4 +337,13 @@ public class FindACertifiedBrokerPage {
         softAssert.assertEquals(findBrokerCurrentPage.getText(), currentPage);
         softAssert.assertAll();
     }
+
+    public void clickRemoveCurrentBroker() {
+       basicActions.waitForElementToBePresent(removeCurrentBroker,20);
+       removeCurrentBroker.click();
+       basicActions.waitForElementToBePresent(okeyRemoveCurrentBroker,20);
+       okeyRemoveCurrentBroker.click();
+    }
+
+
 }

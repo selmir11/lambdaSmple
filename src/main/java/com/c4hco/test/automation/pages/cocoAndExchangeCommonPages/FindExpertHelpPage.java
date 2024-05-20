@@ -266,17 +266,21 @@ public class FindExpertHelpPage {
             softAssert.assertAll();
         }
     }
+
     public void clickBackButton() {
         basicActions.waitForElementToBeClickable(backButton, 5);
         backButton.click();
     }
 
     public void clickContinueOnMyOwnButton() {
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(continueOnMyOwnButton,20));
-        softAssert.assertAll();
+        basicActions.waitForElementToBePresent(continueOnMyOwnButton,40);
         continueOnMyOwnButton.click();
+    }
 
+    public void validateNoBrokerIsAuthorized() {
+        basicActions.waitForElementToBePresent(findBroker,30);
+        softAssert.assertTrue(findBroker.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void validateContinueOnMyOwnButtonExists(String expectedState){
