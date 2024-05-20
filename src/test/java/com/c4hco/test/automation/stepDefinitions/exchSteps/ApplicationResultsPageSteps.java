@@ -46,4 +46,9 @@ public class ApplicationResultsPageSteps {
     public void iClickBackToAppResultApplicationResultPopup(){
         applicationResultsPage.clickBtnBackPopup();
     }
+
+    @Then("I verify the member is not eligible for a Qualified Health Plan")
+    public void iVerifyTheMemberIsNotEligibleForAQualifiedHealthPlan(String Text) {
+        applicationResultsPage.validateTextOnPage(Text);
+    }
 }

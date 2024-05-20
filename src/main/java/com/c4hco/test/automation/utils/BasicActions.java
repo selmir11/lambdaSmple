@@ -123,6 +123,10 @@ public class BasicActions {
         getDriver().navigate().refresh();
     }
 
+    public void goBack() {
+        getDriver().navigate().back();
+    }
+
     public Boolean waitForElementListToBePresent(List<WebElement> webElementList, int waitTime) {
         try {
             new WebDriverWait(driver,

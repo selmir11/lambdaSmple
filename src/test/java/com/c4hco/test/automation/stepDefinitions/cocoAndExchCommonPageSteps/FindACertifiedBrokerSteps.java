@@ -37,7 +37,7 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.searchForBrokerLanguage(Language);
     }
 
-    @And("I click on Search button")
+    @And("I click on Search button in find certified broker page")
     public void iClickOnSearchButton() {
         findACertifiedBrokerPage.clickSearchButton();
     }
@@ -110,6 +110,21 @@ public class FindACertifiedBrokerSteps {
     @Then("I verify that a total of {string} results displays in {string}")
     public void IVerifyThatATotalOfResultsDisplays(String expectedCount, String language) {
         findACertifiedBrokerPage.validateTotalBrokerResultCountExists(expectedCount, language);
+    }
+
+    @And("I click the right pagination arrow button {int} times")
+    public void IClickTheRightPaginationArrowButton(int numberTimes){
+        findACertifiedBrokerPage.clickRightPaginationArrowButtonFindBroker(numberTimes);
+    }
+
+    @And("I click the left pagination arrow button {int} times")
+    public void IClickTheLeftPaginationArrowButton(int numberTimes){
+        findACertifiedBrokerPage.clickLeftPaginationArrowButtonFindBroker(numberTimes);
+    }
+
+    @Then("I verify the current result page is {string}")
+    public void IVerifyCurrentResultPage(String currentPage){
+        findACertifiedBrokerPage.verifyCurrentBrokerResultsPage(currentPage);
     }
 
 }

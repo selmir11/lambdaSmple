@@ -427,6 +427,11 @@ public class BasicSteps {
         basicActions.refreshPage();
     }
 
+    @And("I go to the previous browser page")
+    public void goBack() {
+        basicActions.goBack();
+    }
+
     @And("I set the browser resolution to 2000 x 800")
     public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(2000, 800));}
 

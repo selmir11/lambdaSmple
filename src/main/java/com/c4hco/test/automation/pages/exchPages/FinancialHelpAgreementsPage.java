@@ -32,6 +32,7 @@ public class FinancialHelpAgreementsPage {
         signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
     public void selectTermsAgreementsCheckbox(){
+        basicActions.waitForElementToBePresent(termsAndAgreeChkbx, 20);
         termsAndAgreeChkbx.click();
     }
 

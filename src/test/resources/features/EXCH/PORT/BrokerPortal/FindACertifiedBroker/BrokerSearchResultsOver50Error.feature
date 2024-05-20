@@ -12,10 +12,10 @@ Feature: Tests the over 50 search results error on the anonymous Find a Certifie
     And I click on Find Expert Assistance in the "Login Portal" Header
     And I click on Find a Broker
     Then I enter "80203" into the broker location search box
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify the over 50 search results error does not display
     Then I enter "English" into the broker language search box
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify the over 50 search results error does not display
 
   @SLER-340
@@ -29,10 +29,10 @@ Feature: Tests the over 50 search results error on the anonymous Find a Certifie
     And I click on Find Expert Assistance in the "Login Portal" Header
     And I click on Find a Broker
     Then I enter "denver" into the broker location search box
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "English"
     Then I enter "English" into the broker language search box
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "English"
 
   @SLER-340
@@ -47,9 +47,9 @@ Feature: Tests the over 50 search results error on the anonymous Find a Certifie
     And I click on Find a Broker
     And I change the language from header to "Spanish ExpertHelp"
     Then I enter "denver" into the broker location search box
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "Spanish"
     Then I clear the broker location search box
     Then I enter "Spanish" into the broker language search box
-    And I click on Search button
+    And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "Spanish"
