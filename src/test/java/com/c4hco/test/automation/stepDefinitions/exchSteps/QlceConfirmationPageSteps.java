@@ -12,9 +12,9 @@ public class QlceConfirmationPageSteps {
     public void selectQlceType(String qlceOption){
         qlceConfirmationPage.selectQLCE(qlceOption);
     }
-    @Then("I select {string} QLCE on tell us about life changes page for new born")
-    public void selectQlceTypefornewborn(String qlceOption){
-        qlceConfirmationPage.selectbirthlceformember3(qlceOption);
+    @Then("I select {string} QLCE on tell us about life changes page for last member and select DOB as currentdate minus {int} days")
+    public void selectQlceTypeforlastmemebr(String qlceOption,int days){
+        qlceConfirmationPage.selectBirthLCEForLastMember(qlceOption,days);
     }
 
 

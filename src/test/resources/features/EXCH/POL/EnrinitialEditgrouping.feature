@@ -131,8 +131,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I select "None of these" as health insurance option and continue
     Then I select "None of these" as health insurance option and continue
     Then I click continue on family overview page
-
-    Then I select "Birth" QLCE on tell us about life changes page for new born
+    Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as currentdate minus 5 days
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1

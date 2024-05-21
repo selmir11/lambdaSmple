@@ -152,28 +152,30 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
-    public void selectbirthlceformember3(String QLCEType){
+    public void selectBirthLCEForLastMember(String QLCEType, int days) {
         switch (QLCEType) {
             case "Birth":
-                basicActions.waitForElementToBeClickable(birthQLCE, 10);
-                birthQLCE.click();
-                for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
-
-                    if (i == 2) {
-                        allmembersBirthcheckbox.get(i).click();
-                        birthEventDate.get(i).click();
-                        birthEventDate.get(i).sendKeys(getCurrentDate());
-
-                    }
+                try {
+                    basicActions.waitForElementToBeClickable(birthQLCE, 10);
+                    birthQLCE.click();
+                    int lastIndex = allmembersBirthcheckbox.size() - 1;
+                    allmembersBirthcheckbox.get(lastIndex).click();
+                    birthEventDate.get(lastIndex).click();
+                    LocalDate currentDate = LocalDate.now();
+                    LocalDate DOBCalculate = currentDate.minusDays(days);
+                    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    String actualdob = dateFormat.format(DOBCalculate);
+                    birthEventDate.get(lastIndex).sendKeys(actualdob);
+                } catch (Exception e) {
+                    // Handle exceptions appropriately
+                    System.err.println("An error occurred: " + e.getMessage());
                 }
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
-
-
-
     }
+
 
     public void saveAndContinue(){
         saveAndContinue.click();
