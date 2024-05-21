@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -102,6 +103,7 @@ public class LawfulPresencePage {
     public void isMemberCitizen(String YNCitizen){
         switch(YNCitizen){
             case "Yes":
+                basicActions.waitForElementToBePresent(rdobtnCitizenYes,50);
                 rdobtnCitizenYes.click();
                 break;
             case "No":
@@ -198,12 +200,27 @@ public class LawfulPresencePage {
         }
     }
 
-    public  void clickContinue(){saveContinue.click();}
+    public  void clickContinue(){
+        getPrimaryMemberId();
+        saveContinue.click();}
 
     public void getPrimaryMemberId() {
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
         String currentUrl = basicActions.getCurrentUrl();
-       SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=')+1));
-        System.out.println("Primary Member ID: "+SharedData.getPrimaryMemberId());
+        String headerText = citizenshipImmigrationStatusHeader.getText();
+        String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
+        if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
+            SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
+        } else if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
+            for (int i = 0; i < memberDetailsList.size(); i++) {
+                MemberDetails member = memberDetailsList.get(i);
+                if (nameFromHeader.equals(member.getFullName())) {
+                    member.setMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
+                }
+                memberDetailsList.add(member);
+                SharedData.setMembers(memberDetailsList);
+            }
+        }
     }
 
     public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language, List<String> data) {
