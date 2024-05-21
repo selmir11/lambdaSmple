@@ -11,6 +11,9 @@ public class OhiMedicareSteps_Elmo {
     @Then("I click continue on the Elmo OHI Medicare page")
     public void iClickSaveAndContinue(){ohiMedicarePage_Elmo.clickSaveAndContinue();}
 
+    @Then("I click Go Back on the Elmo OHI Medicare page")
+    public void clickGoBack(){ohiMedicarePage_Elmo.clickGoBack();}
+
     @Then("I click {string} for currently eligible in Medicare question")
     public void iClickCurrentlyEligibleOption(String currentlyEnrolled){ohiMedicarePage_Elmo.clickCurrentlyEligibleOption(currentlyEnrolled);}
 
