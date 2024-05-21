@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -182,6 +184,9 @@ public class FindACertifiedBrokerPage {
     }
 
     public void clickAuthorizedBroker() {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        SharedData.setHasBroker(true);
+        SharedData.setPrimaryMember(subscriber);
         basicActions.waitForElementToBePresent(authorizeBrokerButton,60);
         authorizeBrokerButton.click();
         basicActions.getDriver().findElement(By.id("client-information-table"));

@@ -202,24 +202,28 @@ public class LawfulPresencePage {
 
     public  void clickContinue(){
         basicActions.waitForElementToBeClickable(saveContinue, 20);
+        getMemberId();
         saveContinue.click();}
 
-    public void getPrimaryMemberId() {
+    public void getMemberId() {
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         String currentUrl = basicActions.getCurrentUrl();
         String headerText = citizenshipImmigrationStatusHeader.getText();
         String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
         if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
             SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
-        } else if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
-            for (int i = 0; i < memberDetailsList.size(); i++) {
+            subscriber.setMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
+        } if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
+            int i = 0;
+            do {
                 MemberDetails member = memberDetailsList.get(i);
                 if (nameFromHeader.equals(member.getFullName())) {
                     member.setMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
                 }
-                memberDetailsList.add(member);
-                SharedData.setMembers(memberDetailsList);
-            }
+                i++;
+            } while (i < memberDetailsList.size());
+            SharedData.setMembers(memberDetailsList);
         }
     }
 

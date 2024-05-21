@@ -170,6 +170,7 @@ public class CreateAccountPage {
         subscriber.setLastName(getUniqueString(8)+"Test");
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
 
