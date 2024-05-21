@@ -85,15 +85,20 @@ public class OhiMedicarePage_Elmo {
     @FindBy(css = "#ELIG-medicareOhi-partBCoverageDate")
     WebElement partBInsuranceEndInput;
 
-    @FindBy(id = "ELIG-medicareOhi-GoBack")
+    @FindBy(id = "medicareOhi-GoBack")
     WebElement goBackButton;
 
-    @FindBy(id = "ELIG-medicareOhi-SaveAndContinue")
+    @FindBy(id = "medicareOhi-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
     public void clickSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         saveAndContinueBtn.click();
+    }
+
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickable(goBackButton, 20);
+        goBackButton.click();
     }
 
     public void clickCurrentlyEligibleOption(String currentlyEligible) {
