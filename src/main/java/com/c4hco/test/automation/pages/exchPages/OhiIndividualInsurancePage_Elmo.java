@@ -85,6 +85,11 @@ public class OhiIndividualInsurancePage_Elmo {
         saveAndContinueBtn.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickable(goBackButton, 20);
+        goBackButton.click();
+    }
+
     public void clickCurrentlyEnrolledOption(String currentlyEnrolled) {
         switch (currentlyEnrolled) {
             case "Yes":

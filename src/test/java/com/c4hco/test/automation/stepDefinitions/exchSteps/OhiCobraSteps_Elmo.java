@@ -11,6 +11,9 @@ public class OhiCobraSteps_Elmo {
     @Then("I click continue on the Elmo OHI Cobra page")
     public void iClickSaveAndContinue(){ohiCobraPage_Elmo.clickSaveAndContinue();}
 
+    @Then("I click Go Back on the Elmo OHI Cobra page")
+    public void iClickGoBack(){ohiCobraPage_Elmo.clickGoBack();}
+
     @Then("I click {string} for currently enrolled in COBRA question")
     public void iClickCurrentlyEnrolledOption(String currentlyEnrolled){ohiCobraPage_Elmo.clickCurrentlyEnrolledOption(currentlyEnrolled);}
 

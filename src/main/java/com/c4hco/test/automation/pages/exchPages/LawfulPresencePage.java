@@ -201,7 +201,7 @@ public class LawfulPresencePage {
     }
 
     public  void clickContinue(){
-        getPrimaryMemberId();
+        basicActions.waitForElementToBeClickable(saveContinue, 20);
         saveContinue.click();}
 
     public void getPrimaryMemberId() {

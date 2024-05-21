@@ -132,4 +132,8 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickRemoveCurrentBroker();
     }
 
+    @And("I validate the have a broker call you text in {string}")
+    public void iValidateHaveBrokerCallYouText(String language){
+        findACertifiedBrokerPage.validateBrokerContactYouText(language);
+    }
 }

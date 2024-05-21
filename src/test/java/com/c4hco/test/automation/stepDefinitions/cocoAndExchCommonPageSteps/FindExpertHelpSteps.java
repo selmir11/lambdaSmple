@@ -89,8 +89,6 @@ public class FindExpertHelpSteps {
 
         @And("I validate no broker is authorized")
 
-        public void iValidateNoBrokerIsAuthorized() {findExpertHelpPage.validateNoBrokerIsAuthorized();}
-
         public void iValidateNoBrokerIsAuthorized() {
                 findExpertHelpPage.validateNoBrokerIsAuthorized();
         }
