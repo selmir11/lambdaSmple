@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Validation-OHI COBRA Elmo Page
 
   Background:
