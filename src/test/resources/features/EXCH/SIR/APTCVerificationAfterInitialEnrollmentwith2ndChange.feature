@@ -2109,7 +2109,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
     Then I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page
@@ -2118,16 +2121,60 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     Then I validate I am on the "Income Summary" page
-    And I select "No" employment option
-    And I click continue on the Employment income page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
 
     Then I validate I am on the "Income Summary" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+
+
+    Then I validate I am on the "Family Overview" page
+    Then I click on the Member Row "3"
+
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+
+    And I select the option "Yes" to claim as dependent
+    And I select the option "No" to file federal income tax return next year
+    And I select the "2" option for Who Will Claim as Dependent
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    
     Then I click continue on family overview page
 
     Then I select "Marriage" QLCE on tell us about life changes page
