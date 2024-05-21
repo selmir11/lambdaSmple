@@ -22,7 +22,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -65,7 +65,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "No" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -83,7 +83,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
 
-    @SLER-33-WIP
+    @SLER-33
     Scenario: 1 member, no LCE, not allowed to shop during the Closed Enrollment period
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -100,7 +100,7 @@ Feature:  Unable to shop (not eligible for QHP)
       Then I answer all Id proofing questions and click continue
       And I click continue button on Congratulations page
       Then I validate I am on the "Find Expert Help" page
-      Then I click Continue on my own button from Find Expert Help page
+      Then I click Continue on my own button from Manage who helps you page
       Then I select "Male" as sex option
       And I select "Yes" to Are You Applying
       And I click continue on Tell us about yourself page
@@ -144,3 +144,11 @@ Feature:  Unable to shop (not eligible for QHP)
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page
+      And I verify pop up text on the application results page "English"
+      And I click Back to App Results button on the pop up
+      When I change the language from header to "Spanish NonElmo"
+      And I click continue on application results page
+      And I verify pop up text on the application results page "Spanish"
+      And I click Back to App Results button on the pop up
+      And I click on Sign Out in the Header for "NonElmo"
+      Then I validate I am on the "Login" page

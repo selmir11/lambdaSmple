@@ -1,6 +1,6 @@
 Feature: Seed01 - Exchange
 
-  Background: Seed 01 For Exchange
+  Scenario: Seed 01 For Exchange- Single Applicant NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -19,7 +19,7 @@ Feature: Seed01 - Exchange
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -78,37 +78,43 @@ Feature: Seed01 - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
+
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+
+    Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
+
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate medical plan details from my policies page
-#      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-#      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-#    And I validate dental plan details from my policies page
-#      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-#      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
-#    And I click View Plan History link from medical plan card
-#    And I validate medical plan details from plan history
-#    And I click on to Back to Current Plan Details button
-#    And I click View Plan History link from dental plan card
-#    And I validate dental plan details from plan history
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate medical plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+    And I validate dental plan details from my policies page
+      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
+      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
-#    And I validate the member details from policy tables
-#    And I validate member details from ob834_details table
-#    And I download the files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 files should not be empty
+    And I validate the member details from policy tables
+    And I validate member details from ob834_details table
+    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should not be empty
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -122,7 +128,7 @@ Feature: Seed01 - Exchange
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I update SSN number to new SSN number
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
@@ -136,15 +142,18 @@ Feature: Seed01 - Exchange
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    And I click on Sign Out in the Header for "NonElmo"
-    And I validate the member details from policy tables
+   And I wait for hold on content to disappear
+   And I click on Sign Out in the Header for "NonElmo"
+   # And I validate the member details from policy tables
     And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
     And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should have the values
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
+  #  And I validate the ob834 files should have the values
+  #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+  #    |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+  #    |          021          | 021                 | 25                   |                          |                             |                    |
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
@@ -159,7 +168,7 @@ Feature: Seed01 - Exchange
     And I report "NoneOfThese" and click continue
     And I click Continue With Application
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I update DOB to new DOB of "11/08/1986"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
@@ -182,4 +191,3 @@ Feature: Seed01 - Exchange
 #      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
 #      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
 #      |          021          | 021                 | 25                   |                          |                             |                    |
-

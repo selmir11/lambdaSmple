@@ -36,4 +36,19 @@ public class ApplicationResultsPageSteps {
     public void verifyPrimaryMemberNotQualifyForHealthPlan () {
         applicationResultsPage.verifyPrimaryMemberNotQualified();
     }
+
+    @Then("I verify pop up text on the application results page {string}")
+    public void verifyPopUpTextOnTheApplicationResults(String Language) {
+        applicationResultsPage.verifyPopUpTextOnTheApplicationResults(Language);
+    }
+
+    @Then("I click Back to App Results button on the pop up")
+    public void iClickBackToAppResultApplicationResultPopup(){
+        applicationResultsPage.clickBtnBackPopup();
+    }
+
+    @Then("I verify the member is not eligible for a Qualified Health Plan")
+    public void iVerifyTheMemberIsNotEligibleForAQualifiedHealthPlan(String Text) {
+        applicationResultsPage.validateTextOnPage(Text);
+    }
 }

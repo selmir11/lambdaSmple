@@ -3,6 +3,9 @@ package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
 import io.cucumber.java.en.And;
 
+import java.util.List;
+import java.util.Map;
+
 public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 
@@ -17,12 +20,13 @@ private final DbValidations dbValidations = new DbValidations();
    }
 
    @And("I validate member details from ob834_details table")
-   public void validateOb834Details(){
-      dbValidations.validateOb834FromDb();
+   public void validateOb834Details(List<Map<String, String>> expectedValues){
+      dbValidations.validateOb834FromDb(expectedValues);
    }
 
    @And("I verify the OHI info in the DB")
-   public void validateOhiInfo(){
-      dbValidations.validateOhiDetails();
-   }
+   public void validateOhiInfo(){dbValidations.validateOhiDetails();}
+
+   @And("I verify the OHI options selected in the DB")
+   public void iValidateOhiOptions(List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(expectedValues);}
 }

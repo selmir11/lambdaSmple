@@ -1,7 +1,8 @@
 @OPS
 Feature: Document Lookup page : Verify all data
   @SLER-277
-  Scenario: Verify data
+  Scenario: SLER-277 Verify data for DLT page
+#    TODO: There is existing bug OPS-2181 and OPS-2451(story) to address this bug.
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -10,7 +11,9 @@ Feature: Document Lookup page : Verify all data
     And I click "Document Lookup" from application links dropdown
     And I validate Document look Up page title is displaying on page
     And I click on Advanced search
-    Then I select Document Type Group dropdown options
+    And I verify error message for Advanced search on DLT page
+    Then I validate if I can select and unselect all checkboxes and verify their text
+    Then I verify advance search criteria from DLT page
     Then I verify Admin search results table columns
     Then I search with Document Handle Number
     Then I verify Admin search results table columns
@@ -18,7 +21,7 @@ Feature: Document Lookup page : Verify all data
     Then logout from Admin Portal
 
     @SLER-303
-    Scenario: Verify sorting for advance search
+    Scenario: SLER-303 Verify sorting for advance search
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page

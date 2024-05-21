@@ -12,6 +12,7 @@ public class Utils {
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
         SharedData.setEnv(env);
+        SharedData.setDbName(getdbName());
     }
 
     public String getBaseLoginUrl(String portalType){
@@ -32,5 +33,15 @@ public class Utils {
            default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
+    }
+
+    public String getdbName(){
+        String dbName;
+        if(env.equals("qa")){
+            dbName = env+"_"+"exch";
+        } else {
+            dbName = "exch";
+        }
+        return dbName;
     }
 }

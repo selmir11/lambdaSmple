@@ -18,7 +18,7 @@ public class ApplicationResultsPage {
 // TO DO: Update all the below locators
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
-    @FindBy(css = "#hiddenSubmitButton")
+    @FindBy(css = ".btn-c4primary")
     WebElement continueBtn;
     @FindBy(xpath = "//*[contains(text(),\"Here's what your household qualifies\")]")
     WebElement headerText;
@@ -51,6 +51,13 @@ public class ApplicationResultsPage {
 
     @FindBy(css = ".ben-container > table > tbody")
     List<WebElement> ApplicationResultDetails;
+
+    //pop up on the app results page
+    @FindBy(css = "b.popup-body-text-2")
+    WebElement popUpText;
+
+    @FindBy(css = ".btn-info")
+    WebElement popUpBackButton;
 
     private BasicActions basicActions;
 
@@ -108,5 +115,37 @@ public class ApplicationResultsPage {
         String PrimaryMemberFirstName = SharedData.getPrimaryMember().getFirstName();
         softAssert.assertEquals(ApplicationResultDetails.get(2).getText(), PrimaryMemberFirstName+" does not qualify for health coverage.");
         softAssert.assertAll();
+    }
+
+    public void verifyPopUpTextOnTheApplicationResults(String language) {
+        basicActions.waitForElementToBePresent(popUpText, 10);
+        switch (language) {
+            case "English":
+                verifyPopUpTextOnTheApplicationResultsEnglish();
+                break;
+            case "Spanish":
+                verifyPopUpTextOnTheApplicationResultsSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyPopUpTextOnTheApplicationResultsEnglish() {
+        softAssert.assertEquals(popUpText.getText(), "You can't enroll in a plan because it is not Open Enrollment. The Open Enrollment period is from Nov. 1 to Jan. 15.\n\nTo enroll in a plan or change your plan outside of Open Enrollment, you must have a qualifying life change event. For questions or assistance, call our Customer Service Center at 855-752-6749 or contact your Broker or Assister.");
+        softAssert.assertAll();
+    }
+
+    public void verifyPopUpTextOnTheApplicationResultsSpanish() {
+        softAssert.assertEquals(popUpText.getText(), "No puede inscribirse en un plan porque no es el período de inscripción abierta. El período de inscripción abierta es del 1º de noviembre al 15 de enero.\n\nPara inscribirse en un plan o hacer cambios fuera del período de inscripción abierta, debe tener un evento de vida calificado. Si tiene preguntas o desea recibir asistencia, llame a nuestro Centro de atención al cliente al 855-752-6749 o contacte a su agente o asistente.");
+        softAssert.assertAll();
+    }
+
+    public void clickBtnBackPopup(){
+        popUpBackButton.click();
+    }
+
+    public void validateTextOnPage(String text) {
+        basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath("//*[contains(text(),\""+text+"\")]")), 15);
     }
 }

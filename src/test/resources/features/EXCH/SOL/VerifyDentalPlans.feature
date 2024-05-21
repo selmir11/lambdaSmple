@@ -22,7 +22,7 @@ Feature: Dental Plans page tests
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     And I enter details on tell us about yourself page and continue
     Then I enter Additional details and click continue on add address page
     And I enter citizenship details and click continue

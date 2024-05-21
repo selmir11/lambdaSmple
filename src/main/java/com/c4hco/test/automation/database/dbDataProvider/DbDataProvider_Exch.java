@@ -2,9 +2,12 @@ package com.c4hco.test.automation.database.dbDataProvider;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
+import com.c4hco.test.automation.database.EntityObj.DbData;
+import com.c4hco.test.automation.database.EntityObj.EsMemberOhiEntity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
+import com.c4hco.test.automation.database.dbHandler.EsMemberOhiDbHandler;
 import com.c4hco.test.automation.database.dbHandler.Ob834DetailsDbHandler;
 import com.c4hco.test.automation.database.dbHandler.PolicyTableDbHandler;
 import com.c4hco.test.automation.database.dbHandler.PostgresHandler;
@@ -16,8 +19,10 @@ public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
+    EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
     MemberDetails primaryMember = SharedData.getPrimaryMember();
+    String fipcode;
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -36,7 +41,51 @@ public class DbDataProvider_Exch {
         return eapid;
     }
 
+    public String getFipcode(){
+        String zipcode = primaryMember.getZipcode();
+        return  postgresHandler.getResultFor("fip_code", exchDbQueries.getFipcode(zipcode));
+    }
+
+    public String getRatingAreaName(){
+       return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
+
+    }
+
+    public String[] getIssuerNameId(String hiosIssuerId){
+        return postgresHandler.getResultForTwoColumnValues("name", "tin_num", exchDbQueries.en_issuer(hiosIssuerId));
+    }
+
+    public String[] getBaseIdAndHiosIssuerForPlan(String planName){
+        return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_plan(planName));
+    }
+
+    public void setDataFromDb(String planName){
+      String fipcode = getFipcode();
+     String ratingAreaName =   getRatingAreaName();
+     String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+     String baseId = baseIdAndHiosIssuerId[0];
+     String hiosIssuerId = baseIdAndHiosIssuerId[1];
+     String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+     String issuerName = issuerNameId[0];
+     String issuerId = issuerNameId[1];
+
+        DbData dbData = SharedData.getDbData();
+
+        dbData.setFipcode(fipcode);
+        dbData.setRatingAreaName(ratingAreaName);
+        dbData.setBaseId(baseId);
+        dbData.setHiosIssuerId(hiosIssuerId);
+        dbData.setIssuerName(issuerName);
+        dbData.setIssuerId(issuerId);
+
+        SharedData.setDbData(dbData);
+    }
+
     public Boolean getDataFromOhiTables(){
         return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecords());
+    }
+
+    public EsMemberOhiEntity getOptionsFromOhiDbTables(){
+        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
     }
 }

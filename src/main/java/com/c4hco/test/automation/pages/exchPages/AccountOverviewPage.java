@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class AccountOverviewPage {
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
-    @FindBy(name = "applyForCurrentYear")
+    @FindBy(css = "#submit-curr-yr-3")
     WebElement btnApplyForCurrentYear;
 
     @FindBy(css = ".linkButton")
@@ -38,7 +37,8 @@ public class AccountOverviewPage {
 
     @FindBy(css = ".table-bordered tr:nth-child(1) td:nth-child(2) span b")
     List<WebElement> medicalMemberNames;
-
+    @FindBy(css = "p select option:nth-child(1)")
+    WebElement planYearOnWelcomeBackPage;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -58,6 +58,9 @@ public class AccountOverviewPage {
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToBePresent(header, 10);
         basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,40);
+        String applyForYearText = btnApplyForCurrentYear.getText();
+        String year = applyForYearText.replace("Apply for ", "");
+        SharedData.setPlanYear(year);
         btnApplyForCurrentYear.click();
     }
 
@@ -126,6 +129,7 @@ public class AccountOverviewPage {
     }
 
     public void verifyPlanInfo() {
+        softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
         if(memberDetailsList !=null) {
             int totalMembers = memberDetailsList.size();
@@ -147,7 +151,7 @@ public class AccountOverviewPage {
 
     public void verifyScenarioDetails(List<Map<String, String>> expectedResult) {
         String totalMembers = String.valueOf(medicalMemberNames.size());
-        String noOfGroups = String.valueOf(SharedData.getGroups());
+        String noOfGroups = String.valueOf(SharedData.getTotalGroups());
         softAssert.assertEquals(totalMembers, expectedResult.get(0).get("totalMembers"), "The total number of members on the application match.");
         softAssert.assertEquals(noOfGroups, expectedResult.get(0).get("totalMedGroups"), "The number of groups in grouping members match.");
         softAssert.assertAll();

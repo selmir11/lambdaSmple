@@ -282,7 +282,7 @@ public class BasicSteps {
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
             case "CoCo Tell us about additional members" :
-                pageUrl = "/coco/member-details-portal/additional-member-details/";
+                pageUrl = "/coco/member-details-portal/additional-member-details";
                 break;
             case "CoCo Additional info for additional member" :
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
@@ -424,6 +424,11 @@ public class BasicSteps {
     @And("I refresh the page")
     public void refreshPage() {
         basicActions.refreshPage();
+    }
+
+    @And("I go to the previous browser page")
+    public void goBack() {
+        basicActions.goBack();
     }
 
     @And("I set the browser resolution to 2000 x 800")

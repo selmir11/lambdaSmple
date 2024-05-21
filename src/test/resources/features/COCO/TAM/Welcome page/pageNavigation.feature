@@ -15,7 +15,7 @@ Feature: Navigation-Welcome Page
 
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
-    Then I click the back button from Manage who helps you page
+    Then I click the back button from Find Expert Help page
     Then I validate I am on the "CoCo Welcome" page
       And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
@@ -43,7 +43,7 @@ Feature: Navigation-Welcome Page
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Welcome" page
 
-    And I click on the Colorado Connect or C4 Logo in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -87,7 +87,7 @@ Feature: Navigation-Welcome Page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     Then I validate I am on the "Spanish" page
-    Then I click the back button from Manage who helps you page
+    Then I click the back button from Find Expert Help page
     Then I validate I am on the "CoCo Welcome" page
     Then I verify text on the Welcome page for an account without a policy in "Header Spanish"
     Then I click on "My Profile" link on welcome page
@@ -128,7 +128,7 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
 
-    And I click on the Colorado Connect or C4 Logo in the Header
+    And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
     And I click on Apply for Coverage in the "Elmo" Header

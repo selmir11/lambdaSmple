@@ -15,12 +15,12 @@ Feature: Find expert help page validation
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I verify Find Expert Help header Text in "English"
-    And I verify Find Expert Help page title Text in "English"
+    And I verify Find Expert Help page "CoCo" title Text in "English"
     Then I verify Find Expert Help page Text in "English"
     Then I verify Find Expert Help buttons in "English"
     And I change the language from header to "Spanish"
     And I verify Find Expert Help header Text in "Spanish"
-    And I verify Find Expert Help page title Text in "Spanish"
+    And I verify Find Expert Help page "CoCo" title Text in "Spanish"
     Then I verify Find Expert Help page Text in "Spanish"
     Then I verify Find Expert Help buttons in "Spanish"
 

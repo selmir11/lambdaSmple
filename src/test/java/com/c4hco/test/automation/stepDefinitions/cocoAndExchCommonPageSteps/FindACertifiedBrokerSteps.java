@@ -7,6 +7,11 @@ import io.cucumber.java.en.*;
 public class FindACertifiedBrokerSteps {
     FindACertifiedBrokerPage findACertifiedBrokerPage = new FindACertifiedBrokerPage(WebDriverManager.getDriver());
 
+    @Then("I validate the Find a Certified Broker near you page title in {string}")
+    public void iValidateFindABrokerPageTitle(String language){
+        findACertifiedBrokerPage.FindABrokerPageTitle(language);
+    }
+
     @Then("I Search authorized Broker {string}")
     public void iSearchAuthorizedBroker(String brokerName) {
         findACertifiedBrokerPage.searchForBrokerName(brokerName);
@@ -32,7 +37,7 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.searchForBrokerLanguage(Language);
     }
 
-    @And("I click on Search button")
+    @And("I click on Search button in find certified broker page")
     public void iClickOnSearchButton() {
         findACertifiedBrokerPage.clickSearchButton();
     }
@@ -42,9 +47,54 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickMoreDetailsInTheBrokerContainer();
     }
 
+    @And("I click hide details")
+    public void iClickHideDetails(){
+        findACertifiedBrokerPage.clickHideDetails();
+    }
+
+    @And("I validate the agency details are hidden")
+    public  void iValidateAgencyDetailsAreHidden(){
+        findACertifiedBrokerPage.validateAgencyDetailsHidden();
+    }
+
     @Then("I click Authorized broker")
     public void iClickAuthorizedBroker() {
         findACertifiedBrokerPage.clickAuthorizedBroker();
+    }
+
+    @And ("I sort the results {string}")
+    public void iSortTheResults(String sortOption){
+        findACertifiedBrokerPage.clickResultsSort(sortOption);
+    }
+
+    @Then("I validate broker name is {string}")
+    public void iValidateBrokerName(String brokerName){
+        findACertifiedBrokerPage.validateBrokerDisplayedName(brokerName);
+    }
+
+    @Then("I validate agency name is {string}")
+    public void iValidateAgencyName(String agencyName){
+        findACertifiedBrokerPage.validateAgencyDisplayedName(agencyName);
+    }
+
+    @Then("I validate agency address is {string}")
+    public void iValidateAgencyAddress(String address){
+        findACertifiedBrokerPage.validateAgencyAddress(address);
+    }
+
+    @Then("I validate agency city state and zip is {string}")
+    public void iValidateAgencyCityStateZip(String cityStateZip){
+        findACertifiedBrokerPage.validateAgencyCityStateZip(cityStateZip);
+    }
+
+    @Then("I validate the agency details field labels in {string}")
+    public void iValidateAgencyDetailsFieldLabels(String language){
+        findACertifiedBrokerPage.validateAgencyDetailsLabels(language);
+    }
+
+    @Then("I validate the agency details {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iValidateAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String expectedLicenseNumber, String agencyLanguage){
+        findACertifiedBrokerPage.validateAgencyDetails(emailAddress, expectedPhoneNumber, availability, officeHours, expectedLicenseNumber, agencyLanguage);
     }
 
     @Then("I verify the over 50 search results error is displayed in {string}")
@@ -60,6 +110,26 @@ public class FindACertifiedBrokerSteps {
     @Then("I verify that a total of {string} results displays in {string}")
     public void IVerifyThatATotalOfResultsDisplays(String expectedCount, String language) {
         findACertifiedBrokerPage.validateTotalBrokerResultCountExists(expectedCount, language);
+    }
+
+    @And("I click the right pagination arrow button {int} times")
+    public void IClickTheRightPaginationArrowButton(int numberTimes){
+        findACertifiedBrokerPage.clickRightPaginationArrowButtonFindBroker(numberTimes);
+    }
+
+    @And("I click the left pagination arrow button {int} times")
+    public void IClickTheLeftPaginationArrowButton(int numberTimes){
+        findACertifiedBrokerPage.clickLeftPaginationArrowButtonFindBroker(numberTimes);
+    }
+
+    @Then("I verify the current result page is {string}")
+    public void IVerifyCurrentResultPage(String currentPage){
+        findACertifiedBrokerPage.verifyCurrentBrokerResultsPage(currentPage);}
+
+
+    @Then("I click remove current broker Find a certified broker Page")
+    public void iClickRemoveCurrentBrokerFindACertifiedBrokerPage() {
+        findACertifiedBrokerPage.clickRemoveCurrentBroker();
     }
 
 }

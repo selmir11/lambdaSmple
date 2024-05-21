@@ -17,6 +17,8 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logo")
     WebElement connectLogoLinkNonElmo;
+    @FindBy(css = "#logo")
+    WebElement connectLogoLinkExpertHelp;
 
     @FindBy(css = ".center-links .clickable")
     List<WebElement> centerHeaderLink;
@@ -53,8 +55,10 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".stacked.dropdown > div.dropdown-content > form > a")
     WebElement getAssistanceLinkOptionNonElmo1;
-    @FindBy(css = "div.dropdown-content > a:nth-child(2)")
+    @FindBy(xpath = "//*[@id='get-assistance']/div/a[2]")
     WebElement findExpertAssistanceExpertHelp;
+    @FindBy(xpath = "//span/li[2]/div[2]/form")
+    WebElement findExpertAssistanceIndividualDashboard;
 
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
@@ -152,9 +156,20 @@ public class HeaderAndFooterPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void clickConnectLogoLink() {
-        basicActions.waitForElementToBeClickable(connectLogoLink, 10);
-        connectLogoLink.click();
+    public void clickConnectLogoLink(String pageType) {
+        switch (pageType){
+            case "Elmo":
+                basicActions.waitForElementToBeClickable(connectLogoLink, 10);
+                connectLogoLink.click();
+            break;
+            case "ExpertHelp":
+                basicActions.waitForElementToBePresent(connectLogoLinkExpertHelp,20);
+                connectLogoLinkExpertHelp.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
+
     }
 
     public void clickApplyForCoverageLink(String pageType) {
@@ -245,6 +260,10 @@ public class HeaderAndFooterPage {
             case "Exch ExpertHelp":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceExpertHelp, 20);
                 findExpertAssistanceExpertHelp.click();
+                break;
+                case "individual dashboard":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceIndividualDashboard, 20);
+                findExpertAssistanceIndividualDashboard.click();
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
@@ -788,4 +807,8 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
+    public void clickConnectLogoLinkLinkForNonElmoPages() {
+        basicActions.waitForElementToBePresent(connectLogoLinkNonElmo,20);
+        connectLogoLinkNonElmo.click();
+    }
 }

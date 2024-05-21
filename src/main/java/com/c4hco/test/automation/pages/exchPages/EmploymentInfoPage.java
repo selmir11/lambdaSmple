@@ -220,6 +220,7 @@ public class EmploymentInfoPage {
 
     public void saveAndContinue() {
         basicActions.waitForElementToBeClickable(btnContinue,50);
+        basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }
 
