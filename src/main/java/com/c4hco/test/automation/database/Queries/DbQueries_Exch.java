@@ -47,24 +47,24 @@ public class DbQueries_Exch {
     }
 
     public String getRatingArea(String fipcode){
-        return "select * from"+dbName+"en_rating_area"+
+        return "select * from "+dbName+".en_rating_area \n"+
                 "where fips = '"+fipcode+"'";
     }
 
     public String getFipcode(String zipCode){
-        return "select fip_code from qa_exch.es_zip_codes \n" +
+        return "select fip_code from "+dbName+".es_zip_codes \n" +
                 "where code = '"+zipCode+"'";
     }
 
     public String en_plan(String planName){
-        return "select * from qa_exch.en_plan ep \n" +
+        return "select * from "+dbName+".en_plan ep \n" +
                 "where plan_marketing_name = '"+planName+"'" +
                 "and plan_year = '2024'\n" +
                 "limit 1";
     }
 
     public String en_issuer(String hiosIssuerId){
-        return "select name, tin_num from qa_exch.en_issuer ei\n" +
+        return "select name, tin_num from "+dbName+".en_issuer ei\n" +
                 "where hios_issuer_id = '"+hiosIssuerId+"'"+
                 "and plan_year = '2024'";
     }
