@@ -215,8 +215,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
-    And I change the C4 url to "Elmo Ohi Medicare Page"
+    And I change the C4 url to "Elmo Other Health Insurance Page"
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
     And I verify the header for Primary Member on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
