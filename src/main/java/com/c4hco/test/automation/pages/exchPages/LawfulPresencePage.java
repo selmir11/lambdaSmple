@@ -211,18 +211,18 @@ public class LawfulPresencePage {
         String currentUrl = basicActions.getCurrentUrl();
         String headerText = citizenshipImmigrationStatusHeader.getText();
         String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
+        String memberId = currentUrl.substring(currentUrl.indexOf('=') + 1);
         if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
-            SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
-            subscriber.setMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
-        } if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
-            int i = 0;
-            do {
-                MemberDetails member = memberDetailsList.get(i);
+            SharedData.setPrimaryMemberId(memberId);
+            subscriber.setMemberId(memberId);
+        }
+        if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
+            for (MemberDetails member : memberDetailsList) {
                 if (nameFromHeader.equals(member.getFullName())) {
-                    member.setMemberId(currentUrl.substring(currentUrl.indexOf('=') + 1));
+                    member.setMemberId(memberId);
+                    break;
                 }
-                i++;
-            } while (i < memberDetailsList.size());
+            }
             SharedData.setMembers(memberDetailsList);
         }
     }

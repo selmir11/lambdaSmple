@@ -184,9 +184,7 @@ public class FindACertifiedBrokerPage {
     }
 
     public void clickAuthorizedBroker() {
-        MemberDetails subscriber = SharedData.getPrimaryMember();
         SharedData.setHasBroker(true);
-        SharedData.setPrimaryMember(subscriber);
         basicActions.waitForElementToBePresent(authorizeBrokerButton,60);
         authorizeBrokerButton.click();
         basicActions.getDriver().findElement(By.id("client-information-table"));
