@@ -1,5 +1,5 @@
 @TAM @test
-Feature: Page Validation-OHI COBRA Elmo Page
+Feature: Secondary User-OHI COBRA Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -36,6 +36,29 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I select "No" for Naturalized Immigrant option
     And I get the Primary Member ID
     And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter member details with "01011980" date of birth
+    And I select "Female" as sex option
+    And I mark the Additional member is pregnant as "No"
+    And I select "Spouse" as relationship option
+    And I select "Yes" to Is Member Applying
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -43,81 +66,43 @@ Feature: Page Validation-OHI COBRA Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
     And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "COBRA" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
 
-  @SLER-333 @PageValidationOhiCobraElmo
-  Scenario: SLER-333 I can see Cobra's standard errors consistently - English
+  @SLER-482 @SecondaryUserOhiCobraElmo
+  Scenario: SLER-482 I can see Cobra's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Cobra page data in "English"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Currently Enrolled" error in "English" on the Cobra page
-    Then I click "No" for currently enrolled in COBRA question
-    And I verify "Currently Enrolled" error does not show for Cobra page
-
     Then I click "Yes" for currently enrolled in COBRA question
     And I verify the "Second Section" Cobra page data in "English"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Insurance Ending" error in "English" on the Cobra page
-    Then I click "No" for insurance ending in 60 days in COBRA question
-    And I verify "Insurance Ending" error does not show for Cobra page
-
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     And I verify the "Third Section" Cobra page data in "English"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "English" on the Cobra page
-    Then I enter the end date as "Prior Month" on the Cobra page
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "English Prior" on the Cobra page
-    Then I enter the end date as "Future Month" on the Cobra page
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "English Future" on the Cobra page
     Then I enter the end date as "Current Month" on the Cobra page
-    And I verify "Input Date" error does not show for Cobra page
-    And I verify "Voluntary End" error in "English" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
-    And I verify "Voluntary End" error does not show for Cobra page
-
-    And I click on Sign Out in the Header for "Elmo"
-
-
-  @SLER-334 @PageValidationOhiCobraElmo
-  Scenario: SLER-334 I can see Cobra's standard errors consistently - Spanish
-    And I change the language from header to "Spanish"
-    And I validate I am on the "Spanish" page
-    And I verify the "First Section" Cobra page data in "Spanish"
     Then I click continue on the Elmo OHI Cobra page
-    And I verify "Currently Enrolled" error in "Spanish" on the Cobra page
-    Then I click "No" for currently enrolled in COBRA question
-    And I verify "Currently Enrolled" error does not show for Cobra page
 
+    Then I select "COBRA" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo COBRA" page
+    And I verify the "First Section Secondary" Cobra page data in "English"
     Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section" Cobra page data in "Spanish"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Insurance Ending" error in "Spanish" on the Cobra page
-    Then I click "No" for insurance ending in 60 days in COBRA question
-    And I verify "Insurance Ending" error does not show for Cobra page
-
+    And I verify the "Second Section Secondary" Cobra page data in "English"
     Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section" Cobra page data in "Spanish"
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "Spanish" on the Cobra page
-    Then I enter the end date as "Prior Month" on the Cobra page
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "Spanish Prior" on the Cobra page
-    Then I enter the end date as "Future Month" on the Cobra page
-    Then I click continue on the Elmo OHI Cobra page
-    And I verify "Input Date" error in "Spanish Future" on the Cobra page
+    And I verify the "Third Section Secondary" Cobra page data in "English"
     Then I enter the end date as "Current Month" on the Cobra page
-    And I verify "Input Date" error does not show for Cobra page
-    And I verify "Voluntary End" error in "Spanish" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
-    And I verify "Voluntary End" error does not show for Cobra page
 
     And I click on Sign Out in the Header for "Elmo"

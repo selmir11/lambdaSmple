@@ -374,7 +374,7 @@ public class BasicSteps {
                 pageUrl = "facebook.com/connectforhealthco";
                 break;
             case "X":
-                pageUrl = "twitter.com/i/flow/login?redirect_after_login=%2FC4HCO";
+                pageUrl = "x.com/i/flow/login?redirect_after_login=%2FC4HCO";
                 break;
             case "YouTube":
                 pageUrl = "youtube.com/user/ConnectForHealthCO";

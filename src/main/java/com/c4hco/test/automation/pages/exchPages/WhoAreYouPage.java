@@ -64,6 +64,7 @@ public class WhoAreYouPage {
     private String SSNvalue = "653035280";
 
     public void checkWhoAreYouOption(String whoAreYouOption){
+        basicActions.waitForElementToBeClickable(member,30);
         switch(whoAreYouOption){
             case "member":
                 member.click();
