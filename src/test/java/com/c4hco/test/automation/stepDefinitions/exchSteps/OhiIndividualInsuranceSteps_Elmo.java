@@ -11,6 +11,9 @@ public class OhiIndividualInsuranceSteps_Elmo {
     @Then("I click continue on the Elmo OHI Individual Insurance page")
     public void iClickSaveAndContinue(){ohiIndividualInsurancePage_Elmo.clickSaveAndContinue();}
 
+    @Then("I click Go Back on the Elmo OHI Individual Insurance page")
+    public void iClickGoBack(){ohiIndividualInsurancePage_Elmo.clickGoBack();}
+
     @Then("I click {string} for currently enrolled in Individual Insurance question")
     public void iClickCurrentlyEnrolledOption(String currentlyEnrolled){ohiIndividualInsurancePage_Elmo.clickCurrentlyEnrolledOption(currentlyEnrolled);}
 

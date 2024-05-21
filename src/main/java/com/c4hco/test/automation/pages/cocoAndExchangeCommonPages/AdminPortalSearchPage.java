@@ -306,6 +306,14 @@ public class AdminPortalSearchPage {
         for (int i = 0; i < appLinksDropdownOptions.size(); i++) {
             basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
             softAssert.assertNotEquals(appLinksDropdownOptions.get(i).getText(), option);
-            softAssert.assertAll();     }
+            softAssert.assertAll();
+        }
     }
+    public void logoutFromAdminPortalParentPage() {
+            basicActions.switchToParentPage("C4HCO Admin Portal");
+            basicActions.waitForElementToBePresent(dropdownArrow, 100);
+            dropdownArrow.click();
+            basicActions.waitForElementToBePresent(logoutAdmin, 100);
+            logoutAdmin.click();
+        }
 }

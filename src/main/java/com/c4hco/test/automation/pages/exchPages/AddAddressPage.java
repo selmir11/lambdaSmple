@@ -234,6 +234,7 @@ public class AddAddressPage {
     public void isColoradoResident(String YNCOResident){
         switch (YNCOResident){
             case "Yes":
+                basicActions.scrollToElement(rdobtnIsColoradoResidentYes);
                 rdobtnIsColoradoResidentYes.click();
                 break;
             case "No":

@@ -11,9 +11,4 @@ public class AdminPortalCocoUserDashboardPageSteps {
     public void iClickOnButton(String DashboardButtons) {
         adminPortalCocoUserDashboardPage.clickFromDashboardButtons(DashboardButtons);
     }
-
-    @Then("I click on view button for {string} report")
-    public void iClickOnViewButtonForreport(String searchText) {
-        adminPortalCocoUserDashboardPage.viewReportLinks(searchText);
-    }
 }
