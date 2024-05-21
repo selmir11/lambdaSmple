@@ -1,4 +1,4 @@
-@SLER-481 @SLER-485
+@deauthorizeBroker @PORT
 Feature:verify deauthorize broker notice Spanish Mail prefrences BN-002-04
   Background:
     Given I open the login page on the "login" portal
