@@ -166,5 +166,14 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob=dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
+    public void Newbornwithcurrentdatelessthanfivedays(int Days) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate DOBCalculate = currentDate.minusDays(Days);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String actualdob = dateFormat.format(DOBCalculate);
+        enterMemberDetails(actualdob);
+    }
 
 }
+
+
