@@ -2,7 +2,8 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.HouseholdPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.And;
 
 public class HouseHoldPageSteps {
     HouseholdPage houseHoldPage = new HouseholdPage(WebDriverManager.getDriver());
