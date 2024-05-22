@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -102,6 +103,7 @@ public class LawfulPresencePage {
     public void isMemberCitizen(String YNCitizen){
         switch(YNCitizen){
             case "Yes":
+                basicActions.waitForElementToBePresent(rdobtnCitizenYes,50);
                 rdobtnCitizenYes.click();
                 break;
             case "No":
@@ -198,12 +200,31 @@ public class LawfulPresencePage {
         }
     }
 
-    public  void clickContinue(){saveContinue.click();}
+    public  void clickContinue(){
+        basicActions.waitForElementToBeClickable(saveContinue, 20);
+        getMemberId();
+        saveContinue.click();}
 
-    public void getPrimaryMemberId() {
+    public void getMemberId() {
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         String currentUrl = basicActions.getCurrentUrl();
-       SharedData.setPrimaryMemberId(currentUrl.substring(currentUrl.indexOf('=')+1));
-        System.out.println("Primary Member ID: "+SharedData.getPrimaryMemberId());
+        String headerText = citizenshipImmigrationStatusHeader.getText();
+        String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
+        String memberId = currentUrl.substring(currentUrl.indexOf('=') + 1);
+        if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
+            SharedData.setPrimaryMemberId(memberId);
+            subscriber.setMemberId(memberId);
+        }
+        if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
+            for (MemberDetails member : memberDetailsList) {
+                if (nameFromHeader.equals(member.getFullName())) {
+                    member.setMemberId(memberId);
+                    break;
+                }
+            }
+            SharedData.setMembers(memberDetailsList);
+        }
     }
 
     public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language, List<String> data) {

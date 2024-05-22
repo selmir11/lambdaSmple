@@ -8,8 +8,9 @@ public class HeaderAndFooterSteps {
 
     HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage(WebDriverManager.getDriver());
 
-    @And("I click on the Colorado Connect or C4 Logo in the Header")
-    public void iClickConnectLogoLink(){ headerAndFooterPage.clickConnectLogoLink(); }
+    @And("I click on the Colorado Connect or C4 Logo in the {string} Header")
+    public void iClickConnectLogoLink(String pageType){ headerAndFooterPage.clickConnectLogoLink(pageType); }
+
 
     @And("I click on Apply for Coverage in the {string} Header")
     public void iClickApplyForCoverageLink(String pageType){ headerAndFooterPage.clickApplyForCoverageLink(pageType); }
@@ -60,5 +61,6 @@ public class HeaderAndFooterSteps {
 
     @And("I click on {string} Icon in the Footer")
     public void iClickFacebookIcon(String MediaIcon){ headerAndFooterPage.clickFacebookIcon(MediaIcon); }
+
 
 }

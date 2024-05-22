@@ -71,6 +71,9 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(css = "#PlanSummary-MedicalGroupFullName_0")
     WebElement medicalgroup1MemberNames;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt){
         basicActions.waitForElementToBePresent(aPTCPlanSummary,10);
         softAssert.assertEquals(aPTCPlanSummary.getText(),aPTCPlanSummaryAmt);
@@ -139,7 +142,7 @@ public class PlanSummaryMedicalDentalPage {
         List<MemberDetails> memberslist = SharedData.getMembers();
         Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
         if(!isGettingFinancialHelp){//NFA
-            subscriber.setMedicalAptcAmt("0");
+            subscriber.setMedicalAptcAmt("0"); basicActions.waitForElementToDisappear(spinner, 15);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
             subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);

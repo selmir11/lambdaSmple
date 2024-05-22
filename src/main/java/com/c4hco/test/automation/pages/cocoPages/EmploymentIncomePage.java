@@ -5,16 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class EmploymentIncomePage {
     private BasicActions basicActions;
 
+    SoftAssert softAssert = new SoftAssert();
+
     public EmploymentIncomePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-YesButton")
     WebElement employmentYesButton;
@@ -46,19 +50,21 @@ public class EmploymentIncomePage {
     @FindBy(id = "EmploymentIncomeJob-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(css = ".input-error-message")
+    WebElement errorMessage;
+
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
-        saveAndContinueButton.click();
+        basicActions.click(saveAndContinueButton);
     }
 
     public void answerEmploymentQs(String employment){
         switch(employment) {
             case "Yes":
-                basicActions.waitForElementToBePresent(employmentYesButton, 10);
+                basicActions.waitForElementToBeClickable(employmentYesButton, 100);
                 employmentYesButton.click();
                 break;
             case "No":
-                basicActions.waitForElementToBePresent(employmentNoButton, 10);
+                basicActions.waitForElementToBeClickable(employmentNoButton, 100);
                 employmentNoButton.click();
                 break;
             default:
@@ -127,6 +133,30 @@ public class EmploymentIncomePage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + changes);
+        }
+    }
+
+//////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+
+    public void verifyNoErrorMessage_EmploymentInfo() {
+        softAssert.assertFalse(basicActions.waitForElementPresence(errorMessage, 20));
+        softAssert.assertAll();
+    }
+
+    public void verifyJobOption_EmploymentInfo(String isEmployed) {
+            switch (isEmployed){
+                case "Yes":
+                    basicActions.waitForElementToBePresent(employmentYesButton,15);
+                    softAssert.assertTrue(employmentYesButton.getAttribute("class").contains("selected"));
+                    softAssert.assertAll();
+                    break;
+                case "No":
+                    basicActions.waitForElementToBePresent(employmentNoButton,15);
+                    softAssert.assertTrue(employmentNoButton.getAttribute("class").contains("selected"));
+                    softAssert.assertAll();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " +  isEmployed);
         }
     }
 }

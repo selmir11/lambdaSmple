@@ -374,7 +374,7 @@ public class BasicSteps {
                 pageUrl = "facebook.com/connectforhealthco";
                 break;
             case "X":
-                pageUrl = "twitter.com/i/flow/login?redirect_after_login=%2FC4HCO";
+                pageUrl = "x.com/i/flow/login?redirect_after_login=%2FC4HCO";
                 break;
             case "YouTube":
                 pageUrl = "youtube.com/user/ConnectForHealthCO";
@@ -424,6 +424,11 @@ public class BasicSteps {
     @And("I refresh the page")
     public void refreshPage() {
         basicActions.refreshPage();
+    }
+
+    @And("I go to the previous browser page")
+    public void goBack() {
+        basicActions.goBack();
     }
 
     @And("I set the browser resolution to 2000 x 800")

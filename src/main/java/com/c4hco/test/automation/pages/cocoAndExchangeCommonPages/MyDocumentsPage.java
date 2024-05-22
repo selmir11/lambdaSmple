@@ -60,4 +60,10 @@ public class MyDocumentsPage {
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
      }
+
+    public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
+        basicActions.scrollToElement(documentsInfoMessage);
+        softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
+        softAssert.assertAll();
+    }
 }
