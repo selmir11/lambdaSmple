@@ -71,10 +71,10 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), dbData.getIssuerId(), "Insurer Id did not match!");
-        softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), subscriber.getMedicalPlanStartDate());
-        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), subscriber.getMedicalPlanEndDate());
-        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), subscriber.getMedicalFinancialStartDate());
-        softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear());
+        softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), subscriber.getMedicalPlanStartDate(),"Medical plan start date is not correct");
+        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), subscriber.getMedicalPlanEndDate(),"Medical plan end date is not correct");
+        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), subscriber.getMedicalFinancialStartDate(), "Financial start date is not correct");
+        softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
 
               validateDetailsFromStep(ob834Entity, expectedValues.get(0));
               validateResidentialAddress(subscriber, ob834Entity, dbData);
@@ -84,7 +84,7 @@ public class DbValidations {
          // validate dental records
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         }
-          softAssert.assertEquals(SharedData.getPrimaryMemberId(), ob834Entity.getMember_id(), "member id did not match"); // WIP - set member id
+          softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
           softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
           softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
           softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
