@@ -232,7 +232,7 @@ Feature: Seed Tests - Exchange
     Then I validate I am on the "My Policies" page
     And I validate medical plan details from my policies page
       |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+      | 01/01    | 12/31   | 01/01         | 12/31     |
     And I validate dental plan details from my policies page
       |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
       | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
