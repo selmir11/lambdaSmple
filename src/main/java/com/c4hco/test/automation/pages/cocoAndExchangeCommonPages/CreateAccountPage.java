@@ -66,7 +66,7 @@ public class CreateAccountPage {
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
 
-    @FindBy(xpath = "//*[@for='English']")
+    @FindBy(xpath = "//*[@id='English']")
      WebElement preferredLanguageButtonEnglish;
 
     @FindBy(id = "primaryUser-input")
@@ -170,6 +170,7 @@ public class CreateAccountPage {
         subscriber.setLastName(getUniqueString(8)+"Test");
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
 

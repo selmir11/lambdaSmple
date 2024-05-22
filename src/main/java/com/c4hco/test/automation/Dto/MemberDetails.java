@@ -46,7 +46,7 @@ public class MemberDetails {
     String application_id;
     BigDecimal account_id;
     String policyId;
-    String memberId;
+    String memberId; //excludes primary memberId
     String totalMedAmtAfterReduction;
     String totalDentalPremAfterReduction;
     String medicalEapid_db;
@@ -57,21 +57,18 @@ public class MemberDetails {
     String spokenLanguage;
     String maritalStatus;
     Boolean isMinor;
-    Boolean hasBroker;
-    Boolean hasIncorrectEntities;
+    Boolean hasIncorrectEntities = false;
     Boolean isMailingAddressDifferent;
     String memberGroup;
-    String isSubscriber; // Values to set - Y or N
+    String isSubscriber="N";
     String incorrectEntityIdCode;
     String incorrectEntityTypeQualifier;
     String incorrectIdCodeQualifier;
     String incorrectIdCode;
-
-public MemberDetails(){
-    hasIncorrectEntities = false;}
-    public boolean getHasIncorrectEntities(){
-        return hasIncorrectEntities;
-    }
+    String incorrect_dob;
+    String incorrect_gender;
+    String incorrect_race;
+    String incorrect_marital_status_code;
 }
 
 

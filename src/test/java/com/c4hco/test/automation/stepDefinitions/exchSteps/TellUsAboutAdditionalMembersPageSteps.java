@@ -37,5 +37,7 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}
 
 
+    @Then("I enter new born with minus {int} days as DOB")
+    public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.Newbornwithcurrentdatelessthanfivedays(Days);}
 
 }

@@ -143,19 +143,34 @@ public class EditGroupingMembersMedicalPage {
         softAssert.assertAll();
     }
 
-    public void dragAndDropMember3CreateGroup() {
-        basicActions.waitForElementToBePresent(groupingMemebers.get(2),10);
-        basicActions.waitForElementToBePresent(dragAMemberHere.get(2),10 );
-        builder.clickAndHold(groupingMemebers.get(2))
-                .moveToElement(dragAMemberHere.get(2))
-                .release(dragAMemberHere.get(2)).build()
-                .perform();
-        basicActions.wait(3000);
+    public void dragAndDropMemberToCreateGroup(String Grouping) {
+        switch (Grouping) {
+            case "Create Group":
+                basicActions.waitForElementToBePresent(groupingMemebers.get(2), 10);
+                basicActions.waitForElementToBePresent(dragAMemberHere.get(2), 10);
+                builder.clickAndHold(groupingMemebers.get(2))
+                        .moveToElement(dragAMemberHere.get(2))
+                        .release(dragAMemberHere.get(2)).build()
+                        .perform();
+                basicActions.wait(3000);
+                break;
+            case "Unassigned Member":
+                basicActions.waitForElementToBePresent(groupingMemebers.get(1), 10);
+                basicActions.waitForElementToBePresent(dragAMemberHere.get(0), 10);
+                builder.clickAndHold(groupingMemebers.get(1))
+                        .moveToElement(dragAMemberHere.get(0))
+                        .release(dragAMemberHere.get(0)).build()
+                        .perform();
+                basicActions.wait(3000);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Grouping);
+        }
     }
-
     public void ivalidateResetGroupLink(){
         resetgroupsButton.isDisplayed();
         resetgroupsButton.isEnabled();
     }
+
 }
 
