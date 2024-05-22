@@ -162,7 +162,10 @@ public class OhiTricarePage_Elmo {
         }
     }
 
-
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickable(goBackBtn, 20);
+        goBackBtn.click();
+    }
 
 
 
