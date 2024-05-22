@@ -17,11 +17,12 @@ public class CommonSegments {
     @JsonProperty("N1")
     private List<List<String>> N1;
     @JsonProperty("ISA")
-    private List<List<String>> ISA;
+    private List<List<String>> ISA; // should remove?
     @JsonProperty("QTY")
     private List<List<String>> QTY;
     @JsonProperty("BGN")
     private List<List<String>> BGN;
     @JsonProperty("GS")
-    private List<List<String>> GS;
+    private List<List<String>> GS; // should remove ?
+    // Include SE
 }

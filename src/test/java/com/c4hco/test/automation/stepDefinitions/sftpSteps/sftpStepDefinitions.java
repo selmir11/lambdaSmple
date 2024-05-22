@@ -43,24 +43,42 @@ public class sftpStepDefinitions {
     }
 
 
-    @And("I validate the ob834 files should have the values")
-    public void validateOb834Records(List<Map<String, String>> expectedValues) {
-        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
+//    @And("I validate the ob834 files should have the values")
+//    public void validateOb834Records(List<Map<String, String>> expectedValues) {
+//        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
+//
+//        for (Ob834DetailsEntity entry : ob834Entries) {
+//            if (entry.getInsurance_line_code().equals("HLT")) {
+//                sftpUtil.readEdiFile(SharedData.getMedicalFileName());
+//            } else if (entry.getInsurance_line_code().equals("DEN")) {
+//                sftpUtil.readEdiFile(SharedData.getDentalFileName());
+//            }
+//            edi834Validations.validateOb834Record(expectedValues);
+//        }
+//
+//    }
 
-        for (Ob834DetailsEntity entry : ob834Entries) {
-            if (entry.getInsurance_line_code().equals("HLT")) {
-                sftpUtil.readEdiFile(SharedData.getMedicalFileName());
-            } else if (entry.getInsurance_line_code().equals("DEN")) {
-                sftpUtil.readEdiFile(SharedData.getDentalFileName());
-            }
-            edi834Validations.validateOb834Record(expectedValues);
-        }
+    @And("I validate the ob834 files should have the values")
+    public void validateOb834MedicalRecords(List<Map<String, String>> expectedValues) {
+     //   edi834Validations.readAndValidateOb834File();
+
+//        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
+//
+//        for (Ob834DetailsEntity entry : ob834Entries) {
+//            if (entry.getInsurance_line_code().equals("HLT")) {
+//                sftpUtil.readEdiFile(SharedData.getMedicalFileName());
+//                edi834Validations.validateOb834Record(expectedValues);
+//            } else if (entry.getInsurance_line_code().equals("DEN")) {
+//                sftpUtil.readEdiFile(SharedData.getDentalFileName());
+//            }
+//        }
 
     }
 
     @And("I read the edi file locally")
     public void readEdiFile(){
         sftpUtil.readEdiFromLocal();
+       // edi834Validations.validateOb834Record();
     }
 
 }

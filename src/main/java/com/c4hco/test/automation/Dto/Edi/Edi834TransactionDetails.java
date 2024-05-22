@@ -12,22 +12,23 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIgnoreType
 public class Edi834TransactionDetails {
-    public List<Transaction> getTransactionList() {
-        return transactionList;
-    }
-
-    public void setTransactionList(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
-    }
-
-    public CommonEDISegments getCommonEDISegments() {
-        return commonEDISegments;
-    }
-
-    public void setCommonEDISegments(CommonEDISegments commonEDISegments) {
-        this.commonEDISegments = commonEDISegments;
-    }
-
     private List<Transaction> transactionList;
-    private CommonEDISegments commonEDISegments;
+   // private CommonEDISegments commonEDISegments;
+//    public List<Transaction> getTransactionList() {
+//        return transactionList;
+//    }
+//
+//    public void setTransactionList(List<Transaction> transactionList) {
+//        this.transactionList = transactionList;
+//    }
+//
+//    public CommonEDISegments getCommonEDISegments() {
+//        return commonEDISegments;
+//    }
+//
+//    public void setCommonEDISegments(CommonEDISegments commonEDISegments) {
+//        this.commonEDISegments = commonEDISegments;
+//    }
+
+
 }

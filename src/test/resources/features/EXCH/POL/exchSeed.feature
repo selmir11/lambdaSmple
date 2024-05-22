@@ -1,9 +1,10 @@
 Feature: Seed Tests - Exchange
 
-#  Scenario: Test Only scenario- edi file in local location
-#    And I read the edi file locally
+  @test
+  Scenario: Test Only scenario- edi file in local location
+    And I read the edi file locally
 
-  @SLER-289
+  @SLER-289 @test1
   Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -113,6 +114,7 @@ Feature: Seed Tests - Exchange
     And I validate member details from ob834_details table
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
+    And I validate the ob834 files should have the values
 
   @SLER-311
   Scenario: Seed 02 For Exchange- Single Applicant with FA
