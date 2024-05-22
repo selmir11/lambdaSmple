@@ -46,4 +46,9 @@ public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchP
     public void iChangeThePreferredContactMethodTo(String contactPrefrences) {
         myProfileExchPage.PreferredContactMethod(contactPrefrences);
     }
+
+    @And("I change Preferred Language Contact Method to {string}")
+    public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
+        myProfileExchPage.PreferredContactLanguageMethod(langContactPreferred);
+    }
 }
