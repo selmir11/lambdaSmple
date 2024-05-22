@@ -80,10 +80,10 @@ public class MyPoliciesPage {
 
     public void validateEnrolledMedicalPlanDetails(List<Map<String, String>> expectedResult) {
         // **** Works when only one member with one medical plan **** //
-        primaryMember.setMedicalPlanStartDate(expectedResult.get(0).get("PolicyStartDate"));
-        primaryMember.setMedicalPlanEndDate(expectedResult.get(0).get("PolicyEndDate"));
-        primaryMember.setMedicalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate"));
-        primaryMember.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate"));
+        primaryMember.setMedicalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setMedicalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setMedicalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
         SharedData.setPrimaryMember(primaryMember);
         //Validating member names from table - medical
         basicActions.waitForElementListToBePresent(memberNames, 10);
@@ -132,10 +132,10 @@ public class MyPoliciesPage {
 
     public void validateDentalPlanDetails(List<Map<String, String>> expectedResult){
         // **** Works when only one member with one medical plan and one dental plan **** //
-        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate"));
-        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate"));
-        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("FinancialStartDate"));
-        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("FinancialEndDate"));
+        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
         SharedData.setPrimaryMember(primaryMember);
 
         basicActions.waitForElementListToBePresent(memberNames, 10);
