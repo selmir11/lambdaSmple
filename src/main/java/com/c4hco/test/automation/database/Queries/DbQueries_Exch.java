@@ -69,4 +69,8 @@ public class DbQueries_Exch {
                 "and plan_year = '2024'";
     }
 
+    public String exchPersonId(){
+        return "select  exch_person_id from "+dbName+".es_member where member_id='"+SharedData.getPrimaryMemberId()+"'";
+    }
+
 }
