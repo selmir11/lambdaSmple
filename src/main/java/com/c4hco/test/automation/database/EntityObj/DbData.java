@@ -10,5 +10,5 @@ public class DbData {
     String hiosIssuerId;
     String issuerName;
     String issuerId;
-    String memberId;
+    String exchPersonId;
 }
