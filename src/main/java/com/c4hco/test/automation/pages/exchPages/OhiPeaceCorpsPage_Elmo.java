@@ -88,6 +88,11 @@ public class OhiPeaceCorpsPage_Elmo {
         saveAndContinueBtn.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickable(goBackBtn, 20);
+        goBackBtn.click();
+    }
+
     public void clickCurrentlyEnrolledOption(String currentlyEnrolled) {
         switch (currentlyEnrolled) {
             case "Yes":

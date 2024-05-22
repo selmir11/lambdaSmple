@@ -30,6 +30,7 @@ public class SharedData {
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
     @Getter @Setter private static String dbName;
+    @Getter @Setter private static Boolean hasBroker = false;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
