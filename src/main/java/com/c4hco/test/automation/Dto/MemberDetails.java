@@ -69,6 +69,9 @@ public class MemberDetails {
     String incorrect_gender;
     String incorrect_race;
     String incorrect_marital_status_code;
+    String incorrect_first_name ;
+    String incorrect_middle_name ;
+    String incorrect_last_name ;
 }
 
 

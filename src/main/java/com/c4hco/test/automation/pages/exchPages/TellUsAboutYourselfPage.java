@@ -103,10 +103,9 @@ public class TellUsAboutYourselfPage {
         subscriber.setIncorrectIdCodeQualifier("34");
         subscriber.setIncorrectIdCode(oldSsn);
         subscriber.setIncorrectEntityIdCode("70");
-        subscriber.setIncorrect_race(null);
-        subscriber.setIncorrect_dob(null);
-        subscriber.setIncorrect_gender(null);
-        subscriber.setIncorrect_marital_status_code(null);
+        subscriber.setIncorrect_first_name(subscriber.getFirstName());
+        subscriber.setIncorrect_middle_name(subscriber.getMiddleName());
+        subscriber.setIncorrect_last_name(subscriber.getLastName());
         SharedData.setPrimaryMember(subscriber);
     }
 

@@ -223,14 +223,14 @@ public class DbValidations {
             // update the entire method for optimal use - may not need if else blocks.
             softAssert.assertEquals(ob834Entity.getIncorrect_entity_id_code(), subscriber.getIncorrectEntityIdCode(), "Incorrect_entity_id_code did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_entity_type_qualifier(), subscriber.getIncorrectEntityTypeQualifier(), "Incorrect_entity_type_qualifier did not match!");
-            softAssert.assertEquals(ob834Entity.getIncorrect_first_name(),subscriber.getFirstName(), "Incorrect_first_name did not match!");
-            softAssert.assertEquals(ob834Entity.getIncorrect_last_name(), subscriber.getLastName(), "Incorrect_last_name did not match!");
+            softAssert.assertEquals(ob834Entity.getIncorrect_first_name(),subscriber.getIncorrect_first_name(), "Incorrect_first_name did not match!");
+            softAssert.assertEquals(ob834Entity.getIncorrect_last_name(), subscriber.getIncorrect_last_name(), "Incorrect_last_name did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_id_code_qualifier(), subscriber.getIncorrectIdCodeQualifier(), "Incorrect_id_code_qualifier did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_dob(), subscriber.getIncorrect_dob(), "Incorrect_dob did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_gender(), subscriber.getIncorrect_gender(), "Incorrect_gender did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), subscriber.getIncorrect_marital_status_code(), "Incorrect_marital_status_code did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_race(), subscriber.getIncorrect_race(), "Incorrect_race did not match!");
-            softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), subscriber.getMiddleName(), "Incorrect_middle_name did not match!");
+            softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), subscriber.getIncorrect_middle_name(), "Incorrect_middle_name did not match!");
         }
         else{
             softAssert.assertEquals(ob834Entity.getIncorrect_entity_id_code(), null);
@@ -253,7 +253,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getMaintenance_reas_code(), expectedValues.get("maintenance_reas_code"),"maintenance_reas_code mismatched");
         // If expectedSepReason is null and actualSepReason is blank
         if (expectedValues.get("sep_reason") == null)
-        {softAssert.assertTrue (ob834Entity.getSep_reason() == null || ob834Entity.getSep_reason(). trim( ).isEmpty(), "Expected sep_reason to be null, but was: " + ob834Entity.getSep_reason()) ;}
+        {softAssert.assertTrue (ob834Entity.getSep_reason().isEmpty(), "Expected sep_reason to be blank, but was: " + ob834Entity.getSep_reason()) ;}
         else { //else, checking if they are equal
             softAssert.assertEquals (ob834Entity.getSep_reason(), expectedValues.get("sep_reason"),"Sep_reason mismatch");}
         softAssert.assertEquals(ob834Entity.getAddl_maint_reason(), expectedValues.get("addl_maint_reason"),"addl_maint_reason mismatched");
