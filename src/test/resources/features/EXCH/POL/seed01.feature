@@ -1,6 +1,6 @@
-Feature: Seed01 - Exchange
+Feature: Regression Tests that require Seed 1
 
-  Background:
+  Background: Seed 01 For Exchange- Single Applicant NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -111,8 +111,8 @@ Feature: Seed01 - Exchange
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
     | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
    # And I download the files from sftp server with location "/outboundedi/"
    # And I validate the ob834 files should not be empty
 
@@ -147,9 +147,9 @@ Feature: Seed01 - Exchange
    And I click on Sign Out in the Header for "NonElmo"
    # And I validate the member details from policy tables
     And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
    # And I download the files from sftp server with location "/outboundedi/"
   #  And I validate the ob834 files should have the values
   #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |

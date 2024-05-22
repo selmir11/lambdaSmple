@@ -90,7 +90,7 @@ public class TellUsAboutYourselfPage {
 
     public void iUpdateSSN(String newSsn){
         basicActions.waitForElementToBePresent(ssn, 20);
-        String oldSsn = ssn.getText();
+        String oldSsn = ssn.getAttribute("value").replaceAll("[^0-9]","");
         System.out.println("Old ssn: " + oldSsn);
         SharedData.getPrimaryMember().setHasIncorrectEntities(true);
         MemberDetails subscriber = SharedData.getPrimaryMember();

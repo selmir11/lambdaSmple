@@ -54,10 +54,10 @@ public class DbValidations {
       SharedData.setOb834DetailsEntities(ob834DetailsEntities);
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
           if(ob834Entity.getInsurance_line_code().equals("HLT")){
-          // validate medical records
+      // validate medical records
        exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan());
        DbData dbData = SharedData.getDbData();
-/*
+
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dbData.getIssuerName(), "Insurer Name did not match!");
@@ -66,17 +66,15 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), subscriber.getMedicalPlanEndDate());
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), subscriber.getMedicalFinancialStartDate());
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear());
-*/
+
               validateDetailsFromStep(ob834Entity, expectedValues.get(0));
-              System.out.println("validateDetailsFromStep: Medical checked");
-             // validateResidentialAddress(subscriber, ob834Entity, dbData);
+              validateResidentialAddress(subscriber, ob834Entity, dbData);
         //softAssert.assertAll();
 
         } else {
          // validate dental records
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
-              System.out.println("validateDetailsFromStep: Dental checked");
-        } /*
+        }
           softAssert.assertEquals(SharedData.getPrimaryMemberId(), ob834Entity.getMember_id(), "member id did not match"); // WIP - set member id
           softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
           softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependants(), "total dependents did not match"); // WIP - set total dependants from a step
@@ -86,11 +84,11 @@ public class DbValidations {
           softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match"); //WIP - set value
           softAssert.assertEquals("if same as sponsorId - can compare from entity", ob834Entity.getSubscriber_id(), "subscriber id did not match"); //WIP - based on sponsorID?
           softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
-*/
-          //validateConstantFields(ob834Entity);
-          // validatePersonalDetails(subscriber, ob834Entity);
-         // validateResponsiblePersonDetails(subscriber, ob834Entity);
-          //validateBrokerDetails(subscriber, ob834Entity);
+
+          validateConstantFields(ob834Entity);
+          validatePersonalDetails(subscriber, ob834Entity);
+          validateResponsiblePersonDetails(subscriber, ob834Entity);
+          validateBrokerDetails(subscriber, ob834Entity);
           validateIncorrectEntities(subscriber, ob834Entity);
         //  validateMailingAddress(subscriber, ob834Entity); // WIP
         //  validateRelCode(subscriber, ob834Entity); //WIP
@@ -193,7 +191,7 @@ public class DbValidations {
            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), null);
            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
-           softAssert.assertEquals(ob834Entity.getRepsonsibe_person_zip_code(), null);
+           softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
        }
         //  softAssert.assertAll();
     }
@@ -211,8 +209,6 @@ public class DbValidations {
     }
 
     public void validateIncorrectEntities(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        SharedData.getPrimaryMember().setHasIncorrectEntities(true);
-        subscriber = SharedData.getPrimaryMember();
          if(subscriber.getHasIncorrectEntities()){
             // validate the entities - set them from step.
             // update the entire method for optimal use - may not need if else blocks.
@@ -235,19 +231,19 @@ public class DbValidations {
             softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), null);
             softAssert.assertEquals(ob834Entity.getIncorrect_race(), null);
         }
-        //  softAssert.assertAll();
-        System.out.println("Incorrect entities validated");
+      softAssert.assertAll();
     }
-
-
-  public void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues){
-          softAssert.assertEquals(ob834Entity.getMaintenance_type_code(), expectedValues.get("maintenance_type_code"));
-          softAssert.assertEquals(ob834Entity.getHd_main_type_code(), expectedValues.get("hd_maint_type_code"));
-          softAssert.assertEquals(ob834Entity.getMaintenacne_res_code(), expectedValues.get("maintenance_reas_code"));
-          softAssert.assertEquals("", expectedValues.get("addl_maint_reason")); // WIP
-          softAssert.assertEquals(ob834Entity.getSep_reason(), expectedValues.get("sep_reason"));
-         // softAssert.assertAll();
-  }
+    public static String nullIfBlank(String value){
+       if ("".equals(value.trim())) {return null;}
+                return value; }
+  public void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String >expectedValues){
+      softAssert.assertEquals(ob834Entity.getMaintenance_type_code(), expectedValues.get("maintenance_type_code"),"maintenance_type_code mismatched");
+      softAssert.assertEquals(ob834Entity.getHd_maint_type_code(), expectedValues.get("hd_maint_type_code"),"hd_maint_type_code mismatched");
+      softAssert.assertEquals(ob834Entity.getMaintenance_reas_code(), expectedValues.get("maintenance_reas_code"),"maintenance_reas_code mismatched");
+      softAssert.assertEquals(nullIfBlank(ob834Entity.getSep_reason()) , expectedValues.get("sep_reason"),"sep_reason mismatched");
+      softAssert.assertEquals(ob834Entity.getAddl_maint_reason(), expectedValues.get("addl_maint_reason"),"addl_maint_reason mismatched");
+      softAssert.assertAll();
+      }
 
   public void validateMemberExistsInPolicyTable(){
     List<PolicyTablesEntity> policyEntity = exchDbDataProvider.getDataFromPolicyTables();

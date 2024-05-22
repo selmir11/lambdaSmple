@@ -66,4 +66,12 @@ public class MemberDetails {
     String incorrectEntityTypeQualifier;
     String incorrectIdCodeQualifier;
     String incorrectIdCode;
+
+public MemberDetails(){
+    hasIncorrectEntities = false;}
+    public boolean getHasIncorrectEntities(){
+        return hasIncorrectEntities;
+    }
 }
+
+

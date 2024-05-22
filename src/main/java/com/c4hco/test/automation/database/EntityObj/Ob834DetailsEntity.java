@@ -30,7 +30,7 @@ public class Ob834DetailsEntity {
     String subscriber_indicator;
     String individual_rel_code;
     String maintenance_type_code;
-    String maintenacne_res_code;
+    String maintenance_reas_code;
     String subscriber_id;
     String member_id;
     String member_last_name;
@@ -69,8 +69,8 @@ public class Ob834DetailsEntity {
     String responsible_person_street_line2;
     String responsible_person_city;
     String responsible_person_st;
-    String repsonsibe_person_zip_code;
-    String hd_main_type_code;
+    String responsible_person_zip_code;
+    String hd_maint_type_code;
     String insurance_line_code;
     String benefit_begin_date;
     String benefit_end_date;
@@ -87,6 +87,7 @@ public class Ob834DetailsEntity {
     String ack_requested;
     String usage_indicator;
     String filename;
+    String addl_maint_reason;
     String sep_reason;
     String application_date;
     String current_ind;
