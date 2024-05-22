@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
+
 public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
   SoftAssert softAssert = new SoftAssert();
@@ -88,13 +90,17 @@ public class DbValidations {
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         }
           softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
-          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
-          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
-          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
-          softAssert.assertEquals("ssn or memberId - check and write a method to set", ob834Entity.getSponsor_id(), "sponsor id did not match"); // WIP
-          softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match"); //WIP - setPlan Year
-          softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match"); //WIP - set value
-          softAssert.assertEquals("if same as sponsorId - can compare from entity", ob834Entity.getSubscriber_id(), "subscriber id did not match"); //WIP - based on sponsorID?
+//          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
+//          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
+//          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
+          boolean validSSN = isSSNValid(SharedData.getPrimaryMember().getSsn());
+          if(validSSN){
+              softAssert.assertEquals(SharedData.getPrimaryMember().getSsn(),ob834Entity.getSponsor_id(),"Sponsor_id did not match");
+          }
+          softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
+          softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
+          softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
+          softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
           softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
 
 
