@@ -22,7 +22,8 @@ public class OhiTricareSteps_Elmo {
     @Then("I click {string} for insurance ending voluntary for Tricare question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){ohiTricarePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
 
-
+    @Then("I click Go Back on the Elmo OHI Tricare page")
+    public void iClickGoBack(){ohiTricarePage_Elmo.clickGoBack();}
 
 
 
