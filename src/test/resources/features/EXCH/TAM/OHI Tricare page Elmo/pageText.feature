@@ -1,5 +1,5 @@
 @TAM
-Feature: Page Text-Other Health Insurance Page
+Feature: Page Text-OHI Tricare Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
