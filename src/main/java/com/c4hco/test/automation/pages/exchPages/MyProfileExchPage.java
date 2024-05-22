@@ -341,5 +341,16 @@ public class MyProfileExchPage {
                 PreferredContactDrpOptions.get(2).click();
         }
     }
+
+    public void PreferredContactLanguageMethod(String langContactPreferred) {
+        clickPreferredLanguageDrp();
+        switch (langContactPreferred){
+            case "English":
+                LanguageDrpOptions.get(1).click();
+                break;
+            case "Spanish":
+                LanguageDrpOptions.get(2).click();
+        }
+    }
 }
 

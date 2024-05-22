@@ -50,7 +50,7 @@ public class LawfulPresencePageSteps {
     public void clickContinue(){lawfulPresencePage.clickContinue();}
 
     @And("I get the Primary Member ID")
-    public void iGetPrimaryMemberId(){lawfulPresencePage.getPrimaryMemberId();}
+    public void iGetPrimaryMemberId(){lawfulPresencePage.getMemberId();}
 
     @And("I verify the text on the Citizenship and Immigration Status page in {string}")
     public void verifyTextOnCitizenshipAndImmigrationStatusPage(String language, List<String> data) {
