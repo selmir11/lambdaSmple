@@ -57,10 +57,10 @@ public class EditGroupingMembersMedicalPageSteps {
     public void validateToolTipText() {
         editGroupingMembersMedicalPage.validateToolTipText();
     }
-    @Then("I drag and drop member 3 to make new group")
-    public void dragAndDropMember3CreateGroup(){
-        editGroupingMembersMedicalPage.dragAndDropMember3CreateGroup();
-    }
+    @Then("I drag and drop {string} to make new group")
+    public void dragAndDropMemberToCreateGroup(String Grouping)
+    {editGroupingMembersMedicalPage.dragAndDropMemberToCreateGroup(Grouping);}
+
     @Then("I click on reset groups button on edit enrollment groups page")
     public void iClickresetGroupsButton(){
         editGroupingMembersMedicalPage.iClickresetGroupsButton();
@@ -70,4 +70,5 @@ public class EditGroupingMembersMedicalPageSteps {
     public void presenceOfResetmyGroup(){
         editGroupingMembersMedicalPage.ivalidateResetGroupLink();
     }
+
 }

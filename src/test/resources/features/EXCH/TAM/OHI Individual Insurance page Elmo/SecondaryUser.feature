@@ -1,5 +1,5 @@
 @TAM
-Feature: Secondary User-OHI COBRA Elmo Page
+Feature: Secondary User-OHI Individual Insurance Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -79,56 +79,56 @@ Feature: Secondary User-OHI COBRA Elmo Page
     And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
     And I change the C4 url to "Elmo Other Health Insurance Page"
-    Then I select "COBRA" as ELMO health insurance option
+    Then I select "Other" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Elmo Ohi Individual Insurance" page
 
-  @SLER-482 @SecondaryUserOhiCobraElmo
-  Scenario: SLER-482 I can see Cobra's dynamic data for Primary and Secondary user - English
-    And I verify the "First Section" Cobra page data in "English"
-    Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section" Cobra page data in "English"
-    Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section" Cobra page data in "English"
-    Then I enter the end date as "Current Month" on the Cobra page
-    Then I click "No" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHI Cobra page
+  @SLER-490 @SecondaryUserOhiIndividualInsuranceElmo
+  Scenario: SLER-490 I can see Individual Insurance's dynamic data for Primary and Secondary user - English
+    And I verify the "First Section" Individual Insurance page data in "English"
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    And I verify the "Second Section" Individual Insurance page data in "English"
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    And I verify the "Third Section" Individual Insurance page data in "English"
+    Then I enter the end date as "Current Month" on the Individual Insurance page
+    Then I click "No" for insurance ending voluntary for Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
 
-    Then I select "COBRA" as ELMO health insurance option
+    Then I select "Other" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo COBRA" page
-    And I verify the "First Section Secondary" Cobra page data in "English"
-    Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section Secondary" Cobra page data in "English"
-    Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section Secondary" Cobra page data in "English"
-    Then I enter the end date as "Current Month" on the Cobra page
-    Then I click "No" for insurance ending voluntary for COBRA question
+    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I verify the "First Section Secondary" Individual Insurance page data in "English"
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    And I verify the "Second Section Secondary" Individual Insurance page data in "English"
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    And I verify the "Third Section Secondary" Individual Insurance page data in "English"
+    Then I enter the end date as "Current Month" on the Individual Insurance page
+    Then I click "No" for insurance ending voluntary for Individual Insurance question
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-489 @SecondaryUserOhiCobraElmo
-  Scenario: SLER-489 I can see Cobra's dynamic data for Primary and Secondary user - Spanish
+  @SLER-491 @SecondaryUserOhiIndividualInsuranceElmo
+  Scenario: SLER-491 I can see Individual Insurance's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify the "First Section" Cobra page data in "Spanish"
-    Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section" Cobra page data in "Spanish"
-    Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section" Cobra page data in "Spanish"
-    Then I enter the end date as "Current Month" on the Cobra page
-    Then I click "No" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHI Cobra page
+    And I verify the "First Section" Individual Insurance page data in "Spanish"
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    And I verify the "Second Section" Individual Insurance page data in "Spanish"
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    And I verify the "Third Section" Individual Insurance page data in "Spanish"
+    Then I enter the end date as "Current Month" on the Individual Insurance page
+    Then I click "No" for insurance ending voluntary for Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
 
-    Then I select "COBRA" as ELMO health insurance option
+    Then I select "Other" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo COBRA" page
-    And I verify the "First Section Secondary" Cobra page data in "Spanish"
-    Then I click "Yes" for currently enrolled in COBRA question
-    And I verify the "Second Section Secondary" Cobra page data in "Spanish"
-    Then I click "Yes" for insurance ending in 60 days in COBRA question
-    And I verify the "Third Section Secondary" Cobra page data in "Spanish"
-    Then I enter the end date as "Current Month" on the Cobra page
-    Then I click "No" for insurance ending voluntary for COBRA question
+    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I verify the "First Section Secondary" Individual Insurance page data in "Spanish"
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    And I verify the "Second Section Secondary" Individual Insurance page data in "Spanish"
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    And I verify the "Third Section Secondary" Individual Insurance page data in "Spanish"
+    Then I enter the end date as "Current Month" on the Individual Insurance page
+    Then I click "No" for insurance ending voluntary for Individual Insurance question
 
     And I click on Sign Out in the Header for "Elmo"
