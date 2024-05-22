@@ -2069,7 +2069,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
+    And I am a member with City "Example" in State "CO" with dob "01011990" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
 
@@ -2092,10 +2092,10 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101945" date of birth
+    Then I enter member details with "10101991" date of birth
     And I select "Female" as sex option
     And I mark the Additional member is pregnant as "No"
-    And I select "Mother" as relationship option
+    And I select "Spouse" as relationship option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -2114,7 +2114,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10102001" date of birth
+    Then I enter member details with "10102010" date of birth
     And I select "Male" as sex option
     And I select "Son" as relationship option
     And I select "Son" as relationship one option
@@ -2139,7 +2139,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10102007" date of birth
+    Then I enter member details with "10102012" date of birth
     And I select "Female" as sex option
     And I select "No" as pregnancy option
     And I select "Daughter" as relationship option
@@ -2225,6 +2225,26 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
     Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "Yes" to claim as dependent
+    And I select "No" tax filing status
+    And I select the "1" option for Who Will Claim as Dependents
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "Yes" to claim as dependent
+    And I select "No" tax filing status
+    And I select the "1" option for Who Will Claim as Dependents
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
