@@ -100,6 +100,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -109,13 +116,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -320,6 +320,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -329,13 +336,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -442,8 +442,18 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$265.98"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
+    Then I select make payment button to pay the premium
     And I click on Sign Out in the Header for "Payment"
+
+
 
     @SLER-319
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2351 - 60 year old
@@ -541,6 +551,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -550,13 +567,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -663,6 +673,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$837.85"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
 
@@ -762,6 +779,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -771,13 +795,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -883,6 +900,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$944.39"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
 
@@ -982,6 +1006,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -991,13 +1022,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -1103,6 +1127,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$642.40"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
 
@@ -1202,6 +1233,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -1211,13 +1249,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -1323,6 +1354,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$379.36"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
 
@@ -1421,6 +1459,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
@@ -1544,6 +1589,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$717.10"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
 
@@ -1643,6 +1695,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -1652,13 +1711,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -1764,6 +1816,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
@@ -1864,6 +1923,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
 
@@ -1873,13 +1939,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
 
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
@@ -1986,6 +2045,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
     Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Payment"
 
@@ -2008,7 +2074,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue button on Congratulations page
 
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -2097,7 +2163,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
@@ -2119,7 +2184,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-
     Then I validate I am on the "Income Summary" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -2134,7 +2198,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select the projected income option "No" and continue
     Then I click the save and continue button on the Income Summary Detail page
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
 
@@ -2147,15 +2211,38 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
     Then I click the save and continue button on the Income Summary Detail page
-    
+
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
     Then I validate I am on the "Family Overview" page
-    And I click on the Member Row "3"
-    Then I select the Edit Income link "3"
+    Then I click on the Member Row 12
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
 
@@ -2248,7 +2335,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Find Expert Help page
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page

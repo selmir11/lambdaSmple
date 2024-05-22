@@ -27,12 +27,12 @@ public class HouseHoldPageSteps {
     }
 
     @And("I click the edit income {int}")
-    public void iClickEditIncomeLink(int Index){
-        houseHoldPage.iClickEditIncomeLink(Index);}
+    public void iClickEditIncomeLink(int index){
+        houseHoldPage.iClickEditIncomeLink(index);}
 
     @Then("I click on the Member Row {int}")
-    public void iEditPrimaryMember(int Index){
-        houseHoldPage.iEditPrimaryMember(Index);
+    public void iEditPrimaryMember(int index){
+        houseHoldPage.iEditPrimaryMember(index);
     }
 
     @And("I click on the table dropdown")

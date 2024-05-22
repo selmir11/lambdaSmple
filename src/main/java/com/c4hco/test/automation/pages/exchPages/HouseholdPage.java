@@ -63,9 +63,9 @@ public class HouseholdPage {
     }
 
 
-    public void iEditPrimaryMember(int Index) {
+    public void iEditPrimaryMember(int index) {
         basicActions.waitForElementToBePresent(editPrimaryMember,15);
-        Index -= 1;
+        index -= 1;
         editPrimaryMember.click();
     }
     public void iClickTableItem(){
@@ -77,10 +77,9 @@ public class HouseholdPage {
         memberBasicInformation.get(member).click();
     }
 
-
-    public void iClickEditIncomeLink(int Index) {
+    public void iClickEditIncomeLink(int index) {
         basicActions.waitForElementToBePresent(editIncomeLink,15);
-        Index -= 1;
+        index -= 1;
         editIncomeLink.isDisplayed();
         editIncomeLink.click();
     }
