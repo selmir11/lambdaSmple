@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Secondary User-OHI COBRA Elmo Page
 
   Background:
