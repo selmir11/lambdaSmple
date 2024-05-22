@@ -1136,7 +1136,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Edit Grouping Members Medical" page
     And I validate there is create new group link
     Then I click on create new group button on edit enrollment groups page
-    Then I drag and drop "Unassigned" member to make new group
+    Then I drag and drop "Unassigned Member" to make new group
     Then I validate I am on the "Edit Grouping Members Medical" page
     Then I click save button to save the groups
     And I validated message on success enrollment grouping pop-up

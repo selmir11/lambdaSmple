@@ -154,7 +154,7 @@ public class EditGroupingMembersMedicalPage {
                         .perform();
                 basicActions.wait(3000);
                 break;
-            case "Unassigned":
+            case "Unassigned Member":
                 basicActions.waitForElementToBePresent(groupingMemebers.get(1), 10);
                 basicActions.waitForElementToBePresent(dragAMemberHere.get(0), 10);
                 builder.clickAndHold(groupingMemebers.get(1))

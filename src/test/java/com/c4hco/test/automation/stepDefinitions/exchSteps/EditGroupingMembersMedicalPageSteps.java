@@ -57,7 +57,7 @@ public class EditGroupingMembersMedicalPageSteps {
     public void validateToolTipText() {
         editGroupingMembersMedicalPage.validateToolTipText();
     }
-    @Then("I drag and drop {string} member to make new group")
+    @Then("I drag and drop {string} to make new group")
     public void dragAndDropMemberToCreateGroup(String Grouping)
     {editGroupingMembersMedicalPage.dragAndDropMemberToCreateGroup(Grouping);}
 
