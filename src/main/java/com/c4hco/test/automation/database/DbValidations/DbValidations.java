@@ -49,21 +49,16 @@ public class DbValidations {
     }
 
     public void validateOb834FromDb(List<Map<String, String>> expectedValues){
-      MemberDetails subscriber = SharedData.getPrimaryMember();
-
+        MemberDetails subscriber = SharedData.getPrimaryMember();
 
         List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
-      SharedData.setOb834DetailsEntities(ob834DetailsEntities);
-
+          SharedData.setOb834DetailsEntities(ob834DetailsEntities);
 
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
-
+          exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan());
+          DbData dbData = SharedData.getDbData();
           if(ob834Entity.getInsurance_line_code().equals("HLT")){
           // validate medical records
-
-       exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan());
-       DbData dbData = SharedData.getDbData();
-
               String[] PlanStartDateArr = subscriber.getMedicalPlanStartDate().split("/");
               String formatPlanStartDate = PlanStartDateArr[2]+PlanStartDateArr[0]+PlanStartDateArr[1];
 
@@ -92,7 +87,7 @@ public class DbValidations {
          // validate dental records
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         }
-          softAssert.assertEquals(SharedData.getPrimaryMemberId(), ob834Entity.getMember_id(), "member id did not match"); // WIP - set member id
+          softAssert.assertEquals(dbData.getMemberId(), ob834Entity.getMember_id(), "Member Id did not match");
           softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
           softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
           softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
