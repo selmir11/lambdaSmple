@@ -57,14 +57,14 @@ public class DbQueries_Exch {
     }
 
     public String en_plan(String planName){
-        return "select * from qa_exch.en_plan ep \n" +
+        return "select * from "+dbName+".en_plan ep \n" +
                 "where plan_marketing_name = '"+planName+"'" +
                 "and plan_year = '2024'\n" +
                 "limit 1";
     }
 
     public String en_issuer(String hiosIssuerId){
-        return "select name, tin_num from qa_exch.en_issuer ei\n" +
+        return "select name, tin_num from "+dbName+".en_issuer ei\n" +
                 "where hios_issuer_id = '"+hiosIssuerId+"'"+
                 "and plan_year = '2024'";
     }

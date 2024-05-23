@@ -88,13 +88,24 @@ public class TellUsAboutYourselfPage {
         basicActions.waitForElementToDisappear(btnSaveAndContinue, 5);
     }
 
-    public void iUpdateSSN(){
+    public void iUpdateSSN(String newSsn){
         basicActions.waitForElementToBePresent(ssn, 20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        String oldSsn = subscriber.getSsn();
+        System.out.println("Old ssn: " + oldSsn);
+        subscriber.setOldSsn(oldSsn);
         ssn.clear();
-        String newSsn = "123456789";
         ssn.sendKeys(newSsn);
-        SharedData.getPrimaryMember().setSsn(newSsn);
+        subscriber.setSsn(newSsn);
         System.out.println("ssn updated");
+        subscriber.setIncorrectEntityTypeQualifier("1");
+        subscriber.setIncorrectIdCodeQualifier("34");
+        subscriber.setIncorrectIdCode(oldSsn);
+        subscriber.setIncorrectEntityIdCode("70");
+        subscriber.setIncorrect_first_name(subscriber.getFirstName());
+        subscriber.setIncorrect_middle_name(subscriber.getMiddleName());
+        subscriber.setIncorrect_last_name(subscriber.getLastName());
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void updateName(){

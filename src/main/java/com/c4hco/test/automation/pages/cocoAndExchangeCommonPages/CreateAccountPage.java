@@ -66,7 +66,7 @@ public class CreateAccountPage {
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
 
-    @FindBy(xpath = "//*[@for='English']")
+    @FindBy(xpath = "//*[@id='English']")
      WebElement preferredLanguageButtonEnglish;
 
     @FindBy(id = "primaryUser-input")
