@@ -25,7 +25,6 @@ public class DentalPlansResultsPage {
     @FindBy(id="DentalPlanResults-SelectThisPlan_0")
     WebElement selectFirstDentalPlanBtn;
 
-    //@FindBy(id="SHP-DentalPlanResults-GoBack")
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
@@ -86,7 +85,6 @@ public class DentalPlansResultsPage {
 
     }
     public void selectfromCoverageLevelList(String coverageLevel) {
-        //String coveragePath = "//div[text()='" + coverageLevel + "']";
         String coveragePath = "//*[text()='" + coverageLevel + "']";
         basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
     }
