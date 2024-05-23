@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.ResidentialAddress;
+import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +21,9 @@ public class AddAddressPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    List<MemberDetails> membersList = SharedData.getMembers();
+    MemberDetails subscriber = SharedData.getPrimaryMember();
+    Address address = new Address();
 
     @FindBy(id = "retrieveResidentialAddress")
     WebElement rdobtnHouseholdResidentialAddress;
@@ -136,7 +139,7 @@ public class AddAddressPage {
     public void setResidentialAddress(){
         String name = getMemberName();
 
-        ResidentialAddress primaryMemAddress = SharedData.getPrimaryMember().getResAddress();
+        Address primaryMemAddress = SharedData.getPrimaryMember().getResAddress();
 
         List<MemberDetails>  membersList = SharedData.getMembers();
         Optional requiredMem =  membersList.stream().filter(mem ->
@@ -176,6 +179,19 @@ public class AddAddressPage {
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue(county);
+        address.setAddressLine1(AddrLine1);
+        address.setAddressCity(city);
+        address.setAddressState(state);
+        address.setAddressZipcode(zipcode);
+        address.setAddressCounty(county);
+
+        subscriber.setMailingAddress(address);
+        if(membersList !=null) {
+            for (int i = 0; i < membersList.size(); i++) {
+                MemberDetails member = SharedData.getMembers().get(i);
+                member.setMailingAddress(address);
+            }
+        }
     }
 
     public void addNewResidentialAddress(List<Map<String, String>> addDetails){
@@ -202,8 +218,8 @@ public class AddAddressPage {
         String getHeader = getNameFromHeader.getText();
         String name = getMemberName();
 
-        List<MemberDetails> membersList = SharedData.getMembers();
-        MemberDetails subscriber = SharedData.getPrimaryMember();
+//        List<MemberDetails> membersList = SharedData.getMembers();
+//        MemberDetails subscriber = SharedData.getPrimaryMember();
 
         if (getHeader.contains("Yourself")) {
             //set data for subscriber
@@ -217,12 +233,12 @@ public class AddAddressPage {
             if(requiredMem.isPresent()){
                 MemberDetails member =  (MemberDetails) requiredMem.get();
                 // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-                ResidentialAddress residentialAddress = new ResidentialAddress();
-                residentialAddress.setResidentialAddressLine1(addressLine1);
-                residentialAddress.setResidentialAddressCity(city);
-                residentialAddress.setResidentialAddressState(state);
-                residentialAddress.setResidentialAddressZipcode(zipcode);
-                residentialAddress.setResidentialAddressCounty(county);
+                Address residentialAddress = new Address();
+                residentialAddress.setAddressLine1(addressLine1);
+                residentialAddress.setAddressCity(city);
+                residentialAddress.setAddressState(state);
+                residentialAddress.setAddressZipcode(zipcode);
+                residentialAddress.setAddressCounty(county);
                 member.setResAddress(residentialAddress);
             }
             else{

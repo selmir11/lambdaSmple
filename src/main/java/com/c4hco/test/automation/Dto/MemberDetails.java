@@ -22,9 +22,8 @@ public class MemberDetails {
     String fullName;
     String dob;
     String zipcode;
-    String mailingZipCode;
-    ResidentialAddress resAddress;
-    String malingAddress; //Set a Type for all mailing address fields.
+    Address resAddress;
+    Address mailingAddress;
     String gender;
     String race;
     String medicalPlan;
@@ -58,7 +57,6 @@ public class MemberDetails {
     String maritalStatus;
     Boolean isMinor;
     Boolean hasIncorrectEntities;
-    Boolean isMailingAddressDifferent;
     String memberGroup;
     String isSubscriber="N";
     String incorrectEntityIdCode;
