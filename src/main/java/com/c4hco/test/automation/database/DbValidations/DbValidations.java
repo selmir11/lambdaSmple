@@ -224,9 +224,8 @@ public class DbValidations {
     }
 
     public void validateIncorrectEntities(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-            // validate the entities - set them from step.
-            // update the entire method for optimal use - may not need if else blocks.
             softAssert.assertEquals(ob834Entity.getIncorrect_entity_id_code(), subscriber.getIncorrectEntityIdCode(), "Incorrect_entity_id_code did not match!");
+            softAssert.assertEquals(ob834Entity.getIncorrect_id_code(), subscriber.getIncorrectIdCode(), "Incorrect_id_code did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_entity_type_qualifier(), subscriber.getIncorrectEntityTypeQualifier(), "Incorrect_entity_type_qualifier did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_first_name(),subscriber.getIncorrect_first_name(), "Incorrect_first_name did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_last_name(), subscriber.getIncorrect_last_name(), "Incorrect_last_name did not match!");
