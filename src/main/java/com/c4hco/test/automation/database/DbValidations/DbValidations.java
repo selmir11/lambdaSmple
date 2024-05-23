@@ -100,11 +100,11 @@ public class DbValidations {
           softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
         //  softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
 
-//          validateConstantFields(ob834Entity);
-//          validatePersonalDetails(subscriber, ob834Entity);
-//          validateResponsiblePersonDetails(subscriber, ob834Entity);
-//          validateBrokerDetails(subscriber, ob834Entity);
-//          validateIncorrectEntities(subscriber, ob834Entity);
+          validateConstantFields(ob834Entity);
+          validatePersonalDetails(subscriber, ob834Entity);
+          validateResponsiblePersonDetails(subscriber, ob834Entity);
+          validateBrokerDetails(subscriber, ob834Entity);
+          validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
        //   validateRelCode(subscriber, ob834Entity); //WIP
        //   validateTotalEnrollees(subscriber.getMemberGroup(), ob834Entity); // WIP - set the values
