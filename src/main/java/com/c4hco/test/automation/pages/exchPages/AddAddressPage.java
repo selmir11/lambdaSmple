@@ -164,8 +164,6 @@ public class AddAddressPage {
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
     public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
-
-        basicActions.wait(2000);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
         txtMailingAddrLine1.sendKeys(AddrLine1);
         txtMailingCity.sendKeys(city);
