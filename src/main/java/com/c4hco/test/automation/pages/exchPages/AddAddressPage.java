@@ -21,10 +21,6 @@ public class AddAddressPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    List<MemberDetails> membersList = SharedData.getMembers();
-    MemberDetails subscriber = SharedData.getPrimaryMember();
-    Address address = new Address();
-
     @FindBy(id = "retrieveResidentialAddress")
     WebElement rdobtnHouseholdResidentialAddress;
 
@@ -112,7 +108,6 @@ public class AddAddressPage {
     @FindBy(css = ".c4PageHeader1")
     WebElement getNameFromHeader;
 
-
     public void selectResidentialAddress(String index){
         switch(index){
             case "Household":
@@ -169,7 +164,9 @@ public class AddAddressPage {
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
     public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
-        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
+
+        basicActions.wait(2000);
+        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
         txtMailingAddrLine1.sendKeys(AddrLine1);
         txtMailingCity.sendKeys(city);
         selectMailingState.sendKeys(state);
@@ -179,17 +176,32 @@ public class AddAddressPage {
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue(county);
-        address.setAddressLine1(AddrLine1);
-        address.setAddressCity(city);
-        address.setAddressState(state);
-        address.setAddressZipcode(zipcode);
-        address.setAddressCounty(county);
 
-        subscriber.setMailingAddress(address);
-        if(membersList !=null) {
-            for (int i = 0; i < membersList.size(); i++) {
-                MemberDetails member = SharedData.getMembers().get(i);
-                member.setMailingAddress(address);
+        Address mailinglAddress = new Address();
+        mailinglAddress.setAddressLine1(AddrLine1);
+        mailinglAddress.setAddressCity(city);
+        mailinglAddress.setAddressState(state);
+        mailinglAddress.setAddressZipcode(zipcode);
+        mailinglAddress.setAddressCounty(county);
+
+        List<MemberDetails> membersList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        String getHeader = getNameFromHeader.getText();
+        String name = getMemberName();
+        if (getHeader.contains("yourself")) {
+            //set data for subscriber
+            subscriber.setMailingAddress(mailinglAddress);
+        }else if(membersList != null && getHeader.contains(name)){
+            Optional<MemberDetails> requiredMem =  membersList.stream().filter(mem -> mem.getSignature().contains(name)
+            ).findFirst();
+
+            if(requiredMem.isPresent()){
+                MemberDetails member = requiredMem.get();
+                // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
+                member.setMailingAddress(mailinglAddress);
+            }
+            else{
+                Assert.fail("Member with this name is not found!!");
             }
         }
     }
@@ -218,8 +230,8 @@ public class AddAddressPage {
         String getHeader = getNameFromHeader.getText();
         String name = getMemberName();
 
-//        List<MemberDetails> membersList = SharedData.getMembers();
-//        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> membersList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
 
         if (getHeader.contains("Yourself")) {
             //set data for subscriber

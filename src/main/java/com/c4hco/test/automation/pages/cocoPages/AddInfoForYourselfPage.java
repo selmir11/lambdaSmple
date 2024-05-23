@@ -1,8 +1,5 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
-import com.c4hco.test.automation.Dto.Address;
-import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,11 +11,7 @@ import java.util.List;
 
 public class AddInfoForYourselfPage {
     private BasicActions basicActions;
-
     SoftAssert softAssert = new SoftAssert();
-    List<MemberDetails> membersList = SharedData.getMembers();
-    MemberDetails subscriber = SharedData.getPrimaryMember();
-    Address address = new Address();
     public AddInfoForYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -153,30 +146,18 @@ public class AddInfoForYourselfPage {
     public void memberMailingAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
         basicActions.waitForElementToBePresent(mailingAddressLine1Input, 30);
         mailingAddressLine1Input.sendKeys(addressLine1);
-        address.setAddressLine1(addressLine1);
         basicActions.waitForElementToBePresent(mailingCityInput, 30);
         mailingCityInput.sendKeys(city);
-        address.setAddressCity(city);
 
         basicActions.waitForElementToBePresent(mailingStateDropdown, 30);
         mailingStateDropdown.click();
         basicActions.selectValueFromDropdown(mailingStateDropdown, mailingStateDropdownOptions, state);
-        address.setAddressState(state);
         basicActions.waitForElementToBePresent(mailingZipcodeInput, 30);
         mailingZipcodeInput.sendKeys(zipcode);
-        address.setAddressZipcode(zipcode);
 
         basicActions.waitForElementToBeClickable(mailingCountyDropdown, 30);
         mailingCountyDropdown.click();
-        address.setAddressCounty(county);
         basicActions.selectValueFromDropdown(mailingCountyDropdown, mailingCountyDropdownOptions, county);
-        subscriber.setMailingAddress(address);
-        if(membersList !=null) {
-            for (int i = 0; i < membersList.size(); i++) {
-                MemberDetails member = SharedData.getMembers().get(i);
-                member.setMailingAddress(address);
-            }
-        }
     }
 
     public void clickGoBackButton() {

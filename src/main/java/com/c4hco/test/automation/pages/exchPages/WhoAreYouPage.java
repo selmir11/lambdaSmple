@@ -13,8 +13,6 @@ import java.util.List;
 
 public class WhoAreYouPage {
     private BasicActions basicActions;
-    MemberDetails subscriber = SharedData.getPrimaryMember();
-    Address address = new Address();
 
     public WhoAreYouPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -83,6 +81,8 @@ public class WhoAreYouPage {
     }
 
     public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        Address address = new Address();
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys(City);
 
