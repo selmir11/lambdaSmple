@@ -24,6 +24,9 @@ public class AddInfoForAdditionalMemberCoCoPage {
     @FindBy(id = "ELIG-Residential-AddressLine1")
     WebElement addressLine1Input;
 
+    @FindBy(id = "ELIG-Residential-AddressLine2")
+    WebElement addressLine2Input;
+
     @FindBy(id = "ELIG-Residential-AddressCity")
     WebElement cityInput;
 
@@ -56,6 +59,12 @@ public class AddInfoForAdditionalMemberCoCoPage {
 
     @FindBy(css = ".body-text-1")
     List<WebElement> AddInfoForAddMemberPageText;
+
+    @FindBy(css = ".required")
+    List<WebElement> errorMessages;
+
+    @FindBy(css = ".svg-inline--fa.fa-exclamation-circle")
+    List<WebElement> exclamationMarkIcon;
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
@@ -141,6 +150,44 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Go Back");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessagesAddInfoForAddMember(String language) {
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+        switch (language) {
+            case "English":
+                verifyErrorMessagesAddInfoForAddMember();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyErrorMessagesAddInfoForAddMember() {
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Address line 1 is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(0).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(1).getText(), "City is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(1).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(2).getText(), "State is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(2).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(3).getText(), "Zip code is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(3).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(4).getText(), "County is required");
+        softAssert.assertTrue(exclamationMarkIcon.get(4).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(5).getText(), "Please select one of the options below");
+        addressLine1Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Address line 1 must be at least 5 characters long");
+        addressLine1Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Special character is not allowed");
+        addressLine2Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Address line 2 must be at least 5 characters long");
+        addressLine2Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Special character is not allowed");
+        cityInput.sendKeys("W");
+        softAssert.assertEquals(errorMessages.get(2).getText(), "City must be at least 2 characters long");
+        zipcodeInput.sendKeys("1234");
+        softAssert.assertEquals(errorMessages.get(4).getText(), "Zip code must be 5 numbers");
         softAssert.assertAll();
     }
 
