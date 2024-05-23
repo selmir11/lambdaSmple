@@ -73,9 +73,9 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), dbData.getIssuerId(), "Insurer Id did not match!");
-        softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), subscriber.getMedicalPlanStartDate(),"Medical plan start date is not correct");
-        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), subscriber.getMedicalPlanEndDate(),"Medical plan end date is not correct");
-        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), subscriber.getMedicalFinancialStartDate(), "Financial start date is not correct");
+        softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), formatPlanStartDate,"Medical plan start date is not correct");
+        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate,"Medical plan end date is not correct");
+        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
 
               validateDetailsFromStep(ob834Entity, expectedValues.get(0));
@@ -98,16 +98,16 @@ public class DbValidations {
           softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
           softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
           softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
-          softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
+        //  softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
 
           validateConstantFields(ob834Entity);
           validatePersonalDetails(subscriber, ob834Entity);
           validateResponsiblePersonDetails(subscriber, ob834Entity);
           validateBrokerDetails(subscriber, ob834Entity);
           validateIncorrectEntities(subscriber, ob834Entity);
-        //  validateMailingAddress(subscriber, ob834Entity); // WIP
-        //  validateRelCode(subscriber, ob834Entity); //WIP
-        //  validateTotalEnrollees(subscriber.getMemberGroup(), ob834Entity); // WIP - set the values
+          validateMailingAddress(subscriber, ob834Entity);
+       //   validateRelCode(subscriber, ob834Entity); //WIP
+       //   validateTotalEnrollees(subscriber.getMemberGroup(), ob834Entity); // WIP - set the values
 
       }
     }
@@ -171,23 +171,32 @@ public class DbValidations {
 
 
     public void validateResidentialAddress(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
-        softAssert.assertEquals(subscriber.getResAddress().getResidentialAddressLine1(), ob834Entity.getResidence_street_line1());
-        softAssert.assertEquals(subscriber.getResAddress().getResidentialAddressLine2(), ob834Entity.getResidence_street_line2());
-        softAssert.assertEquals(subscriber.getResAddress().getResidentialAddressCity(), ob834Entity.getResidence_city());
-        softAssert.assertEquals(subscriber.getResAddress().getResidentialAddressState(), ob834Entity.getResidence_st());
-        softAssert.assertEquals(subscriber.getResAddress().getResidentialAddressZipcode(), ob834Entity.getResidence_zip_code());
-        softAssert.assertEquals(dbData.getFipcode(), ob834Entity.getResidence_fip_code()); // Check if this will give proper value
-        //  softAssert.assertAll();
+        softAssert.assertEquals(subscriber.getResAddress().getAddressLine1(), ob834Entity.getResidence_street_line1(),"Residential address line 1 does not match");
+        if(subscriber.getResAddress().getAddressLine2() != null) {
+            softAssert.assertEquals(subscriber.getResAddress().getAddressLine2(), ob834Entity.getResidence_street_line2(), "Residential line2 is null");
+        }else{
+            softAssert.assertNull( ob834Entity.getResidence_street_line2(),"Residential address line 2 is not null");
+        }
+        softAssert.assertEquals(subscriber.getResAddress().getAddressCity(), ob834Entity.getResidence_city(),"Residential address city does not match");
+        softAssert.assertEquals(subscriber.getResAddress().getAddressState(), ob834Entity.getResidence_st(),"Residential address state does not match");
+        softAssert.assertEquals(subscriber.getResAddress().getAddressZipcode(), ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
+        softAssert.assertEquals(dbData.getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
+        softAssert.assertAll();
     }
 
 
-    public void validateMailingAddress(MemberDetails subsciber, Ob834DetailsEntity ob834Entity){
-        if(subsciber.getIsMailingAddressDifferent()){
-
-        } else {
-
-        }
-        //  softAssert.assertAll();
+    public void validateMailingAddress(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
+        DbData dbData = SharedData.getDbData();
+            softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(),"Mailing address street line 1 does not match");
+            if(subscriber.getMailingAddress().getAddressLine2() != null){
+                softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine2(),ob834Entity.getMail_street_line2(), "Mailing address street line 2 does not match");
+            }else{
+                softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
+            }
+            softAssert.assertEquals(subscriber.getMailingAddress().getAddressCity(),ob834Entity.getMail_city(), "Mailing city does not match");
+            softAssert.assertEquals(subscriber.getMailingAddress().getAddressState(),ob834Entity.getMail_st(),"Mailing state does not match");
+            softAssert.assertEquals(subscriber.getMailingAddress().getAddressZipcode(),ob834Entity.getMail_zip_code(),"Mailing zipcode does not match");
+            softAssert.assertAll();
     }
 
     public void validateResponsiblePersonDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
