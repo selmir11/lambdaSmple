@@ -13,22 +13,4 @@ import java.util.List;
 @JsonIgnoreType
 public class Edi834TransactionDetails {
     private List<Transaction> transactionList;
-   // private CommonEDISegments commonEDISegments;
-//    public List<Transaction> getTransactionList() {
-//        return transactionList;
-//    }
-//
-//    public void setTransactionList(List<Transaction> transactionList) {
-//        this.transactionList = transactionList;
-//    }
-//
-//    public CommonEDISegments getCommonEDISegments() {
-//        return commonEDISegments;
-//    }
-//
-//    public void setCommonEDISegments(CommonEDISegments commonEDISegments) {
-//        this.commonEDISegments = commonEDISegments;
-//    }
-
-
 }

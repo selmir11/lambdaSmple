@@ -8,19 +8,6 @@ import lombok.NoArgsConstructor;
 import org.json.JSONArray;
 @Data @NoArgsConstructor @AllArgsConstructor @JsonIgnoreType
 public class CommonEDISegments {
-//    @JsonProperty("ISA")
-//    private List<List<String>> ISA;
-//    @JsonProperty("IEA")
-//    private List<List<String>> IEA;
-//    @JsonProperty("GS")
-//    private List<List<String>> GS;
-//    @JsonProperty("GE")
-//    private List<List<String>> GE;
-//    @JsonProperty("QTY")
-//    private List<List<String>> QTY; // should remove - specific to transaction!
-//    @JsonProperty("BGN")
-//    private List<List<String>> BGN; // should remove - specific to transaction!
-
     @JsonProperty("ISA")
     private JSONArray ISA;
     @JsonProperty("IEA")

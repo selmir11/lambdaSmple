@@ -19,7 +19,6 @@ public class SharedData {
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities;
     @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
     @Getter @Setter private static String dentalFileName;
-    @Getter @Setter private static List<Ob834FileDetails> ob834FileDetails;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static String EmployerName;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
