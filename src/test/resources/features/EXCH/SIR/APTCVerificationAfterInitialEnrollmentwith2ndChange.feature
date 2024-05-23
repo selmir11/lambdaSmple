@@ -2056,7 +2056,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Payment"
 
   @SLER-WIP
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-1618 - born ???
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
