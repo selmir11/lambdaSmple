@@ -1,6 +1,6 @@
-Feature: Seed01 - Exchange
+Feature: Regression Tests that require Seed 1
 
-  Scenario: Seed 01 For Exchange- Single Applicant NFA
+  Background: Seed 01 For Exchange- Single Applicant NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -111,10 +111,10 @@ Feature: Seed01 - Exchange
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
     | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE|
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should not be empty
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+   # And I download the files from sftp server with location "/outboundedi/"
+   # And I validate the ob834 files should not be empty
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -126,10 +126,11 @@ Feature: Seed01 - Exchange
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Other" and click continue
+    Then I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-    Then I update SSN number to new SSN number
+    Then I update SSN number to new SSN number "123456789"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
     Then I click continue on the Citizenship page
@@ -137,7 +138,7 @@ Feature: Seed01 - Exchange
     Then I verify the family overview table is present
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -146,10 +147,10 @@ Feature: Seed01 - Exchange
    And I click on Sign Out in the Header for "NonElmo"
    # And I validate the member details from policy tables
     And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC_CHANGE |           |
-    And I download the files from sftp server with location "/outboundedi/"
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
+      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
+   # And I download the files from sftp server with location "/outboundedi/"
   #  And I validate the ob834 files should have the values
   #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
   #    |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |

@@ -16,6 +16,7 @@ public class MemberDetails {
     String phoneNumber;
     String alternatePhNum;
     String ssn;
+    String oldSsn;
     String relation_to_subscriber;
     String signature;
     String fullName;
@@ -60,4 +61,17 @@ public class MemberDetails {
     Boolean isMailingAddressDifferent;
     String memberGroup;
     String isSubscriber="N";
+    String incorrectEntityIdCode;
+    String incorrectEntityTypeQualifier;
+    String incorrectIdCodeQualifier;
+    String incorrectIdCode;
+    String incorrect_dob;
+    String incorrect_gender;
+    String incorrect_race;
+    String incorrect_marital_status_code;
+    String incorrect_first_name ;
+    String incorrect_middle_name ;
+    String incorrect_last_name ;
 }
+
+

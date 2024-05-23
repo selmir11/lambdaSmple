@@ -27,9 +27,9 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.saveAndContinue();
     }
 
-    @Then("I update SSN number to new SSN number")
-    public void updateSSN() {
-        tellUsAboutYourselfPage.iUpdateSSN();
+    @Then("I update SSN number to new SSN number {string}")
+    public void updateSSN(String newSsn) {
+        tellUsAboutYourselfPage.iUpdateSSN(newSsn);
 
     }
 

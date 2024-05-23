@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BasicActions {
     private WebDriver driver;
@@ -33,6 +35,9 @@ public class BasicActions {
     public static BasicActions getInstance() {
         return LazyHolder.INSTANCE;
     }
+    private static final String SSN_REGEX =
+            "^(?!000|666|9\\d{2})\\d{3}[- ]?(?!00)\\d{2}[- ]?(?!0000)\\d{4}$";
+    private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
     private static class LazyHolder {
         private static final BasicActions INSTANCE = new BasicActions();
@@ -255,6 +260,13 @@ public class BasicActions {
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
+    }
+    public static boolean isSSNValid(String SSNvalue){
+        if (SSNvalue == null) {
+            return false;
+        }
+        Matcher matcher = SSN_PATTERN.matcher(SSNvalue);
+        return matcher.matches();
     }
 }
 
