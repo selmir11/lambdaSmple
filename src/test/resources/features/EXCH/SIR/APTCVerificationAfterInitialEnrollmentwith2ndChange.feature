@@ -2127,7 +2127,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
-    Then I select "No" for Foster care in state of Colorado
+
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -2154,6 +2154,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -2175,94 +2176,149 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
 
+    Then I validate I am on the "Employment Summary" page
+    And I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the second dependent
+    And I select the third dependent
+    And I click save and continue on tax status page
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the second dependent
+    And I select the third dependent
+    And I click save and continue on tax status page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I click on the Member Row 3
+
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    
+    Then I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
+    
+    Then I validate I am on the "Additional income" page
+    Then I click continue on the Additional Income page
+    
+    Then I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+
+    Then I validate I am on the "Income Summary" page
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click on the Member Row 6
+
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+
+    Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
 
     Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
+    Then I click continue on the Additional Income page
 
     Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
+    Then I click continue on the Deductions page
 
     Then I validate I am on the "Income Summary" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
     Then I click the save and continue button on the Income Summary Detail page
-
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select "Yes" tax filing status
-    And I select spouse to file taxes jointly
-
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select "Yes" tax filing status
-    And I select spouse to file taxes jointly
-
-    Then I validate I am on the "Tax status" page
-    And I select the option "Yes" to claim as dependent
-    And I select "No" tax filing status
-    And I select the "1" option for Who Will Claim as Dependents
-
-    Then I validate I am on the "Tax status" page
-    And I select the option "Yes" to claim as dependent
-    And I select "No" tax filing status
-    And I select the "1" option for Who Will Claim as Dependents
-
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
 
     Then I validate I am on the "Family Overview" page
-    Then I click on the Member Row 12
+    Then I click on the Member Row 9
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
 
     Then I validate I am on the "Employment Info" page
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click on the Member Row 12
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the second dependent
+    And I select the third dependent
+    And I click save and continue on tax status page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click on the Member Row 12
+
+    Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
 
@@ -2272,16 +2328,42 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
 
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I click the save and continue button on the Income Summary Detail page
 
-    And I select the option "Yes" to claim as dependent
-    And I select the option "No" to file federal income tax return next year
-    And I select the "2" option for Who Will Claim as Dependent
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the second dependent
+    And I select the third dependent
     And I click save and continue on tax status page
 
-    
-    Then I click continue on family overview page
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select "Yes" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "Yes" to claim as dependent
+    And I select the "2" option for Who Will Claim as Dependents
+    And I click save and continue on tax status page
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "Yes" to claim as dependent
+    And I select the "2" option for Who Will Claim as Dependents
+    And I click save and continue on tax status page
+
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
 
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue

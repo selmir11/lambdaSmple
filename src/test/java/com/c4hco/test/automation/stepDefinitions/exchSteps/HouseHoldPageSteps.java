@@ -35,6 +35,11 @@ public class HouseHoldPageSteps {
         houseHoldPage.iEditPrimaryMember(index);
     }
 
+    @Then("I click on the Member Row Red Icon {int}")
+    public void iEditPrimaryMemberRedIcon(int index){
+        houseHoldPage.iEditPrimaryMemberRedIcon(index);
+    }
+
     @And("I click on the table dropdown")
     public void iClickTableItem(){
         houseHoldPage.iClickTableItem();}
