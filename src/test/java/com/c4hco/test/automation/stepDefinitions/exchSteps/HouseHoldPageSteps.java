@@ -2,7 +2,8 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.HouseholdPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.And;
 
 public class HouseHoldPageSteps {
     HouseholdPage houseHoldPage = new HouseholdPage(WebDriverManager.getDriver());
@@ -26,12 +27,17 @@ public class HouseHoldPageSteps {
     }
 
     @And("I click the edit income {int}")
-    public void iClickEditIncomeLink(int Index){
-        houseHoldPage.iClickEditIncomeLink(Index);}
+    public void iClickEditIncomeLink(int index){
+        houseHoldPage.iClickEditIncomeLink(index);}
 
     @Then("I click on the Member Row {int}")
-    public void iEditPrimaryMember(int Index){
-        houseHoldPage.iEditPrimaryMember(Index);
+    public void iEditPrimaryMember(int index){
+        houseHoldPage.iEditPrimaryMember(index);
+    }
+
+    @Then("I click on the Member Row Red Icon {int}")
+    public void iEditPrimaryMemberRedIcon(int index){
+        houseHoldPage.iEditPrimaryMemberRedIcon(index);
     }
 
     @And("I click on the table dropdown")

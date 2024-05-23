@@ -32,6 +32,9 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow .linkButton")
     WebElement editPrimaryMember;
 
+    @FindBy(css = ".submitButton_Income .input")
+    WebElement editPrimaryMemberRedIcon;
+
     @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
     List<WebElement> memberBasicRow;
 
@@ -63,10 +66,16 @@ public class HouseholdPage {
     }
 
 
-    public void iEditPrimaryMember(int Index) {
+    public void iEditPrimaryMember(int index) {
         basicActions.waitForElementToBePresent(editPrimaryMember,15);
-        Index -= 1;
+        index -= 1;
         editPrimaryMember.click();
+    }
+    public void iEditPrimaryMemberRedIcon(int index) {
+        basicActions.waitForElementToBePresent(editPrimaryMemberRedIcon, 15 );
+        index -= 1;
+        editPrimaryMemberRedIcon.click();
+
     }
     public void iClickTableItem(){
         basicActions.waitForElementToBePresent(tableDropdown,15);
@@ -77,10 +86,9 @@ public class HouseholdPage {
         memberBasicInformation.get(member).click();
     }
 
-
-    public void iClickEditIncomeLink(int Index) {
+    public void iClickEditIncomeLink(int index) {
         basicActions.waitForElementToBePresent(editIncomeLink,15);
-        Index -= 1;
+        index -= 1;
         editIncomeLink.isDisplayed();
         editIncomeLink.click();
     }
