@@ -39,7 +39,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "SHP-PlanResults-ComparePlans")
     WebElement clickCompare;
 
-    @FindBy(xpath = "//a[contains(@id,'PlanResults-Compare')]")
+    @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 
     @FindBy(id = "SHP-PlanResults-InsuranceCompany")

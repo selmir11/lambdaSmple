@@ -17,6 +17,7 @@ public class EmploymentInfoPageSteps {
 
     @And("I enter employment details with {string} income at {string} frequency")
     public void iEnterEmploymentDetails(String Salary, String Frequency){employmentInfoPage.addEmploymentInfo(Salary, Frequency);}
+
     @Then("I enter company details with addressline1 as {string} and city as {string} and state as {string} and zipcode as {string} and income {string} at frequency {string}")
     public void ienterCompanyDetails(String addressline1,String city,String state,String zipcode,String income,String frequency){
         employmentInfoPage.genericEmploymentInfo(addressline1, city, state, zipcode, income, frequency);
