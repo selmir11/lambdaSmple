@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.TellUsAboutYourselfCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class TellUsAboutYourselfCoCoSteps {
@@ -17,6 +18,10 @@ public class TellUsAboutYourselfCoCoSteps {
     public void clickGoBack() {
         tellUsAboutYourselfCoCoPage.clickGoBackButton();
     }
+
+    @And("I validate the page text on Tell us about Yourself")
+    public void iverifyTextOnTellUsAboutYourselfPage(){tellUsAboutYourselfCoCoPage.verifyTextOnTellUsAboutYourselfPage();}
+
 
 
 
