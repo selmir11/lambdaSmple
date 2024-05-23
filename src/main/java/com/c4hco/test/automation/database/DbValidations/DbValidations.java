@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
+
 public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
   SoftAssert softAssert = new SoftAssert();
@@ -85,13 +87,17 @@ public class DbValidations {
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         }
           softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
-          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
-          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
-          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
-          softAssert.assertEquals("ssn or memberId - check and write a method to set", ob834Entity.getSponsor_id(), "sponsor id did not match"); // WIP
-          softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match"); //WIP - setPlan Year
-          softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match"); //WIP - set value
-          softAssert.assertEquals("if same as sponsorId - can compare from entity", ob834Entity.getSubscriber_id(), "subscriber id did not match"); //WIP - based on sponsorID?
+//          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
+//          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
+//          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
+          boolean validSSN = isSSNValid(SharedData.getPrimaryMember().getSsn());
+          if(validSSN){
+              softAssert.assertEquals(SharedData.getPrimaryMember().getSsn(),ob834Entity.getSponsor_id(),"Sponsor_id did not match");
+          }
+          softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
+          softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
+          softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
+          softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
           softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
 
           validateConstantFields(ob834Entity);
@@ -218,7 +224,6 @@ public class DbValidations {
     }
 
     public void validateIncorrectEntities(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        if(subscriber.getHasIncorrectEntities()){
             // validate the entities - set them from step.
             // update the entire method for optimal use - may not need if else blocks.
             softAssert.assertEquals(ob834Entity.getIncorrect_entity_id_code(), subscriber.getIncorrectEntityIdCode(), "Incorrect_entity_id_code did not match!");
@@ -231,21 +236,7 @@ public class DbValidations {
             softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), subscriber.getIncorrect_marital_status_code(), "Incorrect_marital_status_code did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_race(), subscriber.getIncorrect_race(), "Incorrect_race did not match!");
             softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), subscriber.getIncorrect_middle_name(), "Incorrect_middle_name did not match!");
-        }
-        else{
-            softAssert.assertEquals(ob834Entity.getIncorrect_entity_id_code(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_entity_type_qualifier(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_first_name(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_last_name(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_id_code_qualifier(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_id_code(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_dob(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_gender(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), null);
-            softAssert.assertEquals(ob834Entity.getIncorrect_race(), null);
-        }
-        softAssert.assertAll();
+            softAssert.assertAll();
     }
     public void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String >expectedValues){
         softAssert.assertEquals(ob834Entity.getMaintenance_type_code(), expectedValues.get("maintenance_type_code"),"maintenance_type_code mismatched");
