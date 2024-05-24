@@ -215,7 +215,6 @@ public class Edi834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-        
 
     }
 

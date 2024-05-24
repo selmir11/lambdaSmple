@@ -1,10 +1,9 @@
 Feature: Seed Tests - Exchange
-
-  @test
+  
   Scenario: Test Only scenario- edi file in local location
     And I read the edi file locally
 
-  @SLER-289 @test1
+  @SLER-289
   Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
