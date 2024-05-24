@@ -21,13 +21,6 @@ public class LoginPageSteps {
            public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
         }
-
-         @When("I login as Admin User")
-            public void i_login_as_admin_user() {loginPage.loginAsAnAdminUser();}
-    @When("I login as Admin any User {string} and {string}")
-    public void i_login_as_adminAnyUser(String usernameAdmin, String passwordAdmin) {
-        loginPage.loginAsAdminAnyUser(usernameAdmin, passwordAdmin); }
-
     @When("I login as {string} and {string} individual existing user")
     public void iLoginAsExistingIndividual(String userIndividual,String password) {
         loginPage.loginAsExistingIndividual(userIndividual, password);}
@@ -39,7 +32,6 @@ public class LoginPageSteps {
     public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
-
     @When("I login as Admin User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsAdminUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsAdminUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
