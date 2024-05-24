@@ -62,4 +62,11 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I validate I am on the "Plan Summary" page
     And I verify medical and dental text on Plan Summary page
+    And I continue on plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I click on Sign Out in the Header for "Payment"
+
+
+
 
