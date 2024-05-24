@@ -98,15 +98,6 @@ public class LoginPage {
         System.out.println("Password::"+pswd);
         signInButton.click();
     }
-
-    public void loginAsAnAdminUser(){
-        // TO-DO:: Get the credentials from a different file
-        basicActions.waitForElementToBePresent(usernameAdmin,100 );
-        usernameAdmin.sendKeys("C4test.aduser123@gmail.com");
-        basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        passwordAdmin.sendKeys("ALaska12!");
-        signAdmin.click();
-    }
     public void loginAsBrokerUser(String brokerUser,String Password){
         basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys(brokerUser);
@@ -128,6 +119,7 @@ public class LoginPage {
     }
 
     public void loginAsAdminUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
+        basicActions.refreshPage();
         basicActions.waitForElementToBePresent(usernameAdmin,40 );
         if(SharedData.getEnv().equals("staging")){
             usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgUser));
@@ -259,13 +251,7 @@ public class LoginPage {
                 throw new IllegalArgumentException("Invalid option: " + language);}
         softAssert.assertAll();
     }
-    public void loginAsAdminAnyUser(String adminUser,String adminPassword){
-        basicActions.waitForElementToBePresent(usernameAdmin,20 );
-        usernameAdmin.sendKeys(adminUser);
-        basicActions.waitForElementToBePresent(passwordAdmin,20 );
-        passwordAdmin.sendKeys(adminPassword);
-        signAdmin.click();
-    }
+
 
 
 }
