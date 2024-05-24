@@ -68,7 +68,7 @@ Feature: API Tests related to APTC
       | 85000.0    | 80920 | 08041 | 341.91 | 1990-01-01 | 2011-01-01  | 2013-01-01  | 421.03  | 7.05                |
       | 64300.0    | 80447 | 08049 | 258.65 | 1990-01-01 | 1991-01-01  | 2018-01-01  | 1107.47 | 4.35                |
 
-  @SLER-433 @SLER-452 @SLER-469 @SLER-470 @SLER-5009 @SLER-510
+  @SLER-433 @SLER-452 @SLER-469 @SLER-470 @SLER-509 @SLER-510
   Scenario Outline: Four Member Household
     Given I get APTC CALCULATOR base URL
     When I send the four member household's Information: "<Magi>", "<Zip>", "<Fips>", "<FPL>", "<DOB>", "<DOB2>", "<DOB3>", "<DOB4>"
@@ -161,7 +161,7 @@ Feature: API Tests related to APTC
       | 182520.0   | 81003 | 08101 | 300.00  | 1958-01-01 | 1961-01-01  | 1995-01-01  | 2005-01-01  | 2007-01-01  | 2009-01-01  | 2011-01-01  | 2013-01-01  | 2015-01-01  | 2020-01-01  | 2665.12 | 6.0                 |
       | 158700.0   | 81003 | 08101 | 250.00  | 1958-01-01 | 1961-01-01  | 1995-01-01  | 2005-01-01  | 2007-01-01  | 2009-01-01  | 2011-01-01  | 2013-01-01  | 2015-01-01  | 2020-01-01  | 3048.72 | 4.0                 |
 
-  @SLER-465 @SLER-505
+  @SLER-465 @SLER-506
   Scenario Outline: Two Member Household with different zip codes
     Given I get APTC CALCULATOR base URL
     When I send the two member in different zip codes household's Information: "<Magi>", "<Zip>", "<Fips>", "<Zip2>", "<Fips2>", "<FPL>", "<DOB>", "<DOB2>"
