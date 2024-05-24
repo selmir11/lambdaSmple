@@ -11,6 +11,10 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     @And("I enter a valid signature in {string}")
     public void enterSignature(String language) {declarationsAndSignaturePageCoCo.enterSignatureCoCo(language);}
 
+    @And("I enter a valid signature")
+    public void enterSignature() {declarationsAndSignaturePageCoCo.enterSignatureinCoCo();}
+
+
     @And("I select Go Back on the Declarations and Signature page")
     public void clickGoBackButton(){declarationsAndSignaturePageCoCo.goBack();}
 

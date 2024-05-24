@@ -4,7 +4,7 @@ Feature: Verify COCO Medical Plan results
     Given I open the login page on the "login" portal
 
 
-@WIP
+@WIP @COCOSilverFilterMedicalResults
 Scenario: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results
 When I click create a new account on login page
 Then I click create my account from pre-screen page
@@ -55,9 +55,13 @@ And I select continue on the income Summary CoCo page
 Then I validate I am on the "CoCo Family Overview" page
 And I select continue on the Family Overview page
 
-Then I validate I am on the "CoCo Tell us about life changes" page
+Then I validate I am on the "CoCo life change event" page
 And I select "MoveToCO" life change event
 And I select continue on the LCE page
+
+Then I validate I am on the "CoCo Declarations and Signature" page
+And I enter a valid signature
+And I click Continue on the Declarations And Signature Page CoCo
 
 
 

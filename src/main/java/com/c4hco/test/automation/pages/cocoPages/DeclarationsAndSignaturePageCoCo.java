@@ -33,6 +33,10 @@ public class DeclarationsAndSignaturePageCoCo {
         signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
 
+    public void enterSignatureinCoCo(){
+        basicActions.waitForElementToBePresent(signatureInputField, 20);
+        signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
+    }
     public void goBack() {
         basicActions.waitForElementToBeClickable(goBackButton,10);
         goBackButton.click();
