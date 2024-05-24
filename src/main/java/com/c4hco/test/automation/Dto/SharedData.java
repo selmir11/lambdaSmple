@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 public class SharedData {
     @Getter @Setter private static String firstPlanNameOnMedicalResultsPage;
@@ -31,6 +32,9 @@ public class SharedData {
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
     @Getter @Setter private static String dbName;
+    @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
+    @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
+
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;

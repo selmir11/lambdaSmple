@@ -9,12 +9,26 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class Edi834Validations {
+public class Ob834Validations {
     SoftAssert softAssert = new SoftAssert();
     SftpUtil sftpUtil = new SftpUtil();
 
     Edi834TransactionDetails edi834TransactionDetails = null;
     Transaction transaction = null;
+
+    public void validateAllSegments(){
+        validateCtrlFnGrpSegment();
+        validateSponsorPayerDetails();
+        validateAddlMaintReason();
+        validateInsSegment();
+        validateDtpSegment();
+        validateHierarchyLevelSeg();
+        validateNM1Seg();
+        validatePerSeg();
+        validateTrnSeg();
+        validateQtySeg();
+
+    }
 
     public void validateCtrlFnGrpSegment(){
         // ISA and IEA Segments

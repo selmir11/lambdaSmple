@@ -2,7 +2,6 @@ package com.c4hco.test.automation.edi.ediUtil;
 
 import com.c4hco.test.automation.Dto.Edi.*;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.EdiValidations.Edi834Validations;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -216,114 +215,8 @@ public class Edi834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-
-        // -- below is test only data -- //
-       // readTheDataFromEDIModel();
-        Edi834Validations edi834Validations = new Edi834Validations();
-        edi834Validations.validateCtrlFnGrpSegment();
-        edi834Validations.validateSponsorPayerDetails();
-        edi834Validations.validateDtpSegment();
+        
 
     }
-
-
-//    public void getSegments(JSONObject jsonObj) {
-//        // TO DO:: Move this to a diff file - set OB834 segments and values.
-//        // Validate - no null values - if null - proceed and save the others.
-//        Ob834FileDetails ob834FileDetails = new Ob834FileDetails();
-//
-//        // name segment
-//        JSONArray nameSegment = jsonObj.getJSONArray("N1");
-//        ob834FileDetails.setSponsorName(String.valueOf(nameSegment.getJSONArray(0).get(1)));
-//        ob834FileDetails.setSponsorId(String.valueOf(nameSegment.getJSONArray(0).get(3)));
-//
-//        Optional<Object> addlMainOptional = nameSegment.toList().stream().filter(o -> o.toString().contains("ADDL MAINT REASON")).findFirst();
-//        if (addlMainOptional.isPresent()) {
-//            ArrayList<?> addlMainObj = (ArrayList<?>) addlMainOptional.get();
-//            ob834FileDetails.setAddtl_maintreason((String) addlMainObj.get(0));
-//        }
-//
-//        // Individual Relationship Segment
-//        JSONArray insSegment = jsonObj.getJSONArray("INS");
-//        ob834FileDetails.setMaint_type_code(String.valueOf(insSegment.getJSONArray(0).get(2)));
-//        ob834FileDetails.setMaint_reasCode(String.valueOf(insSegment.getJSONArray(0).get(3)));
-//
-//
-//        // Date/Time Period Segment
-//        JSONArray dtpSegment = jsonObj.getJSONArray("DTP");
-//        Optional<Object> benefitBgnDtObj = dtpSegment.toList().stream()
-//                .filter(obj -> obj.toString().contains("348"))
-//                .findFirst();
-//
-//        Optional<Object> benefitEndDtObj = dtpSegment.toList().stream()
-//                .filter(obj -> obj.toString().contains("349"))
-//                .findFirst();
-//
-//        if (benefitBgnDtObj.isPresent()) {
-//            ArrayList<?> benefitBgnDrObj = (ArrayList<?>) benefitBgnDtObj.get();
-//
-//            String benefitBgnDate = (String) benefitBgnDrObj.get(2);
-//            ob834FileDetails.setBenefit_startDate(benefitBgnDate);
-//        }
-//
-//        if (benefitEndDtObj.isPresent()) {
-//            ArrayList<?> benefitEndObj = (ArrayList<?>) benefitEndDtObj.get();
-//
-//            String benefitEndDate = (String) benefitEndObj.get(2);
-//            ob834FileDetails.setBenefit_endDate(benefitEndDate);
-//        }
-//
-//        // Hierarchy level segment
-//        JSONArray hdSegment = jsonObj.getJSONArray("HD");
-//        ob834FileDetails.setHd_maint_typeCode(String.valueOf(hdSegment.getJSONArray(0).get(0)));
-//        ob834FileDetails.setInsurance_line_code(String.valueOf(hdSegment.getJSONArray(0).get(2)));
-//
-//        // NM1
-//        JSONArray nm1Segment = jsonObj.getJSONArray("NM1");
-//
-//        Optional<Object> subscriberOptionalObj = nm1Segment.toList().stream()
-//                .filter(obj -> obj.toString().contains("IL")).findFirst();
-//        System.out.println("subscriber list obj--" + subscriberOptionalObj);
-//
-//        // TO DO:: UPdate to list if we may have more with this entity_id_code.
-//        Optional<Object> updatedSubscriberOptionalObj = nm1Segment.toList().stream()
-//                .filter(obj -> obj.toString().contains("74")).findFirst();
-//
-//        Optional<Object> incorrectEntityOptional = nm1Segment.toList().stream()
-//                .filter(obj -> obj.toString().contains("70")).findFirst();
-//
-//
-//        System.out.println("updated subscriber list obj--" + updatedSubscriberOptionalObj);
-//
-//        if (subscriberOptionalObj.isPresent()) {
-//            ArrayList<?> subscriberObj = (ArrayList<?>) subscriberOptionalObj.get();
-//            ob834FileDetails.setFirstName((String) subscriberObj.get(3));
-//            ob834FileDetails.setLastName((String) subscriberObj.get(2));
-//            ob834FileDetails.setSsn((String) subscriberObj.get(8));
-//        }
-//
-//        if (updatedSubscriberOptionalObj.isPresent()) {
-//            ArrayList<?> updatedSubscriberObj = (ArrayList<?>) updatedSubscriberOptionalObj.get();
-//            ob834FileDetails.setUpdatedFirstName((String) updatedSubscriberObj.get(2));
-//            ob834FileDetails.setUpdatedLastName((String) updatedSubscriberObj.get(3));
-//            ob834FileDetails.setUpdatedSsn((String) updatedSubscriberObj.get(8));
-//        }
-//
-//        if (incorrectEntityOptional.isPresent()) {
-//            ArrayList<?> incorrectEntityOptionalObj = (ArrayList<?>) incorrectEntityOptional.get();
-//            ob834FileDetails.setIncorrectEntityIdCode((String) incorrectEntityOptionalObj.get(0));
-//            ob834FileDetails.setIncorrectIdCodeQualifier((String) incorrectEntityOptionalObj.get(7));
-//            ob834FileDetails.setIncorrectIdCode((String) incorrectEntityOptionalObj.get(8));
-//        }
-//
-//
-//        List<Ob834FileDetails> ob834FileRecords = SharedData.getOb834FileDetails();
-//        if (ob834FileRecords == null) {
-//            ob834FileRecords = new ArrayList<>();
-//        }
-//        ob834FileRecords.add(ob834FileDetails);
-//        SharedData.setOb834FileDetails(ob834FileRecords);
-//    }
-
 
 }
