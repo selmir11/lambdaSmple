@@ -68,7 +68,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//*[@id='English']")
      WebElement preferredLanguageButtonEnglish;
-
     @FindBy(id = "primaryUser-input")
      WebElement primaryUserCheckbox;
 

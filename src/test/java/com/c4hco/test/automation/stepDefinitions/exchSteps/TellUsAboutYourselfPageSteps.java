@@ -12,6 +12,11 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.userSexQuestion(Sex);
     }
 
+    @And("I select {string} as pregnancy option")
+    public void userPregnancyQuestion(String Pregnant) {
+        tellUsAboutYourselfPage.userPregnantQuestion(Pregnant);
+    }
+
     @Then("I select {string} to Are You Applying")
     public void isUserApplyingForInsurance(String YNApplying) {
         tellUsAboutYourselfPage.isUserApplyingForHealthInsurance(YNApplying);

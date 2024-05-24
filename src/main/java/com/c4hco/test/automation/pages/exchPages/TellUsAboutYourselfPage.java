@@ -53,6 +53,26 @@ public class TellUsAboutYourselfPage {
     @FindBy(css = "#addMember #continueButton")
     WebElement btnSaveAndContinue;
 
+    @FindBy(id = "isPregnantFalse" )
+    WebElement rdobtnPregnantNo;
+
+    @FindBy(css = "isPregnantTrue")
+    WebElement rdobtnPregnantYes;
+
+    public void userPregnantQuestion(String Pregnant) {
+        switch (Pregnant){
+            case "No":
+                rdobtnPregnantNo.click();
+                break;
+            case "Yes":
+                rdobtnPregnantYes.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalide option: " + Pregnant);
+
+        }
+
+    }
     public void userSexQuestion(String Sex) {
         MemberDetails acctHolder = SharedData.getPrimaryMember();
         acctHolder.setGender(Sex);
