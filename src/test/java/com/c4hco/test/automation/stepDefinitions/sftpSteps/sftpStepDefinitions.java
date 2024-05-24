@@ -56,7 +56,6 @@ public class sftpStepDefinitions {
                 sftpUtil.readEdiFile(SharedData.getDentalFileName());
                 ob834Validations.validateOb834File();
             }
-           // edi834Validations.validateOb834Record(expectedValues);
         }
 
     }
