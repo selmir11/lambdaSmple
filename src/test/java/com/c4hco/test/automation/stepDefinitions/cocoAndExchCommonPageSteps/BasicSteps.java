@@ -326,7 +326,7 @@ public class BasicSteps {
             case "Admin Portal individual dashboard" :
                 pageUrl = "/AdminPortal/individual/";
                 break;
-                case "LUGY Find expert help" :
+            case "LUGY Find expert help" :
                 pageUrl = "broker-portal/find-expert-help";
                 break;
             default:

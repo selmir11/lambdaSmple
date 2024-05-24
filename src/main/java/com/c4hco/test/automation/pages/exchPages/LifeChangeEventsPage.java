@@ -78,11 +78,16 @@ public class LifeChangeEventsPage {
             case "MovedToColorado":
                     lceInputCheckbox.get(6).click();
                     break;
+            case "Change of Incarceration Status":
+                lceInputCheckbox.get(7).click();
+                break;
+            case "Other":
+                lceInputCheckbox.get(8).click();
+                break;
             case "NoneOfThese":
                 lceInputCheckbox.get(9).click();
                 break;
-
-                default:
+            default:
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
         saveAndContinueButton.get(0).click();

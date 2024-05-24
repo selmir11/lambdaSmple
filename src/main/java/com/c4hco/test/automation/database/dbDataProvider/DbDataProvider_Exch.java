@@ -42,7 +42,7 @@ public class DbDataProvider_Exch {
     }
 
     public String getFipcode(){
-        String zipcode = primaryMember.getResAddress().getResidentialAddressZipcode();
+        String zipcode = primaryMember.getResAddress().getAddressZipcode();
         return  postgresHandler.getResultFor("fip_code", exchDbQueries.getFipcode(zipcode));
     }
 
