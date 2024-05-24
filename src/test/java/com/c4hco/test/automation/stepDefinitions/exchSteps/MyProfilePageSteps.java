@@ -36,4 +36,19 @@ public class MyProfilePageSteps {
 
 @Then("I verify Password text on My profile page {string}")
 public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchPage.verifyPasswordTextOnMyProfileExchPage(language); }
+
+    @Then("I change Preferred Contact Method {string}")
+    public void iChangePreferredContactMethod() {
+        myProfileExchPage.clickPreferredContactDrp();
+    }
+
+    @And("I change the Preferred Contact Method to {string}")
+    public void iChangeThePreferredContactMethodTo(String contactPrefrences) {
+        myProfileExchPage.PreferredContactMethod(contactPrefrences);
+    }
+
+    @And("I change Preferred Language Contact Method to {string}")
+    public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
+        myProfileExchPage.PreferredContactLanguageMethod(langContactPreferred);
+    }
 }

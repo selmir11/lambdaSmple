@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
 import com.c4hco.test.automation.utils.WebDriverManager;
@@ -122,6 +123,18 @@ public class LoginPage {
         }else{
             usernameAdmin.sendKeys(qaUser);
             passwordAdmin.sendKeys(qaPW);
+        }
+        signAdmin.click();
+    }
+
+    public void loginAsAdminUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
+        basicActions.waitForElementToBePresent(usernameAdmin,40 );
+        if(SharedData.getEnv().equals("staging")){
+            usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgUser));
+            passwordAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgPW));
+        }else{
+            usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(qaUser));
+            passwordAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(qaPW));
         }
         signAdmin.click();
     }
@@ -253,6 +266,8 @@ public class LoginPage {
         passwordAdmin.sendKeys(adminPassword);
         signAdmin.click();
     }
+
+
 }
 
     // ############################## VALIDATION METHODS #########################

@@ -12,9 +12,14 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.verifyHeaderPage(Language);
         }
 
-        @Then("I verify Find Expert Help page title Text in {string}")
-        public void i_verify_find_expert_help_page_title_text_in(String Language) {
-                findExpertHelpPage.verifyTitlePage(Language);
+        @Then("I verify Manage who helps you header text in {string}")
+        public void IVerifyManageWhoHelpsYouHeaderText(String Language){
+                findExpertHelpPage.verifyManageWhoHelpsYouHeaderText(Language);
+        }
+
+        @Then("I verify Find Expert Help page {string} title Text in {string}")
+        public void i_verify_find_expert_help_page_title_text_in(String Marketplace, String Language) {
+                findExpertHelpPage.verifyTitlePage(Marketplace, Language);
         }
 
         @Then("I verify Find Expert Help page Text in {string}")
@@ -37,6 +42,11 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateFindABrokerButtonExists(expectedState);
         }
 
+        @Then("I validate the Change Broker button {string} displayed")
+        public void iValidateTheChangeBrokerButtonDisplayed(String expectedState){
+                findExpertHelpPage.validateChangeBrokerButtonExists(expectedState);
+        }
+
         @Then("I validate the Have a Broker call you button is displayed")
         public void iValidateTheHaveABrokerCallYouButtonExists(){
                 findExpertHelpPage.validateHaveABrokerCallYouButtonExists();
@@ -57,6 +67,16 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateBrokerExists();
         }
 
+        @And("I validate the current broker table header labels")
+        public void iValidateCurrentBrokerTableHeaderLabels(){
+                findExpertHelpPage.validateCurrentBrokerTableHeader();
+        }
+
+        @And("I validate my broker details in the current broker table are {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+        public void iValidateBrokerDetailsCurrentBrokerTable(String brokerName, String agencyName, String licenseNumber, String zipCode, String phoneNumber, String type, String status){
+                findExpertHelpPage.validateBrokerDetailsCurrentBrokerTable(brokerName, agencyName, licenseNumber, zipCode, phoneNumber, type, status);
+        }
+
         @Then("I click the back button from Find Expert Help page")
         public void iClickBackButton() {
                 findExpertHelpPage.clickBackButton();
@@ -65,5 +85,18 @@ public class FindExpertHelpSteps {
         @Then("I click Continue on my own button from Manage who helps you page")
         public void iClickContinueOnOwnButton() {
                 findExpertHelpPage.clickContinueOnMyOwnButton();
+        }
+
+        @And("I validate no broker is authorized")
+        public void iValidateNoBrokerIsAuthorized() {findExpertHelpPage.validateNoBrokerIsAuthorized();}
+
+        @Then("I validate the Continue with my application button {string} displayed")
+        public void iValidateContinueWithMyApplicationButtonExists(String expectedState){
+                findExpertHelpPage.validateContinueWithMyApplicationButtonExists(expectedState);
+        }
+
+        @Then("I validate the Continue on my own button {string} displayed")
+        public void iValidateContinueOnMyOwnButtonExists(String expectedState){
+                findExpertHelpPage.validateContinueOnMyOwnButtonExists(expectedState);
         }
 }

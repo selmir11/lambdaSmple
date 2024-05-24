@@ -22,5 +22,13 @@ public class AddInfoForAdditionalMemberCoCoPageSteps {
     public void clickGoBack() {
         addInfoForAdditionalMemberPage.clickGoBackButton();
     }
-    
+
+    @Then("I validate the page text on the Additional information for add members in {string}")
+    public void validatePageTextOnTheAdditionalInformationForAdditionalMembers(String Language) { addInfoForAdditionalMemberPage.verifyTextOnAdditionalInformationForAdditionalMemberPage(Language);
+    }
+
+    @Then("I validate the error messages on the Add info for add member page in {string}")
+    public void verifyErrorMessagesOnTheAddInfoForAddMemberPage (String Language) {
+        addInfoForAdditionalMemberPage.verifyErrorMessagesAddInfoForAddMember(Language);
+    }
 }

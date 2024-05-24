@@ -40,6 +40,11 @@ public class LoginPageSteps {
         loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
 
+    @When("I login as Admin User any environment {string} password {string} and {string} password {string}")
+    public void iLoginAsAdminUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
+        loginPage.loginAsAdminUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
+    }
+
     @When("I click create forgot {string}")
     public void i_click_create_forget(String credentials) {
             switch (credentials){
@@ -102,6 +107,7 @@ public class LoginPageSteps {
     public void iVerifyExpiredPasswordErrorMessageIn(String language) {
         loginPage.verifyExpiredPasswordErrorMessage(language);
     }
+
 
 
 }

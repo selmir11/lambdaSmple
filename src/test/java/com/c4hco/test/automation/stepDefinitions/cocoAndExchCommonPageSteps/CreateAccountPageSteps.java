@@ -49,4 +49,14 @@ public class CreateAccountPageSteps {
     public void iVerifyInformationSharingOptionsIn(String language) {
         createAccountPage.verifyInformationSharingOptions(language);
     }
+
+    @And("I enter duplicate data for account creation")
+    public void iEnterDuplicateDateForAccountCreation(){
+            createAccountPage.enterDuplicateAccountCreationData();
+    }
+
+    @Then("I validate the We're unable to proceed with this email error message in {string}")
+    public void iValidateTheAccountExistsErrorMessage(String language){
+            createAccountPage.validateAccountExistsErrorMessage(language);
+    }
 }

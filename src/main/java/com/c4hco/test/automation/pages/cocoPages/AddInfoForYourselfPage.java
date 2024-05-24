@@ -11,9 +11,7 @@ import java.util.List;
 
 public class AddInfoForYourselfPage {
     private BasicActions basicActions;
-
     SoftAssert softAssert = new SoftAssert();
-
     public AddInfoForYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -148,14 +146,12 @@ public class AddInfoForYourselfPage {
     public void memberMailingAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
         basicActions.waitForElementToBePresent(mailingAddressLine1Input, 30);
         mailingAddressLine1Input.sendKeys(addressLine1);
-
         basicActions.waitForElementToBePresent(mailingCityInput, 30);
         mailingCityInput.sendKeys(city);
 
         basicActions.waitForElementToBePresent(mailingStateDropdown, 30);
         mailingStateDropdown.click();
         basicActions.selectValueFromDropdown(mailingStateDropdown, mailingStateDropdownOptions, state);
-
         basicActions.waitForElementToBePresent(mailingZipcodeInput, 30);
         mailingZipcodeInput.sendKeys(zipcode);
 

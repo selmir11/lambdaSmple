@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -31,7 +33,7 @@ public class FindACertifiedBrokerPage {
     @FindBy(id ="findBroker-searchBroker-btn")
     WebElement searchButton;
 
-    @FindBy(xpath ="//mat-panel-title[.=' More Details ']")
+    @FindBy(xpath ="//*[@id='mat-expansion-panel-header-0']/span/mat-panel-title")
     WebElement moreDetails;
 
     @FindBy(xpath ="//*[@id='mat-expansion-panel-header-0']/span/mat-panel-title")
@@ -102,6 +104,28 @@ public class FindACertifiedBrokerPage {
 
     @FindBy(id ="broker-languages-available")
     WebElement availableLanguages;
+    @FindBy(id ="action-link")
+    WebElement removeCurrentBroker;
+    @FindBy(xpath ="//*[@id='save-btn']/button")
+    WebElement okeyRemoveCurrentBroker;
+
+    @FindBy(id ="findBroker-pageRight-btn")
+    WebElement findBrokerPaginationRight;
+
+    @FindBy(id ="findBroker-pageLeft-btn")
+    WebElement findBrokerPaginationLeft;
+
+    @FindBy(id ="current-page-num")
+    WebElement findBrokerCurrentPage;
+
+    @FindBy(xpath ="//*[@id='findBroker-contact-you']/span[1]")
+    WebElement findBrokerContactYouTitle;
+
+    @FindBy(id ="contact-by-broker-link")
+    WebElement findBrokerFillOutFormText;
+
+    @FindBy(xpath ="//*[@id='findBroker-contact-you']/span[3]")
+    WebElement findBrokerContactYouText;
 
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
@@ -160,6 +184,7 @@ public class FindACertifiedBrokerPage {
     }
 
     public void clickAuthorizedBroker() {
+        SharedData.setHasBroker(true);
         basicActions.waitForElementToBePresent(authorizeBrokerButton,60);
         authorizeBrokerButton.click();
         basicActions.getDriver().findElement(By.id("client-information-table"));
@@ -297,6 +322,58 @@ public class FindACertifiedBrokerPage {
 
         basicActions.waitForElementToBePresent(totalResultCount,30);
         softAssert.assertEquals(totalResultCount.getText(), ExpectedText);
+        softAssert.assertAll();
+    }
+
+    public void clickRightPaginationArrowButtonFindBroker(int numberTimes){
+        basicActions.waitForElementToBePresent(findBrokerPaginationRight,30);
+        for(int i=0; i<=numberTimes; i++){
+            basicActions.waitForElementToBeClickable(findBrokerPaginationRight,10);
+            findBrokerPaginationRight.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void clickLeftPaginationArrowButtonFindBroker(int numberTimes){
+        basicActions.waitForElementToBePresent(findBrokerPaginationLeft,30);
+        for(int i=0; i<numberTimes; i++){
+            basicActions.waitForElementToBeClickable(findBrokerPaginationLeft,10);
+            findBrokerPaginationLeft.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void verifyCurrentBrokerResultsPage(String currentPage){
+        basicActions.waitForElementToBePresent(findBrokerCurrentPage,30);
+        basicActions.waitForElementToBeClickable(findBrokerCurrentPage,10);
+        softAssert.assertEquals(findBrokerCurrentPage.getText(), currentPage);
+        softAssert.assertAll();
+    }
+
+    public void clickRemoveCurrentBroker() {
+       basicActions.waitForElementToBePresent(removeCurrentBroker,20);
+       removeCurrentBroker.click();
+       basicActions.waitForElementToBePresent(okeyRemoveCurrentBroker,20);
+       okeyRemoveCurrentBroker.click();
+    }
+
+    public void validateBrokerContactYouText(String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(findBrokerContactYouTitle,100);
+                softAssert.assertEquals(findBrokerContactYouTitle.getText(),"Would you rather have a broker contact you instead?");
+                softAssert.assertEquals(findBrokerFillOutFormText.getText(),"Fill out this form to have a certified Broker call you within 60 minutes.");
+                softAssert.assertEquals(findBrokerContactYouText.getText(),"We will now direct you to our partner website to complete your request to be contacted by one of Connect for Health Colorado's certified Brokers.");
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(findBrokerContactYouTitle,100);
+                softAssert.assertEquals(findBrokerContactYouTitle.getText(),"\u00BFPrefiere que se comunique con usted un agente certificado?");
+                softAssert.assertEquals(findBrokerFillOutFormText.getText(),"Llene este formulario para solicitar que le llame un agente certificado en un plazo de 60 minutos.");
+                softAssert.assertEquals(findBrokerContactYouText.getText(),"Le dirigiremos ahora al sitio web de nuestros socios para completar su petici\u00F3n de solicitar que le llame uno de los Asistentes certificados de Connect for Health Colorado");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 }

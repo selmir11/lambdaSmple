@@ -19,8 +19,8 @@ public class MyProfilePageStepsCoco {
         myProfilePage.clickMakeChangesButtonCoCo();
     }
 
-    @And("I click on Save Button in CoCo")
-    public void iclickSaveButtonCoCo() {
+    @Then("I click on dropdown Preferred Contact Method")
+    public void iClickOnDropdownPreferredContactMethod() {
         myProfilePage.clickSaveButtonCoCo();
     }
 
