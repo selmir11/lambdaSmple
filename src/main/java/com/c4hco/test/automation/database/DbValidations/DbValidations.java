@@ -108,16 +108,33 @@ public class DbValidations {
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
        //   validateRelCode(subscriber, ob834Entity); //WIP
-       //   validateTotalEnrollees(subscriber.getMemberGroup(), ob834Entity); // WIP - set the values
+          validateMemberCountDetails(ob834Entity); // WIP - set the values
 
       }
     }
 
-    public void validateTotalEnrollees(String memberGroup, Ob834DetailsEntity ob834Entity){
-     String totalEnrollees = SharedData.getGroupDetails().getGroupNumAndEnrollees().get(memberGroup);
-     softAssert.assertEquals(totalEnrollees, ob834Entity.getTotal_enrollees());
+    public void validateMemberCountDetails(Ob834DetailsEntity ob834Entity){
+     int totalGroups = SharedData.getTotalGroups();
+        List<MemberDetails> memberList = SharedData.getMembers();
+     if(totalGroups == 1 && memberList != null){
+         int totalDependents = memberList.size();
+         int totalEnrollees = totalDependents+1;
+         int totalSubscribers = 1;
+        softAssert.assertEquals(totalEnrollees, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
+        softAssert.assertEquals(totalDependents, ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+        softAssert.assertEquals(totalSubscribers,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
+     }else if(totalGroups == 1 && memberList==null){
+         int totalEnrollees =1;
+         int totalDependents =0;
+         int totalSubscribers =1;
+         softAssert.assertEquals(totalEnrollees, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
+         softAssert.assertEquals(totalDependents, ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+         softAssert.assertEquals(totalSubscribers,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
+     }else{
+         //WIP
+     }
 
-        //  softAssert.assertAll();
+       softAssert.assertAll();
     }
 
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){

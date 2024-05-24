@@ -35,6 +35,6 @@ public class AccountOverviewPageSteps {
     }
     @And("I set the test scenario details")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
-        accountOverviewPage.verifyScenarioDetails(expectedResult);
+        accountOverviewPage.setScenarioDetails(expectedResult);
     }
 }

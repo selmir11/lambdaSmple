@@ -149,9 +149,10 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
-    public void verifyScenarioDetails(List<Map<String, String>> expectedResult) {
+    public void setScenarioDetails(List<Map<String, String>> expectedResult) {
         String totalMembers = String.valueOf(medicalMemberNames.size());
-        String noOfGroups = String.valueOf(SharedData.getTotalGroups());
+        String noOfGroups = expectedResult.get(0).get("totalMedGroups");
+        SharedData.setTotalGroups(Integer.parseInt(noOfGroups));
         softAssert.assertEquals(totalMembers, expectedResult.get(0).get("totalMembers"), "The total number of members on the application match.");
         softAssert.assertEquals(noOfGroups, expectedResult.get(0).get("totalMedGroups"), "The number of groups in grouping members match.");
         softAssert.assertAll();

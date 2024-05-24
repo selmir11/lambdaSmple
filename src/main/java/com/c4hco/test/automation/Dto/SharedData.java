@@ -26,8 +26,6 @@ public class SharedData {
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
-    @Getter @Setter private static String totalSubscribers;
-    @Getter @Setter private static String totalDependents;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
@@ -50,8 +48,6 @@ public class SharedData {
         ob834DetailsEntities = null;
         dbData = null;
         totalGroups = 0;
-        totalSubscribers = null;
-        totalDependents= null;
         planYear = null;
         groupDetails = null;
         dbName = null;
