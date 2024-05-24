@@ -42,4 +42,9 @@ public class PaymentSelectionPageSteps {
     public void ValidateTextInCreditCardPayment(List<String> data){
         paymentSelectionPage.verifyCreditPaymentLabelText(data);
     }
+
+    @Then("Validate text in Bank Detail Payment type")
+    public void ValidateTextInBankDetailPayment(List<String> data){
+        paymentSelectionPage.verifyBankDetailLabelText(data);
+    }
 }

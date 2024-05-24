@@ -127,7 +127,7 @@ Feature: Payment Selection page tests
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-497 @ValidateTextpaymentPage
-  Scenario: Validate Credit Card Payment text on payment page
+  Scenario: Validate Bank Detail Payment text on payment page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -176,6 +176,35 @@ Feature: Payment Selection page tests
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
     And I select Withdrawal from Bank Account button
+    And Validate text in Bank Detail Payment type
+      | Bank Details                    |
+      | Account Number                  |
+      | Bank Name                       |
+      | Bank Routing Number             |
+      | Account Holder                  |
+      | First Name                      |
+      | Middle Name                     |
+      | Last Name                       |
+      | Address One                     |
+      | Address Two                     |
+      | City                            |
+      | Zip Code                        |
+      | State                           |
+      | Account Number is required      |
+      | Bank Name is required           |
+      | Bank Routing Number is required |
+      | First Name is required          |
+      | Last Name is required           |
+      | Street Address is required      |
+      | City is required                |
+      | Zip Code is required            |
+      | State is required               |
+    And I click on Sign Out in the Header for "Elmo"
