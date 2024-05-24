@@ -1,3 +1,4 @@
+@COCOMedicalResults
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
@@ -62,6 +63,15 @@ And I select continue on the LCE page
 Then I validate I am on the "CoCo Declarations and Signature" page
 And I enter a valid signature
 And I click Continue on the Declarations And Signature Page CoCo
+
+Then I validate I am on the "Application Results" page
+And I click Continue on the Application Results Page CoCo
+
+Then I validate I am on the "Start Shopping" page
+Then I click continue on start shopping page
+
+Then I validate I am on the "Medical Plan Results" page
+
 
 
 
