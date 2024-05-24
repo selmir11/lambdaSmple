@@ -16,7 +16,7 @@ public class Ob834Validations {
     Edi834TransactionDetails edi834TransactionDetails = null;
     Transaction transaction = null;
 
-    public void validateAllSegments(){
+    public void validateOb834File(){
         validateCtrlFnGrpSegment();
         validateSponsorPayerDetails();
         validateAddlMaintReason();
