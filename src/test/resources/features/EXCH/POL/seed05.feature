@@ -116,7 +116,7 @@ Feature: Seed05 - Exchange
 
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
-    When I login as Admin User
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin dashboard" page
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
