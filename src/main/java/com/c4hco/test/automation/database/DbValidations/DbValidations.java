@@ -87,6 +87,7 @@ public class DbValidations {
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         }
           softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
+          softAssert.assertEquals(dbData.getCsrLevel(),ob834Entity.getCsr_level(),"CSR level does not match");
 //          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
 //          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
 //          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
