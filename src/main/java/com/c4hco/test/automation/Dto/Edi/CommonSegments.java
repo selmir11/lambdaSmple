@@ -16,12 +16,9 @@ public class CommonSegments {
     private List<List<String>> REF;
     @JsonProperty("N1")
     private List<List<String>> N1;
-    @JsonProperty("ISA")
-    private List<List<String>> ISA;
     @JsonProperty("QTY")
     private List<List<String>> QTY;
     @JsonProperty("BGN")
     private List<List<String>> BGN;
-    @JsonProperty("GS")
-    private List<List<String>> GS;
+    // Include SE
 }
