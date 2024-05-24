@@ -150,11 +150,12 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason |
       | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
       | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
-   # And I download the files from sftp server with location "/outboundedi/"
-  #  And I validate the ob834 files should have the values
-  #    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-  #    |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-  #    |          021          | 021                 | 25                   |                          |                             |                    |
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should have the values
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+      |          021          | 021                 | 25                   |                          |                             |                    |
+
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
