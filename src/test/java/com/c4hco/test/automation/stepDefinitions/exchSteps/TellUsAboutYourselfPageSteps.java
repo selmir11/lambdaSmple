@@ -12,6 +12,11 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.userSexQuestion(Sex);
     }
 
+    @And("I select {string} as pregnancy option")
+    public void userPregnancyQuestion(String Pregnant) {
+        tellUsAboutYourselfPage.userPregnantQuestion(Pregnant);
+    }
+
     @Then("I select {string} to Are You Applying")
     public void isUserApplyingForInsurance(String YNApplying) {
         tellUsAboutYourselfPage.isUserApplyingForHealthInsurance(YNApplying);
@@ -22,9 +27,9 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.saveAndContinue();
     }
 
-    @Then("I update SSN number to new SSN number")
-    public void updateSSN() {
-        tellUsAboutYourselfPage.iUpdateSSN();
+    @Then("I update SSN number to new SSN number {string}")
+    public void updateSSN(String newSsn) {
+        tellUsAboutYourselfPage.iUpdateSSN(newSsn);
 
     }
 

@@ -69,7 +69,7 @@ public class Ob834DetailsEntity {
     String responsible_person_street_line2;
     String responsible_person_city;
     String responsible_person_st;
-    String repsonsibe_person_zip_code;
+    String responsible_person_zip_code;
     String hd_maint_type_code;
     String insurance_line_code;
     String benefit_begin_date;
@@ -78,6 +78,7 @@ public class Ob834DetailsEntity {
     String hios_plan_id;
     String premium_reduction_amt;
     String csr_amount;
+    String csr_level;
     String premium_amount;
     String rate_area;
     String total_responsible_amount;
@@ -87,6 +88,7 @@ public class Ob834DetailsEntity {
     String ack_requested;
     String usage_indicator;
     String filename;
+    String addl_maint_reason;
     String sep_reason;
     String application_date;
     String current_ind;

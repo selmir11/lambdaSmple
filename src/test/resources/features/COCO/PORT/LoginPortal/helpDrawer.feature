@@ -35,7 +35,7 @@ Feature: Tests related to the help drawer
   Scenario: Validate the verbiage on the help drawer in Admin Portal
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
-    When I login as Admin User
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin dashboard" page
     Then I click create account on admin portal
     And I click on help icon
@@ -52,7 +52,7 @@ Feature: Tests related to the help drawer
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
-    When I login as Admin User
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin dashboard" page
     Then I click create account on admin portal
     And I click on help icon button

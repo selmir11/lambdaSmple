@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.ResidentialAddress;
+import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -81,7 +81,8 @@ public class WhoAreYouPage {
     }
 
     public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
-        MemberDetails accHolder = SharedData.getPrimaryMember();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        Address address = new Address();
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys(City);
 
@@ -90,23 +91,21 @@ public class WhoAreYouPage {
         basicActions.selectValueFromDropdown(memberState, stateDropdownOptions, State);
 
         memberZip.sendKeys(zipcode);
-        accHolder.setZipcode(zipcode);
 
         basicActions.waitForElementToBeClickable(countyDropDown,15);
         countyDropDown.click();
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
 
         memberDOB.sendKeys(dateOfBirth);
-        accHolder.setDob(dateOfBirth);
+        subscriber.setDob(dateOfBirth);
         memberSSN.sendKeys(SSNvalue);
-        accHolder.setSsn(SSNvalue);
-        ResidentialAddress residentialAddress = new ResidentialAddress();
-        residentialAddress.setResidentialAddressLine1(addressLine1);
-        residentialAddress.setResidentialAddressCity("Denver");
-        residentialAddress.setResidentialAddressState("CO");
-        residentialAddress.setResidentialAddressZipcode(zipcode);
-        residentialAddress.setResidentialAddressCounty(county);
-        accHolder.setResAddress(residentialAddress);
+        subscriber.setSsn(SSNvalue);
+        address.setAddressLine1(addressLine1);
+        address.setAddressCity(City);
+        address.setAddressState(State);
+        address.setAddressZipcode(zipcode);
+        address.setAddressCounty(county);
+        subscriber.setResAddress(address);
         backSaveAndContinue.get(1).click();
     }
 

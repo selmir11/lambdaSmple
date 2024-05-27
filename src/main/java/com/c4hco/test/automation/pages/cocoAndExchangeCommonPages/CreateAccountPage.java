@@ -66,9 +66,8 @@ public class CreateAccountPage {
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
 
-    @FindBy(xpath = "//*[@for='English']")
+    @FindBy(id = "English")
      WebElement preferredLanguageButtonEnglish;
-
     @FindBy(id = "primaryUser-input")
      WebElement primaryUserCheckbox;
 
@@ -99,6 +98,9 @@ public class CreateAccountPage {
      WebElement c4OptionTxt;
     @FindBy(xpath= "(//label[@class='mdc-label'])[4]")
      WebElement cocoOptionTxt;
+
+    @FindBy(xpath = "//span[@class='banner-error-message']")
+    WebElement bannerErrorMessage;
 
 
     private BasicActions basicActions;
@@ -305,4 +307,35 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + language);}
     }
 
+    public void enterDuplicateAccountCreationData(){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 10);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        email.sendKeys(subscriber.getEmailId());
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
+        exchangeTermsOfUseCheckbox.click();
+
+        submitButton.click();
+    }
+
+    public void validateAccountExistsErrorMessage(String language){
+        basicActions.waitForElementToBePresent(bannerErrorMessage, 10);
+        switch(language){
+            case "English":
+                softAssert.assertEquals(bannerErrorMessage.getText(),"Sorry, we're unable to proceed with this email. Please double-check and try again.");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(bannerErrorMessage.getText(),"Lo sentimos, no se puede proceder con este correo electr\u00F3nico. Verif\u00EDquelo y vuelva a intentarlo.");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
 }

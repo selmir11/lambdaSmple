@@ -148,6 +148,72 @@ public class PaymentSelectionPage {
     @FindBy(xpath = "//input[@id='SOL-CreditDetails-ZipInput']/parent::div/label")
     WebElement zipLabel;
 
+    @FindBy(id = "SOL-BankDetails-Title")
+    WebElement BankDetailTitle;
+
+    @FindBy(id="SOL-BankDetails-InvalidAccountNumber")
+    WebElement AccoutNumberLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidBankName")
+    WebElement BankNameLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidRoutingNumber")
+    WebElement BankRoutingNumberLabel;
+
+    @FindBy(id="SOL-BankDetails-AccountHolder")
+    WebElement AccountHolderLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidFirstName")
+    WebElement FirstNameLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidMiddleName")
+    WebElement MiddleNameLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidLastName")
+    WebElement LastNameLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidAddressOne")
+    WebElement AddressOneLabel;
+
+    @FindBy(id="SOL-BankDetails-AddressTwo")
+    WebElement AddressTwoLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidCity")
+    WebElement CityLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidZip")
+    WebElement ZipLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidState")
+    WebElement StateLabel;
+
+    @FindBy(id="SOL-BankDetails-ValidAccountNumber")
+    WebElement AccoutNumberInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidBankName")
+    WebElement BankNameInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidRoutingNumber")
+    WebElement BankRoutingNumberInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidFirstName")
+    WebElement FirstNameInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidLastName")
+    WebElement LastNameInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidAddressOne")
+    WebElement AddressOneInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidCity")
+    WebElement CityInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidZip")
+    WebElement ZipInvalidLabel;
+
+    @FindBy(id="SOL-BankDetails-InvalidState")
+    WebElement StateInvalidLabel;
+
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
@@ -241,6 +307,43 @@ public class PaymentSelectionPage {
         softAssert.assertEquals(cityLabel.getText(),data.get(9));
         softAssert.assertEquals(stateLabel.getText(),data.get(10));
         softAssert.assertEquals(zipLabel.getText(),data.get(11));
+        softAssert.assertAll();
+    }
+
+    public void verifyBankDetailLabelText(List<String> data){
+        basicActions.waitForElementToBePresent(cardNumber,10);
+        softAssert.assertEquals(BankDetailTitle.getText(),data.get(0));
+        softAssert.assertEquals(AccoutNumberLabel.getText(),data.get(1));
+        softAssert.assertEquals(BankNameLabel.getText(),data.get(2));
+        softAssert.assertEquals(BankRoutingNumberLabel.getText(),data.get(3));
+        softAssert.assertEquals(AccountHolderLabel.getText(),data.get(4));
+        softAssert.assertEquals(FirstNameLabel.getText(),data.get(5));
+        softAssert.assertEquals(MiddleNameLabel.getText(),data.get(6));
+        softAssert.assertEquals(LastNameLabel.getText(),data.get(7));
+        softAssert.assertEquals(AddressOneLabel.getText(),data.get(8));
+        softAssert.assertEquals(AddressTwoLabel.getText(),data.get(9));
+        softAssert.assertEquals(CityLabel.getText(),data.get(10));
+        softAssert.assertEquals(ZipLabel.getText(),data.get(11));
+        softAssert.assertEquals(StateLabel.getText(),data.get(12));
+        enterAccountNumber.click();
+        enterBankName.click();
+        enterBankRoutingNumber.click();
+        enterAccountHolderFirstName.click();
+        enterAccountHolderLastName.click();
+        addressLocatorForWithdrawalFromBank.click();
+        cityLocatorForWithdrawalFromBank.click();
+        zipLocatorForWithdrawalFromBank.click();
+        stateLocatorForWithdrawalFromBank.click();
+        zipLocatorForWithdrawalFromBank.click();
+        softAssert.assertEquals(AccoutNumberInvalidLabel.getText(),data.get(13));
+        softAssert.assertEquals(BankNameInvalidLabel.getText(),data.get(14));
+        softAssert.assertEquals(BankRoutingNumberInvalidLabel.getText(),data.get(15));
+        softAssert.assertEquals(FirstNameInvalidLabel.getText(),data.get(16));
+        softAssert.assertEquals(LastNameInvalidLabel.getText(),data.get(17));
+        softAssert.assertEquals(AddressOneInvalidLabel.getText(),data.get(18));
+        softAssert.assertEquals(CityInvalidLabel.getText(),data.get(19));
+        softAssert.assertEquals(ZipInvalidLabel.getText(),data.get(20));
+        softAssert.assertEquals(StateInvalidLabel.getText(),data.get(21));
         softAssert.assertAll();
     }
 }

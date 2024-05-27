@@ -63,11 +63,11 @@ public class GroupingMembersMedicalPage {
 
     public void getUniqueZipCodes(int expectedGroups) {
         Set<String> uniqueZipCodes = new HashSet<>();
-        String primaryMemZipCode = SharedData.getPrimaryMember().getResAddress().getResidentialAddressZipcode();
+        String primaryMemZipCode = SharedData.getPrimaryMember().getResAddress().getAddressZipcode();
         List<MemberDetails> members = SharedData.getMembers();
 
         uniqueZipCodes.add(primaryMemZipCode);
-        members.forEach(member -> uniqueZipCodes.add(member.getResAddress().getResidentialAddressZipcode()));
+        members.forEach(member -> uniqueZipCodes.add(member.getResAddress().getAddressZipcode()));
         int actualUniqueZipCodes = uniqueZipCodes.size();
         softAssert.assertEquals(actualUniqueZipCodes, expectedGroups, "Expected Groups did not match with actual");
         softAssert.assertAll();
@@ -78,7 +78,7 @@ public class GroupingMembersMedicalPage {
         List<MemberDetails> members = basicActions.addPrimaryMemToMembersListIfAbsent();
 
         for (MemberDetails memberDetails : members) {
-            String zipcode = memberDetails.getResAddress().getResidentialAddressZipcode();
+            String zipcode = memberDetails.getResAddress().getAddressZipcode();
 
             if (membersByZipcode.containsKey(zipcode)) {
                 List<String> fullName = membersByZipcode.get(zipcode);
@@ -107,7 +107,7 @@ public class GroupingMembersMedicalPage {
                     m.getFullName().equals(namesList.get(0))).findFirst();
             if (member.isPresent()) {
                 MemberDetails mem = member.get();
-                zipcode = mem.getResAddress().getResidentialAddressZipcode();
+                zipcode = mem.getResAddress().getAddressZipcode();
 
             } else {
                 Assert.fail(" Member searching for is not found");

@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
+    String applicationId = SharedData.getPrimaryMember().getApplication_id();
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -57,20 +58,24 @@ public class DbQueries_Exch {
     }
 
     public String en_plan(String planName){
-        return "select * from qa_exch.en_plan ep \n" +
+        return "select * from "+dbName+".en_plan ep \n" +
                 "where plan_marketing_name = '"+planName+"'" +
                 "and plan_year = '2024'\n" +
                 "limit 1";
     }
 
     public String en_issuer(String hiosIssuerId){
-        return "select name, tin_num from qa_exch.en_issuer ei\n" +
+        return "select name, tin_num from "+dbName+".en_issuer ei\n" +
                 "where hios_issuer_id = '"+hiosIssuerId+"'"+
                 "and plan_year = '2024'";
     }
 
     public String exchPersonId(){
         return "select  exch_person_id from "+dbName+".es_member where member_id='"+SharedData.getPrimaryMemberId()+"'";
+    }
+    public String csrLevel(){
+        return "SELECT csr_level FROM "+dbName+".en_member_coverage_financial_ah\n" +
+                "\twhere application_id='"+applicationId+"' limit 1";
     }
 
 }
