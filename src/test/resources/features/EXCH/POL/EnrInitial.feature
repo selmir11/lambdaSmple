@@ -172,7 +172,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
+    #Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     And I select "Anthem Dental Family"
     Then I click continue on dental plan results page
@@ -197,6 +197,11 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    And I click on ClickHere link for "My Documents"
+    #Then I validate the notice "IND_Plan Selection and Payment Confirmation (EN-002-04)" exist in my document letter Containers
+    And I click on download enrolment document
 
 
 

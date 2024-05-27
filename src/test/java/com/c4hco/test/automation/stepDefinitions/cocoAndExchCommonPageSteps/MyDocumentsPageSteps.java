@@ -5,10 +5,16 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.awt.*;
+
 public class MyDocumentsPageSteps {
 
 
 MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver());
+
+    public MyDocumentsPageSteps() throws AWTException {
+    }
+
     @Then("I click link my docs on accountOverview page")
     public void iClickLinkMyDocsOnAccountOverviewPage(){
         myDocumentsPage.ClickLinkMyDocsWelcomePage();
@@ -20,5 +26,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate the notice {string} exist in my document letter Containers")
     public void iValidateTheNoticeExistInMyDocumentLetter(String documentName) {
         myDocumentsPage.validateTheNoticeExistInMyDocumentLetterPage(documentName);
+    }
+    @And("I click on download enrolment document")
+    public void iClickOnEnrolmentDocumentTodownload(){
+        myDocumentsPage.downloadEnrolmentDocument();
     }
 }

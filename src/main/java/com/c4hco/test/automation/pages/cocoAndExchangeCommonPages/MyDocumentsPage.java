@@ -9,13 +9,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class MyDocumentsPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    Robot robot = new Robot();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
-    public MyDocumentsPage(WebDriver webDriver) {
+    public MyDocumentsPage(WebDriver webDriver) throws AWTException {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -28,6 +31,11 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
+    @FindBy(xpath = "(//span[contains(@class,'ng-star-inserted')])[4]")
+    WebElement expandDownloadEnrolmentDocument;
+
+    @FindBy(xpath = "//a[@class='btn-second-action-button download-button']")
+    WebElement downloadEnrolmentDocument;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -65,5 +73,15 @@ public class MyDocumentsPage {
         basicActions.scrollToElement(documentsInfoMessage);
         softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
         softAssert.assertAll();
+    }
+
+    public  void downloadEnrolmentDocument() {
+        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
+        expandDownloadEnrolmentDocument.click();
+        basicActions.waitForElementToBeClickable(downloadEnrolmentDocument, 10);
+        downloadEnrolmentDocument.click();
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
     }
 }
