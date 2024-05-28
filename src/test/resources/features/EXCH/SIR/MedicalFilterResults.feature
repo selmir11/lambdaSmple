@@ -5,7 +5,7 @@ Feature: Medical Plan Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
+  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults  @test
   Scenario Outline: SelectVerifyCarrierfilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
