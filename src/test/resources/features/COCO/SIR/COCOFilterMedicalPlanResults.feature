@@ -4,8 +4,8 @@ Feature: Verify COCO Medical Plan results
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-@COCOFilterMedicalResultsWithSilverEnhanced @WIP
-Scenario Outline: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results
+@COCOFilterMedicalResultsWithSilverEnhanced
+Scenario Outline: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results - SLCR-85
   When I click create a new account on login page
   Then I click create my account from pre-screen page
   And I enter general mandatory data for "coco" account creation
