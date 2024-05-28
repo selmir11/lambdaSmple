@@ -28,11 +28,6 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    public void enterSignatureCoCo(String language){
-        basicActions.waitForElementToBePresent(signatureInputField, 20);
-        signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
-    }
-
     public void enterSignatureinCoCo(){
         basicActions.waitForElementToBePresent(signatureInputField, 20);
         signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
