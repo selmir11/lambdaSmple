@@ -1,10 +1,10 @@
-@COCOMedicalResults @WIP
+@COCOMedicalResults
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-@COCOFilterMedicalResultsWithSilverEnhanced
+@COCOFilterMedicalResultsWithSilverEnhanced @WIP
 Scenario Outline: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results
   When I click create a new account on login page
   Then I click create my account from pre-screen page
@@ -82,8 +82,8 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   |Gold             |Elevate Health Plans Colorado Option Gold                           |
 
 
-  @COCOFilterMedicalResultsWithSilver
-  Scenario Outline: This will verify the COCO filters provide a correct medical plan result
+  @COCOFilterMedicalResults_NoSilver
+  Scenario Outline: This will verify the COCO filters provide a correct medical plan result - this is a merge of CCRT-389 to SCLR-84
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
