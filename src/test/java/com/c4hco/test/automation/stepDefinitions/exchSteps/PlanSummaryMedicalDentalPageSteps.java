@@ -11,6 +11,7 @@ public class PlanSummaryMedicalDentalPageSteps {
     public void continueButton(){
        planSummaryMedicalDentalPage.continueButton();
     }
+
     @And("I continue on plan summary page")
     public void continuePlanSummaryPage(){
         planSummaryMedicalDentalPage.continuePlanSummaryPage();

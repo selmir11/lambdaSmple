@@ -95,13 +95,13 @@ public class DentalPlansResultsPage {
     }
 
     public void selectfromInsuranceCompanyList(String insuranceCompany){
-        String companyPath = "//div[text()='" + insuranceCompany + "']";
+        String companyPath = "//*[text()='" + insuranceCompany + "']";
         basicActions.getDriver().findElement(By.xpath(companyPath)).click();
     }
 
     public void validateDentalPlanText (int index,String dentalPlanText){
         basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn, 10);
-        index = index - 1;
+        //index = index - 1;
         String indexString = String.valueOf(index);
         String planID = "DentalPlanResults-SelectThisPlan_" + indexString;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
