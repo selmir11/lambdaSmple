@@ -155,7 +155,7 @@ public class MedicalPlanResultsPage {
 
     public void validatePlanResults(int index, String planText) {
         basicActions.waitForElementToBePresent(selectFirstPlan, 10);
-        index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
+        //index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
         String indexString = String.valueOf(index); //turns the int index into a string value.
         String planID = "PlanResults-SelectThisPlan_" + indexString; //sets the ID String using the index
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID)); //sets the Web element based on the ID
