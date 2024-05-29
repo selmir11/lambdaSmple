@@ -146,6 +146,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        basicActions.waitForElementToBeClickable( cocoTermsOfUseCheckbox,20 );
         SharedData.setAppType(appType);
         addDetails();
         switch(appType){
