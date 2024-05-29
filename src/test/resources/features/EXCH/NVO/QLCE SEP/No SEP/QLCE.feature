@@ -5,7 +5,7 @@ Feature: QLCE Birth during closed enrollment
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-27 @SLER-32 @SLER-39 @SLER-43
+  @SLER-27 @SLER-32 @SLER-39 @SLER-43 @NVOExchRegression
   Scenario Outline: Validate QLCE allows user to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
