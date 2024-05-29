@@ -36,7 +36,7 @@ Feature: Navigation-Additional information for additional member page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page and continue with "01011980", "Male", "Spouse", and applying "Yes"
-    And I click continue on Tell us about additional members page
+    And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
