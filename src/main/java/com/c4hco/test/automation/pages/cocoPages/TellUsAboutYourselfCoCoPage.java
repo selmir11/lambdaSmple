@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,10 +13,10 @@ import java.util.List;
 
 public class TellUsAboutYourselfCoCoPage {
 
-    @FindBy (css = "div.header-1")
+    @FindBy(css = "div.header-1")
     WebElement pageTitleText;
 
-    @FindBy (css = "span.body-text-1")
+    @FindBy(css = "span.body-text-1")
     List<WebElement> pageValidationText;
 
     @FindBy(css = "input#firstName")
@@ -28,23 +29,26 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy(css = "input#lastName")
     WebElement lastNameText;
 
-    @FindBy (id = "birthDate")
+    @FindBy(id = "birthDate")
     WebElement memberDOBTbox;
 
-    @FindBy (css = "app-male-female-option .button")
+    @FindBy(css = "app-male-female-option .button")
     List<WebElement> genderButton;
 
-    @FindBy (css = "select.input-select")
+    @FindBy(css = "select.input-select")
     WebElement relationshipOption;
 
-    @FindBy (css = "app-yes-no-option .button")
+    @FindBy(css = "app-yes-no-option .button")
     List<WebElement> applyButton;
 
-    @FindBy (id = "ELIG-MemberDetails-SaveAndContinue")
+    @FindBy(id = "ELIG-MemberDetails-SaveAndContinue")
     WebElement saveAndContinueButton;
 
-    @FindBy (id = "ELIG-MemberDetails-GoBack")
+    @FindBy(id = "ELIG-MemberDetails-GoBack")
     WebElement goBackButton;
+
+    @FindBy(css = "small.required")
+    List<WebElement> requiredValidationError;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -106,74 +110,93 @@ public class TellUsAboutYourselfCoCoPage {
     }
 
 
-///////Page Validation-------------------------------------------------------------------------------------
+    ///////Page Validation-------------------------------------------------------------------------------------
 ///Text validation
-public void verifyTextOnTellUsAboutYourselfPage(){
-    basicActions.waitForElementToBePresent(pageTitleText,20);
-    softAssert.assertEquals(pageTitleText.getText(), "Tell us about yourself");
-    softAssert.assertEquals(pageTitleText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageTitleText.getCssValue("font-size"), "36px");
-    softAssert.assertEquals(pageTitleText.getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(0).getText(), "First name");
-    //softAssert.assertEquals(firstNameText.getText(), SharedData.getPrimaryMember().getFirstName());
-    softAssert.assertEquals(pageValidationText.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(0).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(1).getText(), "Middle name or initial (optional)");
-    softAssert.assertEquals(pageValidationText.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(1).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(2).getText(), "Last name");
-    //softAssert.assertEquals(lastNameText.getText(), SharedData.getPrimaryMember().getLastName());
-    softAssert.assertEquals(pageValidationText.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(2).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(3).getText(), "Suffix optional");
-    softAssert.assertEquals(pageValidationText.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(3).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(4).getText(), "Date of birth");
-    //softAssert.assertEquals(memberDOBTbox.getText(), SharedData.getPrimaryMember().getDob());
-    softAssert.assertEquals(pageValidationText.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(4).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(5).getText(), "Sex");
-    softAssert.assertEquals(pageValidationText.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(5).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(genderButton.get(0).getText(), "  Female");
-    softAssert.assertEquals(genderButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(genderButton.get(0).getCssValue("font-size"), "20px");
-    softAssert.assertEquals(genderButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");
-    softAssert.assertEquals(genderButton.get(1).getText(), "Male");
-    softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
-    softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName()+" is "+Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " +Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0))+". "+Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1)+"'s?");
-    softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(6).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(relationshipOption.getText(), "Select Option\nSpouse\nParent or Guardian\nChild or Other dependent\nSibling\nStepparent\nStepchild\nPartner\nOther Relative\nUnrelated");
-    softAssert.assertEquals(pageValidationText.get(7).getText(), "Are you applying for health insurance?");
-    softAssert.assertEquals(pageValidationText.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(pageValidationText.get(7).getCssValue("font-size"), "16px");
-    softAssert.assertEquals(pageValidationText.get(7).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(applyButton.get(0).getText(), "  Yes");
-    softAssert.assertEquals(applyButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(applyButton.get(0).getCssValue("font-size"), "20px");
-    softAssert.assertEquals(applyButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");
-    softAssert.assertEquals(applyButton.get(1).getText(), "No");
-    softAssert.assertEquals(applyButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(applyButton.get(1).getCssValue("font-size"), "20px");
-    softAssert.assertEquals(applyButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-    softAssert.assertEquals(goBackButton.getText(), " Go Back");
-    softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
-    softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-    softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
-    softAssert.assertEquals(saveAndContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-    softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
-    softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
-    softAssert.assertAll();
+    public void verifyTextOnTellUsAboutYourselfPage() {
+        basicActions.waitForElementToBePresent(pageTitleText, 20);
+        softAssert.assertEquals(pageTitleText.getText(), "Tell us about yourself");
+        softAssert.assertEquals(pageTitleText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageTitleText.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(pageTitleText.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(0).getText(), "First name");
+        //softAssert.assertEquals(firstNameText.getText(), SharedData.getPrimaryMember().getFirstName());
+        softAssert.assertEquals(pageValidationText.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(1).getText(), "Middle name or initial (optional)");
+        softAssert.assertEquals(pageValidationText.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(2).getText(), "Last name");
+        //softAssert.assertEquals(lastNameText.getText(), SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(pageValidationText.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(3).getText(), "Suffix optional");
+        softAssert.assertEquals(pageValidationText.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(3).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(4).getText(), "Date of birth");
+        //softAssert.assertEquals(memberDOBTbox.getText(), SharedData.getPrimaryMember().getDob());
+        softAssert.assertEquals(pageValidationText.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(4).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(5).getText(), "Sex");
+        softAssert.assertEquals(pageValidationText.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(5).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(genderButton.get(0).getText(), "  Female");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(genderButton.get(1).getText(), "Male");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " is " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + "'s?");
+        softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(6).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(relationshipOption.getText(), "Select Option\nSpouse\nParent or Guardian\nChild or Other dependent\nSibling\nStepparent\nStepchild\nPartner\nOther Relative\nUnrelated");
+        softAssert.assertEquals(pageValidationText.get(7).getText(), "Are you applying for health insurance?");
+        softAssert.assertEquals(pageValidationText.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(pageValidationText.get(7).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(pageValidationText.get(7).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(applyButton.get(0).getText(), "  Yes");
+        softAssert.assertEquals(applyButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(applyButton.get(0).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(applyButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(applyButton.get(1).getText(), "No");
+        softAssert.assertEquals(applyButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(applyButton.get(1).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(applyButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(goBackButton.getText(), " Go Back");
+        softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyValidationerrormessageOnTellUsAboutYourselfPage() {
+        basicActions.waitForElementToBePresent(pageTitleText, 20);
+        softAssert.assertEquals(pageTitleText.getText(), "Tell us about yourself");
+        firstNameText.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        ;
+        lastNameText.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        ;
+        clickSaveAndContinueButton();
+        softAssert.assertEquals(requiredValidationError.get(0).getText(), "First name is required");
+        softAssert.assertEquals(requiredValidationError.get(1).getText(), "Last name is required");
+        softAssert.assertEquals(requiredValidationError.get(2).getText(), "Date of birth is required");
+        softAssert.assertEquals(requiredValidationError.get(3).getText(), "Please select one of the options below");
+        softAssert.assertEquals(requiredValidationError.get(4).getText(), "Please select one of the options below");
+        softAssert.assertAll();
+    }
 }
-}
+
+
