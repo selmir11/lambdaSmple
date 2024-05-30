@@ -19,7 +19,7 @@ public class MyProfilePageStepsCoco {
         myProfilePage.clickMakeChangesButtonCoCo();
     }
 
-    @And("I click on Save Button in CoCo")
+    @And("I click on Save Button on My profile CoCo")
     public void iclickSaveButtonCoCo() {
         myProfilePage.clickSaveButtonCoCo();
     }
