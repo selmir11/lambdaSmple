@@ -4,7 +4,7 @@ Feature: Medical Assistance eligibility - related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-49
+  @SLER-49  @NVOExchRegression
   Scenario: Determine Medical Assistance eligibility when user selects "Afghan or Ukrainian Humanitarian Parolee" immigration status
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -75,7 +75,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I click on view results and shop
     Then I verify text that the member eligible for MA on the app results page
 
-  @SLER-50
+  @SLER-50   @NVOExchRegression
   Scenario: Determine Medical Assistance eligibility when user selects "ns of Micronesia, the Marshall Islands or Palau" immigration status
     When I click create a new account on login page
     Then I click create my account from pre-screen page

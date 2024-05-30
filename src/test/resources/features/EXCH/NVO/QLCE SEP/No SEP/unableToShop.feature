@@ -4,7 +4,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-28
+  @SLER-28 @NVOExchRegression
   Scenario: Verify that user not able to shop (not Colorado resident)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -47,7 +47,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
 
-  @SLER-29
+  @SLER-29 @NVOExchRegression
   Scenario: Verify that user not able to shop (not applying for health insurance)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -83,7 +83,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
 
-    @SLER-33
+    @SLER-33  @NVOExchRegression
     Scenario: 1 member, no LCE, not allowed to shop during the Closed Enrollment period
       When I click create a new account on login page
       Then I click create my account from pre-screen page
