@@ -108,7 +108,7 @@ public class DbValidations {
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
        //   validateRelCode(subscriber, ob834Entity); //WIP
-          validateMemberCountDetails(ob834Entity); // WIP - set the values
+          validateMemberCountDetails(ob834Entity);
 
       }
     }

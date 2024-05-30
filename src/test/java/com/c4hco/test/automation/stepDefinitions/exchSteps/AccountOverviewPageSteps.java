@@ -33,7 +33,7 @@ public class AccountOverviewPageSteps {
         accountOverviewPage.verifyMemberNames();
         accountOverviewPage.verifyPlanInfo();
     }
-    @And("I set the test scenario details")
+    @Given("I set the test scenario details")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
         accountOverviewPage.setScenarioDetails(expectedResult);
     }

@@ -1,6 +1,9 @@
 Feature: Regression Tests that require Seed 1
 
   Background: Seed 01 For Exchange- Single Applicant NFA
+    Given I set the test scenario details
+      | totalMedGroups | totalMembers |
+      | 1              | 1            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -94,9 +97,6 @@ Feature: Regression Tests that require Seed 1
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    And I set the test scenario details
-      | totalMedGroups | totalMembers |
-      | 1              | 1            |
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate medical plan details from my policies page
