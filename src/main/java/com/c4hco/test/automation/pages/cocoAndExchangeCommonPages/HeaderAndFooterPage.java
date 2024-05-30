@@ -197,7 +197,6 @@ public class HeaderAndFooterPage {
 
     public void clickFindAPlanLinkLink() {
         basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
-        basicActions.wait(3000);
         centerHeaderLink.get(1).click();
     }
 
@@ -661,7 +660,6 @@ public class HeaderAndFooterPage {
                 break;
             case "Individual Portal":
                 basicActions.waitForElementToBeClickable(privacyPolicyLink, 50);
-                basicActions.wait(3000);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;
