@@ -18,5 +18,5 @@ Feature: My Profile Page Coco
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button in CoCo
-    And I click on Save Button in CoCo
+    And I click on Save Button on My profile CoCo
     Then I click on Go back to Welcome page Button on My Profile CoCo
