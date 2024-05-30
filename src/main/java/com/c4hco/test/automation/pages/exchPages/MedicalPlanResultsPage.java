@@ -33,12 +33,17 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
 
-    @FindBy(id = "SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id = "SHP-PlanResults-ComparePlans")
+    @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
 
+    @FindBy (id = "MedicalPlanResults-SaveAndExit")
+    WebElement btnSaveExist;
+
+    @FindBy (id = "MedicalPlanResults-GoBack")
+    WebElement btnGoBack;
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 

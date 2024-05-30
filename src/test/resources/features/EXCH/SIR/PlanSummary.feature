@@ -9,8 +9,10 @@ Feature: Medical and Dental Plan Summary Verification test
   Scenario: VerifyMedicalDentalPlanSummaryResults
     When I click create a new account on login page
 
-    Then I validate I am on the "Create Account" page
+    Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
+    
+    Then I validate I am on the "Create Account" page
     And I enter general mandatory data for "exchange" account creation
 
     Then I validate I am on the "Login" page
@@ -80,6 +82,7 @@ Feature: Medical and Dental Plan Summary Verification test
   @SLER-515-WIP @VerifyMedicalDentalPlanSummaryResultsMultiple
    Scenario: Validate grouping members: Grandparent in 1 group, Parent+2 children in 1 group
     When I click create a new account on login page
+    Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
 
     Then I validate I am on the "Create Account" page

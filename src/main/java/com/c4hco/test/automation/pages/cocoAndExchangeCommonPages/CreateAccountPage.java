@@ -68,7 +68,8 @@ public class CreateAccountPage {
 
     @FindBy(id = "English")
      WebElement preferredLanguageButtonEnglish;
-    @FindBy(id = "primaryUser-input")
+    //@FindBy(id = "primaryUser-input")
+     @FindBy(id ="loginPortal-createAccount-isPrimaryUserChecked-input")
      WebElement primaryUserCheckbox;
 
     @FindBy(id = "repUser-input")
@@ -146,7 +147,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
-        basicActions.waitForElementToBeClickable( cocoTermsOfUseCheckbox,20 );
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
         SharedData.setAppType(appType);
         addDetails();
         switch(appType){

@@ -22,7 +22,10 @@ public class DentalPlansResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    @FindBy(id="DentalPlanResults-SelectThisPlan_0")
+    //@FindBy(css = "#PlanResults-SelectThisPlan_1.button-primary.select")
+    //@FindyBy(xpath = "//button[@id='PlanResults-SelectThisPlan_1']")
+    //@FindBy (id = "PlanResults-SelectThisPlan_1")
+    @FindBy(css = "#PlanResults-SelectThisPlan_1 .button")
     WebElement selectFirstDentalPlanBtn;
 
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
@@ -56,7 +59,7 @@ public class DentalPlansResultsPage {
 
     public void selectFirstDentalPlan(){
         iGetFirstDentalPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
+        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,15);
         selectFirstDentalPlanBtn.click();
     }
     public void clickContinueOnDentalResultsPage(){
