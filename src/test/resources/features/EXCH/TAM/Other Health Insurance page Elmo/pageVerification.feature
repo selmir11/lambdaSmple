@@ -134,6 +134,7 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "TRICARE" as ELMO health insurance option
     Then I select "Other" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
+    Then I click Go Back on the Elmo OHI Medicare page
     And I validate I am on the "Elmo Other Health Insurance" page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
@@ -141,6 +142,7 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "Health First Colorado" as ELMO health insurance option
     Then I select "CHP+" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
+    Then I click Go Back on the Elmo OHI Medicare page
     And I validate I am on the "Elmo Other Health Insurance" page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|

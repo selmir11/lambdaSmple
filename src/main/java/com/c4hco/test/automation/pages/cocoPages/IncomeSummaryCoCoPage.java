@@ -33,6 +33,7 @@ public class IncomeSummaryCoCoPage {
 
     public void verifyTotalAnnualIncome(String Amount){
         basicActions.waitForElementToBePresent(totalAnnualIncome, 10);
+        basicActions.wait(3000);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
         softAssert.assertAll();
     }
@@ -50,6 +51,7 @@ public class IncomeSummaryCoCoPage {
                 break;
             case "No":
                 basicActions.waitForElementListToBePresent(projectedIncomeButtons, 15);
+                basicActions.wait(3000);
                 projectedIncomeButtons.get(1).click();
                 break;
             default:

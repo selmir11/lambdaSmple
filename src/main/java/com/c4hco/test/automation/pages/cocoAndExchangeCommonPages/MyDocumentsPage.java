@@ -56,6 +56,12 @@ public class MyDocumentsPage {
                 softAssert.assertEquals(documentsInfoMessage.getText(),"No tiene documentos ni cartas en este momento");
                 softAssert.assertAll();
                 break;
+            case "Spanish Headers":
+                basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
+                softAssert.assertEquals(myDocumentsTitle.getText(),"Mis Documentos y Cartas");
+                softAssert.assertEquals(myDocumentsSubTitle.getText(),"Documentos y Cartas Anteriores");
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }

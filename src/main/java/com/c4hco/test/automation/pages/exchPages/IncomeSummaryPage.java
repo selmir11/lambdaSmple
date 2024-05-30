@@ -26,6 +26,8 @@ public class IncomeSummaryPage {
         switch(projectedIncomeOption){
             case "No":
                 basicActions.waitForElementToBeClickable(projectedIncomeNo, 30);
+                basicActions.scrollToElement(projectedIncomeNo);
+                basicActions.wait(5000);
                 projectedIncomeNo.click();
                 break;
             default:

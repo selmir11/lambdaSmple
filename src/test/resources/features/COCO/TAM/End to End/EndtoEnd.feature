@@ -45,7 +45,7 @@ Feature: End to End Testing
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature in "English"
+    And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
@@ -90,7 +90,7 @@ Feature: End to End Testing
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature in "English"
+    And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I verify text that the member don't qualify for a health plan on the App Results Page CoCo
 
@@ -134,7 +134,7 @@ Feature: End to End Testing
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature in "English"
+    And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page

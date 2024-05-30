@@ -41,6 +41,7 @@ public class AdditionalIncomeCoCoPage {
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.wait(3000);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
