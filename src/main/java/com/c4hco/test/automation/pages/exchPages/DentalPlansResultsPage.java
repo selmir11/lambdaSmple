@@ -103,7 +103,7 @@ public class DentalPlansResultsPage {
     }
 
     public void validateDentalPlanText (int index,String dentalPlanText){
-        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn, 10);
+        basicActions.waitForElementToBePresent(dropdownCoverageLevel, 10);
         //index = index - 1;
         String indexString = String.valueOf(index);
         String planID = "DentalPlanResults-SelectThisPlan_" + indexString;

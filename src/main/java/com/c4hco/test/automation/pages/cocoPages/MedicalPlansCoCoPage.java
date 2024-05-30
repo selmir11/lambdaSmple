@@ -22,16 +22,16 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
-    @FindBy(id = "SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "MedicalPlanResults-Continue")
     public WebElement continueButton;
 
-    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
+    @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
-    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "SHP-PlanResults-MetalTier")
+    @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
 
     public void selectFirstMedicalPlanCoCo() {

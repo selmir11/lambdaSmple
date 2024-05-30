@@ -5,7 +5,7 @@ Feature: Medical and Dental Plan Summary Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-100 @VerifyMedicalDentalPlanSummaryResults
+  @SLER-100 @VerifyMedicalDentalPlanSummaryResults @test
   Scenario: VerifyMedicalDentalPlanSummaryResults
     When I click create a new account on login page
 
@@ -69,7 +69,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
+    Then I select first dental plan
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
