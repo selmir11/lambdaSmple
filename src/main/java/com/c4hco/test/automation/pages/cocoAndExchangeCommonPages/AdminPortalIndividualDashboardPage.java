@@ -27,6 +27,17 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberId;
     @FindBy(css = ".container-fluid .reports-container .link-section span:nth-child(1)")
     List<WebElement> reportViewButtons;
+    WebElement selectedMember;
+    @FindBy(css = "#user-name")
+    WebElement userName;
+    @FindBy(css = "#phone-number")
+    WebElement memberPhone;
+    @FindBy(css = "#email-address")
+    WebElement memberEmail;
+    @FindBy(css = "#dob")
+    WebElement memberDob;
+    @FindBy(xpath = "//span[normalize-space()='4725 S TAFT ST MORRISON, CO 80465']")
+    WebElement memberAddress;
 
     public void verifyContainerTitle() {
         basicActions.waitForElementToBePresent(reportsTitle, 10);
@@ -43,4 +54,18 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(memberId, 10);
         softAssert.assertTrue(memberId.isDisplayed());
         softAssert.assertAll();     }
+    public void validateSelectedMemberData()  {
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(selectedMember,10);
+        basicActions.waitForElementToBePresent(memberDob,10);
+        softAssert.assertEquals("10/10/1980",memberDob.getText());
+        basicActions.waitForElementToBePresent(userName,10);
+        softAssert.assertEquals("julynineth567@test.com",userName.getText());
+        basicActions.waitForElementToBePresent(memberEmail,10);
+        softAssert.assertEquals("xxmatusz@gmail.com",memberEmail.getText());
+        basicActions.waitForElementToBePresent(memberPhone,10);
+        softAssert.assertEquals("303-330-1222",memberPhone.getText());
+        basicActions.waitForElementToBePresent(memberAddress,10);
+        softAssert.assertEquals("4725 S TAFT ST\n" + "MORRISON, CO 80465",memberAddress.getText());
+        softAssert.assertAll(); }
 }
