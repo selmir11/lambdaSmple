@@ -339,7 +339,7 @@ public class OhiVaHealthcarePage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en VA Health Care.");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en VA Health Care?");
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -347,7 +347,7 @@ public class OhiVaHealthcarePage_Elmo {
     public void verifyVaHealthcarePageSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
-        softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -357,7 +357,7 @@ public class OhiVaHealthcarePage_Elmo {
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }

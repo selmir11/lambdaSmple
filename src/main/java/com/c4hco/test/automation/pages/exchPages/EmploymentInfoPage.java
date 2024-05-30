@@ -349,11 +349,11 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -387,14 +387,14 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employment");
                 softAssert.assertEquals(questionsHelpText.getText(), "Does this person earn money through a job or by being self-employed?");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Empleo");
                 softAssert.assertEquals(questionsHelpText.getText(), "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -412,14 +412,14 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Company Name");
                 softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Direcci\u00F3n del empleador");
                 softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -437,14 +437,14 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Net Income");
                 softAssert.assertEquals(questionsHelpText.getText(), "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso neto");
                 softAssert.assertEquals(questionsHelpText.getText(), "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -462,14 +462,14 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Same or lower");
                 softAssert.assertEquals(questionsHelpText.getText(), "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact Us");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Igual o bajar\u00E1");
                 softAssert.assertEquals(questionsHelpText.getText(), "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:

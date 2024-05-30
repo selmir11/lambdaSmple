@@ -111,6 +111,7 @@ public class OtherHealthInsurancePage_Elmo {
 
     public void clickSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 
@@ -277,7 +278,7 @@ public class OtherHealthInsurancePage_Elmo {
 
     public void verifyTextOnOtherHealthInsurancePageSpanish(){
         basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
-        softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()+" (Spanish)"));
+        softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("font-size"), "36px");
         softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("font-weight"), "700");
@@ -287,7 +288,7 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(helpLink.getCssValue("font-size"), "20px");
         softAssert.assertEquals(helpLink.getCssValue("font-weight"), "700");
         softAssert.assertEquals(helpLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(), "\u00BFEst\u00E1inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
+        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(), "\u00BFEst\u00E1 inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-weight"), "400");
@@ -302,12 +303,12 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-weight"), "700");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Programa Medicaid de Colorado)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 días, no seleccione esta opci\u00F3n.");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Programa Medicaid de Colorado)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(), "Child Health Plan Plus (CHP+)\nSi su cobertura de CHP+ va a terminar en los pr\u00F3ximos 60 días, no seleccione esta opci\u00F3n.");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(), "Child Health Plan Plus (CHP+)\nSi su cobertura de CHP+ va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-weight"), "400");
@@ -531,8 +532,8 @@ public class OtherHealthInsurancePage_Elmo {
                 checkedIndexes = new int[]{11};
                 break;
             case "Medicare, retiree, TRICARE":
-                uncheckedIndexes = new int[]{0, 1, 3, 4, 5, 7, 8, 10, 11};
-                checkedIndexes = new int[]{2, 6, 9};
+                uncheckedIndexes = new int[]{0, 1, 3, 4, 6, 7, 8, 10, 11};
+                checkedIndexes = new int[]{2, 5, 9};
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + checkboxExpected);
@@ -606,16 +607,16 @@ public class OtherHealthInsurancePage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName() + " (Spanish)"));
+                softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
                 softAssert.assertEquals(helpLink.getText(),"Ayuda para entender esta p\u00E1gina");
-                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(),"\u00BFEst\u00E1inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
+                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(),"\u00BFEst\u00E1 inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
                 softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getText(),"(Seleccione todo lo que corresponda)");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getText(),"Cobertura a trav\u00E9s de un programa p\u00FAblico");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(),"Health First Colorado (Programa Medicaid de Colorado)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 días, no seleccione esta opci\u00F3n.");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(),"Child Health Plan Plus (CHP+)\nSi su cobertura de CHP+ va a terminar en los pr\u00F3ximos 60 días, no seleccione esta opci\u00F3n.");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(),"Health First Colorado (Programa Medicaid de Colorado)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(),"Child Health Plan Plus (CHP+)\nSi su cobertura de CHP+ va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(3).getText(),"Medicare");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(4).getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(5).getText(),"Cobertura a trav\u00E9s de un empleador");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(4).getText(),"Cobertura a trav\u00E9s de un empleador");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(5).getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(6).getText(),"Provisi\u00F3n de reembolso de salud (HRA)");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(7).getText(),"Plan de salud de jubilado");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(8).getText(),"Cuerpos de paz (Peace Corps)");
