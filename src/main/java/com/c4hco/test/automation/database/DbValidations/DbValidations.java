@@ -117,23 +117,16 @@ public class DbValidations {
      int totalGroups = SharedData.getTotalGroups();
         List<MemberDetails> memberList = SharedData.getMembers();
      if(totalGroups == 1 && memberList != null){
-         int totalDependents = memberList.size();
-         int totalEnrollees = totalDependents+1;
-         int totalSubscribers = 1;
-        softAssert.assertEquals(totalEnrollees, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
-        softAssert.assertEquals(totalDependents, ob834Entity.getTotal_dependents(), "Total dependents does not match.");
-        softAssert.assertEquals(totalSubscribers,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
-     }else if(totalGroups == 1 && memberList==null){
-         int totalEnrollees =1;
-         int totalDependents =0;
-         int totalSubscribers =1;
-         softAssert.assertEquals(totalEnrollees, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
-         softAssert.assertEquals(totalDependents, ob834Entity.getTotal_dependents(), "Total dependents does not match.");
-         softAssert.assertEquals(totalSubscribers,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
+        softAssert.assertEquals( memberList.size()+1, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
+        softAssert.assertEquals( memberList.size(), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+        softAssert.assertEquals(1,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
+     }else if(totalGroups == 1 && memberList == null){
+         softAssert.assertEquals(1, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
+         softAssert.assertEquals(0, ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+         softAssert.assertEquals(1,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
      }else{
          //WIP
      }
-
        softAssert.assertAll();
     }
 
