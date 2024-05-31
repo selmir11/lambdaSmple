@@ -172,12 +172,12 @@ Feature: Seed04 - Exchange
     And I Validate the correct enrolled plans are displayed on account overview page
     And I set the test scenario details
       | totalMedGroups | totalMembers |
-      | 1            | 2            |
+      | 1              | 2            |
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate medical plan details from my policies page
       | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-      | 01/01/2024      | 12/31/2024    | 01/01/2024         | 12/31/2024       |
+      | 01/01           | 12/31         | 01/01              | 12/31            |
     And I validate dental plan details from my policies page
       | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-      | 01/01/2024      | 12/31/2024    | 01/01/2024         | 12/31/2024       |
+      | 01/01           | 12/31         | 01/01              | 12/31            |

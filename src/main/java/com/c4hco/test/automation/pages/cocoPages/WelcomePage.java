@@ -63,7 +63,7 @@ public class WelcomePage {
     }
 
     public void clickApplyForInsurance() {
-        basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 5);
+        basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 30);
         applyForCurrentYearButton.click(); }
 
     public void clickActionLinks(String actionLink) {

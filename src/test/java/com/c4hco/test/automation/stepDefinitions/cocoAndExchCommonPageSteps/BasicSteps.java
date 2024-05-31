@@ -294,7 +294,7 @@ public class BasicSteps {
                 pageUrl = "/otherHealthInsurance/medicare";
                 break;
             case "Elmo Ohi VA Healthcare":
-                pageUrl = "/otherHealthInsurance/vaHealthcare";
+                pageUrl = "/otherHealthInsurance/va";
                 break;
             case "Elmo Ohi Individual Insurance":
                 pageUrl = "/otherHealthInsurance/individual";
