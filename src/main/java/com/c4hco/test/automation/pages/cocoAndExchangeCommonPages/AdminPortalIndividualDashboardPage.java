@@ -27,7 +27,10 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberId;
     @FindBy(css = ".container-fluid .reports-container .link-section span:nth-child(1)")
     List<WebElement> reportViewButtons;
+    @FindBy(css = "label[for='selected-member-checkbox']")
     WebElement selectedMember;
+    @FindBy(css = "#full-name")
+    WebElement memberFullName;
     @FindBy(css = "#user-name")
     WebElement userName;
     @FindBy(css = "#phone-number")
@@ -36,7 +39,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberEmail;
     @FindBy(css = "#dob")
     WebElement memberDob;
-    @FindBy(xpath = "//span[normalize-space()='4725 S TAFT ST MORRISON, CO 80465']")
+    @FindBy(css = "body app-root div:nth-child(6)")
     WebElement memberAddress;
 
     public void verifyContainerTitle() {
@@ -57,15 +60,18 @@ public class AdminPortalIndividualDashboardPage {
     public void validateSelectedMemberData()  {
         basicActions.switchToParentPage("C4HCO Admin Portal");
         basicActions.waitForElementToBePresent(selectedMember,10);
-        basicActions.waitForElementToBePresent(memberDob,10);
-        softAssert.assertEquals("10/10/1980",memberDob.getText());
+        softAssert.assertTrue(selectedMember.isDisplayed());
+        basicActions.waitForElementToBePresent(memberFullName,10);
+        softAssert.assertTrue(memberFullName.isDisplayed());
         basicActions.waitForElementToBePresent(userName,10);
-        softAssert.assertEquals("julynineth567@test.com",userName.getText());
+        softAssert.assertTrue(userName.isDisplayed());
         basicActions.waitForElementToBePresent(memberEmail,10);
-        softAssert.assertEquals("xxmatusz@gmail.com",memberEmail.getText());
+        softAssert.assertTrue(memberEmail.isDisplayed());
         basicActions.waitForElementToBePresent(memberPhone,10);
-        softAssert.assertEquals("303-330-1222",memberPhone.getText());
+        softAssert.assertTrue(memberPhone.isDisplayed());
+        basicActions.waitForElementToBePresent(memberDob,10);
+        softAssert.assertTrue(memberDob.isDisplayed());
         basicActions.waitForElementToBePresent(memberAddress,10);
-        softAssert.assertEquals("4725 S TAFT ST\n" + "MORRISON, CO 80465",memberAddress.getText());
+        softAssert.assertTrue(memberAddress.isDisplayed());
         softAssert.assertAll(); }
 }

@@ -17,7 +17,7 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify Primary account holder and account number displays")
     public void iVerifyPrimaryAccountHolderDisplays() {
         adminPortalIndividualDashboardPage.verifyPrimaryHolder();       }
-    @Then("I validate selected Member data on the left side")
+    @Then("I validate Selected Member data on the far left side")
     public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
 }
 

@@ -9,11 +9,10 @@ Feature: Admin Portal as OBO verify member data on the left
     And I validate I am on the "Login" page
     When I login as Admin User
     And I validate I am on the "Admin search" page
-    Then I enter an accountId in any Env "QA" "2425005563" to search user
+    Then I enter an accountId in any Env "2425005563" "2425005563" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
-    Then I validate selected Member data on the left side
+    Then I validate Selected Member data on the far left side
     And logout from Admin Portal
-    
