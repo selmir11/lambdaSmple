@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
@@ -10,7 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MyDocumentsPage {
 
@@ -81,7 +84,6 @@ public class MyDocumentsPage {
         expandDownloadEnrolmentDocument.click();
         basicActions.waitForElementToBeClickable(downloadEnrolmentDocument, 10);
         downloadEnrolmentDocument.click();
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
     }
+
 }
