@@ -58,7 +58,7 @@ Feature: Tobacco Usage page related tests
       And I Apply for no financial help
       Then I select "MoveToCO" QLCE on tell us about life changes page
       Then I click on Save and Continue
-      And I Declare and sign
+      And I Declare as Tax Household 1
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page

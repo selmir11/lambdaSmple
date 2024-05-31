@@ -110,7 +110,7 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
     Then I click on "My Documents and Letters" link on welcome page
     Then I validate I am on the "My Documents" page
-    And I verify the page text in "Spanish" on the My Documents Page
+    And I verify the page text in "Spanish Headers" on the My Documents Page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
