@@ -68,9 +68,8 @@ public class CreateAccountPage {
 
     @FindBy(id = "English")
      WebElement preferredLanguageButtonEnglish;
-    //@FindBy(id = "primaryUser-input")
-     @FindBy(id ="loginPortal-createAccount-isPrimaryUserChecked-input")
-     WebElement primaryUserCheckbox;
+    @FindBy(id = "pu-input")
+    WebElement primaryUserCheckbox;
 
     @FindBy(id = "repUser-input")
     WebElement onBehalfOfPrimaryUserCheckbox;

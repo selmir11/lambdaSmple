@@ -93,13 +93,12 @@ public class MedicalPlanResultsPage {
 
     }
 
-    public void iGetFirstPlaneName() {
+    public void iGetFirstPlanName() {
         basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
         SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
 
     public void SelectFirstMedicalPlan() {
-        iGetFirstPlaneName();
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }

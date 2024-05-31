@@ -52,13 +52,12 @@ public class DentalPlansResultsPage {
     @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
-    public void iGetFirstDentalPlaneName() {
+    public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
         SharedData.setFirstPlanNameOnDentalResultsPage(dentalPlanNames.get(0).getText());
     }
 
     public void selectFirstDentalPlan(){
-        iGetFirstDentalPlaneName();
         basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,15);
         selectFirstDentalPlanBtn.click();
     }
