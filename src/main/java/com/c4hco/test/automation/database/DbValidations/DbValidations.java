@@ -107,7 +107,7 @@ public class DbValidations {
           validateBrokerDetails(subscriber, ob834Entity);
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
-       //   validateRelCode(subscriber, ob834Entity); //WIP
+          validateRelCode(subscriber, ob834Entity);
           validateMemberCountDetails(ob834Entity);
 
       }

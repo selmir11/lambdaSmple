@@ -150,7 +150,7 @@ public class AccountOverviewPage {
     }
 
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {
-        String noOfGroups = expectedResult.get(0).get("totalMedGroups");
+        String noOfGroups = expectedResult.get(0).get("totalGroups");
         SharedData.setTotalGroups(Integer.parseInt(noOfGroups));
     }
 
