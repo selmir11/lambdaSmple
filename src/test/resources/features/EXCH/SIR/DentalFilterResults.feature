@@ -133,5 +133,3 @@ Feature: Dental Plan Verification test
     |Delta Dental        |Delta Dental of Colorado Pediatric Comprehensive Plan   |
     |Solstice Health     |EssentialSmile Colorado - Total Care                    |
 
-
-

@@ -158,10 +158,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
-    @FindBy(id = "ELIG-Ohi-Esi-GoBack")
+    @FindBy(id = "Ohi-Esi-GoBack")
     WebElement goBackButton;
 
-    @FindBy(id = "ELIG-Ohi-Esi-SaveAndContinue")
+    @FindBy(id = "Ohi-Esi-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
 
@@ -576,13 +576,13 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyEsiPageSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"\u00BFCumple este seguro de salud el est\u00E1ndar de valor m\u00EDnimo?");
-        softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
         softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"No s\u00E9");
         softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getEmployerName()+" solo para usted?");
         softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"Cantidad mensual");
         softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getEmployerName()+"?");
-        softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
         softAssert.assertAll();
     }
@@ -590,7 +590,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyEsiPageThirdSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(4).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
-        softAssert.assertEquals(esiInsuranceEndYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiInsuranceEndYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiInsuranceEndNoBtn.getText(),"No");
         softAssert.assertAll();
     }
@@ -600,7 +600,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
-        softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Si");
+        softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
         softAssert.assertAll();
     }
@@ -1133,7 +1133,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(17).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(18).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(19).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
@@ -1152,7 +1152,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "La \u00FAnica opci\u00F3n que tiene para conseguir un seguro de salud es la continuaci\u00F3n de la cobertura COBRA o la cobertura para retirados.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si est\u00E1 o va a estar en \"per\u00EDodo de espera\", no responda a\u00FAn estas preguntas. Cuando finalice ese per\u00EDodo de espera, vuelva a la solicitud, comunique el cambio de vida e introduzca aqu\u00ED los datos del seguro de salud de su trabajo.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Un per\u00EDodo de espera es el tiempo que debe transcurrir antes de que un empleador ofrezca cobertura de salud a un empleado. Los per\u00EDodos de espera pueden ser de 0 a 90 d\u00EDas.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
@@ -1165,7 +1165,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Para saber si un plan cumple el est\u00E1ndar de valor m\u00EDnimo, consulte el Resumen de beneficios y cobertura (SBC) del plan de su empleo o pida en su trabajo que le llenen la herramienta de cobertura del empleador.");
         softAssert.assertEquals(helpDrawerPrintLnk.getText(), "herramienta de cobertura del empleador.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Imprima o descargue la herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
@@ -1178,7 +1178,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Si el empleador tiene programas de bienestar, haga lo siguiente:\nIngrese la prima que pagar\u00EDa esta persona si obtuviera el descuento m\u00E1ximo para cualquier programa de suspensi\u00F3n al tabaco (consejer\u00EDa para dejar de fumar), pero para ning\u00FAn otro programa.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "El empleador debe indicar estas cantidades en un aviso. Sin embargo, si usted no dispone de un aviso o no est\u00E1 seguro de cu\u00E1les son estas cantidades, pregunte a su empleador.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
@@ -1187,7 +1187,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getEmployerName()+"?");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Inscripci\u00F3n:\nSi esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
@@ -1200,7 +1200,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "la empresa ya no ofrecer\u00E1 seguro de salud;");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "usted ya no calificar\u00E1 para recibirlo;");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "seleccione \"S\u00ED\" e ingrese la fecha en que terminar\u00E1 el seguro.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
@@ -1211,7 +1211,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesita m\u00E1s ayuda? P\u00F3ngase en contacto");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 

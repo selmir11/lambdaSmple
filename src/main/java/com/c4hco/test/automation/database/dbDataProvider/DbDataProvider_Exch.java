@@ -61,6 +61,9 @@ public class DbDataProvider_Exch {
     public String getExchPersonId(){
         return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId());
     }
+    public String getCSRLevel(){
+        return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
+    }
 
     public void setDataFromDb(String planName){
       String fipcode = getFipcode();
@@ -72,6 +75,7 @@ public class DbDataProvider_Exch {
      String issuerName = issuerNameId[0];
      String issuerId = issuerNameId[1];
      String exchPersonId = getExchPersonId();
+     String csrLevel = getCSRLevel();
 
         DbData dbData = new DbData();
 
@@ -82,6 +86,7 @@ public class DbDataProvider_Exch {
         dbData.setIssuerName(issuerName);
         dbData.setIssuerId(issuerId);
         dbData.setExchPersonId(exchPersonId);
+        dbData.setCsrLevel(csrLevel);
 
         SharedData.setDbData(dbData);
     }

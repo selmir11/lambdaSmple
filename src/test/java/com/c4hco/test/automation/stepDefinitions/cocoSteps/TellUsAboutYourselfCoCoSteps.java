@@ -22,6 +22,8 @@ public class TellUsAboutYourselfCoCoSteps {
     @And("I validate the page text on Tell us about Yourself")
     public void iverifyTextOnTellUsAboutYourselfPage(){tellUsAboutYourselfCoCoPage.verifyTextOnTellUsAboutYourselfPage();}
 
+    @Then("I validate errors are displaying on Tell Us About Yourself Page CoCo")
+    public void iverifyValidationerrormessageOnTellUsAboutYourselfPage(){tellUsAboutYourselfCoCoPage.verifyValidationerrormessageOnTellUsAboutYourselfPage();}
 
 
 

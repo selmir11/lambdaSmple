@@ -1,6 +1,9 @@
 Feature: Regression Tests that require Seed 1
 
   Background: Seed 01 For Exchange- Single Applicant NFA
+    Given I set the test scenario details
+      | totalGroups | totalMembers |
+      | 1           | 1            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -51,7 +54,7 @@ Feature: Regression Tests that require Seed 1
 
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
-    When I login as Admin User
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin dashboard" page
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
