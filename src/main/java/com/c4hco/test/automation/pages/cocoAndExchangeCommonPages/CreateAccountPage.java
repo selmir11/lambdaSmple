@@ -138,6 +138,21 @@ public class CreateAccountPage {
     @FindBy(xpath = "//span[@class='banner-error-message']")
     WebElement bannerErrorMessage;
 
+    @FindBy(id = "role")
+    WebElement roleDropdown;
+
+    @FindBy(id = "loginPortal-createAccount-roleRequired")
+    WebElement roleDropdownErrorMessage;
+
+    @FindBy(id = "loginPortal-createAccount-indicatePrimary")
+    WebElement primaryUserErrorMessage;
+
+    @FindBy(id = "mat-mdc-checkbox-2-input")
+    WebElement termsOfUseCheckbox;
+
+    @FindBy(id = "loginPortal-createAccount-termsRead")
+    WebElement termsOfUseErrorMessage;
+
 
     private BasicActions basicActions;
     public CreateAccountPage(WebDriver webDriver){
@@ -387,9 +402,6 @@ public class CreateAccountPage {
                 softAssert.assertEquals(phoneNumberErrorMessage.getText(), "Phone number is required");
                 softAssert.assertEquals(passwordErrorMessage.getText(), "Password is required");
                 softAssert.assertEquals(confirmPasswordErrorMessage.getText(), "Please Confirm Password");
-                softAssert.assertEquals(languageErrorMessage.getText(), "Preferred written language is required");
-                softAssert.assertEquals(accountHolderPreferencesErrorMessage.getText(), "Please select one of the options below");
-                softAssert.assertEquals(informationSharingOptionsErrorMessage.getText(), "Please select one of the options below");
                 break;
             case "Spanish":
                 softAssert.assertEquals(firstNameErrorMessage.getText(),"El nombre es obligatorio");
@@ -398,6 +410,24 @@ public class CreateAccountPage {
                 softAssert.assertEquals(phoneNumberErrorMessage.getText(), "El n\u00FAmero de tel\u00E9fono es obligatorio");
                 softAssert.assertEquals(passwordErrorMessage.getText(), "Se requiere su contrase\u00F1a");
                 softAssert.assertEquals(confirmPasswordErrorMessage.getText(), "Favor de confirmar contrase\u00F1a");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateMandatoryOptionsErrorMessages(String language){
+        basicActions.waitForElementToBePresent(submitButton, 10);
+        submitButton.click();
+
+        switch(language){
+            case "English":
+                softAssert.assertEquals(languageErrorMessage.getText(), "Preferred written language is required");
+                softAssert.assertEquals(accountHolderPreferencesErrorMessage.getText(), "Please select one of the options below");
+                softAssert.assertEquals(informationSharingOptionsErrorMessage.getText(), "Please select one of the options below");
+                break;
+            case "Spanish":
                 softAssert.assertEquals(languageErrorMessage.getText(), "El Idioma escrito que prefiere es obligatorio");
                 softAssert.assertEquals(accountHolderPreferencesErrorMessage.getText(), "Seleccione una de las siguientes opciones.");
                 softAssert.assertEquals(informationSharingOptionsErrorMessage.getText(), "Seleccione una de las siguientes opciones.");
@@ -405,6 +435,15 @@ public class CreateAccountPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+        softAssert.assertAll();
+    }
+
+    public void validatePhoneFieldLettersNotAllowed(){
+        basicActions.waitForElementToBePresent(phoneNumber, 10);
+        phoneNumber.clear();
+        phoneNumber.sendKeys("ABCDefghij");
+
+        softAssert.assertEquals(phoneNumber.getAttribute("value"), "(");
         softAssert.assertAll();
     }
 
@@ -545,6 +584,42 @@ public class CreateAccountPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(passwordErrorMessage.getText(),"La contrase\u00F1a no puede incluir el nombre");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateMandatoryCheckboxErrorMessages(String language){
+        basicActions.waitForElementToBePresent(submitButton, 10);
+        submitButton.click();
+
+        switch(language){
+            case "English":
+                softAssert.assertEquals(primaryUserErrorMessage.getText(), "Please indicate you are the primary user");
+                softAssert.assertEquals(termsOfUseErrorMessage.getText(), "Please read the terms of use and select the checkbox to agree");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(primaryUserErrorMessage.getText(), "Por favor indique que es el usuario principal");
+                softAssert.assertEquals(termsOfUseErrorMessage.getText(), "Lea los T\u00E9rminos de uso y marque la casilla para aceptarlas");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateMandatoryBrokerRoleErrorMessage(String language){
+        basicActions.waitForElementToBePresent(submitButton, 10);
+        submitButton.click();
+
+        switch(language){
+            case "English":
+                softAssert.assertEquals(roleDropdownErrorMessage.getText(), "Role is required");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(roleDropdownErrorMessage.getText(), "La funci\u00F3n que desempe\u00F1a es obligatoria");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);

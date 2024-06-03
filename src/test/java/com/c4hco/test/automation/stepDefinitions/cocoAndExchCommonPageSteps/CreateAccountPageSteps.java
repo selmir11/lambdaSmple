@@ -65,6 +65,16 @@ public class CreateAccountPageSteps {
             createAccountPage.validateMandatoryFieldErrorMessages(language);
     }
 
+    @Then("I validate the mandatory options error messages in {string}")
+    public void iValidateMandatoryOptionsErrorMessages(String language){
+            createAccountPage.validateMandatoryOptionsErrorMessages(language);
+    }
+
+    @Then("I validate that letters are not allowed in the phone field")
+    public void iValidateLettersNotAllowedPhoneField(){
+            createAccountPage.validatePhoneFieldLettersNotAllowed();
+    }
+
     @Then("I validate the fields cannot contain special characters error message in {string}")
     public void iValidateSpecialCharactersErrorMessages(String language){
             createAccountPage.validateSpecialCharactersErrorMessage(language);
@@ -98,5 +108,15 @@ public class CreateAccountPageSteps {
     @Then("I validate the password cannot contain the first name error message in {string}")
     public void iValidatePasswordFirstNameErrorMessage(String language){
             createAccountPage.validatePasswordFirstNameErrorMessage(language);
+    }
+
+    @Then("I validate the mandatory checkbox error messages in {string}")
+    public void iValidateMandatoryCheckboxErrorMessages(String language){
+            createAccountPage.validateMandatoryCheckboxErrorMessages(language);
+    }
+
+    @Then("I validate the mandatory role error message in {string}")
+    public void iValidateMandatoryBrokerRoleErrorMessage(String language){
+            createAccountPage.validateMandatoryBrokerRoleErrorMessage(language);
     }
 }
