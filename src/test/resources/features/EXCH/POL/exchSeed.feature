@@ -1,7 +1,7 @@
 Feature: Seed Tests - Exchange
-
-#  Scenario: Test Only scenario- edi file in local location
-#    And I read the edi file locally
+  
+  Scenario: Test Only scenario- edi file in local location
+    And I read the edi file locally
 
   @SLER-289
   Scenario: Seed 01 For Exchange
@@ -55,7 +55,7 @@ Feature: Seed Tests - Exchange
 
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
-    When I login as Admin User
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin dashboard" page
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
@@ -113,6 +113,7 @@ Feature: Seed Tests - Exchange
     And I validate member details from ob834_details table
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
+    And I validate the ob834 files should have the values
 
   @SLER-311
   Scenario: Seed 02 For Exchange- Single Applicant with FA
@@ -185,7 +186,7 @@ Feature: Seed Tests - Exchange
 
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
-    When I login as Admin User
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin dashboard" page
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown

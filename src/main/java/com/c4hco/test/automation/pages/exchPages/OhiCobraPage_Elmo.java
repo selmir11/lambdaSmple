@@ -390,7 +390,7 @@ public class OhiCobraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en la cobertura COBRA.");
         softAssert.assertEquals(CobraQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en la cobertura COBRA?");
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -398,7 +398,7 @@ public class OhiCobraPage_Elmo {
     public void verifyCobraPageSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(CobraQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
-        softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -408,7 +408,7 @@ public class OhiCobraPage_Elmo {
         softAssert.assertEquals(CobraQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(CobraQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -420,7 +420,7 @@ public class OhiCobraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en la cobertura COBRA."));
         softAssert.assertTrue(CobraQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en la cobertura COBRA?"));
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -430,7 +430,7 @@ public class OhiCobraPage_Elmo {
         softAssert.assertTrue(CobraQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertTrue(CobraQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }

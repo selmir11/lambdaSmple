@@ -11,4 +11,5 @@ public class DbData {
     String issuerName;
     String issuerId;
     String exchPersonId;
+    String csrLevel;
 }

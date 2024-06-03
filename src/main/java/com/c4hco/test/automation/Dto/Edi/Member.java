@@ -38,14 +38,4 @@ public class Member {
     private List<List<String>> HD;
     @JsonProperty("DMG")
     private List<List<String>> DMG;
-
-    public CommonSegments getCommonSegments() {
-        return commonSegments;
-    }
-
-    public void setCommonSegments(CommonSegments commonSegments) {
-        this.commonSegments = commonSegments;
-    }
-
-    private CommonSegments commonSegments;
 }

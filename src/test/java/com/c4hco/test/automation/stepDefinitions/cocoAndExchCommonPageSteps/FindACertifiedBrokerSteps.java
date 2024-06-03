@@ -42,6 +42,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickSearchButton();
     }
 
+    @Then("I click Go Back on the Find a Certified Broker page")
+    public void iClickGoBackButton(){
+        findACertifiedBrokerPage.clickGoBackButton();
+    }
+
     @And("I click more details from the first broker result container")
     public void iClickMoreDetailsInTheBrokerResultContainer() {
         findACertifiedBrokerPage.clickMoreDetailsInTheBrokerContainer();
@@ -132,8 +137,13 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickRemoveCurrentBroker();
     }
 
-    @And("I validate the have a broker call you text in {string}")
-    public void iValidateHaveBrokerCallYouText(String language){
-        findACertifiedBrokerPage.validateBrokerContactYouText(language);
+    @And("I validate the have a {string} broker call you text in {string}")
+    public void iValidateHaveBrokerCallYouText(String marketplace, String language){
+        findACertifiedBrokerPage.validateBrokerContactYouText(marketplace, language);
+    }
+
+    @And("I validate the button and field text in {string}")
+    public void iValidateButtonAndFieldText(String language){
+        findACertifiedBrokerPage.validateButtonAndFieldText(language);
     }
 }

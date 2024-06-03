@@ -87,6 +87,7 @@ public class DbValidations {
           softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         }
           softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
+          softAssert.assertEquals(dbData.getCsrLevel(),ob834Entity.getCsr_level(),"CSR level does not match");
 //          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
 //          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
 //          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
@@ -106,17 +107,27 @@ public class DbValidations {
           validateBrokerDetails(subscriber, ob834Entity);
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
-       //   validateRelCode(subscriber, ob834Entity); //WIP
-       //   validateTotalEnrollees(subscriber.getMemberGroup(), ob834Entity); // WIP - set the values
+          validateRelCode(subscriber, ob834Entity);
+          validateMemberCountDetails(ob834Entity);
 
       }
     }
 
-    public void validateTotalEnrollees(String memberGroup, Ob834DetailsEntity ob834Entity){
-     String totalEnrollees = SharedData.getGroupDetails().getGroupNumAndEnrollees().get(memberGroup);
-     softAssert.assertEquals(totalEnrollees, ob834Entity.getTotal_enrollees());
-
-        //  softAssert.assertAll();
+    public void validateMemberCountDetails(Ob834DetailsEntity ob834Entity){
+     int totalGroups = SharedData.getTotalGroups();
+        List<MemberDetails> memberList = SharedData.getMembers();
+     if(totalGroups == 1 && memberList != null){
+        softAssert.assertEquals( memberList.size()+1, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
+        softAssert.assertEquals( memberList.size(), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+        softAssert.assertEquals(1,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
+     }else if(totalGroups == 1 && memberList == null){
+         softAssert.assertEquals(1, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
+         softAssert.assertEquals(0, ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+         softAssert.assertEquals(1,ob834Entity.getTotal_subscribers(),"Total subscribers does not match.");
+     }else{
+         //WIP
+     }
+       softAssert.assertAll();
     }
 
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
@@ -186,7 +197,6 @@ public class DbValidations {
 
 
     public void validateMailingAddress(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        DbData dbData = SharedData.getDbData();
             softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(),"Mailing address street line 1 does not match");
             if(subscriber.getMailingAddress().getAddressLine2() != null){
                 softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine2(),ob834Entity.getMail_street_line2(), "Mailing address street line 2 does not match");
@@ -196,6 +206,7 @@ public class DbValidations {
             softAssert.assertEquals(subscriber.getMailingAddress().getAddressCity(),ob834Entity.getMail_city(), "Mailing city does not match");
             softAssert.assertEquals(subscriber.getMailingAddress().getAddressState(),ob834Entity.getMail_st(),"Mailing state does not match");
             softAssert.assertEquals(subscriber.getMailingAddress().getAddressZipcode(),ob834Entity.getMail_zip_code(),"Mailing zipcode does not match");
+            softAssert.assertNull(ob834Entity.getMail_fip_code(),"Mailing fipcode is not null");
             softAssert.assertAll();
     }
 
