@@ -9,7 +9,9 @@ Feature: Verify the error messages on the Create Account page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
     Then I validate the mandatory field error messages in "English"
+    Then I validate the mandatory options error messages in "English"
     Then I validate the fields cannot contain special characters error message in "English"
+    Then I validate that letters are not allowed in the phone field
     Then I validate the password must contain at least 8 characters error message in "English"
     Then I validate the password must contain 1 uppercase character error message in "English"
     Then I validate the password must contain 1 lowercase character error message in "English"
@@ -26,7 +28,9 @@ Feature: Verify the error messages on the Create Account page
     Then I validate I am on the "Create Account" page
     And I change the language from header to "Spanish ExpertHelp"
     Then I validate the mandatory field error messages in "Spanish"
+    Then I validate the mandatory options error messages in "Spanish"
     Then I validate the fields cannot contain special characters error message in "Spanish"
+    Then I validate that letters are not allowed in the phone field
     Then I validate the password must contain at least 8 characters error message in "Spanish"
     Then I validate the password must contain 1 uppercase character error message in "Spanish"
     Then I validate the password must contain 1 lowercase character error message in "Spanish"
