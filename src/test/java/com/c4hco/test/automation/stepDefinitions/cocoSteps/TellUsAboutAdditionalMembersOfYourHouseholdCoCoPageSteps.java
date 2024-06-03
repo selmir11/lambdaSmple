@@ -29,4 +29,10 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    public void clickGoBack() {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.clickGoBackButton();
    }
+
+
+   @And("I validate the error messages on the Tell Us About Additional Members Of Your Household page")
+   public void iverifyValidationerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage(){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.verifyValidationerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage();}
+
+
 }
