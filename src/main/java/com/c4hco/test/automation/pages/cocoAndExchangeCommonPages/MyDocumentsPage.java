@@ -24,8 +24,8 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-
-    @FindBy(css =".document-notice-name")
+    
+    @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
