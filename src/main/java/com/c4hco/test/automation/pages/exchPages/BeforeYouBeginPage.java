@@ -26,7 +26,8 @@ public class BeforeYouBeginPage {
     WebElement bodyText;
 
     public void clickContinueWithApplicationButton(){
-            continueWithApplication.click();
+        basicActions.waitForElementToBePresent(continueWithApplication, 10);
+        continueWithApplication.click();
     }
 
     public void validateTheVerbiageOnBeforeYouBeginPage(String language) {
