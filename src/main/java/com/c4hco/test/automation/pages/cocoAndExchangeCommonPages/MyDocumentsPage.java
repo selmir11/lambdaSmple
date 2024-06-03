@@ -24,8 +24,7 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-
-//    @FindBy(css = ".documents-notices-content-container > div")
+    
     @FindBy(css =".document-notice-name")
     WebElement documentsInfoMessage;
 
