@@ -11,6 +11,8 @@ Feature: Verify the account already exists error message on the Create your Acco
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-500
   Scenario: Validate the account exists error message in English on the Create your Account page

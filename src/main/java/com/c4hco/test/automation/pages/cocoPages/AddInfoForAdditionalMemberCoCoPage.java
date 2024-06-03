@@ -118,6 +118,9 @@ public class AddInfoForAdditionalMemberCoCoPage {
             case "English":
                 verifyTextOnAdditionalInfoForAddMemberEnglish();
                 break;
+            case "Spanish":
+                verifyTextOnAdditionalInfoForAddMemberSpanish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );
         }
@@ -153,18 +156,52 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertAll();
     }
 
+    public void verifyTextOnAdditionalInfoForAddMemberSpanish() {
+        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Información adicional para " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1));
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(0).getText(), "Ingrese el domicilio particular de " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1));
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(1).getText(), "Domicilio 1");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(2).getText(), "Domicilio 2");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(3).getText(), "Ciudad");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(4).getText(), "Estado");
+
+        String[] expectedOptionsStates = {
+                "Seleccione", "AA", "AE", "AP", "AK", "AL", "AR", "AS", "AZ", "CO", "CT", "DE", "FL", "FM", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS",
+                "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR",
+                "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"
+        };
+
+        for (String option : expectedOptionsStates) {
+            boolean optionExists = AddInfoForAddMemberPageText.get(5).getText().contains(option);
+            softAssert.assertTrue(optionExists, "Option '" + option + "' is not displayed in the dropdown.");
+            softAssert.assertAll();
+        }
+
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(6).getText(), "Código postal");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(7).getText(), "Condado");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "¿" + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " vive en Colorado?");
+        softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Si");
+        softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
+        softAssert.assertEquals(goBackButton.getText(), " Volver");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y Continuar");
+        softAssert.assertAll();
+    }
+
+
     public void verifyErrorMessagesAddInfoForAddMember(String language) {
         basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
         switch (language) {
             case "English":
-                verifyErrorMessagesAddInfoForAddMember();
+                verifyErrorMessagesAddInfoForAddMemberEnglish();
+                break;
+            case "Spanish":
+                verifyErrorMessagesAddInfoForAddMemberSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );
         }
     }
 
-    public void verifyErrorMessagesAddInfoForAddMember() {
+    public void verifyErrorMessagesAddInfoForAddMemberEnglish() {
         softAssert.assertEquals(errorMessages.get(0).getText(), "Address line 1 is required");
         softAssert.assertTrue(exclamationMarkIcon.get(0).isDisplayed());
         softAssert.assertEquals(errorMessages.get(1).getText(), "City is required");
@@ -188,6 +225,33 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertEquals(errorMessages.get(2).getText(), "City must be at least 2 characters long");
         zipcodeInput.sendKeys("1234");
         softAssert.assertEquals(errorMessages.get(4).getText(), "Zip code must be 5 numbers");
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessagesAddInfoForAddMemberSpanish() {
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Domicilio 1 obligatorio");
+        softAssert.assertTrue(exclamationMarkIcon.get(0).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(1).getText(), "El ciudad es requerido");
+        softAssert.assertTrue(exclamationMarkIcon.get(1).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(2).getText(), "Estado es obligatorio");
+        softAssert.assertTrue(exclamationMarkIcon.get(2).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(3).getText(), "Código postal es requerido");
+        softAssert.assertTrue(exclamationMarkIcon.get(3).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(4).getText(), "Condado es requerido");
+        softAssert.assertTrue(exclamationMarkIcon.get(4).isDisplayed());
+        softAssert.assertEquals(errorMessages.get(5).getText(), "Seleccione una de las siguientes opciones");
+        addressLine1Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "El domicilio 1 debe tener al menos 5 caracteres");
+        addressLine1Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Los caracteres especiales no están permitidos");
+        addressLine2Input.sendKeys("Word");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "El domicilio 2 debe tener al menos 5 caracteres");
+        addressLine2Input.sendKeys("$");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Los caracteres especiales no están permitidos");
+        cityInput.sendKeys("W");
+        softAssert.assertEquals(errorMessages.get(2).getText(), "El nombre de la ciudad debe de tener al menos 2 caracteres de largo");
+        zipcodeInput.sendKeys("1234");
+        softAssert.assertEquals(errorMessages.get(4).getText(), "Código postal debe de tener 5 numeros");
         softAssert.assertAll();
     }
 
