@@ -21,4 +21,7 @@ public class IncomeSummaryCoCoPageSteps {
 
     @And("I select continue on the income Summary CoCo page")
     public void selectContinueIncomeSummary(){incomeSummaryCoCoPage.clickSaveAndContinueButton();}
+
+    @And("I select the No projected Income button on the Income Summary page")
+    public void selectProjectedIncomeNo() {incomeSummaryCoCoPage.clickprojectedIncomeNo();}
 }

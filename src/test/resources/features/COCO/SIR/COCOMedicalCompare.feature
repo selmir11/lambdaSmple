@@ -45,7 +45,8 @@ And I select continue on the Additional Income CoCO page
 Then I validate I am on the "CoCo Deductions" page
 And I select None of these as deductions option
 And I select continue on the Deductions CoCo page
-Then I select the projected income option "No" on Income Summary CoCo page
+
+And I select the No projected Income button on the Income Summary page
 And I select continue on the income Summary CoCo page
 
 Then I validate I am on the "CoCo Family Overview" page
@@ -67,3 +68,9 @@ Then I click continue on start shopping page
 
 Then I validate I am on the "Medical Plan Results" page
 And I select initial 3 plans and click the Compare button
+
+Then I validate I am on the "Medical Plan Compare" page
+And I select the Go Back button on the Medical Plan Compare page
+
+Then I validate I am on the "Medical Plan Results" page
+And I click on Sign Out in the Header for "Payment"
