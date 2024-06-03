@@ -191,10 +191,25 @@ public class TellUsAboutYourselfCoCoPage {
         ;
         clickSaveAndContinueButton();
         softAssert.assertEquals(requiredValidationError.get(0).getText(), "First name is required");
+        softAssert.assertEquals(requiredValidationError.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(0).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertEquals(requiredValidationError.get(1).getText(), "Last name is required");
+        softAssert.assertEquals(requiredValidationError.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(1).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertEquals(requiredValidationError.get(2).getText(), "Date of birth is required");
+        softAssert.assertEquals(requiredValidationError.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(2).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertEquals(requiredValidationError.get(3).getText(), "Please select one of the options below");
+        softAssert.assertEquals(requiredValidationError.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(3).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(3).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertEquals(requiredValidationError.get(4).getText(), "Please select one of the options below");
+        softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertAll();
     }
 }
