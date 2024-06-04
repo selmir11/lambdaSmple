@@ -47,7 +47,7 @@ public class LoginPage {
     @FindBy(xpath = "//span[normalize-space()='Password is required']")
     WebElement passwordError;
 
-    @FindBy(css = ".font-weight-bold")
+    @FindBy(css = ".fw-bold")
     WebElement iForgotUsernameandPassword;
     @FindBy(id="title")
     WebElement loginPageTitle;
