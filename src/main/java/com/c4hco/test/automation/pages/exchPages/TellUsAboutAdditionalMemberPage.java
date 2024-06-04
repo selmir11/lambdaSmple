@@ -81,13 +81,14 @@ public class TellUsAboutAdditionalMemberPage {
         txtlastName.sendKeys(lastName);
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
-
         List<MemberDetails> memberList = SharedData.getMembers();
-
+        int memberCount =0;
         if (memberList == null) {
             memberList = new ArrayList<>();
+        }else{
+            memberCount = memberList.size();
         }
-
+        memberCount++;
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -95,6 +96,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setMemberCount(memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
