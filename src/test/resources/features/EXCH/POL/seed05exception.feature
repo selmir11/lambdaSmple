@@ -1,6 +1,6 @@
-Feature: Seed05 - Exchange
+Feature: Seed05exception - Exchange
 
-  Scenario: Seed 05 For Exchange- Family of Four - NFA
+  Scenario: Seed 05 With Exception For Exchange- Family of Four - NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -112,24 +112,6 @@ Feature: Seed05 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    And I click on Sign Out in the Header for "NonElmo"
-
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    And I click "Admin LCE" from application links dropdown
-    And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
-    Then logout from Admin Portal
-
-    Given I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Eligibility"
-    Then I validate I am on the "Application History" page
     Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
@@ -147,17 +129,17 @@ Feature: Seed05 - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
     Then I select make payment button to pay the premium
     And I select the Money Order button
     And I click continue on payment selection page
     And I select second make payment button to pay the premium
     And I click continue on payment selection page
     And I click continue on initial payment page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
