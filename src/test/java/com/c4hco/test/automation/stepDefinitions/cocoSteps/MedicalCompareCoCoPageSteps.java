@@ -13,5 +13,9 @@ public class MedicalCompareCoCoPageSteps {
     @And("I select the Go Back button on the Medical Plan Compare page")
     public void clickMedicalCompareGoBack(){medicalCompareCoCoPage.clickMedicalCompareGoBack();}
 
+    @And( "I verify the Medical Compare page In-Network headers and subheaders" )
+    public void verifyTxtCompareHeader(){medicalCompareCoCoPage.verifyTxtCompareHeader();}
 
+    @And( "I verify the Medical Compare page Out-Network headers and subheaders" )
+    public void verifyTxtOutofNetworkHeader(){medicalCompareCoCoPage.verifyTxtOutofNetworkCompareHeader();}
 }
