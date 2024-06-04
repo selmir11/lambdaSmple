@@ -8,11 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
+    SoftAssert softAssert = new SoftAssert();
     public MedicalCompareCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions( webDriver );
         PageFactory.initElements( basicActions.getDriver(), this );
@@ -205,162 +207,163 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     public void  verifyTxtCompareHeader() {
         basicActions.waitForElementToBePresent(txtCompareHeaderMonthlyPremium, 10 );
-        txtCompareHeaderMonthlyPremium.isDisplayed();
+        softAssert.assertTrue(txtCompareHeaderMonthlyPremium.isDisplayed(),"Incorrect Header");
         txtCompareHeaderMonthlyPremium.click();
 
-        getTxtCompareHeaderGeneralDetails.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderGeneralDetails.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderGeneralDetails.click();
 
-        getTxtCompareHeaderProviderOfficeVisits.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisits.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderProviderOfficeVisits.click();
-        getTxtPreventativeCare.isDisplayed();
-        getTxtPrimaryCare.isDisplayed();
-        getTxtSpecialistVisit.isDisplayed();
-        getTxtTelehealthPCP.isDisplayed();
-        getTxtTelehealthSpecialist.isDisplayed();
+        softAssert.assertTrue(getTxtPreventativeCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSpecialistVisit.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtTelehealthPCP.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtTelehealthSpecialist.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderPrescriptionDrugs.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderPrescriptionDrugs.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderPrescriptionDrugs.click();
-        getTxtGenericDrugs.isDisplayed();
-        getTxtPreferredDrugs.isDisplayed();
-        getTxtNonPreferredDrugs.isDisplayed();
-        getTxtSpecialtyDrugs.isDisplayed();
+        softAssert.assertTrue(getTxtGenericDrugs.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtPreferredDrugs.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtNonPreferredDrugs.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSpecialtyDrugs.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderFacilities.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderFacilities.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderFacilities.click();
-        getTxtOutPatientFacility.isDisplayed();
-        getTxtOutPatientSurgery.isDisplayed();
-        getTxtInpatientHospital.isDisplayed();
-        getTxtInPatientPhysician.isDisplayed();
+        softAssert.assertTrue(getTxtOutPatientFacility.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtOutPatientSurgery.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtInpatientHospital.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtInPatientPhysician.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderMaternity.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderMaternity.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderMaternity.click();
-        getTxtPrenatal.isDisplayed();
-        getTxtDelivery.isDisplayed();
+        softAssert.assertTrue(getTxtPrenatal.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtDelivery.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderEmergencyCare.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderEmergencyCare.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderEmergencyCare.click();
-        getTxtUrgentCare.isDisplayed();
-        getTxtEmergencyRoom.isDisplayed();
-        getTxtEmergencyTransportation.isDisplayed();
+        softAssert.assertTrue(getTxtUrgentCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtEmergencyRoom.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtEmergencyTransportation.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderMentalHealth.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderMentalHealth.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderMentalHealth.click();
-        getTxtBehavioralOutpatient.isDisplayed();
-        getTxtBehavioralInpatient.isDisplayed();
-        getTxtSubstanceAbuseOutpatient.isDisplayed();
-        getTxtSubstanceAbuseInpatient.isDisplayed();
+        softAssert.assertTrue(getTxtBehavioralOutpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtBehavioralInpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSubstanceAbuseOutpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSubstanceAbuseInpatient.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderTesting.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderTesting.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderTesting.click();
-        getTxtLaboratoryOutpatient.isDisplayed();
-        getTxtXraysDiagnostics.isDisplayed();
-        getTxtImaging.isDisplayed();
+        softAssert.assertTrue(getTxtLaboratoryOutpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtXraysDiagnostics.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtImaging.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderMedicalDevices.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderMedicalDevices.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderMedicalDevices.click();
-        getTxtDurableMedical.isDisplayed();
-        getTxtProstheticDevices.isDisplayed();
+        softAssert.assertTrue(getTxtDurableMedical.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtProstheticDevices.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderHabRehab.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderHabRehab.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderHabRehab.click();
-        getTxtHAbServices.isDisplayed();
-        getTxtRehabSpeech.isDisplayed();
-        getTxtRehabOccupational.isDisplayed();
-        getTxtRehabPhysical.isDisplayed();
+        softAssert.assertTrue(getTxtHAbServices.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtRehabSpeech.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtRehabOccupational.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtRehabPhysical.isDisplayed(),"Incorrect Header");
 
 
-        getTxtCompareHeaderHomeCare.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderHomeCare.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderHomeCare.click();
-        getTxtHomeCare.isDisplayed();
-        getTxtHospiceServices.isDisplayed();
+        softAssert.assertTrue(getTxtHomeCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtHospiceServices.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderAddEHB.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderAddEHB.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderAddEHB.click();
-        getTxtIChiroCare.isDisplayed();
-        getTxtBarCare.isDisplayed();
-        getTxtInfertilityTreatment.isDisplayed();
+        softAssert.assertTrue(getTxtIChiroCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtBarCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtInfertilityTreatment.isDisplayed(),"Incorrect Header");
 
     }
 
     public void verifyTxtOutofNetworkCompareHeader(){
         basicActions.waitForElementToBePresent(selectOutofNetworkLink, 10 );
         selectOutofNetworkLink.click();
-        txtCompareHeaderMonthlyPremiumOut.isDisplayed();
+
+        softAssert.assertTrue(txtCompareHeaderMonthlyPremiumOut.isDisplayed(),"Incorrect Header");
         txtCompareHeaderMonthlyPremiumOut.click();
 
-        getTxtCompareHeaderGeneralDetailsOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderGeneralDetailsOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderGeneralDetailsOut.click();
 
-        getTxtCompareHeaderProviderOfficeVisitsOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisitsOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderProviderOfficeVisitsOut.click();
-        getTxtPreventativeCare.isDisplayed();
-        getTxtPrimaryCare.isDisplayed();
-        getTxtSpecialistVisit.isDisplayed();
-        getTxtTelehealthPCP.isDisplayed();
-        getTxtTelehealthSpecialist.isDisplayed();
+        softAssert.assertTrue(getTxtPreventativeCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSpecialistVisit.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtTelehealthPCP.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtTelehealthSpecialist.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderPrescriptionDrugsOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderPrescriptionDrugsOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderPrescriptionDrugsOut.click();
-        getTxtGenericDrugs.isDisplayed();
-        getTxtPreferredDrugs.isDisplayed();
-        getTxtNonPreferredDrugs.isDisplayed();
-        getTxtSpecialtyDrugs.isDisplayed();
+        softAssert.assertTrue(getTxtGenericDrugs.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtPreferredDrugs.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtNonPreferredDrugs.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSpecialtyDrugs.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderFacilitiesOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderFacilitiesOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderFacilitiesOut.click();
-        getTxtOutPatientFacility.isDisplayed();
-        getTxtOutPatientSurgery.isDisplayed();
-        getTxtInpatientHospital.isDisplayed();
-        getTxtInPatientPhysician.isDisplayed();
+        softAssert.assertTrue(getTxtOutPatientFacility.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtOutPatientSurgery.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtInpatientHospital.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtInPatientPhysician.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderMaternityOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderMaternityOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderMaternityOut.click();
-        getTxtPrenatal.isDisplayed();
-        getTxtDelivery.isDisplayed();
+        softAssert.assertTrue(getTxtPrenatal.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtDelivery.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderEmergencyCareOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderEmergencyCareOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderEmergencyCareOut.click();
-        getTxtUrgentCare.isDisplayed();
-        getTxtEmergencyRoom.isDisplayed();
-        getTxtEmergencyTransportation.isDisplayed();
+        softAssert.assertTrue(getTxtUrgentCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtEmergencyRoom.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtEmergencyTransportation.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderMentalHealthOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderMentalHealthOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderMentalHealthOut.click();
-        getTxtBehavioralOutpatient.isDisplayed();
-        getTxtBehavioralInpatient.isDisplayed();
-        getTxtSubstanceAbuseOutpatient.isDisplayed();
-        getTxtSubstanceAbuseInpatient.isDisplayed();
+        softAssert.assertTrue(getTxtBehavioralOutpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtBehavioralInpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSubstanceAbuseOutpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtSubstanceAbuseInpatient.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderTestingOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderTestingOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderTestingOut.click();
-        getTxtLaboratoryOutpatient.isDisplayed();
-        getTxtXraysDiagnostics.isDisplayed();
-        getTxtImaging.isDisplayed();
+        softAssert.assertTrue(getTxtLaboratoryOutpatient.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtXraysDiagnostics.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtImaging.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderMedicalDevicesOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderMedicalDevicesOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderMedicalDevicesOut.click();
-        getTxtDurableMedical.isDisplayed();
-        getTxtProstheticDevices.isDisplayed();
+        softAssert.assertTrue(getTxtDurableMedical.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtProstheticDevices.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderHabRehabOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderHabRehabOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderHabRehabOut.click();
-        getTxtHAbServices.isDisplayed();
-        getTxtRehabSpeech.isDisplayed();
-        getTxtRehabOccupational.isDisplayed();
-        getTxtRehabPhysical.isDisplayed();
+        softAssert.assertTrue(getTxtHAbServices.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtRehabSpeech.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtRehabOccupational.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtRehabPhysical.isDisplayed(),"Incorrect Header");
 
 
-        getTxtCompareHeaderHomeCareOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderHomeCareOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderHomeCareOut.click();
-        getTxtHomeCare.isDisplayed();
-        getTxtHospiceServices.isDisplayed();
+        softAssert.assertTrue(getTxtHomeCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtHospiceServices.isDisplayed(),"Incorrect Header");
 
-        getTxtCompareHeaderAddEHBOut.isDisplayed();
+        softAssert.assertTrue(getTxtCompareHeaderAddEHBOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderAddEHBOut.click();
-        getTxtIChiroCare.isDisplayed();
-        getTxtBarCare.isDisplayed();
-        getTxtInfertilityTreatment.isDisplayed();
+        softAssert.assertTrue(getTxtIChiroCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtBarCare.isDisplayed(),"Incorrect Header");
+        softAssert.assertTrue(getTxtInfertilityTreatment.isDisplayed(),"Incorrect Header");
 
 
     }
