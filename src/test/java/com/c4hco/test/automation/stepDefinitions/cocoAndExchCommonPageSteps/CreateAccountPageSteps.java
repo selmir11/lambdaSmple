@@ -20,6 +20,11 @@ public class CreateAccountPageSteps {
             createAccountPage.createGeneralAccount(appType);
         }
 
+        @Then("I enter mandatory data for {string} account creation with email {string}@outlook.com")
+        public void iEnterDataForBrokerAccCreation(String accountType, String emailBase){
+            createAccountPage.createBrokerAccount(accountType, emailBase);
+        }
+
          @And("I click on help icon button")
           public void iClickOnHelpIconButton() {createAccountPage.clickHelpIconButton();}
 
