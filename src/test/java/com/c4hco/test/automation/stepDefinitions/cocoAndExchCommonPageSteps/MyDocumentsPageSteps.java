@@ -21,4 +21,10 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateTheNoticeExistInMyDocumentLetter(String documentName) {
         myDocumentsPage.validateTheNoticeExistInMyDocumentLetterPage(documentName);
     }
+
+    @Then("I validate Welcome back button navigates to welcome page")
+    public void iValidateWelcomeBackButtonNavigatesToWelcomePage() {
+        myDocumentsPage.goBackToWelcomePage();
+    }
+
 }
