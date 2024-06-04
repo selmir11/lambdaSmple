@@ -59,19 +59,13 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertAll();     }
     public void validateSelectedMemberData()  {
         basicActions.switchToParentPage("C4HCO Admin Portal");
-        basicActions.waitForElementToBePresent(selectedMember,10);
+        basicActions.waitForElementToBePresent(selectedMember,30);
         softAssert.assertTrue(selectedMember.isDisplayed());
-        basicActions.waitForElementToBePresent(memberFullName,10);
         softAssert.assertTrue(memberFullName.isDisplayed());
-        basicActions.waitForElementToBePresent(userName,10);
         softAssert.assertTrue(userName.isDisplayed());
-        basicActions.waitForElementToBePresent(memberEmail,10);
         softAssert.assertTrue(memberEmail.isDisplayed());
-        basicActions.waitForElementToBePresent(memberPhone,10);
         softAssert.assertTrue(memberPhone.isDisplayed());
-        basicActions.waitForElementToBePresent(memberDob,10);
         softAssert.assertTrue(memberDob.isDisplayed());
-        basicActions.waitForElementToBePresent(memberAddress,10);
         softAssert.assertTrue(memberAddress.isDisplayed());
         softAssert.assertAll(); }
 }
