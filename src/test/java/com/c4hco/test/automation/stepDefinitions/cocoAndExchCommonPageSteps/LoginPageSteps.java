@@ -28,6 +28,11 @@ public class LoginPageSteps {
     @When("I login as Broker User {string} password {string}")
     public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
 
+    @And("I log into my {string} account")
+    public void iEnterBrokerPortalCredentials(String accountType){
+        loginPage.logInBrokerPortal(accountType);
+    }
+
     @And("I login as Broker User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
