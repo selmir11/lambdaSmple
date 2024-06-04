@@ -22,10 +22,8 @@ public class DentalPlansResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    //@FindBy(css = "#PlanResults-SelectThisPlan_1.button-primary.select")
-    //@FindyBy(xpath = "//button[@id='PlanResults-SelectThisPlan_1']")
-    //@FindBy (id = "PlanResults-SelectThisPlan_1")
-    @FindBy(css = "#PlanResults-SelectThisPlan_1 .button")
+
+    @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
@@ -34,16 +32,16 @@ public class DentalPlansResultsPage {
     @FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
 
-    @FindBy(id ="SHP-DentalPlanResults-ComparePlans")
+    @FindBy(id ="DentalPlanResults-ComparePlans")
     WebElement btnCompareOnDentalPlanResults;
 
-    @FindBy(id = "SHP-DentalPlanResults-CoverageLevel")
+    @FindBy(id = "DentalPlanResults-CoverageLevel")
     WebElement dropdownCoverageLevel;
 
-    @FindBy(id = "SHP-DentalPlanResults-Continue")
+    @FindBy(id = "DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
 
-    @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
+    @FindBy(id = "DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
     @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']")
@@ -58,7 +56,7 @@ public class DentalPlansResultsPage {
     }
 
     public void selectFirstDentalPlan(){
-        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,15);
+        basicActions.waitForElementToBeClickable(selectFirstDentalPlanBtn,20);
         selectFirstDentalPlanBtn.click();
     }
     public void clickContinueOnDentalResultsPage(){
