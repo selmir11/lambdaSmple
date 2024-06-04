@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -153,8 +154,32 @@ public class EmploymentInfoPage {
 
     public void addEmploymentInfo(String Salary, String Frequency) {
         // Should not use this method anymore- should use genericEmploymentInfo method
-        SharedData.setEmployerName(getUniqueString(8)+"Company");
-        txtCompanyName.sendKeys(SharedData.getEmployerName());
+        String companyName = getUniqueString(8) + "Company";
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        System.out.println("Initial member list size: " + memberList.size());
+
+        if (memberList.isEmpty()) {
+            MemberDetails member = new MemberDetails();
+            member.setEmployerName(companyName);
+            memberList.add(member);
+        } else {
+            if (memberList.get(0).getEmployerName() == null) {
+                memberList.get(0).setEmployerName(companyName);
+            } else {
+                MemberDetails newMember = new MemberDetails();
+                newMember.setEmployerName(companyName);
+                memberList.add(newMember);
+            }
+        }
+
+        SharedData.setMembers(memberList);
+        txtCompanyName.sendKeys(companyName);
+
         txtAddressOne.sendKeys("123 Test Address");
         txtAddressTwo.sendKeys("Test Suite 321");
         txtCity.sendKeys("Denver");
@@ -170,8 +195,33 @@ public class EmploymentInfoPage {
     }
 
     public void genericEmploymentInfo(String addressline1, String city,String state, String zipcode, String Salary, String Frequency){
-        SharedData.setEmployerName(getUniqueString(8)+" Company");
-        txtCompanyName.sendKeys(SharedData.getEmployerName());
+
+        String companyName = getUniqueString(8) + "Company";
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        System.out.println("Initial member list size: " + memberList.size());
+
+        if (memberList.isEmpty()) {
+            MemberDetails member = new MemberDetails();
+            member.setEmployerName(companyName);
+            memberList.add(member);
+        } else {
+            if (memberList.get(0).getEmployerName() == null) {
+                memberList.get(0).setEmployerName(companyName);
+            } else {
+                MemberDetails newMember = new MemberDetails();
+                newMember.setEmployerName(companyName);
+                memberList.add(newMember);
+            }
+        }
+
+        SharedData.setMembers(memberList);
+        txtCompanyName.sendKeys(companyName);
+
         txtAddressOne.sendKeys(addressline1);
         txtCity.sendKeys(city);
 

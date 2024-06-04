@@ -21,7 +21,6 @@ public class SharedData {
     @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static String localPathToDownloadFile;
-    @Getter @Setter private static String EmployerName;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static String env;
@@ -41,7 +40,6 @@ public class SharedData {
         primaryMember = null;
         members = null;
         primaryMemberId = null;
-        EmployerName = null;
         edi834TransactionDetails = null;
         commonEDISegments = null;
         env = null;
