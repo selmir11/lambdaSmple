@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
@@ -10,18 +9,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.awt.*;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class MyDocumentsPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    Robot robot = new Robot();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
-    public MyDocumentsPage(WebDriver webDriver) throws AWTException {
+    public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -31,22 +24,18 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-
+    
     @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
-    @FindBy(xpath = "(//span[contains(@class,'ng-star-inserted')])[4]")
-    WebElement expandDownloadEnrolmentDocument;
 
-    @FindBy(xpath = "//a[@class='btn-second-action-button download-button']")
-    WebElement downloadEnrolmentDocument;
+    @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
+    WebElement goBackWelcomePage;
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
     }
-
-
-
 
                 //============================VALIDATION STEPS==============//
 
@@ -79,15 +68,14 @@ public class MyDocumentsPage {
      }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
+        basicActions.waitForElementToBePresent(documentsInfoMessage,100);
         basicActions.scrollToElement(documentsInfoMessage);
         softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
         softAssert.assertAll();
     }
 
-    public  void downloadEnrolmentDocument() {
-        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
-        expandDownloadEnrolmentDocument.click();
+    public void goBackToWelcomePage(){
+        basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
+        basicActions.click(goBackWelcomePage);
     }
-
 }
