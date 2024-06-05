@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-
 public class MyDocumentsPage {
 
     private BasicActions basicActions;
@@ -25,17 +24,18 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-
+    
     @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
+
+    @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
+    WebElement goBackWelcomePage;
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
     }
-
-
-
 
                 //============================VALIDATION STEPS==============//
 
@@ -56,14 +56,26 @@ public class MyDocumentsPage {
                 softAssert.assertEquals(documentsInfoMessage.getText(),"No tiene documentos ni cartas en este momento");
                 softAssert.assertAll();
                 break;
+            case "Spanish Headers":
+                basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
+                softAssert.assertEquals(myDocumentsTitle.getText(),"Mis Documentos y Cartas");
+                softAssert.assertEquals(myDocumentsSubTitle.getText(),"Documentos y Cartas Anteriores");
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
      }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
+        basicActions.waitForElementToBePresent(documentsInfoMessage,100);
         basicActions.scrollToElement(documentsInfoMessage);
         softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
         softAssert.assertAll();
+    }
+
+    public void goBackToWelcomePage(){
+        basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
+        basicActions.click(goBackWelcomePage);
     }
 }

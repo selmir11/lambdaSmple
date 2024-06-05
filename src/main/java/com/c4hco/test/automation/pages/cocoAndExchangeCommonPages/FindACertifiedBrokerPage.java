@@ -30,6 +30,9 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath ="//input[@aria-autocomplete='list']")
     WebElement searchBrokerLanguage;
 
+    @FindBy(xpath ="//div[contains(text(), 'Preferred Spoken Language')]")
+    WebElement searchBrokerLanguageText;
+
     @FindBy(id ="findBroker-searchBroker-btn")
     WebElement searchButton;
 
@@ -127,6 +130,9 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath ="//*[@id='findBroker-contact-you']/span[3]")
     WebElement findBrokerContactYouText;
 
+    @FindBy(id = "BP-FindaCertifiedBrokernearyou-GoBack")
+    WebElement findBrokerGoBack;
+
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
             case "English" ->
@@ -171,6 +177,11 @@ public class FindACertifiedBrokerPage {
     public void clickSearchButton() {
         basicActions.waitForElementToBePresent(searchButton,100);
         searchButton.click();
+    }
+
+    public void clickGoBackButton(){
+        basicActions.waitForElementToBePresent(findBrokerGoBack, 10);
+        findBrokerGoBack.click();
     }
 
     public void clickMoreDetailsInTheBrokerContainer() {
@@ -357,19 +368,56 @@ public class FindACertifiedBrokerPage {
        okeyRemoveCurrentBroker.click();
     }
 
-    public void validateBrokerContactYouText(String language){
+    public void validateBrokerContactYouText(String marketplace, String language){
+        String market = "";
+
+        switch (marketplace) {
+            case "Exch":
+                market = "Connect for Health Colorado";
+                break;
+            case "CoCo":
+                market = "Colorado Connect";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + marketplace);
+        }
+
         switch (language) {
             case "English":
                 basicActions.waitForElementToBePresent(findBrokerContactYouTitle,100);
                 softAssert.assertEquals(findBrokerContactYouTitle.getText(),"Would you rather have a broker contact you instead?");
                 softAssert.assertEquals(findBrokerFillOutFormText.getText(),"Fill out this form to have a certified Broker call you within 60 minutes.");
-                softAssert.assertEquals(findBrokerContactYouText.getText(),"We will now direct you to our partner website to complete your request to be contacted by one of Connect for Health Colorado's certified Brokers.");
+                softAssert.assertEquals(findBrokerContactYouText.getText(),"We will now direct you to our partner website to complete your request to be contacted by one of " + market +"'s certified Brokers.");
                 break;
             case "Spanish":
                 basicActions.waitForElementToBePresent(findBrokerContactYouTitle,100);
                 softAssert.assertEquals(findBrokerContactYouTitle.getText(),"\u00BFPrefiere que se comunique con usted un agente certificado?");
                 softAssert.assertEquals(findBrokerFillOutFormText.getText(),"Llene este formulario para solicitar que le llame un agente certificado en un plazo de 60 minutos.");
                 softAssert.assertEquals(findBrokerContactYouText.getText(),"Le dirigiremos ahora al sitio web de nuestros socios para completar su petici\u00F3n de solicitar que le llame uno de los Asistentes certificados de Connect for Health Colorado");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateButtonAndFieldText(String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresent(searchContainer,30);
+                softAssert.assertEquals(searchContainer.getAttribute("placeholder"),"Broker Name, Agency or License # (Optional)");
+                softAssert.assertEquals(searchBrokerLocation.getAttribute("placeholder"),"City or State or Zip Code");
+                softAssert.assertEquals(searchBrokerLanguageText.getText(),"Preferred Spoken Language(s) (Optional)");
+                softAssert.assertEquals(findBrokerGoBack.getText(),"Go Back");
+                softAssert.assertEquals(searchButton.getText(),"Search for Broker");
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(searchContainer,30);
+                softAssert.assertEquals(searchContainer.getAttribute("placeholder"),"Nombre, agencia o n\u00FAmero de licencia (Opcional)");
+                softAssert.assertEquals(searchBrokerLocation.getAttribute("placeholder"),"Ciudad o estado o c\u00F3digo postal");
+                softAssert.assertEquals(searchBrokerLanguageText.getText(),"Preferred Spoken Language(s) (Optional)");
+                softAssert.assertEquals(findBrokerGoBack.getText(),"Volver");
+                softAssert.assertEquals(searchButton.getText(),"Buscar un agente");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);

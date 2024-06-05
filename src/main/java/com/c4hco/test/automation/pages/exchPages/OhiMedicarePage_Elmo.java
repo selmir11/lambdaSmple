@@ -492,7 +492,7 @@ public class OhiMedicarePage_Elmo {
         softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Medicare.");
         softAssert.assertEquals(questionTxt.get(0).getText(),"Are you currently eligible for Medicare Premium Free Part A?");
-        softAssert.assertEquals(currentlyEligibleYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEligibleYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
         softAssert.assertEquals(areYouEnrolledTxt.getText(),"Are you enrolled in any of the following?");
         softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Part A");
@@ -505,7 +505,7 @@ public class OhiMedicarePage_Elmo {
         softAssert.assertEquals(questionTxt.get(1).getText(),"Premium Amount");
         softAssert.assertEquals(partAInsuranceAmount.getText(),"");
         softAssert.assertEquals(questionTxt.get(2).getText(),"Will this health insurance end in the next 60 days?");
-        softAssert.assertEquals(partAInsuranceEndingYes.getText(),"Si");
+        softAssert.assertEquals(partAInsuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(partAInsuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -513,7 +513,7 @@ public class OhiMedicarePage_Elmo {
     public void verifyMedicarePagePartBSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(questionTxt.get(4).getText(),"Will this health insurance end in the next 60 days?");
-        softAssert.assertEquals(partBInsuranceEndingYes.getText(),"Si");
+        softAssert.assertEquals(partBInsuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(partBInsuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }

@@ -564,7 +564,7 @@ public class OhiIndividualInsurancePage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en el seguro de salud adquirido directamente a trav\u00E9s de una compa\u00F1\u00Eda de seguros, por medio de HealthCare.gov o a trav\u00E9s de otro Mercado del estado.");
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en un seguro individual?");
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -572,7 +572,7 @@ public class OhiIndividualInsurancePage_Elmo {
     public void verifyIndividualInsurancePageSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
-        softAssert.assertEquals(insuranceEndingYes.getText(),"Si");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -582,7 +582,7 @@ public class OhiIndividualInsurancePage_Elmo {
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -594,7 +594,7 @@ public class OhiIndividualInsurancePage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en el seguro de salud adquirido directamente a trav\u00E9s de una compa\u00F1\u00Eda de seguros, por medio de HealthCare.gov o a trav\u00E9s de otro Mercado del estado."));
         softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en un seguro individual?"));
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Si");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
@@ -604,7 +604,7 @@ public class OhiIndividualInsurancePage_Elmo {
         softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Si");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }

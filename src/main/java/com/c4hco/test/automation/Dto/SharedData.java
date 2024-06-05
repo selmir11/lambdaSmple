@@ -26,8 +26,6 @@ public class SharedData {
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
-    @Getter @Setter private static String totalSubscribers;
-    @Getter @Setter private static String totalDependents;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
@@ -35,6 +33,9 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
     @Getter @Setter private static Boolean hasBroker = false;
+    @Getter @Setter private static BrokerDetails agencyOwner;
+    @Getter @Setter private static BrokerDetails broker;
+    @Getter @Setter private static BrokerDetails adminStaff;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -50,8 +51,6 @@ public class SharedData {
         ob834DetailsEntities = null;
         dbData = null;
         totalGroups = 0;
-        totalSubscribers = null;
-        totalDependents= null;
         planYear = null;
         groupDetails = null;
         dbName = null;

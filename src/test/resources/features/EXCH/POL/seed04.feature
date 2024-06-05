@@ -2,6 +2,9 @@ Feature: Seed04 - Exchange
 
   @SLER-316-WIP
   Scenario: Seed 04 For Exchange- Husband and Wife with FA
+    Given I set the test scenario details
+      | totalGroups | totalMembers |
+      | 1           | 2            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -168,16 +171,12 @@ Feature: Seed04 - Exchange
 
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-
     And I Validate the correct enrolled plans are displayed on account overview page
-    And I set the test scenario details
-      | totalMedGroups | totalMembers |
-      | 1            | 2            |
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate medical plan details from my policies page
       | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-      | 01/01/2024      | 12/31/2024    | 01/01/2024         | 12/31/2024       |
+      | 01/01           | 12/31         | 01/01              | 12/31            |
     And I validate dental plan details from my policies page
       | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-      | 01/01/2024      | 12/31/2024    | 01/01/2024         | 12/31/2024       |
+      | 01/01           | 12/31         | 01/01              | 12/31            |

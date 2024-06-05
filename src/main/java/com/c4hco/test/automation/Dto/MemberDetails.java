@@ -57,7 +57,6 @@ public class MemberDetails {
     String maritalStatus;
     Boolean isMinor;
     Boolean hasIncorrectEntities;
-    String memberGroup;
     String isSubscriber="N";
     String incorrectEntityIdCode;
     String incorrectEntityTypeQualifier;
@@ -70,6 +69,7 @@ public class MemberDetails {
     String incorrect_first_name ;
     String incorrect_middle_name ;
     String incorrect_last_name ;
+    int memberCount;
 }
 
 

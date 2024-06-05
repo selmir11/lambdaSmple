@@ -294,7 +294,7 @@ public class BasicSteps {
                 pageUrl = "/otherHealthInsurance/medicare";
                 break;
             case "Elmo Ohi VA Healthcare":
-                pageUrl = "/otherHealthInsurance/vaHealthcare";
+                pageUrl = "/otherHealthInsurance/va";
                 break;
             case "Elmo Ohi Individual Insurance":
                 pageUrl = "/otherHealthInsurance/individual";
@@ -329,8 +329,13 @@ public class BasicSteps {
             case "LUGY Find expert help" :
                 pageUrl = "broker-portal/find-expert-help";
                 break;
+<<<<<<< HEAD
             case "Agency dashboard" :
                 pageUrl = "AdminPortal/agency";
+=======
+            case "Broker Portal C4U link" :
+                pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
+>>>>>>> main
                 break;
             default:
                 System.out.println("undefined page ");
