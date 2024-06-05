@@ -331,6 +331,9 @@ public class BasicSteps {
             case "LUGY Find expert help" :
                 pageUrl = "broker-portal/find-expert-help";
                 break;
+            case "Broker Portal C4U link" :
+                pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

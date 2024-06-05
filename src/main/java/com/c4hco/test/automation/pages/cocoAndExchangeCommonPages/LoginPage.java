@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -103,8 +104,34 @@ public class LoginPage {
         signInButton.click();
     }
 
-    public void loginAsBrokerUser(String brokerUser, String Password) {
-        basicActions.waitForElementToBePresent(usernameAdmin, 20);
+    public void logInBrokerPortal(String accountType) {
+        basicActions.waitForElementToBePresent(username, 10);
+        BrokerDetails user;
+        switch(accountType){
+            case "Agency Owner":
+                user = SharedData.getAgencyOwner();
+                break;
+            case "Broker":
+                user = SharedData.getBroker();
+                break;
+            case "Admin Staff":
+                user = SharedData.getAdminStaff();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + accountType);
+
+        }
+        String emailId = user.getEmail();
+        System.out.println("Email::"+emailId);
+        String pswd = user.getPassword();
+        System.out.println("Password::"+pswd);
+        basicActions.wait(2000);
+        username.sendKeys(emailId);
+        password.sendKeys(pswd);
+        signInButton.click();
+    }
+    public void loginAsBrokerUser(String brokerUser,String Password){
+        basicActions.waitForElementToBePresent(usernameAdmin,20 );
         usernameAdmin.sendKeys(brokerUser);
         basicActions.waitForElementToBePresent(usernameAdmin, 20);
         passwordAdmin.sendKeys(Password);
