@@ -1,8 +1,6 @@
-@SLER-312
 @OPS
-
 Feature: Admin Portal as OBO verify member data on the left
-
+  @SLER-312
   Scenario: Verify member data
     Given I open the login page on the "admin" portal
     And I refresh the page
