@@ -22,7 +22,8 @@ public class DentalPlansResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    @FindBy(id="DentalPlanResults-SelectThisPlan_0")
+
+    @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
@@ -31,16 +32,16 @@ public class DentalPlansResultsPage {
     @FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
     List<WebElement> comparePlanLinks;
 
-    @FindBy(id ="SHP-DentalPlanResults-ComparePlans")
+    @FindBy(id ="DentalPlanResults-ComparePlans")
     WebElement btnCompareOnDentalPlanResults;
 
-    @FindBy(id = "SHP-DentalPlanResults-CoverageLevel")
+    @FindBy(id = "DentalPlanResults-CoverageLevel")
     WebElement dropdownCoverageLevel;
 
-    @FindBy(id = "SHP-DentalPlanResults-Continue")
+    @FindBy(id = "DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
 
-    @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
+    @FindBy(id = "DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
     @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']")
@@ -49,14 +50,13 @@ public class DentalPlansResultsPage {
     @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
-    public void iGetFirstDentalPlaneName() {
+    public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
         SharedData.setFirstPlanNameOnDentalResultsPage(dentalPlanNames.get(0).getText());
     }
 
     public void selectFirstDentalPlan(){
-        iGetFirstDentalPlaneName();
-        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn,10);
+        basicActions.waitForElementToBeClickable(selectFirstDentalPlanBtn,20);
         selectFirstDentalPlanBtn.click();
     }
     public void clickContinueOnDentalResultsPage(){
@@ -100,7 +100,7 @@ public class DentalPlansResultsPage {
     }
 
     public void validateDentalPlanText (int index,String dentalPlanText){
-        basicActions.waitForElementToBePresent(selectFirstDentalPlanBtn, 10);
+        basicActions.waitForElementToBePresent(dropdownCoverageLevel, 10);
         //index = index - 1;
         String indexString = String.valueOf(index);
         String planID = "DentalPlanResults-SelectThisPlan_" + indexString;

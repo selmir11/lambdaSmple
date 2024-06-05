@@ -117,7 +117,7 @@ Feature: Page Text-Other Health Insurance Page
 
   @SLER-239 @PageTextOtherHealthInsurancePage
   Scenario: SLER-239 I Validate saved data on the ESI page for multiple members
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "250.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
@@ -210,7 +210,7 @@ Feature: Page Text-Other Health Insurance Page
     And I verify the "First Section" ESI page data in "English"
     Then I click continue on the ESI page
     And I verify "Which Job" error in "English" on the ESI page
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     And I verify "Which Job" error does not show for ESI page
 
     And I verify the "Second Section" ESI page data in "English"
@@ -258,7 +258,7 @@ Feature: Page Text-Other Health Insurance Page
     And I verify the "First Section" ESI page data in "Spanish"
     Then I click continue on the ESI page
     And I verify "Which Job" error in "Spanish" on the ESI page
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     And I verify "Which Job" error does not show for ESI page
 
     And I verify the "Second Section" ESI page data in "Spanish"
