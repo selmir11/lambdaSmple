@@ -412,3 +412,173 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | 10 personas: $91,260 |
       | ¿Necesitas más ayuda? |
       | Contáctenos |
+
+  @SLER-595 @PageText
+  Scenario: Verify the help drawer text and urls on Life Change Events page - qlceConfirmation - second one
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "3700000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option and continue
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I click on the help drawer icon on the page
+    And I validate the below help drawer text in "English"
+      | Help |
+      | Qualified Life Change Event |
+      | Overview |
+      | Select any Life Change Event that happened to you or someone in your household within the past 60 days. The loss of other health insurance can be reported up to 60 days before you lose your other insurance. |
+      | Important for people losing Health First Colorado (Colorado's Medicaid program): If you are going to lose or have already lost Health First Colorado coverage, you are eligible for a Special Enrollment Period to sign up for a health insurance plan through July 2024. You can enroll as early as 60 days prior to the end of your Health First Colorado coverage. The sooner you enroll in a health insurance plan, the sooner your coverage begins. |
+      | To see if you are qualified to enroll after losing your health insurance plan please visit: |
+      | https://connectforhealthco.com/get-started/when-can-i-buy-insurance/ |
+      | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
+      | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
+      | Please use the list below to see the income limits by household size: |
+      | 1 person: $21,870 |
+      | 2 people: $29,580 |
+      | 3 people: $37,290 |
+      | 4 people: $45,000 |
+      | 5 people: $52,710 |
+      | 6 people: $60,240 |
+      | 7 people: $68,130 |
+      | 8 people: $75,840 |
+      | 9 people: $83,550 |
+      | 10 people: $91,260 |
+      | Need more help? |
+      | Contact us |
+
+  @SLER-596 @PageText
+  Scenario: Verify the spanish version of the help drawer text and urls on Life Change Events page - qlceConfirmation - second one
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "3700000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option and continue
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    When I change the language from header to "Spanish NonElmo"
+    Then I validate I am on the "Spanish" page
+    Then I click on the help drawer icon on the page
+    And I validate the below help drawer text in "Spanish"
+      | Ayuda |
+      | Evento de cambio de vida calificado |
+      | Resumen |
+      | Seleccione el evento de vida calificado que usted o alguien de su familia haya tenido en los últimos 60 días. La pérdida de otro seguro de salud se puede reportar hasta 60 días antes de que lo pierda. |
+      | Importante para las personas que pierden Health First Colorado (Programa Medicaid de Colorado): Si va a perder la cobertura con Health First Colorado o ya la perdió, es elegible para un período de inscripción especial durante el cual podrá inscribirse en un plan de seguro de salud hasta julio de 2024. Puede inscribirse desde 60 días antes de que finalice su cobertura con Health First Colorado. Mientras más pronto se inscriba en un plan de seguro de salud, más pronto comenzará su cobertura. |
+      | Para averiguar si usted está calificado para inscribirse después de perder su seguro de salud, visite: |
+      | https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/ |
+      | Marque esta casilla si el Ingreso bruto ajustado modificado anual de la familia es igual o inferior al 150% del nivel federal de pobreza: |
+      | https://www.cuidadodesalud.gov/es/glossary/federal-poverty-level-fpl/ |
+      | Vea la lista a continuación con los límites de ingresos por tamaño familiar: |
+      | 1 persona: $21,870 |
+      | 2 personas: $29,580 |
+      | 3 personas: $37,290 |
+      | 4 personas: $45,000 |
+      | 5 personas: $52,710 |
+      | 6 personas: $60,240 |
+      | 7 personas: $68,130 |
+      | 8 personas: $75,840 |
+      | 9 personas: $83,550 |
+      | 10 personas: $91,260 |
+      | ¿Necesitas más ayuda? |
+      | Contáctenos |
