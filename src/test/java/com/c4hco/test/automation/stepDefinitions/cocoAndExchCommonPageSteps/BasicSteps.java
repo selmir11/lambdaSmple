@@ -245,7 +245,6 @@ public class BasicSteps {
                 break;
             case "Broker Dashboard":
                 pageUrl = "/broker-portal/";
-                basicActions.wait(3000);
                 break;
             case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
