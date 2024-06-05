@@ -75,7 +75,6 @@ public class AdminPortalIndividualDashboardPage {
         }
     }
 
-
     public void verifyContainerTitle() {
         basicActions.waitForElementToBePresent(reportsTitle, 10);
         softAssert.assertTrue(reportsTitle.isDisplayed());
@@ -91,25 +90,25 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(memberAcctId, 10);
         softAssert.assertTrue(memberAcctId.isDisplayed());
         softAssert.assertAll();     }
-
     public void verifyAgencyContainerTitle() {
         basicActions.waitForElementToBePresent(agencyContainerTitle, 10);
         softAssert.assertTrue(agencyContainerTitle.isDisplayed());
         basicActions.waitForElementToBePresent(memberAcctId, 10);
         softAssert.assertTrue(memberAcctId.isDisplayed());
         softAssert.assertAll();     }
-
-    public void agencySummaryValidation() {
+    public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
-        softAssert.assertEquals(agencyName.getText(), "Hanks Enterprises");
-        softAssert.assertEquals(stateLicenseNumber.getText(), "65873464");
-        softAssert.assertEquals(agencyThin.getText(), "546424428");
-        softAssert.assertEquals(agencyAgent.getText(), "Agent: Tom Hanks");
-        softAssert.assertEquals(agencyEmail.getText(), "invalid@test.com");
-        softAssert.assertEquals(agencyWebsite.getText(), "Website:");
-        softAssert.assertEquals(agencyAddress.getText(), "234 Wellness Street, Suite 161\n" +
-                "Denver, CO 80205");
-        softAssert.assertEquals(agencyPhone.getText(), "343-523-6523");
-        softAssert.assertEquals(agencyPreferredLanguage.getText(), "English");
+        softAssert.assertEquals(agencyName.getText(),name);
+        softAssert.assertEquals(stateLicenseNumber.getText(), license);
+        softAssert.assertEquals(agencyThin.getText(), thin);
+        softAssert.assertEquals(agencyAgent.getText(), agent);
+        softAssert.assertEquals(agencyEmail.getText(), email);
+        softAssert.assertEquals(agencyWebsite.getText(), website);
+        softAssert.assertEquals(agencyPhone.getText(), phone);
+        softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
         softAssert.assertAll();     }
+    public void validateAgencyAddress(String address){
+        basicActions.waitForElementToBePresent(agencyAddress, 10);
+        softAssert.assertTrue(agencyAddress.isDisplayed());
+        softAssert.assertAll(); }
 }

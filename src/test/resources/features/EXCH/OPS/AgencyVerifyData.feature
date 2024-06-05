@@ -15,6 +15,6 @@ Feature: Admin Portal agency verify data
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Agency dashboard" page
     Then I verify Agency name and account number displays
-    Then I validate data for Agency Summary: "Agency Name" "State License Number" "Agency TIN/EIN" "Agent" "Email Address" "Website" "Address" "Primary Phone Number" "Preferred Language"
-  #  Then I validate "Hanks Enterprises" "Agency Name" for Agency Summary   //with using switch case
+    Then I validate data for Agency Summary: "Hanks Enterprises" "65873464" "546424428" "Agent: Tom Hanks" "invalid@test.com" "Website:" "343-523-6523" "English"
+    And I validate my agency address is "234 Wellness Street, Suite 161  Denver, CO 80207"
     And logout from Admin Portal
