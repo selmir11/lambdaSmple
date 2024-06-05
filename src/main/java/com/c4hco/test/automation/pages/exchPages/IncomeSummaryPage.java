@@ -13,6 +13,9 @@ public class IncomeSummaryPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "header-1 content-center")
+    WebElement incomeSummaryHeader;
+
     @FindBy(id ="ELIG-summaryDetails-YesButton")
     WebElement projectedIncomeYes;
 
@@ -23,8 +26,10 @@ public class IncomeSummaryPage {
     WebElement saveAndContinueBtn;
 
     public void selectProjectedIncome(String projectedIncomeOption){
+        basicActions.waitForElementToBePresent(incomeSummaryHeader,1);
         switch(projectedIncomeOption){
             case "No":
+                basicActions.waitForElementToBePresent(incomeSummaryHeader,5);
                 basicActions.waitForElementToBeClickable(projectedIncomeNo, 30);
                 basicActions.scrollToElement(projectedIncomeNo);
                 projectedIncomeNo.click();
