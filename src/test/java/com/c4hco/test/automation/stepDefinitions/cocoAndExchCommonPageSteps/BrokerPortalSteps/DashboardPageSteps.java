@@ -1,0 +1,35 @@
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BrokerPortalSteps;
+
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages.DashboardPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+
+public class DashboardPageSteps {
+    DashboardPage dashboardPage = new DashboardPage(WebDriverManager.getDriver());
+
+    @Then("I click Agency Dashboard")
+    public void iClickAgencyDashboard(){
+        dashboardPage.clickAgencyDashboard();
+    }
+
+    @Then("I click Broker Dashboard")
+    public void iClickBrokerDashboard(){
+        dashboardPage.clickBrokerDashboard();
+    }
+
+    @And("I click the C4U Link")
+    public void iClickC4ULink(){
+        dashboardPage.clickC4ULink();
+    }
+
+    @And("I click Complete Profile")
+    public void iClickCompleteProfile(){
+        dashboardPage.clickCompleteProfile();
+    }
+
+    @And("I click Agency Complete Profile")
+    public void iClickAgencyCompleteProfile(){
+        dashboardPage.clickAgencyCompleteProfile();
+    }
+}
