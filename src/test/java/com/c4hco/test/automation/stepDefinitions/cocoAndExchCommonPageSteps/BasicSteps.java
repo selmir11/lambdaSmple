@@ -329,13 +329,10 @@ public class BasicSteps {
             case "LUGY Find expert help" :
                 pageUrl = "broker-portal/find-expert-help";
                 break;
-<<<<<<< HEAD
             case "Agency dashboard" :
                 pageUrl = "AdminPortal/agency";
-=======
             case "Broker Portal C4U link" :
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
->>>>>>> main
                 break;
             default:
                 System.out.println("undefined page ");
