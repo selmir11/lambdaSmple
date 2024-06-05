@@ -1,8 +1,6 @@
-@SLER-534
-@OPS @RT-1087
-
+@OPS
 Feature: Admin Portal agency verify data
-
+  @SLER-534
   Scenario: Verify agency data
     Given I open the login page on the "admin" portal
     And I refresh the page
