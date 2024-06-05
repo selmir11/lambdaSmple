@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
@@ -443,4 +444,8 @@ public class BasicSteps {
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
 
- }
+    @Then("I click Go Back button from chrome browser")
+    public void iClickGoBackButtonFromChromeBrowser() {
+        basicActions.clickBackButtonFromBrowser();
+    }
+}

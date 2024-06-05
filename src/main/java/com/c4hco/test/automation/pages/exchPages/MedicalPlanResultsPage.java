@@ -104,6 +104,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void iclickContinue() {
+        basicActions.waitForElementToBePresent(btnContinue, 30);
         btnContinue.click();
     }
 
