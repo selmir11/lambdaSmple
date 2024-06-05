@@ -332,6 +332,9 @@ public class BasicSteps {
             case "Broker Portal C4U link" :
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
                 break;
+                case "assistnet dashboard" :
+                pageUrl = "assistnet-portal/program-manager";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

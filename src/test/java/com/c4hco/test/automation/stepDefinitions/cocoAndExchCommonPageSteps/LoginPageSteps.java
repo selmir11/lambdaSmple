@@ -37,6 +37,11 @@ public class LoginPageSteps {
     public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
+
+    @And("I login as Assistnet User any environment {string} password {string} and {string} password {string}")
+    public void iLoginAsAssistnetUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
+        loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
+    }
     @When("I login as Admin User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsAdminUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsAdminUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
@@ -102,8 +107,7 @@ public class LoginPageSteps {
 
     @Then("I verify Expired Password error message in {string}")
     public void iVerifyExpiredPasswordErrorMessageIn(String language) {
-        loginPage.verifyExpiredPasswordErrorMessage(language);
-    }
+        loginPage.verifyExpiredPasswordErrorMessage(language);}
 
 
 
