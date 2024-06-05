@@ -32,6 +32,9 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
     @Getter @Setter private static Boolean hasBroker = false;
+    @Getter @Setter private static BrokerDetails agencyOwner;
+    @Getter @Setter private static BrokerDetails broker;
+    @Getter @Setter private static BrokerDetails adminStaff;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
