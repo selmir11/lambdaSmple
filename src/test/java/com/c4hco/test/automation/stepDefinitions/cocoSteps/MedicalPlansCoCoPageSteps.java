@@ -34,9 +34,14 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.selectfromProviderList(carrierOption);
     }
 
-
     @And("I validate the COCO plan option {int} has text {string}")
     public void validatePlanText(int Index, String planText) {
         medicalPlansCoCoPage.validatePlanResults(Index, planText);
     }
+
+    @And( "I select initial 3 plans and click the Compare button" )
+    public void selectPlanstoCompare(){
+        medicalPlansCoCoPage.selectPlanstoCompare();
+    }
+
 }
