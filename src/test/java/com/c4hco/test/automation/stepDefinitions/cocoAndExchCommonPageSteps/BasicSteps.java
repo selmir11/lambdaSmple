@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
@@ -149,8 +150,8 @@ public class BasicSteps {
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
-            case "Compare":
-                pageUrl = "compare";
+            case "Medical Plan Compare":
+                pageUrl = "PlanSelectionPortal/compare";
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
@@ -201,7 +202,7 @@ public class BasicSteps {
                 pageUrl = "/employmentInfo/summary";
                 break;
             case "Other Health Insurance":
-                pageUrl = "nes/otherHealthInsuranceBegin";
+                pageUrl = "nes/otherHealthInsurance";
                 break;
             case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";
@@ -329,6 +330,9 @@ public class BasicSteps {
             case "LUGY Find expert help" :
                 pageUrl = "broker-portal/find-expert-help";
                 break;
+            case "Broker Portal C4U link" :
+                pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
@@ -440,4 +444,8 @@ public class BasicSteps {
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
 
- }
+    @Then("I click Go Back button from chrome browser")
+    public void iClickGoBackButtonFromChromeBrowser() {
+        basicActions.clickBackButtonFromBrowser();
+    }
+}

@@ -1,5 +1,4 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
-
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +43,9 @@ public class HeaderAndFooterPage {
     @FindBy(id = "get-assistance")
     WebElement getAssistanceLinkLoginPortal;
 
+    @FindBy(xpath = "//button[normalize-space()='Get Assistance']")
+    WebElement getAssistanceLinkMyDocument;
+
     @FindBy(css = ".dropdown .clickable")
     List<WebElement> getAssistanceLinkOption;
 
@@ -59,6 +61,11 @@ public class HeaderAndFooterPage {
     WebElement findExpertAssistanceExpertHelp;
     @FindBy(xpath = "//span/li[2]/div[2]/form")
     WebElement findExpertAssistanceIndividualDashboard;
+    @FindBy(css = "span > li.stacked.dropdown > div.dropdown-content > a:nth-child(2)")
+    WebElement findExpertAssistanceLugy;
+
+    @FindBy(xpath = "//a[normalize-space()='Find Expert Assistance in Your Community']")
+    WebElement findExpertAssistanceExpertInCoomunity;
 
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
@@ -238,6 +245,9 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(getAssistanceLinkLoginPortal, 15);
                 getAssistanceLinkLoginPortal.click();
                 break;
+            case "My Document":
+                basicActions.waitForElementToBePresent(getAssistanceLinkMyDocument, 30);
+                getAssistanceLinkMyDocument.click();
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
@@ -264,6 +274,14 @@ public class HeaderAndFooterPage {
                 case "individual dashboard":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceIndividualDashboard, 20);
                 findExpertAssistanceIndividualDashboard.click();
+                break;
+            case "ExpertHelp in community":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceExpertInCoomunity, 20);
+                findExpertAssistanceExpertInCoomunity.click();
+				break;
+                case "Lugy Page":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceLugy, 20);
+                    findExpertAssistanceLugy.click();
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
@@ -323,7 +341,7 @@ public class HeaderAndFooterPage {
                 languageDrpOption.get(0).click();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(languageDrp, 60);
+                basicActions.waitForElementToBePresent(languageDrp, 80);
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(1), 80);
                 languageDrpOption.get(1).click();

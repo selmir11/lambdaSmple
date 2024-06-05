@@ -43,7 +43,7 @@ public class AccountOverviewPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
-    MemberDetails primaryMember = SharedData.getPrimaryMember();
+
 
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -117,8 +117,9 @@ public class AccountOverviewPage {
     }
 
     public void verifyMemberNames() {
-        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(medicalMemberNames.get(0).getText(), primaryMember.getFirstName() + " " + primaryMember.getLastName(), "Primary member name does not match");
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
         if(memberDetailsList !=null) {
             for (int i = 0; i < memberDetailsList.size(); i++) {
                 MemberDetails member = SharedData.getMembers().get(i);
@@ -129,6 +130,7 @@ public class AccountOverviewPage {
     }
 
     public void verifyPlanInfo() {
+        MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
         if(memberDetailsList !=null) {
