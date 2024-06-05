@@ -8,7 +8,7 @@ Feature: Verify the navigation from My Documents get assistance from OBO
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     Then I enter an accountId in any Env "8316608600" "1506066573" to search user
-    Then I click on Search button in find certified broker page
+    Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I click link my docs on accountOverview page
