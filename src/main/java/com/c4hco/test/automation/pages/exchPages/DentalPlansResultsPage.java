@@ -22,7 +22,7 @@ public class DentalPlansResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    @FindBy(id="DentalPlanResults-SelectThisPlan_0")
+    @FindBy(id="PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
@@ -37,13 +37,13 @@ public class DentalPlansResultsPage {
     @FindBy(id = "SHP-DentalPlanResults-CoverageLevel")
     WebElement dropdownCoverageLevel;
 
-    @FindBy(id = "SHP-DentalPlanResults-Continue")
+    @FindBy(id = "DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
 
     @FindBy(id = "SHP-DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']")
+    @FindBy(xpath="//span[@class='c4-type-header-sm']")
     List<WebElement> dentalPlanNames;
 
     @FindBy(css = "pagination-template .pagination-next")

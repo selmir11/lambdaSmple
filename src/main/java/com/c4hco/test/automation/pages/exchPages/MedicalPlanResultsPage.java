@@ -33,7 +33,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
 
-    @FindBy(id = "SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "MedicalPlanResults-Continue")
     WebElement btnContinue;
 
     @FindBy(id = "SHP-PlanResults-ComparePlans")
@@ -100,6 +100,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void iclickContinue() {
+        basicActions.waitForElementToBePresent(btnContinue, 30);
         btnContinue.click();
     }
 

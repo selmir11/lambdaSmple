@@ -119,4 +119,9 @@ public class CreateAccountPageSteps {
     public void iValidateMandatoryBrokerRoleErrorMessage(String language){
             createAccountPage.validateMandatoryBrokerRoleErrorMessage(language);
     }
+
+    @And("I enter password in Create Account Page")
+    public void iEnterPasswordInCreateAccountPage() {
+            createAccountPage.EnterPasswordInCreateAccountPage();
+    }
 }

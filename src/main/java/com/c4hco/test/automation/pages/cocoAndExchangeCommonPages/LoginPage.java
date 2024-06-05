@@ -5,6 +5,7 @@ import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Utils;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,19 +28,19 @@ public class LoginPage {
     WebElement signInButton;
 
     @FindBy(id = "email")
-     WebElement usernameAdmin;
+    WebElement usernameAdmin;
 
     @FindBy(id = "password")
-     WebElement passwordAdmin;
+    WebElement passwordAdmin;
 
     @FindBy(id = "main-sign-in")
-     WebElement signAdmin;
+    WebElement signAdmin;
 
     @FindBy(xpath = "//a[text()=' password']")
-     WebElement forgotPassword;
+    WebElement forgotPassword;
 
     @FindBy(xpath = "//a[text()='username']")
-     WebElement forgotUsername;
+    WebElement forgotUsername;
 
     @FindBy(xpath = "//span[normalize-space()='Username is required']")
     WebElement usernameError;
@@ -49,25 +50,28 @@ public class LoginPage {
 
     @FindBy(css = ".fw-bold")
     WebElement iForgotUsernameandPassword;
-    @FindBy(id="title")
+    @FindBy(id = "title")
     WebElement loginPageTitle;
-    @FindBy(id="email-label")
+    @FindBy(id = "email-label")
     WebElement usernameText;
-    @FindBy(id="password-label")
+    @FindBy(id = "password-label")
     WebElement passwordText;
-    @FindBy(id="peak-login")
+    @FindBy(id = "peak-login")
     WebElement peakTitleText;
-    @FindBy(id="peak-login-text")
+    @FindBy(id = "peak-login-text")
     WebElement peakDescriptionText;
-    @FindBy(id="exchNotice")
+    @FindBy(id = "exchNotice")
     WebElement exchLegalNotice;
-    @FindBy(id="cocoNotice")
+    @FindBy(id = "cocoNotice")
     WebElement cocoLegalNotice;
-    @FindBy(id="password-expired")
+    @FindBy(id = "password-expired")
     WebElement passwordExpiredText;
-    @FindBy(css="form > div.ng-star-inserted > div:nth-child(2)")
+    @FindBy(css = "form > div.ng-star-inserted > div:nth-child(2)")
     WebElement passwordExpiredErrorText;
-
+    @FindBy(id = "showHidePasswordLink")
+    WebElement showHidePW;
+    @FindBy(id = "passwordBtn")
+    WebElement showHidePWCreateAccount;
 
 
     private BasicActions basicActions;
@@ -89,29 +93,30 @@ public class LoginPage {
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
         String emailId = SharedData.getPrimaryMember().getEmailId();
-        System.out.println("Email::"+emailId);
+        System.out.println("Email::" + emailId);
         String pswd = SharedData.getPrimaryMember().getPassword();
         basicActions.wait(2000);
         username.sendKeys(emailId);
         basicActions.waitForElementToBePresent(password, 10);
         password.sendKeys(pswd);
-        System.out.println("Password::"+pswd);
+        System.out.println("Password::" + pswd);
         signInButton.click();
     }
-    public void loginAsBrokerUser(String brokerUser,String Password){
-        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+
+    public void loginAsBrokerUser(String brokerUser, String Password) {
+        basicActions.waitForElementToBePresent(usernameAdmin, 20);
         usernameAdmin.sendKeys(brokerUser);
-        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+        basicActions.waitForElementToBePresent(usernameAdmin, 20);
         passwordAdmin.sendKeys(Password);
         signAdmin.click();
     }
 
     public void loginAsBrokerUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
-        basicActions.waitForElementToBePresent(usernameAdmin,40 );
-        if(SharedData.getEnv().equals("staging")){
+        basicActions.waitForElementToBePresent(usernameAdmin, 40);
+        if (SharedData.getEnv().equals("staging")) {
             usernameAdmin.sendKeys(stgUser);
             passwordAdmin.sendKeys(stgPW);
-        }else{
+        } else {
             usernameAdmin.sendKeys(qaUser);
             passwordAdmin.sendKeys(qaPW);
         }
@@ -120,50 +125,53 @@ public class LoginPage {
 
     public void loginAsAdminUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
         basicActions.refreshPage();
-        basicActions.waitForElementToBePresent(usernameAdmin,40 );
-        if(SharedData.getEnv().equals("staging")){
+        basicActions.waitForElementToBePresent(usernameAdmin, 40);
+        if (SharedData.getEnv().equals("staging")) {
             usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgUser));
             passwordAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgPW));
-        }else{
+        } else {
             usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(qaUser));
             passwordAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(qaPW));
         }
         signAdmin.click();
     }
 
-    public void clickForgotPassword(){
-        basicActions.waitForElementToBePresent(forgotPassword,20 );
+    public void clickForgotPassword() {
+        basicActions.waitForElementToBePresent(forgotPassword, 20);
         forgotPassword.click();
     }
-    public void clickForgotUsername(){
-        basicActions.waitForElementToBePresent(forgotUsername,20 );
+
+    public void clickForgotUsername() {
+        basicActions.waitForElementToBePresent(forgotUsername, 20);
         forgotUsername.click();
     }
 
     public void clickSignIn() {
         signAdmin.click();
     }
-    public void usernameRequiredMessage(){
+
+    public void usernameRequiredMessage() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(usernameError, 20));
         softAssert.assertAll();
     }
 
-    public void passwordRequiredMessage(){
+    public void passwordRequiredMessage() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(passwordError, 20));
         softAssert.assertAll();
     }
 
-    public void usernameandpasswordRequiredMessage(){
+    public void usernameandpasswordRequiredMessage() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(iForgotUsernameandPassword, 20));
         softAssert.assertAll();
     }
 
     public void loginAsExistingIndividual(String userIndividual, String passwordInd) {
-        basicActions.waitForElementToBePresent(username,10);
+        basicActions.waitForElementToBePresent(username, 10);
         username.sendKeys(userIndividual);
         password.sendKeys(passwordInd);
-        basicActions.waitForElementToBePresent(signAdmin,10);
-        signAdmin.click();    }
+        basicActions.waitForElementToBePresent(signAdmin, 10);
+        signAdmin.click();
+    }
 
     public void validateTheTitleOfThePage(String language) {
         basicActions.waitForElementToBePresent(loginPageTitle, 10);
@@ -171,7 +179,7 @@ public class LoginPage {
             case "English":
                 softAssert.assertEquals(loginPageTitle.getText(), "Sign in to your account");
                 softAssert.assertAll();
-            break;
+                break;
             case "Spanish":
 
                 softAssert.assertEquals(loginPageTitle.getText(), "Inicie sesi\u00F3n en su cuenta");
@@ -183,7 +191,7 @@ public class LoginPage {
     }
 
     public void ValidateTheUsernameAndPasswordText(String language) {
-        basicActions.waitForElementToBePresent(usernameText,20);
+        basicActions.waitForElementToBePresent(usernameText, 20);
         switch (language) {
             case "English":
                 softAssert.assertEquals(usernameText.getText(), "Username");
@@ -195,12 +203,12 @@ public class LoginPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-    }
+        }
         softAssert.assertAll();
     }
 
     public void ValidatePEAKText(String language) {
-        basicActions.waitForElementToBePresent(peakTitleText,10);
+        basicActions.waitForElementToBePresent(peakTitleText, 10);
         switch (language) {
             case "English":
                 softAssert.assertEquals(peakTitleText.getText(), "Colorado PEAK Users");
@@ -214,10 +222,11 @@ public class LoginPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-    }}
+        }
+    }
 
     public void ValidateLegalNoticeText(String language) {
-        basicActions.waitForElementToBePresent(exchLegalNotice,10);
+        basicActions.waitForElementToBePresent(exchLegalNotice, 10);
         switch (language) {
             case "English":
                 softAssert.assertEquals(exchLegalNotice.getText(), "Connect for Health Colorado Login Notice: This system contains U.S. Government information. By accessing and using this system you are consenting to system monitoring for law enforcement and other purposes. Unauthorized use of or access to this computer system may subject you to State and Federal criminal prosecution as well as civil penalties.");
@@ -236,7 +245,7 @@ public class LoginPage {
     }
 
     public void verifyExpiredPasswordErrorMessage(String language) {
-        basicActions.waitForElementToBePresent(passwordExpiredText,10);
+        basicActions.waitForElementToBePresent(passwordExpiredText, 10);
         switch (language) {
             case "English":
                 softAssert.assertEquals(passwordExpiredText.getText(), "PASSWORD EXPIRED");
@@ -248,13 +257,98 @@ public class LoginPage {
                 softAssert.assertEquals(passwordExpiredErrorText.getText(), "Su contrase\u00F1a ha vencido. Para reestablecerla, haga clic en el enlace 'olvid\u00E9 mi contrase\u00F1a' de abajo.");
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + language);}
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 
 
+    public void ShowButtonIsDisplayedAndEnabled(String pageTitle) {
+        switch (pageTitle) {
+            case "login portal":
+                basicActions.waitForElementToBePresent(showHidePW, 10);
+                softAssert.assertEquals(showHidePW.getText(), "Show");
+                softAssert.assertTrue(showHidePW.isEnabled(), "show hide btn is enabled");
+                break;
+            case "create account":
+                basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
+                softAssert.assertEquals(showHidePWCreateAccount.getText(), "Show");
+                softAssert.assertTrue(showHidePWCreateAccount.isEnabled(), "show hide btn is enabled");
+                softAssert.assertAll();
+                break;
+        }
+    }
 
-}
+    public void enterValidCredentialsWithoutSignIn(String STGUsername, String STGPW, String QAUsername, String QAPW) {
+        basicActions.waitForElementToBePresent(username, 10);
+        if (SharedData.getEnv().equals("staging")) {
+            username.sendKeys(STGUsername);
+            password.sendKeys(STGPW);
+        } else {
+            username.sendKeys(QAUsername);
+            password.sendKeys(QAPW);
+        }
+    }
+
+    public void ValidateWhenShowPasswordIsDisplayedTheCodeIsEncrypted(String showPW, String titlePage) {
+        switch (titlePage) {
+            case "login page":
+                showPasswordLoginPage(showPW);
+                break;
+            case "create account":
+                showPasswordAccountCreationPage(showPW);
+                break;
+
+        }
+
+    }
+
+    public void showPasswordAccountCreationPage(String showPW) {
+        basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
+        WebElement passwordText = basicActions.getDriver().findElement(By.xpath("//input[@id='password']"));
+        switch (showHidePWCreateAccount.getText()) {
+            case "Show":
+                softAssert.assertEquals(passwordText.getAttribute("type"), "password");
+                break;
+            case "Hide":
+                softAssert.assertEquals(passwordText.getAttribute("type"), "text");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + showPW);
+        }
+        softAssert.assertAll();
+    }
+
+    public void showPasswordLoginPage(String showPW) {
+        basicActions.waitForElementToBePresent(showHidePW, 10);
+        WebElement passwordText = basicActions.getDriver().findElement(By.xpath("//input[@id='password']"));
+        switch (showHidePW.getText()) {
+            case "Show":
+                softAssert.assertEquals(passwordText.getAttribute("type"), "password");
+                break;
+            case "Hide":
+                softAssert.assertEquals(passwordText.getAttribute("type"), "text");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + showPW);
+        }
+        softAssert.assertAll();
+    }
+
+    public void ClickOnShowButton(String pageTitle) {
+        switch (pageTitle) {
+            case "login page":
+                basicActions.waitForElementToBePresent(showHidePW, 10);
+                showHidePW.click();
+                break;
+            case "create account":
+                basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
+                showHidePWCreateAccount.click();
+                break;
+
+        }
+    }
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+}
