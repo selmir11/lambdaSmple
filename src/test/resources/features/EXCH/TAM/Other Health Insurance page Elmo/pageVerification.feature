@@ -260,7 +260,7 @@ Feature: Page Text-Other Health Insurance Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         1            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "350.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page

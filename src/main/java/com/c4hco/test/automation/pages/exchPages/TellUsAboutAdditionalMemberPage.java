@@ -23,6 +23,9 @@ public class TellUsAboutAdditionalMemberPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    @FindBy(css = "c4PageHeader")
+    WebElement txtheader;
+
     @FindBy(id = "firstName")
     WebElement txtfirstName;
 
@@ -75,6 +78,7 @@ public class TellUsAboutAdditionalMemberPage {
         String frstName = getUniqueString(8);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);

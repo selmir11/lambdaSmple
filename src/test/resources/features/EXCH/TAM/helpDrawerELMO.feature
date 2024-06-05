@@ -212,7 +212,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "Which job" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed English" on the ESI page
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     Then I open or close the "Minimum Value" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "Minimum Value" text in "English" on the ESI page
@@ -358,7 +358,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "Which job" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed Spanish" on the ESI page
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     Then I open or close the "Minimum Value" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "Minimum Value" text in "Spanish" on the ESI page

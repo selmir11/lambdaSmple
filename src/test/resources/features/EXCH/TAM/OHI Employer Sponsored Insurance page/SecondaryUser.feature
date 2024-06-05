@@ -93,7 +93,7 @@ Feature: Secondary User-OHI ESI Elmo Page
   @SLER-536 @SecondaryUserOhiEsiElmo
   Scenario: SLER-536 I can see ESI's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" ESI page data in "English"
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     And I verify the "Second Section" ESI page data in "English"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
@@ -112,7 +112,7 @@ Feature: Secondary User-OHI ESI Elmo Page
     Then I select "ESI" as health insurance option and continue
     And I validate I am on the "ESI" page
     And I verify the "First Section Secondary" ESI page data in "English"
-    Then I select the "1" employer on the ESI page
+    Then I select the "0" employer for "Secondary" member on the ESI page
     And I verify the "Second Section Secondary" ESI page data in "English"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
@@ -132,7 +132,7 @@ Feature: Secondary User-OHI ESI Elmo Page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "First Section" ESI page data in "Spanish"
-    Then I select the "0" employer on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
     And I verify the "Second Section" ESI page data in "Spanish"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
@@ -151,7 +151,7 @@ Feature: Secondary User-OHI ESI Elmo Page
     Then I select "ESI" as health insurance option and continue
     And I validate I am on the "ESI" page
     And I verify the "First Section Secondary" ESI page data in "Spanish"
-    Then I select the "1" employer on the ESI page
+    Then I select the "0" employer for "Secondary" member on the ESI page
     And I verify the "Second Section Secondary" ESI page data in "Spanish"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
