@@ -1,7 +1,10 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalIndividualDashboardPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+
+import java.util.List;
 
 public class AdminPortalIndividualDashboardSteps {
 
@@ -16,4 +19,12 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify Primary account holder and account number displays")
     public void iVerifyPrimaryAccountHolderDisplays() {
         adminPortalIndividualDashboardPage.verifyPrimaryHolder();       }
+    @Then("I click on manage plan button on admin portal Individual dashboard")
+    public void iClickManagePlanButton() {
+        adminPortalIndividualDashboardPage.clickManagePlan();
+    }
+    @And("I Validate the correct enrolled plans are displayed on admin portal individual page")
+    public void iverifyPlanDetails(List<String> data) {
+        adminPortalIndividualDashboardPage.verifyPlanDetails(data);
+    }
 }

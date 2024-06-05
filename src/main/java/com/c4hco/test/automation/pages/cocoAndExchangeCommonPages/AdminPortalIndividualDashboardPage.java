@@ -27,6 +27,14 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberId;
     @FindBy(css = ".container-fluid .reports-container .link-section span:nth-child(1)")
     List<WebElement> reportViewButtons;
+    @FindBy(id = "Individual Dashboard-Manage Plans")
+    WebElement managePlanButton;
+    @FindBy(css = "div.medical-plan-container.plan-container-fill div.plan-info-container>div")
+    WebElement medicalPlan;
+    @FindBy(css = "div.dental-plan-container.plan-container-fill div.plan-info-container>div")
+    WebElement dentalPlan;
+    @FindBy(css = "div.manage-plans-title.header-2")
+    WebElement managePlanHeader;
 
     public void verifyContainerTitle() {
         basicActions.waitForElementToBePresent(reportsTitle, 10);
@@ -43,4 +51,16 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(memberId, 10);
         softAssert.assertTrue(memberId.isDisplayed());
         softAssert.assertAll();     }
+    public void clickManagePlan() {
+        basicActions.waitForElementToBeClickable(managePlanButton, 10);
+        basicActions.click(managePlanButton);
+    }
+    public void verifyPlanDetails(List<String> data) {
+        basicActions.waitForElementToBePresent(managePlanHeader, 20);
+        softAssert.assertEquals(managePlanHeader.getText(), data.get(0));
+        basicActions.waitForElementToBePresent(medicalPlan, 20);
+        softAssert.assertEquals(medicalPlan.getText(),data.get(1));
+        basicActions.waitForElementToBePresent(dentalPlan, 20);
+        softAssert.assertEquals(dentalPlan.getText(),data.get(2));
+    }
 }

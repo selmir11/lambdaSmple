@@ -172,14 +172,14 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    #Then I click continue on grouping Members Dental page
+    Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     And I select "Anthem Dental Family"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
 
-    And I select "Terms of Use" agreement checkbox
+    And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     And I select "Terms of Use" agreement checkbox
@@ -201,8 +201,17 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I validate I am on the "My Policies" page
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     And I click on ClickHere link for "My Documents"
-    #Then I validate the notice "IND_Plan Selection and Payment Confirmation (EN-002-04)" exist in my document letter Containers
     And I click on download enrolment document
+    And I close current tab and switch back to previous tab
+    Then I click on manage plan button on admin portal Individual dashboard
+    And I initiate incoming page
+    And I Validate the correct enrolled plans are displayed on admin portal individual page
+      | Manage Plans                                         |
+      | Anthem Colorado Option Bronze Pathway Essentials Std |
+      | Anthem Dental Family                                 |
+
+
+
 
 
 

@@ -88,8 +88,6 @@ public class MyDocumentsPage {
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
         expandDownloadEnrolmentDocument.click();
-        basicActions.waitForElementToBeClickable(downloadEnrolmentDocument, 10);
-        downloadEnrolmentDocument.click();
     }
 
 }
