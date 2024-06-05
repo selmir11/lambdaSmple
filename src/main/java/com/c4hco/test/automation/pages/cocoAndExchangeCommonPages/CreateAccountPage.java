@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -141,6 +142,12 @@ public class CreateAccountPage {
     @FindBy(id = "role")
     WebElement roleDropdown;
 
+    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[1]")
+    WebElement certifiedBrokerRole;
+
+    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")
+    WebElement adminStaffRole;
+
     @FindBy(id = "loginPortal-createAccount-roleRequired")
     WebElement roleDropdownErrorMessage;
 
@@ -197,6 +204,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
         SharedData.setAppType(appType);
         addDetails();
         switch(appType){
@@ -243,6 +251,74 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);
+    }
+
+    public void createBrokerAccount(String accountType, String emailBase){
+        // Creates a Broker Portal account
+        initializeBrokerData(accountType, emailBase);
+        BrokerDetails user;
+        roleDropdown.click();
+        switch(accountType){
+            case "Agency Owner":
+                user = SharedData.getAgencyOwner();
+                certifiedBrokerRole.click();
+                addBrokerDetails(user);
+                break;
+            case "Broker":
+                user = SharedData.getBroker();
+                certifiedBrokerRole.click();
+                addBrokerDetails(user);
+                break;
+            case "Admin Staff":
+                user = SharedData.getAdminStaff();
+                adminStaffRole.click();
+                addBrokerDetails(user);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + accountType);
+        }
+        submitButton.click();
+    }
+
+    public static CharSequence generateBrokerLicense(){
+        Random rand = new Random();
+        int num = rand.nextInt(10000);
+        DecimalFormat df4 = new DecimalFormat("00000000");
+        return df4.format(num);
+    }
+
+    public void initializeBrokerData(String accountType, String emailBase){
+        BrokerDetails user = new BrokerDetails();
+        user.setFirstName(getUniqueString(8)+"TestBroker");
+        user.setLastName(getUniqueString(8)+"Test");
+        user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
+        user.setPhoneNumber((String) generatePhoneNumber());
+        user.setLicense((String) generateBrokerLicense());
+        switch(accountType){
+            case "Agency Owner":
+                SharedData.setAgencyOwner(user);
+                break;
+            case "Broker":
+                SharedData.setBroker(user);
+                break;
+            case "Admin Staff":
+                SharedData.setAdminStaff(user);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + accountType);
+        }
+    }
+
+    public void addBrokerDetails(BrokerDetails user){
+        basicActions.waitForElementToBePresent(firstName, 60);
+        firstName.sendKeys(user.getFirstName());
+        lastName.sendKeys(user.getLastName());
+        email.sendKeys(user.getEmail());
+        phoneNumber.sendKeys(user.getPhoneNumber());
+        password.sendKeys(user.getPassword());
+        confirmPassword.sendKeys(user.getPassword());
+        primaryUserCheckbox.click();
+        termsOfUseCheckbox.click();
     }
 
     public void validateHelpText(String language){

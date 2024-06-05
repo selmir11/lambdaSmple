@@ -52,6 +52,28 @@ public class LifeChangeEventsPage {
     @FindBy(css = "#overview > p")
     WebElement textHelpDrawerBody;
 
+    @FindBy(css = "#LossOfCovg b p")
+    WebElement textHelpDrawerLossOfCoverage;
+
+    @FindBy(css = "#LossOfCovg > p:nth-of-type(1)")
+    WebElement textHelpDrawerLossOfCoveragePleaseVisit;
+
+    @FindBy(css = "#LossOfCovg > p:nth-of-type(2) > a")
+    WebElement lnkHelpDrawerWhenCanIBuyInsurance;
+
+    // Second paragraph immediately under the <li> element
+    @FindBy(css = "#LossOfCovg > p:nth-of-type(3)")
+    WebElement textHelpDrawerFederalPovertyLevel;
+
+    @FindBy(css = "#LossOfCovg span > p:nth-of-type(1) > a")
+    WebElement lnkHelpDrawerFederalPovertyLevel;
+
+    @FindBy(css = "#LossOfCovg span > p:nth-of-type(2)")
+    WebElement textHelpDrawerIncomeLimitByHouseholdSize;
+
+    @FindBy(css = "#LossOfCovg span div p")
+    List <WebElement> textHelpDrawerIncomeLimitByHouseholdSizeDiv;
+
     @FindBy(css = ".drawer-footer p b")
     WebElement textHelpDrawerFooter;
 
@@ -196,5 +218,49 @@ public class LifeChangeEventsPage {
         basicActions.waitForElementToBePresent(textReportLifeChangeHeader,10);
         softAssert.assertEquals(textReportLifeChangeHeader.getText(), "Inf\u00F3rmenos sobre los cambios importantes en la vida");
         softAssert.assertAll();
+    }
+
+    public void clickHelpDrawerIcon() {
+        btnHelpExpand.click();
+    }
+
+    public void validateHelpDrawerText(String language, List<String> data) {
+        switch (language){
+            case "English", "Spanish":
+                validateHelpDrawerText(data);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+    }
+
+    private void validateHelpDrawerText(List<String> data) {
+        basicActions.waitForElementToBePresent(textHelpDrawerHeader, 30);
+
+        softAssert.assertEquals(textHelpDrawerHeader.getText(), data.get(0), "Help drawer header text mismatch");
+        softAssert.assertEquals(textHelpDrawerTitle.getText(), data.get(1), "Help drawer title text mismatch");
+        softAssert.assertEquals(textHelpDrawerOverview.getText(), data.get(2), "Help drawer overview text mismatch");
+        softAssert.assertEquals(textHelpDrawerBody.getText(), data.get(3), "Help drawer body text mismatch");
+        softAssert.assertEquals(textHelpDrawerLossOfCoverage.getText(), data.get(4), "Help drawer loss of coverage text mismatch");
+        softAssert.assertEquals(textHelpDrawerLossOfCoveragePleaseVisit.getText(), data.get(5), "Help drawer loss of coverage please visit text mismatch");
+        softAssert.assertEquals(lnkHelpDrawerWhenCanIBuyInsurance.getText(), data.get(6), "Help drawer when can I buy insurance link text mismatch");
+        softAssert.assertEquals(textHelpDrawerFederalPovertyLevel.getText(), data.get(7), "Help drawer federal poverty level text mismatch");
+        softAssert.assertEquals(lnkHelpDrawerFederalPovertyLevel.getText(), data.get(8), "Help drawer federal poverty level link text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSize.getText(), data.get(9), "Help drawer income limit by household size text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(0).getText(), data.get(10), "Help drawer income limit 1 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(1).getText(), data.get(11), "Help drawer income limit 2 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(2).getText(), data.get(12), "Help drawer income limit 3 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(3).getText(), data.get(13), "Help drawer income limit 4 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(4).getText(), data.get(14), "Help drawer income limit 5 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(5).getText(), data.get(15), "Help drawer income limit 6 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(6).getText(), data.get(16), "Help drawer income limit 7 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(7).getText(), data.get(17), "Help drawer income limit 8 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(8).getText(), data.get(18), "Help drawer income limit 9 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerIncomeLimitByHouseholdSizeDiv.get(9).getText(), data.get(19), "Help drawer income limit 10 person text mismatch");
+        softAssert.assertEquals(textHelpDrawerFooter.getText(), data.get(20), "Help drawer footer text mismatch");
+        softAssert.assertEquals(lnkHelpDrawerContactUs.getText(), data.get(21), "Help drawer contact us link text mismatch");
+
+        softAssert.assertAll();
+
     }
 }

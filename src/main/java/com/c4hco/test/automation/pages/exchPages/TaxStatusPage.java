@@ -57,7 +57,7 @@ public class TaxStatusPage {
                 claimAsDependentYesRadioBtn.click();
                 break;
             case "No":
-                basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 10);
+                basicActions.waitForElementToBeClickable(claimAsDependentNoRadioBtn, 50);
                 claimAsDependentNoRadioBtn.click();
                 break;
             default:
