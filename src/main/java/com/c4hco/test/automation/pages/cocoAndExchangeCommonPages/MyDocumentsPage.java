@@ -30,7 +30,8 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-
+    @FindBy(xpath = "(//span[contains(@class,'ng-star-inserted')])[4]")
+    WebElement expandDownloadEnrolmentDocument;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -77,5 +78,10 @@ public class MyDocumentsPage {
     public void goBackToWelcomePage(){
         basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
         basicActions.click(goBackWelcomePage);
+    }
+    public  void downloadEnrolmentDocument() {
+        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
+        expandDownloadEnrolmentDocument.click();
     }
 }

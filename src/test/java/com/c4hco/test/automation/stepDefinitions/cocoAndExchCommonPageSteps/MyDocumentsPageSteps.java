@@ -26,5 +26,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateWelcomeBackButtonNavigatesToWelcomePage() {
         myDocumentsPage.goBackToWelcomePage();
     }
+    @And("I click on download enrolment document")
+    public void iClickOnEnrolmentDocumentTodownload(){
+        myDocumentsPage.downloadEnrolmentDocument();
+    }
 
 }
