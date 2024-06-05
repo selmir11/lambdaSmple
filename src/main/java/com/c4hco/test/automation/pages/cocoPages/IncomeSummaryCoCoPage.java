@@ -40,6 +40,7 @@ public class IncomeSummaryCoCoPage {
     public void clickprojectedIncomeNo(){
         basicActions.waitForElementToBeClickable( projectedIncomeNo,15 );
         projectedIncomeNo.click();
+        projectedIncomeNo.click();
     }
     public void verifyTotalAnnualIncome(String Amount){
         basicActions.waitForElementToBePresent(totalAnnualIncome, 10);

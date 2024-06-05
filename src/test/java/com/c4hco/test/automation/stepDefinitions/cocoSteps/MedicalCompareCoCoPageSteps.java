@@ -18,4 +18,16 @@ public class MedicalCompareCoCoPageSteps {
 
     @And( "I verify the Medical Compare page Out-Network headers and subheaders" )
     public void verifyTxtOutofNetworkHeader(){medicalCompareCoCoPage.verifyTxtOutofNetworkCompareHeader();}
+
+    @And("I deselect the first plan and validate on the Medical Plan Compare page")
+    public void verifyPlanDeselectionOne(){medicalCompareCoCoPage.verifyPlanDeselectionOne();}
+
+    @And("I deselect the second plan and validate on the Medical Plan Compare page")
+    public void verifyPlanDeselectionTwo(){medicalCompareCoCoPage.verifyPlanDeselectionTwo();}
+
+    @And( "I deselect the third plan and validate on the Medical Plan Compare page" )
+    public void verifyPlanDeselectionThree(){medicalCompareCoCoPage.verifyPlanDeselectionThree();}
+
+    @And("I verify that no plans exist on the Medical Plan Compare page")
+    public void verifyNoPlansSelectedTxt(){medicalCompareCoCoPage.verifyNoPlansSelectedTxt();}
 }

@@ -23,6 +23,19 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(id = "SHP-MedicalComparePlans-GoBacktoPlans")
     public WebElement medicalCompareGoBack;
 
+    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
+    public WebElement firstplan;
+
+    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
+    public WebElement secondplan;
+
+    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
+    public WebElement thirdplan;
+
+    @FindBy(xpath = "//p[normalize-space()='There are no plans selected to compare']")
+    public WebElement noTextPlan;
+
+
     //Monthly Premium header
     @FindBy(id="ngb-accordion-item-0-toggle")
     public WebElement txtCompareHeaderMonthlyPremium;
@@ -204,6 +217,23 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public void  clickMedicalCompareGoBack() {
           basicActions.waitForElementToBeClickable(medicalCompareGoBack, 20);
           medicalCompareGoBack.click();}
+
+    public void verifyPlanDeselectionOne() {
+        basicActions.waitForElementToBeClickable( firstplan,15 );
+        firstplan.click();}
+
+    public void verifyPlanDeselectionTwo() {
+        basicActions.waitForElementToBeClickable( secondplan,15 );
+        secondplan.click();}
+
+    public void verifyPlanDeselectionThree(){
+        basicActions.waitForElementToBeClickable( thirdplan,15 );
+        thirdplan.click();}
+
+    public void verifyNoPlansSelectedTxt(){
+        basicActions.waitForElementToBePresent( noTextPlan,15 );
+        softAssert.assertTrue( noTextPlan.isDisplayed(), "There are no plans selected to compare" );
+    }
 
     public void  verifyTxtCompareHeader() {
         basicActions.waitForElementToBePresent(txtCompareHeaderMonthlyPremium, 10 );
