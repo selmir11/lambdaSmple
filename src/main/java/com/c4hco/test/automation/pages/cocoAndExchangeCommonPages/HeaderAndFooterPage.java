@@ -341,7 +341,7 @@ public class HeaderAndFooterPage {
                 languageDrpOption.get(0).click();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(languageDrp, 60);
+                basicActions.waitForElementToBePresent(languageDrp, 80);
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(1), 80);
                 languageDrpOption.get(1).click();

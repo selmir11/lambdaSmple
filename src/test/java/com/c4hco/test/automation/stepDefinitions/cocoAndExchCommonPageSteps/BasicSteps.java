@@ -150,8 +150,8 @@ public class BasicSteps {
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
-            case "Compare":
-                pageUrl = "compare";
+            case "Medical Plan Compare":
+                pageUrl = "PlanSelectionPortal/compare";
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
@@ -202,7 +202,7 @@ public class BasicSteps {
                 pageUrl = "/employmentInfo/summary";
                 break;
             case "Other Health Insurance":
-                pageUrl = "nes/otherHealthInsuranceBegin";
+                pageUrl = "nes/otherHealthInsurance";
                 break;
             case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";

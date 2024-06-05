@@ -36,9 +36,14 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id = "SHP-PlanResults-ComparePlans")
+    @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
 
+    @FindBy (id = "MedicalPlanResults-SaveAndExit")
+    WebElement btnSaveExist;
+
+    @FindBy (id = "MedicalPlanResults-GoBack")
+    WebElement btnGoBack;
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 
@@ -88,13 +93,12 @@ public class MedicalPlanResultsPage {
 
     }
 
-    public void iGetFirstPlaneName() {
+    public void iGetFirstPlanName() {
         basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
         SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
 
     public void SelectFirstMedicalPlan() {
-        iGetFirstPlaneName();
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }

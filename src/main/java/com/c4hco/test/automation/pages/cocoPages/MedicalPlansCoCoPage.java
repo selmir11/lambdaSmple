@@ -22,19 +22,30 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
-    @FindBy(id = "SHP-MedicalPlanResults-Continue")
+    @FindBy(id = "MedicalPlanResults-Continue")
     public WebElement continueButton;
 
-    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
+    @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
-    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "SHP-PlanResults-MetalTier")
+    @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
+    @FindBy(id="mat-mdc-checkbox-10-input")
+    WebElement selectFirstComparebox;
 
-    public void selectFirstMedicalPlanCoCo() {
+    @FindBy (id = "mat-mdc-checkbox-11-input")
+    WebElement selectSecondComparebox;
+
+    @FindBy (id = "mat-mdc-checkbox-12-input")
+    WebElement selectSThirdComparebox;
+
+    @FindBy(id = "PlanResults-ComparePlans")
+    WebElement selectCompareButton;
+
+     public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
     }
@@ -75,5 +86,12 @@ public class MedicalPlansCoCoPage {
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
+    public void selectPlanstoCompare(){
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,20 );
+        selectFirstComparebox.click();
+        selectSecondComparebox.click();
+        selectSThirdComparebox.click();
+        selectCompareButton.click();
+    }
 
 }
