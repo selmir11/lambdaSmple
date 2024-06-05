@@ -303,7 +303,10 @@ public class LoginPage {
                 softAssert.assertTrue(showHidePWCreateAccount.isEnabled(), "show hide btn is enabled");
                 softAssert.assertAll();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + pageTitle);
         }
+        softAssert.assertAll();
     }
 
     public void enterValidCredentialsWithoutSignIn(String STGUsername, String STGPW, String QAUsername, String QAPW) {
@@ -325,8 +328,10 @@ public class LoginPage {
             case "create account":
                 showPasswordAccountCreationPage(showPW);
                 break;
-
+            default:
+                throw new IllegalArgumentException("Invalid option: " + showPW + titlePage);
         }
+        softAssert.assertAll();
 
     }
 
@@ -372,7 +377,8 @@ public class LoginPage {
                 basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
                 showHidePWCreateAccount.click();
                 break;
-
+            default:
+                throw new IllegalArgumentException("Invalid option: " + pageTitle);
         }
     }
 
