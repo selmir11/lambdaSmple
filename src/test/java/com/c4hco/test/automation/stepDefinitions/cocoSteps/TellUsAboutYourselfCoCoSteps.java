@@ -19,11 +19,16 @@ public class TellUsAboutYourselfCoCoSteps {
         tellUsAboutYourselfCoCoPage.clickGoBackButton();
     }
 
-    @And("I validate the page text on Tell us about Yourself")
-    public void iverifyTextOnTellUsAboutYourselfPage(){tellUsAboutYourselfCoCoPage.verifyTextOnTellUsAboutYourselfPage();}
+    @Then("I enter first name and last name on Tell Us About Yourself Page Coco")
+    public void ienterPrimaryFirstLastInfo() {
+        tellUsAboutYourselfCoCoPage.enterPrimaryFirstLastInfo();
+    }
 
-    @Then("I validate errors are displaying on Tell Us About Yourself Page CoCo")
-    public void iverifyValidationerrormessageOnTellUsAboutYourselfPage(){tellUsAboutYourselfCoCoPage.verifyValidationerrormessageOnTellUsAboutYourselfPage();}
+    @And("I validate the page text on Tell us about Yourself {string}")
+    public void iverifyTextOnTellUsAboutYourselfPage(String language)  { tellUsAboutYourselfCoCoPage.verifyTextOnTellUsAboutYourselfPage(language); }
+
+    @Then("I validate errors are displaying on Tell Us About Yourself Page CoCo {string}")
+    public void iverifyErrorTextOnTellUsAboutYourselfPage(String language){tellUsAboutYourselfCoCoPage.verifyErrorTextOnTellUsAboutYourselfPage(language); }
 
 
 

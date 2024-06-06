@@ -92,38 +92,38 @@ Feature: Secondary User-OHI ESI Elmo Page
 
   @SLER-536 @SecondaryUserOhiEsiElmo
   Scenario: SLER-536 I can see ESI's dynamic data for Primary and Secondary user - English
-    And I verify the "First Section" ESI page data in "English"
+    And I verify the "No Job Section" ESI page data in "English"
     Then I select the "0" employer for "Primary" member on the ESI page
-    And I verify the "Second Section" ESI page data in "English"
+    And I verify the "Job Section" ESI page data in "English"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
-    And I verify the "Third Section" ESI page data in "English"
+    And I verify the "Currently Enrolled Section" ESI page data in "English"
     Then I select the Will Insurance End "Yes" button on the ESI page
-    And I verify the "Fourth Section" ESI page data in "English"
+    And I verify the "Currently Enrolled Ending Section" ESI page data in "English"
     Then I enter the end date as "Current Month" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    And I verify the "Fifth Section" ESI page data in "English"
+    And I verify the "Family Plans Section" ESI page data in "English"
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
 
     And I validate I am on the "Other Health Insurance" page
     Then I select "ESI" as health insurance option and continue
     And I validate I am on the "ESI" page
-    And I verify the "First Section Secondary" ESI page data in "English"
+    And I verify the "No Job Section Secondary" ESI page data in "English"
     Then I select the "0" employer for "Secondary" member on the ESI page
-    And I verify the "Second Section Secondary" ESI page data in "English"
+    And I verify the "Job Section Secondary" ESI page data in "English"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
-    And I verify the "Third Section Secondary" ESI page data in "English"
+    And I verify the "Currently Enrolled Section Secondary" ESI page data in "English"
     Then I select the Will Insurance End "Yes" button on the ESI page
-    And I verify the "Fourth Section Secondary" ESI page data in "English"
+    And I verify the "Currently Enrolled Ending Section Secondary" ESI page data in "English"
     Then I enter the end date as "Current Month" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    And I verify the "Fifth Section Secondary" ESI page data in "English"
+    And I verify the "Family Plans Section Secondary" ESI page data in "English"
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -131,37 +131,37 @@ Feature: Secondary User-OHI ESI Elmo Page
   Scenario: SLER-537 I can see ESI's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify the "First Section" ESI page data in "Spanish"
+    And I verify the "No Job Section" ESI page data in "Spanish"
     Then I select the "0" employer for "Primary" member on the ESI page
-    And I verify the "Second Section" ESI page data in "Spanish"
+    And I verify the "Job Section" ESI page data in "Spanish"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
-    And I verify the "Third Section" ESI page data in "Spanish"
+    And I verify the "Currently Enrolled Section" ESI page data in "Spanish"
     Then I select the Will Insurance End "Yes" button on the ESI page
-    And I verify the "Fourth Section" ESI page data in "Spanish"
+    And I verify the "Currently Enrolled Ending Section" ESI page data in "Spanish"
     Then I enter the end date as "Current Month" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    And I verify the "Fifth Section" ESI page data in "Spanish"
+    And I verify the "Family Plans Section" ESI page data in "Spanish"
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
 
     And I validate I am on the "Other Health Insurance" page
     Then I select "ESI" as health insurance option and continue
     And I validate I am on the "ESI" page
-    And I verify the "First Section Secondary" ESI page data in "Spanish"
+    And I verify the "No Job Section Secondary" ESI page data in "Spanish"
     Then I select the "0" employer for "Secondary" member on the ESI page
-    And I verify the "Second Section Secondary" ESI page data in "Spanish"
+    And I verify the "Job Section Secondary" ESI page data in "Spanish"
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "200.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
-    And I verify the "Third Section Secondary" ESI page data in "Spanish"
+    And I verify the "Currently Enrolled Section Secondary" ESI page data in "Spanish"
     Then I select the Will Insurance End "Yes" button on the ESI page
-    And I verify the "Fourth Section Secondary" ESI page data in "Spanish"
+    And I verify the "Currently Enrolled Ending Section Secondary" ESI page data in "Spanish"
     Then I enter the end date as "Current Month" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    And I verify the "Fifth Section Secondary" ESI page data in "Spanish"
+    And I verify the "Family Plans Section Secondary" ESI page data in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"

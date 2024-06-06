@@ -207,13 +207,13 @@ Feature: Page Text-Other Health Insurance Page
 
   @SLER-341 @PageValidationOhiEsiElmo
   Scenario: SLER-341 I can see ESI's standard errors consistently - English
-    And I verify the "First Section" ESI page data in "English"
+    And I verify the "No Job Section" ESI page data in "English"
     Then I click continue on the ESI page
     And I verify "Which Job" error in "English" on the ESI page
     Then I select the "0" employer for "Primary" member on the ESI page
     And I verify "Which Job" error does not show for ESI page
 
-    And I verify the "Second Section" ESI page data in "English"
+    And I verify the "Job Section" ESI page data in "English"
     Then I click continue on the ESI page
     And I verify "Min Value" error in "English" on the ESI page
     And I verify "Amount" error in "English" on the ESI page
@@ -226,14 +226,14 @@ Feature: Page Text-Other Health Insurance Page
     And I verify "Currently Enrolled" error does not show for ESI page
 
     Then I select the Are you currently enrolled "Yes" button on the ESI page
-    And I verify the "Third Section" ESI page data in "English"
+    And I verify the "Currently Enrolled Section" ESI page data in "English"
     Then I click continue on the ESI page
     And I verify "Insurance Ending" error in "English" on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     And I verify "Insurance Ending" error does not show for ESI page
 
     Then I select the Will Insurance End "Yes" button on the ESI page
-    And I verify the "Fourth Section" ESI page data in "English"
+    And I verify the "Currently Enrolled Ending Section" ESI page data in "English"
     Then I click continue on the ESI page
     And I verify "Input Date" error in "English" on the ESI page
     Then I enter the end date as "Prior Month" on the ESI page
@@ -255,13 +255,13 @@ Feature: Page Text-Other Health Insurance Page
   Scenario: SLER-342 I can see ESI's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify the "First Section" ESI page data in "Spanish"
+    And I verify the "No Job Section" ESI page data in "Spanish"
     Then I click continue on the ESI page
     And I verify "Which Job" error in "Spanish" on the ESI page
     Then I select the "0" employer for "Primary" member on the ESI page
     And I verify "Which Job" error does not show for ESI page
 
-    And I verify the "Second Section" ESI page data in "Spanish"
+    And I verify the "Job Section" ESI page data in "Spanish"
     Then I click continue on the ESI page
     And I verify "Min Value" error in "Spanish" on the ESI page
     And I verify "Amount" error in "Spanish" on the ESI page
@@ -274,14 +274,14 @@ Feature: Page Text-Other Health Insurance Page
     And I verify "Currently Enrolled" error does not show for ESI page
 
     Then I select the Are you currently enrolled "Yes" button on the ESI page
-    And I verify the "Third Section" ESI page data in "Spanish"
+    And I verify the "Currently Enrolled Section" ESI page data in "Spanish"
     Then I click continue on the ESI page
     And I verify "Insurance Ending" error in "Spanish" on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     And I verify "Insurance Ending" error does not show for ESI page
 
     Then I select the Will Insurance End "Yes" button on the ESI page
-    And I verify the "Fourth Section" ESI page data in "Spanish"
+    And I verify the "Currently Enrolled Ending Section" ESI page data in "Spanish"
     Then I click continue on the ESI page
     And I verify "Input Date" error in "Spanish" on the ESI page
     Then I enter the end date as "Prior Month" on the ESI page
