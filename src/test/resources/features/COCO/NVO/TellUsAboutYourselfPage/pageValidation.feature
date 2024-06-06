@@ -14,4 +14,4 @@ Feature: Validation - Tell us about yourself page
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     And I click Primary EditUpdate on the Family Overview page
-    Then I validate errors are displaying on Tell Us About Yourself Page CoCo
+    Then I validate errors are displaying on Tell Us About Yourself Page CoCo "English"
