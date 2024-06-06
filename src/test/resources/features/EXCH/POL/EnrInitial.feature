@@ -209,6 +209,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
       | Manage Plans                                         |
       | Anthem Colorado Option Bronze Pathway Essentials Std |
       | Anthem Dental Family                                 |
+    Then logout from Admin Portal
 
 
 
