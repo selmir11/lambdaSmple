@@ -430,6 +430,27 @@ public class OhiMedicarePage_Elmo {
                 verifyMedicarePageFirstSectionDataEnglish();
                 verifyMedicarePagePartBSectionDataEnglish();
                 break;
+            case "Part A & B Section":
+                verifyMedicarePageFirstSectionDataEnglish();
+                verifyMedicarePagePartASectionDataEnglish();
+                verifyMedicarePagePartBSectionDataEnglish();
+                break;
+            case "First Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                break;
+            case "Part A Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                verifyMedicarePagePartASectionDataEnglish();
+                break;
+            case "Part B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                verifyMedicarePagePartBSectionDataEnglish();
+                break;
+            case "Part A & B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                verifyMedicarePagePartASectionDataEnglish();
+                verifyMedicarePagePartBSectionDataEnglish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -470,6 +491,20 @@ public class OhiMedicarePage_Elmo {
         softAssert.assertAll();
     }
 
+    public void verifyMedicarePageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about "+SharedData.getMembers().get(0).getFullName()+"'s eligibility or current enrollment in Medicare."));
+        softAssert.assertTrue(questionTxt.get(0).getText().equalsIgnoreCase("Is "+SharedData.getMembers().get(0).getFullName()+" currently eligible for Medicare Premium Free Part A?"));
+        softAssert.assertEquals(currentlyEligibleYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
+        softAssert.assertTrue(areYouEnrolledTxt.getText().equalsIgnoreCase("Is "+SharedData.getMembers().get(0).getFullName()+" enrolled in any of the following?"));
+        softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Part A");
+        softAssert.assertEquals(medicareCheckboxDetailsB.getText(),"Part B");
+        softAssert.assertAll();
+    }
+
     public void verifyMedicarePageDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
@@ -482,6 +517,27 @@ public class OhiMedicarePage_Elmo {
                 break;
             case "Part B Section":
                 verifyMedicarePageFirstSectionDataSpanish();
+                verifyMedicarePagePartBSectionDataSpanish();
+                break;
+            case "Part A & B Section":
+                verifyMedicarePageFirstSectionDataSpanish();
+                verifyMedicarePagePartASectionDataSpanish();
+                verifyMedicarePagePartBSectionDataSpanish();
+                break;
+            case "First Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                break;
+            case "Part A Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                verifyMedicarePagePartASectionDataSpanish();
+                break;
+            case "Part B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                verifyMedicarePagePartBSectionDataSpanish();
+                break;
+            case "Part A & B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                verifyMedicarePagePartASectionDataSpanish();
                 verifyMedicarePagePartBSectionDataSpanish();
                 break;
             default:
@@ -521,6 +577,20 @@ public class OhiMedicarePage_Elmo {
         softAssert.assertEquals(questionTxtB.getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
         softAssert.assertEquals(partBInsuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(partBInsuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyMedicarePageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en Medicare."));
+        softAssert.assertTrue(questionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " es elegible para Medicare Parte A sin pago de prima?"));
+        softAssert.assertEquals(currentlyEligibleYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
+        softAssert.assertTrue(areYouEnrolledTxt.getText().equalsIgnoreCase("\u00BFEst\u00E1 " + SharedData.getMembers().get(0).getFullName() + " inscrito en cualquiera de los siguientes tipos de cobertura?"));
+        softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Parte A");
+        softAssert.assertEquals(medicareCheckboxDetailsB.getText(),"Parte B");
         softAssert.assertAll();
     }
 
