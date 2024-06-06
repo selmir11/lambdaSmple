@@ -430,6 +430,11 @@ public class BasicSteps {
         basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }
+    @And("I close current tab and switch back to previous tab")
+    public void closeCurrentTabAndSwitchToPrevious() {
+        basicActions.closeBrowserTab();
+        basicActions.switchtoPreviousTab();
+    }
 
     @And("I refresh the page")
     public void refreshPage() {

@@ -119,6 +119,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".drawer-controls > div > div")
     WebElement helpButton;
 
+    @FindBy(css = ".header-3.content-center > a")
+    WebElement helpCenterTxt;
+
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcon;
 
@@ -353,25 +356,25 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void clickIconHelp(String iconName) {
         switch (iconName) {
             case "Header":
-                basicActions.click(helpIcon.get(0));
+                basicActions.click(helpCenterTxt);
                 break;
             case "Which job":
-                basicActions.click(helpIcon.get(1));
+                basicActions.click(helpIcon.get(0));
                 break;
             case "Minimum Value":
-                basicActions.click(helpIcon.get(2));
+                basicActions.click(helpIcon.get(1));
                 break;
             case "Monthly Amount":
-                basicActions.click(helpIcon.get(3));
+                basicActions.click(helpIcon.get(2));
                 break;
             case "Currently Enrolled":
-                basicActions.click(helpIcon.get(4));
+                basicActions.click(helpIcon.get(3));
                 break;
             case "End in 60 days":
-                basicActions.click(helpIcon.get(5));
+                basicActions.click(helpIcon.get(4));
                 break;
             case "Voluntarily Ending":
-                basicActions.click(helpIcon.get(6));
+                basicActions.click(helpIcon.get(5));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + iconName);
