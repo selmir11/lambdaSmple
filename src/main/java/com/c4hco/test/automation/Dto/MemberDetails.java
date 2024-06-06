@@ -70,6 +70,9 @@ public class MemberDetails {
     String incorrect_middle_name ;
     String incorrect_last_name ;
     String employerName;
+    String broker_name;
+    String broker_lic_num;
+    String agency_name;
     int memberCount;
 }
 

@@ -21,6 +21,10 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Find Expert Help" page
     Then I click on Search button in find certified broker page
     And I Search authorized Broker "Margie"
+    And I click on Search button in find certified broker page
+    And I click more details from the first broker result container
+    Then I click Authorized broker
+    Then I verify current broker details
     Then I click Continue on my own button from Manage who helps you page
     And I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
@@ -111,16 +115,16 @@ Feature: Seed03 - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"

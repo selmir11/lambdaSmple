@@ -133,6 +133,15 @@ public class FindACertifiedBrokerPage {
     @FindBy(id = "BP-Findexperthelpnearyou-Back")
     WebElement findBrokerGoBack;
 
+    @FindBy (id = "broker-organizationName")
+    WebElement currentBrokerName;
+
+    @FindBy (id = "broker-license")
+    WebElement currentBrokerLicenceNumber;
+
+    @FindBy (id = "broker-exchangeId")
+    WebElement currentAgencyName;
+
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
             case "English" ->
@@ -424,4 +433,18 @@ public class FindACertifiedBrokerPage {
         }
         softAssert.assertAll();
     }
+    public void verifyCurrentBrokerContainerDetails (){
+        basicActions.waitForElementToBePresent(currentBrokerName,10);
+        basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
+        basicActions.waitForElementToBePresent(currentAgencyName,10);
+        String cBrokerName = currentBrokerName.getText();
+        String cLicenseNumber = currentBrokerLicenceNumber.getText();
+        String cAgencyName = currentAgencyName.getText();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setBroker_name(cBrokerName);
+        subscriber.setBroker_lic_num(cLicenseNumber);
+        subscriber.setAgency_name(cAgencyName);
+        SharedData.setPrimaryMember(subscriber);
+    }
+
 }

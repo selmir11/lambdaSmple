@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
+    String agencyName = SharedData.getPrimaryMember().getAgency_name();
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -77,5 +78,7 @@ public class DbQueries_Exch {
         return "SELECT csr_level FROM "+dbName+".en_member_coverage_financial_ah\n" +
                 "\twhere application_id='"+applicationId+"' limit 1";
     }
-
+    public String brokerId() {
+        return "SELECT agency_tin_ein FROM "+dbName+".bp_agency where agency_name = '"+agencyName+"'";
+    }
 }
