@@ -62,5 +62,6 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(medicalPlan.getText(),data.get(1));
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(),data.get(2));
+        softAssert.assertAll();
     }
 }

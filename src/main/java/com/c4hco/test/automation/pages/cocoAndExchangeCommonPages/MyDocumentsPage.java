@@ -30,7 +30,7 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-    @FindBy(xpath = "(//span[contains(@class,'ng-star-inserted')])[4]")
+    @FindBy(css = "svg.svg-inline--fa.fa-angle-down.fa-w-10.fa-2x")
     WebElement expandDownloadEnrolmentDocument;
 
     public void ClickLinkMyDocsWelcomePage() {
