@@ -1,6 +1,6 @@
 Feature: Seed05exception - Exchange
 
-  Scenario: Seed 05 With Exception For Exchange- Family of Four - NFA
+  Background: Seed 05 With Exception For Exchange- Family of Four - NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -129,17 +129,17 @@ Feature: Seed05exception - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
     Then I select make payment button to pay the premium
     And I select the Money Order button
     And I click continue on payment selection page
     And I select second make payment button to pay the premium
     And I click continue on payment selection page
     And I click continue on initial payment page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"

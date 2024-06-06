@@ -1,6 +1,6 @@
 Feature: Seed03exception - Exchange
 
-  Scenario: Seed 03 With Exception For Exchange- Husband + Wife Both Smokers with Broker - NFA
+  Background: Seed 03 With Exception For Exchange- Husband + Wife Both Smokers with Broker - NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -20,12 +20,12 @@ Feature: Seed03exception - Exchange
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Margie"
+    And I Search authorized Broker "Margie"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
+    Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-    And I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -96,19 +96,16 @@ Feature: Seed03exception - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-
-
-

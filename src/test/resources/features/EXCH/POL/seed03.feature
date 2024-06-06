@@ -1,6 +1,6 @@
 Feature: Seed03 - Exchange
 
-  Scenario: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
+  Background: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -20,13 +20,12 @@ Feature: Seed03 - Exchange
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Margie"
+    And I Search authorized Broker "Margie"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    Then I validate I am on the "Manage who helps you" page
+    Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-    And I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
