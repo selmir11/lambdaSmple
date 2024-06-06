@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +10,17 @@ import org.testng.asserts.SoftAssert;
 
 public class DashboardPage {
     SoftAssert softAssert = new SoftAssert();
+    @FindBy(xpath = "//strong[normalize-space()='Agency Dashboard']")
+    WebElement agencyDashboard ;
+
     @FindBy(xpath = "//strong[normalize-space()='Broker Dashboard']")
     WebElement brokerDashboard;
+
+    @FindBy(id = "manage-account-button")
+    WebElement completeProfile;
+
+    @FindBy(id = "agency-manage-account-button")
+    WebElement AgencyCompleteProfile;
 
     @FindBy(xpath = "//a[@class='action-link']")
     WebElement c4ULink;
@@ -22,9 +31,24 @@ public class DashboardPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    public void clickAgencyDashboard(){
+        basicActions.waitForElementToBePresent(agencyDashboard,10);
+        agencyDashboard.click();
+    }
+
     public void clickBrokerDashboard(){
-        basicActions.waitForElementToBeClickable(brokerDashboard,10);
+        basicActions.waitForElementToBePresent(brokerDashboard,10);
         brokerDashboard.click();
+    }
+
+    public void clickCompleteProfile(){
+        basicActions.waitForElementToBePresent(completeProfile,10);
+        completeProfile.click();
+    }
+
+    public void clickAgencyCompleteProfile(){
+        basicActions.waitForElementToBePresent(AgencyCompleteProfile,10);
+        AgencyCompleteProfile.click();
     }
 
     public void clickC4ULink(){

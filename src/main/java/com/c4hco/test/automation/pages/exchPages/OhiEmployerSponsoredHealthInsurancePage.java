@@ -101,6 +101,12 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgFamilyMonthlyPremium")
     WebElement esiMonthlyAmountFamilyInput;
 
+    @FindBy(css = "#ELIG-Ohi-Esi-MemberCoverage > div > span")
+    WebElement esiMemberStatusTxt;
+
+    @FindBy(css = "app-other-member-coverage > div > span")
+    List<WebElement> esiFamilyMemberTxt;
+
     @FindBy(id = "-Esi.CoverageTypeEnrolledButton")
     List<WebElement> esiFamilyEnrolledBtn;
 
@@ -175,10 +181,23 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         saveAndContinueBtn.click();
     }
 
-    public void selectEmployer() {
+    public void selectEmployer(String intString, String member) {
+        int index = Integer.parseInt(intString);
         basicActions.waitForElementToBeClickable(esiSelectEmployerDpd, 50);
-        String setEmployerName = SharedData.getEmployerName();
+        String setEmployerName;
         Select dropdown = new Select(esiSelectEmployerDpd);
+
+        switch (member) {
+            case "Primary":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                break;
+            case "Secondary":
+                setEmployerName = SharedData.getMembers().get(index).getEmployerName();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid member type: " + member);
+        }
+
         dropdown.selectByVisibleText(setEmployerName);
     }
 
@@ -486,6 +505,38 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 verifyEsiPageThirdSectionDataEnglish();
                 verifyEsiPageFourthSectionDataEnglish();
                 break;
+            case "Fifth Section":
+                verifyEsiPageFirstSectionDataEnglish();
+                verifyEsiPageSecondSectionDataEnglish();
+                verifyEsiPageThirdSectionDataEnglish();
+                verifyEsiPageFourthSectionDataEnglish();
+                verifyEsiPageFifthSectionDataEnglish();
+                break;
+            case "First Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataEnglish();
+                break;
+            case "Second Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataEnglish();
+                verifyEsiPageSecondSectionSecondaryDataEnglish();
+                break;
+            case "Third Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataEnglish();
+                verifyEsiPageSecondSectionSecondaryDataEnglish();
+                verifyEsiPageThirdSectionDataEnglish();
+                break;
+            case "Fourth Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataEnglish();
+                verifyEsiPageSecondSectionSecondaryDataEnglish();
+                verifyEsiPageThirdSectionDataEnglish();
+                verifyEsiPageFourthSectionSecondaryDataEnglish();
+                break;
+            case "Fifth Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataEnglish();
+                verifyEsiPageSecondSectionSecondaryDataEnglish();
+                verifyEsiPageThirdSectionDataEnglish();
+                verifyEsiPageFourthSectionSecondaryDataEnglish();
+                verifyEsiPageFifthSectionSecondaryDataEnglish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -499,7 +550,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
-        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Select an employer\n"+SharedData.getEmployerName());
+        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Select an employer\n"+SharedData.getPrimaryMember().getEmployerName());
         softAssert.assertAll();
     }
 
@@ -509,9 +560,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
         softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"I don't know");
-        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getEmployerName()+" just for yourself?");
+        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getPrimaryMember().getEmployerName()+" just for yourself?");
         softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"monthly amount");
-        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getEmployerName()+"?");
+        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getPrimaryMember().getEmployerName()+"?");
         softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
         softAssert.assertAll();
@@ -532,6 +583,67 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"Are you voluntarily ending this health insurance?");
         softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFifthSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"Does "+SharedData.getPrimaryMember().getEmployerName()+" offer family health plans?");
+        softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiFamilyOfferedNoBtn.getText(),"No");
+        softAssert.assertEquals(EsiQuestionTxt.get(8).getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getPrimaryMember().getEmployerName()+" to cover your family?");
+        softAssert.assertEquals(esiMemberStatusTxt.getText(),"For each member, select which option best describes their health insurance enrollment status with "+SharedData.getPrimaryMember().getEmployerName()+":");
+        softAssert.assertTrue(esiFamilyMemberTxt.get(0).getText().equalsIgnoreCase(SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(esiFamilyEnrolledBtn.get(0).getText(),"Enrolled");
+        softAssert.assertEquals(esiFamilyOfferedBtn.get(0).getText(),"Offered a plan but not enrolled");
+        softAssert.assertEquals(esiFamilyNoOptionBtn.get(0).getText(),"No option to enroll");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
+        softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
+        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Select an employer\n"+SharedData.getMembers().get(0).getEmployerName());
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageSecondSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"Does this health insurance meet the Minimum Value Standard?");
+        softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
+        softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"I don't know");
+        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"How much would "+SharedData.getMembers().get(0).getFirstName()+" pay for the lowest-cost monthly health plan premium at "+SharedData.getMembers().get(1).getEmployerName()+" just for themself?");
+        softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"monthly amount");
+        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"Is "+SharedData.getMembers().get(0).getFirstName()+" currently enrolled in the health insurance offered by "+SharedData.getMembers().get(1).getEmployerName()+"?");
+        softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFourthSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"End Date:");
+        softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"Is "+SharedData.getMembers().get(0).getFirstName()+" voluntarily ending this health insurance?");
+        softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFifthSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"Does "+SharedData.getMembers().get(1).getEmployerName()+" offer family health plans?");
+        softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"Yes");
+        softAssert.assertEquals(esiFamilyOfferedNoBtn.getText(),"No");
+        softAssert.assertEquals(EsiQuestionTxt.get(8).getText(),"How much would "+SharedData.getMembers().get(0).getFirstName()+" pay for the lowest-cost monthly health plan premium at "+SharedData.getMembers().get(1).getEmployerName()+" to cover your family?");
+        softAssert.assertEquals(esiMemberStatusTxt.getText(),"For each member, select which option best describes their health insurance enrollment status with "+SharedData.getMembers().get(1).getEmployerName()+":");
+        softAssert.assertTrue(esiFamilyMemberTxt.get(0).getText().equalsIgnoreCase(SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(esiFamilyEnrolledBtn.get(0).getText(),"Enrolled");
+        softAssert.assertEquals(esiFamilyOfferedBtn.get(0).getText(),"Offered a plan but not enrolled");
+        softAssert.assertEquals(esiFamilyNoOptionBtn.get(0).getText(),"No option to enroll");
         softAssert.assertAll();
     }
 
@@ -556,6 +668,38 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 verifyEsiPageThirdSectionDataSpanish();
                 verifyEsiPageFourthSectionDataSpanish();
                 break;
+            case "Fifth Section":
+                verifyEsiPageFirstSectionDataSpanish();
+                verifyEsiPageSecondSectionDataSpanish();
+                verifyEsiPageThirdSectionDataSpanish();
+                verifyEsiPageFourthSectionDataSpanish();
+                verifyEsiPageFifthSectionDataSpanish();
+                break;
+            case "First Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataSpanish();
+                break;
+            case "Second Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataSpanish();
+                verifyEsiPageSecondSectionSecondaryDataSpanish();
+                break;
+            case "Third Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataSpanish();
+                verifyEsiPageSecondSectionSecondaryDataSpanish();
+                verifyEsiPageThirdSectionDataSpanish();
+                break;
+            case "Fourth Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataSpanish();
+                verifyEsiPageSecondSectionSecondaryDataSpanish();
+                verifyEsiPageThirdSectionDataSpanish();
+                verifyEsiPageFourthSectionSecondaryDataSpanish();
+                break;
+            case "Fifth Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataSpanish();
+                verifyEsiPageSecondSectionSecondaryDataSpanish();
+                verifyEsiPageThirdSectionDataSpanish();
+                verifyEsiPageFourthSectionSecondaryDataSpanish();
+                verifyEsiPageFifthSectionSecondaryDataSpanish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -569,7 +713,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");
-        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Seleccionar un empleador\n"+SharedData.getEmployerName());
+        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Seleccionar un empleador\n"+SharedData.getPrimaryMember().getEmployerName());
         softAssert.assertAll();
     }
 
@@ -579,9 +723,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
         softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"No s\u00E9");
-        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getEmployerName()+" solo para usted?");
+        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getPrimaryMember().getEmployerName()+" solo para usted?");
         softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"Cantidad mensual");
-        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getEmployerName()+"?");
+        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getPrimaryMember().getEmployerName()+"?");
         softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
         softAssert.assertAll();
@@ -602,6 +746,67 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
         softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFifthSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"\u00BF"+SharedData.getPrimaryMember().getEmployerName()+" ofrece planes de salud familiares?");
+        softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"S\u00ED");
+        softAssert.assertEquals(esiFamilyOfferedNoBtn.getText(),"No");
+        softAssert.assertEquals(EsiQuestionTxt.get(8).getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getPrimaryMember().getEmployerName()+" para cubrir a su familia?");
+        softAssert.assertEquals(esiMemberStatusTxt.getText(),"Para cada miembro, seleccione la opci\u00F3n que describe mejor el estado de su inscripci\u00F3n en el seguro m\u00E9dico con "+SharedData.getPrimaryMember().getEmployerName()+":");
+        softAssert.assertTrue(esiFamilyMemberTxt.get(0).getText().equalsIgnoreCase(SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(esiFamilyEnrolledBtn.get(0).getText(),"Inscrito");
+        softAssert.assertEquals(esiFamilyOfferedBtn.get(0).getText(),"Se le ofreci\u00F3 un plan pero no se inscribi\u00F3");
+        softAssert.assertEquals(esiFamilyNoOptionBtn.get(0).getText(),"No hay opci\u00F3n para inscribirse");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
+        softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");
+        softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Seleccionar un empleador\n"+SharedData.getMembers().get(0).getEmployerName());
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageSecondSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"\u00BFCumple este seguro de salud el est\u00E1ndar de valor m\u00EDnimo?");
+        softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"S\u00ED");
+        softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
+        softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"No s\u00E9");
+        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"\u00BFCu\u00E1nto pagar\u00EDa " + SharedData.getMembers().get(0).getFirstName() + " por la prima mensual del plan de salud de menor costo en "+SharedData.getMembers().get(1).getEmployerName()+" solo para ellos?");
+        softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"Cantidad mensual");
+        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"\u00BF"+ SharedData.getMembers().get(0).getFirstName() + " se inscribi\u00F3 en el seguro de salud que ofrece "+SharedData.getMembers().get(1).getEmployerName()+"?");
+        softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"S\u00ED");
+        softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFourthSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
+        softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"\u00BF" + SharedData.getMembers().get(0).getFirstName() + " est\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"S\u00ED");
+        softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyEsiPageFifthSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"\u00BF"+SharedData.getMembers().get(1).getEmployerName()+" ofrece planes de salud familiares?");
+        softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"S\u00ED");
+        softAssert.assertEquals(esiFamilyOfferedNoBtn.getText(),"No");
+        softAssert.assertEquals(EsiQuestionTxt.get(8).getText(),"\u00BFCu\u00E1nto pagar\u00EDa " + SharedData.getMembers().get(0).getFirstName() + " por la prima mensual del plan de salud de menor costo en "+SharedData.getMembers().get(1).getEmployerName()+" para cubrir a su familia?");
+        softAssert.assertEquals(esiMemberStatusTxt.getText(),"Para cada miembro, seleccione la opci\u00F3n que describe mejor el estado de su inscripci\u00F3n en el seguro m\u00E9dico con "+SharedData.getMembers().get(1).getEmployerName()+":");
+        softAssert.assertTrue(esiFamilyMemberTxt.get(0).getText().equalsIgnoreCase(SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(esiFamilyEnrolledBtn.get(0).getText(),"Inscrito");
+        softAssert.assertEquals(esiFamilyOfferedBtn.get(0).getText(),"Se le ofreci\u00F3 un plan pero no se inscribi\u00F3");
+        softAssert.assertEquals(esiFamilyNoOptionBtn.get(0).getText(),"No hay opci\u00F3n para inscribirse");
         softAssert.assertAll();
     }
 
@@ -1019,7 +1224,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMonthlyAmountTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getEmployerName()+" just for yourself?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getPrimaryMember().getEmployerName()+" just for yourself?");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Lowest-Cost Premium:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Lowest-Cost Premium:\nHint Text: Only enter the amount you would pay. Don't include any amount paid by your employer.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Learn more about entering premium amounts\nEnter the regular amount the employee would have to pay for their health coverage (the \"premium\") if they enrolled.");
@@ -1033,7 +1238,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerCurrentlyEnrolledTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getEmployerName()+"?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getPrimaryMember().getEmployerName()+"?");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Enrollment:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -1172,7 +1377,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMonthlyAmountTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getEmployerName()+" solo para usted?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getPrimaryMember().getEmployerName()+" solo para usted?");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Prima de costo m\u00E1s bajo:\nTexto de sugerencia: Solo ingrese la cantidad que pagar\u00EDa. No incluya ninguna cantidad que pague su empleador.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Obtenga m\u00E1s informaci\u00F3n sobre c\u00F3mo ingresar las cantidades de las primas\nIngrese la cantidad normal que el empleado tendr\u00EDa que pagar por su cobertura de salud (la \"prima\") si se inscribiera.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
@@ -1185,7 +1390,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerCurrentlyEnrolledTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getEmployerName()+"?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getPrimaryMember().getEmployerName()+"?");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Inscripci\u00F3n:\nSi esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();

@@ -41,7 +41,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I Search authorized Broker "soukaina agency"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
-    Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
+    Then I validate the agency details "soukainatesting+agencystg@gmail.com", "371-195-9846", "Monday", "08:00 AM to 05:00 PM", "376946", "English"
 
   @SLER-380
   Scenario: Search by Broker's Full Name for Individual User
@@ -59,7 +59,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I Search authorized Broker "soukaina agency"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
-    Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
+    Then I validate the agency details "soukainatesting+agencystg@gmail.com", "371-195-9846", "Monday", "08:00 AM to 05:00 PM", "376946", "English"
 
   @SLER-380
   Scenario: Search by Broker's Full Name for Admin User
@@ -69,7 +69,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     Then I enter an "Email" "johnc4hcoautomation+" to search user
-    And I click on Search button in find certified broker page
+    And I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I validate I am on the "Account Overview" page
@@ -80,7 +80,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I Search authorized Broker "soukaina agency"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
-    Then I validate the agency details "soukainatesting+agencyQA@gmail.com", "720-123-4567", "Monday", "08:00 AM to 05:00 PM", "123456789", "English"
+    Then I validate the agency details "soukainatesting+agencystg@gmail.com", "371-195-9846", "Monday", "08:00 AM to 05:00 PM", "376946", "English"
 
 
 

@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.*;
@@ -72,6 +73,14 @@ public class NoticesPage {
             basicActions.getDriver().switchTo().window(handle);
         }
         basicActions.getDriver().get(Constants.Outlook);
+        }
+        public void openPasswordResetTab(){
+        JavascriptExecutor jse = (JavascriptExecutor)basicActions.getDriver();
+        jse.executeScript("window.open()");
+        for (String handle : basicActions.getDriver().getWindowHandles()) {
+            basicActions.getDriver().switchTo().window(handle);
+        }
+        basicActions.getDriver().get("https://"+ SharedData.getEnv()+"-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken%3DdrpfwFOIdEDTp9l6rBO8%26lang%3Den=");
         }
 
     public void signInEmail(String Gmail,String password) {

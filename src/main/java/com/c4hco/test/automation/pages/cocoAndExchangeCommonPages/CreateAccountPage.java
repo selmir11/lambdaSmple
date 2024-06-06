@@ -121,7 +121,7 @@ public class CreateAccountPage {
      WebElement submitButton;
     @FindBy(css = " div.forgot-email-header")
      WebElement headerCreateAccount;
-    @FindBy(xpath = "//span[@class='body-text-1']")
+    @FindBy(xpath = "//*[@class='input-label form-label']//span")
      WebElement preferredLanguageTxt;
     @FindBy(xpath = "(//label[@class='mdc-label'])[1]")
      WebElement primaryAccountHolderTxt;
@@ -129,7 +129,7 @@ public class CreateAccountPage {
      WebElement cSRTxt;
     @FindBy(xpath= "(//span[@class='body-text-2'])[2]")
      WebElement headerTxt;
-    @FindBy(xpath= "(//span[@class='body-text-1'])[2]")
+    @FindBy(xpath= "//span[@class='body-text-1']")
      WebElement optionTxt;
     @FindBy(xpath= "(//label[@class='mdc-label'])[3]")
      WebElement c4OptionTxt;
@@ -204,6 +204,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
         SharedData.setAppType(appType);
         addDetails();
         switch(appType){
@@ -352,6 +353,7 @@ public class CreateAccountPage {
     }
 
     public void verifyCreateYourAccountHeader(String language) {
+        basicActions.waitForElementToBePresent(headerCreateAccount,30);
         switch (language){
             case "English":
                 softAssert.assertEquals(headerCreateAccount.getText(),"Create your Account");
@@ -395,6 +397,7 @@ public class CreateAccountPage {
     }
 
     public void verifyAccountHolderPreferences(String language) {
+        basicActions.waitForElementToBePresent(preferredLanguageTxt,30);
         switch(language){
                 case "English":
                     softAssert.assertEquals(preferredLanguageTxt.getText(),"Preferred Written Language");
@@ -700,5 +703,10 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
         softAssert.assertAll();
+    }
+
+    public void EnterPasswordInCreateAccountPage() {
+        password.sendKeys("ALaska12!");
+        confirmPassword.sendKeys("ALaska12!");
     }
 }

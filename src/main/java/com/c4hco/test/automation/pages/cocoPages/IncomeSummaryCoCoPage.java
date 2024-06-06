@@ -31,6 +31,17 @@ public class IncomeSummaryCoCoPage {
     @FindBy(id = "pageId-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(id = "ELIG-summaryDetails-NoButton")
+    WebElement projectedIncomeNo;
+
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
+    WebElement getProjectedIncomeYes;
+
+    public void clickprojectedIncomeNo(){
+        basicActions.waitForElementToBeClickable( projectedIncomeNo,15 );
+        projectedIncomeNo.click();
+        projectedIncomeNo.click();
+    }
     public void verifyTotalAnnualIncome(String Amount){
         basicActions.waitForElementToBePresent(totalAnnualIncome, 10);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");

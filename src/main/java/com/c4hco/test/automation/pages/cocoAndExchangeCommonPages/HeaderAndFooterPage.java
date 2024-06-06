@@ -61,6 +61,8 @@ public class HeaderAndFooterPage {
     WebElement findExpertAssistanceExpertHelp;
     @FindBy(xpath = "//span/li[2]/div[2]/form")
     WebElement findExpertAssistanceIndividualDashboard;
+    @FindBy(css = "span > li.stacked.dropdown > div.dropdown-content > a:nth-child(2)")
+    WebElement findExpertAssistanceLugy;
 
     @FindBy(xpath = "//a[normalize-space()='Find Expert Assistance in Your Community']")
     WebElement findExpertAssistanceExpertInCoomunity;
@@ -280,6 +282,10 @@ public class HeaderAndFooterPage {
             case "ExpertHelp in community":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceExpertInCoomunity, 20);
                 findExpertAssistanceExpertInCoomunity.click();
+				break;
+                case "Lugy Page":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceLugy, 20);
+                    findExpertAssistanceLugy.click();
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
@@ -339,7 +345,7 @@ public class HeaderAndFooterPage {
                 languageDrpOption.get(0).click();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(languageDrp, 60);
+                basicActions.waitForElementToBePresent(languageDrp, 80);
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(1), 80);
                 languageDrpOption.get(1).click();
