@@ -83,8 +83,8 @@ Feature: Secondary User-OHI Medicare Elmo Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
 
-  @SLER-615 @SecondaryUserOhiMedicareElmo
-  Scenario: SLER-615 I can see Medicare's dynamic data for Primary and Secondary user - English
+  @SLER-617 @SecondaryUserOhiMedicareElmo
+  Scenario: SLER-617 I can see Medicare's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Medicare page data in "English"
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
@@ -115,8 +115,8 @@ Feature: Secondary User-OHI Medicare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-616 @SecondaryUserOhiMedicareElmo
-  Scenario: SLER-616 I can see Medicare's dynamic data for Primary and Secondary user - Spanish
+  @SLER-618 @SecondaryUserOhiMedicareElmo
+  Scenario: SLER-618 I can see Medicare's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "First Section" Medicare page data in "Spanish"
