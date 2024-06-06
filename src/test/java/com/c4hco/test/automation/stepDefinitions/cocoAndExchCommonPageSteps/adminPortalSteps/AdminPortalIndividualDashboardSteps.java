@@ -5,6 +5,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class AdminPortalIndividualDashboardSteps {
 
     AdminPortalIndividualDashboardPage adminPortalIndividualDashboardPage = new AdminPortalIndividualDashboardPage(WebDriverManager.getDriver());
@@ -36,6 +38,14 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I validate my agency address is {string}")
     public void iValidateMyAgencyAddress(String address) {
         adminPortalIndividualDashboardPage.validateAgencyAddress(address);
+    }
+    @Then("I click on manage plan button on admin portal Individual dashboard")
+    public void iClickManagePlanButton() {
+        adminPortalIndividualDashboardPage.clickManagePlan();
+    }
+    @And("I Validate the correct enrolled plans are displayed on admin portal individual page")
+    public void iverifyPlanDetails(List<String> data) {
+        adminPortalIndividualDashboardPage.verifyPlanDetails(data);
     }
 }
 

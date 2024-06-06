@@ -66,7 +66,9 @@ public class OtherHealthInsurancePage_Elmo {
 
 
     public void selectInsuranceOptionOnly(String insuranceOption){
-        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 5);
+        basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
+        basicActions.waitForElementListToBePresent(existingHealthInsurancePageTxt1,15);
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox,15);
         switch(insuranceOption){
             case "Health First Colorado":
                 basicActions.click(insuranceOptionsCheckBox.get(0));

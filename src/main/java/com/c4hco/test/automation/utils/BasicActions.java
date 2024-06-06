@@ -215,6 +215,10 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
+    public void switchtoPreviousTab() {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(0));
+    }
 
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();

@@ -119,6 +119,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".drawer-controls > div > div")
     WebElement helpButton;
 
+    @FindBy(css = ".header-3.content-center > a")
+    WebElement helpCenterTxt;
+
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcon;
 
@@ -353,25 +356,25 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void clickIconHelp(String iconName) {
         switch (iconName) {
             case "Header":
-                basicActions.click(helpIcon.get(0));
+                basicActions.click(helpCenterTxt);
                 break;
             case "Which job":
-                basicActions.click(helpIcon.get(1));
+                basicActions.click(helpIcon.get(0));
                 break;
             case "Minimum Value":
-                basicActions.click(helpIcon.get(2));
+                basicActions.click(helpIcon.get(1));
                 break;
             case "Monthly Amount":
-                basicActions.click(helpIcon.get(3));
+                basicActions.click(helpIcon.get(2));
                 break;
             case "Currently Enrolled":
-                basicActions.click(helpIcon.get(4));
+                basicActions.click(helpIcon.get(3));
                 break;
             case "End in 60 days":
-                basicActions.click(helpIcon.get(5));
+                basicActions.click(helpIcon.get(4));
                 break;
             case "Voluntarily Ending":
-                basicActions.click(helpIcon.get(6));
+                basicActions.click(helpIcon.get(5));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + iconName);
@@ -487,55 +490,55 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyEsiPageDataEnglish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
-            case "First Section":
-                verifyEsiPageFirstSectionDataEnglish();
+            case "No Job Section":
+                verifyEsiPageNoJobSectionDataEnglish();
                 break;
-            case "Second Section":
-                verifyEsiPageFirstSectionDataEnglish();
-                verifyEsiPageSecondSectionDataEnglish();
+            case "Job Section":
+                verifyEsiPageNoJobSectionDataEnglish();
+                verifyEsiPageJobSectionDataEnglish();
                 break;
-            case "Third Section":
-                verifyEsiPageFirstSectionDataEnglish();
-                verifyEsiPageSecondSectionDataEnglish();
-                verifyEsiPageThirdSectionDataEnglish();
+            case "Currently Enrolled Section":
+                verifyEsiPageNoJobSectionDataEnglish();
+                verifyEsiPageJobSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledSectionDataEnglish();
                 break;
-            case "Fourth Section":
-                verifyEsiPageFirstSectionDataEnglish();
-                verifyEsiPageSecondSectionDataEnglish();
-                verifyEsiPageThirdSectionDataEnglish();
-                verifyEsiPageFourthSectionDataEnglish();
+            case "Currently Enrolled Ending Section":
+                verifyEsiPageNoJobSectionDataEnglish();
+                verifyEsiPageJobSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionDataEnglish();
                 break;
-            case "Fifth Section":
-                verifyEsiPageFirstSectionDataEnglish();
-                verifyEsiPageSecondSectionDataEnglish();
-                verifyEsiPageThirdSectionDataEnglish();
-                verifyEsiPageFourthSectionDataEnglish();
-                verifyEsiPageFifthSectionDataEnglish();
+            case "Family Plans Section":
+                verifyEsiPageNoJobSectionDataEnglish();
+                verifyEsiPageJobSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionDataEnglish();
+                verifyEsiPageFamilyPlansSectionDataEnglish();
                 break;
-            case "First Section Secondary":
+            case "No Job Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataEnglish();
                 break;
-            case "Second Section Secondary":
-                verifyEsiPageFirstSectionSecondaryDataEnglish();
-                verifyEsiPageSecondSectionSecondaryDataEnglish();
-                break;
-            case "Third Section Secondary":
+            case "Job Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataEnglish();
                 verifyEsiPageSecondSectionSecondaryDataEnglish();
-                verifyEsiPageThirdSectionDataEnglish();
                 break;
-            case "Fourth Section Secondary":
+            case "Currently Enrolled Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataEnglish();
                 verifyEsiPageSecondSectionSecondaryDataEnglish();
-                verifyEsiPageThirdSectionDataEnglish();
-                verifyEsiPageFourthSectionSecondaryDataEnglish();
+                verifyEsiPageCurrentlyEnrolledSectionDataEnglish();
                 break;
-            case "Fifth Section Secondary":
+            case "Currently Enrolled Ending Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataEnglish();
                 verifyEsiPageSecondSectionSecondaryDataEnglish();
-                verifyEsiPageThirdSectionDataEnglish();
-                verifyEsiPageFourthSectionSecondaryDataEnglish();
-                verifyEsiPageFifthSectionSecondaryDataEnglish();
+                verifyEsiPageCurrentlyEnrolledSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataEnglish();
+                break;
+            case "Family Plans Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataEnglish();
+                verifyEsiPageSecondSectionSecondaryDataEnglish();
+                verifyEsiPageCurrentlyEnrolledSectionDataEnglish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataEnglish();
+                verifyEsiPageFamilyPlansSectionSecondaryDataEnglish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -545,7 +548,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFirstSectionDataEnglish(){
+    public void verifyEsiPageNoJobSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
@@ -554,7 +557,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageSecondSectionDataEnglish(){
+    public void verifyEsiPageJobSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"Does this health insurance meet the Minimum Value Standard?");
         softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Yes");
@@ -568,7 +571,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageThirdSectionDataEnglish(){
+    public void verifyEsiPageCurrentlyEnrolledSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(4).getText(),"Will this health insurance end in the next 60 days?");
         softAssert.assertEquals(esiInsuranceEndYesBtn.getText(),"Yes");
@@ -576,7 +579,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFourthSectionDataEnglish(){
+    public void verifyEsiPageCurrentlyEnrolledEndingSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"End Date:");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
@@ -586,7 +589,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFifthSectionDataEnglish(){
+    public void verifyEsiPageFamilyPlansSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"Does "+SharedData.getPrimaryMember().getEmployerName()+" offer family health plans?");
         softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"Yes");
@@ -623,7 +626,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFourthSectionSecondaryDataEnglish(){
+    public void verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"End Date:");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
@@ -633,7 +636,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFifthSectionSecondaryDataEnglish(){
+    public void verifyEsiPageFamilyPlansSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"Does "+SharedData.getMembers().get(1).getEmployerName()+" offer family health plans?");
         softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"Yes");
@@ -650,55 +653,55 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyEsiPageDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
-            case "First Section":
-                verifyEsiPageFirstSectionDataSpanish();
+            case "No Job Section":
+                verifyEsiPageNoJobSectionDataSpanish();
                 break;
-            case "Second Section":
-                verifyEsiPageFirstSectionDataSpanish();
-                verifyEsiPageSecondSectionDataSpanish();
+            case "Job Section":
+                verifyEsiPageNoJobSectionDataSpanish();
+                verifyEsiPageJobSectionDataSpanish();
                 break;
-            case "Third Section":
-                verifyEsiPageFirstSectionDataSpanish();
-                verifyEsiPageSecondSectionDataSpanish();
-                verifyEsiPageThirdSectionDataSpanish();
+            case "Currently Enrolled Section":
+                verifyEsiPageNoJobSectionDataSpanish();
+                verifyEsiPageJobSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledSectionDataSpanish();
                 break;
-            case "Fourth Section":
-                verifyEsiPageFirstSectionDataSpanish();
-                verifyEsiPageSecondSectionDataSpanish();
-                verifyEsiPageThirdSectionDataSpanish();
-                verifyEsiPageFourthSectionDataSpanish();
+            case "Currently Enrolled Ending Section":
+                verifyEsiPageNoJobSectionDataSpanish();
+                verifyEsiPageJobSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionDataSpanish();
                 break;
-            case "Fifth Section":
-                verifyEsiPageFirstSectionDataSpanish();
-                verifyEsiPageSecondSectionDataSpanish();
-                verifyEsiPageThirdSectionDataSpanish();
-                verifyEsiPageFourthSectionDataSpanish();
-                verifyEsiPageFifthSectionDataSpanish();
+            case "Family Plans Section":
+                verifyEsiPageNoJobSectionDataSpanish();
+                verifyEsiPageJobSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionDataSpanish();
+                verifyEsiPageFamilyPlansSectionDataSpanish();
                 break;
-            case "First Section Secondary":
+            case "No Job Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataSpanish();
                 break;
-            case "Second Section Secondary":
-                verifyEsiPageFirstSectionSecondaryDataSpanish();
-                verifyEsiPageSecondSectionSecondaryDataSpanish();
-                break;
-            case "Third Section Secondary":
+            case "Job Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataSpanish();
                 verifyEsiPageSecondSectionSecondaryDataSpanish();
-                verifyEsiPageThirdSectionDataSpanish();
                 break;
-            case "Fourth Section Secondary":
+            case "Currently Enrolled Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataSpanish();
                 verifyEsiPageSecondSectionSecondaryDataSpanish();
-                verifyEsiPageThirdSectionDataSpanish();
-                verifyEsiPageFourthSectionSecondaryDataSpanish();
+                verifyEsiPageCurrentlyEnrolledSectionDataSpanish();
                 break;
-            case "Fifth Section Secondary":
+            case "Currently Enrolled Ending Section Secondary":
                 verifyEsiPageFirstSectionSecondaryDataSpanish();
                 verifyEsiPageSecondSectionSecondaryDataSpanish();
-                verifyEsiPageThirdSectionDataSpanish();
-                verifyEsiPageFourthSectionSecondaryDataSpanish();
-                verifyEsiPageFifthSectionSecondaryDataSpanish();
+                verifyEsiPageCurrentlyEnrolledSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataSpanish();
+                break;
+            case "Family Plans Section Secondary":
+                verifyEsiPageFirstSectionSecondaryDataSpanish();
+                verifyEsiPageSecondSectionSecondaryDataSpanish();
+                verifyEsiPageCurrentlyEnrolledSectionDataSpanish();
+                verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataSpanish();
+                verifyEsiPageFamilyPlansSectionSecondaryDataSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -708,7 +711,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFirstSectionDataSpanish(){
+    public void verifyEsiPageNoJobSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
@@ -717,7 +720,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageSecondSectionDataSpanish(){
+    public void verifyEsiPageJobSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(1).getText(),"\u00BFCumple este seguro de salud el est\u00E1ndar de valor m\u00EDnimo?");
         softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"S\u00ED");
@@ -731,7 +734,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageThirdSectionDataSpanish(){
+    public void verifyEsiPageCurrentlyEnrolledSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(4).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
         softAssert.assertEquals(esiInsuranceEndYesBtn.getText(),"S\u00ED");
@@ -739,7 +742,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFourthSectionDataSpanish(){
+    public void verifyEsiPageCurrentlyEnrolledEndingSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
@@ -749,7 +752,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFifthSectionDataSpanish(){
+    public void verifyEsiPageFamilyPlansSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"\u00BF"+SharedData.getPrimaryMember().getEmployerName()+" ofrece planes de salud familiares?");
         softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"S\u00ED");
@@ -786,7 +789,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFourthSectionSecondaryDataSpanish(){
+    public void verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
@@ -796,7 +799,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyEsiPageFifthSectionSecondaryDataSpanish(){
+    public void verifyEsiPageFamilyPlansSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"\u00BF"+SharedData.getMembers().get(1).getEmployerName()+" ofrece planes de salud familiares?");
         softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"S\u00ED");
@@ -989,7 +992,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 softAssert.assertAll();
                 break;
             case "Spanish Prior":
-                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese un valor mayor que o igual a "+formattedDate);
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");

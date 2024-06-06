@@ -173,6 +173,10 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(connectLogoLinkExpertHelp,20);
                 connectLogoLinkExpertHelp.click();
                 break;
+            case "My Policies":
+                basicActions.waitForElementToBeClickable(connectLogoLink, 10);
+                connectLogoLink.click();
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
