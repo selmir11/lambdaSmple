@@ -24,7 +24,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    Then I enter generic mailing address details
+    Then I enter member with address line1 "P.O BOX 4515" in city "Denver" in state "CO" with zipcode "80502" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
