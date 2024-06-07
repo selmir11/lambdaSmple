@@ -44,7 +44,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(css ="span.c4-type-header-sm")
+    @FindBy(css=".c4-type-header-sm")
     List<WebElement> dentalPlanNames;
 
     @FindBy(css = "pagination-template .pagination-next")
@@ -116,7 +116,7 @@ public class DentalPlansResultsPage {
         do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
-                clickPlanButton(optionalInt.get()+1);
+                clickPlanButton(optionalInt.get()-1);
             } else {
                 paginateRight();
             }
