@@ -1,6 +1,6 @@
 Feature: Seed06exception - Exchange
 
-  Scenario: Seed 06 With Exception For Exchange- Family of Four - FA
+  Background: Seed 06 With Exception For Exchange- Family of Four - FA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -8,7 +8,7 @@ Feature: Seed06exception - Exchange
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
-    And I validate I am on the "Account Overview" page
+    Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -201,7 +201,3 @@ Feature: Seed06exception - Exchange
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-
-#    NEED CODE TO ENTER SPECIFIC FIRST NAMES
-#    NEED CODE TO ENTER RANDOM SSN's
-#    NEED IF/ELSE CODE FOR 4TH MEMBER DUE TO RELATIONSHIP WHEN MEMBERS DISPLAY RANDOMLY IN UI
