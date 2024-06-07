@@ -445,12 +445,11 @@ public class FindACertifiedBrokerPage {
         softAssert.assertTrue(currentBrokerLicenceNumber.isDisplayed(), "currentBrokerLicenceNumber is not displayed");
         softAssert.assertTrue(currentAgencyName.isDisplayed(), "currentAgencyName is not displayed");
         softAssert.assertAll();
-        MemberDetails subscriber = SharedData.getPrimaryMember();
         BrokerDetails broker = SharedData.getBroker();
-        subscriber.setBroker_name(cBrokerName);
-        subscriber.setBroker_lic_num(cLicenseNumber);
+        broker.setBroker_name(cBrokerName);
+        broker.setBroker_lic_num(cLicenseNumber);
         broker.setAgencyName(cAgencyName);
-        SharedData.setPrimaryMember(subscriber);
+        SharedData.setBroker(broker);
     }
 
 }
