@@ -105,7 +105,7 @@ public class CreateAccountPage {
     @FindBy(id = "pu-input")
      WebElement primaryUserCheckbox;
 
-    @FindBy(id = "repUser-input")
+    @FindBy(id = "rr-input")
     WebElement onBehalfOfPrimaryUserCheckbox;
 
     @FindBy(xpath = "//lib-list-error[@id='miso-mf-error']//span[@class='error-message']")
