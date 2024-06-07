@@ -286,7 +286,7 @@ public class OhiCobraPage_Elmo {
             case "Third Section Secondary":
                 verifyCobraPageFirstSectionSecondaryDataEnglish();
                 verifyCobraPageSecondSectionDataEnglish();
-                verifyCobraPageThirdSectionSecondDataEnglish();
+                verifyCobraPageThirdSectionSecondaryDataEnglish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -338,7 +338,7 @@ public class OhiCobraPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyCobraPageThirdSectionSecondDataEnglish(){
+    public void verifyCobraPageThirdSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(CobraQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "'s coverage end?"));
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");

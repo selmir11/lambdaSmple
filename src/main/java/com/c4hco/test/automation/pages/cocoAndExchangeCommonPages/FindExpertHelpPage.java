@@ -287,7 +287,8 @@ public class FindExpertHelpPage {
     }
 
     public void clickContinueOnMyOwnButton() {
-        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 50);
+        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
         continueOnMyOwnButton.click();
     }
 

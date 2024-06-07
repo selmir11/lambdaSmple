@@ -27,4 +27,42 @@ public class AssistnetDashboardSteps {
     public void iClickSignOutFromTheAssistnetDashboard() {
         assistnetDashboardPage.ClickSignOutFromTheAP();
     }
+
+    @And("I click Edit button on assistnet dashboard Page")
+    public void iClickEditButtonOnAssistnetDashboardPage() {
+        assistnetDashboardPage.ClickEditButtonOnAssistnetDashboardPage();
+    }
+
+    @Then("I Verify Username is not Editable")
+    public void iVerifyUsernameIsNotEditable() {
+        assistnetDashboardPage.verifyUsernameIsNotEditable();
+    }
+
+    @And("I edit basic details information {string} {string}")
+    public void iEditBasicDetailsInformation(String username, String email) {
+        assistnetDashboardPage.editBasicDetails(username,email);
+    }
+
+    @Then("I verify the first Name {string} AP")
+    public void iVerifyTheFirstNameAP(String firstnameText) {
+        assistnetDashboardPage.verifyTheFirstNameAP(firstnameText);
+    }
+
+    @And("I edit basic details and Click Save {string}")
+    public void iEditBasicDetailsAndClickSave(String email) {
+        assistnetDashboardPage.editBasicDetailsAndClickSave(email);
+    }
+
+
+    @Then("I click cancel button in AP dashboard")
+    public void iClickCancelButtonInAPDashboard() {
+        assistnetDashboardPage.clickCancelBtnInAP();
+    }
+
+    @Then("I click save button in AP dashboard")
+    public void iClickSaveButtonInAPDashboard() {
+        assistnetDashboardPage.clickSaveBtnInAP();
+    }
+
+
 }
