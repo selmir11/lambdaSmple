@@ -271,6 +271,18 @@ public class OhiVaHealthcarePage_Elmo {
                 verifyVaHealthcarePageSecondSectionDataEnglish();
                 verifyVaHealthcarePageThirdSectionDataEnglish();
                 break;
+            case "First Section Secondary":
+                verifyVaHealthcarePageFirstSectionSecondaryDataEnglish();
+                break;
+            case "Second Section Secondary":
+                verifyVaHealthcarePageFirstSectionSecondaryDataEnglish();
+                verifyVaHealthcarePageSecondSectionDataEnglish();
+                break;
+            case "Third Section Secondary":
+                verifyVaHealthcarePageFirstSectionSecondaryDataEnglish();
+                verifyVaHealthcarePageSecondSectionDataEnglish();
+                verifyVaHealthcarePageThirdSectionSecondaryDataEnglish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -309,6 +321,28 @@ public class OhiVaHealthcarePage_Elmo {
         softAssert.assertAll();
     }
 
+    public void verifyVaHealthcarePageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiVaHealthcareHeader.getText(),"VA Healthcare");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about " + SharedData.getMembers().get(0).getFullName() + "'s eligibility or current enrollment in VA Healthcare"));
+        softAssert.assertTrue(VaHealthcareQuestionTxt.get(0).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " currently enrolled in VA Healthcare?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyVaHealthcarePageThirdSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(VaHealthcareQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "'s coverage end?"));
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertTrue(VaHealthcareQuestionTxt.get(3).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " voluntarily ending this health insurance?"));
+        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
     public void verifyVaHealthcarePageDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
@@ -323,6 +357,18 @@ public class OhiVaHealthcarePage_Elmo {
                 verifyVaHealthcarePageFirstSectionDataSpanish();
                 verifyVaHealthcarePageSecondSectionDataSpanish();
                 verifyVaHealthcarePageThirdSectionDataSpanish();
+                break;
+            case "First Section Secondary":
+                verifyVaHealthcarePageFirstSectionSecondaryDataSpanish();
+                break;
+            case "Second Section Secondary":
+                verifyVaHealthcarePageFirstSectionSecondaryDataSpanish();
+                verifyVaHealthcarePageSecondSectionDataSpanish();
+                break;
+            case "Third Section Secondary":
+                verifyVaHealthcarePageFirstSectionSecondaryDataSpanish();
+                verifyVaHealthcarePageSecondSectionDataSpanish();
+                verifyVaHealthcarePageThirdSectionSecondaryDataSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -357,6 +403,28 @@ public class OhiVaHealthcarePage_Elmo {
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(VaHealthcareQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyVaHealthcarePageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiVaHealthcareHeader.getText(),"Servicios de Salud para Veteranos (VA)");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en VA Health Care."));
+        softAssert.assertTrue(VaHealthcareQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en VA Health Care?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyVaHealthcarePageThirdSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(VaHealthcareQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertTrue(VaHealthcareQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
         softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();

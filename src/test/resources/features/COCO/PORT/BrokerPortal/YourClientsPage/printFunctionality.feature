@@ -20,7 +20,7 @@ Feature: print functionality on the Colorado Connect My Clients page
   Scenario: print functionality on My Clients page assistNet
     Given I open the login page on the "assistNet" portal
     And I validate I am on the "Login" page
-    When I login as Assistnet User any environment "" password "ALaska12!" and "c4assistorportal+gu21djeMX@gmail.com" password "ALaska12!"
+    When I login as Assistnet User any environment "c4assistorportal+Gw7iYxhCL@gmail.com" password "ALaska12!" and "c4assistorportal+gu21djeMX@gmail.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"

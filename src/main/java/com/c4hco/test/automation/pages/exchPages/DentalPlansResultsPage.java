@@ -134,7 +134,7 @@ public class DentalPlansResultsPage {
     private void clickPlanButton(int index){
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
-        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        basicActions.waitForElementToBeClickable(ePlanID, 30);
         ePlanID.click();
     }
 
