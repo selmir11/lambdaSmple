@@ -40,4 +40,9 @@ public class LifeChangeEventsPageSteps {
     public void iValidateTheBelowHelpDrawerTextIn(String language, List<String> data) {
         lifeChangeEventsPage.validateHelpDrawerText(language, data);
     }
+
+    @Then("I click on the help icon next to special requirement option")
+    public void iClickOnTheHelpIconNextToSpecialRequirementOption() {
+        lifeChangeEventsPage.clickHelpIconNextToSpecialRequirement();
+    }
 }

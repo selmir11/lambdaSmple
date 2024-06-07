@@ -80,6 +80,9 @@ public class LifeChangeEventsPage {
     @FindBy(css = ".drawer-footer p a")
     WebElement lnkHelpDrawerContactUs;
 
+    @FindBy(css = "#LossOfCovgButton i")
+    WebElement iconHelp;
+
     public void selectLCE(String lceOption){
         switch(lceOption){
             case "Birth":
@@ -262,5 +265,10 @@ public class LifeChangeEventsPage {
 
         softAssert.assertAll();
 
+    }
+
+    public void clickHelpIconNextToSpecialRequirement() {
+        basicActions.waitForElementToBePresent(iconHelp, 10);
+        iconHelp.click();
     }
 }
