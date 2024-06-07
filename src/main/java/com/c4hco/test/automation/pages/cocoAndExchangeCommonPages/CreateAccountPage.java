@@ -102,7 +102,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//lib-list-error[@id='ahp-mf-error']//span[@class='error-message']")
     WebElement accountHolderPreferencesErrorMessage;
 
-    @FindBy(id = "primaryUser-input")
+    @FindBy(id = "pu-input")
      WebElement primaryUserCheckbox;
 
     @FindBy(id = "repUser-input")

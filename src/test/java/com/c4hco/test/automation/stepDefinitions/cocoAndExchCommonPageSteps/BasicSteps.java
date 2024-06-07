@@ -446,6 +446,9 @@ public class BasicSteps {
         basicActions.goBack();
     }
 
+    @And("I switch to the tab number {int}")
+    public void switchTab(int tabNumber) { basicActions.switchTabs(tabNumber);}
+
     @And("I set the browser resolution to 2000 x 800")
     public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(2000, 800));}
 
