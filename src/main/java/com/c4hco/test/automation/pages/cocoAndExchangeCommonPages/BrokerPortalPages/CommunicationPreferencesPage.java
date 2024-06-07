@@ -11,7 +11,7 @@ import org.testng.asserts.SoftAssert;
 
 public class CommunicationPreferencesPage {
     SoftAssert softAssert = new SoftAssert();
-    @FindBy(id = "communication-preference-button")
+    @FindBy(id = "terms-and-conditions-button")
     WebElement continueCommunicationPreferences;
 
     @FindBy(id = "BP-CommunicationPreferences-GoBack")
