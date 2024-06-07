@@ -174,8 +174,6 @@ public class EmploymentInfoPage {
             if (requiredMem.isPresent()) {
                 MemberDetails member =  (MemberDetails) requiredMem.get();
                 member.setEmployerName(companyName);
-                memberList.add(member);
-                SharedData.setMembers(memberList);
             } else {
                 Assert.fail("No matching member found in the member list.");
             }
@@ -217,8 +215,6 @@ public class EmploymentInfoPage {
             if (requiredMem.isPresent()) {
                 MemberDetails member =  (MemberDetails) requiredMem.get();
                 member.setEmployerName(companyName);
-                memberList.add(member);
-                SharedData.setMembers(memberList);
             } else {
                 Assert.fail("No matching member found in the member list.");
             }
