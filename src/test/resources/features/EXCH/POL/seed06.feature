@@ -201,13 +201,6 @@ Feature: Seed06 - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I click continue on initial payment page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -216,6 +209,13 @@ Feature: Seed06 - Exchange
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    And I click continue on initial payment page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"

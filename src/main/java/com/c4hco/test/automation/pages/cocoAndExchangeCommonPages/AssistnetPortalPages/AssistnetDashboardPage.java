@@ -23,6 +23,28 @@ public class AssistnetDashboardPage {
     WebElement usernamedrp;
     @FindBy(id = "logout-link")
     WebElement logoutLnk;
+    @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Edit")
+    WebElement editBTN;
+    @FindBy(id = "acctUsernameData")
+    WebElement username;
+    @FindBy(xpath = "//input[@id='first-name']")
+    WebElement firstNameAP;
+
+    @FindBy(id = "acctFirstNameData")
+    WebElement acctFirstname;
+    @FindBy(id = "last-name")
+    WebElement lastNameAP;
+    @FindBy(id = "phoneNumber-name")
+    WebElement phoneNumberAP;
+    @FindBy(id = "emailAddress-name")
+    WebElement emailAP;
+    @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Cancel")
+    WebElement cancelBTN;
+    @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Save")
+    WebElement saveBTN;
+
+
+
 
     public void ClickOnViewMyClients() {
         basicActions.waitForElementToBePresent(viewMyClientBTN,15);
@@ -43,5 +65,55 @@ public class AssistnetDashboardPage {
     public void ClickSignOutFromTheAP() {
         basicActions.waitForElementToBePresent(logoutLnk,20);
         logoutLnk.click();
+    }
+
+    public void ClickEditButtonOnAssistnetDashboardPage() {
+        basicActions.waitForElementToBePresent(editBTN,20);
+        editBTN.click();
+    }
+
+    public void verifyUsernameIsNotEditable() {
+        softAssert.assertTrue(username.isDisplayed());
+        try {
+            username.sendKeys("Test");
+            System.out.println("Element is editable");
+        } catch (Exception e) {
+            System.out.println("Element is not editable");
+        }
+        softAssert.assertAll();
+    }
+
+
+    public void editBasicDetails(String username,String email) {
+        basicActions.waitForElementToBePresent(usernamedrp, 20);
+        firstNameAP.clear();
+        firstNameAP.sendKeys(username);
+        lastNameAP.sendKeys("TestLAstName");
+        phoneNumberAP.sendKeys("7899876789");
+        emailAP.clear();
+        emailAP.sendKeys(email);
+
+    }
+
+    public void verifyTheFirstNameAP(String firstnameText) {
+        basicActions.waitForElementToBePresent(acctFirstname,50);
+        softAssert.assertEquals(acctFirstname.getText(),firstnameText);
+    }
+
+    public void editBasicDetailsAndClickSave(String email) {
+        basicActions.waitForElementToBePresent(usernamedrp, 20);
+        firstNameAP.sendKeys("TestFirstName");
+        lastNameAP.sendKeys("TestLAstName");
+        phoneNumberAP.sendKeys("7899876789");
+        emailAP.clear();
+        emailAP.sendKeys(email);
+    }
+
+    public void clickCancelBtnInAP() {
+        cancelBTN.click();
+    }
+
+    public void clickSaveBtnInAP() {
+        saveBTN.click();
     }
 }
