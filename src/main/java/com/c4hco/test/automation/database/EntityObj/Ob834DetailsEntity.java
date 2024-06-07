@@ -4,7 +4,11 @@ import lombok.Data;
 
 @Data
 public class Ob834DetailsEntity {
+    String id;
+    String date_created;
+    String date_updated;
     String updated_by;
+    String enroll_request_data_id;
     String plan_year;
     String account_id;
     String member_group;
@@ -17,6 +21,11 @@ public class Ob834DetailsEntity {
     String interchange_time;
     String group_ctrl_number;
     String ts_control_number;
+    String ts_purpose_code;
+    String bgn_reference_ident;
+    String bgn_orig_reference_ident;
+    String bgn_action_code;
+    String file_effective_date;
     String total_enrollees;
     String total_subscribers;
     String total_dependents;
@@ -32,7 +41,11 @@ public class Ob834DetailsEntity {
     String maintenance_type_code;
     String maintenance_reas_code;
     String subscriber_id;
+    String carrier_subscriber_id;
+    String prior_subscriber_id;
     String member_id;
+    String carrier_member_id;
+    String ssap_id;
     String member_last_name;
     String member_first_name;
     String member_middle_name;
@@ -52,6 +65,7 @@ public class Ob834DetailsEntity {
     String written_language;
     String spoken_language;
     String tobacco_use;
+    String marital_status_code;
     String mail_street_line1;
     String mail_street_line2;
     String mail_city;
@@ -76,9 +90,13 @@ public class Ob834DetailsEntity {
     String benefit_end_date;
     String paid_through_date;
     String hios_plan_id;
+    String csr_level;
+    String carrier_plan_id;
+    String provider_last_name;
+    String provider_first_name;
+    String provider_id;
     String premium_reduction_amt;
     String csr_amount;
-    String csr_level;
     String premium_amount;
     String rate_area;
     String total_responsible_amount;
@@ -88,12 +106,6 @@ public class Ob834DetailsEntity {
     String ack_requested;
     String usage_indicator;
     String filename;
-    String addl_maint_reason;
-    String sep_reason;
-    String application_date;
-    String current_ind;
-    String premium_reduction_type;
-    String marital_status_code;
     String incorrect_entity_id_code;
     String incorrect_entity_type_qualifier;
     String incorrect_last_name;
@@ -105,6 +117,9 @@ public class Ob834DetailsEntity {
     String incorrect_gender;
     String incorrect_marital_status_code;
     String incorrect_race;
-    String date_created;
-    String date_updated;
+    String addl_maint_reason;
+    String sep_reason;
+    String application_date;
+    String current_ind;
+    String premium_reduction_type;
 }

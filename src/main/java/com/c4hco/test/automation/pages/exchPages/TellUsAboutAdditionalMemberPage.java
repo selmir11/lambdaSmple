@@ -100,7 +100,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setMemberCount(memberCount);
+        member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
