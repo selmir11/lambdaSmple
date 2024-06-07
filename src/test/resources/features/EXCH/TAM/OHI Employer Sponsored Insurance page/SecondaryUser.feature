@@ -63,7 +63,7 @@ Feature: Secondary User-OHI ESI Elmo Page
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "2500000" income at "Annually" frequency
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2500000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -73,7 +73,7 @@ Feature: Secondary User-OHI ESI Elmo Page
     Then I select the projected income option "No" and continue
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "2500000" income at "Annually" frequency
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2500000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page

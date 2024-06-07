@@ -19,14 +19,13 @@ Feature: Seed03 - Exchange
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    Then I click on Search button in find certified broker page
+    And I click on Find a Broker
     And I Search authorized Broker "Margie"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    Then I verify current broker details
+    Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-    And I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -114,7 +113,7 @@ Feature: Seed03 - Exchange
     And I select "EssentialSmile Colorado - Total Care"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox

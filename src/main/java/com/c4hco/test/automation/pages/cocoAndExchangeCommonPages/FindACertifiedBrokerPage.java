@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -440,10 +441,15 @@ public class FindACertifiedBrokerPage {
         String cBrokerName = currentBrokerName.getText();
         String cLicenseNumber = currentBrokerLicenceNumber.getText();
         String cAgencyName = currentAgencyName.getText();
+        softAssert.assertTrue(currentBrokerName.isDisplayed(), "currentBrokerName is not displayed");
+        softAssert.assertTrue(currentBrokerLicenceNumber.isDisplayed(), "currentBrokerLicenceNumber is not displayed");
+        softAssert.assertTrue(currentAgencyName.isDisplayed(), "currentAgencyName is not displayed");
+        softAssert.assertAll();
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        BrokerDetails broker = SharedData.getBroker();
         subscriber.setBroker_name(cBrokerName);
         subscriber.setBroker_lic_num(cLicenseNumber);
-        subscriber.setAgency_name(cAgencyName);
+        broker.setAgencyName(cAgencyName);
         SharedData.setPrimaryMember(subscriber);
     }
 
