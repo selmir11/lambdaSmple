@@ -28,6 +28,10 @@ public class FindExpertHelpPage {
 
     @FindBy(id ="broker-text")
     WebElement helpFromBrokerText;
+
+    @FindBy(id = "broker-callyou-text")
+    WebElement brokerCallYouText;
+
     @FindBy(id ="broker-button")
     WebElement FindBroker;
 
