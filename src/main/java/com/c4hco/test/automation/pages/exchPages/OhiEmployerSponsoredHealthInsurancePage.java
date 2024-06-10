@@ -122,6 +122,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".header-3.content-center > a")
     WebElement helpCenterTxt;
 
+    @FindBy(css = ".header-3.content-center.ng-star-inserted > a")
+    WebElement helpUnderstandLnk;
+
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcon;
 
@@ -357,6 +360,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         switch (iconName) {
             case "Header":
                 basicActions.click(helpCenterTxt);
+                break;
+            case "Help Me Understand":
+                basicActions.click(helpUnderstandLnk);
                 break;
             case "Which job":
                 basicActions.click(helpIcon.get(0));
