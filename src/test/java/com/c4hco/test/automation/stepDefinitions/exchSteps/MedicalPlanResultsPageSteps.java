@@ -30,7 +30,7 @@ public class MedicalPlanResultsPageSteps {
 
     @Then("I click continue on medical plan results page")
     public void selectContinueOnMedicalPlanResultsPage() {
-        medPlanResultsPage.iclickContinue();
+        medPlanResultsPage.clickContinue();
     }
 
     @Then("I click on the compare button")

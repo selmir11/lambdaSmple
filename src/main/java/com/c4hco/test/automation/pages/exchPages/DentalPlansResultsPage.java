@@ -22,7 +22,7 @@ public class DentalPlansResultsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    @FindBy(id="DentalPlanResults-SelectThisPlan_0")
+    @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
