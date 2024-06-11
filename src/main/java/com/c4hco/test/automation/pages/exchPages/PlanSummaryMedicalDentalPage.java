@@ -56,8 +56,8 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
     WebElement medicalPremiumAfterAPTCAmt;
 
-    @FindBy(id="PlanSummary-MedicalPremiumReductionAmount_0")
-    WebElement medicalAPTCAmt;
+    @FindBy(css=".reduction-amount")
+    List<WebElement> medicalAPTCAmt;
 
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
     WebElement dentalPlanPremiumAmt;
@@ -154,7 +154,7 @@ public class PlanSummaryMedicalDentalPage {
                 }
             }
         }else {//FA
-            String medAPTCAmt = medicalAPTCAmt.getText().replace("$","");
+            String medAPTCAmt = medicalAPTCAmt.get(1).getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
