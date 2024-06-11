@@ -4,7 +4,7 @@ Feature: UI Page Validation - Financial Agreement
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-533 @VerifyfinancialAgreementPage-wip
+  @SLER-533-WIP @FinancialAgreementPage
   Scenario: Validate the test tool tip on the edit Dental Grouping page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
