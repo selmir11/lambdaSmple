@@ -3,7 +3,7 @@ Feature: Navigation - Ethnicity And Race page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-20 @PageNavigationEthnicityAndRace
+  @SLCR-20 @PageNavigationEthnicityAndRace @NVOCoCoRegression
   Scenario: Navigation on the Ethnicity and Race page
     When I click create a new account on login page
     Then I click create my account from pre-screen page

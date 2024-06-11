@@ -3,7 +3,7 @@ Feature: Page Text-Additional information for yourself page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-52 @PageTextAddInfoForYourself
+  @SLCR-52 @PageTextAddInfoForYourself @NVOCoCoRegression
   Scenario: Verify Additional information for yourself Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
