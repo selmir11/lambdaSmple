@@ -52,6 +52,14 @@ public class AdminPortalIndividualDashboardPage {
     WebElement agencyPhone;
     @FindBy(css = "tr[id='agency-language'] td[class='group-box-input']")
     WebElement agencyPreferredLanguage;
+    @FindBy(id = "Individual Dashboard-Manage Plans")
+    WebElement managePlanButton;
+    @FindBy(css = "div.medical-plan-container.plan-container-fill div.plan-info-container>div")
+    WebElement medicalPlan;
+    @FindBy(css = "div.dental-plan-container.plan-container-fill div.plan-info-container>div")
+    WebElement dentalPlan;
+    @FindBy(css = "div.manage-plans-title.header-2")
+    WebElement managePlanHeader;
 
 
     public void enterAgencyData(String agencyData, String type) {
@@ -111,4 +119,16 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(agencyAddress, 10);
         softAssert.assertTrue(agencyAddress.isDisplayed());
         softAssert.assertAll(); }
+    public void clickManagePlan() {
+        basicActions.waitForElementToBeClickable(managePlanButton, 10);
+        basicActions.click(managePlanButton);
+    }
+    public void verifyPlanDetails(List<String> data) {
+        basicActions.waitForElementToBePresent(managePlanHeader, 20);
+        softAssert.assertEquals(managePlanHeader.getText(), data.get(0));
+        basicActions.waitForElementToBePresent(medicalPlan, 20);
+        softAssert.assertEquals(medicalPlan.getText(),data.get(1));
+        basicActions.waitForElementToBePresent(dentalPlan, 20);
+        softAssert.assertEquals(dentalPlan.getText(),data.get(2));
+    }
 }
