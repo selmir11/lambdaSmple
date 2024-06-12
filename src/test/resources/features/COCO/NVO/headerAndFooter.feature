@@ -3,7 +3,7 @@ Feature: Header and Footer validation on Coco application pages
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-92 @FooterValidation
+  @SLCR-92 @FooterValidation @NVOCoCoRegression
   Scenario: Validate Footer on the application pages in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -139,7 +139,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-132 @FooterValidation
+  @SLCR-132 @FooterValidation @NVOCoCoRegression
   Scenario: Validate Footer on the application pages in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

@@ -3,7 +3,7 @@ Feature: Navigation - Family Overview page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-47 @PageNavigationFamilyOverview
+  @SLCR-47 @PageNavigationFamilyOverview @NVOCoCoRegression
   Scenario: Navigation on the Tell us about yourself page
     When I click create a new account on login page
     Then I click create my account from pre-screen page

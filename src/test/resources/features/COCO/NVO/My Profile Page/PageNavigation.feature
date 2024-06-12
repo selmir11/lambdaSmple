@@ -3,7 +3,7 @@ Feature: My Profile Page Coco
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-53
+  @SLCR-53 @NVOCoCoRegression
   Scenario: My Profile Page navigation in coco
     When I click create a new account on login page
     Then I click create my account from pre-screen page
