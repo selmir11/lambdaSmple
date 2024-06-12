@@ -535,7 +535,7 @@ public class OhiPeaceCorpsPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish Prior":
-                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese un valor mayor que o igual a "+formattedDate);
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");

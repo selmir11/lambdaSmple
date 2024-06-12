@@ -39,6 +39,10 @@ public class BasicActions {
             "^(?!000|666|9\\d{2})\\d{3}[- ]?(?!00)\\d{2}[- ]?(?!0000)\\d{4}$";
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
+    public void clickBackButtonFromBrowser() {
+        getDriver().navigate().back();
+    }
+
     private static class LazyHolder {
         private static final BasicActions INSTANCE = new BasicActions();
     }
@@ -211,6 +215,15 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
+    public void switchtoPreviousTab() {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(0));
+    }
+
+    public void switchTabs(int tabNumber) {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(tabNumber));
+    }
 
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
@@ -267,6 +280,13 @@ public class BasicActions {
         }
         Matcher matcher = SSN_PATTERN.matcher(SSNvalue);
         return matcher.matches();
+    }
+
+    public static String capitalizeFirstLetter(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }
 

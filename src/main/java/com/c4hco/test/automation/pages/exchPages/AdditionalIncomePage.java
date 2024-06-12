@@ -118,7 +118,8 @@ public class AdditionalIncomePage {
         saveAndContinueBtn.click();
     }
     public void clickContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
+        basicActions.waitForElementToBePresent(hdr_Income, 20);
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }

@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
@@ -149,8 +150,8 @@ public class BasicSteps {
             case "CoCo Declarations and Signature":
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
-            case "Compare":
-                pageUrl = "compare";
+            case "Medical Plan Compare":
+                pageUrl = "PlanSelectionPortal/compare";
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
@@ -201,7 +202,7 @@ public class BasicSteps {
                 pageUrl = "/employmentInfo/summary";
                 break;
             case "Other Health Insurance":
-                pageUrl = "nes/otherHealthInsuranceBegin";
+                pageUrl = "nes/otherHealthInsurance";
                 break;
             case "Elmo Other Health Insurance":
                 pageUrl = "/otherHealthInsurance";
@@ -329,8 +330,14 @@ public class BasicSteps {
             case "LUGY Find expert help" :
                 pageUrl = "broker-portal/find-expert-help";
                 break;
+            case "Agency dashboard" :
+                pageUrl = "AdminPortal/agency";
+                break;
             case "Broker Portal C4U link" :
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
+                break;
+                case "assistnet dashboard" :
+                pageUrl = "assistnet-portal/program-manager";
                 break;
             default:
                 System.out.println("undefined page ");
@@ -374,7 +381,7 @@ public class BasicSteps {
                 pageUrl = "customer-service";
                 break;
             case "Facebook":
-                pageUrl = "facebook.com/connectforhealthco";
+                pageUrl = "facebook.com/*connectforhealthco";
                 break;
             case "X":
                 pageUrl = "x.com/i/flow/login?redirect_after_login=%2FC4HCO";
@@ -423,6 +430,11 @@ public class BasicSteps {
         basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }
+    @And("I close current tab and switch back to previous tab")
+    public void closeCurrentTabAndSwitchToPrevious() {
+        basicActions.closeBrowserTab();
+        basicActions.switchtoPreviousTab();
+    }
 
     @And("I refresh the page")
     public void refreshPage() {
@@ -434,6 +446,9 @@ public class BasicSteps {
         basicActions.goBack();
     }
 
+    @And("I switch to the tab number {int}")
+    public void switchTab(int tabNumber) { basicActions.switchTabs(tabNumber);}
+
     @And("I set the browser resolution to 2000 x 800")
     public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(2000, 800));}
 
@@ -443,4 +458,8 @@ public class BasicSteps {
     @And("I change the C4 url to {string}")
     public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
 
- }
+    @Then("I click Go Back button from chrome browser")
+    public void iClickGoBackButtonFromChromeBrowser() {
+        basicActions.clickBackButtonFromBrowser();
+    }
+}

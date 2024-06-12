@@ -69,7 +69,8 @@ public class MemberDetails {
     String incorrect_first_name ;
     String incorrect_middle_name ;
     String incorrect_last_name ;
-    int memberCount;
+    String employerName;
+    String dependentCountTag;
 }
 
 

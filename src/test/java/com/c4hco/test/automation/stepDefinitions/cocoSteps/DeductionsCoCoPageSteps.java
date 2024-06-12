@@ -17,4 +17,7 @@ public class DeductionsCoCoPageSteps {
 
     @And("I select continue on the Deductions CoCo page")
     public void selectContinueDeductions(){deductionsCoCoPage.clickSaveAndContinueButton();}
+
+    @And("I select Back on the Deductions CoCo page")
+    public void selectBackDeductions(){deductionsCoCoPage.clickBackButton();}
 }
