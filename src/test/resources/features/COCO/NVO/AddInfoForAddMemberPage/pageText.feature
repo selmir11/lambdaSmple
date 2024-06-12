@@ -3,7 +3,7 @@ Feature: Page Text-Additional information for additional member page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-77 @PageTextAddInfoForAddMember
+  @SLCR-77 @PageTextAddInfoForAddMember @NVOCoCoRegression
   Scenario: Verify Additional information for additional member Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

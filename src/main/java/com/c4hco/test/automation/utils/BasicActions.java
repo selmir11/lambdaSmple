@@ -220,6 +220,11 @@ public class BasicActions {
         getDriver().switchTo().window(tabs.get(0));
     }
 
+    public void switchTabs(int tabNumber) {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(tabNumber));
+    }
+
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
         String primaryMemId = SharedData.getPrimaryMemberId();

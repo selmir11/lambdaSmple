@@ -3,7 +3,7 @@ Feature: Page text, navigation, validation - Additional information for yourself
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-60 @PageTestsAddInfoForYourselfSpanish
+  @SLCR-60 @PageTestsAddInfoForYourselfSpanish @NVOCoCoRegression
   Scenario: Page text, navigation, validation on the Additional information for yourself page in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

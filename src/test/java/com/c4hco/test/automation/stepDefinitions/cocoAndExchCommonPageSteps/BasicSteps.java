@@ -381,7 +381,7 @@ public class BasicSteps {
                 pageUrl = "customer-service";
                 break;
             case "Facebook":
-                pageUrl = "facebook.com/connectforhealthco";
+                pageUrl = "facebook.com/*connectforhealthco";
                 break;
             case "X":
                 pageUrl = "x.com/i/flow/login?redirect_after_login=%2FC4HCO";
@@ -445,6 +445,9 @@ public class BasicSteps {
     public void goBack() {
         basicActions.goBack();
     }
+
+    @And("I switch to the tab number {int}")
+    public void switchTab(int tabNumber) { basicActions.switchTabs(tabNumber);}
 
     @And("I set the browser resolution to 2000 x 800")
     public void setResolution(){basicActions.getDriver().manage().window().setSize(new Dimension(2000, 800));}

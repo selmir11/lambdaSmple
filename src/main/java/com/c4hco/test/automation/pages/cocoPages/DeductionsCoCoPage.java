@@ -29,9 +29,17 @@ public class DeductionsCoCoPage {
     @FindBy(id = "Deductions-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(id = "Deductions-GoBack")
+    WebElement backButton;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
+    }
+
+    public void clickBackButton() {
+        basicActions.waitForElementToBeClickable(backButton, 50);
+        backButton.click();
     }
 
     public void selectNoneDeductionsOption(){

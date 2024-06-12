@@ -162,6 +162,9 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I open or close the "Minimum Value" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed English" on the ESI page
+    Then I open or close the "Help Me Understand" Help Drawer on the ESI page
+    And I verify the Help Drawer is "Open" on the ESI page
+    Then I open or close the Help Drawer on the ESI page
     Then I open or close the "Monthly Amount" Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
     And I verify the Help Drawer "Monthly Amount" text in "English" on the ESI page
