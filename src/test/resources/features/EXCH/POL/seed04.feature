@@ -28,7 +28,7 @@ Feature: Seed04 - Exchange
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    Then I verify current broker details
+    And I set the current broker details
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying

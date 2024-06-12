@@ -53,7 +53,6 @@ public class DbValidations {
 
     public void validateOb834FromDb(List<Map<String, String>> expectedValues){
       MemberDetails subscriber = SharedData.getPrimaryMember();
-      BrokerDetails broker = SharedData.getBroker();
         List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
       SharedData.setOb834DetailsEntities(ob834DetailsEntities);
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
@@ -106,7 +105,7 @@ public class DbValidations {
           validateConstantFields(ob834Entity);
           validatePersonalDetails(subscriber, ob834Entity);
           validateResponsiblePersonDetails(subscriber, ob834Entity);
-          validateBrokerDetails(broker, ob834Entity,dbData);
+          validateBrokerDetails(ob834Entity,dbData);
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
           validateRelCode(subscriber, ob834Entity);
@@ -233,7 +232,8 @@ public class DbValidations {
         //  softAssert.assertAll();
     }
 
-    public void validateBrokerDetails(BrokerDetails broker, Ob834DetailsEntity ob834Entity, DbData dbData){
+    public void validateBrokerDetails(Ob834DetailsEntity ob834Entity, DbData dbData){
+        BrokerDetails broker = SharedData.getBroker();
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), broker.getBroker_name(),"Broker name is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");

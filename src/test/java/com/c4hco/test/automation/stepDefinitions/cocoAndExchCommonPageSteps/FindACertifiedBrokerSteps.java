@@ -146,8 +146,8 @@ public class FindACertifiedBrokerSteps {
     public void iValidateButtonAndFieldText(String language){
         findACertifiedBrokerPage.validateButtonAndFieldText(language);
     }
-    @Then("I verify current broker details")
-    public void iValidateCurrentBrokerDetails() {
-        findACertifiedBrokerPage.verifyCurrentBrokerContainerDetails();
+    @And("I set the current broker details")
+    public void iSetCurrentBrokerDetails() {
+        findACertifiedBrokerPage.setCurrentBrokerContainerDetails();
     }
 }

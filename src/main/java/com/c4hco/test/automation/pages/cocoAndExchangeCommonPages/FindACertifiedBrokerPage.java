@@ -434,17 +434,13 @@ public class FindACertifiedBrokerPage {
         }
         softAssert.assertAll();
     }
-    public void verifyCurrentBrokerContainerDetails (){
+    public void setCurrentBrokerContainerDetails (){
         basicActions.waitForElementToBePresent(currentBrokerName,10);
         basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
         basicActions.waitForElementToBePresent(currentAgencyName,10);
         String cBrokerName = currentBrokerName.getText();
         String cLicenseNumber = currentBrokerLicenceNumber.getText();
         String cAgencyName = currentAgencyName.getText();
-        softAssert.assertTrue(currentBrokerName.isDisplayed(), "currentBrokerName is not displayed");
-        softAssert.assertTrue(currentBrokerLicenceNumber.isDisplayed(), "currentBrokerLicenceNumber is not displayed");
-        softAssert.assertTrue(currentAgencyName.isDisplayed(), "currentAgencyName is not displayed");
-        softAssert.assertAll();
         BrokerDetails broker = SharedData.getBroker();
         broker.setBroker_name(cBrokerName);
         broker.setBroker_lic_num(cLicenseNumber);
