@@ -61,6 +61,7 @@ public class AdminPortalIndividualDashboardPage {
     @FindBy(css = "div.manage-plans-title.header-2")
     WebElement managePlanHeader;
 
+
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
             case "agencyName":
