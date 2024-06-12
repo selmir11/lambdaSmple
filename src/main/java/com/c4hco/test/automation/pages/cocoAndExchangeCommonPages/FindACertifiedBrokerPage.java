@@ -130,7 +130,7 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath ="//*[@id='findBroker-contact-you']/span[3]")
     WebElement findBrokerContactYouText;
 
-    @FindBy(id = "BP-Findexperthelpnearyou-Back")
+    @FindBy(id = "BP-FindaCertifiedBrokernearyou-GoBack")
     WebElement findBrokerGoBack;
 
     public void FindABrokerPageTitle(String language){
