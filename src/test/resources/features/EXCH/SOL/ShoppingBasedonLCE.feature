@@ -87,11 +87,6 @@ Feature: Initial Payment Page test
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    And I click on Find a Broker
-    And I Search authorized Broker "Margie"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    Then I click Authorized broker
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -201,6 +196,11 @@ Feature: Initial Payment Page test
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
+    And I select the option "No" to claim as dependent
+    And I select the option "No" to file federal income tax return next year
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as health insurance option and continue
     Then I select "None of these" as health insurance option and continue
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
@@ -208,17 +208,23 @@ Feature: Initial Payment Page test
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
+    Then I click continue on grouping Members Medical page
+    And I select the first medical plan
     Then I click continue on medical plan results page
+    Then I click continue on grouping Members Dental page
     And I select "Anthem Dental Family Value"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
