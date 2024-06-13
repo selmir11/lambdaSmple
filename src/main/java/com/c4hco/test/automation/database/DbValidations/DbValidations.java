@@ -316,7 +316,7 @@ public class DbValidations {
         softAssert.assertAll();
     }
     public void ValidateIsHavingPriorSubscriber(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getMember_first_name(), "Prior subscriber id did not match");
+        softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match");
     }
 
 
