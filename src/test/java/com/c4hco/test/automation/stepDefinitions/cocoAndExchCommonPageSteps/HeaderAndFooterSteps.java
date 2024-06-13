@@ -48,6 +48,11 @@ public class HeaderAndFooterSteps {
     @And("I verify text on the {string} {string} in {string}")
     public void verifyExchHeaderText(String appType, String HeaderOrFooter, String language) {headerAndFooterPage.verifyHeaderFooterText(appType,language, HeaderOrFooter);}
 
+    @And("I verify User name Link is displayed in the {string} Header")
+    public void verifyUserNameLinkPresent(String pageType){ headerAndFooterPage.verifyUserNameLinkPresent(pageType); }
+
+    @And("I verify User name Link is not displayed in the {string} Header")
+    public void verifyUserNameLinkNotPresent(String pageType){ headerAndFooterPage.verifyUserNameLinkNotPresent(pageType); }
 
         // =========FOOTER============== //
     @And("I click on Privacy Policy in the {string} Footer")
