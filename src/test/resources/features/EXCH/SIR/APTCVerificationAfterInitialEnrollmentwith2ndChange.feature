@@ -7,9 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
   @SLER-131
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2349 - 40 year old
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
+    When I create a new "exchange" account
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page

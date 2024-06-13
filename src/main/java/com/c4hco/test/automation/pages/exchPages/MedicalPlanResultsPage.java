@@ -1,16 +1,16 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.WebDriverManager;
+import com.c4hco.test.automation.actions.ClickAction;
+import com.c4hco.test.automation.actions.SelectAction;
+import com.c4hco.test.automation.actions.WaitAction;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -18,13 +18,10 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
-    private BasicActions basicActions;
-     Optional<Integer> optionalInt;
     SoftAssert softAssert = new SoftAssert();
 
     public MedicalPlanResultsPage(WebDriver webDriver) {
-        basicActions = new BasicActions(webDriver);
-        PageFactory.initElements(basicActions.getDriver(), this);
+        PageFactory.initElements(webDriver, this);
     }
 
     @FindBy(id = "PlanResults-SelectThisPlan_1")
@@ -42,10 +39,10 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
 
-    @FindBy (id = "MedicalPlanResults-SaveAndExit")
+    @FindBy(id = "MedicalPlanResults-SaveAndExit")
     WebElement btnSaveExist;
 
-    @FindBy (id = "MedicalPlanResults-GoBack")
+    @FindBy(id = "MedicalPlanResults-GoBack")
     WebElement btnGoBack;
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
@@ -80,135 +77,109 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
     WebElement planResultsAPTC;
 
-    public void validateAPTC(String planResultsAPTCredit){
-        basicActions.waitForElementToBePresent(planResultsAPTC, 30);
-        softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
+    public void validateAPTC(String planResultsAPTCredit) {
+        WaitAction.waitForPresent(planResultsAPTC, 30);
+        softAssert.assertEquals(planResultsAPTC.getText(), planResultsAPTCredit);
     }
-    public void validateNoAPTC(String noAPTCCreditAmt) {
-        softAssert.assertFalse(basicActions.waitForElementPresence(planResultsAPTC, 20 ) );
-        softAssert.assertAll();
 
+    public void validateNoAPTC(String noAPTCCreditAmt) {
+        softAssert.assertFalse(BasicActions.getInstance().waitForElementPresence(planResultsAPTC, 20));
+        softAssert.assertAll();
     }
-    
+
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
-        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
-
-    }
-
-    public void iGetFirstPlanName() {
-        basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
-        SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
+        softAssert.assertTrue(ClickAction.clickByXpath(providerPath));
     }
 
     public void SelectFirstMedicalPlan() {
-        basicActions.waitForElementToBePresent(selectFirstPlan, 30);
-        selectFirstPlan.click();
+        softAssert.assertTrue(SelectAction.select(selectFirstPlan));
     }
 
-    public void iclickContinue() {
-        basicActions.waitForElementToBePresent(btnContinue, 30);
-        btnContinue.click();
-    }
     public void clickContinue() {
-        continueBtn.click();
+        ClickAction.click(continueBtn);
     }
 
     public void clickCompare() {
-        basicActions.waitForElementToBePresent(clickCompare, 30);
-        clickCompare.click();
+        ClickAction.click(clickCompare);
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 30);
-        comparePlanLinks.get(0).click();
-        comparePlanLinks.get(1).click();
+        ClickAction.click(comparePlanLinks.get(0), comparePlanLinks.get(1));
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 30);
-        insuranceCompanyDropdown.click();
-
+        softAssert.assertTrue(ClickAction.click(insuranceCompanyDropdown));
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToBeClickable(metalTierDropdown, 30);
-        metalTierDropdown.click();
-
+        softAssert.assertTrue(ClickAction.click(metalTierDropdown));
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToBeClickable(hsaDropdown, 30);
-        hsaDropdown.click();
+        softAssert.assertTrue(ClickAction.click(hsaDropdown));
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToBePresent(hsaOption,30);
-        basicActions.waitForElementToBeClickable(hsaOption, 100);
-        hsaOption.click();
-
+        ClickAction.click(hsaOption);
     }
 
     public void clickColoradoOptionDropdown() {
-        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 30);
-        coloradoOptionDropdown.click();
+        ClickAction.click(coloradoOptionDropdown);
     }
 
     public void selectColoradoOptionSelection() {
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", coloradoOptionSelection);
-        Assert.assertTrue(coloradoOptionSelection.isSelected());
+        softAssert.assertTrue(SelectAction.select(coloradoOptionSelection));
     }
 
     public void selectfromMetalTierList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
-        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+        softAssert.assertTrue(ClickAction.clickByXpath(providerPath));
     }
 
     public void validatePlanResults(int index, String planText) {
-        basicActions.waitForElementToBePresent(selectFirstPlan, 10);
+        BasicActions.getInstance().waitForElementToBePresent(selectFirstPlan, 10);
         //index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
         String indexString = String.valueOf(index); //turns the int index into a string value.
         String planID = "PlanResults-SelectThisPlan_" + indexString; //sets the ID String using the index
-        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID)); //sets the Web element based on the ID
+        WebElement ePlanID = BasicActions.getInstance().getDriver().findElement(By.id(planID)); //sets the Web element based on the ID
         String expectedText = ePlanID.getText();
-        expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
+        softAssert.assertEquals(expectedText, planText);
     }
 
-    public void selectMedicalPlan(String planName){
+    public void selectMedicalPlan(String planName) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
-            do {
-            optionalInt = checkIfPlanPresent(planName);
+        Optional<Integer> optionalInt;
+        do {
+             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
-                clickPlanButton(optionalInt.get()+1);
+                clickPlanButton(optionalInt.get() + 1);
             } else {
                 paginateRight();
             }
-        } while(optionalInt.isEmpty());
+        } while (optionalInt.isEmpty());
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
-        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
+        BasicActions.getInstance().waitForElementListToBePresent(medicalPlanNamesList, 10);
         return IntStream.range(0, medicalPlanNamesList.size())
                 .filter(i -> medicalPlanNamesList.get(i).getText().equals(planName))
                 .boxed()
                 .findFirst();
     }
 
-    private void clickPlanButton(int index){
+    private void clickPlanButton(int index) {
         String planID = "PlanResults-SelectThisPlan_" + index;
-        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
-        basicActions.waitForElementToBeClickable(ePlanID, 10);
-        ePlanID.click();
+        ClickAction.clickById(planID);
     }
 
-    private void paginateRight(){
-        basicActions.waitForElementToBePresent(nextPageArrow, 10);
-        Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
-        nextPageArrow.click();
+    private void paginateRight() {
+        BasicActions.getInstance().waitForElementToBePresent(nextPageArrow, 10);
+        softAssert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
+        ClickAction.click(nextPageArrow);
     }
-
 }
 
 

@@ -1,7 +1,9 @@
 package com.c4hco.test.automation.utils;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.openqa.selenium.JavascriptExecutor;
+import com.c4hco.test.automation.actions.ClickAction;
+import com.c4hco.test.automation.actions.ScrollAction;
+import lombok.Getter;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BasicActions {
+    @Getter
     private WebDriver driver;
 
     private ArrayList<String> tabs;
@@ -26,10 +29,6 @@ public class BasicActions {
 
     public BasicActions() {
 
-    }
-
-    public WebDriver getDriver() {
-        return this.driver;
     }
 
     public static BasicActions getInstance() {
@@ -44,7 +43,7 @@ public class BasicActions {
     }
 
     private static class LazyHolder {
-        private static final BasicActions INSTANCE = new BasicActions();
+        private static final BasicActions INSTANCE = new BasicActions(WebDriverManager.getDriver());
     }
 
     public void closeBrowserTab() {
@@ -156,14 +155,9 @@ public class BasicActions {
     }
 
     public void click(WebElement element) {
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofMillis(100))
-                .ignoring(NoSuchElementException.class);
-
-        wait.until(ExpectedConditions.visibilityOf(element));
-
-        element.click();
+        ClickAction.builder()
+                .element(element)
+                .build().run();
     }
 
     public void waitForPresence(WebElement webElement) {
@@ -185,7 +179,11 @@ public class BasicActions {
         }
     }
     public void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        scrollToElement(element, 1);
+    }
+
+    public boolean scrollToElement(WebElement element, int attempts) {
+        return ScrollAction.builder().attempts(attempts).element(element).build().run();
     }
 
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
