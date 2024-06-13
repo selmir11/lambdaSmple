@@ -232,7 +232,8 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickable(learnMoreLink, 15);
+        basicActions.waitForElementToBeClickable(learnMoreLink, 30);
+        basicActions.waitForElementToBeClickable(getAssistanceLink, 30);
         learnMoreLink.click();
     }
 
@@ -703,9 +704,12 @@ public class HeaderAndFooterPage {
                 break;
             case "Individual Portal":
                 basicActions.waitForElementToBeClickable(privacyPolicyLink, 50);
+                basicActions.waitForElementToBeClickable(termsOfUseLink, 50);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
         }
     }
 
@@ -719,6 +723,8 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
                 termsOfUseLink.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
         }
     }
 

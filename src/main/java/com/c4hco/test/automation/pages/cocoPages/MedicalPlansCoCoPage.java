@@ -22,7 +22,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
-    @FindBy(id = "MedicalPlanResults-Continue")
+    @FindBy(css = "#SHP-MedicalPlanResults-Continue")
     public WebElement continueButton;
 
     @FindBy(id = "PlanResults-InsuranceCompany")
@@ -52,6 +52,7 @@ public class MedicalPlansCoCoPage {
 
     public void selectContinueMedicalPlansCoCo() {
         basicActions.waitForElementToBeClickable(continueButton, 20);
+        basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
 

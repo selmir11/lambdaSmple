@@ -20,6 +20,9 @@ public class LifeChangeEventsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = ".header-1")
+    WebElement hdr_Lce;
+
     //Health Loss
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
     WebElement insuranceLossLCE;
@@ -163,7 +166,8 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void selectNoneOfThese(){
-        basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
+        basicActions.waitForElementToBeClickable(noneOfTheseLCE,50);
+        basicActions.scrollToElement(noneOfTheseLCE);
         noneOfTheseLCE.click();
     }
 

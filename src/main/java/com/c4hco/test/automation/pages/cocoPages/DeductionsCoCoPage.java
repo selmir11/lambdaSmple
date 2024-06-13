@@ -17,6 +17,12 @@ public class DeductionsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css= ".header-1")
+    WebElement hdr_Deductions;
+
+    @FindBy(css= ".header-2")
+    WebElement hdr_Deductions2;
+
     @FindBy(css = "app-show-options button")
     List<WebElement> deductionButton;
 
@@ -33,6 +39,8 @@ public class DeductionsCoCoPage {
     WebElement backButton;
 
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToBePresent(hdr_Deductions,50);
+        basicActions.waitForElementToBePresent(hdr_Deductions2,30);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }
