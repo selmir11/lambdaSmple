@@ -339,6 +339,11 @@ public class BasicSteps {
                 case "assistnet dashboard" :
                 pageUrl = "assistnet-portal/program-manager";
                 break;
+            case "Error" :
+                pageUrl = "/error";
+                break;
+            case "Unauthorized" :
+                pageUrl = "/unauthorized";
             default:
                 System.out.println("undefined page ");
                 break;
