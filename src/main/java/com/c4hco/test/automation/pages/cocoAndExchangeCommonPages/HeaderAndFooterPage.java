@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
 
@@ -668,6 +669,26 @@ public class HeaderAndFooterPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyUserNameLinkNotPresent(String pageType) {
+        switch (pageType) {
+            case "CoCo":
+                Assert.assertFalse(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is displayed");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
+    }
+
+    public void verifyUserNameLinkPresent(String pageType) {
+        switch (pageType) {
+            case "CoCo":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is NOT displayed");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
 
