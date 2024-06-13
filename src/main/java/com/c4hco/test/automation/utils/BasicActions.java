@@ -280,6 +280,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Welcome portal Error CoCo":
+                newUrl = "WelcomePortal/error";
+                newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Welcome portal Unauthorized CoCo":
+                newUrl = "WelcomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
