@@ -371,7 +371,6 @@ public class BasicSteps {
                 pageUrl = "/InformationPortal/privacyPolicy";
                 break;
             case "Terms Of Use":
-                basicActions.wait(3000);
                 pageUrl = "/InformationPortal/termsOfUse";
                 break;
             case "ELIG Terms of Use":
