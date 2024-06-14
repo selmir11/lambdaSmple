@@ -121,7 +121,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -222,7 +222,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$139.14"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
   @SLER-322

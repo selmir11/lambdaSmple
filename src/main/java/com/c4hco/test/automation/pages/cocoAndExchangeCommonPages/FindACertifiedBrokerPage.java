@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -130,8 +131,17 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath ="//*[@id='findBroker-contact-you']/span[3]")
     WebElement findBrokerContactYouText;
 
-    @FindBy(id = "BP-Findexperthelpnearyou-Back")
+    @FindBy(id = "BP-FindaCertifiedBrokernearyou-GoBack")
     WebElement findBrokerGoBack;
+
+    @FindBy (id = "broker-organizationName")
+    WebElement currentBrokerName;
+
+    @FindBy (id = "broker-license")
+    WebElement currentBrokerLicenceNumber;
+
+    @FindBy (id = "broker-exchangeId")
+    WebElement currentAgencyName;
 
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
@@ -424,4 +434,18 @@ public class FindACertifiedBrokerPage {
         }
         softAssert.assertAll();
     }
+    public void setCurrentBrokerContainerDetails (){
+        basicActions.waitForElementToBePresent(currentBrokerName,10);
+        basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
+        basicActions.waitForElementToBePresent(currentAgencyName,10);
+        String cBrokerName = currentBrokerName.getText();
+        String cLicenseNumber = currentBrokerLicenceNumber.getText();
+        String cAgencyName = currentAgencyName.getText();
+        BrokerDetails broker = SharedData.getBroker();
+        broker.setBroker_name(cBrokerName);
+        broker.setBroker_lic_num(cLicenseNumber);
+        broker.setAgencyName(cAgencyName);
+        SharedData.setBroker(broker);
+    }
+
 }

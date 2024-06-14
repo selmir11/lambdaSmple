@@ -94,6 +94,7 @@ public class WhoAreYouPage {
 
         basicActions.waitForElementToBeClickable(countyDropDown,15);
         countyDropDown.click();
+        basicActions.waitForElementListToBePresent(countyDropdownOptions, 20);
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
 
         memberDOB.sendKeys(dateOfBirth);

@@ -64,9 +64,10 @@ public class DbDataProvider_Exch {
     public String getCSRLevel(){
         return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
     }
-
-    public void setDataFromDb(String planName){
-      String fipcode = getFipcode();
+    public String getTinNumForBroker() {
+        return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
+    }
+    public void setDataFromDb(String planName){String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
      String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
      String baseId = baseIdAndHiosIssuerId[0];
@@ -76,7 +77,7 @@ public class DbDataProvider_Exch {
      String issuerId = issuerNameId[1];
      String exchPersonId = getExchPersonId();
      String csrLevel = getCSRLevel();
-
+     String brokerTinNum = getTinNumForBroker();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -87,7 +88,7 @@ public class DbDataProvider_Exch {
         dbData.setIssuerId(issuerId);
         dbData.setExchPersonId(exchPersonId);
         dbData.setCsrLevel(csrLevel);
-
+        dbData.setBrokerTinNum(brokerTinNum);
         SharedData.setDbData(dbData);
     }
 

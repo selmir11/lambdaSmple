@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
@@ -104,12 +105,12 @@ public class DbValidations {
           validateConstantFields(ob834Entity);
           validatePersonalDetails(subscriber, ob834Entity);
           validateResponsiblePersonDetails(subscriber, ob834Entity);
-          validateBrokerDetails(subscriber, ob834Entity);
+          validateBrokerDetails(ob834Entity,dbData);
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
           validateRelCode(subscriber, ob834Entity);
           validateMemberCountDetails(ob834Entity);
-
+          ValidatePriorSubscriber(subscriber, ob834Entity);
       }
     }
 
@@ -211,36 +212,32 @@ public class DbValidations {
     }
 
     public void validateResponsiblePersonDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-       if( subscriber.getIsMinor()){
-           // Validate Responsible Person details
-           // update the entire method for optimal use - may not need if else blocks.
-       } else{
-           softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_email(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), null);
-           softAssert.assertEquals(ob834Entity.getResidence_street_line2(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
-           softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
-       }
+        if( subscriber.getIsMinor()){
+            // Validate Responsible Person details
+            // update the entire method for optimal use - may not need if else blocks.
+        } else{
+            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), null);
+            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
+            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
+        }
         //  softAssert.assertAll();
     }
 
-    public void validateBrokerDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        if(SharedData.getHasBroker()){
-            // validate broker details
-            // update the entire method for optimal use - may not need if else blocks.
-        } else{
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), null);
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), null);
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), null);
-        }
-        //  softAssert.assertAll();
+    public void validateBrokerDetails(Ob834DetailsEntity ob834Entity, DbData dbData){
+        BrokerDetails broker = SharedData.getBroker();
+        softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), broker.getBroker_name(),"Broker name is incorrect");
+        softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
+        softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
+        softAssert.assertAll();
     }
 
     public void validateIncorrectEntities(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
@@ -316,6 +313,10 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getTricare_covg_end_soon_ind3(), expectedValues.get(0).get("tricare_covg_end_soon_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_enrl_covg_ind3(), expectedValues.get(0).get("peace_corps_enrl_covg_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_covg_end_soon_ind3(), expectedValues.get(0).get("peace_corps_covg_end_soon_ind3"));
+        softAssert.assertAll();
+    }
+    public void ValidatePriorSubscriber(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
+        softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match");
         softAssert.assertAll();
     }
 
