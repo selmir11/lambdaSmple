@@ -60,7 +60,18 @@ public class AdminPortalIndividualDashboardPage {
     WebElement dentalPlan;
     @FindBy(css = "div.manage-plans-title.header-2")
     WebElement managePlanHeader;
-
+    @FindBy(css = "#groupBox1 > p.group-title")
+    WebElement plansIndividual;
+    @FindBy(xpath = "//h2[@class='dashboardHeader-renewal']")
+    WebElement renewalsIndividual;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement summaryIndividual;
+    @FindBy(xpath = "//p[normalize-space()='Eligibility']")
+    WebElement eligibilityIndividual;
+    @FindBy(css = "div[class='group-box reports-container'] p[class='group-title']")
+    WebElement reportsIndividual;
+    @FindBy(css = "div[class='group-header'] p[class='group-title']")
+    WebElement payloadsIndividual;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -79,34 +90,39 @@ public class AdminPortalIndividualDashboardPage {
             case "businessAddressZip":
                 searchAgencynputList.get(4).sendKeys(type);
                 break;
-            default: throw new IllegalArgumentException("Invalid header option : " + agencyData);
+            default:
+                throw new IllegalArgumentException("Invalid header option : " + agencyData);
         }
     }
 
     public void verifyContainerTitle() {
         basicActions.waitForElementToBePresent(reportsTitle, 10);
         softAssert.assertTrue(reportsTitle.isDisplayed());
-        softAssert.assertAll();     }
+        softAssert.assertAll();
+    }
     public void viewReportLinks(String searchText) {
         basicActions.waitForElementListToBePresent(reportViewButtons, 20);
         WebElement viewButton = basicActions.getDriver().findElement(By.xpath("//span[contains(normalize-space(), '" + searchText + "')]//following::span[1]"));
         viewButton.click();
-        basicActions.switchtoactiveTab();       }
+        basicActions.switchtoactiveTab();
+    }
     public void verifyPrimaryHolder() {
         basicActions.waitForElementToBePresent(memberPrimary, 10);
         softAssert.assertTrue(memberPrimary.isDisplayed());
         basicActions.waitForElementToBePresent(memberAcctId, 10);
         softAssert.assertTrue(memberAcctId.isDisplayed());
-        softAssert.assertAll();     }
+        softAssert.assertAll();
+    }
     public void verifyAgencyContainerTitle() {
         basicActions.waitForElementToBePresent(agencyContainerTitle, 10);
         softAssert.assertTrue(agencyContainerTitle.isDisplayed());
         basicActions.waitForElementToBePresent(memberAcctId, 10);
         softAssert.assertTrue(memberAcctId.isDisplayed());
-        softAssert.assertAll();     }
+        softAssert.assertAll();
+    }
     public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
-        softAssert.assertEquals(agencyName.getText(),name);
+        softAssert.assertEquals(agencyName.getText(), name);
         softAssert.assertEquals(stateLicenseNumber.getText(), license);
         softAssert.assertEquals(agencyThin.getText(), thin);
         softAssert.assertEquals(agencyAgent.getText(), agent);
@@ -114,8 +130,9 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(agencyWebsite.getText(), website);
         softAssert.assertEquals(agencyPhone.getText(), phone);
         softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
-        softAssert.assertAll();     }
-    public void validateAgencyAddress(String address){
+        softAssert.assertAll();
+    }
+    public void validateAgencyAddress(String address) {
         basicActions.waitForElementToBePresent(agencyAddress, 10);
         softAssert.assertTrue(agencyAddress.isDisplayed());
         softAssert.assertAll(); }
@@ -130,5 +147,20 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(medicalPlan.getText(),data.get(1));
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(),data.get(2));
+        softAssert.assertAll();
     }
+    public void validateIndividualDashboardContainerTitles(String plans, String renewals, String summary, String reports, String eligibility, String payloads) {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(plansIndividual, 20));
+        softAssert.assertEquals(plansIndividual.getText(), plans);
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(renewalsIndividual, 10));
+        softAssert.assertEquals(renewalsIndividual.getText(), renewals);
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(summaryIndividual, 10));
+        softAssert.assertEquals(summaryIndividual.getText(), summary);
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(reportsIndividual, 10));
+        softAssert.assertEquals(reportsIndividual.getText(), reports);
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(eligibilityIndividual, 10));
+        softAssert.assertEquals(eligibilityIndividual.getText(), eligibility);
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(payloadsIndividual, 10));
+        softAssert.assertEquals(payloadsIndividual.getText(), payloads);
+        softAssert.assertAll(); }
 }

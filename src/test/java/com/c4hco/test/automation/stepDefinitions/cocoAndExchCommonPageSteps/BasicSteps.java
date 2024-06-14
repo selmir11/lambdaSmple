@@ -344,6 +344,15 @@ public class BasicSteps {
                 break;
             case "Unauthorized" :
                 pageUrl = "/unauthorized";
+            case "Admin Portal Exclusion Reason Report" :
+                pageUrl = "/exclusions";
+                break;
+            case "Admin Portal EDI Transactions" :
+                pageUrl = "edi-transactions";
+                break;
+            case "Admin Portal Detailed EDI" :
+                pageUrl = "/detailed-edi";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
@@ -359,6 +368,7 @@ public class BasicSteps {
                 pageUrl = "/InformationPortal/privacyPolicy";
                 break;
             case "Terms Of Use":
+                basicActions.wait(3000);
                 pageUrl = "/InformationPortal/termsOfUse";
                 break;
             case "ELIG Terms of Use":
