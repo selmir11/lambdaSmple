@@ -20,7 +20,8 @@ public class EmploymentSummaryPage {
     WebElement lnkEditIncome;
 
     public void clickContinue(){
-        basicActions.waitForElementToBeClickable(btnContinue, 10);
+        basicActions.waitForElementToBePresent(btnContinue,30);
+        basicActions.waitForElementToBeClickable(btnContinue, 30);
         btnContinue.click();
     }
 
