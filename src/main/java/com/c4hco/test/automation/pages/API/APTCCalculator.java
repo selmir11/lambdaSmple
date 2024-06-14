@@ -252,6 +252,260 @@ public class APTCCalculator {
         requestBody.put("eligibilityPurpose", "INITIAL_DETERMINATION");
     }
 
+    public void buildTwoTaxHouseHoldOneTwoMember(String magi, String magi2, String zipCode, String fipsCode, String fpl, String fpl2, String dateOfBirth, String dateOfBirth2, String dateOfBirth3) {
+        requestBody.put("taxHousehold", Arrays.asList(new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "001");
+                put("magiAmount", magi);
+                put("householdSize", "2");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "1");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "2");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth2);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }},new LinkedHashMap<String, Object>(){
+            {
+                put("taxHouseholdID", "002");
+                put("magiAmount", magi2);
+                put("householdSize", "1");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl2);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "3");
+                        put("applyingForCoverageIndicator", "true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth3);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}));
+        requestBody.put("eligibilityPurpose", "INITIAL_DETERMINATION");
+    }
+
+    public void buildTwoTHHTHH1ThreeMemberOneNotAPTCTHH2OneMemberNotAPTC(String magi, String magi2, String zipCode, String fipsCode, String fpl, String fpl2, String dateOfBirth, String dateOfBirth2, String dateOfBirth3, String dateOfBirth4) {
+        requestBody.put("taxHousehold", Arrays.asList(new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "001");
+                put("magiAmount", magi);
+                put("householdSize", "2");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "1");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "2");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth2);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "3");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth3);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}, new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "002");
+                put("magiAmount", magi2);
+                put("householdSize", "1");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl2);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "4");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "false");
+                        put("dateOfBirth", dateOfBirth4);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}));
+        requestBody.put("eligibilityPurpose", "INITIAL_DETERMINATION");
+    }
+
+    public void buildTwoTHHTHH1ThreeMemberOneNotAPTCTHH2OneMember(String magi, String magi2, String zipCode, String fipsCode, String fpl, String fpl2, String dateOfBirth, String dateOfBirth2, String dateOfBirth3, String dateOfBirth4) {
+        requestBody.put("taxHousehold", Arrays.asList(new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "001");
+                put("magiAmount", magi);
+                put("householdSize", "2");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "1");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "2");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth2);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "3");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth3);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}, new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "002");
+                put("magiAmount", magi2);
+                put("householdSize", "1");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl2);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "4");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth4);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}));
+        requestBody.put("eligibilityPurpose", "INITIAL_DETERMINATION");
+    }
+
+    public void buildThreeTHHTHH1ThreeMemberTHH2OneMemberTHH3OneMember(String magi, String magi2, String magi3, String zipCode, String fipsCode, String fpl, String fpl2, String fpl3, String dateOfBirth, String dateOfBirth2, String dateOfBirth3, String dateOfBirth4, String dateOfBirth5) {
+        requestBody.put("taxHousehold", Arrays.asList(new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "001");
+                put("magiAmount", magi);
+                put("householdSize", "2");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "1");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "2");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth2);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }, new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "3");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth3);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}, new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "002");
+                put("magiAmount", magi2);
+                put("householdSize", "1");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl2);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "4");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth4);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}, new LinkedHashMap<String, Object>() {
+            {
+                put("taxHouseholdID", "003");
+                put("magiAmount", magi3);
+                put("householdSize", "1");
+                put("householdZipCode", zipCode);
+                put("householdCountyFIPSCode", fipsCode);
+                put("coverageEffectiveDate", effectiveDate);
+                put("fplPercentage", fpl3);
+                put("householdMember", Arrays.asList(new LinkedHashMap<String, Object>() {
+                    {
+                        put("personID", "5");
+                        put("applyingForCoverageIndicator","true");
+                        put("aptcEligibleIndicator", "true");
+                        put("dateOfBirth", dateOfBirth5);
+                        put("memberZipCode", zipCode);
+                        put("memberCountyFIPSCode", fipsCode);
+                    }
+                }));
+            }}));
+        requestBody.put("eligibilityPurpose", "INITIAL_DETERMINATION");
+    }
+
     public void sendAPTCCalculatorRequest(){
         response= given().log().body()
                 .header("Content-Type", "application/json")
