@@ -13,7 +13,7 @@ public class LoginPageSteps {
         public void openPage(String portalType) {
             loginPage.openPage(portalType);
         }
-        
+
         @When("I click create a new account on login page")
             public void iClickCreateAccount(){ loginPage.clickCreateAccount();}
 
