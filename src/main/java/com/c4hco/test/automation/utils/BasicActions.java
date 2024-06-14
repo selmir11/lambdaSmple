@@ -300,6 +300,26 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("WelcomePortal/familyOverview[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "LCE portal Error CoCo":
+                newUrl = "lce-portal/error";
+                newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "LCE portal Unauthorized CoCo":
+                newUrl = "lce-portal/unauthorized";
+                newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Declarations and Signature portal Error CoCo":
+                newUrl = "WelcomePortal/error";
+                newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Declarations and Signature portal Unauthorized CoCo":
+                newUrl = "WelcomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
