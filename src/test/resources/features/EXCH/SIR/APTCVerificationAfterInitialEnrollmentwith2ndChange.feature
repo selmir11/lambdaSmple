@@ -1996,14 +1996,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
   @SLER-WIP
@@ -2011,14 +2004,19 @@ Feature: UI Tests related to APTC after second enrollment change
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
+
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011990" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
@@ -2026,9 +2024,11 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -2037,11 +2037,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter member details with "10101991" date of birth
     And I select "Female" as sex option
@@ -2049,6 +2051,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Spouse" as relationship option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
+
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -2058,12 +2061,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter member details with "10102010" date of birth
     And I select "Male" as sex option
@@ -2072,6 +2077,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Yes" to Is Member Applying
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
+
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -2082,6 +2088,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -2097,8 +2104,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Sister" as relationship one option
     And I select "Daughter" as relationship two option
     And I select "Yes" to Is Member Applying
+
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
+
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -2120,6 +2129,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+    
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "1000000" income at "Annually" frequency
