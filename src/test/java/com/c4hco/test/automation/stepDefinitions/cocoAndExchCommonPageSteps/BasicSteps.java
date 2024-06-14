@@ -333,6 +333,9 @@ public class BasicSteps {
             case "Agency dashboard" :
                 pageUrl = "AdminPortal/agency";
                 break;
+            case "AP Broker dashboard" :
+                pageUrl = "AdminPortal/broker";
+                break;
             case "Broker Portal C4U link" :
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
                 break;

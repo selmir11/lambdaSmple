@@ -51,6 +51,8 @@ public class AdminPortalIndividualDashboardSteps {
     public void iValidateIndividualDashboardContainerTitles(String plans, String renewals, String summary, String reports, String eligibility, String payloads) {
         adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(plans, renewals, summary, reports, eligibility, payloads);
     }
+    @Then("I validate Selected Member data on the far left side")
+    public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
 }
 
 

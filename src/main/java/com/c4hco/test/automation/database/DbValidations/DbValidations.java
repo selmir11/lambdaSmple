@@ -110,7 +110,7 @@ public class DbValidations {
           validateMailingAddress(subscriber, ob834Entity);
           validateRelCode(subscriber, ob834Entity);
           validateMemberCountDetails(ob834Entity);
-
+          ValidatePriorSubscriber(subscriber, ob834Entity);
       }
     }
 
@@ -313,6 +313,10 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getTricare_covg_end_soon_ind3(), expectedValues.get(0).get("tricare_covg_end_soon_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_enrl_covg_ind3(), expectedValues.get(0).get("peace_corps_enrl_covg_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_covg_end_soon_ind3(), expectedValues.get(0).get("peace_corps_covg_end_soon_ind3"));
+        softAssert.assertAll();
+    }
+    public void ValidatePriorSubscriber(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
+        softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match");
         softAssert.assertAll();
     }
 
