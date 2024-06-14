@@ -341,7 +341,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -572,7 +572,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -673,14 +673,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$837.85"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
   @SLER-320
@@ -800,7 +793,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -900,14 +893,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$944.39"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
     @SLER-321
@@ -1027,7 +1013,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -1127,14 +1113,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$642.40"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
   @SLER-323
@@ -1254,7 +1233,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -1354,14 +1333,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$379.36"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
 @SLER-375
@@ -1477,18 +1449,11 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Initial Payment" page
     And I click continue on initial payment page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
     Then I validate I am on the "Congratulations - What's Next?" page
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -1589,14 +1554,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$717.10"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
     @SLER-324
@@ -1716,7 +1674,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -1817,14 +1775,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Payment"
 
   @SLER-325
@@ -1944,7 +1895,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
@@ -2423,7 +2374,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    Then I click on make changes button
 
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
