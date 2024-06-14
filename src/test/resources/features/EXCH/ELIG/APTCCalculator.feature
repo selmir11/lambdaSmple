@@ -203,3 +203,35 @@ Feature: API Tests related to APTC
       | Magi      | Zip   | Fips  | Zip2  | Fips2 | FPL    | DOB        | DOB2        | APTC    | Contribution Amount |
       | 54336.0   | 80234 | 08001 | 80219 | 08031 | 275.54 | 1980-01-01 | 2011-01-01  | 477.72  | 5.02                |
       | 51100.0   | 80801 | 08121 | 80219 | 08031 | 250.00 | 1980-01-01 | 2010-01-01  | 883.39  | 4.0                 |
+
+    @SLER-681
+    Scenario: Two Tax Housesholds. One with Two Members
+    Given I get APTC CALCULATOR base URL
+    When I send information for two tax households one with two members: Magi1:"84796.0", Magi2:"45198.0", Zip:"80480", Fips:"08057", FPL1:"430.00", FPL2:"310.0", DOB1:"1981-01-01", DOB2:"1983-01-01", DOB3:"1996-01-01"
+    And I send the APTC Calculator Request
+    Then status code should be 200
+    And I expect "1012.95, 424.23" and "8.5, 6.25"
+
+  @SLER-682
+  Scenario: Two Tax Households. One with Three Members. One with One Member That Does Not Qualify for APTC.
+    Given I get APTC CALCULATOR base URL
+    When I send information for two tax households one with three members and one with one no APTC Member: Magi1:"62150.0", Magi2:"0.0", Zip:"80513", Fips:"08069", FPL1:"250.0", FPL2:"0.0", DOB1:"1976-01-01", DOB2:"1971-01-01", DOB3:"2011-01-01", DOB4:"1986-01-01"
+    And I send the APTC Calculator Request
+    Then status code should be 200
+    And I expect "1318.67, 0.0" and "4.0, 0.0"
+
+  @SLER-683
+  Scenario: Two Tax Households. One with Three Members. One with One Member.
+    Given I get APTC CALCULATOR base URL
+    When I send information for two tax households one with three members and one with one Member: Magi1:"62150.0", Magi2:"28431.0", Zip:"80513", Fips:"08069", FPL1:"250.0", FPL2:"195.0", DOB1:"1976-01-01", DOB2:"1971-01-01", DOB3:"2011-01-01", DOB4:"1986-01-01"
+    And I send the APTC Calculator Request
+    Then status code should be 200
+    And I expect "1318.67, 385.54" and "4.0, 1.8"
+
+  @SLER-684
+  Scenario: Three Tax Households. One with Three Members. Two with One Member.
+    Given I get APTC CALCULATOR base URL
+    When I send information for three tax households one with three members and two with one Member: Magi1:"90739", Magi2:"24057.0", Magi3:"20412.0", Zip:"81144", Fips:"08105", FPL1:"365.0", FPL2:"163.0", FPL3:"140.0", DOB1:"1981-01-01", DOB2:"1983-01-01", DOB3:"2006-01-01", DOB4:"1958-01-01", DOB5:"1985-01-01"
+    And I send the APTC Calculator Request
+    Then status code should be 200
+    And I expect "1149.38, 1439.15, 609.79" and "7.63, 0.52, 0.0"
