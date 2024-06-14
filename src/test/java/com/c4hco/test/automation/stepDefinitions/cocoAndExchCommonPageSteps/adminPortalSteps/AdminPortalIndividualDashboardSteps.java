@@ -47,6 +47,8 @@ public class AdminPortalIndividualDashboardSteps {
     public void iverifyPlanDetails(List<String> data) {
         adminPortalIndividualDashboardPage.verifyPlanDetails(data);
     }
+    @Then("I validate Selected Member data on the far left side")
+    public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
 }
 
 
