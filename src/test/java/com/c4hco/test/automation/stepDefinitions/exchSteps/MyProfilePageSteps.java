@@ -13,6 +13,7 @@ public class MyProfilePageSteps {
         myProfileExchPage.backToWelcomeButtonExch();
     }
 
+    // WIP - Rename the below step add include the page name
     @And("I click on Make Changes Button")
     public void iclickMakeChangesButton() {
         myProfileExchPage.clickMakeChangesButton();
