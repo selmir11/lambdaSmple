@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -81,7 +83,7 @@ public class ClickAction extends AbstractAction{
             //attempt to wait for the element to be present. Throws an exception if this fails.
             if(!WaitAction.builder()
                     .attempts(attempts)
-                    .present(waitForPresent)
+                    .waitTypes(List.of(WaitAction.WaitType.PRESENT))
                     .element(element)
                     .milliseconds(10_000)
                     .build().run()){
@@ -94,7 +96,7 @@ public class ClickAction extends AbstractAction{
             //clickable by selenium. This is an attempt but has no impact if failed.
             WaitAction.builder()
                     .attempts(attempts)
-                    .clickable(waitForClickable)
+                    .waitTypes(List.of(WaitAction.WaitType.CLICKABLE))
                     .element(element)
                     .milliseconds(5_000)
                     .build().run();

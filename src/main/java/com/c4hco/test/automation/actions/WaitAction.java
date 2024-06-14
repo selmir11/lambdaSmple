@@ -12,10 +12,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Action implementation for waiting
- * Used for various wait methods, like waiting for an element to be present, clickable, or to disappear
+ * Used for various wait methods, see available types with {@link WaitAction.WaitType}
  * If no element is given, it will just do a hard wait for the given ms
  *
  * On failures, it will attempt up to {@link AbstractAction#attempts} times.
@@ -24,24 +26,8 @@ import java.time.Duration;
 @Setter
 @SuperBuilder
 public class WaitAction extends AbstractAction {
-    /**
-     * Boolean value for whether this action should wait for an element to be present
-     * REQUIRES A NON-NULL ELEMENT
-     */
-    @Builder.Default
-    private boolean present = false;
-    /**
-     * Boolean value for whether this action should wait for an element to be clickable
-     * REQUIRES A NON-NULL ELEMENT
-     */
-    @Builder.Default
-    private boolean clickable = false;
-    /**
-     * Boolean value for whether this action should wait for an element to disappear
-     * REQUIRES A NON-NULL ELEMENT
-     */
-    @Builder.Default
-    private boolean disappear = false;
+
+    private List<WaitType> waitTypes;
     /**
      * Milliseconds to sleep for
      */
@@ -53,25 +39,17 @@ public class WaitAction extends AbstractAction {
 
     /**
      * Waits for the element status to match the given checks.
-     * Will check each status added in a present->clickable->disappear order.
+     * Will check each status in the wait type order specified in list
      * If the target element is null, it will do a hard sleep for the given milliseconds
      * @return True if all waits succeed, false if any fail
      */
     @Override
     public boolean run() {
-        if (present) {
-            if (!waitForElementToBePresent()) {
-                return false;
-            }
-        }
-        if (clickable) {
-            if (!waitForElementToBeClickable()) {
-                return false;
-            }
-        }
-        if(disappear){
-            if(!waitForElementToDisappear()){
-                return false;
+        if(waitTypes != null && !waitTypes.isEmpty()){
+            for(WaitType type : waitTypes){
+                if(!waitForType(type)){
+                    return false;
+                }
             }
         }
         if (element == null) {
@@ -82,6 +60,21 @@ public class WaitAction extends AbstractAction {
             }
         }
         return true;
+    }
+
+    private boolean waitForType(WaitType type){
+        switch(type){
+            case PRESENT -> {
+                return waitForElementToBePresent();
+            }
+            case CLICKABLE -> {
+                return waitForElementToBeClickable();
+            }
+            case DISAPPEAR -> {
+                return waitForElementToDisappear();
+            }
+        }
+        return false;
     }
 
     /**
@@ -141,7 +134,7 @@ public class WaitAction extends AbstractAction {
      * @return see {@link WaitAction#run()}
      */
     public static boolean waitForPresent(WebElement element, int seconds) {
-        return WaitAction.builder().element(element).milliseconds(seconds * 1000).present(true).build().run();
+        return WaitAction.builder().element(element).milliseconds(seconds * 1000).waitTypes(Arrays.asList(WaitType.PRESENT)).build().run();
     }
 
     /**
@@ -152,7 +145,7 @@ public class WaitAction extends AbstractAction {
      * @return see {@link WaitAction#run()}
      */
     public static boolean waitForClickable(WebElement element, int seconds) {
-        return WaitAction.builder().element(element).milliseconds(seconds * 1000).clickable(true).build().run();
+        return WaitAction.builder().element(element).milliseconds(seconds * 1000).waitTypes(Arrays.asList(WaitType.CLICKABLE)).build().run();
     }
 
     /**
@@ -163,7 +156,7 @@ public class WaitAction extends AbstractAction {
      * @return see {@link WaitAction#run()}
      */
     public static boolean waitForDisappear(WebElement element, int seconds) {
-        return WaitAction.builder().element(element).milliseconds(seconds * 1000).disappear(true).build().run();
+        return WaitAction.builder().element(element).milliseconds(seconds * 1000).waitTypes(Arrays.asList(WaitType.DISAPPEAR)).build().run();
     }
 
     /**
@@ -174,5 +167,9 @@ public class WaitAction extends AbstractAction {
      */
     public static boolean wait(int milliseconds){
         return WaitAction.builder().milliseconds(milliseconds).build().run();
+    }
+
+    enum WaitType{
+        PRESENT, CLICKABLE, DISAPPEAR
     }
 }
