@@ -12,8 +12,8 @@ public class DentalPlansResultsPageSteps {
     public void selectFirstDentalPlan() { dentalPlansResultsPage.selectFirstDentalPlan(); }
 
     @And("I select {string}")
-    public void selectDentalPlan(String planName) {
-        dentalPlansResultsPage.selectDentalPlan(planName);
+    public void selectDentalPlan(String dentalPlanNames) {
+        dentalPlansResultsPage.selectDentalPlan(dentalPlanNames);
     }
 
     @Then("I click continue on dental plan results page")
