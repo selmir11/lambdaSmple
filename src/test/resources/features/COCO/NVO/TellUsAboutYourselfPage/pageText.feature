@@ -3,7 +3,7 @@ Feature: Text - Tell us about yourself page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-74
+  @SLCR-74 @NVOCoCoRegression
   Scenario: Text validation on the Tell us about yourself page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -52,4 +52,4 @@ Feature: Text - Tell us about yourself page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I click Primary EditUpdate on the Family Overview page
-    And I validate the page text on Tell us about Yourself
+    And I validate the page text on Tell us about Yourself "English"

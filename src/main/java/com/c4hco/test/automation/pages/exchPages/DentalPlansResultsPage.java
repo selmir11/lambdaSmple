@@ -23,7 +23,7 @@ public class DentalPlansResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "PlanResults-SelectThisPlan_1")
+    @FindBy(id="PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
@@ -44,7 +44,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(xpath="//div[@class='plan'] //div[@class='col-sm-12 header-3']")
+    @FindBy(css=".c4-type-header-sm")
     List<WebElement> dentalPlanNames;
 
     @FindBy(css = "pagination-template .pagination-next")
@@ -116,7 +116,7 @@ public class DentalPlansResultsPage {
         do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
-                clickPlanButton(optionalInt.get());
+                clickPlanButton(optionalInt.get()-1);
             } else {
                 paginateRight();
             }
@@ -132,9 +132,9 @@ public class DentalPlansResultsPage {
     }
 
     private void clickPlanButton(int index){
-        String planID = "DentalPlanResults-SelectThisPlan_" + index;
+        String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
-        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        basicActions.waitForElementToBeClickable(ePlanID, 30);
         ePlanID.click();
     }
 

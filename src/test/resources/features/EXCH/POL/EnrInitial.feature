@@ -24,7 +24,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    Then I enter generic mailing address details
+    Then I enter member with address line1 "P.O BOX 4515" in city "Denver" in state "CO" with zipcode "80502" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -179,14 +179,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
 
-    Then I select make payment button to pay the premium
-    And I select Withdrawal from Bank Account button
-    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-    Then I select second make payment button to pay the premium
-    And I select Withdrawal from Bank Account button
-    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-    And I click continue on initial payment page
-    And I select "Terms of Use" agreement checkbox
+    And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     And I select "Terms of Use" agreement checkbox
@@ -194,9 +187,32 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I select Withdrawal from Bank Account button
+    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
+    Then I select second make payment button to pay the premium
+    And I select Withdrawal from Bank Account button
+    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
+    And I click continue on initial payment page
+
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    And I click on ClickHere link for "My Documents"
+    And I click on download enrolment document
+    And I close current tab and switch back to previous tab
+    Then I click on manage plan button on admin portal Individual dashboard
+    And I initiate incoming page
+    And I Validate the correct enrolled plans are displayed on admin portal individual page
+      | Manage Plans                                         |
+      | Anthem Colorado Option Bronze Pathway Essentials Std |
+      | Anthem Dental Family                                 |
+    Then logout from Admin Portal
+
+
+
 
 
 

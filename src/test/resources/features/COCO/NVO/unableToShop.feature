@@ -4,7 +4,7 @@ Feature:  Unable to shop (not applying for coverage)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-50
+  @SLCR-50 @NVOCoCoRegression
   Scenario: Verify that user not able to shop (not applying for coverage)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -42,7 +42,7 @@ Feature:  Unable to shop (not applying for coverage)
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-49
+  @SLCR-49 @NVOCoCoRegression
   Scenario: Verify that user not able to shop (not CO resident)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -78,7 +78,7 @@ Feature:  Unable to shop (not applying for coverage)
     And I select "InsuranceLoss" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature in "Spanish"
+    And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     Then I verify text that the member don't qualify for a health plan on the App Results Page CoCo

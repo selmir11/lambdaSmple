@@ -28,6 +28,10 @@ public class FindExpertHelpPage {
 
     @FindBy(id ="broker-text")
     WebElement helpFromBrokerText;
+
+    @FindBy(id = "broker-callyou-text")
+    WebElement brokerCallYouText;
+
     @FindBy(id ="broker-button")
     WebElement FindBroker;
 
@@ -36,6 +40,9 @@ public class FindExpertHelpPage {
 
     @FindBy(id ="assister-button")
     WebElement FindAnAssister;
+
+    @FindBy(id ="assister-text")
+    WebElement assistanceText;
 
     @FindBy(id ="authorize-assister-button")
     WebElement AuthorizeAssisterOrganization;
@@ -287,7 +294,9 @@ public class FindExpertHelpPage {
     }
 
     public void clickContinueOnMyOwnButton() {
-        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 50);
+        basicActions.waitForElementToBePresent(assistanceText, 20);
+        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
         continueOnMyOwnButton.click();
     }
 

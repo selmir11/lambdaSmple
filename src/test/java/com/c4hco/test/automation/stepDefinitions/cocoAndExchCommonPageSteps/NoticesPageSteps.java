@@ -11,6 +11,10 @@ public class NoticesPageSteps {
     public void i_open_outlook_Tab() {
             noticesPage.openOutlookTab();
     }
+    @Then("I open Password Reset Tab")
+    public void i_open_Password_Reset_Tab() {
+            noticesPage.openPasswordResetTab();
+    }
 
     @Then("I validate the verbiage of the MFA page")
     public void i_validate_the_varbiage_of_the_MFA_page() {

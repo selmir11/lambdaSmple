@@ -39,6 +39,10 @@ public class BasicActions {
             "^(?!000|666|9\\d{2})\\d{3}[- ]?(?!00)\\d{2}[- ]?(?!0000)\\d{4}$";
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
+    public void clickBackButtonFromBrowser() {
+        getDriver().navigate().back();
+    }
+
     private static class LazyHolder {
         private static final BasicActions INSTANCE = new BasicActions();
     }
@@ -211,6 +215,15 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
+    public void switchtoPreviousTab() {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(0));
+    }
+
+    public void switchTabs(int tabNumber) {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(tabNumber));
+    }
 
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
@@ -255,6 +268,26 @@ public class BasicActions {
             case "Elmo Ohi Tricare Page":
                 newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/tricare";
                 newUrl = currentUrl.replace("nes/tricare", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Error CoCo":
+                newUrl = "income-portal/error";
+                newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Unauthorized CoCo":
+                newUrl = "income-portal/unauthorized";
+                newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Welcome portal Error CoCo":
+                newUrl = "WelcomePortal/error";
+                newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Welcome portal Unauthorized CoCo":
+                newUrl = "WelcomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             default:

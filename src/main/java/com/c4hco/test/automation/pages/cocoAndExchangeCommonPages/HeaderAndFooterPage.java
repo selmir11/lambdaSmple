@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
 
@@ -61,6 +62,8 @@ public class HeaderAndFooterPage {
     WebElement findExpertAssistanceExpertHelp;
     @FindBy(xpath = "//span/li[2]/div[2]/form")
     WebElement findExpertAssistanceIndividualDashboard;
+    @FindBy(css = "span > li.stacked.dropdown > div.dropdown-content > a:nth-child(2)")
+    WebElement findExpertAssistanceLugy;
 
     @FindBy(xpath = "//a[normalize-space()='Find Expert Assistance in Your Community']")
     WebElement findExpertAssistanceExpertInCoomunity;
@@ -171,6 +174,10 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(connectLogoLinkExpertHelp,20);
                 connectLogoLinkExpertHelp.click();
                 break;
+            case "My Policies":
+                basicActions.waitForElementToBeClickable(connectLogoLink, 10);
+                connectLogoLink.click();
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
@@ -276,6 +283,10 @@ public class HeaderAndFooterPage {
             case "ExpertHelp in community":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceExpertInCoomunity, 20);
                 findExpertAssistanceExpertInCoomunity.click();
+				break;
+                case "Lugy Page":
+                basicActions.waitForElementToBeClickable(findExpertAssistanceLugy, 20);
+                    findExpertAssistanceLugy.click();
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
@@ -658,6 +669,26 @@ public class HeaderAndFooterPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyUserNameLinkNotPresent(String pageType) {
+        switch (pageType) {
+            case "CoCo":
+                Assert.assertFalse(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is displayed");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
+    }
+
+    public void verifyUserNameLinkPresent(String pageType) {
+        switch (pageType) {
+            case "CoCo":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is NOT displayed");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
 

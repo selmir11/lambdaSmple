@@ -28,7 +28,7 @@ public class OhiMedicarePage_Elmo {
     @FindBy(css = ".container .header-2")
     WebElement ohiMedicareHeader;
 
-    @FindBy(css = ".ohi-container > div:nth-child(1)")
+    @FindBy(css = ".ohi-container.body-text-1 > span")
     WebElement pleaseEnterTxt;
 
     @FindBy(css = ".row.label-row > div > label")
@@ -48,6 +48,12 @@ public class OhiMedicarePage_Elmo {
 
     @FindBy(css = "lib-checkbox-control > label")
     List<WebElement> medicareCheckboxDetails;
+
+    @FindBy(css = "#ELIG-medicareOhi-partBEndsSoon-container label > span")
+    WebElement questionTxtB;
+
+    @FindBy(css = "#ELIG-medicareOhi-partB-container .checkbox-container")
+    WebElement medicareCheckboxDetailsB;
 
     @FindBy(css = "#ELIG-medicareOhi-premiumAmount-container span.error-message")
     WebElement InsuranceAmountError;
@@ -123,8 +129,8 @@ public class OhiMedicarePage_Elmo {
                 medicareCheckboxDetails.get(0).click();
                 break;
             case "B":
-                basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
-                medicareCheckboxDetails.get(2).click();
+                basicActions.waitForElementToBePresent(medicareCheckboxDetailsB,20);
+                medicareCheckboxDetailsB.click();
                 break;
             case "A Don't Pay":
                 basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
@@ -231,7 +237,7 @@ public class OhiMedicarePage_Elmo {
     // Add only validation methods below this line
     public void verifyHeadersMedicareOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
         softAssert.assertAll();
     }
@@ -271,11 +277,11 @@ public class OhiMedicarePage_Elmo {
         }
         switch (boxB){
             case "is":
-                softAssert.assertEquals(medicareCheckboxDetails.get(2).getAttribute("className"), "checkbox-container checked");
+                softAssert.assertEquals(medicareCheckboxDetailsB.getAttribute("className"), "checkbox-container checked");
                 softAssert.assertAll();
                 break;
             case "is not":
-                softAssert.assertEquals(medicareCheckboxDetails.get(2).getAttribute("className"), "checkbox-container");
+                softAssert.assertEquals(medicareCheckboxDetailsB.getAttribute("className"), "checkbox-container");
                 softAssert.assertAll();
                 break;
             default:
@@ -424,6 +430,27 @@ public class OhiMedicarePage_Elmo {
                 verifyMedicarePageFirstSectionDataEnglish();
                 verifyMedicarePagePartBSectionDataEnglish();
                 break;
+            case "Part A & B Section":
+                verifyMedicarePageFirstSectionDataEnglish();
+                verifyMedicarePagePartASectionDataEnglish();
+                verifyMedicarePagePartBSectionDataEnglish();
+                break;
+            case "First Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                break;
+            case "Part A Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                verifyMedicarePagePartASectionDataEnglish();
+                break;
+            case "Part B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                verifyMedicarePagePartBSectionDataEnglish();
+                break;
+            case "Part A & B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataEnglish();
+                verifyMedicarePagePartASectionDataEnglish();
+                verifyMedicarePagePartBSectionDataEnglish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -434,7 +461,7 @@ public class OhiMedicarePage_Elmo {
 
     public void verifyMedicarePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Medicare.");
         softAssert.assertEquals(questionTxt.get(0).getText(),"Are you currently eligible for Medicare Premium Free Part A?");
@@ -442,7 +469,7 @@ public class OhiMedicarePage_Elmo {
         softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
         softAssert.assertEquals(areYouEnrolledTxt.getText(),"Are you enrolled in any of the following?");
         softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Part A");
-        softAssert.assertEquals(medicareCheckboxDetails.get(2).getText(),"Part B");
+        softAssert.assertEquals(medicareCheckboxDetailsB.getText(),"Part B");
         softAssert.assertAll();
     }
 
@@ -458,9 +485,23 @@ public class OhiMedicarePage_Elmo {
 
     public void verifyMedicarePagePartBSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(questionTxt.get(4).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(questionTxtB.getText(),"Will this health insurance end in the next 60 days?");
         softAssert.assertEquals(partBInsuranceEndingYes.getText(),"Yes");
         softAssert.assertEquals(partBInsuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyMedicarePageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about "+SharedData.getMembers().get(0).getFullName()+"'s eligibility or current enrollment in Medicare."));
+        softAssert.assertTrue(questionTxt.get(0).getText().equalsIgnoreCase("Is "+SharedData.getMembers().get(0).getFullName()+" currently eligible for Medicare Premium Free Part A?"));
+        softAssert.assertEquals(currentlyEligibleYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
+        softAssert.assertTrue(areYouEnrolledTxt.getText().equalsIgnoreCase("Is "+SharedData.getMembers().get(0).getFullName()+" enrolled in any of the following?"));
+        softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Part A");
+        softAssert.assertEquals(medicareCheckboxDetailsB.getText(),"Part B");
         softAssert.assertAll();
     }
 
@@ -478,6 +519,27 @@ public class OhiMedicarePage_Elmo {
                 verifyMedicarePageFirstSectionDataSpanish();
                 verifyMedicarePagePartBSectionDataSpanish();
                 break;
+            case "Part A & B Section":
+                verifyMedicarePageFirstSectionDataSpanish();
+                verifyMedicarePagePartASectionDataSpanish();
+                verifyMedicarePagePartBSectionDataSpanish();
+                break;
+            case "First Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                break;
+            case "Part A Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                verifyMedicarePagePartASectionDataSpanish();
+                break;
+            case "Part B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                verifyMedicarePagePartBSectionDataSpanish();
+                break;
+            case "Part A & B Section Secondary":
+                verifyMedicarePageFirstSectionSecondaryDataSpanish();
+                verifyMedicarePagePartASectionDataSpanish();
+                verifyMedicarePagePartBSectionDataSpanish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -488,23 +550,23 @@ public class OhiMedicarePage_Elmo {
 
     public void verifyMedicarePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Medicare.");
-        softAssert.assertEquals(questionTxt.get(0).getText(),"Are you currently eligible for Medicare Premium Free Part A?");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en Medicare.");
+        softAssert.assertEquals(questionTxt.get(0).getText(),"\u00BFActualmente, es elegible para Medicare Parte A sin prima?");
         softAssert.assertEquals(currentlyEligibleYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
-        softAssert.assertEquals(areYouEnrolledTxt.getText(),"Are you enrolled in any of the following?");
-        softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Part A");
-        softAssert.assertEquals(medicareCheckboxDetails.get(2).getText(),"Part B");
+        softAssert.assertEquals(areYouEnrolledTxt.getText(),"\u00BFEst\u00E1s inscrito/a en alguno de los siguientes");
+        softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Parte A");
+        softAssert.assertEquals(medicareCheckboxDetailsB.getText(),"Parte B");
         softAssert.assertAll();
     }
 
     public void verifyMedicarePagePartASectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(questionTxt.get(1).getText(),"Premium Amount");
+        softAssert.assertEquals(questionTxt.get(1).getText(),"Monto de la cuota");
         softAssert.assertEquals(partAInsuranceAmount.getText(),"");
-        softAssert.assertEquals(questionTxt.get(2).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(questionTxt.get(2).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
         softAssert.assertEquals(partAInsuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(partAInsuranceEndingNo.getText(),"No");
         softAssert.assertAll();
@@ -512,9 +574,23 @@ public class OhiMedicarePage_Elmo {
 
     public void verifyMedicarePagePartBSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(questionTxt.get(4).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(questionTxtB.getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
         softAssert.assertEquals(partBInsuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(partBInsuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyMedicarePageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en Medicare."));
+        softAssert.assertTrue(questionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " es elegible para Medicare Parte A sin pago de prima?"));
+        softAssert.assertEquals(currentlyEligibleYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEligibleNo.getText(),"No");
+        softAssert.assertTrue(areYouEnrolledTxt.getText().equalsIgnoreCase("\u00BFEst\u00E1 " + SharedData.getMembers().get(0).getFullName() + " inscrito en cualquiera de los siguientes tipos de cobertura?"));
+        softAssert.assertEquals(medicareCheckboxDetails.get(0).getText(),"Parte A");
+        softAssert.assertEquals(medicareCheckboxDetailsB.getText(),"Parte B");
         softAssert.assertAll();
     }
 
@@ -571,7 +647,7 @@ public class OhiMedicarePage_Elmo {
         basicActions.waitForElementToBePresent(InsuranceAmountError, 20);
         switch (language) {
             case "English":
-                softAssert.assertEquals(InsuranceAmountError.getText(), "Amount is required");
+                softAssert.assertEquals(InsuranceAmountError.getText(), "Premium amount is required");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-weight"), "400");
@@ -579,7 +655,7 @@ public class OhiMedicarePage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(InsuranceAmountError.getText(), "Esta cantidad es obligatoria");
+                softAssert.assertEquals(InsuranceAmountError.getText(), "Por favor ingrese un monto");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-weight"), "400");

@@ -3,7 +3,7 @@ Feature: Navigation - Additional information for yourself page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-51 @PageNavigationAddInfoForYourself
+  @SLCR-51 @PageNavigationAddInfoForYourself @NVOCoCoRegression
   Scenario: Navigation on the Additional information for yourself page
     When I click create a new account on login page
     Then I click create my account from pre-screen page

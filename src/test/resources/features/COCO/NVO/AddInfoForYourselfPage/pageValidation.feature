@@ -3,7 +3,7 @@ Feature: Page Validation-Additional information for yourself page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-54 @PageValidationAddInfoForYourself
+  @SLCR-54 @PageValidationAddInfoForYourself @NVOCoCoRegression
   Scenario: Validation for Additional information for yourself Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
