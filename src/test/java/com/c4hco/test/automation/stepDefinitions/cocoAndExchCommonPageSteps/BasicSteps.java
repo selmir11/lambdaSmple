@@ -347,6 +347,15 @@ public class BasicSteps {
                 break;
             case "Unauthorized" :
                 pageUrl = "/unauthorized";
+            case "Admin Portal Exclusion Reason Report" :
+                pageUrl = "/exclusions";
+                break;
+            case "Admin Portal EDI Transactions" :
+                pageUrl = "edi-transactions";
+                break;
+            case "Admin Portal Detailed EDI" :
+                pageUrl = "/detailed-edi";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
