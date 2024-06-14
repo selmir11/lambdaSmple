@@ -1,28 +1,14 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CreateAccountPage;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.PrescreenPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
-    CreateAccountPage createAccountPage = new CreateAccountPage(WebDriverManager.getDriver());
-    LoginPage loginPage = new LoginPage(WebDriverManager.getDriver());
-    PrescreenPage prescreenPage = new PrescreenPage(WebDriverManager.getDriver());
-
-    @When("I create a new {string} account")
-    public void iCreateANewAccount(String appType) {
-        loginPage.clickCreateAccount();
-        prescreenPage.clickCreateAccountLink();
-        createAccountPage.createGeneralAccount(appType);
-    }
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page) {
