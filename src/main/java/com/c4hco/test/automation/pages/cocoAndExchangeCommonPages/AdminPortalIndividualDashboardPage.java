@@ -74,6 +74,18 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberDob;
     @FindBy(css = "body app-root div:nth-child(6)")
     WebElement memberAddress;
+    @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
+    List<WebElement> titleOfContainer;
+    @FindBy(xpath = "//p[normalize-space()='Plans']")
+    WebElement plansTitle;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement summaryTitle;
+    @FindBy(xpath = "//p[normalize-space()='Eligibility']")
+    WebElement eligibilityTitle;
+    @FindBy(css = ".dashboardHeader-renewal")
+    WebElement renewalsTitle;
+    @FindBy(xpath = "//p[normalize-space()='Payloads']")
+    WebElement payloadsTitle;
 
 
     public void enterAgencyData(String agencyData, String type) {
@@ -155,6 +167,16 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(memberPhone.isDisplayed());
         softAssert.assertTrue(memberDob.isDisplayed());
         softAssert.assertTrue(memberAddress.isDisplayed());
+        softAssert.assertAll(); }
+    public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads)   {
+        basicActions.waitForElementToBePresent(plansTitle,30);
+
+        softAssert.assertEquals(plansTitle.getText(),plans);
+        softAssert.assertEquals(summaryTitle.getText(),summary);
+        softAssert.assertEquals(eligibilityTitle.getText(),eligibility);
+        softAssert.assertEquals(renewalsTitle.getText(),renewals);
+        softAssert.assertEquals(reportsTitle.getText(),reports);
+        softAssert.assertEquals(payloadsTitle.getText(),payloads);
         softAssert.assertAll(); }
 }
 
