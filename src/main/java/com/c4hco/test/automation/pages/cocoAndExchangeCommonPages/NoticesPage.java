@@ -106,9 +106,7 @@ public class NoticesPage {
             outlookLogOutIcon.click();
 
             basicActions.waitForElementPresence(outlookLogOut,20);
-            basicActions.getDriver().findElement(By.id("mectrl_currentAccount_primary"));
-            WebElement logOut = basicActions.getDriver().findElement(By.id("mectrl_body_signOut"));
-            ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()",logOut );
+            basicActions.clickById("mectrl_body_signOut");
 
             basicActions.wait(500);
             basicActions.closeBrowserTab();
