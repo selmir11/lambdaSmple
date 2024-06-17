@@ -250,6 +250,7 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
+        subscriber.setRelationshipCode_to_subscriber("18");
         SharedData.setPrimaryMember(subscriber);
     }
 

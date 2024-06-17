@@ -72,6 +72,7 @@ public class MemberDetails {
     String employerName;
     String dependentCountTag;
     String prior_subscriber_id;
+    String relationshipCode_to_subscriber;
 }
 
 

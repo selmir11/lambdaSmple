@@ -179,7 +179,31 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob = dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
-
+    public void selectRelationshipToSubscriber(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship, 15);
+        Select dropdown = new Select(selectRelationship);
+        dropdown.selectByVisibleText(Relation);
+        setRelationshipValuesToSubscriber(Relation);
+    }
+    public void setRelationshipValuesToSubscriber(String Relation){
+        String relationshipCode;
+        String relationship;
+        if (Relation.equalsIgnoreCase("Son") ||  Relation.equalsIgnoreCase("Daughter")){
+            relationshipCode ="19";
+            relationship = "Child";
+        }
+        else if (Relation.equalsIgnoreCase("Spouse")) {
+            relationshipCode ="01";
+            relationship = "Spouse";
+        }
+        else {
+            relationshipCode = "18";
+            relationship = "Self";
+        }
+         List<MemberDetails> memberList = SharedData.getMembers();
+         memberList.get(memberList.size()-1).setRelationshipCode_to_subscriber(relationshipCode);
+         memberList.get(memberList.size()-1).setRelation_to_subscriber(relationship);
+     }
 }
 
 

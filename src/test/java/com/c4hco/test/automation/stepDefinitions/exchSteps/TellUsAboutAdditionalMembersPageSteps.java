@@ -40,4 +40,7 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter new born with minus {int} days as DOB")
     public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.Newbornwithcurrentdatelessthanfivedays(Days);}
 
+    @And("I select {string} as relationship to Primary Member option")
+    public void selectRelationshipToAH(String Relationship){tellUsAboutAdditionalMemberPage.selectRelationshipToSubscriber(Relationship);}
+
 }
