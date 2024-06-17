@@ -11,7 +11,7 @@ Feature: Dashboard Individual: Verify Containers and Reports header and footer
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
-    And I validate individual dashboard container titles: "Plans" "Renewals" "Account Summary" "Reports" "Eligibility" "Payloads" are displayed
+    And I validate individual dashboard container titles: "Plans" "Account Summary" "Eligibility" "Renewals" "Reports" "Payloads" are displayed
     Then I click on view button for "EDI Transactions" report
     And I validate I am on the "Admin Portal EDI Transactions" page
     Then I validate "Logo" for Admin Portal
