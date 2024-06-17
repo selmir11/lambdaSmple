@@ -283,6 +283,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Income portal Error Exch":
+                newUrl = "IncomePortal/error";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Unauthorized Exch":
+                newUrl = "IncomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             case "Welcome portal Error CoCo":
                 newUrl = "WelcomePortal/error";
                 newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
