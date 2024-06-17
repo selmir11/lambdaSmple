@@ -441,7 +441,7 @@ public class FindACertifiedBrokerPage {
         String cBrokerName = currentBrokerName.getText();
         String cLicenseNumber = currentBrokerLicenceNumber.getText();
         String cAgencyName = currentAgencyName.getText();
-        BrokerDetails broker = SharedData.getBroker();
+        BrokerDetails broker = new BrokerDetails();
         broker.setBroker_name(cBrokerName);
         broker.setBroker_lic_num(cLicenseNumber);
         broker.setAgencyName(cAgencyName);
