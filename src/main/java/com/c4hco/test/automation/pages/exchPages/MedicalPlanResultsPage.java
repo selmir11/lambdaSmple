@@ -89,7 +89,7 @@ public class MedicalPlanResultsPage {
         softAssert.assertAll();
 
     }
-    
+
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
