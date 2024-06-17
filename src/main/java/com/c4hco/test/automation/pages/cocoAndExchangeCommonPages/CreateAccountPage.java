@@ -148,7 +148,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")
     WebElement adminStaffRole;
 
-    @FindBy(id = "loginPortal-createAccount-roleRequired")
+    @FindBy(css = "lib-input-error[controlname='role'] span[class='error-message']")
     WebElement roleDropdownErrorMessage;
 
     @FindBy(id = "loginPortal-createAccount-indicatePrimary")
@@ -448,6 +448,23 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
         exchangeTermsOfUseCheckbox.click();
+
+        submitButton.click();
+    }
+
+    public void enterDuplicateBrokerAccountCreationData(){
+        BrokerDetails agencyOwner = SharedData.getAgencyOwner();
+        basicActions.waitForElementToBePresent(firstName, 10);
+        roleDropdown.click();
+        certifiedBrokerRole.click();
+        firstName.sendKeys(agencyOwner.getFirstName());
+        lastName.sendKeys(agencyOwner.getLastName());
+        email.sendKeys(agencyOwner.getEmail());
+        phoneNumber.sendKeys(agencyOwner.getPhoneNumber());
+        password.sendKeys(agencyOwner.getPassword());
+        confirmPassword.sendKeys(agencyOwner.getPassword());
+        primaryUserCheckbox.click();
+        termsOfUseCheckbox.click();
 
         submitButton.click();
     }
