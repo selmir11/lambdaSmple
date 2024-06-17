@@ -333,11 +333,28 @@ public class BasicSteps {
             case "Agency dashboard" :
                 pageUrl = "AdminPortal/agency";
                 break;
+            case "AP Broker dashboard" :
+                pageUrl = "AdminPortal/broker";
+                break;
             case "Broker Portal C4U link" :
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
                 break;
                 case "assistnet dashboard" :
                 pageUrl = "assistnet-portal/program-manager";
+                break;
+            case "Error" :
+                pageUrl = "/error";
+                break;
+            case "Unauthorized" :
+                pageUrl = "/unauthorized";
+            case "Admin Portal Exclusion Reason Report" :
+                pageUrl = "/exclusions";
+                break;
+            case "Admin Portal EDI Transactions" :
+                pageUrl = "edi-transactions";
+                break;
+            case "Admin Portal Detailed EDI" :
+                pageUrl = "/detailed-edi";
                 break;
             default:
                 System.out.println("undefined page ");

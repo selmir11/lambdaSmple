@@ -44,7 +44,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
-    @FindBy(css=".c4-type-header-sm")
+    @FindBy(css= ".c4-type-header-sm")
     List<WebElement> dentalPlanNames;
 
     @FindBy(css = "pagination-template .pagination-next")
@@ -109,14 +109,14 @@ public class DentalPlansResultsPage {
         expectedText.equals(dentalPlanText);
     }
 
-    public void selectDentalPlan(String planName){
+    public void selectDentalPlan(String dentalPlanNames){
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setDentalPlan(planName);
+        subscriber.setDentalPlan(dentalPlanNames);
         SharedData.setPrimaryMember(subscriber);
         do {
-            optionalInt = checkIfPlanPresent(planName);
+            optionalInt = checkIfPlanPresent(dentalPlanNames);
             if (optionalInt.isPresent()) {
-                clickPlanButton(optionalInt.get()-1);
+                clickPlanButton(optionalInt.get()+1);
             } else {
                 paginateRight();
             }

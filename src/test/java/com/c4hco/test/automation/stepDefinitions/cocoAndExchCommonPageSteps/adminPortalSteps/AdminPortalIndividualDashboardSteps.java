@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminLceToolPage;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalIndividualDashboardPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
@@ -45,8 +46,13 @@ public class AdminPortalIndividualDashboardSteps {
     }
     @And("I Validate the correct enrolled plans are displayed on admin portal individual page")
     public void iverifyPlanDetails(List<String> data) {
-        adminPortalIndividualDashboardPage.verifyPlanDetails(data);
+        adminPortalIndividualDashboardPage.verifyPlanDetails(data);     }
+    @And("I validate individual dashboard container titles: {string} {string} {string} {string} {string} {string} are displayed")
+    public void iValidateIndividualDashboardContainerTitles(String plans, String renewals, String summary, String reports, String eligibility, String payloads) {
+        adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(plans, renewals, summary, reports, eligibility, payloads);
     }
+    @Then("I validate Selected Member data on the far left side")
+    public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
 }
 
 

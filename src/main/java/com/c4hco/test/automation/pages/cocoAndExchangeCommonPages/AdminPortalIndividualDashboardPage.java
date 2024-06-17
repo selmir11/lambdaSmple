@@ -60,6 +60,21 @@ public class AdminPortalIndividualDashboardPage {
     WebElement dentalPlan;
     @FindBy(css = "div.manage-plans-title.header-2")
     WebElement managePlanHeader;
+    @FindBy(css = "label[for='selected-member-checkbox']")
+    WebElement selectedMember;
+    @FindBy(css = "#full-name")
+    WebElement memberFullName;
+    @FindBy(css = "#user-name")
+    WebElement userName;
+    @FindBy(css = "#phone-number")
+    WebElement memberPhone;
+    @FindBy(css = "#email-address")
+    WebElement memberEmail;
+    @FindBy(css = "#dob")
+    WebElement memberDob;
+    @FindBy(css = "body app-root div:nth-child(6)")
+    WebElement memberAddress;
+
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -130,4 +145,17 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(),data.get(2));
     }
+    public void validateSelectedMemberData()  {
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(selectedMember,30);
+        softAssert.assertTrue(selectedMember.isDisplayed());
+        softAssert.assertTrue(memberFullName.isDisplayed());
+        softAssert.assertTrue(userName.isDisplayed());
+        softAssert.assertTrue(memberEmail.isDisplayed());
+        softAssert.assertTrue(memberPhone.isDisplayed());
+        softAssert.assertTrue(memberDob.isDisplayed());
+        softAssert.assertTrue(memberAddress.isDisplayed());
+        softAssert.assertAll(); }
 }
+
+

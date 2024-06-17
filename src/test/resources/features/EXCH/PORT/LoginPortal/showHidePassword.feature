@@ -5,7 +5,7 @@ Feature:Implement 'show/hide password' on password field in login portal
   Scenario Outline:Login Portal UI
     Given I open the login page on the "<Portal>" portal
     And I validate I am on the "Login" page
-    Then I validate Show button is displayed and enabled in "login Page"
+    Then I validate Show button is displayed and enabled in "login portal"
     And I enter valid credential STG username "<usernameSTG>" PW "<PWQA>" QA username "<usernameQA>" PW "<PWQA>" for individual user without sign in any env
     Then I validate when show password is displayed as "Show" the code is encrypted in "login page" Page
     And I click on show button in "login page"
