@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 import java.util.NoSuchElementException;
@@ -350,6 +353,19 @@ public class BasicActions {
             return str;
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public String getNoticesDownloadPath(){
+        String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
+        String noticesFolderPath = "target/notices-downloads/download-" + timestamp;
+        File reportFolder = new File(noticesFolderPath);
+        if (!reportFolder.exists()) {
+            boolean folderCreated = reportFolder.mkdirs();
+            if (!folderCreated) {
+                System.out.println("Failed to create the report folder.");
+            }
+        }
+        return noticesFolderPath;
     }
 }
 
