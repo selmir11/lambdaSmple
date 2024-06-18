@@ -24,6 +24,7 @@ public class InitialPaymentCoCoPage {
     WebElement spinner;
 
     public void selectMakePaymentBtnCoCo(){
+        basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(makePaymentBtn,20);
         makePaymentBtn.click();
     }

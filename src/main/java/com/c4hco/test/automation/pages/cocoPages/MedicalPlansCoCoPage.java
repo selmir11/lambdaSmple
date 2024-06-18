@@ -27,7 +27,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
-    @FindBy(id = "MedicalPlanResults-Continue")
+    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
 
     @FindBy(id = "PlanResults-InsuranceCompany")
