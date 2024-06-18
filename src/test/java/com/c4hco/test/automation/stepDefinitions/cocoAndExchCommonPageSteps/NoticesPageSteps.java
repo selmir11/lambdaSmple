@@ -26,6 +26,11 @@ public class NoticesPageSteps {
         noticesPage.signInEmail(email, password);
     }
 
+    @Then("I sign out of Outlook")
+    public void iSignOutOutlook() {
+        noticesPage.signOutEmail();
+    }
+
     @Then("I open the MFA notice")
     public void i_open_the_mfa_notice() {
         noticesPage.openMFANotice();

@@ -59,9 +59,11 @@ public class NoticesPage {
     @FindBy(css= "ul > li:nth-child(2) > span > strong")
      WebElement requestNewCodeBtn;
 
+    @FindBy(xpath = "//*[@id='O365_MainLink_MePhoto']/div/div/div/div/div[2]/img")
+    WebElement outlookLogOutIcon;
 
-
-
+    @FindBy(id = "mectrl_body_signOut")
+    WebElement outlookLogOut;
 
 
 
@@ -97,6 +99,19 @@ public class NoticesPage {
        passwordEmail.sendKeys(Keys.ENTER );
        basicActions.waitForElementToBeClickable(btnStayNo,20);
        btnStayNo.click();
+        }
+
+        public void signOutEmail(){
+            basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
+            outlookLogOutIcon.click();
+
+            basicActions.waitForElementPresence(outlookLogOut,20);
+            basicActions.clickById("mectrl_body_signOut");
+
+            basicActions.wait(500);
+            basicActions.closeBrowserTab();
+            basicActions.switchtoactiveTab();
+            basicActions.closeBrowserTab();
         }
 
         public void verbiageValidation(){
