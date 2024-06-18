@@ -50,4 +50,33 @@ public class ManageAssociatedBrokersPage {
         softAssert.assertEquals(manageAssocBrokersRemoveBroker.getText(),"Remove");
         manageAssocBrokersRemoveBroker.click();
     }
+
+    public void validateSendInviteLinkExists(String expectedState){
+        if(expectedState.equals("is")){
+            basicActions.waitForElementToBePresent(manageAssocBrokersSendInvite,100);
+            softAssert.assertEquals(manageAssocBrokersSendInvite.getText(),"Send Invite");
+        } else if (expectedState.equals("is not")) {
+            basicActions.waitForElementToBePresent(manageAssocBrokersRemoveBroker,100);
+            softAssert.assertEquals(manageAssocBrokersRemoveBroker.getText(),"Remove");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyInviteStatus(String expectedStatus){
+        basicActions.waitForElementToBePresent(manageAssocBrokersActionDescription, 10);
+        switch (expectedStatus) {
+            case "Pending Acceptance":
+                basicActions.waitForElementToBePresent(manageAssocBrokersActionDescription,100);
+                softAssert.assertEquals(manageAssocBrokersActionDescription.getText(),"Pending Acceptance");
+                break;
+            case "Not Accepted":
+                basicActions.waitForElementToBePresent(manageAssocBrokersActionDescription,100);
+                softAssert.assertEquals(manageAssocBrokersActionDescription.getText(),"Not Accepted");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + expectedStatus);
+        }
+
+        softAssert.assertAll();
+    }
 }

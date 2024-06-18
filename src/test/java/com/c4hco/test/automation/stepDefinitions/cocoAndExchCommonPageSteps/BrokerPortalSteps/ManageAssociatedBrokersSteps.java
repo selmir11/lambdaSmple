@@ -27,5 +27,15 @@ public class ManageAssociatedBrokersSteps {
     public void clickGoBackManageAssocBrokersPage(){
         manageAssociatedBrokersPage.clickGoBackManageAssocBrokers();
     }
+
+    @Then("I validate the Send Invite link {string} displayed")
+    public void validateSendInviteLink(String expectedState){
+        manageAssociatedBrokersPage.validateSendInviteLinkExists(expectedState);
+    }
+
+    @And("I verify the invite is {string}")
+    public void verifyAgencyInvite(String expectedStatus){
+        manageAssociatedBrokersPage.verifyAgencyInviteStatus(expectedStatus);
+    }
 }
 
