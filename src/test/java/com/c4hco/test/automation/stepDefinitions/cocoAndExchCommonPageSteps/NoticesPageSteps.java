@@ -74,4 +74,17 @@ public class NoticesPageSteps {
     public void iClickRequestNewCode() {
         noticesPage.clickRequestNewCode();
     }
+
+    @Then("I open the notice {string} in {string}")
+    public void iOpenTheNoticeIn(String noticeNumber, String language) {
+        noticesPage.openAllNotices(noticeNumber, language);
+    }
+
+    @And("I verify the notice Text for AM-016-01 in {string}")
+    public void iVerifyTheNoticeTextForAMIn( String language) {
+        noticesPage.VerifyTheNoticeText(language);
+    }
+
+
+
 }
