@@ -80,3 +80,4 @@ Feature: Individual adult - no assistance (40K)
     Then I select Continue button on the Payment Selection CoCo page
     And I select continue button on the Initial Payment CoCo page
     And I click on Go To Welcome Page Button on whats next coco page
+    And I click on Sign Out in the Header for "Elmo"
