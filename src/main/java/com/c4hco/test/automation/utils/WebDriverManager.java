@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+
 public class WebDriverManager {
     private static WebDriver driver;
 
@@ -20,8 +24,35 @@ public class WebDriverManager {
 
     private static WebDriver initializeDriver() {
         ChromeOptions options = new ChromeOptions();
+
+        // Create a map to store the preferences
+        Map<String, Object> prefs = new HashMap<>();
+
+        BasicActions basicActions = new BasicActions();
+
+        String localPath = basicActions.getNoticesDownloadPath();
+        String absolutePath = Paths.get(localPath).toAbsolutePath().toString();
+
+        // Set the download directory
+        prefs.put("download.default_directory", absolutePath);
+
+        prefs.put("savefile.default_directory", absolutePath);
+
+        // Disable the download prompt
+        prefs.put("plugins.plugins_disabled", new String[] {"Chrome PDF Viewer"});
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("profile.default_content_settings.popups", 0);
+        prefs.put("download.directory_upgrade", true);
+        prefs.put("safebrowsing.enabled", true);
+        prefs.put("plugins.always_open_pdf_externally", true); // Always download PDFs instead of opening them
+        prefs.put("download.extensions_to_open", "application/xml");
+
         options.addArguments("--start-maximized");
-        options.addArguments("--incognito");
+        // options.addArguments("--incognito");
+        options.addArguments("--safebrowsing-disable-download-protection");
+        options.setExperimentalOption("prefs", prefs);
+
+        driver = new ChromeDriver(options);
         return new ChromeDriver(options);
     }
 

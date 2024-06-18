@@ -5,27 +5,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
-public class PaymentSelectionCoCoPage {
+public class WhatsNextCoCoPage {
     private BasicActions basicActions;
-    SoftAssert softAssert = new SoftAssert();
 
-    public PaymentSelectionCoCoPage(WebDriver webDriver) {
+    public WhatsNextCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SOL-PaymentSelection-Continue")
-    WebElement continueBtnPaymentSelection;
+    @FindBy(id = "SOL-WhatsNext-Okay")
+    WebElement welcomeBtn;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    public void paymentSelectionContinueCoCo() {
+    public void clickWelcomeBtn(){
         basicActions.waitForElementToDisappear(spinner, 20);
-        basicActions.waitForElementToBeClickable(continueBtnPaymentSelection, 10);
-        basicActions.scrollToElement(continueBtnPaymentSelection);
-        continueBtnPaymentSelection.click();
+        basicActions.waitForElementToBePresent(welcomeBtn, 10);
+        basicActions.scrollToElement(welcomeBtn);
+        basicActions.click(welcomeBtn);
     }
 }

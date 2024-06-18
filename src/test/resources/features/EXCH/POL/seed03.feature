@@ -128,6 +128,10 @@ Feature: Seed03 - Exchange
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
+    And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
+      | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+      | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
 
 
 
