@@ -116,8 +116,8 @@ Feature: Regression Tests that require Seed 1
     | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
     | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
     | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
-   # And I download the files from sftp server with location "/outboundedi/"
-   # And I validate the ob834 files should not be empty
+    And I download the files from sftp server with location "/outboundedi/"
+   And I validate the ob834 files should not be empty
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
