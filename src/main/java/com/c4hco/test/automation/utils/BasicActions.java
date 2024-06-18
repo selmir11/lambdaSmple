@@ -1,10 +1,7 @@
 package com.c4hco.test.automation.utils;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -12,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
 import java.util.*;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -166,6 +164,11 @@ public class BasicActions {
         element.click();
     }
 
+    public void clickById(String elementId){
+        WebElement element = WebDriverManager.getDriver().findElement(By.id(elementId));
+        ((JavascriptExecutor) WebDriverManager.getDriver()).executeScript("arguments[0].click()",element );
+    }
+
     public void waitForPresence(WebElement webElement) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30))
@@ -278,6 +281,16 @@ public class BasicActions {
             case "Income portal Unauthorized CoCo":
                 newUrl = "income-portal/unauthorized";
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Error Exch":
+                newUrl = "IncomePortal/error";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Unauthorized Exch":
+                newUrl = "IncomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Welcome portal Error CoCo":
