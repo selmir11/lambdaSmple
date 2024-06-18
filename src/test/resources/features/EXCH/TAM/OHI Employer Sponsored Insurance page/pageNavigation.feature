@@ -1,12 +1,9 @@
 @TAM
-Feature: Page Navigation-Additional Income Page
+Feature: Page Navigation-OHI ESI Page
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
-
-  @SLER-686 @PageNavigationAdditionalIncomePage
-  Scenario: SLER-686 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Income Portal, Exchange
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -38,13 +35,33 @@ Feature: Page Navigation-Additional Income Page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
     Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
     And I Apply for financial help
-    Then I select the option "No" to employment
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "ESI" as health insurance option and continue
+
+
+  @SLER-687 @PageNavigationESI
+  Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHI Portal, Exchange
     #Step1
-    Then I validate I am on the "Additional income" page
-    And I change the C4 url to "Income portal Error Exch"
+    And I validate I am on the "ESI" page
+    And I change the C4 url to "Other Health Insurance portal Error Exch"
     Then I validate I am on the "Error" page
     And I click Back to Welcome page Button on error Exch page
     Then I click Go Back button from chrome browser
@@ -66,10 +83,15 @@ Feature: Page Navigation-Additional Income Page
     And I click continue on the Citizenship page
     Then I click on the Member Row 0
     Then I select the Edit Income link
-    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I click the save and continue button on the Income Summary Detail page
+    And I click save and continue on tax status page
+    Then I click continue on the Other Health Insurance page
 
-    Then I validate I am on the "Additional income" page
-    And I change the C4 url to "Income portal Unauthorized Exch"
+    And I validate I am on the "ESI" page
+    And I change the C4 url to "Other Health Insurance portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click Go Back button from chrome browser
     And I verify User name Link is not displayed in the "Exch" Header
