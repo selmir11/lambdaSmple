@@ -20,7 +20,7 @@ public class Ob834FileValidations {
     public void validateOb834File(Ob834DetailsEntity entry){
         validateCtrlFnGrpSegment();
         validateSponsorPayerDetails();
-        validateAddlMaintReason();
+        validateAddlMaintReason(entry);
         validateInsSegment(entry);
         validateDtpSegment();
         validateHierarchyLevelSeg();
@@ -51,10 +51,11 @@ public class Ob834FileValidations {
        System.out.println("n1Seg --"+n1Seg);
     }
 
-    public void validateAddlMaintReason(){
-     //   Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
-         List<List<String>> n1Seg = transaction.getMembersList().get(0).getN1();
-
+    public void validateAddlMaintReason(Ob834DetailsEntity entry){
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        String ref17Seg = edi834TransactionDetails.getTransactionList().get(0).getMembersList().get(0).getREF().get(6).get(3);
+        softAssert.assertEquals(ref17Seg, entry.getAddl_maint_reason(),"Additional Maintenance reason does not match");
+        softAssert.assertAll();
     }
 
     public void validateInsSegment(Ob834DetailsEntity entry){
