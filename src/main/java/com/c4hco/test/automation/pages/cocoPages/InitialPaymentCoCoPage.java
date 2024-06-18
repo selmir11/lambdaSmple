@@ -20,12 +20,16 @@ public class InitialPaymentCoCoPage {
     @FindBy(id="SOL-InitialPayment-Continue")
     WebElement continueButton;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void selectMakePaymentBtnCoCo(){
         basicActions.waitForElementToBePresent(makePaymentBtn,20);
         makePaymentBtn.click();
     }
 
     public void selectContinueCoCo() {
+        basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(continueButton, 20);
         continueButton.click();
     }
