@@ -51,4 +51,9 @@ public class AddAddressPageSteps {
 
     @Then("I click continue on the Add Address page")
     public void clickContinue(){addAddressPage.saveContinue();}
+
+    @And("I skipped Race and Ethnicity option")
+    public void iSelectOptionForAHRaceAndEthnicity() {
+        addAddressPage.skippedRace();
+    }
 }

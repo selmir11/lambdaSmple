@@ -9,6 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class WhoAreYouPage {
@@ -80,7 +85,7 @@ public class WhoAreYouPage {
         }
     }
 
-    public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
+    public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth) throws ParseException {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         Address address = new Address();
         StreetAddress1.sendKeys(addressLine1);
@@ -98,7 +103,11 @@ public class WhoAreYouPage {
         basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
 
         memberDOB.sendKeys(dateOfBirth);
-        subscriber.setDob(dateOfBirth);
+        DateFormat dateFormatIn = new SimpleDateFormat("MMddyyyy");
+        DateFormat dateFormatOut = new SimpleDateFormat("yyyyMMdd");
+        Date date = dateFormatIn.parse(dateOfBirth);
+        String dateOfBirthFormatted = dateFormatOut.format(date) ;
+        subscriber.setDob(dateOfBirthFormatted);
         memberSSN.sendKeys(SSNvalue);
         subscriber.setSsn(SSNvalue);
         address.setAddressLine1(addressLine1);

@@ -164,6 +164,7 @@ public class DbValidations {
     }
 
     public void validatePersonalDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
+        if (subscriber.getIsSubscriber().equals(ob834Entity.getSubscriber_indicator())){
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getLastName(), ob834Entity.getMember_last_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getMiddleName(), ob834Entity.getMember_middle_name(), "member middle did not match");
@@ -175,10 +176,12 @@ public class DbValidations {
         softAssert.assertEquals(subscriber.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(subscriber.getTobacco_user(), ob834Entity.getTobacco_use(), "isTobacco did not match");
-        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I"); // update - always constant?
+        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I"); // update - always constant
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(subscriber.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
-        //  softAssert.assertAll();
+        softAssert.assertAll();
+        System.out.println("validated PersonalDetails");
+        }
     }
 
 

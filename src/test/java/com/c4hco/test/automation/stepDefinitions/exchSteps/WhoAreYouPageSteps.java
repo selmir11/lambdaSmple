@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.exchPages.WhoAreYouPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.text.ParseException;
+
 public class WhoAreYouPageSteps {
     WhoAreYouPage whoAreYouPage = new WhoAreYouPage(WebDriverManager.getDriver());
 
@@ -14,6 +16,6 @@ public class WhoAreYouPageSteps {
 
     //include that you are clicking on Continue button in the step below
     @And("I am a member with City {string} in State {string} with dob {string} in county {string} with zipcode {string}")
-    public void enterSpecificMemberDetails(String City, String State, String dateOfBirth, String county, String zipcode){whoAreYouPage.specificMemberDetails(City, State, zipcode, county, dateOfBirth);}
+    public void enterSpecificMemberDetails(String City, String State, String dateOfBirth, String county, String zipcode) throws ParseException {whoAreYouPage.specificMemberDetails(City, State, zipcode, county, dateOfBirth);}
 
 }

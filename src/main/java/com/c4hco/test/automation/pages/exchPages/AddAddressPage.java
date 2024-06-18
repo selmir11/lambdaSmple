@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.c4hco.test.automation.utils.Race.getCodeForRace;
+
 public class AddAddressPage {
     private BasicActions basicActions;
     public AddAddressPage(WebDriver webDriver) {
@@ -353,5 +355,10 @@ public class AddAddressPage {
     }
 
     public void saveContinue(){btnSaveContinue.click();}
+
+    public void skippedRace() {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setRace(getCodeForRace("NotProvided"));
+    }
 }
 
