@@ -1,17 +1,18 @@
 package com.c4hco.test.automation.utils;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -166,6 +167,11 @@ public class BasicActions {
         element.click();
     }
 
+    public void clickById(String elementId){
+        WebElement element = WebDriverManager.getDriver().findElement(By.id(elementId));
+        ((JavascriptExecutor) WebDriverManager.getDriver()).executeScript("arguments[0].click()",element );
+    }
+
     public void waitForPresence(WebElement webElement) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30))
@@ -280,6 +286,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Income portal Error Exch":
+                newUrl = "IncomePortal/error";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Unauthorized Exch":
+                newUrl = "IncomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             case "Welcome portal Error CoCo":
                 newUrl = "WelcomePortal/error";
                 newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
@@ -320,6 +336,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Other Health Insurance portal Error Exch":
+                newUrl = "OtherHealthInsurancePortal/error";
+                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Other Health Insurance portal Unauthorized Exch":
+                newUrl = "OtherHealthInsurancePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
@@ -337,6 +363,19 @@ public class BasicActions {
             return str;
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public String getNoticesDownloadPath(){
+        String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
+        String noticesFolderPath = "target/notices-downloads/download-" + timestamp;
+        File reportFolder = new File(noticesFolderPath);
+        if (!reportFolder.exists()) {
+            boolean folderCreated = reportFolder.mkdirs();
+            if (!folderCreated) {
+                System.out.println("Failed to create the report folder.");
+            }
+        }
+        return noticesFolderPath;
     }
 }
 

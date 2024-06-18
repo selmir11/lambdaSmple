@@ -25,6 +25,12 @@ public class DashboardPage {
     @FindBy(xpath = "//a[@class='action-link']")
     WebElement c4ULink;
 
+    @FindBy(xpath = "//button[normalize-space()='Manage Brokers']")
+    WebElement manageBrokersButton;
+
+    @FindBy(xpath = "//a[normalize-space()='View']")
+    WebElement myAgencyView;
+
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -59,11 +65,15 @@ public class DashboardPage {
         }
     }
 
+    public void clickManageBrokersButton(){
+        basicActions.waitForElementToBePresent(manageBrokersButton, 10);
+        manageBrokersButton.click();
+    }
 
-
-
-
-
+    public void clickMyAgencyView(){
+        basicActions.waitForElementToBePresent(myAgencyView, 10);
+        myAgencyView.click();
+    }
 
 
 }

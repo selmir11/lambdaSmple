@@ -32,4 +32,14 @@ public class DashboardPageSteps {
     public void iClickAgencyCompleteProfile(){
         dashboardPage.clickAgencyCompleteProfile();
     }
+
+    @Then("I click the Manage Brokers button")
+    public void clickManageBrokersButton(){
+        dashboardPage.clickManageBrokersButton();
+    }
+
+    @Then("I click the My Agency View link")
+    public void clickMyAgencyViewLink(){
+        dashboardPage.clickMyAgencyView();
+    }
 }
