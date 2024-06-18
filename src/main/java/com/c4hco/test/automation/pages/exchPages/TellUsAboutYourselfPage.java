@@ -75,12 +75,7 @@ public class TellUsAboutYourselfPage {
     }
     public void userSexQuestion(String Sex) {
         MemberDetails acctHolder = SharedData.getPrimaryMember();
-        String SexAH;
-        if (Sex.equalsIgnoreCase("Male")){
-            SexAH = "M";
-        }
-        else { SexAH ="F";}
-        acctHolder.setGender(SexAH);
+        acctHolder.setGender(Sex);
         SharedData.setPrimaryMember(acctHolder);
         switch (Sex) {
             case "Female":

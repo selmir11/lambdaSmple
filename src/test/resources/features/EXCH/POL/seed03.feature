@@ -38,7 +38,6 @@ Feature: Seed03 - Exchange
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
-    And I skipped Race and Ethnicity option
     And I click continue on the Add Address page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

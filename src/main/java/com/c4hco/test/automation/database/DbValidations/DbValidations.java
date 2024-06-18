@@ -11,10 +11,15 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 
@@ -164,24 +169,46 @@ public class DbValidations {
     }
 
     public void validatePersonalDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        if (subscriber.getIsSubscriber().equals(ob834Entity.getSubscriber_indicator())){
+        DateFormat dateFormatIn = new SimpleDateFormat("MMddyyyy");
+        DateFormat dateFormatOut = new SimpleDateFormat("yyyyMMdd");
+        Date date = null;
+        try {
+            date = dateFormatIn.parse(subscriber.getDob());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        String dateOfBirthFormatted = dateFormatOut.format(date) ;
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getLastName(), ob834Entity.getMember_last_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getMiddleName(), ob834Entity.getMember_middle_name(), "member middle did not match");
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
-        softAssert.assertEquals(subscriber.getDob(), ob834Entity.getMember_dob(), "dob did not match");
-        softAssert.assertEquals(subscriber.getGender(), ob834Entity.getMember_gender(), "Gender did not match");
-        softAssert.assertEquals(subscriber.getRace(), ob834Entity.getMember_race(), "Race did not match");
+        softAssert.assertEquals(ob834Entity.getMember_dob(), dateOfBirthFormatted, "dob did not match");
+        if (Objects.equals(subscriber.getGender(), "Male")){
+            softAssert.assertEquals("M", ob834Entity.getMember_gender(), "Gender did not match");
+            } else {
+            softAssert.assertEquals("F", ob834Entity.getMember_gender(), "Gender did not match");
+        }
+        if (subscriber.getRace()!= null) {
+            softAssert.assertEquals(subscriber.getRace(), ob834Entity.getMember_race(), "Race did not match");
+        } else {
+            softAssert.assertEquals("7", ob834Entity.getMember_race(), "Race did not match");
+        }
         softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(subscriber.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
-        softAssert.assertEquals(subscriber.getAlternatePhNum(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
-        softAssert.assertEquals(subscriber.getTobacco_user(), ob834Entity.getTobacco_use(), "isTobacco did not match");
-        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I"); // update - always constant
+        if(subscriber.getAlternatePhNum() != null){
+            softAssert.assertEquals(subscriber.getAlternatePhNum(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
+        } else {
+            softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone same as primary phone");
+        }
+        if (Objects.equals(subscriber.getTobacco_user(), "Yes")){
+            softAssert.assertEquals("T", ob834Entity.getTobacco_use(), "isTobacco did not match");
+        } else {
+            softAssert.assertEquals("N", ob834Entity.getTobacco_use(), "isTobacco did not match");
+        }
+        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(subscriber.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
         softAssert.assertAll();
-        System.out.println("validated PersonalDetails");
-        }
     }
 
 
