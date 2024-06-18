@@ -44,4 +44,9 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.selectPlanstoCompare();
     }
 
+    @And("I select {string} coco medical plan")
+    public void selectMedPlan(String medicalPlan) {
+        medicalPlansCoCoPage.selectCoCoMedicalplan(medicalPlan);
+    }
+
 }
