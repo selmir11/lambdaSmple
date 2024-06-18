@@ -17,11 +17,11 @@ public class Ob834FileValidations {
     Edi834TransactionDetails edi834TransactionDetails = null;
     Transaction transaction = null;
 
-    public void validateOb834File(){
+    public void validateOb834File(Ob834DetailsEntity entry){
         validateCtrlFnGrpSegment();
         validateSponsorPayerDetails();
         validateAddlMaintReason();
-        validateInsSegment();
+        validateInsSegment(entry);
         validateDtpSegment();
         validateHierarchyLevelSeg();
         validateNM1Seg();
@@ -57,30 +57,17 @@ public class Ob834FileValidations {
 
     }
 
-    public void validateInsSegment(){
+    public void validateInsSegment(Ob834DetailsEntity entry){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        List<String> insSegmentHLT  = edi834TransactionDetails.getTransactionList().get(0).getMembersList().get(0).getINS().get(0);
-        List<String> insSegmentDEN  = edi834TransactionDetails.getTransactionList().get(1).getMembersList().get(0).getINS().get(0);
-        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
+        List<String> insSegment  = edi834TransactionDetails.getTransactionList().get(0).getMembersList().get(0).getINS().get(0);
 
-        for (Ob834DetailsEntity entry : ob834Entries) {
-            if (entry.getInsurance_line_code().equals("HLT")) {
-                softAssert.assertEquals(insSegmentHLT.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
-                softAssert.assertEquals(insSegmentHLT.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
-                softAssert.assertEquals(insSegmentHLT.get(2), entry.getMaintenance_type_code(), "In INS segment, Maintenance type code does not match");
-                softAssert.assertEquals(insSegmentHLT.get(3), entry.getMaintenance_reas_code(), "In INS segment, Maintenance reason code does not match");
-                softAssert.assertEquals(insSegmentHLT.get(4), "A", "Active does not match");
-                softAssert.assertEquals(insSegmentHLT.get(7), "AC", "Active does not match");
-            } else if (entry.getInsurance_line_code().equals("DEN")) {
-                softAssert.assertEquals(insSegmentDEN.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
-                softAssert.assertEquals(insSegmentDEN.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
-                softAssert.assertEquals(insSegmentDEN.get(2), entry.getMaintenance_type_code(), "In INS segment, Maintenance type code does not match");
-                softAssert.assertEquals(insSegmentDEN.get(3), entry.getMaintenance_reas_code(), "In INS segment, Maintenance reason code does not match");
-                softAssert.assertEquals(insSegmentDEN.get(4), "A", "Active does not match");
-                softAssert.assertEquals(insSegmentDEN.get(7), "AC", "Active does not match");
-            }
-            softAssert.assertAll();
-        }
+        softAssert.assertEquals(insSegment.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
+        softAssert.assertEquals(insSegment.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
+        softAssert.assertEquals(insSegment.get(2), entry.getMaintenance_type_code(), "In INS segment, Maintenance type code does not match");
+        softAssert.assertEquals(insSegment.get(3), entry.getMaintenance_reas_code(), "In INS segment, Maintenance reason code does not match");
+        softAssert.assertEquals(insSegment.get(4), "A", "Active does not match");
+        softAssert.assertEquals(insSegment.get(7), "AC", "Active does not match");
+        softAssert.assertAll();
     }
 
     public void validateDtpSegment(){
