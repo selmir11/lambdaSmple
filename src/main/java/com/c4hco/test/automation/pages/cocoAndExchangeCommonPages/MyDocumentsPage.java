@@ -30,8 +30,10 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-    @FindBy(css = "svg.svg-inline--fa.fa-angle-down.fa-w-10.fa-2x")
+    @FindBy(xpath = "//div[@class='document-notice-content-row row-even ng-star-inserted']//div//div//span")
     WebElement expandDownloadEnrolmentDocument;
+    @FindBy(css = "a.btn-second-action-button.download-button")
+    WebElement downloadEnrolmentDoc;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -81,7 +83,11 @@ public class MyDocumentsPage {
     }
     public  void downloadEnrolmentDocument() {
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         expandDownloadEnrolmentDocument.click();
+        basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
+        basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
+        downloadEnrolmentDoc.click();
+
     }
 }
