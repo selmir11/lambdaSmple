@@ -1,0 +1,47 @@
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
+
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalBrokerDashboardPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class AdminPortalBrokerDashboardSteps {
+    AdminPortalBrokerDashboardPage adminPortalBrokerDashboardPage = new AdminPortalBrokerDashboardPage(WebDriverManager.getDriver());
+
+    @Then("I validate AP broker dashboard Header any env: QA name {string} ID {string} User Type {string} STG name {string} ID {string} User Type {string}")
+    public void iValidateAPBrokerDashboardHeaderAnyEnvQANameIDUserTypeSTGNameIDUserType(String qaName, String qaID, String qaUserType, String stgName, String stgID, String stgUserType) {
+    adminPortalBrokerDashboardPage.validateAPBrokerDashboardHeader(qaName,qaID,qaUserType, stgName,  stgID,stgUserType);
+    }
+
+    @And("I verify Broker information's Account Summary")
+    public void iVerifyBrokerInformationsAccountSummary() {
+        adminPortalBrokerDashboardPage.VerifyBrokerInformationsAccountSummary();
+    }
+
+    @And("I verify Broker certification information's")
+    public void iVerifyBrokerCertificationInformationS() {
+        adminPortalBrokerDashboardPage.VerifyBrokerBrokerCertificationInformationS();
+    }
+
+    @And("I verify Broker Account Activity Container")
+    public void iVerifyBrokerAccountActivityContainer() {
+        adminPortalBrokerDashboardPage.VerifyBrokerAccountActivityContainer();
+    }
+
+    @And("I Verify Broker Client Information Container")
+    public void iVerifyBrokerClientInformationContainer() {
+        adminPortalBrokerDashboardPage.verifyBrokerClientInformationContainer();
+    }
+
+    @And("I click Go Back on admin portal broker dashboard")
+    public void iClickGoBackOnAdminPortalBrokerDashboard() {
+        adminPortalBrokerDashboardPage.clickGoBackONAdminPortalBroker();
+    }
+
+    @Then("I verify broker client information container no clients")
+    public void iVerifyBrokerClientInformationContainerNoClients() {
+        adminPortalBrokerDashboardPage.VerifyBrokerClientInformationContainerNoClients();
+    }
+}

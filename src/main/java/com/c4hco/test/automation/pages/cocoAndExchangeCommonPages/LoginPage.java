@@ -85,6 +85,7 @@ public class LoginPage {
 
     public void openPage(String portalType) {
         basicActions.getDriver().get(utils.getBaseLoginUrl(portalType));
+        basicActions.refreshPage();
     }
 
     public void clickCreateAccount() {

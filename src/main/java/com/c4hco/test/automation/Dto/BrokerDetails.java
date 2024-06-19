@@ -18,4 +18,6 @@ public class BrokerDetails {
     String agencyEmail;
     String agencyPhoneNumber;
     String agencyTin;
+    String broker_name;
+    String broker_lic_num;
 }

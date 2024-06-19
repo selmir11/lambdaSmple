@@ -19,7 +19,11 @@ public class PaymentSelectionCoCoPage {
     @FindBy(id = "SOL-PaymentSelection-Continue")
     WebElement continueBtnPaymentSelection;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void paymentSelectionContinueCoCo() {
+        basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBeClickable(continueBtnPaymentSelection, 10);
         basicActions.scrollToElement(continueBtnPaymentSelection);
         continueBtnPaymentSelection.click();
