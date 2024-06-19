@@ -336,6 +336,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Other Health Insurance portal Error Exch":
+                newUrl = "OtherHealthInsurancePortal/error";
+                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Other Health Insurance portal Unauthorized Exch":
+                newUrl = "OtherHealthInsurancePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
