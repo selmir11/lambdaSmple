@@ -36,7 +36,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "MedicalPlanResults-Continue")
     WebElement btnContinue;
 
-    @FindBy(id = "MedicalPlanResults-Continue")
+    @FindBy(id = "SHP-MedicalPlanResults-Continue")
     WebElement continueBtn;
 
     @FindBy(id = "PlanResults-ComparePlans")
