@@ -116,8 +116,8 @@ Feature: Regression Tests that require Seed 1
     | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
     | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
     | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
-   # And I download the files from sftp server with location "/outboundedi/"
-   # And I validate the ob834 files should not be empty
+    And I download the files from sftp server with location "/outboundedi/"
+   And I validate the ob834 files should not be empty
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -171,7 +171,7 @@ Feature: Regression Tests that require Seed 1
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "NoneOfThese" and click continue
-    And I click Continue With Application
+    Then I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I update DOB to new DOB of "11/08/1986"

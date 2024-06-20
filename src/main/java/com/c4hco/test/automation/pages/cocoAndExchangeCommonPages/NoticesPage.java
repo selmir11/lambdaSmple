@@ -8,12 +8,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class NoticesPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+    DateTimeFormatter formatterSpanish = DateTimeFormatter.ofPattern("d 'de' MMMM 'del' yyyy",new Locale("es", "ES"));
+    String effectiveDateSpanish = formatterSpanish.format(LocalDate.now());
+    String effectiveDate = LocalDate.now().format(formatter);
     public NoticesPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -58,9 +66,16 @@ public class NoticesPage {
      WebElement verifyMfaEmail;
     @FindBy(css= "ul > li:nth-child(2) > span > strong")
      WebElement requestNewCodeBtn;
-
-
-
+    @FindBy(id= "x_generationDateTime")
+     WebElement EmailDate;
+    @FindBy(xpath = "//*[@id='O365_MainLink_MePhoto']/div/div/div/div/div[2]/img")
+    WebElement outlookLogOutIcon;
+    @FindBy(id = "mectrl_body_signOut")
+    WebElement outlookLogOut;
+    @FindBy(xpath= "//div[@id='x_individualUsernameReminderBody']//p")
+    List<WebElement> bodyText;
+    @FindBy(xpath= "//*[@id='x_individualUsernameReminderBody']/p[3]/span/span") ///please call the Colorado Connect® Customer Service Center at 855-675-2626 (TTY:855-346-3432)
+    WebElement bodyText2;
 
 
 
@@ -97,6 +112,19 @@ public class NoticesPage {
        passwordEmail.sendKeys(Keys.ENTER );
        basicActions.waitForElementToBeClickable(btnStayNo,20);
        btnStayNo.click();
+        }
+
+        public void signOutEmail(){
+            basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
+            outlookLogOutIcon.click();
+
+            basicActions.waitForElementPresence(outlookLogOut,20);
+            basicActions.clickById("mectrl_body_signOut");
+
+            basicActions.wait(500);
+            basicActions.closeBrowserTab();
+            basicActions.switchtoactiveTab();
+            basicActions.closeBrowserTab();
         }
 
         public void verbiageValidation(){
@@ -166,5 +194,50 @@ public class NoticesPage {
         softAssert.assertTrue(requestNewCodeBtn.isEnabled());
         requestNewCodeBtn.click();
         softAssert.assertAll();
+    }
+
+    public void openAllNotices(String noticeNumber, String language) {
+        basicActions.wait(100);
+        basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
+        String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
+        softAssert.assertTrue(TitleText.contains(noticeNumber));
+        basicActions.waitForElementToBePresent(EmailDate, 20);
+        switch (language){
+            case "English":
+                softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
+                break;
+            case "Spanish":
+                System.out.println(EmailDate.getText());
+                System.out.println(effectiveDateSpanish);
+                softAssert.assertTrue(EmailDate.getText().contains(effectiveDateSpanish));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+
+    public void VerifyTheNoticeText(String language) {
+        switch (language){
+            case "English" :
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect® is:"));
+                softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect® website and enter this username plus your password to log in to your account. ");
+                softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, ");
+                softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect® Customer Service Center at 855-675-2626 (TTY:855-346-3432)");
+            break;
+            case "Spanish" :
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect® es:"));
+                softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect® y introduzca este nombre de usuario y su contraseña para ingresar en su cuenta.");
+                softAssert.assertEquals(bodyText.get(3).getText(),"Si no solicitó el envio por correo electrónico de su Nombre de usario, ");
+                softAssert.assertEquals(bodyText2.getText(),"llame al Centro de atención al cliente de Colorado Connect® al 855-675-2626 (TTY:855-346-3432) ");
+            break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+
+
+
+        }
     }
 }

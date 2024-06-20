@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
+import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 
 public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
@@ -166,21 +167,22 @@ public class DbValidations {
     }
 
     public void validatePersonalDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
+        String dateFormatted = subscriber.getDob().substring(4, 8) + subscriber.getDob().substring(0, 2) + subscriber.getDob().substring(2, 4);
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getLastName(), ob834Entity.getMember_last_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getMiddleName(), ob834Entity.getMember_middle_name(), "member middle did not match");
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
-        softAssert.assertEquals(subscriber.getDob(), ob834Entity.getMember_dob(), "dob did not match");
-        softAssert.assertEquals(subscriber.getGender(), ob834Entity.getMember_gender(), "Gender did not match");
-        softAssert.assertEquals(subscriber.getRace(), ob834Entity.getMember_race(), "Race did not match");
+        softAssert.assertEquals(dateFormatted, ob834Entity.getMember_dob(), "dob did not match");
+        softAssert.assertEquals(ob834Entity.getMember_gender(), subscriber.getGender().charAt(0) , "gender did not match");
+        softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()): "7" ,ob834Entity.getMember_race(),"Race did not match");
         softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(subscriber.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
-        softAssert.assertEquals(subscriber.getAlternatePhNum(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
-        softAssert.assertEquals(subscriber.getTobacco_user(), ob834Entity.getTobacco_use(), "isTobacco did not match");
-        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I"); // update - always constant?
+        softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber() ,ob834Entity.getAlternate_phone(), "alternate phone did not match"  );
+        softAssert.assertEquals(subscriber.getTobacco_user().equals("Yes") ? "T" : subscriber.getTobacco_user().charAt(0), ob834Entity.getTobacco_use(), "Tobaccousage did not match");
+        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I" , "Marital Status did not match");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(subscriber.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
-        //  softAssert.assertAll();
+        softAssert.assertAll();
     }
 
 
