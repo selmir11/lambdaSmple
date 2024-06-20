@@ -57,4 +57,3 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
     And I go to the previous browser page
     And I click on Find a Plan in the Header
     Then I validate I am on the "Application History" page
-    And I go to the previous browser page
