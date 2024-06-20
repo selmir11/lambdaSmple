@@ -52,12 +52,17 @@ public class ManageAssociatedBrokersPage {
     }
 
     public void validateSendInviteLinkExists(String expectedState){
-        if(expectedState.equals("displayed")){
-            basicActions.waitForElementToBePresent(manageAssocBrokersSendInvite,100);
-            softAssert.assertEquals(manageAssocBrokersSendInvite.getText(),"Send Invite");
-        } else if (expectedState.equals("changed to Remove")) {
-            basicActions.waitForElementToBePresent(manageAssocBrokersRemoveBroker,100);
-            softAssert.assertEquals(manageAssocBrokersRemoveBroker.getText(),"Remove");
+        switch (expectedState) {
+            case "displayed":
+                basicActions.waitForElementToBePresent(manageAssocBrokersSendInvite,100);
+                softAssert.assertEquals(manageAssocBrokersSendInvite.getText(),"Send Invite");
+                break;
+            case "changed to Remove":
+                basicActions.waitForElementToBePresent(manageAssocBrokersRemoveBroker,100);
+                softAssert.assertEquals(manageAssocBrokersRemoveBroker.getText(),"Remove");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + expectedState);
         }
         softAssert.assertAll();
     }
