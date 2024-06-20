@@ -18,6 +18,8 @@ public class Ob834FileValidations {
     Transaction transaction = null;
 
     public void validateOb834File(Ob834DetailsEntity entry){
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction = edi834TransactionDetails.getTransactionList().get(0);
         validateCtrlFnGrpSegment();
         validateSponsorPayerDetails();
         validateAddlMaintReason(entry);
@@ -52,15 +54,17 @@ public class Ob834FileValidations {
     }
 
     public void validateAddlMaintReason(Ob834DetailsEntity entry){
-        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        String ref17Seg = edi834TransactionDetails.getTransactionList().get(0).getMembersList().get(0).getREF().get(6).get(3);
-        softAssert.assertEquals(ref17Seg, entry.getAddl_maint_reason(),"Additional Maintenance reason does not match");
+        List<List<String>> refSeg = transaction.getMembersList().get(0).getREF();
+        for (List<String> ref17Seg : refSeg) {
+            if (ref17Seg.get(0).equals("LX1") && ref17Seg.get(1).equals("17")){
+                softAssert.assertEquals(ref17Seg.get(3), entry.getAddl_maint_reason(),"Additional Maintenance reason does not match");
+            }
+        }
         softAssert.assertAll();
     }
 
     public void validateInsSegment(Ob834DetailsEntity entry){
-        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        List<String> insSegment  = edi834TransactionDetails.getTransactionList().get(0).getMembersList().get(0).getINS().get(0);
+        List<String> insSegment  = transaction.getMembersList().get(0).getINS().get(0);
 
         softAssert.assertEquals(insSegment.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
         softAssert.assertEquals(insSegment.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
