@@ -9,6 +9,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class SftpUtil {
     private Session session;
     Edi834Util edi834Util = new Edi834Util();
+    SoftAssert softAssert = new SoftAssert();
 
     public SftpUtil(){
     }
