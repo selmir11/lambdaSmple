@@ -30,7 +30,7 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-    @FindBy(xpath = "//div[@class='document-notice-content-row row-even ng-star-inserted']//div//div//span")
+    @FindBy(xpath = "(//div[@class='documents-notices-content-container']//div//div//span)[1]")
     WebElement expandDownloadEnrolmentDocument;
     @FindBy(css = "a.btn-second-action-button.download-button")
     WebElement downloadEnrolmentDoc;

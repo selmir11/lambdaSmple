@@ -103,10 +103,6 @@ public class MedicalPlanResultsPage {
         selectFirstPlan.click();
     }
 
-    public void iclickContinue() {
-        basicActions.waitForElementToBePresent(btnContinue, 30);
-        btnContinue.click();
-    }
     public void clickContinue() {
         continueBtn.click();
     }
