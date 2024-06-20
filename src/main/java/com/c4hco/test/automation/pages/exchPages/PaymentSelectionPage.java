@@ -251,6 +251,7 @@ public class PaymentSelectionPage {
         basicActions.waitForElementToBePresent(stateLocatorForWithdrawalFromBank, 30);
         stateLocatorForWithdrawalFromBank.click();
         basicActions.selectValueFromDropdown(stateLocatorForWithdrawalFromBank, stateDropdownOptions, "CO");
+        basicActions.scrollToElement(continueBtnPaymentSelection);
         continueBtnPaymentSelection.click();
     }
 

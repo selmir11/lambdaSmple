@@ -21,6 +21,7 @@ public class EmploymentSummaryPage {
 
     public void clickContinue(){
         basicActions.waitForElementToBePresent(btnContinue,30);
+        basicActions.scrollToElement(btnContinue);
         basicActions.waitForElementToBeClickable(btnContinue, 30);
         btnContinue.click();
     }
