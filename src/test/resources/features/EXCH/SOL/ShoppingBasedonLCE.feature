@@ -81,9 +81,9 @@ Feature: Initial Payment Page test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Boulder" in State "CO" with dob "11181993" in county "BOULDER" with zipcode "80020"
+    And I am a member with City "Denver" in State "CO" with dob "11181993" in county "Denver" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -155,7 +155,7 @@ Feature: Initial Payment Page test
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Uptown" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3500000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 Uptown" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3500000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -167,7 +167,7 @@ Feature: Initial Payment Page test
     Then I select the projected income option "No" and continue
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Main" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3000000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 Main" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3000000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
 
@@ -180,7 +180,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Income Summary" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Main" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3000000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 Main" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3000000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
