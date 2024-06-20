@@ -52,10 +52,10 @@ public class ManageAssociatedBrokersPage {
     }
 
     public void validateSendInviteLinkExists(String expectedState){
-        if(expectedState.equals("is")){
+        if(expectedState.equals("displayed")){
             basicActions.waitForElementToBePresent(manageAssocBrokersSendInvite,100);
             softAssert.assertEquals(manageAssocBrokersSendInvite.getText(),"Send Invite");
-        } else if (expectedState.equals("is not")) {
+        } else if (expectedState.equals("changed to Remove")) {
             basicActions.waitForElementToBePresent(manageAssocBrokersRemoveBroker,100);
             softAssert.assertEquals(manageAssocBrokersRemoveBroker.getText(),"Remove");
         }

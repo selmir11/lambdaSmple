@@ -16,7 +16,7 @@ Feature: Verify agency owner broker invite in Broker Portal
     Then I click Agency Dashboard
     Then I click the Manage Brokers button
     And I search for a broker named "oneninethreeone"
-    Then I validate the Send Invite link "is" displayed
+    Then I validate the Send Invite link is "displayed"
     Then I send the invite to join my agency
     Then I click Go Back on the Manage Associated Brokers page
     Then I click the Manage Brokers button
@@ -55,6 +55,6 @@ Feature: Verify agency owner broker invite in Broker Portal
     Then I click Agency Dashboard
     Then I click the Manage Brokers button
     And I search for a broker named "oneninethreeone"
-    Then I validate the Send Invite link "is not" displayed
+    Then I validate the Send Invite link is "changed to Remove"
     Then I remove the broker from my agency
     Then I click on broker userName and logout
