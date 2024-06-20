@@ -34,6 +34,7 @@ public class MyAgencyPage {
     public void denyAgencyInvite(){
         basicActions.waitForElementToBePresent(denyAgencyInviteLink, 10);
         softAssert.assertEquals(denyAgencyInviteLink.getText(),"Deny");
+        softAssert.assertAll();
         denyAgencyInviteLink.click();
     }
 
