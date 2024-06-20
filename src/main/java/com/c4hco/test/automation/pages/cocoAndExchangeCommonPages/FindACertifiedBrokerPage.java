@@ -438,13 +438,10 @@ public class FindACertifiedBrokerPage {
         basicActions.waitForElementToBePresent(currentBrokerName,10);
         basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
         basicActions.waitForElementToBePresent(currentAgencyName,10);
-        String cBrokerName = currentBrokerName.getText();
-        String cLicenseNumber = currentBrokerLicenceNumber.getText();
-        String cAgencyName = currentAgencyName.getText();
         BrokerDetails broker = new BrokerDetails();
-        broker.setBroker_name(cBrokerName);
-        broker.setBroker_lic_num(cLicenseNumber);
-        broker.setAgencyName(cAgencyName);
+        broker.setBroker_name(currentBrokerName.getText());
+        broker.setBroker_lic_num(currentBrokerLicenceNumber.getText());
+        broker.setAgencyName(currentAgencyName.getText());
         SharedData.setBroker(broker);
     }
 
