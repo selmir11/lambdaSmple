@@ -132,9 +132,10 @@ public class TellUsAboutAdditionalMemberPage {
     }
       public void setSelectRelationship(String Relation){
         basicActions.waitForElementToBePresent(selectRelationship, 15);
-
         Select dropdown = new Select(selectRelationship);
         dropdown.selectByVisibleText(Relation);
+        List<MemberDetails> memberList = SharedData.getMembers();
+        memberList.get(memberList.size()-1).setRelation_to_subscriber(Relation);
     }
 
     public void setSelectRelationship1(String Relation){

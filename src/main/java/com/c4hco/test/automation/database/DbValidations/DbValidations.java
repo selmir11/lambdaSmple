@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
+import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 
 public class DbValidations {
@@ -131,11 +132,12 @@ public class DbValidations {
      }
        softAssert.assertAll();
     }
-
-    public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        subscriber.getRelation_to_subscriber();
-        // Based on relationship to subscriber - get the code based on the requirement and validate.
-        //  softAssert.assertAll();
+    public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity) {
+        List<MemberDetails> memberList = SharedData.getMembers();
+        for (MemberDetails member : memberList) {
+            softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()) ,ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
+            }
+        softAssert.assertAll();
     }
     public String getCurrentdate(){
         LocalDate currentDate = LocalDate.now();
