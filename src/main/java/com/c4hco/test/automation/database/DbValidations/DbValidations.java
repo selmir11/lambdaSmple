@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
@@ -135,12 +134,8 @@ public class DbValidations {
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity) {
         List<MemberDetails> memberList = SharedData.getMembers();
         for (MemberDetails member : memberList) {
-            if (!ob834Entity.getIndividual_rel_code().equals("18") && member.getFirstName().equals(ob834Entity.getMember_first_name()) ) {
-                    softAssert.assertEquals(ob834Entity.getIndividual_rel_code(),getCodeForRelationship(member.getRelation_to_subscriber()), "Member Relationship Code is Incorrect");
-            } else {
-                softAssert.assertEquals(ob834Entity.getIndividual_rel_code(),getCodeForRelationship(subscriber.getRelation_to_subscriber()), "Subscriber Relationship Code is incorrect");
+            softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()) ,ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
             }
-        }
         softAssert.assertAll();
     }
     public String getCurrentdate(){
