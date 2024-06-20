@@ -4,8 +4,6 @@ import com.c4hco.test.automation.pages.exchPages.WhoAreYouPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
-import java.text.ParseException;
-
 public class WhoAreYouPageSteps {
     WhoAreYouPage whoAreYouPage = new WhoAreYouPage(WebDriverManager.getDriver());
 
