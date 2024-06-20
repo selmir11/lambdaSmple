@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
+import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 
 public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
@@ -133,17 +134,11 @@ public class DbValidations {
     }
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity) {
         List<MemberDetails> memberList = SharedData.getMembers();
-        int memberCount = memberList.size();
-        System.out.println(memberCount);
         for (MemberDetails member : memberList) {
-            String relationshipCode = member.getRelationshipCode_to_subscriber();
-            if (!Objects.equals(ob834Entity.getIndividual_rel_code(), "18")) {
-                if (member.getFirstName().equals(ob834Entity.getMember_first_name())) {
-                    softAssert.assertEquals(ob834Entity.getIndividual_rel_code(), relationshipCode, "Member Relationship Code is Incorrect");
-                }
-            }
-            else {
-                softAssert.assertEquals(ob834Entity.getIndividual_rel_code(), subscriber.getRelationshipCode_to_subscriber(), "Subscriber Relationship Code is incorrect");
+            if (!ob834Entity.getIndividual_rel_code().equals("18") && member.getFirstName().equals(ob834Entity.getMember_first_name()) ) {
+                    softAssert.assertEquals(ob834Entity.getIndividual_rel_code(),getCodeForRelationship(member.getRelation_to_subscriber()), "Member Relationship Code is Incorrect");
+            } else {
+                softAssert.assertEquals(ob834Entity.getIndividual_rel_code(),getCodeForRelationship(subscriber.getRelation_to_subscriber()), "Subscriber Relationship Code is incorrect");
             }
         }
         softAssert.assertAll();

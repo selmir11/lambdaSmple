@@ -49,7 +49,7 @@ Feature: Seed03 - Exchange
     And I enter member details with "03021995" date of birth
     And I select "Female" as member's sex option
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship to Primary Member option
+    And I select "Spouse" as relationship option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
