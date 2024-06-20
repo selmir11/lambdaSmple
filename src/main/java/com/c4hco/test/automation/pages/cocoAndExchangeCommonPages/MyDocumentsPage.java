@@ -49,7 +49,7 @@ public class MyDocumentsPage {
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
                 softAssert.assertEquals(myDocumentsTitle.getText(),"My Documents and Letters");
                 softAssert.assertEquals(myDocumentsSubTitle.getText(),"Past Documents and Letters");
-                softAssert.assertEquals(documentsInfoMessage.getText(),"You do not have any Documents or Letters at this time");
+                softAssert.assertEquals(documentsInfoMessage.getText(),"IND_Welcome Message (AM-001-01)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
