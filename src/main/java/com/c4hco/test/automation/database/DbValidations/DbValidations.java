@@ -11,12 +11,8 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -169,24 +165,13 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public String dateParser(String string1){
-        DateFormat dateFormatIn = new SimpleDateFormat("MMddyyyy");
-        DateFormat dateFormatOut = new SimpleDateFormat("yyyyMMdd");
-        Date date = null;
-        try {
-            date = dateFormatIn.parse(string1);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        return dateFormatOut.format(date) ;
-    }
-
     public void validatePersonalDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
+        String dateFormatted = subscriber.getDob().substring(4, 8) + subscriber.getDob().substring(0, 2) + subscriber.getDob().substring(2, 4);
         softAssert.assertEquals(subscriber.getFirstName(), ob834Entity.getMember_first_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getLastName(), ob834Entity.getMember_last_name(), "member firstname did not match");
         softAssert.assertEquals(subscriber.getMiddleName(), ob834Entity.getMember_middle_name(), "member middle did not match");
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
-        softAssert.assertEquals(dateParser(subscriber.getDob()), ob834Entity.getMember_dob(), "dob did not match");
+        softAssert.assertEquals(dateFormatted, ob834Entity.getMember_dob(), "dob did not match");
         softAssert.assertEquals(ob834Entity.getMember_gender(), subscriber.getGender().charAt(0) , "gender did not match");
         softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()): "7" ,ob834Entity.getMember_race(),"Race did not match");
         softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
