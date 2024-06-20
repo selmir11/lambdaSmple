@@ -245,7 +245,6 @@ public class CreateAccountPage {
         phoneNumber.sendKeys(subscriber.getPhoneNumber());
         String primaryPhone = subscriber.getPhoneNumber().replaceAll("-", "");
         subscriber.setPhoneNumber(primaryPhone);
-        subscriber.setAlternatePhNum(primaryPhone);
         password.sendKeys(subscriber.getPassword());
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
