@@ -48,8 +48,10 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-    @FindBy(css = "svg.svg-inline--fa.fa-angle-down.fa-w-10.fa-2x")
+    @FindBy(xpath = "(//div[@class='documents-notices-content-container']//div//div//span)[1]")
     WebElement expandDownloadEnrolmentDocument;
+    @FindBy(css = "a.btn-second-action-button.download-button")
+    WebElement downloadEnrolmentDoc;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -167,7 +169,7 @@ public class MyDocumentsPage {
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
                 softAssert.assertEquals(myDocumentsTitle.getText(),"My Documents and Letters");
                 softAssert.assertEquals(myDocumentsSubTitle.getText(),"Past Documents and Letters");
-                softAssert.assertEquals(documentsInfoMessage.getText(),"You do not have any Documents or Letters at this time");
+                softAssert.assertEquals(documentsInfoMessage.getText(),"IND_Welcome Message (AM-001-01)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -193,5 +195,18 @@ public class MyDocumentsPage {
         basicActions.scrollToElement(documentsInfoMessage);
         softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
         softAssert.assertAll();
+
+    public void goBackToWelcomePage(){
+        basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
+        basicActions.click(goBackWelcomePage);
+    }
+    public  void downloadEnrolmentDocument() {
+        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
+        expandDownloadEnrolmentDocument.click();
+        basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
+        basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
+        downloadEnrolmentDoc.click();
+
     }
 }
