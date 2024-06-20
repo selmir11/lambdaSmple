@@ -40,8 +40,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.downloadDocument(docType);
     }
 
-    @Then("I validate {string} notice")
-    public void iValidateNotice(String expectedText) throws IOException {
-        myDocumentsPage.verifyPDFText(expectedText);
+    @Then("I validate {string} notice in {string}")
+    public void iValidateNotice(String expectedText, String language) throws IOException {
+        myDocumentsPage.verifyPDFText(expectedText, language);
     }
 }

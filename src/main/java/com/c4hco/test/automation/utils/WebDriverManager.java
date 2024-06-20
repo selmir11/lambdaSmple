@@ -5,11 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.HashMap;
 import java.util.Map;
-import com.c4hco.test.automation.sftpConfig.SftpUtil;
 
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
 public class WebDriverManager {
     private static WebDriver driver;
@@ -28,20 +25,10 @@ public class WebDriverManager {
     private static WebDriver initializeDriver() {
         // Create a map to store the preferences
         Map<String, Object> prefs = new HashMap<>();
-        SftpUtil sftpUtil = new SftpUtil();
-
-        String localPath = sftpUtil.getLocalSftpDownloadPath();
-
-        // Set the download directory
-        prefs.put("download.default_directory", localPath);
-
         // Disable the download prompt
         prefs.put("download.prompt_for_download", false);
         prefs.put("profile.default_content_settings.popups", 0);
         ChromeOptions options = new ChromeOptions();
-
-        // Create a map to store the preferences
-        Map<String, Object> prefs = new HashMap<>();
 
         BasicActions basicActions = new BasicActions();
 
@@ -50,7 +37,6 @@ public class WebDriverManager {
 
         // Set the download directory
         prefs.put("download.default_directory", absolutePath);
-
         prefs.put("savefile.default_directory", absolutePath);
 
         // Disable the download prompt
@@ -67,7 +53,6 @@ public class WebDriverManager {
         options.addArguments("--safebrowsing-disable-download-protection");
         options.setExperimentalOption("prefs", prefs);
 
-        driver = new ChromeDriver(options);
         return new ChromeDriver(options);
     }
 

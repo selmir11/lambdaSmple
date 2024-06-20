@@ -2,36 +2,31 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
-import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import com.jcraft.jsch.JSchException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
-
-import static com.c4hco.test.automation.utils.WebDriverManager.getDriver;
-import static java.awt.event.KeyEvent.VK_CONTROL;
 
 public class MyDocumentsPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
-    SftpUtil sftpUtil = new SftpUtil();
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -62,102 +57,158 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
         basicActions.click(goBackWelcomePage);
     }
+
     public  void downloadEnrolmentDocument() {
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         expandDownloadEnrolmentDocument.click();
+        basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
+        basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
+        downloadEnrolmentDoc.click();
+
     }
 
     public  void downloadDocument(String docType) throws AWTException, JSchException {
 //        docType example "Application Results"
-        String localPath = sftpUtil.getLocalSftpDownloadPath();
-        SharedData.setLocalPathToDownloadFile(localPath);
-        System.out.println("file path is "+localPath);
-
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
         WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::span[1]"));
         pastDocCarrot.click();
         WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::a[1]"));
         downloadButton.click();
-//        String remoteLocationFull = downloadButton.getAttribute("href");
-//        String remoteLocation = remoteLocationFull.substring(0, remoteLocationFull.length() - 6);
-////        String remoteLocation = downloadButton.getAttribute("pathname");
-//        String filename = remoteLocationFull.substring(remoteLocation.lastIndexOf('/') + 1);
-//        System.out.println("path is "+remoteLocation);
-//        System.out.println("file name is "+filename);
-//        sftpUtil.downloadFileWithSftp(remoteLocation, filename);
 
-        waitForDownloadToComplete(localPath, 30);
+        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 
-//    public boolean deleteExistingFiles(String downloadpath) {;
-//        File dir = new File(downloadpath);
-//        if (dir.exists() && dir.isDirectory()) {
-//            File[] files = dir.listFiles();
-//            for (File file : files) {
-//                if (file.isFile()) {
-//                    file.delete();
-//                    System.out.println(file);
-//                }
-//            }
-//        } else {
-//            return false;
-//        }
-//        return false;
-//    }
-//
-//    public  void downloadDocument(String docType) throws AWTException {
-////        docType example "Application Results"
-//        String downloadDir = "D:\\Users\\*\\Downloads\\";
-//        String username = System.getProperty("user.name");
-//        String downloadpath = downloadDir.replace("*", username);
-//        deleteExistingFiles(downloadpath);
-//        Map<String, Object> prefs = new HashMap<>();
-//        prefs.put("download.default_directory", downloadpath);
-//        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-//        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
-//        WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::span[1]"));
-//        pastDocCarrot.click();
-//        WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::a[1]"));
-//        downloadButton.click();
-//        basicActions.wait(2000);
-//        Robot robot = new Robot();
-//        robot.keyPress(KeyEvent.VK_ENTER);
-//        robot.keyRelease(VK_CONTROL);
-//        waitForDownloadToComplete(downloadpath, 30);
-//    }
+    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
+        File dir = new File(localPath);
+        File[] filesBefore = dir.listFiles();
+        long startTime = System.currentTimeMillis();
 
-    public static boolean waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
-        File file = new File(localPath);
-        for (int i = 0; i < timeoutInSeconds; i++) {
-            if (file.exists() && file.length() > 0) {
-                return true;
+        // Loop until the timeout or until a new file is found
+        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
+            File[] filesAfter = dir.listFiles();
+            if (filesAfter != null) {
+                for (File file : filesAfter) {
+                    if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
+                        if (file.length() > 0) {
+                            SharedData.setNoticeFileName(file.getName());
+                            return file.getName();
+                        }
+                    }
+                }
             }
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    private static boolean fileExists(File[] files, File file) {
+        if (files == null) {
+            return false;
+        }
+        for (File f : files) {
+            if (f.getName().equals(file.getName())) {
+                return true;
             }
         }
         return false;
     }
 
-    public boolean verifyPDFText(String expectedText) throws IOException {
-        String localPath = sftpUtil.getLocalSftpDownloadPath();
-        SharedData.setLocalPathToDownloadFile(localPath);
-//        PDDocument document = PDDocument.load(new File(filePath));
-//        PDFTextStripper pdfStripper = new PDFTextStripper();
-//        String pdfText = pdfStripper.getText(document);
-//        document.close();
-//        switch (expectedText){
-//            case "Application Results: Health First Colorado":
-//                return pdfText.equals("Texthere");
-//                break;
-//            default:
-//                throw new IllegalArgumentException("Invalid option: " + expectedText);
-//        }
-        return false;
+    public boolean verifyPDFText(String expectedText, String language) throws IOException {
+        String filePath = SharedData.getLocalPathToDownloadFile();
+        String fileName = SharedData.getNoticeFileName();
+        String pathAndName = filePath+"//"+fileName;
+        System.out.println("path and name is "+pathAndName);
+        // Read the PDF content using PDFBox
+        String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+
+        // Verify the text
+        switch (expectedText) {
+            case "Application Results: Health First Colorado":
+                switch (language){
+                    case "English":
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language))) {
+                            String[] pdfLines = pdfContent.split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColorado(language).split("\n");
+
+                            StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                            for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                                String pdfLine = pdfLines[i].trim();
+                                String expectedLine = expectedLines[i].trim();
+
+                                if (i == 3) { // Date on line 4 without the time
+                                    String pdfLineDateOnly = pdfLine.split(" at")[0].trim();
+                                    String expectedLineDateOnly = expectedLine.split(" at")[0].trim();
+
+                                    if (!pdfLineDateOnly.equals(expectedLineDateOnly)) {
+                                        differences.append("Difference at line 4 :\n");
+                                        differences.append("PDF line after processing: [").append(pdfLineDateOnly).append("]\n");
+                                        differences.append("Expected line............: [").append(expectedLineDateOnly).append("]\n");
+                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                    }
+                                }
+                                else if (!pdfLine.equals(expectedLine)) {
+                                    differences.append("Difference at line ").append(i + 1).append(":\n");
+                                    differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                    differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                    Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                }
+                            }
+                        }
+                        break;
+                    case "Spanish":
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language))) {
+                            String[] pdfLines = pdfContent.split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language).split("\n");
+
+                            StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                            for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                                String pdfLine = pdfLines[i].trim();
+                                String expectedLine = expectedLines[i].trim();
+
+                                if (i == 3) { // Date on line 4 without the time
+                                    String pdfLineDateOnly = pdfLine.split(" a las")[0].trim();
+                                    String expectedLineDateOnly = expectedLine.split(" a las")[0].trim();
+
+                                    if (!pdfLineDateOnly.equals(expectedLineDateOnly)) {
+                                        differences.append("Difference at line 4 :\n");
+                                        differences.append("PDF line after processing: [").append(pdfLineDateOnly).append("]\n");
+                                        differences.append("Expected line............: [").append(expectedLineDateOnly).append("]\n");
+                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                    }
+                                }
+                                else if (!pdfLine.equals(expectedLine)) {
+                                    differences.append("Difference at line ").append(i + 1).append(":\n");
+                                    differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                    differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                    Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + language);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + expectedText);
+        }
+        return true;
+    }
+
+    private static String extractTextFromPDF(Path pdfPath) throws IOException {
+        try (PDDocument document = PDDocument.load(new File(pdfPath.toString()))) {
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            return pdfStripper.getText(document).trim();
+        }
     }
 
                 //============================VALIDATION STEPS==============//
@@ -191,22 +242,9 @@ public class MyDocumentsPage {
      }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
-        basicActions.waitForElementToBePresent(documentsInfoMessage,100);
+        basicActions.waitForElementToBePresent(documentsInfoMessage, 100);
         basicActions.scrollToElement(documentsInfoMessage);
-        softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
+        softAssert.assertEquals(documentsInfoMessage.getText(), documentName);
         softAssert.assertAll();
-
-    public void goBackToWelcomePage(){
-        basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
-        basicActions.click(goBackWelcomePage);
-    }
-    public  void downloadEnrolmentDocument() {
-        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
-        expandDownloadEnrolmentDocument.click();
-        basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
-        basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
-        downloadEnrolmentDoc.click();
-
     }
 }

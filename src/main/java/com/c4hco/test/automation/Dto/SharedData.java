@@ -35,6 +35,7 @@ public class SharedData {
     @Getter @Setter private static BrokerDetails agencyOwner;
     @Getter @Setter private static BrokerDetails broker;
     @Getter @Setter private static BrokerDetails adminStaff;
+    @Getter @Setter private static String noticeFileName;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;

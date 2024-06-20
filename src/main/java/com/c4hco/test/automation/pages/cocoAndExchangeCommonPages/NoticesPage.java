@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 public class NoticesPage {
 
@@ -76,6 +75,12 @@ public class NoticesPage {
     List<WebElement> bodyText;
     @FindBy(xpath= "//*[@id='x_individualUsernameReminderBody']/p[3]/span/span") ///please call the Colorado Connect® Customer Service Center at 855-675-2626 (TTY:855-346-3432)
     WebElement bodyText2;
+    @FindBy(css = ".x_emailHeader p")
+    List<WebElement> emailHdrtxt;
+    @FindBy(css = "#x_recipientName > span")
+    WebElement emailDeartxt;
+    @FindBy(css = "#x_initialEligibilityNoticeBody p")
+    List<WebElement> initialEligibilityBodyTxt;
 
 
 
@@ -197,11 +202,11 @@ public class NoticesPage {
     }
 
     public void openAllNotices(String noticeNumber, String language) {
-        basicActions.wait(100);
+        basicActions.waitForElementToBePresent(deleteBtn,30);
+        basicActions.waitForElementToBePresent(EmailDate, 30);
         basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
-        basicActions.waitForElementToBePresent(EmailDate, 20);
         switch (language){
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
@@ -218,26 +223,58 @@ public class NoticesPage {
     }
 
 
-    public void VerifyTheNoticeText(String language) {
+    public void VerifyTheNoticeText(String noticeNumber, String language) {
+        switch (noticeNumber){
+            case "AM-016-01" :
+                VerifyTheAM01601NoticeText(language);
+            break;
+            case "ELG-101-01" :
+                VerifyTheELG10101NoticeText(language);
+            break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void VerifyTheAM01601NoticeText(String language) {
         switch (language){
             case "English" :
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect® is:"));
                 softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect® website and enter this username plus your password to log in to your account. ");
                 softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, ");
                 softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect® Customer Service Center at 855-675-2626 (TTY:855-346-3432)");
-            break;
+                softAssert.assertAll();
+                break;
             case "Spanish" :
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect® es:"));
                 softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect® y introduzca este nombre de usuario y su contraseña para ingresar en su cuenta.");
                 softAssert.assertEquals(bodyText.get(3).getText(),"Si no solicitó el envio por correo electrónico de su Nombre de usario, ");
                 softAssert.assertEquals(bodyText2.getText(),"llame al Centro de atención al cliente de Colorado Connect® al 855-675-2626 (TTY:855-346-3432) ");
-            break;
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
 
-
-
-
+    public void VerifyTheELG10101NoticeText(String language) {
+        switch (language){
+            case "English" :
+                softAssert.assertTrue(emailHdrtxt.get(0).getText().contains("ELG-101-01"));
+                softAssert.assertEquals(emailHdrtxt.get(2).getText(),SharedData.getPrimaryMember().getEmailId());
+                softAssert.assertEquals(emailDeartxt.getText(),SharedData.getPrimaryMember().getFullName());
+                softAssert.assertEquals(initialEligibilityBodyTxt.get(1).getText(),"Account Number: "+SharedData.getPrimaryMember().getAccount_id());
+                softAssert.assertAll();
+                break;
+            case "Spanish" :
+                softAssert.assertTrue(emailHdrtxt.get(0).getText().contains("ELG-101-01"));
+                softAssert.assertEquals(emailHdrtxt.get(2).getText(),SharedData.getPrimaryMember().getEmailId());
+                softAssert.assertEquals(emailDeartxt.getText(),SharedData.getPrimaryMember().getFullName());
+                softAssert.assertEquals(initialEligibilityBodyTxt.get(1).getText(),"N\u00FAmero de Cuenta: "+SharedData.getPrimaryMember().getAccount_id());
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 }
