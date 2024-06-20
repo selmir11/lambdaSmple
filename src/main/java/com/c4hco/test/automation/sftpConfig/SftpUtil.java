@@ -19,8 +19,8 @@ import java.util.Date;
 
 public class SftpUtil {
     private Session session;
-    Edi834Util edi834Util = new Edi834Util();
     SoftAssert softAssert = new SoftAssert();
+    Edi834Util edi834Util = new Edi834Util();
 
     public SftpUtil(){
     }
