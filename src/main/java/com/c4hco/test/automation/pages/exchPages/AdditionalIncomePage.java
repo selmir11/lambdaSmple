@@ -115,6 +115,7 @@ public class AdditionalIncomePage {
     public void selectNoneAddtlIncomeOption(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
         addtlIncomeOptionsCheckbox.get(12).click();
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
     public void clickContinue(){

@@ -83,6 +83,11 @@ public class AdminPortalSearchSteps {
     public void iEnterAnToSearchUser(String userdata,String type) {
         adminPortalSearchPage.enterUserData(userdata,type);
     }
+
+    @And("I enter an {string} in any env {string} {string} to search user")
+    public void iEnterAnInAnyEnvToSearchUser(String userdata, String QAType, String STGType) {
+        adminPortalSearchPage.enterUserDataAnyENV(userdata,QAType,STGType);
+    }
     @Then("I click on Search button in AP dashboard page")
     public void iClickOnSearchButtonInAPDashboardPage() {
         adminPortalSearchPage.clickSearch();
@@ -113,5 +118,8 @@ public class AdminPortalSearchSteps {
     public void iLogoutAdminPortal() {
         adminPortalSearchPage.logoutFromAdminPortalParentPage();
     }
+
+
+
 }
 

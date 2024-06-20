@@ -678,6 +678,9 @@ public class HeaderAndFooterPage {
             case "CoCo":
                 Assert.assertFalse(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is displayed");
                 break;
+            case "Exch":
+                Assert.assertFalse(basicActions.waitForElementToBePresent(userNameLinkExch, 30), "User name link is displayed");
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
@@ -687,6 +690,9 @@ public class HeaderAndFooterPage {
         switch (pageType) {
             case "CoCo":
                 Assert.assertTrue(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is NOT displayed");
+                break;
+            case "Exch":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(userNameLinkExch, 30), "User name link is NOT displayed");
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

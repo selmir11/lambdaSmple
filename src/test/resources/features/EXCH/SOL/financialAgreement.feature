@@ -4,7 +4,7 @@ Feature: UI Page Validation - Financial Agreement
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-533-WIP @FinancialAgreementPage
+  @SLER-533 @FinancialAgreementPage
   Scenario: Validate the test tool tip on the edit Dental Grouping page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -59,7 +59,7 @@ Feature: UI Page Validation - Financial Agreement
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "101 New dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "1000000" at frequency "Annually"
+    Then I enter company details with addressline1 as "101 New dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "2500000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -93,8 +93,6 @@ Feature: UI Page Validation - Financial Agreement
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate I am on the "Good News" page
-    And I click on No Thanks on good news page
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
@@ -106,8 +104,10 @@ Feature: UI Page Validation - Financial Agreement
     And I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
+    And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
+    And I click on Sign Out in the Header for "Elmo"
 

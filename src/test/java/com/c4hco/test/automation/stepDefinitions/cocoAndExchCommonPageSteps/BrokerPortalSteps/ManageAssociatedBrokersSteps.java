@@ -1,0 +1,31 @@
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BrokerPortalSteps;
+
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages.ManageAssociatedBrokersPage;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+
+public class ManageAssociatedBrokersSteps {
+    ManageAssociatedBrokersPage manageAssociatedBrokersPage = new ManageAssociatedBrokersPage(WebDriverManager.getDriver());
+
+    @And("I search for a broker named {string}")
+    public void manageBrokerSearch(String brokerName){
+        manageAssociatedBrokersPage.manageAssocBrokerSearch(brokerName);
+    }
+
+    @Then("I send the invite to join my agency")
+    public void sendAgencyInvite(){
+        manageAssociatedBrokersPage.manageAssocBrokerSendInvite();
+    }
+
+    @Then("I remove the broker from my agency")
+    public void removeBrokerFromAgency(){
+        manageAssociatedBrokersPage.manageAssocBrokerRemove();
+    }
+
+    @Then("I click Go Back on the Manage Associated Brokers page")
+    public void clickGoBackManageAssocBrokersPage(){
+        manageAssociatedBrokersPage.clickGoBackManageAssocBrokers();
+    }
+}
+

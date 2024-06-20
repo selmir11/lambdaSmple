@@ -95,6 +95,7 @@ public class DeductionsPage {
     public void selectNoneAddtlDeductionOption(){
         basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 20);
         addtlDeductionOptionsCheckbox.get(10).click();
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 

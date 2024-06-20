@@ -60,6 +60,32 @@ public class AdminPortalIndividualDashboardPage {
     WebElement dentalPlan;
     @FindBy(css = "div.manage-plans-title.header-2")
     WebElement managePlanHeader;
+    @FindBy(css = "label[for='selected-member-checkbox']")
+    WebElement selectedMember;
+    @FindBy(css = "#full-name")
+    WebElement memberFullName;
+    @FindBy(css = "#user-name")
+    WebElement userName;
+    @FindBy(css = "#phone-number")
+    WebElement memberPhone;
+    @FindBy(css = "#email-address")
+    WebElement memberEmail;
+    @FindBy(css = "#dob")
+    WebElement memberDob;
+    @FindBy(css = "body app-root div:nth-child(6)")
+    WebElement memberAddress;
+    @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
+    List<WebElement> titleOfContainer;
+    @FindBy(xpath = "//p[normalize-space()='Plans']")
+    WebElement plansTitle;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement summaryTitle;
+    @FindBy(xpath = "//p[normalize-space()='Eligibility']")
+    WebElement eligibilityTitle;
+    @FindBy(css = ".dashboardHeader-renewal")
+    WebElement renewalsTitle;
+    @FindBy(xpath = "//p[normalize-space()='Payloads']")
+    WebElement payloadsTitle;
 
 
     public void enterAgencyData(String agencyData, String type) {
@@ -131,4 +157,27 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(),data.get(2));
     }
+    public void validateSelectedMemberData()  {
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(selectedMember,30);
+        softAssert.assertTrue(selectedMember.isDisplayed());
+        softAssert.assertTrue(memberFullName.isDisplayed());
+        softAssert.assertTrue(userName.isDisplayed());
+        softAssert.assertTrue(memberEmail.isDisplayed());
+        softAssert.assertTrue(memberPhone.isDisplayed());
+        softAssert.assertTrue(memberDob.isDisplayed());
+        softAssert.assertTrue(memberAddress.isDisplayed());
+        softAssert.assertAll(); }
+    public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads)   {
+        basicActions.waitForElementToBePresent(plansTitle,30);
+
+        softAssert.assertEquals(plansTitle.getText(),plans);
+        softAssert.assertEquals(summaryTitle.getText(),summary);
+        softAssert.assertEquals(eligibilityTitle.getText(),eligibility);
+        softAssert.assertEquals(renewalsTitle.getText(),renewals);
+        softAssert.assertEquals(reportsTitle.getText(),reports);
+        softAssert.assertEquals(payloadsTitle.getText(),payloads);
+        softAssert.assertAll(); }
 }
+
+

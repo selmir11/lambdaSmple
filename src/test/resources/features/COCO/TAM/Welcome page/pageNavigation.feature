@@ -177,7 +177,6 @@ Feature: Navigation-Welcome Page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I validate I am on the "CoCo Welcome" page
     #Step1
     Then I validate I am on the "CoCo Welcome" page
     And I change the C4 url to "Welcome portal Error CoCo"

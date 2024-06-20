@@ -8,11 +8,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class MedicalPlansCoCoPage {
     private BasicActions basicActions;
+
+    Optional<Integer> optionalInt;
 
     public MedicalPlansCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -22,7 +27,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
-    @FindBy(css = "#SHP-MedicalPlanResults-Continue")
+    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
 
     @FindBy(id = "PlanResults-InsuranceCompany")
@@ -44,6 +49,12 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(id = "PlanResults-ComparePlans")
     WebElement selectCompareButton;
+
+    @FindBy(css = ".c4-type-header-sm")
+    List<WebElement> medicalPlanNamesList;
+
+    @FindBy(css = "pagination-template .pagination-next a")
+    WebElement nextPageArrow;
 
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
@@ -93,6 +104,41 @@ public class MedicalPlansCoCoPage {
         selectSecondComparebox.click();
         selectSThirdComparebox.click();
         selectCompareButton.click();
+    }
+
+    private Optional<Integer> checkIfPlanPresent(String planName) {
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
+        return IntStream.range(0, medicalPlanNamesList.size())
+                .filter(i -> medicalPlanNamesList.get(i).getText().equals(planName))
+                .boxed()
+                .findFirst();
+    }
+
+    private void clickPlanButton(int index){
+        String planID = "PlanResults-SelectThisPlan_" + index;
+        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        ePlanID.click();
+    }
+
+    private void paginateRight(){
+        basicActions.waitForElementToBePresent(nextPageArrow, 10);
+        Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
+        nextPageArrow.click();
+    }
+
+    public void selectCoCoMedicalplan(String planName){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setMedicalPlan(planName);
+        SharedData.setPrimaryMember(subscriber);
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
     }
 
 }
