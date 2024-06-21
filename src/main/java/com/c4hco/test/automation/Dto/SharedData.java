@@ -53,5 +53,6 @@ public class SharedData {
         planYear = null;
         groupDetails = null;
         dbName = null;
+        noticeFileName = null;
     }
 }
