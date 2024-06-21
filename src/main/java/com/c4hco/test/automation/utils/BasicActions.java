@@ -85,6 +85,25 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementToBeClickableWithRetries(WebElement webElement, int waitTime) {
+        int retries = 5; // Number of retries to handle stale elements
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
+                return true;
+            } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element is not clickable");
+                Assert.fail("Element is not clickable");
+                return false;
+            }
+        }
+        return false;
+    }
+
     public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
@@ -113,9 +132,27 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-          return false;
+            return false;
         }
         return true;
+    }
+
+    public Boolean waitForElementToBePresentWithRetries(WebElement webElement, int waitTime) {
+        int retries = 5; // Number of retries to handle stale element
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+                return true;
+            } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element is not present");
+                return false;
+            }
+        }
+        return false;
     }
 
     public Boolean waitForElementPresence(WebElement webElement, int waitTime) {
@@ -148,6 +185,24 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementListToBePresentWithRetries(List<WebElement> webElementList, int waitTime) {
+        int retries = 5; // Number of retries to handle stale elements
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
+                return true;
+            } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element list is not present");
+                return false;
+            }
+        }
+        return false;
+    }
+
     public void wait(int milliSeconds) {
         try {
             Thread.sleep(milliSeconds);
@@ -163,8 +218,14 @@ public class BasicActions {
                 .ignoring(NoSuchElementException.class);
 
         wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
 
-        element.click();
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+            element.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
     }
 
     public void clickById(String elementId){

@@ -86,7 +86,8 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalsTitle;
     @FindBy(xpath = "//p[normalize-space()='Payloads']")
     WebElement payloadsTitle;
-
+    @FindBy(css = ".dropdown")
+    WebElement payloadsYears;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -132,7 +133,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertAll();     }
     public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
-        softAssert.assertEquals(agencyName.getText(),name);
+        softAssert.assertEquals(agencyName.getText(), name);
         softAssert.assertEquals(stateLicenseNumber.getText(), license);
         softAssert.assertEquals(agencyThin.getText(), thin);
         softAssert.assertEquals(agencyAgent.getText(), agent);
@@ -153,9 +154,9 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(managePlanHeader, 20);
         softAssert.assertEquals(managePlanHeader.getText(), data.get(0));
         basicActions.waitForElementToBePresent(medicalPlan, 20);
-        softAssert.assertEquals(medicalPlan.getText(),data.get(1));
+        softAssert.assertEquals(medicalPlan.getText(), data.get(1));
         basicActions.waitForElementToBePresent(dentalPlan, 20);
-        softAssert.assertEquals(dentalPlan.getText(),data.get(2));
+        softAssert.assertEquals(dentalPlan.getText(), data.get(2));
     }
     public void validateSelectedMemberData()  {
         basicActions.switchToParentPage("C4HCO Admin Portal");
@@ -169,14 +170,59 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(memberAddress.isDisplayed());
         softAssert.assertAll(); }
     public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads)   {
-        basicActions.waitForElementToBePresent(plansTitle,30);
+        basicActions.waitForElementToBePresent(plansTitle, 30);
 
-        softAssert.assertEquals(plansTitle.getText(),plans);
-        softAssert.assertEquals(summaryTitle.getText(),summary);
-        softAssert.assertEquals(eligibilityTitle.getText(),eligibility);
-        softAssert.assertEquals(renewalsTitle.getText(),renewals);
-        softAssert.assertEquals(reportsTitle.getText(),reports);
-        softAssert.assertEquals(payloadsTitle.getText(),payloads);
+        softAssert.assertEquals(plansTitle.getText(), plans);
+        softAssert.assertEquals(summaryTitle.getText(), summary);
+        softAssert.assertEquals(eligibilityTitle.getText(), eligibility);
+        softAssert.assertEquals(renewalsTitle.getText(), renewals);
+        softAssert.assertEquals(reportsTitle.getText(), reports);
+        softAssert.assertEquals(payloadsTitle.getText(), payloads);
+        softAssert.assertAll();
+    }
+
+    public void verifyPayloadsContainer() {
+        basicActions.waitForElementToBePresent(payloadsTitle, 30);
+        softAssert.assertTrue(payloadsTitle.isDisplayed());
+        softAssert.assertAll();
+        WebElement table = basicActions.getDriver().findElement(By.cssSelector(".group-content"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        String[][] QAExpectedData = {
+                {"10/21/2020 11:49", "NES", "QLCE", "47015183", "", "Contact", "80123", "View"},
+                {"10/21/2020 11:37", "NES", "QLCE", "47015183", "", "Contact", "80123", "View"},
+        };
+        String[][] STGExpectedData = {
+                {"08/27/2020 15:21", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80222"},
+                {"08/27/2020 15:17", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80205"},
+                {"08/27/2020 15:13", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80205"},
+                {"06/01/2020 14:31", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80911"},
+                {"06/01/2020 14:22", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80205"},
+        };
+
+        if (SharedData.getEnv().equals("qa")) {
+            for (int i = 0; i < QAExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < QAExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        } else {
+            for (int i = 0; i < STGExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < STGExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        }
+    }
+    public void  verifyYears() {
+        basicActions.waitForElementToBePresent(payloadsYears, 30);
+        softAssert.assertEquals(payloadsYears.getText(),"All Payloads");
         softAssert.assertAll(); }
 }
 

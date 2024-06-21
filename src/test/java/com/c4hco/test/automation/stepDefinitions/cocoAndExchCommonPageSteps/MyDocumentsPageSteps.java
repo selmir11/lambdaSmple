@@ -43,5 +43,29 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate {string} notice in {string}")
     public void iValidateNotice(String expectedText, String language) throws IOException {
         myDocumentsPage.verifyPDFText(expectedText, language);
+
+    @And("I click on upload another document")
+    public void iClickOnUploadAnotherDocument() {
+        myDocumentsPage.clickUploadAnotherDocument();
+    }
+
+    @And("I validate Modal texts on upload document pop up")
+    public void iValidateModalTextsOnUploadDocumentPopUp() {
+        myDocumentsPage.textValidate();
+    }
+
+    @And("I close button to close modal")
+    public void iCloseButtonToCloseModal() {
+        myDocumentsPage.closemodal();
+    }
+
+    @And("I validate upload another document modal texts in spanish")
+    public void iValidateUploadAnotherDocumentModalTextsInSpanish() {
+        myDocumentsPage.spanishModalText();
+    }
+
+    @And("I click on upload another document in spanish")
+    public void iClickOnUploadAnotherDocumentInSpanish() {
+        myDocumentsPage.clickuploaddocSpanish();
     }
 }
