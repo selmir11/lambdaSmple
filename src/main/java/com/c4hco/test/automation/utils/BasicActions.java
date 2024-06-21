@@ -436,6 +436,7 @@ public class BasicActions {
                 System.out.println("Failed to create the report folder.");
             }
         }
+        SharedData.setLocalPathToDownloadFile(noticesFolderPath);
         return noticesFolderPath;
     }
 }

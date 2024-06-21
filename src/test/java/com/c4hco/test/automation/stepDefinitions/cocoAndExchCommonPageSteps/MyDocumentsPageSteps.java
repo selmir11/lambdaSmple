@@ -2,8 +2,12 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+
+import java.awt.*;
+import java.io.IOException;
 
 public class MyDocumentsPageSteps {
 
@@ -29,6 +33,16 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I click on download enrolment document")
     public void iClickOnEnrolmentDocumentTodownload(){
         myDocumentsPage.downloadEnrolmentDocument();
+    }
+
+    @And("I click on download {string} document")
+    public void iDownloadDocument(String docType) throws AWTException, JSchException {
+        myDocumentsPage.downloadDocument(docType);
+    }
+
+    @Then("I validate {string} notice in {string}")
+    public void iValidateNotice(String expectedText, String language) throws IOException {
+        myDocumentsPage.verifyPDFText(expectedText, language);
     }
 
     @And("I click on upload another document")
