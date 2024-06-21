@@ -54,7 +54,7 @@ public class EmploymentIncomePage {
     WebElement errorMessage;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton,30);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton,30);
         basicActions.click(saveAndContinueButton);
     }
 
