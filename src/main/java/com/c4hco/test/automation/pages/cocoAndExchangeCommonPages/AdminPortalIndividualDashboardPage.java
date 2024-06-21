@@ -74,6 +74,8 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberDob;
     @FindBy(css = "body app-root div:nth-child(6)")
     WebElement memberAddress;
+    @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
+    List<WebElement> titleOfContainer
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
     @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
@@ -140,7 +142,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(agencyPhone.getText(), phone);
         softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
         softAssert.assertAll();     }
-    public void validateAgencyAddress(String address) {
+    public void validateAgencyAddress(String address){
         basicActions.waitForElementToBePresent(agencyAddress, 10);
         softAssert.assertTrue(agencyAddress.isDisplayed());
         softAssert.assertAll(); }
@@ -156,7 +158,7 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(), data.get(2));
     }
-    public void validateSelectedMemberData() {
+    public void validateSelectedMemberData()  {
         basicActions.switchToParentPage("C4HCO Admin Portal");
         basicActions.waitForElementToBePresent(selectedMember, 30);
         softAssert.assertTrue(selectedMember.isDisplayed());
