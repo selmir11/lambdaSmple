@@ -52,7 +52,15 @@ public class AdminPortalIndividualDashboardSteps {
         adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(plans, renewals, summary, reports, eligibility, payloads);
     }
     @Then("I validate Selected Member data on the far left side")
-    public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
+    public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();
+    }
+    @And("I Verify Payload Information Container")
+    public void iVerifyPayloadInformationContainer() {
+        adminPortalIndividualDashboardPage.verifyPayloadsContainer();
+    }
+    @Then("I verify the option in years displays")
+    public void iVerifyYears() {
+        adminPortalIndividualDashboardPage.verifyYears();   }
 }
 
 
