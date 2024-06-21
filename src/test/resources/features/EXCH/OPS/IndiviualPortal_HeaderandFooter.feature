@@ -58,7 +58,7 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I go to the previous browser page
 
   @SLER-703
-  Scenario: My documents Indiviual porter Header , Footer, Title and dropdown display validation
+  Scenario: My documents Indiviual porter upload doc modal text for English/Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
