@@ -43,6 +43,7 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate {string} notice in {string}")
     public void iValidateNotice(String expectedText, String language) throws IOException {
         myDocumentsPage.verifyPDFText(expectedText, language);
+    }
 
     @And("I click on upload another document")
     public void iClickOnUploadAnotherDocument() {

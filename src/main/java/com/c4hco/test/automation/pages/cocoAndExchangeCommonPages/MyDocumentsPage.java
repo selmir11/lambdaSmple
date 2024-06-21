@@ -119,21 +119,6 @@ public class MyDocumentsPage {
         accountOverviewPage.clickHereLinks("My Documents");
     }
 
-    public void goBackToWelcomePage(){
-        basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
-        basicActions.click(goBackWelcomePage);
-    }
-
-    public  void downloadEnrolmentDocument() {
-        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
-        expandDownloadEnrolmentDocument.click();
-        basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
-        basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
-        downloadEnrolmentDoc.click();
-
-    }
-
     public  void downloadDocument(String docType) throws AWTException, JSchException {
 //        docType example "Application Results"
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
