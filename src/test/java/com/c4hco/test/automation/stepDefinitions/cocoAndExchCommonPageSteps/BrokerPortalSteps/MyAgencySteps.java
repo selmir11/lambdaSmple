@@ -22,4 +22,19 @@ public class MyAgencySteps {
     public void clickGoBackManageAssocBrokersPage(){
         myAgencyPage.clickGoBackManageAssocBrokers();
     }
+
+    @Then("I approve the second agency invite")
+    public void approveSecondInvite(){
+        myAgencyPage.approveSecondAgencyInvite();
+    }
+
+    @And("I verify the unable to accept more than one agency invite error message")
+    public void verifyUnableAcceptMultipleInvites(){
+        myAgencyPage.verifyUnableToAcceptMultipleInvites();
+    }
+
+    @Then("I click OK to the agency invite error message")
+    public void clickOkAgencyErrorMessage(){
+        myAgencyPage.clickOkAgencyInviteErrorMessage();
+    }
 }
