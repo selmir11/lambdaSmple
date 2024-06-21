@@ -60,6 +60,9 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify the option in years displays")
     public void iVerifyYears() {
         adminPortalIndividualDashboardPage.verifyYears();   }
+    @And("I verify message displays in Renewals")
+    public void iVerifyText() {
+        adminPortalIndividualDashboardPage.verifyText();   }
 }
 
 
