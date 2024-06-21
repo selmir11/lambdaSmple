@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -46,6 +48,8 @@ public class StartShoppingPage {
 
     public void isMemberTobaccoUser(String member, String YNTobaccoUser) {
         basicActions.waitForElementListToBePresent(btnNoAndYes,20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> memberList = SharedData.getMembers();
         switch (member) {
             case "member1":
                 switch (YNTobaccoUser) {
@@ -58,6 +62,7 @@ public class StartShoppingPage {
                     default:
                         throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
                 }
+                subscriber.setTobacco_user(YNTobaccoUser);
                 break;
             case "member2":
                 switch (YNTobaccoUser) {
@@ -70,6 +75,7 @@ public class StartShoppingPage {
                     default:
                         throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
                 }
+                memberList.get(memberList.size()-1).setTobacco_user(YNTobaccoUser);
                 break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + member);
