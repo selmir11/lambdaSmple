@@ -394,7 +394,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 helpDrawerContactUsLink.click();
                 break;
             case "Employer Coverage Tool 1":
-                basicActions.waitForElementToBePresent(helpDrawerParagraphLnk1, 10);
+                basicActions.waitForElementToBePresentWithRetries(helpDrawerParagraphLnk1, 10);
                 basicActions.scrollToElement(helpDrawerParagraphLnk1);
                 helpDrawerParagraphLnk1.click();
                 break;

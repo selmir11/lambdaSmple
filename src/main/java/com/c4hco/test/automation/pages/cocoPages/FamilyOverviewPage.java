@@ -46,7 +46,7 @@ public class FamilyOverviewPage {
     }
 
     public void clickPrimaryEditUpdateLink() {
-        basicActions.waitForElementListToBePresent(editUpdateLink, 30);
+        basicActions.waitForElementListToBePresentWithRetries(editUpdateLink, 30);
         editUpdateLink.get(0).click();
     }
 

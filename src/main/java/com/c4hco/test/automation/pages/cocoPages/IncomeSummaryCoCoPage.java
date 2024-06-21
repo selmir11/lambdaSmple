@@ -38,18 +38,18 @@ public class IncomeSummaryCoCoPage {
     WebElement getProjectedIncomeYes;
 
     public void clickprojectedIncomeNo(){
-        basicActions.waitForElementToBeClickable( projectedIncomeNo,15 );
+        basicActions.waitForElementToBeClickableWithRetries( projectedIncomeNo,15 );
         projectedIncomeNo.click();
         projectedIncomeNo.click();
     }
     public void verifyTotalAnnualIncome(String Amount){
-        basicActions.waitForElementToBePresent(totalAnnualIncome, 10);
+        basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
         softAssert.assertAll();
     }
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }
 
@@ -60,7 +60,7 @@ public class IncomeSummaryCoCoPage {
                 projectedIncomeButtons.get(0).click();
                 break;
             case "No":
-                basicActions.waitForElementListToBePresent(projectedIncomeButtons, 15);
+                basicActions.waitForElementListToBePresentWithRetries(projectedIncomeButtons, 15);
                 projectedIncomeButtons.get(1).click();
                 break;
             default:

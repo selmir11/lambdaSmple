@@ -347,6 +347,7 @@ public class BasicSteps {
                 break;
             case "Unauthorized" :
                 pageUrl = "/unauthorized";
+                break;
             case "Admin Portal Exclusion Reason Report" :
                 pageUrl = "/exclusions";
                 break;
