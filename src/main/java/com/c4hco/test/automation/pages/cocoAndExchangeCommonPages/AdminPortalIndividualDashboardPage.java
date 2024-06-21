@@ -128,9 +128,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(agencyContainerTitle.isDisplayed());
         basicActions.waitForElementToBePresent(memberAcctId, 10);
         softAssert.assertTrue(memberAcctId.isDisplayed());
-        softAssert.assertAll();
-    }
-
+        softAssert.assertAll();     }
     public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
         softAssert.assertEquals(agencyName.getText(), name);
@@ -141,20 +139,15 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(agencyWebsite.getText(), website);
         softAssert.assertEquals(agencyPhone.getText(), phone);
         softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
-        softAssert.assertAll();
-    }
-
+        softAssert.assertAll();     }
     public void validateAgencyAddress(String address) {
         basicActions.waitForElementToBePresent(agencyAddress, 10);
         softAssert.assertTrue(agencyAddress.isDisplayed());
-        softAssert.assertAll();
-    }
-
+        softAssert.assertAll(); }
     public void clickManagePlan() {
         basicActions.waitForElementToBeClickable(managePlanButton, 10);
         basicActions.click(managePlanButton);
     }
-
     public void verifyPlanDetails(List<String> data) {
         basicActions.waitForElementToBePresent(managePlanHeader, 20);
         softAssert.assertEquals(managePlanHeader.getText(), data.get(0));
@@ -163,7 +156,6 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(), data.get(2));
     }
-
     public void validateSelectedMemberData() {
         basicActions.switchToParentPage("C4HCO Admin Portal");
         basicActions.waitForElementToBePresent(selectedMember, 30);
