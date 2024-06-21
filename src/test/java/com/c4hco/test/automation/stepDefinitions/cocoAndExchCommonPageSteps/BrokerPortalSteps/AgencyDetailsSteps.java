@@ -88,4 +88,18 @@ public class AgencyDetailsSteps {
         agencyDetailsPage.validatePhoneFieldLettersNotAllowed();
     }
 
+    @Then("I validate the agency group tooltip text")
+    public void iValidateAgencyGroupTooltipText(){
+        agencyDetailsPage.validateAgencyGroupTooltipText();
+    }
+
+    @Then("I verify the Agency Group field is disabled")
+    public void iVerifyAgencyGroupDisabled(){
+        agencyDetailsPage.verifyAgencyGroupDisabled();
+    }
+
+    @Then("I click Cancel on the Agency Details page")
+    public void iClickCancelAgencyDetails(){
+        agencyDetailsPage.clickCancelAgencyDetails();
+    }
 }

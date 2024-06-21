@@ -42,4 +42,14 @@ public class DashboardPageSteps {
     public void clickMyAgencyViewLink(){
         dashboardPage.clickMyAgencyView();
     }
+
+    @Then("I click the Edit Agency Information link")
+    public void clickEditAgencyInformation(){
+        dashboardPage.clickEditAgencyInformation();
+    }
+
+    @Then("I click Edit in Account Summary")
+    public void clickEditAccountSummary(){
+        dashboardPage.clickEditAccountSummary();
+    }
 }
