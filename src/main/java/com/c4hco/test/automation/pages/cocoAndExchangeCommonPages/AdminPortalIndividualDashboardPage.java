@@ -75,7 +75,7 @@ public class AdminPortalIndividualDashboardPage {
     @FindBy(css = "body app-root div:nth-child(6)")
     WebElement memberAddress;
     @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
-    List<WebElement> titleOfContainer
+    List<WebElement> titleOfContainer;
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
     @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
