@@ -20,7 +20,7 @@ public class DashboardPage {
     WebElement completeProfile;
 
     @FindBy(id = "agency-manage-account-button")
-    WebElement AgencyCompleteProfile;
+    WebElement agencyCompleteProfile;
 
     @FindBy(xpath = "//a[@class='action-link']")
     WebElement c4ULink;
@@ -30,6 +30,12 @@ public class DashboardPage {
 
     @FindBy(xpath = "//a[normalize-space()='View']")
     WebElement myAgencyView;
+
+    @FindBy(xpath = "//a[@class='skipGroup']")
+    WebElement editAgencyInformation;
+
+    @FindBy(id = "agency-manage-account-button")
+    WebElement editAccountSummary;
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -53,8 +59,8 @@ public class DashboardPage {
     }
 
     public void clickAgencyCompleteProfile(){
-        basicActions.waitForElementToBePresent(AgencyCompleteProfile,10);
-        AgencyCompleteProfile.click();
+        basicActions.waitForElementToBePresent(agencyCompleteProfile,10);
+        agencyCompleteProfile.click();
     }
 
     public void clickC4ULink(){
@@ -75,5 +81,14 @@ public class DashboardPage {
         myAgencyView.click();
     }
 
+    public void clickEditAgencyInformation(){
+        basicActions.waitForElementToBePresent(editAgencyInformation, 10);
+        editAgencyInformation.click();
+    }
 
+    public void clickEditAccountSummary(){
+        basicActions.waitForElementToBePresent(editAccountSummary, 10);
+        softAssert.assertEquals(editAccountSummary.getText(), "Edit");
+        editAccountSummary.click();
+    }
 }
