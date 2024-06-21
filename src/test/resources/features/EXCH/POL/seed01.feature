@@ -191,7 +191,6 @@ Feature: Regression Tests that require Seed 1
     And I click on Sign Out in the Header for "NonElmo"
 #    And I validate the member details from policy tables
 #    And I validate member details from ob834_details table
-#    And I validate member details from ob834_details table
 #      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
 #      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
 #      |          021          | 021                 | 25                   |                          |                             |                    |
@@ -282,7 +281,6 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 #    And I validate the member details from policy tables
-#    And I validate member details from ob834_details table
 #    And I validate member details from ob834_details table
 #      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|  addl_maint_reason                      |
 #      |          001          | 021                 | AI                   | FINANCIAL_CHANGE                        |

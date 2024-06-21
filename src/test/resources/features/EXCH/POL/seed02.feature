@@ -226,7 +226,6 @@ Feature: Seed02 - Exchange
     And I click on Sign Out in the Header for "NonElmo"
 #    And I validate the member details from policy tables
 #    And I validate member details from ob834_details table
-#    And I validate member details from ob834_details table
 #      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|  addl_maint_reason                      |
 #      |          001          | 021                 | AI                   | FINANCIAL_CHANGE                        |
 #      |          021          | 021                 | EC                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
