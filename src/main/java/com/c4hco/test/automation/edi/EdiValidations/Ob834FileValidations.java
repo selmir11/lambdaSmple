@@ -18,11 +18,13 @@ public class Ob834FileValidations {
     Transaction transaction = null;
 
     public void validateOb834File(Ob834DetailsEntity entry){
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction = edi834TransactionDetails.getTransactionList().get(0);
         validateCtrlFnGrpSegment();
         validateSponsorPayerDetails();
-        validateAddlMaintReason();
+        validateAddlMaintReason(entry);
         validateInsSegment(entry);
-        validateDtpSegment();
+        validateDtpSegment(entry);
         validateHierarchyLevelSeg();
         validateNM1Seg();
         validatePerSeg();
@@ -51,15 +53,18 @@ public class Ob834FileValidations {
        System.out.println("n1Seg --"+n1Seg);
     }
 
-    public void validateAddlMaintReason(){
-     //   Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
-         List<List<String>> n1Seg = transaction.getMembersList().get(0).getN1();
-
+    public void validateAddlMaintReason(Ob834DetailsEntity entry){
+        List<List<String>> refSegList = transaction.getMembersList().get(0).getREF();
+        for (List<String> refSeg : refSegList) {
+            if (refSeg.get(0).equals("LX1") && refSeg.get(1).equals("17")){
+                softAssert.assertEquals(refSeg.get(3), entry.getAddl_maint_reason(),"Additional Maintenance reason does not match");
+            }
+        }
+        softAssert.assertAll();
     }
 
     public void validateInsSegment(Ob834DetailsEntity entry){
-        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        List<String> insSegment  = edi834TransactionDetails.getTransactionList().get(0).getMembersList().get(0).getINS().get(0);
+        List<String> insSegment  = transaction.getMembersList().get(0).getINS().get(0);
 
         softAssert.assertEquals(insSegment.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
         softAssert.assertEquals(insSegment.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
@@ -70,16 +75,19 @@ public class Ob834FileValidations {
         softAssert.assertAll();
     }
 
-    public void validateDtpSegment(){
-        // Benefit begin and end date and others
+    public void validateDtpSegment(Ob834DetailsEntity entry){
        System.out.println("DTP::"+transaction.getMembersList().get(0).getDTP());
        List<List<String>> dtpSegList = transaction.getMembersList().get(0).getDTP();
        for(List<String> dtpSeg: dtpSegList){
-           if(dtpSeg.contains("348")){
-               // validate benefit start date
+           if(dtpSeg.get(0).contains("348")){
+               softAssert.assertEquals(dtpSeg.get(2),entry.getBenefit_begin_date(),"DTP 348 does not match with benefit start date.");
+           }else if(dtpSeg.get(0).contains("349")){
+               softAssert.assertEquals(dtpSeg.get(2),entry.getBenefit_end_date(),"DTP 349 does not match with benefit end date.");
+           }else if(dtpSeg.get(0).contains("303")){
+               softAssert.assertEquals(dtpSeg.get(2),entry.getFinancial_effective_date(),"DTP 303 doe not match with financial effective date.");
            }
        }
-
+        softAssert.assertAll();
     }
 
     public void validateHierarchyLevelSeg(){

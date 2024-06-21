@@ -51,4 +51,5 @@ public class AddAddressPageSteps {
 
     @Then("I click continue on the Add Address page")
     public void clickContinue(){addAddressPage.saveContinue();}
+
 }

@@ -272,11 +272,15 @@ public class CreateAccountPage {
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
         phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        String primaryPhone = subscriber.getPhoneNumber().replaceAll("-", "");
+        subscriber.setPhoneNumber(primaryPhone);
         password.sendKeys(subscriber.getPassword());
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
         preferredLanguageButtonEnglish.click();
+        subscriber.setSpokenLanguage("English");
+        subscriber.setWrittenLanguage("English");
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);

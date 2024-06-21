@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
@@ -89,6 +90,12 @@ public class YourInformationPage {
 
     @FindBy(id = "communication-preference-button")
     WebElement  continueYourInformation;
+
+    @FindBy(id= "agencyOwner-yes")
+    WebElement disabledBookOfBusinessYes;
+
+    @FindBy(id= "agencyOwner-no")
+    WebElement disabledBookOfBusinessNo;
 
     private BasicActions basicActions;
     public YourInformationPage(WebDriver webDriver){
@@ -252,5 +259,11 @@ public class YourInformationPage {
     public void clickContinueYourInformationPage(){
         basicActions.waitForElementToBeClickable(continueYourInformation,10);
         continueYourInformation.click();
+    }
+
+    public void verifyBoBDisabled(){
+        basicActions.waitForElementToBePresent(disabledBookOfBusinessYes, 10);
+        Assert.assertFalse(disabledBookOfBusinessYes.isEnabled());
+        Assert.assertFalse(disabledBookOfBusinessNo.isEnabled());
     }
 }
