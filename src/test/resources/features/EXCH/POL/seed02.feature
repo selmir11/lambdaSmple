@@ -1,6 +1,6 @@
 Feature: Seed02 - Exchange
 
-  Scenario: Seed 02 For Exchange- Single Applicant with FA
+  Background: Seed 02 For Exchange- Single Applicant with FA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -97,11 +97,6 @@ Feature: Seed02 - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -110,6 +105,11 @@ Feature: Seed02 - Exchange
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
@@ -126,5 +126,112 @@ Feature: Seed02 - Exchange
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-133-WIP
+  Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Marriage" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    And I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    And I enter member details with "11281986" date of birth
+    And I select "Male" as member's sex option
+    And I select "Spouse" as relationship option
+    And I select "Yes" to Is Member Applying
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    And I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click on the RedIcon to add Member financial details
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as health insurance option and continue
+    Then I click continue on family overview page
+    Then I select "Marriage" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I set data from application history page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I select "member1" "No" for Tobacco Use
+    Then I select "member2" "No" for Tobacco Use
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    Then I select "Cigna Connect Colorado Option Bronze" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Cigna Dental Family + Pediatric"
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    And I click continue on initial payment page
+    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+#    And I validate the member details from policy tables
+#    And I validate member details from ob834_details table
+#    And I validate member details from ob834_details table
+#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|  addl_maint_reason                      |
+#      |          001          | 021                 | AI                   | FINANCIAL_CHANGE                        |
+#      |          021          | 021                 | EC                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
+#    And I download the files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 files should have the values
+
+
 
