@@ -160,7 +160,7 @@ public class AdminPortalIndividualDashboardPage {
     }
     public void validateSelectedMemberData()  {
         basicActions.switchToParentPage("C4HCO Admin Portal");
-        basicActions.waitForElementToBePresent(selectedMember, 30);
+        basicActions.waitForElementToBePresent(selectedMember,30);
         softAssert.assertTrue(selectedMember.isDisplayed());
         softAssert.assertTrue(memberFullName.isDisplayed());
         softAssert.assertTrue(userName.isDisplayed());
@@ -168,10 +168,8 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(memberPhone.isDisplayed());
         softAssert.assertTrue(memberDob.isDisplayed());
         softAssert.assertTrue(memberAddress.isDisplayed());
-        softAssert.assertAll();
-    }
-
-    public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads) {
+        softAssert.assertAll(); }
+    public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads)   {
         basicActions.waitForElementToBePresent(plansTitle, 30);
 
         softAssert.assertEquals(plansTitle.getText(), plans);
