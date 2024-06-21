@@ -31,4 +31,28 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.downloadEnrolmentDocument();
     }
 
+    @And("I click on upload another document")
+    public void iClickOnUploadAnotherDocument() {
+        myDocumentsPage.clickUploadAnotherDocument();
+    }
+
+    @And("I validate Modal texts on upload document pop up")
+    public void iValidateModalTextsOnUploadDocumentPopUp() {
+        myDocumentsPage.textValidate();
+    }
+
+    @And("I close button to close modal")
+    public void iCloseButtonToCloseModal() {
+        myDocumentsPage.closemodal();
+    }
+
+    @And("I validate upload another document modal texts in spanish")
+    public void iValidateUploadAnotherDocumentModalTextsInSpanish() {
+        myDocumentsPage.spanishModalText();
+    }
+
+    @And("I click on upload another document in spanish")
+    public void iClickOnUploadAnotherDocumentInSpanish() {
+        myDocumentsPage.clickuploaddocSpanish();
+    }
 }
