@@ -94,6 +94,8 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
@@ -108,6 +110,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
