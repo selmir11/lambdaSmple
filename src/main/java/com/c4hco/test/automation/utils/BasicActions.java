@@ -74,6 +74,18 @@ public class BasicActions {
     }
 
     public Boolean waitForElementToBeClickable(WebElement webElement, int waitTime) {
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
+        } catch (TimeoutException ignore) {
+            Log.info("Element is not clickable");
+            Assert.fail("Element is not clickable");
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean waitForElementToBeClickableWithRetries(WebElement webElement, int waitTime) {
         int retries = 5; // Number of retries to handle stale elements
         while (retries > 0) {
             try {
@@ -115,6 +127,17 @@ public class BasicActions {
     }
 
     public Boolean waitForElementToBePresent(WebElement webElement, int waitTime) {
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+        } catch (TimeoutException ignore) {
+            Log.info("Element is not present");
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean waitForElementToBePresentWithRetries(WebElement webElement, int waitTime) {
         int retries = 5; // Number of retries to handle stale element
         while (retries > 0) {
             try {
@@ -152,6 +175,17 @@ public class BasicActions {
     }
 
     public Boolean waitForElementListToBePresent(List<WebElement> webElementList, int waitTime) {
+        try {
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
+        } catch (TimeoutException ignore) {
+            Log.info("Element is not present");
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean waitForElementListToBePresentWithRetries(List<WebElement> webElementList, int waitTime) {
         int retries = 5; // Number of retries to handle stale elements
         while (retries > 0) {
             try {

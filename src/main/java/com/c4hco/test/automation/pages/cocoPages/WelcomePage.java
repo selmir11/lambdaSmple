@@ -67,8 +67,7 @@ public class WelcomePage {
         applyForCurrentYearButton.click(); }
 
     public void clickActionLinks(String actionLink) {
-        basicActions.waitForElementToBePresent(welcomeToConnectText,30);
-        basicActions.waitForElementListToBePresent(actionLinks, 30);
+        basicActions.waitForElementListToBePresentWithRetries(actionLinks, 5);
         switch(actionLink) {
             case "My Profile":
                 actionLinks.get(0).click();

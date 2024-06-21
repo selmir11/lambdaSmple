@@ -289,8 +289,7 @@ public class FindExpertHelpPage {
     }
 
     public void clickBackButton() {
-        basicActions.waitForElementToBeClickable(backButton, 30);
-        basicActions.scrollToElement(backButton);
+        basicActions.waitForElementToBeClickableWithRetries(backButton, 5);
         backButton.click();
     }
 

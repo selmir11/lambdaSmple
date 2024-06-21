@@ -38,7 +38,7 @@ public class DeclarationsAndSignaturePageCoCo {
     }
 
     public void submitApplicationCoCo()  {
-        basicActions.waitForElementToBeClickable(continueButton,20);
+        basicActions.waitForElementToBeClickableWithRetries(continueButton,20);
         basicActions.click(continueButton);
     }
 }

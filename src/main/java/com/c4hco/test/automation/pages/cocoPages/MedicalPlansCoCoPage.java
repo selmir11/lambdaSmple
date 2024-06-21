@@ -62,8 +62,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectContinueMedicalPlansCoCo() {
-        basicActions.waitForElementToBeClickable(continueButton, 20);
-        basicActions.scrollToElement(continueButton);
+        basicActions.waitForElementToBeClickableWithRetries(continueButton, 20);
         continueButton.click();
     }
 

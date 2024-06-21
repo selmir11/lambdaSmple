@@ -39,9 +39,9 @@ public class DeductionsCoCoPage {
     WebElement backButton;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresent(hdr_Deductions,50);
-        basicActions.waitForElementToBePresent(hdr_Deductions2,30);
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,30);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }
 
