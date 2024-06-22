@@ -88,6 +88,10 @@ public class AdminPortalIndividualDashboardPage {
     WebElement payloadsTitle;
     @FindBy(css = ".dropdown")
     WebElement payloadsYears;
+    @FindBy(css = ".subheader-planyear")
+    WebElement renewalsYear;
+    @FindBy(xpath = "//div[.='There is no Renewal data for this year']")
+    WebElement noRenewalsText;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -223,6 +227,12 @@ public class AdminPortalIndividualDashboardPage {
     public void  verifyYears() {
         basicActions.waitForElementToBePresent(payloadsYears, 30);
         softAssert.assertEquals(payloadsYears.getText(),"All Payloads");
+        softAssert.assertAll(); }
+    public void  verifyText() {
+        basicActions.waitForElementToBePresent(renewalsTitle, 10);
+        softAssert.assertEquals(renewalsTitle.getText(),"Renewals");
+        softAssert.assertEquals(renewalsYear.getText(),"Plan Year 2024");
+        softAssert.assertTrue(noRenewalsText.isDisplayed());
         softAssert.assertAll(); }
 }
 
