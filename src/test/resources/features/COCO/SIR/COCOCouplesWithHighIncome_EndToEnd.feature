@@ -81,7 +81,7 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "01011990", "Male", "Spouse", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "01011990", "Male", "Unrelated", "Unrelated", and applying "Yes"
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -93,7 +93,7 @@ Feature: Multiple Household Member - End to End Test
     And I click continue on the Ethnicity and race page
 
     And I select "Yes" employment option
-    And I enter "40,000.00" income amount
+    And I enter "60,000.00" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -110,3 +110,52 @@ Feature: Multiple Household Member - End to End Test
     And I select continue on the income Summary CoCo page
 
     Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page and continue with "01011990", "Male", "Unrelated", "Unrelated", "Spouse", and applying "Yes"
+    And I click continue on Tell us about additional members of your household page
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+
+    And I select "Yes" employment option
+    And I enter "50,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
+
+    Then I validate I am on the "CoCo life change event" page
+    And I select "MoveToCO" life change event
+    And I select continue on the LCE page
+
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on coco start shopping page
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "Grouping Members Medical" page
