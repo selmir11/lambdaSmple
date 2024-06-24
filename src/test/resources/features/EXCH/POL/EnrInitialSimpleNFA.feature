@@ -73,3 +73,7 @@ Feature: Simple NFA - Single Applicant
     And I click continue on initial payment page
 
     And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    And I click on ClickHere link for "My Documents"
+    And I click on download enrolment document
