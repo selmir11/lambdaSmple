@@ -54,6 +54,9 @@ public class HouseholdPage {
     @FindBy(css = "i.fa.fa-plus-circle.toggleAddlRow")
     WebElement tableDropdown;
 
+    @FindBy(css = "input[value='Edit'][alt='Submit']")
+    WebElement redIcon;
+
     @FindBy(css = "#accountID")
     WebElement accountIdTxt;
 
@@ -108,5 +111,9 @@ public class HouseholdPage {
         editIncomeLink.click();
     }
 
+    public void iClickRedIcon() {
+        basicActions.waitForElementToBePresent(redIcon, 15 );
+        redIcon.click();
+    }
 
     }
