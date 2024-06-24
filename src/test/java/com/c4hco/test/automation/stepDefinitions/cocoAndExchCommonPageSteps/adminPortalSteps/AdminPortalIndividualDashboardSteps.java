@@ -53,6 +53,16 @@ public class AdminPortalIndividualDashboardSteps {
     }
     @Then("I validate Selected Member data on the far left side")
     public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
+    @And("I Verify Payload Information Container")
+    public void iVerifyPayloadInformationContainer() {
+        adminPortalIndividualDashboardPage.verifyPayloadsContainer();
+    }
+    @Then("I verify the option in years displays")
+    public void iVerifyYears() {
+        adminPortalIndividualDashboardPage.verifyYears();   }
+    @And("I verify message displays in Renewals")
+    public void iVerifyText() {
+        adminPortalIndividualDashboardPage.verifyText();   }
 }
 
 
