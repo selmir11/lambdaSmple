@@ -36,4 +36,5 @@ public class EsMemberOhiEntity {
     String tricare_covg_end_soon_ind3;
     String peace_corps_enrl_covg_ind3;
     String peace_corps_covg_end_soon_ind3;
+    String retiree_end_voluntary_ind3;
 }

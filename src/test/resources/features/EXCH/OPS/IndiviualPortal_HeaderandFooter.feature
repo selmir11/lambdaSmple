@@ -1,4 +1,4 @@
-@SLER-700
+@OPS
 Feature: My documents Indiviual porter Header , Footer, Title and dropdown display validation
   Background:
     Given I open the login page on the "login" portal
@@ -56,3 +56,23 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I click on Find a Plan in the Header
     Then I validate I am on the "Application History" page
     And I go to the previous browser page
+
+  @SLER-703
+  Scenario: My documents Indiviual porter upload doc modal text for English/Spanish
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I verify the page text in "English" on the My Documents Page
+    And I click on upload another document
+    And I validate Modal texts on upload document pop up
+    And I close button to close modal
+    And I change the language from header to "Spanish"
+    And I verify the page text in "Spanish Headers" on the My Documents Page
+    And I click on upload another document in spanish
+    And I validate upload another document modal texts in spanish
+    And I close button to close modal
