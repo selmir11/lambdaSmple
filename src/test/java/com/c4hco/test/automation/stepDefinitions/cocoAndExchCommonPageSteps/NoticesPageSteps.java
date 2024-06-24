@@ -80,9 +80,9 @@ public class NoticesPageSteps {
         noticesPage.openAllNotices(noticeNumber, language);
     }
 
-    @And("I verify the notice Text for AM-016-01 in {string}")
-    public void iVerifyTheNoticeTextForAMIn( String language) {
-        noticesPage.VerifyTheNoticeText(language);
+    @And("I verify the notice Text for {string} in {string}")
+    public void iVerifyTheNoticeTextForAMIn(String noticeNumber, String language) {
+        noticesPage.VerifyTheNoticeText(noticeNumber, language);
     }
 
 

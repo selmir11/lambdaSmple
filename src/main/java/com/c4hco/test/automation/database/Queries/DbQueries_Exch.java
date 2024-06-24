@@ -5,7 +5,8 @@ import com.c4hco.test.automation.Dto.SharedData;
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
-    String agencyName = SharedData.getBroker().getAgencyName();
+    String agencyName = (SharedData.getBroker() != null && SharedData.getBroker().getAgencyName() != null) ? SharedData.getBroker().getAgencyName() : "";
+
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
