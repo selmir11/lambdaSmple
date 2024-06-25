@@ -191,7 +191,7 @@ public class HeaderAndFooterPage {
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementListToBePresent(centerHeaderLink, 25);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 25);
                 centerHeaderLink.get(0).click();
                 break;
             case "NonElmo":
@@ -199,7 +199,7 @@ public class HeaderAndFooterPage {
                 centerHeaderLinkNonElmo.get(0).click();
                 break;
             case "ExpertHelp":
-                basicActions.waitForElementListToBePresent(centerHeaderLinkExpertHelp, 15);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
                 centerHeaderLinkExpertHelp.get(0).click();
                 break;
             default:
@@ -232,7 +232,7 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickable(learnMoreLink, 15);
+        basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 15);
         learnMoreLink.click();
     }
 
@@ -321,7 +321,7 @@ public class HeaderAndFooterPage {
     public void clickLanguageDrp(String pageType) {
         switch (pageType){
             case "Exch":
-                basicActions.waitForElementToBePresent(languageDrp, 60);
+                basicActions.waitForElementToBePresentWithRetries(languageDrp, 60);
                 languageDrp.click();
                 break;
             case "Exch NonElmo":
@@ -346,9 +346,9 @@ public class HeaderAndFooterPage {
                 languageDrpOption.get(0).click();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(languageDrp, 80);
+                basicActions.waitForElementToBePresentWithRetries(languageDrp, 80);
                 languageDrp.click();
-                basicActions.waitForElementToBePresent(languageDrpOption.get(1), 80);
+                basicActions.waitForElementToBePresentWithRetries(languageDrpOption.get(1), 80);
                 languageDrpOption.get(1).click();
                 break;
             case "English NonElmo":
@@ -675,7 +675,7 @@ public class HeaderAndFooterPage {
     public void verifyUserNameLinkNotPresent(String pageType) {
         switch (pageType) {
             case "CoCo":
-                Assert.assertFalse(basicActions.waitForElementToBePresent(userNameLink, 30), "User name link is displayed");
+                Assert.assertFalse(basicActions.waitForElementToBePresentWithRetries(userNameLink, 30), "User name link is displayed");
                 break;
             case "Exch":
                 Assert.assertFalse(basicActions.waitForElementToBePresent(userNameLinkExch, 30), "User name link is displayed");
@@ -708,10 +708,13 @@ public class HeaderAndFooterPage {
                 APprivacyPolicyLink.click();
                 break;
             case "Individual Portal":
-                basicActions.waitForElementToBeClickable(privacyPolicyLink, 50);
+                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 50);
+                basicActions.waitForElementToBeClickable(termsOfUseLink, 50);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
         }
     }
 
@@ -725,6 +728,8 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(termsOfUseLink, 10);
                 termsOfUseLink.click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
         }
     }
 

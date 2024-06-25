@@ -26,6 +26,12 @@ public class OtherHealthInsurancePage {
 
     public void selectInsuranceOption(String insuranceOption){
         switch(insuranceOption){
+            case "HealthFirst":
+                basicActions.click(insuranceOptionsCheckBox.get(0));
+                break;
+            case "CHP":
+                basicActions.click(insuranceOptionsCheckBox.get(1));
+                break;
             case "ESI":
                 basicActions.click(insuranceOptionsCheckBox.get(2));
                 break;

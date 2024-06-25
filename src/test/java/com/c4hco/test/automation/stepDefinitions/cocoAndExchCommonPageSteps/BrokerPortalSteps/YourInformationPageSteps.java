@@ -112,4 +112,9 @@ public class YourInformationPageSteps {
     public void iClickContinueYourInformationPage(){
         yourInformationPage.clickContinueYourInformationPage();
     }
+
+    @Then("I verify the Book of Business buttons are disabled")
+    public void iVerifyBoBDisabled(){
+        yourInformationPage.verifyBoBDisabled();
+    }
 }

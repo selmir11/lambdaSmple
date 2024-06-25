@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 public class HouseholdPage {
@@ -50,13 +54,27 @@ public class HouseholdPage {
     @FindBy(css = "i.fa.fa-plus-circle.toggleAddlRow")
     WebElement tableDropdown;
 
+    @FindBy(css = "input[value='Edit'][alt='Submit']")
+    WebElement redIcon;
+
+    @FindBy(css = "#accountID")
+    WebElement accountIdTxt;
+
     public void clickAddMember() {
         addAdditionalMember.click();
     }
 
     public void clickContinue() {
         basicActions.waitForElementToBePresent(saveAndContinue,15);
+        getAccountId();
         saveAndContinue.click();
+    }
+
+    public void getAccountId() {
+        basicActions.waitForElementToBePresent(accountIdTxt,15);
+        String accId = accountIdTxt.getText().replace("Account ID: ", "");
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setAccount_id(new BigDecimal(accId));
     }
 
     public void iVerifyFamilyOverviewTablePresent() {
@@ -93,5 +111,9 @@ public class HouseholdPage {
         editIncomeLink.click();
     }
 
+    public void iClickRedIcon() {
+        basicActions.waitForElementToBePresent(redIcon, 15 );
+        redIcon.click();
+    }
 
     }
