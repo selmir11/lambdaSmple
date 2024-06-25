@@ -102,4 +102,19 @@ public class AgencyDetailsSteps {
     public void iClickCancelAgencyDetails(){
         agencyDetailsPage.clickCancelAgencyDetails();
     }
+
+    @And("I click the Hide This Address checkbox")
+    public void clickHideThisAddressCheckbox(){
+        agencyDetailsPage.clickHideAddressCheckbox();
+    }
+
+    @And("I click the Save and Submit button on the Agency Details page")
+    public void clickSaveSubmitAgencyDetails(){
+        agencyDetailsPage.clickAgencyDetailsSaveSubmit();
+    }
+
+    @Then("I validate the agency hide address tooltip text")
+    public void iValidateAgencyHidAddressTooltipText(){
+        agencyDetailsPage.validateAgencyHideAddressTooltipText();
+    }
 }
