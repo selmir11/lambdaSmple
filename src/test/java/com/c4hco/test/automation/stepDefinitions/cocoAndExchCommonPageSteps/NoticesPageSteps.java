@@ -11,6 +11,10 @@ public class NoticesPageSteps {
     public void i_open_outlook_Tab() {
             noticesPage.openOutlookTab();
     }
+    @Then("I open Password Reset Tab")
+    public void i_open_Password_Reset_Tab() {
+            noticesPage.openPasswordResetTab();
+    }
 
     @Then("I validate the verbiage of the MFA page")
     public void i_validate_the_varbiage_of_the_MFA_page() {
@@ -20,6 +24,11 @@ public class NoticesPageSteps {
     @Then("I sign in to outlook with Valid Credentials {string} and {string}")
     public void i_sign_to_outlook_with_valid_credentials_and(String email, String password) {
         noticesPage.signInEmail(email, password);
+    }
+
+    @Then("I sign out of Outlook")
+    public void iSignOutOutlook() {
+        noticesPage.signOutEmail();
     }
 
     @Then("I open the MFA notice")
@@ -65,4 +74,17 @@ public class NoticesPageSteps {
     public void iClickRequestNewCode() {
         noticesPage.clickRequestNewCode();
     }
+
+    @Then("I open the notice {string} in {string}")
+    public void iOpenTheNoticeIn(String noticeNumber, String language) {
+        noticesPage.openAllNotices(noticeNumber, language);
+    }
+
+    @And("I verify the notice Text for {string} in {string}")
+    public void iVerifyTheNoticeTextForAMIn(String noticeNumber, String language) {
+        noticesPage.VerifyTheNoticeText(noticeNumber, language);
+    }
+
+
+
 }

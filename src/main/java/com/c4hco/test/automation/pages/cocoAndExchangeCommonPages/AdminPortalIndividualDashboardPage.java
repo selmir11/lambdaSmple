@@ -1,6 +1,9 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,10 +26,93 @@ public class AdminPortalIndividualDashboardPage {
     WebElement reportsTitle;
     @FindBy(css = "body app-root h2:nth-child(2)")
     WebElement memberPrimary;
+    @FindBy(css = ".dashboardHeader1")
+    WebElement agencyContainerTitle;
     @FindBy(css = ".dashboardHeader2")
-    WebElement memberId;
+    WebElement memberAcctId;
     @FindBy(css = ".container-fluid .reports-container .link-section span:nth-child(1)")
     List<WebElement> reportViewButtons;
+    @FindBy(css = ".search-input-and-label .search-input")
+    List<WebElement> searchAgencynputList;
+    @FindBy(css = "tr[id='agency-name'] td[class='group-box-input']")
+    WebElement agencyName;
+    @FindBy(css = "tr[id='agency-license-number'] td[class='group-box-input']")
+    WebElement stateLicenseNumber;
+    @FindBy(css = "tr[id='agency-tin-ein'] td[class='group-box-input']")
+    WebElement agencyThin;
+    @FindBy(id = "agency-agent")
+    WebElement agencyAgent;
+    @FindBy(css = "#agency-email > td.group-box-input")
+    WebElement agencyEmail;
+    @FindBy(id = "agency-website")
+    WebElement agencyWebsite;
+    @FindBy(css = "tr[id='agency-address'] td[class='group-box-input']")
+    WebElement agencyAddress;
+    @FindBy(css = "tr[id='agency-prim-phone'] td[class='group-box-input']")
+    WebElement agencyPhone;
+    @FindBy(css = "tr[id='agency-language'] td[class='group-box-input']")
+    WebElement agencyPreferredLanguage;
+    @FindBy(id = "Individual Dashboard-Manage Plans")
+    WebElement managePlanButton;
+    @FindBy(css = "div.medical-plan-container.plan-container-fill div.plan-info-container>div")
+    WebElement medicalPlan;
+    @FindBy(css = "div.dental-plan-container.plan-container-fill div.plan-info-container>div")
+    WebElement dentalPlan;
+    @FindBy(css = "div.manage-plans-title.header-2")
+    WebElement managePlanHeader;
+    @FindBy(css = "label[for='selected-member-checkbox']")
+    WebElement selectedMember;
+    @FindBy(css = "#full-name")
+    WebElement memberFullName;
+    @FindBy(css = "#user-name")
+    WebElement userName;
+    @FindBy(css = "#phone-number")
+    WebElement memberPhone;
+    @FindBy(css = "#email-address")
+    WebElement memberEmail;
+    @FindBy(css = "#dob")
+    WebElement memberDob;
+    @FindBy(css = "body app-root div:nth-child(6)")
+    WebElement memberAddress;
+    @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
+    List<WebElement> titleOfContainer;
+    @FindBy(xpath = "//p[normalize-space()='Plans']")
+    WebElement plansTitle;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement summaryTitle;
+    @FindBy(xpath = "//p[normalize-space()='Eligibility']")
+    WebElement eligibilityTitle;
+    @FindBy(css = ".dashboardHeader-renewal")
+    WebElement renewalsTitle;
+    @FindBy(xpath = "//p[normalize-space()='Payloads']")
+    WebElement payloadsTitle;
+    @FindBy(css = ".dropdown")
+    WebElement payloadsYears;
+    @FindBy(css = ".subheader-planyear")
+    WebElement renewalsYear;
+    @FindBy(xpath = "//div[.='There is no Renewal data for this year']")
+    WebElement noRenewalsText;
+
+    public void enterAgencyData(String agencyData, String type) {
+        switch (agencyData) {
+            case "agencyName":
+                searchAgencynputList.get(0).sendKeys(type);
+                break;
+            case "stateLicenseNumber":
+                searchAgencynputList.get(1).sendKeys(type);
+                break;
+            case "agencyEmail":
+                searchAgencynputList.get(2).sendKeys(type);
+                break;
+            case "businessAddressCity":
+                searchAgencynputList.get(3).sendKeys(type);
+                break;
+            case "businessAddressZip":
+                searchAgencynputList.get(4).sendKeys(type);
+                break;
+            default: throw new IllegalArgumentException("Invalid header option : " + agencyData);
+        }
+    }
 
     public void verifyContainerTitle() {
         basicActions.waitForElementToBePresent(reportsTitle, 10);
@@ -40,7 +126,114 @@ public class AdminPortalIndividualDashboardPage {
     public void verifyPrimaryHolder() {
         basicActions.waitForElementToBePresent(memberPrimary, 10);
         softAssert.assertTrue(memberPrimary.isDisplayed());
-        basicActions.waitForElementToBePresent(memberId, 10);
-        softAssert.assertTrue(memberId.isDisplayed());
+        basicActions.waitForElementToBePresent(memberAcctId, 10);
+        softAssert.assertTrue(memberAcctId.isDisplayed());
         softAssert.assertAll();     }
+    public void verifyAgencyContainerTitle() {
+        basicActions.waitForElementToBePresent(agencyContainerTitle, 10);
+        softAssert.assertTrue(agencyContainerTitle.isDisplayed());
+        basicActions.waitForElementToBePresent(memberAcctId, 10);
+        softAssert.assertTrue(memberAcctId.isDisplayed());
+        softAssert.assertAll();     }
+    public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
+        softAssert.assertEquals(agencyName.getText(), name);
+        softAssert.assertEquals(stateLicenseNumber.getText(), license);
+        softAssert.assertEquals(agencyThin.getText(), thin);
+        softAssert.assertEquals(agencyAgent.getText(), agent);
+        softAssert.assertEquals(agencyEmail.getText(), email);
+        softAssert.assertEquals(agencyWebsite.getText(), website);
+        softAssert.assertEquals(agencyPhone.getText(), phone);
+        softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
+        softAssert.assertAll();     }
+    public void validateAgencyAddress(String address){
+        basicActions.waitForElementToBePresent(agencyAddress, 10);
+        softAssert.assertTrue(agencyAddress.isDisplayed());
+        softAssert.assertAll(); }
+    public void clickManagePlan() {
+        basicActions.waitForElementToBeClickable(managePlanButton, 10);
+        basicActions.click(managePlanButton);
+    }
+    public void verifyPlanDetails(List<String> data) {
+        basicActions.waitForElementToBePresent(managePlanHeader, 20);
+        softAssert.assertEquals(managePlanHeader.getText(), data.get(0));
+        basicActions.waitForElementToBePresent(medicalPlan, 20);
+        softAssert.assertEquals(medicalPlan.getText(), data.get(1));
+        basicActions.waitForElementToBePresent(dentalPlan, 20);
+        softAssert.assertEquals(dentalPlan.getText(), data.get(2));
+    }
+    public void validateSelectedMemberData()  {
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(selectedMember,30);
+        softAssert.assertTrue(selectedMember.isDisplayed());
+        softAssert.assertTrue(memberFullName.isDisplayed());
+        softAssert.assertTrue(userName.isDisplayed());
+        softAssert.assertTrue(memberEmail.isDisplayed());
+        softAssert.assertTrue(memberPhone.isDisplayed());
+        softAssert.assertTrue(memberDob.isDisplayed());
+        softAssert.assertTrue(memberAddress.isDisplayed());
+        softAssert.assertAll(); }
+    public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads)   {
+        basicActions.waitForElementToBePresent(plansTitle, 30);
+
+        softAssert.assertEquals(plansTitle.getText(), plans);
+        softAssert.assertEquals(summaryTitle.getText(), summary);
+        softAssert.assertEquals(eligibilityTitle.getText(), eligibility);
+        softAssert.assertEquals(renewalsTitle.getText(), renewals);
+        softAssert.assertEquals(reportsTitle.getText(), reports);
+        softAssert.assertEquals(payloadsTitle.getText(), payloads);
+        softAssert.assertAll();
+    }
+
+    public void verifyPayloadsContainer() {
+        basicActions.waitForElementToBePresent(payloadsTitle, 30);
+        softAssert.assertTrue(payloadsTitle.isDisplayed());
+        softAssert.assertAll();
+        WebElement table = basicActions.getDriver().findElement(By.cssSelector(".group-content"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        String[][] QAExpectedData = {
+                {"10/21/2020 11:49", "NES", "QLCE", "47015183", "", "Contact", "80123", "View"},
+                {"10/21/2020 11:37", "NES", "QLCE", "47015183", "", "Contact", "80123", "View"},
+        };
+        String[][] STGExpectedData = {
+                {"08/27/2020 15:21", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80222"},
+                {"08/27/2020 15:17", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80205"},
+                {"08/27/2020 15:13", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80205"},
+                {"06/01/2020 14:31", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80911"},
+                {"06/01/2020 14:22", "NES", "QLCE", "42119771", "", "JingleheimerSchmidt", "80205"},
+        };
+
+        if (SharedData.getEnv().equals("qa")) {
+            for (int i = 0; i < QAExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < QAExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        } else {
+            for (int i = 0; i < STGExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < STGExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        }
+    }
+    public void  verifyYears() {
+        basicActions.waitForElementToBePresent(payloadsYears, 30);
+        softAssert.assertEquals(payloadsYears.getText(),"All Payloads");
+        softAssert.assertAll(); }
+    public void  verifyText() {
+        basicActions.waitForElementToBePresent(renewalsTitle, 10);
+        softAssert.assertEquals(renewalsTitle.getText(),"Renewals");
+        softAssert.assertEquals(renewalsYear.getText(),"Plan Year 2024");
+        softAssert.assertTrue(noRenewalsText.isDisplayed());
+        softAssert.assertAll(); }
 }
+
+

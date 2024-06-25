@@ -55,6 +55,23 @@ public class APTCCalculatorSteps {
     public void iSendTheHouseholdInformationSDiffZip(String magi, String zipCode, String fipsCode, String zipCode2, String fipsCode2, String fpl, String dateOfBirth, String dateOfBirth2) {
         aptcCalculator.buildTwoMemberDifferentZipTaxHouseholdRequest(magi,zipCode,fipsCode,zipCode2, fipsCode2, fpl,dateOfBirth, dateOfBirth2);}
 
+    @When("I send information for two tax households one with two members: Magi1:{string}, Magi2:{string}, Zip:{string}, Fips:{string}, FPL1:{string}, FPL2:{string}, DOB1:{string}, DOB2:{string}, DOB3:{string}")
+    public void iSendTheHouseholdInfomration(String magi, String magi2, String zipCode, String fipsCode, String fpl, String fpl2, String dateOfBirth, String dateOfBirth2, String dateOfBirth3) {
+        aptcCalculator.buildTwoTaxHouseHoldOneTwoMember(magi, magi2, zipCode, fipsCode, fpl, fpl2, dateOfBirth, dateOfBirth2, dateOfBirth3);}
+
+    @When("I send information for two tax households one with three members and one with one no APTC Member: Magi1:{string}, Magi2:{string}, Zip:{string}, Fips:{string}, FPL1:{string}, FPL2:{string}, DOB1:{string}, DOB2:{string}, DOB3:{string}, DOB4:{string}")
+    public void iSendTheHouseholdInfomration(String magi, String magi2, String zipCode, String fipsCode, String fpl, String fpl2, String dateOfBirth, String dateOfBirth2, String dateOfBirth3, String dateOfBirth4) {
+        aptcCalculator.buildTwoTHHTHH1ThreeMemberOneNotAPTCTHH2OneMemberNotAPTC(magi, magi2, zipCode, fipsCode, fpl, fpl2, dateOfBirth, dateOfBirth2, dateOfBirth3, dateOfBirth4);}
+
+    @When("I send information for two tax households one with three members and one with one Member: Magi1:{string}, Magi2:{string}, Zip:{string}, Fips:{string}, FPL1:{string}, FPL2:{string}, DOB1:{string}, DOB2:{string}, DOB3:{string}, DOB4:{string}")
+    public void iSendTheHouseholdInfomrationS(String magi, String magi2, String zipCode, String fipsCode, String fpl, String fpl2, String dateOfBirth, String dateOfBirth2, String dateOfBirth3, String dateOfBirth4) {
+        aptcCalculator.buildTwoTHHTHH1ThreeMemberOneNotAPTCTHH2OneMember(magi, magi2, zipCode, fipsCode, fpl, fpl2, dateOfBirth, dateOfBirth2, dateOfBirth3, dateOfBirth4);}
+
+    @When("I send information for three tax households one with three members and two with one Member: Magi1:{string}, Magi2:{string}, Magi3:{string}, Zip:{string}, Fips:{string}, FPL1:{string}, FPL2:{string}, FPL3:{string}, DOB1:{string}, DOB2:{string}, DOB3:{string}, DOB4:{string}, DOB5:{string}")
+    public void iSendTheHouseholdInfomrationS(String magi, String magi2, String magi3, String zipCode, String fipsCode, String fpl, String fpl2, String fpl3, String dateOfBirth, String dateOfBirth2, String dateOfBirth3, String dateOfBirth4, String dateOfBirth5) {
+        aptcCalculator.buildThreeTHHTHH1ThreeMemberTHH2OneMemberTHH3OneMember(magi, magi2, magi3, zipCode, fipsCode, fpl, fpl2, fpl3, dateOfBirth, dateOfBirth2, dateOfBirth3, dateOfBirth4, dateOfBirth5);}
+
+
     @And("I send the APTC Calculator Request")
     public void iSendTheAPTCCalculatorRequest() {
         aptcCalculator.sendAPTCCalculatorRequest();

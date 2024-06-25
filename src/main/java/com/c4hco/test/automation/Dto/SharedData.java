@@ -21,7 +21,6 @@ public class SharedData {
     @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static String localPathToDownloadFile;
-    @Getter @Setter private static String EmployerName;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static String env;
@@ -33,6 +32,10 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
     @Getter @Setter private static Boolean hasBroker = false;
+    @Getter @Setter private static BrokerDetails agencyOwner;
+    @Getter @Setter private static BrokerDetails broker;
+    @Getter @Setter private static BrokerDetails adminStaff;
+    @Getter @Setter private static String noticeFileName;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -41,7 +44,6 @@ public class SharedData {
         primaryMember = null;
         members = null;
         primaryMemberId = null;
-        EmployerName = null;
         edi834TransactionDetails = null;
         commonEDISegments = null;
         env = null;
@@ -51,5 +53,6 @@ public class SharedData {
         planYear = null;
         groupDetails = null;
         dbName = null;
+        noticeFileName = null;
     }
 }

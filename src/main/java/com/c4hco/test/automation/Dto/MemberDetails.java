@@ -41,7 +41,7 @@ public class MemberDetails {
     String aptcAmt;
     String medicalAptcAmt;
     String dentalAptcAmt;
-    String tobacco_user;
+    String tobacco_user="No";
     String application_id;
     BigDecimal account_id;
     String policyId;
@@ -69,6 +69,9 @@ public class MemberDetails {
     String incorrect_first_name ;
     String incorrect_middle_name ;
     String incorrect_last_name ;
+    String employerName;
+    String dependentCountTag;
+    String prior_subscriber_id;
 }
 
 

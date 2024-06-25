@@ -23,6 +23,9 @@ public class TellUsAboutAdditionalMemberPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    @FindBy(css = "c4PageHeader")
+    WebElement txtheader;
+
     @FindBy(id = "firstName")
     WebElement txtfirstName;
 
@@ -75,19 +78,21 @@ public class TellUsAboutAdditionalMemberPage {
         String frstName = getUniqueString(8);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
-
         List<MemberDetails> memberList = SharedData.getMembers();
-
+        int memberCount =0;
         if (memberList == null) {
             memberList = new ArrayList<>();
+        }else{
+            memberCount = memberList.size();
         }
-
+        memberCount++;
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -95,6 +100,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
@@ -126,9 +132,10 @@ public class TellUsAboutAdditionalMemberPage {
     }
       public void setSelectRelationship(String Relation){
         basicActions.waitForElementToBePresent(selectRelationship, 15);
-
         Select dropdown = new Select(selectRelationship);
         dropdown.selectByVisibleText(Relation);
+        List<MemberDetails> memberList = SharedData.getMembers();
+        memberList.get(memberList.size()-1).setRelation_to_subscriber(Relation);
     }
 
     public void setSelectRelationship1(String Relation){

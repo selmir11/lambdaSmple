@@ -17,6 +17,12 @@ public class DeductionsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css= ".header-1")
+    WebElement hdr_Deductions;
+
+    @FindBy(css= ".header-2")
+    WebElement hdr_Deductions2;
+
     @FindBy(css = "app-show-options button")
     List<WebElement> deductionButton;
 
@@ -29,9 +35,19 @@ public class DeductionsCoCoPage {
     @FindBy(id = "Deductions-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(id = "Deductions-GoBack")
+    WebElement backButton;
+
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,30);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
         saveAndContinueButton.click();
+    }
+
+    public void clickBackButton() {
+        basicActions.waitForElementToBeClickable(backButton, 50);
+        backButton.click();
     }
 
     public void selectNoneDeductionsOption(){

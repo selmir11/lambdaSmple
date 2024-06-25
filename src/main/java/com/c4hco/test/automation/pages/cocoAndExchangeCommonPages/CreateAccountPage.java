@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -120,7 +121,7 @@ public class CreateAccountPage {
      WebElement submitButton;
     @FindBy(css = " div.forgot-email-header")
      WebElement headerCreateAccount;
-    @FindBy(xpath = "//span[@class='body-text-1']")
+    @FindBy(xpath = "//*[@class='input-label form-label']//span")
      WebElement preferredLanguageTxt;
     @FindBy(xpath = "(//label[@class='mdc-label'])[1]")
      WebElement primaryAccountHolderTxt;
@@ -128,7 +129,7 @@ public class CreateAccountPage {
      WebElement cSRTxt;
     @FindBy(xpath= "(//span[@class='body-text-2'])[2]")
      WebElement headerTxt;
-    @FindBy(xpath= "(//span[@class='body-text-1'])[2]")
+    @FindBy(xpath= "//span[@class='body-text-1']")
      WebElement optionTxt;
     @FindBy(xpath= "(//label[@class='mdc-label'])[3]")
      WebElement c4OptionTxt;
@@ -141,7 +142,13 @@ public class CreateAccountPage {
     @FindBy(id = "role")
     WebElement roleDropdown;
 
-    @FindBy(id = "loginPortal-createAccount-roleRequired")
+    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[1]")
+    WebElement certifiedBrokerRole;
+
+    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")
+    WebElement adminStaffRole;
+
+    @FindBy(css = "lib-input-error[controlname='role'] span[class='error-message']")
     WebElement roleDropdownErrorMessage;
 
     @FindBy(id = "loginPortal-createAccount-indicatePrimary")
@@ -197,6 +204,7 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         // Creates the primary user/Account holder
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
         SharedData.setAppType(appType);
         addDetails();
         switch(appType){
@@ -217,6 +225,25 @@ public class CreateAccountPage {
         submitButton.click();
     }
 
+    public void createGeneralAccountOutlook(String appType, String emailBase){
+        // Creates the primary user/Account holder
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
+        SharedData.setAppType(appType);
+        addDetailsOutlook(emailBase);
+        switch(appType){
+            case "coco":
+                cocoTermsOfUseCheckbox.click();
+                break;
+            case "exchange":
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+
+        }
+        submitButton.click();
+    }
+
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName(getUniqueString(8)+"TestMember");
@@ -227,8 +254,40 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
+    public void initializeDataOutlook(String emailBase){
+        MemberDetails subscriber = new MemberDetails();
+        subscriber.setFirstName(getUniqueString(10)+"TestMember");
+        subscriber.setLastName(getUniqueString(10)+"Test");
+        subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
+    }
+
     public void addDetails(){
         initializeData();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 60);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        email.sendKeys(subscriber.getEmailId());
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        String primaryPhone = subscriber.getPhoneNumber().replaceAll("-", "");
+        subscriber.setPhoneNumber(primaryPhone);
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        preferredLanguageButtonEnglish.click();
+        subscriber.setSpokenLanguage("English");
+        subscriber.setWrittenLanguage("English");
+        primaryUserCheckbox.click();
+        subscriber.setRelation_to_subscriber("SELF");
+        SharedData.setPrimaryMember(subscriber);
+    }
+
+    public void addDetailsOutlook(String emailBase){
+        initializeDataOutlook(emailBase);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
         firstName.sendKeys(subscriber.getFirstName());
@@ -243,6 +302,74 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);
+    }
+
+    public void createBrokerAccount(String accountType, String emailBase){
+        // Creates a Broker Portal account
+        initializeBrokerData(accountType, emailBase);
+        BrokerDetails user;
+        roleDropdown.click();
+        switch(accountType){
+            case "Agency Owner":
+                user = SharedData.getAgencyOwner();
+                certifiedBrokerRole.click();
+                addBrokerDetails(user);
+                break;
+            case "Broker":
+                user = SharedData.getBroker();
+                certifiedBrokerRole.click();
+                addBrokerDetails(user);
+                break;
+            case "Admin Staff":
+                user = SharedData.getAdminStaff();
+                adminStaffRole.click();
+                addBrokerDetails(user);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + accountType);
+        }
+        submitButton.click();
+    }
+
+    public static CharSequence generateBrokerLicense(){
+        Random rand = new Random();
+        int num = rand.nextInt(10000);
+        DecimalFormat df4 = new DecimalFormat("00000000");
+        return df4.format(num);
+    }
+
+    public void initializeBrokerData(String accountType, String emailBase){
+        BrokerDetails user = new BrokerDetails();
+        user.setFirstName(getUniqueString(8)+"TestBroker");
+        user.setLastName(getUniqueString(8)+"Test");
+        user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
+        user.setPhoneNumber((String) generatePhoneNumber());
+        user.setLicense((String) generateBrokerLicense());
+        switch(accountType){
+            case "Agency Owner":
+                SharedData.setAgencyOwner(user);
+                break;
+            case "Broker":
+                SharedData.setBroker(user);
+                break;
+            case "Admin Staff":
+                SharedData.setAdminStaff(user);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + accountType);
+        }
+    }
+
+    public void addBrokerDetails(BrokerDetails user){
+        basicActions.waitForElementToBePresent(firstName, 60);
+        firstName.sendKeys(user.getFirstName());
+        lastName.sendKeys(user.getLastName());
+        email.sendKeys(user.getEmail());
+        phoneNumber.sendKeys(user.getPhoneNumber());
+        password.sendKeys(user.getPassword());
+        confirmPassword.sendKeys(user.getPassword());
+        primaryUserCheckbox.click();
+        termsOfUseCheckbox.click();
     }
 
     public void validateHelpText(String language){
@@ -277,6 +404,7 @@ public class CreateAccountPage {
     }
 
     public void verifyCreateYourAccountHeader(String language) {
+        basicActions.waitForElementToBePresent(headerCreateAccount,30);
         switch (language){
             case "English":
                 softAssert.assertEquals(headerCreateAccount.getText(),"Create your Account");
@@ -320,6 +448,7 @@ public class CreateAccountPage {
     }
 
     public void verifyAccountHolderPreferences(String language) {
+        basicActions.waitForElementToBePresent(preferredLanguageTxt,30);
         switch(language){
                 case "English":
                     softAssert.assertEquals(preferredLanguageTxt.getText(),"Preferred Written Language");
@@ -370,6 +499,23 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
         exchangeTermsOfUseCheckbox.click();
+
+        submitButton.click();
+    }
+
+    public void enterDuplicateBrokerAccountCreationData(){
+        BrokerDetails agencyOwner = SharedData.getAgencyOwner();
+        basicActions.waitForElementToBePresent(firstName, 10);
+        roleDropdown.click();
+        certifiedBrokerRole.click();
+        firstName.sendKeys(agencyOwner.getFirstName());
+        lastName.sendKeys(agencyOwner.getLastName());
+        email.sendKeys(agencyOwner.getEmail());
+        phoneNumber.sendKeys(agencyOwner.getPhoneNumber());
+        password.sendKeys(agencyOwner.getPassword());
+        confirmPassword.sendKeys(agencyOwner.getPassword());
+        primaryUserCheckbox.click();
+        termsOfUseCheckbox.click();
 
         submitButton.click();
     }
@@ -625,5 +771,10 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
         softAssert.assertAll();
+    }
+
+    public void EnterPasswordInCreateAccountPage() {
+        password.sendKeys("ALaska12!");
+        confirmPassword.sendKeys("ALaska12!");
     }
 }

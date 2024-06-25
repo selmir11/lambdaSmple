@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class InitialPaymentCoCoPage {
     private BasicActions basicActions;
 
@@ -15,17 +17,28 @@ public class InitialPaymentCoCoPage {
     }
 
     @FindBy(id="SOL-InitialPayment-MakePayment")
-    WebElement makePaymentBtn;
+    List<WebElement> makePaymentBtn;
 
     @FindBy(id="SOL-InitialPayment-Continue")
     WebElement continueButton;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void selectMakePaymentBtnCoCo(){
-        basicActions.waitForElementToBePresent(makePaymentBtn,20);
-        makePaymentBtn.click();
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(makePaymentBtn,20);
+        makePaymentBtn.get(0).click();
+    }
+
+    public void clickSecondMakePaymentButton(){
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(makePaymentBtn,20);
+        makePaymentBtn.stream().findFirst().ifPresent(WebElement::click);
     }
 
     public void selectContinueCoCo() {
+        basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(continueButton, 20);
         continueButton.click();
     }

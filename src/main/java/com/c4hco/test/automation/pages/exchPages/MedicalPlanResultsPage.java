@@ -34,10 +34,17 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "MedicalPlanResults-Continue")
     WebElement btnContinue;
+    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
+    public WebElement continueBtn;// locators included for both QA and STG
 
-    @FindBy(id = "SHP-PlanResults-ComparePlans")
+    @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
 
+    @FindBy (id = "MedicalPlanResults-SaveAndExit")
+    WebElement btnSaveExist;
+
+    @FindBy (id = "MedicalPlanResults-GoBack")
+    WebElement btnGoBack;
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 
@@ -80,26 +87,25 @@ public class MedicalPlanResultsPage {
         softAssert.assertAll();
 
     }
-    
+
     public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
 
     }
 
-    public void iGetFirstPlaneName() {
+    public void iGetFirstPlanName() {
         basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
         SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
     }
 
     public void SelectFirstMedicalPlan() {
-        iGetFirstPlaneName();
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }
 
-    public void iclickContinue() {
-        btnContinue.click();
+    public void clickContinue() {
+        continueBtn.click();
     }
 
     public void clickCompare() {

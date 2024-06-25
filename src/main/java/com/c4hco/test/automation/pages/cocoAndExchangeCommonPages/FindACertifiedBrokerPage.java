@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -132,6 +133,15 @@ public class FindACertifiedBrokerPage {
 
     @FindBy(id = "BP-FindaCertifiedBrokernearyou-GoBack")
     WebElement findBrokerGoBack;
+
+    @FindBy (id = "broker-organizationName")
+    WebElement currentBrokerName;
+
+    @FindBy (id = "broker-license")
+    WebElement currentBrokerLicenceNumber;
+
+    @FindBy (id = "broker-exchangeId")
+    WebElement currentAgencyName;
 
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
@@ -424,4 +434,15 @@ public class FindACertifiedBrokerPage {
         }
         softAssert.assertAll();
     }
+    public void setCurrentBrokerContainerDetails (){
+        basicActions.waitForElementToBePresent(currentBrokerName,10);
+        basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
+        basicActions.waitForElementToBePresent(currentAgencyName,10);
+        BrokerDetails broker = new BrokerDetails();
+        broker.setBroker_name(currentBrokerName.getText());
+        broker.setBroker_lic_num(currentBrokerLicenceNumber.getText());
+        broker.setAgencyName(currentAgencyName.getText());
+        SharedData.setBroker(broker);
+    }
+
 }

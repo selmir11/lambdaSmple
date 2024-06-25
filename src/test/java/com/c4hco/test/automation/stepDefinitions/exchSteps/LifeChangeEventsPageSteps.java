@@ -3,6 +3,9 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.LifeChangeEventsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+
+import java.util.List;
 
 public class LifeChangeEventsPageSteps {
     LifeChangeEventsPage lifeChangeEventsPage = new LifeChangeEventsPage(WebDriverManager.getDriver());
@@ -28,4 +31,18 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.validateTheHeaderOnReportALifeChangePage(language);
     }
 
+    @Then("I click on the help drawer icon on the page")
+    public void iClickOnTheHelpDrawerIconOnThePage() {
+        lifeChangeEventsPage.clickHelpDrawerIcon();
+    }
+
+    @And("I validate the below help drawer text in {string}")
+    public void iValidateTheBelowHelpDrawerTextIn(String language, List<String> data) {
+        lifeChangeEventsPage.validateHelpDrawerText(language, data);
+    }
+
+    @Then("I click on the help icon next to special requirement option")
+    public void iClickOnTheHelpIconNextToSpecialRequirementOption() {
+        lifeChangeEventsPage.clickHelpIconNextToSpecialRequirement();
+    }
 }

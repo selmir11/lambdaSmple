@@ -31,14 +31,25 @@ public class IncomeSummaryCoCoPage {
     @FindBy(id = "pageId-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(id = "ELIG-summaryDetails-NoButton")
+    WebElement projectedIncomeNo;
+
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
+    WebElement getProjectedIncomeYes;
+
+    public void clickprojectedIncomeNo(){
+        basicActions.waitForElementToBeClickableWithRetries( projectedIncomeNo,15 );
+        projectedIncomeNo.click();
+        projectedIncomeNo.click();
+    }
     public void verifyTotalAnnualIncome(String Amount){
-        basicActions.waitForElementToBePresent(totalAnnualIncome, 10);
+        basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
         softAssert.assertAll();
     }
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }
 
@@ -49,7 +60,7 @@ public class IncomeSummaryCoCoPage {
                 projectedIncomeButtons.get(0).click();
                 break;
             case "No":
-                basicActions.waitForElementListToBePresent(projectedIncomeButtons, 15);
+                basicActions.waitForElementListToBePresentWithRetries(projectedIncomeButtons, 15);
                 projectedIncomeButtons.get(1).click();
                 break;
             default:

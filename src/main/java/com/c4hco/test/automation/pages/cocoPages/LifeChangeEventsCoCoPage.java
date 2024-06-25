@@ -163,12 +163,12 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void selectNoneOfThese(){
-        basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
+        basicActions.waitForElementToBeClickableWithRetries(noneOfTheseLCE,10);
         noneOfTheseLCE.click();
     }
 
     public void saveAndContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueButton,10);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton,10);
         saveAndContinueButton.click();
     }
 

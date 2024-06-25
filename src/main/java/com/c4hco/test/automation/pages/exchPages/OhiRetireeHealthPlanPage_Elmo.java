@@ -191,6 +191,12 @@ public class OhiRetireeHealthPlanPage_Elmo {
                 softAssert.assertTrue(currentlyEnrolledNo.getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
+            case "Not Selected":
+                basicActions.waitForElementToBePresent(currentlyEnrolledYes,15);
+                softAssert.assertTrue(currentlyEnrolledYes.getAttribute("class").equals("button option-button ng-star-inserted"));
+                softAssert.assertTrue(currentlyEnrolledNo.getAttribute("class").equals("button option-button ng-star-inserted"));
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + currentlyEnrolled);
         }
@@ -272,6 +278,18 @@ public class OhiRetireeHealthPlanPage_Elmo {
                 verifyRetireePageSecondSectionDataEnglish();
                 verifyRetireePageThirdSectionDataEnglish();
                 break;
+            case "First Section Secondary":
+                verifyRetireePageFirstSectionSecondaryDataEnglish();
+                break;
+            case "Second Section Secondary":
+                verifyRetireePageFirstSectionSecondaryDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
+                break;
+            case "Third Section Secondary":
+                verifyRetireePageFirstSectionSecondaryDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
+                verifyRetireePageThirdSectionSecondaryDataEnglish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
@@ -310,6 +328,28 @@ public class OhiRetireeHealthPlanPage_Elmo {
         softAssert.assertAll();
     }
 
+    public void verifyRetireePageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiRetireeHeader.getText(),"Retiree Health Plan");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about " + SharedData.getMembers().get(0).getFullName() + "'s eligibility or current enrollment in a retiree health plan."));
+        softAssert.assertTrue(retireeQuestionTxt.get(0).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " currently enrolled in a retiree health plan?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyRetireePageThirdSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(retireeQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "'s coverage end?"));
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertTrue(retireeQuestionTxt.get(3).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " voluntarily ending this health insurance?"));
+        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
     public void verifyRetireePageDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         switch (dataToVerify){
@@ -324,6 +364,18 @@ public class OhiRetireeHealthPlanPage_Elmo {
                 verifyRetireePageFirstSectionDataSpanish();
                 verifyRetireePageSecondSectionDataSpanish();
                 verifyRetireePageThirdSectionDataSpanish();
+                break;
+            case "First Section Secondary":
+                verifyRetireePageFirstSectionSecondaryDataSpanish();
+                break;
+            case "Second Section Secondary":
+                verifyRetireePageFirstSectionSecondaryDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
+                break;
+            case "Third Section Secondary":
+                verifyRetireePageFirstSectionSecondaryDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
+                verifyRetireePageThirdSectionSecondaryDataSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -358,6 +410,28 @@ public class OhiRetireeHealthPlanPage_Elmo {
         softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyRetireePageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohiRetireeHeader.getText(),"Plan de salud de jubilado");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en un plan de salud para jubilados."));
+        softAssert.assertTrue(retireeQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en un plan de salud para jubilados?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyRetireePageThirdSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(retireeQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertTrue(retireeQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
         softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
@@ -461,7 +535,7 @@ public class OhiRetireeHealthPlanPage_Elmo {
                 softAssert.assertAll();
                 break;
             case "Spanish Prior":
-                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese una valor mayor que o igual "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese un valor mayor que o igual a "+formattedDate);
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");

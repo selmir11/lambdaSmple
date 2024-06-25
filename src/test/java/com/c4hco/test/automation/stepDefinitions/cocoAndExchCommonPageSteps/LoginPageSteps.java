@@ -13,7 +13,7 @@ public class LoginPageSteps {
         public void openPage(String portalType) {
             loginPage.openPage(portalType);
         }
-        
+
         @When("I click create a new account on login page")
             public void iClickCreateAccount(){ loginPage.clickCreateAccount();}
 
@@ -28,8 +28,18 @@ public class LoginPageSteps {
     @When("I login as Broker User {string} password {string}")
     public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
 
+    @And("I log into my {string} account")
+    public void iEnterBrokerPortalCredentials(String accountType){
+        loginPage.logInBrokerPortal(accountType);
+    }
+
     @And("I login as Broker User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
+        loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
+    }
+
+    @And("I login as Assistnet User any environment {string} password {string} and {string} password {string}")
+    public void iLoginAsAssistnetUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
     @When("I login as Admin User any environment {string} password {string} and {string} password {string}")
@@ -97,8 +107,33 @@ public class LoginPageSteps {
 
     @Then("I verify Expired Password error message in {string}")
     public void iVerifyExpiredPasswordErrorMessageIn(String language) {
-        loginPage.verifyExpiredPasswordErrorMessage(language);
+        loginPage.verifyExpiredPasswordErrorMessage(language);}
+
+    @And("I enter valid credential STG username {string} PW {string} QA username {string} PW {string} for individual user without sign in any env")
+    public void iEnterValidCredentialSTGUsernamePWQAUsernamePWForIndividualUserWithoutSignInAnyEnv( String STGUsername, String STGPW,String QAUsername, String QAPW) {
+            loginPage.enterValidCredentialsWithoutSignIn( STGUsername, STGPW,QAUsername, QAPW);
     }
+
+    @Then("I validate when show password is displayed as {string} the code is encrypted in {string} Page")
+    public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedInPage(String showPW, String titlePage) {
+        loginPage.ValidateWhenShowPasswordIsDisplayedTheCodeIsEncrypted(showPW,titlePage);
+    }
+
+    @And("I click on show button in {string}")
+    public void iClickOnShowButtonIn(String pageTitle) {
+            loginPage.ClickOnShowButton(pageTitle);
+    }
+
+    @Then("I validate Show button is displayed and enabled in {string}")
+    public void iValidateShowButtonIsDisplayedAndEnabledIn(String pageTitle) {
+        loginPage.ShowButtonIsDisplayedAndEnabled(pageTitle);
+    }
+
+    @Then("I validate when show password is displayed as {string} the code is encrypted in {string}")
+    public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedIn(String arg0, String arg1) {
+
+    }
+
 
 
 

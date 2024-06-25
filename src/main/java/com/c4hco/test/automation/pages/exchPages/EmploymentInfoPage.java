@@ -10,9 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class EmploymentInfoPage {
@@ -24,7 +27,7 @@ public class EmploymentInfoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "header-1 content-center")
+    @FindBy(css = ".header-1.content-center")
     WebElement txtHeaderPart1;
 
     @FindBy(xpath = "//app-employment-container//div[2]/span")
@@ -153,8 +156,30 @@ public class EmploymentInfoPage {
 
     public void addEmploymentInfo(String Salary, String Frequency) {
         // Should not use this method anymore- should use genericEmploymentInfo method
-        SharedData.setEmployerName(getUniqueString(8)+"Company");
-        txtCompanyName.sendKeys(SharedData.getEmployerName());
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
+        String companyName = getUniqueString(8) + "Company";
+        String name = txtHeaderPart1.getText();
+
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String primaryFirstName = BasicActions.capitalizeFirstLetter(primaryMem.getFirstName());
+
+        if (name.contains(primaryFirstName)) {
+            primaryMem.setEmployerName(companyName);
+            SharedData.setPrimaryMember(primaryMem);
+        } else if (memberList.size()>0) {
+            Optional<MemberDetails> requiredMem = memberList.stream()
+                    .filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName())))
+                    .findFirst();
+            if (requiredMem.isPresent()) {
+                MemberDetails member =  (MemberDetails) requiredMem.get();
+                member.setEmployerName(companyName);
+            } else {
+                Assert.fail("No matching member found in the member list.");
+            }
+        }
+        txtCompanyName.sendKeys(companyName);
+
         txtAddressOne.sendKeys("123 Test Address");
         txtAddressTwo.sendKeys("Test Suite 321");
         txtCity.sendKeys("Denver");
@@ -170,8 +195,32 @@ public class EmploymentInfoPage {
     }
 
     public void genericEmploymentInfo(String addressline1, String city,String state, String zipcode, String Salary, String Frequency){
-        SharedData.setEmployerName(getUniqueString(8)+" Company");
-        txtCompanyName.sendKeys(SharedData.getEmployerName());
+
+
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
+        String companyName = getUniqueString(8) + "Company";
+        String name = txtHeaderPart1.getText();
+
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String primaryFirstName = BasicActions.capitalizeFirstLetter(primaryMem.getFirstName());
+
+        if (name.contains(primaryFirstName)) {
+            primaryMem.setEmployerName(companyName);
+            SharedData.setPrimaryMember(primaryMem);
+        } else if (memberList.size()>0) {
+            Optional<MemberDetails> requiredMem = memberList.stream()
+                    .filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName())))
+                    .findFirst();
+            if (requiredMem.isPresent()) {
+                MemberDetails member =  (MemberDetails) requiredMem.get();
+                member.setEmployerName(companyName);
+            } else {
+                Assert.fail("No matching member found in the member list.");
+            }
+        }
+        txtCompanyName.sendKeys(companyName);
+
         txtAddressOne.sendKeys(addressline1);
         txtCity.sendKeys(city);
 

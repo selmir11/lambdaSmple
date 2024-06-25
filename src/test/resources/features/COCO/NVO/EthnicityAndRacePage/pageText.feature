@@ -3,7 +3,7 @@ Feature: Page Text-Ethnicity And Race page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-24 @PageTextEthnicityAndRacePage
+  @SLCR-24 @PageTextEthnicityAndRacePage @NVOCoCoRegression
   Scenario: Check Ethnicity And Race Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

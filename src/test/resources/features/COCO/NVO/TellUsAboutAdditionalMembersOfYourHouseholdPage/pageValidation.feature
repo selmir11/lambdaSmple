@@ -3,7 +3,7 @@ Feature: Validation - Tell us about yourself page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-88
+  @SLCR-88 @NVOCoCoRegression
   Scenario: Validation errors on the Tell us about additional members of your household page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -35,4 +35,4 @@ Feature: Validation - Tell us about yourself page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
-    And I validate the error messages on the Tell Us About Additional Members Of Your Household page
+    Then I validate errors are displaying on Tell Us About Additional Members Of Your Household Page CoCo "English"

@@ -15,12 +15,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+
 public class AddAddressPage {
     private BasicActions basicActions;
     public AddAddressPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    @FindBy(css = ".container > div:nth-child(1)")
+    WebElement headerAdditionalInfo;
+
     @FindBy(id = "retrieveResidentialAddress")
     WebElement rdobtnHouseholdResidentialAddress;
 
@@ -150,6 +154,7 @@ public class AddAddressPage {
 
     public void mailingAddress(){
         // Should not use this method anymore- should use genericMailingAddress method
+        basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
@@ -164,6 +169,7 @@ public class AddAddressPage {
         // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
     public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
+        basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
         txtMailingAddrLine1.sendKeys(AddrLine1);
         txtMailingCity.sendKeys(city);
@@ -348,5 +354,6 @@ public class AddAddressPage {
     }
 
     public void saveContinue(){btnSaveContinue.click();}
+
 }
 

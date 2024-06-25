@@ -15,8 +15,8 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     public void iClickGoBack(){ohiEmployerSponsoredHealthInsurancePage.clickGoBack();
     }
 
-    @Then("I select the employer on the ESI page")
-    public void iSelectEmployer(){ohiEmployerSponsoredHealthInsurancePage.selectEmployer();
+    @Then("I select the {string} employer for {string} member on the ESI page")
+    public void iSelectEmployer(String intString, String member){ohiEmployerSponsoredHealthInsurancePage.selectEmployer(intString, member);
     }
 
     @Then("I select {string} for meet the Minimum Value Standard on the ESI page")

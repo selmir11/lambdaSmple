@@ -288,6 +288,14 @@ public class AdminPortalSearchPage {
             default: throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
     }
+
+    public void enterUserDataAnyENV(String userdata, String QAType ,String STGType) {
+        if(SharedData.getEnv().equals("qa")){
+            enterUserData(userdata, QAType);
+        }else{
+            enterUserData(userdata, STGType);
+        }
+    }
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
         if (SharedData.getEnv().equals("staging")){
             searchInputList.get(0).sendKeys(accountIdSTG);

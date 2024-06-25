@@ -44,5 +44,9 @@ public class HouseHoldPageSteps {
     public void iClickTableItem(){
         houseHoldPage.iClickTableItem();}
 
+    @And("I click on the RedIcon to add Member financial details")
+    public void iClickRedIcon(){
+        houseHoldPage.iClickRedIcon();}
+
 }
 

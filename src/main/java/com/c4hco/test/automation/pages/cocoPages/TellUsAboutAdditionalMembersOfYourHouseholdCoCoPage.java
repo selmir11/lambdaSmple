@@ -48,6 +48,9 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
     @FindBy(css = "select.input-select")
     WebElement RelationshipOption;
 
+    @FindBy(xpath = "//select[@name='relatedToType']")
+    List<WebElement> selectRelationship1;
+
     @FindBy(id = "ELIG-MemberDetails-GoBack")
     WebElement GoBackButton;
 
@@ -126,6 +129,108 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
 
     }
 
+    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String Relation1, String applying) {
+
+        String frstName = getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        txtFirstName.sendKeys(frstName);
+        txtMiddleName.sendKeys(mdlName);
+        txtLastName.sendKeys(lastName);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+        setRelationshipOption(Relation);
+        setRelationshipOption1(Relation1);
+    }
+
+    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String Relation1, String Relation2, String applying) {
+
+        String frstName = getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        txtFirstName.sendKeys(frstName);
+        txtMiddleName.sendKeys(mdlName);
+        txtLastName.sendKeys(lastName);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+        setRelationshipOption(Relation);
+        setRelationshipOption1(Relation1);
+        setRelationshipOption2(Relation2);
+    }
+
+    public void specificAdditionalMemberDetailsCoCoSpanish(String DOB, String gender, String Relation, String applying) {
+
+        String frstName = getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        txtFirstName.sendKeys(frstName);
+        txtMiddleName.sendKeys(mdlName);
+        txtLastName.sendKeys(lastName);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
+        genderSelectionSpanish(gender);
+        applyingForCoverageSpanish(applying);
+        setRelationshipOption(Relation);
+
+    }
     public void genderSelection(String gender) {
         basicActions.waitForElementListToBePresent(genderButton, 30);
         switch (gender) {
@@ -133,6 +238,20 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 genderButton.get(1).click();
                 break;
             case "Female":
+                genderButton.get(0).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + gender);
+        }
+    }
+
+    public void genderSelectionSpanish(String gender) {
+        basicActions.waitForElementListToBePresent(genderButton, 30);
+        switch (gender) {
+            case "Masculino":
+                genderButton.get(1).click();
+                break;
+            case "Femenino":
                 genderButton.get(0).click();
                 break;
             default:
@@ -153,9 +272,48 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 throw new IllegalArgumentException("Invalid option: " + applying);
         }
     }
+
+    public void applyingForCoverageSpanish(String applying) {
+        basicActions.waitForElementListToBePresent(applyButton, 30);
+        switch (applying) {
+            case "Si":
+                applyButton.get(0).click();
+                break;
+            case "No":
+                applyButton.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + applying);
+        }
+    }
+
+    public void verifyTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(String language) {
+        switch (language) {
+            case "English":
+                verifyEnglishTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage();
+                break;
+            case "Spanish":
+                verifySpanishTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+    public void verifyerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage(String language) {
+        switch (language) {
+            case "English":
+                verifyValidationerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage();
+                break;
+            case "Spanish":
+                verifySpanishValidationerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
 ///////Page Validation-------------------------------------------------------------------------------------
     ///Text validation
-    public void verifyTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(){
+    public void verifyEnglishTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(){
         basicActions.waitForElementToBePresent(PageTitle,10);
         softAssert.assertEquals(PageTitle.getText(), "Tell us about additional members of your household");
         softAssert.assertEquals(PageTitle.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -223,6 +381,74 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertAll();
     }
 
+    public void verifySpanishTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(){
+        basicActions.waitForElementToBePresent(PageTitle,10);
+        softAssert.assertEquals(PageTitle.getText(), "Informaci\u00F3n sobre otros miembros de su familia");
+        softAssert.assertEquals(PageTitle.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PageTitle.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(PageTitle.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        specificAdditionalMemberDetailsCoCoSpanish("01011982","Masculino", "C\u00F3nyuge", "Si");
+        softAssert.assertEquals(textValidation.get(0).getText(), "Nombre");
+        softAssert.assertEquals(textValidation.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(1).getText(), "Segundo nombre o inicial (opcional)");
+        softAssert.assertEquals(textValidation.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(2).getText(), "Apellido(s)");
+        softAssert.assertEquals(textValidation.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(3).getText(), "T\u00EDtulo o tratamiento opcional");
+        softAssert.assertEquals(textValidation.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(3).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(4).getText(), "Fecha de nacimiento");
+        softAssert.assertEquals(textValidation.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(4).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(5).getText(), "Sexo");
+        softAssert.assertEquals(textValidation.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(5).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(genderButton.get(0).getText(), "Femenino");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(genderButton.get(1).getText(), "  Masculino");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(textValidation.get(6).getText(), SharedData.getMembers().get(0).getFirstName()+" "+SharedData.getMembers().get(0).getLastName()+" es "+Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
+                Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1)+"'s?");
+        softAssert.assertEquals(textValidation.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(6).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(6).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(RelationshipOption.getText(), "Seleccione\nC\u00F3nyuge\nPadre/madre o tutor\nHijo(a) o Otro dependiente\nHermano(a)\nPadrastro/madrastra\nHijastro/hijastra\nPareja\nOtro parentesco\nSin parentesco");
+        softAssert.assertEquals(textValidation.get(7).getText(), "\u00BFEsta solicitando seguro de salud?");
+        softAssert.assertEquals(textValidation.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(textValidation.get(7).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(textValidation.get(7).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(applyButton.get(0).getText(), "  Si");
+        softAssert.assertEquals(applyButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(applyButton.get(0).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(applyButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(applyButton.get(1).getText(), "No");
+        softAssert.assertEquals(applyButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(applyButton.get(1).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(applyButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(GoBackButton.getText(), " Volver");
+        softAssert.assertEquals(GoBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(GoBackButton.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(GoBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(SaveandContinueButton.getText(), "Guardar y Continuar");
+        softAssert.assertEquals(SaveandContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(SaveandContinueButton.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(SaveandContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertAll();
+    }
+
     public void verifyValidationerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage() {
         basicActions.waitForElementToBePresent(PageTitle,10);
         softAssert.assertEquals(PageTitle.getText(), "Tell us about additional members of your household");
@@ -248,5 +474,46 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertAll();
+    }
+
+    public void verifySpanishValidationerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage() {
+        basicActions.waitForElementToBePresent(PageTitle,10);
+        softAssert.assertEquals(PageTitle.getText(), "Informaci\u00F3n sobre otros miembros de su familia");
+        clickSaveandContinueButton();
+        softAssert.assertEquals(requiredValidationError.get(0).getText(), "El nombre es obligatorio");
+        softAssert.assertEquals(requiredValidationError.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(0).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        softAssert.assertEquals(requiredValidationError.get(1).getText(), "El apellido es obligatorio");
+        softAssert.assertEquals(requiredValidationError.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(1).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        softAssert.assertEquals(requiredValidationError.get(2).getText(), "La fecha de nacimiento es obligatoria");
+        softAssert.assertEquals(requiredValidationError.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(2).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        softAssert.assertEquals(requiredValidationError.get(3).getText(), "Seleccione una de las siguientes opciones");
+        softAssert.assertEquals(requiredValidationError.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(3).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(3).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        softAssert.assertEquals(requiredValidationError.get(4).getText(), "Seleccione una de las siguientes opciones");
+        softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        softAssert.assertAll();
+    }
+
+    public void setRelationshipOption1(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship1.get(1), 15);
+
+        Select dropdown = new Select(selectRelationship1.get(1));
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void setRelationshipOption2(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship1.get(2), 15);
+
+        Select dropdown = new Select(selectRelationship1.get(2));
+        dropdown.selectByVisibleText(Relation);
     }
 }

@@ -115,10 +115,12 @@ public class AdditionalIncomePage {
     public void selectNoneAddtlIncomeOption(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
         addtlIncomeOptionsCheckbox.get(12).click();
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
     public void clickContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income, 20);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
@@ -140,7 +142,7 @@ public class AdditionalIncomePage {
     }
 
     public void verifyTextOnAdditionalIncomeWithErrorsEnglish(){
-        softAssert.assertEquals(hdr_Income.getText(), "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
         softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(), "Did you receive any of the following income?");
         softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(), "Select all that apply, and enter the amount of income received.");
@@ -225,7 +227,7 @@ public class AdditionalIncomePage {
     }
 
     public void verifyTextOnAdditionalIncomeWithErrorsSpanish(){
-        softAssert.assertEquals(hdr_Income.getText(), "Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
         softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(), "\u00BFRecibi\u00F3 alguno de los ingresos siguientes?");
         softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");

@@ -1,17 +1,18 @@
 package com.c4hco.test.automation.utils;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +39,10 @@ public class BasicActions {
     private static final String SSN_REGEX =
             "^(?!000|666|9\\d{2})\\d{3}[- ]?(?!00)\\d{2}[- ]?(?!0000)\\d{4}$";
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
+
+    public void clickBackButtonFromBrowser() {
+        getDriver().navigate().back();
+    }
 
     private static class LazyHolder {
         private static final BasicActions INSTANCE = new BasicActions();
@@ -80,6 +85,25 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementToBeClickableWithRetries(WebElement webElement, int waitTime) {
+        int retries = 5; // Number of retries to handle stale elements
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
+                return true;
+            } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element is not clickable");
+                Assert.fail("Element is not clickable");
+                return false;
+            }
+        }
+        return false;
+    }
+
     public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
@@ -108,9 +132,27 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not present");
-          return false;
+            return false;
         }
         return true;
+    }
+
+    public Boolean waitForElementToBePresentWithRetries(WebElement webElement, int waitTime) {
+        int retries = 5; // Number of retries to handle stale element
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+                return true;
+            } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element is not present");
+                return false;
+            }
+        }
+        return false;
     }
 
     public Boolean waitForElementPresence(WebElement webElement, int waitTime) {
@@ -143,6 +185,24 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean waitForElementListToBePresentWithRetries(List<WebElement> webElementList, int waitTime) {
+        int retries = 5; // Number of retries to handle stale elements
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
+                return true;
+            } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element list is not present");
+                return false;
+            }
+        }
+        return false;
+    }
+
     public void wait(int milliSeconds) {
         try {
             Thread.sleep(milliSeconds);
@@ -158,8 +218,19 @@ public class BasicActions {
                 .ignoring(NoSuchElementException.class);
 
         wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
 
-        element.click();
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+            element.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
+    }
+
+    public void clickById(String elementId){
+        WebElement element = WebDriverManager.getDriver().findElement(By.id(elementId));
+        ((JavascriptExecutor) WebDriverManager.getDriver()).executeScript("arguments[0].click()",element );
     }
 
     public void waitForPresence(WebElement webElement) {
@@ -211,6 +282,15 @@ public class BasicActions {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
+    public void switchtoPreviousTab() {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(0));
+    }
+
+    public void switchTabs(int tabNumber) {
+        tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(tabNumber));
+    }
 
     public void changeToNewUrl(String page){
         String currentUrl = getCurrentUrl();
@@ -257,6 +337,76 @@ public class BasicActions {
                 newUrl = currentUrl.replace("nes/tricare", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Income portal Error CoCo":
+                newUrl = "income-portal/error";
+                newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Unauthorized CoCo":
+                newUrl = "income-portal/unauthorized";
+                newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Error Exch":
+                newUrl = "IncomePortal/error";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Income portal Unauthorized Exch":
+                newUrl = "IncomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("IncomePortal/additionalIncome/[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Welcome portal Error CoCo":
+                newUrl = "WelcomePortal/error";
+                newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Welcome portal Unauthorized CoCo":
+                newUrl = "WelcomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Family Overview portal Error CoCo":
+                newUrl = "WelcomePortal/error";
+                newUrl = currentUrl.replaceAll("WelcomePortal/familyOverview[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Family Overview portal Unauthorized CoCo":
+                newUrl = "WelcomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("WelcomePortal/familyOverview[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "LCE portal Error CoCo":
+                newUrl = "lce-portal/error";
+                newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "LCE portal Unauthorized CoCo":
+                newUrl = "lce-portal/unauthorized";
+                newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Declarations and Signature portal Error CoCo":
+                newUrl = "WelcomePortal/error";
+                newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Declarations and Signature portal Unauthorized CoCo":
+                newUrl = "WelcomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Other Health Insurance portal Error Exch":
+                newUrl = "OtherHealthInsurancePortal/error";
+                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Other Health Insurance portal Unauthorized Exch":
+                newUrl = "OtherHealthInsurancePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
@@ -267,6 +417,27 @@ public class BasicActions {
         }
         Matcher matcher = SSN_PATTERN.matcher(SSNvalue);
         return matcher.matches();
+    }
+
+    public static String capitalizeFirstLetter(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public String getNoticesDownloadPath(){
+        String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
+        String noticesFolderPath = "target/notices-downloads/download-" + timestamp;
+        File reportFolder = new File(noticesFolderPath);
+        if (!reportFolder.exists()) {
+            boolean folderCreated = reportFolder.mkdirs();
+            if (!folderCreated) {
+                System.out.println("Failed to create the report folder.");
+            }
+        }
+        SharedData.setLocalPathToDownloadFile(noticesFolderPath);
+        return noticesFolderPath;
     }
 }
 

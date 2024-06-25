@@ -8,11 +8,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class MedicalPlansCoCoPage {
     private BasicActions basicActions;
+
+    Optional<Integer> optionalInt;
 
     public MedicalPlansCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -22,25 +27,45 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "#PlanResults-SelectThisPlan_1")
     public WebElement selectFirstPlan;
 
-    @FindBy(id = "SHP-MedicalPlanResults-Continue")
+    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
 
-    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
+    @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
-    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "SHP-PlanResults-MetalTier")
+    @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
+    @FindBy(id="mat-mdc-checkbox-10-input")
+    WebElement selectFirstComparebox;
 
-    public void selectFirstMedicalPlanCoCo() {
+    @FindBy (id = "mat-mdc-checkbox-11-input")
+    WebElement selectSecondComparebox;
+
+    @FindBy (id = "mat-mdc-checkbox-12-input")
+    WebElement selectSThirdComparebox;
+
+    @FindBy(id = "PlanResults-ComparePlans")
+    WebElement selectCompareButton;
+
+    @FindBy(css = ".c4-type-header-sm")
+    List<WebElement> medicalPlanNamesList;
+
+    @FindBy(css = "pagination-template .pagination-next a")
+    WebElement nextPageArrow;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+     public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
     }
 
     public void selectContinueMedicalPlansCoCo() {
-        basicActions.waitForElementToBeClickable(continueButton, 20);
+        basicActions.waitForElementToBeClickableWithRetries(continueButton, 20);
         continueButton.click();
     }
 
@@ -75,5 +100,49 @@ public class MedicalPlansCoCoPage {
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
+    public void selectPlanstoCompare(){
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,20 );
+        selectFirstComparebox.click();
+        selectSecondComparebox.click();
+        selectSThirdComparebox.click();
+        selectCompareButton.click();
+    }
+
+    private Optional<Integer> checkIfPlanPresent(String planName) {
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
+        return IntStream.range(0, medicalPlanNamesList.size())
+                .filter(i -> medicalPlanNamesList.get(i).getText().equals(planName))
+                .boxed()
+                .findFirst();
+    }
+
+    private void clickPlanButton(int index){
+        String planID = "PlanResults-SelectThisPlan_" + index;
+        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        ePlanID.click();
+    }
+
+    private void paginateRight(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(nextPageArrow, 10);
+        Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
+        basicActions.scrollToElement(nextPageArrow);
+        nextPageArrow.click();
+    }
+
+    public void selectCoCoMedicalplan(String planName){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setMedicalPlan(planName);
+        SharedData.setPrimaryMember(subscriber);
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+    }
 
 }

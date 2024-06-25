@@ -19,6 +19,9 @@ public class DeductionsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "header-1 content-center")
+    WebElement DeductionSummaryHeader;
+
     @FindBy(css = "app-deductions .additional-income-row button")
     List<WebElement> addtlDeductionOptionsCheckbox;
 
@@ -92,10 +95,12 @@ public class DeductionsPage {
     public void selectNoneAddtlDeductionOption(){
         basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 20);
         addtlDeductionOptionsCheckbox.get(10).click();
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 
     public void clickContinue(){
+        basicActions.waitForElementToBePresent(DeductionSummaryHeader,5);
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();

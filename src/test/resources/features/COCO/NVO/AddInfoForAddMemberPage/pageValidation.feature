@@ -3,7 +3,7 @@ Feature: Page Validation-Additional information for additional member page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-81 @PageValidationAddInfoForAddMember
+  @SLCR-81 @PageValidationAddInfoForAddMember @NVOCoCoRegression @NVOCoCoRegression
   Scenario: Validation for Additional information for additional member page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
