@@ -41,6 +41,7 @@ Feature: Verify the agency owner's ability to hide their address on the Find a C
     Then I click the Edit Agency Information link
     And I click the Hide This Address checkbox
     And I click the Save and Submit button on the Agency Details page
+    Then I click the Manage Brokers button
     Then I click on broker userName and logout
     And I validate I am on the "Login" page
 
@@ -84,4 +85,5 @@ Feature: Verify the agency owner's ability to hide their address on the Find a C
     Then I click the Edit Agency Information link
     And I click the Hide This Address checkbox
     And I click the Save and Submit button on the Agency Details page
+    Then I click the Manage Brokers button
     Then I click on broker userName and logout
