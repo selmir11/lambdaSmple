@@ -72,10 +72,16 @@ public class HouseholdPage {
 
     public void getAccountId() {
         basicActions.waitForElementToBePresent(accountIdTxt,15);
-        String accId = accountIdTxt.getText().replace("Account ID: ", "");
+        String accId;
+        if (accountIdTxt.getText().contains("Account ID")) {
+            accId = accountIdTxt.getText().replace("Account ID: ", "");
+        }else {
+            accId = accountIdTxt.getText().replace("Identificaci\u00F3n de la cuenta ", "");
+        }
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
     }
+
 
     public void iVerifyFamilyOverviewTablePresent() {
         // TO DO:: Sometimes, rarely we see 2 tables here. Make sure the code doesn't break when we get 2 tables displayed
