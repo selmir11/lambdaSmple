@@ -3,7 +3,7 @@ Feature: Multiple Household Member - End to End Test
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-160_WIP @EndToEndTest
+  @SLCR-160 @EndToEndTest
   Scenario: This will create Multiple household member with primary having High Income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -155,7 +155,27 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
 
-    Then I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Grouping Members Medical" page
+    And I validate that there are 2 default groups in coco page
+    Then I click continue on grouping Members Medical coco page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "KP Colorado Option Silver X" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox CoCo
+    And I select "Privacy Policy" agreement checkbox CoCo
+    And I select "Dental Coverage" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select continue button on the Enrollment Agreements CoCo page
+    And I select make payment button to pay the premium CoCo
+    Then I select Continue button on the Payment Selection CoCo page
+    Then I select second make payment button to pay the premium in coco
+    Then I select Continue button on the Payment Selection CoCo page
+    And I select continue button on the Initial Payment CoCo page
+    And I click on Go To Welcome Page Button on whats next coco page
+    And I click on Sign Out in the Header for "Elmo"

@@ -13,4 +13,9 @@ public class GroupingMembersMedicalCoCoSteps {
     public void clickContinue(){
         groupingMembersCoCoMedical.clickContinue();
     }
+
+    @Then("I validate that there are {int} default groups in coco page")
+    public void verifyNumberOfDefaultGroups(int groups){
+        groupingMembersCoCoMedical.noOfMedicalGroups(groups);
+    }
 }
