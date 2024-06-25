@@ -256,6 +256,11 @@ public class FindACertifiedBrokerPage {
         softAssert.assertAll();
     }
 
+    public void validateAgencyAddressHidden(){
+        softAssert.assertFalse(agencyAddress.isDisplayed());
+        softAssert.assertAll();
+    }
+
     public void validateAgencyCityStateZip(String cityStateZip){
         basicActions.waitForElementToBePresent(agencyCityStateZip,100);
         softAssert.assertEquals(agencyCityStateZip.getText(),cityStateZip);

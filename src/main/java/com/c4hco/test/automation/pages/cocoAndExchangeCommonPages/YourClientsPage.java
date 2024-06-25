@@ -156,6 +156,7 @@ public class YourClientsPage {
     public void logoutFromBrokerAccount() {
         basicActions.waitForElementToBePresent(brokerUserName,10);
         brokerUserName.click();
+        basicActions.wait(20);
         basicActions.waitForElementToBePresent(logout,10);
         logout.click();
     }
