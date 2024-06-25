@@ -16,11 +16,21 @@ public class PaymentSelectionCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(id = "SOL-PaymentSelection-MailCheckOrMoneyOrder")
+    WebElement moneyOrderBtn;
+
     @FindBy(id = "SOL-PaymentSelection-Continue")
     WebElement continueBtnPaymentSelection;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
+    public void clickMoneyOrderButton() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(moneyOrderBtn,  20 );
+        basicActions.waitForElementToBeClickable(moneyOrderBtn, 20);
+        moneyOrderBtn.click();
+    }
 
     public void paymentSelectionContinueCoCo() {
         basicActions.waitForElementToDisappear(spinner, 20);

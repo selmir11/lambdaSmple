@@ -13,6 +13,11 @@ public class InitialPaymentCoCoPageSteps {
         initialPaymentCoCoPage.selectMakePaymentBtnCoCo();
     }
 
+    @Then("I select second make payment button to pay the premium in coco")
+    public void makeSecondPayment(){
+        initialPaymentCoCoPage.clickSecondMakePaymentButton();
+    }
+
     @And("I select continue button on the Initial Payment CoCo page")
     public void continueInitialPaymentCoCo(){
         initialPaymentCoCoPage.selectContinueCoCo();
