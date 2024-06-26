@@ -12,6 +12,11 @@ public class IncomeOptOutPageSteps {
         incomeOptOutPage.chooseNoFinancialHelp();
     }
 
+    @When("I continue without financial help")
+    public void chooseNoFinancialHelp(){
+        incomeOptOutPage.chooseNoFinancialHelp();
+    }
+
     @And("I Apply for financial help")
     public void clickApply(){
         incomeOptOutPage.chooseApply();

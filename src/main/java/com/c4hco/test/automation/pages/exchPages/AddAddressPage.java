@@ -218,7 +218,13 @@ public class AddAddressPage {
         String state = addDetails.get(0).get("state");
         String zipcode = addDetails.get(0).get("zipcode");
         String county = addDetails.get(0).get("county");
-        String dob =addDetails.get(0).get("dob");
+        String dob = addDetails.get(0).get("dob");
+        addNewResidentialAddress(addressLine1, city, state, zipcode, county, dob);
+    }
+
+    public void addNewResidentialAddress(String addressLine1, String city, String state, String zipcode, String county, String dob){
+
+        basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
 
         newResidentialAddressline1.sendKeys(addressLine1);
         newResidentialAdressCity.sendKeys(city);
@@ -227,7 +233,7 @@ public class AddAddressPage {
         newResidentialAddressCounty.click();
         Select dropdown = new Select(newResidentialAddressCounty);
         dropdown.selectByValue(county);
-        setNewResidentialAddress(addressLine1,city,state,zipcode,county,dob);
+        setNewResidentialAddress(addressLine1, city, state, zipcode, county, dob);
     }
 
     public void setNewResidentialAddress(String addressLine1, String city, String state, String zipcode, String county, String dob){

@@ -105,6 +105,9 @@ public class BasicSteps {
             case "Spanish":
                 pageUrl = "lang=es";
                 break;
+            case "Additional information for yourself":
+                pageUrl = "nes/addAddress";
+                break;
             case "CoCo Additional information for yourself":
                 pageUrl = "coco/member-details-portal/member-additional-information";
                 break;
@@ -191,6 +194,9 @@ public class BasicSteps {
                 break;
             case "Tell us about yourself":
                 pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
+                break;
+            case "Tell us about yourself - Edit":
+                pageUrl = "nes/member";
                 break;
             case "Family Overview":
                 pageUrl = "nes/household";

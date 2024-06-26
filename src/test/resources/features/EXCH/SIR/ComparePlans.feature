@@ -1,5 +1,4 @@
-@medicalPlanFilterResults
-Feature: Medical Plan Verification test
+Feature: Medical Plan Results page related tests
 
   Background:
     When I open the login page on the "login" portal
@@ -62,50 +61,21 @@ Feature: Medical Plan Verification test
     When I click continue on application results page
     Then I validate I am on the "Start Shopping" page
 
-
-  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
-  Scenario Outline: SelectVerifyCarrierfilterResults
+  @SLER-80 @CompareDentalPlansLink
+  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Dental)
     When I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    When I select the Insurance Company dropdown
-    And I select "<carrierOption>" to filter for desired plan provider
-    Then I validate the plan option 1 has text "<planText>"
+    When I select the first medical plan
+    And I click continue on medical plan results page
+    Then I validate I am on the "Dental Plan Results" page
+    When I click on the compare links on the first 2 dental plans
+    And I click on the compare dental button
+    Then I validate I am on the "dentalCompare" page
 
-    Examples:
-      | carrierOption               | planText                                                          |
-      | Anthem                      | Anthem Bronze Pathway Essentials HMO 9450 $0 Select Drugs         |
-      | Cigna                       | Cigna Connect Colorado Option Bronze                              |
-      | Denver Health               | Elevate Health Plans Bronze HDHP                                  |
-      | Kaiser Permanente           | KP Select CO Bronze 8500/50                                       |
-      | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Bronze                 |
-      | Select Health               | Select Health Value Bronze $6900 Medical Deductible               |
-
-  @SLER-73 @SelectVerifyMetalFilterResults
-  Scenario Outline: SelectVerifyMetalFilterResults
+  @SLER-46 @CompareMedicalPlansLink
+  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical)
     When I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    When I select the Metal Tier dropdown
-    And I select "<metalOption>" to filter for a Metal Tier plan
-    Then I validate the plan option 1 has text "<metalPlanText>"
-    Examples:
-    |metalOption      |metalPlanText                              |
-    |Bronze           |Elevate Health Plans Bronze HDHP           |
-    |Silver           |Cigna Connect Colorado Option Silver       |
-    |Gold             |Elevate Health Plans Colorado Option Gold  |
-
-
-  @SLER-72 @SelectVerifyHSAResults
-  Scenario: SelectVerifyHSAResults
-    When I click continue on start shopping page
-    Then I validate I am on the "Medical Plan Results" page
-    When I click the HSA dropdown
-    And I select the HSA option
-    Then I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
-
-  @SLER-74  @SelectVerifyColoradoOptionResults
-  Scenario: SelectVerifyColoradoOptionResults
-    When I click continue on start shopping page
-    Then I validate I am on the "Medical Plan Results" page
-    When I click the Colorado Option dropdown
-    And I select the Colorado Option
-    Then I validate the plan option 3 has text "RMHP Colorado Doctors Plan Colorado Option Bronze"
+    And I click on the compare links on the first 2 medical plans
+    Then I click on the compare button
+    Then I validate I am on the "Compare" page

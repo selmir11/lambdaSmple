@@ -11,6 +11,9 @@ public class DeclarationsAndSignaturePageSteps {
     @And("I Declare as Tax Household {int}")
     public void iDeclareNSign(int taxHouseHold) {declarationsAndSignaturePage.enterSignature(taxHouseHold);}
 
+    @And("I sign as Tax Household {int}")
+    public void iSignForDeclaration(int taxHouseHold) {declarationsAndSignaturePage.enterSignature(taxHouseHold);}
+
     @Then("I click Continue on the Declarations And Signature Page")
     public void iClickContinue(){declarationsAndSignaturePage.submitApplication();}
 

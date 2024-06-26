@@ -1,11 +1,13 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
+import com.c4hco.test.automation.pages.exchPages.EditTellUsAboutYourselfPage;
 import com.c4hco.test.automation.pages.exchPages.TellUsAboutYourselfPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
 public class TellUsAboutYourselfPageSteps {
     TellUsAboutYourselfPage tellUsAboutYourselfPage = new TellUsAboutYourselfPage(WebDriverManager.getDriver());
+    EditTellUsAboutYourselfPage editTellUsAboutYourselfPage = new EditTellUsAboutYourselfPage(WebDriverManager.getDriver());
 
     @Then("I select {string} as sex option")
     public void userSexQuestion(String Sex) {
@@ -41,6 +43,11 @@ public class TellUsAboutYourselfPageSteps {
     @Then("I update DOB to new DOB of {string}")
     public void iUpdateDOB(String newDob) {
         tellUsAboutYourselfPage.updateDOB(newDob);
+    }
+
+    @When("I save and continue from tell us about yourself editing")
+    public void saveAndContinueEditing(){
+        editTellUsAboutYourselfPage.saveAndContinue();
     }
 
 

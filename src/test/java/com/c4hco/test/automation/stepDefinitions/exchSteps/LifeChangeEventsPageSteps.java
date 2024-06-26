@@ -12,12 +12,17 @@ public class LifeChangeEventsPageSteps {
 
 
     @And("I report {string} and click continue")
-    public void iClickQLCEOption(String lceOption){
+    public void iClickQLCEOption(String lceOption) {
+        lifeChangeEventsPage.selectLCE(lceOption);
+    }
+
+    @Then("I select {string}")
+    public void iSelectQLCEOption(String lceOption) {
         lifeChangeEventsPage.selectLCE(lceOption);
     }
 
     @And("I click Continue button on Report a Life Change Page")
-    public void iClickContinueWithApplication(){
+    public void iClickContinueWithApplication() {
         lifeChangeEventsPage.clickContinueWithApplication();
     }
 
