@@ -71,3 +71,6 @@ testdata/
 
 logs/
 Log4j/log4j-application.log
+src/main/resources/application.properties
+src/test/resources/features/EXCH/SIR/APTCVerificationAfterInitialEnrollmentwith2ndChange.feature
+src/test/resources/features/EXCH/SIR/CompareMedicalPlans.feature
