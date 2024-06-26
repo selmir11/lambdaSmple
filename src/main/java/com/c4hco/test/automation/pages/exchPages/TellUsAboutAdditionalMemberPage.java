@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.java.en.Then;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,6 +55,8 @@ public class TellUsAboutAdditionalMemberPage {
     WebElement selectRelationship1;
     @FindBy(id = "memberRelationship2")
     WebElement selectRelationship2;
+    @FindBy(id = "memberRelationship3")
+    WebElement selectRelationship3;
 
 
     @FindBy(id = "coverageYes")
@@ -148,6 +149,12 @@ public class TellUsAboutAdditionalMemberPage {
         basicActions.waitForElementToBePresent(selectRelationship2, 15);
 
         Select dropdown = new Select(selectRelationship2);
+        dropdown.selectByVisibleText(Relation);
+    }
+    public void setSelectRelationship3(String Relation) {
+        basicActions.waitForElementToBePresent(selectRelationship3, 15);
+
+        Select dropdown = new Select(selectRelationship3);
         dropdown.selectByVisibleText(Relation);
     }
 

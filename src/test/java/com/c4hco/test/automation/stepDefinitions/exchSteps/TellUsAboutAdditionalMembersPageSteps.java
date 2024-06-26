@@ -26,6 +26,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void selectRelationship1(String Relationship1){tellUsAboutAdditionalMemberPage.setSelectRelationship1(Relationship1);}
     @And("I select {string} as relationship two option")
     public void selectRelationship2(String Relationship2){tellUsAboutAdditionalMemberPage.setSelectRelationship2(Relationship2);}
+    @And("I select {string} as relationship three option")
+    public void selectRelationship3(String Relationship3){tellUsAboutAdditionalMemberPage.setSelectRelationship2(Relationship3);}
 
     @And("I select {string} to Is Member Applying")
     public void isMemberApplying(String isApplying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(isApplying);}
