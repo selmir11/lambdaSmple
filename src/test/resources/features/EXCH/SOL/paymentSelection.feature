@@ -109,7 +109,7 @@ Feature: Payment Selection page tests
     Then I click continue on start shopping page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
     Then I click continue on medical plan results page
-    And I select "Anthem Dental Family Value"
+    Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page

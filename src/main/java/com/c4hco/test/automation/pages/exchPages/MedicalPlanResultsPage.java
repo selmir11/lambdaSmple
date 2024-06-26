@@ -32,8 +32,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
 
-    @FindBy(id = "MedicalPlanResults-Continue")
-    WebElement btnContinue;
+
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueBtn;// locators included for both QA and STG
 
@@ -105,6 +104,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickContinue() {
+        basicActions.waitForElementToBePresent(continueBtn,30);
         continueBtn.click();
     }
 
