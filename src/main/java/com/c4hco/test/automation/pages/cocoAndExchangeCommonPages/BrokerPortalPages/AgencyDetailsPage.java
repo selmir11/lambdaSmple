@@ -89,6 +89,9 @@ public class AgencyDetailsPage {
     @FindBy(id = "l_hideAddress")
     WebElement hideAddressLabel;
 
+    @FindBy(id = "hideAddress-input")
+    WebElement hideAddressCheckbox;
+
     @FindBy(id = "l_workingHours")
     WebElement workingHoursLabel;
 
@@ -148,6 +151,15 @@ public class AgencyDetailsPage {
 
     @FindBy(id= "cancel-button")
     WebElement cancelAgencyDetails;
+
+    @FindBy(id= "BP-AgencyDetails-SaveandSubmit")
+    WebElement saveSubmitAgencyDetails;
+
+    @FindBy(xpath = "//label[@id='l_hideAddress']//em[@class='fas fa-question-circle']")
+    WebElement agencyHideAddressTooltip;
+
+    @FindBy(id = "hideAddress_helptext")
+    WebElement agencyHideAddressTooltipText;
 
     private BasicActions basicActions;
     Actions builder;
@@ -338,5 +350,23 @@ public class AgencyDetailsPage {
     public void clickCancelAgencyDetails(){
         basicActions.waitForElementToBePresent(cancelAgencyDetails, 10);
         cancelAgencyDetails.click();
+    }
+
+    public void clickHideAddressCheckbox(){
+        basicActions.waitForElementToBePresent(hideAddressCheckbox, 10);
+        hideAddressCheckbox.click();
+    }
+
+    public void clickAgencyDetailsSaveSubmit(){
+        basicActions.waitForElementToBePresent(saveSubmitAgencyDetails, 10);
+        saveSubmitAgencyDetails.click();
+    }
+
+    public void validateAgencyHideAddressTooltipText(){
+        basicActions.waitForElementToBePresent(agencyHideAddressTooltip, 10);
+        builder.moveToElement(agencyHideAddressTooltip).perform();
+
+        softAssert.assertEquals(agencyHideAddressTooltipText.getText(), "By default address lines 1 and 2 display in the search results on the \u2018Find a Certified Broker near you\u2019 page. If you do not want your address displayed to the public, please check the box here and only city, state and zip code will display for your location.");
+        softAssert.assertAll();
     }
 }

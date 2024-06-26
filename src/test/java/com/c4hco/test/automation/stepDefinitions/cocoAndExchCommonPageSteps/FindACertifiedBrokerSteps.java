@@ -87,6 +87,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.validateAgencyAddress(address);
     }
 
+    @Then("I validate agency address is hidden")
+    public void iValidateAgencyAddressHidden(){
+        findACertifiedBrokerPage.validateAgencyAddressHidden();
+    }
+
     @Then("I validate agency city state and zip is {string}")
     public void iValidateAgencyCityStateZip(String cityStateZip){
         findACertifiedBrokerPage.validateAgencyCityStateZip(cityStateZip);
