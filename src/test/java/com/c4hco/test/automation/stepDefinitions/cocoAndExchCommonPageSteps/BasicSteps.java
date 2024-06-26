@@ -40,6 +40,7 @@ public class BasicSteps {
                 pageUrl = "PreShoppingPortal/startShopping";
                 break;
             case "Deductions":
+                basicActions.wait(3000);
                 pageUrl = "/IncomePortal/deductions";
                 break;
             case "Financial Help":
@@ -49,9 +50,11 @@ public class BasicSteps {
                 pageUrl = "IncomePortal/additionalIncome";
                 break;
             case "Income Summary":
+                basicActions.wait(3000);
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
             case "Employment Info":
+                basicActions.wait(3000);
                 pageUrl = "IncomePortal/member";
                 break;
             case "planSummaryMedicalDental":

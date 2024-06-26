@@ -27,8 +27,8 @@ public class DentalPlansResultsPageSteps {
     }
 
     @Then("I click on the compare links on the first 2 dental plans")
-    public void clickFirstTwoCompareButtons() {
-        dentalPlansResultsPage.clickFirstTwoCompareButtons();
+    public void clickFirstTwoCompareBoxes() {
+        dentalPlansResultsPage.clickFirstTwoCompareBoxes();
     }
 
     @Then("I click on the compare dental button")

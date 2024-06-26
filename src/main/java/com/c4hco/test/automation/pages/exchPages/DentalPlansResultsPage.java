@@ -29,8 +29,12 @@ public class DentalPlansResultsPage {
     @FindBy(css = "#SHP-DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
-    @FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
-    List<WebElement> comparePlanLinks;
+    //@FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
+    @FindBy (id ="mat-mdc-checkbox-28-input")
+    WebElement comparePlanBox1;
+
+    @FindBy (id ="mat-mdc-checkbox-29-input")
+    WebElement comparePlanBox2;
 
     @FindBy(id ="DentalPlanResults-ComparePlans")
     WebElement btnCompareOnDentalPlanResults;
@@ -69,10 +73,10 @@ public class DentalPlansResultsPage {
         btnGoBack.click();
 
     }
-    public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 10);
-        comparePlanLinks.get(0).click();
-        comparePlanLinks.get(1).click();
+    public void clickFirstTwoCompareBoxes() {
+        basicActions.waitForElementToBePresent( comparePlanBox1,10 );
+        comparePlanBox1.click();
+        comparePlanBox2.click();
     }
     public void clickCompareOnDentalPlanResults() {
        basicActions.waitForElementToBePresent(btnCompareOnDentalPlanResults, 10);
@@ -81,6 +85,7 @@ public class DentalPlansResultsPage {
 
     public void clickCoverageLevelDropdown(){
         basicActions.waitForElementToBePresent(dropdownCoverageLevel, 10);
+        basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel, 10 );
         dropdownCoverageLevel.click();
 
     }
@@ -91,6 +96,7 @@ public class DentalPlansResultsPage {
 
     public void clickDentalInsuranceCompanyDropdown (){
         basicActions.waitForElementToBePresent(dropdownInsuranceCompany, 10);
+        basicActions.waitForElementToBeClickableWithRetries( dropdownInsuranceCompany,10 );
         dropdownInsuranceCompany.click();
     }
 
@@ -100,8 +106,7 @@ public class DentalPlansResultsPage {
     }
 
     public void validateDentalPlanText (int index,String dentalPlanText){
-        basicActions.waitForElementToBePresent(dropdownCoverageLevel, 10);
-        //index = index - 1;
+        basicActions.waitForElementToBeClickableWithRetries(dropdownCoverageLevel, 10);
         String indexString = String.valueOf(index);
         String planID = "DentalPlanResults-SelectThisPlan_" + indexString;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
