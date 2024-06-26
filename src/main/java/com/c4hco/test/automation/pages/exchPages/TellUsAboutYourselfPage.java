@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TellUsAboutYourselfPage {
 
-    protected BasicActions basicActions;
+    private BasicActions basicActions;
 
     public TellUsAboutYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);

@@ -2,38 +2,33 @@
 Feature: Medical Plan Verification test
 
   Background:
-    When I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+
+  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
+  Scenario Outline: SelectVerifyCarrierfilterResults
     When I click create a new account on login page
-    And I click create my account from pre-screen page
+    Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
-    When  I enter valid credentials to login
+    And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    When I apply for the current year
-    And I select "No" option on the Let us guide you page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-    Then I validate I am on the "Before you begin" page
-    When I click on Before you begin continue with application button
-    Then I select "MovedToColorado"
-    And I click Continue button on Report a Life Change Page
+    Then I click on continue with  application button on Before you begin page
+    And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
-    When I select "member" from the who are you question
-    And I enter details with city "Denver", state "CO", dob "10011980", county "DENVER" and zipcode "80205"
-    And I click the who are you save and continue button
-    Then I validate I am on the "Identity Proofing - Initial Questions" page
-    When I select first option to all Id proofing questions
-    And I click Member ID Proofing continue button
-    Then I validate I am on the "Identify Proofing - Congratulations" page
-    When I click continue button on Congratulations page
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-    When I click Continue on my own button from Manage who helps you page
-    Then I validate I am on the "Tell us about yourself" page
-    When I select "Male" as sex option
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
-    Then I validate I am on the "Add Address" page
-    When I enter generic mailing address details
+    Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -41,35 +36,26 @@ Feature: Medical Plan Verification test
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Citizenship" page
-    When I select "Yes" for Citizen option
+    Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I validate I am on the "Family Overview" page
-    When I click continue on family overview page
-    Then I validate I am on the "Financial Help" page
-    When I continue without financial help
-    Then I validate I am on the "Tell us about life changes" page
-    When I select "Birth" QLCE on tell us about life changes page
-    And I click on Save and Continue
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    When I sign as Tax Household 1
+    Then I click continue on family overview page
+    And I Apply for no financial help
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    And I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
-    Then I validate I am on the "Application History" page
     And I wait for hold on content to disappear
-    When I click on view results and shop
-    Then I validate I am on the "Application Results" page
-    When I click continue on application results page
+    Then I click on view results and shop
+    And I click continue on application results page
+
     Then I validate I am on the "Start Shopping" page
+    And I click continue on start shopping page
 
-
-  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
-  Scenario Outline: SelectVerifyCarrierfilterResults
-    When I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    When I select the Insurance Company dropdown
+    And I select the Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired plan provider
-    Then I validate the plan option 1 has text "<planText>"
+    And I validate the plan option 1 has text "<planText>"
 
     Examples:
       | carrierOption               | planText                                                          |
@@ -82,11 +68,55 @@ Feature: Medical Plan Verification test
 
   @SLER-73 @SelectVerifyMetalFilterResults
   Scenario Outline: SelectVerifyMetalFilterResults
-    When I click continue on start shopping page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for no financial help
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    And I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on view results and shop
+    And I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    And I click continue on start shopping page
+
     Then I validate I am on the "Medical Plan Results" page
-    When I select the Metal Tier dropdown
+    And I select the Metal Tier dropdown
     And I select "<metalOption>" to filter for a Metal Tier plan
-    Then I validate the plan option 1 has text "<metalPlanText>"
+    And I validate the plan option 1 has text "<metalPlanText>"
     Examples:
     |metalOption      |metalPlanText                              |
     |Bronze           |Elevate Health Plans Bronze HDHP           |
@@ -96,16 +126,107 @@ Feature: Medical Plan Verification test
 
   @SLER-72 @SelectVerifyHSAResults
   Scenario: SelectVerifyHSAResults
-    When I click continue on start shopping page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for no financial help
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    And I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on view results and shop
+    And I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    And I click continue on start shopping page
+
     Then I validate I am on the "Medical Plan Results" page
-    When I click the HSA dropdown
+    And I click the HSA dropdown
     And I select the HSA option
-    Then I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
+    And I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
 
   @SLER-74  @SelectVerifyColoradoOptionResults
   Scenario: SelectVerifyColoradoOptionResults
-    When I click continue on start shopping page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for no financial help
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    And I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on view results and shop
+    And I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    And I click continue on start shopping page
+
     Then I validate I am on the "Medical Plan Results" page
-    When I click the Colorado Option dropdown
+    And I click the Colorado Option dropdown
     And I select the Colorado Option
-    Then I validate the plan option 3 has text "RMHP Colorado Doctors Plan Colorado Option Bronze"
+    And I validate the plan option 3 has text "RMHP Colorado Doctors Plan Colorado Option Bronze"
+
+
+

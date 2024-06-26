@@ -7,71 +7,63 @@ import io.cucumber.java.en.*;
 
 public class LoginPageSteps {
 
-    LoginPage loginPage = new LoginPage(WebDriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(WebDriverManager.getDriver());
 
-    @Given("I open the login page on the {string} portal")
-    public void openPage(String portalType) {
-        loginPage.openPage(portalType);
-    }
+        @Given("I open the login page on the {string} portal")
+        public void openPage(String portalType) {
+            loginPage.openPage(portalType);
+        }
 
-    @When("I click create a new account on login page")
-    public void iClickCreateAccount() {
-        loginPage.clickCreateAccount();
-    }
+        @When("I click create a new account on login page")
+            public void iClickCreateAccount(){ loginPage.clickCreateAccount();}
 
-    @And("I enter valid credentials to login")
-    public void iEnterValidCredentials() {
-        loginPage.logInWithValidCredentials();
-    }
-
+        @And("I enter valid credentials to login")
+           public void iEnterValidCredentials(){
+            loginPage.logInWithValidCredentials();
+        }
     @When("I login as {string} and {string} individual existing user")
-    public void iLoginAsExistingIndividual(String userIndividual, String password) {
-        loginPage.loginAsExistingIndividual(userIndividual, password);
-    }
+    public void iLoginAsExistingIndividual(String userIndividual,String password) {
+        loginPage.loginAsExistingIndividual(userIndividual, password);}
 
     @When("I login as Broker User {string} password {string}")
-    public void i_login_as_Broker_user(String BrokerUserName, String password) {
-        loginPage.loginAsBrokerUser(BrokerUserName, password);
-    }
+    public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
 
     @And("I log into my {string} account")
-    public void iEnterBrokerPortalCredentials(String accountType) {
+    public void iEnterBrokerPortalCredentials(String accountType){
         loginPage.logInBrokerPortal(accountType);
     }
 
     @And("I login as Broker User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
-        loginPage.loginAsBrokerUserAnyEnv(stgUser, stgPW, qaUser, qaPW);
+        loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
 
     @And("I login as Assistnet User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsAssistnetUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
-        loginPage.loginAsBrokerUserAnyEnv(stgUser, stgPW, qaUser, qaPW);
+        loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
-
     @When("I login as Admin User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsAdminUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
-        loginPage.loginAsAdminUserAnyEnv(stgUser, stgPW, qaUser, qaPW);
+        loginPage.loginAsAdminUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
 
     @When("I click create forgot {string}")
     public void i_click_create_forget(String credentials) {
-        switch (credentials) {
-            case "password":
-                loginPage.clickForgotPassword();
+            switch (credentials){
+                case "password":
+                    loginPage.clickForgotPassword();
                 break;
-            case "username":
-                loginPage.clickForgotUsername();
-                break;
+                case "username":
+                    loginPage.clickForgotUsername();
+                    break;}
+            }
+
+
+        // =================VALIDATION STEPS==============//
+        @When("I click on sign in on login page")
+        public void iClickOnSignInonloginpage() {
+            loginPage.clickSignIn();
         }
-    }
-
-
-    // =================VALIDATION STEPS==============//
-    @When("I click on sign in on login page")
-    public void iClickOnSignInonloginpage() {
-        loginPage.clickSignIn();
-    }
 
     @And("I receive error message for Username")
     public void iReceiveErrorMessageForUsername() {
@@ -115,22 +107,21 @@ public class LoginPageSteps {
 
     @Then("I verify Expired Password error message in {string}")
     public void iVerifyExpiredPasswordErrorMessageIn(String language) {
-        loginPage.verifyExpiredPasswordErrorMessage(language);
-    }
+        loginPage.verifyExpiredPasswordErrorMessage(language);}
 
     @And("I enter valid credential STG username {string} PW {string} QA username {string} PW {string} for individual user without sign in any env")
-    public void iEnterValidCredentialSTGUsernamePWQAUsernamePWForIndividualUserWithoutSignInAnyEnv(String STGUsername, String STGPW, String QAUsername, String QAPW) {
-        loginPage.enterValidCredentialsWithoutSignIn(STGUsername, STGPW, QAUsername, QAPW);
+    public void iEnterValidCredentialSTGUsernamePWQAUsernamePWForIndividualUserWithoutSignInAnyEnv( String STGUsername, String STGPW,String QAUsername, String QAPW) {
+            loginPage.enterValidCredentialsWithoutSignIn( STGUsername, STGPW,QAUsername, QAPW);
     }
 
     @Then("I validate when show password is displayed as {string} the code is encrypted in {string} Page")
     public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedInPage(String showPW, String titlePage) {
-        loginPage.ValidateWhenShowPasswordIsDisplayedTheCodeIsEncrypted(showPW, titlePage);
+        loginPage.ValidateWhenShowPasswordIsDisplayedTheCodeIsEncrypted(showPW,titlePage);
     }
 
     @And("I click on show button in {string}")
     public void iClickOnShowButtonIn(String pageTitle) {
-        loginPage.ClickOnShowButton(pageTitle);
+            loginPage.ClickOnShowButton(pageTitle);
     }
 
     @Then("I validate Show button is displayed and enabled in {string}")
@@ -142,4 +133,8 @@ public class LoginPageSteps {
     public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedIn(String arg0, String arg1) {
 
     }
+
+
+
+
 }

@@ -80,20 +80,15 @@ public class WhoAreYouPage {
         }
     }
 
-    public void enterSpecificMemberDetailsAndContinue(String city, String state, String zipcode, String county, String dateOfBirth){
-        enterSpecificMemberDetails(city, state, zipcode, county, dateOfBirth);
-        saveAndContinue();
-    }
-
-    public void enterSpecificMemberDetails(String city, String state, String zipcode, String county, String dateOfBirth){
+    public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         Address address = new Address();
         StreetAddress1.sendKeys(addressLine1);
-        memberCity.sendKeys(city);
+        memberCity.sendKeys(City);
 
         basicActions.waitForElementToBeClickable(memberState,15);
         memberState.click();
-        basicActions.selectValueFromDropdown(memberState, stateDropdownOptions, state);
+        basicActions.selectValueFromDropdown(memberState, stateDropdownOptions, State);
 
         memberZip.sendKeys(zipcode);
 
@@ -107,8 +102,8 @@ public class WhoAreYouPage {
         memberSSN.sendKeys(SSNvalue);
         subscriber.setSsn(SSNvalue);
         address.setAddressLine1(addressLine1);
-        address.setAddressCity(city);
-        address.setAddressState(state);
+        address.setAddressCity(City);
+        address.setAddressState(State);
         address.setAddressZipcode(zipcode);
         address.setAddressCounty(county);
         subscriber.setResAddress(address);
@@ -120,10 +115,6 @@ public class WhoAreYouPage {
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys("Denver");
         saveAndContinue.click();
-    }
-
-    public void saveAndContinue(){
-        backSaveAndContinue.get(1).click();
     }
 
 }

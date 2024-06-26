@@ -8,17 +8,17 @@ public class QlceConfirmationPageSteps {
 
     QlceConfirmationPage qlceConfirmationPage = new QlceConfirmationPage(WebDriverManager.getDriver());
 
-    @When("I select {string} QLCE on tell us about life changes page")
+    @Then("I select {string} QLCE on tell us about life changes page")
     public void selectQlceType(String qlceOption){
         qlceConfirmationPage.selectQLCE(qlceOption);
     }
 
-    @When("I select {string} QLCE on tell us about life changes page for last member and select DOB as currentdate minus {int} days")
+    @Then("I select {string} QLCE on tell us about life changes page for last member and select DOB as currentdate minus {int} days")
     public void selectQlceTypeforlastmemebr(String qlceOption,int days){
         qlceConfirmationPage.selectBirthLCEForLastMember(qlceOption,days);
     }
 
-    @When("I click on Save and Continue")
+    @Then("I click on Save and Continue")
     public void saveAndContinue(){
         qlceConfirmationPage.saveAndContinue();
     }

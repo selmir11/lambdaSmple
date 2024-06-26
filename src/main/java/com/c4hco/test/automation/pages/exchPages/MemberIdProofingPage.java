@@ -38,19 +38,11 @@ public class MemberIdProofingPage {
     @FindBy(id = "submitButton")
     WebElement saveContinue;
 
-    public void selectFirstOptionToAllAndContinue(){
-        selectFirstOptionToAll();
-        saveAndContinue();
-    }
-
     public void selectFirstOptionToAll(){
         basicActions.waitForElementToBePresent(firstOptionInEmployerName, 10);
         firstOptionInEmployerName.click();
         firstOptionInHomeAddress.click();
         firstOptionInCarLoanBank.click();
-    }
-
-    public void saveAndContinue(){
         saveContinue.click();
     }
 
