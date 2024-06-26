@@ -1,4 +1,4 @@
-@SOL
+@SOLRegression
 Feature: UI Page Validation - Grouping Members (Medical)
 
   Background:

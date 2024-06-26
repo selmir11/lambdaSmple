@@ -1,3 +1,4 @@
+@SOLRegression
 Feature: Cancel Plans Spanish Translation
 
   Background:
