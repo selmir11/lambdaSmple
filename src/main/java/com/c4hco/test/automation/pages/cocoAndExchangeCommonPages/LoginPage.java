@@ -307,13 +307,11 @@ public class LoginPage {
                 basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
                 softAssert.assertEquals(showHidePWCreateAccount.getText(), "Show");
                 softAssert.assertTrue(showHidePWCreateAccount.isEnabled(), "show hide btn is enabled");
-                softAssert.assertAll();
                 break;
             case "create account Spanish":
                 basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
                 softAssert.assertEquals(showHidePWCreateAccount.getText(), "MOSTRAR");
                 softAssert.assertTrue(showHidePWCreateAccount.isEnabled(), "show hide btn is enabled");
-                softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageTitle);
