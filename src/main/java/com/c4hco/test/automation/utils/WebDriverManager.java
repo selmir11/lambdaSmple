@@ -45,7 +45,6 @@ public class WebDriverManager {
         prefs.put("profile.default_content_settings.popups", 0);
         prefs.put("download.directory_upgrade", true);
         prefs.put("safebrowsing.enabled", true);
-        prefs.put("plugins.always_open_pdf_externally", true); // Always download PDFs instead of opening them
         prefs.put("download.extensions_to_open", "application/xml");
 	
         options.addArguments("--start-maximized");
