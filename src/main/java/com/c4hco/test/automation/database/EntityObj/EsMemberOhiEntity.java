@@ -21,6 +21,7 @@ public class EsMemberOhiEntity {
     String medicare_prem_parta_ind3;
     String medicare_parta_end_soon_ind3;
     String medicare_partb_end_soon_ind3;
+    String medicare_no_premium_paid_ind;
     String indv_ins_enrl_covg_ind3;
     String indv_ins_covg_end_soon_ind3;
     String emp_coverage_end_soon_ind3;

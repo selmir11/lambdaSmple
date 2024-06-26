@@ -136,3 +136,59 @@ Feature: Page Validation-OHI Medicare Elmo Page
 
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-711 @PageValidationOhiMedicareElmo @test
+  Scenario: SLER-711 I validate save, update and remove on Medicare are updated in the DB
+    And I verify Currently eligible is "Not Selected" on the Medicare page
+    And I verify Part A "is not" and Part B "is not" checked on the Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |                        |                            |                            |
+    Then I click "No" for currently eligible in Medicare question
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |            0           |                            |                            |
+    Then I click "Yes" for currently eligible in Medicare question
+    Then I check checkbox for Part "A"
+    Then I enter Part A amount of "250.00"
+    Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
+    Then I enter end date of end of current month for Medicare part "A"
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |                  |        250.00         |                            |            1           |             1              |                            |
+    Then I click "Yes" for currently eligible in Medicare question
+    Then I check checkbox for Part "A"
+    Then I check checkbox for Part "B"
+    Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
+    Then I enter end date of end of current month for Medicare part "B"
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |        1         |                       |                            |            1           |                            |              1             |
+    Then I click "No" for currently eligible in Medicare question
+    Then I check checkbox for Part "A"
+    Then I enter Part A amount of "300.00"
+    Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
+    Then I enter end date of end of current month for Medicare part "A"
+    Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         1        |        300.00         |                            |            0           |             1              |               0            |
+    Then I click "Yes" for currently eligible in Medicare question
+    Then I check checkbox for Part "A Don't Pay"
+    Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
+    Then I check checkbox for Part "B"
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         0        |                       |              1             |            1           |             0              |                            |
+    Then I check checkbox for Part "A"
+    Then I click continue on the Elmo OHI Medicare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
+      |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |         0        |                       |                            |            1           |                            |                            |
+
+    And I click on Sign Out in the Header for "Elmo"
