@@ -298,9 +298,20 @@ public class LoginPage {
                 softAssert.assertEquals(showHidePW.getText(), "Show");
                 softAssert.assertTrue(showHidePW.isEnabled(), "show hide btn is enabled");
                 break;
+            case "login portal Spanish":
+                basicActions.waitForElementToBePresent(showHidePW, 10);
+                softAssert.assertEquals(showHidePW.getText(), "MOSTRAR");
+                softAssert.assertTrue(showHidePW.isEnabled(), "show hide btn is enabled");
+                break;
             case "create account":
                 basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
                 softAssert.assertEquals(showHidePWCreateAccount.getText(), "Show");
+                softAssert.assertTrue(showHidePWCreateAccount.isEnabled(), "show hide btn is enabled");
+                softAssert.assertAll();
+                break;
+            case "create account Spanish":
+                basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
+                softAssert.assertEquals(showHidePWCreateAccount.getText(), "MOSTRAR");
                 softAssert.assertTrue(showHidePWCreateAccount.isEnabled(), "show hide btn is enabled");
                 softAssert.assertAll();
                 break;
@@ -340,10 +351,10 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
         WebElement passwordText = basicActions.getDriver().findElement(By.xpath("//input[@id='password']"));
         switch (showHidePWCreateAccount.getText()) {
-            case "Show":
+            case "Show":  case "MOSTRAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "password");
                 break;
-            case "Hide":
+            case "Hide": case "OCULTAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "text");
                 break;
             default:
@@ -356,10 +367,10 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(showHidePW, 10);
         WebElement passwordText = basicActions.getDriver().findElement(By.xpath("//input[@id='password']"));
         switch (showHidePW.getText()) {
-            case "Show":
+            case "Show": case "MOSTRAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "password");
                 break;
-            case "Hide":
+            case "Hide": case "OCULTAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "text");
                 break;
             default:
