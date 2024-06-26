@@ -1,3 +1,4 @@
+@SOLRegression
 Feature: Initial Payment Page test
 
   Background:

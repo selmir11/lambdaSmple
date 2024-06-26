@@ -1,3 +1,4 @@
+@SOLRegression
 Feature: Tobacco Usage page related tests
 
   Background:

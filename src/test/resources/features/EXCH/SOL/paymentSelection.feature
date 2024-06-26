@@ -1,3 +1,4 @@
+@SOLRegression
 Feature: Payment Selection page tests
 
   Background:
