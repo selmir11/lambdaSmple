@@ -5,7 +5,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-160 @groupingbysiblingswithoutparents
+  @SLCR-161 @groupingbysiblingswithoutparents
   Scenario: Two members both siblings in the household, Parents not applying, one group should exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page
