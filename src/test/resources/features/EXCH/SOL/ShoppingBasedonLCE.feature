@@ -239,7 +239,7 @@ Feature: Initial Payment Page test
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-716-WIP @MarriageLCE
+  @SLER-716 @MarriageLCE
   Scenario: NFA selecting LCE Marriage without financial assistance in order to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
