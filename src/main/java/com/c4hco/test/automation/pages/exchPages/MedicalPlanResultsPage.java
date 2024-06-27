@@ -108,6 +108,11 @@ public class MedicalPlanResultsPage {
         continueBtn.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickableWithRetries( btnGoBack,30 );
+        btnGoBack.click();
+    }
+
     public void clickCompare() {
         basicActions.waitForElementToBePresent(clickCompare, 30);
         clickCompare.click();
