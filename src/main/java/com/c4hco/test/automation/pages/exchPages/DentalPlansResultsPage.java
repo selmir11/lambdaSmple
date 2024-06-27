@@ -107,7 +107,7 @@ public class DentalPlansResultsPage {
     public void validateDentalPlanText (int index,String dentalPlanText){
         basicActions.waitForElementToBeClickableWithRetries(dropdownCoverageLevel, 10);
         String indexString = String.valueOf(index);
-        String planID = "PlanResults-SelectThisPlan_" + indexString; //PlanResults-SelectThisPlan_1
+        String planID = "DentalPlanResults-SelectThisPlan_" + indexString;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         String expectedText = ePlanID.getText();
         expectedText.equals(dentalPlanText);
