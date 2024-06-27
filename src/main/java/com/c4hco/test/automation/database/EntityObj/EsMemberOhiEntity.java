@@ -24,6 +24,7 @@ public class EsMemberOhiEntity {
     String medicare_no_premium_paid_ind;
     String indv_ins_enrl_covg_ind3;
     String indv_ins_covg_end_soon_ind3;
+    String indv_ins_end_voluntary_ind3;
     String emp_coverage_end_soon_ind3;
     String emp_coverage_min_std_ind3;
     String emp_coverage_monthly_prem_amt;
@@ -32,13 +33,14 @@ public class EsMemberOhiEntity {
     String cobra_end_voluntary_ind3;
     String va_enrl_covg_ind3;
     String va_covg_end_soon_ind3;
+    String va_end_voluntary_ind3;
     String retiree_enrl_covg_ind3;
     String retiree_covg_end_soon_ind3;
+    String retiree_end_voluntary_ind3;
     String tricare_enrl_covg_ind3;
     String tricare_covg_end_soon_ind3;
     String tricare_end_voluntary_ind3;
     String peace_corps_enrl_covg_ind3;
     String peace_corps_covg_end_soon_ind3;
     String peace_corps_end_voluntary_ind3;
-    String retiree_end_voluntary_ind3;
 }
