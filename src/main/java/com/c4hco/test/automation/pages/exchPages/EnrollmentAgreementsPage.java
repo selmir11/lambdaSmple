@@ -62,8 +62,8 @@ public class EnrollmentAgreementsPage {
     public void clickGoBack() {
         basicActions.waitForElementToBeClickable( goBackbtn,10 );
         basicActions.scrollToElement( goBackbtn );
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", goBackbtn);
         goBackbtn.click();
+        
 
     }
 
