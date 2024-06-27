@@ -4,8 +4,8 @@ Feature: Dental Plans page tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-35 @SelectGoBackOnDentalPages
-  Scenario: Go Back Dental Pages
+  @SLER-35 @SLER-718 @SelectGoBackFromAgreementsToPreShopping
+  Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -55,7 +55,23 @@ Feature: Dental Plans page tests
     Then I click continue on medical plan results page
     
     Then I validate I am on the "Dental Plan Results" page
-    Then I click on back button on dental Plan Results
+    And I select first dental plan
+    Then I click continue on dental plan results page
+
+    Then I validate I am on the "Plan Summary" page
+    And I continue on plan summary page
+    
+    Then I validate I am on the "Enrollment Agreements" page
+    And I click Go Back on the Enrollment Agreements page
+
+    Then I validate I am on the "Plan Summary" page
+    And I click Go Back on the Plan Summary page
+
+    Then I validate I am on the "Dental Plan Results" page
+    Then I click Go Back on Dental Plan Results page
     
     Then I validate I am on the "Medical Plan Results" page
-    And I click on Sign Out in the Header for "Payment"
+    Then I click Go Back on the medical plan results page
+
+    Then I validate I am on the "Start Shopping" page
+    And I click on Sign Out in the Header for "Elmo"

@@ -48,9 +48,11 @@ Feature: Medical Plan Results page related tests
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
+
+    Then I validate I am on the "Medical Plan Results" page
     And I click on the compare links on the first 2 medical plans
     Then I click on the compare button
-    Then I validate I am on the "Compare" page
+    Then I validate I am on the "Medical Plan Compare" page
 
 
 
