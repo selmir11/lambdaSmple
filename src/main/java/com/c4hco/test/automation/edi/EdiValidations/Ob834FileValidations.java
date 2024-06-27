@@ -96,6 +96,10 @@ public class Ob834FileValidations {
 
     public void validateNM1Seg(Ob834DetailsEntity entry){
        List<List<String>> nm1Seg1  = transaction.getMembersList().get(0).getNM1();
+       if(SharedData.getPrimaryMember().getHasIncorrectEntities()){
+           softAssert.assertEquals(nm1Seg1.get(0).get(0),"74","Entity Identifier Code");
+       }
+            softAssert.assertEquals(nm1Seg1.get(0).get(1), entry.getIncorrect_entity_type_qualifier(),"Incorrect entity type qualifier does not match");
             softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(),"Member Last name does not match");
             softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
             softAssert.assertEquals(nm1Seg1.get(0).get(8),entry.getMember_ssn(), "Member SSN does not match");

@@ -301,6 +301,12 @@ public class OhiMedicarePage_Elmo {
                 softAssert.assertTrue(currentlyEligibleNo.getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
+            case "Not Selected":
+                basicActions.waitForElementToBePresent(currentlyEligibleYes,15);
+                softAssert.assertTrue(currentlyEligibleYes.getAttribute("class").equals("button option-button ng-star-inserted"));
+                softAssert.assertTrue(currentlyEligibleNo.getAttribute("class").equals("button option-button ng-star-inserted"));
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + currentlyEligible);
         }
