@@ -116,8 +116,6 @@ Feature: End to End Tests
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
     Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    Then I select make payment button to pay the premium
     And I select the Money Order button
     And I click continue on payment selection page
     And I click on Sign Out in the Header for "Elmo"
