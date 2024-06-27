@@ -4,8 +4,8 @@ Feature: Medical Plan Results page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-80 @CompareDentalPlansLink
-  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Dental)
+  @CompareDentalPlansLink @SLER-80
+  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Dental) - formerly RT-1980
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -58,7 +58,9 @@ Feature: Medical Plan Results page related tests
     And I click on the compare links on the first 2 dental plans
     Then I click on the compare dental button
 
-    Then I validate I am on the "dentalCompare" page
+    Then I validate I am on the "Dental Plan Compare" page
+    And I click Go Back on the Dental Compare page
+    Then I click on Sign Out in the Header for "PlanSelection"
 
 
 

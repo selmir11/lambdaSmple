@@ -158,7 +158,7 @@ public class BasicSteps {
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
-            case "dentalCompare":
+            case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
                 break;
             case "Employment Income":
