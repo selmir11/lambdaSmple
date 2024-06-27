@@ -40,7 +40,6 @@ public class BasicSteps {
                 pageUrl = "PreShoppingPortal/startShopping";
                 break;
             case "Deductions":
-                basicActions.wait(3000);
                 pageUrl = "/IncomePortal/deductions";
                 break;
             case "Financial Help":

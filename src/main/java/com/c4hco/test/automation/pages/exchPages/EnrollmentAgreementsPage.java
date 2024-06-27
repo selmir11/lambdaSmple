@@ -60,7 +60,8 @@ public class EnrollmentAgreementsPage {
     }
 
     public void clickGoBack() {
-        basicActions.waitForElementToBeClickableWithRetries( goBackbtn,10 );
+        basicActions.waitForElementToBeClickable( goBackbtn,10 );
+        basicActions.scrollToElement( goBackbtn );
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", goBackbtn);
         goBackbtn.click();
 

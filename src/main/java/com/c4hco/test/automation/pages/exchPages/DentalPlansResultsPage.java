@@ -29,7 +29,6 @@ public class DentalPlansResultsPage {
     @FindBy(id= "DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
-    //@FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
     @FindBy (id ="mat-mdc-checkbox-28-input")
     WebElement comparePlanBox1;
 

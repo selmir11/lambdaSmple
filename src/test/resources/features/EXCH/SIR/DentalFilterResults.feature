@@ -5,7 +5,7 @@ Feature: Dental Plan Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-81 @SelectVerifyDentalCoverageLevelFilterResults @test
+  @SLER-81 @SelectVerifyDentalCoverageLevelFilterResults
   Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults - used tp be RT-1966
     When I click create a new account on login page
     Then I click create my account from pre-screen page

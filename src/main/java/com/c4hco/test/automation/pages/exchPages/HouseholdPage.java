@@ -37,11 +37,9 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow .linkButton")
     WebElement editPrimaryMember;
 
-    //@FindBy(xpath = "//*[@name = 'hhSelectMember']")
     @FindBy(xpath = "//*[@class = input.submitbutton]")
     WebElement linkName;
 
-    //@FindBy(css = ".submitButton_Income .input")
     @FindBy(xpath = "//*[@id = 'submitButton_Income']")
     WebElement editPrimaryMemberRedIcon;
 
@@ -57,7 +55,6 @@ public class HouseholdPage {
     @FindBy(css = ".table-striped")
     WebElement familyOverviewTable;
 
-    //@FindBy(css = "i.fa.fa-plus-circle.toggleAddlRow")
     @FindBy(xpath = "//*[@class = 'fa fa-plus-circle toggleAddlRow']")
     WebElement tableDropdown;
 

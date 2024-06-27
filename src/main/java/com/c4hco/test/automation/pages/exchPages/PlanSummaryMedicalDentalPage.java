@@ -119,7 +119,6 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.waitForElementToBeClickableWithRetries( goBackButton,15 );
         basicActions.scrollToElement( goBackButton );
         basicActions.click (goBackButton );
-        // ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", goBackButton);
     }
 
     public void getmedGroup1MemNames() {
