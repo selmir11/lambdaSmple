@@ -19,4 +19,7 @@ public class EnrollmentAgreementsPageSteps {
     public void continueInitialPaymentCoCo(){
         enrollmentAgreementsPage.clickContinue();
     }
+
+    @And("I click Go Back on the Enrollment Agreements page")
+    public void goBackEnrollmentAgreements() {enrollmentAgreementsPage.clickGoBack();}
 }

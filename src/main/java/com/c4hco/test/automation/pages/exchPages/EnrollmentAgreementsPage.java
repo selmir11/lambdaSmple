@@ -27,6 +27,9 @@ public class EnrollmentAgreementsPage {
     @FindBy(id="SOL-EnrollmentAgreements-Continue")
     WebElement continueBtn;
 
+    @FindBy(id = "SOL-EnrollmentAgreements-GoBack")
+    WebElement goBackbtn;
+
     public void selectAgreementsCheckbox(String checkbox) {
         // TO DO: Update this method and remove the wait below
        basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
@@ -55,5 +58,14 @@ public class EnrollmentAgreementsPage {
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         continueBtn.click();
     }
+
+    public void clickGoBack() {
+        basicActions.waitForElementToBeClickableWithRetries( goBackbtn,10 );
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", goBackbtn);
+        goBackbtn.click();
+
+    }
+
+
 
 }

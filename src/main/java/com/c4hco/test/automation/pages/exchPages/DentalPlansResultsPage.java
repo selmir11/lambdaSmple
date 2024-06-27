@@ -26,7 +26,7 @@ public class DentalPlansResultsPage {
     @FindBy(id="PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
-    @FindBy(css = "#SHP-DentalPlanResults-GoBack")
+    @FindBy(id= "DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
     //@FindBy(xpath ="//a[contains(@id,'DentalPlanResults-Compare')]")
