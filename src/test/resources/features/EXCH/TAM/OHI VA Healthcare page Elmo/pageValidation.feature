@@ -123,7 +123,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-717 @PageValidationOhiVaHealthcareElmo @test
+  @SLER-717 @PageValidationOhiVaHealthcareElmo
   Scenario: SLER-717 I validate save, update and remove on VA Healthcare are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the VA Healthcare page
     And I verify the OHI options selected in the DB

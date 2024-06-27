@@ -116,7 +116,7 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-719 @PageValidationOhiIndividualInsuranceElmo @test
+  @SLER-719 @PageValidationOhiIndividualInsuranceElmo
   Scenario: SLER-719 I validate save, update and remove on Individual Insurance are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Individual Insurance page
     And I verify the OHI options selected in the DB
