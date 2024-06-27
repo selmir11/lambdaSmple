@@ -137,7 +137,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-711 @PageValidationOhiMedicareElmo @test
+  @SLER-711 @PageValidationOhiMedicareElmo
   Scenario: SLER-711 I validate save, update and remove on Medicare are updated in the DB
     And I verify Currently eligible is "Not Selected" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
