@@ -115,3 +115,55 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
 
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-719 @PageValidationOhiIndividualInsuranceElmo @test
+  Scenario: SLER-719 I validate save, update and remove on Individual Insurance are updated in the DB
+    And I verify Currently Enrolled is "Not Selected" on the Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |            1           |                       |                           |                           |
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |                      |                           |                           |
+    Then I click "No" for currently enrolled in Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
+    Then I click "No" for insurance ending in 60 days in Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             0             |                           |
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    Then I enter the end date as "Current Month" on the Individual Insurance page
+    Then I click "No" for insurance ending voluntary for Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             1             |               0           |
+    Then I click "Yes" for insurance ending voluntary for Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             1             |               1           |
+    Then I click "No" for insurance ending in 60 days in Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             0             |                           |
+    Then I click "No" for currently enrolled in Individual Insurance question
+    Then I click continue on the Elmo OHI Individual Insurance page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
+
+    And I click on Sign Out in the Header for "Elmo"

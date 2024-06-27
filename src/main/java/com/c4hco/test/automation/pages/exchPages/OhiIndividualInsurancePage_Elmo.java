@@ -194,6 +194,12 @@ public class OhiIndividualInsurancePage_Elmo {
                 softAssert.assertTrue(currentlyEnrolledNo.getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
+            case "Not Selected":
+                basicActions.waitForElementToBePresent(currentlyEnrolledYes,15);
+                softAssert.assertTrue(currentlyEnrolledYes.getAttribute("class").equals("button option-button ng-star-inserted"));
+                softAssert.assertTrue(currentlyEnrolledNo.getAttribute("class").equals("button option-button ng-star-inserted"));
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + currentlyEnrolled);
         }
