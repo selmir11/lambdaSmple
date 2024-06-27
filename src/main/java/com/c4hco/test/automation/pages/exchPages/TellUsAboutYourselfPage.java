@@ -118,6 +118,7 @@ public class TellUsAboutYourselfPage {
         ssn.sendKeys(newSsn);
         subscriber.setSsn(newSsn);
         System.out.println("ssn updated");
+        subscriber.setHasIncorrectEntities(true);
         subscriber.setIncorrectEntityTypeQualifier("1");
         subscriber.setIncorrectIdCodeQualifier("34");
         subscriber.setIncorrectIdCode(oldSsn);
