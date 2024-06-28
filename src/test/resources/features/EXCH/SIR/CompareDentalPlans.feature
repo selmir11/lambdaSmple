@@ -120,7 +120,7 @@ Feature: Medical Plan Results page related tests
     And I validate the text headers and subheaders for the InNetwork Dental Compare page
     And I select the OutNetwork link on the Dental Compare page
     And I validate the text headers and subheaders for the OutNetwork Dental Compare page
-    And I select the OutNetwork link on the Dental Compare page
+    And I select the InNetwork link on the Dental Compare page
     And I click Go Back on the Dental Compare page
     Then I click on Sign Out in the Header for "PlanSelection"
 

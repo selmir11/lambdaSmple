@@ -121,7 +121,7 @@ public class MedicalComparePage {
     public void validateInNetworkTextHeaders() {
         basicActions.waitForElementToBePresent(header, 10);
         softAssert.assertEquals(header.getText(), "Plan Comparison");
-        softAssert.assertEquals(inOneHeader.getText(), "Monthly Premium");//id='ngb-accordion-item-0-toggle'
+        softAssert.assertEquals(inOneHeader.getText(), "Monthly Premium");
         softAssert.assertEquals(inTwoHeader.getText(), "General Details");
         softAssert.assertEquals(inThreeHeader.getText(), "Provider Office Visits");
         softAssert.assertEquals(inFourHeader.getText(), "Prescription Drugs");
