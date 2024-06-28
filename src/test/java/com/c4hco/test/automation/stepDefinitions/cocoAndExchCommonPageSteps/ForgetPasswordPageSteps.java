@@ -6,9 +6,15 @@ import io.cucumber.java.en.*;
 
 public class ForgetPasswordPageSteps {
     ForgetPasswordPage forgetPasswordPage = new ForgetPasswordPage(WebDriverManager.getDriver());
-    @Then("I verify enter your password text is displayed")
-    public void iVerifyEnterYourPasswordTextIsDisplayed() {
-        forgetPasswordPage.enterPasswordText();
+
+    @Then("I validate the Forgot my password page title in {string}")
+    public void iValidateForgotMyPasswordPageTitle(String language) {
+        forgetPasswordPage.validateForgotMyPasswordPageTitle(language);
+    }
+
+    @Then("I verify enter your password text is displayed in {string}")
+    public void iVerifyEnterYourPasswordTextIsDisplayed(String language) {
+        forgetPasswordPage.enterPasswordText(language);
     }
 
     @And("I click submit button")
@@ -16,9 +22,9 @@ public class ForgetPasswordPageSteps {
         forgetPasswordPage.clickSubmit();
     }
 
-    @Then("I verify error username required text is displayed")
-    public void iVerifyErrorUsernameRequiredTextIsDisplayed() {
-        forgetPasswordPage.errorUsernameRequiredText();
+    @Then("I verify error username required text is displayed in {string}")
+    public void iVerifyErrorUsernameRequiredTextIsDisplayed(String language) {
+        forgetPasswordPage.errorUsernameRequiredText(language);
     }
 
     @And("I enter valid email {string}")
@@ -26,8 +32,8 @@ public class ForgetPasswordPageSteps {
         forgetPasswordPage.enterValidPassword(emailAddress);
     }
 
-    @Then("I verify notice is sent to the client text")
-    public void iVerifyNoticeIsSentToTheClientText() {
-        forgetPasswordPage.verifyNoticeIsSentText();
+    @Then("I verify notice is sent to the client text in {string}")
+    public void iVerifyNoticeIsSentToTheClientText(String language) {
+        forgetPasswordPage.verifyNoticeIsSentText(language);
     }
 }

@@ -28,6 +28,10 @@ public class EsMemberOhiEntity {
     String emp_coverage_end_soon_ind3;
     String emp_coverage_min_std_ind3;
     String emp_coverage_monthly_prem_amt;
+    String enrl_emp_sponsored_covg_ind3;
+    String emp_coverage_family_plan_offered_ind3;
+    String emp_coverage_family_prem_amount;
+    String emp_end_voluntary_ind3;
     String cobra_enrl_covg_ind3;
     String cobra_covg_end_soon_ind3;
     String cobra_end_voluntary_ind3;
