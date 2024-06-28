@@ -32,17 +32,57 @@ public class ForgotUsernamePage {
     WebElement submitBTN;
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 mt-3 ng-star-inserted']")
     WebElement noticeIsSentMsg;
-    public void informationSForForgotUsername(String language){
-        if (SharedData.getEnv().equals("qa") & language.equals("English")){
-            DataForForgotUsername("erty", "el", "123-456-7890", "Customer");
-        }else if(SharedData.getEnv().equals("staging") & language.equals("English")){
-            DataForForgotUsername("candy", "SpanishSTG", "111-111-1112", "Customer");
-        }else if(SharedData.getEnv().equals("qa") & language.equals("Spanish")){
-            DataForForgotUsername("candy", "SpanishQA", "111-111-1112", "Customer");
-        }else{
-            DataForForgotUsername("Primary", "Tucker", "111-111-1112", "Customer");
+    public void informationSForForgotUsername(String language, String appType){
+        switch (appType) {
+            case "Coco":
+            if (SharedData.getEnv().equals("qa") & language.equals("English")) {
+                DataForForgotUsername("erty", "el", "123-456-7890", "Customer");
+            } else if (SharedData.getEnv().equals("staging") & language.equals("English")) {
+                DataForForgotUsername("candy", "SpanishSTG", "111-111-1112", "Customer");
+            } else if (SharedData.getEnv().equals("qa") & language.equals("Spanish")) {
+                DataForForgotUsername("candy", "SpanishQA", "111-111-1112", "Customer");
+            } else {
+                DataForForgotUsername("Primary", "Tucker", "111-111-1112", "Customer");
+            }
+            break;
+            case "Exch":
+                if (SharedData.getEnv().equals("qa") & language.equals("English")) {
+                    DataForForgotUsername("banana", "rep", "987-654-3210", "Customer");
+                } else if(SharedData.getEnv().equals("staging") & language.equals("English")) {
+                    DataForForgotUsername("orange", "strawberry", "111-111-2345", "Customer");
+                }
+            break;
+            case "Agency":
+                if (SharedData.getEnv().equals("qa") & language.equals("English")) {
+                    DataForForgotUsername("Primary", "Gent", "(111) 111-1112", "Administrative Staff");
+                } else if(SharedData.getEnv().equals("staging") & language.equals("English")) {
+                    DataForForgotUsername("adssohyssp", "adsdhejcofr", "379-758-6831", "Administrative Staff");
+                }
+                break;
+            case "Certified Broker":
+                if (SharedData.getEnv().equals("qa") & language.equals("English")) {
+                    DataForForgotUsername("donut", "el", "123-456-7890", "Certified Broker");
+                } else if(SharedData.getEnv().equals("staging") & language.equals("English")) {
+                    DataForForgotUsername("Primary", "Rever", "111-222-3330", "Certified Broker");
+                }
+                break;
+            case "Administrative Staff":
+                if (SharedData.getEnv().equals("qa") & language.equals("English")) {
+                    DataForForgotUsername("adminstaff", "Tucker", "(123) 456-7890", "Administrative Staff");
+                } else if(SharedData.getEnv().equals("staging") & language.equals("English")) {
+                    DataForForgotUsername("adminSTG", "test", "364-834-4958", "Administrative Staff");
+                }
+                break;
+            case "Program Manager":
+                if (SharedData.getEnv().equals("qa") & language.equals("English")) {
+                    DataForForgotUsername("assistnetAPQA", "port", "391-480-0117", "Program Manager");
+                } else if(SharedData.getEnv().equals("staging") & language.equals("English")) {
+                    DataForForgotUsername("assistnetAP", "outlook", "383-027-3043", "Program Manager");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
         }
-
     }
 
     public void DataForForgotUsername(String firstNameData, String lastNameData, String phoneData, String accountTypeData) {

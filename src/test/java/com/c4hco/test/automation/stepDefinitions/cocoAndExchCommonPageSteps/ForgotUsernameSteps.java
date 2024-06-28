@@ -7,9 +7,9 @@ import io.cucumber.java.en.Then;
 
 public class ForgotUsernameSteps {
     ForgotUsernamePage forgotUsernamePage =  new ForgotUsernamePage(WebDriverManager.getDriver());
-    @Then("I enter information's for Forgot username in {string}")
-    public void iEnterInformationSForForgotUsernameIn(String language) {
-        forgotUsernamePage.informationSForForgotUsername(language);
+    @Then("I enter information's for Forgot username in {string} {string}")
+    public void iEnterInformationSForForgotUsernameIn(String language, String appType) {
+        forgotUsernamePage.informationSForForgotUsername(language, appType);
     }
 
     @And("I validate notice sent successful msg is displayed")
