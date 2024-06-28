@@ -213,8 +213,8 @@ public class BasicSteps {
                 pageUrl = "/otherHealthInsurance/cobra";
                 break;
             case "ESI":
-//                pageUrl = "otherHealthInsurance/employerSponsored"; //Staging
-                pageUrl = "otherHealthCoverage/employerSponsored"; //QA
+                pageUrl = "otherHealthInsurance/employerSponsored"; //Staging
+//                pageUrl = "otherHealthCoverage/employerSponsored"; //QA
                 break;
             case "HRA":
                 pageUrl = "nes/memberHra";
@@ -292,8 +292,8 @@ public class BasicSteps {
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
             case "Elmo Ohi Retiree":
-//                pageUrl = "/otherHealthInsurance/retiree"; //Staging
-                pageUrl = "/otherHealthCoverage/retiree"; //QA
+                pageUrl = "/otherHealthInsurance/retiree"; //Staging
+//                pageUrl = "/otherHealthCoverage/retiree"; //QA
                 break;
             case "Elmo Ohi Medicare":
                 pageUrl = "/otherHealthInsurance/medicare";
