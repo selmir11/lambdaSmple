@@ -254,13 +254,18 @@ public class DbValidations {
     }
 
     public void validateBrokerDetails(Ob834DetailsEntity ob834Entity,DbData dbData){
-        if (SharedData.getHasBroker()) {
         BrokerDetails broker = SharedData.getBroker();
-        softAssert.assertEquals(SharedData.getBroker() != null ? SharedData.getBroker().getBroker_name() : null, ob834Entity.getTpa_or_broker_name(),"Broker name is incorrect");
+        if (SharedData.getHasBroker()) {
+        softAssert.assertEquals(broker.getBroker_name(), ob834Entity.getTpa_or_broker_name(),"Broker name is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
-        softAssert.assertAll();
         }
+        else{
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), null,"Broker name is incorrect");
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), null, "Broker Tin Number is incorrect");
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), null, "Broker license number is incorrect");
+        }
+        softAssert.assertAll();
     }
 
     public void validateIncorrectEntities(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
