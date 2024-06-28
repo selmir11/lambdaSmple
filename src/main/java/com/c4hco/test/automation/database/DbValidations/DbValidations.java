@@ -221,18 +221,18 @@ public class DbValidations {
     public void validateResponsiblePersonDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
         if( subscriber.getIsMinor()){
             MemberDetails responsiblePerson = SharedData.getPrimaryMember();
-            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), responsiblePerson.getFirstName(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), responsiblePerson.getLastName(), "member firstname did not match");
-            softAssert.assertEquals(responsiblePerson.getRelation_to_subscriber().equals("Daughter") || responsiblePerson.getRelation_to_subscriber().equals("Son")  ? "S1" : "QD" ,ob834Entity.getResponsible_person_rel_code(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), responsiblePerson.getSsn(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), responsiblePerson.getPhoneNumber(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), responsiblePerson.getEmailId(), "member firstname did not match");
-            softAssert.assertEquals(responsiblePerson.getAlternatePhNum() != null ? responsiblePerson.getAlternatePhNum() : responsiblePerson.getPhoneNumber(),ob834Entity.getResponsible_person_alt_phone(),  "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), responsiblePerson.getResAddress().getAddressLine1(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), responsiblePerson.getResAddress().getAddressLine2(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), responsiblePerson.getResAddress().getAddressCity(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), responsiblePerson.getResAddress().getAddressState(), "member firstname did not match");
-            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), responsiblePerson.getResAddress().getAddressZipcode(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), responsiblePerson.getFirstName(), "responsiblePerson firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), responsiblePerson.getLastName(), "responsiblePerson lastname did not match");
+            softAssert.assertEquals(responsiblePerson.getRelation_to_subscriber().equals("Daughter") || responsiblePerson.getRelation_to_subscriber().equals("Son")  ? "S1" : "QD" ,ob834Entity.getResponsible_person_rel_code(), "responsiblePerson relationcode did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), responsiblePerson.getSsn(), "responsiblePerson ssn did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), responsiblePerson.getPhoneNumber(), "responsiblePerson phonenumber did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), responsiblePerson.getEmailId(), "responsiblePerson email did not match");
+            softAssert.assertEquals(responsiblePerson.getAlternatePhNum() != null ? responsiblePerson.getAlternatePhNum() : responsiblePerson.getPhoneNumber(),ob834Entity.getResponsible_person_alt_phone(),  "responsiblePerson alt phonenumber did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), responsiblePerson.getResAddress().getAddressLine1(), "responsiblePerson address streetline 1 did not match");
+            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), responsiblePerson.getResAddress().getAddressLine2(), "responsiblePerson address streetline 2 did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), responsiblePerson.getResAddress().getAddressCity(), "responsiblePerson city did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), responsiblePerson.getResAddress().getAddressState(), "responsiblePerson state did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), responsiblePerson.getResAddress().getAddressZipcode(), "responsiblePerson Zipcode did not match");
             softAssert.assertAll();
         }
     }
