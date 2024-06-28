@@ -284,6 +284,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
                 esiEndDateInput.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
                 break;
+            case "Today":
+                DateFormat todayDate = new SimpleDateFormat("MM-dd");
+                esiEndDateInput.sendKeys(todayDate.format(today));
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
         }
@@ -427,6 +431,13 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
 
     // =================== VALIDATION STEPS ===============//
+    public void verifyHeadersEsiOhiPageEnglish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
+        softAssert.assertAll();
+    }
+
     public void verifyFamilyOfferedToEnrollOption(String currentlyOffered){
         switch (currentlyOffered){
             case "Yes":

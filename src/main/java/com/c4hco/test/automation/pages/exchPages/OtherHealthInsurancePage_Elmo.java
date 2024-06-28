@@ -46,10 +46,12 @@ public class OtherHealthInsurancePage_Elmo {
     @FindBy(css = ".container .help-icon")
     List<WebElement> helpCircleButton;
 
-    @FindBy(id = "existingOHI-GoBack")
+//    @FindBy(id = "existingOHI-GoBack") //Staging
+    @FindBy(id = "existingOHC-GoBack") //QA
     WebElement backButton;
 
-    @FindBy(id = "existingOHI-SaveAndContinue")
+//    @FindBy(id = "existingOHI-SaveAndContinue") //Staging
+    @FindBy(id = "existingOHC-SaveAndContinue") //QA
     WebElement saveAndContinueBtn;
     
     @FindBy(css = ".error-message")
