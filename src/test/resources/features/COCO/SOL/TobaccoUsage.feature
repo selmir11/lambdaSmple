@@ -5,8 +5,8 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-163 @groupingbysiblingswithoutparents
-  Scenario: Two members both siblings in the household, Parents not applying, one group should exist
+  @SLCR-163 @TobaccoUsageVerbiage
+  Scenario: Validate text on tobacco usage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -64,6 +64,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I verify text on Tobacco Usage Page CoCo
     Then I click continue on coco start shopping page
 
 
