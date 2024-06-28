@@ -7,7 +7,7 @@ Feature: CoCo Forgot Username Notice (AM-016-01) in DocGen
     And I validate I am on the "Login" page
     Then I click create forgot "username"
     And I validate I am on the "forgotUsername" page
-    Then I enter information's for Forgot username in "English" "Coco"
+    Then I enter information's for Forgot username in STG Firsname "candy" LastName "SpanishSTG" phone "111-111-1112" accountType "Customer" or QA Firsname "erty" LastName "el" phone "123-456-7890"
     And I validate notice sent successful msg is displayed
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
@@ -22,7 +22,7 @@ Feature: CoCo Forgot Username Notice (AM-016-01) in DocGen
     And I validate I am on the "Login" page
     Then I click create forgot "username"
     And I validate I am on the "forgotUsername" page
-    Then I enter information's for Forgot username in "Spanish" "Coco"
+    Then I enter information's for Forgot username in STG Firsname "Primary" LastName "Tucker" phone "111-111-1112" accountType "Customer" or QA Firsname "candy" LastName "SpanishQA" phone "111-111-1112"
     And I validate notice sent successful msg is displayed
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
