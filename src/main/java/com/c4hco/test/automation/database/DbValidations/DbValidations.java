@@ -137,9 +137,8 @@ public class DbValidations {
         if (memberList != null) {
             for (MemberDetails member : memberList) {
                 softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
-                softAssert.assertAll();
             }
-        }
+        } softAssert.assertAll();
     }
     public String getCurrentdate(){
         LocalDate currentDate = LocalDate.now();
@@ -184,7 +183,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I" , "Marital Status did not match");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(subscriber.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
-        softAssert.assertEquals(subscriber.getRelation_to_subscriber(), ob834Entity.getIndividual_rel_code(), "written language did not match");
+        softAssert.assertEquals(getCodeForRelationship(subscriber.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "RelationshipCode did not match");
         softAssert.assertAll();
     }
 
