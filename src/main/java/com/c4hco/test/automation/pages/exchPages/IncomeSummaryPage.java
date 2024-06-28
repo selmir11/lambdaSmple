@@ -41,7 +41,7 @@ public class IncomeSummaryPage {
     }
 
     public void clickSaveandContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn,20);
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn,30);
         saveAndContinueBtn.click();
     }
 }

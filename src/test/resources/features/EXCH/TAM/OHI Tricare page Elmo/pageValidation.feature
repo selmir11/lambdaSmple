@@ -120,3 +120,55 @@ Feature: Page Validation-OHI Tricare Elmo Page
     And I verify "Voluntary End" error does not show for Tricare page
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-721 @PageValidationOhiTricareElmo
+  Scenario: SLER-721 I validate save, update and remove on Tricare are updated in the DB
+    And I verify Currently Enrolled is "Not Selected" on the Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |                      |                          |                          |
+    Then I click "Yes" for currently enrolled in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |                      |                          |                          |
+    Then I click "No" for currently enrolled in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |          0           |                          |                          |
+    Then I click "Yes" for currently enrolled in Tricare question
+    Then I click "Yes" for insurance ending in 60 days in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |            0          |       0       |        0           |             0            |            0           |   0   |     1     |          0           |                          |                          |
+    Then I click "No" for insurance ending in 60 days in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             0            |                          |
+    Then I click "Yes" for insurance ending in 60 days in Tricare question
+    Then I enter the end date as "Current Month" on the Tricare page
+    Then I click "No" for insurance ending voluntary for Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |            0          |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             1            |               0          |
+    Then I click "Yes" for insurance ending voluntary for Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |            0          |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             1            |               1          |
+    Then I click "No" for insurance ending in 60 days in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             0            |                          |
+    Then I click "No" for currently enrolled in Tricare question
+    Then I click continue on the Elmo OHI Tricare page
+    And I verify the OHI options selected in the DB
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
+      |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |    1      |           0          |                          |                          |
+
+    And I click on Sign Out in the Header for "Elmo"

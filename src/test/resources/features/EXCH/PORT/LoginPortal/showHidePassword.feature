@@ -10,6 +10,16 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Show" the code is encrypted in "login page" Page
     And I click on show button in "login page"
     Then I validate when show password is displayed as "Hide" the code is encrypted in "login page" Page
+
+    And I click on show button in "login page"
+    And I change the language from header to "Spanish Login"
+
+    Then I validate Show button is displayed and enabled in "login portal Spanish"
+    Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "login page" Page
+    And I click on show button in "login page"
+    Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "login page" Page
+
+    And I change the language from header to "English Login"
     Examples:
       | Portal    | usernameSTG                          | PWQA      | usernameQA                           | PWQA      |
       | login     | soukainatesting+headerstg@gmail.com  | ALaska12! | AutomationUser.bweczfgtTest@test.com | ALaska12! |
@@ -31,6 +41,14 @@ Feature:Implement 'show/hide password' on password field in login portal
     And I click on show button in "create account"
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
+    And I click on show button in "create account"
+    And I change the language from header to "Spanish ExpertHelp"
+
+    Then I validate Show button is displayed and enabled in "create account Spanish"
+    Then I validate when show password is displayed as "Show" the code is encrypted in "create account" Page
+    And I click on show button in "create account"
+    Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
+
   @SLER-592
   Scenario Outline: Account creation page broker/assistNet
     Given I open the login page on the "<Portal>" portal
@@ -42,6 +60,14 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Show" the code is encrypted in "create account" Page
     And I click on show button in "create account"
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
+
+    And I click on show button in "create account"
+    And I change the language from header to "Spanish ExpertHelp"
+
+    Then I validate Show button is displayed and enabled in "create account Spanish"
+    Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page
+    And I click on show button in "create account"
+    Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "create account" Page
     Examples:
       | Portal    |
       | broker    |
@@ -65,6 +91,14 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Show" the code is encrypted in "create account" Page
     And I click on show button in "create account"
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
+
+    And I click on show button in "create account"
+    And I change the language from header to "Spanish Login"
+
+    Then I validate Show button is displayed and enabled in "create account Spanish"
+    Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page
+    And I click on show button in "create account"
+    Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "create account" Page
 
 
 

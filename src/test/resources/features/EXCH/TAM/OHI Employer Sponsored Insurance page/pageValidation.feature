@@ -297,6 +297,187 @@ Feature: Page Text-Other Health Insurance Page
     And I verify "Voluntary End" error does not show for ESI page
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-723 @PageValidationOhiEsiElmo
+  Scenario: SLER-723 I validate save, update and remove on ESI are updated in the DB
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |                            |                          |                      |                         |                             |                                     |                               |
+
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "220.03" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    Then I enter the end date as "Current Month" on the ESI page
+    Then I select the Are you voluntarily ending "Yes" button on the ESI page
+    Then I click "No" for offer family plans question
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          1           |           1             |           220.03            |                     0               |                               |
+
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "80.95" for employee amount question on the ESI page
+    Then I enter the end date as "Today" on the ESI page
+    Then I select the Are you voluntarily ending "No" button on the ESI page
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          0           |           0             |            80.95            |                     0               |                               |
+
+    Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
+    Then I enter "111.46" for employee amount question on the ESI page
+    Then I select the Are you voluntarily ending "Yes" button on the ESI page
+    Then I enter the end date as "Current Month" on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "650.00" for offer family amount question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      Enrolled         |
+      |      Offered          |
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          1           |           2             |           111.46            |                     1               |            650.00             |
+
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "73.03" for employee amount question on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I enter "325.27" for offer family amount question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      No Option        |
+      |      Offered          |
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           1             |            73.03            |                     1               |            325.27             |
+
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "230.01" for employee amount question on the ESI page
+    Then I enter "700.00" for offer family amount question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      No Option        |
+      |      No Option        |
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           0             |           230.01            |                     1               |             700.00            |
+
+    Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
+    Then I enter "120.87" for employee amount question on the ESI page
+    Then I enter "456.45" for offer family amount question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      Enrolled         |
+      |      Enrolled         |
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           2             |           120.87            |                     1               |            456.45             |
+
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "221.03" for employee amount question on the ESI page
+    Then I enter "963.45" for offer family amount question
+    Then I click enrollment status for the members
+      |   enrollmentStatus    |
+      |      Offered          |
+      |      Offered          |
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           1             |           221.03            |                     1               |           963.45              |
+
+    Then I enter "506.03" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "No" for offer family plans question
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           506.03            |                   0                 |                               |
+
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "257.00" for employee amount question on the ESI page
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |           257.00            |                   0                 |                               |
+
+    Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
+    Then I enter "475.00" for employee amount question on the ESI page
+    Then I click continue on the ESI page
+    And I validate I am on the "Other Health Insurance" page
+    Then I select "None of these" as health insurance option
+    Then I click Go Back on the Other Health Insurance page
+    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           2             |           475.00            |                   0                 |                               |
+
+
+
+
+
+    And I click on Sign Out in the Header for "Elmo"
     
 
 

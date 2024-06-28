@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,7 +37,10 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow .linkButton")
     WebElement editPrimaryMember;
 
-    @FindBy(css = ".submitButton_Income .input")
+    @FindBy(xpath = "//*[@class = input.submitbutton]")
+    WebElement linkName;
+
+    @FindBy(xpath = "//*[@id = 'submitButton_Income']")
     WebElement editPrimaryMemberRedIcon;
 
     @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
@@ -51,13 +55,17 @@ public class HouseholdPage {
     @FindBy(css = ".table-striped")
     WebElement familyOverviewTable;
 
-    @FindBy(css = "i.fa.fa-plus-circle.toggleAddlRow")
+    @FindBy(xpath = "//*[@class = 'fa fa-plus-circle toggleAddlRow']")
     WebElement tableDropdown;
+
+    @FindBy(css = "input[value='Edit'][alt='Submit']")
+    WebElement redIcon;
 
     @FindBy(css = "#accountID")
     WebElement accountIdTxt;
 
     public void clickAddMember() {
+        basicActions.waitForElementToBeClickable( addAdditionalMember,15 );
         addAdditionalMember.click();
     }
 
@@ -69,10 +77,16 @@ public class HouseholdPage {
 
     public void getAccountId() {
         basicActions.waitForElementToBePresent(accountIdTxt,15);
-        String accId = accountIdTxt.getText().replace("Account ID: ", "");
+        String accId;
+        if (accountIdTxt.getText().contains("Account ID")) {
+            accId = accountIdTxt.getText().replace("Account ID: ", "");
+        }else {
+            accId = accountIdTxt.getText().replace("Identificaci\u00F3n de la cuenta ", "");
+        }
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
     }
+
 
     public void iVerifyFamilyOverviewTablePresent() {
         // TO DO:: Sometimes, rarely we see 2 tables here. Make sure the code doesn't break when we get 2 tables displayed
@@ -83,17 +97,30 @@ public class HouseholdPage {
 
     public void iEditPrimaryMember(int index) {
         basicActions.waitForElementToBePresent(editPrimaryMember,15);
+        basicActions.waitForElementToBeClickable( editPrimaryMember,15 );
         index -= 1;
         editPrimaryMember.click();
     }
+
+    public void iClickMemberLink (int index) {
+        //linkName - aiming to use a different locator to activate the different rows
+        softAssert.assertTrue( linkName.isDisplayed());
+        basicActions.waitForElementToBePresent(linkName,15);
+        basicActions.waitForElementToBeClickable( linkName,15 );
+        index -= 1;
+        linkName.click();
+    }
     public void iEditPrimaryMemberRedIcon(int index) {
         basicActions.waitForElementToBePresent(editPrimaryMemberRedIcon, 15 );
+        basicActions.waitForElementToBeClickable( editPrimaryMemberRedIcon,15 );
         index -= 1;
-        editPrimaryMemberRedIcon.click();
+       editPrimaryMemberRedIcon.click();
+
 
     }
-    public void iClickTableItem(){
+    public void iClickTableItem(int index){
         basicActions.waitForElementToBePresent(tableDropdown,15);
+        index-= 1;
         tableDropdown.click();
     }
     public void clickBasicInfoMember1Button(int member) {
@@ -108,5 +135,9 @@ public class HouseholdPage {
         editIncomeLink.click();
     }
 
+    public void iClickRedIcon() {
+        basicActions.waitForElementToBePresent(redIcon, 15 );
+        redIcon.click();
+    }
 
     }

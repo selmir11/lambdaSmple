@@ -1,9 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.WebDriverManager;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -32,6 +31,7 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
+
 
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueBtn;// locators included for both QA and STG
@@ -104,7 +104,13 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickContinue() {
+        basicActions.waitForElementToBePresent(continueBtn,30);
         continueBtn.click();
+    }
+
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickableWithRetries( btnGoBack,30 );
+        btnGoBack.click();
     }
 
     public void clickCompare() {

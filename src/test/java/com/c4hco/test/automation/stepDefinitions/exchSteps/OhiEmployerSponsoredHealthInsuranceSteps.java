@@ -76,6 +76,9 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
     public void iVerifyHelpDrawerText(String drawerPage, String language){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerText(drawerPage, language);
     }
 
+    @And("I verify the header for Primary Member on the ESI page")
+    public void iVerifyTextOnOtherHealthInsurancePage(){ohiEmployerSponsoredHealthInsurancePage.verifyHeadersEsiOhiPageEnglish();}
+
     @And("I verify offer family health plans is {string} on the ESI page")
     public void iVerifyFamilyOfferedToEnrollOption(String currentlyOffered){ohiEmployerSponsoredHealthInsurancePage.verifyFamilyOfferedToEnrollOption(currentlyOffered);}
 

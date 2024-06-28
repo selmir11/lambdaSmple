@@ -44,9 +44,9 @@ public class YourClientsPage {
     WebElement removedSelectedClients;
     @FindBy(xpath = "//span[normalize-space()='Transfer Selected Clients']")
     WebElement TransferSelectedClients;
-    @FindBy(xpath = "//span[@id='user-first-name']")
+    @FindBy(id = "user-first-name")
     WebElement brokerUserName;
-    @FindBy(xpath = "//button[@id='logout-link']")
+    @FindBy(id = "logout-link")
     WebElement logout;
 
 

@@ -28,6 +28,9 @@ public class OtherHealthInsurancePage_Elmo {
     @FindBy(css = ".header-3.content-center > a")
     WebElement helpLink;
 
+    @FindBy(css = ".parent-position > span")
+    WebElement areYouCurrentlyText;
+
     @FindBy(css = ".parent-position > div")
     List<WebElement> existingHealthInsurancePageTxt1;
 
@@ -43,10 +46,12 @@ public class OtherHealthInsurancePage_Elmo {
     @FindBy(css = ".container .help-icon")
     List<WebElement> helpCircleButton;
 
-    @FindBy(id = "existingOHI-GoBack")
+    @FindBy(id = "existingOHI-GoBack") //Staging
+//    @FindBy(id = "existingOHC-GoBack") //QA
     WebElement backButton;
 
-    @FindBy(id = "existingOHI-SaveAndContinue")
+    @FindBy(id = "existingOHI-SaveAndContinue") //Staging
+//    @FindBy(id = "existingOHC-SaveAndContinue") //QA
     WebElement saveAndContinueBtn;
     
     @FindBy(css = ".error-message")
@@ -159,27 +164,27 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(helpLink.getCssValue("font-size"), "20px");
         softAssert.assertEquals(helpLink.getCssValue("font-weight"), "700");
         softAssert.assertEquals(helpLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(), "Are you currently enrolled in or eligible to receive any of the following types of health coverage?");
+        softAssert.assertEquals(areYouCurrentlyText.getText(), "Are you currently enrolled in or eligible to receive any of the following types of health coverage?");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(), "(Select all that apply)");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getText(), "(Select all that apply)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("font-weight"), "400");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getText(), "Coverage through a Public Program");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-weight"), "700");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Colorado\u2019s Medicaid Program)\nIf your Health First Colorado coverage is ending in the next 60 days, do not select this option");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(), "Health First Colorado (Colorado\u2019s Medicaid Program)\nIf your Health First Colorado coverage is ending in the next 60 days, do not select this option.");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(), "Child Health Plan Plus (CHP+)\nIf your CHP+ coverage is ending in the next 60 days, do not select this option");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(), "Child Health Plan Plus (CHP+)\nIf your Health First Colorado coverage is ending in the next 60 days, do not select this option.");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-weight"), "400");
@@ -290,16 +295,16 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(helpLink.getCssValue("font-size"), "20px");
         softAssert.assertEquals(helpLink.getCssValue("font-weight"), "700");
         softAssert.assertEquals(helpLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(), "\u00BFEst\u00E1 inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
+        softAssert.assertEquals(areYouCurrentlyText.getText(), "\u00BFEst\u00E1 inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(areYouCurrentlyText.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(), "(Seleccione todo lo que corresponda)");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getText(), "(Seleccione todo lo que corresponda)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("font-weight"), "400");
-        softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getText(), "Cobertura a trav\u00E9s de un programa p\u00FAblico");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getCssValue("font-size"), "16px");
@@ -310,7 +315,7 @@ public class OtherHealthInsurancePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(), "Child Health Plan Plus (CHP+)\nSi su cobertura de CHP+ va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
+        softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(), "Child Health Plan Plus (CHP+)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getCssValue("font-weight"), "400");
@@ -586,11 +591,11 @@ public class OtherHealthInsurancePage_Elmo {
             case "English":
                 softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
                 softAssert.assertEquals(helpLink.getText(),"Help me understand this page");
-                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(),"Are you currently enrolled in or eligible to receive any of the following types of health coverage?");
-                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getText(),"(Select all that apply)");
+                softAssert.assertEquals(areYouCurrentlyText.getText(),"Are you currently enrolled in or eligible to receive any of the following types of health coverage?");
+                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(),"(Select all that apply)");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getText(),"Coverage through a Public Program");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(),"Health First Colorado (Colorado\u2019s Medicaid Program)\nIf your Health First Colorado coverage is ending in the next 60 days, do not select this option");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(),"Child Health Plan Plus (CHP+)\nIf your CHP+ coverage is ending in the next 60 days, do not select this option");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(),"Health First Colorado (Colorado\u2019s Medicaid Program)\nIf your Health First Colorado coverage is ending in the next 60 days, do not select this option.");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(),"Child Health Plan Plus (CHP+)\nIf your Health First Colorado coverage is ending in the next 60 days, do not select this option.");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(3).getText(),"Medicare");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(4).getText(),"Coverage through an Employer");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(5).getText(),"Health insurance offered through a job");
@@ -611,11 +616,11 @@ public class OtherHealthInsurancePage_Elmo {
             case "Spanish":
                 softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
                 softAssert.assertEquals(helpLink.getText(),"Ayuda para entender esta p\u00E1gina");
-                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(),"\u00BFEst\u00E1 inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
-                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(1).getText(),"(Seleccione todo lo que corresponda)");
+                softAssert.assertEquals(areYouCurrentlyText.getText(),"\u00BFEst\u00E1 inscrito actualmente o es elegible para recibir alguno de los siguientes tipos de cobertura de salud?");
+                softAssert.assertEquals(existingHealthInsurancePageTxt1.get(0).getText(),"(Seleccione todo lo que corresponda)");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(0).getText(),"Cobertura a trav\u00E9s de un programa p\u00FAblico");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(1).getText(),"Health First Colorado (Programa Medicaid de Colorado)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
-                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(),"Child Health Plan Plus (CHP+)\nSi su cobertura de CHP+ va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
+                softAssert.assertEquals(existingHealthInsurancePageTxt2.get(2).getText(),"Child Health Plan Plus (CHP+)\nSi su cobertura de Health First Colorado va a terminar en los pr\u00F3ximos 60 d\u00EDas, no seleccione esta opci\u00F3n.");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(3).getText(),"Medicare");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(4).getText(),"Cobertura a trav\u00E9s de un empleador");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(5).getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
