@@ -62,7 +62,7 @@ Feature: Medical Plan Results page related tests
     And I click Go Back on the Dental Compare page
     Then I click on Sign Out in the Header for "PlanSelection"
 
-  @DentalCompareTextValidation @727-WIP
+  @DentalCompareTextValidation @727
   Scenario: Validate the Text on Compare Plans page (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
