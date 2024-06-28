@@ -1,12 +1,12 @@
 @SOLRegression
-Feature: UI Page Validation - Financial Agreement
+Feature: End to End Tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-533 @FinancialAgreementPage
-  Scenario: Validate the test tool tip on the edit Dental Grouping page
+  @SLER-724 @EnrollInAPlan
+  Scenario: Simple FA: Husband & Wife
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -110,5 +110,14 @@ Feature: UI Page Validation - Financial Agreement
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
     And I click on Sign Out in the Header for "Elmo"
+
 

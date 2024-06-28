@@ -96,13 +96,24 @@ public class Ob834FileValidations {
 
     public void validateNM1Seg(Ob834DetailsEntity entry){
        List<List<String>> nm1Seg1  = transaction.getMembersList().get(0).getNM1();
+       if(SharedData.getPrimaryMember().getHasIncorrectEntities()){
+           softAssert.assertEquals(nm1Seg1.get(0).get(0),"74","Entity Identifier Code does not match");
+           softAssert.assertEquals(nm1Seg1.get(2).get(0),"31","NM1 segment with value 31");
+           softAssert.assertEquals(nm1Seg1.get(2).get(1),"1","NM1 segment with value 1");
+           softAssert.assertEquals(nm1Seg1.get(0).get(1), entry.getIncorrect_entity_type_qualifier(),"Incorrect entity type qualifier does not match");
+           softAssert.assertEquals(nm1Seg1.get(0).get(7), entry.getIncorrect_id_code_qualifier(),"Incorrect id code qualifier does not match");
+           softAssert.assertEquals(nm1Seg1.get(1).get(0), entry.getIncorrect_entity_id_code(),"Incorrect entity id code.");
+           softAssert.assertEquals(nm1Seg1.get(1).get(8), entry.getIncorrect_id_code(),"Incorrect id code");
+           softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"2" , "NM1 segment size is not 2");
+       }else{
+           softAssert.assertEquals(nm1Seg1.get(0).get(0),"IL","Entity Identifier Code does not match");
+           softAssert.assertEquals(nm1Seg1.get(1).get(0),"31","NM1 segment with value 31");
+           softAssert.assertEquals(nm1Seg1.get(1).get(1),"1","NM1 segment with value is not equal 1");
+           softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"1" , "NM1 segment size is not equal to 1");
+       }
             softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(),"Member Last name does not match");
             softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
             softAssert.assertEquals(nm1Seg1.get(0).get(8),entry.getMember_ssn(), "Member SSN does not match");
-            softAssert.assertEquals(nm1Seg1.get(0).get(7),entry.getIncorrect_id_code_qualifier(),"Incorrect id code qualifier does not match");
-
-            softAssert.assertEquals(nm1Seg1.get(1).get(0), entry.getIncorrect_entity_id_code(),"Incorrect entity id code.");
-            softAssert.assertEquals(nm1Seg1.get(1).get(8), entry.getIncorrect_id_code(),"Incorrect id code");
             softAssert.assertAll();
     }
 
