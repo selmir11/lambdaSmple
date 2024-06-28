@@ -134,10 +134,12 @@ public class DbValidations {
     }
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity) {
         List<MemberDetails> memberList = SharedData.getMembers();
-        for (MemberDetails member : memberList) {
-            softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()) ,ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
+        if (memberList != null) {
+            for (MemberDetails member : memberList) {
+                softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
+                softAssert.assertAll();
             }
-        softAssert.assertAll();
+        }
     }
     public String getCurrentdate(){
         LocalDate currentDate = LocalDate.now();
@@ -182,6 +184,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I" , "Marital Status did not match");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(subscriber.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
+        softAssert.assertEquals(subscriber.getRelation_to_subscriber(), ob834Entity.getIndividual_rel_code(), "written language did not match");
         softAssert.assertAll();
     }
 
@@ -217,31 +220,31 @@ public class DbValidations {
 
     public void validateResponsiblePersonDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
         if( subscriber.getIsMinor()){
-            // Validate Responsible Person details
-            // update the entire method for optimal use - may not need if else blocks.
-        } else{
-            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), null);
-            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
+            MemberDetails responsiblePerson = SharedData.getPrimaryMember();
+            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), responsiblePerson.getFirstName(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), responsiblePerson.getLastName(), "member firstname did not match");
+            softAssert.assertEquals(responsiblePerson.getRelation_to_subscriber().equals("Daughter") || responsiblePerson.getRelation_to_subscriber().equals("Son")  ? "S1" : "QD" ,ob834Entity.getResponsible_person_rel_code(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), responsiblePerson.getSsn(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), responsiblePerson.getPhoneNumber(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), responsiblePerson.getEmailId(), "member firstname did not match");
+            softAssert.assertEquals(responsiblePerson.getAlternatePhNum() != null ? responsiblePerson.getAlternatePhNum() : responsiblePerson.getPhoneNumber(),ob834Entity.getResponsible_person_alt_phone(),  "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), responsiblePerson.getResAddress().getAddressLine1(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), responsiblePerson.getResAddress().getAddressLine2(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), responsiblePerson.getResAddress().getAddressCity(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), responsiblePerson.getResAddress().getAddressState(), "member firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), responsiblePerson.getResAddress().getAddressZipcode(), "member firstname did not match");
+            softAssert.assertAll();
         }
-          softAssert.assertAll();
     }
 
-    public void validateBrokerDetails(Ob834DetailsEntity ob834Entity, DbData dbData){
+    public void validateBrokerDetails(Ob834DetailsEntity ob834Entity,DbData dbData){
+        if (SharedData.getHasBroker()) {
         BrokerDetails broker = SharedData.getBroker();
-        softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), broker.getBroker_name(),"Broker name is incorrect");
+        softAssert.assertEquals(SharedData.getBroker() != null ? SharedData.getBroker().getBroker_name() : null, ob834Entity.getTpa_or_broker_name(),"Broker name is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         softAssert.assertAll();
+        }
     }
 
     public void validateIncorrectEntities(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
