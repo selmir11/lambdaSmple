@@ -1,13 +1,26 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import com.jcraft.jsch.JSchException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.concurrent.TimeUnit;
 
 public class MyDocumentsPage {
 
@@ -35,9 +48,218 @@ public class MyDocumentsPage {
     @FindBy(css = "a.btn-second-action-button.download-button")
     WebElement downloadEnrolmentDoc;
 
+    @FindBy(xpath = "//a[normalize-space()='Upload another document']")
+    WebElement uploadAnotherDocument;
+
+    //English modal text
+
+    @FindBy(xpath = "//p[@class='modal-title']")
+    WebElement txtUploadADocument;
+
+    @FindBy(xpath = "//span[normalize-space()='Tell us more about this document']")
+    WebElement txtTellUs;
+
+    @FindBy(xpath = "//span[normalize-space()='What type of document is this?']")
+    WebElement txtWhatType;
+
+    @FindBy(xpath = "//span[normalize-space()='Which document are you submitting?']")
+    WebElement txtWhichDocument;
+
+    @FindBy(xpath = "//span[normalize-space()='Select a file from your device']")
+    WebElement txtSelectAfile;
+
+    @FindBy(xpath = "//label[normalize-space()='Browse My Files']")
+    WebElement browseFiles;
+
+    @FindBy(xpath = "//span[contains(text(),'Only one document can be uploaded at a time using ')]")
+    WebElement txtOneDocument;
+
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+    WebElement cancelButton;
+
+    @FindBy(xpath = "//button[normalize-space()='Upload My Document']")
+    WebElement uploadMyDocument;
+
+    @FindBy(xpath = "//span[@class='btn-close-x']")
+    WebElement closeButton;
+
+    //SPANISH modal text
+    @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
+    WebElement btnCargarotrodocumento;
+
+    @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
+    WebElement txtCargarUnDocumento;
+
+    @FindBy(xpath = "//span[normalize-space()='Díganos más sobre este documento']")
+    WebElement txtDiagnoMasSobre;
+
+    @FindBy(xpath = "//span[normalize-space()='¿Qué tipo de documento es este?']")
+    WebElement txtQuetipo;
+
+    @FindBy(xpath = "//span[normalize-space()='¿Qué documento está enviando?']")
+    WebElement txtQueDocumento;
+
+    @FindBy(xpath = "//span[normalize-space()='Seleccione un archivo de su dispositivo']")
+    WebElement txtSeleccioneUnArchivo;
+
+    @FindBy(xpath = "//label[normalize-space()='Explorar Mis Archivos']")
+    WebElement btnExplorarMisArchivos;
+
+    @FindBy(xpath = "//span[contains(text(),'Solo se puede cargar un documento a la vez usando ')]")
+    WebElement txtSolosepuedecargarundocumento;
+
+    @FindBy(xpath = "//button[normalize-space()='Cancelar']")
+    WebElement btnCancelarOnPopup;
+
+    @FindBy(xpath = "//button[normalize-space()='Cargar Mi Documento']")
+    WebElement btnCargarMisDocumento;
+
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
+    }
+
+    public  void downloadDocument(String docType) throws AWTException, JSchException {
+//        docType example "Application Results"
+        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
+        WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::span[1]"));
+        pastDocCarrot.click();
+        WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::a[1]"));
+        downloadButton.click();
+
+        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
+    }
+
+    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
+        File dir = new File(localPath);
+        File[] filesBefore = dir.listFiles();
+        long startTime = System.currentTimeMillis();
+
+        // Loop until the timeout or until a new file is found
+        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
+            File[] filesAfter = dir.listFiles();
+            if (filesAfter != null) {
+                for (File file : filesAfter) {
+                    if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
+                        if (file.length() > 0) {
+                            SharedData.setNoticeFileName(file.getName());
+                            return file.getName();
+                        }
+                    }
+                }
+            }
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    private static boolean fileExists(File[] files, File file) {
+        if (files == null) {
+            return false;
+        }
+        for (File f : files) {
+            if (f.getName().equals(file.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifyPDFText(String expectedText, String language) throws IOException {
+        String filePath = SharedData.getLocalPathToDownloadFile();
+        String fileName = SharedData.getNoticeFileName();
+        String pathAndName = filePath+"//"+fileName;
+        System.out.println("path and name is "+pathAndName);
+        // Read the PDF content using PDFBox
+        String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+
+        // Verify the text
+        switch (expectedText) {
+            case "Application Results: Health First Colorado":
+                switch (language){
+                    case "English":
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language))) {
+                            String[] pdfLines = pdfContent.split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColorado(language).split("\n");
+
+                            StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                            for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                                String pdfLine = pdfLines[i].trim();
+                                String expectedLine = expectedLines[i].trim();
+
+                                if (i == 3) { // Date on line 4 without the time
+                                    String pdfLineDateOnly = pdfLine.split(" at")[0].trim();
+                                    String expectedLineDateOnly = expectedLine.split(" at")[0].trim();
+
+                                    if (!pdfLineDateOnly.equals(expectedLineDateOnly)) {
+                                        differences.append("Difference at line 4 :\n");
+                                        differences.append("PDF line after processing: [").append(pdfLineDateOnly).append("]\n");
+                                        differences.append("Expected line............: [").append(expectedLineDateOnly).append("]\n");
+                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                    }
+                                }
+                                else if (!pdfLine.equals(expectedLine)) {
+                                    differences.append("Difference at line ").append(i + 1).append(":\n");
+                                    differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                    differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                    Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                }
+                            }
+                        }
+                        break;
+                    case "Spanish":
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language))) {
+                            String[] pdfLines = pdfContent.split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language).split("\n");
+
+                            StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                            for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                                String pdfLine = pdfLines[i].trim();
+                                String expectedLine = expectedLines[i].trim();
+
+                                if (i == 3) { // Date on line 4 without the time
+                                    String pdfLineDateOnly = pdfLine.split(" a las")[0].trim();
+                                    String expectedLineDateOnly = expectedLine.split(" a las")[0].trim();
+
+                                    if (!pdfLineDateOnly.equals(expectedLineDateOnly)) {
+                                        differences.append("Difference at line 4 :\n");
+                                        differences.append("PDF line after processing: [").append(pdfLineDateOnly).append("]\n");
+                                        differences.append("Expected line............: [").append(expectedLineDateOnly).append("]\n");
+                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                    }
+                                }
+                                else if (!pdfLine.equals(expectedLine)) {
+                                    differences.append("Difference at line ").append(i + 1).append(":\n");
+                                    differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                    differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                    Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + language);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + expectedText);
+        }
+        return true;
+    }
+
+    private static String extractTextFromPDF(Path pdfPath) throws IOException {
+        try (PDDocument document = PDDocument.load(new File(pdfPath.toString()))) {
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            return pdfStripper.getText(document).trim();
+        }
     }
 
                 //============================VALIDATION STEPS==============//
@@ -71,9 +293,9 @@ public class MyDocumentsPage {
      }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
-        basicActions.waitForElementToBePresent(documentsInfoMessage,100);
+        basicActions.waitForElementToBePresent(documentsInfoMessage, 100);
         basicActions.scrollToElement(documentsInfoMessage);
-        softAssert.assertEquals(documentsInfoMessage.getText(),documentName);
+        softAssert.assertEquals(documentsInfoMessage.getText(), documentName);
         softAssert.assertAll();
     }
 
@@ -81,6 +303,48 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
         basicActions.click(goBackWelcomePage);
     }
+
+    public void clickUploadAnotherDocument(){
+        basicActions.waitForElementToBeClickable(uploadAnotherDocument,30);
+        basicActions.click(uploadAnotherDocument);
+    }
+
+    public void clickuploaddocSpanish(){
+        basicActions.waitForElementToBeClickable(btnCargarotrodocumento,30);
+        basicActions.click(btnCargarotrodocumento);
+    }
+
+    public void textValidate(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtUploadADocument,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtTellUs,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtWhatType,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtWhichDocument,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSelectAfile,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(browseFiles,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtOneDocument,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(cancelButton,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(uploadMyDocument,30));
+        softAssert.assertAll();
+    }
+
+    public void closemodal(){
+        basicActions.waitForElementToBePresent(closeButton,30);
+        basicActions.click(closeButton);
+    }
+
+    public void spanishModalText(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtCargarUnDocumento,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtDiagnoMasSobre,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQuetipo,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQueDocumento,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSeleccioneUnArchivo,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnExplorarMisArchivos,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSolosepuedecargarundocumento,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnCancelarOnPopup,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnCargarMisDocumento,30));
+        softAssert.assertAll();
+    }
+
     public  void downloadEnrolmentDocument() {
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
@@ -88,6 +352,5 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
         basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
         downloadEnrolmentDoc.click();
-
     }
 }

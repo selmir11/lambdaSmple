@@ -6,7 +6,7 @@ Feature: Dental Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-81 @SelectVerifyDentalCoverageLevelFilterResults
-  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults
+  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults - used tp be RT-1966
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -68,8 +68,9 @@ Feature: Dental Plan Verification test
       |Low            |Cigna Dental Pediatric                                   |
       |High           |Delta Dental of Colorado Pediatric Comprehensive Plan    |
 
+
   @SLER-96 @SelectVerifyDentalInsuranceCompanyFilterResults
-  Scenario Outline: SelectVerifyDentalInsuranceCompanyFilterResults
+  Scenario Outline: SelectVerifyDentalInsuranceCompanyFilterResults - used to be RT-1658
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -132,4 +133,6 @@ Feature: Dental Plan Verification test
     |Cigna               |Cigna Dental Pediatric                                  |
     |Delta Dental        |Delta Dental of Colorado Pediatric Comprehensive Plan   |
     |Solstice Health     |EssentialSmile Colorado - Total Care                    |
+
+
 

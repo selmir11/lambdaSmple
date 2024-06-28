@@ -48,6 +48,9 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
     @FindBy(css = "select.input-select")
     WebElement RelationshipOption;
 
+    @FindBy(xpath = "//select[@name='relatedToType']")
+    List<WebElement> selectRelationship1;
+
     @FindBy(id = "ELIG-MemberDetails-GoBack")
     WebElement GoBackButton;
 
@@ -124,6 +127,75 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         applyingForCoverage(applying);
         setRelationshipOption(Relation);
 
+    }
+
+    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String Relation1, String applying) {
+
+        String frstName = getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        txtFirstName.sendKeys(frstName);
+        txtMiddleName.sendKeys(mdlName);
+        txtLastName.sendKeys(lastName);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+        setRelationshipOption(Relation);
+        setRelationshipOption1(Relation1);
+    }
+
+    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String Relation1, String Relation2, String applying) {
+
+        String frstName = getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        txtFirstName.sendKeys(frstName);
+        txtMiddleName.sendKeys(mdlName);
+        txtLastName.sendKeys(lastName);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+        setRelationshipOption(Relation);
+        setRelationshipOption1(Relation1);
+        setRelationshipOption2(Relation2);
     }
 
     public void specificAdditionalMemberDetailsCoCoSpanish(String DOB, String gender, String Relation, String applying) {
@@ -429,5 +501,19 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertAll();
+    }
+
+    public void setRelationshipOption1(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship1.get(1), 15);
+
+        Select dropdown = new Select(selectRelationship1.get(1));
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void setRelationshipOption2(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship1.get(2), 15);
+
+        Select dropdown = new Select(selectRelationship1.get(2));
+        dropdown.selectByVisibleText(Relation);
     }
 }

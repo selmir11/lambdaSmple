@@ -88,4 +88,33 @@ public class AgencyDetailsSteps {
         agencyDetailsPage.validatePhoneFieldLettersNotAllowed();
     }
 
+    @Then("I validate the agency group tooltip text")
+    public void iValidateAgencyGroupTooltipText(){
+        agencyDetailsPage.validateAgencyGroupTooltipText();
+    }
+
+    @Then("I verify the Agency Group field is disabled")
+    public void iVerifyAgencyGroupDisabled(){
+        agencyDetailsPage.verifyAgencyGroupDisabled();
+    }
+
+    @Then("I click Cancel on the Agency Details page")
+    public void iClickCancelAgencyDetails(){
+        agencyDetailsPage.clickCancelAgencyDetails();
+    }
+
+    @And("I click the Hide This Address checkbox")
+    public void clickHideThisAddressCheckbox(){
+        agencyDetailsPage.clickHideAddressCheckbox();
+    }
+
+    @And("I click the Save and Submit button on the Agency Details page")
+    public void clickSaveSubmitAgencyDetails(){
+        agencyDetailsPage.clickAgencyDetailsSaveSubmit();
+    }
+
+    @Then("I validate the agency hide address tooltip text")
+    public void iValidateAgencyHidAddressTooltipText(){
+        agencyDetailsPage.validateAgencyHideAddressTooltipText();
+    }
 }

@@ -15,6 +15,7 @@ Feature: Verify the Agency Details page of Broker Portal
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
+    Then I sign out of Outlook
     Then I enter the MFA code and click Verify
     Then I click Broker Dashboard
     And I click Complete Profile
@@ -30,9 +31,11 @@ Feature: Verify the Agency Details page of Broker Portal
     Then I validate the agency name maximum character limit
     And I validate letters are not allowed in the Agency TIN field
     Then I validate the Agency TIN field maximum limit
+    And I validate the agency group tooltip text
     Then I validate the address fields maximum character limit
     Then I validate the city field maximum character limit
     Then I validate the zip code field maximum limit
+    Then I validate the agency hide address tooltip text
     Then I validate the email field will not allow an invalid address
     Then I validate the email field maximum character limit
     Then I validate the phone number field formatting

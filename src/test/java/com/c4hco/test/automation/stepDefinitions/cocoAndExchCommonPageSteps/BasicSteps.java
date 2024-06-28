@@ -49,9 +49,11 @@ public class BasicSteps {
                 pageUrl = "IncomePortal/additionalIncome";
                 break;
             case "Income Summary":
+                basicActions.wait(3000);
                 pageUrl = "IncomePortal/summaryDetails";
                 break;
             case "Employment Info":
+                basicActions.wait(3000);
                 pageUrl = "IncomePortal/member";
                 break;
             case "planSummaryMedicalDental":
@@ -347,6 +349,7 @@ public class BasicSteps {
                 break;
             case "Unauthorized" :
                 pageUrl = "/unauthorized";
+                break;
             case "Admin Portal Exclusion Reason Report" :
                 pageUrl = "/exclusions";
                 break;

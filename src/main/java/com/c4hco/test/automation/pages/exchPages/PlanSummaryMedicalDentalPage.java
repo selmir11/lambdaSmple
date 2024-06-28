@@ -26,6 +26,9 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
+    @FindBy(id = "PlanSummary-GoBack")
+    WebElement goBackButton;
+
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
 
@@ -110,6 +113,12 @@ public class PlanSummaryMedicalDentalPage {
         getmedGroup1MemNames();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
+    }
+
+    public void goBackPlanSummaryPage(){
+        basicActions.waitForElementToBeClickableWithRetries( goBackButton,15 );
+        basicActions.scrollToElement( goBackButton );
+        basicActions.click (goBackButton );
     }
 
     public void getmedGroup1MemNames() {

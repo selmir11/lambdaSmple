@@ -27,5 +27,9 @@ public class PlanSummaryMedicalDentalPageSteps {
     public void verifyAPTCPlanSummaryAmt (String aPTCPlanSummaryAmt ) {
         planSummaryMedicalDentalPage.verifyAPTCPlanSummaryAmt(aPTCPlanSummaryAmt); }
 
+    @And( "I click Go Back on the Plan Summary page" )
+    public void goBackSummaryPage() { planSummaryMedicalDentalPage.goBackPlanSummaryPage();}
+
+
 
 }

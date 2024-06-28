@@ -1,3 +1,4 @@
+@SOLRegression
 Feature: UI Page Validation - Financial Agreement
 
   Background:

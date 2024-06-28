@@ -3,8 +3,10 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalP
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class AgencyDetailsPage {
@@ -87,6 +89,9 @@ public class AgencyDetailsPage {
     @FindBy(id = "l_hideAddress")
     WebElement hideAddressLabel;
 
+    @FindBy(id = "hideAddress-input")
+    WebElement hideAddressCheckbox;
+
     @FindBy(id = "l_workingHours")
     WebElement workingHoursLabel;
 
@@ -135,9 +140,32 @@ public class AgencyDetailsPage {
     @FindBy(id = "continue-button")
     WebElement agencyDetailsContinueButton;
 
+    @FindBy(xpath = "//label[@id='l_agencyGroup']//em[@class='fas fa-question-circle']")
+    WebElement agencyGroupTooltip;
+
+    @FindBy(id = "agencygroup_helptext")
+    WebElement agencyGroupTooltipText;
+
+    @FindBy(xpath = "//div[contains(@class, 'dropdown-disable')]")
+    WebElement disabledAgencyGroup;
+
+    @FindBy(id= "cancel-button")
+    WebElement cancelAgencyDetails;
+
+    @FindBy(id= "BP-AgencyDetails-SaveandSubmit")
+    WebElement saveSubmitAgencyDetails;
+
+    @FindBy(xpath = "//label[@id='l_hideAddress']//em[@class='fas fa-question-circle']")
+    WebElement agencyHideAddressTooltip;
+
+    @FindBy(id = "hideAddress_helptext")
+    WebElement agencyHideAddressTooltipText;
+
     private BasicActions basicActions;
+    Actions builder;
     public AgencyDetailsPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
+        builder  = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -305,5 +333,40 @@ public class AgencyDetailsPage {
         softAssert.assertAll();
     }
 
+    public void validateAgencyGroupTooltipText(){
+        basicActions.waitForElementToBePresent(agencyGroupTooltip, 10);
+        builder.moveToElement(agencyGroupTooltip).perform();
 
+        softAssert.assertEquals(agencyGroupTooltipText.getText(), "Choose \u2018Broker\u2019 if you work independently and are potentially eligible for commissions. Choose \u2018Issuer Direct Sales Team\u2019 if you work for the Issuer, and you are NOT eligible for commission.");
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyGroupDisabled(){
+        basicActions.waitForElementToBePresent(disabledAgencyGroup, 10);
+        softAssert.assertEquals(disabledAgencyGroup.getAttribute("class"), "d-inline-flex w-100 dropdown-disable");
+        softAssert.assertAll();
+    }
+
+    public void clickCancelAgencyDetails(){
+        basicActions.waitForElementToBePresent(cancelAgencyDetails, 10);
+        cancelAgencyDetails.click();
+    }
+
+    public void clickHideAddressCheckbox(){
+        basicActions.waitForElementToBePresent(hideAddressCheckbox, 10);
+        hideAddressCheckbox.click();
+    }
+
+    public void clickAgencyDetailsSaveSubmit(){
+        basicActions.waitForElementToBePresent(saveSubmitAgencyDetails, 10);
+        saveSubmitAgencyDetails.click();
+    }
+
+    public void validateAgencyHideAddressTooltipText(){
+        basicActions.waitForElementToBePresent(agencyHideAddressTooltip, 10);
+        builder.moveToElement(agencyHideAddressTooltip).perform();
+
+        softAssert.assertEquals(agencyHideAddressTooltipText.getText(), "By default address lines 1 and 2 display in the search results on the \u2018Find a Certified Broker near you\u2019 page. If you do not want your address displayed to the public, please check the box here and only city, state and zip code will display for your location.");
+        softAssert.assertAll();
+    }
 }

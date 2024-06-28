@@ -56,13 +56,16 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
     }
 
     public void selectContinueMedicalPlansCoCo() {
-        basicActions.waitForElementToBeClickable(continueButton, 20);
+        basicActions.waitForElementToBeClickableWithRetries(continueButton, 20);
         continueButton.click();
     }
 
@@ -121,8 +124,10 @@ public class MedicalPlansCoCoPage {
     }
 
     private void paginateRight(){
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(nextPageArrow, 10);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
+        basicActions.scrollToElement(nextPageArrow);
         nextPageArrow.click();
     }
 
