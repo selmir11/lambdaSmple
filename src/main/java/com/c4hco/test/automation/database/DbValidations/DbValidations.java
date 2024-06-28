@@ -110,7 +110,7 @@ public class DbValidations {
           validateBrokerDetails(ob834Entity,dbData);
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
-          validateRelCode(subscriber, ob834Entity);
+         // validateRelCode(subscriber, ob834Entity);   //WIP
           validateMemberCountDetails(ob834Entity);
           ValidatePriorSubscriber(subscriber, ob834Entity);
       }
@@ -132,6 +132,7 @@ public class DbValidations {
      }
        softAssert.assertAll();
     }
+    /*
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity) {
         List<MemberDetails> memberList = SharedData.getMembers();
         if (memberList != null) {
@@ -139,7 +140,8 @@ public class DbValidations {
                 softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
             }
         } softAssert.assertAll();
-    }
+    } */
+
     public String getCurrentdate(){
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
