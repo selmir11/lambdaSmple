@@ -28,6 +28,7 @@ public class Ob834FileValidations {
 //        validateHierarchyLevelSeg();
         validateNM1Seg(entry);
 //        validatePerSeg();
+        validateBgnSeg(entry);
 //        validateTrnSeg();
 //        validateQtySeg();
 
@@ -104,12 +105,12 @@ public class Ob834FileValidations {
            softAssert.assertEquals(nm1Seg1.get(0).get(7), entry.getIncorrect_id_code_qualifier(),"Incorrect id code qualifier does not match");
            softAssert.assertEquals(nm1Seg1.get(1).get(0), entry.getIncorrect_entity_id_code(),"Incorrect entity id code.");
            softAssert.assertEquals(nm1Seg1.get(1).get(8), entry.getIncorrect_id_code(),"Incorrect id code");
-           softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"2" , "NM1 segment size is not 2");
+           softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"3" , "NM1 segment size is not equal to 3");
        }else{
            softAssert.assertEquals(nm1Seg1.get(0).get(0),"IL","Entity Identifier Code does not match");
            softAssert.assertEquals(nm1Seg1.get(1).get(0),"31","NM1 segment with value 31");
-           softAssert.assertEquals(nm1Seg1.get(1).get(1),"1","NM1 segment with value is not equal 1");
-           softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"1" , "NM1 segment size is not equal to 1");
+           softAssert.assertEquals(nm1Seg1.get(1).get(1),"1","NM1 segment with value 1");
+           softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"2" , "NM1 segment size is not equal to 2");
        }
             softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(),"Member Last name does not match");
             softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
@@ -121,8 +122,15 @@ public class Ob834FileValidations {
         transaction.getMembersList().get(0).getPER();
     }
 
-    public void validateBgnSeg(){
-        transaction.getCommonSegments().getBGN();
+    public void validateBgnSeg(Ob834DetailsEntity entry){
+        List<List<String>> bgnSeg = transaction.getCommonSegments().getBGN();
+        softAssert.assertEquals(bgnSeg.get(0).get(0), entry.getTs_purpose_code(), "ts purpose code does not match");
+        softAssert.assertEquals(bgnSeg.get(0).get(1), entry.getBgn_reference_ident(),"BGN reference identification does not match");
+        softAssert.assertEquals(bgnSeg.get(0).get(2), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(bgnSeg.get(0).get(3), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(bgnSeg.get(0).get(4), "MT", "Interchange time does not match");
+        softAssert.assertEquals(bgnSeg.get(0).get(7), entry.getBgn_action_code(),"BGN action code does not match");
+        softAssert.assertAll();
     }
 
     public void validateTrnSeg(){

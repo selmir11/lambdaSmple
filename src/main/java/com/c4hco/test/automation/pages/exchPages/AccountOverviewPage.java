@@ -146,7 +146,7 @@ public class AccountOverviewPage {
             softAssert.assertEquals(planInformationTable.get(2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
             softAssert.assertEquals(planInformationTable.get(3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
             softAssert.assertEquals(planInformationTable.get(7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
-            softAssert.assertEquals(planInformationTable.get(8).getText() , primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
+            softAssert.assertEquals(planInformationTable.get(8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
         }
         softAssert.assertAll();
     }
