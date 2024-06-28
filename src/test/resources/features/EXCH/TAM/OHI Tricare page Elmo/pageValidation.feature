@@ -121,7 +121,7 @@ Feature: Page Validation-OHI Tricare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-721 @PageValidationOhiTricareElmo @test
+  @SLER-721 @PageValidationOhiTricareElmo
   Scenario: SLER-721 I validate save, update and remove on Tricare are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Tricare page
     And I verify the OHI options selected in the DB

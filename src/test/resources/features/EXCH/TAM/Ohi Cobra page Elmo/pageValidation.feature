@@ -122,7 +122,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-720 @PageValidationOhiCobraElmo @test
+  @SLER-720 @PageValidationOhiCobraElmo
   Scenario: SLER-720 I validate save, update and remove on Cobra are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Cobra page
     And I verify the OHI options selected in the DB

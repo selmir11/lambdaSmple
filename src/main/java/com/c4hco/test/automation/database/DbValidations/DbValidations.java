@@ -311,6 +311,10 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getEmp_coverage_end_soon_ind3(), expectedValues.get(0).get("emp_coverage_end_soon_ind3"));
         softAssert.assertEquals(actualResult.getEmp_coverage_min_std_ind3(), expectedValues.get(0).get("emp_coverage_min_std_ind3"));
         softAssert.assertEquals(actualResult.getEmp_coverage_monthly_prem_amt(), expectedValues.get(0).get("emp_coverage_monthly_prem_amt"));
+        softAssert.assertEquals(actualResult.getEnrl_emp_sponsored_covg_ind3(), expectedValues.get(0).get("enrl_emp_sponsored_covg_ind3"));
+        softAssert.assertEquals(actualResult.getEmp_end_voluntary_ind3(), expectedValues.get(0).get("emp_end_voluntary_ind3"));
+        softAssert.assertEquals(actualResult.getEmp_coverage_family_plan_offered_ind3(), expectedValues.get(0).get("emp_coverage_family_plan_offered_ind3"));
+        softAssert.assertEquals(actualResult.getEmp_coverage_family_prem_amount(), expectedValues.get(0).get("emp_coverage_family_prem_amount"));
         softAssert.assertEquals(actualResult.getCobra_enrl_covg_ind3(), expectedValues.get(0).get("cobra_enrl_covg_ind3"));
         softAssert.assertEquals(actualResult.getCobra_covg_end_soon_ind3(), expectedValues.get(0).get("cobra_covg_end_soon_ind3"));
         softAssert.assertEquals(actualResult.getCobra_end_voluntary_ind3(), expectedValues.get(0).get("cobra_end_voluntary_ind3"));
