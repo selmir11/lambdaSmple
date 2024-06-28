@@ -117,8 +117,10 @@ Feature: Medical Plan Results page related tests
     Then I click on the compare dental button
 
     Then I validate I am on the "Dental Plan Compare" page
-    
-
+    And I validate the text headers and subheaders for the InNetwork Dental Compare page
+    And I select the OutNetwork link on the Dental Compare page
+    And I validate the text headers and subheaders for the OutNetwork Dental Compare page
+    And I select the OutNetwork link on the Dental Compare page
     And I click Go Back on the Dental Compare page
     Then I click on Sign Out in the Header for "PlanSelection"
 

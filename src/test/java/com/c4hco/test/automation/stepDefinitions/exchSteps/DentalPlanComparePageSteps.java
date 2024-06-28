@@ -10,6 +10,15 @@ public class DentalPlanComparePageSteps {
     @And( "I click Go Back on the Dental Compare page" )
     public void clickGoBackDentalCompare() {dentalPlanComparePage.clickGoBackCompare();}
 
+    @And( "I validate the text headers and subheaders for the InNetwork Dental Compare page")
+    public void validateInNetworkDentalCompare() {dentalPlanComparePage.clickGoBackCompare();}
+    @And( "I select the OutNetwork link on the Dental Compare page")
+    public void clickDentalOutNetwork() {dentalPlanComparePage.clickOutNetworkDental();}
+    @And( "I validate the text headers and subheaders for the OutNetwork Dental Compare page")
+    public void validateOutNetworkDentalCompare() {dentalPlanComparePage.clickGoBackCompare();}
+    @And( "I select the InNetwork link on the Dental Compare page")
+    public void clickInNetworkDentalLink() {dentalPlanComparePage.clickInNetworkDental();}
+
 }
 
 

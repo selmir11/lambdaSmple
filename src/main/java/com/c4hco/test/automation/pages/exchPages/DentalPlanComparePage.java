@@ -24,9 +24,24 @@ public class DentalPlanComparePage {
     @FindBy(id = "SHP-DentalComparePlans-GoBacktoPlans")
     WebElement goBackCompare;
 
+    @FindBy(id = "SHP-DentalComparePlans-InNetworkTier1")
+    WebElement inNetworkDentalLink;
+
+    @FindBy(id = "SHP-DentalComparePlans-OutOfNetwork")
+    WebElement outNetworkDentalLink;
+
+
     public void clickGoBackCompare() {
         basicActions.waitForElementToBeClickable( goBackCompare, 15 );
         goBackCompare.click();
+
+    public void clickInNetworkDental() {
+        basicActions.waitForElementToBeClickable( inNetworkDentalLink, 15 );
+        inNetworkDentalLink.click();
+
+    public void clickOutNetworkDental() {
+        basicActions.waitForElementToBeClickable( outNetworkDentalLink, 15 );
+        outNetworkDentalLink.click();
 
     }
 }
