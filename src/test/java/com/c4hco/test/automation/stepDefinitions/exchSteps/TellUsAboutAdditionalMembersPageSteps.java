@@ -27,7 +27,7 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @And("I select {string} as relationship two option")
     public void selectRelationship2(String Relationship2){tellUsAboutAdditionalMemberPage.setSelectRelationship2(Relationship2);}
     @And("I select {string} as relationship three option")
-    public void selectRelationship3(String Relationship3){tellUsAboutAdditionalMemberPage.setSelectRelationship2(Relationship3);}
+    public void selectRelationship3(String Relationship3){tellUsAboutAdditionalMemberPage.setSelectRelationship3(Relationship3);}
 
     @And("I select {string} to Is Member Applying")
     public void isMemberApplying(String isApplying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(isApplying);}
@@ -42,5 +42,13 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter new born with minus {int} days as DOB")
     public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.Newbornwithcurrentdatelessthanfivedays(Days);}
 
+    @Then("I select {string} as the relationship designation in first box")
+    public void selectRelationship1Dropdown (String Relations){tellUsAboutAdditionalMemberPage.selectRelationshipFirstDropdown(Relations);}
+
+    @Then("I select {string} as the relationship designation in second box")
+    public void selectRelationship2Dropdown (String Relations){tellUsAboutAdditionalMemberPage.selectRelationshipSecondDropdown(Relations);}
+
+    @Then("I select {string} as the relationship designation in third box")
+    public void selectRelationship3Dropdown (String Relations){tellUsAboutAdditionalMemberPage.selectRelationshipThirdDropdown(Relations);}
 
 }

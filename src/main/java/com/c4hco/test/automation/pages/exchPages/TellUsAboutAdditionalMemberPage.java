@@ -58,6 +58,56 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "memberRelationship3")
     WebElement selectRelationship3;
 
+    @FindBy(css = "#memberRelationship1 > option:nth-child(2)")
+    WebElement selectBrother;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(3)")
+    WebElement selectCousin;
+
+    @FindBy(xpath = "#memberRelationship1 > option:nth-child(4)")
+    WebElement selectFather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(5)")
+    WebElement selectGrandfather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(6)")
+    WebElement selectGrandson;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(7)")
+    WebElement selectHalfBrother;
+
+    @FindBy(css= "#memberRelationship1 > option:nth-child(8)")
+    WebElement selectSpouse;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(9)")
+    WebElement selectInLaw;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(10)")
+    WebElement selectNephew;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(11)")
+    WebElement selectPartner;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(12)")
+    WebElement selectStepBrother;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(13)")
+    WebElement selectStepFather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(14)")
+    WebElement selectSon;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(15)")
+    WebElement selectStepSon;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(16)")
+    WebElement selectUncle;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(17)")
+    WebElement selectUnrelated;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(18)")
+    WebElement selectOther;
 
     @FindBy(id = "coverageYes")
     WebElement rdobtnIsMemberApplingYes;
@@ -186,6 +236,191 @@ public class TellUsAboutAdditionalMemberPage {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
+    }
+
+    public void selectRelationshipFirstDropdown (String relations) {
+        basicActions.waitForElementToBeClickable( selectRelationship,15 );
+        basicActions.scrollToElement( selectRelationship );
+        selectRelationship.click();
+        switch (relations) {
+            case "Brother":
+                selectBrother.click();
+                break;
+            case "Cousin":
+                selectCousin.click();
+                break;
+            case "Father":
+                selectFather.click();
+                break;
+            case "Grandfather":
+                selectGrandfather.click();
+                break;
+            case "Grandson":
+                selectGrandson.click();
+                break;
+            case "Half Brother":
+                selectHalfBrother.click();
+                break;
+            case "Spouse":
+                selectSpouse.click();
+                break;
+            case "In Law":
+                selectInLaw.click();
+                break;
+            case "Nephew":
+                selectNephew.click();
+                break;
+            case "Partner":
+                selectPartner.click();
+                break;
+            case "Step Brother":
+                selectStepBrother.click();
+                break;
+            case "Step Father":
+                selectStepFather.click();
+                break;
+            case "Son":
+                selectSon.click();
+                break;
+            case "Step Son":
+                selectStepSon.click();
+                break;
+            case "Uncle":
+                selectUncle.click();
+                break;
+            case "Unrelated":
+                selectUnrelated.click();
+                break;
+            case "Other":
+                selectOther.click();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + relations );
+
+        }
+        selectRelationship.click();
+    }
+    public void selectRelationshipSecondDropdown (String relations) {
+        basicActions.waitForElementToBeClickable( selectRelationship1,15 );
+        basicActions.scrollToElement( selectRelationship1 );
+        selectRelationship1.click();
+        switch (relations) {
+            case "Brother":
+                selectBrother.click();
+                break;
+            case "Cousin":
+                selectCousin.click();
+                break;
+            case "Father":
+                selectFather.click();
+                break;
+            case "Grandfather":
+                selectGrandfather.click();
+                break;
+            case "Grandson":
+                selectGrandson.click();
+                break;
+            case "Half Brother":
+                selectHalfBrother.click();
+                break;
+            case "Spouse":
+                selectSpouse.click();
+                break;
+            case "In Law":
+                selectInLaw.click();
+                break;
+            case "Nephew":
+                selectNephew.click();
+                break;
+            case "Partner":
+                selectPartner.click();
+                break;
+            case "Step Brother":
+                selectStepBrother.click();
+                break;
+            case "Step Father":
+                selectStepFather.click();
+                break;
+            case "Son":
+                selectSon.click();
+                break;
+            case "Step Son":
+                selectStepSon.click();
+                break;
+            case "Uncle":
+                selectUncle.click();
+                break;
+            case "Unrelated":
+                selectUnrelated.click();
+                break;
+            case "Other":
+                selectOther.click();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + relations );
+        }
+        selectRelationship1.click();
+    }
+    public void selectRelationshipThirdDropdown (String relations) {
+        basicActions.waitForElementToBeClickable( selectRelationship2,15 );
+        basicActions.scrollToElement( selectRelationship2 );
+        selectRelationship2.click();
+        switch (relations) {
+            case "Brother":
+                selectBrother.click();
+                break;
+            case "Cousin":
+                selectCousin.click();
+                break;
+            case "Father":
+                selectFather.click();
+                break;
+            case "Grandfather":
+                selectGrandfather.click();
+                break;
+            case "Grandson":
+                selectGrandson.click();
+                break;
+            case "Half Brother":
+                selectHalfBrother.click();
+                break;
+            case "Spouse":
+                selectSpouse.click();
+                break;
+            case "In Law":
+                selectInLaw.click();
+                break;
+            case "Nephew":
+                selectNephew.click();
+                break;
+            case "Partner":
+                selectPartner.click();
+                break;
+            case "Step Brother":
+                selectStepBrother.click();
+                break;
+            case "Step Father":
+                selectStepFather.click();
+                break;
+            case "Son":
+                selectSon.click();
+                break;
+            case "Step Son":
+                selectStepSon.click();
+                break;
+            case "Uncle":
+                selectUncle.click();
+                break;
+            case "Unrelated":
+                selectUnrelated.click();
+                break;
+            case "Other":
+                selectOther.click();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + relations );
+        }
+        selectRelationship2.click();
     }
 
 }
