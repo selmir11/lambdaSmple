@@ -3047,21 +3047,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select the projected income option "No" and continue
 
 
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-
 
 
     Then I validate I am on the "Employment Info" page
@@ -3079,20 +3064,20 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
 
-    Then I validate I am on the "Family Overview" page
-    Then I click on the Member Row 1
-
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
     Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
     And I click continue on the Employment Info Page
 
     Then I validate I am on the "Additional income" page
-    Then I click continue on the Additional Income page
+    Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page
-    Then I click continue on the Deductions page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+
+
 
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
