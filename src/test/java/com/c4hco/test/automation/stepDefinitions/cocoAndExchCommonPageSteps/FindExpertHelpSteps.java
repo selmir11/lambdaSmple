@@ -57,9 +57,29 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateFindAnAssisterButtonExists();
         }
 
-        @Then("I validate the Authorize Assister Organization button {string} displayed")
+        @Then("I validate the Authorize Assister Organization button {string}")
         public void iValidateTheAuthorizeAssisterOrganizationButtonDisplayed(String expectedState){
                 findExpertHelpPage.validateAuthorizeAssisterOrganizationButtonExists(expectedState);
+        }
+
+        @Then("I click the Authorize Assister Organization button")
+        public void iClickAuthorizeAsssiterOrgButton(){
+                findExpertHelpPage.clickAuthorizeAsssiterOrgButton();
+        }
+
+        @And("I validate the Change Assister button {string}")
+        public void iValidateChangeAssisterButtonExists(String expectedState){
+                findExpertHelpPage.validateChangeAssisterButtonExists(expectedState);
+        }
+
+        @Then("I Remove my current Assister")
+        public void iClickRemoveAsssiterButton(){
+                findExpertHelpPage.clickRemoveAsssiterButtonButton();
+        }
+
+        @And("I {string} my decision to remove my current assister")
+        public void iClickRemoveAssisterPopUp(String removalOption){
+                findExpertHelpPage.clickRemoveAssisterPopUp(removalOption);
         }
 
         @And("I validate current Broker text exists")

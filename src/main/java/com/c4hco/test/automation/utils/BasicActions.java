@@ -298,7 +298,8 @@ public class BasicActions {
         String newUrl = "";
         switch(page){
             case "Elmo Other Health Insurance Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance";
+//                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance"; //Staging
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage"; //QA
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;

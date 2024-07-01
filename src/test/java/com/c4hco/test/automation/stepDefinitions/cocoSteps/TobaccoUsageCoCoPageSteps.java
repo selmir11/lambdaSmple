@@ -11,7 +11,7 @@ public class TobaccoUsageCoCoPageSteps {
     @And("I click Continue on the Tobacco Usage Page CoCo")
     public void selectContinueTobaccoUsage(){tobaccoUsageCoCoPage.selectContinueTobacco();}
 
-    @Then("I verify text on start shopping page")
+    @Then("I verify text on Tobacco Usage Page CoCo")
     public void verifyTextOnTobaccoPage()  {
         tobaccoUsageCoCoPage.verifyTextOnTobaccoPage();
     }
