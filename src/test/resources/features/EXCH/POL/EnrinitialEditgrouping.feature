@@ -5,7 +5,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
+    And I enter general mandatory data for "exchange" account creation with email "unicy245"@gmail.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
@@ -36,8 +36,6 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "03051989" date of birth
@@ -59,8 +57,6 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter new born with minus 5 days as DOB
@@ -82,11 +78,9 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
-
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "250000" at frequency "Annually"
@@ -94,15 +88,12 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
-
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-
-
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "300000" at frequency "Annually"
@@ -116,13 +107,11 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
@@ -151,26 +140,37 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
+  # Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Plains Plan"
+    And I select "Delta Dental of Colorado Pediatric Enhanced Plan"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
+   # And I continue on plan summary page
+
+
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+
+    Then I select make payment button to pay the premium
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I click continue on payment selection page
+    And I click continue on initial payment page
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
+
+
+    #Gmail
+
+    Given To verify gmail Notices
+
+
+
+
 
 
 

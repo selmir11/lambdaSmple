@@ -244,6 +244,7 @@ public class CreateAccountPage {
         submitButton.click();
     }
 
+
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName(getUniqueString(8)+"TestMember");
@@ -259,6 +260,15 @@ public class CreateAccountPage {
         subscriber.setFirstName(getUniqueString(10)+"TestMember");
         subscriber.setLastName(getUniqueString(10)+"Test");
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
+    }
+    public void initializeDataGmail(String emailBase){
+        MemberDetails subscriber = new MemberDetails();
+        subscriber.setFirstName(getUniqueString(10)+"TestMember");
+        subscriber.setLastName(getUniqueString(10)+"Test");
+        subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
@@ -288,6 +298,41 @@ public class CreateAccountPage {
 
     public void addDetailsOutlook(String emailBase){
         initializeDataOutlook(emailBase);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 60);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        email.sendKeys(subscriber.getEmailId());
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
+        subscriber.setRelation_to_subscriber("SELF");
+        SharedData.setPrimaryMember(subscriber);
+    }
+    public void createGeneralAccountGmail(String appType, String emailBase){
+        // Creates the primary user/Account holder
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
+        SharedData.setAppType(appType);
+        addDetailsGmail(emailBase);
+        switch(appType){
+            case "coco":
+                cocoTermsOfUseCheckbox.click();
+                break;
+            case "exchange":
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+
+        }
+        submitButton.click();
+    }
+    public void addDetailsGmail(String emailBase){
+        initializeDataGmail(emailBase);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
         firstName.sendKeys(subscriber.getFirstName());

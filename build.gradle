@@ -13,6 +13,9 @@ dependencies {
     // https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
     implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.8'
 
+    // https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail
+    implementation group: 'com.sun.mail', name: 'jakarta.mail', version: '2.0.1'
+
 // https://mvnrepository.com/artifact/io.cucumber/cucumber-java
     implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.11.1'
 

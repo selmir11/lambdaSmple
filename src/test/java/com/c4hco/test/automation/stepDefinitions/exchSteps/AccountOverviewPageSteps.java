@@ -1,15 +1,17 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
+import com.c4hco.test.automation.pages.exchPages.GmailNoticesverify;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
+import jakarta.mail.MessagingException;
 
 import java.util.List;
 import java.util.Map;
 
 public class AccountOverviewPageSteps {
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
-
+    GmailNoticesverify gmailNotices = new GmailNoticesverify(WebDriverManager.getDriver());
     @And("I click on the Username Link Exch")
     public void clickuserNameExchLink(){accountOverviewPage.clickuserNameExchLink();}
 
@@ -37,4 +39,11 @@ public class AccountOverviewPageSteps {
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
         accountOverviewPage.setScenarioDetails(expectedResult);
     }
+
+    @Given("To verify gmail Notices")
+    public void GmailNotices() throws MessagingException, InterruptedException {
+        gmailNotices.Noticesverify();
+    }
+
 }
+
