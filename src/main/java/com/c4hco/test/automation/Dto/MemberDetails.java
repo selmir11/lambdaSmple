@@ -55,7 +55,7 @@ public class MemberDetails {
     String writtenLanguage;
     String spokenLanguage;
     String maritalStatus;
-    Boolean isMinor;
+    Boolean isMinor= false;
     Boolean hasIncorrectEntities = false;
     String isSubscriber="N";
     String incorrectEntityIdCode;
