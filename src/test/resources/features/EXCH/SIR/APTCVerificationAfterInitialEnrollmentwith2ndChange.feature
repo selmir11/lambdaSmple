@@ -2882,7 +2882,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-WIP
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests - SIR-2584 bug causing an issue with group of 4
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
