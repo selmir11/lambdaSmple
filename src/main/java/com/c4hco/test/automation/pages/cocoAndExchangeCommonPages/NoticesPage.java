@@ -18,7 +18,7 @@ public class NoticesPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, YYYY");
     DateTimeFormatter formatterSpanish = DateTimeFormatter.ofPattern("d 'de' MMMM 'del' yyyy",new Locale("es", "ES"));
     String effectiveDateSpanish = formatterSpanish.format(LocalDate.now());
     String effectiveDate = LocalDate.now().format(formatter);
