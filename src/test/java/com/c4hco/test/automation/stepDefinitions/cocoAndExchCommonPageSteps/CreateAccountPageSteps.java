@@ -25,6 +25,12 @@ public class CreateAccountPageSteps {
         createAccountPage.createGeneralAccountOutlook(appType, emailBase);
     }
 
+    @Then("I enter general mandatory data for {string} account creation with email {string}@gmail.com")
+    public void iCreateGeneralAccountGmail(String appType, String emailBase){
+        createAccountPage.createGeneralAccountGmail(appType, emailBase);
+    }
+
+
     @Then("I enter mandatory data for {string} account creation with email {string}@outlook.com")
     public void iEnterDataForBrokerAccCreation(String accountType, String emailBase){
         createAccountPage.createBrokerAccount(accountType, emailBase);
