@@ -7,14 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Properties;
 
-public class GmailNoticesverify {
+public class GmailNotices {
     private BasicActions basicActions;
 
-    public GmailNoticesverify(WebDriver webDriver) {
+    public GmailNotices(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-
 
         public void verifyNotices() {
             try {
@@ -42,6 +41,7 @@ public class GmailNoticesverify {
                         Message firstMessage = messages[messages.length - 1];
                         System.out.println("Subject: " + firstMessage.getSubject());
                         System.out.println("Received: " + firstMessage.getReceivedDate());
+                        // WIP - Get the expected notice from step going forward to make this reusable for other notices as well.
                         if ("Confirmation: Your Connect for Health Colorado Plan Selection (EN-002-04)".equals(firstMessage.getSubject())) {
                             System.out.println("Subject: " + firstMessage.getSubject());
                             System.out.println("Received: " + firstMessage.getReceivedDate());
