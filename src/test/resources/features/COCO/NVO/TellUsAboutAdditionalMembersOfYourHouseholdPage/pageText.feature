@@ -35,4 +35,4 @@ Feature: Text - Tell us about additional members of your household page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
-    And I validate the page text on Tell us about additional members of your household
+    Then I validate the page text on Tell Us About Additional Members Of Your Household Page CoCo "English"

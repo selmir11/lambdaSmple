@@ -466,14 +466,14 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertEquals(textValidation.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(5).getCssValue("font-size"), "16px");
         softAssert.assertEquals(textValidation.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(genderButton.get(0).getText(), "  Female");
+        softAssert.assertEquals(genderButton.get(0).getText(), "Female");
         softAssert.assertEquals(genderButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(0).getCssValue("font-size"), "20px");
-        softAssert.assertEquals(genderButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");
-        softAssert.assertEquals(genderButton.get(1).getText(), "Male");
+        softAssert.assertEquals(genderButton.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(genderButton.get(1).getText(), "  Male");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
-        softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(255, 255, 255, 1)");
         softAssert.assertEquals(textValidation.get(6).getText(), SharedData.getMembers().get(0).getFirstName()+" "+SharedData.getMembers().get(0).getLastName()+" is "+Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
                 Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1)+"'s?");
         softAssert.assertEquals(textValidation.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
