@@ -104,10 +104,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
     @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
-    WebElement signOutLinkPayment;
-
-    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
-    WebElement signOutLinkPlanSelection;
+    WebElement signOutLinkPortal;
 
 
    // =========FOOTER============== //
@@ -407,15 +404,11 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
                 basicActions.click(signOutLinkNonElmo);
                 break;
-            case "Payment":
-                basicActions.waitForElementToBePresent(signOutLinkPayment, 10);
-                basicActions.waitForElementToBeClickable(signOutLinkPayment,10);
-                basicActions.click(signOutLinkPayment);
+            case "Portal":
+                basicActions.waitForElementToBePresent(signOutLinkPortal, 10);
+                basicActions.waitForElementToBeClickable(signOutLinkPortal,10);
+                basicActions.click(signOutLinkPortal);
                 break;
-            case "PlanSelection":
-                basicActions.waitForElementToBePresent(signOutLinkPlanSelection, 15);
-                basicActions.waitForElementToBeClickable(signOutLinkPlanSelection,15);
-                basicActions.click(signOutLinkPlanSelection);
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
