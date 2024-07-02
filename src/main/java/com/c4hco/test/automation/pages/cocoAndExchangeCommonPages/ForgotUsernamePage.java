@@ -32,16 +32,12 @@ public class ForgotUsernamePage {
     WebElement submitBTN;
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 mt-3 ng-star-inserted']")
     WebElement noticeIsSentMsg;
-    public void informationSForForgotUsername(String language){
-        if (SharedData.getEnv().equals("qa") & language.equals("English")){
-            DataForForgotUsername("erty", "el", "123-456-7890", "Customer");
-        }else if(SharedData.getEnv().equals("staging") & language.equals("English")){
-            DataForForgotUsername("candy", "SpanishSTG", "111-111-1112", "Customer");
-        }else if(SharedData.getEnv().equals("qa") & language.equals("Spanish")){
-            DataForForgotUsername("candy", "SpanishQA", "111-111-1112", "Customer");
-        }else{
-            DataForForgotUsername("Primary", "Tucker", "111-111-1112", "Customer");
-        }
+    public void informationSForForgotUsername(String FirsnameSTG, String LastNameSTG, String phoneSTG, String accountTypeData, String FirsnameQA, String LastNameQA, String phoneQA){
+            if (SharedData.getEnv().equals("qa") ) {
+                DataForForgotUsername(FirsnameQA, LastNameQA, phoneQA, accountTypeData);
+            } else if (SharedData.getEnv().equals("staging")) {
+                DataForForgotUsername(FirsnameSTG, LastNameSTG, phoneSTG, accountTypeData);
+            }
 
     }
 

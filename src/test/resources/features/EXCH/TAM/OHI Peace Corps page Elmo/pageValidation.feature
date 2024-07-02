@@ -122,7 +122,7 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-722 @PageValidationOhiPeaceCorpsElmo @test
+  @SLER-722 @PageValidationOhiPeaceCorpsElmo
   Scenario: SLER-722 I validate save, update and remove on Peace Corps are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Peace Corps page
     And I verify the OHI options selected in the DB
