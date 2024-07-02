@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import jakarta.mail.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -24,9 +23,7 @@ public class GmailNoticesverify {
                 properties.setProperty("mail.imap.host", "imap.gmail.com");
                 properties.setProperty("mail.imap.port", "993");
 
-
                 Session session = Session.getInstance(properties);
-
 
                 Store store = session.getStore("imaps");
                 store.connect("imap.gmail.com", "unicy245@gmail.com", "hifr khpf boti reyq");
@@ -63,8 +60,8 @@ public class GmailNoticesverify {
                 inbox.close(false);
                 store.close();
             }
-            catch( MessagingException | InterruptedException exceptiondetails){
-                System.out.println(exceptiondetails);
+            catch(MessagingException | InterruptedException exceptionDetails){
+                System.out.println(exceptionDetails);
             }
 
         }

@@ -276,6 +276,10 @@ public class CreateAccountPage {
 
     public void addDetails(){
         initializeData();
+        sendDetails();
+    }
+
+    public void sendDetails(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
         firstName.sendKeys(subscriber.getFirstName());
@@ -317,7 +321,7 @@ public class CreateAccountPage {
         // Creates the primary user/Account holder
         basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
         SharedData.setAppType(appType);
-        addDetailsGmail(emailBase);
+        addGmailDetails(emailBase);
         switch(appType){
             case "coco":
                 cocoTermsOfUseCheckbox.click();
@@ -331,22 +335,9 @@ public class CreateAccountPage {
         }
         submitButton.click();
     }
-    public void addDetailsGmail(String emailBase){
-        initializeDataGmail(emailBase);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        basicActions.waitForElementToBePresent(firstName, 60);
-        firstName.sendKeys(subscriber.getFirstName());
-        lastName.sendKeys(subscriber.getLastName());
-        email.sendKeys(subscriber.getEmailId());
-        phoneNumber.sendKeys(subscriber.getPhoneNumber());
-        password.sendKeys(subscriber.getPassword());
-        confirmPassword.sendKeys(subscriber.getPassword());
-        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
-        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
-        preferredLanguageButtonEnglish.click();
-        primaryUserCheckbox.click();
-        subscriber.setRelation_to_subscriber("SELF");
-        SharedData.setPrimaryMember(subscriber);
+    public void addGmailDetails(String emailBase){
+            initializeDataGmail(emailBase);
+            sendDetails();
     }
 
     public void createBrokerAccount(String accountType, String emailBase){

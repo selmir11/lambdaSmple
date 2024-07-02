@@ -4,7 +4,6 @@ import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.pages.exchPages.GmailNoticesverify;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
-import jakarta.mail.MessagingException;
 
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public class AccountOverviewPageSteps {
 
     @Given("To verify gmail Notices")
     public void GmailNotices() {
-        gmailNotices.Noticesverify();
+       gmailNotices.Noticesverify();
     }
 
 }
