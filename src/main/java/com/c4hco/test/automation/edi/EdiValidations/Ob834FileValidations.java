@@ -27,7 +27,7 @@ public class Ob834FileValidations {
         validateDtpSegment(entry);
 //        validateHierarchyLevelSeg();
         validateNM1Seg(entry);
-//        validatePerSeg();
+        validatePerSeg(entry);
         validateBgnSeg(entry);
 //        validateTrnSeg();
 //        validateQtySeg();
@@ -118,18 +118,26 @@ public class Ob834FileValidations {
             softAssert.assertAll();
     }
 
-    public void validatePerSeg(){
-        transaction.getMembersList().get(0).getPER();
+    public void validatePerSeg(Ob834DetailsEntity entry){
+        List<String> perSeg = transaction.getMembersList().get(0).getPER().get(0);
+        softAssert.assertEquals(perSeg.get(0), "IP", "code identifying the Insured Party, IP does not match");
+        softAssert.assertEquals(perSeg.get(2), "TE", "Telephone code TE does not match");
+        softAssert.assertEquals(perSeg.get(3), entry.getPrimary_phone(), "Primary Phone number does not match");
+        softAssert.assertEquals(perSeg.get(4), "EM", "Electronic mail code EM does not match");
+        softAssert.assertEquals(perSeg.get(5), entry.getPrimary_email(), "Primary email does not match");
+        softAssert.assertEquals(perSeg.get(6), "AP", "Alternate phone code does not match");
+        softAssert.assertEquals(perSeg.get(7), entry.getAlternate_phone(), "Alternate phone number does not match");
+        softAssert.assertAll();
     }
 
     public void validateBgnSeg(Ob834DetailsEntity entry){
-        List<List<String>> bgnSeg = transaction.getCommonSegments().getBGN();
-        softAssert.assertEquals(bgnSeg.get(0).get(0), entry.getTs_purpose_code(), "ts purpose code does not match");
-        softAssert.assertEquals(bgnSeg.get(0).get(1), entry.getBgn_reference_ident(),"BGN reference identification does not match");
-        softAssert.assertEquals(bgnSeg.get(0).get(2), entry.getInterchange_date(), "Interchange date does not match");
-        softAssert.assertEquals(bgnSeg.get(0).get(3), entry.getInterchange_time(), "Interchange time does not match");
-        softAssert.assertEquals(bgnSeg.get(0).get(4), "MT", "Interchange time does not match");
-        softAssert.assertEquals(bgnSeg.get(0).get(7), entry.getBgn_action_code(),"BGN action code does not match");
+        List<String> bgnSeg = transaction.getCommonSegments().getBGN().get(0);
+        softAssert.assertEquals(bgnSeg.get(0), entry.getTs_purpose_code(), "ts purpose code does not match");
+        softAssert.assertEquals(bgnSeg.get(1), entry.getBgn_reference_ident(),"BGN reference identification does not match");
+        softAssert.assertEquals(bgnSeg.get(2), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(bgnSeg.get(3), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(bgnSeg.get(4), "MT", "Interchange time does not match");
+        softAssert.assertEquals(bgnSeg.get(7), entry.getBgn_action_code(),"BGN action code does not match");
         softAssert.assertAll();
     }
 

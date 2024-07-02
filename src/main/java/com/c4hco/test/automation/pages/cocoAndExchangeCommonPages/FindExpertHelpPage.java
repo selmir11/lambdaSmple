@@ -47,6 +47,18 @@ public class FindExpertHelpPage {
     @FindBy(id ="authorize-assister-button")
     WebElement AuthorizeAssisterOrganization;
 
+    @FindBy(id="assister-button-change")
+    WebElement changeAssisterButton;
+
+    @FindBy(id = "action-link")
+    WebElement removeAssisterButton;
+
+    @FindBy(xpath= "//button[@class='btn btn-lg primary-action-button float-end']")
+    WebElement removeAssisterOkay;
+
+    @FindBy(xpath= "//button[@class='btn btn-lg secondary-action-button']")
+    WebElement removeAssisterCancel;
+
     @FindBy(id ="broker-button")
     WebElement findBroker;
 
@@ -201,11 +213,12 @@ public class FindExpertHelpPage {
                 softAssert.assertEquals(FindBroker.getText(),"Busque un agente");
                 softAssert.assertEquals(HaveBrokerCallYou.getText(),"Solicitar llamada de un agente");
                 softAssert.assertEquals(FindAnAssister.getText(),"Busque un Asistente");
-                softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Autorizar organización asistente");
+                softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Autorizar organizaci\u00F3n asistente");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+        softAssert.assertAll();
     }
 
     public void clickFindBroker() {
@@ -278,13 +291,50 @@ public class FindExpertHelpPage {
     }
 
     public void validateAuthorizeAssisterOrganizationButtonExists(String expectedState){
-        if(expectedState.equals("is")){
-            basicActions.waitForElementToBePresent(AuthorizeAssisterOrganization,100);
-            softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Authorize Assister Organization");
-            softAssert.assertAll();
-        } else if (expectedState.equals("is not")) {
-            softAssert.assertFalse(basicActions.waitForElementPresence(AuthorizeAssisterOrganization,30));
-            softAssert.assertAll();
+        switch (expectedState) {
+            case "is displayed":
+                basicActions.waitForElementToBePresent(AuthorizeAssisterOrganization,100);
+                softAssert.assertEquals(AuthorizeAssisterOrganization.getText(),"Authorize Assister Organization");
+                break;
+            case "is not displayed":
+                softAssert.assertFalse(basicActions.waitForElementPresence(AuthorizeAssisterOrganization,30));
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    public void clickAuthorizeAsssiterOrgButton(){
+        basicActions.waitForElementToBePresent(AuthorizeAssisterOrganization, 10);
+        AuthorizeAssisterOrganization.click();
+    }
+
+    public void validateChangeAssisterButtonExists(String expectedState) {
+        switch (expectedState) {
+            case "is displayed":
+                basicActions.waitForElementToBePresent(changeAssisterButton, 10);
+                softAssert.assertEquals(changeAssisterButton.getText(),"Change Assister");
+                break;
+            case "is not displayed":
+                softAssert.assertFalse(basicActions.waitForElementPresence(changeAssisterButton, 10));
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    public void clickRemoveAsssiterButtonButton(){
+        basicActions.waitForElementToBePresent(removeAssisterButton, 10);
+        removeAssisterButton.click();
+    }
+
+    public void clickRemoveAssisterPopUp(String removalOption) {
+        basicActions.waitForElementToBePresent(removeAssisterOkay, 10);
+        switch (removalOption) {
+            case "Ok":
+                removeAssisterOkay.click();
+                break;
+            case "Cancel":
+                removeAssisterCancel.click();
+                break;
         }
     }
 
