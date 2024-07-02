@@ -42,7 +42,9 @@ public class GmailNoticesverify {
                 System.out.println("Total messages: " + messages.length);
 
                 if (messages.length > 0) {
-                    Message firstMessage = messages[0];
+                    Message firstMessage = messages[messages.length-1];
+                    System.out.println("Subject: " + firstMessage.getSubject());
+                    System.out.println("Received: " + firstMessage.getReceivedDate());
                     if ("Confirmation: Your Connect for Health Colorado Plan Selection (EN-002-04)".equals(firstMessage.getSubject())) {
                         System.out.println("Subject: " + firstMessage.getSubject());
                         System.out.println("Received: " + firstMessage.getReceivedDate());
