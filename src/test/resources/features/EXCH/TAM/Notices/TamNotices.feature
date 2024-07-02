@@ -1,4 +1,4 @@
-@TAM @TamNotices @test
+@TAM @TamNotices
 Feature: Elig101-01 - TAM Notices
 
   Background:
