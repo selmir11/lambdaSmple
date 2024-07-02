@@ -16,6 +16,10 @@ public class GroupingMembersDentalPage {
     WebElement continueButton;
 
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+
     private BasicActions basicActions;
 
     public GroupingMembersDentalPage(WebDriver webDriver) {
@@ -25,9 +29,11 @@ public class GroupingMembersDentalPage {
 
     SoftAssert softAssert = new SoftAssert();
 
-    public void clickContinue() {
+    public void clickContinue()  {
+
+        basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(continueButton, 60);
-        basicActions.waitForElementToBeClickable(continueButton, 60);
+        basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
 
