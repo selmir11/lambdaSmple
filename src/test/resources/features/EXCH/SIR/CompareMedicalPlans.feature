@@ -57,7 +57,7 @@ Feature: Medical Plan Compare page related tests
     And I click Go Back on the Compare page
 
     Then I validate I am on the "Medical Plan Results" page
-    Then I click on Sign Out in the Header for "PlanSelection"
+    Then I click on Sign Out in the Header for "Portal"
 
     @MedicalCompareDetailTextVerification @SLER-726
   Scenario: Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
@@ -118,7 +118,7 @@ Feature: Medical Plan Compare page related tests
     And I click Go Back on the Compare page
 
     Then I validate I am on the "Medical Plan Results" page
-    Then I click on Sign Out in the Header for "PlanSelection"
+    Then I click on Sign Out in the Header for "Portal"
 
 
 

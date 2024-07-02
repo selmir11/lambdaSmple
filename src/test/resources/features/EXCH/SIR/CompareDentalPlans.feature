@@ -60,7 +60,7 @@ Feature: Medical Plan Results page related tests
 
     Then I validate I am on the "Dental Plan Compare" page
     And I click Go Back on the Dental Compare page
-    Then I click on Sign Out in the Header for "PlanSelection"
+    Then I click on Sign Out in the Header for "Portal"
 
   @DentalCompareTextValidation @727
   Scenario: Validate the Text on Compare Plans page (Dental)
@@ -122,7 +122,7 @@ Feature: Medical Plan Results page related tests
     And I validate the text headers and subheaders for the OutNetwork Dental Compare page
     And I select the InNetwork link on the Dental Compare page
     And I click Go Back on the Dental Compare page
-    Then I click on Sign Out in the Header for "PlanSelection"
+    Then I click on Sign Out in the Header for "Portal"
 
 
 

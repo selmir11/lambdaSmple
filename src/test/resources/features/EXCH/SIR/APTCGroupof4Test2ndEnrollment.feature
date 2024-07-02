@@ -394,4 +394,4 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on plan summary page
 
     Then I validate I am on the "Initial Payment" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"

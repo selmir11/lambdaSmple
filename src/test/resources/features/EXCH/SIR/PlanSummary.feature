@@ -77,7 +77,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-515-WIP @VerifyMedicalDentalPlanSummaryResultsMultiple
    Scenario: Validate grouping members: Grandparent in 1 group, Parent+2 children in 1 group
@@ -267,7 +267,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 
 

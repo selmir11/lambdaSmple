@@ -223,7 +223,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2350 - 40 year old
@@ -451,7 +451,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Initial Payment" page
     Then I select make payment button to pay the premium
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 
 
@@ -674,7 +674,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-320
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2352 - 62 year old
@@ -894,7 +894,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
     @SLER-321
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2353 - 50 year old
@@ -1114,7 +1114,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-323
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2354 - 40 year old //born in 1976
@@ -1334,7 +1334,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 @SLER-375
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2355 - 40 year old
@@ -1555,7 +1555,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
     @SLER-324
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2356 - 65 year old
@@ -1776,7 +1776,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-325
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2397 - born 1982 and 2011
@@ -1997,7 +1997,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 
   @SLER-691
@@ -2218,7 +2218,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-690
   Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2341- income change from 100K to 10K
@@ -2438,7 +2438,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-689
   Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2342- income change from 50K to 35K
@@ -2658,7 +2658,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-692
   Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2343- income change from 50K to 65K
@@ -2878,7 +2878,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 
 

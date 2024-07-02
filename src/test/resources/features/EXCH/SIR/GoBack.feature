@@ -238,7 +238,7 @@ Feature: Dental Plans page tests
     And I select "Male" as sex option
 
     And I select "Other" as relationship option
-    And I select "Brother" as the relationship designation in second box
+    And I select "Brother" as relationship one option
 
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
