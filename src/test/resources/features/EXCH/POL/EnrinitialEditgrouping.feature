@@ -145,7 +145,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I select "Delta Dental of Colorado Pediatric Enhanced Plan"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+     And I click continue on plan summary page
 
 
     And I select "Terms of Use" agreement checkbox
