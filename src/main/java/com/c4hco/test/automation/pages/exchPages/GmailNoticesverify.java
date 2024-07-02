@@ -17,51 +17,56 @@ public class GmailNoticesverify {
     }
 
 
-        public void Noticesverify() throws MessagingException, InterruptedException {
-
-            Properties properties = new Properties();
-            properties.setProperty("mail.store.protocol", "imaps"); // For IMAP over SSL
-            properties.setProperty("mail.imap.host", "imap.gmail.com");
-            properties.setProperty("mail.imap.port", "993");
-
-
-            Session session = Session.getInstance(properties);
+        public void Noticesverify() {
+            try {
+                Properties properties = new Properties();
+                properties.setProperty("mail.store.protocol", "imaps"); // For IMAP over SSL
+                properties.setProperty("mail.imap.host", "imap.gmail.com");
+                properties.setProperty("mail.imap.port", "993");
 
 
-            Store store = session.getStore("imaps");
-            store.connect("imap.gmail.com", "unicy245@gmail.com", "hifr khpf boti reyq");
+                Session session = Session.getInstance(properties);
 
 
-            Folder inbox = store.getFolder("INBOX");
-            inbox.open(Folder.READ_ONLY);
+                Store store = session.getStore("imaps");
+                store.connect("imap.gmail.com", "unicy245@gmail.com", "hifr khpf boti reyq");
 
-            boolean found = false;
-            while (!found) {
 
-                Message[] messages = inbox.getMessages();
-                System.out.println("Total messages: " + messages.length);
+                Folder inbox = store.getFolder("INBOX");
+                inbox.open(Folder.READ_ONLY);
 
-                if (messages.length > 0) {
-                    Message firstMessage = messages[messages.length-1];
-                    System.out.println("Subject: " + firstMessage.getSubject());
-                    System.out.println("Received: " + firstMessage.getReceivedDate());
-                    if ("Confirmation: Your Connect for Health Colorado Plan Selection (EN-002-04)".equals(firstMessage.getSubject())) {
+                boolean found = false;
+                while (!found) {
+
+                    Message[] messages = inbox.getMessages();
+                    System.out.println("Total messages: " + messages.length);
+
+                    if (messages.length > 0) {
+                        Message firstMessage = messages[messages.length - 1];
                         System.out.println("Subject: " + firstMessage.getSubject());
                         System.out.println("Received: " + firstMessage.getReceivedDate());
-                        found = true;
+                        if ("Confirmation: Your Connect for Health Colorado Plan Selection (EN-002-04)".equals(firstMessage.getSubject())) {
+                            System.out.println("Subject: " + firstMessage.getSubject());
+                            System.out.println("Received: " + firstMessage.getReceivedDate());
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Email with subject 'EN-002-04' not found. Waiting...");
+                        Thread.sleep(60000);
+                        inbox.close(false);
+                        inbox.open(Folder.READ_ONLY);
                     }
                 }
 
-                if (!found) {
-                    System.out.println("Email with subject 'EN-002-04' not found. Waiting...");
-                    Thread.sleep(60000);
-                    inbox.close(false);
-                    inbox.open(Folder.READ_ONLY);
-                }
+                inbox.close(false);
+                store.close();
+            }
+            catch( MessagingException | InterruptedException exceptiondetails){
+                System.out.println(exceptiondetails);
             }
 
-            inbox.close(false);
-            store.close();
         }
 
 

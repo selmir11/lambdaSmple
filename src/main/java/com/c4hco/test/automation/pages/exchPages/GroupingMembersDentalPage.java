@@ -27,7 +27,8 @@ public class GroupingMembersDentalPage {
 
     public void clickContinue() {
         basicActions.waitForElementToBePresent(continueButton, 60);
-        basicActions.waitForElementToBeClickable(continueButton, 60);
+        basicActions.scrollToElement(continueButton);
+
         continueButton.click();
     }
 

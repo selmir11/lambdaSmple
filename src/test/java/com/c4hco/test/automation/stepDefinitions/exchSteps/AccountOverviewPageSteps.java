@@ -41,7 +41,7 @@ public class AccountOverviewPageSteps {
     }
 
     @Given("To verify gmail Notices")
-    public void GmailNotices() throws MessagingException, InterruptedException {
+    public void GmailNotices() {
         gmailNotices.Noticesverify();
     }
 

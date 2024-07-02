@@ -140,12 +140,12 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-  # Then I click continue on grouping Members Dental page
+   Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Pediatric Enhanced Plan"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-   # And I continue on plan summary page
+    And I continue on plan summary page
 
 
     And I select "Terms of Use" agreement checkbox
