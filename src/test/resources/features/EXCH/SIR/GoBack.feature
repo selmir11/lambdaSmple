@@ -76,7 +76,7 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SelectGoBackFromAgreementsToPreShoppingSingleGrouping @SLER-734
+  @SelectGoBackFromAgreementsToPreShoppingSingleGrouping @SLER-734-WIP
   Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - one group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -260,8 +260,8 @@ Feature: Dental Plans page tests
     And I mark the Additional member is pregnant as "No"
 
     And I select "Spouse" as relationship option
-    And I select "Other" as the relationship designation in second box
-    And I select "Other" as the relationship designation in third box
+    And I select "Other" as relationship one option
+    And I select "Other" as relationship two option
 
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
@@ -276,8 +276,6 @@ Feature: Dental Plans page tests
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-
 
     Then I click on the Member Row 3
     Then I validate I am on the "Application Summary" page

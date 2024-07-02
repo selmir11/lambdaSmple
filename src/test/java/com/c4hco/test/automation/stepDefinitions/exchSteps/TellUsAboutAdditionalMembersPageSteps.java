@@ -42,13 +42,4 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter new born with minus {int} days as DOB")
     public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.Newbornwithcurrentdatelessthanfivedays(Days);}
 
-    @Then("I select {string} as the relationship designation in first box")
-    public void selectRelationship1Dropdown (String Relations){tellUsAboutAdditionalMemberPage.selectRelationshipFirstDropdown(Relations);}
-
-    @Then("I select {string} as the relationship designation in second box")
-    public void selectRelationship2Dropdown (String Relations){tellUsAboutAdditionalMemberPage.selectRelationshipSecondDropdown(Relations);}
-
-    @Then("I select {string} as the relationship designation in third box")
-    public void selectRelationship3Dropdown (String Relations){tellUsAboutAdditionalMemberPage.selectRelationshipThirdDropdown(Relations);}
-
 }
