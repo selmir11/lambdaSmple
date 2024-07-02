@@ -162,11 +162,9 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
-
-
+    
     #Gmail
-
-    Given To verify gmail Notices
+    And I verify the gmail Notices
 
 
 

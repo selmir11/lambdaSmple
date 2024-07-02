@@ -16,7 +16,7 @@ public class GmailNoticesverify {
     }
 
 
-        public void Noticesverify() {
+        public void verifyNotices() {
             try {
                 Properties properties = new Properties();
                 properties.setProperty("mail.store.protocol", "imaps"); // For IMAP over SSL

@@ -39,9 +39,9 @@ public class AccountOverviewPageSteps {
         accountOverviewPage.setScenarioDetails(expectedResult);
     }
 
-    @Given("To verify gmail Notices")
+    @And("I verify the gmail Notices")
     public void GmailNotices() {
-       gmailNotices.Noticesverify();
+       gmailNotices.verifyNotices();
     }
 
 }
