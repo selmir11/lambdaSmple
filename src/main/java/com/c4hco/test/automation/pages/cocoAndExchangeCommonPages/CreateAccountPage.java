@@ -258,7 +258,7 @@ public class CreateAccountPage {
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName(getUniqueString(10)+"TestMember");
-        subscriber.setLastName(getUniqueString(10)+"Test");
+        subscriber.setLastName(getUniqueString(9)+"Test");
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
