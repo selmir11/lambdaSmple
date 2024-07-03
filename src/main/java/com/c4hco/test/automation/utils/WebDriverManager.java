@@ -48,6 +48,7 @@ public class WebDriverManager {
         prefs.put("download.extensions_to_open", "application/xml");
 	
         options.addArguments("--start-maximized");
+        options.addArguments("Zoom 75%");
         // options.addArguments("--incognito");
         options.addArguments("--safebrowsing-disable-download-protection");
         options.setExperimentalOption("prefs", prefs);
