@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
+import com.c4hco.test.automation.pages.exchPages.GmailNotices;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
@@ -9,7 +10,7 @@ import java.util.Map;
 
 public class AccountOverviewPageSteps {
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
-
+    GmailNotices gmailNotices = new GmailNotices(WebDriverManager.getDriver());
     @And("I click on the Username Link Exch")
     public void clickuserNameExchLink(){accountOverviewPage.clickuserNameExchLink();}
 
@@ -37,4 +38,11 @@ public class AccountOverviewPageSteps {
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
         accountOverviewPage.setScenarioDetails(expectedResult);
     }
+
+    @And("I verify the gmail Notices")
+    public void GmailNotices() {
+       gmailNotices.verifyNotices();
+    }
+
 }
+
