@@ -58,7 +58,7 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    And I click on the table dropdown
+    And I click on the table dropdown 1
     And I click the edit income 1
 
     Then I validate I am on the "Employment Income" page
@@ -150,7 +150,7 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    And I click on the table dropdown
+    And I click on the table dropdown 1
     And I click the edit income 1
 
     And I validate I am on the "Employment Income" page

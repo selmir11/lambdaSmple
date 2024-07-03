@@ -298,43 +298,42 @@ public class BasicActions {
         String newUrl = "";
         switch(page){
             case "Elmo Other Health Insurance Page":
-//                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance"; //Staging
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage"; //QA
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage";
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo COBRA Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/cobra";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoveragee/cobra";
                 newUrl = currentUrl.replace("nes/cobra", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo Ohi Retiree Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/retiree";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/retiree";
                 newUrl = currentUrl.replace("nes/retireeHealth", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo Ohi Medicare Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/medicare";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/medicare";
                 newUrl = currentUrl.replace("nes/medicare", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo Ohi VA Healthcare Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/va";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/va";
                 newUrl = currentUrl.replace("nes/vaHealth", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo Ohi Individual Insurance Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/individual";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/individual";
                 newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo Ohi Peace Corps Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/peaceCorps";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/peaceCorps";
                 newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
                 getDriver().navigate().to(newUrl);
 				break;
             case "Elmo Ohi Tricare Page":
-                newUrl = "OtherHealthInsurancePortal/members/"+primaryMemId+"/otherHealthInsurance/tricare";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/tricare";
                 newUrl = currentUrl.replace("nes/tricare", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
@@ -399,13 +398,13 @@ public class BasicActions {
                 getDriver().navigate().to(newUrl);
                 break;
             case "Other Health Insurance portal Error Exch":
-                newUrl = "OtherHealthInsurancePortal/error";
-                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                newUrl = "OtherHealthCoveragePortal/error";
+                newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Other Health Insurance portal Unauthorized Exch":
-                newUrl = "OtherHealthInsurancePortal/unauthorized";
-                newUrl = currentUrl.replaceAll("OtherHealthInsurancePortal/members/[^/]*/otherHealthInsurance/employerSponsored", newUrl);
+                newUrl = "OtherHealthCoveragePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             default:
