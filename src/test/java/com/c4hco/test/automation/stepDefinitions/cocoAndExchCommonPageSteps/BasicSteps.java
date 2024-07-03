@@ -207,14 +207,13 @@ public class BasicSteps {
                 pageUrl = "nes/otherHealthInsurance";
                 break;
             case "Elmo Other Health Insurance":
-                pageUrl = "/otherHealthInsurance";
+                pageUrl = "/otherHealthCoverage";
                 break;
             case "Elmo COBRA":
-                pageUrl = "/otherHealthInsurance/cobra";
+                pageUrl = "/otherHealthCoverage/cobra";
                 break;
             case "ESI":
-                pageUrl = "otherHealthInsurance/employerSponsored"; //Staging
-//                pageUrl = "otherHealthCoverage/employerSponsored"; //QA
+                pageUrl = "otherHealthCoverage/employerSponsored";
                 break;
             case "HRA":
                 pageUrl = "nes/memberHra";
@@ -292,23 +291,22 @@ public class BasicSteps {
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
             case "Elmo Ohi Retiree":
-                pageUrl = "/otherHealthInsurance/retiree"; //Staging
-//                pageUrl = "/otherHealthCoverage/retiree"; //QA
+                pageUrl = "/otherHealthCoverage/retiree";
                 break;
             case "Elmo Ohi Medicare":
-                pageUrl = "/otherHealthInsurance/medicare";
+                pageUrl = "/otherHealthCoverage/medicare";
                 break;
             case "Elmo Ohi VA Healthcare":
-                pageUrl = "/otherHealthInsurance/va";
+                pageUrl = "/otherHealthCoverage/va";
                 break;
             case "Elmo Ohi Individual Insurance":
-                pageUrl = "/otherHealthInsurance/individual";
+                pageUrl = "/otherHealthCoverage/individual";
                 break;
             case "Elmo Ohi Peace Corps":
-                pageUrl = "/otherHealthInsurance/peaceCorps";
+                pageUrl = "/otherHealthCoverage/peaceCorps";
 				break;
             case "Elmo Ohi Tricare":
-                pageUrl = "/otherHealthInsurance/tricare";
+                pageUrl = "/otherHealthCoverage/tricare";
                 break;
             case "CoCo Employment Income":
                 pageUrl = "/employmentInfo";
