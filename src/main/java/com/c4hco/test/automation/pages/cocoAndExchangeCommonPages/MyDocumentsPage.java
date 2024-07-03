@@ -15,18 +15,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MyDocumentsPage {
 
-    private BasicActions basicActions;
+    private static BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
+
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -37,7 +38,10 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-    
+
+    @FindBy(css = ".we-need-doc.body-text-1")
+    WebElement weNeedMoreInfo;
+
     @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
 
@@ -51,10 +55,16 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Upload another document']")
     WebElement uploadAnotherDocument;
 
+    @FindBy(xpath = "//div[@class='doc-type-select']")
+    WebElement drpWhatType;
+
     //English modal text
 
     @FindBy(xpath = "//p[@class='modal-title']")
     WebElement txtUploadADocument;
+
+    @FindBy(xpath = "//div[@class='drop-down-options']//div")
+    List<WebElement> categoryList;
 
     @FindBy(xpath = "//span[normalize-space()='Tell us more about this document']")
     WebElement txtTellUs;
@@ -119,7 +129,7 @@ public class MyDocumentsPage {
         accountOverviewPage.clickHereLinks("My Documents");
     }
 
-    public  void downloadDocument(String docType) throws AWTException, JSchException {
+    public void downloadDocument(String docType) throws AWTException, JSchException {
 //        docType example "Application Results"
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
@@ -174,15 +184,15 @@ public class MyDocumentsPage {
     public boolean verifyPDFText(String expectedText, String language, String memberNumber) throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
-        String pathAndName = filePath+"//"+fileName;
-        System.out.println("path and name is "+pathAndName);
+        String pathAndName = filePath + "//" + fileName;
+        System.out.println("path and name is " + pathAndName);
         // Read the PDF content using PDFBox
         String pdfContent = extractTextFromPDF(Path.of(pathAndName));
 
         // Verify the text
         switch (expectedText) {
             case "Application Results: Health First Colorado":
-                switch (language){
+                switch (language) {
                     case "English":
                         if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
@@ -204,8 +214,7 @@ public class MyDocumentsPage {
                                         differences.append("Expected line............: [").append(expectedLineDateOnly).append("]\n");
                                         Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                                     }
-                                }
-                                else if (!pdfLine.equals(expectedLine)) {
+                                } else if (!pdfLine.equals(expectedLine)) {
                                     differences.append("Difference at line ").append(i + 1).append(":\n");
                                     differences.append("PDF line.....: [").append(pdfLine).append("]\n");
                                     differences.append("Expected line: [").append(expectedLine).append("]\n");
@@ -235,8 +244,7 @@ public class MyDocumentsPage {
                                         differences.append("Expected line............: [").append(expectedLineDateOnly).append("]\n");
                                         Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                                     }
-                                }
-                                else if (!pdfLine.equals(expectedLine)) {
+                                } else if (!pdfLine.equals(expectedLine)) {
                                     differences.append("Difference at line ").append(i + 1).append(":\n");
                                     differences.append("PDF line.....: [").append(pdfLine).append("]\n");
                                     differences.append("Expected line: [").append(expectedLine).append("]\n");
@@ -262,35 +270,34 @@ public class MyDocumentsPage {
         }
     }
 
-                //============================VALIDATION STEPS==============//
+    //============================VALIDATION STEPS==============//
 
-    public void verifyPageText(String language)
-        {
+    public void verifyPageText(String language) {
         switch (language) {
             case "English":
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
-                softAssert.assertEquals(myDocumentsTitle.getText(),"My Documents and Letters");
-                softAssert.assertEquals(myDocumentsSubTitle.getText(),"Past Documents and Letters");
-                softAssert.assertEquals(documentsInfoMessage.getText(),"IND_Welcome Message (AM-001-01)");
+                softAssert.assertEquals(myDocumentsTitle.getText(), "My Documents and Letters");
+                softAssert.assertEquals(myDocumentsSubTitle.getText(), "Past Documents and Letters");
+                softAssert.assertEquals(documentsInfoMessage.getText(), "IND_Welcome Message (AM-001-01)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
-                softAssert.assertEquals(myDocumentsTitle.getText(),"Mis Documentos y Cartas");
-                softAssert.assertEquals(myDocumentsSubTitle.getText(),"Documentos y Cartas Anteriores");
-                softAssert.assertEquals(documentsInfoMessage.getText(),"No tiene documentos ni cartas en este momento");
+                softAssert.assertEquals(myDocumentsTitle.getText(), "Mis Documentos y Cartas");
+                softAssert.assertEquals(myDocumentsSubTitle.getText(), "Documentos y Cartas Anteriores");
+                softAssert.assertEquals(documentsInfoMessage.getText(), "No tiene documentos ni cartas en este momento");
                 softAssert.assertAll();
                 break;
             case "Spanish Headers":
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
-                softAssert.assertEquals(myDocumentsTitle.getText(),"Mis Documentos y Cartas");
-                softAssert.assertEquals(myDocumentsSubTitle.getText(),"Documentos y Cartas Anteriores");
+                softAssert.assertEquals(myDocumentsTitle.getText(), "Mis Documentos y Cartas");
+                softAssert.assertEquals(myDocumentsSubTitle.getText(), "Documentos y Cartas Anteriores");
                 softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
-     }
+    }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
         basicActions.waitForElementToBePresentWithRetries(documentsInfoMessage, 100);
@@ -299,21 +306,36 @@ public class MyDocumentsPage {
         softAssert.assertAll();
     }
 
-    public void goBackToWelcomePage(){
-        basicActions.waitForElementToBeClickable(goBackWelcomePage,30);
+    public void goBackToWelcomePage() {
+        basicActions.waitForElementToBeClickable(goBackWelcomePage, 30);
         basicActions.click(goBackWelcomePage);
     }
 
-    public void clickUploadAnotherDocument(){
-        basicActions.waitForElementToBeClickable(uploadAnotherDocument,30);
+    public void clickUploadAnotherDocument() {
+        basicActions.waitForElementToBeClickable(uploadAnotherDocument, 30);
         basicActions.click(uploadAnotherDocument);
     }
 
-    public void clickuploaddocSpanish(){
-        basicActions.waitForElementToBeClickable(btnCargarotrodocumento,30);
+    public void clickuploaddocSpanish() {
+        basicActions.waitForElementToBeClickable(btnCargarotrodocumento, 30);
         basicActions.click(btnCargarotrodocumento);
     }
 
+    public void selectType() {
+        basicActions.waitForElementToBePresent(drpWhatType, 30);
+        drpWhatType.click();
+        StringBuilder categoryText = new StringBuilder();
+        for (int i = 0; i < categoryList.size(); i++) {
+                WebElement categoryElement = categoryList.get(i);
+                basicActions.waitForElementToBePresent(categoryElement, 30);
+                categoryText.append(categoryElement.getText()).append(" ");
+                categoryElement.click();
+                drpWhatType.click();
+            }
+        String concatenatedCategoryText = categoryText.toString().trim();
+        softAssert.assertEquals(concatenatedCategoryText,"1095A Dispute American Indian/Alaska Native Tribal Membership Appeals Authorized Representative Citizenship Status Complaints Customer Authorization Form Death Eligible Immigration Status Health First Colorado (Medicaid) Application Health First Colorado (Medicaid) Redetermination (RRR) Identity Incarceration Income Life Change Event Medicare Peace Corps Social Security Number TRICARE Veterans Affairs (VA) Other");
+        softAssert.assertAll();
+    }
     public void textValidate(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtUploadADocument,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtTellUs,30));
@@ -334,14 +356,14 @@ public class MyDocumentsPage {
 
     public void spanishModalText(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtCargarUnDocumento,30));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtDiagnoMasSobre,30));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQuetipo,30));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQueDocumento,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSeleccioneUnArchivo,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnExplorarMisArchivos,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSolosepuedecargarundocumento,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnCancelarOnPopup,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnCargarMisDocumento,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtDiagnoMasSobre,60));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQuetipo,60));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQueDocumento,60));
         softAssert.assertAll();
     }
 
@@ -353,4 +375,5 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
         downloadEnrolmentDoc.click();
     }
+
 }

@@ -76,3 +76,16 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I click on upload another document in spanish
     And I validate upload another document modal texts in spanish
     And I close button to close modal
+
+  @SLER-708
+  Scenario: Verify user can select each category from category dropdown
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click on upload another document
+    And I verify user can select each type from type dropdown
