@@ -171,7 +171,7 @@ public class MyDocumentsPage {
         return false;
     }
 
-    public boolean verifyPDFText(String expectedText, String language) throws IOException {
+    public boolean verifyPDFText(String expectedText, String language, String memberNumber) throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
@@ -184,9 +184,9 @@ public class MyDocumentsPage {
             case "Application Results: Health First Colorado":
                 switch (language){
                     case "English":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColorado(language).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -215,9 +215,9 @@ public class MyDocumentsPage {
                         }
                         break;
                     case "Spanish":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language, memberNumber).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -293,7 +293,7 @@ public class MyDocumentsPage {
      }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
-        basicActions.waitForElementToBePresent(documentsInfoMessage, 100);
+        basicActions.waitForElementToBePresentWithRetries(documentsInfoMessage, 100);
         basicActions.scrollToElement(documentsInfoMessage);
         softAssert.assertEquals(documentsInfoMessage.getText(), documentName);
         softAssert.assertAll();
