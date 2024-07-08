@@ -313,21 +313,6 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBeClickable(btnCargarotrodocumento,30);
         basicActions.click(btnCargarotrodocumento);
     }
-    public void selectType() {
-        basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
-        docTypeDrpDwn.click();
-        StringBuilder categoryText = new StringBuilder();
-        for (int i = 0; i < categoryList.size(); i++) {
-            WebElement categoryElement = categoryList.get(i);
-            basicActions.waitForElementToBePresent(categoryElement, 30);
-            categoryText.append(categoryElement.getText()).append(" ");
-            categoryElement.click();
-            docTypeDrpDwn.click();
-        }
-        String concatenatedCategoryText = categoryText.toString().trim();
-        softAssert.assertEquals(concatenatedCategoryText,"1095A Dispute American Indian/Alaska Native Tribal Membership Appeals Authorized Representative Citizenship Status Complaints Customer Authorization Form Death Eligible Immigration Status Health First Colorado (Medicaid) Application Health First Colorado (Medicaid) Redetermination (RRR) Identity Incarceration Income Life Change Event Medicare Peace Corps Social Security Number TRICARE Veterans Affairs (VA) Other");
-        softAssert.assertAll();
-    }
 
     public void textValidate(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtUploadADocument,30));
