@@ -5,7 +5,7 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation with email "unicy245"@gmail.com
+    And I enter general mandatory data for "exchange" account creation with email "enrnotices"@gmail.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
