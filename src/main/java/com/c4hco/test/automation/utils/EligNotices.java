@@ -1,10 +1,12 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class EligNotices {
@@ -63,11 +65,9 @@ public class EligNotices {
         return new SimpleDateFormat("yyyy").format(calendar.getTime());
     }
 
-    public static String getApplicationResultsHealthFirstColorado(String language) {
+    public static String getApplicationResults(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
         String lceCloseDate = getLceCloseDate(language);
-        String firstOfNextMonth = getFirstOfNextMonth(language);
-        String currentYear = getCurrentYear();
 
         return String.format("ELG-101-01\n" +
             SharedData.getPrimaryMember().getEmailId()+"\n" +
@@ -77,43 +77,11 @@ public class EligNotices {
             "We received new or updated information about your household on "+timestamp+". The change to your household\u2019s \n" +
             "information is considered a Qualified Life Change Event, which means you can enroll in a health insurance plan or make \n" +
             "changes to your current plan through a Special Enrollment Period.\n" +
-//            "changes to your current through a Special Enrollment Period.\n" +
             "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n" +
             "This letter also includes information that members of your household may qualify for Health First Colorado (Colorado's \n" +
             "Medicaid Program) or Child Health Plan Plus (CHP+). Members of your household who qualify for either of these \n" +
             "programs will get a separate letter from the State of Colorado.\n" +
-            ", it looks like you may qualify for Health First Colorado (Colorado\u2019s "+SharedData.getPrimaryMember().getFullName()+"\n" +
-            "Medicaid Program) or Child Health Plan Plus (CHP+).\n" +
-            "Information \n" +
-            "about Health \n" +
-            "First \n" +
-            "Colorado or \n" +
-            "CHP+\n" +
-            "You may qualify for Health First Colorado (Colorado\u2019s Medicaid program) \n" +
-            "or Child Health Plan Plus (CHP+). We have sent information from your \n" +
-            "application to the State of Colorado. They will officially determine if you \n" +
-            "qualify for Health First Colorado or CHP+ and send you a letter telling you \n" +
-            "if you qualify.\n" +
-            "If you have any questions about this, visit Health First Colorado \u2022 Connect \n" +
-            "for Health Colorado\n" +
-            "If you are not interested in Health First Colorado or CHP+ coverage, see \n" +
-            "the  section below.Additional information for your household\n" +
-            ", starting as early as "+firstOfNextMonth+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n" +
-            "Health \n" +
-            "insurance \n" +
-            "plan for "+currentYear+"\n" +
-            "You can purchase a health insurance plan for "+currentYear+". Log into your Connect for Health \n" +
-            "Colorado account and select a plan that fits your needs.\n" +
-            "Enroll in a plan by "+lceCloseDate+".\n" +
-            ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n" +
-            "Premium Tax \n" +
-            "Credits or \n" +
-            "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
-            "You told us you qualify for Health First Colorado or Child Health Plan Plus \n" +
-            "(CHP+)\n" +
-            "Cost-Sharing \n" +
-            "Reduction for \n" +
-            currentYear+"\n" +
+            resultsType(docType, language, memberNumber)+
             "Reporting changes about your household:\n" +
             "If you have changes in your household after you enroll in a plan through Connect for Health Colorado, you should report \n" +
             "them to us within 30 days. Some changes, called \u201CQualified Life Change Events,\u201D may allow your household to shop for \n" +
@@ -141,7 +109,8 @@ public class EligNotices {
             "resolution, a formal hearing or both. You may log into your Connect for Health Colorado\u00AE account to see a summary \n" +
             "of the information we used for your eligibility determination.\n" +
             "You can request an appeal in one of these four ways\n" +
-            "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" +
+//            "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" +
+            "1. please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" + //Remove when previous line is in QA
             "Monday - Friday 8:00a.m. - 6:00p.m.\n" +
             "2. Visit  and go to \"Resources\" to download an Appeal Request form. You can upload the ConnectforHealthCO.com\n" +
             "completed Appeal Request form to your Connect for Health Colorado\u00AE account in \"My Documents.\"\n" +
@@ -170,7 +139,7 @@ public class EligNotices {
             "to, qualified sign language interpreters, information in other formats (including large print), foreign language \n" +
             "interpreters, and information translated into other languages. Aids and services can be provided in a timely \n" +
             "manner and free of charge.\n" +
-            "To request free aids or services, Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-\n" +
+            "To request free aids or services, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-\n" +
             "752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n" +
             "To file a discrimination complaint or learn more about this policy, please call 303-590-9640, fax us at 303-322-4217, or \n" +
             "contact us by mail at:\n" +
@@ -204,12 +173,358 @@ public class EligNotices {
             " Additional Language Assistance\n" +
             " Additional Language Assistance");
     }
+    
+    public static String resultsType(String docType, String language, String memberNumber){
+        return switch (docType) {
+            case "Health First Colorado" -> healthFirstColorado(language, memberNumber);
+            case "CHP" -> chpPlus(language, memberNumber);
+            default -> throw new IllegalArgumentException("Invalid option: " + docType);
+        };
+    }
 
-    public static String getApplicationResultsHealthFirstColoradoSpanish(String language) {
+    public static String healthFirstColorado(String language, String memberNumber) {
+        String firstOfNextMonth = getFirstOfNextMonth(language);
+
+        String englishTemplate = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+
+        String primaryName = SharedData.getPrimaryMember().getFullName();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoMedicaid(language)
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoMedicaid(language)
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoMedicaid(language),
+                        member0Name,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        healthPlanInfo(language),
+                        member0Name,
+                        taxCreditInfoMedicaidSecondary(language)
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoMedicaid(language),
+                        member0Name,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        healthPlanInfo(language),
+                        member0Name,
+                        taxCreditInfoMedicaidSecondary(language)
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
+    public static String healthFirstInfo (String language){
+        return switch (language) {
+            case "English"->
+                    "Medicaid Program) or Child Health Plan Plus (CHP+).\n" +
+                    "Information \n" +
+                    "about Health \n" +
+                    "First \n" +
+                    "Colorado or \n" +
+                    "CHP+\n" +
+                    "You may qualify for Health First Colorado (Colorado\u2019s Medicaid program) \n" +
+                    "or Child Health Plan Plus (CHP+). We have sent information from your \n" +
+                    "application to the State of Colorado. They will officially determine if you \n" +
+                    "qualify for Health First Colorado or CHP+ and send you a letter telling you \n" +
+                    "if you qualify.\n" +
+                    "If you have any questions about this, visit Health First Colorado \u2022 Connect \n" +
+                    "for Health Colorado\n" +
+                    "If you are not interested in Health First Colorado or CHP+ coverage, see \n" +
+                    "the  section below.Additional information for your household\n";
+            case "Spanish"->
+                    "Medicaid de Colorado) o para Child Health Plan Plus (CHP+).\n" +
+                    "Informaci\u00F3n\n" +
+                    "acerca de\n" +
+                    "Health First\n" +
+                    "Colorado o\n" +
+                    "CHP+\n" +
+                    "Posiblemente califique para Health First Colorado (el programa Medicaid\n" +
+                    "de Colorado) o para Child Health Plan Plus (CHP+). Hemos enviado\n" +
+                    "informaci\u00F3n obtenida de su solicitud al Gobierno del estado de Colorado.\n" +
+                    "Ellos determinar\u00E1n oficialmente si califica para Health First Colorado o\n" +
+                    "para CHP+ y le enviar\u00E1n una carta para informarle su decisi\u00F3n.\n" +
+                    "Si tiene alguna duda a este respecto, visite Health First Colorado \u2022\n" +
+                    "Connect for Health Colorado\n" +
+                    "Si no le interesa la cobertura de Health First Colorado ni de CHP+, revise\n" +
+                    "a continuaci\u00F3n la secci\u00F3n Informaci\u00F3n adicional para su familia.\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String healthPlanInfo(String language){
+        String lceCloseDate = getLceCloseDate(language);
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Health \n" +
+                    "insurance \n" +
+                    "plan for " + currentYear + "\n" +
+                    "You can purchase a health insurance plan for " + currentYear + ". Log into your Connect for Health \n" +
+                    "Colorado account and select a plan that fits your needs.\n" +
+                    "Enroll in a plan by " + lceCloseDate + ".\n";
+            case "Spanish"->
+                    "Plan de\n" +
+                    "seguro de\n" +
+                    "salud para\n" +
+                    currentYear+"\n" +
+                    "Puede adquirir un plan de seguro de salud para "+currentYear+". Inicie sesi\u00F3n con su cuenta de\n" +
+                    "Connect for Health Colorado y seleccione un plan que se ajuste a sus necesidades.\n" +
+                    "Inscr\u00EDbase en un plan antes del "+lceCloseDate+".\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String taxCreditInfoMedicaid(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                     "Credits or \n" +
+                     "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                     "You told us you qualify for Health First Colorado or Child Health Plan Plus \n" +
+                     "(CHP+)\n" +
+                     "Cost-Sharing \n" +
+                     "Reduction for \n" +
+                     currentYear + "\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                    "fiscales para\n" +
+                    "el pago de la\n" +
+                    "cuota o\n" +
+                    "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                    "costos compartidos porque:\n" +
+                    "reducci\u00F3n de\n" +
+                    "los costos\n" +
+                    "compartidos\n" +
+                    "para "+currentYear+"\n" +
+                    "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
+                    "(CHP+)\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String taxCreditInfoMedicaidSecondary(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                    "Credits or \n" +
+                    "Cost-Sharing \n" +
+                    "Reduction for \n" +
+                    currentYear + "\n" +
+                    "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                    "You told us you qualify for Health First Colorado or Child Health Plan Plus \n" +
+                    "(CHP+)\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                    "fiscales para\n" +
+                    "el pago de la\n" +
+                    "cuota o\n" +
+                    "reducci\u00F3n de\n" +
+                    "los costos\n" +
+                    "compartidos\n" +
+                    "para "+currentYear+"\n" +
+                    "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                    "costos compartidos porque:\n" +
+                    "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
+                    "(CHP+)\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String chpPlus(String language, String memberNumber) {
+        String firstOfNextMonth = getFirstOfNextMonth(language);
+
+        String englishTemplate = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+
+        String primaryName = SharedData.getPrimaryMember().getFullName();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoChp(language)
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoChp(language)
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoChp(language),
+                        member0Name,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        healthPlanInfo(language),
+                        member0Name,
+                        taxCreditInfoChpSecondary(language)
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate,
+                        primaryName,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        primaryName,
+                        healthPlanInfo(language),
+                        primaryName,
+                        taxCreditInfoChp(language),
+                        member0Name,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        healthPlanInfo(language),
+                        member0Name,
+                        taxCreditInfoChpSecondary(language)
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
+    public static String taxCreditInfoChp(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                    "Credits or \n" +
+                    "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                    "You told us you qualify for Health First Colorado or Child Health Plan Plus \n" +
+                    "(CHP+)\n" +
+                    "Cost-Sharing \n" +
+                    "Reduction for \n" +
+                    currentYear + "\n" +
+                    "Unless you have an exceptional circumstance, if you are married, you\n" +
+                    "must file taxes as married filing jointly\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                    "fiscales para\n" +
+                    "el pago de la\n" +
+                    "cuota o\n" +
+                    "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                    "costos compartidos porque:\n" +
+                    "reducci\u00F3n de\n" +
+                    "los costos\n" +
+                    "compartidos\n" +
+                    "para "+currentYear+"\n" +
+                    "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
+                    "(CHP+)\n" +
+                    "A menos que tenga una circunstancia excepcional, si es casado/a debe\n" +
+                    "declarar impuestos como casado que presenta su declaraci\u00F3n en pareja\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String taxCreditInfoChpSecondary(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                    "Credits or \n" +
+                    "Cost-Sharing \n" +
+                    "Reduction for \n" +
+                    currentYear + "\n" +
+                    "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                    "You told us you qualify for Health First Colorado or Child Health Plan Plus \n" +
+                    "(CHP+)\n" +
+                    "Unless you have an exceptional circumstance, if you are married, you\n" +
+                    "must file taxes as married filing jointly\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                    "fiscales para\n" +
+                    "el pago de la\n" +
+                    "cuota o\n" +
+                    "reducci\u00F3n de\n" +
+                    "los costos\n" +
+                    "compartidos\n" +
+                    "para "+currentYear+"\n" +
+                    "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                    "costos compartidos porque:\n" +
+                    "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
+                    "(CHP+)\n" +
+                    "A menos que tenga una circunstancia excepcional, si es casado/a debe\n" +
+                    "declarar impuestos como casado que presenta su declaraci\u00F3n en pareja\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String getApplicationResultsSpanish(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
         String lceCloseDate = getLceCloseDate(language);
-        String firstOfNextMonth = getFirstOfNextMonth(language);
-        String currentYear = getCurrentYear();
 
         return String.format("ELG-101-01\n" +
                 SharedData.getPrimaryMember().getEmailId()+"\n" +
@@ -223,43 +538,7 @@ public class EligNotices {
                 "Esta carta informa tambi\u00E9n que uno o m\u00E1s miembros de su familia calificar\u00EDan para Health First Colorado (el programa\n" +
                 "Medicaid de Colorado) o para Child Health Plan Plus (CHP+). Los miembros de su familia que califiquen para alguno\n" +
                 "de estos programas recibir\u00E1n aparte una carta del Gobierno del estado de Colorado.\n" +
-                ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa "+SharedData.getPrimaryMember().getFullName()+"\n" +
-                "Medicaid de Colorado) o para Child Health Plan Plus (CHP+).\n" +
-                "Informaci\u00F3n\n" +
-                "acerca de\n" +
-                "Health First\n" +
-                "Colorado o\n" +
-                "CHP+\n" +
-                "Posiblemente califique para Health First Colorado (el programa Medicaid\n" +
-                "de Colorado) o para Child Health Plan Plus (CHP+). Hemos enviado\n" +
-                "informaci\u00F3n obtenida de su solicitud al Gobierno del estado de Colorado.\n" +
-                "Ellos determinar\u00E1n oficialmente si califica para Health First Colorado o\n" +
-                "para CHP+ y le enviar\u00E1n una carta para informarle su decisi\u00F3n.\n" +
-                "Si tiene alguna duda a este respecto, visite Health First Colorado \u2022\n" +
-                "Connect for Health Colorado\n" +
-                "Si no le interesa la cobertura de Health First Colorado ni de CHP+, revise\n" +
-                "a continuaci\u00F3n la secci\u00F3n Informaci\u00F3n adicional para su familia.\n" +
-                ", a partir del "+firstOfNextMonth+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n" +
-                "Plan de\n" +
-                "seguro de\n" +
-                "salud para\n" +
-                currentYear+"\n" +
-                "Puede adquirir un plan de seguro de salud para "+currentYear+". Inicie sesi\u00F3n con su cuenta de\n" +
-                "Connect for Health Colorado y seleccione un plan que se ajuste a sus necesidades.\n" +
-                "Inscr\u00EDbase en un plan antes del "+lceCloseDate+".\n" +
-                ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n" +
-                "Cr\u00E9ditos\n" +
-                "fiscales para\n" +
-                "el pago de la\n" +
-                "cuota o\n" +
-                "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
-                "costos compartidos porque:\n" +
-                "reducci\u00F3n de\n" +
-                "los costos\n" +
-                "compartidos\n" +
-                "para "+currentYear+"\n" +
-                "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
-                "(CHP+)\n" +
+                resultsType(docType, language, memberNumber)+
                 "Informe de cambios en su situaci\u00F3n familiar:\n" +
                 "Si ocurren cambios en su situaci\u00F3n familiar despu\u00E9s de haberse inscrito en un plan por medio de Connect for Health\n" +
                 "Colorado, deber\u00E1 informarnos de ellos dentro de un plazo de 30 d\u00EDas. Algunos cambios, llamados \"eventos calificados\n" +
@@ -290,7 +569,8 @@ public class EligNotices {
                 "cuenta de Connect for Health Colorado para ver un resumen de la informaci\u00F3n que utilizamos para evaluar su\n" +
                 "elegibilidad.\n" +
                 "Puede solicitar una apelaci\u00F3n en una de estas cuatro formas:\n" +
-                "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" +
+//                "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" +
+                "1. llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" + //Remove when previous line is in QA
                 "lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
                 "2. Visite  para descargar un formulario de solicitud de apelaci\u00F3n. Puede llenar su Es.ConnectForHealthCO.com\n" +
                 "solicitud de apelaci\u00F3n y subirla a su cuenta de Connect for Health Colorado en \u201CMis documentos\u201D.\n" +
@@ -322,7 +602,7 @@ public class EligNotices {
                 "servicios son, entre otros: int\u00E9rpretes competentes de lenguaje de se\u00F1as, informaci\u00F3n en otros formatos (incluida\n" +
                 "la impresi\u00F3n en letra grande), int\u00E9rpretes de idiomas extranjeros y traducci\u00F3n de informaci\u00F3n a otros idiomas. Los\n" +
                 "apoyos y servicios pueden brindarse de manera oportuna y sin costo.\n" +
-                "Para solicitar apoyos o servicios gratuitos, Llame al Centro de atenci\u00F3n al cliente de Connect for Health\n" +
+                "Para solicitar apoyos o servicios gratuitos, llame al Centro de atenci\u00F3n al cliente de Connect for Health\n" +
                 "Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
                 "Para presentar una denuncia de discriminaci\u00F3n o para conocer mejor esta pol\u00EDtica, llame al 303-590-9640, env\u00EDe un\n" +
                 "fax al 303-322-4217, o escr\u00EDbanos por correo postal a:\n" +
