@@ -11,16 +11,15 @@ import java.io.IOException;
 
 public class MyDocumentsPageSteps {
 
-    MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver());
+
+MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver());
     @Then("I click link my docs on accountOverview page")
-    public void iClickLinkMyDocsOnAccountOverviewPage() {
+    public void iClickLinkMyDocsOnAccountOverviewPage(){
         myDocumentsPage.ClickLinkMyDocsWelcomePage();
     }
 
     @And("I verify the page text in {string} on the My Documents Page")
-    public void iVerifyPageText(String language) {
-        myDocumentsPage.verifyPageText(language);
-    }
+    public void iVerifyPageText(String language){myDocumentsPage.verifyPageText(language);}
 
     @Then("I validate the notice {string} exist in my document letter Containers")
     public void iValidateTheNoticeExistInMyDocumentLetter(String documentName) {
@@ -31,9 +30,8 @@ public class MyDocumentsPageSteps {
     public void iValidateWelcomeBackButtonNavigatesToWelcomePage() {
         myDocumentsPage.goBackToWelcomePage();
     }
-
     @And("I click on download enrolment document")
-    public void iClickOnEnrolmentDocumentTodownload() {
+    public void iClickOnEnrolmentDocumentTodownload(){
         myDocumentsPage.downloadEnrolmentDocument();
     }
 
@@ -71,11 +69,4 @@ public class MyDocumentsPageSteps {
     public void iClickOnUploadAnotherDocumentInSpanish() {
         myDocumentsPage.clickuploaddocSpanish();
     }
-
-    @And("I verify user can select each type from type dropdown")
-    public void iVerifyUserCanSelectEachTypeFromTypeDropdown() {
-        myDocumentsPage.selectType();
-    }
 }
-
-
