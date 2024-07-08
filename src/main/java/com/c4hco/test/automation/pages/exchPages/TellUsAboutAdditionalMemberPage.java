@@ -76,9 +76,9 @@ public class TellUsAboutAdditionalMemberPage {
     }
 
     public void enterMemberDetails(String DOB){
-        String frstName = getUniqueString(8);
+        String frstName = getUniqueString(20);
         String mdlName = getUniqueString(8);
-        String lastName = getUniqueString(12);
+        String lastName = getUniqueString(13);
         basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);

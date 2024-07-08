@@ -34,13 +34,13 @@ public class OhiMedicarePage_Elmo {
     @FindBy(css = ".row.label-row > div > label")
     List<WebElement> questionTxt;
 
-    @FindBy(css = "#ELIG-medicareOhi-partAPremium-container span.error-message")
+    @FindBy(css = "#ELIG-medicareOhc-partAPremium-container span.error-message")
     WebElement currentlyEligibleError;
 
-    @FindBy(id = "ELIG-medicareOhi-partAPremium-YesButton")
+    @FindBy(id = "ELIG-medicareOhc-partAPremium-YesButton")
     WebElement currentlyEligibleYes;
 
-    @FindBy(id = "ELIG-medicareOhi-partAPremium-NoButton")
+    @FindBy(id = "ELIG-medicareOhc-partAPremium-NoButton")
     WebElement currentlyEligibleNo;
 
     @FindBy(css = ".ohi-container > div > div:nth-child(1)")
@@ -49,52 +49,52 @@ public class OhiMedicarePage_Elmo {
     @FindBy(css = "lib-checkbox-control > label")
     List<WebElement> medicareCheckboxDetails;
 
-    @FindBy(css = "#ELIG-medicareOhi-partBEndsSoon-container label > span")
+    @FindBy(css = "#ELIG-medicareOhc-partBEndsSoon-container label > span")
     WebElement questionTxtB;
 
-    @FindBy(css = "#ELIG-medicareOhi-partB-container .checkbox-container")
+    @FindBy(css = "#ELIG-medicareOhc-partB-container .checkbox-container")
     WebElement medicareCheckboxDetailsB;
 
-    @FindBy(css = "#ELIG-medicareOhi-premiumAmount-container span.error-message")
+    @FindBy(css = "#ELIG-medicareOhc-premiumAmount-container span.error-message")
     WebElement InsuranceAmountError;
 
-    @FindBy(css = "#ELIG-medicareOhi-premiumAmount")
+    @FindBy(css = "#ELIG-medicareOhc-premiumAmount")
     WebElement partAInsuranceAmount;
 
-    @FindBy(css = "#ELIG-medicareOhi-partAEndsSoon-container span.error-message")
+    @FindBy(css = "#ELIG-medicareOhc-partAEndsSoon-container span.error-message")
     WebElement partAInsuranceEndingError;
 
-    @FindBy(id = "ELIG-medicareOhi-partAEndsSoon-YesButton")
+    @FindBy(id = "ELIG-medicareOhc-partAEndsSoon-YesButton")
     WebElement partAInsuranceEndingYes;
 
-    @FindBy(id = "ELIG-medicareOhi-partAEndsSoon-NoButton")
+    @FindBy(id = "ELIG-medicareOhc-partAEndsSoon-NoButton")
     WebElement partAInsuranceEndingNo;
 
-    @FindBy(css = "#ELIG-medicareOhi-partACoverageDate-container span.error-message")
+    @FindBy(css = "#ELIG-medicareOhc-partACoverageDate-container span.error-message")
     WebElement partAInsuranceEndInputError;
 
-    @FindBy(css = "#ELIG-medicareOhi-partACoverageDate")
+    @FindBy(css = "#ELIG-medicareOhc-partACoverageDate")
     WebElement partAInsuranceEndInput;
 
-    @FindBy(css = "#ELIG-medicareOhi-partBEndsSoon-container span.error-message")
+    @FindBy(css = "#ELIG-medicareOhc-partBEndsSoon-container span.error-message")
     WebElement partBInsuranceEndingError;
 
-    @FindBy(id = "ELIG-medicareOhi-partBEndsSoon-YesButton")
+    @FindBy(id = "ELIG-medicareOhc-partBEndsSoon-YesButton")
     WebElement partBInsuranceEndingYes;
 
-    @FindBy(id = "ELIG-medicareOhi-partBEndsSoon-NoButton")
+    @FindBy(id = "ELIG-medicareOhc-partBEndsSoon-NoButton")
     WebElement partBInsuranceEndingNo;
 
-    @FindBy(css = "#ELIG-medicareOhi-partBCoverageDate-container span.error-message")
+    @FindBy(css = "#ELIG-medicareOhc-partBCoverageDate-container span.error-message")
     WebElement partBInsuranceEndInputError;
 
-    @FindBy(css = "#ELIG-medicareOhi-partBCoverageDate")
+    @FindBy(css = "#ELIG-medicareOhc-partBCoverageDate")
     WebElement partBInsuranceEndInput;
 
-    @FindBy(id = "medicareOhi-GoBack")
+    @FindBy(id = "medicareOhc-GoBack")
     WebElement goBackButton;
 
-    @FindBy(id = "medicareOhi-SaveAndContinue")
+    @FindBy(id = "medicareOhc-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
     public void clickSaveAndContinue(){
