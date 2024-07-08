@@ -16,4 +16,4 @@ Feature: Tests the Authorize Assister Organization button is absent on the anony
     Then I validate the Have a Broker call you button is displayed
     Then I validate the Find a Broker button "is" displayed
     Then I validate the Find an Assister button is displayed
-    Then I validate the Authorize Assister Organization button "is not" displayed
+    Then I validate the Authorize Assister Organization button "is not displayed"

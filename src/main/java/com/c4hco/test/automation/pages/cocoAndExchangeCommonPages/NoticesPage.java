@@ -18,7 +18,7 @@ public class NoticesPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, YYYY");
     DateTimeFormatter formatterSpanish = DateTimeFormatter.ofPattern("d 'de' MMMM 'del' yyyy",new Locale("es", "ES"));
     String effectiveDateSpanish = formatterSpanish.format(LocalDate.now());
     String effectiveDate = LocalDate.now().format(formatter);
@@ -39,7 +39,6 @@ public class NoticesPage {
     WebElement btnStayNo;
     @FindBy(xpath = "//div[2]/div[2]/div[2]//span[contains(text(), 'One-time verification')]")
     WebElement noticeOkta;
-
     @FindBy(xpath = "//div[@class='mfa-header']")
     WebElement MFAHeader;
     @FindBy(xpath = "//div[@class='body-text1 mb-2 check-your-email']")
@@ -54,8 +53,6 @@ public class NoticesPage {
      WebElement errorMsgText;
     @FindBy(id = "main-sign-in")
      WebElement btnVerify;
-    @FindBy(id = "send-code-link")
-     WebElement lnkSendNewCode;
     @FindBy(id= "x_verification-code")
      WebElement mfaCode;
     @FindBy(id= "id__30")
@@ -74,14 +71,20 @@ public class NoticesPage {
     WebElement outlookLogOut;
     @FindBy(xpath= "//div[@id='x_individualUsernameReminderBody']//p")
     List<WebElement> bodyText;
-    @FindBy(xpath= "//*[@id='x_individualUsernameReminderBody']/p[3]/span/span") ///please call the Colorado Connect® Customer Service Center at 855-675-2626 (TTY:855-346-3432)
+    @FindBy(xpath= "//*[@id='x_individualUsernameReminderBody']/p[3]/span/span")
     WebElement bodyText2;
+    @FindBy(xpath="//*[@id='x_programManagerLoginReminderBody']/p")
+    List<WebElement> bodyTextAM1605;
     @FindBy(css = ".x_emailHeader p")
     List<WebElement> emailHdrtxt;
     @FindBy(css = "#x_recipientName > span")
     WebElement emailDeartxt;
     @FindBy(css = "#x_initialEligibilityNoticeBody p")
     List<WebElement> initialEligibilityBodyTxt;
+    @FindBy(xpath= "//div[@id='x_brokerLoginReminderBody']//p")
+    List<WebElement> bodyText1603;
+    @FindBy(xpath= "//p[@id='x_receivedEmailinErrorStatementForBroker']")
+    WebElement bodyText1603part2;
 
 
 
@@ -123,10 +126,8 @@ public class NoticesPage {
         public void signOutEmail(){
             basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
             outlookLogOutIcon.click();
-
             basicActions.waitForElementPresence(outlookLogOut,20);
             basicActions.clickById("mectrl_body_signOut");
-
             basicActions.wait(500);
             basicActions.closeBrowserTab();
             basicActions.switchtoactiveTab();
@@ -203,18 +204,16 @@ public class NoticesPage {
     }
 
     public void openAllNotices(String noticeNumber, String language) {
-        basicActions.waitForElementToBePresent(deleteBtn,30);
         basicActions.waitForElementToBePresent(EmailDate, 30);
         basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
+        basicActions.waitForElementToBePresent(EmailDate,30);
         switch (language){
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
                 break;
             case "Spanish":
-                System.out.println(EmailDate.getText());
-                System.out.println(effectiveDateSpanish);
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDateSpanish));
                 break;
             default:
@@ -223,39 +222,55 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-
-    public void VerifyTheNoticeText(String noticeNumber, String language) {
-        switch (noticeNumber){
-            case "AM-016-01" :
-                VerifyTheAM01601NoticeText(language);
+    public void VerifyTheNoticeText(String noticeNumber, String language,String typeAPP) {
+        switch (typeAPP){
+            case "Exch":
+            verifyTheNoticeEXCH(noticeNumber,language);
             break;
-            case "ELG-101-01" :
-                VerifyTheELG10101NoticeText(language);
+            case "Coco":
+            verifyTheNoticeCoco(noticeNumber,language);
             break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
+        default:
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber + typeAPP);
         }
     }
 
-    public void VerifyTheAM01601NoticeText(String language) {
-        switch (language){
-            case "English" :
-                softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect® is:"));
-                softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect® website and enter this username plus your password to log in to your account. ");
-                softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, ");
-                softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect® Customer Service Center at 855-675-2626 (TTY:855-346-3432)");
-                softAssert.assertAll();
+    public void verifyTheNoticeEXCH(String noticeNumber, String language){
+        switch (noticeNumber){
+            case "AM-016-01" :
+                VerifyTheNoticeTextAM01601Exch();
                 break;
-            case "Spanish" :
-                softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect® es:"));
-                softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect® y introduzca este nombre de usuario y su contraseña para ingresar en su cuenta.");
-                softAssert.assertEquals(bodyText.get(3).getText(),"Si no solicitó el envio por correo electrónico de su Nombre de usario, ");
-                softAssert.assertEquals(bodyText2.getText(),"llame al Centro de atención al cliente de Colorado Connect® al 855-675-2626 (TTY:855-346-3432) ");
-                softAssert.assertAll();
+            case "ELG-101-01" :
+                VerifyTheELG10101NoticeText(language);
+                break;
+            case "AM-016-03" :
+                VerifyTheNoticeTextAM01603();
+                break;
+            case "AM-016-05" :
+                VerifyTheNoticeTextAM01605();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + language);
+                throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
+    }
+
+
+    public void verifyTheNoticeCoco(String noticeNumber,String language){
+        switch (noticeNumber) {
+            case "AM-016-01":
+                VerifyTheNoticeTextAM01601coco(language);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
+        }
+    }
+
+    private void VerifyTheNoticeTextAM01605() {
+        softAssert.assertTrue(bodyTextAM1605.get(0).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
+        softAssert.assertEquals(bodyTextAM1605.get(1).getText(),"Follow the link to Login at https://connectforhealthco.com/for-certified-assisters/.");
+        softAssert.assertEquals(bodyTextAM1605.get(2).getText(),"If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m. If you have questions about your Program Manager account, please email [AssistanceNetwork@c4hco.com]AssistanceNetwork@c4hco.com.");
+        softAssert.assertAll();
     }
 
     public void VerifyTheELG10101NoticeText(String language) {
@@ -275,7 +290,40 @@ public class NoticesPage {
                 softAssert.assertAll();
                 break;
             default:
+                throw new IllegalArgumentException("Invalid option: " + language);}}
+
+    public void VerifyTheNoticeTextAM01601coco(String language) {
+        switch (language){
+            case "English" :
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect\u00AE is:"));
+                softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect\u00AE website and enter this username plus your password to log in to your account.");//®
+                softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+                softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+            break;
+            case "Spanish" :
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect\u00AE es:"));
+                softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect\u00AE y introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
+                softAssert.assertEquals(bodyText.get(3).getText(),"Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                softAssert.assertEquals(bodyText2.getText(),"llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+            break;
+            default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+        softAssert.assertAll();
+    }
+
+    public void VerifyTheNoticeTextAM01601Exch(){
+        softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
+        softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
+        softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertEquals(bodyText2.getText(),"please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertAll();
+    }
+
+    public void VerifyTheNoticeTextAM01603() {
+        softAssert.assertTrue(bodyText1603.get(1).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
+        softAssert.assertEquals(bodyText1603.get(2).getText(),"If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertEquals(bodyText1603part2.getText(),"If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertAll();
     }
 }

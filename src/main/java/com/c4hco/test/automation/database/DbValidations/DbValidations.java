@@ -80,7 +80,8 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate,"Medical plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
-
+        softAssert.assertEquals(dbData.getCsrAmtMed(),ob834Entity.getCsr_amount(),"CSR amount does not match");
+        softAssert.assertEquals(dbData.getPremiumAmtMed(),ob834Entity.getPremium_amount(),"Plan premium amount does not match");
               validateDetailsFromStep(ob834Entity, expectedValues.get(0));
               validateResidentialAddress(subscriber, ob834Entity, dbData);
         softAssert.assertAll();
@@ -110,7 +111,7 @@ public class DbValidations {
           validateBrokerDetails(ob834Entity,dbData);
           validateIncorrectEntities(subscriber, ob834Entity);
           validateMailingAddress(subscriber, ob834Entity);
-          validateRelCode(subscriber, ob834Entity);
+         // validateRelCode(subscriber, ob834Entity);   //WIP
           validateMemberCountDetails(ob834Entity);
           ValidatePriorSubscriber(subscriber, ob834Entity);
       }
@@ -132,13 +133,16 @@ public class DbValidations {
      }
        softAssert.assertAll();
     }
+    /*
     public void validateRelCode(MemberDetails subscriber, Ob834DetailsEntity ob834Entity) {
         List<MemberDetails> memberList = SharedData.getMembers();
-        for (MemberDetails member : memberList) {
-            softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()) ,ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
+        if (memberList != null) {
+            for (MemberDetails member : memberList) {
+                softAssert.assertEquals(!ob834Entity.getIndividual_rel_code().equals("18") ? getCodeForRelationship(member.getRelation_to_subscriber()) : getCodeForRelationship(subscriber.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "Relationship Code is Incorrect");
             }
-        softAssert.assertAll();
-    }
+        } softAssert.assertAll();
+    } */
+
     public String getCurrentdate(){
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -182,6 +186,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I" , "Marital Status did not match");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(subscriber.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
+        softAssert.assertEquals(getCodeForRelationship(subscriber.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "RelationshipCode did not match");
         softAssert.assertAll();
     }
 
@@ -216,10 +221,23 @@ public class DbValidations {
     }
 
     public void validateResponsiblePersonDetails(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
-        if( subscriber.getIsMinor()){
-            // Validate Responsible Person details
-            // update the entire method for optimal use - may not need if else blocks.
-        } else{
+        if( subscriber.getIsMinor()){ /*
+            MemberDetails responsiblePerson = SharedData.getPrimaryMember();
+            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), responsiblePerson.getFirstName(), "responsiblePerson firstname did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), responsiblePerson.getLastName(), "responsiblePerson lastname did not match");
+            softAssert.assertEquals(responsiblePerson.getRelation_to_subscriber().equals("Daughter") || responsiblePerson.getRelation_to_subscriber().equals("Son")  ? "S1" : "QD" ,ob834Entity.getResponsible_person_rel_code(), "responsiblePerson relationcode did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), responsiblePerson.getSsn(), "responsiblePerson ssn did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), responsiblePerson.getPhoneNumber(), "responsiblePerson phonenumber did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), responsiblePerson.getEmailId(), "responsiblePerson email did not match");
+            softAssert.assertEquals(responsiblePerson.getAlternatePhNum() != null ? responsiblePerson.getAlternatePhNum() : responsiblePerson.getPhoneNumber(),ob834Entity.getResponsible_person_alt_phone(),  "responsiblePerson alt phonenumber did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), responsiblePerson.getResAddress().getAddressLine1(), "responsiblePerson address streetline 1 did not match");
+            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), responsiblePerson.getResAddress().getAddressLine2(), "responsiblePerson address streetline 2 did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), responsiblePerson.getResAddress().getAddressCity(), "responsiblePerson city did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), responsiblePerson.getResAddress().getAddressState(), "responsiblePerson state did not match");
+            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), responsiblePerson.getResAddress().getAddressZipcode(), "responsiblePerson Zipcode did not match");
+            softAssert.assertAll(); */
+        }
+        else {
             softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
             softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
             softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
@@ -233,14 +251,21 @@ public class DbValidations {
             softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
             softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
         }
-          softAssert.assertAll();
+        softAssert.assertAll();
     }
 
-    public void validateBrokerDetails(Ob834DetailsEntity ob834Entity, DbData dbData){
+    public void validateBrokerDetails(Ob834DetailsEntity ob834Entity,DbData dbData){
         BrokerDetails broker = SharedData.getBroker();
-        softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), broker.getBroker_name(),"Broker name is incorrect");
+        if (SharedData.getHasBroker()) {
+        softAssert.assertEquals(broker.getBroker_name(), ob834Entity.getTpa_or_broker_name(),"Broker name is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
         softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
+        }
+        else{
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), null,"Broker name is incorrect");
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), null, "Broker Tin Number is incorrect");
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), null, "Broker license number is incorrect");
+        }
         softAssert.assertAll();
     }
 

@@ -40,9 +40,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.downloadDocument(docType);
     }
 
-    @Then("I validate {string} notice in {string}")
-    public void iValidateNotice(String expectedText, String language) throws IOException {
-        myDocumentsPage.verifyPDFText(expectedText, language);
+    @Then("I validate {string}: {string} notice in {string} for {string} members")
+    public void iValidateNotice(String expectedText, String docType, String language, String memberNumber) throws IOException {
+        myDocumentsPage.verifyPDFText(expectedText, docType, language, memberNumber);
     }
 
     @And("I click on upload another document")
