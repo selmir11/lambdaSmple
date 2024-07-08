@@ -193,7 +193,6 @@ public class MyDocumentsPage {
         switch (expectedText) {
             case "Application Results: Health First Colorado":
                 switch (language) {
-
             case "Application Results":
                 switch (language){
                     case "English":
