@@ -56,7 +56,7 @@ public class MyDocumentsPage {
     WebElement uploadAnotherDocument;
 
     @FindBy(xpath = "//div[@class='doc-type-select']")
-    WebElement drpWhatType;
+    WebElement docTypeDrpDwn;
 
     //English modal text
 
@@ -322,15 +322,15 @@ public class MyDocumentsPage {
     }
 
     public void selectType() {
-        basicActions.waitForElementToBePresent(drpWhatType, 30);
-        drpWhatType.click();
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
+        docTypeDrpDwn.click();
         StringBuilder categoryText = new StringBuilder();
         for (int i = 0; i < categoryList.size(); i++) {
                 WebElement categoryElement = categoryList.get(i);
                 basicActions.waitForElementToBePresent(categoryElement, 30);
                 categoryText.append(categoryElement.getText()).append(" ");
                 categoryElement.click();
-                drpWhatType.click();
+            docTypeDrpDwn.click();
             }
         String concatenatedCategoryText = categoryText.toString().trim();
         softAssert.assertEquals(concatenatedCategoryText,"1095A Dispute American Indian/Alaska Native Tribal Membership Appeals Authorized Representative Citizenship Status Complaints Customer Authorization Form Death Eligible Immigration Status Health First Colorado (Medicaid) Application Health First Colorado (Medicaid) Redetermination (RRR) Identity Incarceration Income Life Change Event Medicare Peace Corps Social Security Number TRICARE Veterans Affairs (VA) Other");
