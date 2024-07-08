@@ -1,4 +1,4 @@
-﻿package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
@@ -20,7 +20,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MyDocumentsPage {
@@ -38,10 +37,7 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-
-    @FindBy(css = ".we-need-doc.body-text-1")
-    WebElement weNeedMoreInfo;
-
+    
     @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
 
@@ -55,16 +51,10 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Upload another document']")
     WebElement uploadAnotherDocument;
 
-    @FindBy(xpath = "//div[@class='doc-type-select']")
-    WebElement docTypeDrpDwn;
-
     //English modal text
 
     @FindBy(xpath = "//p[@class='modal-title']")
     WebElement txtUploadADocument;
-
-    @FindBy(xpath = "//div[@class='drop-down-options']//div")
-    List<WebElement> categoryList;
 
     @FindBy(xpath = "//span[normalize-space()='Tell us more about this document']")
     WebElement txtTellUs;
@@ -272,7 +262,7 @@ public class MyDocumentsPage {
         }
     }
 
-    //============================VALIDATION STEPS==============//
+                //============================VALIDATION STEPS==============//
 
     public void verifyPageText(String language)
     {
@@ -300,7 +290,7 @@ public class MyDocumentsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
-    }
+     }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
         basicActions.waitForElementToBePresentWithRetries(documentsInfoMessage, 100);
@@ -323,7 +313,6 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBeClickable(btnCargarotrodocumento,30);
         basicActions.click(btnCargarotrodocumento);
     }
-
     public void selectType() {
         basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
         docTypeDrpDwn.click();
@@ -359,14 +348,15 @@ public class MyDocumentsPage {
     }
 
     public void spanishModalText(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtCargarUnDocumento,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtDiagnoMasSobre,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQuetipo,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQueDocumento,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSeleccioneUnArchivo,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnExplorarMisArchivos,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtSolosepuedecargarundocumento,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnCancelarOnPopup,30));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnCargarMisDocumento,30));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtDiagnoMasSobre,60));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQuetipo,60));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(txtQueDocumento,60));
         softAssert.assertAll();
     }
 
