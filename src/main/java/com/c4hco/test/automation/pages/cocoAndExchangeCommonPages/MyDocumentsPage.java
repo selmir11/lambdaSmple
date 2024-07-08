@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MyDocumentsPage {
 
-    private static BasicActions basicActions;
+    private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
 
@@ -375,5 +375,4 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
         downloadEnrolmentDoc.click();
     }
-
 }
