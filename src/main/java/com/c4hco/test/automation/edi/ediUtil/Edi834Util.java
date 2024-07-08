@@ -160,12 +160,13 @@ public class Edi834Util {
     public void setCommonEdiSegments(JSONObject jsonCommonSegmentString){
         CommonEDISegments commonEDISegments = new CommonEDISegments();
 
-        JSONArray isaSegment = jsonCommonSegmentString.getJSONArray("ISA");
-        JSONArray ieaSegment = jsonCommonSegmentString.getJSONArray("IEA");
+        JSONArray isaSeg = jsonCommonSegmentString.getJSONArray("ISA");
+        JSONArray ieaSeg = jsonCommonSegmentString.getJSONArray("IEA");
         JSONArray gsSegment = jsonCommonSegmentString.getJSONArray("GS");
         JSONArray geSeg = jsonCommonSegmentString.getJSONArray("GE");
 
-        System.out.println("isaSegment--"+isaSegment);
+        JSONArray isaSegment = (JSONArray) isaSeg.get(0);
+        JSONArray ieaSegment = (JSONArray) ieaSeg.get(0);
 
         commonEDISegments.setISA(isaSegment);
         commonEDISegments.setIEA(ieaSegment);
@@ -173,10 +174,8 @@ public class Edi834Util {
         commonEDISegments.setGE(geSeg);
         SharedData.setCommonEDISegments(commonEDISegments);
 
-       System.out.println("--isa get--"+ SharedData.getCommonEDISegments().getISA());
         System.out.println("--ge get--"+ SharedData.getCommonEDISegments().getGE());
         System.out.println("--gs get--"+ SharedData.getCommonEDISegments().getGS());
-        System.out.println("--iea get--"+ SharedData.getCommonEDISegments().getIEA());
     }
 
     public void parseEdiJsonToModel(String jsonString){

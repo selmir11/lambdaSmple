@@ -74,7 +74,7 @@ Feature: Page Text-Other Health Insurance Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    And I click on the table dropdown
+    And I click on the table dropdown 1
     And I click the edit income 1
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
@@ -135,7 +135,7 @@ Feature: Page Text-Other Health Insurance Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    And I click on the table dropdown
+    And I click on the table dropdown 1
     And I click the edit income 1
     Then I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
@@ -199,7 +199,7 @@ Feature: Page Text-Other Health Insurance Page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
     And I click continue on the Citizenship page
-    And I click on the table dropdown
+    And I click on the table dropdown 1
     And I click the edit income 1
     Then I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
