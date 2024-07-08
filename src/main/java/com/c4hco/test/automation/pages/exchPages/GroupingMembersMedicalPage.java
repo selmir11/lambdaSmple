@@ -43,8 +43,7 @@ public class GroupingMembersMedicalPage {
 
     public void clickContinue() {
         basicActions.waitForElementToBePresent(continueButton, 10);
-        basicActions.waitForElementToBeClickable(continueButton, 30);
-        continueButton.click();
+        basicActions.click(continueButton);
     }
 
     public void clickOnEditMedicalGroupinglink() {
