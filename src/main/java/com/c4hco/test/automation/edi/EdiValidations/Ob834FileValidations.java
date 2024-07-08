@@ -6,6 +6,8 @@ import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
+import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
+import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class Ob834FileValidations {
     public void validateOb834File(Ob834DetailsEntity entry){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
-//        validateCtrlFnGrpSegment();
+        validateCtrlFnGrpSegment(entry);
 //        validateSponsorPayerDetails();
         validateAddlMaintReason(entry);
         validateInsSegment(entry);
@@ -33,10 +35,26 @@ public class Ob834FileValidations {
         validateQtySeg(entry);
     }
 
-    public void validateCtrlFnGrpSegment(){
+    public void validateCtrlFnGrpSegment(Ob834DetailsEntity entry){
         // ISA and IEA Segments
         // GS and GE segments
+
         CommonEDISegments commonEDISegments = SharedData.getCommonEDISegments();
+        JSONArray isaSeg = commonEDISegments.getISA();
+        String senderId = isaSeg.get(5).toString().trim();
+        String receiverId = isaSeg.get(7).toString().trim();
+        softAssert.assertEquals(isaSeg.get(4), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
+        softAssert.assertEquals(senderId, entry.getInterchange_sender_id() , "Interchange Sender ID does not match");
+        softAssert.assertEquals(isaSeg.get(6), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
+        softAssert.assertEquals(receiverId, entry.getInterchange_receiver_id(),"Interchange receiver id does not match");
+        softAssert.assertEquals("20"+isaSeg.get(8), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(isaSeg.get(9), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(isaSeg.get(11), "00501", "Code specifying the version number of the interchange control segments");
+        softAssert.assertEquals(isaSeg.get(12), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
+        softAssert.assertEquals(isaSeg.get(13), "0", "No Interchange Acknowledgment Requested");
+        softAssert.assertEquals(isaSeg.get(14), "T","End of ISA segment, 'T' for Test Data, does not match");
+        softAssert.assertAll();
+
     }
 
     public void validateSponsorPayerDetails(){
