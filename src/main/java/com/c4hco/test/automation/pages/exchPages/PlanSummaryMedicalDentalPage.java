@@ -56,6 +56,13 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(xpath = "//*[contains(text(),\"Amount you pay\")]")
     WebElement planSummaryDentalAmtyoupay;
 
+    @FindBy(xpath = "//span[normalize-space()='No medical plan selected for this group.']")
+    WebElement planSummaryNoMedicalPlan;
+
+    @FindBy(xpath = "//span[normalize-space()='No dental plan selected for this group.']")
+    WebElement planSummaryNoDentalPlan;
+
+
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
     WebElement medicalPremiumAfterAPTCAmt;
 
@@ -99,9 +106,20 @@ public class PlanSummaryMedicalDentalPage {
 
         softAssert.assertTrue(planSummaryMedicalAmtyoupay.isDisplayed(), "Amount you pay did not display");
         softAssert.assertTrue(planSummaryDentalAmtyoupay.isDisplayed(), "Amount you pay did not display");
+
         softAssert.assertAll();
     }
-    
+
+    public void verifyPlanSummaryPage(){
+        basicActions.waitForElementListToBePresent(planSummaryHeading,90000);
+
+        softAssert.assertTrue(planSummaryNoMedicalPlan.isDisplayed(), "No medical plan selected is not display");
+        softAssert.assertTrue(planSummaryNoDentalPlan.isDisplayed(), "No dental plan selected is not display");
+
+        softAssert.assertAll();
+    }
+
+
     public void continueButton(){
         basicActions.waitForElementToDisappear(spinner, 5500);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);

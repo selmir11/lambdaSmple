@@ -33,6 +33,9 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.clickContinue();
     }
 
+    @Then("I click skip on medical plan results page")
+    public void selectSkipOnMedicalPlanResultsPage() { medPlanResultsPage.clickSkip();}
+
     @Then ("I click Go Back on the medical plan results page")
     public void selectGoBackOnMedicalPlanResultsPage() { medPlanResultsPage.clickGoBack();}
 

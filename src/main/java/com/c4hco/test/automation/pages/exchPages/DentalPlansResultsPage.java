@@ -29,6 +29,9 @@ public class DentalPlansResultsPage {
     @FindBy(id= "DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
+    @FindBy(id= "DentalPlanResults-Skip")
+    WebElement btnSkip;
+
     @FindBy (id ="mat-mdc-checkbox-28-input")
     WebElement comparePlanBox1;
 
@@ -71,6 +74,10 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(btnGoBack,10);
         btnGoBack.click();
 
+    }
+    public void clickSkip(){
+        basicActions.waitForElementToBePresent(btnSkip,30000);
+        btnSkip.click();
     }
     public void clickFirstTwoCompareBoxes() {
         basicActions.waitForElementToBePresent( comparePlanBox1,10 );

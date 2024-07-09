@@ -44,6 +44,10 @@ public class MedicalPlanResultsPage {
 
     @FindBy (id = "MedicalPlanResults-GoBack")
     WebElement btnGoBack;
+
+    @FindBy (id="MedicalPlanResults-Skip")
+    WebElement btnSkip;
+
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 
@@ -113,6 +117,10 @@ public class MedicalPlanResultsPage {
         btnGoBack.click();
     }
 
+    public void clickSkip(){
+        basicActions.waitForElementToBeClickableWithRetries( btnSkip,30000 );
+        btnSkip.click();
+    }
     public void clickCompare() {
         basicActions.waitForElementToBePresent(clickCompare, 30);
         clickCompare.click();
