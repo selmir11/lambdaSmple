@@ -133,6 +133,9 @@ public class LoginPageSteps {
     public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedIn(String arg0, String arg1) {
 
     }
+    @Then("I see new alarming page")
+    public void iSeeNewAlarmingPage() {
+        loginPage.accessDeniedPageDisplays();   }
 
 
 

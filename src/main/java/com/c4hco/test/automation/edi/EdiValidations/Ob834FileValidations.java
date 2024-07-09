@@ -6,6 +6,8 @@ import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
+import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
+import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -20,24 +22,39 @@ public class Ob834FileValidations {
     public void validateOb834File(Ob834DetailsEntity entry){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
-//        validateCtrlFnGrpSegment();
+        validateCtrlFnGrpSegment(entry);
 //        validateSponsorPayerDetails();
         validateAddlMaintReason(entry);
         validateInsSegment(entry);
         validateDtpSegment(entry);
-//        validateHierarchyLevelSeg();
+        validateHierarchyLevelSeg(entry);
         validateNM1Seg(entry);
         validatePerSeg(entry);
         validateBgnSeg(entry);
 //        validateTrnSeg();
-//        validateQtySeg();
-
+        validateQtySeg(entry);
     }
 
-    public void validateCtrlFnGrpSegment(){
+    public void validateCtrlFnGrpSegment(Ob834DetailsEntity entry){
         // ISA and IEA Segments
         // GS and GE segments
+
         CommonEDISegments commonEDISegments = SharedData.getCommonEDISegments();
+        JSONArray isaSeg = commonEDISegments.getISA();
+        String senderId = isaSeg.get(5).toString().trim();
+        String receiverId = isaSeg.get(7).toString().trim();
+        softAssert.assertEquals(isaSeg.get(4), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
+        softAssert.assertEquals(senderId, entry.getInterchange_sender_id() , "Interchange Sender ID does not match");
+        softAssert.assertEquals(isaSeg.get(6), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
+        softAssert.assertEquals(receiverId, entry.getInterchange_receiver_id(),"Interchange receiver id does not match");
+        softAssert.assertEquals("20"+isaSeg.get(8), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(isaSeg.get(9), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(isaSeg.get(11), "00501", "Code specifying the version number of the interchange control segments");
+        softAssert.assertEquals(isaSeg.get(12), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
+        softAssert.assertEquals(isaSeg.get(13), "0", "No Interchange Acknowledgment Requested");
+        softAssert.assertEquals(isaSeg.get(14), "T","End of ISA segment, 'T' for Test Data, does not match");
+        softAssert.assertAll();
+
     }
 
     public void validateSponsorPayerDetails(){
@@ -91,8 +108,12 @@ public class Ob834FileValidations {
         softAssert.assertAll();
     }
 
-    public void validateHierarchyLevelSeg(){
-        transaction.getMembersList().get(0).getHD();
+    public void validateHierarchyLevelSeg(Ob834DetailsEntity entry){
+        List<String> hdSeg = transaction.getMembersList().get(0).getHD().get(0);
+            softAssert.assertEquals(hdSeg.get(0), entry.getHd_maint_type_code(), "HD maintenance type code does not match");
+            softAssert.assertEquals(hdSeg.get(1), "", "Empty");
+            softAssert.assertEquals(hdSeg.get(2), entry.getInsurance_line_code(),"Insurance line code does not match");
+            softAssert.assertAll();
     }
 
     public void validateNM1Seg(Ob834DetailsEntity entry){
@@ -147,9 +168,17 @@ public class Ob834FileValidations {
         // transaction.getCommonSegments();
     }
 
-    public void validateQtySeg() {
-        transaction.getCommonSegments().getQTY();
-
+    public void validateQtySeg(Ob834DetailsEntity entry) {
+        List<List<String>> qtySeg = transaction.getCommonSegments().getQTY();
+        List<List<String>> insSegment = transaction.getMembersList().get(0).getINS();
+        softAssert.assertEquals(qtySeg.get(0).get(0), "TO", "Total enrolls ");
+        softAssert.assertEquals(qtySeg.get(0).get(1), entry.getTotal_enrollees(), "Total enrolls does not match");
+        softAssert.assertEquals(qtySeg.get(0).get(1), String.valueOf(insSegment.size()), "Total enrolls does not match with the size of INS segment");
+        softAssert.assertEquals(qtySeg.get(1).get(0), "DT", "Total dependents");
+        softAssert.assertEquals(qtySeg.get(1).get(1), entry.getTotal_dependents(), "Total dependents doe not match");
+        softAssert.assertEquals(qtySeg.get(2).get(0), "ET", "Total subscribers");
+        softAssert.assertEquals(qtySeg.get(2).get(1), entry.getTotal_subscribers(), "Total subscribers does not match");
+        softAssert.assertAll();
     }
 
 }
