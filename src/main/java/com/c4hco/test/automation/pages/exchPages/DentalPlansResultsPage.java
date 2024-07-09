@@ -79,7 +79,7 @@ public class DentalPlansResultsPage {
 
     }
     public void clickSkip(){
-        basicActions.waitForElementToBePresent(btnSkip,30000);
+        basicActions.waitForElementToBePresent(btnSkip,30);
         btnSkip.click();
     }
     public void clickFirstTwoCompareBoxes() {

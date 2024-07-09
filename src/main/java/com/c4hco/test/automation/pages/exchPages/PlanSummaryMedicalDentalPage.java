@@ -111,7 +111,7 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     public void verifyPlanSummaryPage(){
-        basicActions.waitForElementListToBePresent(planSummaryHeading,90000);
+        basicActions.waitForElementListToBePresent(planSummaryHeading,30);
 
         softAssert.assertTrue(planSummaryNoMedicalPlan.isDisplayed(), "No medical plan selected is not display");
         softAssert.assertTrue(planSummaryNoDentalPlan.isDisplayed(), "No dental plan selected is not display");

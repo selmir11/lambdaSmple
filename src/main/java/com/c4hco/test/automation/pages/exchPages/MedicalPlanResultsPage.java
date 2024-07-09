@@ -121,7 +121,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickSkip(){
-        basicActions.waitForElementToBeClickableWithRetries( btnSkip,30000 );
+        basicActions.waitForElementToBeClickableWithRetries( btnSkip,30 );
         btnSkip.click();
     }
     public void clickCompare() {
