@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR
+@APTC,@APTC-SIR, @APTC-SIR-Single
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal
@@ -58,12 +58,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
+
     Then I select "None of these" as health insurance option and continue
     Then I click continue on family overview page
     Then I select "Marriage" QLCE on tell us about life changes page
@@ -155,7 +156,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -278,7 +279,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -375,7 +376,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -441,6 +442,11 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$265.98"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Terms of Use" agreement checkbox
@@ -508,7 +514,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -606,7 +612,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -729,7 +735,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -826,7 +832,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -949,7 +955,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -1046,7 +1052,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -1169,7 +1175,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -1266,7 +1272,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -1389,7 +1395,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -1487,7 +1493,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -1610,7 +1616,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -1708,7 +1714,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -1831,7 +1837,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -1929,7 +1935,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -2053,7 +2059,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -2150,7 +2156,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -2273,7 +2279,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -2370,7 +2376,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -2493,7 +2499,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -2590,7 +2596,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page
@@ -2713,7 +2719,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -2810,7 +2816,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
+
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page

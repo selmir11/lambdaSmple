@@ -35,7 +35,8 @@ public class HouseholdPage {
     WebElement editIncomeLink;
 
     //@FindBy(css = ".memberBasicRow .linkButton")
-    @FindBy(css = ".hhSelectMember")
+    //@FindBy(css = ".hhSelectMember")
+    @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
 
     @FindBy(xpath = "//*[@class = input.submitbutton]")

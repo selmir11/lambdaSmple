@@ -1,3 +1,4 @@
+@MedicalCompare @SIR
 Feature: Medical Plan Compare page related tests
 
   Background:

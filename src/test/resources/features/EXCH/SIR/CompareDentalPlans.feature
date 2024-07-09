@@ -1,3 +1,4 @@
+@Dental @DentalCompare
 Feature: Medical Plan Results page related tests
 
   Background:
