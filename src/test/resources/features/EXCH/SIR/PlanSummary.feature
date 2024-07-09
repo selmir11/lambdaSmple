@@ -80,7 +80,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-515-WIP @VerifyMedicalDentalPlanSummaryResultsMultiple
-   Scenario: Validate grouping members: Grandparent in 1 group, Parent+2 children in 1 group
+   Scenario: Validate grouping members: 2 groups
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
@@ -218,24 +218,6 @@ Feature: Medical and Dental Plan Summary Verification test
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    Then I click on edit enrollment groups link
-    And I wait for hold on content to disappear
-
-    Then I validate I am on the "Edit Grouping Members Medical" page
-    And I count 3 medical groups on this page
-    And I validate there is create new group link
-    Then I drag and drop a member to make new group
-
-    Then I validate I am on the "Edit Grouping Members Medical" page
-    Then I click save button to save the groups
-    Then I get error message as groups are invalid
-    And I click Cancel button on Edit Grouping Members Medical page
-    Then I click on edit enrollment groups link
-    Then I click on create new group button on edit enrollment groups page
-    Then I drag and drop both the children into the third group
-    Then I click save button to save the groups
-    And I validated message on success enrollment grouping pop-up
-    Then I click on continue button on success pop-up
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -246,13 +228,8 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select the first medical plan
     And I click continue on medical plan results page
 
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
-    And I click continue on medical plan results page
-
-    Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
-    And I click continue on dental plan results page
+    Then I validate I am on the "Dental Grouping" page
+    Then I click continue on grouping Members Dental page
 
     Then I validate I am on the "Dental Plan Results" page
     And I select first dental plan
