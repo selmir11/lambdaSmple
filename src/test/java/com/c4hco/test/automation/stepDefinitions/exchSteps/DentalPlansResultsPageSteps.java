@@ -24,6 +24,9 @@ public class DentalPlansResultsPageSteps {
     @Then("I click Go Back on Dental Plan Results page")
     public void clickGoBackButton() { dentalPlansResultsPage.clickGoBack(); }
 
+    @Then("I click Skip on Dental Plan Results page")
+    public void selectSkipOnDentalPlanResultsPage() { dentalPlansResultsPage.clickSkip(); }
+
     @Then("I click on the compare links on the first 2 dental plans")
     public void clickFirstTwoCompareBoxes() {
         dentalPlansResultsPage.clickFirstTwoCompareBoxes();
