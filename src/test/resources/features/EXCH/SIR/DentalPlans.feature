@@ -1,7 +1,7 @@
 @DentalPlans
 Feature: Tests related to dental plans
 
-@SLER-747 @dentalPlansCount
+@SLER-747-wip @dentalPlansCount
 Scenario: Validate dental plans count
 Given I open the login page on the "login" portal
 And I validate I am on the "Login" page
