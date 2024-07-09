@@ -359,6 +359,9 @@ public class BasicSteps {
             case "Admin Portal Detailed EDI" :
                 pageUrl = "/detailed-edi";
                 break;
+            case "Access Gateway" :
+                pageUrl = "/AdminPortal/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

@@ -26,11 +26,15 @@ public class DeclarationsAndSignaturePage {
         String signature = basicActions.getDriver().findElement(By.xpath(namePath)).getText();
 
         index = index-1;
+
         String signBoxPath = "signeeList"+index+".signature";
-        basicActions.getDriver().findElement(By.id(signBoxPath)).sendKeys(signature);
+        WebElement signatureBox =  basicActions.getDriver().findElement(By.id(signBoxPath));
+        signatureBox.click();
+        signatureBox.sendKeys(signature);
     }
 
     public void submitApplication()  {
+        basicActions.waitForElementToBePresent(submitContinue, 30);
         submitContinue.click();
     }
 

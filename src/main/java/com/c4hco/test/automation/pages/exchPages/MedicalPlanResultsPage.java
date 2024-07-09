@@ -81,6 +81,9 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
     WebElement planResultsAPTC;
 
+    @FindBy(css = ".plan-results-container .responsive-text-align-left")
+    WebElement planCount;
+
     public void validateAPTC(String planResultsAPTCredit){
         basicActions.waitForElementToBePresent(planResultsAPTC, 30);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
@@ -214,6 +217,11 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToBePresent(nextPageArrow, 10);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
+    }
+
+    public void validatePlanCount(String plansCount){
+        basicActions.waitForElementToBePresent(planCount, 30);
+        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
     }
 
 }
