@@ -213,7 +213,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         setRelationshipOption2(Relation2);
     }*/
 
-    public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String Relation, String applying) {
+    public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, List<String> Relations, String applying) {
 
         String frstName = Name+getUniqueString(8);
         String mdlName = getUniqueString(8);
@@ -243,9 +243,9 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         enterMemberDOB(DOB);
         genderSelection(gender);
         applyingForCoverage(applying);
-        selectRelationship(Relation);
-        //setRelationshipOption(Relation);
-
+        for(String Relation : Relations) {
+            selectRelationship(Relation);
+        }
     }
 
     public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String Relation, String Relation1, String applying) {
@@ -284,7 +284,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
 
     public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String Relation, String Relation1, String Relation2, String applying) {
 
-        String frstName = Name+getUniqueString(4);
+        String frstName = Name+" "+getUniqueString(4);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
         basicActions.waitForElementToBePresent(txtFirstName, 30);

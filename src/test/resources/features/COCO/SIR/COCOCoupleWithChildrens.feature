@@ -50,7 +50,8 @@ Feature: CoupleWithChildrens - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female", "Primary:Spouse", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    |Primary:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -81,7 +82,9 @@ Feature: CoupleWithChildrens - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female", "Primary:Child or Other dependent", "Wife:Child or Other dependent", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    |Primary:Child or Other dependent|
+    |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -93,10 +96,6 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Ethnicity and race page
 
     And I select "No" employment option
-    #And I enter "60,000.00" income amount
-    #And I select "Annually" income frequency option
-    #And I select "No" income seasonal option
-    #And I select "No" income changes option
     And I click continue on the Employment income page
 
     And I select None of these as additional income option
@@ -112,7 +111,10 @@ Feature: CoupleWithChildrens - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male", "Primary:Child or Other dependent", "Wife:Child or Other dependent", "Daughter:Sibling", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male" and applying "Yes"
+    |Primary:Child or Other dependent|
+    |Wife:Child or Other dependent|
+    |Daughter:Sibling             |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
