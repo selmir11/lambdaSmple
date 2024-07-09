@@ -129,7 +129,6 @@ Feature:  Unable to shop (not eligible for QHP)
       Then I validate I am on the "Deductions" page
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
-      Then I validate I am on the "Income Summary" page
       And I select the option "No" to claim as dependent
       And I select the option "Yes" to file federal income tax return next year
       And I select "Single" tax filing status

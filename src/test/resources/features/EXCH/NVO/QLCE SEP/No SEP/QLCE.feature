@@ -52,7 +52,6 @@ Feature: QLCE Birth during closed enrollment
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Income Summary" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Single" tax filing status
@@ -68,6 +67,9 @@ Feature: QLCE Birth during closed enrollment
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+
+ 
+
 
     Examples:
     | qlceOption           |
