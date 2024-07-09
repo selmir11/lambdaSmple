@@ -90,6 +90,12 @@ public class MedicalPlanResultsPageSteps {
     public void selectColoradoOptionSelection() {
         medPlanResultsPage.selectColoradoOptionSelection();
     }
+
+    @Then("I validate the medical plans count to be {string}")
+    public void validateMedicalPlanCount(String plansCount) {
+        medPlanResultsPage.validatePlanCount(plansCount);
+    }
+
 }
 
 
