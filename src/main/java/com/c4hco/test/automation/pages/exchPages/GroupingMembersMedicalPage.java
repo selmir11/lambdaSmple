@@ -48,9 +48,8 @@ public class GroupingMembersMedicalPage {
     SoftAssert softAssert = new SoftAssert();
 
     public void clickContinue() {
-        basicActions.waitForElementToBePresent(continueButton, 60);
-        basicActions.waitForElementToBeClickable(continueButton, 30);
-        continueButton.click();
+        basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.click(continueButton);
     }
 
     public void clickGoBackButton(){
