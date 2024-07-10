@@ -171,7 +171,7 @@ public class MyDocumentsPage {
         return false;
     }
 
-    public boolean verifyPDFText(String expectedText, String language, String memberNumber) throws IOException {
+    public boolean verifyPDFText(String expectedText, String docType, String language, String memberNumber) throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
@@ -181,12 +181,12 @@ public class MyDocumentsPage {
 
         // Verify the text
         switch (expectedText) {
-            case "Application Results: Health First Colorado":
+            case "Application Results":
                 switch (language){
                     case "English":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -215,9 +215,9 @@ public class MyDocumentsPage {
                         }
                         break;
                     case "Spanish":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 

@@ -63,6 +63,12 @@ public class MyProfileExchPage {
     @FindBy(css = "span.change-password-msg" )
     WebElement PasswordMessage;
 
+    @FindBy(css = "#userPassword")
+    WebElement PasswordInput;
+
+    @FindBy(css = ".password-button")
+    WebElement PasswordSaveChanges;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -85,8 +91,12 @@ public class MyProfileExchPage {
     public void clickSaveButton() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
-
+//        basicActions.waitForElementToBePresent(PasswordInput,40);
+//        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword()); //QA feature branch
+//        basicActions.waitForElementToBePresent(PasswordSaveChanges,40);
+//        PasswordSaveChanges.click();
     }
+
     public void clickChangePasswordButton() {
         basicActions.waitForElementToBeClickable(PasswordButton, 15);
             PasswordButton.click();
