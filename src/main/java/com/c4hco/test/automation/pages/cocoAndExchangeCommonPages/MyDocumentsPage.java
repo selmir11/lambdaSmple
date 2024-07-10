@@ -265,7 +265,7 @@ public class MyDocumentsPage {
                 //============================VALIDATION STEPS==============//
 
     public void verifyPageText(String language)
-        {
+    {
         switch (language) {
             case "English":
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
