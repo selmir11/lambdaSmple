@@ -29,6 +29,9 @@ public class DentalPlansResultsPage {
     @FindBy(id= "DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
+    @FindBy(id= "DentalPlanResults-Skip")
+    WebElement btnSkip;
+
     @FindBy (id ="mat-mdc-checkbox-28-input")
     WebElement comparePlanBox1;
 
@@ -53,6 +56,9 @@ public class DentalPlansResultsPage {
     @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
+    @FindBy(css = ".plan-results-container .responsive-text-align-left")
+    WebElement dentalPlanCount;
+
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
         SharedData.setFirstPlanNameOnDentalResultsPage(dentalPlanNames.get(0).getText());
@@ -71,6 +77,10 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(btnGoBack,10);
         btnGoBack.click();
 
+    }
+    public void clickSkip(){
+        basicActions.waitForElementToBePresent(btnSkip,30);
+        btnSkip.click();
     }
     public void clickFirstTwoCompareBoxes() {
         basicActions.waitForElementToBePresent( comparePlanBox1,10 );
@@ -146,6 +156,11 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(nextPageArrow, 10);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
+    }
+
+    public void validateDentalPlanCount(String plansCount){
+        basicActions.waitForElementToBePresent(dentalPlanCount, 30);
+        Assert.assertEquals(dentalPlanCount.getText(), plansCount+" of "+plansCount+" Dental Plans", "Dental plans count did not match");
     }
 
 }

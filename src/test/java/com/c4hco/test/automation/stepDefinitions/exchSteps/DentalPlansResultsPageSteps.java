@@ -24,6 +24,9 @@ public class DentalPlansResultsPageSteps {
     @Then("I click Go Back on Dental Plan Results page")
     public void clickGoBackButton() { dentalPlansResultsPage.clickGoBack(); }
 
+    @Then("I click Skip on Dental Plan Results page")
+    public void selectSkipOnDentalPlanResultsPage() { dentalPlansResultsPage.clickSkip(); }
+
     @Then("I click on the compare links on the first 2 dental plans")
     public void clickFirstTwoCompareBoxes() {
         dentalPlansResultsPage.clickFirstTwoCompareBoxes();
@@ -62,5 +65,10 @@ public class DentalPlansResultsPageSteps {
     @And("I validate the Dental Plan option {int} has a plan result {string}")
     public void validatePlanText(int Index, String dentalPlanText) {
         dentalPlansResultsPage.validateDentalPlanText(Index,dentalPlanText);
+    }
+
+    @Then("I validate the dental plans count to be {string}")
+    public void validateDentalPlanCount(String plansCount) {
+        dentalPlansResultsPage.validateDentalPlanCount(plansCount);
     }
 }
