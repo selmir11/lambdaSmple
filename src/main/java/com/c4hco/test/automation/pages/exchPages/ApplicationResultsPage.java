@@ -137,7 +137,7 @@ public class ApplicationResultsPage {
     }
 
     public void verifyPopUpTextOnTheApplicationResultsSpanish() {
-        softAssert.assertEquals(popUpText.getText(), "No puede inscribirse en un plan porque no es el período de inscripción abierta. El período de inscripción abierta es del 1º de noviembre al 15 de enero.\n\nPara inscribirse en un plan o hacer cambios fuera del período de inscripción abierta, debe tener un evento de vida calificado. Si tiene preguntas o desea recibir asistencia, llame a nuestro Centro de atención al cliente al 855-752-6749 o contacte a su agente o asistente.");
+        softAssert.assertEquals(popUpText.getText(), "No puede inscribirse en un plan porque no es el per\u00EDodo de inscripci\u00F3n abierta. El per\u00EDodo de inscripci\u00F3n abierta es del 1\u00BA de noviembre al 15 de enero.\n\nPara inscribirse en un plan o hacer cambios fuera del per\u00EDodo de inscripci\u00F3n abierta, debe tener un evento de vida calificado. Si tiene preguntas o desea recibir asistencia, llame a nuestro Centro de atenci\u00F3n al cliente al 855-752-6749 o contacte a su agente o asistente.");
         softAssert.assertAll();
     }
 

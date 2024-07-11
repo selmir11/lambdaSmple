@@ -174,8 +174,6 @@ public class Edi834Util {
         commonEDISegments.setGE(geSeg);
         SharedData.setCommonEDISegments(commonEDISegments);
 
-        System.out.println("--ge get--"+ SharedData.getCommonEDISegments().getGE());
-        System.out.println("--gs get--"+ SharedData.getCommonEDISegments().getGS());
     }
 
     public void parseEdiJsonToModel(String jsonString){

@@ -157,7 +157,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
     }
 
     public void verifyTextOnAdditionalInfoForAddMemberSpanish() {
-        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Información adicional para " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1));
+        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Informaci\u00F3n adicional para " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1));
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(0).getText(), "Ingrese el domicilio particular de " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1));
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(1).getText(), "Domicilio 1");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(2).getText(), "Domicilio 2");
@@ -176,9 +176,9 @@ public class AddInfoForAdditionalMemberCoCoPage {
             softAssert.assertAll();
         }
 
-        softAssert.assertEquals(AddInfoForAddMemberPageText.get(6).getText(), "Código postal");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(6).getText(), "C\u00F3digo postal");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(7).getText(), "Condado");
-        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "¿" + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " vive en Colorado?");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "\u00BF" + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " vive en Colorado?");
         softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Si");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Volver");
@@ -235,7 +235,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertTrue(exclamationMarkIcon.get(1).isDisplayed());
         softAssert.assertEquals(errorMessages.get(2).getText(), "Estado es obligatorio");
         softAssert.assertTrue(exclamationMarkIcon.get(2).isDisplayed());
-        softAssert.assertEquals(errorMessages.get(3).getText(), "Código postal es requerido");
+        softAssert.assertEquals(errorMessages.get(3).getText(), "C\u00F3digo postal es requerido");
         softAssert.assertTrue(exclamationMarkIcon.get(3).isDisplayed());
         softAssert.assertEquals(errorMessages.get(4).getText(), "Condado es requerido");
         softAssert.assertTrue(exclamationMarkIcon.get(4).isDisplayed());
@@ -243,15 +243,15 @@ public class AddInfoForAdditionalMemberCoCoPage {
         addressLine1Input.sendKeys("Word");
         softAssert.assertEquals(errorMessages.get(0).getText(), "El domicilio 1 debe tener al menos 5 caracteres");
         addressLine1Input.sendKeys("$");
-        softAssert.assertEquals(errorMessages.get(0).getText(), "Los caracteres especiales no están permitidos");
+        softAssert.assertEquals(errorMessages.get(0).getText(), "Los caracteres especiales no est\u00E1n permitidos");
         addressLine2Input.sendKeys("Word");
         softAssert.assertEquals(errorMessages.get(1).getText(), "El domicilio 2 debe tener al menos 5 caracteres");
         addressLine2Input.sendKeys("$");
-        softAssert.assertEquals(errorMessages.get(1).getText(), "Los caracteres especiales no están permitidos");
+        softAssert.assertEquals(errorMessages.get(1).getText(), "Los caracteres especiales no est\u00E1n permitidos");
         cityInput.sendKeys("W");
         softAssert.assertEquals(errorMessages.get(2).getText(), "El nombre de la ciudad debe de tener al menos 2 caracteres de largo");
         zipcodeInput.sendKeys("1234");
-        softAssert.assertEquals(errorMessages.get(4).getText(), "Código postal debe de tener 5 numeros");
+        softAssert.assertEquals(errorMessages.get(4).getText(), "C\u00F3digo postal debe de tener 5 numeros");
         softAssert.assertAll();
     }
 
