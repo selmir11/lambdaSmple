@@ -99,7 +99,7 @@ public class FamilyOverviewPage {
 
     public void verifyTextManageWhoHelpsYouButtonSpanish(){
         basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
-        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar quién te ayuda");
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar qui\u00E9n te ayuda");
         softAssert.assertAll();
     }
 
