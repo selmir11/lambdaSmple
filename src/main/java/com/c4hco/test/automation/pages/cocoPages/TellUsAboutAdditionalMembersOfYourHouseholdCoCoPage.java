@@ -15,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 import javax.management.relation.Relation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -110,109 +111,6 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String applying) {
-
-        String frstName = getUniqueString(8);
-        String mdlName = getUniqueString(8);
-        String lastName = getUniqueString(12);
-        basicActions.waitForElementToBePresent(txtFirstName, 30);
-        txtFirstName.sendKeys(frstName);
-        txtMiddleName.sendKeys(mdlName);
-        txtLastName.sendKeys(lastName);
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
-        enterMemberDOB(DOB);
-        genderSelection(gender);
-        applyingForCoverage(applying);
-        setRelationshipOption(Relation);
-
-    }
-
-    /*public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String Relation1, String applying) {
-
-        String frstName = getUniqueString(8);
-        String mdlName = getUniqueString(8);
-        String lastName = getUniqueString(12);
-        basicActions.waitForElementToBePresent(txtFirstName, 30);
-        txtFirstName.sendKeys(frstName);
-        txtMiddleName.sendKeys(mdlName);
-        txtLastName.sendKeys(lastName);
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
-        enterMemberDOB(DOB);
-        genderSelection(gender);
-        applyingForCoverage(applying);
-        setRelationshipOption(Relation);
-        setRelationshipOption1(Relation1);
-    }
-
-    public void specificAdditionalMemberDetailsCoCo(String DOB, String gender, String Relation, String Relation1, String Relation2, String applying) {
-
-        String frstName = getUniqueString(8);
-        String mdlName = getUniqueString(8);
-        String lastName = getUniqueString(12);
-        basicActions.waitForElementToBePresent(txtFirstName, 30);
-        txtFirstName.sendKeys(frstName);
-        txtMiddleName.sendKeys(mdlName);
-        txtLastName.sendKeys(lastName);
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
-        enterMemberDOB(DOB);
-        genderSelection(gender);
-        applyingForCoverage(applying);
-        setRelationshipOption(Relation);
-        setRelationshipOption1(Relation1);
-        setRelationshipOption2(Relation2);
-    }*/
-
     public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, List<String> Relations, String applying) {
 
         String frstName = Name+getUniqueString(8);
@@ -246,78 +144,6 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         for(String Relation : Relations) {
             selectRelationship(Relation);
         }
-    }
-
-    public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String Relation, String Relation1, String applying) {
-
-        String frstName = Name+getUniqueString(4);
-        String mdlName = getUniqueString(8);
-        String lastName = getUniqueString(12);
-        basicActions.waitForElementToBePresent(txtFirstName, 30);
-        txtFirstName.sendKeys(frstName);
-        txtMiddleName.sendKeys(mdlName);
-        txtLastName.sendKeys(lastName);
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
-        enterMemberDOB(DOB);
-        genderSelection(gender);
-        applyingForCoverage(applying);
-        selectRelationship(Relation);
-        selectRelationship(Relation1);
-    }
-
-    public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String Relation, String Relation1, String Relation2, String applying) {
-
-        String frstName = Name+" "+getUniqueString(4);
-        String mdlName = getUniqueString(8);
-        String lastName = getUniqueString(12);
-        basicActions.waitForElementToBePresent(txtFirstName, 30);
-        txtFirstName.sendKeys(frstName);
-        txtMiddleName.sendKeys(mdlName);
-        txtLastName.sendKeys(lastName);
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
-        enterMemberDOB(DOB);
-        genderSelection(gender);
-        applyingForCoverage(applying);
-        selectRelationship(Relation);
-        selectRelationship(Relation1);
-        selectRelationship(Relation2);
-        //setRelationshipOption(Relation);
-        //setRelationshipOption1(Relation1);
-        //setRelationshipOption2(Relation2);
     }
 
     public void specificAdditionalMemberDetailsCoCoSpanish(String DOB, String gender, String Relation, String applying) {
@@ -441,7 +267,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertEquals(PageTitle.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PageTitle.getCssValue("font-size"), "36px");
         softAssert.assertEquals(PageTitle.getCssValue("color"), "rgba(77, 77, 79, 1)");
-        specificAdditionalMemberDetailsCoCo("01011982","Male", "Spouse", "Yes");
+        specificAdditionalMemberDetailsCoCo("Spouse","01011982","Male", Collections.singletonList("Primary:Spouse"), "Yes");
         softAssert.assertEquals(textValidation.get(0).getText(), "First name");
         softAssert.assertEquals(textValidation.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(0).getCssValue("font-size"), "16px");
