@@ -33,6 +33,13 @@ public class Ob834FileValidations {
         validateBgnSeg(entry);
 //        validateTrnSeg();
         validateQtySeg(entry);
+        validateHLHSeg(entry);
+    }
+
+    public void validateHLHSeg(Ob834DetailsEntity entry){
+        List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
+        softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
+        softAssert.assertAll();
     }
 
     public void validateCtrlFnGrpSegment(Ob834DetailsEntity entry){
