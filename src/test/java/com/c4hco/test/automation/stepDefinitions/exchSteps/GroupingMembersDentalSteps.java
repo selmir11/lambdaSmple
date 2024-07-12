@@ -20,9 +20,6 @@ public class GroupingMembersDentalSteps {
     @And( "I click Go Back on the Dental Grouping page" )
     public void clickGoBack() {groupingMembersDental.clickGoBack();}
 
-    @And ("I continue on from the grouping Members Dental page")
-    public void clickAndContinue() {groupingMembersDental.clickAndContinue();}
     }
-
 
 

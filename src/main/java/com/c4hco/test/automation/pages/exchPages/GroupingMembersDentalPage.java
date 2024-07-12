@@ -33,6 +33,7 @@ public class GroupingMembersDentalPage {
     SoftAssert softAssert = new SoftAssert();
 
     public void clickContinue()  {
+        basicActions.waitForElementToDisappear(spinner,15);
         basicActions.waitForElementToBePresent(continueButton, 60);
         basicActions.scrollToElement(continueButton);
         continueButton.click();
@@ -45,14 +46,7 @@ public class GroupingMembersDentalPage {
         goBackButton.click();
 
     }
-    //created to not impinge on SOL work
-    public void clickAndContinue(){
-        basicActions.waitForElementToDisappear(spinner,15);
-        basicActions.scrollToElement( continueButton);
-        basicActions.waitForElementToBeClickable( continueButton,15 );
-        continueButton.click();
 
-    }
 
     public void clickOnEditDentalGroupinglink() {
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsLink, 10);
