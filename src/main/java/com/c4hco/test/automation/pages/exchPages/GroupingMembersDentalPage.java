@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import javax.swing.*;
-
 public class GroupingMembersDentalPage {
 
     @FindBy(id = "SHP-DentalGroupingMembers-EditMyEnrollmentGroups")
