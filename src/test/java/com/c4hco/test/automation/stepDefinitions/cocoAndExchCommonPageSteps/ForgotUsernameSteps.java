@@ -18,5 +18,14 @@ public class ForgotUsernameSteps {
     }
 
 
+    @Then("I click submit on forgot username Page")
+    public void iClickSubmitOnForgotUsernamePage() {
+        forgotUsernamePage.clickSubmitOnForgotUsernamePage();
+    }
+
+    @And("I verify the error msg in {string}")
+    public void iVerifyTheErrorMsgIn(String language) {
+        forgotUsernamePage.verifyTheFirstNameErrorMsgIn(language);
+    }
 
 }
