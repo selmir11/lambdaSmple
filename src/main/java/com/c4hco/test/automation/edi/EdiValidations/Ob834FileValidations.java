@@ -31,9 +31,10 @@ public class Ob834FileValidations {
         validateNM1Seg(entry);
         validatePerSeg(entry);
         validateBgnSeg(entry);
-//        validateTrnSeg();
+        validateTrnSeg(entry);
         validateQtySeg(entry);
         validateHLHSeg(entry);
+        validateLUISeg(entry);
     }
 
     public void validateHLHSeg(Ob834DetailsEntity entry){
@@ -185,10 +186,18 @@ public class Ob834FileValidations {
         softAssert.assertAll();
     }
 
-    public void validateTrnSeg(){
-        transaction.getCommonSegments().getST();
-        // Include SE in commonSegments
-        // transaction.getCommonSegments();
+    public void validateTrnSeg(Ob834DetailsEntity entry){
+        // ST Segment
+      List<String> stSeg  = transaction.getCommonSegments().getST().get(0);
+      softAssert.assertEquals(stSeg.get(0), "834", "Transaction Set Identifier Code does not match");
+      softAssert.assertEquals(stSeg.get(1), "1000", "Transaction Set Control Number does not match");
+      softAssert.assertEquals(stSeg.get(2), "005010X220A1", "Implementation Convention Reference does not match");
+        // SE Segment
+      int segCount = segmentCount();
+      List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
+      softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
+      softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number does not match");
+      softAssert.assertAll();
     }
 
     public void validateQtySeg(Ob834DetailsEntity entry) {
@@ -202,6 +211,40 @@ public class Ob834FileValidations {
         softAssert.assertEquals(qtySeg.get(2).get(0), "ET", "Total subscribers");
         softAssert.assertEquals(qtySeg.get(2).get(1), entry.getTotal_subscribers(), "Total subscribers does not match");
         softAssert.assertAll();
+    }
+    public void validateLUISeg(Ob834DetailsEntity entry){
+       List<List<String>> luiSeg = transaction.getMembersList().get(0).getLUI();
+       softAssert.assertEquals(luiSeg.get(0).get(2), entry.getWritten_language(), "Written Language does not match.");
+       softAssert.assertEquals(luiSeg.get(0).get(3), String.valueOf(6), "Written Language Use Indicator does not match");
+       softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
+       softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
+       softAssert.assertAll();
+    }
+    public int segmentCount(){
+        int memberSegCount  =
+                        transaction.getMembersList().get(0).getN1().size()+
+                        transaction.getMembersList().get(0).getN4().size()+
+                        transaction.getMembersList().get(0).getLS().size()+
+                        transaction.getMembersList().get(0).getHD().size()+
+                        transaction.getMembersList().get(0).getDTP().size()+
+                        transaction.getMembersList().get(0).getLUI().size()+
+                        transaction.getMembersList().get(0).getN3().size()+
+                        transaction.getMembersList().get(0).getHLH().size()+
+                        transaction.getMembersList().get(0).getLX().size()+
+                        transaction.getMembersList().get(0).getINS().size()+
+                        transaction.getMembersList().get(0).getREF().size()+
+                        transaction.getMembersList().get(0).getNM1().size()+
+                        transaction.getMembersList().get(0).getLE().size()+
+                        transaction.getMembersList().get(0).getPER().size()+
+                        transaction.getMembersList().get(0).getDMG().size()+
+                        transaction.getCommonSegments().getDTP().size()+
+                        transaction.getCommonSegments().getST().size()+
+                        transaction.getCommonSegments().getSE().size()+
+                        transaction.getCommonSegments().getREF().size()+
+                        transaction.getCommonSegments().getN1().size()+
+                        transaction.getCommonSegments().getQTY().size()+
+                        transaction.getCommonSegments().getBGN().size();
+        return memberSegCount;
     }
 
 }
