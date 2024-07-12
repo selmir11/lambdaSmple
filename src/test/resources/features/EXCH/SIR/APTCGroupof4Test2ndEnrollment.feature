@@ -5,7 +5,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-WIP @test
+  @SLER-WIP
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
     When I click create a new account on login page
     Then I click create my account from pre-screen page
