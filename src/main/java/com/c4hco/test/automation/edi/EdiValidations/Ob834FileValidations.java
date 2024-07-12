@@ -35,6 +35,7 @@ public class Ob834FileValidations {
         validateQtySeg(entry);
         validateHLHSeg(entry);
         validateLUISeg(entry);
+        validateN3N4Segments(entry);
     }
 
     public void validateHLHSeg(Ob834DetailsEntity entry){
@@ -219,6 +220,24 @@ public class Ob834FileValidations {
        softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
        softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
        softAssert.assertAll();
+    }
+    public void validateN3N4Segments(Ob834DetailsEntity entry){
+        //N3 Segment
+        List<List<String>> n3Seg = transaction.getMembersList().get(0).getN3();
+        softAssert.assertEquals(n3Seg.get(0).get(0), entry.getResidence_street_line1(), "Residence street address line1 does not match");
+        softAssert.assertEquals(n3Seg.get(1).get(0), entry.getMail_street_line1(), "Mailing address street line 1 does not match");
+        //N4 Segment
+        List<List<String>> n4Seg = transaction.getMembersList().get(0).getN4();
+        softAssert.assertEquals(n4Seg.get(0).get(0), entry.getResidence_city(), "Residence city does not match");
+        softAssert.assertEquals(n4Seg.get(0).get(1), entry.getResidence_st(), "Residence state does not match");
+        softAssert.assertEquals(n4Seg.get(0).get(2), entry.getResidence_zip_code(), "Residence zipcode does not match");
+        softAssert.assertEquals(n4Seg.get(0).get(4), "CY", "Country Code");
+        softAssert.assertEquals(n4Seg.get(0).get(5), entry.getResidence_fip_code(),"Residence fipcode does not match");
+
+        softAssert.assertEquals(n4Seg.get(1).get(0), entry.getMail_city(), "Mailing city does not match");
+        softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
+        softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
+        softAssert.assertAll();
     }
     public int segmentCount(){
         int memberSegCount  =
