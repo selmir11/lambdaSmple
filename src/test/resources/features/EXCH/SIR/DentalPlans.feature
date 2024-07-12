@@ -1,7 +1,7 @@
 @DentalPlans
 Feature: Tests related to dental plans
 
-@SLER-747-wip @dentalPlansCount
+@SLER-747 @dentalPlanNamesAndCount
 Scenario: Validate dental plans count
 Given I open the login page on the "login" portal
 And I validate I am on the "Login" page
@@ -57,3 +57,4 @@ And I select the first medical plan
 Then I click continue on medical plan results page
 Then I validate I am on the "Dental Plan Results" page
 Then I validate the dental plans count to be "12"
+Then I validate the dental plans
