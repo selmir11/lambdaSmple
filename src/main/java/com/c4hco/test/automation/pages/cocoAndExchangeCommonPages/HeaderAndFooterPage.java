@@ -105,7 +105,7 @@ public class HeaderAndFooterPage {
     WebElement signOutLinkNonElmo;
     @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
     WebElement signOutLinkPortal;
-    
+
    // =========FOOTER============== //
 
     //Admin Portal Footer Links
