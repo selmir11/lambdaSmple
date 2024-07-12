@@ -33,13 +33,18 @@ public class Ob834FileValidations {
         validateBgnSeg(entry);
 //        validateTrnSeg();
         validateQtySeg(entry);
+        validateHLHSeg(entry);
+    }
+
+    public void validateHLHSeg(Ob834DetailsEntity entry){
+        List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
+        softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
+        softAssert.assertAll();
     }
 
     public void validateCtrlFnGrpSegment(Ob834DetailsEntity entry){
-        // ISA and IEA Segments
-        // GS and GE segments
-
         CommonEDISegments commonEDISegments = SharedData.getCommonEDISegments();
+        //ISA Segment
         JSONArray isaSeg = commonEDISegments.getISA();
         String senderId = isaSeg.get(5).toString().trim();
         String receiverId = isaSeg.get(7).toString().trim();
@@ -53,8 +58,26 @@ public class Ob834FileValidations {
         softAssert.assertEquals(isaSeg.get(12), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
         softAssert.assertEquals(isaSeg.get(13), "0", "No Interchange Acknowledgment Requested");
         softAssert.assertEquals(isaSeg.get(14), "T","End of ISA segment, 'T' for Test Data, does not match");
+        //IEA Segment
+        JSONArray ieaSeg = commonEDISegments.getIEA();
+        softAssert.assertEquals(ieaSeg.get(0), entry.getMember_group(), "Number of functional groups included does not match");
+        softAssert.assertEquals(ieaSeg.get(1), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
+        //GS Segment
+        JSONArray gsSeg = commonEDISegments.getGS().getJSONArray(0);
+        softAssert.assertEquals(gsSeg.get(0), "BE", "Benefit Enrollment and Maintenance, Code identifying a group of application related transaction sets");
+        softAssert.assertEquals(gsSeg.get(1), entry.getInterchange_sender_id(), "Sender's code does not match");
+        softAssert.assertEquals(gsSeg.get(2), entry.getInterchange_receiver_id(), "Receiver's code does not match");
+        softAssert.assertEquals(gsSeg.get(3), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(gsSeg.get(4), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(gsSeg.get(5), entry.getGroup_ctrl_number(), "Group control number does not match");
+        softAssert.assertEquals(gsSeg.get(6), "X", "Code identifying the issuer of the standard; this code is used in conjunction with Data, X\n" +
+                "Accredited Standards Committee ");
+        softAssert.assertEquals(gsSeg.get(7), "005010X220A1", "Code indicating the version, release, subrelease, and industry identifier of the EDI standard being used does not match");
+        //GE Segment
+        JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
+        softAssert.assertEquals(geSeg.get(0), entry.getMember_group(), "Count of the number of functional groups included in an interchange does not match");
+        softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
         softAssert.assertAll();
-
     }
 
     public void validateSponsorPayerDetails(){

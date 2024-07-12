@@ -23,13 +23,18 @@ public class PlanSummaryMedicalDentalPageSteps {
     }
 
 
+    @And("I verify no medical and dental plans are selected on plan summary page")
+    public void verifyPlanSummaryPage() {
+        planSummaryMedicalDentalPage.verifyPlanSummaryPage();
+    }
+
+
     @And("I validate the APTC Credit on the Summary page is {string}")
     public void verifyAPTCPlanSummaryAmt (String aPTCPlanSummaryAmt ) {
         planSummaryMedicalDentalPage.verifyAPTCPlanSummaryAmt(aPTCPlanSummaryAmt); }
 
     @And( "I click Go Back on the Plan Summary page" )
     public void goBackSummaryPage() { planSummaryMedicalDentalPage.goBackPlanSummaryPage();}
-
 
 
 }
