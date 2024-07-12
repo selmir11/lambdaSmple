@@ -5,7 +5,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-WIP
+  @SLER-WIP @test
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -247,7 +247,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
-    And I click continue on grouping Members Dental page
+    And I continue on from the grouping Members Dental page
 
     Then I validate I am on the "Dental Plan Results" page
     And I select first dental plan
@@ -320,7 +320,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown
     Then I click on the Member Row 1
 
     Then I validate I am on the "Application Summary" page

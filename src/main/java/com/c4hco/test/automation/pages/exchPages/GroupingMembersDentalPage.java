@@ -45,6 +45,14 @@ public class GroupingMembersDentalPage {
         goBackButton.click();
 
     }
+    //created to not impinge on SOL work
+    public void clickAndContinue(){
+        basicActions.waitForElementToDisappear(spinner,15);
+        basicActions.scrollToElement( continueButton);
+        basicActions.waitForElementToBeClickable( continueButton,15 );
+        continueButton.click();
+
+    }
 
     public void clickOnEditDentalGroupinglink() {
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsLink, 10);
