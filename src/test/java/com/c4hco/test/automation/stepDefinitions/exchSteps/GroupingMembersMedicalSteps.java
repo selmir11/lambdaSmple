@@ -34,5 +34,6 @@ public class GroupingMembersMedicalSteps {
         groupingMembersMedical.noOfMedicalGroups(groups);
     }
 
-
+    @And ("I click Go Back on the Medical Grouping page")
+    public void clickGoBack(){groupingMembersMedical.clickGoBackButton();}
 }
