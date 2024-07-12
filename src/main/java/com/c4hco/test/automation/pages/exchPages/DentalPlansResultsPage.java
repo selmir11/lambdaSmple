@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.By;
@@ -9,7 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -58,6 +61,8 @@ public class DentalPlansResultsPage {
 
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement dentalPlanCount;
+
+    SoftAssert softAssert = new SoftAssert();
 
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
@@ -163,4 +168,24 @@ public class DentalPlansResultsPage {
         Assert.assertEquals(dentalPlanCount.getText(), plansCount+" of "+plansCount+" Dental Plans", "Dental plans count did not match");
     }
 
-}
+    public void validateDentalPlanNames(){
+        List<String> dentalPlanNamesList = new ArrayList<>();
+
+        while(true){
+            basicActions.waitForElementListToBePresent(dentalPlanNames, 30);
+            for(WebElement dentalPlanName: dentalPlanNames) {
+                dentalPlanNamesList.add(dentalPlanName.getText());
+            }
+            basicActions.waitForElementToBePresent(nextPageArrow, 10);
+
+            if(nextPageArrow.getAttribute("className").contains("disabled")){
+                break;
+            }
+
+            nextPageArrow.click();
+        }
+        softAssert.assertEquals(dentalPlanNamesList.size(), Constants.DentalPlanNamesList.size(), "Plan count doesn't match");
+        softAssert.assertEquals(dentalPlanNamesList, Constants.DentalPlanNamesList);
+        softAssert.assertAll();
+        }
+    }

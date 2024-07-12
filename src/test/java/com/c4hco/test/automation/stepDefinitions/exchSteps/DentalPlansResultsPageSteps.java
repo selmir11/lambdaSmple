@@ -71,4 +71,11 @@ public class DentalPlansResultsPageSteps {
     public void validateDentalPlanCount(String plansCount) {
         dentalPlansResultsPage.validateDentalPlanCount(plansCount);
     }
+
+    @Then("I validate the dental plans")
+    public void validateDentalPlans() {
+        dentalPlansResultsPage.validateDentalPlanNames();
+    }
+
+
 }
