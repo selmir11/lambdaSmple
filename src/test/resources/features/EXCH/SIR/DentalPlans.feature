@@ -1,7 +1,7 @@
 @DentalPlans
 Feature: Tests related to dental plans
 
-@SLER-747 @dentalPlanNamesAndCount
+@SLER-747 @dentalPlanNamesAndCount @failingInQA-ReportingABug # 2nd and 3rd plans are flipped in QA. Defect with the order.
 Scenario: Validate dental plans count
 Given I open the login page on the "login" portal
 And I validate I am on the "Login" page
