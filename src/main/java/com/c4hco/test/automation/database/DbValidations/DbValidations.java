@@ -8,9 +8,12 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +26,7 @@ public class DbValidations {
   SoftAssert softAssert = new SoftAssert();
  String formattedDate; //formatted in YYYY-MM-DD
  Calendar calendar = Calendar.getInstance();
+ int currentYear = calendar.get(Calendar.YEAR);
 
     public void validateDataFromPolicyTables(){
 
@@ -44,12 +48,33 @@ public class DbValidations {
         }
 
         // To DO:: Add more validations here
-        softAssert.assertEquals( String.valueOf(subscriber.getAccount_id()), policyTablesEntity.getAccount_id(), "acc id did not match");
-        softAssert.assertEquals( subscriber.getFirstName(), policyTablesEntity.getFirst_name(), "First Name did not match");
-        softAssert.assertEquals( subscriber.getLastName(), policyTablesEntity.getLast_name(), "Last Name did not match");
+        softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "acc id did not match");
+        softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(),"First Name did not match");
+        softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Last Name did not match");
+        softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), subscriber.getRelation_to_subscriber(), "relation to subscriber did not match");
+        softAssert.assertEquals( policyTablesEntity.getPlan_year(), String.valueOf(currentYear), "plan year did not match");
+        String dateString = subscriber.getDob();
+        String formattedDob = formatDob(dateString);
+        softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(formattedDob), "dob did not match");
+      //  softAssert.assertEquals(policyTablesEntity.getTobacco_use(), subscriber.getTobacco_user(), "tobacco usage did not match");
+     //   softAssert.assertEquals(policyTablesEntity.getPremium_reduction_type(), "APTC", "premium reduction type did not match");
         softAssert.assertTrue(policyTablesEntity.getPolicy_status().equals("SUBMITTED"));
         softAssert.assertAll();
       }
+    }
+
+    public String formatDob(String dateString){
+        String formattedDob = "";
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("MMddyyyy");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = inputFormat.parse(dateString);
+            formattedDob = outputFormat.format(date);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        return formattedDob;
+
     }
 
     public void validateOb834FromDb(List<Map<String, String>> expectedValues){
@@ -372,7 +397,6 @@ public class DbValidations {
 
     public void validateBookOfBusinessQ(){
         List<BookOfBusinessQEntity> bookOfBusinessQList =  exchDbDataProvider.getBookOfBusinessQ();
-        int currentYear = calendar.get(Calendar.YEAR);
         for(BookOfBusinessQEntity bookOfBusinessQEntity: bookOfBusinessQList){
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q");
@@ -386,25 +410,5 @@ public class DbValidations {
 
           softAssert.assertAll();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
