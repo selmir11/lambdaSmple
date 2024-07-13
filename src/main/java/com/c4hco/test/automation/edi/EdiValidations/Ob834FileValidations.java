@@ -36,6 +36,7 @@ public class Ob834FileValidations {
         validateHLHSeg(entry);
         validateLUISeg(entry);
         validateN3N4Segments(entry);
+        validateDMGSegment(entry);
     }
 
     public void validateHLHSeg(Ob834DetailsEntity entry){
@@ -237,6 +238,13 @@ public class Ob834FileValidations {
         softAssert.assertEquals(n4Seg.get(1).get(0), entry.getMail_city(), "Mailing city does not match");
         softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
         softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
+        softAssert.assertAll();
+    }
+    public void validateDMGSegment(Ob834DetailsEntity entry){
+        List<List<String>> dmgSeg = transaction.getMembersList().get(0).getDMG();
+        softAssert.assertEquals(dmgSeg.get(0).get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
+        softAssert.assertEquals(dmgSeg.get(0).get(1), entry.getMember_dob(), "Member date of birth does not match");
+        softAssert.assertEquals(dmgSeg.get(0).get(2), entry.getMember_gender(), "Member gender does not match");
         softAssert.assertAll();
     }
     public int segmentCount(){
