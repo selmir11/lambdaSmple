@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import java.util.List;
 
 public class InitialPaymentPageSteps {
+    // TO DO: Use PaymentPortalPageSteps for new page
     // TO DO: Refactor to combine initials payment page and payment selection page - so we can click multiple make payments from one method.
     InitialPaymentPage initialPaymentPage = new InitialPaymentPage(WebDriverManager.getDriver());
 
