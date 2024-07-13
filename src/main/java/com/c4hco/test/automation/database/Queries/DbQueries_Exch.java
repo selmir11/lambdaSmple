@@ -99,4 +99,11 @@ public class DbQueries_Exch {
     public String setEnvForDataQuality(){
         return  "set search_path ="+dbName;
     }
+
+    public String getBookOfBusinessQ(){
+        return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages\n" +
+                "where application_id = 'book_of_business_q:policy-svc'\n" +
+                "and message->>'householdAccountId' = '"+acctId+"'\n" +
+                "ORDER BY created_ts desc";
+    }
 }

@@ -3,16 +3,14 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.DbData;
-import com.c4hco.test.automation.database.EntityObj.EsMemberOhiEntity;
-import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +22,7 @@ public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
   SoftAssert softAssert = new SoftAssert();
  String formattedDate; //formatted in YYYY-MM-DD
+ Calendar calendar = Calendar.getInstance();
 
     public void validateDataFromPolicyTables(){
 
@@ -363,12 +362,29 @@ public class DbValidations {
     }
 
     public void validatePolicyDqCheck(){
-        Map<String,String> policyAhId =   exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
+        Map<String,String> policyAhId =  exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
        softAssert.assertEquals( policyAhId.keySet().size(), 2);
         for(String key: policyAhId.keySet()){
             softAssert.assertEquals(policyAhId.get(key), 0);
         }
-      //  softAssert.assertAll();
+        softAssert.assertAll();
+    }
+
+    public void validateBookOfBusinessQ(){
+        List<BookOfBusinessQEntity> bookOfBusinessQList =  exchDbDataProvider.getBookOfBusinessQ();
+        int currentYear = calendar.get(Calendar.YEAR);
+        for(BookOfBusinessQEntity bookOfBusinessQEntity: bookOfBusinessQList){
+            softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange");
+            softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q");
+            softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), "POLICY_SUBMISSION");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear));
+            softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED");
+            softAssert.assertEquals(bookOfBusinessQEntity.getApplicationid(), SharedData.getPrimaryMember().getApplication_id());
+            softAssert.assertTrue( bookOfBusinessQEntity.getCreated_ts().contains(formattedDate));
+            bookOfBusinessQEntity.getPolicyid(); // get policy id for primary member and compare - WIP
+        }
+
+          softAssert.assertAll();
     }
 
 

@@ -32,4 +32,7 @@ private final DbValidations dbValidations = new DbValidations();
 
    @And("I verify the policy data quality check")
    public void iValidatePolicyDqCheck(){dbValidations.validatePolicyDqCheck();}
+
+   @And("I verify the data from book of business queue table")
+   public void iValidateBookOfBusinessQ(){dbValidations.validateBookOfBusinessQ();}
 }

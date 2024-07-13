@@ -123,6 +123,7 @@ Feature: Regression Tests that require Seed 1
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
     And I verify the policy data quality check
+    And I verify the data from book of business queue table
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
