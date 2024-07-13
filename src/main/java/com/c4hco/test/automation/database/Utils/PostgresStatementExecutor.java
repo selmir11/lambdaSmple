@@ -5,7 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.testng.FileAssert.fail;
+import static org.testng.Assert.fail;
+
 
 public class PostgresStatementExecutor {
     Connection connection = PostgresSQLConnection.getInstance();
