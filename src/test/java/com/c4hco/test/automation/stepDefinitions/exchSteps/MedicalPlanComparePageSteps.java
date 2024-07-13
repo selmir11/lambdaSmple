@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.MedicalComparePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class MedicalPlanComparePageSteps {
 
@@ -25,10 +26,10 @@ public class MedicalPlanComparePageSteps {
     public void validateDisclaimerCompare(){medicalComparePage.validateDisclaimerCompare();}
 
     @And( "I validate the text headers and subheaders for the InNetwork Compare page" )
-    public void validateInNetworkTextHeaders(){medicalComparePage.validateDisclaimerCompare();}
+    public void validateInNetworkTextHeaders(){medicalComparePage.validateInNetworkTextHeaders();}
 
     @And( "I validate the text headers and subheaders for the OutNetwork Compare page" )
-    public void validateOutNetworkTextHeaders(){medicalComparePage.validateDisclaimerCompare();}
+    public void validateOutNetworkTextHeaders(){medicalComparePage.validateOutNetworkTextHeaders();}
 
 
 

@@ -1,3 +1,5 @@
+@SIR
+
 Feature: Individual adult - End to End Test
 
   Background: I go the login portal

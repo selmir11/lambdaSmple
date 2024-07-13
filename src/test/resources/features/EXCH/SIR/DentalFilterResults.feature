@@ -1,4 +1,4 @@
-@dentalPlanFilterResults
+@dentalPlanFilterResults @SIR
 Feature: Dental Plan Verification test
 
   Background:
@@ -6,7 +6,7 @@ Feature: Dental Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-81 @SelectVerifyDentalCoverageLevelFilterResults
-  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults - used tp be RT-1966
+  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults - used to be RT-1966
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -49,6 +49,7 @@ Feature: Dental Plan Verification test
     And I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
     Then I click on view results and shop
     And I click continue on application results page
 

@@ -1,11 +1,12 @@
-Feature: Medical Plan Results page related tests
+@MedicalCompare @SIR
+Feature: Medical Plan Compare page related tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-46 @ComparePlansLink
-  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical)
+   @MedicalComparePlansLink @SLER-46
+  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical) - formerly RT-1971
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -52,10 +53,15 @@ Feature: Medical Plan Results page related tests
     Then I validate I am on the "Medical Plan Results" page
     And I click on the compare links on the first 2 medical plans
     Then I click on the compare button
-    Then I validate I am on the "Medical Plan Compare" page
 
-    @CompareDetailTextVerification-WIP
-  Scenario: Validate the detail information of the Compare Plans page (Medical)
+    Then I validate I am on the "Medical Plan Compare" page
+    And I click Go Back on the Compare page
+
+    Then I validate I am on the "Medical Plan Results" page
+    Then I click on Sign Out in the Header for "Portal"
+
+    @MedicalCompareDetailTextVerification @SLER-726
+  Scenario: Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -113,7 +119,7 @@ Feature: Medical Plan Results page related tests
     And I click Go Back on the Compare page
 
     Then I validate I am on the "Medical Plan Results" page
-    Then I click on Sign Out in the Header for "ELMO"
+    Then I click on Sign Out in the Header for "Portal"
 
 
 

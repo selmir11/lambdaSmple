@@ -129,6 +129,7 @@ public class Edi834Util {
                             }
                             segmentsObject.set(currentSegmentName,currentSegmentArray);
                             if (currentSegmentName.equals("SE")) {
+                                segmentData.put(currentSegmentName, currentSegmentArray);
                                 String jsonString = objectMapper.writeValueAsString(segmentData.asMap());
                                 JsonNode jsonCommonSegmentNode = objectMapper.readTree(jsonString);
                                 memberObject.set("Common_Segments", jsonCommonSegmentNode);
@@ -174,8 +175,6 @@ public class Edi834Util {
         commonEDISegments.setGE(geSeg);
         SharedData.setCommonEDISegments(commonEDISegments);
 
-        System.out.println("--ge get--"+ SharedData.getCommonEDISegments().getGE());
-        System.out.println("--gs get--"+ SharedData.getCommonEDISegments().getGS());
     }
 
     public void parseEdiJsonToModel(String jsonString){

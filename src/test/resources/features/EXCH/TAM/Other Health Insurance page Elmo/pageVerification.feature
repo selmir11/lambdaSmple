@@ -258,8 +258,8 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "ESI" as health insurance option and continue
     And I validate I am on the "ESI" page
     And I verify the OHI options selected in the DB
-      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
-      |         1            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |                            |                          |                      |                         |                             |                                     |                               |
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "350.00" for employee amount question on the ESI page
@@ -267,8 +267,8 @@ Feature: Page Text-Other Health Insurance Page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
     And I verify the OHI options selected in the DB
-      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_coverage_end_soon_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|
-      |         1            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |            0             |             1           |            350.00           |
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |             1           |           350.00            |                                     |                               |
 
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -282,8 +282,8 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "None of these" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I verify the OHI options selected in the DB
-      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_coverage_end_soon_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|
-      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                          |                         |                             |
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            0         |                            |                          |                      |                         |                             |                                     |                               |
 
     And I click on Sign Out in the Header for "Elmo"
 

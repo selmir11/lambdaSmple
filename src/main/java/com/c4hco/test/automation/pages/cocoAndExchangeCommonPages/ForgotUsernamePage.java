@@ -23,15 +23,17 @@ public class ForgotUsernamePage {
     WebElement lastName;
     @FindBy(xpath ="//input[@id='phone']")
     WebElement phone;
-    @FindBy(xpath ="//app-option-select-dropdown/div/div[1]")
+    @FindBy(xpath ="//select[@id='account-type-dropdown']")
     WebElement accountTypeDrp;
-    @FindBy(xpath ="//app-option-select-dropdown//div[2]/div")
+    @FindBy(xpath ="//select[@id='account-type-dropdown']/option")
     List<WebElement> accountTypeOptions;
 
     @FindBy(xpath ="//button[@id='submit-button']")
     WebElement submitBTN;
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 mt-3 ng-star-inserted']")
     WebElement noticeIsSentMsg;
+    @FindBy(xpath ="//span[@class='error-message']")
+    List<WebElement> errorMsg;
     public void informationSForForgotUsername(String FirsnameSTG, String LastNameSTG, String phoneSTG, String accountTypeData, String FirsnameQA, String LastNameQA, String phoneQA){
             if (SharedData.getEnv().equals("qa") ) {
                 DataForForgotUsername(FirsnameQA, LastNameQA, phoneQA, accountTypeData);
@@ -49,16 +51,16 @@ public class ForgotUsernamePage {
         accountTypeDrp.click();
         switch (accountTypeData){
             case "Customer":
-                accountTypeOptions.get(0).click();
-                break;
-            case "Certified Broker":
                 accountTypeOptions.get(1).click();
                 break;
-            case "Program Manager":
+            case "Certified Broker":
                 accountTypeOptions.get(2).click();
                 break;
-            case "Administrative Staff":
+            case "Program Manager":
                 accountTypeOptions.get(3).click();
+                break;
+            case "Administrative Staff":
+                accountTypeOptions.get(4).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + accountTypeData);
@@ -74,5 +76,37 @@ public class ForgotUsernamePage {
     }
 
 
+    public void clickSubmitOnForgotUsernamePage() {
+        basicActions.waitForElementToBePresent(submitBTN,20);
+        submitBTN.click();
+    }
 
+    public void verifyTheFirstNameErrorMsgIn(String language) {
+        basicActions.waitForElementToBePresent(errorMsg.get(0),20);
+        switch (language){
+            case "English":
+                softAssert.assertEquals(errorMsg.get(0).getText(),"First Name is required");
+                softAssert.assertEquals(errorMsg.get(1).getText(),"Last Name is required");
+                softAssert.assertEquals(errorMsg.get(2).getText(),"Phone number is required");
+                softAssert.assertEquals(errorMsg.get(3).getText(),"Account Type is required");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(errorMsg.get(0).getText(),"El nombre es obligatorio");
+                softAssert.assertEquals(errorMsg.get(1).getText(),"El apellido es obligatorio");
+                softAssert.assertEquals(errorMsg.get(2).getText(),"El n\u00FAmero de tel\u00E9fono es obligatorio");
+                softAssert.assertEquals(errorMsg.get(3).getText(),"El tipo de cuenta es obligatorio");
+                break;
+            case "Special character":
+                softAssert.assertEquals(errorMsg.get(0).getText(),"First Name cannot contain special characters");
+                softAssert.assertEquals(errorMsg.get(1).getText(),"Last Name cannot contain special characters");
+                softAssert.assertEquals(errorMsg.get(2).getText(),"Please enter valid phone number");
+                break;
+            case "Special character Spanish":
+                softAssert.assertEquals(errorMsg.get(0).getText(),"El nombre no puede contener caracteres especiales");
+                softAssert.assertEquals(errorMsg.get(1).getText(),"El apellido no puede contener caracteres especiales");
+                softAssert.assertEquals(errorMsg.get(2).getText(),"El n\u00FAmero de tel\u00E9fono es obligatorio");
+                break;
+        }
+        softAssert.assertAll();
+    }
 }

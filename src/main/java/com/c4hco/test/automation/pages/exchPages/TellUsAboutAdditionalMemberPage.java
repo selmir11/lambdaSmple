@@ -58,6 +58,56 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "memberRelationship3")
     WebElement selectRelationship3;
 
+    @FindBy(css = "#memberRelationship1 > option:nth-child(2)")
+    WebElement selectBrother;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(3)")
+    WebElement selectCousin;
+
+    @FindBy(xpath = "#memberRelationship1 > option:nth-child(4)")
+    WebElement selectFather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(5)")
+    WebElement selectGrandfather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(6)")
+    WebElement selectGrandson;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(7)")
+    WebElement selectHalfBrother;
+
+    @FindBy(css= "#memberRelationship1 > option:nth-child(8)")
+    WebElement selectSpouse;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(9)")
+    WebElement selectInLaw;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(10)")
+    WebElement selectNephew;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(11)")
+    WebElement selectPartner;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(12)")
+    WebElement selectStepBrother;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(13)")
+    WebElement selectStepFather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(14)")
+    WebElement selectSon;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(15)")
+    WebElement selectStepSon;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(16)")
+    WebElement selectUncle;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(17)")
+    WebElement selectUnrelated;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(18)")
+    WebElement selectOther;
 
     @FindBy(id = "coverageYes")
     WebElement rdobtnIsMemberApplingYes;
@@ -187,6 +237,7 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob = dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
+
 
 }
 

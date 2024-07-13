@@ -98,6 +98,7 @@ public class LoginPage {
 
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
+        basicActions.wait(2000);
         String emailId = SharedData.getPrimaryMember().getEmailId();
         System.out.println("Email::" + emailId);
         String pswd = SharedData.getPrimaryMember().getPassword();
@@ -107,6 +108,7 @@ public class LoginPage {
         password.sendKeys(pswd);
         System.out.println("Password::" + pswd);
         signInButton.click();
+      //  basicActions.waitForElementToDisappear(signInButton, 30);
     }
 
     public void logInBrokerPortal(String accountType) {
