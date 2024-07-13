@@ -362,6 +362,15 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validatePolicyDqCheck(){
+        Map<String,String> policyAhId =   exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
+       softAssert.assertEquals( policyAhId.keySet().size(), 2);
+        for(String key: policyAhId.keySet()){
+            softAssert.assertEquals(policyAhId.get(key), 0);
+        }
+      //  softAssert.assertAll();
+    }
+
 
 
 

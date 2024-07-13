@@ -1,6 +1,11 @@
 Feature: Regression Tests that require Seed 1
 
-  Background: Seed 01 For Exchange- Single Applicant NFA
+  @test1
+    Scenario: Test
+    And I verify the policy data quality check
+
+  @test
+  Scenario: Seed 01 For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers |
       | 1           | 1            |
@@ -122,6 +127,7 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
+    And I verify the policy data quality check
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN

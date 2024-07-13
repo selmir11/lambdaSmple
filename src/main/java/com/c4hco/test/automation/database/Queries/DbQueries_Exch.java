@@ -83,21 +83,20 @@ public class DbQueries_Exch {
         return "SELECT agency_tin_ein FROM "+dbName+".bp_agency where agency_name = '"+agencyName+"'";
     }
     public String getMemberMedFinancialRecords(){
-        return "SELECT \n" +
-                "    mcf.member_financial_start_date, \n" +
-                "    mcf.member_financial_end_date, \n" +
-                "    mcf.plan_premium_amt, \n" +
-                "    mcf.premium_reduction_amt, \n" +
-                "    mcf.responsible_amt,\n" +
-                "    mcf.csr_amt, \n" +
-                "    mcf.premium_reduction_type, \n" +
-                "    mcf.csr_level,\n" +
-                "\tp.coverage_type\n" +
+        return "SELECT mcf.member_financial_start_date, mcf.member_financial_end_date, mcf.plan_premium_amt, mcf.premium_reduction_amt, \n" +
+                "mcf.responsible_amt, mcf.csr_amt, mcf.premium_reduction_type, mcf.csr_level, p.coverage_type\n" +
                 "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
                 "JOIN "+dbName+".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
                 "JOIN "+dbName+".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
                 "JOIN "+dbName+".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
                 "WHERE p.account_id = '"+acctId+"'"+ " and coverage_type=1";
+    }
 
+    public String getPolicyDqCheck(){
+        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId;
+    }
+
+    public String setEnvForDataQuality(){
+        return  "set search_path ="+dbName;
     }
 }
