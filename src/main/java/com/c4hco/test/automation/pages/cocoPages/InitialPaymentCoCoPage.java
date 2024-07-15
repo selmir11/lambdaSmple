@@ -47,6 +47,7 @@ public class InitialPaymentCoCoPage {
     }
 
     public void selectMakeAllPaymentBtnCoCo(){
+        //make payment with money order
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementListToBePresent(makePaymentBtn,20);
         while(!makePaymentBtn.isEmpty()){
