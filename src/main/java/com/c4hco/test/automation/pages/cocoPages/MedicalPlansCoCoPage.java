@@ -132,6 +132,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectCoCoMedicalplan(String planName){
+        basicActions.waitForElementToDisappear(spinner,20);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
