@@ -158,7 +158,10 @@ public class BasicSteps {
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";
                 break;
-            case "dentalCompare":
+            case "Dental Grouping":
+                pageUrl = "groupingMembersDental/";
+                break;
+            case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
                 break;
             case "Employment Income":
@@ -358,6 +361,9 @@ public class BasicSteps {
                 break;
             case "Admin Portal Detailed EDI" :
                 pageUrl = "/detailed-edi";
+                break;
+            case "Access Gateway" :
+                pageUrl = "/AdminPortal/";
                 break;
             default:
                 System.out.println("undefined page ");

@@ -21,6 +21,7 @@ public class GoodNewsMAPage {
     WebElement noThanks;
 
     public void iClickNoThanks(){
+        basicActions.waitForElementToBePresent(noThanks, 20);
         noThanks.click();
     }
 }
