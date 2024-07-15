@@ -4,7 +4,7 @@ Feature: CoupleWithChildrens - End to End Test
     Given I open the login page on the "login" portal
 
 
-  @SLCR-162_WIP @EndToEndTest
+  @SLCR-162 @EndToEndTest
   Scenario: This will create Family of 4 members Couple and their children with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -177,9 +177,6 @@ Feature: CoupleWithChildrens - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
     And I select make payment button for all plans to pay the premium CoCo
-    #Then I select Continue button on the Payment Selection CoCo page
-    #Then I select second make payment button to pay the premium in coco
-    #Then I select Continue button on the Payment Selection CoCo page
     And I select continue button on the Initial Payment CoCo page
     And I click on Go To Welcome Page Button on whats next coco page
     And I click on Sign Out in the Header for "Elmo"
