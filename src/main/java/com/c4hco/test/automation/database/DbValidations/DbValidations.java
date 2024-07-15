@@ -12,10 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
@@ -397,6 +394,7 @@ public class DbValidations {
 
     public void validateBookOfBusinessQ(){
         List<BookOfBusinessQEntity> bookOfBusinessQList =  exchDbDataProvider.getBookOfBusinessQ();
+        List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
         for(BookOfBusinessQEntity bookOfBusinessQEntity: bookOfBusinessQList){
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q");
@@ -405,16 +403,21 @@ public class DbValidations {
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED");
             softAssert.assertEquals(bookOfBusinessQEntity.getApplicationid(), SharedData.getPrimaryMember().getApplication_id());
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate));
-            Map<String, String> policyIdMap = exchDbDataProvider.getPolicyId();
+            policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
 
-            policyIdMap.forEach((key, value) -> {
-                if (policyIdMap.get(key).equals("1")) {
-                    softAssert.assertEquals(bookOfBusinessQEntity.getPolicyid(), value, "Medical Policy Id matches");
-                } else if (policyIdMap.get(key).equals("2")) {
-                    softAssert.assertEquals(bookOfBusinessQEntity.getPolicyid(), value, "Dental Policy Id matches");
-                }
-            });
+
+
+//            policyIdMap.forEach((key, value) -> {
+//                if (policyIdMap.get(key).equals("1")) {
+//                    softAssert.assertEquals(bookOfBusinessQEntity.getPolicyid(), value, "Medical Policy Id matches");
+//                } else if (policyIdMap.get(key).equals("2")) {
+//                    softAssert.assertEquals(bookOfBusinessQEntity.getPolicyid(), value, "Dental Policy Id matches");
+//                }
+//            });
         }
+        List<String> policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
+        softAssert.assertTrue(policyIdListFromBookOfBusinessDb.equals(policyIdFromPolicyDB));
+      //  Collections.sort(policyIdListFromBookOfBusinessDb, policyIdFromPolicyDB);
           softAssert.assertAll();
     }
 
