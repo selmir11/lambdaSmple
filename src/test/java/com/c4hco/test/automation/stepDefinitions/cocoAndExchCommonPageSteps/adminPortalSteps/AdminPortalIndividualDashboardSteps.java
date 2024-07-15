@@ -13,7 +13,7 @@ public class AdminPortalIndividualDashboardSteps {
     AdminPortalIndividualDashboardPage adminPortalIndividualDashboardPage = new AdminPortalIndividualDashboardPage(WebDriverManager.getDriver());
 
     @Then("I verify {string} container title")
-    public void iVerifyContainerTitle(String reports) {
+    public void iVerifyContainerTitle() {
         adminPortalIndividualDashboardPage.verifyContainerTitle();
     }
     @Then("I click on view button for {string} report")
@@ -46,25 +46,46 @@ public class AdminPortalIndividualDashboardSteps {
     }
     @And("I Validate the correct enrolled plans are displayed on admin portal individual page")
     public void iverifyPlanDetails(List<String> data) {
-        adminPortalIndividualDashboardPage.verifyPlanDetails(data);     }
-    @And("I validate individual dashboard container titles: {string} {string} {string} {string} {string} {string} are displayed")
-    public void iValidateIndividualDashboardContainerTitles(String plans, String renewals, String summary, String reports, String eligibility, String payloads) {
-        adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(plans, renewals, summary, reports, eligibility, payloads);
+        adminPortalIndividualDashboardPage.verifyPlanDetails(data);
+    }
+    @And("I validate individual dashboard container titles are displayed")
+    public void iValidateIndividualDashboardContainerTitles() {
+        adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles();
     }
     @Then("I validate Selected Member data on the far left side")
-    public void iValidateSelectedMemberData() {adminPortalIndividualDashboardPage.validateSelectedMemberData();}
+    public void iValidateSelectedMemberData() {
+        adminPortalIndividualDashboardPage.validateSelectedMemberData();    }
     @And("I Verify Payload Information Container")
     public void iVerifyPayloadInformationContainer() {
-        adminPortalIndividualDashboardPage.verifyPayloadsContainer();
-    }
+        adminPortalIndividualDashboardPage.verifyPayloadsContainer();   }
     @Then("I verify the option in years displays")
     public void iVerifyYears() {
         adminPortalIndividualDashboardPage.verifyYears();   }
     @And("I verify message displays in Renewals")
     public void iVerifyText() {
         adminPortalIndividualDashboardPage.verifyText();   }
+    @And("I verify Program Manager information Account Summary")
+    public void iVerifyProgramManagerInformationAccountSummary() {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerInformationAccountSummary(); }
+    @And("I validate all program manager dashboard container titles are displayed")
+    public void iValidateProgramManagerDashboardContainerTitles() {
+        adminPortalIndividualDashboardPage.validateProgramManagerDashboardContainerTitles();    }
+    @And("I verify Program Manager contract status")
+    public void iVerifyProgramManagerContractStatus() {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerContractStatus(); }
+    @And("I verify Program Manager Account Activity Container")
+    public void iVerifyBrokerAccountActivityContainer() {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerAccountActivityContainer();  }
+    @And("I Verify Program Manager Client Information Container")
+    public void iVerifyBrokerClientInformationContainer() {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerClientInformationContainer();    }
+    @And("I Verify organization Information Container")
+    public void iVerifyProgramManagerOrganizationInformation() {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerOrganizationInformation();    }
+    @And("I click Go Back on admin portal program manager dashboard")
+    public void iClickGoBackOnAdminPortalBrokerDashboard() {
+        adminPortalIndividualDashboardPage.clickGoBackONAdminPortalProgramManager();    }
 }
-
 
 
 
