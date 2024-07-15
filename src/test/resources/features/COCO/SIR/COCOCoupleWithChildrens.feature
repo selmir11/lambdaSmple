@@ -148,8 +148,8 @@ Feature: CoupleWithChildrens - End to End Test
     Then I create new group in edit medical grouping coco page and drag members to the new group
     |Primary:Group1|
     |Wife:Group2|
-    |Son:Group3|
-    |Daughter:Group4|
+    |Daughter:Group3|
+    |Son:Group4|
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
@@ -157,16 +157,16 @@ Feature: CoupleWithChildrens - End to End Test
     And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-    Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -176,10 +176,10 @@ Feature: CoupleWithChildrens - End to End Test
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    Then I select Continue button on the Payment Selection CoCo page
-    Then I select second make payment button to pay the premium in coco
-    Then I select Continue button on the Payment Selection CoCo page
+    And I select make payment button for all plans to pay the premium CoCo
+    #Then I select Continue button on the Payment Selection CoCo page
+    #Then I select second make payment button to pay the premium in coco
+    #Then I select Continue button on the Payment Selection CoCo page
     And I select continue button on the Initial Payment CoCo page
     And I click on Go To Welcome Page Button on whats next coco page
     And I click on Sign Out in the Header for "Elmo"
