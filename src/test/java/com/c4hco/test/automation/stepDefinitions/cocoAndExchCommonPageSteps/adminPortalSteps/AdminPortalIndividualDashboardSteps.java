@@ -36,10 +36,6 @@ public class AdminPortalIndividualDashboardSteps {
     public void iValidateDataForAgencySummary(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
         adminPortalIndividualDashboardPage.agencySummaryValidation(name, license, thin, agent, email, website, phone, preferredLanguage);
     }
-    @Then("I validate my agency address is {string}")
-    public void iValidateMyAgencyAddress(String address) {
-        adminPortalIndividualDashboardPage.validateAgencyAddress(address);
-    }
     @Then("I click on manage plan button on admin portal Individual dashboard")
     public void iClickManagePlanButton() {
         adminPortalIndividualDashboardPage.clickManagePlan();
