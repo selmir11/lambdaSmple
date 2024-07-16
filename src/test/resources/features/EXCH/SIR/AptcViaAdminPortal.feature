@@ -1,7 +1,7 @@
 @SIRRegression
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-@RT-1618-WIP
+@RT-1618-WIP @test
 Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "OBO" and validating the aptc
   Given I open the login page on the "admin" portal
   And I refresh the page
@@ -163,18 +163,28 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   And I click save and continue on tax status page
 #
 ## ohi
-#  Then I select "Other" as ELMO health insurance option
-#  Then I click continue on the ELMO health insurance page
-#  And I validate I am on the "Elmo Ohi Individual Insurance" page
-#
-#  Then I validate I am on the "Family Overview" page
-#  Then I click continue on family overview page
-#  Then I validate I am on the "Tell us about life changes" page
-#  Then I select "MoveToCO" QLCE on tell us about life changes page
-#  Then I click on Save and Continue
-#  Then I Declare as Tax Household 1
-#  And I click Continue on the Declarations And Signature Page
-#  And I wait for hold on content to disappear
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+
+  Then I validate I am on the "Family Overview" page
+  Then I click continue on family overview page
+  Then I validate I am on the "Tell us about life changes" page
+  Then I select "MoveToCO" QLCE on tell us about life changes page
+  Then I click on Save and Continue
+  Then I Declare as Tax Household 1
+  And I click Continue on the Declarations And Signature Page
+  And I wait for hold on content to disappear
+ # Then I validate that my APTC value is "521.67/mo"
 #  Then I click on view results and shop
 #  And I click continue on application results page
 #  Then I validate I am on the "Start Shopping" page
