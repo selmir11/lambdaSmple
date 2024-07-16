@@ -23,7 +23,7 @@ public class Ob834FileValidations {
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
         validateCtrlFnGrpSegment(entry);
-        validateSponsorPayerDetails(entry);
+        validateSponsorPayerDetails();
         validateAddlMaintReason(entry);
         validateInsSegment(entry);
         validateDtpSegment(entry);
@@ -80,71 +80,6 @@ public class Ob834FileValidations {
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(0), entry.getMember_group(), "Count of the number of functional groups included in an interchange does not match");
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
-        softAssert.assertAll();
-    }
-
-    public void validateSponsorPayerDetails(Ob834DetailsEntity entry){
-        List<List<String>> n1MemberListSeg = transaction.getMembersList().get(0).getN1();
-        List<List<String>> refSeg = transaction.getMembersList().get(0).getREF();
-        if(n1MemberListSeg.get(0).get(0).equals("LX1")&& n1MemberListSeg.get(0).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(0).get(3), "PRE AMT 1", "PRE AMT 1, Text does not match");
-            softAssert.assertEquals(refSeg.get(6).get(3), entry.getPremium_amount(), "Premium amount does not match");
-        }
-        if(n1MemberListSeg.get(1).get(0).equals("LX2")&& n1MemberListSeg.get(1).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(1).get(3),"APTC AMT", "APTC AMT, Text does not match");
-            softAssert.assertEquals(refSeg.get(7).get(1), "9V", "9V does not match");
-            softAssert.assertEquals(refSeg.get(7).get(3), entry.getPremium_reduction_amt(), "APTC, premium reduction amount does not match");
-        }
-        if(n1MemberListSeg.get(2).get(0).equals("LX3")&& n1MemberListSeg.get(2).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(2).get(3), "CSR AMT", "CSR AMT, Text does not match");
-            softAssert.assertEquals(refSeg.get(8).get(1), "9V");
-            softAssert.assertEquals(refSeg.get(8).get(3), entry.getCsr_amount(), "CSR amount does not match" );
-        }
-        if(n1MemberListSeg.get(3).get(0).equals("LX4")&& n1MemberListSeg.get(3).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(3).get(3), "RATING AREA", "RATING AREA, Text does not match");
-            softAssert.assertEquals(refSeg.get(9).get(1), "9X", "9X");
-            softAssert.assertEquals(refSeg.get(9).get(3), entry.getRate_area(), "Rate area does not match");
-        }
-        if(n1MemberListSeg.get(4).get(0).equals("LX5")&& n1MemberListSeg.get(4).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(4).get(3), "SOURCE EXCHANGE ID", "SOURCE EXCHANGE ID, Text does not match");
-            softAssert.assertEquals(refSeg.get(10).get(1), "17", "REF 17 does not match");
-            softAssert.assertEquals(refSeg.get(10).get(3), "COHBE", "COHBE, REF 17 does not match");
-        }
-        if(n1MemberListSeg.get(5).get(0).equals("LX6")&& n1MemberListSeg.get(5).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(5).get(3), "TOT RES AMT", "TOT RES AMT, Text does not match");
-            softAssert.assertEquals(refSeg.get(11).get(1), "9V", "9V");
-            softAssert.assertEquals(refSeg.get(11).get(3), entry.getTotal_responsible_amount(), "Total responsible amount does not match");
-        }
-        if(n1MemberListSeg.get(6).get(0).equals("LX7")&& n1MemberListSeg.get(6).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(6).get(3), "PRE AMT TOT", "PRE AMT TOT, Text does not match");
-            softAssert.assertEquals(refSeg.get(12).get(1), "9X", "REF 9X, does not match");
-            softAssert.assertEquals(refSeg.get(12).get(3), entry.getTotal_premium_amount(), "Total premium amount does not match");
-        }
-        if(n1MemberListSeg.get(7).get(0).equals("LX8")&& n1MemberListSeg.get(7).get(1).equals("75")){
-            softAssert.assertEquals(n1MemberListSeg.get(7).get(3), "SEP REASON", "SEP REASON, Text does not match");
-            softAssert.assertEquals(refSeg.get(13).get(1), "17", "REF 17 for sep reason does not match");
-            softAssert.assertEquals(refSeg.get(13).get(3), entry.getSep_reason(), "Sep reason does not match");
-        }
-        // REF Segment
-        if(refSeg.get(0).get(0).equals("0F")){
-            softAssert.assertEquals(refSeg.get(0).get(1), entry.getSubscriber_id(), "Subscriber Id does not match" );
-        }
-        if(refSeg.get(1).get(0).equals("17")){
-            softAssert.assertEquals(refSeg.get(1).get(1), entry.getSubscriber_id(), "identification of a sponsor");
-        }
-        if(refSeg.get(2).get(0).equals("6O")){
-            softAssert.assertEquals(refSeg.get(2).get(1), entry.getAccount_id(), "Account id does not match");
-        }
-        if(refSeg.get(3).get(0).equals("1L")){
-            softAssert.assertEquals(refSeg.get(3).get(1), entry.getEap_id(), "EAPID does not match");
-        }
-        if(refSeg.get(4).get(0).equals("CE")){
-            String hiosId = refSeg.get(4).get(1); //Remove the last 2 digits from the hios plan id to remove CSR level
-            softAssert.assertEquals(hiosId.substring(0, hiosId.length()-2), entry.getHios_plan_id() , "HIOS ID does not match");
-        }
-        if(refSeg.get(5).get(0).equals("E8")){
-            softAssert.assertEquals(refSeg.get(5).get(1), "COH-INDV1", "COH-INDV1 does not match");
-        }
         softAssert.assertAll();
     }
 
