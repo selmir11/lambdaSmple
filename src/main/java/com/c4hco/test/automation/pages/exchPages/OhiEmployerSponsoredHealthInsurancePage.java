@@ -35,85 +35,85 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "div > label")
     List<WebElement> EsiQuestionTxt;
 
-    @FindBy(css ="#ELIG-Ohi-Esi-employer-container span.error-message")
+    @FindBy(css ="#ELIG-Ohc-Esi-employer-container span.error-message")
     WebElement whichJobError;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-employer")
+    @FindBy(css = "#ELIG-Ohc-Esi-employer")
     WebElement esiSelectEmployerDpd;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-minStdVal-container span.error-message")
+    @FindBy(css = "#ELIG-Ohc-Esi-minStdVal-container span.error-message")
     WebElement minValueError;
 
-    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-YesButton")
+    @FindBy(id = "ELIG-Ohc-Esi-minStdVal-YesButton")
     WebElement esiMinValueStandardYesBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-NoButton")
+    @FindBy(id = "ELIG-Ohc-Esi-minStdVal-NoButton")
     WebElement esiMinValueStandardNoBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-minStdVal-IDontKnowButton")
+    @FindBy(id = "ELIG-Ohc-Esi-minStdVal-IDontKnowButton")
     WebElement esiMinValueStandardDontKnowBtn;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgMonthlyPremium-container span.error-message")
+    @FindBy(css = "#ELIG-Ohc-Esi-EmpSponsCovgMonthlyPremium-container span.error-message")
     WebElement amountError;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgMonthlyPremium")
+    @FindBy(css = "#ELIG-Ohc-Esi-EmpSponsCovgMonthlyPremium")
     WebElement esiMonthlyAmountInput;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-currEnrl-container span.error-message")
+    @FindBy(css = "#ELIG-Ohc-Esi-currEnrl-container span.error-message")
     WebElement currentlyEnrolledError;
 
-    @FindBy(id = "ELIG-Ohi-Esi-currEnrl-YesButton")
+    @FindBy(id = "ELIG-Ohc-Esi-currEnrl-YesButton")
     WebElement esiCurrentlyEnrolledYesBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-currEnrl-NoButton")
+    @FindBy(id = "ELIG-Ohc-Esi-currEnrl-NoButton")
     WebElement esiCurrentlyEnrolledNoBtn;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-covgEndsSoon-container span.error-message")
+    @FindBy(css = "#ELIG-Ohc-Esi-covgEndsSoon-container span.error-message")
     WebElement insuranceEndingError;
 
-    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-YesButton")
+    @FindBy(id = "ELIG-Ohc-Esi-covgEndsSoon-YesButton")
     WebElement esiInsuranceEndYesBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-covgEndsSoon-NoButton")
+    @FindBy(id = "ELIG-Ohc-Esi-covgEndsSoon-NoButton")
     WebElement esiInsuranceEndNoBtn;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-empSponsCovgEndDate-container span.error-message")
+    @FindBy(css = "#ELIG-Ohc-Esi-empSponsCovgEndDate-container span.error-message")
     WebElement inputEndDateError;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-empSponsCovgEndDate")
+    @FindBy(css = "#ELIG-Ohc-Esi-empSponsCovgEndDate")
     WebElement esiEndDateInput;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-empVoluntaryEnd-container span.error-message")
+    @FindBy(css = "#ELIG-Ohc-Esi-empVoluntaryEnd-container span.error-message")
     WebElement endVoluntaryError;
 
-    @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-YesButton")
+    @FindBy(id = "ELIG-Ohc-Esi-empVoluntaryEnd-YesButton")
     WebElement esiVoluntarilyEndingYesBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-empVoluntaryEnd-NoButton")
+    @FindBy(id = "ELIG-Ohc-Esi-empVoluntaryEnd-NoButton")
     WebElement esiVoluntarilyEndingNoBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-FamilyCoveragePlanOffered-YesButton")
+    @FindBy(id = "ELIG-Ohc-Esi-FamilyCoveragePlanOffered-YesButton")
     WebElement esiFamilyOfferedYesBtn;
 
-    @FindBy(id = "ELIG-Ohi-Esi-FamilyCoveragePlanOffered-NoButton")
+    @FindBy(id = "ELIG-Ohc-Esi-FamilyCoveragePlanOffered-NoButton")
     WebElement esiFamilyOfferedNoBtn;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-EmpSponsCovgFamilyMonthlyPremium")
+    @FindBy(css = "#ELIG-Ohc-Esi-EmpSponsCovgFamilyMonthlyPremium")
     WebElement esiMonthlyAmountFamilyInput;
 
-    @FindBy(css = "#ELIG-Ohi-Esi-MemberCoverage > div > span")
+    @FindBy(css = "#ELIG-Ohc-Esi-MemberCoverage > div > span")
     WebElement esiMemberStatusTxt;
 
     @FindBy(css = "app-other-member-coverage > div > span")
     List<WebElement> esiFamilyMemberTxt;
 
-    @FindBy(id = "-Esi.CoverageTypeEnrolledButton")
+    @FindBy(id = "ELIG-Ohc-Esi-MemberCoverage-0-CoverageTypeEnrolledButton")
     List<WebElement> esiFamilyEnrolledBtn;
 
-    @FindBy(id = "-Esi.CoverageTypeAccessButton")
+    @FindBy(id = "ELIG-Ohc-Esi-MemberCoverage-0-CoverageTypeAccessButton")
     List<WebElement> esiFamilyOfferedBtn;
 
-    @FindBy(id = "-Esi.CoverageTypeNoAccessButton")
+    @FindBy(id = "ELIG-Ohc-Esi-MemberCoverage-0-CoverageTypeNoAccessButton")
     List<WebElement> esiFamilyNoOptionBtn;
 
     @FindBy(css = ".drawer-controls > div > div")
