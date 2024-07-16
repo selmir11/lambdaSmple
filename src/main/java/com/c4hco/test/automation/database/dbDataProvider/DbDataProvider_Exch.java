@@ -114,4 +114,9 @@ public class DbDataProvider_Exch {
         return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ());
     }
 
+
+    public List<String> getPolicyId(){
+        return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
+    }
+
 }

@@ -17,14 +17,17 @@ public class AddAddressPageSteps {
 
     @And("I enter the new residential address details")
     public void addNewResidentialAddress(List<Map<String, String>> addressDetails){
-         addAddressPage.addNewResidentialAddress(addressDetails);
-    }
+         addAddressPage.addNewResidentialAddress(addressDetails);}
+
     @Then("I enter member with address line1 {string} in city {string} in state {string} with zipcode {string} and county {string}")
     public void mailingAddress(String addrLine1,String city,String state,String zipcode,String county){
-        addAddressPage.genericMailingAddress(addrLine1, city, state, zipcode,county);
-    }
+        addAddressPage.genericMailingAddress(addrLine1, city, state, zipcode,county);}
+
     @Then("I enter generic mailing address details")
     public void addMailingAddressDetails(){addAddressPage.mailingAddress();}
+
+    @Then("I enter a new member address with city {string} state {string} zip {string} and county {string}")
+    public void addMailingAddressDetails(String city, String state, String zipcode, String county){addAddressPage.newMailingAddress(city, state, zipcode, county);}
 
     @Then("I select {string} for CO Resident option")
     public void isMemberCOResident(String YNResident){addAddressPage.isColoradoResident(YNResident);}

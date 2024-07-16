@@ -23,7 +23,7 @@ public class Ob834FileValidations {
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
         validateCtrlFnGrpSegment(entry);
-//        validateSponsorPayerDetails();
+        validateSponsorPayerDetails();
         validateAddlMaintReason(entry);
         validateInsSegment(entry);
         validateDtpSegment(entry);
@@ -82,21 +82,19 @@ public class Ob834FileValidations {
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
         softAssert.assertAll();
     }
-
     public void validateSponsorPayerDetails(){
-         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-         transaction =  edi834TransactionDetails.getTransactionList().get(0);
-       // Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction =  edi834TransactionDetails.getTransactionList().get(0);
+        // Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         edi834TransactionDetails.getTransactionList(); // WIP - loop for all transactions
-       // Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
+        // Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
         // Name segment will have the sponsor details
         transaction.getMembersList(); // WIP - loop for multiple members
-       System.out.println("commo transaction--"+transaction.getCommonSegments().getN1());
+        System.out.println("commo transaction--"+transaction.getCommonSegments().getN1());
         List<List<String>> n1Seg =  transaction.getCommonSegments().getN1();
 
-       System.out.println("n1Seg --"+n1Seg);
+        System.out.println("n1Seg --"+n1Seg);
     }
-
     public void validateAddlMaintReason(Ob834DetailsEntity entry){
         List<List<String>> refSegList = transaction.getMembersList().get(0).getREF();
         for (List<String> refSeg : refSegList) {

@@ -2,6 +2,8 @@ package com.c4hco.test.automation.database.Queries;
 
 import com.c4hco.test.automation.Dto.SharedData;
 
+import java.util.List;
+
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
@@ -105,5 +107,9 @@ public class DbQueries_Exch {
                 "where application_id = 'book_of_business_q:policy-svc'\n" +
                 "and message->>'householdAccountId' = '"+acctId+"'\n" +
                 "ORDER BY created_ts desc";
+    }
+    public String policyId(){
+        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy ep \n" +
+                "where account_id =  '"+acctId+"' ORDER BY created_ts desc";
     }
 }
