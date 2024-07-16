@@ -116,7 +116,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I validate I am on the "Employment Info" page
   Then I select the option "Yes" to employment
   And I select the option "No" to self employment
-  Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "4500000" at frequency "Annually"
+  Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "7000000" at frequency "Annually"
   And I select the option "No" to seasonal employment
   And I select the option "No" to projected income
   And I click continue on the Employment Info Page
@@ -184,11 +184,14 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I Declare as Tax Household 1
   And I click Continue on the Declarations And Signature Page
   And I wait for hold on content to disappear
- # Then I validate that my APTC value is "521.67/mo"
-#  Then I click on view results and shop
-#  And I click continue on application results page
-#  Then I validate I am on the "Start Shopping" page
-#  Then I click continue on start shopping page
+  Then I validate I am on the "Good News" page
+  Then I click on No Thanks on good news page
+  Then I validate I am on the "Application History" page
+  Then I validate that my APTC value is "582.09/mo"
+  Then I click on view results and shop
+  And I click continue on application results page
+  Then I validate I am on the "Start Shopping" page
+  Then I click continue on start shopping page
 #  #Check for proper groups
 #  Then I click continue on grouping Members Medical page
 #  And I select the first medical plan
