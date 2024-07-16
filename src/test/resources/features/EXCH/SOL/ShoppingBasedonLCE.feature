@@ -490,7 +490,7 @@ Feature: Initial Payment Page test
    #And I click All Done on Pay Now page -We need to comment this out for Staging
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
-    Then I select make payment button to pay the premium
+    Then I select second make payment button to pay the premium
     And I select the Money Order button
     And I click continue on payment selection page
     And I click on Sign Out in the Header for "Elmo"
