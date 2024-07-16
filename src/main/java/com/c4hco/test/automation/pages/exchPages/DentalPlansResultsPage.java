@@ -89,7 +89,6 @@ public class DentalPlansResultsPage {
     public void clickSkip(){
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(dentalSkipBtn,30);
-      //  basicActions.scrollToElement(dentalSkipBtn);
         dentalSkipBtn.click();
     }
     public void clickFirstTwoCompareBoxes() {

@@ -187,7 +187,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I validate I am on the "Good News" page
   Then I click on No Thanks on good news page
   Then I validate I am on the "Application History" page
-  Then I validate that my APTC value is "776.53/mo"
+  Then I validate that my APTC value is "582.09/mo"
   Then I click on view results and shop
   And I click continue on application results page
   Then I validate I am on the "Start Shopping" page
