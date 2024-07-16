@@ -15,7 +15,7 @@ public class EmploymentInfoPageSteps {
     @And("I select the option {string} to self employment")
     public void selectSelfEmployment(String SelfEmployment){employmentInfoPage.isUserSelfEmplyed(SelfEmployment);}
 
-    @And("I enter employment details with {string} income at {string} frequency")
+    @And("I enter employment details with {string} income at {string} frequency") // deprecate this to use below
     public void iEnterEmploymentDetails(String Salary, String Frequency){employmentInfoPage.addEmploymentInfo(Salary, Frequency);}
 
     @Then("I enter company details with addressline1 as {string} and city as {string} and state as {string} and zipcode as {string} and income {string} at frequency {string}")
