@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class TellUsAboutAdditionalMembersPageSteps {
 
     TellUsAboutAdditionalMemberPage tellUsAboutAdditionalMemberPage = new TellUsAboutAdditionalMemberPage(WebDriverManager.getDriver());
@@ -41,5 +43,10 @@ public class TellUsAboutAdditionalMembersPageSteps {
 
     @Then("I enter new born with minus {int} days as DOB")
     public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.Newbornwithcurrentdatelessthanfivedays(Days);}
+
+    @Then("I enter details on tell us about additional members of your household exch page and continue with {string}, {string}, {string} and applying {string}")
+    public void EnterspecificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String applying, List<String> Relations) {
+        tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch(Name, DOB, gender, Relations, applying);
+    }
 
 }
