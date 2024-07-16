@@ -404,21 +404,10 @@ public class DbValidations {
             softAssert.assertEquals(bookOfBusinessQEntity.getApplicationid(), SharedData.getPrimaryMember().getApplication_id());
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate));
             policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
-
-
-
-//            policyIdMap.forEach((key, value) -> {
-//                if (policyIdMap.get(key).equals("1")) {
-//                    softAssert.assertEquals(bookOfBusinessQEntity.getPolicyid(), value, "Medical Policy Id matches");
-//                } else if (policyIdMap.get(key).equals("2")) {
-//                    softAssert.assertEquals(bookOfBusinessQEntity.getPolicyid(), value, "Dental Policy Id matches");
-//                }
-//            });
         }
         List<String> policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
         softAssert.assertTrue(policyIdListFromBookOfBusinessDb.equals(policyIdFromPolicyDB));
-      //  Collections.sort(policyIdListFromBookOfBusinessDb, policyIdFromPolicyDB);
-          softAssert.assertAll();
+        softAssert.assertAll();
     }
 
 }

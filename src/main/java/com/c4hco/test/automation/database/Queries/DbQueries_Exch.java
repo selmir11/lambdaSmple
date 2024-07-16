@@ -110,6 +110,6 @@ public class DbQueries_Exch {
     }
     public String policyId(){
         return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy ep \n" +
-                "where account_id =  '"+acctId+"'";
+                "where account_id =  '"+acctId+"' ORDER BY created_ts desc";
     }
 }
