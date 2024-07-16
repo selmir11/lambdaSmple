@@ -127,14 +127,14 @@ public class DbValidations {
         //  softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
 
           validateConstantFields(ob834Entity);
-//          validatePersonalDetails(subscriber, ob834Entity);
-//          validateResponsiblePersonDetails(subscriber, ob834Entity);
-//          validateBrokerDetails(ob834Entity,dbData);
-//          validateIncorrectEntities(subscriber, ob834Entity);
-//          validateMailingAddress(subscriber, ob834Entity);
-//         // validateRelCode(subscriber, ob834Entity);   //WIP
-//          validateMemberCountDetails(ob834Entity);
-//          ValidatePriorSubscriber(subscriber, ob834Entity);
+          validatePersonalDetails(subscriber, ob834Entity);
+          validateResponsiblePersonDetails(subscriber, ob834Entity);
+          validateBrokerDetails(ob834Entity,dbData);
+          validateIncorrectEntities(subscriber, ob834Entity);
+          validateMailingAddress(subscriber, ob834Entity);
+         // validateRelCode(subscriber, ob834Entity);   //WIP
+          validateMemberCountDetails(ob834Entity);
+          ValidatePriorSubscriber(subscriber, ob834Entity);
       }
     }
 
