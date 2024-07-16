@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,7 @@ public class EditGroupingMembersMedicalPage {
     @FindBy(css = "div.cdk-drag")
     List<WebElement> groupingMemebers;
 
-    @FindBy(css ="div.dragHere")
+    @FindBy(xpath = "//div[@class='dragHere']/parent::div")
     List<WebElement> dragAMemberHere;
     @FindBy(css = ".row .redTxt")
     WebElement errorText;
@@ -43,6 +44,9 @@ public class EditGroupingMembersMedicalPage {
 
     @FindBy(css = "ngb-tooltip-window .tooltip-inner")
     WebElement tootlTip;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -170,6 +174,32 @@ public class EditGroupingMembersMedicalPage {
     public void ivalidateResetGroupLink(){
         resetgroupsButton.isDisplayed();
         resetgroupsButton.isEnabled();
+    }
+
+    public void createNewGroup(List<String> grouping) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        while (grouping.size()+1 != dragAMemberHere.size()) {
+            basicActions.scrollToElement(createNewGroupLink);
+            createNewGroupLink.click();
+        }
+        for (int i = grouping.size() - 1; i > 0; i--) {
+            String[] groupDetail = grouping.get(i).split(":");
+            String[] Names = groupDetail[0].split(",");
+
+            for (String Name : Names) {
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
+                WebElement dropElement = dragAMemberHere.get(i + 1);
+                basicActions.scrollToElement(dragElement);
+                // Scroll the drop element into view
+                basicActions.scrollToElement(dropElement);
+                // Perform drag and drop using JavaScript
+                builder.clickAndHold(dragElement)
+                        .moveToElement(dropElement)
+                        .release(dropElement).build()
+                        .perform();
+                basicActions.wait(3000);
+            }
+        }
     }
 
 }
