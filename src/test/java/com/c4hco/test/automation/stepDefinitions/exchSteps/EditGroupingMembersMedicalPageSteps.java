@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class EditGroupingMembersMedicalPageSteps {
     EditGroupingMembersMedicalPage editGroupingMembersMedicalPage = new EditGroupingMembersMedicalPage(WebDriverManager.getDriver());
 
@@ -69,6 +71,11 @@ public class EditGroupingMembersMedicalPageSteps {
     @And("I validate there is Reset my groups to the suggested link")
     public void presenceOfResetmyGroup(){
         editGroupingMembersMedicalPage.ivalidateResetGroupLink();
+    }
+
+    @Then("I create new group in edit medical grouping page and drag members to the new group")
+    public void createNewGroupAndAddMembers(List<String> grouping) {
+        editGroupingMembersMedicalPage.createNewGroup(grouping);
     }
 
 }
