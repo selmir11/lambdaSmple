@@ -50,4 +50,5 @@ public class TobaccoUsageCoCoPage {
         softAssert.assertEquals(bodyText.get(4), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
     }
+
 }

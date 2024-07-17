@@ -16,4 +16,9 @@ public class TobaccoUsageCoCoPageSteps {
         tobaccoUsageCoCoPage.verifyTextOnTobaccoPage();
     }
 
+    @And("I validate the page navigation on tobacco usage page coco")
+    public void verifyPageNavTobaccoPage()  {
+        tobaccoUsageCoCoPage.verifyTextOnTobaccoPage();
+    }
+
 }
