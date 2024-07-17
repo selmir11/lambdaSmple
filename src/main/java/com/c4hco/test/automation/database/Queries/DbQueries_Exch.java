@@ -45,6 +45,7 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
 
+
     public String getOhiRecords(){
         return "select ohi.*\n" +
                 "From  "+dbName+".es_member_other_health_ins ohi\n" +
@@ -111,5 +112,10 @@ public class DbQueries_Exch {
     public String policyId(){
         return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy ep \n" +
                 "where account_id =  '"+acctId+"' ORDER BY created_ts desc";
+    }
+
+    public String getAcct_holder_fnFromBOB(){
+        return "select acct_holder_fn from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 }

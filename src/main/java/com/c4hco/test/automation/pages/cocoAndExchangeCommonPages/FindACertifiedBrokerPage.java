@@ -142,6 +142,9 @@ public class FindACertifiedBrokerPage {
 
     @FindBy (id = "broker-exchangeId")
     WebElement currentAgencyName;
+    @FindBy (xpath = "//button[.='Continue with my application']")
+    WebElement continueWithMyOwn;
+
 
     public void FindABrokerPageTitle(String language){
         String ExpectedText = switch (language) {
@@ -450,4 +453,9 @@ public class FindACertifiedBrokerPage {
         SharedData.setBroker(broker);
     }
 
+    public void ClickContinueWithMyApplication() {
+        basicActions.waitForElementToBePresent(continueWithMyOwn,30);
+        continueWithMyOwn.click();
+
+    }
 }
