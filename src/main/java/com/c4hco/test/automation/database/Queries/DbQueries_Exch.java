@@ -116,6 +116,6 @@ public class DbQueries_Exch {
 
     public String getAcct_holder_fnFromBOB(){
         return "select acct_holder_fn from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+                "where account_id = '"+acctId+"'";
     }
 }

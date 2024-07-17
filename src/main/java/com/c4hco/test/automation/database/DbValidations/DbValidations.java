@@ -387,7 +387,6 @@ public class DbValidations {
         softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match");
         softAssert.assertAll();
     }
-DbQueries_Exch dbQueriesExch = new DbQueries_Exch();
 
 
     public void validatePolicyDqCheck(){
@@ -419,11 +418,7 @@ DbQueries_Exch dbQueriesExch = new DbQueries_Exch();
 
 
     public void validateAccountHolderNameFromBOB() {
-
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
-
-        System.out.println(SharedData.getMembers().get(0).getFirstName());
-        System.out.println(dbQueriesExch.getAcct_holder_fnFromBOB());
         softAssert.assertEquals(SharedData.getMembers().get(0).getFirstName(), acct_holderBOB.get(0));
         softAssert.assertAll();
     }
