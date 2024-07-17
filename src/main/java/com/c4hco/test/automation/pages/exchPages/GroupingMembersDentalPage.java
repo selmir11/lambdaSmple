@@ -45,7 +45,6 @@ public class GroupingMembersDentalPage {
 
     }
 
-
     public void clickOnEditDentalGroupinglink() {
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsLink, 10);
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsLink, 30);

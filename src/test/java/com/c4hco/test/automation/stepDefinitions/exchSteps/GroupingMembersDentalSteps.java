@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 public class GroupingMembersDentalSteps {
     GroupingMembersDentalPage groupingMembersDental = new GroupingMembersDentalPage(WebDriverManager.getDriver());
 
-
     @Then("I click on dental edit enrollment groups link")
     public void clickOnEditDentalGroupinglink(){
            groupingMembersDental.clickOnEditDentalGroupinglink();
