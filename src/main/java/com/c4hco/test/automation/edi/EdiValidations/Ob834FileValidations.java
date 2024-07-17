@@ -6,6 +6,8 @@ import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
+import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
+import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -20,8 +22,8 @@ public class Ob834FileValidations {
     public void validateOb834File(Ob834DetailsEntity entry){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
-//        validateCtrlFnGrpSegment();
-//        validateSponsorPayerDetails();
+        validateCtrlFnGrpSegment(entry);
+        validateSponsorPayerDetails();
         validateAddlMaintReason(entry);
         validateInsSegment(entry);
         validateDtpSegment(entry);
@@ -29,30 +31,70 @@ public class Ob834FileValidations {
         validateNM1Seg(entry);
         validatePerSeg(entry);
         validateBgnSeg(entry);
-//        validateTrnSeg();
+        validateTrnSeg(entry);
         validateQtySeg(entry);
+        validateHLHSeg(entry);
+        validateLUISeg(entry);
+        validateN3N4Segments(entry);
+        validateDMGSegment(entry);
     }
 
-    public void validateCtrlFnGrpSegment(){
-        // ISA and IEA Segments
-        // GS and GE segments
+    public void validateHLHSeg(Ob834DetailsEntity entry){
+        List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
+        softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
+        softAssert.assertAll();
+    }
+
+    public void validateCtrlFnGrpSegment(Ob834DetailsEntity entry){
         CommonEDISegments commonEDISegments = SharedData.getCommonEDISegments();
+        //ISA Segment
+        JSONArray isaSeg = commonEDISegments.getISA();
+        String senderId = isaSeg.get(5).toString().trim();
+        String receiverId = isaSeg.get(7).toString().trim();
+        softAssert.assertEquals(isaSeg.get(4), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
+        softAssert.assertEquals(senderId, entry.getInterchange_sender_id() , "Interchange Sender ID does not match");
+        softAssert.assertEquals(isaSeg.get(6), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
+        softAssert.assertEquals(receiverId, entry.getInterchange_receiver_id(),"Interchange receiver id does not match");
+        softAssert.assertEquals("20"+isaSeg.get(8), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(isaSeg.get(9), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(isaSeg.get(11), "00501", "Code specifying the version number of the interchange control segments");
+        softAssert.assertEquals(isaSeg.get(12), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
+        softAssert.assertEquals(isaSeg.get(13), "0", "No Interchange Acknowledgment Requested");
+        softAssert.assertEquals(isaSeg.get(14), "T","End of ISA segment, 'T' for Test Data, does not match");
+        //IEA Segment
+        JSONArray ieaSeg = commonEDISegments.getIEA();
+        softAssert.assertEquals(ieaSeg.get(0), entry.getMember_group(), "Number of functional groups included does not match");
+        softAssert.assertEquals(ieaSeg.get(1), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
+        //GS Segment
+        JSONArray gsSeg = commonEDISegments.getGS().getJSONArray(0);
+        softAssert.assertEquals(gsSeg.get(0), "BE", "Benefit Enrollment and Maintenance, Code identifying a group of application related transaction sets");
+        softAssert.assertEquals(gsSeg.get(1), entry.getInterchange_sender_id(), "Sender's code does not match");
+        softAssert.assertEquals(gsSeg.get(2), entry.getInterchange_receiver_id(), "Receiver's code does not match");
+        softAssert.assertEquals(gsSeg.get(3), entry.getInterchange_date(), "Interchange date does not match");
+        softAssert.assertEquals(gsSeg.get(4), entry.getInterchange_time(), "Interchange time does not match");
+        softAssert.assertEquals(gsSeg.get(5), entry.getGroup_ctrl_number(), "Group control number does not match");
+        softAssert.assertEquals(gsSeg.get(6), "X", "Code identifying the issuer of the standard; this code is used in conjunction with Data, X\n" +
+                "Accredited Standards Committee ");
+        softAssert.assertEquals(gsSeg.get(7), "005010X220A1", "Code indicating the version, release, subrelease, and industry identifier of the EDI standard being used does not match");
+        //GE Segment
+        JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
+        softAssert.assertEquals(geSeg.get(0), entry.getMember_group(), "Count of the number of functional groups included in an interchange does not match");
+        softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
+        softAssert.assertAll();
     }
-
     public void validateSponsorPayerDetails(){
-         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-         transaction =  edi834TransactionDetails.getTransactionList().get(0);
-       // Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction =  edi834TransactionDetails.getTransactionList().get(0);
+        // Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         edi834TransactionDetails.getTransactionList(); // WIP - loop for all transactions
-       // Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
+        // Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
         // Name segment will have the sponsor details
         transaction.getMembersList(); // WIP - loop for multiple members
-       System.out.println("commo transaction--"+transaction.getCommonSegments().getN1());
+        System.out.println("commo transaction--"+transaction.getCommonSegments().getN1());
         List<List<String>> n1Seg =  transaction.getCommonSegments().getN1();
 
-       System.out.println("n1Seg --"+n1Seg);
+        System.out.println("n1Seg --"+n1Seg);
     }
-
     public void validateAddlMaintReason(Ob834DetailsEntity entry){
         List<List<String>> refSegList = transaction.getMembersList().get(0).getREF();
         for (List<String> refSeg : refSegList) {
@@ -144,10 +186,18 @@ public class Ob834FileValidations {
         softAssert.assertAll();
     }
 
-    public void validateTrnSeg(){
-        transaction.getCommonSegments().getST();
-        // Include SE in commonSegments
-        // transaction.getCommonSegments();
+    public void validateTrnSeg(Ob834DetailsEntity entry){
+        // ST Segment
+      List<String> stSeg  = transaction.getCommonSegments().getST().get(0);
+      softAssert.assertEquals(stSeg.get(0), "834", "Transaction Set Identifier Code does not match");
+      softAssert.assertEquals(stSeg.get(1), "1000", "Transaction Set Control Number does not match");
+      softAssert.assertEquals(stSeg.get(2), "005010X220A1", "Implementation Convention Reference does not match");
+        // SE Segment
+      int segCount = segmentCount();
+      List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
+      softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
+      softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number does not match");
+      softAssert.assertAll();
     }
 
     public void validateQtySeg(Ob834DetailsEntity entry) {
@@ -161,6 +211,65 @@ public class Ob834FileValidations {
         softAssert.assertEquals(qtySeg.get(2).get(0), "ET", "Total subscribers");
         softAssert.assertEquals(qtySeg.get(2).get(1), entry.getTotal_subscribers(), "Total subscribers does not match");
         softAssert.assertAll();
+    }
+    public void validateLUISeg(Ob834DetailsEntity entry){
+       List<List<String>> luiSeg = transaction.getMembersList().get(0).getLUI();
+       softAssert.assertEquals(luiSeg.get(0).get(2), entry.getWritten_language(), "Written Language does not match.");
+       softAssert.assertEquals(luiSeg.get(0).get(3), String.valueOf(6), "Written Language Use Indicator does not match");
+       softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
+       softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
+       softAssert.assertAll();
+    }
+    public void validateN3N4Segments(Ob834DetailsEntity entry){
+        //N3 Segment
+        List<List<String>> n3Seg = transaction.getMembersList().get(0).getN3();
+        softAssert.assertEquals(n3Seg.get(0).get(0), entry.getResidence_street_line1(), "Residence street address line1 does not match");
+        softAssert.assertEquals(n3Seg.get(1).get(0), entry.getMail_street_line1(), "Mailing address street line 1 does not match");
+        //N4 Segment
+        List<List<String>> n4Seg = transaction.getMembersList().get(0).getN4();
+        softAssert.assertEquals(n4Seg.get(0).get(0), entry.getResidence_city(), "Residence city does not match");
+        softAssert.assertEquals(n4Seg.get(0).get(1), entry.getResidence_st(), "Residence state does not match");
+        softAssert.assertEquals(n4Seg.get(0).get(2), entry.getResidence_zip_code(), "Residence zipcode does not match");
+        softAssert.assertEquals(n4Seg.get(0).get(4), "CY", "Country Code");
+        softAssert.assertEquals(n4Seg.get(0).get(5), entry.getResidence_fip_code(),"Residence fipcode does not match");
+
+        softAssert.assertEquals(n4Seg.get(1).get(0), entry.getMail_city(), "Mailing city does not match");
+        softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
+        softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
+        softAssert.assertAll();
+    }
+    public void validateDMGSegment(Ob834DetailsEntity entry){
+        List<List<String>> dmgSeg = transaction.getMembersList().get(0).getDMG();
+        softAssert.assertEquals(dmgSeg.get(0).get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
+        softAssert.assertEquals(dmgSeg.get(0).get(1), entry.getMember_dob(), "Member date of birth does not match");
+        softAssert.assertEquals(dmgSeg.get(0).get(2), entry.getMember_gender(), "Member gender does not match");
+        softAssert.assertAll();
+    }
+    public int segmentCount(){
+        int memberSegCount  =
+                        transaction.getMembersList().get(0).getN1().size()+
+                        transaction.getMembersList().get(0).getN4().size()+
+                        transaction.getMembersList().get(0).getLS().size()+
+                        transaction.getMembersList().get(0).getHD().size()+
+                        transaction.getMembersList().get(0).getDTP().size()+
+                        transaction.getMembersList().get(0).getLUI().size()+
+                        transaction.getMembersList().get(0).getN3().size()+
+                        transaction.getMembersList().get(0).getHLH().size()+
+                        transaction.getMembersList().get(0).getLX().size()+
+                        transaction.getMembersList().get(0).getINS().size()+
+                        transaction.getMembersList().get(0).getREF().size()+
+                        transaction.getMembersList().get(0).getNM1().size()+
+                        transaction.getMembersList().get(0).getLE().size()+
+                        transaction.getMembersList().get(0).getPER().size()+
+                        transaction.getMembersList().get(0).getDMG().size()+
+                        transaction.getCommonSegments().getDTP().size()+
+                        transaction.getCommonSegments().getST().size()+
+                        transaction.getCommonSegments().getSE().size()+
+                        transaction.getCommonSegments().getREF().size()+
+                        transaction.getCommonSegments().getN1().size()+
+                        transaction.getCommonSegments().getQTY().size()+
+                        transaction.getCommonSegments().getBGN().size();
+        return memberSegCount;
     }
 
 }

@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TellUsAboutAdditionalMemberPage {
 
@@ -58,6 +60,56 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "memberRelationship3")
     WebElement selectRelationship3;
 
+    @FindBy(css = "#memberRelationship1 > option:nth-child(2)")
+    WebElement selectBrother;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(3)")
+    WebElement selectCousin;
+
+    @FindBy(xpath = "#memberRelationship1 > option:nth-child(4)")
+    WebElement selectFather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(5)")
+    WebElement selectGrandfather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(6)")
+    WebElement selectGrandson;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(7)")
+    WebElement selectHalfBrother;
+
+    @FindBy(css= "#memberRelationship1 > option:nth-child(8)")
+    WebElement selectSpouse;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(9)")
+    WebElement selectInLaw;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(10)")
+    WebElement selectNephew;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(11)")
+    WebElement selectPartner;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(12)")
+    WebElement selectStepBrother;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(13)")
+    WebElement selectStepFather;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(14)")
+    WebElement selectSon;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(15)")
+    WebElement selectStepSon;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(16)")
+    WebElement selectUncle;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(17)")
+    WebElement selectUnrelated;
+
+    @FindBy(css = "#memberRelationship1 > option:nth-child(18)")
+    WebElement selectOther;
 
     @FindBy(id = "coverageYes")
     WebElement rdobtnIsMemberApplingYes;
@@ -70,6 +122,18 @@ public class TellUsAboutAdditionalMemberPage {
 
     @FindBy(id = "continueButton")
     WebElement btnsaveAndContinue;
+
+    @FindBy(xpath = "//span[contains(text(),'Primary')]/parent::label/parent::div //select")
+    WebElement selectRelationshipToPrimary;
+
+    @FindBy(xpath = "//span[contains(text(),'Spouse')]/parent::label/parent::div //select")
+    WebElement selectRelationshipToSpouse;
+
+    @FindBy(xpath = "//span[contains(text(),'Daughter')]/parent::label/parent::div //select")
+    WebElement selectRelationshipToDaughter;
+
+    @FindBy(xpath = "//span[contains(text(),'Son')]/parent::label/parent::div //select")
+    WebElement selectRelationshipToSon;
 
     public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
@@ -187,6 +251,100 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob = dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
+
+    public void specificAdditionalMemberDetailsExch(String Name, String DOB, String gender, List<String> Relations, String applying){
+        String frstName = Name+getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(13);
+        basicActions.waitForElementToBePresent(txtheader,1);
+        basicActions.waitForElementToBePresent(txtfirstName,30);
+        txtfirstName.sendKeys(frstName);
+        txtmiddleName.sendKeys(mdlName);
+        txtlastName.sendKeys(lastName);
+        txtdateOfBirth.sendKeys(DOB);
+        txtSSN.sendKeys("653035280");
+        List<MemberDetails> memberList = SharedData.getMembers();
+        int memberCount =0;
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }else{
+            memberCount = memberList.size();
+        }
+        memberCount++;
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setDependentCountTag("member"+memberCount);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        selectSex(gender);
+        if(IsPersonPregnentNo.isDisplayed() ){
+            selectIsPersonPregnant("No");
+        }
+        for(String Relation : Relations) {
+            selectRelationship(Relation);
+        }
+        isMemberApplyingForInsurance(applying);
+    }
+
+    public void RelationshipToPrimary(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationshipToPrimary, 15);
+        Select dropdown = new Select(selectRelationshipToPrimary);
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void RelationshipToSpouse(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationshipToSpouse, 15);
+        Select dropdown = new Select(selectRelationshipToSpouse);
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void RelationshipToDauhter(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationshipToDaughter, 15);
+        Select dropdown = new Select(selectRelationshipToDaughter);
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void RelationshipToSon(String Relation){
+        basicActions.waitForElementToBePresent(selectRelationshipToSon, 15);
+        Select dropdown = new Select(selectRelationshipToSon);
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void selectRelationship(String Relationship){
+        String[] parts = Relationship.split(":");
+        String Name = parts[0];  // "Primary"
+        String Relation = parts[1]; // "Spouse"
+
+        if (Name.contains("Primary")){
+            RelationshipToPrimary(Relation);
+        } else if (Name.contains("Spouse")){
+            RelationshipToSpouse(Relation);
+        } else if (Name.contains("Daughter")){
+            RelationshipToDauhter(Relation);
+        } else if (Name.contains("Son")){
+            RelationshipToSon(Relation);
+        }
+        else {
+            try {
+                WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::label/parent::div //select"));
+                // Perform actions on the element
+                Select dropdown = new Select(element);
+                dropdown.selectByVisibleText(Relation);
+            } catch (NoSuchElementException e) {
+                System.out.println("Element not found: " + e.getMessage());
+                // Handle the exception as needed
+            }
+        }
+
+    }
+
 
 }
 

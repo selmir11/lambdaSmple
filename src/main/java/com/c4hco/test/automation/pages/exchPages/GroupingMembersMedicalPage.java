@@ -32,6 +32,12 @@ public class GroupingMembersMedicalPage {
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
+    @FindBy(id = "SHP-MedicalGroupingMembers-GoBack")
+    WebElement goBackButton;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     private BasicActions basicActions;
 
     public GroupingMembersMedicalPage(WebDriver webDriver) {
@@ -43,8 +49,14 @@ public class GroupingMembersMedicalPage {
 
     public void clickContinue() {
         basicActions.waitForElementToBePresent(continueButton, 10);
-        basicActions.waitForElementToBeClickable(continueButton, 30);
-        continueButton.click();
+        basicActions.click(continueButton);
+    }
+
+    public void clickGoBackButton(){
+        basicActions.waitForElementToBePresent( goBackButton,10 );
+        basicActions.waitForElementToBeClickable( goBackButton, 30 );
+        goBackButton.click();;
+
     }
 
     public void clickOnEditMedicalGroupinglink() {

@@ -73,6 +73,10 @@ public class LoginPage {
     WebElement showHidePW;
     @FindBy(id = "passwordBtn")
     WebElement showHidePWCreateAccount;
+    @FindBy(xpath = "//div[normalize-space()='Access Denied']")
+    WebElement accessDenied;
+    @FindBy(css = ".yellow.warning.sign.icon")
+    WebElement warningIcon;
 
 
     private BasicActions basicActions;
@@ -94,6 +98,7 @@ public class LoginPage {
 
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresent(username, 10);
+        basicActions.wait(2000);
         String emailId = SharedData.getPrimaryMember().getEmailId();
         System.out.println("Email::" + emailId);
         String pswd = SharedData.getPrimaryMember().getPassword();
@@ -103,12 +108,13 @@ public class LoginPage {
         password.sendKeys(pswd);
         System.out.println("Password::" + pswd);
         signInButton.click();
+      //  basicActions.waitForElementToDisappear(signInButton, 30);
     }
 
     public void logInBrokerPortal(String accountType) {
         basicActions.waitForElementToBePresent(username, 10);
         BrokerDetails user;
-        switch(accountType){
+        switch (accountType) {
             case "Agency Owner":
                 user = SharedData.getAgencyOwner();
                 break;
@@ -123,16 +129,17 @@ public class LoginPage {
 
         }
         String emailId = user.getEmail();
-        System.out.println("Email::"+emailId);
+        System.out.println("Email::" + emailId);
         String pswd = user.getPassword();
-        System.out.println("Password::"+pswd);
+        System.out.println("Password::" + pswd);
         basicActions.wait(2000);
         username.sendKeys(emailId);
         password.sendKeys(pswd);
         signInButton.click();
     }
-    public void loginAsBrokerUser(String brokerUser,String Password){
-        basicActions.waitForElementToBePresent(usernameAdmin,20 );
+
+    public void loginAsBrokerUser(String brokerUser, String Password) {
+        basicActions.waitForElementToBePresent(usernameAdmin, 20);
         usernameAdmin.sendKeys(brokerUser);
         basicActions.waitForElementToBePresent(usernameAdmin, 20);
         passwordAdmin.sendKeys(Password);
@@ -349,10 +356,12 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(showHidePWCreateAccount, 10);
         WebElement passwordText = basicActions.getDriver().findElement(By.xpath("//input[@id='password']"));
         switch (showHidePWCreateAccount.getText()) {
-            case "Show":  case "MOSTRAR":
+            case "Show":
+            case "MOSTRAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "password");
                 break;
-            case "Hide": case "OCULTAR":
+            case "Hide":
+            case "OCULTAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "text");
                 break;
             default:
@@ -365,10 +374,12 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(showHidePW, 10);
         WebElement passwordText = basicActions.getDriver().findElement(By.xpath("//input[@id='password']"));
         switch (showHidePW.getText()) {
-            case "Show": case "MOSTRAR":
+            case "Show":
+            case "MOSTRAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "password");
                 break;
-            case "Hide": case "OCULTAR":
+            case "Hide":
+            case "OCULTAR":
                 softAssert.assertEquals(passwordText.getAttribute("type"), "text");
                 break;
             default:
@@ -394,4 +405,16 @@ public class LoginPage {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+    public void loginAsAdminAnyUser(String adminUser, String adminPassword) {
+        basicActions.waitForElementToBePresent(usernameAdmin, 20);
+        usernameAdmin.sendKeys(adminUser);      }
+
+    public void accessDeniedPageDisplays() {
+        basicActions.waitForElementToBePresent(accessDenied, 20);
+        softAssert.assertTrue(accessDenied.isDisplayed());
+        basicActions.waitForElementToBePresent(warningIcon, 20);
+        softAssert.assertTrue(warningIcon.isDisplayed());
+        softAssert.assertAll();
+        basicActions.closeBrowserTab();
+    }
 }

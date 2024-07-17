@@ -79,7 +79,8 @@ public class TaxStatusPage {
     }
 
     public void selectTaxFilingOption(String taxFilingOption){
-        basicActions.waitForElementToBePresent(selectFilingStatus, 20);
+        basicActions.scrollToElement( selectFilingStatus );
+        basicActions.waitForElementToBeClickable(selectFilingStatus, 20);
         Select dropdown = new Select(selectFilingStatus);
         dropdown.selectByVisibleText(taxFilingOption);
     }

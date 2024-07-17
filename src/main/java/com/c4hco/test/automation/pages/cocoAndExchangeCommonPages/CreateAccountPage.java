@@ -247,7 +247,7 @@ public class CreateAccountPage {
 
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName(getUniqueString(8)+"TestMember");
+        subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
         subscriber.setLastName(getUniqueString(8)+"Test");
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());

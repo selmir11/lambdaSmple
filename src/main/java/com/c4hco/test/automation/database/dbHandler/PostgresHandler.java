@@ -12,10 +12,11 @@ import java.util.Map;
 
 public class PostgresHandler {
     private static PostgresStatementExecutor executor = new PostgresStatementExecutor();
+
     public String getResultFor(String columnValue, String query) {
         String result = "";
         try {
-            ResultSet rs =executor.executeQuery(query);
+            ResultSet rs = executor.executeQuery(query);
             if (rs.next()) {
                 result = rs.getString(columnValue);
             } else {
@@ -28,11 +29,11 @@ public class PostgresHandler {
         return result;
     }
 
-    public List<String> getResultListFor(String columnValue,String columnValue2, String query) {
+    public List<String> getResultListFor(String columnValue, String query) {
         List<String> resultList = new ArrayList<>();
 
         try {
-            ResultSet rs =executor.executeQuery(query);
+            ResultSet rs = executor.executeQuery(query);
             while (rs.next()) {
                 resultList.add(rs.getString(columnValue) != null ? rs.getString(columnValue).trim() : "");
             }
@@ -43,10 +44,10 @@ public class PostgresHandler {
         return resultList;
     }
 
-    public Map<String,String> getResultForTwoColumnValuesInMap(String columnValue1, String columnValue2, String query) {
-        Map<String,String> results=new HashMap<String,String>();
+    public Map<String, String> getResultForTwoColumnValuesInMap(String columnValue1, String columnValue2, String query) {
+        Map<String, String> results = new HashMap<String, String>();
         try {
-            ResultSet rs =executor.executeQuery(query);
+            ResultSet rs = executor.executeQuery(query);
             while (rs.next()) {
                 results.put(rs.getString(columnValue1), rs.getString(columnValue2));
             }
@@ -59,14 +60,14 @@ public class PostgresHandler {
 
     public String[] getResultForTwoColumnValues(String columnValue1, String columnValue2, String query) {
         String[] results = new String[2];
-        try{
-            ResultSet rs =executor.executeQuery(query);
+        try {
+            ResultSet rs = executor.executeQuery(query);
             if (rs.next()) {
                 results = new String[]{rs.getString(columnValue1), rs.getString(columnValue2)};
             }
         } catch (SQLException e) {
             e.printStackTrace();
-           Assert.fail("Error with db occurred: " + e.getMessage());
+            Assert.fail("Error with db occurred: " + e.getMessage());
         }
         return results;
     }
@@ -75,7 +76,7 @@ public class PostgresHandler {
         ResultSet rs = null;
         Boolean hasRecords = null;
         try {
-            rs =executor.executeQuery(query);
+            rs = executor.executeQuery(query);
             if (rs.next()) {
                 hasRecords = true;
             } else {
@@ -113,9 +114,10 @@ public class PostgresHandler {
         return results;
     }
 
-
-
-
-
+    public boolean setRec(String query){
+        Boolean  recordIsSet =  executor.setRecord(query);
+        return recordIsSet;
+    }
 
 }
+

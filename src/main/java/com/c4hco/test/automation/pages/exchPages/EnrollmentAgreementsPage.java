@@ -63,7 +63,7 @@ public class EnrollmentAgreementsPage {
         basicActions.waitForElementToBeClickable( goBackbtn,10 );
         basicActions.scrollToElement( goBackbtn );
         goBackbtn.click();
-        
+
 
     }
 

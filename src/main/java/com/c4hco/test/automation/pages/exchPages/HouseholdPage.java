@@ -34,7 +34,7 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_Income")
     WebElement editIncomeLink;
 
-    @FindBy(css = ".memberBasicRow .linkButton")
+    @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
 
     @FindBy(xpath = "//*[@class = input.submitbutton]")
@@ -97,7 +97,7 @@ public class HouseholdPage {
 
     public void iEditPrimaryMember(int index) {
         basicActions.waitForElementToBePresent(editPrimaryMember,15);
-        basicActions.waitForElementToBeClickable( editPrimaryMember,15 );
+        basicActions.waitForElementToBeClickableWithRetries( editPrimaryMember,15 );
         index -= 1;
         editPrimaryMember.click();
     }

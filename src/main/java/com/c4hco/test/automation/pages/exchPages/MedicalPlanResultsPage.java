@@ -44,6 +44,10 @@ public class MedicalPlanResultsPage {
 
     @FindBy (id = "MedicalPlanResults-GoBack")
     WebElement btnGoBack;
+
+    @FindBy (id="MedicalPlanResults-Skip")
+    WebElement btnSkip;
+
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 
@@ -76,6 +80,12 @@ public class MedicalPlanResultsPage {
 
     @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
     WebElement planResultsAPTC;
+
+    @FindBy(css = ".plan-results-container .responsive-text-align-left")
+    WebElement planCount;
+
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
 
     public void validateAPTC(String planResultsAPTCredit){
         basicActions.waitForElementToBePresent(planResultsAPTC, 30);
@@ -113,6 +123,11 @@ public class MedicalPlanResultsPage {
         btnGoBack.click();
     }
 
+    public void clickSkip(){
+        basicActions.waitForElementToDisappear(spinner, 20);
+         basicActions.waitForElementToBePresent(btnSkip, 30);
+        btnSkip.click();
+    }
     public void clickCompare() {
         basicActions.waitForElementToBePresent(clickCompare, 30);
         clickCompare.click();
@@ -206,6 +221,11 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToBePresent(nextPageArrow, 10);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
+    }
+
+    public void validatePlanCount(String plansCount){
+        basicActions.waitForElementToBePresent(planCount, 30);
+        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
     }
 
 }

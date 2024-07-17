@@ -15,12 +15,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 public class MyDocumentsPage {
 
@@ -50,6 +50,12 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//a[normalize-space()='Upload another document']")
     WebElement uploadAnotherDocument;
+
+    @FindBy(xpath = "//div[@class='drop-down-options']//div")
+    List<WebElement> categoryList;
+
+    @FindBy(xpath = "//div[@class='doc-type-select']")
+    WebElement docTypeDrpDwn;
 
     //English modal text
 
@@ -171,7 +177,7 @@ public class MyDocumentsPage {
         return false;
     }
 
-    public boolean verifyPDFText(String expectedText, String language, String memberNumber) throws IOException {
+    public boolean verifyPDFText(String expectedText, String docType, String language, String memberNumber) throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
@@ -181,12 +187,12 @@ public class MyDocumentsPage {
 
         // Verify the text
         switch (expectedText) {
-            case "Application Results: Health First Colorado":
+            case "Application Results":
                 switch (language){
                     case "English":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColorado(language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -215,9 +221,9 @@ public class MyDocumentsPage {
                         }
                         break;
                     case "Spanish":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsHealthFirstColoradoSpanish(language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -265,7 +271,7 @@ public class MyDocumentsPage {
                 //============================VALIDATION STEPS==============//
 
     public void verifyPageText(String language)
-        {
+    {
         switch (language) {
             case "English":
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
@@ -312,6 +318,22 @@ public class MyDocumentsPage {
     public void clickuploaddocSpanish(){
         basicActions.waitForElementToBeClickable(btnCargarotrodocumento,30);
         basicActions.click(btnCargarotrodocumento);
+    }
+
+    public void selectType() {
+        StringBuilder categoryText = new StringBuilder();
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
+        docTypeDrpDwn.click();
+        for (int i = 0; i < categoryList.size(); i++) {
+            WebElement categoryElement = categoryList.get(i);
+            basicActions.waitForElementToBePresent(categoryElement, 30);
+            categoryText.append(categoryElement.getText()).append(" ");
+            categoryElement.click();
+            docTypeDrpDwn.click();
+        }
+        String concatenatedCategoryText = categoryText.toString().trim();
+        softAssert.assertEquals(concatenatedCategoryText,"1095A Dispute American Indian/Alaska Native Tribal Membership Appeals Authorized Representative Citizenship Status Complaints Customer Authorization Form Death Eligible Immigration Status Health First Colorado (Medicaid) Application Health First Colorado (Medicaid) Redetermination (RRR) Identity Incarceration Income Life Change Event Medicare Peace Corps Social Security Number TRICARE Veterans Affairs (VA) Other");
+        softAssert.assertAll();
     }
 
     public void textValidate(){

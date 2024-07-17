@@ -5,11 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PostgresStatementExecutor {
-    public ResultSet executeQuery(String sql) {
-        Connection connection = PostgresSQLConnection.getInstance();
-        ResultSet resultSet = null;
+import static org.testng.Assert.fail;
 
+
+public class PostgresStatementExecutor {
+    Connection connection = PostgresSQLConnection.getInstance();
+    public ResultSet executeQuery(String sql) {
+        ResultSet resultSet = null;
         try {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
@@ -21,6 +23,19 @@ public class PostgresStatementExecutor {
          //   PostgresSQLConnection.closeConnection();
         }
         return resultSet;
+    }
+
+    public boolean setRecord(String sql){
+        boolean isExecuted = false;
+        try{
+            Statement statement = connection.createStatement();
+            isExecuted = statement.execute(sql);
+        } catch(SQLException e){
+            e.printStackTrace();
+            fail("Error with db occured::"+e.getMessage());
+            return false;
+        }
+        return isExecuted;
     }
 
 }

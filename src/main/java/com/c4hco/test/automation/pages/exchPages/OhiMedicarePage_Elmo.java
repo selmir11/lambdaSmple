@@ -28,7 +28,7 @@ public class OhiMedicarePage_Elmo {
     @FindBy(css = ".container .header-2")
     WebElement ohiMedicareHeader;
 
-    @FindBy(css = ".ohi-container.body-text-1 > span")
+    @FindBy(css = ".ohc-container.body-text-1 > span")
     WebElement pleaseEnterTxt;
 
     @FindBy(css = ".row.label-row > div > label")
@@ -43,7 +43,7 @@ public class OhiMedicarePage_Elmo {
     @FindBy(id = "ELIG-medicareOhc-partAPremium-NoButton")
     WebElement currentlyEligibleNo;
 
-    @FindBy(css = ".ohi-container > div > div:nth-child(1)")
+    @FindBy(css = ".ohc-container > div > div:nth-child(1)")
     WebElement areYouEnrolledTxt;
 
     @FindBy(css = "lib-checkbox-control > label")
