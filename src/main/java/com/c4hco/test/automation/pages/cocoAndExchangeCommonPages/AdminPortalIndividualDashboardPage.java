@@ -278,8 +278,8 @@ public class AdminPortalIndividualDashboardPage {
             softAssert.assertEquals(pmUsername.getText(), "c4assistorportal+tKSVkjcxB@gmail.com");
             //softAssert.assertEquals(emailProgramManager.getText(),"xxmatusz@gmail.com");
             softAssert.assertEquals(pmPhone.getText(), "335-580-8300");
-            softAssert.assertAll(); }
         }
+            softAssert.assertAll(); }
     public void validateProgramManagerDashboardContainerTitles() {
         basicActions.waitForElementToBePresent(profileSummary, 30);
         softAssert.assertTrue(profileSummary.isDisplayed());
