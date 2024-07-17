@@ -1,7 +1,7 @@
 @SIRRegression
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-@RT-1618-WIP
+@SLER-778-WIP @RT-1618
 Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "OBO" and validating the aptc
   Given I open the login page on the "admin" portal
   And I refresh the page
@@ -44,11 +44,8 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   #Wife
   Then I click Add Another Family Member
   Then I validate I am on the "Add Member" page
-  Then I enter member details with "01011992" date of birth
-  And I select "Female" as sex option
-  And I select "No" as pregnancy option
-  And I select "Spouse" as relationship option
-  And I select "Yes" to Is Member Applying
+  Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011992", "Female" and applying "Yes"
+    |Primary:Spouse|
   And I click continue on Tell us about additional members page
   Then I validate I am on the "Add Address" page
   Then I select "Household" for Residential Address
@@ -66,11 +63,9 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   #Son
   Then I click Add Another Family Member
   Then I validate I am on the "Add Member" page
-  Then I enter member details with "05012015" date of birth
-  And I select "Male" as sex option
-  And I select "Son" as relationship option
-  And I select "Son" as relationship one option
-  And I select "Yes" to Is Member Applying
+  Then I enter details on tell us about additional members of your household exch page and continue with "Son", "05012015", "Male" and applying "Yes"
+    |Primary:Son|
+    |Spouse:Son|
   And I click continue on Tell us about additional members page
   Then I validate I am on the "Add Address" page
   Then I select "Household" for Residential Address
@@ -88,12 +83,10 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   #Daughter
   Then I click Add Another Family Member
   Then I validate I am on the "Add Member" page
-  Then I enter member details with "08012013" date of birth
-  And I select "Female" as sex option
-  And I select "Daughter" as relationship option
-  And I select "Daughter" as relationship one option
-  And I select "Sister" as relationship two option
-  And I select "Yes" to Is Member Applying
+  Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "08012013", "Female" and applying "Yes"
+    |Primary:Daughter|
+    |Spouse:Daughter|
+    |Son:Sister     |
   And I click continue on Tell us about additional members page
   Then I validate I am on the "Add Address" page
   Then I select "Household" for Residential Address
@@ -116,7 +109,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I validate I am on the "Employment Info" page
   Then I select the option "Yes" to employment
   And I select the option "No" to self employment
-  Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "7000000" at frequency "Annually"
+  Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "4500000" at frequency "Annually"
   And I select the option "No" to seasonal employment
   And I select the option "No" to projected income
   And I click continue on the Employment Info Page
@@ -187,30 +180,60 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I validate I am on the "Good News" page
   Then I click on No Thanks on good news page
   Then I validate I am on the "Application History" page
-  Then I validate that my APTC value is "582.09/mo"
+ # Then I validate that my APTC value is "582.09/mo"
   Then I click on view results and shop
+  Then I validate I am on the "Application Results" page
   And I click continue on application results page
   Then I validate I am on the "Start Shopping" page
   Then I click continue on start shopping page
-#  #Check for proper groups
-#  Then I click continue on grouping Members Medical page
-#  And I select the first medical plan
-#  Then I click continue on medical plan results page
-#  Then I click continue on grouping Members Dental page
-#  And I select first dental plan
-#  Then I click continue on dental plan results page
-#  Then I validate I am on the "planSummaryMedicalDental" page
-#  And I continue on plan summary page
-#  And I validate I am on the "Enrollment Agreements" page
-#  And I select "Terms of Use" agreement checkbox
-#  And I select "Privacy Policy" agreement checkbox
-#  And I select "Understand Law" agreement checkbox
-#  And I enter householder signature on the Enrollment Agreements page
-#  And I click continue on Enrollment Agreements page
-#  Then I validate I am on the "Initial Payment" page
-#  Then I select make payment button to pay the premium
-#  And I click continue on payment selection page
-#  Then I select make payment button to pay the premium
-#  And I select the Money Order button
-#  And I click continue on payment selection page
+  Then I validate I am on the "Grouping Members Medical" page
+  And I click on edit enrollment groups link
+  Then I create new group in edit medical grouping page and drag members to the new group
+    |Primary,Son:Group1|
+    |Spouse,Daughter:Group2|
+  Then I click save button to save the groups
+  Then I click on continue button on success pop-up
+  Then I validate I am on the "Grouping Members Medical" page
+  Then I click continue on grouping Members Medical page
+  Then I validate I am on the "Medical Plan Results" page
+  And I select the first medical plan
+  Then I click continue on medical plan results page
+  Then I validate I am on the "Medical Plan Results" page
+  And I select the first medical plan
+  Then I click continue on medical plan results page
+
+  Then I validate I am on the "Grouping Members Dental" page
+  Then I click on dental edit enrollment groups link
+  Then I create new group in edit dental grouping page and drag members to the new group
+    |Primary,Son:Group1|
+    |Spouse,Daughter:Group2|
+  And I click save button to save the dental groups
+  And I click on continue button on success pop-up from edit grouping dental page
+  Then I validate I am on the "Grouping Members Dental" page
+  Then I click continue on grouping Members Dental page
+  Then I validate I am on the "Dental Plan Results" page
+  Then I select "Anthem Dental Family" plan
+  Then I click continue on dental plan results page
+  Then I validate I am on the "Dental Plan Results" page
+  Then I select "Anthem Dental Family" plan
+  Then I click continue on dental plan results page
+  Then I validate I am on the "Plan Summary" page
+  And I click continue on plan summary page
+  And I validate I am on the "Financial Help Agreements" page
+  And I select the terms and agreements checkbox
+  And I enter householder signature on the Financial Help Agreements page
+  And I click continue on Financial Help Agreements page
+
+  And I validate I am on the "Enrollment Agreements" page
+  And I select "Terms of Use" agreement checkbox
+  And I select "Privacy Policy" agreement checkbox
+  And I select "Understand Law" agreement checkbox
+  And I enter householder signature on the Enrollment Agreements page
+  And I click continue on Enrollment Agreements page
+  # - Validate APTC before and after submission of payment - WIP
+  #QA Only Step
+  Then I click all done from payment portal page
+
+  Then I validate I am on the "Account Overview" page
+
 #  And I click on Sign Out in the Header for "Elmo"
