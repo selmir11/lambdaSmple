@@ -20,6 +20,9 @@ public class GroupingMembersMedicalCoCoPage {
     @FindBy(css = "th.th-title")
     List<WebElement> noOfGroups;
 
+    @FindBy(id = "SHP-MedicalGroupingMembers-EditMyEnrollmentGroups")
+    WebElement editMyEnrollmentGroupsButton;
+
     SoftAssert softAssert = new SoftAssert();
 
     public GroupingMembersMedicalCoCoPage(WebDriver webDriver) {
@@ -39,5 +42,11 @@ public class GroupingMembersMedicalCoCoPage {
         softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
         softAssert.assertAll();
         SharedData.setTotalGroups(groupsSize);
+    }
+
+    public void clickOnEditMedicalGroupinglink() {
+        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 10);
+        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 30);
+        editMyEnrollmentGroupsButton.click();
     }
 }

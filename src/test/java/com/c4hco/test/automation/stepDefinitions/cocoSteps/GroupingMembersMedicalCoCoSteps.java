@@ -18,4 +18,9 @@ public class GroupingMembersMedicalCoCoSteps {
     public void verifyNumberOfDefaultGroups(int groups){
         groupingMembersCoCoMedical.noOfMedicalGroups(groups);
     }
+
+    @Then("I click on edit enrollment groups link in coco page")
+    public void clickOnEditEnrollmentgroupsLink(){
+        groupingMembersCoCoMedical.clickOnEditMedicalGroupinglink();
+    }
 }

@@ -12,10 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
@@ -390,13 +387,14 @@ public class DbValidations {
         Map<String,String> policyAhId =  exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
        softAssert.assertEquals( policyAhId.keySet().size(), 2);
         for(String key: policyAhId.keySet()){
-            softAssert.assertEquals(policyAhId.get(key), 0);
+            softAssert.assertEquals(policyAhId.get(key), "0", "Doesn't match policyAhId.get(key)");
         }
         softAssert.assertAll();
     }
 
     public void validateBookOfBusinessQ(){
         List<BookOfBusinessQEntity> bookOfBusinessQList =  exchDbDataProvider.getBookOfBusinessQ();
+        List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
         for(BookOfBusinessQEntity bookOfBusinessQEntity: bookOfBusinessQList){
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q");
@@ -404,11 +402,12 @@ public class DbValidations {
             softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear));
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED");
             softAssert.assertEquals(bookOfBusinessQEntity.getApplicationid(), SharedData.getPrimaryMember().getApplication_id());
-            softAssert.assertTrue( bookOfBusinessQEntity.getCreated_ts().contains(formattedDate));
-            bookOfBusinessQEntity.getPolicyid(); // get policy id for primary member and compare - WIP
+            softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate));
+            policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
         }
-
-          softAssert.assertAll();
+        List<String> policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
+        softAssert.assertTrue(policyIdListFromBookOfBusinessDb.equals(policyIdFromPolicyDB));
+        softAssert.assertAll();
     }
 
 }

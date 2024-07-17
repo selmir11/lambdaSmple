@@ -29,7 +29,7 @@ public class PostgresHandler {
         return result;
     }
 
-    public List<String> getResultListFor(String columnValue, String columnValue2, String query) {
+    public List<String> getResultListFor(String columnValue, String query) {
         List<String> resultList = new ArrayList<>();
 
         try {
