@@ -147,7 +147,8 @@ public class DentalPlansResultsPage {
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
-        basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementListToBePresent(dentalPlanNames, 30);
         return IntStream.range(0, dentalPlanNames.size())
                 .filter(i -> dentalPlanNames.get(i).getText().equals(planName))
                 .boxed()
