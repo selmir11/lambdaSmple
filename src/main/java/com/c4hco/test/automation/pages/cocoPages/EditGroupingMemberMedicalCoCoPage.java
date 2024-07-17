@@ -96,7 +96,7 @@ public class EditGroupingMemberMedicalCoCoPage {
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
         }
-        for (int i = grouping.size() - 1; i > 0; i--) {
+        for (int i = grouping.size() - 1; i >= 0; i--) {
             String[] groupDetail = grouping.get(i).split(":");
             String[] Names = groupDetail[0].split(",");
 
