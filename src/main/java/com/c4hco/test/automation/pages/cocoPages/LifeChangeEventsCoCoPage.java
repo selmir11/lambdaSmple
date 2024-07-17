@@ -76,7 +76,7 @@ public class LifeChangeEventsCoCoPage {
     List<WebElement> memberChangeOfAddressCheckbox;
     @FindBy(css = ".col [id^='ELIG-LceMember-CHANGE']")
     List<WebElement> changeOfAddressEventDate;
-    @FindBy(css = "[style^='margin-top'] [id^='ELIG-LceMember-CHANGE']")
+    @FindBy(xpath = "//button[contains(@id,'movedToColorado-checkBoxButton')]")
     List<WebElement> movedToColoradoCheckbox;
 
     //None of These
@@ -91,6 +91,9 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(id = "LceOverview-GoBack")
     WebElement goBackButton;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
@@ -99,6 +102,7 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void selectLCE(String LCEType) {
+        basicActions.waitForElementToDisappear(spinner,20);
         switch (LCEType) {
             case "InsuranceLoss":
                 basicActions.waitForElementToBeClickable(insuranceLossLCE,10);
@@ -153,6 +157,7 @@ public class LifeChangeEventsCoCoPage {
                 addressChangeLCE.click();
                 for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
                     memberChangeOfAddressCheckbox.get(i).click();
+                    basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i),10);
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
                     movedToColoradoCheckbox.get(i).click();
                 }
