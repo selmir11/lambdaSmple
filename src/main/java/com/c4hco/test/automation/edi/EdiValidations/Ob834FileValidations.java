@@ -23,7 +23,8 @@ public class Ob834FileValidations {
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
         validateCtrlFnGrpSegment(entry);
-        validateSponsorPayerDetails();
+        validateLSLESegment(entry);
+        validateSponsorPayerDetails(entry);
         validateAddlMaintReason(entry);
         validateInsSegment(entry);
         validateDtpSegment(entry);
@@ -42,6 +43,13 @@ public class Ob834FileValidations {
     public void validateHLHSeg(Ob834DetailsEntity entry){
         List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
         softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
+        softAssert.assertAll();
+    }
+    public void validateLSLESegment(Ob834DetailsEntity entry){
+        List<String> lsSegment = transaction.getMembersList().get(0).getLS().get(0);
+        List<String> leSegment = transaction.getMembersList().get(0).getLE().get(0);
+        softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");
+        softAssert.assertEquals(leSegment.get(0), "2700", "Loop trailer, The loop ID number given on the transaction set does not match");
         softAssert.assertAll();
     }
 
@@ -82,18 +90,21 @@ public class Ob834FileValidations {
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
         softAssert.assertAll();
     }
-    public void validateSponsorPayerDetails(){
+    public void validateSponsorPayerDetails(Ob834DetailsEntity entry){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction =  edi834TransactionDetails.getTransactionList().get(0);
-        // Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        edi834TransactionDetails.getTransactionList(); // WIP - loop for all transactions
-        // Transaction transaction =  edi834TransactionDetails.getTransactionList().get(0);
-        // Name segment will have the sponsor details
-        transaction.getMembersList(); // WIP - loop for multiple members
-        System.out.println("commo transaction--"+transaction.getCommonSegments().getN1());
-        List<List<String>> n1Seg =  transaction.getCommonSegments().getN1();
-
-        System.out.println("n1Seg --"+n1Seg);
+        List<List<String>> n1Segment = transaction.getCommonSegments().getN1();
+        //Sponsor Details
+        softAssert.assertEquals(n1Segment.get(0).get(0), "P5", "P5 does not match");
+        softAssert.assertEquals(n1Segment.get(0).get(1), entry.getMember_first_name()+" "+entry.getMember_last_name(), "Sponsor full name does not match.");
+        softAssert.assertEquals(n1Segment.get(0).get(2), "FI", "FI, Federal Taxpayer's Identification Number");
+        softAssert.assertEquals(n1Segment.get(0).get(3), entry.getSponsor_id(), "Sponsor Id does not match");
+        //Payer Details
+        softAssert.assertEquals(n1Segment.get(1).get(0), "IN", "Insurer");
+        softAssert.assertEquals(n1Segment.get(1).get(1), entry.getInsurer_name(), "Insurer Name does not match");
+        softAssert.assertEquals(n1Segment.get(1).get(2), "94", "Code assigned by the organization that is the ultimate destination of the transaction set");
+        softAssert.assertEquals(n1Segment.get(1).get(3), entry.getInsurer_id(), "Insurer Identification Code");
+        softAssert.assertAll();
     }
     public void validateAddlMaintReason(Ob834DetailsEntity entry){
         List<List<String>> refSegList = transaction.getMembersList().get(0).getREF();
