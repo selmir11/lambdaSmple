@@ -1,8 +1,6 @@
 Feature: Regression Tests that require Seed 1
 
- # Background: Seed 01 For Exchange- Single Applicant NFA
-  @test
-  Scenario: Seed 01 For Exchange- Single Applicant NFA
+ Background: Seed 01 For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers |
       | 1           | 1            |
