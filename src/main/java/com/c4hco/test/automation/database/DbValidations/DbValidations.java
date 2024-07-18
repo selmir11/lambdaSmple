@@ -4,6 +4,11 @@ import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
+import com.c4hco.test.automation.database.EntityObj.DbData;
+import com.c4hco.test.automation.database.EntityObj.EsMemberOhiEntity;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -383,6 +388,7 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+
     public void validatePolicyDqCheck(){
         Map<String,String> policyAhId =  exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
        softAssert.assertEquals( policyAhId.keySet().size(), 2);
@@ -407,6 +413,13 @@ public class DbValidations {
         }
         List<String> policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
         softAssert.assertTrue(policyIdListFromBookOfBusinessDb.equals(policyIdFromPolicyDB));
+        softAssert.assertAll();
+    }
+
+
+    public void validateAccountHolderNameFromBOB() {
+        List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
+        softAssert.assertEquals(SharedData.getMembers().get(0).getFirstName(), acct_holderBOB.get(0));
         softAssert.assertAll();
     }
 

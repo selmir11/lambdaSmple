@@ -134,9 +134,9 @@ public class EditGroupingMembersMedicalPage {
          softAssert.assertAll();
     }
      public void iClickContinueOnSuccessPopup(){
+        basicActions.waitForElementToBePresent(successContinue, 20);
          successContinue.click();
      }
-
 
     public void validateToolTipText(){
         String expectedToolTipText = "Household members can only be grouped together if they are all immediate family members who live in the same rating area and could be covered by a single insurance plan. Immediate family members include spouses, children under the age of 26, and collateral dependents (non-married, disabled tax dependents of a group member). Frequently, \"living in the same rating area\" means that all of the individuals live at the same physical address or within the same zip code. You might not be able to group members of your household if they are not considered immediate family members. For assistance, please call our Service Center at 855-752-6749.";
@@ -178,17 +178,15 @@ public class EditGroupingMembersMedicalPage {
 
     public void createNewGroup(List<String> grouping) {
         basicActions.waitForElementToDisappear(spinner, 20);
-        while (grouping.size()+1 != dragAMemberHere.size()) {
-            basicActions.scrollToElement(createNewGroupLink);
+        for(String group: grouping){
             createNewGroupLink.click();
-        }
-        for (int i = grouping.size() - 1; i > 0; i--) {
-            String[] groupDetail = grouping.get(i).split(":");
+            basicActions.scrollToElement(createNewGroupLink);
+            String[] groupDetail =  group.split(":");
             String[] Names = groupDetail[0].split(",");
-
-            for (String Name : Names) {
+            for(String Name: Names){
                 WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
-                WebElement dropElement = dragAMemberHere.get(i + 1);
+                WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size()-1);
+                basicActions.wait(3000);
                 basicActions.scrollToElement(dragElement);
                 // Scroll the drop element into view
                 basicActions.scrollToElement(dropElement);
