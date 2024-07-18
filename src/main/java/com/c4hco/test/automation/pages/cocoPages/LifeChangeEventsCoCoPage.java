@@ -79,6 +79,9 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(xpath = "//button[contains(@id,'movedToColorado-checkBoxButton')]")
     List<WebElement> movedToColoradoCheckbox;
 
+    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
+    public WebElement continueBtn;// locators included for both QA and STG
+
     //None of These
     @FindBy(id ="ELIG-LceOption-noneOfThese-checkBoxButton")
     WebElement noneOfTheseLCE;

@@ -140,7 +140,9 @@ public class SftpUtil {
         try{
             ClassLoader classLoader = getClass().getClassLoader();
            // InputStream inputStream = classLoader.getResourceAsStream("4STMultiINS");
-           InputStream inputStream = classLoader.getResourceAsStream("1ST1INS1LS");
+         //  InputStream inputStream = classLoader.getResourceAsStream("1ST1INS1LS");
+            InputStream inputStream = classLoader.getResourceAsStream("seed01");
+
 
             if (inputStream != null) {
                 System.out.println("File found");
