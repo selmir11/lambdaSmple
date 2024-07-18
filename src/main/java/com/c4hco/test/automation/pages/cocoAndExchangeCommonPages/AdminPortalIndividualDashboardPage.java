@@ -272,11 +272,9 @@ public class AdminPortalIndividualDashboardPage {
     public void VerifyProgramManagerInformationAccountSummary() {
         if (SharedData.getEnv().equals("qa")) {
             softAssert.assertEquals(pmUsername.getText(), "editprofiletest@c4.com");
-           // softAssert.assertEquals(emailProgramManager.getText(),"");
             softAssert.assertEquals(pmPhone.getText(), "236-521-3426");
         } else {
             softAssert.assertEquals(pmUsername.getText(), "c4assistorportal+tKSVkjcxB@gmail.com");
-          //  softAssert.assertEquals(emailProgramManager.getText(),"xxmatusz@gmail.com");
             softAssert.assertEquals(pmPhone.getText(), "335-580-8300");
         }
             softAssert.assertAll(); }
