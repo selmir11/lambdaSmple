@@ -178,7 +178,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Employment Income" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 Main" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3000000" at frequency "Annually"
@@ -487,6 +487,7 @@ Feature: Initial Payment Page test
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I click all done from payment portal page
    #And I click All Done on Pay Now page -We need to comment this out for Staging
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
