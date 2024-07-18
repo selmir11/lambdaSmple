@@ -20,74 +20,54 @@ public class LifeChangeEventsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    //Health Loss
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
     WebElement insuranceLossLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-LOSS_OF_MEC_OTHER')]")
     List<WebElement> allMemberInsuranceLossCheckbox;
     @FindBy (xpath = "//input[contains(@id, 'ELIG-LceMember-LOSS_OF_MEC_OTHER')]")
     List<WebElement> insuranceLossEventDate;
-
-    //Birth
     @FindBy(id = "ELIG-LceOption-BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION-checkBoxButton")
     WebElement birthLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-BIRTH')]")
     List<WebElement> allMembersBirthCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-BIRTH')]")
     List<WebElement> birthEventDate;
-
-    //Pregnancy
     @FindBy(id = "ELIG-LceOption-PREGNANCY-checkBoxButton")
     WebElement pregnancyLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-PREGNANCY')]")
     List<WebElement> allMembersPregnancyCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-PREGNANCY')]")
     List<WebElement> pregnancyEventDate;
-
-    //Marriage
     @FindBy(id ="ELIG-LceOption-MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER-checkBoxButton")
     WebElement marriageLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-MARRIAGE')]")
     List<WebElement> allMembersMarriageCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-MARRIAGE')]")
     List<WebElement> marriageEventDate;
-
-    //Divorce
     @FindBy(id ="ELIG-LceOption-DIVORCE_ANNULMENT_OR_SEPARATION-checkBoxButton")
     WebElement divorceLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-DIVORCE')]")
     List<WebElement> allMembersDivorceCheckbox;
-
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-DIVORCE')]")
     List<WebElement> divorceEventDate;
-
-    //Death
     @FindBy(id ="ELIG-LceOption-DEATH-checkBoxButton")
     WebElement deathLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-DEATH')]")
     List<WebElement> allMembersDeathCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-DEATH')]")
     List<WebElement> deathEventDate;
-
-    //Moved to Colorado
     @FindBy(id="ELIG-LceOption-CHANGE_OF_RESIDENCE-checkBoxButton")
-    WebElement addressChangeLCE;
+    WebElement addressChangeLCE; //Moved to Colorado
     @FindBy(css=".checkbox-description [id^='ELIG-LceMember-CHANGE']")
     List<WebElement> memberChangeOfAddressCheckbox;
     @FindBy(css = ".col [id^='ELIG-LceMember-CHANGE']")
     List<WebElement> changeOfAddressEventDate;
     @FindBy(xpath = "//button[contains(@id,'movedToColorado-checkBoxButton')]")
     List<WebElement> movedToColoradoCheckbox;
-
-    //None of These
     @FindBy(id ="ELIG-LceOption-noneOfThese-checkBoxButton")
     WebElement noneOfTheseLCE;
-
-    //Save and Continue
     @FindBy(id = "LceOverview-SaveAndContinue")
     WebElement saveAndContinueButton;
-
-    //Go Back
     @FindBy(id = "LceOverview-GoBack")
     WebElement goBackButton;
 

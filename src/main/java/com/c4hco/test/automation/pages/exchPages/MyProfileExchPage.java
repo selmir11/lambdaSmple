@@ -2,6 +2,8 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import net.bytebuddy.asm.Advice;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -62,6 +64,12 @@ public class MyProfileExchPage {
 
     @FindBy(css = "span.change-password-msg" )
     WebElement PasswordMessage;
+    @FindBy(xpath = "//span[.=' Change ']" )
+    WebElement changePrimaryContact;
+    @FindBy(id = "contactNames" )
+    WebElement primaryContactDRP;
+    @FindBy(xpath = "//button[.='Save']" )
+    WebElement savePrimaryContact;
 
     @FindBy(css = "#userPassword")
     WebElement PasswordInput;
@@ -79,7 +87,7 @@ public class MyProfileExchPage {
     }
 
     public void backToWelcomeButtonExch() {
-        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 5);
+        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 60);
         MyProfileButtonExch.get(0).click();
     }
 
@@ -361,6 +369,21 @@ public class MyProfileExchPage {
             case "Spanish":
                 LanguageDrpOptions.get(2).click();
         }
+    }
+
+    public void ClickChangePrimaryContactOnMyProfilePage() {
+       basicActions.waitForElementToBePresent(changePrimaryContact,80);
+       changePrimaryContact.click();
+    }
+
+    public void SelectTheSecondHouseholdMemberAsPrimaryContact() {
+        basicActions.waitForElementToBeClickable(primaryContactDRP,20);
+        primaryContactDRP.click();
+        String firstName= SharedData.getMembers().get(0).getFirstName() ;
+        primaryContactDRP.sendKeys(firstName);
+        primaryContactDRP.sendKeys(Keys.ENTER);
+        savePrimaryContact.click();
+        basicActions.wait(60);
     }
 }
 
