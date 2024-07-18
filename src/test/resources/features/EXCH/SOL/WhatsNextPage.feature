@@ -5,7 +5,7 @@ Feature: Tests related to What's Next Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-@SLER-780
+@SLCR-181
 Scenario: Page validation - Validate the text on the page and text on buttons on the page
 When I click create a new account on login page
 Then I click create my account from pre-screen page
