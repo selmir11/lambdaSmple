@@ -5,7 +5,7 @@ Feature: Tests related to What's Next Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-@CCRT-780-wip @test
+@SLER-780
 Scenario: Page validation - Validate the text on the page and text on buttons on the page
 When I click create a new account on login page
 Then I click create my account from pre-screen page
@@ -27,7 +27,6 @@ And I select "I prefer not to answer" race option
 And I click continue on the Ethnicity and race page
 And I select "No" employment option
 And I click continue on the Employment income page
-
 And I select None of these as additional income option
 And I select continue on the Additional Income CoCO page
 Then I validate I am on the "CoCo Deductions" page
@@ -46,7 +45,21 @@ And I click Continue on the Declarations And Signature Page CoCo
 Then I validate I am on the "Application Results CoCo" page
 And I click Continue on the Application Results Page CoCo
 Then I validate I am on the "Start Shopping" page
-Then I verify text on Tobacco Usage Page CoCo
 Then I click continue on coco start shopping page
+Then I validate I am on the "Medical Plan Results" page
+And I select the first medical plan option CoCo
+And I click Continue on the Medical Plans Page CoCo
+Then I validate I am on the "Plan Summary" page
+And I click Continue button on the Medical Dental Page CoCo
+And I select "Terms of Use" agreement checkbox CoCo
+And I select "Privacy Policy" agreement checkbox CoCo
+And I select "Dental Coverage" agreement checkbox CoCo
+And I enter householder signature on the Enrollment Agreements page CoCo
+And I select continue button on the Enrollment Agreements CoCo page
+And I select make payment button to pay the premium CoCo
+And I select Continue button on the Payment Selection CoCo page
+And I select continue button on the Initial Payment CoCo page
+Then I validate I am on the "Congratulations - What's Next?" page
+
 
 
