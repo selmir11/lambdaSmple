@@ -1,7 +1,7 @@
 @SIRRegression
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-@SLER-778-WIP @RT-1618 @test1
+@SLER-778-WIP @RT-1618
 Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "OBO" and validating the aptc
   Given I open the login page on the "admin" portal
   And I refresh the page
