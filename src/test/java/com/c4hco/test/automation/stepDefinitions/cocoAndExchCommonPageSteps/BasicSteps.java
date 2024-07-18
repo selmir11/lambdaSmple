@@ -365,6 +365,9 @@ public class BasicSteps {
             case "Access Gateway" :
                 pageUrl = "/AdminPortal/";
                 break;
+            case "Elmo HRA" :
+                pageUrl = "otherHealthCoverage/hra";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
