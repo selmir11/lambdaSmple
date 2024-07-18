@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Text-Other Health Insurance Page HRA
 
   Background:
