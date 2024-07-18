@@ -379,9 +379,8 @@ public class MyProfileExchPage {
     public void SelectTheSecondHouseholdMemberAsPrimaryContact() {
         basicActions.waitForElementToBeClickable(primaryContactDRP,20);
         primaryContactDRP.click();
-        String firstName2= SharedData.getMembers().get(0).getFirstName() ;
-        System.out.println(firstName2);
-        primaryContactDRP.sendKeys(firstName2);
+        String firstName= SharedData.getMembers().get(0).getFirstName() ;
+        primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
         savePrimaryContact.click();
         basicActions.wait(60);
