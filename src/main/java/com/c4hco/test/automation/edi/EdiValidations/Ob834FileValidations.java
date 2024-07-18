@@ -41,9 +41,14 @@ public class Ob834FileValidations {
         validateN3N4Segments(entry);
         validateDMGSegment(entry);
     }
-    public void validateLX1Seg(List<Map<String, String>> lxExpectedDetailsFromStep){
+    public void validateLXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
+        //LX segement
+        List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
+        int lxSegmentSize = lxSegment.size();
+        softAssert.assertEquals(String.valueOf(lxSegmentSize), "8", "LX segment size 8 mismatch");
+        //REF Segment
         for (Map<String, String> segment : lxExpectedDetailsFromStep) {
 
         List<List<String>> refSegListOfList = transaction.getMembersList().get(0).getREF();
@@ -56,8 +61,8 @@ public class Ob834FileValidations {
                 softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ", N1 segment mismatch for LX " + lx);
                 softAssert.assertEquals(refSegListOfList.get(lx + 5).get(3), refExpected, "REF segment, " + n1Expected + " mismatch for LX " + lx);
             }
-            softAssert.assertAll();
         }
+        softAssert.assertAll();
     }
     public void validateHLHSeg(Ob834DetailsEntity entry){
         List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
