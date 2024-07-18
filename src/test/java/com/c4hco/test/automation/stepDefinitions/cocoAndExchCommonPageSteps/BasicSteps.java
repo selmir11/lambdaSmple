@@ -23,6 +23,9 @@ public class BasicSteps {
             case "Add Member":
                 pageUrl = "nes/addMember";
                 break;
+                case "Pay now":
+                pageUrl = "PaymentPortal/payNow";
+                break;
             case "Account Overview":
                 basicActions.wait(3000);
                 pageUrl = "nes/accountOverview";

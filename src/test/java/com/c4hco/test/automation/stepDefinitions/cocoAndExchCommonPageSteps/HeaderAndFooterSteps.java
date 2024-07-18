@@ -15,11 +15,10 @@ public class HeaderAndFooterSteps {
     @And("I click on Apply for Coverage in the {string} Header")
     public void iClickApplyForCoverageLink(String pageType){ headerAndFooterPage.clickApplyForCoverageLink(pageType); }
 
-    @And("I click on Find a Plan in the Header")
-    public void iClickFindAPlanLinkLink(){ headerAndFooterPage.clickFindAPlanLinkLink(); }
+    @And("I click on Find a Plan in the {string} Header")
+    public void iClickFindAPlanLinkLink(String pageType){ headerAndFooterPage.clickFindAPlanLinkLink(pageType); }
 
     @And("I click on My Account in the {string} Header")
-
     public void iClickMyAccountLink(String pageType){ headerAndFooterPage.clickMyAccountLink(pageType); }
 
     @And("I click on Learn More in the Header")
