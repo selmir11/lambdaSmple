@@ -303,7 +303,7 @@ public class BasicActions {
                 getDriver().navigate().to(newUrl);
                 break;
             case "Elmo COBRA Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoveragee/cobra";
+                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/cobra";
                 newUrl = currentUrl.replace("nes/cobra", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;

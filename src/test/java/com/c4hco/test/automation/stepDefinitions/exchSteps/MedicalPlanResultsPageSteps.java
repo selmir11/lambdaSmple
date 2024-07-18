@@ -33,6 +33,9 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.clickContinue();
     }
 
+    @Then("I click skip on medical plan results page")
+    public void selectSkipOnMedicalPlanResultsPage() { medPlanResultsPage.clickSkip();}
+
     @Then ("I click Go Back on the medical plan results page")
     public void selectGoBackOnMedicalPlanResultsPage() { medPlanResultsPage.clickGoBack();}
 
@@ -90,6 +93,12 @@ public class MedicalPlanResultsPageSteps {
     public void selectColoradoOptionSelection() {
         medPlanResultsPage.selectColoradoOptionSelection();
     }
+
+    @Then("I validate the medical plans count to be {string}")
+    public void validateMedicalPlanCount(String plansCount) {
+        medPlanResultsPage.validatePlanCount(plansCount);
+    }
+
 }
 
 

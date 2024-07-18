@@ -41,6 +41,7 @@ public class TaxStatusPageSteps {
     @And("I select the {string} option for Who Will Claim as Dependents")
     public void iCheckDependentClaimed(String IDByOrder){taxStatusPage.checkDependentClaimed(IDByOrder);}
 
+    // convert the below steps to switch
     @And("I select the first dependent")
     public void SelectDependent1() {taxStatusPage.iSelectDependent1();}
     @And("I select the second dependent")

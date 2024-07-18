@@ -22,4 +22,9 @@ public class InitialPaymentCoCoPageSteps {
     public void continueInitialPaymentCoCo(){
         initialPaymentCoCoPage.selectContinueCoCo();
     }
+
+    @And("I select make payment button for all plans to pay the premium CoCo")
+    public void makeAllPaymentCoCo(){
+        initialPaymentCoCoPage.selectMakeAllPaymentBtnCoCo();
+    }
 }

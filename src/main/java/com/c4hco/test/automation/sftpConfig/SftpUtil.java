@@ -9,7 +9,6 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +18,6 @@ import java.util.Date;
 
 public class SftpUtil {
     private Session session;
-    SoftAssert softAssert = new SoftAssert();
     Edi834Util edi834Util = new Edi834Util();
 
     public SftpUtil(){
@@ -49,8 +47,7 @@ public class SftpUtil {
         String privateKeyPath = ApplicationProperties.getInstance().getProperty("sftpPrivateKeyPath");
         String passPhrase = ApplicationProperties.getInstance().getProperty("sftpPassphrase");
 
-        int sftpPort = 10021;
-        // setSftpPort();
+        int sftpPort =  setSftpPort();
 
         try{
             JSch jsch = new JSch();

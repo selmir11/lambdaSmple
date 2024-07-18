@@ -2,6 +2,7 @@ package com.c4hco.test.automation.Dto;
 
 import com.c4hco.test.automation.Dto.Edi.CommonEDISegments;
 import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
+import com.c4hco.test.automation.database.EntityObj.BookOfBusinessQEntity;
 import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class SharedData {
     @Getter @Setter private static BrokerDetails broker;
     @Getter @Setter private static BrokerDetails adminStaff;
     @Getter @Setter private static String noticeFileName;
+    @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -54,5 +56,6 @@ public class SharedData {
         groupDetails = null;
         dbName = null;
         noticeFileName = null;
+        bookOfBusinessQEntityList = null;
     }
 }

@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,7 @@ public class EditGroupingMembersMedicalPage {
     @FindBy(css = "div.cdk-drag")
     List<WebElement> groupingMemebers;
 
-    @FindBy(css ="div.dragHere")
+    @FindBy(xpath = "//div[@class='dragHere']/parent::div")
     List<WebElement> dragAMemberHere;
     @FindBy(css = ".row .redTxt")
     WebElement errorText;
@@ -43,6 +44,9 @@ public class EditGroupingMembersMedicalPage {
 
     @FindBy(css = "ngb-tooltip-window .tooltip-inner")
     WebElement tootlTip;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -130,9 +134,9 @@ public class EditGroupingMembersMedicalPage {
          softAssert.assertAll();
     }
      public void iClickContinueOnSuccessPopup(){
+        basicActions.waitForElementToBePresent(successContinue, 20);
          successContinue.click();
      }
-
 
     public void validateToolTipText(){
         String expectedToolTipText = "Household members can only be grouped together if they are all immediate family members who live in the same rating area and could be covered by a single insurance plan. Immediate family members include spouses, children under the age of 26, and collateral dependents (non-married, disabled tax dependents of a group member). Frequently, \"living in the same rating area\" means that all of the individuals live at the same physical address or within the same zip code. You might not be able to group members of your household if they are not considered immediate family members. For assistance, please call our Service Center at 855-752-6749.";
@@ -170,6 +174,30 @@ public class EditGroupingMembersMedicalPage {
     public void ivalidateResetGroupLink(){
         resetgroupsButton.isDisplayed();
         resetgroupsButton.isEnabled();
+    }
+
+    public void createNewGroup(List<String> grouping) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        for(String group: grouping){
+            createNewGroupLink.click();
+            basicActions.scrollToElement(createNewGroupLink);
+            String[] groupDetail =  group.split(":");
+            String[] Names = groupDetail[0].split(",");
+            for(String Name: Names){
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
+                WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size()-1);
+                basicActions.wait(3000);
+                basicActions.scrollToElement(dragElement);
+                // Scroll the drop element into view
+                basicActions.scrollToElement(dropElement);
+                // Perform drag and drop using JavaScript
+                builder.clickAndHold(dragElement)
+                        .moveToElement(dropElement)
+                        .release(dropElement).build()
+                        .perform();
+                basicActions.wait(3000);
+            }
+        }
     }
 
 }

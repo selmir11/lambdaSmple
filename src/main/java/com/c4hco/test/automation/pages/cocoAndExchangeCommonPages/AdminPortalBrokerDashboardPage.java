@@ -175,8 +175,8 @@ public class AdminPortalBrokerDashboardPage {
         basicActions.waitForElementToBePresent(goBack,20);
         goBack.click();
     }
-
     public void VerifyBrokerClientInformationContainerNoClients() {
+        basicActions.waitForElementToBePresent(clientInformationText,20);
         softAssert.assertEquals(clientInformationText.getText(),"Client Information");
         softAssert.assertEquals(noClientInfo.getText(),"There is no client information.");
         softAssert.assertAll();

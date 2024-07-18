@@ -36,49 +36,49 @@ public class OhiCobraPage_Elmo {
     @FindBy(css = ".header-3 .clickable")
     WebElement helpMeLink;
 
-    @FindBy(css = ".ohi-container > div > span")
+    @FindBy(css = ".ohc-container > div > span")
     WebElement pleaseEnterTxt;
 
     @FindBy(css = "div > label")
     List<WebElement> CobraQuestionTxt;
 
-    @FindBy(css = "#Ohi-Endable-enrolled-container span.error-message")
+    @FindBy(css = "#Ohc-Endable-enrolled-container span.error-message")
     WebElement currentlyEnrolledError;
 
-    @FindBy(id = "Ohi-Endable-enrolled-YesButton")
+    @FindBy(id = "Ohc-Endable-enrolled-YesButton")
     WebElement currentlyEnrolledYes;
 
-    @FindBy(id = "Ohi-Endable-enrolled-NoButton")
+    @FindBy(id = "Ohc-Endable-enrolled-NoButton")
     WebElement currentlyEnrolledNo;
 
-    @FindBy(css = "#Ohi-Endable-endsSoon-container span.error-message")
+    @FindBy(css = "#Ohc-Endable-endsSoon-container span.error-message")
     WebElement insuranceEndingError;
 
-    @FindBy(id = "Ohi-Endable-endsSoon-YesButton")
+    @FindBy(id = "Ohc-Endable-endsSoon-YesButton")
     WebElement insuranceEndingYes;
 
-    @FindBy(id = "Ohi-Endable-endsSoon-NoButton")
+    @FindBy(id = "Ohc-Endable-endsSoon-NoButton")
     WebElement insuranceEndingNo;
 
-    @FindBy(css = "#Ohi-Endable-endDate-container span.error-message")
+    @FindBy(css = "#Ohc-Endable-endDate-container span.error-message")
     WebElement inputEndDateError;
 
-    @FindBy(css = "#Ohi-Endable-endDate")
+    @FindBy(css = "#Ohc-Endable-endDate")
     WebElement inputEndDate;
 
-    @FindBy(css = "#Ohi-Endable-endVoluntary-container span.error-message")
+    @FindBy(css = "#Ohc-Endable-endVoluntary-container span.error-message")
     WebElement endVoluntaryError;
 
-    @FindBy(id = "Ohi-Endable-endVoluntary-YesButton")
+    @FindBy(id = "Ohc-Endable-endVoluntary-YesButton")
     WebElement endVoluntaryYes;
 
-    @FindBy(id = "Ohi-Endable-endVoluntary-NoButton")
+    @FindBy(id = "Ohc-Endable-endVoluntary-NoButton")
     WebElement endVoluntaryNo;
 
-    @FindBy(id = "Ohi-Endable-GoBack")
+    @FindBy(id = "Ohc-Endable-GoBack")
     WebElement goBackBtn;
 
-    @FindBy(id = "Ohi-Endable-SaveAndContinue")
+    @FindBy(id = "Ohc-Endable-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
 

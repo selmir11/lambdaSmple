@@ -10,6 +10,8 @@ import java.util.List;
 public class CommonSegments {
     @JsonProperty("ST")
     private List<List<String>> ST;
+    @JsonProperty("SE")
+    private List<List<String>> SE;
     @JsonProperty("DTP")
     private List<List<String>> DTP;
     @JsonProperty("REF")

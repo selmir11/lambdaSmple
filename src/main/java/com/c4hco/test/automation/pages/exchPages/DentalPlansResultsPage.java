@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.By;
@@ -9,7 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -28,6 +31,9 @@ public class DentalPlansResultsPage {
 
     @FindBy(id= "DentalPlanResults-GoBack")
     WebElement btnGoBack;
+
+    @FindBy(id= "DentalPlanResults-Skip")
+    WebElement dentalSkipBtn;
 
     @FindBy (id ="mat-mdc-checkbox-28-input")
     WebElement comparePlanBox1;
@@ -53,6 +59,14 @@ public class DentalPlansResultsPage {
     @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
+    @FindBy(css = ".plan-results-container .responsive-text-align-left")
+    WebElement dentalPlanCount;
+
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
+    SoftAssert softAssert = new SoftAssert();
+
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
         SharedData.setFirstPlanNameOnDentalResultsPage(dentalPlanNames.get(0).getText());
@@ -71,6 +85,11 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(btnGoBack,10);
         btnGoBack.click();
 
+    }
+    public void clickSkip(){
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(dentalSkipBtn,30);
+        dentalSkipBtn.click();
     }
     public void clickFirstTwoCompareBoxes() {
         basicActions.waitForElementToBePresent( comparePlanBox1,10 );
@@ -128,7 +147,8 @@ public class DentalPlansResultsPage {
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
-        basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementListToBePresent(dentalPlanNames, 30);
         return IntStream.range(0, dentalPlanNames.size())
                 .filter(i -> dentalPlanNames.get(i).getText().equals(planName))
                 .boxed()
@@ -148,4 +168,29 @@ public class DentalPlansResultsPage {
         nextPageArrow.click();
     }
 
-}
+    public void validateDentalPlanCount(String plansCount){
+        basicActions.waitForElementToBePresent(dentalPlanCount, 30);
+        Assert.assertEquals(dentalPlanCount.getText(), plansCount+" of "+plansCount+" Dental Plans", "Dental plans count did not match");
+    }
+
+    public void validateDentalPlanNames(){
+        List<String> dentalPlanNamesList = new ArrayList<>();
+
+        while(true){
+            basicActions.waitForElementListToBePresent(dentalPlanNames, 30);
+            for(WebElement dentalPlanName: dentalPlanNames) {
+                dentalPlanNamesList.add(dentalPlanName.getText());
+            }
+            basicActions.waitForElementToBePresent(nextPageArrow, 10);
+
+            if(nextPageArrow.getAttribute("className").contains("disabled")){
+                break;
+            }
+
+            nextPageArrow.click();
+        }
+        softAssert.assertEquals(dentalPlanNamesList.size(), Constants.DentalPlanNamesList.size(), "Plan count doesn't match");
+        softAssert.assertEquals(dentalPlanNamesList, Constants.DentalPlanNamesList);
+        softAssert.assertAll();
+        }
+    }

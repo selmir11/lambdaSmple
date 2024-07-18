@@ -18,15 +18,16 @@ public class ForgetPasswordPage {
     @FindBy(xpath ="//div[@class='forgot-password-header']")
     WebElement forgotPasswordPageTitle;
 
-    @FindBy(id ="fn-label")
+    @FindBy(xpath ="//label[@class='input-label form-label ng-star-inserted']")
     WebElement lblEnterYourEmail;
 
-    @FindBy(id ="submit-button")
+    @FindBy(xpath ="//button[@id='submit-button']")
     WebElement submitBtn;
-    @FindBy(id ="fn")
+    @FindBy(xpath ="//input[@id='un']")
     WebElement emailForgetPassword;
-    @FindBy(xpath ="//div[@class='help-block text-danger col-md-11 input-group mb-0 ng-star-inserted']")
+    @FindBy(xpath ="//span[@class='error-message']")
     WebElement errorUsername;
+
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 m-3 ng-star-inserted']")
     WebElement textNoticeIsSent;
 
@@ -72,9 +73,12 @@ public class ForgetPasswordPage {
         switch (language) {
             case "English":
                 softAssert.assertEquals(errorUsername.getText(),"Username is required");
+                softAssert.assertEquals(lblEnterYourEmail.getText(),"Enter your username in order to receive a link to reset your password");
+
                 break;
             case "Spanish":
                 softAssert.assertEquals(errorUsername.getText(),"Se requiere su nombre de usuario");
+                softAssert.assertEquals(lblEnterYourEmail.getText(),"Para recibir un enlace para restablecer su contrase\u00F1a, ingrese su nombre de usuario");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);

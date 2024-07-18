@@ -69,4 +69,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickOnUploadAnotherDocumentInSpanish() {
         myDocumentsPage.clickuploaddocSpanish();
     }
-}
+
+    @And("I verify user can select each type from type dropdown")
+    public void iVerifyUserCanSelectEachTypeFromTypeDropdown() {myDocumentsPage.selectType();
+        }
+    }

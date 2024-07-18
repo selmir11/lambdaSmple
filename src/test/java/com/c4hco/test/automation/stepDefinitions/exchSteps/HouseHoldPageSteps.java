@@ -33,12 +33,13 @@ public class HouseHoldPageSteps {
         houseHoldPage.iClickEditIncomeLink( index );
     }
 
+    // WIP - Below 2 rows can be combined to one. Seems duplicate.
     @And("I click the member link {int}")
     public void iClickMemberLink(int index) {houseHoldPage.iClickMemberLink(index);}
 
     @Then("I click on the Member Row {int}")
     public void iEditPrimaryMember(int index) {
-        houseHoldPage.iEditPrimaryMember( index );
+        houseHoldPage.iEditPrimaryMember(index);
     }
 
     @Then("I click on the Member Row Red Icon {int}")

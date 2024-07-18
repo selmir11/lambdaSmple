@@ -19,7 +19,7 @@ Feature: Create, reset password for Individual accounts
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create forgot "password"
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I validate the Forgot my password page title in "Spanish"
     Then I verify enter your password text is displayed in "Spanish"
     And I click submit button
