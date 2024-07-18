@@ -10,7 +10,9 @@ import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
 import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Ob834FileValidations {
     SoftAssert softAssert = new SoftAssert();
@@ -40,6 +42,68 @@ public class Ob834FileValidations {
         validateDMGSegment(entry);
     }
 
+    public void validateLX1Seg(Ob834DetailsEntity entry, List<Map<String, String>> lxExpectedDetailsFromStep){
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction = edi834TransactionDetails.getTransactionList().get(0);
+        // LX1 - N1 - REF
+        List<List<String>> refSegListOfList = transaction.getMembersList().get(0).getREF();
+        List<List<String>> n1SegListOfList = transaction.getMembersList().get(0).getN1();
+        List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
+        int lxSegmentSize = lxSegment.size();
+        softAssert.assertEquals(String.valueOf(lxSegmentSize), "8", "LX segment size 8 mismatch");
+
+        for (Map<String, String> segment : lxExpectedDetailsFromStep) {
+            String lx = segment.get("LX");
+            String n1 = segment.get("N1 75");
+            String ref = segment.get("REF");
+            if (lx.equals("1") && refSegListOfList.get(6).get(0).equals("LX1")) {
+                softAssert.assertEquals(n1SegListOfList.get(0).get(3),"PRE AMT 1", "PRE AMT 1, N1 segment mismatch for LX 1");
+                softAssert.assertEquals(entry.getPremium_amount(), refSegListOfList.get(6).get(3), "REF segment, Premium amount mismatch for LX 1");
+            } else if (lx.equals("2") && refSegListOfList.get(7).get(0).equals("LX2")) {
+                softAssert.assertEquals(n1SegListOfList.get(1).get(3), "APTC AMT", "N1 segment mismatch for LX 2");
+                softAssert.assertEquals(entry.getPremium_reduction_amt(), refSegListOfList.get(7).get(3), "REF segment, Premium amount mismatch for LX 2");
+            } else if (lx.equals("3") && refSegListOfList.get(8).get(0).equals("LX3")) {
+                softAssert.assertEquals(n1SegListOfList.get(2).get(3), "CSR AMT", "CSR AMT, N1 segment mismatch for LX 3");
+                softAssert.assertEquals(entry.getCsr_amount(), refSegListOfList.get(8).get(3), "CSR AMT, CSR amount mismatch for LX3");
+            } else if (lx.equals("4") && refSegListOfList.get(9).get(0).equals("LX4")) {
+                softAssert.assertEquals(n1SegListOfList.get(3).get(3), "RATING AREA", "Rating Area, N1 segment mismatch for LX 4");
+                softAssert.assertEquals(entry.getRate_area(), refSegListOfList.get(9).get(3), "RATING AREA, Rating area mismatch for LX4");
+            } else if (lx.equals("5") && refSegListOfList.get(10).get(0).equals("LX5")) {
+                softAssert.assertEquals(n1SegListOfList.get(4).get(3), "SOURCE EXCHANGE ID", "SOURCE EXCHANGE ID, N1 segment mismatch for LX 5");
+                softAssert.assertEquals("COHBE", refSegListOfList.get(10).get(3), "COHBE, Rating area mismatch for LX5");
+            } else if (lx.equals("6") && refSegListOfList.get(11).get(0).equals("LX6")) {
+                softAssert.assertEquals(n1SegListOfList.get(5).get(3), "TOT RES AMT", "TOT RES AMT, N1 segment mismatch for LX 6");
+                softAssert.assertEquals(entry.getTotal_responsible_amount(), refSegListOfList.get(11).get(3), "Total Responsible amount mismatch for LX6");
+            } else if (lx.equals("7") && refSegListOfList.get(12).get(0).equals("LX7")) {
+                softAssert.assertEquals(n1SegListOfList.get(6).get(3), "PRE AMT TOT", "PRE AMT TOT, N1 segment mismatch for LX 7");
+                softAssert.assertEquals(entry.getTotal_premium_amount(), refSegListOfList.get(12).get(3), "T mismatch for LX7");
+            } else if (lx.equals("8") && refSegListOfList.get(13).get(0).equals("LX8")) {
+                softAssert.assertEquals(n1SegListOfList.get(7).get(3), "SEP REASON", "SEP REASON, N1 segment mismatch for LX 8");
+                softAssert.assertEquals(entry.getSep_reason(), refSegListOfList.get(13).get(3), "ADMIN_LCE mismatch for LX8");
+            }
+        }
+            if(refSegListOfList.get(0).get(0).equals("0F")){
+                softAssert.assertEquals(entry.getMember_id(), refSegListOfList.get(0).get(1), "REF seg member Id does not match" );
+            }
+            if(refSegListOfList.get(1).get(0).equals("17")){
+                softAssert.assertEquals(entry.getMember_id(), refSegListOfList.get(1).get(1), "REF seg member Id does not match");
+            }
+            if(refSegListOfList.get(2).get(0).equals("60")) {
+                softAssert.assertEquals(entry.getAccount_id(), refSegListOfList.get(2).get(1), "REF seg Account Id does not match");
+            }
+            if(refSegListOfList.get(3).get(0).equals("1L")) {
+                softAssert.assertEquals(entry.getEap_id(), refSegListOfList.get(3).get(1), "EAPID does not match");
+            }
+            if(refSegListOfList.get(4).get(0).equals("CE")) {
+                String hiosId = refSegListOfList.get(4).get(1);
+                softAssert.assertEquals(entry.getHios_plan_id(), hiosId.substring(0, hiosId.length()-2), "Hios Id does not match");
+            }
+            if(refSegListOfList.get(3).get(0).equals("E8")) {
+                softAssert.assertEquals("COH-INDV1", refSegListOfList.get(5).get(1), "COH-INDV1, does not match");
+            }
+            softAssert.assertAll();
+        // pass the expected ref and n1 for the respective step in the order and parse it here for validation
+    }
     public void validateHLHSeg(Ob834DetailsEntity entry){
         List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
         softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
