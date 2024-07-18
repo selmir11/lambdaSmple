@@ -299,6 +299,7 @@ public class MyDocumentsPage {
      }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
+        basicActions.waitForElementToBePresent(myDocumentsSubTitle, 100);
         basicActions.waitForElementToBePresentWithRetries(documentsInfoMessage, 100);
         basicActions.scrollToElement(documentsInfoMessage);
         softAssert.assertEquals(documentsInfoMessage.getText(), documentName);
