@@ -164,6 +164,7 @@ public class EligNotices {
             case "Health First Colorado" -> healthFirstColorado(language, memberNumber);
             case "CHP" -> chpPlus(language, memberNumber);
             case "Cobra" -> cobra(language, memberNumber);
+            case "Individual Insurance" -> individualInsurance(language, memberNumber);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
@@ -579,7 +580,7 @@ public class EligNotices {
                         healthInsuranceInfo(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        cobraInfo(language),
                         member0Name
                 );
                 case "Spanish" -> String.format(
@@ -591,10 +592,79 @@ public class EligNotices {
                         cobraInfo(language),
                         primaryName,
                         member0Name,
+                        healthInsuranceInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        cobraInfo(language),
+                        member0Name
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
+    public static String individualInsurance(String language, String memberNumber) {
+        String firstOfNextMonth = getFirstOfNextMonth(language);
+
+        String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = ", a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+
+        String primaryName = SharedData.getPrimaryMember().getFullName();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName,
+                        member0Name,
+                        healthInsuranceInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        IndividualInsuranceInfo(language),
+                        member0Name
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName,
+                        member0Name,
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        IndividualInsuranceInfo(language),
                         member0Name
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
@@ -633,24 +703,52 @@ public class EligNotices {
         return switch (language) {
             case "English"->
                     "Premium Tax \n" +
-                    "Credits or \n" +
-                    "Cost-Sharing \n" +
-                    "Reduction for \n" +
-                    currentYear + "\n" +
-                    "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
-                    "You are enrolled in a health plan through COBRA\n";
+                            "Credits or \n" +
+                            "Cost-Sharing \n" +
+                            "Reduction for \n" +
+                            currentYear + "\n" +
+                            "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                            "You are enrolled in a health plan through COBRA\n";
             case "Spanish"->
                     "Cr\u00E9ditos\n" +
-                    "fiscales para\n" +
-                    "el pago de la\n" +
-                    "cuota o\n" +
-                    "reducci\u00F3n de\n" +
-                    "los costos\n" +
-                    "compartidos\n" +
-                    "para "+currentYear+"\n" +
-                    "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
-                    "costos compartidos porque:\n" +
-                    "Est\u00E1 inscrito\u002Fa en un plan de salud a trav\u00E9s de COBRA\n";
+                            "fiscales para\n" +
+                            "el pago de la\n" +
+                            "cuota o\n" +
+                            "reducci\u00F3n de\n" +
+                            "los costos\n" +
+                            "compartidos\n" +
+                            "para "+currentYear+"\n" +
+                            "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                            "costos compartidos porque:\n" +
+                            "Est\u00E1 inscrito\u002Fa en un plan de salud a trav\u00E9s de COBRA\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String IndividualInsuranceInfo(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                            "Credits or \n" +
+                            "Cost-Sharing \n" +
+                            "Reduction for \n" +
+                            currentYear + "\n" +
+                            "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                            "You are enrolled in other health insurance\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                            "fiscales para\n" +
+                            "el pago de la\n" +
+                            "cuota o\n" +
+                            "reducci\u00F3n de\n" +
+                            "los costos\n" +
+                            "compartidos\n" +
+                            "para "+currentYear+"\n" +
+                            "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                            "costos compartidos porque:\n" +
+                            "Est\u00E1 inscrito\u002Fa en otro seguro de salud\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }

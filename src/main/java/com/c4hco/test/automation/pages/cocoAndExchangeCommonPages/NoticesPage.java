@@ -206,9 +206,9 @@ public class NoticesPage {
     public void openAllNotices(String noticeNumber, String language) {
         basicActions.waitForElementToBePresent(EmailDate, 30);
         basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
+        basicActions.waitForElementToBePresent(EmailDate,30);
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
-        basicActions.waitForElementToBePresent(EmailDate,30);
         switch (language){
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
