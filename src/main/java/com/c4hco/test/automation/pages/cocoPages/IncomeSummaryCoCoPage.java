@@ -37,7 +37,11 @@ public class IncomeSummaryCoCoPage {
     @FindBy(id = "ELIG-summaryDetails-YesButton")
     WebElement getProjectedIncomeYes;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void clickprojectedIncomeNo(){
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBeClickableWithRetries( projectedIncomeNo,15 );
         projectedIncomeNo.click();
         projectedIncomeNo.click();

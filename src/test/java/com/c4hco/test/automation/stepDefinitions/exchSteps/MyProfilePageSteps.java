@@ -52,4 +52,14 @@ public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchP
     public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
         myProfileExchPage.PreferredContactLanguageMethod(langContactPreferred);
     }
+
+    @And("I click change primary contact on my profile page")
+    public void iClickChangePrimaryContactOnMyProfilePage() {
+        myProfileExchPage.ClickChangePrimaryContactOnMyProfilePage();
+    }
+
+    @Then("I select the second household member as primary contact")
+    public void iSelectTheSecondHouseholdMemberAsPrimaryContact() {
+        myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact();
+    }
 }

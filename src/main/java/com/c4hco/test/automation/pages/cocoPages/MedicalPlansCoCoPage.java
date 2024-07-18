@@ -16,7 +16,6 @@ import java.util.stream.IntStream;
 
 public class MedicalPlansCoCoPage {
     private BasicActions basicActions;
-
     Optional<Integer> optionalInt;
 
     public MedicalPlansCoCoPage(WebDriver webDriver) {

@@ -205,7 +205,7 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Cigna Dental Family + Pediatric"
+    And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
