@@ -2,8 +2,6 @@ package com.c4hco.test.automation.database.Queries;
 
 import com.c4hco.test.automation.Dto.SharedData;
 
-import java.util.List;
-
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
