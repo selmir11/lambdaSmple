@@ -218,7 +218,8 @@ public class HeaderAndFooterPage {
             basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
             centerHeaderLinkExpertHelp.get(1).click();
             break;
-
+        default:
+            throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
 
