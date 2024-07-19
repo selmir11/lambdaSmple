@@ -202,14 +202,25 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
                 centerHeaderLinkExpertHelp.get(0).click();
                 break;
+
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
 
-    public void clickFindAPlanLinkLink() {
-        basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
-        centerHeaderLink.get(1).click();
+    public void clickFindAPlanLinkLink(String pageType) {
+        switch (pageType){
+            case "Elmo":
+            basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+            centerHeaderLink.get(1).click();
+            break;
+            case "Expert Help":
+            basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
+            centerHeaderLinkExpertHelp.get(1).click();
+            break;
+        default:
+            throw new IllegalArgumentException("Unsupported page type: " + pageType);
+        }
     }
 
     public void clickMyAccountLink(String pageType) {

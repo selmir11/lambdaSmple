@@ -75,6 +75,10 @@ public class NoticesPage {
     WebElement bodyText2;
     @FindBy(xpath="//*[@id='x_programManagerLoginReminderBody']/p")
     List<WebElement> bodyTextAM1605;
+    @FindBy(xpath="//div[@id='x_individualAccountCreationNoticeBody']//div")
+    List<WebElement> bodyTextAM00101;
+    @FindBy(xpath="//*[@id='x_individualAccountCreationNoticeBody']/p")
+    List<WebElement> body2TextAM00101;
     @FindBy(css = ".x_emailHeader p")
     List<WebElement> emailHdrtxt;
     @FindBy(css = "#x_recipientName > span")
@@ -206,9 +210,9 @@ public class NoticesPage {
     public void openAllNotices(String noticeNumber, String language) {
         basicActions.waitForElementToBePresent(EmailDate, 30);
         basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
+        basicActions.waitForElementToBePresent(EmailDate,30);
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
-        basicActions.waitForElementToBePresent(EmailDate,30);
         switch (language){
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
@@ -249,11 +253,13 @@ public class NoticesPage {
             case "AM-016-05" :
                 VerifyTheNoticeTextAM01605();
                 break;
+            case "AM-001-01" :
+                VerifyTheNoticeTextAM00101();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
     }
-
 
     public void verifyTheNoticeCoco(String noticeNumber,String language){
         switch (noticeNumber) {
@@ -264,6 +270,14 @@ public class NoticesPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
+    }
+
+    private void VerifyTheNoticeTextAM00101() {
+        softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
+        softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
+        softAssert.assertEquals(body2TextAM00101.get(0).getText(),"You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
+        softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
+        softAssert.assertAll();
     }
 
     private void VerifyTheNoticeTextAM01605() {

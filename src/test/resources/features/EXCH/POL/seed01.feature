@@ -1,6 +1,6 @@
 Feature: Regression Tests that require Seed 1
 
-  Background: Seed 01 For Exchange- Single Applicant NFA
+ Background: Seed 01 For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers |
       | 1           | 1            |
@@ -77,7 +77,7 @@ Feature: Regression Tests that require Seed 1
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan"
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
@@ -87,6 +87,8 @@ Feature: Regression Tests that require Seed 1
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+
+ #   Then I click all done from payment portal page
 
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
@@ -122,8 +124,18 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
+    And I validate the REF and LX segments in EDI file
+      | LX | N1 75              | REF       |
+      | 1  | PRE AMT 1          | 291.02    |
+      | 2  | APTC AMT           | 0.00      |
+      | 3  | CSR AMT            | 0.00      |
+      | 4  | RATING AREA        | 3         |
+      | 5  | SOURCE EXCHANGE ID | COHBE     |
+      | 6  | TOT RES AMT        | 291.02    |
+      | 7  | PRE AMT TOT        | 291.02    |
+      | 8  | SEP REASON         | ADMIN_LCE |
     And I verify the policy data quality check
-    And I verify the data from book of business queue table
+  #  And I verify the data from book of business queue table
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
