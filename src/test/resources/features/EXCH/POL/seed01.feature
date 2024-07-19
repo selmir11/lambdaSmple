@@ -164,9 +164,9 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
-   And I wait for hold on content to disappear
-   And I click on Sign Out in the Header for "NonElmo"
-   # And I validate the member details from policy tables
+    And I wait for hold on content to disappear
+    And I click on Sign Out in the Header for "NonElmo"
+    And I validate the member details from policy tables
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason |
       | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
@@ -176,7 +176,17 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
       |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
       |          021          | 021                 | 25                   |                          |                             |                    |
-
+    And I validate the REF and LX segments in EDI file
+      | LX | N1 75              | REF                |
+      | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE |
+      | 2  | PRE AMT 1          | 291.02             |
+      | 3  | APTC AMT           | 0.00               |
+      | 4  | CSR AMT            | 0.00               |
+      | 5  | RATING AREA        | 3                  |
+      | 6  | SOURCE EXCHANGE ID | COHBE              |
+      | 7  | TOT RES AMT        | 291.02             |
+      | 8  | PRE AMT TOT        | 291.02             |
+    And I verify the policy data quality check
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
