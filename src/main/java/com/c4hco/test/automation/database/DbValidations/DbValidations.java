@@ -147,6 +147,7 @@ public class DbValidations {
         // validateRelCode(subscriber, ob834Entity);   //WIP
         validateMemberCountDetails(ob834Entity);
         ValidatePriorSubscriber(subscriber, ob834Entity);
+        validateAPTCAmount(ob834Entity);
     }
 
     public void validateSponsorId(Ob834DetailsEntity ob834Entity){
