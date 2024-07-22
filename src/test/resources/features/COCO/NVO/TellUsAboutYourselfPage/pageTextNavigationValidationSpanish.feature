@@ -39,7 +39,8 @@ Feature: Spanish- Tell us about yourself page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
     And I change the language from header to "English"
-    Then I enter details on tell us about additional members of your household page and continue with "01011980", "Male", "Spouse", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Male" and applying "Yes"
+      | Primary:Spouse |
     And I change the language from header to "Spanish"
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"

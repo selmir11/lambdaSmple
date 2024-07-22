@@ -69,7 +69,8 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "English"
-    Then I enter details on tell us about additional members of your household page and continue with "01011996", "Male", "Child or Other dependent", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Son", "01011996", "Male" and applying "Yes"
+      | Primary:Child or Other dependent |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -206,7 +207,8 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    Then I enter details on tell us about additional members of your household page and continue with "01011996", "Male", "Hijo(a) o Otro dependiente", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Son", "01011996", "Male" and applying "Yes"
+      | Primary: Hijo(a) o Otro dependiente |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -308,7 +310,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Primary EditUpdate on the Family Overview page
 
     Then I validate I am on the "CoCo Tell us about yourself" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -347,7 +349,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
 
     Then I validate I am on the "CoCo Additional information for yourself" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -393,7 +395,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -440,13 +442,13 @@ Feature: Header and Footer validation on Coco application pages
     And I verify text on the "CoCo" "Header" in "English"
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
@@ -475,7 +477,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I select add another family member on the Family Overview page
 
     Then I validate I am on the "CoCo Tell us about additional members" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -526,7 +528,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click continue on Tell us about additional members of your household page
 
     Then I validate I am on the "CoCo Additional info for additional member" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
