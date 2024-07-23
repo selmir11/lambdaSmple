@@ -100,13 +100,19 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
+     @FindBy(xpath = "//a[.='Sign Out']")
+    WebElement signOutOverview;
 
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
-    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is the only one that works without getting a stale element issue
+
+    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is for "Who helps you Page" Sign out only.
     WebElement signOutLinkPortal;
 
-   // =========FOOTER============== //
+    @FindBy(xpath = "//div[@class ='p-2 ms-2']") // this is the only one that works without getting a stale element issue
+    WebElement signOutLinkWhoHelpsPage;
+
+    // =========FOOTER============== //
 
     //Admin Portal Footer Links
     @FindBy(linkText = "Privacy Policy")
@@ -218,7 +224,8 @@ public class HeaderAndFooterPage {
             basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
             centerHeaderLinkExpertHelp.get(1).click();
             break;
-
+        default:
+            throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
 
@@ -413,10 +420,19 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
                 basicActions.click(signOutLinkNonElmo);
                 break;
+            case "WhoHelpsYouPage":
+                basicActions.waitForElementToBePresent(signOutLinkWhoHelpsPage, 10);
+                basicActions.scrollToElement(signOutLinkWhoHelpsPage);
+                basicActions.click(signOutLinkWhoHelpsPage);
+                break;
             case "Portal":
                 basicActions.waitForElementToBePresent(signOutLinkPortal, 10);
                 basicActions.waitForElementToBeClickable(signOutLinkPortal,10);
                 basicActions.click(signOutLinkPortal);
+                break;
+            case "Account Overview":
+                basicActions.waitForElementToBeClickable(signOutOverview,10);
+                basicActions.click(signOutOverview);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

@@ -28,6 +28,9 @@ public class DashboardPage {
     @FindBy(xpath = "//button[normalize-space()='Manage Brokers']")
     WebElement manageBrokersButton;
 
+    @FindBy(xpath = "//button[normalize-space()='View Your Clients']")
+    WebElement ViewYourClientsButton;
+
     @FindBy(xpath = "//a[normalize-space()='View']")
     WebElement myAgencyView;
 
@@ -74,6 +77,11 @@ public class DashboardPage {
     public void clickManageBrokersButton(){
         basicActions.waitForElementToBePresent(manageBrokersButton, 10);
         manageBrokersButton.click();
+    }
+
+    public void clickViewYourClientsButton(){
+        basicActions.waitForElementToBePresent(ViewYourClientsButton, 10);
+        ViewYourClientsButton.click();
     }
 
     public void clickMyAgencyView(){
