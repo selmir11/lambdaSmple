@@ -249,6 +249,9 @@ public class NoticesPage {
             case "AM-016-05" :
                 VerifyTheNoticeTextAM01605();
                 break;
+            case "EN-002-04":
+                VerifyTheNoticeTextEN00204();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
@@ -324,6 +327,10 @@ public class NoticesPage {
         softAssert.assertTrue(bodyText1603.get(1).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
         softAssert.assertEquals(bodyText1603.get(2).getText(),"If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
         softAssert.assertEquals(bodyText1603part2.getText(),"If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertAll();
+    }
+    public void VerifyTheNoticeTextEN00204() {
+        softAssert.assertTrue(bodyText1603.get(1).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
         softAssert.assertAll();
     }
 }
