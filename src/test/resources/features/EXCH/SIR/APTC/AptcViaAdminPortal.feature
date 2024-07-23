@@ -248,7 +248,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Income Summary" page
     Then I click the save and continue button on the Income Summary Detail page
     Then I validate I am on the "Tax status" page
-  # - the below step is added because of possible defect?
     And I select the first dependent
     Then I click save and continue on tax status page
     Then I validate I am on the "Elmo Other Health Insurance" page
@@ -284,3 +283,18 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Application Results" page
     Then I validate that my Tax Household's APTC value is "$802.29/mo"
     And I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    Then I validate I am on the "Dental Plan Results" page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "Plan Summary" page
+    Then I validate the APTC Credit on the Summary page is "-$802.29"
+    And I click on Sign Out in the Header for "Elmo"
