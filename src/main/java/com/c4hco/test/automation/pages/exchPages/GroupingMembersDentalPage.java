@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
 public class GroupingMembersDentalPage {
 
@@ -27,8 +26,6 @@ public class GroupingMembersDentalPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-
-    SoftAssert softAssert = new SoftAssert();
 
     public void clickContinue()  {
         basicActions.waitForElementToDisappear(spinner,15);
