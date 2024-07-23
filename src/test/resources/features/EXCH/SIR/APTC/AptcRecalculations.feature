@@ -19,7 +19,6 @@ Feature:APTC recalculation tests
   Scenario Outline: APTC Re-Calculation with family of 2 - Husband+Wife
   #Husband
     And I am a member with City "Denver" in State "CO" with dob "<Dob1>" in county "<County>" with zipcode "<Zipcode>"
-
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -228,6 +227,9 @@ Feature:APTC recalculation tests
       | 01011982 | Grand    | 80446   | 01012011 | 7500000 | $381.25/mo   | -$381.25  |
       | 01011981 | Prowers  | 81052   | 01011983 | 5000000 | $1112.22/mo  | -$1112.22 |
       | 01011970 | Phillips | 80731   | 01011973 | 4300000 | $1835.22/mo  | -$1835.22 |
+      | 01011985 | Lake     | 80461   | 01012007 | 5240000 | $291.83/mo   | -$291.83  |
+      | 01011983 | Weld     | 80634   | 01011989 | 6097000 | $1835.22/mo  | -$1835.22 |
+
 
 
 
