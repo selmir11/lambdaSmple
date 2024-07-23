@@ -16,11 +16,9 @@ Feature:APTC recalculation tests
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
 
-  @test1
-  # Scenario: APTC recalculation greater than 400% - with family of 2 - Husband and Spouse
   Scenario Outline: APTC Re-Calculation with family of 2 - Husband+Wife
   #Husband
-    And I am a member with City "<City>" in State "CO" with dob "<Dob1>" in county "<County>" with zipcode "<Zipcode>"
+    And I am a member with City "Denver" in State "CO" with dob "<Dob1>" in county "<County>" with zipcode "<Zipcode>"
 
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
@@ -223,8 +221,15 @@ Feature:APTC recalculation tests
     And I click on Sign Out in the Header for "Elmo"
 
     Examples:
-    |City   |Dob1     |County |Zipcode|Dob2     |income   |expectedAptc |aptc1    |
-    |Denver |01011981 |EAGLE  |81657  |01011983 |7758000   |$700.01/mo  |-$700.01 |
+      | Dob1     | County   | Zipcode | Dob2     | income  | expectedAptc | aptc1     |
+      | 01011981 | EAGLE    | 81657   | 01011983 | 7758000 | $700.01/mo   | -$700.01  |
+      | 01011970 | Larimer  | 80524   | 01011973 | 8710000 | $757.66/mo   | -$757.66  |
+      | 01011981 | Park     | 80449   | 01011958 | 6000000 | $1116.97/mo  | -$1116.97 |
+      | 01011982 | Grand    | 80446   | 01012011 | 7500000 | $381.25/mo   | -$381.25  |
+      | 01011981 | Prowers  | 81052   | 01011983 | 5000000 | $1112.22/mo  | -$1112.22 |
+      | 01011970 | Phillips | 80731   | 01011973 | 4300000 | $1835.22/mo  | -$1835.22 |
+
+
 
 
 
