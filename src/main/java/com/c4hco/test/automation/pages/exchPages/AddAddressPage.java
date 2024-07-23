@@ -113,10 +113,6 @@ public class AddAddressPage {
 
     }
 
-    public void selectRecentlyAddedAddres(){
-
-    }
-
     public String getMemberName(){
         String getHeader = getNameFromHeader.getText();
         String[] memNameSubstring = getHeader.split(" ");
