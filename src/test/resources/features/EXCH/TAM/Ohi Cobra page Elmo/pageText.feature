@@ -53,7 +53,6 @@ Feature: Page Text-Other Health Insurance Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "COBRA" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
@@ -81,7 +80,6 @@ Feature: Page Text-Other Health Insurance Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
     And I verify the header for Primary Member on the Cobra page
@@ -89,7 +87,13 @@ Feature: Page Text-Other Health Insurance Page
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHI Cobra page
 #Step 6
-    Then I click Go Back on the Elmo OHI Cobra page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "No" on the Cobra page
@@ -97,6 +101,15 @@ Feature: Page Text-Other Health Insurance Page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHI Cobra page
+
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "Yes" on the Cobra page
     And I verify Insurance Ending in 60 days is "No" on the Cobra page
@@ -106,7 +119,13 @@ Feature: Page Text-Other Health Insurance Page
     Then I click "No" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHI Cobra page
 
-    Then I click Go Back on the Elmo OHI Cobra page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "Yes" on the Cobra page
@@ -142,7 +161,6 @@ Feature: Page Text-Other Health Insurance Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "Elmo COBRA" page
@@ -206,7 +224,6 @@ Feature: Page Text-Other Health Insurance Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "Elmo COBRA" page

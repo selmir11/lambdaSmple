@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -300,8 +301,8 @@ public class OhcHraPage_Elmo {
                 break;
             case"Without":
                 if (optOutBtn.size() >= 1) {
-                    softAssert.assertFalse(optOutBtn.get(0).isDisplayed(), "First optOutBtn should not be visible");
-                    softAssert.assertFalse(optOutBtn.get(1).isDisplayed(), "Second optOutBtn should not be visible");
+                    Assert.assertFalse(basicActions.waitForElementToBePresent(optOutBtn.get(0), 30), "First optOutBtn should not be visible");
+                    Assert.assertFalse(basicActions.waitForElementToBePresent(optOutBtn.get(1), 30), "Second optOutBtn should not be visible");
                 }
                 softAssert.assertAll();
                 break;

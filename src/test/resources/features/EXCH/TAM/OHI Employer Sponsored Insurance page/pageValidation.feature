@@ -112,7 +112,8 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "Yes" to claim dependents
     And I select the "2" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "ESI" as health insurance option and continue
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
 
   @SLER-239 @PageTextOtherHealthInsurancePage
@@ -127,7 +128,7 @@ Feature: Page Text-Other Health Insurance Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Insurance" page
-    And I click on Apply for Coverage in the "NonElmo" Header
+    And I click on Apply for Coverage in the "Elmo" Header
 
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -148,7 +149,7 @@ Feature: Page Text-Other Health Insurance Page
     Then I select the projected income option "No" and continue
     And I validate I am on the "Tax status" page
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 #Step 1
     And I validate I am on the "ESI" page
     And I verify offer family health plans is "No" on the ESI page
@@ -158,8 +159,8 @@ Feature: Page Text-Other Health Insurance Page
     And I validate I am on the "Elmo Other Health Insurance" page
     Then I select "None of these" as health insurance option
 #Step 4
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify offer family health plans is "No" on the ESI page
     Then I click "Yes" for offer family plans question
@@ -173,8 +174,8 @@ Feature: Page Text-Other Health Insurance Page
     And I validate I am on the "Elmo Other Health Insurance" page
     Then I select "None of these" as health insurance option
 #Step 6
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify offer family health plans is "Yes" on the ESI page
     And I verify offered family amount is "650.00" on the ESI page
@@ -191,8 +192,8 @@ Feature: Page Text-Other Health Insurance Page
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Insurance" page
     Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify offer family health plans is "Yes" on the ESI page
     And I verify offered family amount is "800.00" on the ESI page
@@ -314,10 +315,10 @@ Feature: Page Text-Other Health Insurance Page
     Then I select the Are you voluntarily ending "Yes" button on the ESI page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -329,10 +330,10 @@ Feature: Page Text-Other Health Insurance Page
     Then I enter the end date as "Today" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -350,10 +351,10 @@ Feature: Page Text-Other Health Insurance Page
       |      Enrolled         |
       |      Offered          |
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -369,10 +370,10 @@ Feature: Page Text-Other Health Insurance Page
       |      No Option        |
       |      Offered          |
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -387,10 +388,10 @@ Feature: Page Text-Other Health Insurance Page
       |      No Option        |
       |      No Option        |
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -405,10 +406,10 @@ Feature: Page Text-Other Health Insurance Page
       |      Enrolled         |
       |      Enrolled         |
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -423,10 +424,10 @@ Feature: Page Text-Other Health Insurance Page
       |      Offered          |
       |      Offered          |
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -437,10 +438,10 @@ Feature: Page Text-Other Health Insurance Page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -450,10 +451,10 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "257.00" for employee amount question on the ESI page
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB
@@ -463,10 +464,10 @@ Feature: Page Text-Other Health Insurance Page
     Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
     Then I enter "475.00" for employee amount question on the ESI page
     Then I click continue on the ESI page
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "None of these" as health insurance option
-    Then I click Go Back on the Other Health Insurance page
-    Then I click continue on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click Go back on the ELMO health insurance page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page
     And I verify the OHI options selected in the DB

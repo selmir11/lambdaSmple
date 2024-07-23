@@ -78,7 +78,6 @@ Feature: Secondary User-OHI Individual Insurance Elmo Page
     And I select "Yes" to claim dependents
     And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "Other" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
