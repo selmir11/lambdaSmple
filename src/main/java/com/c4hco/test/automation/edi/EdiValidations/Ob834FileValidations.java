@@ -10,7 +10,9 @@ import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
 import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Ob834FileValidations {
     SoftAssert softAssert = new SoftAssert();
@@ -39,7 +41,29 @@ public class Ob834FileValidations {
         validateN3N4Segments(entry);
         validateDMGSegment(entry);
     }
+    public void validateLXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction = edi834TransactionDetails.getTransactionList().get(0);
+        //LX segement
+        List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
+        int lxSegmentSize = lxSegment.size();
+        softAssert.assertEquals(String.valueOf(lxSegmentSize), "8", "LX segment size 8 mismatch");
+        //REF Segment
+        for (Map<String, String> segment : lxExpectedDetailsFromStep) {
 
+        List<List<String>> refSegListOfList = transaction.getMembersList().get(0).getREF();
+        List<List<String>> n1SegListOfList = transaction.getMembersList().get(0).getN1();
+            int lx = Integer.parseInt(segment.get("LX"));
+            String n1Expected = segment.get("N1 75");
+            String refExpected = segment.get("REF");
+
+            if (refSegListOfList.get(lx + 5).get(0).equals("LX" + lx)) {
+                softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ", N1 segment mismatch for LX " + lx);
+                softAssert.assertEquals(refSegListOfList.get(lx + 5).get(3), refExpected, "REF segment, " + n1Expected + " mismatch for LX " + lx);
+            }
+        }
+        softAssert.assertAll();
+    }
     public void validateHLHSeg(Ob834DetailsEntity entry){
         List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
         softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());

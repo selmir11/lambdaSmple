@@ -57,7 +57,8 @@ Feature: QLCE Birth during closed enrollment
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I click continue on family overview page
     Then I select "<qlceOption>" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -68,7 +69,7 @@ Feature: QLCE Birth during closed enrollment
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
 
- 
+    And I click on Sign Out in the Header for "NonElmo"
 
 
     Examples:
