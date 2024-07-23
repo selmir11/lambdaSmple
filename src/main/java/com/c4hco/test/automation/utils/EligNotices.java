@@ -78,9 +78,6 @@ public class EligNotices {
             "information is considered a Qualified Life Change Event, which means you can enroll in a health insurance plan or make \n" +
             "changes to your current plan through a Special Enrollment Period.\n" +
             "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n" +
-            "This letter also includes information that members of your household may qualify for Health First Colorado (Colorado's \n" +
-            "Medicaid Program) or Child Health Plan Plus (CHP+). Members of your household who qualify for either of these \n" +
-            "programs will get a separate letter from the State of Colorado.\n" +
             resultsType(docType, language, memberNumber)+
             "Reporting changes about your household:\n" +
             "If you have changes in your household after you enroll in a plan through Connect for Health Colorado, you should report \n" +
@@ -88,29 +85,17 @@ public class EligNotices {
             "a new plan through a Special Enrollment Period. If you choose to enroll in a new plan through a Special Enrollment \n" +
             "Period, you\u2019ll need to enroll within 60 days of your Qualified Life Change Event. Learn more about Qualified Life Change \n" +
             "Events by visiting ConnectforHealthCO.com/resources/before-you-buy/when-can-i-buy/.\n" +
-            "To report changes, log into your PEAK account or call 855-752-6749 or TTY: 855-346-3432. If you do not have a PEAK \n" +
-            "account, you can create one at .Colorado.gov/PEAK\n" +
+            reportToPeak(docType, language)+
             "If you do not report changes about your household, you may have to pay back some or all of your Premium Tax Credit \n" +
             "to the IRS when you file your federal income tax return.\n" +
-            "Additional information for your household:\n" +
-            "If you apply for financial help through Connect for Health Colorado, we assess whether you or members of your \n" +
-            "household could qualify for Health First Colorado (Colorado\u2019s Medicaid Program) or the Child Health Plan Plus (CHP+) \n" +
-            "program. This letter informs you which members of your household may qualify for these programs based on our \n" +
-            "assessment. However, you or members of your household can request a full determination from the State of Colorado \n" +
-            "on whether they qualify for Health First Colorado or CHP+. Call 855-752-6749 or TTY: 855-346-3432 for questions \n" +
-            "about financial help available through Connect for Health Colorado.\n" +
-            "If members of your household qualify for Health First Colorado or CHP+, but you do not want that coverage, you may \n" +
-            "choose to enroll in a health insurance plan through Connect for Health Colorado.\n" +
-            "To see plans offered in your area, log into your Connect for Health Colorado account, click on your eligibility \n" +
-            "summary, and click continue to go to the shopping pages.\n" +
+            additionalInformation(docType, language)+
             "Disagree with your determination:\n" +
             "If you disagree with your household's eligibility determination, you may file an appeal. You must request an appeal \n" +
             ". You can do this by requesting an informal of the results on this notice within 60 days from the date of this notice\n" +
             "resolution, a formal hearing or both. You may log into your Connect for Health Colorado\u00AE account to see a summary \n" +
             "of the information we used for your eligibility determination.\n" +
             "You can request an appeal in one of these four ways\n" +
-//            "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" +
-            "1. please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" + //Remove when previous line is in QA
+            "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" +
             "Monday - Friday 8:00a.m. - 6:00p.m.\n" +
             "2. Visit  and go to \"Resources\" to download an Appeal Request form. You can upload the ConnectforHealthCO.com\n" +
             "completed Appeal Request form to your Connect for Health Colorado\u00AE account in \"My Documents.\"\n" +
@@ -178,6 +163,8 @@ public class EligNotices {
         return switch (docType) {
             case "Health First Colorado" -> healthFirstColorado(language, memberNumber);
             case "CHP" -> chpPlus(language, memberNumber);
+            case "Cobra" -> cobra(language, memberNumber);
+            case "Individual Insurance" -> individualInsurance(language, memberNumber);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
@@ -185,8 +172,10 @@ public class EligNotices {
     public static String healthFirstColorado(String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
-        String englishTemplate = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
-        String spanishTemplate = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+        String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+        String spanishTemplate2 = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
 
         String primaryName = SharedData.getPrimaryMember().getFullName();
         List<MemberDetails> memberList = SharedData.getMembers();
@@ -196,6 +185,7 @@ public class EligNotices {
             case "1" -> switch (language) {
                 case "English" -> String.format(
                         englishTemplate,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -206,6 +196,7 @@ public class EligNotices {
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -218,7 +209,8 @@ public class EligNotices {
             };
             case "2" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate + englishTemplate,
+                        englishTemplate + englishTemplate2,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -235,7 +227,8 @@ public class EligNotices {
                         taxCreditInfoMedicaidSecondary(language)
                 );
                 case "Spanish" -> String.format(
-                        spanishTemplate + spanishTemplate,
+                        spanishTemplate + spanishTemplate2,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -254,6 +247,20 @@ public class EligNotices {
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
             default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
+    public static String healthFirstChpData (String language){
+        return switch (language) {
+            case "English"->
+                    "This letter also includes information that members of your household may qualify for Health First Colorado (Colorado's \n" +
+                    "Medicaid Program) or Child Health Plan Plus (CHP+). Members of your household who qualify for either of these \n" +
+                    "programs will get a separate letter from the State of Colorado.\n";
+            case "Spanish"->
+                    "Esta carta informa tambi\u00E9n que uno o m\u00E1s miembros de su familia calificar\u00EDan para Health First Colorado (el programa\n" +
+                    "Medicaid de Colorado) o para Child Health Plan Plus (CHP+). Los miembros de su familia que califiquen para alguno\n" +
+                    "de estos programas recibir\u00E1n aparte una carta del Gobierno del estado de Colorado.\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
 
@@ -382,8 +389,10 @@ public class EligNotices {
     public static String chpPlus(String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
-        String englishTemplate = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
-        String spanishTemplate = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+        String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+        String spanishTemplate2 = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
 
         String primaryName = SharedData.getPrimaryMember().getFullName();
         List<MemberDetails> memberList = SharedData.getMembers();
@@ -393,6 +402,7 @@ public class EligNotices {
             case "1" -> switch (language) {
                 case "English" -> String.format(
                         englishTemplate,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -403,6 +413,7 @@ public class EligNotices {
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -415,7 +426,8 @@ public class EligNotices {
             };
             case "2" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate + englishTemplate,
+                        englishTemplate + englishTemplate2,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -432,7 +444,8 @@ public class EligNotices {
                         taxCreditInfoChpSecondary(language)
                 );
                 case "Spanish" -> String.format(
-                        spanishTemplate + spanishTemplate,
+                        spanishTemplate + spanishTemplate2,
+                        healthFirstChpData(language),
                         primaryName,
                         healthFirstInfo(language),
                         firstOfNextMonth,
@@ -522,6 +535,272 @@ public class EligNotices {
         };
     }
 
+    public static String cobra(String language, String memberNumber) {
+        String firstOfNextMonth = getFirstOfNextMonth(language);
+
+        String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = ", a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+
+        String primaryName = SharedData.getPrimaryMember().getFullName();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        cobraInfo(language),
+                        primaryName
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        cobraInfo(language),
+                        primaryName
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        cobraInfo(language),
+                        primaryName,
+                        member0Name,
+                        healthInsuranceInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        cobraInfo(language),
+                        member0Name
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        cobraInfo(language),
+                        primaryName,
+                        member0Name,
+                        healthInsuranceInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        cobraInfo(language),
+                        member0Name
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
+    public static String individualInsurance(String language, String memberNumber) {
+        String firstOfNextMonth = getFirstOfNextMonth(language);
+
+        String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String spanishTemplate = ", a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+
+        String primaryName = SharedData.getPrimaryMember().getFullName();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName,
+                        member0Name,
+                        healthInsuranceInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        IndividualInsuranceInfo(language),
+                        member0Name
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate,
+                        firstOfNextMonth,
+                        primaryName,
+                        healthInsuranceInfo(language),
+                        primaryName,
+                        IndividualInsuranceInfo(language),
+                        primaryName,
+                        member0Name,
+                        healthFirstInfo(language),
+                        firstOfNextMonth,
+                        member0Name,
+                        IndividualInsuranceInfo(language),
+                        member0Name
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
+    public static String healthInsuranceInfo(String language){
+        String lceCloseDate = getLceCloseDate(language);
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Health\n" +
+                    "insurance\n" +
+                    "plan for "+currentYear+"\n" +
+                    "You can purchase a health insurance plan for "+currentYear+". Log into your Connect for Health\n" +
+                    "Colorado account and select a plan that fits your needs.\n" +
+                    "Enroll in a plan by "+lceCloseDate+". \n";
+            case "Spanish"->
+                    "Plan de\n" +
+                    "seguro de\n" +
+                    "salud para\n" +
+                    currentYear+"\n" +
+                    "Puede adquirir un plan de seguro de salud para "+currentYear+". Inicie sesi\u00F3n con su cuenta de\n" +
+                    "Connect for Health Colorado y seleccione un plan que se ajuste a sus necesidades.\n"+
+                    "Inscr\u00EDbase en un plan antes del "+lceCloseDate+". \n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String cobraInfo(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                            "Credits or \n" +
+                            "Cost-Sharing \n" +
+                            "Reduction for \n" +
+                            currentYear + "\n" +
+                            "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                            "You are enrolled in a health plan through COBRA\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                            "fiscales para\n" +
+                            "el pago de la\n" +
+                            "cuota o\n" +
+                            "reducci\u00F3n de\n" +
+                            "los costos\n" +
+                            "compartidos\n" +
+                            "para "+currentYear+"\n" +
+                            "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                            "costos compartidos porque:\n" +
+                            "Est\u00E1 inscrito\u002Fa en un plan de salud a trav\u00E9s de COBRA\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String IndividualInsuranceInfo(String language){
+        String currentYear = getCurrentYear();
+
+        return switch (language) {
+            case "English"->
+                    "Premium Tax \n" +
+                            "Credits or \n" +
+                            "Cost-Sharing \n" +
+                            "Reduction for \n" +
+                            currentYear + "\n" +
+                            "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because:\n" +
+                            "You are enrolled in other health insurance\n";
+            case "Spanish"->
+                    "Cr\u00E9ditos\n" +
+                            "fiscales para\n" +
+                            "el pago de la\n" +
+                            "cuota o\n" +
+                            "reducci\u00F3n de\n" +
+                            "los costos\n" +
+                            "compartidos\n" +
+                            "para "+currentYear+"\n" +
+                            "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                            "costos compartidos porque:\n" +
+                            "Est\u00E1 inscrito\u002Fa en otro seguro de salud\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String reportToPeak (String docType,String language){
+        if(docType.equals("CHP") || docType.equals("Health First Colorado")) {
+            return switch (language) {
+                case "English" ->
+                        "To report changes, log into your PEAK account or call 855-752-6749 or TTY: 855-346-3432. If you do not have a PEAK \n" +
+                        "account, you can create one at .Colorado.gov/PEAK\n";
+                case "Spanish" ->
+                        "Para informar de cambios, ingrese en su cuenta PEAK o llame al 855-752-6749 o TTY: 855-346-3432. Si no tiene\n" +
+                        "cuenta PEAK, puede crear una en .Colorado.gov/PEAK\n";
+                default -> throw new IllegalArgumentException("Invalid option: " + language);
+            };
+        }
+        return "";
+    }
+
+    public static String additionalInformation (String docType,String language){
+        if(docType.equals("CHP") || docType.equals("Health First Colorado")) {
+            return switch (language) {
+                case "English" ->
+                        "Additional information for your household:\n" +
+                        "If you apply for financial help through Connect for Health Colorado, we assess whether you or members of your \n" +
+                        "household could qualify for Health First Colorado (Colorado\u2019s Medicaid Program) or the Child Health Plan Plus (CHP+) \n" +
+                        "program. This letter informs you which members of your household may qualify for these programs based on our \n" +
+                        "assessment. However, you or members of your household can request a full determination from the State of Colorado \n" +
+                        "on whether they qualify for Health First Colorado or CHP+. Call 855-752-6749 or TTY: 855-346-3432 for questions \n" +
+                        "about financial help available through Connect for Health Colorado.\n" +
+                        "If members of your household qualify for Health First Colorado or CHP+, but you do not want that coverage, you may \n" +
+                        "choose to enroll in a health insurance plan through Connect for Health Colorado.\n" +
+                        "To see plans offered in your area, log into your Connect for Health Colorado account, click on your eligibility \n" +
+                        "summary, and click continue to go to the shopping pages.\n";
+                case "Spanish" ->
+                        "Informaci\u00F3n adicional para su familia:\n" +
+                        "Si solicita ayuda financiera a trav\u00E9s de Connect for Health Colorado, evaluamos si usted o los miembro de su familia\n" +
+                        "podr\u00EDan calificar para Health First Colorado (Programa Medicaid de Colorado) o el programa de Child Health Plan Plus\n" +
+                        "(CHP+). Esta carta le informa cu\u00E1les miembros de su familia pueden calificar para estos programas seg\u00FAn nuestra\n" +
+                        "evaluaci\u00F3n. Sin embargo, usted o los miembros de su familia pueden solicitar una determinaci\u00F3n completa al Gobierno\n" +
+                        "del estado de Colorado para ver si califican para Health First Colorado o CHP+. Llame al 855-752-6749 o TTY: 855-346-\n" +
+                        "3432 para obtener respuestas a sus preguntas sobre ayuda financiera disponible a trav\u00E9s Connect for Health Colorado.\n" +
+                        "Si los miembros de su familia califican para Health First Colorado o para CHP+ pero no desean esa cobertura, pueden\n" +
+                        "optar por inscribirse en un plan de seguro de salud por medio de Connect for Health Colorado.\n" +
+                        "Para ver los planes que se ofrecen en su zona, ingrese en su cuenta de Connect for Health Colorado, haga\n"+
+                "clic en su resumen de elegibilidad y pulse en \u201Ccontinuar\u201D para ir a las p\u00E1ginas de adquisici\u00F3n.\n";
+                default -> throw new IllegalArgumentException("Invalid option: " + language);
+            };
+        }
+        return "";
+    }
+
     public static String getApplicationResultsSpanish(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
         String lceCloseDate = getLceCloseDate(language);
@@ -535,9 +814,6 @@ public class EligNotices {
                 "familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
                 "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                 "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n" +
-                "Esta carta informa tambi\u00E9n que uno o m\u00E1s miembros de su familia calificar\u00EDan para Health First Colorado (el programa\n" +
-                "Medicaid de Colorado) o para Child Health Plan Plus (CHP+). Los miembros de su familia que califiquen para alguno\n" +
-                "de estos programas recibir\u00E1n aparte una carta del Gobierno del estado de Colorado.\n" +
                 resultsType(docType, language, memberNumber)+
                 "Informe de cambios en su situaci\u00F3n familiar:\n" +
                 "Si ocurren cambios en su situaci\u00F3n familiar despu\u00E9s de haberse inscrito en un plan por medio de Connect for Health\n" +
@@ -546,22 +822,11 @@ public class EligNotices {
                 "inscribirse en un nuevo plan mediante un Per\u00EDodo de inscripci\u00F3n especial, deber\u00E1 hacerlo en el transcurso de 60 d\u00EDas\n" +
                 "de haber ocurrido su evento calificado de vida. Si quiere obtener m\u00E1s informaci\u00F3n sobre los eventos calificados de vida,\n" +
                 "visite Es.ConnectForHealthCO.com/recursos/antes-compar/cuando-puedo-comprar/.\n" +
-                "Para informar de cambios, ingrese en su cuenta PEAK o llame al 855-752-6749 o TTY: 855-346-3432. Si no tiene\n" +
-                "cuenta PEAK, puede crear una en .Colorado.gov/PEAK\n" +
+                reportToPeak(docType,language)+
                 "Si no avisa de los cambios en su situaci\u00F3n familiar, es posible que deba devolver al Servicio de Rentas Internas (IRS\n" +
                 "en ingl\u00E9s) todo o parte de su Cr\u00E9dito fiscal para el pago de la cuota, cuando presente su declaraci\u00F3n del impuesto\n" +
                 "federal sobre los ingresos.\n" +
-                "Informaci\u00F3n adicional para su familia:\n" +
-                "Si solicita ayuda financiera a trav\u00E9s de Connect for Health Colorado, evaluamos si usted o los miembro de su familia\n" +
-                "podr\u00EDan calificar para Health First Colorado (Programa Medicaid de Colorado) o el programa de Child Health Plan Plus\n" +
-                "(CHP+). Esta carta le informa cu\u00E1les miembros de su familia pueden calificar para estos programas seg\u00FAn nuestra\n" +
-                "evaluaci\u00F3n. Sin embargo, usted o los miembros de su familia pueden solicitar una determinaci\u00F3n completa al Gobierno\n" +
-                "del estado de Colorado para ver si califican para Health First Colorado o CHP+. Llame al 855-752-6749 o TTY: 855-346-\n" +
-                "3432 para obtener respuestas a sus preguntas sobre ayuda financiera disponible a trav\u00E9s Connect for Health Colorado.\n" +
-                "Si los miembros de su familia califican para Health First Colorado o para CHP+ pero no desean esa cobertura, pueden\n" +
-                "optar por inscribirse en un plan de seguro de salud por medio de Connect for Health Colorado.\n" +
-                "Para ver los planes que se ofrecen en su zona, ingrese en su cuenta de Connect for Health Colorado, haga\n" +
-                "clic en su resumen de elegibilidad y pulse en \u201Ccontinuar\u201D para ir a las p\u00E1ginas de adquisici\u00F3n.\n" +
+                additionalInformation(docType, language)+
                 "No est\u00E1 de acuerdo con la determinaci\u00F3n:\n" +
                 "Si no est\u00E1 de acuerdo con la determinaci\u00F3n sobre la elegibilidad de su familia, puede presentar una apelaci\u00F3n.\n" +
                 "Debe solicitar una apelaci\u00F3n de los resultados que figuran en este aviso en los 60 d\u00EDas posteriores a la fecha\n" +
@@ -569,8 +834,7 @@ public class EligNotices {
                 "cuenta de Connect for Health Colorado para ver un resumen de la informaci\u00F3n que utilizamos para evaluar su\n" +
                 "elegibilidad.\n" +
                 "Puede solicitar una apelaci\u00F3n en una de estas cuatro formas:\n" +
-//                "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" +
-                "1. llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" + //Remove when previous line is in QA
+                "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" +
                 "lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
                 "2. Visite  para descargar un formulario de solicitud de apelaci\u00F3n. Puede llenar su Es.ConnectForHealthCO.com\n" +
                 "solicitud de apelaci\u00F3n y subirla a su cuenta de Connect for Health Colorado en \u201CMis documentos\u201D.\n" +

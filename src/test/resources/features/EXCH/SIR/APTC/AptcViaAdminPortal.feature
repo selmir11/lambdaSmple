@@ -101,6 +101,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I select "Yes" for Citizen option
   And I select "No" for Naturalized Immigrant option
   And I click continue on the Citizenship page
+
   Then I validate I am on the "Family Overview" page
   Then I click continue on family overview page
 
@@ -109,7 +110,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I validate I am on the "Employment Info" page
   Then I select the option "Yes" to employment
   And I select the option "No" to self employment
-  Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "4500000" at frequency "Annually"
+  Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3500000" at frequency "Annually"
   And I select the option "No" to seasonal employment
   And I select the option "No" to projected income
   And I click continue on the Employment Info Page
@@ -154,7 +155,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   And I select the second dependent
   And I select the third dependent
   And I click save and continue on tax status page
-#
+
 ## ohi
   Then I validate I am on the "Elmo Other Health Insurance" page
   Then I select "None of these" as ELMO health insurance option
@@ -180,7 +181,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I validate I am on the "Good News" page
   Then I click on No Thanks on good news page
   Then I validate I am on the "Application History" page
- # Then I validate that my APTC value is "582.09/mo"
+  # Then I validate that my APTC value is "582.09/mo" - from view results and shop - none - doesn't exist
   Then I click on view results and shop
   Then I validate I am on the "Application Results" page
   And I click continue on application results page
@@ -218,11 +219,8 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I select "Anthem Dental Family" plan
   Then I click continue on dental plan results page
   Then I validate I am on the "Plan Summary" page
+  # validate the aptc value from plan summary page
   And I click continue on plan summary page
-  And I validate I am on the "Financial Help Agreements" page
-  And I select the terms and agreements checkbox
-  And I enter householder signature on the Financial Help Agreements page
-  And I click continue on Financial Help Agreements page
 
   And I validate I am on the "Enrollment Agreements" page
   And I select "Terms of Use" agreement checkbox
@@ -234,6 +232,107 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   #QA Only Step
   Then I click all done from payment portal page
 
+#  Then I validate I am on the "Initial Payment" page
+#  Then I select make payment button to pay the premium
+#  Then I validate I am on the "Payment Selection" page
+#  And I select the Money Order button
+#  And I click continue on payment selection page
+#
+#  Then I validate I am on the "Initial Payment" page
+#  Then I select make payment button to pay the premium
+#  Then I validate I am on the "Payment Selection" page
+#  And I select the Money Order button
+#  And I click continue on payment selection page
+#
+#  Then I validate I am on the "Initial Payment" page
+#  And I click continue on initial payment page
+
+#  Then I validate I am on the "Congratulations - What's Next?" page
+#  And I click on Go To Welcome Page Button on whats next page
+
   Then I validate I am on the "Account Overview" page
 
-#  And I click on Sign Out in the Header for "Elmo"
+  #validate aptc value is 0$ from account overview page
+  Then I click on make changes button
+  Then I validate I am on the "Let us guide you" page
+  Then I select "No" option on the Let us guide you page
+  And I click on save and continue button
+
+  Then I validate I am on the "Before you begin" page
+  Then I click on continue with  application button on Before you begin page
+
+  Then I validate I am on the "Report a life change" page
+  And I report "MovedToColorado" and click continue
+  Then I validate I am on the "Find Expert Help" page
+  Then I click Continue on my own button from Manage who helps you page
+  And I click continue on Tell us about yourself page
+  Then I validate I am on the "Add Address" page
+  And I click continue on the Add Address page
+  Then I validate I am on the "Citizenship" page
+  And I click continue on the Citizenship page
+  Then I validate I am on the "Family Overview" page
+  And I click on the Member Row 1
+
+  Then I validate I am on the "Application Summary" page
+  Then I select the Edit Income link
+
+  Then I validate I am on the "Employment Summary" page
+  Then I click Edit on Income Summary row 1
+
+  Then I validate I am on the "Employment Info" page
+  And I edit the income level to "4500000"
+  And I click continue on the Employment Info Page
+
+  Then I validate I am on the "Employment Summary" page
+  Then I click continue on the Employment Summary Page
+
+  Then I validate I am on the "Additional income" page
+  Then I click continue on the Additional Income page
+
+  Then I validate I am on the "Deductions" page
+  Then I click continue on the Deductions page
+
+  Then I validate I am on the "Income Summary" page
+  Then I click the save and continue button on the Income Summary Detail page
+
+  Then I validate I am on the "Tax status" page
+  # - the below step is added because of possible defect?
+  And I select the first dependent
+  Then I click save and continue on tax status page
+
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+
+  Then I validate I am on the "Family Overview" page
+  Then I click continue on family overview page
+
+  Then I validate I am on the "Tell us about life changes" page
+  Then I select "MoveToCO" QLCE on tell us about life changes page
+  Then I click on Save and Continue
+  Then I validate I am on the "EXCH Declarations and Signature" page
+  Then I Declare as Tax Household 1
+  And I click Continue on the Declarations And Signature Page
+  And I wait for hold on content to disappear
+  Then I validate I am on the "Good News" page
+  Then I click on No Thanks on good news page
+  Then I validate I am on the "Application History" page
+  # validate the aptc amount from application history page
+  # click next and validate aptc from application results page
+  #  And I click on Sign Out in the Header for "Elmo"

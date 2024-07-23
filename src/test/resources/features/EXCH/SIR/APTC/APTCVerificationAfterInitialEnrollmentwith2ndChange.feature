@@ -459,8 +459,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select make payment button to pay the premium
     And I click on Sign Out in the Header for "Portal"
 
-
-
     @SLER-319
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2351 - 60 year old
     When I click create a new account on login page

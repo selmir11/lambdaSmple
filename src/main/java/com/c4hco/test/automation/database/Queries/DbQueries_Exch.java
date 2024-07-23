@@ -2,8 +2,6 @@ package com.c4hco.test.automation.database.Queries;
 
 import com.c4hco.test.automation.Dto.SharedData;
 
-import java.util.List;
-
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
@@ -44,6 +42,7 @@ public class DbQueries_Exch {
         return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy\n" +
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
+
 
     public String getOhiRecords(){
         return "select ohi.*\n" +
@@ -111,5 +110,10 @@ public class DbQueries_Exch {
     public String policyId(){
         return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy ep \n" +
                 "where account_id =  '"+acctId+"' ORDER BY created_ts desc";
+    }
+
+    public String getAcct_holder_fnFromBOB(){
+        return "select acct_holder_fn from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+acctId+"'";
     }
 }

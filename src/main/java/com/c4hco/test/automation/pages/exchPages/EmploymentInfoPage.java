@@ -191,6 +191,38 @@ public class EmploymentInfoPage {
         dropdown.selectByVisibleText(" " + Frequency + " ");
     }
 
+    public void addSelfEmploymentInfo(String Salary, String Frequency, String Same) {
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
+        String companyName = getUniqueString(8) + "Company";
+        String name = txtHeaderPart1.getText();
+
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String primaryFirstName = BasicActions.capitalizeFirstLetter(primaryMem.getFirstName());
+
+        if (name.contains(primaryFirstName)) {
+            primaryMem.setEmployerName(companyName);
+            SharedData.setPrimaryMember(primaryMem);
+        } else if (memberList.size()>0) {
+            Optional<MemberDetails> requiredMem = memberList.stream()
+                    .filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName())))
+                    .findFirst();
+            if (requiredMem.isPresent()) {
+                MemberDetails member =  (MemberDetails) requiredMem.get();
+                member.setEmployerName(companyName);
+            } else {
+                Assert.fail("No matching member found in the member list.");
+            }
+        }
+        txtCompanyName.sendKeys(companyName);
+
+        txtIncomeAmount.sendKeys(Salary);
+        Select dropdown = new Select(selectIncomeFreq);
+        dropdown.selectByVisibleText(" " + Frequency + " ");
+
+        projectedIncomeQuestion(Same);
+    }
+
     public void genericEmploymentInfo(String addressline1, String city,String state, String zipcode, String Salary, String Frequency){
 
 
