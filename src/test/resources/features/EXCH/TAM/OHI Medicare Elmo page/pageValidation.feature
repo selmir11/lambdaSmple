@@ -48,7 +48,6 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "Medicare" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
@@ -149,6 +148,15 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |            0           |                            |                            |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "250.00"
@@ -158,6 +166,15 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |                  |        250.00         |                            |            1           |             1              |                            |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
@@ -167,6 +184,15 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |        1         |                       |                            |            1           |                            |              1             |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Medicare" page
     Then I click "No" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "300.00"
@@ -177,6 +203,15 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         1        |        300.00         |                            |            0           |             1              |               0            |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A Don't Pay"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
@@ -185,10 +220,19 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         0        |                       |              1             |            1           |             0              |                            |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Medicare" page
     Then I check checkbox for Part "A"
     Then I click continue on the Elmo OHI Medicare page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |         0        |                       |                            |            1           |                            |                            |
 
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"

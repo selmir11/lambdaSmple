@@ -48,7 +48,6 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "Peace Corps" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Peace Corps" page
@@ -138,6 +137,15 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             0            |                              |                              |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I click continue on the Elmo OHI Peace Corps page
@@ -149,6 +157,15 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |           1              |              0               |                              |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
@@ -156,20 +173,47 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             1            |               1              |               0              |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     Then I click "Yes" for insurance ending voluntary for Peace Corps question
     Then I click continue on the Elmo OHI Peace Corps page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |            1             |              1               |               1              |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     Then I click "No" for insurance ending in 60 days in Peace Corps question
     Then I click continue on the Elmo OHI Peace Corps page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             1            |               0              |                              |
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Ohi Peace Corps" page
     Then I click "No" for currently enrolled in Peace Corps question
     Then I click continue on the Elmo OHI Peace Corps page
     And I verify the OHI options selected in the DB
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |            0             |                              |                              |
 
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"

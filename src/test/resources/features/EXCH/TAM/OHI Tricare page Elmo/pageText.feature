@@ -53,8 +53,8 @@ Feature: Page Text-OHI Tricare Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "TRICARE" as health insurance option and continue
-    And I change the C4 url to "Elmo Ohi Tricare Page"
+    Then I select "TRICARE" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
 
   @SLER-280 @PageTextOhiTricareElmo
@@ -82,9 +82,8 @@ Feature: Page Text-OHI Tricare Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
-    And I change the C4 url to "Elmo Ohi Tricare Page"
     And I validate I am on the "Elmo Ohi Tricare" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -146,9 +145,8 @@ Feature: Page Text-OHI Tricare Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
-    And I change the C4 url to "Elmo Ohi Tricare Page"
     And I validate I am on the "Elmo Ohi Tricare" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -216,15 +214,20 @@ Feature: Page Text-OHI Tricare Elmo Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
-    And I change the C4 url to "Elmo Ohi Tricare Page"
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
     And I verify the header for Primary Member on the Tricare page
 #Step 5
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHI Tricare page
 #Step 6
-    Then I click Go Back on the Elmo OHI Tricare page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
     And I verify Currently Enrolled is "No" on the Tricare page
@@ -232,6 +235,15 @@ Feature: Page Text-OHI Tricare Elmo Page
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "No" for insurance ending in 60 days in Tricare question
     Then I click continue on the Elmo OHI Tricare page
+
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
     And I verify Currently Enrolled is "Yes" on the Tricare page
     And I verify Insurance Ending in 60 days is "No" on the Tricare page
@@ -241,7 +253,13 @@ Feature: Page Text-OHI Tricare Elmo Page
     Then I click "Yes" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHI Tricare page
 
-    Then I click Go Back on the Elmo OHI Tricare page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
     And I verify Currently Enrolled is "Yes" on the Tricare page
@@ -251,6 +269,15 @@ Feature: Page Text-OHI Tricare Elmo Page
 
     Then I click "No" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHI Tricare page
+
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
     And I verify Currently Enrolled is "Yes" on the Tricare page
     And I verify Insurance Ending in 60 days is "Yes" on the Tricare page
