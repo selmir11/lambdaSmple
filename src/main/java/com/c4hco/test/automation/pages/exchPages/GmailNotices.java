@@ -5,6 +5,7 @@ import jakarta.mail.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.Properties;
 
 public class GmailNotices {
@@ -25,7 +26,7 @@ public class GmailNotices {
                 Session session = Session.getInstance(properties);
 
                 Store store = session.getStore("imaps");
-                store.connect("imap.gmail.com", "unicy245@gmail.com", "hifr khpf boti reyq");
+                store.connect("imap.gmail.com", "enrnotices@gmail.com", "tvjk iozz bsce hhqa");
 
 
                 Folder inbox = store.getFolder("INBOX");
@@ -43,8 +44,11 @@ public class GmailNotices {
                         System.out.println("Received: " + firstMessage.getReceivedDate());
                         // WIP - Get the expected notice from step going forward to make this reusable for other notices as well.
                         if ("Confirmation: Your Connect for Health Colorado Plan Selection (EN-002-04)".equals(firstMessage.getSubject())) {
+
                             System.out.println("Subject: " + firstMessage.getSubject());
+                            System.out.println("Content: " + firstMessage.getContent());
                             System.out.println("Received: " + firstMessage.getReceivedDate());
+
                             found = true;
                         }
                     }
@@ -62,11 +66,19 @@ public class GmailNotices {
             }
             catch(MessagingException | InterruptedException exceptionDetails){
                 System.out.println(exceptionDetails);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
+        }
+
+
+
+
 
         }
 
 
-    }
+
 
 
