@@ -173,6 +173,10 @@ Feature: SLER-41 For Enroll in a plan (FAMILY OF 3)
     And I sign out of Outlook
     And I switch to the tab number 0
 
+    #DbVerification
+
+    And I verify the policy data quality check
+  #  And I verify the data from book of business queue table
 
 
 
