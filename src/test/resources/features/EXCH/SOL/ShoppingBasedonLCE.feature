@@ -51,7 +51,7 @@ Feature: Initial Payment Page test
     Then I click continue on start shopping page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
-    And I select "Anthem Dental Family Value"
+    And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
@@ -200,9 +200,12 @@ Feature: Initial Payment Page test
     And I select the option "No" to claim as dependent
     And I select the option "No" to file federal income tax return next year
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -219,7 +222,7 @@ Feature: Initial Payment Page test
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click continue on grouping Members Dental page
-    And I select "Anthem Dental Family Value"
+    And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
@@ -358,9 +361,9 @@ Feature: Initial Payment Page test
     Then I click continue on medical plan results page
     Then I validate that there are 2 default groups
     Then I click continue on grouping Members Dental page
-    And I select "Anthem Dental Family Value"
+    And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
-    And I select "Anthem Dental Family Value"
+    And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
@@ -478,7 +481,7 @@ Feature: Initial Payment Page test
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click continue on grouping Members Dental page
-    And I select "Anthem Dental Family Value"
+    And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
