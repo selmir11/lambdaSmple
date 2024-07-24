@@ -247,7 +247,7 @@ public class AdminPortalSearchPage {
                 basicActions.waitForElementToBePresent(broker, 15);
                 broker.click();
                 break;
-            case "ProgramManager":
+            case "Program Manager":
                 basicActions.waitForElementToBePresent(programManager, 15);
                 programManager.click();
                 break;
