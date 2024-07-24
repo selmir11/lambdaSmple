@@ -130,6 +130,11 @@ public class OtherHealthInsurancePage_Elmo {
         helpSideButton.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickable(backButton, 20);
+        basicActions.scrollToElement(backButton);
+        backButton.click();
+    }
 
 
 
