@@ -57,9 +57,9 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify the option in years displays")
     public void iVerifyYears() {
         adminPortalIndividualDashboardPage.verifyYears();   }
-    @And("I verify message displays in Renewals")
-    public void iVerifyText() {
-        adminPortalIndividualDashboardPage.verifyText();   }
+    @And("I verify container {string} and {string} is displayed")
+    public void iVerifyContainerTitleAndDefaultYearIsDisplayed(String containerTitle, String defaultYear) {
+        adminPortalIndividualDashboardPage.verifyContainerTitleAndDefaultYearIsDisplayed(containerTitle, defaultYear);  }
     @And("I verify Program Manager information Account Summary")
     public void iVerifyProgramManagerInformationAccountSummary() {
         adminPortalIndividualDashboardPage.VerifyProgramManagerInformationAccountSummary(); }
@@ -72,9 +72,9 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I verify Program Manager Account Activity Container")
     public void iVerifyBrokerAccountActivityContainer() {
         adminPortalIndividualDashboardPage.VerifyProgramManagerAccountActivityContainer();  }
-    @And("I Verify Program Manager Client Information Container")
-    public void iVerifyBrokerClientInformationContainer() {
-        adminPortalIndividualDashboardPage.VerifyProgramManagerClientInformationContainer();    }
+    @And("I Verify Program Manager Client Information : {string}")
+    public void iVerifyBrokerClientInformationContainer(String text) {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerClientInformationContainer(text);    }
     @And("I Verify organization Information Container")
     public void iVerifyProgramManagerOrganizationInformation() {
         adminPortalIndividualDashboardPage.VerifyProgramManagerOrganizationInformation();    }

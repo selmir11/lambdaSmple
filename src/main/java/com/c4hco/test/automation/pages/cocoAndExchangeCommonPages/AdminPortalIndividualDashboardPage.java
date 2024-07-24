@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -260,19 +261,16 @@ public class AdminPortalIndividualDashboardPage {
     public void verifyYears() {
         basicActions.waitForElementToBePresent(payloadsYears, 30);
         softAssert.assertEquals(payloadsYears.getText(), "All Payloads");
-        softAssert.assertAll();
-    }
-
-    public void verifyText() {
+        softAssert.assertAll(); }
+      public void verifyContainerTitleAndDefaultYearIsDisplayed(String containerTitle, String defaultYear) {
         basicActions.waitForElementToBePresent(renewalsTitle, 10);
-        softAssert.assertEquals(renewalsTitle.getText(), "Renewals");
-        softAssert.assertEquals(renewalsYear.getText(), "Plan Year 2024");
-        softAssert.assertTrue(noRenewalsText.isDisplayed());
+        softAssert.assertEquals(renewalsTitle.getText(), containerTitle);
+        softAssert.assertEquals(renewalsYear.getText(), defaultYear);
         softAssert.assertAll();    }
     public void VerifyProgramManagerInformationAccountSummary() {
         if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(pmUsername.getText(), "editprofiletest@c4.com");
-            softAssert.assertEquals(pmPhone.getText(), "236-521-3426");
+            softAssert.assertEquals(pmUsername.getText(), "profile@test.com");
+            softAssert.assertEquals(pmPhone.getText(), "333-333-3333 ext12345");
         } else {
             softAssert.assertEquals(pmUsername.getText(), "c4assistorportal+tKSVkjcxB@gmail.com");
             softAssert.assertEquals(pmPhone.getText(), "335-580-8300");
@@ -299,20 +297,17 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(viewReportButton, 30);
         softAssert.assertEquals(viewReportButton.getText(),"View Report");
         softAssert.assertAll(); }
-    public void VerifyProgramManagerClientInformationContainer(){
-        if (SharedData.getEnv().equals("qa")) {
-            basicActions.waitForElementToBePresent(clientFirstName, 30);
-            softAssert.assertEquals(clientFirstName.getText(),"First Name");
-        }else {
-            softAssert.assertEquals(noClients.getText(), "There is no client information.");
-        }
-        softAssert.assertAll(); }
+    public void VerifyProgramManagerClientInformationContainer(String text){
+            basicActions.waitForElementToBePresent(noClients, 20);
+            softAssert.assertTrue(noClients.isDisplayed());
+            softAssert.assertEquals(noClients.getText(), text);
+            softAssert.assertAll(); }
     public void VerifyProgramManagerOrganizationInformation() {
         softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
         softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
         if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(groupID.getText(), "133079379");
-            softAssert.assertEquals(orgName.getText(), "c4editprofile");
+            softAssert.assertEquals(groupID.getText(), "130474819");
+            softAssert.assertEquals(orgName.getText(), "profiletest");
         } else {
             softAssert.assertEquals(groupID.getText(), "60288219");
             softAssert.assertEquals(orgName.getText(), "apdrhhfmqdupyqdgcpgrveupznk");
