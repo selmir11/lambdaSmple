@@ -101,6 +101,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I select "Yes" for Citizen option
   And I select "No" for Naturalized Immigrant option
   And I click continue on the Citizenship page
+
   Then I validate I am on the "Family Overview" page
   Then I click continue on family overview page
 
@@ -154,7 +155,7 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   And I select the second dependent
   And I select the third dependent
   And I click save and continue on tax status page
-#
+
 ## ohi
   Then I validate I am on the "Elmo Other Health Insurance" page
   Then I select "None of these" as ELMO health insurance option
@@ -229,25 +230,25 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   And I click continue on Enrollment Agreements page
   # - Validate APTC before and after submission of payment - WIP
   #QA Only Step
-#  Then I click all done from payment portal page
+  Then I click all done from payment portal page
 
-  Then I validate I am on the "Initial Payment" page
-  Then I select make payment button to pay the premium
-  Then I validate I am on the "Payment Selection" page
-  And I select the Money Order button
-  And I click continue on payment selection page
+#  Then I validate I am on the "Initial Payment" page
+#  Then I select make payment button to pay the premium
+#  Then I validate I am on the "Payment Selection" page
+#  And I select the Money Order button
+#  And I click continue on payment selection page
+#
+#  Then I validate I am on the "Initial Payment" page
+#  Then I select make payment button to pay the premium
+#  Then I validate I am on the "Payment Selection" page
+#  And I select the Money Order button
+#  And I click continue on payment selection page
+#
+#  Then I validate I am on the "Initial Payment" page
+#  And I click continue on initial payment page
 
-  Then I validate I am on the "Initial Payment" page
-  Then I select make payment button to pay the premium
-  Then I validate I am on the "Payment Selection" page
-  And I select the Money Order button
-  And I click continue on payment selection page
-
-  Then I validate I am on the "Initial Payment" page
-  And I click continue on initial payment page
-
-  Then I validate I am on the "Congratulations - What's Next?" page
-  And I click on Go To Welcome Page Button on whats next page
+#  Then I validate I am on the "Congratulations - What's Next?" page
+#  And I click on Go To Welcome Page Button on whats next page
 
   Then I validate I am on the "Account Overview" page
 
@@ -329,7 +330,9 @@ Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "
   Then I Declare as Tax Household 1
   And I click Continue on the Declarations And Signature Page
   And I wait for hold on content to disappear
+  Then I validate I am on the "Good News" page
+  Then I click on No Thanks on good news page
   Then I validate I am on the "Application History" page
-  # validate the aptc amount from application overview and plan summary
-
-#  And I click on Sign Out in the Header for "Elmo"
+  # validate the aptc amount from application history page
+  # click next and validate aptc from application results page
+  #  And I click on Sign Out in the Header for "Elmo"
