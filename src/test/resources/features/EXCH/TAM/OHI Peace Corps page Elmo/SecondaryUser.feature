@@ -78,8 +78,8 @@ Feature: Secondary User-OHI Peace Corps Elmo Page
     And I select "Yes" to claim dependents
     And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "Peace Corps" as health insurance option and continue
-    And I change the C4 url to "Elmo Ohi Peace Corps Page"
+    Then I select "Peace Corps" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Peace Corps" page
 
   @SLER-499 @SecondaryUserOhiPeaceCorpsElmo

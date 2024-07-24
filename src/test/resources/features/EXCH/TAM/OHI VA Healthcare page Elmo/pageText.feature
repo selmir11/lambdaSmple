@@ -49,7 +49,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     And I select "No" to claim dependents
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "VA Health Care" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
@@ -80,7 +79,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -144,7 +142,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     And I change the language from header to "Spanish"
@@ -215,7 +212,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     And I verify the header for Primary Member on the VA Healthcare page
@@ -223,16 +219,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I click "No" for currently enrolled in VA Healthcare question
     Then I click continue on the Elmo OHI VA Healthcare page
 #Step 6
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
     And I click continue on the Employment Info Page
@@ -241,7 +227,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     And I verify Currently Enrolled is "No" on the VA Healthcare page
@@ -250,16 +235,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I click "No" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the Elmo OHI VA Healthcare page
 
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
     And I click continue on the Employment Info Page
@@ -268,7 +243,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     And I verify Currently Enrolled is "Yes" on the VA Healthcare page
@@ -279,16 +253,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
     Then I click continue on the Elmo OHI VA Healthcare page
 
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
     And I click continue on the Employment Info Page
@@ -297,7 +261,6 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     And I verify Currently Enrolled is "Yes" on the VA Healthcare page

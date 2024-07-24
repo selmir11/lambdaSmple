@@ -87,7 +87,8 @@ Feature: Secondary User-OHI ESI Elmo Page
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "ESI" as health insurance option and continue
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
 
   @SLER-536 @SecondaryUserOhiEsiElmo
@@ -108,8 +109,9 @@ Feature: Secondary User-OHI ESI Elmo Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
 
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "ESI" as health insurance option and continue
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the "No Job Section Secondary" ESI page data in "English"
     Then I select the "0" employer for "Secondary" member on the ESI page
@@ -147,8 +149,9 @@ Feature: Secondary User-OHI ESI Elmo Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
 
-    And I validate I am on the "Other Health Insurance" page
-    Then I select "ESI" as health insurance option and continue
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
     And I verify the "No Job Section Secondary" ESI page data in "Spanish"
     Then I select the "0" employer for "Secondary" member on the ESI page

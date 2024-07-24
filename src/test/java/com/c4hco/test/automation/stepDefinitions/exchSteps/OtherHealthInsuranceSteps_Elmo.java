@@ -37,7 +37,8 @@ public class OtherHealthInsuranceSteps_Elmo {
         otherHealthInsurancePage_Elmo.verifyHelpDrawerFooterText(language);
     }
 
-
+    @Then("I click Go back on the ELMO health insurance page")
+    public void iClickGoBack(){otherHealthInsurancePage_Elmo.clickGoBack();}
 
 
     // ############################## VALIDATION STEPS #########################

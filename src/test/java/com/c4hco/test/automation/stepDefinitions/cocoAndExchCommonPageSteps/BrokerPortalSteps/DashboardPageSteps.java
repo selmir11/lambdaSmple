@@ -52,4 +52,10 @@ public class DashboardPageSteps {
     public void clickEditAccountSummary(){
         dashboardPage.clickEditAccountSummary();
     }
+
+    @Then("I click View Your Clients button")
+    public void clickViewYourClients(){
+        dashboardPage.clickViewYourClientsButton();
+    }
+
 }
