@@ -56,7 +56,6 @@ Feature: Page Text-Other Health Insurance Page
 
   @SLER-128 @PageTextOtherHealthInsurancePage
   Scenario: SLER-128 I Validate the page text and checkboxes on the Other Health Insurance page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     And I validate I am on the "Elmo Other Health Insurance" page
     And I verify text on the Other Health Insurance page in "English"
     And I verify the checkboxes on the Other Health Insurance page
@@ -69,7 +68,6 @@ Feature: Page Text-Other Health Insurance Page
 
   @SLER-237 @PageTextOtherHealthInsurancePage
   Scenario: SLER-237 I Validate the header and footer on the Other Health Insurance page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     And I validate I am on the "Elmo Other Health Insurance" page
 
     And I verify text on the "Exch" "Header" in "English"

@@ -170,10 +170,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
-    @FindBy(id = "Ohi-Esi-GoBack")
+    @FindBy(id = "Ohc-Esi-GoBack")
     WebElement goBackButton;
 
-    @FindBy(id = "Ohi-Esi-SaveAndContinue")
+    @FindBy(id = "Ohc-Esi-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
 
@@ -433,7 +433,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     // =================== VALIDATION STEPS ===============//
     public void verifyHeadersEsiOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertAll();
     }
@@ -567,7 +567,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageNoJobSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
         softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Select an employer\n"+SharedData.getPrimaryMember().getEmployerName());
@@ -598,7 +598,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageCurrentlyEnrolledEndingSectionDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"End Date:");
+        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"What day will your coverage end?");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"Are you voluntarily ending this health insurance?");
         softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Yes");
@@ -622,7 +622,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageFirstSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Existing Health Insurance: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
         softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Select an employer\n"+SharedData.getMembers().get(0).getEmployerName());
@@ -635,9 +635,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
         softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"I don't know");
-        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"How much would "+SharedData.getMembers().get(0).getFirstName()+" pay for the lowest-cost monthly health plan premium at "+SharedData.getMembers().get(0).getEmployerName()+" just for themself?");
+        softAssert.assertTrue(EsiQuestionTxt.get(2).getText().equalsIgnoreCase("How much would "+SharedData.getMembers().get(0).getFullName()+" pay for the lowest-cost monthly health plan premium at "+SharedData.getMembers().get(0).getEmployerName()+" just for themself?"));
         softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"monthly amount");
-        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"Is "+SharedData.getMembers().get(0).getFirstName()+" currently enrolled in the health insurance offered by "+SharedData.getMembers().get(0).getEmployerName()+"?");
+        softAssert.assertTrue(EsiQuestionTxt.get(3).getText().equalsIgnoreCase("Is "+SharedData.getMembers().get(0).getFullName()+" currently enrolled in the health insurance offered by "+SharedData.getMembers().get(0).getEmployerName()+"?"));
         softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
         softAssert.assertAll();
@@ -645,9 +645,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"End Date:");
+        softAssert.assertTrue(EsiQuestionTxt.get(5).getText().equalsIgnoreCase("What day will "+SharedData.getMembers().get(0).getFullName()+"'s coverage end?"));
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"Is "+SharedData.getMembers().get(0).getFirstName()+" voluntarily ending this health insurance?");
+        softAssert.assertTrue(EsiQuestionTxt.get(6).getText().equalsIgnoreCase("Is "+SharedData.getMembers().get(0).getFullName()+" voluntarily ending this health insurance?"));
         softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
         softAssert.assertAll();
@@ -655,10 +655,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageFamilyPlansSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"Does "+SharedData.getMembers().get(0).getEmployerName()+" offer family health plans?");
+        softAssert.assertTrue(EsiQuestionTxt.get(7).getText().equalsIgnoreCase("Does "+SharedData.getMembers().get(0).getEmployerName()+" offer family health plans?"));
         softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"Yes");
         softAssert.assertEquals(esiFamilyOfferedNoBtn.getText(),"No");
-        softAssert.assertEquals(EsiQuestionTxt.get(8).getText(),"How much would "+SharedData.getMembers().get(0).getFirstName()+" pay for the lowest-cost monthly health plan premium at "+SharedData.getMembers().get(0).getEmployerName()+" to cover your family?");
+        softAssert.assertTrue(EsiQuestionTxt.get(8).getText().equalsIgnoreCase("How much would "+SharedData.getMembers().get(0).getFullName()+" pay for the lowest-cost monthly health plan premium at "+SharedData.getMembers().get(0).getEmployerName()+" to cover your family?"));
         softAssert.assertEquals(esiMemberStatusTxt.getText(),"For each member, select which option best describes their health insurance enrollment status with "+SharedData.getMembers().get(0).getEmployerName()+":");
         softAssert.assertTrue(esiFamilyMemberTxt.get(0).getText().equalsIgnoreCase(SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(esiFamilyEnrolledBtn.get(0).getText(),"Enrolled");
@@ -729,8 +729,8 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyEsiPageNoJobSectionDataSpanish(){
-        basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getPrimaryMember().getFullName()));
+        basicActions.waitForElementToBePresent(ohiHeader,30);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");
         softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Seleccionar un empleador\n"+SharedData.getPrimaryMember().getEmployerName());
@@ -761,7 +761,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageCurrentlyEnrolledEndingSectionDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
+        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
         softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
         softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"S\u00ED");
@@ -785,7 +785,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Seguro de salud existente: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");
         softAssert.assertEquals(esiSelectEmployerDpd.getText(),"Seleccionar un empleador\n"+SharedData.getMembers().get(0).getEmployerName());
@@ -798,9 +798,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(esiMinValueStandardYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiMinValueStandardNoBtn.getText(),"No");
         softAssert.assertEquals(esiMinValueStandardDontKnowBtn.getText(),"No s\u00E9");
-        softAssert.assertEquals(EsiQuestionTxt.get(2).getText(),"\u00BFCu\u00E1nto pagar\u00EDa " + SharedData.getMembers().get(0).getFirstName() + " por la prima mensual del plan de salud de menor costo en "+SharedData.getMembers().get(0).getEmployerName()+" solo para ellos?");
+        softAssert.assertTrue(EsiQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFCu\u00E1nto pagar\u00EDa " + SharedData.getMembers().get(0).getFullName() + " por la prima mensual del plan de salud de menor costo en "+SharedData.getMembers().get(0).getEmployerName()+" solo para ellos?"));
         softAssert.assertEquals(esiMonthlyAmountInput.getAttribute("placeholder"),"Cantidad mensual");
-        softAssert.assertEquals(EsiQuestionTxt.get(3).getText(),"\u00BF"+ SharedData.getMembers().get(0).getFirstName() + " se inscribi\u00F3 en el seguro de salud que ofrece "+SharedData.getMembers().get(0).getEmployerName()+"?");
+        softAssert.assertTrue(EsiQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF"+ SharedData.getMembers().get(0).getFullName() + " se inscribi\u00F3 en el seguro de salud que ofrece "+SharedData.getMembers().get(0).getEmployerName()+"?"));
         softAssert.assertEquals(esiCurrentlyEnrolledYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiCurrentlyEnrolledNoBtn.getText(),"No");
         softAssert.assertAll();
@@ -808,9 +808,9 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void verifyEsiPageCurrentlyEnrolledEndingSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
-        softAssert.assertEquals(EsiQuestionTxt.get(5).getText(),"Fecha de terminaci\u00F3n:");
+        softAssert.assertTrue(EsiQuestionTxt.get(5).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de "+SharedData.getMembers().get(0).getFullName()+"?"));
         softAssert.assertEquals(esiEndDateInput.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(EsiQuestionTxt.get(6).getText(),"\u00BF" + SharedData.getMembers().get(0).getFirstName() + " est\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertTrue(EsiQuestionTxt.get(6).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
         softAssert.assertEquals(esiVoluntarilyEndingYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiVoluntarilyEndingNoBtn.getText(),"No");
         softAssert.assertAll();
@@ -821,7 +821,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(EsiQuestionTxt.get(7).getText(),"\u00BF"+SharedData.getMembers().get(0).getEmployerName()+" ofrece planes de salud familiares?");
         softAssert.assertEquals(esiFamilyOfferedYesBtn.getText(),"S\u00ED");
         softAssert.assertEquals(esiFamilyOfferedNoBtn.getText(),"No");
-        softAssert.assertEquals(EsiQuestionTxt.get(8).getText(),"\u00BFCu\u00E1nto pagar\u00EDa " + SharedData.getMembers().get(0).getFirstName() + " por la prima mensual del plan de salud de menor costo en "+SharedData.getMembers().get(0).getEmployerName()+" para cubrir a su familia?");
+        softAssert.assertTrue(EsiQuestionTxt.get(8).getText().equalsIgnoreCase("\u00BFCu\u00E1nto pagar\u00EDa " + SharedData.getMembers().get(0).getFullName() + " por la prima mensual del plan de salud de menor costo en "+SharedData.getMembers().get(0).getEmployerName()+" para cubrir a su familia?"));
         softAssert.assertEquals(esiMemberStatusTxt.getText(),"Para cada miembro, seleccione la opci\u00F3n que describe mejor el estado de su inscripci\u00F3n en el seguro m\u00E9dico con "+SharedData.getMembers().get(0).getEmployerName()+":");
         softAssert.assertTrue(esiFamilyMemberTxt.get(0).getText().equalsIgnoreCase(SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(esiFamilyEnrolledBtn.get(0).getText(),"Inscrito");
