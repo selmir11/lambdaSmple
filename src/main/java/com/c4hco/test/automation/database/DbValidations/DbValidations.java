@@ -90,7 +90,7 @@ public class DbValidations {
               validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dbData);
         }
           validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);
-        //  softAssert.assertAll();
+          softAssert.assertAll();
       }
     }
 
