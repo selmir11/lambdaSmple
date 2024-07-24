@@ -122,7 +122,7 @@ Feature: End to End Tests
     And I click continue on payment selection page
     And I click on Sign Out in the Header for "Elmo"
 
-  
+
 
 
 
