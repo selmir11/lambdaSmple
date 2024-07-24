@@ -1,5 +1,5 @@
 @OPS
-Feature: Admin Portal agency verify data
+Feature: Admin Portal verify data Payloads
   @SLER-695
   Scenario: Verify payloads data on Individual dashboard
     Given I open the login page on the "admin" portal
@@ -11,6 +11,7 @@ Feature: Admin Portal agency verify data
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
+    And I validate individual dashboard container titles are displayed
     And I Verify Payload Information Container
     Then I verify "Payloads" container title
     And I verify the option in years displays
