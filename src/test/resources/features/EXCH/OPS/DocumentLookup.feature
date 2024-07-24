@@ -33,6 +33,12 @@ Feature: Document Lookup page : Verify all data
       Then I select "Exchange" from advanced search dropdown options
       And I enter from and to dates
       Then I click on submit button
+      Then I validate Default entry selection is twenty entries
+      Then I validate next button and previous button functionality
+      Then I select dropdown entry option and validate "10" rows are displaying
+      Then I select dropdown entry option and validate "20" rows are displaying
+      Then I select dropdown entry option and validate "50" rows are displaying
+      Then I select dropdown entry option and validate "100" rows are displaying
       Then I select "Document Type A to Z" from sort options
       Then I verify if DLT is sorted "asc" by "Document Type"
       Then I select "Document Type Z to A" from sort options

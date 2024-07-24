@@ -63,6 +63,27 @@ public class DocumentLookupPageSteps {
     @And("I verify error message for Advanced search on DLT page")
     public void iVerifyErrorMessageForAdvancedSearchOnDLTPage() {documentLookupPage.verifyDocumentTyperequireerror();
     }
+
+
+    @Then("I validate dropdown entries are displaying based on selection")
+    public void iValidateDropdownEntriesAreDisplayingBasedOnSelection() {
+        documentLookupPage.verifyDocumentTyperequireerror();}
+
+    @Then("I validate Default entry selection is twenty entries")
+    public void iValidateDefaultEntrySelectionIsTwentyEntries(){
+        documentLookupPage.validateDropdownEntries();
+    }
+
+    @Then("I select dropdown entry option and validate {string} rows are displaying")
+    public void iSelectDropdownEntryOptionAndValidateRowsAreDisplaying(String text) {
+        documentLookupPage.entriesdropdown(text);
+    }
+
+    @Then("I validate next button and previous button functionality")
+    public void iValidateNextButtonFunctionality(){
+        documentLookupPage.validateNextAndPreviousButtons();
+    }
+
 }
 
 
