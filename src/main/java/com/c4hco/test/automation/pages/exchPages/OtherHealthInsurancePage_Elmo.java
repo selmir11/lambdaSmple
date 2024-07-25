@@ -113,7 +113,6 @@ public class OtherHealthInsurancePage_Elmo {
             case "None of these":
                 basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 10);
                 insuranceOptionsCheckBox.get(11).click();
-               // basicActions.click(insuranceOptionsCheckBox.get(11));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
