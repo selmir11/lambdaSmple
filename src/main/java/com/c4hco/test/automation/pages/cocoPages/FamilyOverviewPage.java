@@ -52,6 +52,7 @@ public class FamilyOverviewPage {
 
     public void clickaddAnotherMemberButton() {
         basicActions.waitForElementToBeClickable(addAnotherMemberButton, 30);
+        basicActions.scrollToElement(addAnotherMemberButton);
         addAnotherMemberButton.click();
     }
 

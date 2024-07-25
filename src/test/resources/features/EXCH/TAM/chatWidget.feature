@@ -87,93 +87,92 @@ Feature: TAM Chat Widget
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select "ESI" as health insurance option and continue
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I validate I am on the "ESI" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
     Then I select the Go Back button on the ESI page
-    Then I select "None of these" as health insurance option
-    Then I select "HRA" as health insurance option and continue
-    Then I validate I am on the "HRA" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "HRA" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo HRA" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the HRA page
-    Then I select "None of these" as health insurance option
-    Then I select "Medicare" as health insurance option and continue
-    Then I validate I am on the "Medicare" page
+    Then I click Go Back on the Elmo OHI HRA page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "Medicare" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Ohi Medicare" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the Medicare page
-    Then I select "None of these" as health insurance option
-    Then I select "VA Healthcare" as health insurance option and continue
-    Then I validate I am on the "VA Healthcare" page
+    Then I click Go Back on the Elmo OHI Medicare page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "VA Health Care" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Ohi VA Healthcare" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the VA Healthcare page
-    Then I select "None of these" as health insurance option
-    Then I select "COBRA" as health insurance option and continue
-    Then I validate I am on the "COBRA" page
+    Then I click Go Back on the Elmo OHI VA Healthcare page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "COBRA" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo COBRA" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the COBRA page
-    Then I select "None of these" as health insurance option
-    Then I select "Retiree Health Plan" as health insurance option and continue
-    Then I validate I am on the "Retiree Health Plan" page
+    Then I click Go Back on the Elmo OHI Cobra page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "Retiree Health Plan" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Ohi Retiree" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the Retiree Health Plan page
-    Then I select "None of these" as health insurance option
-    Then I select "TRICARE" as health insurance option and continue
-    Then I validate I am on the "TRICARE" page
+    Then I click Go Back on the Elmo OHI Retiree page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "TRICARE" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Ohi Tricare" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the TRICARE page
-    Then I select "None of these" as health insurance option
-    Then I select "Peace Corps" as health insurance option and continue
-    Then I validate I am on the "Peace Corps" page
+    Then I click Go Back on the Elmo OHI Tricare page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "Peace Corps" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the Peace Corps page
-    Then I select "None of these" as health insurance option
-    Then I select "Individual Insurance" as health insurance option and continue
-    Then I validate I am on the "Individual Insurance" page
+    Then I click Go Back on the Elmo OHI Peace Corps page
+    Then I select "None of these" as ELMO health insurance option
+    Then I select "Other" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Ohi Individual Insurance" page
     Then I validate chat widget is present
-    Then I open on chat widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select the Go Back button on the Individual Insurance page
-    And I click on Sign Out in the Header for "NonElmo"
+    Then I click Go Back on the Elmo OHI Individual Insurance page
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
 

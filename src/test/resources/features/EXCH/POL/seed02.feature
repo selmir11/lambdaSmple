@@ -1,6 +1,9 @@
 Feature: Seed02 - Exchange
 
   Background: Seed 02 For Exchange- Single Applicant with FA
+    Given I set the test scenario details
+      | totalGroups | totalMembers |
+      | 1           | 1            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -57,7 +60,8 @@ Feature: Seed02 - Exchange
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -93,13 +97,14 @@ Feature: Seed02 - Exchange
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan"
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
+    Then I validate I am on the "Enrollment Agreements" page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
@@ -116,17 +121,40 @@ Feature: Seed02 - Exchange
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate medical plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+      | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
+      | 01/01           | 12/31         | 01/01              | 12/31            |
     And I validate dental plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01/2024    | 12/31/2024   | 01/01/2024         | 12/31/2024     |
+      | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
+      | 01/01           | 12/31         | 01/01              | 12/31            |
     And I click View Plan History link from medical plan card
     And I validate medical plan details from plan history
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
+    And I validate the member details from policy tables
+    And I validate member details from ob834_details table
+     | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
+     | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+     | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should not be empty
+    And I validate the ob834 files should have the values
+     | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+     |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+     |          021          | 021                 | 25                   |                          |                             |                    |
+   And I validate the REF and LX segments in EDI file
+     | LX | N1 75              | REF       |
+     | 1  | PRE AMT 1          | 285.37    |
+     | 2  | APTC AMT           | 230.13      |
+     | 3  | CSR AMT            | 0.00      |
+     | 4  | RATING AREA        | 3         |
+     | 5  | SOURCE EXCHANGE ID | COHBE     |
+     | 6  | TOT RES AMT        | 55.24   |
+     | 7  | PRE AMT TOT        | 285.37    |
+     | 8  | SEP REASON         | ADMIN_LCE |
+   And I verify the policy data quality check
+   And I verify the data from book of business queue table
 
   @SLER-133-WIP
   Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
@@ -224,13 +252,13 @@ Feature: Seed02 - Exchange
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "Elmo"
-#    And I validate the member details from policy tables
-#    And I validate member details from ob834_details table
-#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|  addl_maint_reason                      |
-#      |          001          | 021                 | AI                   | FINANCIAL_CHANGE                        |
-#      |          021          | 021                 | EC                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
-#    And I download the files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 files should have the values
+    And I validate the member details from policy tables
+    And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|  addl_maint_reason                      |
+      |          001          | 021                 | AI                   | FINANCIAL_CHANGE                        |
+      |          021          | 021                 | EC                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should have the values
 
 
 
