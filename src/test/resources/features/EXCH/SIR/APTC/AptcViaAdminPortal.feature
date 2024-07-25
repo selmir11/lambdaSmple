@@ -1,7 +1,7 @@
 @SIRRegression
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-  @SLER-778-WIP @RT-1618
+  @SLER-778
   Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -180,11 +180,13 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
+    Then I validate that there are 1 default groups
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
+    Then I validate that there are 1 default dental groups
     Then I click continue on grouping Members Dental page
     Then I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
@@ -242,7 +244,10 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
     Then I validate I am on the "Additional income" page
-    Then I click continue on the Additional Income page
+    And I click None of these as additional income option
+    Then I click None of these as additional income option and continue
+#    And I click None of these as additional income option
+#    Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
@@ -286,10 +291,26 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
+    Then I click on edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Medical" page
+     # Then I validate that there are 1 default groups
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Spouse,Son,Daughter:Group1 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+    Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+      # Then I validate that there are 1 default dental groups
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse,Son,Daughter:Group1 |
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     Then I validate I am on the "Dental Plan Results" page

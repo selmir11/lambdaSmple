@@ -70,7 +70,7 @@ public class GroupingMembersMedicalPage {
     public void noOfMedicalGroups(int totalGroups) {
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
+        softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
         softAssert.assertAll();
         SharedData.setTotalGroups(groupsSize);
     }
@@ -177,6 +177,10 @@ public class GroupingMembersMedicalPage {
         HashMap<String, List<String>> expectedMap = getGroupsByZipcode();
         Map<String, List<String>> actualMap = getGroupsByZipByUI();
         compareLists(actualMap, expectedMap);
+    }
+
+    public void validateTotalGroups(int expectedTotalGroups){
+
     }
 
 }
