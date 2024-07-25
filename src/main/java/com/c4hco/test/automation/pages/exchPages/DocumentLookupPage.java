@@ -248,7 +248,7 @@ public class DocumentLookupPage {
 
     public void inputdates() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(fromDate, 20));
-        fromDate.sendKeys("10/01/2023");
+        fromDate.sendKeys("01/01/2023");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate, 20));
         ToDate.sendKeys("07/01/2024");
         softAssert.assertAll();
@@ -340,30 +340,23 @@ public class DocumentLookupPage {
 
     public void validateNextAndPreviousButtons() {
         int initialCurrentValue = getCurrentValue();
-        int nextValue = 0;
-        int previousValue = 0;
-
-        while (true) {
-            nextValue = clickNextAndGetNewValue();
-            if (nextValue <= initialCurrentValue) {
-                throw new RuntimeException("Next button did not increase value as expected.");
-            }
-            if (!isNextButtonDisplayed()) {
-                break;
-            }
+        int currentValue = initialCurrentValue;
+        while (Next.isDisplayed()) {
+                int nextValue = clickNextAndGetNewValue();
+                if (nextValue <= currentValue) {
+                    throw new RuntimeException("Next button did not increase value as expected.");
+                }
+                currentValue = nextValue;
         }
 
-        while (true) {
-            previousValue = clickPreviousAndGetNewValue();
-            if (previousValue >= nextValue) {
-                throw new RuntimeException("Previous button did not decrease value as expected.");
-            }
-
-            if (!isPreviousButtonDisplayed()) {
-                break;
+        while (previous.isDisplayed()) {
+                int previousValue = clickPreviousAndGetNewValue();
+                if (previousValue >= currentValue) {
+                    throw new RuntimeException("Previous button did not decrease value as expected.");
+                }
+                currentValue = previousValue;
             }
         }
-    }
 
     private int getCurrentValue() {
         String fullText = entries.getText();
@@ -373,34 +366,16 @@ public class DocumentLookupPage {
     }
 
     private int clickNextAndGetNewValue() {
-        int previousValue = getCurrentValue();
         basicActions.waitForElementToBePresent(Next, 500);
         Next.click();
-        return getCurrentValue();
-    }
+        return getCurrentValue(); }
 
     private int clickPreviousAndGetNewValue() {
-        int previousValue = getCurrentValue();
         basicActions.waitForElementToBePresent(previous, 500);
         previous.click();
         return getCurrentValue();
     }
 
-    private boolean isNextButtonDisplayed() {
-        try {
-            return Next.isDisplayed();
-        } catch (NoSuchElementException | TimeoutException e) {
-            return false;
-        }
-    }
-
-    private boolean isPreviousButtonDisplayed() {
-        try {
-            return previous.isDisplayed();
-        } catch (NoSuchElementException | TimeoutException e) {
-            return false;
-        }
-    }
             public void clickDropdowns() {
                 String Options[] = {"Exchange", "Individual", "SHOP", "Broker", "Navigator", "Carrier", "Appeal"};
                 for (String option : Options) {
@@ -414,7 +389,6 @@ public class DocumentLookupPage {
                             List<String> ExchExpectedList = List.of("EXC_General Feedback Form (AM-009-01)", "EXC_General Complaint Form (AM-009-02)", "EXC_General Complaint Form (AM-009-02)", "EXC_Physical Returned Mail (IN-002-01)", "EXC_New Account Created (AM-006-01)", "EXC_Account Update (AM-015-01)", "EXC_Create Back Office Exchange Account Form (AM-006-03)", "EXC_Create Employee Exchange Account Form (AM-006-01)", "EXC_Change Staff Account Request (AM-015-01)", "DELETE-EXC_Individual Life Change Event Form (AM-015-02)", "DELETE-EXC_Individual Appeal Exchange Subsidy Form (AM-009-01)", "EXC_Modify Back Office Exchange Account Form (AM-015-03)", "EXC_Manage Login (AM-016-06)", "EXC_Manage Password (AM-007-06)", "EXC_Create Staff Exchange Account (AM-006-01)",
                                     "EXC_Login Reminder (AM-016-06)", "EXC_HCPF Related Correspondence", "EXC_NES Application");
                             Assert.assertEqualsNoOrder(ExchExpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         case "Individual":
                             List<String> IndExpectedList = List.of("IND_Health First Colorado (Medicaid) Application", "Application Results", "IND_Health First Colorado (Medicaid) Redetermination", "IND_Health First Colorado (Medicaid) Redetermination", "IND_Employer Application Form (ELG-005-01)", "IND_SSN Verification (ELG-002-01)", "IND_Incarceration Status (ELG-002-02)", "IND_SSAP with Financial Assistance Form (EN-002-01)", "IND_Individual Addendum Form (EN-002-02)", "IND_Individual Addendum Form (EN-002-02)", "IND_Employer Coverage Tool Form (EN-002-02)", "IND_SSAP Worksheet A (EN-002-04)", "IND_SSAP Worksheet B (EN-002-05)", "IND_SSAP Worksheet C (EN-002-06)", "IND_SSAP Worksheet D (EN-002-07)", "IND_Tribal Membership Verification (ELG-005-11)", "IND_Death Certificate (ELG-005-13)", "IND_Marriage Dissolution (ELG-005-14)", "IND_Legal Separation (ELG-005-15)", "IND_Employment Status Change (ELG-005-20)",
@@ -440,7 +414,6 @@ public class DocumentLookupPage {
                                     "IND_Welcome Message (AM-001-01)", "IND_Welcome Message (AM-001-03)", "IND_Subsidy Removed (Customer Choice) (ELG-005-08)", "IND_Notify Client of Broker Authorization (BN-002A-03)", "IND_Notify Client of Broker De-Authorization (BN-002A-04)", "IND_Plan Selection and Payment Confirmation (EN-002-04)", "SHP_Employee Enrollment Welcome Message (EN-003-02)", "IND_Native American Status Verification (EN-004-01)", "IND_Employer Eligibility Appeal Form (EN-002-01)", "IND_Update Native American Status Form (EN-004-01)", "IND_Individual Coverage Exemption Form (ELG-004-01)", "IND_Individual Appeal Exchange Subsidy Form (ELG-008-01)", "IND_Income Verification (ELG-002-03)", "IND_Birth Certificate (ELG-005-02)", "IND_Adoption Documentation (ELG-005-03)", "IND_Change in IAP Eligibility (ELG-005-06)", "IND_Authorized Representative (ELG-002-04)", "IND_Client Invitation (BN-003-01)", "IND_Final Proposal (BN-004-06)", "IND_My Profile Change Form (AM-011-01)", "IND_SSAP Appendix A (EN-002-09)", "IND_Additional Documentation Response (ELG-002-02)", "IND_Authorized Representative Verification Response (ELG-002-04)",
                                     "SHP_Employee Life Change Event with SEP (ELG-005-07A)", "SHP_Authorize Account Delegate (AM-005-01)", "IND_IRS 1095A Tax Form", "IND_IRS 1095A Tax Form - Corrected", "IND_Non-ESI Medicare");
                             Assert.assertEqualsNoOrder(IndExpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         case "SHOP":
                             List<String> ShopExpectedList = List.of("SHP_Final Proposal (BN-004-04)", "SHP_Preliminary Proposal (BN-004-03)", "SHP_Preliminary Proposal (BN-004-03)", "SHP_Employee Life Change Event (ELG-005-06)",
@@ -452,29 +425,24 @@ public class DocumentLookupPage {
                                     "SHP_Employer Appeal Form for Employee APTC (SH-005-01)", "SHP_Create Proposal (BN-004-01)", "SHP_Create Proposal (BN-004-03)", "SHP_Login Reminder (AM-016-02)",
                                     "SHP_Manage Password (AM-007-02)", "SHP_Number of Employees Verification (SH-001-01)", "SHP_Client Invitation (BN-003-02)", "SHP_Employer Enrollment Renewal (EN-003-06)", "SHP_Employer Notification of Dis-enrollment (EN-006-02)", "SHP_Notify SHOP of Broker Authorization (BN-002A-07)", "SHP_Notify SHOP of Broker De-Authorization (BN-002A-08)");
                             Assert.assertEqualsNoOrder(ShopExpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         case "Broker":
                             List<String> BrokerexpectedList = List.of("AGY_Agency Invites Broker (AG-001-01)", "AGY_Agency Adds Authorized Rep (AG-001-02)", "AGY_Agency Adds Authorized Rep (AG-001-02)", "AGY_Broker DeAuthorization (AG-001-03)", "AGY_Broker Accepted Authorization (AG-002-01)", "AGY_Broker Revokes Authorization (AG-002-02)", "BRK_Notify Broker of New Client (BN-002A-05)", "BRK_SHOP Client Declined Proposal (BN-004-07)", "BRK_Notify Broker of De-Authorization (BN-002A-06)", "BRK_Broker Certification (AM-003-01)", "BRK_Login Reminder (AM-016-03)", "BRK_Manage Password (AM-007-03)", "BRK_Broker Certification Appeal Form (BN-001A-01)", "BRK_Agent Broker Authorization Form (BN-003-01)", "BRK_Proof of Insurance (AM-013-01)", "BRK_Proof of License (AM-013-02)", "BRK_Proof of Training Completion (AM-013-03)", "BRK_Individual Client Declined Proposal (BN-004-08)", "BRK_Individual Client Accepted Proposal (BN-004-02)", "BRK_Welcome Message (AM-003-01)", "BRK_Notify Broker of De-Authorization (BN-002A-02)", "BRK_Sub-Broker Account Created (AM-013-05)", "BRK_Sub-Broker Account Updated (AM-013-06)", "BRK_SHOP Client Accepted Proposal (BN-004-01)", "BRK_Profile Update (AM-013-01)", "BRK_Proof of Training Completion (BN-001A-03)", "BRK_Broker of Record Authorization Letter (BN-003-01)", "BRK_Broker of Record De-authorization Letter (BN-003-02)", "BRK_Correspondence (IN-001-03)", "BRK_Certified Mail Signature Receipt (IN-002-1)", "BRK_Broker Letter of Record Form (BN-003-01)", "BRK_Notify Broker of New Client (BN-002A-01)", "BRK_Proof of Insurance (BN-001A-01)", "BRK_Proof of License (BN-001A-02)", "BRK_Broker Certified (BN-001A-01)");
                             Assert.assertEqualsNoOrder(BrokerexpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         case "Navigator":
                             List<String> NavigatorExpectedList = List.of("NAV_Proof of Training Completion (BN-001B-01)", "NAV_Correspondence (IN-001-04)", "NAV_Correspondence (IN-001-04)", "NAV_Profile Update (AM-013-02)",
                                     "NAV_ Navigator Entity Profile Update (AM-013-03)", "NAV_Navigator Entity Profile Update (AM-013-03)", "NAV_Welcome Message (AM-004-01)", "NAV_Welcome Message (AM-004-02)", "NAV_Navigator Certification Appeal Form (BN-001B-01)", "NAV_Navigator Authorization Form (BN-005-01)", "NAV_Proof of Training Completion (AM-013-04)", "NAV_Login Reminder (AM-016-04)",
                                     "NAV_Manage Password (AM-007-04)", "NAV_Navigator Entity Login Reminder (AM-016-05)", "NAV_Navigator Entity Manage Password (AM-007-05)", "NAV_Heatlh Coverage Guide Authorization Form (BN-005-01)");
                             Assert.assertEqualsNoOrder(NavigatorExpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         case "Carrier":
                             List<String> CarrierExpectedList = List.of("CAR_Carrier Summary Invoice (FM-001-01)", "CAR_Marketing Materials (PM-004-03)", "CAR_Marketing Materials (PM-004-03)", "CAR_Correspondence (IN-001-05)", "CAR_Quality Ratings (PM-001-01)", "CAR_Transparancy Disclosure (PM-001-02)", "CAR_Marketing Materials (PM-001-03)", "CAR_Provider Network Directory (PM-004-01)", "CAR_Quality Ratings (PM-004-02)");
                             softAssert.assertEquals(CarrierExpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         case "Appeal":
                             List<String> AppealExpectedList = List.of("Appeal Case Notes", "Appeal Request Form", "Appeal Request Form", "Appeal Supporting Document");
                             Assert.assertEqualsNoOrder(AppealExpectedList, optionslist);
-                            softAssert.assertAll();
                             break;
                         default:
                             throw new IllegalArgumentException("Invalid option: " + selectedOptionText);
