@@ -39,11 +39,20 @@ public class OhcHraSteps_Elmo {
     @And("I verify the header for Primary Member on the HRA page")
     public void iVerifyTextOnOtherHealthInsurancePage(){ohcHraPage_Elmo.verifyHeadersHraOhcPageEnglish();}
 
-    @And("I verify the {string} amount {string} HRA page data in {string}")
-    public void iVerifyHraPageData(String dataToVerify, String expectedIncome, String language) {ohcHraPage_Elmo.verifyHraPageData(dataToVerify, expectedIncome, language);}
+    @And("I verify the {string} amount {string} HRA page data")
+    public void iVerifyHraPage(String dataToVerify, String expectedIncome) {ohcHraPage_Elmo.verifyHraData(dataToVerify, expectedIncome);}
 
     @And("I verify year is {string}, amount is {string}, type is {string}, {string} APTC question {string} on the HRA page")
     public void iVerifyEnrolledOption(String year, String amount, String type, String withOrWithout, String aptc){ohcHraPage_Elmo.verifyEnrolledOption(year, amount, type, withOrWithout, aptc);}
+
+    @And("I verify the {string} HRA page data in {string}")
+    public void iVerifyHraPageData(String dataToVerify, String language) {ohcHraPage_Elmo.verifyHraPageData(dataToVerify, language);}
+
+    @And("I verify {string} error in {string} on the HRA page")
+    public void iVerifyErrorMessage(String errorType, String language){ohcHraPage_Elmo.verifyErrorMessage(errorType, language);}
+
+    @And("I verify {string} error does not show for HRA page")
+    public void iVerifyNoErrorMessage(String errorType)  {ohcHraPage_Elmo.verifyNoErrorMessage(errorType);}
 
 
 
