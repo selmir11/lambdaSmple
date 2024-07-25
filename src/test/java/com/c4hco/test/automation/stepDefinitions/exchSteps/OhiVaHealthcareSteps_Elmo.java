@@ -11,6 +11,9 @@ public class OhiVaHealthcareSteps_Elmo {
     @Then("I click continue on the Elmo OHI VA Healthcare page")
     public void iClickSaveAndContinue(){ohiVaHealthcarePage_Elmo.clickSaveAndContinue();}
 
+    @Then("I click Go Back on the Elmo OHI VA Healthcare page")
+    public void iClickGoBack(){ohiVaHealthcarePage_Elmo.clickGoBack();}
+
     @Then("I click {string} for currently enrolled in VA Healthcare question")
     public void iClickCurrentlyEnrolledOption(String currentlyEnrolled){ohiVaHealthcarePage_Elmo.clickCurrentlyEnrolledOption(currentlyEnrolled);}
 
