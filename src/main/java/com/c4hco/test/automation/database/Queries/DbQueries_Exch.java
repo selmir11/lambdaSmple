@@ -130,7 +130,7 @@ public class DbQueries_Exch {
 
     public String enPolicy_Mem_Coverage_FinAh(){
         return "select epmch.policy_member_coverage_status, epmch.coverage_start_date, epmch.coverage_end_date, epmch.policy_member_coverage_status, epmch.disenrollment_reason\n" +
-                "from coco.en_policy_member_coverage_ah epmch\n"+
+                "from "+dbName+".en_policy_member_coverage_ah epmch\n"+
                 "where application_id = '"+ applicationId+"'";
     }
 }
