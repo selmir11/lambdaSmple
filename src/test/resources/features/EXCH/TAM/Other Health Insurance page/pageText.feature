@@ -51,12 +51,12 @@ Feature: Page Text-Other Health Insurance Page
     And I select "No" to claim dependents
     And I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    And I verify text on the "Exch NonElmo" "Header" in "English"
-    And I verify text on the "Exch NonElmo" "Footer" in "English"
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    And I verify text on the "Exch" "Header" in "English"
+    And I verify text on the "Exch" "Footer" in "English"
 
-    Then I validate I am on the "Other Health Insurance" page
-    And I click on the Username in the "Exch NonElmo" Header
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
@@ -76,37 +76,37 @@ Feature: Page Text-Other Health Insurance Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
 
 
-    And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
   @SLER-252 @PageTextOtherHealthInsurance
@@ -155,15 +155,15 @@ Feature: Page Text-Other Health Insurance Page
     And I select "No" to claim dependents
     And I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    And I change the language from header to "Spanish NonElmo"
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify text on the "Exch NonElmo" "Header" in "Spanish"
-    And I verify text on the "Exch NonElmo" "Footer" in "Spanish"
+    And I verify text on the "Exch" "Header" in "Spanish"
+    And I verify text on the "Exch" "Footer" in "Spanish"
 
-    And I validate I am on the "Other Health Insurance" page
+    And I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
-    And I click on the Username in the "Exch NonElmo" Header
+    And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
@@ -183,48 +183,48 @@ Feature: Page Text-Other Health Insurance Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
 
-    And I validate I am on the "Other Health Insurance" page
-    And I change the language from header to "Spanish NonElmo"
+    And I validate I am on the "Elmo Other Health Insurance" page
+    And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Other Health Insurance" page
+    Then I validate I am on the "Elmo Other Health Insurance" page
     And I validate I am on the "Spanish" page
 
 
-    And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
 

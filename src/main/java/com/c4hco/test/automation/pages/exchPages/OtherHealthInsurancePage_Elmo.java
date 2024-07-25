@@ -115,7 +115,7 @@ public class OtherHealthInsurancePage_Elmo {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
