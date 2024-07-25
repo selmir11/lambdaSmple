@@ -79,7 +79,7 @@ Feature: Navigation-Life Change Event Page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
 
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page

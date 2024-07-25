@@ -118,7 +118,14 @@ public class AdditionalIncomePage {
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
+
+    public void clickNoneAddtlIncomeOption(){
+        basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 10);
+        addtlIncomeOptionsCheckbox.get(12).click();
+    }
+
     public void clickContinue(){
+        basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 10);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income, 20);
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);

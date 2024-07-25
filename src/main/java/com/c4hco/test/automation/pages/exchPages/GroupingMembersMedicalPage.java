@@ -48,7 +48,9 @@ public class GroupingMembersMedicalPage {
     SoftAssert softAssert = new SoftAssert();
 
     public void clickContinue() {
+        basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.waitForElementToBeClickable(continueButton, 10);
         basicActions.click(continueButton);
     }
 
@@ -68,7 +70,7 @@ public class GroupingMembersMedicalPage {
     public void noOfMedicalGroups(int totalGroups) {
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
+        softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
         softAssert.assertAll();
         SharedData.setTotalGroups(groupsSize);
     }

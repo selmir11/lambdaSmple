@@ -67,8 +67,12 @@ public class OtherHealthInsurancePage_Elmo {
     @FindBy(css = ".drawer-footer *")
     List<WebElement> helpDrawerFooter;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
 
     public void selectInsuranceOptionOnly(String insuranceOption){
+        basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
         basicActions.waitForElementListToBePresent(existingHealthInsurancePageTxt1,15);
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox,15);
@@ -107,7 +111,8 @@ public class OtherHealthInsurancePage_Elmo {
                 basicActions.click(insuranceOptionsCheckBox.get(10));
                 break;
             case "None of these":
-                basicActions.click(insuranceOptionsCheckBox.get(11));
+                basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 10);
+                insuranceOptionsCheckBox.get(11).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
@@ -115,7 +120,7 @@ public class OtherHealthInsurancePage_Elmo {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }

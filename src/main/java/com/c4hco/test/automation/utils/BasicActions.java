@@ -137,6 +137,17 @@ public class BasicActions {
         return true;
     }
 
+    public Boolean isElementDisplayed(WebElement webElement, int waitTime){
+        Boolean isElementPresent = true;
+        try{
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+        } catch(NoSuchElementException|TimeoutException ignore){
+            isElementPresent = false;
+        }
+        return isElementPresent;
+    }
+
     public Boolean waitForElementToBePresentWithRetries(WebElement webElement, int waitTime) {
         int retries = 5; // Number of retries to handle stale element
         while (retries > 0) {

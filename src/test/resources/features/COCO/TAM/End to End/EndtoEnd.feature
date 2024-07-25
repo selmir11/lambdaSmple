@@ -175,7 +175,8 @@ Feature: End to End Testing
     And I select continue on the income Summary CoCo page
 
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "08111990", "Male", "Spouse", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Spouse", "08111990", "Male" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
@@ -194,7 +195,9 @@ Feature: End to End Testing
     And I select continue on the income Summary CoCo page
 
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "04252005", "Male", "Child or Other dependent", "Child or Other dependent", and applying "No"
+    Then I enter details on tell us about additional members of your household page and continue with "Son", "04252005", "Male" and applying "Yes"
+      |Primary:Child or Other dependent |
+      |Spouse:Child or Other dependent    |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
@@ -213,7 +216,10 @@ Feature: End to End Testing
     And I select continue on the income Summary CoCo page
 
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "03132008", "Female", "Child or Other dependent", "Child or Other dependent", "Sibling", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "03132008", "Female" and applying "Yes"
+      | Primary:Child or Other dependent |
+      | Spouse:Child or Other dependent  |
+      | Son:Sibling                    |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "No" for live in Colorado option for additional member
