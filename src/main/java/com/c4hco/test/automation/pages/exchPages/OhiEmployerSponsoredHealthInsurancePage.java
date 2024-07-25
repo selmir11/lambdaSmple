@@ -107,13 +107,13 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "app-other-member-coverage > div > span")
     List<WebElement> esiFamilyMemberTxt;
 
-    @FindBy(id = "ELIG-Ohc-Esi-MemberCoverage-0-CoverageTypeEnrolledButton")
+    @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-MemberCoverage']//button[contains(@id, 'CoverageTypeEnrolledButton')]")
     List<WebElement> esiFamilyEnrolledBtn;
 
-    @FindBy(id = "ELIG-Ohc-Esi-MemberCoverage-0-CoverageTypeAccessButton")
+    @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-MemberCoverage']//button[contains(@id, 'CoverageTypeAccessButton')]")
     List<WebElement> esiFamilyOfferedBtn;
 
-    @FindBy(id = "ELIG-Ohc-Esi-MemberCoverage-0-CoverageTypeNoAccessButton")
+    @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-MemberCoverage']//button[contains(@id, 'CoverageTypeNoAccessButton')]")
     List<WebElement> esiFamilyNoOptionBtn;
 
     @FindBy(css = ".drawer-controls > div > div")
@@ -184,6 +184,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
     public void clickSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 
@@ -1162,7 +1163,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMainTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Employer-sponsored Health Insurance");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Overview");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Overview\nBefore you continue, gather any documents about health coverage that include information about premium costs and who in the household can get coverage.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "You may find this information in an online employee account, a letter, email, PDF, or another document from the job that's offering health coverage.");
@@ -1321,7 +1322,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMainTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud patrocinado por el empleador");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Resumen");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Resumen\nAntes de continuar, re\u00FAna todos los documentos sobre la cobertura de salud que incluyan informaci\u00F3n sobre el costo de las primas y qui\u00E9n en la familia puede tener cobertura.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Puede encontrar esta informaci\u00F3n en una cuenta de empleado en l\u00EDnea, una carta, un correo electr\u00F3nico, un PDF u otro documento del trabajo en el que se ofrece cobertura de salud.");

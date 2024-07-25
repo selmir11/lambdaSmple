@@ -197,7 +197,11 @@ public class HeaderAndFooterPage {
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 25);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
+                basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 70);
+                basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 70);
+                basicActions.waitForElementToBePresentWithRetries(languageDrp, 70);
+                basicActions.scrollToElement(learnMoreLink);
                 centerHeaderLink.get(0).click();
                 break;
             case "NonElmo":
@@ -413,6 +417,9 @@ public class HeaderAndFooterPage {
         switch (pageType) {
             case "Elmo":
                 basicActions.waitForElementToBePresent(signOutLink, 10);
+                basicActions.waitForElementToBePresent(learnMoreLink, 25);
+                basicActions.waitForElementToBePresent(getAssistanceLink, 25);
+                basicActions.waitForElementToBePresent(languageDrp, 25);
                 basicActions.scrollToElement(signOutLink);
                 basicActions.click(signOutLink);
                 break;
@@ -734,8 +741,9 @@ public class HeaderAndFooterPage {
                 APprivacyPolicyLink.click();
                 break;
             case "Individual Portal":
-                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 50);
-                basicActions.waitForElementToBeClickable(termsOfUseLink, 50);
+                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
+                basicActions.waitForElementToBeClickableWithRetries(contactUsLink, 70);
+                basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;

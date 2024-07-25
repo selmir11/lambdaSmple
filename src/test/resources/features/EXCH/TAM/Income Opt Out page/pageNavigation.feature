@@ -251,7 +251,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click continue on family overview page
 
     Then I validate I am on the "Financial Help" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -427,7 +427,7 @@ Feature: Page Navigation-Income Opt Out Page
 
     Then I validate I am on the "Financial Help" page
     Then I validate I am on the "Spanish" page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "Spanish" page
