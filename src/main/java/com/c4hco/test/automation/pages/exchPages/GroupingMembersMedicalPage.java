@@ -179,8 +179,4 @@ public class GroupingMembersMedicalPage {
         compareLists(actualMap, expectedMap);
     }
 
-    public void validateTotalGroups(int expectedTotalGroups){
-
-    }
-
 }
