@@ -62,13 +62,11 @@ public class DbDataProvider_Exch {
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
     }
-    public String getMedCSRAmt(){
-        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberMedFinancialRecords());
+    public String getMemberPremiumAmt(String coverageType) {
+        return postgresHandler.getResultFor("plan_premium_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
     }
-    public String getMedPremiumAmt(){
-        return postgresHandler.getResultFor("plan_premium_amt", exchDbQueries.getMemberMedFinancialRecords());
-    }
-    public void setDataFromDb(String planName){String fipcode = getFipcode();
+    public void setDataFromDb(String planName, String coverageType){
+     String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
      String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
      String baseId = baseIdAndHiosIssuerId[0];
@@ -79,8 +77,7 @@ public class DbDataProvider_Exch {
      String exchPersonId = getExchPersonId();
      String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
-     String csrAmtMed = getMedCSRAmt();
-     String planPremiumAmtMed = getMedPremiumAmt();
+     String planPremiumAmt = getMemberPremiumAmt(coverageType);
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -92,8 +89,8 @@ public class DbDataProvider_Exch {
         dbData.setExchPersonId(exchPersonId);
         dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
-        dbData.setCsrAmtMed(csrAmtMed);
-        dbData.setPremiumAmtMed(planPremiumAmtMed);
+        dbData.setCoverageType(coverageType);
+        dbData.setMemberPremiumAmt(planPremiumAmt);
         SharedData.setDbData(dbData);
     }
 

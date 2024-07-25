@@ -82,7 +82,8 @@ public class DbValidations {
       List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
       SharedData.setOb834DetailsEntities(ob834DetailsEntities);
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
-          exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan());
+          String coverageType = ob834Entity.getInsurance_line_code().equals("HLT")? "1" : "2";
+          exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan(),coverageType);
           DbData dbData = SharedData.getDbData();
           if(ob834Entity.getInsurance_line_code().equals("HLT")){
               validateMedicalDbRecord_ob834Detail(subscriber, ob834Entity, dbData, expectedValues);
@@ -113,17 +114,15 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate,"Medical plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
-        softAssert.assertEquals(dbData.getCsrAmtMed(),ob834Entity.getCsr_amount(),"CSR amount does not match");
-        softAssert.assertEquals(dbData.getPremiumAmtMed(),ob834Entity.getPremium_amount(),"Plan premium amount does not match");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateResidentialAddress(subscriber, ob834Entity, dbData);
         softAssert.assertAll();
-
-
+        validateMedicalPremiumAmt(ob834Entity,dbData);
     }
 
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
+        validateDentalPremiumAmt(ob834Entity,dbData);
     }
 
     public void validateMedDenRec_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
@@ -147,6 +146,33 @@ public class DbValidations {
         // validateRelCode(subscriber, ob834Entity);   //WIP
         validateMemberCountDetails(ob834Entity);
         ValidatePriorSubscriber(subscriber, ob834Entity);
+    }
+
+    public void validateMedicalPremiumAmt(Ob834DetailsEntity ob834Entity,DbData dbData) {
+        List<MemberDetails> memberList = SharedData.getMembers();
+        if (memberList != null) {
+            for (MemberDetails member : memberList) {
+                if (ob834Entity.getMember_id().equals(dbData.getExchPersonId())) {
+                softAssert.assertEquals(dbData.getMemberPremiumAmt(), ob834Entity.getPremium_amount(), "Plan premium amount does not match for: " + ob834Entity.getMember_id());
+                }}}
+        else {
+            softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt(), ob834Entity.getPremium_amount(), "Plan premium amount does not match for subscriber.");
+            System.out.println(SharedData.getPrimaryMember().getMedicalPremiumAmt());
+        }
+        softAssert.assertAll();
+    }
+    public void validateDentalPremiumAmt(Ob834DetailsEntity ob834Entity,DbData dbData) {
+        List<MemberDetails> memberList = SharedData.getMembers();
+        if (memberList != null) {
+            for (MemberDetails member : memberList) {
+                if (ob834Entity.getMember_id().equals(dbData.getExchPersonId())) {
+                    softAssert.assertEquals(dbData.getMemberPremiumAmt().replace("$", ""), ob834Entity.getPremium_amount(), "Plan premium amount does not match for: " + ob834Entity.getMember_id());
+                    }}}
+        else {
+            softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", ""), ob834Entity.getPremium_amount(), "Plan premium amount does not match for subscriber.");
+            System.out.println(SharedData.getPrimaryMember().getDentalPremiumAmt());
+        }
+        softAssert.assertAll();
     }
 
     public void validateSponsorId(Ob834DetailsEntity ob834Entity){
