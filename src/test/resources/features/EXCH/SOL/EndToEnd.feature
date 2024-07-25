@@ -86,8 +86,10 @@ Feature: End to End Tests
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -119,5 +121,20 @@ Feature: End to End Tests
     And I select the Money Order button
     And I click continue on payment selection page
     And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
