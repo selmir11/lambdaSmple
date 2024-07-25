@@ -180,7 +180,7 @@ Feature: Regression Tests that require Seed 1
       | 6  | SOURCE EXCHANGE ID | COHBE              |
       | 7  | TOT RES AMT        | 291.02             |
       | 8  | PRE AMT TOT        | 291.02             |
-   # And I verify the policy data quality check
+    And I verify the policy data quality check
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
