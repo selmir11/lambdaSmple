@@ -371,6 +371,9 @@ public class BasicSteps {
             case "Elmo HRA" :
                 pageUrl = "otherHealthCoverage/hra";
                 break;
+            case "Program Manager" :
+                pageUrl = "/AdminPortal/programManager/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

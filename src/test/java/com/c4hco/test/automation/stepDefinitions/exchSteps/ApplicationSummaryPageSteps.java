@@ -13,7 +13,8 @@ public class ApplicationSummaryPageSteps {
     }
 
     @Then("I select the Edit Income link")
-    public void iclickEditIncomelink() {applicationSummaryPage.clickEditIncomelink();
+    public void iclickEditIncomelink() {
+        applicationSummaryPage.clickEditIncomelink();
 
     }
 }
