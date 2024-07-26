@@ -1,6 +1,6 @@
-Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
-
-  Scenario: : EXCH intial application
+Feature: Enroll  a plan from broker portal (FAMILY OF 1)
+  @SLER-626
+  Scenario: : EXCH initial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -115,6 +115,8 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
+     # Then I click all done from payment portal page
+
     Then I select make payment button to pay the premium
     And I select the Money Order button
     And I click continue on payment selection page
@@ -126,7 +128,7 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
 
     And I click on Go To Welcome Page Button on whats next page
 
-   # Then I click all done from payment portal page
+
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
 
@@ -142,7 +144,7 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     #DbVerification
 
     And I verify the policy data quality check
-  #  And I verify the data from book of business queue table
+    And I verify the data from book of business queue table
 
 
 
