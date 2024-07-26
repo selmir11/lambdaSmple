@@ -127,7 +127,7 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
 
-    #Gmail
+    #Gmail Verification
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
