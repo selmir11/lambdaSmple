@@ -44,7 +44,7 @@ public class sftpStepDefinitions {
     }
 
     @And("I validate the ob834 files should have the values")
-    public void validateOb834Records(List<Map<String, String>> expectedValues) {
+    public void validateOb834Records() {
 
         List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
 

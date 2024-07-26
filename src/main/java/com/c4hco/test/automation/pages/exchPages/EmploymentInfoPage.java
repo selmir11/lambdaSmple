@@ -25,7 +25,7 @@ public class EmploymentInfoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = ".header-1.content-center")
+    @FindBy(css = "app-employment-container .header-1")
     WebElement txtHeaderPart1;
 
     @FindBy(xpath = "//app-employment-container//div[2]/span")

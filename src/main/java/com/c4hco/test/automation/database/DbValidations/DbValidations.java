@@ -452,6 +452,17 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getPeace_corps_end_voluntary_ind3(), expectedValues.get(0).get("peace_corps_end_voluntary_ind3"));
         softAssert.assertAll();
     }
+    public void validateHraOptions(List<Map<String, String>> expectedValues) {
+        EsMemberHraEntity actualResult = exchDbDataProvider.getOptionsFromHraDbTables();
+        System.out.println(actualResult);
+
+        softAssert.assertEquals(actualResult.getPlan_year(), expectedValues.get(0).get("plan_year"));
+        softAssert.assertEquals(actualResult.getEmplr_hra_ctb(), expectedValues.get(0).get("emplr_hra_ctb"));
+        softAssert.assertEquals(actualResult.getHra_type(), expectedValues.get(0).get("hra_type"));
+        softAssert.assertEquals(actualResult.getEmplr_ctb_optout_ind(), expectedValues.get(0).get("emplr_ctb_optout_ind"));
+        softAssert.assertEquals(actualResult.getHra_not_affordable_ind(), expectedValues.get(0).get("hra_not_affordable_ind"));
+        softAssert.assertAll();
+    }
     public void ValidatePriorSubscriber(MemberDetails subscriber, Ob834DetailsEntity ob834Entity){
         softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match");
         softAssert.assertAll();
