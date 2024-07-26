@@ -19,7 +19,7 @@ public class IncomeSummaryCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "div.total-income-width div")
+    @FindBy(css = "div.total-income-width div span")
     WebElement totalAnnualIncome;
 
     @FindBy(css = "lib-option-buttons button")
@@ -48,6 +48,7 @@ public class IncomeSummaryCoCoPage {
     }
     public void verifyTotalAnnualIncome(String Amount){
         basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
+        basicActions.wait(500);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
         softAssert.assertAll();
     }

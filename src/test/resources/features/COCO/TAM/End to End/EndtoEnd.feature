@@ -278,7 +278,7 @@ Feature: End to End Testing
     Then I validate I am on the "CoCo Deductions" page
     And I select "Alimony" as deduction option with "485.00" amount at "Annually" frequency
     And I select continue on the Deductions CoCo page
-    Then I verify the total annual income to be "14,088.00"
+    Then I verify the total annual income to be "$14,088.00"
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I validate the Total Income on the Family Overview page equals "14,088.00"
@@ -299,10 +299,11 @@ Feature: End to End Testing
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click continue button on Congratulations page CoCo
+    Then I click all done from payment portal page
+    #And I select make payment button to pay the premium CoCo
+    #And I select Continue button on the Payment Selection CoCo page
+    #And I select continue button on the Initial Payment CoCo page
+    #And I click continue button on Congratulations page CoCo
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
