@@ -83,6 +83,7 @@ public class WhoAreYouPage {
     public void specificMemberDetails(String City, String State, String zipcode, String county, String dateOfBirth){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         Address address = new Address();
+        basicActions.waitForElementToBePresent(StreetAddress1,20);
         StreetAddress1.sendKeys(addressLine1);
         memberCity.sendKeys(City);
 
