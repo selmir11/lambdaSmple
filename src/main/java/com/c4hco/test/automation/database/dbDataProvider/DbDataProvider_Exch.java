@@ -106,7 +106,7 @@ public class DbDataProvider_Exch {
     }
 
     public EsMemberHraEntity getOptionsFromHraDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromHraTables(exchDbQueries.getHraRecords());
+        return esMemberOhiDbHandler.getOptionsFromHraTables(exchDbQueries.getPrimaryHraRecords());
     }
 
     public Map<String,String> getPolicyDqCheckAndPolicyAhId(){

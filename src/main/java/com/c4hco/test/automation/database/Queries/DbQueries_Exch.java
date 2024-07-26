@@ -50,7 +50,7 @@ public class DbQueries_Exch {
                 "where member_id = '"+SharedData.getPrimaryMemberId()+"'";
     }
 
-    public String getHraRecords(){
+    public String getPrimaryHraRecords(){
         return "select *\n" +
                 "From  "+dbName+".es_member_hra\n" +
                 "where member_id = '"+SharedData.getPrimaryMemberId()+"'";
