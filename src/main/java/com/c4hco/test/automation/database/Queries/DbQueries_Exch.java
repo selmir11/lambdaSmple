@@ -116,4 +116,21 @@ public class DbQueries_Exch {
         return "select acct_holder_fn from  "+dbName+".bp_book_of_business\n "+
                 "where account_id = '"+acctId+"'";
     }
+    //Policy table queries
+    public String enPolicyAh(){
+        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
+                "where account_id = '"+ acctId+"'";
+    }
+
+    public String enMem_Coverage_FinancialAh(){
+        return "select emcfh.member_financial_start_date, emcfh.member_financial_end_date, emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.responsible_amt, emcfh.csr_amt, emcfh.premium_reduction_type, emcfh.csr_level\n"+
+        "from "+dbName+".en_member_coverage_financial_ah emcfh\n"+
+                "where application_id = '"+ applicationId+"'";
+    }
+
+    public String enPolicy_Mem_Coverage_FinAh(){
+        return "select epmch.policy_member_coverage_status, epmch.coverage_start_date, epmch.coverage_end_date, epmch.policy_member_coverage_status, epmch.disenrollment_reason\n" +
+                "from "+dbName+".en_policy_member_coverage_ah epmch\n"+
+                "where application_id = '"+ applicationId+"'";
+    }
 }

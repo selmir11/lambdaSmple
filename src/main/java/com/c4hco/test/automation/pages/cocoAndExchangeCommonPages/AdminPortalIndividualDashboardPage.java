@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -92,6 +93,42 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalsYear;
     @FindBy(xpath = "//div[.='There is no Renewal data for this year']")
     WebElement noRenewalsText;
+    @FindBy(id = "username")
+    WebElement pmUsername;
+    @FindBy(xpath = "//input[@id='program-manager-email-input']")
+    WebElement emailProgramManager;
+    @FindBy(id = "prim-phone")
+    WebElement pmPhone;
+    @FindBy(css = "#program-manager-contract > h2")
+    WebElement contractStatus;
+    @FindBy(id = "manage-contract")
+    WebElement manageContract;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement profileSummary;
+    @FindBy(css = "div[id='program-manager-contract'] p[class='group-title']")
+    WebElement contractInfo;
+    @FindBy(css = "div[class='group-box activity-container'] p[class='group-title']")
+    WebElement activityContainer;
+    @FindBy(css = "div[class='group-box client-container'] p[class='group-title']")
+    WebElement clientContainer;
+    @FindBy(css = "div[class='group-box organization-container'] p[class='group-title']")
+    WebElement organizationContainer;
+    @FindBy(css = ".btn-second-action-button.view-report")
+    WebElement viewReportButton;
+    @FindBy(css = "div[class='nodata'] p")
+    WebElement noClients;
+    @FindBy(xpath = "//button[@class='btn-second-action-button dashboard-button']")
+    WebElement goBack;
+    @FindBy(css = "label[for='organization-id']")
+    WebElement lblGroupID;
+    @FindBy(css = "#id")
+    WebElement groupID;
+    @FindBy(css = "label[for='name']")
+    WebElement lablOrgName;
+    @FindBy(css = "//p[@id='name']")
+    WebElement orgName;
+    @FindBy(xpath = "//th[normalize-space()='First Name']")
+    WebElement clientFirstName;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -145,11 +182,9 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(agencyWebsite.getText(), website);
         softAssert.assertEquals(agencyPhone.getText(), phone);
         softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
-        softAssert.assertAll();     }
-    public void validateAgencyAddress(String address){
-        basicActions.waitForElementToBePresent(agencyAddress, 10);
         softAssert.assertTrue(agencyAddress.isDisplayed());
-        softAssert.assertAll(); }
+        softAssert.assertAll();
+    }
     public void clickManagePlan() {
         basicActions.waitForElementToBeClickable(managePlanButton, 10);
         basicActions.click(managePlanButton);
@@ -161,10 +196,10 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(medicalPlan.getText(), data.get(1));
         basicActions.waitForElementToBePresent(dentalPlan, 20);
         softAssert.assertEquals(dentalPlan.getText(), data.get(2));
-    }
-    public void validateSelectedMemberData()  {
+        softAssert.assertAll(); }
+   public void validateSelectedMemberData() {
         basicActions.switchToParentPage("C4HCO Admin Portal");
-        basicActions.waitForElementToBePresent(selectedMember,30);
+        basicActions.waitForElementToBePresent(selectedMember, 30);
         softAssert.assertTrue(selectedMember.isDisplayed());
         softAssert.assertTrue(memberFullName.isDisplayed());
         softAssert.assertTrue(userName.isDisplayed());
@@ -173,18 +208,16 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(memberDob.isDisplayed());
         softAssert.assertTrue(memberAddress.isDisplayed());
         softAssert.assertAll(); }
-    public void validateIndividualDashboardContainerTitles(String plans, String summary, String eligibility, String renewals, String reports, String payloads)   {
+    public void validateIndividualDashboardContainerTitles() {
         basicActions.waitForElementToBePresent(plansTitle, 30);
-
-        softAssert.assertEquals(plansTitle.getText(), plans);
-        softAssert.assertEquals(summaryTitle.getText(), summary);
-        softAssert.assertEquals(eligibilityTitle.getText(), eligibility);
-        softAssert.assertEquals(renewalsTitle.getText(), renewals);
-        softAssert.assertEquals(reportsTitle.getText(), reports);
-        softAssert.assertEquals(payloadsTitle.getText(), payloads);
+        softAssert.assertEquals(plansTitle.getText(), plansTitle);
+        softAssert.assertEquals(summaryTitle.getText(), summaryTitle);
+        softAssert.assertEquals(eligibilityTitle.getText(), eligibilityTitle);
+        softAssert.assertEquals(renewalsTitle.getText(), renewalsTitle);
+        softAssert.assertEquals(reportsTitle.getText(), reportsTitle);
+        softAssert.assertEquals(payloadsTitle.getText(), payloadsTitle);
         softAssert.assertAll();
     }
-
     public void verifyPayloadsContainer() {
         basicActions.waitForElementToBePresent(payloadsTitle, 30);
         softAssert.assertTrue(payloadsTitle.isDisplayed());
@@ -224,16 +257,64 @@ public class AdminPortalIndividualDashboardPage {
             }
         }
     }
-    public void  verifyYears() {
-        basicActions.waitForElementToBePresent(payloadsYears, 30);
-        softAssert.assertEquals(payloadsYears.getText(),"All Payloads");
-        softAssert.assertAll(); }
-    public void  verifyText() {
-        basicActions.waitForElementToBePresent(renewalsTitle, 10);
-        softAssert.assertEquals(renewalsTitle.getText(),"Renewals");
-        softAssert.assertEquals(renewalsYear.getText(),"Plan Year 2024");
-        softAssert.assertTrue(noRenewalsText.isDisplayed());
-        softAssert.assertAll(); }
-}
 
+    public void verifyYears() {
+        basicActions.waitForElementToBePresent(payloadsYears, 30);
+        softAssert.assertEquals(payloadsYears.getText(), "All Payloads");
+        softAssert.assertAll(); }
+      public void verifyContainerTitleAndDefaultYearIsDisplayed(String containerTitle, String defaultYear) {
+        basicActions.waitForElementToBePresent(renewalsTitle, 10);
+        softAssert.assertEquals(renewalsTitle.getText(), containerTitle);
+        softAssert.assertEquals(renewalsYear.getText(), defaultYear);
+        softAssert.assertAll();    }
+    public void VerifyProgramManagerInformationAccountSummary() {
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(pmUsername.getText(), "profile@test.com");
+            softAssert.assertEquals(pmPhone.getText(), "333-333-3333 ext12345");
+        } else {
+            softAssert.assertEquals(pmUsername.getText(), "c4assistorportal+tKSVkjcxB@gmail.com");
+            softAssert.assertEquals(pmPhone.getText(), "335-580-8300");
+        }
+            softAssert.assertAll(); }
+    public void validateProgramManagerDashboardContainerTitles() {
+        basicActions.waitForElementToBePresent(profileSummary, 30);
+        softAssert.assertTrue(profileSummary.isDisplayed());
+        softAssert.assertEquals(contractInfo.getText(), "Contract Information");
+        softAssert.assertEquals(activityContainer.getText(), "Account Activity Report");
+        softAssert.assertEquals(clientContainer.getText(), "Client Information");
+        softAssert.assertEquals(organizationContainer.getText(), "Organization Information");
+        softAssert.assertAll(); }
+    public void VerifyProgramManagerContractStatus() {
+        softAssert.assertEquals(contractStatus.getText(),"Contract Status: APPROVED");
+        softAssert.assertEquals(manageContract.getText(),"Manage Contract");
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(contractStatus.getText(),"Contract Status: APPROVED");
+        }else{
+            softAssert.assertEquals(contractStatus.getText(),"Contract Status: APPROVED");
+        }
+        softAssert.assertAll(); }
+    public void VerifyProgramManagerAccountActivityContainer() {
+        basicActions.waitForElementToBePresent(viewReportButton, 30);
+        softAssert.assertEquals(viewReportButton.getText(),"View Report");
+        softAssert.assertAll(); }
+    public void VerifyProgramManagerClientInformationContainer(String text){
+            basicActions.waitForElementToBePresent(noClients, 20);
+            softAssert.assertTrue(noClients.isDisplayed());
+            softAssert.assertEquals(noClients.getText(), text);
+            softAssert.assertAll(); }
+    public void VerifyProgramManagerOrganizationInformation() {
+        softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
+        softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(groupID.getText(), "130474819");
+            softAssert.assertEquals(orgName.getText(), "profiletest");
+        } else {
+            softAssert.assertEquals(groupID.getText(), "60288219");
+            softAssert.assertEquals(orgName.getText(), "apdrhhfmqdupyqdgcpgrveupznk");
+        }
+            softAssert.assertAll(); }
+    public void clickGoBackONAdminPortalProgramManager() {
+        basicActions.waitForElementToBePresent(goBack,20);
+        goBack.click(); }
+}
 
