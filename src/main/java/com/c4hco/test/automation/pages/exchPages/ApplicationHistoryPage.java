@@ -19,6 +19,8 @@ public class ApplicationHistoryPage {
     WebElement viewResultsAndShop;
     @FindBy(css = "table tbody  #align-right")
     List<WebElement> applicationSummary;
+    @FindBy(id = "price-background")
+    WebElement aptcSection;
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -52,5 +54,10 @@ public class ApplicationHistoryPage {
     public void validateTextDoesNotExistOnPage(String Text){
         basicActions.waitForElementToBePresent(viewResultsAndShop, 15);
         Assert.assertEquals(0, basicActions.getDriver().findElements(By.xpath("//*[text()='"+Text+"']")).size());
+    }
+
+    public void validateAptcSectionDoesntExist(){
+        basicActions.waitForElementToBePresent(viewResultsAndShop, 10);
+        Assert.assertFalse(basicActions.isElementDisplayed(aptcSection, 3));
     }
 }

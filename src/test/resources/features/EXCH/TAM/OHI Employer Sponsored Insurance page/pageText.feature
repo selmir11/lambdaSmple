@@ -54,7 +54,8 @@ Feature: Page Text-OHI ESI Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "ESI" as health insurance option and continue
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "ESI" page
 
@@ -83,7 +84,7 @@ Feature: Page Text-OHI ESI Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "ESI" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -146,7 +147,7 @@ Feature: Page Text-OHI ESI Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "ESI" page
     And I change the language from header to "Spanish"

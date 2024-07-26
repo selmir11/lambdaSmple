@@ -78,8 +78,8 @@ Feature: Secondary User-OHI TRICARE Elmo Page
     And I select "Yes" to claim dependents
     And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "TRICARE" as health insurance option and continue
-    And I change the C4 url to "Elmo Ohi Tricare Page"
+    Then I select "TRICARE" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
 
   @SLER-495 @SecondaryUserOhiTricareElmo

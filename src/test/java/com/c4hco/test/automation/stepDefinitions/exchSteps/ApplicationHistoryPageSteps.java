@@ -29,4 +29,9 @@ public class ApplicationHistoryPageSteps {
     public void iValidateMemberIsEligibleForQHP() {
         applicationHistoryPage.validateTextOnPage("Qualified Health Plan");
     }
+
+    @Then("I validate the aptc section doesn't exist on the application history page")
+    public void noAptcOnPage(){
+        applicationHistoryPage.validateAptcSectionDoesntExist();
+    }
 }

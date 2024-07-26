@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -59,6 +60,12 @@ public class ApplicationResultsPage {
     @FindBy(css = ".btn-info")
     WebElement popUpBackButton;
 
+    @FindBy(css = ".tot-sav")
+    WebElement totalSavingsSection;
+
+    @FindBy(css = ".tot-sav .tot-sav-head-right")
+    WebElement totalAptcValue;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage(WebDriver webDriver) {
@@ -71,8 +78,10 @@ public class ApplicationResultsPage {
     }
 
     public void validateAPTCByTHH(String expectedAPTC){
-        String aptcLocator = "//th[text()='"+expectedAPTC+"']";
-        basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath(aptcLocator)),15);
+        basicActions.waitForElementToBePresent(totalSavingsSection, 10);
+        basicActions.scrollToElement(totalSavingsSection);
+        basicActions.waitForElementToBePresent(totalAptcValue, 10);
+        Assert.assertEquals(totalAptcValue.getText(), expectedAPTC, "APTC Amount did not match!");
     }
 
     public void validateAPTCNotAppearing(){
