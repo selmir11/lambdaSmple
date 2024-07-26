@@ -203,7 +203,7 @@ Feature: Page Text-Other Health Insurance Page HRA
 #Step 1
     And I verify the header for Primary Member on the HRA page
 #Step 2
-    And I verify the "Initial Page" amount "" HRA page data
+    And I verify the "Initial Page" amount "" HRA page data in "English"
     And I verify year is "Not Selected", amount is "Not Selected", type is "Not Selected", "Without" APTC question "" on the HRA page
 #Set-up
     Then I select Current Year year dropdown on the Elmo OHI HRA page
