@@ -23,9 +23,8 @@ public class FamilyOverviewPage {
     @FindBy (css = ".container .family-overview-household-income")
     WebElement totalIncomeAmount;
 
-    @FindBy (css = "a.action-link.smaller")
+    @FindBy (css = ".sub-app-container .c4-type-links-lg")
     WebElement addAnotherMemberButton;
-
 
     @FindBy(id = "familyOverview-SaveAndContinue")
     WebElement continueButton;
@@ -51,7 +50,7 @@ public class FamilyOverviewPage {
     }
 
     public void clickaddAnotherMemberButton() {
-        basicActions.waitForElementToBeClickable(addAnotherMemberButton, 30);
+        basicActions.waitForElementToBePresent(addAnotherMemberButton, 30);
         basicActions.scrollToElement(addAnotherMemberButton);
         addAnotherMemberButton.click();
     }

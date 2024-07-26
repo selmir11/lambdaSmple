@@ -23,12 +23,12 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
-    And I validate I am on the "Find Expert Help" page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
+
 
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "enrintialtest@outlook.com" password "ALaska12!" and "johnc4hcoautomation+1931qa@gmail.com" password "ALaska13!"
+    And I login as Broker User any environment "enrintialtest@outlook.com" password "ALaska12!" and "enrintialtest@outlook.com" password "ALaska12!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "enrintialtest@outlook.com" and "ALaska12!"
     Then I open the MFA notice
@@ -37,9 +37,12 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
     And I validate I am on the "Broker Dashboard" page
+
+    Then I click View Your Clients button
     And I search for clients
     And I click on first client search result
     And I click "manage" the client
+
 
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -56,11 +59,10 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
+
+
     Then I validate I am on the "Add Member" page
     Then I enter member details with "03022010" date of birth
     And I select "Female" as sex option
@@ -97,13 +99,9 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
     And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
-    Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     Then I select "Anthem Dental Family" plan
     Then I click continue on dental plan results page
@@ -117,11 +115,22 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I click all done from payment portal page
+    Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    Then I validate I am on the "Initial Payment" page
+    And I click continue on initial payment page
+
+    And I click on Go To Welcome Page Button on whats next page
+
+   # Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
 
-    #Gmail
+    #Gmail Verification
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"

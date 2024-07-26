@@ -30,6 +30,9 @@ private final DbValidations dbValidations = new DbValidations();
    @And("I verify the OHI options selected in the DB")
    public void iValidateOhiOptions(List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(expectedValues);}
 
+   @And("I verify the HRA options selected in the DB")
+   public void iValidateHraOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraOptions(expectedValues);}
+
 
    @And("I verify the policy data quality check")
    public void iValidatePolicyDqCheck(){dbValidations.validatePolicyDqCheck();}

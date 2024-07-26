@@ -102,6 +102,10 @@ public class DbDataProvider_Exch {
         return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
     }
 
+    public EsMemberHraEntity getOptionsFromHraDbTables(){
+        return esMemberOhiDbHandler.getOptionsFromHraTables(exchDbQueries.getPrimaryHraRecords());
+    }
+
     public Map<String,String> getPolicyDqCheckAndPolicyAhId(){
         postgresHandler.setRec(exchDbQueries.setEnvForDataQuality());
         return postgresHandler.getResultForTwoColumnValuesInMap("policy_ah_id", "en_policy_dq_check", exchDbQueries.getPolicyDqCheck());
