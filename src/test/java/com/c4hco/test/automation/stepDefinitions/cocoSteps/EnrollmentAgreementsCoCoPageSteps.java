@@ -21,6 +21,11 @@ public class EnrollmentAgreementsCoCoPageSteps {
         enrollmentAgreementsCoCoPage.selectContinueCoCo();
     }
 
+    @And("I click go back on the enrollment agreements page coco")
+    public void clickGoBack(){
+        enrollmentAgreementsCoCoPage.clickBackBtn();
+    }
+
     @Then("I validate the page text on the enrollment agreements page coco")
     public void validatePageText(){
         enrollmentAgreementsCoCoPage.validatePageText();

@@ -28,6 +28,9 @@ public class EnrollmentAgreementsCoCoPage {
     @FindBy(id="SOL-EnrollmentAgreements-Continue")
     WebElement continueButton;
 
+    @FindBy(id="SOL-EnrollmentAgreements-GoBack")
+    WebElement goBackBtn;
+
     public void selectAgreementsCheckboxCoCo(String checkbox){
         basicActions.waitForElementToBePresent(signatureLabel,20);
         switch(checkbox){
@@ -60,8 +63,14 @@ public class EnrollmentAgreementsCoCoPage {
         continueButton.click();
     }
 
+    public void clickBackBtn() {
+        basicActions.waitForElementToBePresent(goBackBtn, 5);
+        goBackBtn.click();
+    }
+
     public void validatePageText() {
         // header, subheader1, subheader2, subheader3, 3checkboxes, terms of use, privacy policy, dentalLaw, signature text, submission date, submission text.
+        // text on buttons
 
     }
 }

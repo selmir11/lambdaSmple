@@ -5,7 +5,7 @@ Feature: UI Page Validation - Enrollment Agreements page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-186-wip @EnrollmentAgreementsPageVerbiage
+  @SLCR-186-wip @EnrollmentAgreementsPageVerbiage @test
   Scenario: Validate text on enrollment agreements page, text on buttons and page navigation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -52,10 +52,19 @@ Feature: UI Page Validation - Enrollment Agreements page related tests
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
-    # Then I validate the page text on the enrollment agreements page coco
-    # Go back
-    # come back to enrollment agreements page
-    # select all, sign, continue, validate next page.
+
+#    Then I validate the page text on the enrollment agreements page coco
+#
+#    And I click go back on the enrollment agreements page coco
+#    Then I validate I am on the "planSummaryMedicalDental" page
+#    And I click continue on coco plan summary page
+#    Then I validate I am on the "Enrollment Agreements" page
+#    And I select "Terms of Use" agreement checkbox CoCo
+#    And I select "Privacy Policy" agreement checkbox CoCo
+#    And I select "Dental Coverage" agreement checkbox CoCo
+#    And I enter householder signature on the Enrollment Agreements page CoCo
+#    And I select continue button on the Enrollment Agreements CoCo page
+#    # validate the page - payNow page in coco
 
 
 
