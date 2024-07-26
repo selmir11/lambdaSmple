@@ -179,12 +179,12 @@ Feature: End to End Tests
     Then I enter member details with "03022010" date of birth
     And I select "Male" as sex option
     And I select "Son" as relationship option
-    And I select "Sister" as relationship one option
+    And I select "Brother" as relationship one option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    Then I enter a new member address with city "Boulder" state "CO" zip "80301" and county "DOUGLAS"
+    Then I enter a new member address with city "Boulder" state "CO" zip "80301" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -241,8 +241,28 @@ Feature: End to End Tests
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
     Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I validate that there are 3 default groups
+    Then I click continue on grouping Members Dental page
+    And I select "Anthem Dental Family Value" plan
+    Then I click continue on dental plan results page
+    And I select "Anthem Dental Family Value" plan
+    Then I click continue on dental plan results page
+    And I select "Anthem Dental Family Value" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on plan summary page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    Then I click all done from payment portal page
+    And I click All Done on Pay Now page
 
 
 
