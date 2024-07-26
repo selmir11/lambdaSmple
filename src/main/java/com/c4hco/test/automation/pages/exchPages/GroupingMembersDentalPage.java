@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
+import org.testng.Assert;
+
+import java.util.List;
 
 public class GroupingMembersDentalPage {
 
@@ -21,6 +23,9 @@ public class GroupingMembersDentalPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(css = "table .th-title")
+    List<WebElement> groupTitle;
+
     private BasicActions basicActions;
 
     public GroupingMembersDentalPage(WebDriver webDriver) {
@@ -28,11 +33,10 @@ public class GroupingMembersDentalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    SoftAssert softAssert = new SoftAssert();
-
     public void clickContinue()  {
         basicActions.waitForElementToDisappear(spinner,15);
-        basicActions.waitForElementToBePresent(continueButton, 60);
+        basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.waitForElementToBeClickable(continueButton, 10);
         basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
@@ -45,11 +49,15 @@ public class GroupingMembersDentalPage {
 
     }
 
-
     public void clickOnEditDentalGroupinglink() {
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsLink, 10);
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsLink, 30);
         editMyEnrollmentGroupsLink.click();
+    }
+
+    public void validateDefaultDentalGroups(int defaultExpectedGroups){
+        basicActions.waitForElementListToBePresent(groupTitle, 10);
+        Assert.assertEquals(groupTitle.size(), defaultExpectedGroups, "Group size did not match!!");
     }
 }
 

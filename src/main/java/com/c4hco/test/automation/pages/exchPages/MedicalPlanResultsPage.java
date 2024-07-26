@@ -84,6 +84,9 @@ public class MedicalPlanResultsPage {
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     public void validateAPTC(String planResultsAPTCredit){
         basicActions.waitForElementToBePresent(planResultsAPTC, 30);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
@@ -121,7 +124,8 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickSkip(){
-        basicActions.waitForElementToBeClickableWithRetries( btnSkip,30 );
+        basicActions.waitForElementToDisappear(spinner, 20);
+         basicActions.waitForElementToBePresent(btnSkip, 30);
         btnSkip.click();
     }
     public void clickCompare() {

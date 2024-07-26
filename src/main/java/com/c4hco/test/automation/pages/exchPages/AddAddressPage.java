@@ -25,29 +25,11 @@ public class AddAddressPage {
     @FindBy(css = ".container > div:nth-child(1)")
     WebElement headerAdditionalInfo;
 
-    @FindBy(id = "retrieveResidentialAddress")
-    WebElement rdobtnHouseholdResidentialAddress;
+    @FindBy(css = ".addressradioGrp #retrieveResidentialAddress")
+    List<WebElement> rdobtnHouseholdResidentialAddress;
 
     @FindBy(id = "typeResidentialAddress")
     WebElement rdobtnDifferentResidentialAddress;
-
-    @FindBy(id = "newResidentialAddress.addressLine1")
-    WebElement txtNewAddressLine1;
-
-    @FindBy(id = "newResidentialAddress.addressLine2")
-    WebElement txtNewAddressLine2;
-
-    @FindBy(id = "newResidentialAddress.city")
-    WebElement txtNewAddressCity;
-
-    @FindBy(id = "residentialAddrState")
-    WebElement selectNewAddressState;
-
-    @FindBy(id = "residentialAddrZip")
-    WebElement txtNewAddressZip;
-
-    @FindBy(id = "residentialAddrCounty")
-    WebElement selectNewAddressCounty;
 
     @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
@@ -113,13 +95,17 @@ public class AddAddressPage {
     WebElement getNameFromHeader;
 
     public void selectResidentialAddress(String index){
+        basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
         switch(index){
             case "Household":
-                rdobtnHouseholdResidentialAddress.click();
+                rdobtnHouseholdResidentialAddress.get(0).click();
                 setResidentialAddress();
                 break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
+                break;
+            case "recent option":
+                rdobtnHouseholdResidentialAddress.get(rdobtnHouseholdResidentialAddress.size()-1).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + index);
@@ -166,8 +152,20 @@ public class AddAddressPage {
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");
-        // - make sure you confirm address is entered and no in-line errors are displayed. Noticing intermittent failures
     }
+
+    public void newMailingAddress(String city, String state, String zipcode, String county){
+        basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+        newResidentialAddressline1.sendKeys("1234 Road");
+        newResidentialAdressCity.sendKeys(city);
+        newResidentialAddressState.sendKeys(state);
+        newResidentialAddressZip.sendKeys(zipcode);
+
+        newResidentialAddressCounty.click();
+        Select dropdown = new Select(newResidentialAddressCounty);
+        dropdown.selectByValue(county);
+    }
+
     public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);

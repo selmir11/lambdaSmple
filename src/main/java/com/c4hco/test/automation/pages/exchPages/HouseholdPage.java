@@ -3,8 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class HouseholdPage {
-    // Family Overview Page
+    // Family Overview Page - IMPORTANT - REFACTOR THE ENTIRE PAGE - SO MANY DUPLICATES AND NOT WORKING CODE
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -43,12 +41,6 @@ public class HouseholdPage {
     @FindBy(xpath = "//*[@id = 'submitButton_Income']")
     WebElement editPrimaryMemberRedIcon;
 
-    @FindBy(css = "td > .fa-plus-circle.toggleAddlRow")
-    List<WebElement> memberBasicRow;
-
-    @FindBy(css = "tr:nth-child(2) > td > input")
-    List<WebElement> memberBasicDetailsEdit;
-
     @FindBy(css = ".memberBasicRow  #editBasicInfo")
     List<WebElement> memberBasicInformation;
 
@@ -60,6 +52,9 @@ public class HouseholdPage {
 
     @FindBy(css = "input[value='Edit'][alt='Submit']")
     WebElement redIcon;
+
+    @FindBy(css = ".memberBasicRow input.linkButton[type='submit']")
+    List<WebElement> memberNamesLinks;
 
     @FindBy(css = "#accountID")
     WebElement accountIdTxt;
@@ -104,20 +99,19 @@ public class HouseholdPage {
 
     public void iClickMemberLink (int index) {
         //linkName - aiming to use a different locator to activate the different rows
+        basicActions.waitForElementToBePresent(linkName, 10);
         softAssert.assertTrue( linkName.isDisplayed());
-        basicActions.waitForElementToBePresent(linkName,15);
         basicActions.waitForElementToBeClickable( linkName,15 );
         index -= 1;
         linkName.click();
     }
+
     public void iEditPrimaryMemberRedIcon(int index) {
         basicActions.waitForElementToBePresent(editPrimaryMemberRedIcon, 15 );
         basicActions.waitForElementToBeClickable( editPrimaryMemberRedIcon,15 );
-        index -= 1;
        editPrimaryMemberRedIcon.click();
-
-
     }
+
     public void iClickTableItem(int index){
         basicActions.waitForElementToBePresent(tableDropdown,15);
         index-= 1;
@@ -130,14 +124,19 @@ public class HouseholdPage {
 
     public void iClickEditIncomeLink(int index) {
         basicActions.waitForElementToBePresent(editIncomeLink,15);
-        index -= 1;
         editIncomeLink.isDisplayed();
         editIncomeLink.click();
     }
 
-    public void iClickRedIcon() {
-        basicActions.waitForElementToBePresent(redIcon, 15 );
-        redIcon.click();
+    public void clickMember(String memNameToClick){
+        basicActions.waitForElementListToBePresent(memberNamesLinks, 10);
+        for(WebElement memNameLink:memberNamesLinks){
+            if(memNameLink.getAttribute("value").contains(memNameToClick)){
+                memNameLink.click();
+                break;
+            }
+        }
     }
+
 
     }

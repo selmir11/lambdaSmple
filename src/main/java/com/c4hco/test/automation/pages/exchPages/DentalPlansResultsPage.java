@@ -33,7 +33,7 @@ public class DentalPlansResultsPage {
     WebElement btnGoBack;
 
     @FindBy(id= "DentalPlanResults-Skip")
-    WebElement btnSkip;
+    WebElement dentalSkipBtn;
 
     @FindBy (id ="mat-mdc-checkbox-28-input")
     WebElement comparePlanBox1;
@@ -62,6 +62,9 @@ public class DentalPlansResultsPage {
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement dentalPlanCount;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     SoftAssert softAssert = new SoftAssert();
 
     public void iGetFirstDentalPlanName() {
@@ -84,8 +87,9 @@ public class DentalPlansResultsPage {
 
     }
     public void clickSkip(){
-        basicActions.waitForElementToBePresent(btnSkip,30);
-        btnSkip.click();
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(dentalSkipBtn,30);
+        dentalSkipBtn.click();
     }
     public void clickFirstTwoCompareBoxes() {
         basicActions.waitForElementToBePresent( comparePlanBox1,10 );
@@ -143,7 +147,8 @@ public class DentalPlansResultsPage {
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
-        basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementListToBePresent(dentalPlanNames, 30);
         return IntStream.range(0, dentalPlanNames.size())
                 .filter(i -> dentalPlanNames.get(i).getText().equals(planName))
                 .boxed()

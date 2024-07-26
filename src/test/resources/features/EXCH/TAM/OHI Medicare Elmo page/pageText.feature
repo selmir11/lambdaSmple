@@ -48,7 +48,6 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I select "Medicare" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
@@ -78,9 +77,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
-    And I change the C4 url to "Elmo Ohi Medicare Page"
     And I validate I am on the "Elmo Ohi Medicare" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -142,9 +140,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
-    And I change the C4 url to "Elmo Ohi Medicare Page"
     And I validate I am on the "Elmo Ohi Medicare" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -215,7 +212,6 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Insurance Page"
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
     And I verify the header for Primary Member on the Medicare page
@@ -224,7 +220,13 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHI Medicare page
 #Step6
-    Then I click Go Back on the Elmo OHI Medicare page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
     And I verify Currently eligible is "No" on the Medicare page
@@ -237,7 +239,13 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I enter end date of end of current month for Medicare part "A"
     Then I click continue on the Elmo OHI Medicare page
 #Step8
-    Then I click Go Back on the Elmo OHI Medicare page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
@@ -252,7 +260,13 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I enter end date of end of current month for Medicare part "B"
     Then I click continue on the Elmo OHI Medicare page
 #Step10
-    Then I click Go Back on the Elmo OHI Medicare page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
@@ -266,7 +280,13 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click "No" for Part "B" insurance ending in 60 days in Medicare question
     Then I click continue on the Elmo OHI Medicare page
 #Step12
-    Then I click Go Back on the Elmo OHI Medicare page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page

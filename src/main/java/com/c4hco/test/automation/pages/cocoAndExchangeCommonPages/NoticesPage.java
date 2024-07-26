@@ -75,6 +75,10 @@ public class NoticesPage {
     WebElement bodyText2;
     @FindBy(xpath="//*[@id='x_programManagerLoginReminderBody']/p")
     List<WebElement> bodyTextAM1605;
+    @FindBy(xpath="//div[@id='x_individualAccountCreationNoticeBody']//div")
+    List<WebElement> bodyTextAM00101;
+    @FindBy(xpath="//*[@id='x_individualAccountCreationNoticeBody']/p")
+    List<WebElement> body2TextAM00101;
     @FindBy(css = ".x_emailHeader p")
     List<WebElement> emailHdrtxt;
     @FindBy(css = "#x_recipientName > span")
@@ -85,6 +89,8 @@ public class NoticesPage {
     List<WebElement> bodyText1603;
     @FindBy(xpath= "//p[@id='x_receivedEmailinErrorStatementForBroker']")
     WebElement bodyText1603part2;
+    @FindBy(xpath= "//div[@id='x_enrollmentConfirmationNoticeBody']/p")
+    List<WebElement> bodyTextEN00204;
 
 
 
@@ -206,9 +212,9 @@ public class NoticesPage {
     public void openAllNotices(String noticeNumber, String language) {
         basicActions.waitForElementToBePresent(EmailDate, 30);
         basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
+        basicActions.waitForElementToBePresent(EmailDate,30);
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
-        basicActions.waitForElementToBePresent(EmailDate,30);
         switch (language){
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
@@ -249,11 +255,16 @@ public class NoticesPage {
             case "AM-016-05" :
                 VerifyTheNoticeTextAM01605();
                 break;
+            case "AM-001-01" :
+                VerifyTheNoticeTextAM00101();
+                break;
+            case "EN-002-04" :
+                VerifyTheNoticeTextEN00204();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
     }
-
 
     public void verifyTheNoticeCoco(String noticeNumber,String language){
         switch (noticeNumber) {
@@ -264,6 +275,14 @@ public class NoticesPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
+    }
+
+    private void VerifyTheNoticeTextAM00101() {
+        softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
+        softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
+        softAssert.assertEquals(body2TextAM00101.get(0).getText(),"You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
+        softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
+        softAssert.assertAll();
     }
 
     private void VerifyTheNoticeTextAM01605() {
@@ -325,5 +344,17 @@ public class NoticesPage {
         softAssert.assertEquals(bodyText1603.get(2).getText(),"If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
         softAssert.assertEquals(bodyText1603part2.getText(),"If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
         softAssert.assertAll();
+    }
+
+    public void VerifyTheNoticeTextEN00204() {
+
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        String formattedDate = currentDate.format(formatter);
+        softAssert.assertEquals(emailDeartxt.getText(),SharedData.getPrimaryMember().getFullName());
+        System.out.println(formattedDate);
+        softAssert.assertEquals(bodyTextEN00204.get(0).getText(),"Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
+        softAssert.assertAll();
+
     }
 }

@@ -54,7 +54,8 @@ Feature: Page Navigation-OHI ESI Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "ESI" as health insurance option and continue
+    Then I select "job" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
 
 
   @SLER-687 @PageNavigationESI
@@ -88,7 +89,7 @@ Feature: Page Navigation-OHI ESI Page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
     And I click save and continue on tax status page
-    Then I click continue on the Other Health Insurance page
+    Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "ESI" page
     And I change the C4 url to "Other Health Insurance portal Unauthorized Exch"

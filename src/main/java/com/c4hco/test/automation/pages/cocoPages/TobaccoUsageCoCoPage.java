@@ -26,12 +26,20 @@ public class TobaccoUsageCoCoPage {
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
+    @FindBy(id = "SHP-StartShop-GoBack")
+    WebElement backButton;
+
+    @FindBy(css="#loader-icon .fa-spinner")
+    WebElement spinner;
+
+
     public TobaccoUsageCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
     public void selectContinueTobacco() {
+        basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBeClickableWithRetries(continueButton, 120);
         basicActions.scrollToElement(continueButton);
         continueButton.click();
@@ -50,4 +58,27 @@ public class TobaccoUsageCoCoPage {
         softAssert.assertEquals(bodyText.get(4), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
     }
+
+    public void clickBackBtn(){
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementToBePresent(backButton, 10);
+        backButton.click();
+    }
+
+    public void clickSaveAndExit(){
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementToBePresent(saveAndExitButton, 10);
+        saveAndExitButton.click();
+    }
+
+    public void validateBtnTxt(String goBackTxt, String saveExitTxt, String continueBtnTxt){
+        basicActions.waitForElementToBePresent(backButton, 10);
+        basicActions.waitForElementToBePresent(saveAndExitButton, 10);
+        basicActions.waitForElementToBePresent(continueButton, 10);
+        softAssert.assertEquals(backButton.getText(), goBackTxt);
+        softAssert.assertEquals(saveAndExitButton.getText(), saveExitTxt);
+        softAssert.assertEquals(continueButton.getText(), continueBtnTxt);
+        softAssert.assertAll();
+    }
+
 }

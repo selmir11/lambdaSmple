@@ -28,19 +28,23 @@ public class HouseHoldPageSteps {
         houseHoldPage.iVerifyFamilyOverviewTablePresent();
     }
 
+    // WIP need to modify step. int we are passing is not being used.
     @And("I click the edit income {int}")
     public void iClickEditIncomeLink(int index) {
         houseHoldPage.iClickEditIncomeLink( index );
     }
 
+    // WIP - Below 2 rows can be combined to one. Seems duplicate.
     @And("I click the member link {int}")
     public void iClickMemberLink(int index) {houseHoldPage.iClickMemberLink(index);}
 
+    // WIP - primary member only - need to modify step. int we are passing is not being used.
     @Then("I click on the Member Row {int}")
     public void iEditPrimaryMember(int index) {
-        houseHoldPage.iEditPrimaryMember( index );
+        houseHoldPage.iEditPrimaryMember(index);
     }
 
+    // WIP - primary member only - need to modify step. int we are passing is not being used.
     @Then("I click on the Member Row Red Icon {int}")
     public void iEditPrimaryMemberRedIcon(int index) {
         houseHoldPage.iEditPrimaryMemberRedIcon( index );
@@ -51,10 +55,10 @@ public class HouseHoldPageSteps {
         houseHoldPage.iClickTableItem( index );
     }
 
-
-    @And("I click on the RedIcon to add Member financial details")
-    public void iClickRedIcon(){
-        houseHoldPage.iClickRedIcon();}
+    @And("I click on {string} to edit information from household page")
+    public void clickMemberToEdit(String memName){
+        houseHoldPage.clickMember(memName);
+    }
 
 }
 

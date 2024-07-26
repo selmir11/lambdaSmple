@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 public class GroupingMembersDentalSteps {
     GroupingMembersDentalPage groupingMembersDental = new GroupingMembersDentalPage(WebDriverManager.getDriver());
 
-
     @Then("I click on dental edit enrollment groups link")
     public void clickOnEditDentalGroupinglink(){
            groupingMembersDental.clickOnEditDentalGroupinglink();
@@ -19,6 +18,11 @@ public class GroupingMembersDentalSteps {
 
     @And( "I click Go Back on the Dental Grouping page" )
     public void clickGoBack() {groupingMembersDental.clickGoBack();}
+
+    @Then("I validate that there are {int} default dental groups")
+    public void validateDefaultDentalGroups(int defaultGrps){
+        groupingMembersDental.validateDefaultDentalGroups(defaultGrps);
+    }
 
     }
 

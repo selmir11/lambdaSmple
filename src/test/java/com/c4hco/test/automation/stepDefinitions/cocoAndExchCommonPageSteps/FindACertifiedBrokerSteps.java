@@ -155,4 +155,9 @@ public class FindACertifiedBrokerSteps {
     public void iSetCurrentBrokerDetails() {
         findACertifiedBrokerPage.setCurrentBrokerContainerDetails();
     }
+
+    @Then("I click Continue with my application")
+    public void iClickContinueWithMyApplication() {
+        findACertifiedBrokerPage.ClickContinueWithMyApplication();
+    }
 }

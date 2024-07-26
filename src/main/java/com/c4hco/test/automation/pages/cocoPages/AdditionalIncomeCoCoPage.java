@@ -58,8 +58,12 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = ".banner-error-component")
     WebElement errorMessage;
 
+    @FindBy(css = ".header-1")
+    WebElement hdrAddInfoForYourself;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.waitForElementToBeClickable(hdrAddInfoForYourself, 30);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
