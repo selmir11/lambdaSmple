@@ -342,9 +342,7 @@ public class DocumentLookupPage {
     }
 
     public void entriesdropdown(int rowsUI) {
-//        basicActions.waitForElementToBePresent(documentTypecolumn.get(0),60);
         basicActions.selectValueFromDropdown(entrydropdown, DropdownEntries, String.valueOf(rowsUI));
-//        String text1 = String.valueOf(documentTypecolumn.size());
         int rows = documentTypecolumn.size();
         softAssert.assertEquals(rows,rowsUI);
         softAssert.assertAll();

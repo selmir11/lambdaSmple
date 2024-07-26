@@ -21,7 +21,7 @@ Feature: Document Lookup page : Verify all data
     Then logout from Admin Portal
 
     @SLER-303
-    Scenario: SLER-303 Verify sorting for advance search
+    Scenario: SLER-303 Verify sorting for advance search in DLT
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page
@@ -41,7 +41,8 @@ Feature: Document Lookup page : Verify all data
       Then I select dropdown entry option and validate 100 rows are displaying
       Then logout from Admin Portal
 
-  Scenario: Verify sort options
+    @SLER-814
+  Scenario: Verify DLT: Sort Results
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page
