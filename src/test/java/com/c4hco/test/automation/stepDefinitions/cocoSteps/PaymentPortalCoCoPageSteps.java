@@ -8,7 +8,7 @@ public class PaymentPortalCoCoPageSteps {
     PaymentPortalCoCoPage paymentPortalCoCoPage = new PaymentPortalCoCoPage(WebDriverManager.getDriver());
 
     @Then("I click all done from payment portal page")
-    public void clickAllDone(){
-        paymentPortalCoCoPage.clickAllDone();
+    public void clickAllDoneCoCo(){
+        paymentPortalCoCoPage.clickAllDoneCoCo();
     }
 }
