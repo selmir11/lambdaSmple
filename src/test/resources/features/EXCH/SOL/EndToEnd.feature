@@ -153,14 +153,15 @@ Feature: End to End Tests
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101975" date of birth
+    Then I enter member details with "10102007" date of birth
     And I select "Female" as sex option
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "No" to Is Member Applying
+    And I select "Daughter" as relationship option
+    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "New" for Residential Address
+    Then I enter a new member address with city "Aurora" state "CO" zip "80011" and county "ADAMS"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
@@ -170,11 +171,12 @@ Feature: End to End Tests
     Then I enter member details with "03022010" date of birth
     And I select "Male" as sex option
     And I select "Son" as relationship option
-    And I select "Son" as relationship one option
+    And I select "Sister" as relationship one option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "New" for Residential Address
+    Then I enter a new member address with city "Boulder" state "CO" zip "80301" and county "DOUGLAS"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -192,12 +194,13 @@ Feature: End to End Tests
     Then I enter member details with "05262015" date of birth
     And I select "Female" as sex option
     And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
+    And I select "Sister" as relationship one option
     And I select "Sister" as relationship two option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "New" for Residential Address
+    Then I enter a new member address with city "Parker" state "CO" zip "80134" and county "ELBERT"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
