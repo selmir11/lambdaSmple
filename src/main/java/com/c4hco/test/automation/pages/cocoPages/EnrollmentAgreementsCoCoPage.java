@@ -59,4 +59,9 @@ public class EnrollmentAgreementsCoCoPage {
         basicActions.waitForElementToBeClickable(continueButton, 5);
         continueButton.click();
     }
+
+    public void validatePageText() {
+        // header, subheader1, subheader2, subheader3, 3checkboxes, terms of use, privacy policy, dentalLaw, signature text, submission date, submission text.
+
+    }
 }
