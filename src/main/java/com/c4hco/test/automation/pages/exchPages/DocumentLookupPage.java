@@ -247,11 +247,20 @@ public class DocumentLookupPage {
     }
 
     public void inputdates() {
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(fromDate, 20));
-        fromDate.sendKeys("01/01/2023");
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate, 20));
-        ToDate.sendKeys("07/01/2024");
-        softAssert.assertAll();
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(fromDate, 20));
+            fromDate.sendKeys("10/01/2023");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate, 20));
+            ToDate.sendKeys("02/01/2024");
+            softAssert.assertAll();
+        }
+        else {
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(fromDate, 20));
+            fromDate.sendKeys("07/01/2022");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate, 20));
+            ToDate.sendKeys("07/01/2024");
+            softAssert.assertAll();
+        }
     }
 
     public void verifysortoptionsasc(List<WebElement> options) {
@@ -270,7 +279,7 @@ public class DocumentLookupPage {
 
     public void verifySortasc(String sortbyoptions) {
         clickSubmit();
-        basicActions.wait(10);
+        basicActions.wait(30);
         switch (sortbyoptions) {
             case "Document Type":
                 verifysortoptionsasc(documentTypecolumn);
@@ -285,6 +294,7 @@ public class DocumentLookupPage {
 
     public void verifysortdesc(String sortbyoptions) {
         clickSubmit();
+        basicActions.wait(50);
         switch (sortbyoptions) {
             case "Document Type":
                 verifysortoptionsdesc(documentTypecolumn);
@@ -331,10 +341,12 @@ public class DocumentLookupPage {
         softAssert.assertAll();
     }
 
-    public void entriesdropdown(String text) {
-        basicActions.selectValueFromDropdown(entrydropdown, DropdownEntries, text);
-        String text1 = String.valueOf(documentTypecolumn.size());
-        softAssert.assertEquals(text,text1);
+    public void entriesdropdown(int rowsUI) {
+//        basicActions.waitForElementToBePresent(documentTypecolumn.get(0),60);
+        basicActions.selectValueFromDropdown(entrydropdown, DropdownEntries, String.valueOf(rowsUI));
+//        String text1 = String.valueOf(documentTypecolumn.size());
+        int rows = documentTypecolumn.size();
+        softAssert.assertEquals(rows,rowsUI);
         softAssert.assertAll();
     }
 
@@ -368,11 +380,13 @@ public class DocumentLookupPage {
     private int clickNextAndGetNewValue() {
         basicActions.waitForElementToBePresent(Next, 500);
         Next.click();
+        basicActions.wait(500);
         return getCurrentValue(); }
 
     private int clickPreviousAndGetNewValue() {
         basicActions.waitForElementToBePresent(previous, 500);
         previous.click();
+        basicActions.wait(500);
         return getCurrentValue();
     }
 

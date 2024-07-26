@@ -74,16 +74,17 @@ public class DocumentLookupPageSteps {
         documentLookupPage.validateDropdownEntries();
     }
 
-    @Then("I select dropdown entry option and validate {string} rows are displaying")
-    public void iSelectDropdownEntryOptionAndValidateRowsAreDisplaying(String text) {
-        documentLookupPage.entriesdropdown(text);
-    }
-
     @Then("I validate next button and previous button functionality")
     public void iValidateNextButtonFunctionality(){
         documentLookupPage.validateNextAndPreviousButtons();
     }
 
+    @Then("I select dropdown entry option and validate {int} rows are displaying")
+    public void iSelectDropdownEntryOptionAndValidateRowsAreDisplaying(int rowsUI) {
+        documentLookupPage.entriesdropdown(rowsUI);
+    }
+
 }
+
 
 
