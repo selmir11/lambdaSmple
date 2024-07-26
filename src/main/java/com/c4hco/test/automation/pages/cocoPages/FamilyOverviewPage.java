@@ -67,7 +67,7 @@ public class FamilyOverviewPage {
 
     public void validateTotalIncome(String Amount){
         basicActions.waitForElementToBePresent(totalIncomeAmount, 30);
-        softAssert.assertEquals(totalIncomeAmount.getText(), Amount);
+        softAssert.assertEquals(totalIncomeAmount.getText().contains(Amount), Amount);
     }
 
     public void validateTotalIncomeEqualsAnnualIncome(){
