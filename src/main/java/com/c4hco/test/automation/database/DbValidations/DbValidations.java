@@ -164,8 +164,8 @@ public class DbValidations {
         if (ob834Entity.getSubscriber_indicator().equals("Y")) {
             softAssert.assertEquals(getDoubleAmt(subscriber.getMedicalAptcAmt()), ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
             softAssert.assertEquals(subscriber.getMedicalCSRamount()!= null ? subscriber.getMedicalCSRamount():"0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
-            softAssert.assertEquals(getDoubleAmt(subscriber.getTotalMedAmtAfterReduction()), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
-            softAssert.assertEquals(getDoubleAmt(subscriber.getMedicalPremiumAmt()), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+            softAssert.assertEquals(subscriber.getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
+            softAssert.assertEquals(subscriber.getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         }else{
             validateAptcValuesForNonSubscriber(ob834Entity);
         }
@@ -177,8 +177,8 @@ public class DbValidations {
         if (ob834Entity.getSubscriber_indicator().equals("Y")) {
             softAssert.assertEquals(getDoubleAmt(subscriber.getDentalAptcAmt()), ob834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
             softAssert.assertEquals(subscriber.getDentalCSRamount()!= null ? subscriber.getMedicalCSRamount():"0.00", ob834Entity.getCsr_amount(), "Dental CSR amount does not match");
-            softAssert.assertEquals(getDoubleAmt(subscriber.getTotalDentalPremAfterReduction()), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
-            softAssert.assertEquals(getDoubleAmt(subscriber.getDentalPremiumAmt()), ob834Entity.getTotal_premium_amount(), "Dental Total Premium amount does not match");
+            softAssert.assertEquals(subscriber.getTotalDentalPremAfterReduction().replace("$", "").split("/")[0].trim(), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
+            softAssert.assertEquals(subscriber.getDentalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Dental Total Premium amount does not match");
         }else{
             validateAptcValuesForNonSubscriber(ob834Entity);
 
