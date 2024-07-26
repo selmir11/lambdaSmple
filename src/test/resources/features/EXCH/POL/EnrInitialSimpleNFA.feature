@@ -1,11 +1,11 @@
 Feature: Simple NFA - Single Applicant
-  @SLER-34_WIP
+  @SLER-34
   Scenario: Simple NFA flow with single applicant
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
+    And I enter general mandatory data for "exchange" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
@@ -55,7 +55,7 @@ Feature: Simple NFA - Single Applicant
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan"
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
@@ -65,6 +65,8 @@ Feature: Simple NFA - Single Applicant
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+
+    #Then I click all done from payment portal page
 
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
@@ -77,6 +79,19 @@ Feature: Simple NFA - Single Applicant
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate Welcome back button navigates to welcome page
-    Then I validate I am on the "Account Overview" page
+    Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
+
+    #Gmail
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+    #DbVerification
+
+    And I verify the policy data quality check
+    And I verify the data from book of business queue table
