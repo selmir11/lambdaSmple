@@ -23,7 +23,7 @@ public class PaymentPortalCoCoPage {
     WebElement spinner;
 
 
-    public void clickAllDone(){
+    public void clickAllDoneCoCo(){
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementToBePresent(allDoneBtn, 30);
         basicActions.scrollToElement(allDoneBtn);
