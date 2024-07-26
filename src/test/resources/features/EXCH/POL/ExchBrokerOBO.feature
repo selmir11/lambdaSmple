@@ -59,10 +59,6 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
 
@@ -103,13 +99,9 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
     And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
-    Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     Then I select "Anthem Dental Family" plan
     Then I click continue on dental plan results page
@@ -122,6 +114,17 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+
+    Then I select make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    And I select second make payment button to pay the premium
+    And I select the Money Order button
+    And I click continue on payment selection page
+    Then I validate I am on the "Initial Payment" page
+    And I click continue on initial payment page
+
+    And I click on Go To Welcome Page Button on whats next page
 
    # Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
