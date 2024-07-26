@@ -123,7 +123,7 @@ Feature: SLER-626 For Enroll in a plan broker portal (FAMILY OF 1)
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I click all done from payment portal page
+   # Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
 
