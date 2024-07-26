@@ -50,6 +50,12 @@ public class DbQueries_Exch {
                 "where member_id = '"+SharedData.getPrimaryMemberId()+"'";
     }
 
+    public String getHraRecords(){
+        return "select *\n" +
+                "From  "+dbName+".es_member_hra\n" +
+                "where member_id = '"+SharedData.getPrimaryMemberId()+"'";
+    }
+
     public String getRatingArea(String fipcode){
         return "select name from "+dbName+".en_rating_area "+
                 "where fips = '"+fipcode+"'";
