@@ -5,7 +5,7 @@ Feature: UI Page Validation - Enrollment Agreements page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-186-wip @EnrollmentAgreementsPageVerbiage @test
+  @SLCR-186-wip @EnrollmentAgreementsPageVerbiage
   Scenario: Validate text on enrollment agreements page, text on buttons and page navigation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
