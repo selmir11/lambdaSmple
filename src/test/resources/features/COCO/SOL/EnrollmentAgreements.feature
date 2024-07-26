@@ -52,10 +52,19 @@ Feature: UI Page Validation - Enrollment Agreements page related tests
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
-    # Then I validate the page text on the enrollment agreements page coco
-    # Go back
-    # come back to enrollment agreements page
-    # select all, sign, continue, validate next page.
+
+#    Then I validate the page text on the enrollment agreements page coco
+#
+#    And I click go back on the enrollment agreements page coco
+#    Then I validate I am on the "planSummaryMedicalDental" page
+#    And I click continue on coco plan summary page
+#    Then I validate I am on the "Enrollment Agreements" page
+#    And I select "Terms of Use" agreement checkbox CoCo
+#    And I select "Privacy Policy" agreement checkbox CoCo
+#    And I select "Dental Coverage" agreement checkbox CoCo
+#    And I enter householder signature on the Enrollment Agreements page CoCo
+#    And I select continue button on the Enrollment Agreements CoCo page
+#    # validate the page - payNow page in coco
 
 
 
