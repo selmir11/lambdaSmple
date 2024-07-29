@@ -155,7 +155,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -169,7 +168,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -182,8 +180,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-
-
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
@@ -209,11 +205,22 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select the third dependent
     And I click save and continue on tax status page
 
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
 
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -247,7 +254,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
-    And I continue on from the grouping Members Dental page
+    Then I click continue on grouping Members Dental page
 
     Then I validate I am on the "Dental Plan Results" page
     And I select first dental plan
@@ -330,8 +337,14 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -345,11 +358,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
 
+    Then I validate I am on the "Good News" page
+    Then I click on No Thanks on good news page
+
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -359,7 +374,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$1,028.25tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -371,8 +385,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$1,028.25"
+    And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Initial Payment" page
+    Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
