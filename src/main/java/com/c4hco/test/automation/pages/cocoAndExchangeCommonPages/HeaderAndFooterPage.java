@@ -742,7 +742,6 @@ public class HeaderAndFooterPage {
                 break;
             case "Individual Portal":
                 basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
-                basicActions.waitForElementToBeClickableWithRetries(contactUsLink, 70);
                 basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();

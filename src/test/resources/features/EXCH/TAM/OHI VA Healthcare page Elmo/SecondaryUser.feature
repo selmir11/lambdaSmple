@@ -106,7 +106,7 @@ Feature: Secondary User-OHI VA Healthcare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-625 @SecondaryUserOhiVAHealthcareElmo
+  @SLER-625 @SecondaryUserOhiVAHealthcareElmo @TAMSmoke
   Scenario: SLER-625 I can see VA Healthcare's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page

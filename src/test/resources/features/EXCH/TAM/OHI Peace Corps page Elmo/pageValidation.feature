@@ -52,7 +52,7 @@ Feature: Page Validation-OHI Peace Corps Elmo Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Peace Corps" page
 
-  @SLER-338 @PageValidationOhiPeaceCorpsElmo
+  @SLER-338 @PageValidationOhiPeaceCorpsElmo @TAMSmoke
   Scenario: SLER-338 I can see Peace Corps' standard errors consistently - English
     And I verify the "First Section" Peace Corps page data in "English"
     Then I click continue on the Elmo OHI Peace Corps page

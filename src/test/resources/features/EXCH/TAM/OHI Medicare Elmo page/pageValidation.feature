@@ -93,7 +93,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-330 @PageValidationOhiMedicareElmo
+  @SLER-330 @PageValidationOhiMedicareElmo @TAMSmoke
   Scenario: SLER-330 I can see Medicare's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page

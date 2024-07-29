@@ -1,4 +1,4 @@
-@TAM @TamNotices
+@TAM @TamNotices @TAMSmoke
 Feature: Elig101-01 - TAM Notices
 
   Background:
