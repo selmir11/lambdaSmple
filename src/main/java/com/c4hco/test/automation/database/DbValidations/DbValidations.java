@@ -71,7 +71,7 @@ public class DbValidations {
             SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = inputFormat.parse(dateString);
             formattedDob = outputFormat.format(date);
-        } catch(ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return formattedDob;
@@ -91,7 +91,7 @@ public class DbValidations {
               validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dbData);
         }
           validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);
-        //  softAssert.assertAll();
+          softAssert.assertAll();
       }
     }
 
@@ -116,12 +116,14 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateResidentialAddress(subscriber, ob834Entity, dbData);
+        validateMedicalAPTCAmount(ob834Entity);
         softAssert.assertAll();
         validateMedicalPremiumAmt(ob834Entity);
     }
 
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
+        validateDentalAPTCAmount(ob834Entity);
         validateDentalPremiumAmt(ob834Entity);
     }
 
@@ -136,6 +138,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
         //  softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
+        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Dental Plan premium reduction type does not match");
         validateSponsorId(ob834Entity);
         validateConstantFields(ob834Entity);
         validatePersonalDetails(subscriber, ob834Entity);
@@ -160,6 +163,44 @@ public class DbValidations {
         if(validSSN){
             softAssert.assertEquals(SharedData.getPrimaryMember().getSsn(),ob834Entity.getSponsor_id(),"Sponsor_id did not match");
         }
+    }
+
+    public void validateMedicalAPTCAmount(Ob834DetailsEntity ob834Entity){
+        double amt = Double.parseDouble(SharedData.getPrimaryMember().getMedicalAptcAmt());
+        String ExpectedPMMedicalAptcAmt = String.format("%.2f", amt);
+        if (ob834Entity.getSubscriber_indicator().equals("Y")) {
+            softAssert.assertEquals(ExpectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalCSRamount()!= null ? SharedData.getPrimaryMember().getMedicalCSRamount():"0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        }else{
+            validateAptcValuesForNonSubscriber(ob834Entity);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateDentalAPTCAmount(Ob834DetailsEntity ob834Entity){
+        double amt = Double.parseDouble(SharedData.getPrimaryMember().getDentalAptcAmt().replace("$", ""));
+        String ExpectedPMDentalAptcAmt = String.format("%.2f", amt);
+        if (ob834Entity.getSubscriber_indicator().equals("Y")) {
+            softAssert.assertEquals(ExpectedPMDentalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getDentalCSRamount()!= null ? SharedData.getPrimaryMember().getMedicalCSRamount():"0.00", ob834Entity.getCsr_amount(), "Dental CSR amount does not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", "").split("/")[0].trim(), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Dental Total Premium amount does not match");
+        }else{
+            validateAptcValuesForNonSubscriber(ob834Entity);
+
+        }
+        softAssert.assertAll();
+    }
+
+    private void validateAptcValuesForNonSubscriber(Ob834DetailsEntity ob834Entity){
+        softAssert.assertEquals(ob834Entity.getPremium_reduction_amt(),null,"Plan premium reduction amount does not match");
+        softAssert.assertEquals(ob834Entity.getCsr_amount(), null,"CSR amount does not match");
+        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), null, "Plan premium reduction type does not match");
+        softAssert.assertEquals(ob834Entity.getTotal_responsible_amount(),null, "TotalResponsible amount does not match");
+        softAssert.assertEquals(ob834Entity.getTotal_premium_amount(),null, "TotalPremium amount does not match");
+        softAssert.assertAll();
     }
 
     public void validateMemberCountDetails(Ob834DetailsEntity ob834Entity){
