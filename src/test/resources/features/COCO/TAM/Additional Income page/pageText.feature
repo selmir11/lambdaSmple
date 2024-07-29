@@ -4,7 +4,7 @@ Feature: Tests related to the Additional Income page
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-61 @PageTextAdditionalIncome
+  @SLCR-61 @PageTextAdditionalIncome @TAMSmoke
   Scenario: SLCR-61 I can see Additional Income's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

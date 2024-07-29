@@ -5,7 +5,7 @@ Feature: Page Text-Income Summary Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-249 @PageTextIncomeSummaryPage
+  @SLER-249 @PageTextIncomeSummaryPage @TAMSmoke
   Scenario: SLER-249 I can see Income Summary's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

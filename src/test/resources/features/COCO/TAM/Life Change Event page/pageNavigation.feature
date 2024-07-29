@@ -4,7 +4,7 @@ Feature: Navigation-Life Change Event Page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-44 @PageNavigationLCEPage
+  @SLCR-44 @PageNavigationLCEPage @TAMSmoke
   Scenario: SLCR-44 Navigate to and from LCE page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
