@@ -87,10 +87,13 @@ public class MedicalPlanResultsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    // function below is no longer needed on plan results as page update is now permanent
     public void validateAPTC(String planResultsAPTCredit){
         basicActions.waitForElementToBePresent(planResultsAPTC, 30);
         softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
     }
+
+    // function below is no longer needed on plan results as page update is now permanent
     public void validateNoAPTC(String noAPTCCreditAmt) {
         softAssert.assertFalse(basicActions.waitForElementPresence(planResultsAPTC, 20 ) );
         softAssert.assertAll();
@@ -119,7 +122,8 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickGoBack(){
-        basicActions.waitForElementToBeClickableWithRetries( btnGoBack,30 );
+        basicActions.waitForElementToBePresent( btnGoBack,30 );
+        basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
     }
 

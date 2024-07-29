@@ -59,7 +59,8 @@ public class TellUsAboutAdditionalMemberPage {
     WebElement selectRelationship2;
     @FindBy(id = "memberRelationship3")
     WebElement selectRelationship3;
-
+    @FindBy(id = "memberRelationship4")
+    WebElement selectRelationship4;
     @FindBy(css = "#memberRelationship1 > option:nth-child(2)")
     WebElement selectBrother;
 
@@ -171,6 +172,70 @@ public class TellUsAboutAdditionalMemberPage {
         SharedData.setMembers(memberList);
     }
 
+    public void enterMemberDetailsSpouse(String DOB){
+        String frstName = "BBB"+getUniqueString(20);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(13);
+        basicActions.waitForElementToBePresent(txtheader,1);
+        basicActions.waitForElementToBePresent(txtfirstName,30);
+        txtfirstName.sendKeys(frstName);
+        txtmiddleName.sendKeys(mdlName);
+        txtlastName.sendKeys(lastName);
+        txtdateOfBirth.sendKeys(DOB);
+        txtSSN.sendKeys("653035280");
+        List<MemberDetails> memberList = SharedData.getMembers();
+        int memberCount =0;
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }else{
+            memberCount = memberList.size();
+        }
+        memberCount++;
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setDependentCountTag("member"+memberCount);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+    }
+
+    public void enterMemberDetailsUnrelated(String DOB){
+        String frstName = "CCC"+getUniqueString(20);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(13);
+        basicActions.waitForElementToBePresent(txtheader,1);
+        basicActions.waitForElementToBePresent(txtfirstName,30);
+        txtfirstName.sendKeys(frstName);
+        txtmiddleName.sendKeys(mdlName);
+        txtlastName.sendKeys(lastName);
+        txtdateOfBirth.sendKeys(DOB);
+        txtSSN.sendKeys("653035280");
+        List<MemberDetails> memberList = SharedData.getMembers();
+        int memberCount =0;
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }else{
+            memberCount = memberList.size();
+        }
+        memberCount++;
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setDependentCountTag("member"+memberCount);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+    }
+
     public void selectSex(String Sex){
         switch(Sex){
             case "Female":
@@ -219,6 +284,13 @@ public class TellUsAboutAdditionalMemberPage {
         basicActions.waitForElementToBePresent(selectRelationship3, 15);
 
         Select dropdown = new Select(selectRelationship3);
+        dropdown.selectByVisibleText(Relation);
+    }
+
+    public void setSelectRelationship4(String Relation) {
+        basicActions.waitForElementToBePresent(selectRelationship4, 15);
+
+        Select dropdown = new Select(selectRelationship4);
         dropdown.selectByVisibleText(Relation);
     }
 

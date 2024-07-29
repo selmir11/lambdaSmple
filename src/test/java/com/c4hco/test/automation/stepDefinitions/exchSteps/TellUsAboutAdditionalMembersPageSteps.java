@@ -15,6 +15,12 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter member details with {string} date of birth")
     public void iEnterMemberDetailsDOB(String DOB){tellUsAboutAdditionalMemberPage.enterMemberDetails(DOB);}
 
+    @Then("I enter Spouse member details with {string} date of birth")
+    public void iEnterMemberDetailsSpouseDOB(String DOB){tellUsAboutAdditionalMemberPage.enterMemberDetailsSpouse(DOB);}
+
+    @Then("I enter UnRelated member details with {string} date of birth")
+    public void iEnterMemberDetailsUnrelatedDOB(String DOB){tellUsAboutAdditionalMemberPage.enterMemberDetailsUnrelated(DOB);}
+
     @And("I select {string} as member's sex option")
     public void selectSexOption(String sexOption){tellUsAboutAdditionalMemberPage.selectSex(sexOption);}
     @And("I mark the Additional member is pregnant as {string}")
@@ -30,6 +36,9 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void selectRelationship2(String Relationship2){tellUsAboutAdditionalMemberPage.setSelectRelationship2(Relationship2);}
     @And("I select {string} as relationship three option")
     public void selectRelationship3(String Relationship3){tellUsAboutAdditionalMemberPage.setSelectRelationship3(Relationship3);}
+
+    @And("I select {string} as relationship four option")
+    public void selectRelationship4(String Relationship4){tellUsAboutAdditionalMemberPage.setSelectRelationship4(Relationship4);}
 
     @And("I select {string} to Is Member Applying")
     public void isMemberApplying(String isApplying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(isApplying);}

@@ -65,6 +65,35 @@ public class DentalPlansResultsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(id = "PlanResults-MonthlyPremium_1")
+    WebElement dentalPremium1;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_2")
+    WebElement dentalPremium2;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_3")
+    WebElement dentalPremium3;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_4")
+    WebElement dentalPremium4;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_5")
+    WebElement dentalPremium5;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_6")
+    WebElement dentalPremium6;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_7")
+    WebElement dentalPremium7;
+    @FindBy(id = "PlanResults-MonthlyPremium_8")
+    WebElement dentalPremium8;
+    @FindBy(id = "PlanResults-MonthlyPremium_9")
+    WebElement dentalPremium9;
+
+    @FindBy(id = "PlanResults-MonthlyPremium_10")
+    WebElement dentalPremium10;
+
+
     SoftAssert softAssert = new SoftAssert();
 
     public void iGetFirstDentalPlanName() {
@@ -172,6 +201,18 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(dentalPlanCount, 30);
         Assert.assertEquals(dentalPlanCount.getText(), plansCount+" of "+plansCount+" Dental Plans", "Dental plans count did not match");
     }
+
+
+    public void validateDentalPlanCosts(int index, String planText) {
+        basicActions.waitForElementToBePresent(dentalPremium1, 10);
+        //index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
+        String indexString = String.valueOf(index); //turns the int index into a string value.
+        String dentalPlanPremiumID = "PlanResults-MonthlyPremium_" + indexString; //sets the ID String using the index
+        WebElement eDentalPlanPremiumID = basicActions.getDriver().findElement(By.id(dentalPlanPremiumID)); //sets the Web element based on the ID
+        String expectedText = eDentalPlanPremiumID.getText();
+        expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
+    }
+
 
     public void validateDentalPlanNames(){
         List<String> dentalPlanNamesList = new ArrayList<>();

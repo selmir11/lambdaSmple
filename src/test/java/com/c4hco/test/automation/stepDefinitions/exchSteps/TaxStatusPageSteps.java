@@ -49,6 +49,9 @@ public class TaxStatusPageSteps {
     @And("I select the third dependent")
     public void SelectDependent3(){taxStatusPage.iSelectDependent3();}
 
+    @And( "I select the fourth dependent" )
+    public void SelectDependent4(){taxStatusPage.iSelectDependent4();}
+
     @And("I click save and continue on tax status page")
     public void iClickSaveAndContinue(){
         taxStatusPage.selectSaveAndContinue();
