@@ -4,7 +4,7 @@ Feature: Tests related to the Employment Income page
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-46 @PageNavigationEmploymentIncome
+  @SLCR-46 @PageNavigationEmploymentIncome @TAMSmoke
   Scenario: SLCR-46 I can navigate to and from Employment Income page with no errors
     When I click create a new account on login page
     Then I click create my account from pre-screen page

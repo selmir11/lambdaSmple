@@ -183,7 +183,7 @@ Feature: Page Text-Other Health Insurance Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-298 @PageVerificationOtherHealthInsurancePage
+  @SLER-298 @PageVerificationOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-298 I Validate the saved options persist on the Other Health Insurance page
     And I verify the header for Primary Member on the Other Health Insurance page
 

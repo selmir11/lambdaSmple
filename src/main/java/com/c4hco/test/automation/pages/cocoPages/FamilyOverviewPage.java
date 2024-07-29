@@ -23,7 +23,7 @@ public class FamilyOverviewPage {
     @FindBy (css = ".container .family-overview-household-income")
     WebElement totalIncomeAmount;
 
-    @FindBy (css = ".sub-app-container .c4-type-links-lg")
+    @FindBy (css = "div.family-overview-add-link")
     WebElement addAnotherMemberButton;
 
     @FindBy(id = "familyOverview-SaveAndContinue")
@@ -67,7 +67,7 @@ public class FamilyOverviewPage {
 
     public void validateTotalIncome(String Amount){
         basicActions.waitForElementToBePresent(totalIncomeAmount, 30);
-        softAssert.assertEquals(totalIncomeAmount.getText(), Amount);
+        softAssert.assertEquals(totalIncomeAmount.getText().contains(Amount), Amount);
     }
 
     public void validateTotalIncomeEqualsAnnualIncome(){

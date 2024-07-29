@@ -177,7 +177,7 @@ Feature: Page Text-Other Health Insurance Page HRA
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-764 @PageVerificationHraPage
+  @SLER-764 @PageVerificationHraPage @TAMSmoke
   Scenario: SLER-764 I Validate the saved options persist on the HRA page
     And I verify the header for Primary Member on the HRA page
     And I click on Apply for Coverage in the "Elmo" Header

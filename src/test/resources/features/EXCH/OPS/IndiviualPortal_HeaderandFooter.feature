@@ -53,7 +53,7 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "ExpertHelp in community" Header
     And I go to the previous browser page
-    And I click on Find a Plan in the Header
+    And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I go to the previous browser page
 

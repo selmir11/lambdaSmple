@@ -5,7 +5,7 @@ Feature: Page Text-Income Opt Out Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-240 @PageTextEmploymentIncome
+  @SLER-240 @PageTextEmploymentIncome @TAMSmoke
   Scenario: SLER-240 I can see Employment Income's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
