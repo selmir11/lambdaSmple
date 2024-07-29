@@ -97,7 +97,7 @@ Feature: Page Validation-OHI HRA Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-811 @PageValidationOhiHraElmo
+  @SLER-811 @PageValidationOhiHraElmo @TAMSmoke
   Scenario: SLER-811 I validate save, update and remove on HRA are updated in the DB
     And I verify year is "Not Selected", amount is "Not Selected", type is "Not Selected", "Without" APTC question "" on the HRA page
     And I verify the OHI options selected in the DB

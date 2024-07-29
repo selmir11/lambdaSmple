@@ -41,6 +41,7 @@ public class TobaccoUsageCoCoPage {
     public void selectContinueTobacco() {
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBeClickableWithRetries(continueButton, 120);
+        basicActions.waitForElementToBePresent(headerText, 10);
         basicActions.scrollToElement(continueButton);
         continueButton.click();
     }

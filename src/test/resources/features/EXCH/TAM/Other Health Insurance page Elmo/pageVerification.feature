@@ -113,7 +113,7 @@ Feature: Page Text-Other Health Insurance Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-347 @PageTextOtherHealthInsurancePage
+  @SLER-347 @PageTextOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-347 I validate save, update and remove on Other Health Insurance are updated in the DB
     And I validate I am on the "Elmo Other Health Insurance" page
 

@@ -186,7 +186,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-90 @PageNavigationIncomeOptOutPage
+  @SLER-90 @PageNavigationIncomeOptOutPage @TAMSmoke
   Scenario: SLER-90 I Verify Nagivation for the header and footer in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

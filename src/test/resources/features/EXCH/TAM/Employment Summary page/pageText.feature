@@ -100,7 +100,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-244 @PageTextEmploymentSummary
+  @SLER-244 @PageTextEmploymentSummary @TAMSmoke
   Scenario: SLER-244 I can see Employment Summary's Header and footer - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
