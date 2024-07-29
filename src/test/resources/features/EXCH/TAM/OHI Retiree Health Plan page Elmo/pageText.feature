@@ -187,7 +187,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-297 @PageVerificationRetireePage
+  @SLER-297 @PageVerificationRetireePage @TAMSmoke
   Scenario: SLER-297 I Validate the saved options persist on the Retiree page
     And I verify the header for Primary Member on the Retiree page
 

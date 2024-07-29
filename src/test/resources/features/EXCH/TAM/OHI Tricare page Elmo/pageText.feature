@@ -191,7 +191,7 @@ Feature: Page Text-OHI Tricare Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-315 @PageVerificationTricarePage
+  @SLER-315 @PageVerificationTricarePage @TAMSmoke
   Scenario: SLER-315 I Validate the saved options persist on the Tricare page
 #Step 3
     And I verify the header for Primary Member on the Tricare page

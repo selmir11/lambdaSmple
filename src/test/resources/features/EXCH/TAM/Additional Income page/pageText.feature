@@ -142,7 +142,7 @@ Feature: Page Text-Additional Income Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-246 @PageTextAdditionalIncome
+  @SLER-246 @PageTextAdditionalIncome @TAMSmoke
   Scenario: SLER-246 I can see Additional Income's Header and footer - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

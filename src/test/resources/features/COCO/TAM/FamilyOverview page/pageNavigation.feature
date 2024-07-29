@@ -4,7 +4,7 @@ Feature: Tests related to the Family Overview page
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-149 @PageNavigationFamilyOverview
+  @SLCR-149 @PageNavigationFamilyOverview @TAMSmoke
   Scenario: SLCR-149 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Family Overview portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page

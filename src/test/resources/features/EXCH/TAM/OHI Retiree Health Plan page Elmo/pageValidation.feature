@@ -87,7 +87,7 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-328 @PageValidationOhiRetireeElmo
+  @SLER-328 @PageValidationOhiRetireeElmo @TAMSmoke
   Scenario: SLER-328 I can see Retiree's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
