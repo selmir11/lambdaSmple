@@ -62,6 +62,12 @@ public class DbDataProvider_Exch {
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
     }
+    public String getCsrAmtMed(String coverageType) {
+        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
+    }
+    public String getCsrAmtDen(String coverageType) {
+        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
+    }
     public String getMemberPremiumAmt(String coverageType) {
         return postgresHandler.getResultFor("plan_premium_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
     }
@@ -77,6 +83,8 @@ public class DbDataProvider_Exch {
      String exchPersonId = getExchPersonId();
      String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
+     String medicalCSRamount = getCsrAmtMed(coverageType);
+     String dentalCSRamount = getCsrAmtDen(coverageType);
      String planPremiumAmt = getMemberPremiumAmt(coverageType);
         DbData dbData = new DbData();
 
@@ -89,6 +97,8 @@ public class DbDataProvider_Exch {
         dbData.setExchPersonId(exchPersonId);
         dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
+        dbData.setCsrAmtMed(medicalCSRamount);
+        dbData.setCsrAmtDen(dentalCSRamount);
         dbData.setCoverageType(coverageType);
         dbData.setMemberPremiumAmt(planPremiumAmt);
         SharedData.setDbData(dbData);

@@ -114,6 +114,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate,"Medical plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
+        softAssert.assertEquals(dbData.getCsrAmtMed(),ob834Entity.getCsr_amount(),"CSR amount does not match");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateResidentialAddress(subscriber, ob834Entity, dbData);
         validateMedicalAPTCAmount(ob834Entity);
@@ -123,6 +124,7 @@ public class DbValidations {
 
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
+        softAssert.assertEquals(dbData.getCsrAmtDen(),ob834Entity.getCsr_amount(),"CSR amount does not match");
         validateDentalAPTCAmount(ob834Entity);
         validateDentalPremiumAmt(ob834Entity);
     }

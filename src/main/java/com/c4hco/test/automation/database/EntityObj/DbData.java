@@ -15,4 +15,6 @@ public class DbData {
     String brokerTinNum;
     String CoverageType;
     String MemberPremiumAmt;
+    String csrAmtMed;
+    String csrAmtDen;
 }
