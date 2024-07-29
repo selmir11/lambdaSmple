@@ -141,7 +141,6 @@ public class AdminPortalSearchPage {
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
-        basicActions.switchtoactiveTab();
     }
     public void logoutFromAdmin(){
         navigateToPreviousPage();
@@ -247,7 +246,7 @@ public class AdminPortalSearchPage {
                 basicActions.waitForElementToBePresent(broker, 15);
                 broker.click();
                 break;
-            case "ProgramManager":
+            case "Program Manager":
                 basicActions.waitForElementToBePresent(programManager, 15);
                 programManager.click();
                 break;

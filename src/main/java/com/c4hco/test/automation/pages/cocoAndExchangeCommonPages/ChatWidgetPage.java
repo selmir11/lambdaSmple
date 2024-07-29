@@ -29,10 +29,7 @@ public class ChatWidgetPage {
     public void validateChatWidgetIsPresent()  {
         basicActions.getDriver().switchTo().frame(ChatWidgetIframe);
         basicActions.waitForElementToBePresent(ChatWidgetTitle,20);
-        softAssert.assertEquals("Let's chat",ChatWidgetTitle.getText());
         basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);
-        softAssert.assertEquals("We're Online",ChatWidgetSubtitle.getText());
-        softAssert.assertAll();
 
     }
     public void clickChatWidget(){

@@ -25,29 +25,11 @@ public class AddAddressPage {
     @FindBy(css = ".container > div:nth-child(1)")
     WebElement headerAdditionalInfo;
 
-    @FindBy(id = "retrieveResidentialAddress")
-    WebElement rdobtnHouseholdResidentialAddress;
+    @FindBy(css = ".addressradioGrp #retrieveResidentialAddress")
+    List<WebElement> rdobtnHouseholdResidentialAddress;
 
     @FindBy(id = "typeResidentialAddress")
     WebElement rdobtnDifferentResidentialAddress;
-
-    @FindBy(id = "newResidentialAddress.addressLine1")
-    WebElement txtNewAddressLine1;
-
-    @FindBy(id = "newResidentialAddress.addressLine2")
-    WebElement txtNewAddressLine2;
-
-    @FindBy(id = "newResidentialAddress.city")
-    WebElement txtNewAddressCity;
-
-    @FindBy(id = "residentialAddrState")
-    WebElement selectNewAddressState;
-
-    @FindBy(id = "residentialAddrZip")
-    WebElement txtNewAddressZip;
-
-    @FindBy(id = "residentialAddrCounty")
-    WebElement selectNewAddressCounty;
 
     @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
@@ -113,13 +95,17 @@ public class AddAddressPage {
     WebElement getNameFromHeader;
 
     public void selectResidentialAddress(String index){
+        basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
         switch(index){
             case "Household":
-                rdobtnHouseholdResidentialAddress.click();
+                rdobtnHouseholdResidentialAddress.get(0).click();
                 setResidentialAddress();
                 break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
+                break;
+            case "recent option":
+                rdobtnHouseholdResidentialAddress.get(rdobtnHouseholdResidentialAddress.size()-1).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + index);
@@ -154,7 +140,7 @@ public class AddAddressPage {
 
     public void mailingAddress(){
         // Should not use this method anymore- should use genericMailingAddress method
-        basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
+        basicActions.waitForElementToBePresent(headerAdditionalInfo,10);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 10);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");

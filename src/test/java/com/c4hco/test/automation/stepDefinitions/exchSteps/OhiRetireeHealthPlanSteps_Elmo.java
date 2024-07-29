@@ -11,6 +11,9 @@ public class OhiRetireeHealthPlanSteps_Elmo {
     @Then("I click continue on the Elmo OHI Retiree page")
     public void iClickSaveAndContinue(){ohiRetireeHealthPlanPage_Elmo.clickSaveAndContinue();}
 
+    @Then("I click Go Back on the Elmo OHI Retiree page")
+    public void iClickGoBack(){ohiRetireeHealthPlanPage_Elmo.clickGoBack();}
+
     @Then("I click {string} for currently enrolled in Retiree question")
     public void iClickCurrentlyEnrolledOption(String currentlyEnrolled){ohiRetireeHealthPlanPage_Elmo.clickCurrentlyEnrolledOption(currentlyEnrolled);}
 
