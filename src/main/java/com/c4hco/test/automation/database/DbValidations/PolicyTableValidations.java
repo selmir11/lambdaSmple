@@ -22,7 +22,6 @@ public class PolicyTableValidations {
         String endDateFormatted = policyEndDate.substring(6,10)+"-" + policyEndDate.substring(0, 2)+"-" + policyEndDate.substring(3, 5);
 
         for (EnPolicyAhEntity enPolicyEntity : EnPolicyEntities) {
-            //BigDecimal targetValue = new BigDecimal(enPolicyEntity.get("coverage_type").toString());
             if(enPolicyEntity.getCoverage_type().equals("2")){
                 softAssert.assertEquals(enPolicyEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 2, Policy start date does not match");
                 softAssert.assertEquals(enPolicyEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 2, Policy end date does not match");
