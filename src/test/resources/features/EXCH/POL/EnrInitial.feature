@@ -1,10 +1,10 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106_WIP
+  @SLER-106
   Scenario: Create Account & Submit FA Application & Enroll in a plan
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
-    And I enter general mandatory data for "Admin exchange" account creation
+    And I enter general mandatory data for "Admin exchange" account creation with email "MGC4testing"@outlook.com
     And I search for user and click email from search results
     And I click "On Behalf Of (OBO)" from application links dropdown
     And I initiate incoming page
