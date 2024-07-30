@@ -4,6 +4,7 @@ import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import org.testng.Assert;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,6 +118,30 @@ public class PostgresHandler {
     public boolean setRec(String query){
         Boolean  recordIsSet =  executor.setRecord(query);
         return recordIsSet;
+    }
+
+    public static List<Map<String, Object>> retrieveResults(String query) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+
+        try  {
+            ResultSet rs = executor.executeQuery(query);
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            while (rs.next()) {
+                Map<String, Object> rowMap = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    String columnName = metaData.getColumnName(i);
+                    Object columnValue = rs.getObject(i);
+                    rowMap.put(columnName, columnValue);
+                }
+                resultList.add(rowMap);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
     }
 
 }
