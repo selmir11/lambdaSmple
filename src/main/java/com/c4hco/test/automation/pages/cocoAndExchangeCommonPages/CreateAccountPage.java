@@ -237,6 +237,10 @@ public class CreateAccountPage {
             case "exchange":
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            case "Admin exchange":
+                onBehalfOfPrimaryUserCheckbox.click();
+                exchangeTermsOfUseCheckbox.click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);
 
