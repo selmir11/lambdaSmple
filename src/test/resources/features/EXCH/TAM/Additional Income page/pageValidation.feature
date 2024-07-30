@@ -5,7 +5,7 @@ Feature: Page Verification-Additional Income Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-141 @PageVerificationAdditionalIncomePage
+  @SLER-141 @PageVerificationAdditionalIncomePage @TAMSmoke
   Scenario: SLER-141 I see the Errors Cleared on the Additional Income page - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

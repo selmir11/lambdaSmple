@@ -61,7 +61,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-64 @PageTextDeductions
+  @SLCR-64 @PageTextDeductions @TAMSmoke
   Scenario: SLCR-64 I can see Deductions's Header and footer - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

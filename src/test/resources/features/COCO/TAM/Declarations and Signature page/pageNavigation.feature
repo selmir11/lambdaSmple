@@ -4,7 +4,7 @@ Feature: Navigation-Declarations and Signature Page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-151 @PageNavigationD&SPage
+  @SLCR-151 @PageNavigationD&SPage @TAMSmoke
   Scenario: SLCR-151 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in D&S portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page

@@ -1,4 +1,4 @@
-@TAM
+@TAM @TAMSmoke
 Feature: End to End Testing
 
   Background: I go the login portal

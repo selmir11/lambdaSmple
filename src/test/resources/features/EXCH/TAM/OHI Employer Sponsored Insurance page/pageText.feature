@@ -59,7 +59,7 @@ Feature: Page Text-OHI ESI Page
 
     And I validate I am on the "ESI" page
 
-  @SLER-285 @PageTextESI
+  @SLER-285 @PageTextESI @TAMSmoke
   Scenario: SLER-285 I can see ESI's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"

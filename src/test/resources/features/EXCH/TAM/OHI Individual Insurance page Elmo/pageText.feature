@@ -187,7 +187,7 @@ Feature: Page Text-OHI Individual Insurance Elmo Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-265 @PageVerificationIndividualInsurancePage
+  @SLER-265 @PageVerificationIndividualInsurancePage @TAMSmoke
   Scenario: SLER-265 I Validate the saved options persist on the Individual Insurance page
 #Step 3
     And I verify the header for Primary Member on the Individual Insurance page

@@ -82,7 +82,7 @@ Feature: Secondary User-OHI TRICARE Elmo Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi Tricare" page
 
-  @SLER-495 @SecondaryUserOhiTricareElmo
+  @SLER-495 @SecondaryUserOhiTricareElmo @TAMSmoke
   Scenario: SLER-495 I can see Tricare's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Tricare page data in "English"
     Then I click "Yes" for currently enrolled in Tricare question

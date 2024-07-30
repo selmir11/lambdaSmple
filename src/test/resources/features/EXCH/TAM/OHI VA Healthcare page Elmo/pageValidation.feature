@@ -53,7 +53,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
 
-  @SLER-331 @PageValidationOhiVaHealthcareElmo
+  @SLER-331 @PageValidationOhiVaHealthcareElmo @TAMSmoke
   Scenario: SLER-331 I can see VA Healthcare's standard errors consistently - English
     And I verify the "First Section" VA Healthcare page data in "English"
     Then I click continue on the Elmo OHI VA Healthcare page

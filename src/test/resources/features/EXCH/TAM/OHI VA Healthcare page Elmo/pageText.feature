@@ -188,7 +188,7 @@ Feature: Page Text-OHI VA Healthcare Elmo Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-294 @PageVerificationVaHealthcarePage
+  @SLER-294 @PageVerificationVaHealthcarePage @TAMSmoke
   Scenario: SLER-294 I Validate the saved options persist on the VA Healthcare page
 #Step 3
     And I verify the header for Primary Member on the VA Healthcare page

@@ -86,7 +86,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-334 @PageValidationOhiCobraElmo
+  @SLER-334 @PageValidationOhiCobraElmo @TAMSmoke
   Scenario: SLER-334 I can see Cobra's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page

@@ -187,7 +187,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-295 @PageVerificationMedicarePage
+  @SLER-295 @PageVerificationMedicarePage @TAMSmoke
   Scenario: SLER-295 I Validate the saved options persist on the Medicare page
 #Step3
     And I verify the header for Primary Member on the Medicare page
