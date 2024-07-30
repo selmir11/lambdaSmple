@@ -12,6 +12,7 @@ import java.util.Map;
 public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
+    EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -128,7 +129,7 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
-    public List<Map<String, Object>> getEnPolicyAh_details(){
-        return postgresHandler.retrieveResults(exchDbQueries.enPolicyAh());
+    public List<EnPolicyAhEntity> getEnPolicyAh_details(){
+        return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }
 }
