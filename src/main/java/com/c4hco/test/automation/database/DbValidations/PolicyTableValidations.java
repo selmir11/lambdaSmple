@@ -5,9 +5,7 @@ import com.c4hco.test.automation.database.EntityObj.EnPolicyAhEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.asserts.SoftAssert;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 public class PolicyTableValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
