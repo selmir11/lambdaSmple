@@ -116,7 +116,7 @@ Feature: Page Text-Other Health Insurance Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "ESI" page
 
-  @SLER-239 @PageTextOtherHealthInsurancePage
+  @SLER-239 @PageTextOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-239 I Validate saved data on the ESI page for multiple members
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page

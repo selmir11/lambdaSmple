@@ -204,7 +204,7 @@ Feature: Tests related to the help drawer on ELMO pages
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-199
+  @SLER-199 @TAMSmoke
     #fails when run on small screens (Let's chat widget covers up help drawer footer)
   Scenario: SLER-199 Validate help drawer text on the ELMO ESI page - Spanish
     Then I select the option "Yes" to employment

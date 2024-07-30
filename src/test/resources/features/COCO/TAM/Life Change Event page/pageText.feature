@@ -73,7 +73,7 @@ Feature: Tests related to the Life Change Event page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-69 @PageLifeChangeEventPage
+  @SLCR-69 @PageLifeChangeEventPage @TAMSmoke
   Scenario: SLCR-69 I can see Life Change Event Page's Header and footer - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
