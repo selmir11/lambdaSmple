@@ -177,7 +177,7 @@ Feature: Page Text-Other Health Insurance Page HRA
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-764 @PageVerificationHraPage
+  @SLER-764 @PageVerificationHraPage @TAMSmoke
   Scenario: SLER-764 I Validate the saved options persist on the HRA page
     And I verify the header for Primary Member on the HRA page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -203,7 +203,7 @@ Feature: Page Text-Other Health Insurance Page HRA
 #Step 1
     And I verify the header for Primary Member on the HRA page
 #Step 2
-    And I verify the "Initial Page" amount "" HRA page data
+    And I verify the "Initial Page" amount "" HRA page data in "English"
     And I verify year is "Not Selected", amount is "Not Selected", type is "Not Selected", "Without" APTC question "" on the HRA page
 #Set-up
     Then I select Current Year year dropdown on the Elmo OHI HRA page

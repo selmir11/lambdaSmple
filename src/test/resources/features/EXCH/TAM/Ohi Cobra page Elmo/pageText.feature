@@ -57,7 +57,7 @@ Feature: Page Text-Other Health Insurance Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
 
-  @SLER-238 @PageVerificationCobraPage
+  @SLER-238 @PageVerificationCobraPage @TAMSmoke
   Scenario: SLER-238 I Validate the saved options persist on the Cobra page
 #Step 3
     And I verify the header for Primary Member on the Cobra page

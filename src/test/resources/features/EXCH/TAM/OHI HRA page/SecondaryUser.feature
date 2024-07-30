@@ -1,5 +1,5 @@
 @TAM
-Feature: Secondary User-OHI TRICARE Elmo Page
+Feature: Page Text-Other Health Insurance Page HRA
 
   Background:
     Given I open the login page on the "login" portal
@@ -8,8 +8,8 @@ Feature: Secondary User-OHI TRICARE Elmo Page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
+    And  I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -78,56 +78,50 @@ Feature: Secondary User-OHI TRICARE Elmo Page
     And I select "Yes" to claim dependents
     And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "TRICARE" as ELMO health insurance option
+    Then I select "HRA" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo HRA" page
 
-  @SLER-495 @SecondaryUserOhiTricareElmo @TAMSmoke
-  Scenario: SLER-495 I can see Tricare's dynamic data for Primary and Secondary user - English
-    And I verify the "First Section" Tricare page data in "English"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section" Tricare page data in "English"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section" Tricare page data in "English"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHI Tricare page
+@SLER-812 @PageVerificationHraPage
+Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user - English
+    And I verify the "Initial Page" amount "" HRA page data in "English"
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "5.00" amount on the Elmo OHI HRA page
+    Then I select "ICHRA" for HRA type
+    And I verify the "Opt Out" amount "5.00" HRA page data in "English"
+    Then I select "Yes" for opt out on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHI HRA page
 
-    Then I select "TRICARE" as ELMO health insurance option
+    Then I select "HRA" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo Ohi Tricare" page
-    And I verify the "First Section Secondary" Tricare page data in "English"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section Secondary" Tricare page data in "English"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section Secondary" Tricare page data in "English"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
+    And I validate I am on the "Elmo HRA" page
+    And I verify the "Initial Page Secondary" amount "" HRA page data in "English"
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "1.00" amount on the Elmo OHI HRA page
+    Then I select "ICHRA" for HRA type
+    And I verify the "Opt Out Secondary" amount "1.00" HRA page data in "English"
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-494 @SecondaryUserOhiTricareElmo
-  Scenario: SLER-494 I can see Tricare's dynamic data for Primary and Secondary user - Spanish
+  @SLER-813 @PageVerificationHraPage
+  Scenario: SLER-813 I can see HRA's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify the "First Section" Tricare page data in "Spanish"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section" Tricare page data in "Spanish"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section" Tricare page data in "Spanish"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHI Tricare page
+    And I verify the "Initial Page" amount "" HRA page data in "Spanish"
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "5.00" amount on the Elmo OHI HRA page
+    Then I select "ICHRA" for HRA type
+    And I verify the "Opt Out" amount "5.00" HRA page data in "Spanish"
+    Then I select "Yes" for opt out on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHI HRA page
 
-    Then I select "TRICARE" as ELMO health insurance option
+    Then I select "HRA" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo Ohi Tricare" page
-    And I verify the "First Section Secondary" Tricare page data in "Spanish"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section Secondary" Tricare page data in "Spanish"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section Secondary" Tricare page data in "Spanish"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
+    And I validate I am on the "Elmo HRA" page
+    And I verify the "Initial Page Secondary" amount "" HRA page data in "Spanish"
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "1.00" amount on the Elmo OHI HRA page
+    Then I select "ICHRA" for HRA type
+    And I verify the "Opt Out Secondary" amount "1.00" HRA page data in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"

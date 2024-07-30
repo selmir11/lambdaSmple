@@ -16,4 +16,19 @@ public class TobaccoUsageCoCoPageSteps {
         tobaccoUsageCoCoPage.verifyTextOnTobaccoPage();
     }
 
+    @And("I click go back on the tobacco usage page coco")
+    public void clickBackBtn(){
+        tobaccoUsageCoCoPage.clickBackBtn();
+    }
+
+    @And("I click on save and exit on tobacco usage page in coco")
+    public void clickSaveAndExit(){
+        tobaccoUsageCoCoPage.clickSaveAndExit();
+    }
+
+    @Then("I validate the text on {string} {string} and {string} buttons on tobacco usage page coco")
+    public void validateButtonText(String goBackTxt, String saveExitTxt, String continueBtnTxt){
+        tobaccoUsageCoCoPage.validateBtnTxt(goBackTxt, saveExitTxt, continueBtnTxt);
+    }
+
 }

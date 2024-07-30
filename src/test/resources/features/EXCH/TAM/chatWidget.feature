@@ -1,4 +1,4 @@
-@TAM
+@TAM @TAMSmoke
 Feature: TAM Chat Widget
 
   Background:

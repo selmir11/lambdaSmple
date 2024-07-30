@@ -1,17 +1,17 @@
 @SOLRegression
-Feature: Tests related to What's Next Page
+Feature: UI Page Validation - Enrollment Agreements page related tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-181
-  Scenario: Page validation - Validate the text on the page and text on buttons on the page
+  @SLCR-186-wip @EnrollmentAgreementsPageVerbiage
+  Scenario: Validate text on enrollment agreements page, text on buttons and page navigation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
+    And I enter valid credentials to login
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -49,18 +49,23 @@ Feature: Tests related to What's Next Page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
-    Then I validate I am on the "Plan Summary" page
-    And I click Continue button on the Medical Dental Page CoCo
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
-    And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
-    #Then I click all done from payment portal page coco
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    Then I validate I am on the "Congratulations - What's Next?" page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+
+#    Then I validate the page text on the enrollment agreements page coco
+#
+#    And I click go back on the enrollment agreements page coco
+#    Then I validate I am on the "planSummaryMedicalDental" page
+#    And I click continue on coco plan summary page
+#    Then I validate I am on the "Enrollment Agreements" page
+#    And I select "Terms of Use" agreement checkbox CoCo
+#    And I select "Privacy Policy" agreement checkbox CoCo
+#    And I select "Dental Coverage" agreement checkbox CoCo
+#    And I enter householder signature on the Enrollment Agreements page CoCo
+#    And I select continue button on the Enrollment Agreements CoCo page
+#    # validate the page - payNow page in coco
+
 
 
 
