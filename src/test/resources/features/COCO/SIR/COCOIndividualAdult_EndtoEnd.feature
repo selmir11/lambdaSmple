@@ -165,7 +165,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-182_WIP @EndToEndTest
-  Scenario Outline: This will create Family of 2 members, Couples with multiple groups
+  Scenario: This will create Family of 2 members, Couples with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -263,8 +263,8 @@ Feature: Individual adult - End to End Test
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
-    And I select "<metalOption>" to filter for a  COCO Metal Tier plan
-    And I validate the COCO plan option 1 has text "<metalPlanText>"
+    And I select "Silver" to filter for a  COCO Metal Tier plan
+    And I validate the COCO plan option 1 has text "KP Colorado Option Silver X"
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Medical Plan Results" page
@@ -279,10 +279,5 @@ Feature: Individual adult - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
     And I select make payment button for all plans to pay the premium CoCo
-    And I select continue button on the Initial Payment CoCo page
-    And I click on Go To Welcome Page Button on whats next coco page
-    And I click on Sign Out in the Header for "Elmo"
-
-    Examples:
-      | metalOption | metalPlanText |
-      |Silver       |KP Colorado Option Silver X|
+    Then I click all done from payment portal page coco
+    #And I click on Sign Out in the Header for "Elmo"
