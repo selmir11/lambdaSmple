@@ -124,4 +124,7 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<Map<String, Object>> getEnPolicyAh_details(){
+        return postgresHandler.retrieveResults(exchDbQueries.enPolicyAh());
+    }
 }
