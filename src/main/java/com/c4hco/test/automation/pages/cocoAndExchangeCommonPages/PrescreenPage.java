@@ -24,6 +24,7 @@ public class PrescreenPage {
     }
 
     public void clickCreateAccountLink(){
+        basicActions.waitForElementToBePresent(createMyAccount, 10);
         createMyAccount.click();
     }
 
