@@ -61,7 +61,7 @@ Feature: Medical Plan Results page related tests
 
     Then I validate I am on the "Dental Plan Compare" page
     And I click Go Back on the Dental Compare page
-    Then I click on Sign Out in the Header for "Portal"
+    Then I click on Sign Out in the Header for "DentalPlanResults"
 
   @DentalCompareTextValidation @SLER-727
   Scenario: Validate the Text on Compare Plans page (Dental)
