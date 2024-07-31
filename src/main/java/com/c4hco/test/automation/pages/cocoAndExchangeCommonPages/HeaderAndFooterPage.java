@@ -109,6 +109,9 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is for "Who helps you Page" Sign out only.
     WebElement signOutLinkPortal;
 
+    @FindBy(xpath = "//*[@id ='sign-out']")
+    WebElement  signOutDentalPlanResults;
+
     @FindBy(xpath = "//div[@class ='p-2 ms-2']") // this is the only one that works without getting a stale element issue
     WebElement signOutLinkWhoHelpsPage;
 
@@ -436,6 +439,11 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(signOutLinkPortal, 20);
                 basicActions.scrollToElement(signOutLinkPortal);
                 basicActions.click(signOutLinkPortal);
+                break;
+            case "DentalPlanResults":
+                basicActions.waitForElementToBePresent(signOutDentalPlanResults, 20);
+                basicActions.scrollToElement(signOutDentalPlanResults);
+                basicActions.click(signOutDentalPlanResults);
                 break;
             case "Account Overview":
                 basicActions.waitForElementToBeClickable(signOutOverview,10);
