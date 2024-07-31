@@ -1,10 +1,10 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106_WIP
+  @SLER-106
   Scenario: Create Account & Submit FA Application & Enroll in a plan
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
-    And I enter general mandatory data for "Admin exchange" account creation
+    And I enter general mandatory data for "Admin exchange" account creation with email "MGC4testing"@outlook.com
     And I search for user and click email from search results
     And I click "On Behalf Of (OBO)" from application links dropdown
     And I initiate incoming page
@@ -119,8 +119,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
     Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
@@ -147,10 +147,18 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select the "2" option for Who Will Claim as Dependents
     And I select the "3" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -174,7 +182,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family"
+    And I select "Anthem Dental Family" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
@@ -187,15 +195,16 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I select Withdrawal from Bank Account button
-    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-    Then I select second make payment button to pay the premium
-    And I select Withdrawal from Bank Account button
-    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-    And I click continue on initial payment page
-
-    And I click on Go To Welcome Page Button on whats next page
+    Then I click all done from payment portal page
+#    Then I select make payment button to pay the premium
+#    And I select Withdrawal from Bank Account button
+#    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
+#    Then I select second make payment button to pay the premium
+#    And I select Withdrawal from Bank Account button
+#    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
+#    And I click continue on initial payment page
+#
+#    And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
@@ -210,6 +219,20 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
       | Anthem Colorado Option Bronze Pathway Essentials Std |
       | Anthem Dental Family                                 |
     Then logout from Admin Portal
+
+    #Gmail
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+        #DbVerification
+
+    And I verify the policy data quality check
+    And I verify the data from book of business queue table
 
 
 

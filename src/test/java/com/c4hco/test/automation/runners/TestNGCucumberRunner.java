@@ -27,7 +27,7 @@ public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
         System.setProperty("cucumber.filter.tags", tags);
         // Set the report folder for the HTML and XML reports
         System.setProperty("cucumber.plugin",
-                "pretty,html:" + reportFolderPath + "/execution-reports.html,testng:" + reportFolderPath + "/execution-reports.xml");
+                "pretty,html:" + reportFolderPath + "/execution-reports.html,"+"json:"+reportFolderPath+"/cucumber-json.json,"+"testng:" + reportFolderPath + "/execution-reports.xml");
     }
 
     private String getReportPath(){
