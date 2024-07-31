@@ -114,7 +114,7 @@ Feature: Page Verification-Deductions Page
 
 
 
-  @SLER-236 @PageVerificationDeductionsPage
+  @SLER-236 @PageVerificationDeductionsPage @TAMSmoke
   Scenario: SLER-236 I see the Errors Cleared on the Deductions page - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

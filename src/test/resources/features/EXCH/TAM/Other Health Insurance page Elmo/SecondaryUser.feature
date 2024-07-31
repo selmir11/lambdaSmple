@@ -1,5 +1,5 @@
 @TAM
-Feature: Secondary User-OHI TRICARE Elmo Page
+Feature: Secondary User-Other Health Insurance Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -78,56 +78,20 @@ Feature: Secondary User-OHI TRICARE Elmo Page
     And I select "Yes" to claim dependents
     And I select the "1" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "TRICARE" as ELMO health insurance option
+    And I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo Ohi Tricare" page
 
-  @SLER-495 @SecondaryUserOhiTricareElmo @TAMSmoke
-  Scenario: SLER-495 I can see Tricare's dynamic data for Primary and Secondary user - English
-    And I verify the "First Section" Tricare page data in "English"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section" Tricare page data in "English"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section" Tricare page data in "English"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHI Tricare page
-
-    Then I select "TRICARE" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo Ohi Tricare" page
-    And I verify the "First Section Secondary" Tricare page data in "English"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section Secondary" Tricare page data in "English"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section Secondary" Tricare page data in "English"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
-
-    And I click on Sign Out in the Header for "Elmo"
-
-  @SLER-494 @SecondaryUserOhiTricareElmo
-  Scenario: SLER-494 I can see Tricare's dynamic data for Primary and Secondary user - Spanish
+  @SLER-714 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-714 I Validate the page text is different for a secondary user on the Other Health Insurance page
+    And I validate I am on the "Elmo Other Health Insurance" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    And I verify the "First Section" Tricare page data in "Spanish"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section" Tricare page data in "Spanish"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section" Tricare page data in "Spanish"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHI Tricare page
+    Then I verify text on the Other Health Insurance page in "Spanish Secondary"
 
-    Then I select "TRICARE" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    And I validate I am on the "Elmo Ohi Tricare" page
-    And I verify the "First Section Secondary" Tricare page data in "Spanish"
-    Then I click "Yes" for currently enrolled in Tricare question
-    And I verify the "Second Section Secondary" Tricare page data in "Spanish"
-    Then I click "Yes" for insurance ending in 60 days in Tricare question
-    And I verify the "Third Section Secondary" Tricare page data in "Spanish"
-    Then I enter the end date as "Current Month" on the Tricare page
-    Then I click "No" for insurance ending voluntary for Tricare question
+    And I change the language from header to "English"
+    And I verify text on the Other Health Insurance page in "English Secondary"
+    And I verify the checkboxes on the Other Health Insurance page
+    And I verify help icons on the Other Health Insurance page
 
     And I click on Sign Out in the Header for "Elmo"
