@@ -34,11 +34,11 @@ public class DentalPlansResultsPage {
 
     @FindBy(id= "DentalPlanResults-Skip")
     WebElement dentalSkipBtn;
-
-    @FindBy (id ="mat-mdc-checkbox-28-input")
+    
+    @FindBy (id ="PlanResults-PlanCompareCheckbox_1")
     WebElement comparePlanBox1;
 
-    @FindBy (id ="mat-mdc-checkbox-29-input")
+    @FindBy (id ="PlanResults-PlanCompareCheckbox_2")
     WebElement comparePlanBox2;
 
     @FindBy(id ="DentalPlanResults-ComparePlans")
