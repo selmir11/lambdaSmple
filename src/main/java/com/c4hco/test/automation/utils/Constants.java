@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Constants {
     public static String PROTOCOL = "https://";
-    public static String LOGIN = "-aws.connectforhealthco.com/login-portal/login";
-    public static String BROKER = "-aws.connectforhealthco.com/broker-portal/";
-    public  static String ADMIN = "-aws.connectforhealthco.com/AdminPortal";
-    public  static String ASSISTER = "-aws.connectforhealthco.com/assistnet-portal/";
+    public static String LOGIN = "login-portal/login";
+    public static String BROKER = "broker-portal/";
+    public  static String ADMIN = "AdminPortal";
+    public  static String ASSISTER = "assistnet-portal/";
     public  static String Outlook= "https://www.microsoft.com/en-us/microsoft-365/outlook/log-in";
+    public static String host = "-aws.connectforhealthco.com/";
 
     public static final List<String> DentalPlanNamesList; // WIP - Eventually, get this list from DB
 

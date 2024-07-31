@@ -93,6 +93,7 @@ public class LoginPage {
     }
 
     public void clickCreateAccount() {
+        basicActions.waitForElementToBePresent(createAccountLink, 10);
         createAccountLink.click();
     }
 
