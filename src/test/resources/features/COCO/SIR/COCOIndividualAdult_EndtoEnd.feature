@@ -280,4 +280,9 @@ Feature: Individual adult - End to End Test
     And I select continue button on the Enrollment Agreements CoCo page
     And I select make payment button for all plans to pay the premium CoCo
     Then I click all done from payment portal page coco
-    #And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Plans" link on welcome page
+    Then I validate I am on the "My Policies" page
+    And Validate selected medical plan for "Wife" is "KP Colorado Option Silver X"
+    And Validate selected medical plan for "Primary" is "KP Colorado Option Silver X"
+    And I click on Sign Out in the Header for "Elmo"
