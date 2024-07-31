@@ -129,8 +129,10 @@ public class DbQueries_Exch {
     }
 
     public String enMem_Coverage_FinancialAh(){
-        return "select emcfh.member_financial_start_date, emcfh.member_financial_end_date, emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.responsible_amt, emcfh.csr_amt, emcfh.premium_reduction_type, emcfh.csr_level\n"+
-        "from "+dbName+".en_member_coverage_financial_ah emcfh\n"+
+        return "select emcfh.member_coverage_financial_ah_id, emcfh.policy_member_coverage_ah_id, emcfh.member_coverage_financial_id, emcfh.policy_member_coverage_id, \n" +
+                "emcfh.submission_id, emcfh.member_financial_start_date, emcfh.member_financial_end_date, emcfh.plan_premium_amt, emcfh.premium_reduction_amt, \n" +
+                "emcfh.responsible_amt, emcfh.csr_amt, emcfh.slcsp_amt, emcfh.premium_reduction_type, emcfh.csr_level \n"+
+                "from "+dbName+".en_member_coverage_financial_ah emcfh \n"+
                 "where application_id = '"+ applicationId+"'";
     }
 
