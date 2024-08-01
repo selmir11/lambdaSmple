@@ -107,6 +107,26 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.clickContinueOnMyOwnButton();
         }
 
+        @Then("I Remove my current Broker")
+        public void iRemoveMyCurrentBroker(){
+                findExpertHelpPage.clickRemoveBrokerButton();
+        }
+
+        @And("I {string} my decision to remove my current broker")
+        public void iClickRemoveBrokerPopUp(String removalOption){
+                findExpertHelpPage.clickRemoveBrokerPopUp(removalOption);
+        }
+
+        @And("I validate the Previous Broker Assister table header labels")
+        public void iValidatePreviousBrokerAssisterTableLabels(){
+                findExpertHelpPage.validatePreviousBrokerAssisterTableLabels();
+        }
+
+        @Then ("I validate the details in the Previous Broker Assister table are {string}, {string}, {string}, {string}, {string}")
+        public void iValidatePreviousBrokerAssisterTableData(String name, String licenseSiteId, String zip, String phoneNumber, String type){
+                findExpertHelpPage.validatePreviousBrokerAssisterTableData(name, licenseSiteId, zip, phoneNumber, type);
+        }
+
         @And("I validate no broker is authorized")
         public void iValidateNoBrokerIsAuthorized() {findExpertHelpPage.validateNoBrokerIsAuthorized();}
 

@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.database.dbHandler;
 
-import com.c4hco.test.automation.database.EntityObj.EnMemberCoverageFinancialAhEntity;
-import com.c4hco.test.automation.database.EntityObj.EnPolicyAhEntity;
+import com.c4hco.test.automation.database.EntityObj.EnPolicyMemberCoverageAhEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 
 import java.lang.reflect.Field;
@@ -10,33 +9,34 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnMemberCoverageFinancialAhHandler {
+public class EnPolicyMemberCoverageAhHandler {
+
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
 
-    public List<EnMemberCoverageFinancialAhEntity> getEnMemberCoverageFinAhTableDetails(String query) {
-        List<EnMemberCoverageFinancialAhEntity> enMemCovFinancialResult = new ArrayList<>();
+    public List<EnPolicyMemberCoverageAhEntity> getEnMemberCoverageAhTableDetails(String query) {
+        List<EnPolicyMemberCoverageAhEntity> enPolMemberCoverageResult = new ArrayList<>();
         ResultSet rs;
         try {
             rs = executor.executeQuery(query);
             while (rs.next()) {
-                EnMemberCoverageFinancialAhEntity enMemberCoverageFinancialAhEntity = new EnMemberCoverageFinancialAhEntity();
+                EnPolicyMemberCoverageAhEntity enPolicyMemberCoverageAhEntity = new EnPolicyMemberCoverageAhEntity();
                 for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                     String columnName = rs.getMetaData().getColumnName(i);
                     Object columnValue = rs.getObject(i);
 
                     // Set the field value using reflection
                     try {
-                        Field field = EnMemberCoverageFinancialAhEntity.class.getDeclaredField(columnName);
+                        Field field = EnPolicyMemberCoverageAhEntity.class.getDeclaredField(columnName);
                         field.setAccessible(true);
                         if (columnValue != null) {
                             // Perform type conversion based on field type
                             if (field.getType() == String.class) {
-                                field.set(enMemberCoverageFinancialAhEntity, columnValue.toString());
+                                field.set(enPolicyMemberCoverageAhEntity, columnValue.toString());
                             } else if (field.getType() == BigDecimal.class && columnValue instanceof Number) {
-                                field.set(enMemberCoverageFinancialAhEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
+                                field.set(enPolicyMemberCoverageAhEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
                             } else {
                                 // Handle other types as needed
-                                field.set(enMemberCoverageFinancialAhEntity, columnValue);
+                                field.set(enPolicyMemberCoverageAhEntity, columnValue);
                             }
                         } else {
                             // Handle the case where columnValue is null
@@ -48,11 +48,11 @@ public class EnMemberCoverageFinancialAhHandler {
                         // You can ignore it or handle it according to your requirements
                     }
                 }
-                enMemCovFinancialResult.add(enMemberCoverageFinancialAhEntity);
+                enPolMemberCoverageResult.add(enPolicyMemberCoverageAhEntity);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return enMemCovFinancialResult;
+        return enPolMemberCoverageResult;
     }
 }
