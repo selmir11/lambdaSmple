@@ -116,8 +116,8 @@ public class DbValidations {
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateResidentialAddress(subscriber, ob834Entity, dbData);
         validateMedicalAPTCAmount(ob834Entity);
-        softAssert.assertAll();
         validateMedicalPremiumAmt(ob834Entity);
+        softAssert.assertAll();
     }
 
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){

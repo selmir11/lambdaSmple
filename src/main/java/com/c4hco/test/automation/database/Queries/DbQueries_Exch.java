@@ -89,14 +89,14 @@ public class DbQueries_Exch {
     public String brokerId() {
         return "SELECT agency_tin_ein FROM "+dbName+".bp_agency where agency_name = '"+agencyName+"'";
     }
-    public String getMemberFinancialRecords(String coverageType){
+    public String getMemberMedFinancialRecords(){
         return "SELECT mcf.member_financial_start_date, mcf.member_financial_end_date, mcf.plan_premium_amt, mcf.premium_reduction_amt, \n" +
-                "mcf.responsible_amt, mcf.csr_amt, mcf.premium_reduction_type, mcf.csr_level,pm.exch_person_id, p.coverage_type\n" +
+                "mcf.responsible_amt, mcf.csr_amt, mcf.premium_reduction_type, mcf.csr_level, p.coverage_type\n" +
                 "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
                 "JOIN "+dbName+".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
                 "JOIN "+dbName+".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
                 "JOIN "+dbName+".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
-                "WHERE p.account_id = '"+acctId+"'"+ " and coverage_type='"+coverageType+"'";
+                "WHERE p.account_id = '"+acctId+"'"+ " and coverage_type=1";
     }
 
     public String getPolicyDqCheck(){
