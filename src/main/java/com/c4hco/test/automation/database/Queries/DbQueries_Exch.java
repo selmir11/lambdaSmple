@@ -142,4 +142,8 @@ public class DbQueries_Exch {
                 "from "+dbName+".en_policy_member_coverage_ah epmch \n"+
                 "where application_id = '"+ applicationId+"'";
     }
+    public String enPolicyFinancialAh(){
+        return "select * from "+dbName+".en_policy_financial_ah\n " +
+                "where policy_id in (select policy_id from "+dbName+".en_policy where account_id = '"+acctId+"')";
+    }
 }
