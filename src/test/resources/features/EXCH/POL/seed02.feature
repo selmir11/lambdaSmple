@@ -110,12 +110,13 @@ Feature: Seed02 - Exchange
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I click all done from payment portal page
+#    Then I select make payment button to pay the premium
+#    And I click continue on payment selection page
+#    And I select second make payment button to pay the premium
+#    And I click continue on payment selection page
+#    And I click continue on initial payment page
+#    And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
