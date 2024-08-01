@@ -87,20 +87,7 @@ public class MedicalPlanResultsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
-    // function below is no longer needed on plan results as page update is now permanent
-    public void validateAPTC(String planResultsAPTCredit){
-        basicActions.waitForElementToBePresent(planResultsAPTC, 30);
-        softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
-    }
-
-    // function below is no longer needed on plan results as page update is now permanent
-    public void validateNoAPTC(String noAPTCCreditAmt) {
-        softAssert.assertFalse(basicActions.waitForElementPresence(planResultsAPTC, 20 ) );
-        softAssert.assertAll();
-
-    }
-
-    public void selectfromProviderList(String Selecting) {
+     public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
 
