@@ -223,13 +223,6 @@ public class TellUsAboutAdditionalMemberPage {
         dropdown.selectByVisibleText(Relation);
     }
 
-    public void setSelectRelationship4(String Relation) {
-        basicActions.waitForElementToBePresent(selectRelationship4, 15);
-
-        Select dropdown = new Select(selectRelationship4);
-        dropdown.selectByVisibleText(Relation);
-    }
-
     public void isMemberApplyingForInsurance(String Applying){
         switch(Applying){
             case "Yes":

@@ -68,31 +68,6 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-MonthlyPremium_1")
     WebElement dentalPremium1;
 
-    @FindBy(id = "PlanResults-MonthlyPremium_2")
-    WebElement dentalPremium2;
-
-    @FindBy(id = "PlanResults-MonthlyPremium_3")
-    WebElement dentalPremium3;
-
-    @FindBy(id = "PlanResults-MonthlyPremium_4")
-    WebElement dentalPremium4;
-
-    @FindBy(id = "PlanResults-MonthlyPremium_5")
-    WebElement dentalPremium5;
-
-    @FindBy(id = "PlanResults-MonthlyPremium_6")
-    WebElement dentalPremium6;
-
-    @FindBy(id = "PlanResults-MonthlyPremium_7")
-    WebElement dentalPremium7;
-    @FindBy(id = "PlanResults-MonthlyPremium_8")
-    WebElement dentalPremium8;
-    @FindBy(id = "PlanResults-MonthlyPremium_9")
-    WebElement dentalPremium9;
-
-    @FindBy(id = "PlanResults-MonthlyPremium_10")
-    WebElement dentalPremium10;
-
 
     SoftAssert softAssert = new SoftAssert();
 
