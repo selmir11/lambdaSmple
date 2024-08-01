@@ -51,7 +51,7 @@ public class WelcomePage {
     @FindBy(css = ".resources-container > div > div.resources-text")
     List <WebElement> viewAdditionalResourcesText;
 
-    @FindBy(css = ".action-link")
+    @FindBy(css = ".action-link, .c4-type-links-lg")
     List<WebElement> actionLinks;
 
     SoftAssert softAssert = new SoftAssert();

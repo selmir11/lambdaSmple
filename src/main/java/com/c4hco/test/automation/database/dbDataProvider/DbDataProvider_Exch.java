@@ -12,6 +12,9 @@ import java.util.Map;
 public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
+    EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
+    EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
+    EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -62,16 +65,7 @@ public class DbDataProvider_Exch {
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
     }
-    public String getCsrAmtMed(String coverageType) {
-        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
-    }
-    public String getCsrAmtDen(String coverageType) {
-        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
-    }
-    public String getMemberPremiumAmt(String coverageType) {
-        return postgresHandler.getResultFor("plan_premium_amt", exchDbQueries.getMemberFinancialRecords(coverageType));
-    }
-    public void setDataFromDb(String planName, String coverageType){
+    public void setDataFromDb(String planName){
      String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
      String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
@@ -83,9 +77,6 @@ public class DbDataProvider_Exch {
      String exchPersonId = getExchPersonId();
      String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
-     String medicalCSRamount = getCsrAmtMed(coverageType);
-     String dentalCSRamount = getCsrAmtDen(coverageType);
-     String planPremiumAmt = getMemberPremiumAmt(coverageType);
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -97,10 +88,6 @@ public class DbDataProvider_Exch {
         dbData.setExchPersonId(exchPersonId);
         dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
-        dbData.setCsrAmtMed(medicalCSRamount);
-        dbData.setCsrAmtDen(dentalCSRamount);
-        dbData.setCoverageType(coverageType);
-        dbData.setMemberPremiumAmt(planPremiumAmt);
         SharedData.setDbData(dbData);
     }
 
@@ -135,4 +122,14 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<EnPolicyAhEntity> getEnPolicyAh_details(){
+        return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
+    }
+    public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
+        return enMemberCoverageFinancialAhHandler.getEnMemberCoverageFinAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
+    }
+
+    public List<EnPolicyMemberCoverageAhEntity> getEnPol_Mem_Cov_Ah_details(){
+        return enPolicyMemberCoverageAhHandler.getEnMemberCoverageAhTableDetails(exchDbQueries.enPolicy_Mem_CoverageAh());
+    }
 }

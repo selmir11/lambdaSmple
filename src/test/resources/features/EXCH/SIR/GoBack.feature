@@ -77,7 +77,7 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SelectGoBackFromAgreementsToPreShoppingSingleGrouping @SLER-734-WIP
+  @SelectGoBackFromAgreementsToPreShoppingSingleGrouping @SLER-734
   Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - one group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -158,7 +158,7 @@ Feature: Dental Plans page tests
     Then I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click Go Back on the Enrollment Agreements page

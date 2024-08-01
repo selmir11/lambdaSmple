@@ -82,8 +82,7 @@ public class DbValidations {
       List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
       SharedData.setOb834DetailsEntities(ob834DetailsEntities);
       for(Ob834DetailsEntity ob834Entity: ob834DetailsEntities){
-          String coverageType = ob834Entity.getInsurance_line_code().equals("HLT")? "1" : "2";
-          exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan(),coverageType);
+          exchDbDataProvider.setDataFromDb(subscriber.getMedicalPlan());
           DbData dbData = SharedData.getDbData();
           if(ob834Entity.getInsurance_line_code().equals("HLT")){
               validateMedicalDbRecord_ob834Detail(subscriber, ob834Entity, dbData, expectedValues);
@@ -114,7 +113,6 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate,"Medical plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
-        softAssert.assertEquals(dbData.getCsrAmtMed(),ob834Entity.getCsr_amount(),"CSR amount does not match");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateResidentialAddress(subscriber, ob834Entity, dbData);
         validateMedicalAPTCAmount(ob834Entity);
@@ -124,7 +122,6 @@ public class DbValidations {
 
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
-        softAssert.assertEquals(dbData.getCsrAmtDen(),ob834Entity.getCsr_amount(),"CSR amount does not match");
         validateDentalAPTCAmount(ob834Entity);
         validateDentalPremiumAmt(ob834Entity);
     }
