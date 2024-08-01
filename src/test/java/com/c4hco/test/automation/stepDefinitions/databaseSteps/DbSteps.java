@@ -51,6 +51,7 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
       policyTableValidations.validateEnPolicyTableDetails();
       policyTableValidations.validateEnMemberCoverageFinancialAh();
       policyTableValidations.validateEnPolicyMemberCoverageAh();
+      policyTableValidations.validateEnPolicyFinancialAh();
    }
 
 }
