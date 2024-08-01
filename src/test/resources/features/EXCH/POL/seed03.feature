@@ -121,12 +121,6 @@ Feature: Seed03 - Exchange
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
     Then I click all done from payment portal page
-#      Then I select make payment button to pay the premium
-#      And I click continue on payment selection page
-#      And I select second make payment button to pay the premium
-#      And I click continue on payment selection page
-#      And I click continue on initial payment page
-#      And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
     And I validate member details from ob834_details table
