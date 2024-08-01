@@ -59,8 +59,7 @@ public class TellUsAboutAdditionalMemberPage {
     WebElement selectRelationship2;
     @FindBy(id = "memberRelationship3")
     WebElement selectRelationship3;
-    @FindBy(id = "memberRelationship4")
-    WebElement selectRelationship4;
+   
     @FindBy(css = "#memberRelationship1 > option:nth-child(2)")
     WebElement selectBrother;
 
