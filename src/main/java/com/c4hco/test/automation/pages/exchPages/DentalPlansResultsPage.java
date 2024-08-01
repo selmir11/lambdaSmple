@@ -86,7 +86,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickGoBack(){
-        basicActions.waitForElementToBePresent(btnGoBack,10);
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent(btnGoBack,200);
+        basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
 
     }
