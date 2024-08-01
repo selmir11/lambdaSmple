@@ -181,7 +181,7 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SelectGoBackFromAgreementsToPreShoppingMultiGrouping @SLER-735-WIP
+  @SelectGoBackFromAgreementsToPreShoppingMultiGrouping @SLER-735
   Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - Multi groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -237,9 +237,8 @@ Feature: Dental Plans page tests
     Then I click Add Another Family Member
     Then I enter member details with "10101981" date of birth
     And I select "Male" as sex option
-
     And I select "Other" as relationship option
-    And I select "Brother" as relationship one option
+    And I select "Other" as relationship one option
 
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
@@ -260,7 +259,7 @@ Feature: Dental Plans page tests
     And I select "Female" as sex option
     And I mark the Additional member is pregnant as "No"
 
-    And I select "Spouse" as relationship option
+    And I select "Other" as relationship option
     And I select "Other" as relationship one option
     And I select "Other" as relationship two option
 
@@ -278,60 +277,9 @@ Feature: Dental Plans page tests
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    Then I click on the Member Row 3
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
-    Then I validate I am on the "Employment Summary" page
-    Then I select the option "No" to employment
-    Then I click continue on the Employment Summary Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I click on the Member Row 3
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
-    Then I validate I am on the "Employment Summary" page
-    Then I select the option "No" to employment
-    Then I click continue on the Employment Summary Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I click on the Member Row 4
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
-    Then I validate I am on the "Employment Summary" page
-    Then I select the option "No" to employment
-    Then I click continue on the Employment Summary Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I click the save and continue button on the Income Summary Detail page
-
     Then I click continue on family overview page
-
     And I Apply for no financial help
+
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare as Tax Household 1
@@ -354,6 +302,10 @@ Feature: Dental Plans page tests
     And I select the first medical plan
     Then I click continue on medical plan results page
 
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
 
@@ -365,8 +317,12 @@ Feature: Dental Plans page tests
     And I select first dental plan
     Then I click continue on dental plan results page
 
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    Then I click continue on dental plan results page
+
     Then I validate I am on the "Plan Summary" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click Go Back on the Enrollment Agreements page
@@ -380,8 +336,14 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Dental Plan Results" page
     Then I click Go Back on Dental Plan Results page
 
+    Then I validate I am on the "Dental Plan Results" page
+    Then I click Go Back on Dental Plan Results page
+
     Then I validate I am on the "Grouping Members Dental" page
     And I click Go Back on the Dental Grouping page
+
+    Then I validate I am on the "Medical Plan Results" page
+    Then I click Go Back on the medical plan results page
 
     Then I validate I am on the "Medical Plan Results" page
     Then I click Go Back on the medical plan results page
