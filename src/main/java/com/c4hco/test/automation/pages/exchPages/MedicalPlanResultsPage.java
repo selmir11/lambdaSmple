@@ -33,8 +33,8 @@ public class MedicalPlanResultsPage {
     WebElement firstMedicalPlanName;
 
 
-    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
-    public WebElement continueBtn;// locators included for both QA and STG
+    @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue']")
+    public WebElement continueBtn;
 
     @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
@@ -77,9 +77,6 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
-
-    @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
-    WebElement planResultsAPTC;
 
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
