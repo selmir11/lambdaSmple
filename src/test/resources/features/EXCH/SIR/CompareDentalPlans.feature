@@ -61,9 +61,9 @@ Feature: Medical Plan Results page related tests
 
     Then I validate I am on the "Dental Plan Compare" page
     And I click Go Back on the Dental Compare page
-    Then I click on Sign Out in the Header for "Portal"
+    Then I click on Sign Out in the Header for "DentalPlanResults"
 
-  @DentalCompareTextValidation @727
+  @DentalCompareTextValidation @SLER-727
   Scenario: Validate the Text on Compare Plans page (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -123,7 +123,9 @@ Feature: Medical Plan Results page related tests
     And I validate the text headers and subheaders for the OutNetwork Dental Compare page
     And I select the InNetwork link on the Dental Compare page
     And I click Go Back on the Dental Compare page
-    Then I click on Sign Out in the Header for "Portal"
+
+    Then I validate I am on the "Dental Plan Results" page
+    Then I click on Sign Out in the Header for "DentalPlanResults"
 
 
 
