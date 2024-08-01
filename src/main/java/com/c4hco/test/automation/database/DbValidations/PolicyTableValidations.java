@@ -3,6 +3,7 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.EnMemberCoverageFinancialAhEntity;
 import com.c4hco.test.automation.database.EntityObj.EnPolicyAhEntity;
+import com.c4hco.test.automation.database.EntityObj.EnPolicyFinancialAhEntity;
 import com.c4hco.test.automation.database.EntityObj.EnPolicyMemberCoverageAhEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.asserts.SoftAssert;
@@ -76,6 +77,26 @@ public class PolicyTableValidations {
             softAssert.assertEquals(enPolMemCovAhEntities.get(1).getCurrent_ind(), "1", "Current indicator does not match");
             softAssert.assertAll();
         }
+    public void validateEnPolicyFinancialAh(){
+       List<EnPolicyFinancialAhEntity> enPolicyFinAhEntities = exchDbDataProvider.getEnPol_fin_ah_details();
 
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getFinancial_period_start_date(),"2024-01-01", "Dental Policy financial start date does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getFinancial_period_end_date(),"2024-12-31", "Dental Policy financial end date does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getTotal_plan_premium_amt(), SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$",""), "Dental Policy total plan premium amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getTotal_premium_reduction_amt()+".00", SharedData.getPrimaryMember().getDentalAptcAmt().replace("$",""),"Dental Policy total premium reduction amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getTotal_responsible_amt(), SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"Dental Policy total responsible amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getPremium_reduction_type(), "null","Dental Policy premium reduction type does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getTotal_csr_amt(), "0.00","Dental Policy total CSR amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(0).getCsr_level(), "01", "Dental Policy CSR level does not match");
+
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getFinancial_period_start_date(),"2024-01-01", "Medical Policy financial start date does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getFinancial_period_end_date(),"2024-12-31", "Medical Policy financial end date does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_plan_premium_amt(), SharedData.getPrimaryMember().getMedicalPremiumAmt(), "Medical Policy total plan premium amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_premium_reduction_amt(), SharedData.getPrimaryMember().getMedicalAptcAmt()+".00","Medical Policy total premium reduction amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_responsible_amt(),  SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"Medical Policy total responsible amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getPremium_reduction_type(), "null","Medical Policy premium reduction type does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_csr_amt(), "0.00","Medical Policy total CSR amount does not match");
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getCsr_level(), "01", "Medical Policy CSR level does not match");
+    }
 
 }
