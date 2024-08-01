@@ -66,7 +66,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
     WebElement medicalPremiumAfterAPTCAmt;
 
-    @FindBy(css=".reduction-amount")
+    @FindBy(xpath="//span[contains(@id,'PlanSummary-MedicalPremiumReductionAmount')]")//css=".reduction-amount")
     List<WebElement> medicalAPTCAmt;
 
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
@@ -166,6 +166,7 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     public void setPlansPremiumAmt() {
+        basicActions.waitForElementToDisappear(spinner, 20);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<MemberDetails> memberslist = SharedData.getMembers();
         Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
@@ -181,7 +182,7 @@ public class PlanSummaryMedicalDentalPage {
                 }
             }
         }else {//FA
-            String medAPTCAmt = medicalAPTCAmt.get(1).getText().replace("$","");
+            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
