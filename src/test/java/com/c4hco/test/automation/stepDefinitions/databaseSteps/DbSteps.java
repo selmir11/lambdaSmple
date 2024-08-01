@@ -50,6 +50,7 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    public void ivalidateIndPolicyTableQueries(){
       policyTableValidations.validateEnPolicyTableDetails();
       policyTableValidations.validateEnMemberCoverageFinancialAh();
+      policyTableValidations.validateEnPolicyMemberCoverageAh();
    }
 
 }
