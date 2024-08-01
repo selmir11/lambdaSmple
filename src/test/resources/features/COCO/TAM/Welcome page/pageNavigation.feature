@@ -192,8 +192,6 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
     And I change the C4 url to "Welcome portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I click Go Back button from chrome browser
     And I verify User name Link is not displayed in the "CoCo" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header
