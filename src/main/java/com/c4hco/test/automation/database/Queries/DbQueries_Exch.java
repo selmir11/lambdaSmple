@@ -136,9 +136,10 @@ public class DbQueries_Exch {
                 "where application_id = '"+ applicationId+"'";
     }
 
-    public String enPolicy_Mem_Coverage_FinAh(){
-        return "select epmch.policy_member_coverage_status, epmch.coverage_start_date, epmch.coverage_end_date, epmch.policy_member_coverage_status, epmch.disenrollment_reason\n" +
-                "from "+dbName+".en_policy_member_coverage_ah epmch\n"+
+    public String enPolicy_Mem_CoverageAh(){
+        return "select epmch.policy_member_coverage_ah_id, epmch.policy_member_ah_id, epmch.policy_member_coverage_id, epmch.policy_member_id, epmch.submission_id, epmch.coverage_start_date, \n" +
+                "epmch.coverage_end_date, epmch.policy_member_coverage_status, epmch.lost_insurance_due_to_non_pmt_ind, epmch.disenrollment_reason, epmch.current_ind \n" +
+                "from "+dbName+".en_policy_member_coverage_ah epmch \n"+
                 "where application_id = '"+ applicationId+"'";
     }
 }
