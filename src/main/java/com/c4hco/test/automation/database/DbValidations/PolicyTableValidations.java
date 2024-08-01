@@ -3,6 +3,7 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.EnMemberCoverageFinancialAhEntity;
 import com.c4hco.test.automation.database.EntityObj.EnPolicyAhEntity;
+import com.c4hco.test.automation.database.EntityObj.EnPolicyMemberCoverageAhEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.asserts.SoftAssert;
 
@@ -60,6 +61,19 @@ public class PolicyTableValidations {
             softAssert.assertEquals(EnMemCovFinAhEntities.get(1).getResponsible_amt(), SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(), "En member medical responsible amount");
             softAssert.assertEquals(EnMemCovFinAhEntities.get(1).getCsr_amt(),"0.00", "En member medical csr amount does not match");
             softAssert.assertEquals(EnMemCovFinAhEntities.get(1).getCsr_level(), "01", "Medical CSR level does not match");
+            softAssert.assertAll();
+        }
+
+    public void validateEnPolicyMemberCoverageAh(){
+        List<EnPolicyMemberCoverageAhEntity> enPolMemCovAhEntities = exchDbDataProvider.getEnPol_Mem_Cov_Ah_details();
+            softAssert.assertEquals(enPolMemCovAhEntities.get(0).getCoverage_start_date(), "2024-01-01","En policy member coverage start date does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(0).getCoverage_end_date(), "2024-12-31", "En policy member coverage end date does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(0).getPolicy_member_coverage_status(), "SUBMITTED", "En policy member coverage status does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(0).getCurrent_ind(), "1", "Current indicator does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(1).getCoverage_start_date(), "2024-01-01","En policy member coverage start date does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(1).getCoverage_end_date(), "2024-12-31", "En policy member coverage end date does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(1).getPolicy_member_coverage_status(), "SUBMITTED", "En policy member coverage status does not match");
+            softAssert.assertEquals(enPolMemCovAhEntities.get(1).getCurrent_ind(), "1", "Current indicator does not match");
             softAssert.assertAll();
         }
 
