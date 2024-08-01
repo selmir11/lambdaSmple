@@ -75,6 +75,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void clickMetalTierDropdown() {
+        basicActions.waitForElementToDisappear(spinner,10);
         basicActions.waitForElementToBePresent(metalTierDropdown, 30);
         metalTierDropdown.click();
 

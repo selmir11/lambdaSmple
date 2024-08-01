@@ -164,7 +164,7 @@ Feature: Individual adult - End to End Test
     And I click on Go To Welcome Page Button on whats next coco page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-182_WIP @EndToEndTest
+  @SLCR-182 @EndToEndTest
   Scenario: This will create Family of 2 members, Couples with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
