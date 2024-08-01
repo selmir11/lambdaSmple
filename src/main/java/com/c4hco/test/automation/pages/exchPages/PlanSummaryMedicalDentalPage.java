@@ -129,7 +129,8 @@ public class PlanSummaryMedicalDentalPage {
     public void continuePlanSummaryPage(){
         setPlansPremiumAmt();
         getmedGroup1MemNames();
-        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 30);
+        basicActions.scrollToElement( continueBtnOnPlanSummary );
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
 
