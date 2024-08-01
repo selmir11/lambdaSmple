@@ -13,8 +13,4 @@ public class DbData {
     String exchPersonId;
     String csrLevel;
     String brokerTinNum;
-    String CoverageType;
-    String MemberPremiumAmt;
-    String csrAmtMed;
-    String csrAmtDen;
 }
