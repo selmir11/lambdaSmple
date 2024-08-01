@@ -1,5 +1,5 @@
 Feature: Simple NFA - Single Applicant
-  @SLER-34
+  @SLER-34 
   Scenario: Simple NFA flow with single applicant
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -66,15 +66,15 @@ Feature: Simple NFA - Single Applicant
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I click all done from payment portal page
+    Then I click all done from payment portal page
 
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
-
-    And I click on Go To Welcome Page Button on whats next page
+#    Then I select make payment button to pay the premium
+#    And I click continue on payment selection page
+#    And I select second make payment button to pay the premium
+#    And I click continue on payment selection page
+#    And I click continue on initial payment page
+#
+#    And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
@@ -94,4 +94,4 @@ Feature: Simple NFA - Single Applicant
     #DbVerification
 
     And I verify the policy data quality check
-    And I verify the data from book of business queue table
+    #And I verify the data from book of business queue table

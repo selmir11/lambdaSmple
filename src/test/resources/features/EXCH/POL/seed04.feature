@@ -98,15 +98,19 @@ Feature: Seed04 - Exchange
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Income Summary" page
+    Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -147,7 +151,7 @@ Feature: Seed04 - Exchange
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Cigna Dental Family + Pediatric"
+    And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
@@ -160,17 +164,18 @@ Feature: Seed04 - Exchange
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
+    Then I click all done from payment portal page
 
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    And I click on Go To Welcome Page Button on whats next page
+#    Then I select make payment button to pay the premium
+#    And I select the Money Order button
+#    And I click continue on payment selection page
+#    And I select second make payment button to pay the premium
+#    And I select the Money Order button
+#    And I click continue on payment selection page
+#    Then I validate I am on the "Initial Payment" page
+#    And I click continue on initial payment page
+#
+#    And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"

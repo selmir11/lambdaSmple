@@ -13,6 +13,7 @@ public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
+    EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -131,5 +132,8 @@ public class DbDataProvider_Exch {
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
+    }
+    public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
+        return enMemberCoverageFinancialAhHandler.getEnMemberCoverageAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
     }
 }
