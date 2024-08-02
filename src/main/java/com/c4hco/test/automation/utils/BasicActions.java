@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.utils;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
@@ -449,6 +451,9 @@ public class BasicActions {
         }
         SharedData.setLocalPathToDownloadFile(noticesFolderPath);
         return noticesFolderPath;
+    }
+    public static String getUniquePW(){
+        return RandomStringUtils.random(8,1234+"2@ACRTYUIOPcdefghijklmnopQWERTYUIOPASDFqrstuvwxyz234566");
     }
 }
 

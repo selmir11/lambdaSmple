@@ -194,11 +194,12 @@ public class FindExpertHelpPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpFromBroker.getText(),"Ayuda de un Agente");
-                softAssert.assertEquals(helpFromBrokerText.getText(),"Nuestros Agentes están autorizados para ayudarle a evaluar beneficios y cobertura de seguro de salud, recomendar un plan acorde a sus necesidades específicas e inscribirlo en ese plan. Pueden también ayudarle a solicitar ayuda financiera.");
+                softAssert.assertEquals(helpFromBrokerText.getText(),"Nuestros Agentes est\u00E1n autorizados para ayudarle a evaluar beneficios y cobertura de seguro de salud, recomendar un plan acorde a sus necesidades espec\u00EDficas e inscribirlo en ese plan. Pueden tambi\u00E9n ayudarle a solicitar ayuda financiera.");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+        softAssert.assertAll();
     }
 
     public void verifyButtontext(String language){
@@ -346,6 +347,7 @@ public class FindExpertHelpPage {
     public void clickContinueOnMyOwnButton() {
         basicActions.waitForElementToBePresent(assistanceText, 20);
         basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
+        basicActions.wait(2000);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
         continueOnMyOwnButton.click();
     }
