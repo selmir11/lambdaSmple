@@ -278,12 +278,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
                 break;
             case "Future Month":
-                calendar.add(Calendar.MONTH, 3);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfFutureMonth = calendar.getTime();
-                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
-                esiEndDateInput.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                calendar.add(Calendar.DATE, 60);
+                Date futureDate = calendar.getTime();
+                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
+                esiEndDateInput.sendKeys(futureDateFormat.format(futureDate));
                 break;
             case "Today":
                 DateFormat todayDate = new SimpleDateFormat("MM-dd");
@@ -432,10 +430,30 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
 
     // =================== VALIDATION STEPS ===============//
+    public void verifyHeadersEsiOhiPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersEsiOhiPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersEsiOhiPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersEsiOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersEsiOhiPageSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertAll();
     }
 

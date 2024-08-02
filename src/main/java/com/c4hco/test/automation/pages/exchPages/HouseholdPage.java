@@ -113,7 +113,8 @@ public class HouseholdPage {
     }
 
     public void iClickTableItem(int index){
-        basicActions.waitForElementToBePresent(tableDropdown,15);
+        basicActions.waitForElementToBePresent(editPrimaryMember,30);
+        basicActions.waitForElementToBePresent(tableDropdown,30);
         index-= 1;
         tableDropdown.click();
     }

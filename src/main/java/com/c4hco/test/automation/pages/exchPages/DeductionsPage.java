@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,10 @@ public class DeductionsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "header-1 content-center")
+    @FindBy(css = ".header-1")
+    WebElement IncomeSummaryHeader;
+
+    @FindBy(css = ".header-2")
     WebElement DeductionSummaryHeader;
 
     @FindBy(css = "app-deductions .additional-income-row button")
@@ -110,6 +114,32 @@ public class DeductionsPage {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+    public void verifyHeadersDeductionsPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersDeductionsPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersDeductionsPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyHeadersDeductionsPageEnglish(){
+        basicActions.waitForElementToBePresent(DeductionSummaryHeader,15);
+        softAssert.assertTrue(IncomeSummaryHeader.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(DeductionSummaryHeader.getText(),"Deductions");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersDeductionsPageSpanish(){
+        basicActions.waitForElementToBePresent(DeductionSummaryHeader,15);
+        softAssert.assertTrue(IncomeSummaryHeader.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(DeductionSummaryHeader.getText(),"Deducciones");
+        softAssert.assertAll();
+    }
 
     public void selectAddtlDeductionOptionOnly(String addtlDeductionOption){
 //        Alimony or spousal support paid out = AOSS

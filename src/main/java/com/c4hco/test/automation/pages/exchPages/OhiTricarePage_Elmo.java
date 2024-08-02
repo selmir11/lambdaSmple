@@ -135,12 +135,10 @@ public class OhiTricarePage_Elmo {
                 inputEndDate.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
                 break;
             case "Future Month":
-                calendar.add(Calendar.MONTH, 3);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfFutureMonth = calendar.getTime();
-                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
-                inputEndDate.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                calendar.add(Calendar.DATE, 60);
+                Date futureDate = calendar.getTime();
+                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(futureDateFormat.format(futureDate));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
@@ -171,9 +169,29 @@ public class OhiTricarePage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+    public void verifyHeadersTricareOhiPage(String language){
+        switch (language) {
+            case "English":
+                verifyHeadersTricareOhiPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersTricareOhiPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersTricareOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiTricareHeader.getText(),"TRICARE");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersTricareOhiPageSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiTricareHeader.getText(),"TRICARE");
         softAssert.assertAll();
     }

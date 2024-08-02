@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.IncomeSummaryPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class IncomeSummaryPageSteps {
@@ -16,4 +17,14 @@ public class IncomeSummaryPageSteps {
     public void iClickSaveandContinue(){
         incomeSummaryPage.clickSaveandContinue();
     }
-}
+
+
+
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the Income Summary page in {string}")
+    public void iVerifyTextOnIncomeSummaryPage(String language){incomeSummaryPage.verifyHeadersIncomeSummaryPage(language);}}
