@@ -13,6 +13,9 @@ public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
+    EnPolicyFinancialAhHandler enPolicyFinancialAhHandler = new EnPolicyFinancialAhHandler();
+    EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
+    EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -131,5 +134,15 @@ public class DbDataProvider_Exch {
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
+    }
+    public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
+        return enMemberCoverageFinancialAhHandler.getEnMemberCoverageFinAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
+    }
+
+    public List<EnPolicyMemberCoverageAhEntity> getEnPol_Mem_Cov_Ah_details(){
+        return enPolicyMemberCoverageAhHandler.getEnMemberCoverageAhTableDetails(exchDbQueries.enPolicy_Mem_CoverageAh());
+    }
+    public List<EnPolicyFinancialAhEntity> getEnPol_fin_ah_details(){
+        return enPolicyFinancialAhHandler.getEnPolicyFinancialAhTableDetails(exchDbQueries.enPolicyFinancialAh());
     }
 }

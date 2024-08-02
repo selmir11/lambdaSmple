@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -58,10 +59,18 @@ public class LifeChangeEventsCoCoPage {
     List<WebElement> deathEventDate;
     @FindBy(id="ELIG-LceOption-CHANGE_OF_RESIDENCE-checkBoxButton")
     WebElement addressChangeLCE; //Moved to Colorado
+    @FindBy(css=".c4-input [id^='ELIG-LceMember-CHANGE_OF_RESIDENCE-Member'][role='checkbox']")
+    List<WebElement> qamemberChangeOfAddressCheckbox;
+
     @FindBy(css=".checkbox-description [id^='ELIG-LceMember-CHANGE']")
-    List<WebElement> memberChangeOfAddressCheckbox;
+    List<WebElement> stgmemberChangeOfAddressCheckbox;
+
+    @FindBy(css = ".c4-input [id^='ELIG-LceMember-CHANGE_OF_RESIDENCE-Member'][type='date']")
+    List<WebElement> qachangeOfAddressEventDate;
+
     @FindBy(css = ".col [id^='ELIG-LceMember-CHANGE']")
-    List<WebElement> changeOfAddressEventDate;
+    List<WebElement> stgchangeOfAddressEventDate;
+
     @FindBy(xpath = "//button[contains(@id,'movedToColorado-checkBoxButton')]")
     List<WebElement> movedToColoradoCheckbox;
     @FindBy(id ="ELIG-LceOption-noneOfThese-checkBoxButton")
@@ -135,7 +144,21 @@ public class LifeChangeEventsCoCoPage {
             case "MoveToCO":
                 basicActions.waitForElementToBeClickable(addressChangeLCE,10);
                 addressChangeLCE.click();
+                List<WebElement> memberChangeOfAddressCheckbox = null;
+                List<WebElement> changeOfAddressEventDate = null;
+
+                //When Staging objects are updated with qa objects below if condition will be removed
+                if(ApplicationProperties.getInstance().getProperty("env").equals("qa")){
+                    memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
+                    changeOfAddressEventDate = qachangeOfAddressEventDate;
+                }
+                else{
+                    memberChangeOfAddressCheckbox = stgmemberChangeOfAddressCheckbox;
+                    changeOfAddressEventDate = stgchangeOfAddressEventDate;
+                }
+
                 for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
+                    basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);
                     memberChangeOfAddressCheckbox.get(i).click();
                     basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i),10);
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());

@@ -116,6 +116,33 @@ public class FindExpertHelpPage {
     @FindBy(id ="broker-action")
     WebElement currentBrokerAction;
 
+    @FindBy(id ="action-link")
+    WebElement removeCurrentBroker;
+
+    @FindBy(xpath ="//button[@class='btn btn-lg primary-action-button float-end']")
+    WebElement removeBrokerOkay;
+
+    @FindBy(xpath ="//button[@class='btn btn-lg secondary-action-button']")
+    WebElement removeBrokerCancel;
+
+    @FindBy(id = "lbl-previous-helper-orgName")
+    WebElement prevNameColumnHeader;
+
+    @FindBy(id = "lbl-previous-helper-siteId")
+    WebElement prevAgeSiteColumnHeader;
+
+    @FindBy(id = "lbl-previous-helper-zipCode")
+    WebElement prevZipColumnHeader;
+
+    @FindBy(id = "lbl-previous-helper-phone")
+    WebElement prevPhoneColumnHeader;
+
+    @FindBy(id = "lbl-previous-helper-type")
+    WebElement prevTypeColumnHeader;
+
+    @FindBy(id = "lbl-previous-helper-status")
+    WebElement prevStatusColumnHeader;
+
     public FindExpertHelpPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -350,6 +377,65 @@ public class FindExpertHelpPage {
         basicActions.wait(2000);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
         continueOnMyOwnButton.click();
+    }
+
+    public void clickRemoveBrokerButton(){
+        basicActions.waitForElementToBePresent(removeCurrentBroker,20);
+        removeCurrentBroker.click();
+    }
+
+    public void clickRemoveBrokerPopUp(String removalOption) {
+        basicActions.waitForElementToBePresent(removeCurrentBroker, 10);
+        switch (removalOption) {
+            case "Ok":
+                removeBrokerOkay.click();
+                break;
+            case "Cancel":
+                removeBrokerCancel.click();
+                break;
+        }
+    }
+
+    public void validatePreviousBrokerAssisterTableLabels(){
+        basicActions.waitForElementToBePresent(prevNameColumnHeader, 10);
+        softAssert.assertEquals(prevNameColumnHeader.getText(),"Name");
+        softAssert.assertEquals(prevAgeSiteColumnHeader.getText(),"Site ID/License #");
+        softAssert.assertEquals(prevZipColumnHeader.getText(),"Zip Code");
+        softAssert.assertEquals(prevPhoneColumnHeader.getText(),"Phone Number");
+        softAssert.assertEquals(prevTypeColumnHeader.getText(),"Type");
+        softAssert.assertEquals(prevStatusColumnHeader.getText(),"Status");
+        softAssert.assertAll();
+    }
+
+    public void validatePreviousBrokerAssisterTableData(String name, String licenseSiteId, String zip, String phoneNumber, String type){
+        validatePreviousBrokerAssisterTableLabels();
+        int rows = basicActions.getDriver().findElements(By.xpath("//*[@id='previousAuthorizedHelperTableId']//tr")).size();
+        System.out.println("Rows found " +rows);
+
+        for(int r=1; r<rows; r++){
+            String helperName = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[1]")).getText();
+            System.out.println("Found the name " + helperName);
+            if(helperName.equals(name)){
+
+                String license = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[2]")).getText();
+                softAssert.assertEquals(license, licenseSiteId);
+
+                String zipcode = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[3]")).getText();
+                softAssert.assertEquals(zipcode, zip);
+
+                String phone = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[4]")).getText();
+                softAssert.assertEquals(phone, phoneNumber);
+
+                String helperType = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[5]")).getText();
+                softAssert.assertEquals(helperType, type);
+
+                softAssert.assertEquals(basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[6]")).getText(),"Inactive");
+                softAssert.assertAll();
+                System.out.println("Broker/Assister found: " + helperName + ", " + license + ", " + zipcode + ", " + phone + ", " + helperType);
+            }
+            System.out.println("Finished searching row " +r);
+        }
+
     }
 
     public void validateNoBrokerIsAuthorized() {
