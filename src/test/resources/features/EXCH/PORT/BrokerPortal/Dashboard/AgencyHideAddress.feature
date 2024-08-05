@@ -8,8 +8,8 @@ Feature: Verify the agency owner's ability to hide their address on the Find a C
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     Then I Search authorized Broker "998125"
     And I click on Search button in find certified broker page
@@ -17,7 +17,6 @@ Feature: Verify the agency owner's ability to hide their address on the Find a C
     Then I validate agency address is "16th Street Mall"
     Then I validate agency city state and zip is "Denver, CO 80228"
     Then I clear the broker search box
-
     Then I Search authorized Broker "998126"
     And I click on Search button in find certified broker page
     Then I verify that a total of "1" results displays in "English"
@@ -52,8 +51,8 @@ Feature: Verify the agency owner's ability to hide their address on the Find a C
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     Then I Search authorized Broker "998125"
     And I click on Search button in find certified broker page

@@ -235,9 +235,29 @@ public class OhiMedicarePage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+    public void verifyHeadersMedicareOhiPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersMedicareOhiPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersMedicareOhiPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersMedicareOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersMedicareOhiPageSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiMedicareHeader.getText(),"Medicare");
         softAssert.assertAll();
     }

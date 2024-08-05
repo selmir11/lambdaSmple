@@ -69,15 +69,13 @@ public class OhiEmployerSponsoredHealthInsuranceSteps {
 
     // =================== VALIDATION STEPS ===============//
     @And("I verify the Help Drawer is {string} on the ESI page")
-    public void iVerifyHelpDrawerStatus(String drawerStatus){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerStatus(drawerStatus);
-    }
+    public void iVerifyHelpDrawerStatus(String drawerStatus){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerStatus(drawerStatus);}
 
     @And("I verify the Help Drawer {string} text in {string} on the ESI page")
-    public void iVerifyHelpDrawerText(String drawerPage, String language){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerText(drawerPage, language);
-    }
+    public void iVerifyHelpDrawerText(String drawerPage, String language){ohiEmployerSponsoredHealthInsurancePage.verifyHelpDrawerText(drawerPage, language);}
 
-    @And("I verify the header for Primary Member on the ESI page")
-    public void iVerifyTextOnOtherHealthInsurancePage(){ohiEmployerSponsoredHealthInsurancePage.verifyHeadersEsiOhiPageEnglish();}
+    @And("I verify the header for Primary Member on the ESI page in {string}")
+    public void iVerifyTextOnOtherHealthInsurancePage(String language){ohiEmployerSponsoredHealthInsurancePage.verifyHeadersEsiOhiPage(language);}
 
     @And("I verify offer family health plans is {string} on the ESI page")
     public void iVerifyFamilyOfferedToEnrollOption(String currentlyOffered){ohiEmployerSponsoredHealthInsurancePage.verifyFamilyOfferedToEnrollOption(currentlyOffered);}

@@ -131,6 +131,8 @@ public class TaxStatusPage {
 
     public void selectSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        basicActions.waitForElementToBePresent(claimAsDependentYesRadioBtn, 20);
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 

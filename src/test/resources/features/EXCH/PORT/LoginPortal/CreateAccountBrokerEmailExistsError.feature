@@ -33,6 +33,6 @@ Feature: Verify the broker account already exists error message on the Create yo
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I validate I am on the "Create Account" page
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     And I enter duplicate data for Agency Owner account creation
     Then I validate the We're unable to proceed with this email error message in "Spanish"

@@ -39,8 +39,8 @@ public class OhiCobraSteps_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    @And("I verify the header for Primary Member on the Cobra page")
-    public void iVerifyTextOnOtherHealthInsurancePage(){ohiCobraPage_Elmo.verifyHeadersCobraOhiPageEnglish();}
+    @And("I verify the header for Primary Member on the Cobra page in {string}")
+    public void iVerifyTextOnOtherHealthInsurancePage(String language){ohiCobraPage_Elmo.verifyHeadersCobraOhiPage(language);}
 
     @And("I verify Currently Enrolled is {string} on the Cobra page")
     public void iVerifyCurrentlyEnrolledOption(String currentlyEnrolled){ohiCobraPage_Elmo.verifyCurrentlyEnrolledOption(currentlyEnrolled);}
