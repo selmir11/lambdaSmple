@@ -77,10 +77,6 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.validateDentalPlanNames();
     }
 
-    @And("I validate the Dental Plans Costs {int} has cost {string}")
-    public void validateDentalPlanCosts(int Index, String dentalCostText) {
-        dentalPlansResultsPage.validateDentalPlanCosts(Index,dentalCostText);
-    }
-
+   
 
 }
