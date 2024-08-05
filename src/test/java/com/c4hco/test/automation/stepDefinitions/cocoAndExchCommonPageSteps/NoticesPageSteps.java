@@ -96,4 +96,8 @@ public class NoticesPageSteps {
     }
 
 
+    @Then("I click the password reset link")
+    public void iClickThePasswordResetLink() {
+        noticesPage.clickThePasswordResetLink();
+    }
 }

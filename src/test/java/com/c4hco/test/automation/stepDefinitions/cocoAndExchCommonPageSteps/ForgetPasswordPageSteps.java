@@ -36,4 +36,19 @@ public class ForgetPasswordPageSteps {
     public void iVerifyNoticeIsSentToTheClientText(String language) {
         forgetPasswordPage.verifyNoticeIsSentText(language);
     }
+
+    @Then("I enter valid email to any env QA {string} STG {string}")
+    public void iEnterValidEmailToAnyEnvQASTG(String qaEmail, String stgEmail) {
+        forgetPasswordPage.EnterValidEmailToAnyEnvQASTG(qaEmail, stgEmail);
+    }
+
+    @And("I enter the new password in create new password page")
+    public void iEnterTheNewPasswordInCreateNewPasswordPage() {
+        forgetPasswordPage.enterTheNewPasswordInCreateNewPasswordPage();
+    }
+
+    @And("I login as individual with password reset code to any env QA {string} STG {string}")
+    public void iLoginAsIndividualWithPasswordResetCodeToAnyEnvQASTG(String qaEmail, String stgEmail) {
+        forgetPasswordPage.loginAsIndividualWithPasswordResetCode(qaEmail,stgEmail);
+    }
 }

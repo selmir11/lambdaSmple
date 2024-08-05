@@ -8,8 +8,8 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     Then I validate the Find a Certified Broker near you page title in "English"
     Then I Search authorized Broker "Noah Trujillo"
@@ -34,8 +34,8 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     Given I open the login page on the "login" portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     And I Search authorized Broker "soukaina agency"

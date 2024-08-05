@@ -878,11 +878,11 @@ public class HeaderAndFooterPage {
     public void verifyTextInLoginPortalFooterSpanish(){
         basicActions.waitForElementToBePresent(privacyPolicyLink,10);
         basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
-        softAssert.assertEquals(privacyPolicyLink.getText(), "Poliza de privacidad");
+        softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
         softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
         softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
-        softAssert.assertEquals(followUsText.getText(), "Siguenos en:");
+        softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
         softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
         softAssert.assertEquals(xIcon.getAttribute("title"), "X");
         softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");
