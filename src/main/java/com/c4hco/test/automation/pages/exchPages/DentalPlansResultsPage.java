@@ -179,18 +179,6 @@ public class DentalPlansResultsPage {
         Assert.assertEquals(dentalPlanCount.getText(), plansCount+" of "+plansCount+" Dental Plans", "Dental plans count did not match");
     }
 
-
-    public void validateDentalPlanCosts(int index, String planText) {
-        basicActions.waitForElementToBePresent(dentalPremium1, 10);
-        //index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
-        String indexString = String.valueOf(index); //turns the int index into a string value.
-        String dentalPlanPremiumID = "PlanResults-MonthlyPremium_" + indexString; //sets the ID String using the index
-        WebElement eDentalPlanPremiumID = basicActions.getDriver().findElement(By.id(dentalPlanPremiumID)); //sets the Web element based on the ID
-        String expectedText = eDentalPlanPremiumID.getText();
-        expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
-    }
-
-
     public void validateDentalPlanNames(){
         List<String> dentalPlanNamesList = new ArrayList<>();
 

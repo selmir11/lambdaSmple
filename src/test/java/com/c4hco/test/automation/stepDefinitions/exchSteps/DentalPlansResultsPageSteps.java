@@ -77,6 +77,6 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.validateDentalPlanNames();
     }
 
-   
+
 
 }
