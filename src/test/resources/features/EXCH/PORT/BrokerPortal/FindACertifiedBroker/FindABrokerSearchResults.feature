@@ -8,8 +8,8 @@ Feature: Tests broker search results on the anonymous Find a Certified Broker pa
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     Then I Search authorized Broker "Brandt"
     And I click on Search button in find certified broker page
@@ -22,8 +22,8 @@ Feature: Tests broker search results on the anonymous Find a Certified Broker pa
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     Then I enter "Denver" into the broker location search box
     Then I enter "English" into the broker language search box
@@ -37,8 +37,8 @@ Feature: Tests broker search results on the anonymous Find a Certified Broker pa
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     Then I enter "Denver" into the broker location search box
     Then I Search authorized Broker "Solomon"

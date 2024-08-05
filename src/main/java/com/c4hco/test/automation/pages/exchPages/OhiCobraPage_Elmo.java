@@ -145,12 +145,10 @@ public class OhiCobraPage_Elmo {
                 inputEndDate.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
                 break;
             case "Future Month":
-                calendar.add(Calendar.MONTH, 3);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfFutureMonth = calendar.getTime();
-                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
-                inputEndDate.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                calendar.add(Calendar.DATE, 60);
+                Date futureDate = calendar.getTime();
+                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
+                inputEndDate.sendKeys(futureDateFormat.format(futureDate));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
@@ -176,9 +174,29 @@ public class OhiCobraPage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+    public void verifyHeadersCobraOhiPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersCobraOhiPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersCobraOhiPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersCobraOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersCobraOhiPageSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiCobraHeader.getText(),"COBRA");
         softAssert.assertAll();
     }
