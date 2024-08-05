@@ -33,8 +33,8 @@ public class MedicalPlanResultsPage {
     WebElement firstMedicalPlanName;
 
 
-    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
-    public WebElement continueBtn;// locators included for both QA and STG
+    @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue']")
+    public WebElement continueBtn;
 
     @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
@@ -78,26 +78,13 @@ public class MedicalPlanResultsPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
-    @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
-    WebElement planResultsAPTC;
-
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
-    public void validateAPTC(String planResultsAPTCredit){
-        basicActions.waitForElementToBePresent(planResultsAPTC, 30);
-        softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
-    }
-    public void validateNoAPTC(String noAPTCCreditAmt) {
-        softAssert.assertFalse(basicActions.waitForElementPresence(planResultsAPTC, 20 ) );
-        softAssert.assertAll();
-
-    }
-
-    public void selectfromProviderList(String Selecting) {
+     public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
 

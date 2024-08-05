@@ -50,6 +50,7 @@ public class TaxStatusPage {
     @FindBy(id = "selectedDependents3")
     WebElement selectedDependents3;
 
+
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
             case "Yes":
