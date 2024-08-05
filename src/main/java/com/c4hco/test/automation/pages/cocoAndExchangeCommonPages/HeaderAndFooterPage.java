@@ -330,6 +330,7 @@ public class HeaderAndFooterPage {
                 userNameLink.click();
                 break;
             case "Exch":
+                basicActions.waitForElementToBeClickable(languageDrp, 90);
                 basicActions.waitForElementToBeClickable(userNameLinkExch, 90);
                 userNameLinkExch.click();
                 break;
@@ -356,6 +357,18 @@ public class HeaderAndFooterPage {
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
+
+    public void headerLanguage(String language){
+        basicActions.waitForElementListToBePresent(centerHeaderLink,50);
+        basicActions.waitForElementToBePresent(languageDrp,50);
+        for (WebElement headerLink : centerHeaderLink) {
+            if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
+                changeLanguage(language);
+                break;
+            }
+        }
+    }
+
     public void changeLanguage(String language) {
 //        "English" and "Spanish" for CoCo and Exch Elmo pages
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
@@ -751,6 +764,7 @@ public class HeaderAndFooterPage {
             case "Individual Portal":
                 basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
+                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;
@@ -796,26 +810,32 @@ public class HeaderAndFooterPage {
         switch (MediaIcon){
             case "Facebook":
                 basicActions.waitForElementToBeClickable(FacebookIcon, 10);
+                basicActions.scrollToElement(FacebookIcon);
                 FacebookIcon.click();
                 break;
             case "X":
                 basicActions.waitForElementToBeClickable(xIcon, 10);
+                basicActions.scrollToElement(xIcon);
                 xIcon.click();
                 break;
             case "YouTube":
                 basicActions.waitForElementToBeClickable(YouTubeIcon, 10);
+                basicActions.scrollToElement(YouTubeIcon);
                 YouTubeIcon.click();
                 break;
             case "Instagram":
                 basicActions.waitForElementToBeClickable(InstagramIcon, 10);
+                basicActions.scrollToElement(InstagramIcon);
                 InstagramIcon.click();
                 break;
             case "LinkedIn":
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
+                basicActions.scrollToElement(LinkedInIcon);
                 LinkedInIcon.click();
                 break;
             case "Threads":
                 basicActions.waitForElementToBeClickable(ThreadsIcon, 10);
+                basicActions.scrollToElement(ThreadsIcon);
                 ThreadsIcon.click();
                 break;
             default:

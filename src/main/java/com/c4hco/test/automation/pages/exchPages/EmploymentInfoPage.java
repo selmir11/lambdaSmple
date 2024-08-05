@@ -297,7 +297,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToBeClickable(btnContinue,50);
+        basicActions.waitForElementToBePresent(btnContinue,90);
+        basicActions.waitForElementToBePresent(txtHeaderPart1,90);
         basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }

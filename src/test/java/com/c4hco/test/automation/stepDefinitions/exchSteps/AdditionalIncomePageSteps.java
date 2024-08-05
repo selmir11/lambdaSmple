@@ -27,6 +27,9 @@ public class AdditionalIncomePageSteps {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the Additional Income page in {string}")
+    public void iVerifyTextOnAdditionalIncomePage(String language){additionalIncomePage.verifyHeadersAdditionalIncomePage(language);}
+
     @Then("I verify {string} text on the Additional Income page with errors")
     public void verifyFirstTimeText(String Language)  { additionalIncomePage.verifyTextOnAdditionalIncomeWithErrors(Language); }
 

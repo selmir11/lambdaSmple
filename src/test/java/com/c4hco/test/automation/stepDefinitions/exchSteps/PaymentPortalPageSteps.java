@@ -7,8 +7,8 @@ import io.cucumber.java.en.Then;
 public class PaymentPortalPageSteps {
     PaymentPortalPage paymentPortalPage = new PaymentPortalPage(WebDriverManager.getDriver());
 
-    @Then("I click all done from payment portal page")
-    public void clickAllDone(){
-        paymentPortalPage.clickAllDone();
-    }
+//    @Then("I click all done from payment portal page")
+//    public void clickAllDone(){
+//        paymentPortalPage.clickAllDone();
+//    }
 }

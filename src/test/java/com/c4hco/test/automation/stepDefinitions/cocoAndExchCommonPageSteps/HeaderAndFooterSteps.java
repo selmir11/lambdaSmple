@@ -42,6 +42,9 @@ public class HeaderAndFooterSteps {
     @And("I change the language from header to {string}")
     public void iChangeLanguage(String language){ headerAndFooterPage.changeLanguage(language);}
 
+    @And("I change the language from Elmo header to {string} if it isn't already in that language")
+    public void verifyHeaderLanguage(String language){ headerAndFooterPage.headerLanguage(language);}
+
 
     // =========HEADER AND FOOTER============== //
     @And("I verify text on the {string} {string} in {string}")
