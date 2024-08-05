@@ -30,12 +30,12 @@ public class MyProfilePageStepsCoco {
         myProfilePage.clickSaveButtonCoCo();
     }
 
-    @And("I change the Preferred Contact Method to {string}")
+    @And("I change the Preferred Contact Method to {string} in CoCo")
     public void iChangeThePreferredContactMethodTo(String contactPrefrences) {
         myProfilePage.PreferredContactMethod(contactPrefrences);
     }
 
-    @And("I change Preferred Language Contact Method to {string}")
+    @And("I change Preferred Language Contact Method to {string} in CoCo")
     public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
         myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
     }
