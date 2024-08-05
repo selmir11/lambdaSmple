@@ -35,8 +35,11 @@ public class MyProfilePageSteps {
     public void verifyTextOnMyProfilePage(String language)  { myProfileExchPage.verifyTextOnMyProfileExchPage(language); }
 
 
-@Then("I verify Password text on My profile page {string}")
-public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchPage.verifyPasswordTextOnMyProfileExchPage(language); }
+   @Then("I verify Password text on My profile page {string}")
+   public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchPage.verifyPasswordTextOnMyProfileExchPage(language); }
+
+    @Then("I verify Password Popup text on My profile page Exch {string}")
+    public void iverifyPasswordPopupTextOnMyProfileExchPage(String language)  { myProfileExchPage.verifyPasswordPopupTextOnMyProfileExchPage(language); }
 
     @Then("I change Preferred Contact Method {string}")
     public void iChangePreferredContactMethod() {

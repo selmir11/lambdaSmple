@@ -53,10 +53,10 @@ public class MyProfilePage {
     public void clickSaveButtonCoCo() {
         basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
         MyProfileButtonCoCo.get(1).click();
-//        basicActions.waitForElementToBePresent(PasswordInputCoCo,40);
-//        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword()); //QA feature branch
-//        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo,40);
-//        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo,40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo,40);
+        PasswordSaveChangesCoCo.click();
 
     }
 

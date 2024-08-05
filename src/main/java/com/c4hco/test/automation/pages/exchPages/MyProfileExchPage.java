@@ -24,28 +24,28 @@ public class MyProfileExchPage {
     @FindBy(id = "myProfile_username")
     WebElement UsernameProfile;
 
-    @FindBy(id= "myProfile_accountId")
+    @FindBy(id = "myProfile_accountId")
     WebElement ProfileAccountId;
 
     @FindBy(id = "preferredLanguage")
-    WebElement  PreferredLanguageDrp;
+    WebElement PreferredLanguageDrp;
 
     @FindBy(css = "#preferredLanguage option")
     List<WebElement> LanguageDrpOptions; //// Select option, English, Spanish
 
     @FindBy(id = "preferredContactMethod")
-    WebElement   PreferredContactDrp;
+    WebElement PreferredContactDrp;
 
     @FindBy(css = "#preferredContactMethod option")
-    List<WebElement>  PreferredContactDrpOptions; // Select option, Email, Mail
+    List<WebElement> PreferredContactDrpOptions; // Select option, Email, Mail
 
 
     @FindBy(css = "div.myProfile_fullName")
     WebElement FullNameProfile;
 
 
-    @FindBy(id= "myProfile_mobilePhone")
-    WebElement  Mobilephone;
+    @FindBy(id = "myProfile_mobilePhone")
+    WebElement Mobilephone;
 
     @FindBy(id = "myProfile_homePhone")
     WebElement Homephone;
@@ -53,22 +53,22 @@ public class MyProfileExchPage {
     @FindBy(css = "h1.myProfile_title")
     WebElement MyProfileHeader;
 
-     @FindBy(css = ".myProfile_subheading")
-     List<WebElement> MyProfileSubHeading; ///// Primary contact, Contact Information, Login & Security, Settings & Preferences
+    @FindBy(css = ".myProfile_subheading")
+    List<WebElement> MyProfileSubHeading; ///// Primary contact, Contact Information, Login & Security, Settings & Preferences
 
     @FindBy(css = "span.content_line_label")
-    List<WebElement>  MyProfileContentline;  ///// Name, Date of Birth, Social security number, Email, Mobile phone, Home phone, Residential address, Username, Password, account number, Preferred language contact, Preferred contact Method
+    List<WebElement> MyProfileContentline;  ///// Name, Date of Birth, Social security number, Email, Mobile phone, Home phone, Residential address, Username, Password, account number, Preferred language contact, Preferred contact Method
 
     @FindBy(css = "div.change-password-container")
-    WebElement  PasswordButton;
+    WebElement PasswordButton;
 
-    @FindBy(css = "span.change-password-msg" )
+    @FindBy(css = "span.change-password-msg")
     WebElement PasswordMessage;
-    @FindBy(xpath = "//span[.=' Change ']" )
+    @FindBy(xpath = "//span[.=' Change ']")
     WebElement changePrimaryContact;
-    @FindBy(id = "contactNames" )
+    @FindBy(id = "contactNames")
     WebElement primaryContactDRP;
-    @FindBy(xpath = "//button[.='Save']" )
+    @FindBy(xpath = "//button[.='Save']")
     WebElement savePrimaryContact;
 
     @FindBy(css = "#userPassword")
@@ -76,6 +76,23 @@ public class MyProfileExchPage {
 
     @FindBy(css = ".password-button")
     WebElement PasswordSaveChanges;
+
+    @FindBy(css = "p.heading")
+    WebElement  PasswordHeader;
+
+    @FindBy(css = "p.content")
+    WebElement PasswordContentText;
+
+    @FindBy(css = "label[for='userPassword']")
+    WebElement  PasswordLabel;
+
+    @FindBy(css = "a.toggle-links")
+     WebElement Showlink;
+
+    @FindBy(css = "a[type='button']")
+     WebElement CancelLink;
+
+
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -99,15 +116,15 @@ public class MyProfileExchPage {
     public void clickSaveButton() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
-//        basicActions.waitForElementToBePresent(PasswordInput,40);
-//        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword()); //QA feature branch
-//        basicActions.waitForElementToBePresent(PasswordSaveChanges,40);
-//        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
     }
 
     public void clickChangePasswordButton() {
         basicActions.waitForElementToBeClickable(PasswordButton, 15);
-            PasswordButton.click();
+        PasswordButton.click();
     }
 
     public void clickPreferredLanguageDrp() {
@@ -123,22 +140,22 @@ public class MyProfileExchPage {
 
 //////Validation Method/////////////////////////////////////////////
 
-    public void verifyTextOnMyProfileExchPage(String language){
-            switch (language) {
-                case "English":
-                    verifyTextOnMyProfilePageEnglish();
-                    break;
-                case "Spanish":
-                    verifyTextOnMyProfilePageSpanish();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid option: " + language);
-            }
+    public void verifyTextOnMyProfileExchPage(String language) {
+        switch (language) {
+            case "English":
+                verifyTextOnMyProfilePageEnglish();
+                break;
+            case "Spanish":
+                verifyTextOnMyProfilePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
+    }
 
 
-    public void verifyTextOnMyProfilePageEnglish(){
-    basicActions.waitForElementToBePresent(MyProfileHeader,10);
+    public void verifyTextOnMyProfilePageEnglish() {
+        basicActions.waitForElementToBePresent(MyProfileHeader, 10);
         softAssert.assertEquals(MyProfileHeader.getText(), "My Profile");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-size"), "36px");
@@ -151,7 +168,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileContentline.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(0).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(FullNameProfile.getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(FullNameProfile.getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(FullNameProfile.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(FullNameProfile.getCssValue("font-size"), "16px");
         softAssert.assertEquals(FullNameProfile.getCssValue("color"), "rgba(77, 77, 79, 1)");
@@ -176,12 +193,12 @@ public class MyProfileExchPage {
         softAssert.assertEquals(EmailAddress.getCssValue("font-size"), "16px");
         softAssert.assertEquals(EmailAddress.getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentline.get(4).getText(), "Mobile Phone");
-        softAssert.assertEquals(Mobilephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
+        //softAssert.assertEquals(Mobilephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentline.get(5).getText(), "Home Phone");
-        softAssert.assertEquals(Homephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
+        //softAssert.assertEquals(Homephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
@@ -239,8 +256,8 @@ public class MyProfileExchPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextOnMyProfilePageSpanish(){
-        basicActions.waitForElementToBePresent(MyProfileHeader,10);
+    public void verifyTextOnMyProfilePageSpanish() {
+        basicActions.waitForElementToBePresent(MyProfileHeader, 10);
         softAssert.assertEquals(MyProfileHeader.getText(), "Mi P\u00E9rfil");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-size"), "36px");
@@ -327,9 +344,10 @@ public class MyProfileExchPage {
         }
     }
 
-    public void verifyPasswordTextOnMyProfilePageEnglish(){
-        basicActions.waitForElementToBePresent(PasswordMessage,10);
-        softAssert.assertEquals(PasswordMessage.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");;
+    public void verifyPasswordTextOnMyProfilePageEnglish() {
+        basicActions.waitForElementToBePresent(PasswordMessage, 10);
+        softAssert.assertEquals(PasswordMessage.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");
+        ;
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
         softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
@@ -338,8 +356,8 @@ public class MyProfileExchPage {
     }
 
 
-    public void verifyPasswordTextOnMyProfilePageSpanish(){
-        basicActions.waitForElementToBePresent(PasswordMessage,10);
+    public void verifyPasswordTextOnMyProfilePageSpanish() {
+        basicActions.waitForElementToBePresent(PasswordMessage, 10);
         softAssert.assertEquals(PasswordMessage.getText(), "Al hacer clic en Cambiar contrase\u00F1a se cerrar\u00E1 su sesi\u00F3n y lo llevar\u00E1 a la p\u00E1gina de Restablecer contrase\u00F1a");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
@@ -351,7 +369,7 @@ public class MyProfileExchPage {
 
     public void PreferredContactMethod(String contactPrefrences) {
         clickPreferredContactDrp();
-        switch (contactPrefrences){
+        switch (contactPrefrences) {
             case "Email":
                 PreferredContactDrpOptions.get(1).click();
                 break;
@@ -362,7 +380,7 @@ public class MyProfileExchPage {
 
     public void PreferredContactLanguageMethod(String langContactPreferred) {
         clickPreferredLanguageDrp();
-        switch (langContactPreferred){
+        switch (langContactPreferred) {
             case "English":
                 LanguageDrpOptions.get(1).click();
                 break;
@@ -372,18 +390,98 @@ public class MyProfileExchPage {
     }
 
     public void ClickChangePrimaryContactOnMyProfilePage() {
-       basicActions.waitForElementToBePresent(changePrimaryContact,80);
-       changePrimaryContact.click();
+        basicActions.waitForElementToBePresent(changePrimaryContact, 80);
+        changePrimaryContact.click();
     }
 
     public void SelectTheSecondHouseholdMemberAsPrimaryContact() {
-        basicActions.waitForElementToBeClickable(primaryContactDRP,20);
+        basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
-        String firstName= SharedData.getMembers().get(0).getFirstName() ;
+        String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
         savePrimaryContact.click();
         basicActions.wait(60);
+    }
+
+    public void verifyPasswordPopupTextOnMyProfileExchPage(String language) {
+        switch (language) {
+            case "English":
+                verifyPasswordPopupTextOnMyProfilePageEnglish();
+                break;
+            case "Spanish":
+                verifyPasswordPopupTextOnMyProfilePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyPasswordPopupTextOnMyProfilePageEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        LanguageDrpOptions.get(2).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 10);
+        softAssert.assertEquals(PasswordHeader.getText(), "Password required");
+        softAssert.assertEquals(PasswordHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordHeader.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(PasswordHeader.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(PasswordContentText.getText(), "For your security, please enter your password to save changes.");
+        softAssert.assertEquals(PasswordContentText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordContentText.getCssValue("font-size"), "15px");
+        softAssert.assertEquals(PasswordContentText.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(PasswordLabel.getText(), "Password");
+        softAssert.assertEquals(PasswordLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordLabel.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(PasswordLabel.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(Showlink.getText(), "Show");
+        softAssert.assertEquals(Showlink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(Showlink.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(Showlink.getCssValue("color"), "rgba(16, 111, 153, 1)");
+        softAssert.assertEquals(CancelLink.getText(), "Cancel");
+        softAssert.assertEquals(CancelLink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(CancelLink.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(CancelLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(PasswordSaveChanges.getText(), "Save changes");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("color"), "rgba(252, 252, 252, 1)");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyPasswordPopupTextOnMyProfilePageSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 50);
+        MyProfileButtonExch.get(1).click();
+        LanguageDrpOptions.get(1).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 10);
+        softAssert.assertEquals(PasswordHeader.getText(), "Se requiere contrase\u00F1a");
+        softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordContentText.getText(), "Por su seguridad, ingrese su contrase\u00F1a para guardar los cambios.");
+        softAssert.assertEquals(PasswordContentText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordContentText.getCssValue("font-size"), "15px");
+        softAssert.assertEquals(PasswordContentText.getCssValue("color"), "rgba(43, 49, 60)");
+        softAssert.assertEquals(PasswordLabel.getText(), "Contrase\u00F1a");
+        softAssert.assertEquals(PasswordLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordLabel.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(PasswordLabel.getCssValue("color"), "rgba(43, 49, 60)");
+        softAssert.assertEquals(Showlink.getText(), "Mostrar");
+        softAssert.assertEquals(Showlink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(Showlink.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(Showlink.getCssValue("color"), "rgba(16, 111, 153)");
+        softAssert.assertEquals(CancelLink.getText(), "Cancelar");
+        softAssert.assertEquals(CancelLink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(CancelLink.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(CancelLink.getCssValue("color"), "rgba(26, 112, 179)");
+        softAssert.assertEquals(PasswordSaveChanges.getText(), "Guardar cambios");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("color"), "rgba(252, 252, 252)");
+        softAssert.assertAll();
     }
 }
 

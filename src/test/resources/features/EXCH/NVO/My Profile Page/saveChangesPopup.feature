@@ -13,6 +13,6 @@ Feature: My Profile Page Exch
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Profile"
     Then I validate I am on the "My Profile" page
-    And I click on Make Changes Button
-    And I change Preferred Language Contact Method to "Spanish"
-    And I click on Save Button
+    Then I verify Password Popup text on My profile page Exch "English"
+    Then I click Cancel on the Password popup on My Profile page Exch
+    And I change the language from header to "Spanish"
