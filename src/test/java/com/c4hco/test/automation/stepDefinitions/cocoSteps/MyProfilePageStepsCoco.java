@@ -24,9 +24,20 @@ public class MyProfilePageStepsCoco {
         myProfilePage.clickSaveButtonCoCo();
     }
 
+
     @Then("I click on dropdown Preferred Contact Method")
     public void iClickOnDropdownPreferredContactMethod() {
         myProfilePage.clickSaveButtonCoCo();
+    }
+
+    @And("I change the Preferred Contact Method to {string}")
+    public void iChangeThePreferredContactMethodTo(String contactPrefrences) {
+        myProfilePage.PreferredContactMethod(contactPrefrences);
+    }
+
+    @And("I change Preferred Language Contact Method to {string}")
+    public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
+        myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
     }
 
 
