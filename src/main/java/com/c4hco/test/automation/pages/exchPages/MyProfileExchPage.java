@@ -193,12 +193,12 @@ public class MyProfileExchPage {
         softAssert.assertEquals(EmailAddress.getCssValue("font-size"), "16px");
         softAssert.assertEquals(EmailAddress.getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentline.get(4).getText(), "Mobile Phone");
-        //softAssert.assertEquals(Mobilephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
+        softAssert.assertEquals(Mobilephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentline.get(5).getText(), "Home Phone");
-        //softAssert.assertEquals(Homephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
+        softAssert.assertEquals(Homephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");

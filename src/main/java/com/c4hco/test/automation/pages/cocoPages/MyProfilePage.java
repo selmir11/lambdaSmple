@@ -13,16 +13,16 @@ public class MyProfilePage {
 
 
     @FindBy(id = "preferredLanguage")
-    WebElement  PreferredLanguageDrpCoCo;
+    WebElement PreferredLanguageDrpCoCo;
 
     @FindBy(css = "#preferredLanguage option")
     List<WebElement> LanguageDrpOptionsCoCo; //// Select option, English, Spanish
 
     @FindBy(id = "preferredContactMethod")
-    WebElement   PreferredContactDrpCoCo;
+    WebElement PreferredContactDrpCoCo;
 
     @FindBy(css = "#preferredContactMethod option")
-    List<WebElement>  PreferredContactDrpOptionsCoCo; // Select option, Email, Mail
+    List<WebElement> PreferredContactDrpOptionsCoCo; // Select option, Email, Mail
     @FindBy(xpath = "//button[contains(@class,'back-to-welcome')]")
     public WebElement backToWelcomeButton;
 
@@ -36,10 +36,12 @@ public class MyProfilePage {
     WebElement PasswordSaveChangesCoCo;
 
     private BasicActions basicActions;
+
     public MyProfilePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
         backToWelcomeButton.click();
@@ -53,9 +55,9 @@ public class MyProfilePage {
     public void clickSaveButtonCoCo() {
         basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
         MyProfileButtonCoCo.get(1).click();
-        basicActions.waitForElementToBePresent(PasswordInputCoCo,40);
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
         PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
-        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo,40);
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
         PasswordSaveChangesCoCo.click();
 
     }
@@ -75,7 +77,7 @@ public class MyProfilePage {
 
     public void PreferredContactMethod(String contactPrefrences) {
         clickPreferredContactDrpCoCo();
-        switch (contactPrefrences){
+        switch (contactPrefrences) {
             case "Email":
                 PreferredContactDrpOptionsCoCo.get(1).click();
                 break;
@@ -86,13 +88,16 @@ public class MyProfilePage {
 
     public void PreferredContactLanguageMethod(String langContactPreferred) {
         clickPreferredLanguageDrpCoCo();
-        switch (langContactPreferred){
+        switch (langContactPreferred) {
             case "English":
                 LanguageDrpOptionsCoCo.get(1).click();
                 break;
             case "Spanish":
                 LanguageDrpOptionsCoCo.get(2).click();
+                break;
         }
     }
 
 }
+
+
