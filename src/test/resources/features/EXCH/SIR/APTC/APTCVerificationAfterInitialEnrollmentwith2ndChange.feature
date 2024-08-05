@@ -108,18 +108,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -332,18 +320,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
 
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -451,22 +428,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "-$265.98"
     And I click continue on plan summary page
 
-
-    #Then I validate I am on the "Financial Help Agreements" page
-    #And I select the terms and agreements checkbox
-    #And I enter householder signature on the Financial Help Agreements page
-    #And I click continue on Financial Help Agreements page
-
-    #Then I validate I am on the "Enrollment Agreements" page
-    #And I select "Terms of Use" agreement checkbox
-    #And I select "Privacy Policy" agreement checkbox
-    #And I select "Understand Law" agreement checkbox
-    #And I enter householder signature on the Enrollment Agreements page
-    #And I click continue on Enrollment Agreements page
-
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-    #And I click on Sign Out in the Header for "Portal"
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
@@ -574,18 +539,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -797,19 +750,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
@@ -1241,19 +1181,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
-
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
@@ -1464,18 +1391,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1688,18 +1603,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1912,18 +1815,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -2136,18 +2027,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -2358,18 +2237,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -2581,19 +2448,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
-
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
@@ -2802,19 +2656,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-
-    #Then I validate I am on the "Initial Payment" page
-    #Then I select make payment button to pay the premium
-
-    #Then I validate I am on the "Payment Selection" page
-    #And I select the Money Order button
-    #And I click continue on payment selection page
-
-    #Then I validate I am on the "Initial Payment" page
-    #And I click continue on initial payment page
-
-    #Then I validate I am on the "Congratulations - What's Next?" page
-    #And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
