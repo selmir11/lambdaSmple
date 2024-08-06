@@ -112,8 +112,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
+
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
+
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -327,6 +329,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
+
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -2064,7 +2067,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
 
-
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
@@ -2494,7 +2496,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
