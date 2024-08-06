@@ -25,7 +25,7 @@ Feature: Verify the error messages on the broker Create Account page
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I validate I am on the "Create Account" page
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I validate the mandatory field error messages in "Spanish"
     Then I validate the mandatory role error message in "Spanish"
     Then I validate the mandatory checkbox error messages in "Spanish"

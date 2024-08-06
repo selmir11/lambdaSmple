@@ -26,7 +26,7 @@ Feature: Verify the error messages on the Create Account page
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I validate the mandatory field error messages in "Spanish"
     Then I validate the mandatory options error messages in "Spanish"
     Then I validate the fields cannot contain special characters error message in "Spanish"

@@ -33,7 +33,7 @@ Feature: Account creation page text verification
     And I validate I am on the "LinkedIn" page and close tab
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I validate I am on the "Create Account" page
     And I verify Create Your Account Header in "Spanish"
     Then I verify field headers in "Spanish"

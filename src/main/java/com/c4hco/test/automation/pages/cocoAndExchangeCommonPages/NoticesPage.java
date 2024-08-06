@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -91,6 +92,14 @@ public class NoticesPage {
     WebElement bodyText1603part2;
     @FindBy(xpath= "//div[@id='x_enrollmentConfirmationNoticeBody']/p")
     List<WebElement> bodyTextEN00204;
+    @FindBy(xpath= "(//p[@class='x_body'])[2]")
+    WebElement bodyText1607;
+    @FindBy(xpath= "(//p[@class='x_body'])[3]")
+    WebElement bodyText1607part2;
+    @FindBy(xpath= "//a[@target='_blank']")
+    WebElement resetPWLink;
+    @FindBy(xpath= "//*[@id='x_passwordResetConfirmationBody']/p")
+    List<WebElement> bodyConfirmationPW;
 
 
 
@@ -260,10 +269,33 @@ public class NoticesPage {
                 break;
             case "EN-002-04" :
                 VerifyTheNoticeTextEN00204();
+            case "AM-016-07" :
+                VerifyTheNoticeTextAM01607();
+                break;
+            case "AM-016-08" :
+                VerifyTheNoticeTextAM01608();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
         }
+    }
+
+    private void VerifyTheNoticeTextAM01608() {
+        softAssert.assertEquals(bodyConfirmationPW.get(0).getText(),"Your Connect for Health Colorado\u00AE account password was recently reset.");
+        softAssert.assertEquals(bodyConfirmationPW.get(1).getText(),"If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. as soon as possible to protect your account.");
+        softAssert.assertAll();
+    }
+
+    private void VerifyTheNoticeTextAM01607() {
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
+
+        } else if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
+        }
+        softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
+        softAssert.assertEquals(bodyText1607part2.getText(),"If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertAll();
     }
 
     public void verifyTheNoticeCoco(String noticeNumber,String language){
@@ -351,10 +383,13 @@ public class NoticesPage {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         String formattedDate = currentDate.format(formatter);
-        softAssert.assertEquals(emailDeartxt.getText(),SharedData.getPrimaryMember().getFullName());
+        softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
         System.out.println(formattedDate);
-        softAssert.assertEquals(bodyTextEN00204.get(0).getText(),"Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
+        softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
         softAssert.assertAll();
-
+    }
+    public void clickThePasswordResetLink() {
+        basicActions.waitForElementToBePresent(resetPWLink,20);
+        resetPWLink.click();
     }
 }

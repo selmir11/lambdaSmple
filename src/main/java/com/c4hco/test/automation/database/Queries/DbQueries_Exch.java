@@ -155,4 +155,8 @@ public class DbQueries_Exch {
         return "select * from "+dbName+".en_policy_financial_ah\n " +
                 "where policy_id in (select policy_id from "+dbName+".en_policy where account_id = '"+acctId+"')";
     }
+    public String enPolicyMemberAh(){
+        return "select * from "+dbName+".en_policy_member_ah \n" +
+                "where application_id = '"+applicationId+"'";
+    }
 }

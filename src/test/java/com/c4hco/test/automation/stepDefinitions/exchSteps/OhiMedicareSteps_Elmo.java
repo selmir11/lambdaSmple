@@ -43,8 +43,8 @@ public class OhiMedicareSteps_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    @And("I verify the header for Primary Member on the Medicare page")
-    public void iVerifyTextOnOtherHealthInsurancePage(){ohiMedicarePage_Elmo.verifyHeadersMedicareOhiPageEnglish();}
+    @And("I verify the header for Primary Member on the Medicare page in {string}")
+    public void iVerifyTextOnOtherHealthInsurancePage(String language){ohiMedicarePage_Elmo.verifyHeadersMedicareOhiPage(language);}
 
     @And("I verify initial questions on the Medicare page in {string}")
     public void iVerifyInitialQuestions(String language){ohiMedicarePage_Elmo.verifyInitialQuestions(language);}

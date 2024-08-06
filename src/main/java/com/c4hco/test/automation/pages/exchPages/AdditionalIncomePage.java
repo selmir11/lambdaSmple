@@ -134,6 +134,33 @@ public class AdditionalIncomePage {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
+    public void verifyHeadersAdditionalIncomePage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersAdditionalIncomePageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersAdditionalIncomePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyHeadersAdditionalIncomePageEnglish(){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersAdditionalIncomePageSpanish(){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
+        softAssert.assertAll();
+    }
+
     public void verifyTextOnAdditionalIncomeWithErrors(String language) {
         basicActions.waitForElementToBePresent(saveAndContinueBtn, 10);
         switch (language) {
