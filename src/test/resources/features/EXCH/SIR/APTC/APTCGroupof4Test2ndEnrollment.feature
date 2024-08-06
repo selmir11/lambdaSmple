@@ -6,7 +6,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
   @SLER-GroupOf4-WIP
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
+  Scenario Outline: : ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -48,14 +48,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter AAA member details with "10102010" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "Spouse", DOB "10101990", Gender "Female" and applying status "Yes"
+      |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -73,15 +72,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter BBB member details with "10102010" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
-    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonOne", DOB "10102010", Gender "Male" and applying status "Yes"
+      |Primary:Son   |
+      |Spouse:Son    |
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -100,18 +97,15 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter CCC member details with "10102010" date of birth
-    And I select "Female" as sex option
-    And I select "No" as pregnancy option
-    And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
-    And I select "Sister" as relationship two option
-    And I select "Yes" to Is Member Applying
 
     Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "DaughterOne", DOB "10102010", Gender "Female" and applying status "Yes"
+      |Primary:Daughter |
+      |Spouse:Daughter  |
+      |SonOne:Sister    |
+    And And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -220,7 +214,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Elmo Other Health Insurance" page
     Then I select "None of these" as ELMO health insurance option
     Then I click continue on the ELMO health insurance page
-
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -339,10 +332,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Elmo Other Health Insurance" page
     Then I click continue on the ELMO health insurance page
+
     Then I validate I am on the "Elmo Other Health Insurance" page
     Then I click continue on the ELMO health insurance page
+
     Then I validate I am on the "Elmo Other Health Insurance" page
     Then I click continue on the ELMO health insurance page
+
     Then I validate I am on the "Elmo Other Health Insurance" page
     Then I click continue on the ELMO health insurance page
 
@@ -393,7 +389,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @Group6ReEnroll-WIP
-    Scenario Outline: ELIG-APTC Eligible over 400% FPL- APTCRules - group of 6 - 4 under 21 with 2 adult
+  Scenario Outline: ELIG-APTC Eligible over 400% FPL- APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -462,9 +458,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012010", "Male" and applying "Yes"
-    |Primary:Son|
-    |Spouse:Son |
-     And I click continue on Tell us about additional members page
+      |Primary:Son|
+      |Spouse:Son |
+    And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -859,6 +855,4 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
-
-
 
