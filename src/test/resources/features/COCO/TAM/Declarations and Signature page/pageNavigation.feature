@@ -4,7 +4,7 @@ Feature: Navigation-Declarations and Signature Page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-151 @PageNavigationD&SPage
+  @SLCR-151 @PageNavigationD&SPage @TAMSmoke
   Scenario: SLCR-151 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in D&S portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -58,8 +58,6 @@ Feature: Navigation-Declarations and Signature Page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I change the C4 url to "Declarations and Signature portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I click Go Back button from chrome browser
     And I verify User name Link is not displayed in the "CoCo" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header

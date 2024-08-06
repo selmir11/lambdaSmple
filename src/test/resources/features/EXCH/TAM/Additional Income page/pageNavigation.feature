@@ -5,7 +5,7 @@ Feature: Page Navigation-Additional Income Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-686 @PageNavigationAdditionalIncomePage
+  @SLER-686 @PageNavigationAdditionalIncomePage @TAMSmoke
   Scenario: SLER-686 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Income Portal, Exchange
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -75,7 +75,8 @@ Feature: Page Navigation-Additional Income Page
     And I verify User name Link is not displayed in the "Exch" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
-    Then I validate I am on the "My Account Overview" page
+    Then I validate I am on the "Find Expert Help" page
 
+    And I click on Sign Out in the Header for "WhoHelpsYouPage"
     And I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page

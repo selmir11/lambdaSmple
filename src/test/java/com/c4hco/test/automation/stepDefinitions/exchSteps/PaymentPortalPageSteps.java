@@ -9,6 +9,6 @@ public class PaymentPortalPageSteps {
 
     @Then("I click all done from payment portal page")
     public void clickAllDone(){
-        paymentPortalPage.clickAllDone();
+       paymentPortalPage.clickAllDone();
     }
 }

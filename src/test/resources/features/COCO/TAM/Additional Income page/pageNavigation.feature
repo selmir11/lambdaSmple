@@ -27,7 +27,7 @@ Feature: Tests related to the Additional Income page
     And I select "No" income changes option
     And I click continue on the Employment income page
 
-  @SLCR-133 @PageNavigationAdditionalIncome
+  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke
   Scenario: SLCR-133 There is "None of these" option is selected on the Additional Income page in the first tab after changes are made in the second tab
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
@@ -86,8 +86,6 @@ Feature: Tests related to the Additional Income page
     Then I validate I am on the "CoCo Additional Income" page
     And I change the C4 url to "Income portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I click Go Back button from chrome browser
     And I verify User name Link is not displayed in the "CoCo" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header

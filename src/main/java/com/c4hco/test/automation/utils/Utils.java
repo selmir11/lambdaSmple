@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Utils {
     private String env = ApplicationProperties.getInstance().getProperty("env");
+    private String isLrEnv = ApplicationProperties.getInstance().getProperty("isLrEnv");
     private BasicActions basicActions;
 
     public Utils(WebDriver webDriver){
@@ -17,18 +18,19 @@ public class Utils {
 
     public String getBaseLoginUrl(String portalType){
         String baseUrl = "";
+        String lrPath = isLrEnv.equals("yes") ? "/lr/" : "";
         switch(portalType){
             case "login":
-                baseUrl = Constants.PROTOCOL+env+Constants.LOGIN;
+                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.LOGIN;
                 break;
             case "broker":
-                baseUrl = Constants.PROTOCOL+env+Constants.BROKER;
+                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.BROKER;
                 break;
             case "admin":
-                baseUrl = Constants.PROTOCOL+env+Constants.ADMIN;
+                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.ADMIN;
                 break;
             case "assistNet":
-                baseUrl = Constants.PROTOCOL+env+Constants.ASSISTER;
+                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.ASSISTER;
                 break;
            default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
@@ -36,12 +38,6 @@ public class Utils {
     }
 
     public String getdbName(){
-        String dbName;
-        if(env.equals("qa")){
-            dbName = env+"_"+"exch";
-        } else {
-            dbName = "exch";
-        }
-        return dbName;
+        return env.equals("qa") ? env + "_exch" : "exch";
     }
 }

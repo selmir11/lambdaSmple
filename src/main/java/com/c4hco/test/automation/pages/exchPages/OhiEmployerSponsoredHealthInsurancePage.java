@@ -278,12 +278,10 @@ public class OhiEmployerSponsoredHealthInsurancePage {
                 esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
                 break;
             case "Future Month":
-                calendar.add(Calendar.MONTH, 3);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfFutureMonth = calendar.getTime();
-                DateFormat endOfFutureMonth = new SimpleDateFormat("MM-dd");
-                esiEndDateInput.sendKeys(endOfFutureMonth.format(lastDayOfFutureMonth));
+                calendar.add(Calendar.DATE, 60);
+                Date futureDate = calendar.getTime();
+                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
+                esiEndDateInput.sendKeys(futureDateFormat.format(futureDate));
                 break;
             case "Today":
                 DateFormat todayDate = new SimpleDateFormat("MM-dd");
@@ -432,10 +430,30 @@ public class OhiEmployerSponsoredHealthInsurancePage {
 
 
     // =================== VALIDATION STEPS ===============//
+    public void verifyHeadersEsiOhiPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersEsiOhiPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersEsiOhiPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersEsiOhiPageEnglish(){
         basicActions.waitForElementToBePresent(ohiHeader,15);
         softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohiEsiHeader.getText(),"Employer-sponsored Health Insurance");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersEsiOhiPageSpanish(){
+        basicActions.waitForElementToBePresent(ohiHeader,15);
+        softAssert.assertTrue(ohiHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohiEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertAll();
     }
 
@@ -1212,7 +1230,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerWhichJobTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Which job is offering health insurance?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Tell us about coverage if you:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Can get health coverage through a job, even if you're not currently enrolled or don't plan to enroll.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Can get health coverage through a job, even if the employer's plan isn't currently in Open Enrollment.");
@@ -1231,7 +1249,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMinimumValueTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Does this health insurance meet the Minimum Value Standard?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Minimum Value Standard:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Minimum Value Standard:\nMost health insurance plans offered by jobs meet the minimum value standard.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "More about the minimum value standard\nA health plan meets the minimum value standard if it's designed to pay at least 60% of the total cost of medical services for a standard population, and if its benefits include substantial coverage of inpatient hospital and physician services.");
@@ -1245,7 +1263,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMonthlyAmountTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getPrimaryMember().getEmployerName()+" just for yourself?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Lowest-Cost Premium:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Lowest-Cost Premium:\nHint Text: Only enter the amount you would pay. Don't include any amount paid by your employer.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Learn more about entering premium amounts\nEnter the regular amount the employee would have to pay for their health coverage (the \"premium\") if they enrolled.");
@@ -1259,7 +1277,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerCurrentlyEnrolledTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getPrimaryMember().getEmployerName()+"?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Enrollment:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -1269,7 +1287,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerEnd60DaysTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "End in the next 60 days:\nIf this insurance will end soon because:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "the job is ending,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "the company is no longer offering health insurance,");
@@ -1282,7 +1300,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerVoluntarilyEndingTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Voluntarily Ending Health Insurance:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
@@ -1366,7 +1384,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerWhichJobTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Inf\u00F3rmenos sobre la cobertura en los siguientes casos:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, aunque no est\u00E9 inscrito actualmente ni tenga previsto hacerlo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, incluso si el plan del empleador no est\u00E1 actualmente en el per\u00EDodo de inscripci\u00F3n abierta.");
@@ -1385,7 +1403,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMinimumValueTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFCumple este seguro de salud el est\u00E1ndar de valor m\u00EDnimo?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Est\u00E1ndar de valor m\u00EDnimo:\nLa mayor\u00EDa de los planes de seguro de salud que se ofrecen a trav\u00E9s de los trabajos cumplen el est\u00E1ndar de valor m\u00EDnimo.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "M\u00E1s informaci\u00F3n sobre el est\u00E1ndar de valor m\u00EDnimo\nUn plan de salud cumple el est\u00E1ndar de valor m\u00EDnimo si est\u00E1 dise\u00F1ado para pagar al menos el 60% del costo total de los servicios m\u00E9dicos para una poblaci\u00F3n est\u00E1ndar y si sus beneficios incluyen una cobertura considerable de los servicios hospitalarios y m\u00E9dicos.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Para saber si un plan cumple el est\u00E1ndar de valor m\u00EDnimo, consulte el Resumen de beneficios y cobertura (SBC) del plan de su empleo o pida en su trabajo que le llenen la herramienta de cobertura del empleador.");
@@ -1398,7 +1416,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMonthlyAmountTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFCu\u00E1nto pagar\u00EDa por la prima mensual del plan de salud de menor costo en "+SharedData.getPrimaryMember().getEmployerName()+" solo para usted?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Prima de costo m\u00E1s bajo:\nTexto de sugerencia: Solo ingrese la cantidad que pagar\u00EDa. No incluya ninguna cantidad que pague su empleador.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Obtenga m\u00E1s informaci\u00F3n sobre c\u00F3mo ingresar las cantidades de las primas\nIngrese la cantidad normal que el empleado tendr\u00EDa que pagar por su cobertura de salud (la \"prima\") si se inscribiera.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
@@ -1411,7 +1429,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerCurrentlyEnrolledTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFEst\u00E1 inscrito actualmente en el seguro de salud que ofrece "+SharedData.getPrimaryMember().getEmployerName()+"?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Inscripci\u00F3n:\nSi esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
@@ -1420,7 +1438,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerEnd60DaysTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas:\nSi este seguro acabar\u00E1 pronto porque:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "el trabajo est\u00E1 por terminarse;");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "la empresa ya no ofrecer\u00E1 seguro de salud;");
@@ -1433,7 +1451,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerVoluntarilyEndingTextSpanish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");

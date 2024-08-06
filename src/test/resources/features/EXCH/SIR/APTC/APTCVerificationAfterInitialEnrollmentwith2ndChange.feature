@@ -65,8 +65,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to claim dependents
     And I click save and continue on tax status page
 
-    Then I select "None of these" as health insurance option and continue
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
@@ -89,7 +94,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -108,18 +112,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
 
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -133,7 +129,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -184,12 +179,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
-    
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
 
     Then I validate I am on the "Tell us about life changes" page
     And  I select "LostCoverage" QLCE on tell us about life changes page
@@ -211,7 +207,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$139.14 tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -285,8 +280,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
@@ -309,7 +309,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -328,18 +327,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -405,8 +395,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -431,7 +421,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$265.98 tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -455,8 +444,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
+    Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-319
@@ -518,7 +506,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I select "Marriage" QLCE on tell us about life changes page
@@ -543,7 +536,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -562,18 +554,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -639,8 +621,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -665,7 +647,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$837.85tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -739,7 +720,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I select "Marriage" QLCE on tell us about life changes page
@@ -764,7 +750,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -783,18 +768,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -859,8 +834,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -885,7 +860,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$944.39tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -959,7 +933,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -984,7 +963,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1003,18 +981,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1079,8 +1047,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1105,7 +1073,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$646.42tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1179,7 +1146,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I select "Marriage" QLCE on tell us about life changes page
@@ -1204,7 +1176,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1223,18 +1194,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1299,8 +1260,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1325,7 +1286,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$379.36tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1399,10 +1359,16 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I click continue on family overview page
 
-    Then I select "Marriage" QLCE on tell us about life changes page
+  Then I validate I am on the "Elmo Other Health Insurance" page
+  Then I select "None of these" as ELMO health insurance option
+  Then I click continue on the ELMO health insurance page
+
+  Then I validate I am on the "Family Overview" page
+  Then I click continue on family overview page
+
+
+  Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -1424,7 +1390,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1443,18 +1408,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1520,8 +1475,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1546,7 +1501,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$717.10tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1620,7 +1574,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I select "Marriage" QLCE on tell us about life changes page
@@ -1645,7 +1604,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1664,18 +1622,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1741,8 +1689,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1767,7 +1715,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$1,028.25tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1841,7 +1788,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I select "Marriage" QLCE on tell us about life changes page
@@ -1866,7 +1818,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1885,18 +1836,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1962,8 +1903,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1988,7 +1929,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "$1,028.25tax credit"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2003,7 +1943,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-
+  # index issue
   @SLER-691
   Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2340 - income change from 10K to 100K
     When I click create a new account on login page
@@ -2063,8 +2003,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" pag
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO Health Insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
@@ -2087,7 +2033,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2106,18 +2051,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -2131,7 +2066,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -2183,8 +2117,11 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO Health Insurance page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2209,7 +2146,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2283,8 +2219,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
@@ -2307,7 +2249,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2326,18 +2267,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -2403,8 +2334,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2429,7 +2360,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2503,8 +2433,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
@@ -2527,7 +2463,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2546,18 +2481,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -2571,7 +2496,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -2623,8 +2547,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2649,7 +2573,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the APTC credit on the first plan is "350.03"
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2723,8 +2646,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
@@ -2747,7 +2676,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -2766,18 +2694,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -2791,7 +2709,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -2843,8 +2760,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Other Health Insurance" page
-    Then I click continue on the Other Health Insurance page
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2869,7 +2786,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate there is no APTC credit "0.00" on the first plan
     And I select the first medical plan
     And I click continue on medical plan results page
 

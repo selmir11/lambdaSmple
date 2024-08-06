@@ -12,6 +12,11 @@ import java.util.Map;
 public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
+    EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
+    EnPolicyMemberAhHandler enPolicyMemberAhHandler = new EnPolicyMemberAhHandler();
+    EnPolicyFinancialAhHandler enPolicyFinancialAhHandler = new EnPolicyFinancialAhHandler();
+    EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
+    EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -105,6 +110,10 @@ public class DbDataProvider_Exch {
         return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
     }
 
+    public EsMemberHraEntity getOptionsFromHraDbTables(){
+        return esMemberOhiDbHandler.getOptionsFromHraTables(exchDbQueries.getPrimaryHraRecords());
+    }
+
     public Map<String,String> getPolicyDqCheckAndPolicyAhId(){
         postgresHandler.setRec(exchDbQueries.setEnvForDataQuality());
         return postgresHandler.getResultForTwoColumnValuesInMap("policy_ah_id", "en_policy_dq_check", exchDbQueries.getPolicyDqCheck());
@@ -124,4 +133,20 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<EnPolicyAhEntity> getEnPolicyAh_details(){
+        return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
+    }
+    public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
+        return enMemberCoverageFinancialAhHandler.getEnMemberCoverageFinAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
+    }
+
+    public List<EnPolicyMemberCoverageAhEntity> getEnPol_Mem_Cov_Ah_details(){
+        return enPolicyMemberCoverageAhHandler.getEnMemberCoverageAhTableDetails(exchDbQueries.enPolicy_Mem_CoverageAh());
+    }
+    public List<EnPolicyFinancialAhEntity> getEnPol_fin_ah_details(){
+        return enPolicyFinancialAhHandler.getEnPolicyFinancialAhTableDetails(exchDbQueries.enPolicyFinancialAh());
+    }
+    public List<EnPolicyMemberAhEntity> getEnPol_mem_ah_details(){
+        return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
+    }
 }

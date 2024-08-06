@@ -13,7 +13,7 @@ Feature:RT-2452 - Update Legal Notice language on Individual Login Portal page
   @SLER-318
   Scenario: Login page text validation in Spanish
     Given I open the login page on the "login" portal
-    Then I change the language from header to "Spanish Login"
+    Then I change the language from header to "Spanish"
     And I validate I am on the "Login" page
     Then I validate the title of the page in "Spanish"
     And I validate the username and password text in the login page in "Spanish"
@@ -27,7 +27,7 @@ Feature:RT-2452 - Update Legal Notice language on Individual Login Portal page
     And I validate I am on the "Login" page
     And I login as Broker User any environment "cmijpmlpqjCM@test.com" password "ALaska12!" and "cmjsgljdsvCM@test.com" password "ALaska12!"
     Then I verify Expired Password error message in "English"
-    And I change the language from header to "Spanish Login"
+    And I change the language from header to "Spanish"
     Then I verify Expired Password error message in "Spanish"
 
 

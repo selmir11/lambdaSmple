@@ -4,7 +4,7 @@ Feature: Tests related to the Family Overview page
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-149 @PageNavigationFamilyOverview
+  @SLCR-149 @PageNavigationFamilyOverview @TAMSmoke
   Scenario: SLCR-149 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Family Overview portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -31,8 +31,6 @@ Feature: Tests related to the Family Overview page
     And I click Continue on my own button from Manage who helps you page
     And I change the C4 url to "Family Overview portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I click Go Back button from chrome browser
     And I verify User name Link is not displayed in the "CoCo" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header

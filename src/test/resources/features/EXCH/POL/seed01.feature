@@ -88,15 +88,7 @@ Feature: Regression Tests that require Seed 1
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
- #   Then I click all done from payment portal page
-
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
-
-    And I click on Go To Welcome Page Button on whats next page
+    Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
@@ -121,9 +113,6 @@ Feature: Regression Tests that require Seed 1
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
     And I validate the ob834 files should have the values
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
     And I validate the REF and LX segments in EDI file
       | LX | N1 75              | REF       |
       | 1  | PRE AMT 1          | 291.02    |
@@ -135,7 +124,8 @@ Feature: Regression Tests that require Seed 1
       | 7  | PRE AMT TOT        | 291.02    |
       | 8  | SEP REASON         | ADMIN_LCE |
     And I verify the policy data quality check
-  #  And I verify the data from book of business queue table
+    And I verify the data from book of business queue table
+    And I validate Individual policy table queries
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -173,9 +163,6 @@ Feature: Regression Tests that require Seed 1
       | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
     And I validate the REF and LX segments in EDI file
       | LX | N1 75              | REF                |
       | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE |

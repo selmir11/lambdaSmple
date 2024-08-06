@@ -43,7 +43,7 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-    @FindBy(xpath = "(//div[@class='documents-notices-content-container']//div//div//span)[1]")
+    @FindBy(xpath = "(//div[@class='document-notice-name-right']//span)[1]")//"(//div[@class='document-notice-name']//child::div//following::div/span)[1]")
     WebElement expandDownloadEnrolmentDocument;
     @FindBy(css = "a.btn-second-action-button.download-button")
     WebElement downloadEnrolmentDoc;
@@ -96,13 +96,13 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
     WebElement txtCargarUnDocumento;
 
-    @FindBy(xpath = "//span[normalize-space()='Díganos más sobre este documento']")
+    @FindBy(xpath = "//span[normalize-space()='Díganos m\u00E1s sobre este documento']")
     WebElement txtDiagnoMasSobre;
 
-    @FindBy(xpath = "//span[normalize-space()='¿Qué tipo de documento es este?']")
+    @FindBy(xpath = "//span[normalize-space()='¿Qu\u00E9 tipo de documento es este?']")
     WebElement txtQuetipo;
 
-    @FindBy(xpath = "//span[normalize-space()='¿Qué documento está enviando?']")
+    @FindBy(xpath = "//span[normalize-space()='¿Qu\u00E9 documento está enviando?']")
     WebElement txtQueDocumento;
 
     @FindBy(xpath = "//span[normalize-space()='Seleccione un archivo de su dispositivo']")

@@ -5,7 +5,7 @@ Feature: Page Text-Welcome Page
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
 
-  @SLCR-33 @PageTextWelcomePage
+  @SLCR-33 @PageTextWelcomePage @TAMSmoke
   Scenario: SLCR-33 Check Welcome Page Text in English
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
@@ -65,10 +65,7 @@ Feature: Page Text-Welcome Page
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click continue button on Congratulations page CoCo
+    Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
 
     Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "English"
@@ -136,10 +133,7 @@ Feature: Page Text-Welcome Page
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click continue button on Congratulations page CoCo
+    Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
 
     And I change the language from header to "Spanish"

@@ -4,7 +4,7 @@ Feature: Tests related to the Employment Income page
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-58 @PageTextEmploymentIncome
+  @SLCR-58 @PageTextEmploymentIncome @TAMSmoke
   Scenario: SLCR-58 I can see Employment Income's Header and footer - English
     When I click create a new account on login page
     Then I click create my account from pre-screen page

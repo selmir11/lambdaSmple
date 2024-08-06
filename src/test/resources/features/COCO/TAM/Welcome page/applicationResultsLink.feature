@@ -4,7 +4,7 @@ Feature: Tests related to the Application Results link
   Background: I go to the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-25
+  @SLCR-25 @TAMSmoke
   Scenario: SLCR-25 Validate Action links navigation and text
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
@@ -91,10 +91,7 @@ Feature: Tests related to the Application Results link
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click continue button on Congratulations page CoCo
+    Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from header to "Spanish"
     And I click on "My Profile" link on welcome page

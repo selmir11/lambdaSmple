@@ -161,6 +161,19 @@ public class OhcHraPage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+    public void verifyHeadersHraOhcPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersHraOhcPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersHraOhcPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersHraOhcPageEnglish(){
         basicActions.waitForElementToBePresent(ohcHeader,15);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
@@ -168,7 +181,28 @@ public class OhcHraPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyHraData(String dataToVerify, String expectedIncome){
+    public void verifyHeadersHraOhcPageSpanish(){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohcHraHeader.getText(),"Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraData(String dataToVerify, String expectedIncome, String language){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        switch (language){
+            case "English":
+                verifyHraDataEnglish(dataToVerify, expectedIncome);
+                break;
+            case "Spanish":
+                verifyHraDataSpanish(dataToVerify, expectedIncome);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyHraDataEnglish(String dataToVerify, String expectedIncome){
         basicActions.waitForElementToBePresent(ohcHeader,15);
         switch (dataToVerify){
             case "Initial Page":
@@ -178,11 +212,41 @@ public class OhcHraPage_Elmo {
                 verifyHraPageInitialDataEnglish(expectedIncome);
                 verifyHraPageOptOutDataEnglish();
                 break;
+            case "Initial Page Secondary":
+                verifyHraPageInitialSecondaryDataEnglish(expectedIncome);
+                break;
+            case "Opt Out Secondary":
+                verifyHraPageInitialSecondaryDataEnglish(expectedIncome);
+                verifyHraPageOptOutSecondaryDataEnglish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        verifyHraContinueAndgoBackBtnsEnglish();
+        softAssert.assertAll();
+    }
+
+    public void verifyHraDataSpanish(String dataToVerify, String expectedIncome){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        switch (dataToVerify){
+            case "Initial Page":
+                verifyHraPageInitialDataSpanish(expectedIncome);
+                break;
+            case "Opt Out":
+                verifyHraPageInitialDataSpanish(expectedIncome);
+                verifyHraPageOptOutDataSpanish();
+                break;
+            case "Initial Page Secondary":
+                verifyHraPageInitialSecondaryDataSpanish(expectedIncome);
+                break;
+            case "Opt Out Secondary":
+                verifyHraPageInitialSecondaryDataSpanish(expectedIncome);
+                verifyHraPageOptOutSecondaryDataSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        verifyHraContinueAndgoBackBtnsSpanish();
         softAssert.assertAll();
     }
 
@@ -195,10 +259,58 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(hraQuestionTxt.get(0).getText(),"Select the plan year for your HRA coverage.");
         softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024");
         softAssert.assertEquals(hraQuestionTxt.get(1).getText(),"Enter the amount your employer contributes each month to an HRA for your coverage.");
-        softAssert.assertEquals(amountInput.getText(),expectedIncome);
+        softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
         softAssert.assertEquals(hraQuestionTxt.get(2).getText(),"What type of HRA is your employer offering?");
         softAssert.assertEquals(hraQsehraBtn.getText(),"Qualified Small Employer Health Reimbursement Arrangement (QSEHRA)");
         softAssert.assertEquals(hraIchraBtn.getText(),"Individual Coverage Health Reimbursement Arrangement (ICHRA)");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraPageInitialDataSpanish(String expectedIncome){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohcHraHeader.getText(),"Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertEquals(whenYouPayTxt.getText(), "Cuando paga su seguro de salud utilizando las Provisiones de reembolso de salud (HRA) proporcionadas a trav\u00E9s de su empleador, es posible que deba adquirir un plan fuera de Connect for Health Colorado. Confirme con su empleador si tiene una provisi\u00F3n de reducci\u00F3n de salario, ya que podr\u00EDa afectar su capacidad para inscribirse en un plan a trav\u00E9s del Mercado.");
+        softAssert.assertEquals(hraQuestionTxt.get(0).getText(),"Seleccione el a\u00F1o del plan para su cobertura HRA.");
+        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024");
+        softAssert.assertEquals(hraQuestionTxt.get(1).getText(),"Ingrese la cantidad que aporta su empleador cada mes a las Provisiones de reembolso de salud (HRA) por su cobertura.");
+        softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
+        softAssert.assertEquals(hraQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 tipo de Provisiones de reembolso de salud (HRA) ofrece su empleador?");
+        softAssert.assertEquals(hraQsehraBtn.getText(),"Provisiones de reembolso de salud para peque\u00F1os empleadores calificados (QSEHRA)");
+        softAssert.assertEquals(hraIchraBtn.getText(),"Provisiones de reembolso de salud de cobertura individual (ICHRA)");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraPageInitialSecondaryDataEnglish(String expectedIncome){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohcHraHeader.getText(),"Health Reimbursement Arrangement (HRA) offered through an employer");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
+        softAssert.assertTrue(whenYouPayTxt.getText().equalsIgnoreCase("When " + SharedData.getMembers().get(0).getFullName() + " pays for their health insurance using a Health Reimbursement Arrangement (HRA) provided through their employer, they may be required to buy a plan outside of Connect for Health Colorado. Confirm with " + SharedData.getMembers().get(0).getFullName() + "'s employer whether they have a salary reduction arrangement, as it could affect their ability to sign up for a plan through our Marketplace."));
+        softAssert.assertTrue(hraQuestionTxt.get(0).getText().equalsIgnoreCase("Select a plan year for " + SharedData.getMembers().get(0).getFullName() + "'s coverage."));
+        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024");
+        softAssert.assertTrue(hraQuestionTxt.get(1).getText().equalsIgnoreCase("Enter the amount " + SharedData.getMembers().get(0).getFullName() + "'s employer contributes each month to an HRA for their coverage."));
+        softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
+        softAssert.assertTrue(hraQuestionTxt.get(2).getText().equalsIgnoreCase("What type of HRA is " + SharedData.getMembers().get(0).getFullName() + "'s employer offering?"));
+        softAssert.assertEquals(hraQsehraBtn.getText(),"Qualified Small Employer Health Reimbursement Arrangement (QSEHRA)");
+        softAssert.assertEquals(hraIchraBtn.getText(),"Individual Coverage Health Reimbursement Arrangement (ICHRA)");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraPageInitialSecondaryDataSpanish(String expectedIncome){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(ohcHraHeader.getText(),"Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertTrue(whenYouPayTxt.getText().equalsIgnoreCase("Cuando " + SharedData.getMembers().get(0).getFullName() + " paga su seguro de salud utilizando las Provisiones de reembolso de salud (HRA) proporcionadas a trav\u00E9s por su empleador, es posible que deba adquirir un plan fuera de Connect for Health Colorado. Confirme con el empleador de " + SharedData.getMembers().get(0).getFullName() + " si tiene una provisi\u00F3n de reducci\u00F3n de salario, ya que podr\u00EDa afectar su capacidad para inscribirse en un plan a trav\u00E9s del Mercado."));
+        softAssert.assertTrue(hraQuestionTxt.get(0).getText().equalsIgnoreCase("Seleccione el a\u00F1o del plan para la cobertura HRA de " + SharedData.getMembers().get(0).getFullName() + "."));
+        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024");
+        softAssert.assertTrue(hraQuestionTxt.get(1).getText().equalsIgnoreCase("Ingrese la cantidad que el empleador de " + SharedData.getMembers().get(0).getFullName() + " aporta cada mes a las Provisiones de reembolso de salud (HRA) por su cobertura."));
+        softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
+        softAssert.assertTrue(hraQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 tipo de Provisiones de reembolso de salud (HRA) ofrece el empleador de " + SharedData.getMembers().get(0).getFullName() + "?"));
+        softAssert.assertEquals(hraQsehraBtn.getText(),"Provisiones de reembolso de salud para peque\u00F1os empleadores calificados (QSEHRA)");
+        softAssert.assertEquals(hraIchraBtn.getText(),"Provisiones de reembolso de salud de cobertura individual (ICHRA)");
         softAssert.assertAll();
     }
 
@@ -208,6 +320,93 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(hraQuestionTxt.get(3).getText(),"If receiving Advance Premium Tax Credit is a more affordable option, would you choose to opt out from receiving an employer contribution?");
         softAssert.assertEquals(optOutBtn.get(0).getText(),"Yes");
         softAssert.assertEquals(optOutBtn.get(1).getText(), "No");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraPageOptOutDataSpanish(){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertEquals(ifMayTxt.getText(),"Es posible que sea menos costoso pagar su cobertura con los cr\u00E9ditos fiscales anticipados para la prima que podr\u00EDa recibir a trav\u00E9s de Connect for Health Colorado. Esto reemplazar\u00EDa el aporte de su empleador.");
+        softAssert.assertEquals(hraQuestionTxt.get(3).getText(),"Si recibir Cr\u00E9dito fiscal anticipado para la prima es una opci\u00F3n m\u00E1s econ\u00F3mica, \u00BFoptar\u00EDa por no recibir un aporte del empleador?");
+        softAssert.assertEquals(optOutBtn.get(0).getText(),"S\u00ED");
+        softAssert.assertEquals(optOutBtn.get(1).getText(), "No");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraPageOptOutSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ifMayTxt.getText().equalsIgnoreCase("It may be less expensive to pay for " + SharedData.getMembers().get(0).getFullName() + "\u2019s coverage with the Advanced Premium Tax Credit they could receive through Connect for Health Colorado. This would replace their employer's contribution."));
+        softAssert.assertTrue(hraQuestionTxt.get(3).getText().equalsIgnoreCase("If receiving Advance Premium Tax Credit is a more affordable option, would " + SharedData.getMembers().get(0).getFullName() + " choose to opt out from receiving an employer contribution?"));
+        softAssert.assertEquals(optOutBtn.get(0).getText(),"Yes");
+        softAssert.assertEquals(optOutBtn.get(1).getText(), "No");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraPageOptOutSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ifMayTxt.getText().equalsIgnoreCase("Es posible que sea menos costoso pagar la cobertura de " + SharedData.getMembers().get(0).getFullName() + " con los cr\u00E9ditos fiscales anticipados para la prima que podr\u00EDa recibir a trav\u00E9s de Connect for Health Colorado. Esto reemplazar\u00EDa el aporte de su empleador."));
+        softAssert.assertTrue(hraQuestionTxt.get(3).getText().equalsIgnoreCase("Si recibir Cr\u00E9dito fiscal anticipado para la prima es una opci\u00F3n m\u00E1s econ\u00F3mica, \u00BFoptar\u00EDa " + SharedData.getMembers().get(0).getFullName() + " por no recibir un aporte del empleador?"));
+        softAssert.assertEquals(optOutBtn.get(0).getText(),"S\u00ED");
+        softAssert.assertEquals(optOutBtn.get(1).getText(), "No");
+        softAssert.assertAll();
+    }
+    
+    public void verifyHraContinueAndgoBackBtnsEnglish(){
+        softAssert.assertEquals(goBackBtn.getText(), "  Go Back");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(goBackBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(goBackBtn.getText(), "  Go Back");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertAll();
+    }
+
+    public void verifyHraContinueAndgoBackBtnsSpanish(){
+        softAssert.assertEquals(goBackBtn.getText(), "  Volver");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(goBackBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(goBackBtn.getText(), "  Volver");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
         softAssert.assertAll();
     }
 
@@ -451,7 +650,7 @@ public class OhcHraPage_Elmo {
                 verifyHraPageDataEnglish(dataToVerify);
                 break;
             case "Spanish":
-//                verifHraPageDataSpanish(dataToVerify);
+                verifyHraPageDataSpanish(dataToVerify);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -515,7 +714,7 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }

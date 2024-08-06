@@ -39,8 +39,8 @@ public class OhiRetireeHealthPlanSteps_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    @And("I verify the header for Primary Member on the Retiree page")
-    public void iVerifyTextOnOtherHealthInsurancePage(){ohiRetireeHealthPlanPage_Elmo.verifyHeadersRetireeOhiPageEnglish();}
+    @And("I verify the header for Primary Member on the Retiree page in {string}")
+    public void iVerifyTextOnOtherHealthInsurancePage(String language){ohiRetireeHealthPlanPage_Elmo.verifyHeadersRetireeOhiPage(language);}
 
     @And("I verify Currently Enrolled is {string} on the Retiree page")
     public void iVerifyCurrentlyEnrolledOption(String currentlyEnrolled){ohiRetireeHealthPlanPage_Elmo.verifyCurrentlyEnrolledOption(currentlyEnrolled);}

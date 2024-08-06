@@ -57,10 +57,10 @@ Feature: Page Text-Other Health Insurance Page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
 
-  @SLER-238 @PageVerificationCobraPage
+  @SLER-238 @PageVerificationCobraPage @TAMSmoke
   Scenario: SLER-238 I Validate the saved options persist on the Cobra page
 #Step 3
-    And I verify the header for Primary Member on the Cobra page
+    And I verify the header for Primary Member on the Cobra page in "English"
 #Step 4
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
@@ -82,7 +82,7 @@ Feature: Page Text-Other Health Insurance Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
     And I validate I am on the "Elmo COBRA" page
-    And I verify the header for Primary Member on the Cobra page
+    And I verify the header for Primary Member on the Cobra page in "English"
 #Step 5
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHI Cobra page
@@ -141,7 +141,123 @@ Feature: Page Text-Other Health Insurance Page
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
-    And I validate I am on the "Elmo COBRA" page
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application History" page
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I click on Learn More in the Header
+    And I validate I am on the "Faqs" page and close tab
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Contact Us in the Header
+    And I validate I am on the "Customer Service" page and close tab
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Apply for Coverage in the "ExpertHelp" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    Then I validate I am on the "Elmo COBRA" page
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -157,13 +273,14 @@ Feature: Page Text-Other Health Insurance Page
     And I click on the table dropdown 1
     And I click the edit income 1
     Then I click continue on the Employment Summary Page
-    And I click continue on the Additional Income page
+    Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "Elmo COBRA" page
+#    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "Elmo COBRA" page
@@ -198,13 +315,140 @@ Feature: Page Text-Other Health Insurance Page
 
   @SLER-279 @PageTextOhiCobraElmo
   Scenario: SLER-279 I can see Cobra's Header and footer - Spanish
-    And I change the language from header to "Spanish"
-    And I validate I am on the "Spanish" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
 
-    And I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application History" page
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
+    And I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
+    And I click on Learn More in the Header
+    And I validate I am on the "Faqs" page and close tab
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Contact Us in the Header
+    And I validate I am on the "Customer Service" page and close tab
+
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Apply for Coverage in the "ExpertHelp" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health insurance page
+
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate I am on the "Elmo COBRA" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -220,51 +464,52 @@ Feature: Page Text-Other Health Insurance Page
     And I click on the table dropdown 1
     And I click the edit income 1
     Then I click continue on the Employment Summary Page
-    And I click continue on the Additional Income page
+    Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health insurance page
 
     And I validate I am on the "Elmo COBRA" page
-    And I change the language from header to "Spanish"
-    And I validate I am on the "Spanish" page
+#    And I set the browser resolution to 1200 x 800
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
     Then I validate I am on the "Elmo COBRA" page
-    And I validate I am on the "Spanish" page
+    And I verify the header for Primary Member on the Cobra page in "Spanish"
 
 
     And I click on Sign Out in the Header for "Elmo"

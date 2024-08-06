@@ -25,7 +25,7 @@ public class EmploymentInfoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = ".header-1.content-center")
+    @FindBy(css = "app-employment-container .header-1")
     WebElement txtHeaderPart1;
 
     @FindBy(xpath = "//app-employment-container//div[2]/span")
@@ -297,7 +297,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToBeClickable(btnContinue,50);
+        basicActions.waitForElementToBePresent(btnContinue,90);
+        basicActions.waitForElementToBePresent(txtHeaderPart1,90);
         basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }
@@ -462,6 +463,13 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
         switch (language) {
             case "English":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Income");
+                softAssert.assertEquals(questionsHelpText.getText(), "Income\nOverview\nWe need to know how much you and your family members earn at your job(s).\nEmployment\nDoes this person earn money through a job or by being self-employed?\nCompany Name\nEnter a company name for each job.\nEmployment\nOverview\nWe need to know about the company you work for.\nGross Income\nTell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.\nSeasonal, commission or tipped base employment\nThis question helps us calculate the annual income for customers who don't have the same income every week or month.\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployment\nOverview\nWe need to know how much money you make from self-employment.\nNet Income\nTell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployer Address\nConnect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertAll();
+                break;
+            case "English job":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employment");
                 softAssert.assertEquals(questionsHelpText.getText(), "Does this person earn money through a job or by being self-employed?");

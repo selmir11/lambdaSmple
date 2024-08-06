@@ -11,7 +11,7 @@ Feature: Tests related to the help drawer
     And I click on help icon
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     And I click on help icon
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
@@ -26,7 +26,7 @@ Feature: Tests related to the help drawer
     And I click on help icon button
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     And I click on help icon button
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
@@ -41,11 +41,11 @@ Feature: Tests related to the help drawer
     And I click on help icon
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     And I click on help icon
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
-    Then logout from Admin Portal
+#    Then logout from Admin Portal
 
   @SLCR-27
   Scenario: Validate the verbiage on the help drawer button in Admin Portal
@@ -58,8 +58,8 @@ Feature: Tests related to the help drawer
     And I click on help icon button
     Then I validate the verbiage on help icon in "English"
     And I close the help icon
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     And I click on help icon button
     Then I validate the verbiage on help icon in "Spanish"
     And I close the help icon
-    Then logout from Admin Portal
+#    Then logout from Admin Portal
