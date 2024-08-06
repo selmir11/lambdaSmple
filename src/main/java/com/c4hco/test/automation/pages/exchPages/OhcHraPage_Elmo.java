@@ -714,7 +714,7 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }
