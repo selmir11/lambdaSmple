@@ -1230,7 +1230,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerWhichJobTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Which job is offering health insurance?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Tell us about coverage if you:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Can get health coverage through a job, even if you're not currently enrolled or don't plan to enroll.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Can get health coverage through a job, even if the employer's plan isn't currently in Open Enrollment.");
@@ -1249,7 +1249,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMinimumValueTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Does this health insurance meet the Minimum Value Standard?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Minimum Value Standard:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Minimum Value Standard:\nMost health insurance plans offered by jobs meet the minimum value standard.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "More about the minimum value standard\nA health plan meets the minimum value standard if it's designed to pay at least 60% of the total cost of medical services for a standard population, and if its benefits include substantial coverage of inpatient hospital and physician services.");
@@ -1263,7 +1263,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerMonthlyAmountTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"How much would you pay for the lowest-cost monthly health plan premium at "+SharedData.getPrimaryMember().getEmployerName()+" just for yourself?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Lowest-Cost Premium:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Lowest-Cost Premium:\nHint Text: Only enter the amount you would pay. Don't include any amount paid by your employer.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Learn more about entering premium amounts\nEnter the regular amount the employee would have to pay for their health coverage (the \"premium\") if they enrolled.");
@@ -1277,7 +1277,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerCurrentlyEnrolledTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you currently enrolled in the health insurance offered by "+SharedData.getPrimaryMember().getEmployerName()+"?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Enrollment:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -1287,7 +1287,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerEnd60DaysTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "End in the next 60 days:\nIf this insurance will end soon because:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "the job is ending,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "the company is no longer offering health insurance,");
@@ -1300,7 +1300,7 @@ public class OhiEmployerSponsoredHealthInsurancePage {
     public void verifyHelpDrawerVoluntarilyEndingTextEnglish() {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink,25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
-        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(helpSubHeaderTxt.getText(),"Health insurance offered through a job");
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Voluntarily Ending Health Insurance:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
