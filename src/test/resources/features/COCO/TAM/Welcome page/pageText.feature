@@ -133,10 +133,7 @@ Feature: Page Text-Welcome Page
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click continue button on Congratulations page CoCo
+    Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
 
     And I change the language from header to "Spanish"

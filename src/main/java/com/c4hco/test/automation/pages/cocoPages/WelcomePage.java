@@ -12,7 +12,7 @@ import java.util.List;
 
 public class WelcomePage {
 
-    @FindBy(xpath = "//div[@class='header-1']")
+    @FindBy(css = ".header-1")
     WebElement welcomeToConnectText;
 
     @FindBy(css = ".container .header-2")
@@ -30,7 +30,7 @@ public class WelcomePage {
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
 
-    @FindBy(xpath = "//div[@class='no-plans plans-container']")
+    @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
 
     @FindBy(css = ".plan-member-container .plan-member-first-names")
