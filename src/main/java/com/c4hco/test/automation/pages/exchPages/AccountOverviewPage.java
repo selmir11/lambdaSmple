@@ -57,7 +57,7 @@ public class AccountOverviewPage {
 
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToBePresent(header, 10);
-        basicActions.waitForElementToBeClickable(btnApplyForCurrentYear,40);
+        basicActions.waitForElementToBePresent(btnApplyForCurrentYear,40);
         String applyForYearText = btnApplyForCurrentYear.getText();
         String year = applyForYearText.replace("Apply for ", "");
         SharedData.setPlanYear(year);
