@@ -78,11 +78,7 @@ Feature: Individual adult - End to End Test
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select the Money Order button on the Payment Selection CoCo page
-    Then I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click on Go To Welcome Page Button on whats next coco page
+    Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-159 @EndToEndTest
@@ -157,11 +153,7 @@ Feature: Individual adult - End to End Test
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    And I select the Money Order button on the Payment Selection CoCo page
-    Then I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click on Go To Welcome Page Button on whats next coco page
+    Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-182 @EndToEndTest
@@ -242,7 +234,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "Marriage" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -278,7 +270,6 @@ Feature: Individual adult - End to End Test
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button for all plans to pay the premium CoCo
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page

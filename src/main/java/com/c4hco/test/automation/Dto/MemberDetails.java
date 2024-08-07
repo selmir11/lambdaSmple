@@ -73,8 +73,6 @@ public class MemberDetails {
     String dependentCountTag;
     String prior_subscriber_id;
     Boolean csrEligible=false;
-    String medicalCSRamount;
-    String dentalCSRamount;
 }
 
 
