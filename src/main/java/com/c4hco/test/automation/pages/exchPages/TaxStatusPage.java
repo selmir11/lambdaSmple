@@ -50,6 +50,7 @@ public class TaxStatusPage {
     @FindBy(id = "selectedDependents3")
     WebElement selectedDependents3;
 
+
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
             case "Yes":
@@ -130,6 +131,8 @@ public class TaxStatusPage {
 
     public void selectSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        basicActions.waitForElementToBePresent(claimAsDependentYesRadioBtn, 20);
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 

@@ -65,6 +65,10 @@ public class DentalPlansResultsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(id = "PlanResults-MonthlyPremium_1")
+    WebElement dentalPremium1;
+
+
     SoftAssert softAssert = new SoftAssert();
 
     public void iGetFirstDentalPlanName() {

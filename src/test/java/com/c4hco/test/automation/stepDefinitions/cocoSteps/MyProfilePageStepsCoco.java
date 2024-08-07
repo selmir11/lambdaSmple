@@ -24,10 +24,22 @@ public class MyProfilePageStepsCoco {
         myProfilePage.clickSaveButtonCoCo();
     }
 
+
     @Then("I click on dropdown Preferred Contact Method")
     public void iClickOnDropdownPreferredContactMethod() {
         myProfilePage.clickSaveButtonCoCo();
     }
 
+    @And("I change the Preferred Contact Method to {string} in CoCo")
+    public void iChangeThePreferredContactMethodTo(String contactPrefrences) {
+        myProfilePage.PreferredContactMethod(contactPrefrences);
+    }
+
+    @And("I change Preferred Language Contact Method to {string} in CoCo")
+    public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
+        myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
+    }
+    @Then("I verify Password Popup text on My profile page CoCo {string}")
+    public void iverifyPasswordPopupTextOnMyProfileCoCoPage(String language)  { myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language); }
 
 }

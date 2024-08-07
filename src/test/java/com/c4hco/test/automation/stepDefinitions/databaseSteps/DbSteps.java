@@ -46,12 +46,13 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    public void iVerifyTheAccountHolderNameInBOBDB() {
       dbValidations.validateAccountHolderNameFromBOB();
    }
-   @And("I validate Individual policy table queries")
+   @And("I validate Individual member policy table queries")
    public void ivalidateIndPolicyTableQueries(){
       policyTableValidations.validateEnPolicyTableDetails();
       policyTableValidations.validateEnMemberCoverageFinancialAh();
       policyTableValidations.validateEnPolicyMemberCoverageAh();
       policyTableValidations.validateEnPolicyFinancialAh();
+      policyTableValidations.validateEnPolicyMemberAh();
    }
 
 }

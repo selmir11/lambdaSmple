@@ -8,8 +8,8 @@ Feature: Tests the Authorize Assister Organization button is absent on the anony
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I click on Get Assistance in the "Login Portal" Header
-    And I click on Find Expert Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
     Then I verify Find Expert Help header Text in "English"
     Then I verify Find Expert Help page Text in "English"

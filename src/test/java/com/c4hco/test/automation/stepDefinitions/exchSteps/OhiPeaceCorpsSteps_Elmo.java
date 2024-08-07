@@ -38,8 +38,8 @@ public class OhiPeaceCorpsSteps_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    @And("I verify the header for Primary Member on the Peace Corps page")
-    public void iVerifyTextOnOtherHealthInsurancePage(){ohiPeaceCorpsPage_Elmo.verifyHeadersPeaceCorpsOhiPageEnglish();}
+    @And("I verify the header for Primary Member on the Peace Corps page in {string}")
+    public void iVerifyTextOnOtherHealthInsurancePage(String language){ohiPeaceCorpsPage_Elmo.verifyHeadersPeaceCorpsOhiPage(language);}
 
     @And("I verify Currently Enrolled is {string} on the Peace Corps page")
     public void iVerifyCurrentlyEnrolledOption(String currentlyEnrolled){ohiPeaceCorpsPage_Elmo.verifyCurrentlyEnrolledOption(currentlyEnrolled);}

@@ -161,10 +161,30 @@ public class OhcHraPage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+    public void verifyHeadersHraOhcPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersHraOhcPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersHraOhcPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersHraOhcPageEnglish(){
         basicActions.waitForElementToBePresent(ohcHeader,15);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(),"Health Reimbursement Arrangement (HRA) offered through an employer");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersHraOhcPageSpanish(){
+        basicActions.waitForElementToBePresent(ohcHeader,15);
+        softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(ohcHraHeader.getText(),"Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
         softAssert.assertAll();
     }
 
@@ -694,7 +714,7 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }

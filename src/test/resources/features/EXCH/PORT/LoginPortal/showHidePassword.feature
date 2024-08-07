@@ -12,14 +12,14 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "login page" Page
 
     And I click on show button in "login page"
-    And I change the language from header to "Spanish Login"
+    And I change the language from header to "Spanish"
 
     Then I validate Show button is displayed and enabled in "login portal Spanish"
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "login page" Page
     And I click on show button in "login page"
     Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "login page" Page
 
-    And I change the language from header to "English Login"
+    And I change the language from header to "English"
     Examples:
       | Portal    | usernameSTG                          | PWQA      | usernameQA                           | PWQA      |
       | login     | soukainatesting+headerstg@gmail.com  | ALaska12! | AutomationUser.bweczfgtTest@test.com | ALaska12! |
@@ -42,7 +42,7 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
     And I click on show button in "create account"
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
 
     Then I validate Show button is displayed and enabled in "create account Spanish"
     Then I validate when show password is displayed as "Show" the code is encrypted in "create account" Page
@@ -62,7 +62,7 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
     And I click on show button in "create account"
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
 
     Then I validate Show button is displayed and enabled in "create account Spanish"
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page
@@ -79,9 +79,9 @@ Feature:Implement 'show/hide password' on password field in login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create forgot "password"
-    Then I verify enter your password text is displayed
+    Then I verify enter your password text is displayed in "English"
     And I click submit button
-    Then I verify error username required text is displayed
+    Then I verify error username required text is displayed in "English"
     And I enter valid email "testing.soukaina+random@outlook.com"
     And I click submit button
     #TODO: I am using this function below until we fix the issue with receiving notices in outlook
@@ -93,7 +93,7 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
     And I click on show button in "create account"
-    And I change the language from header to "Spanish Login"
+    And I change the language from header to "Spanish"
 
     Then I validate Show button is displayed and enabled in "create account Spanish"
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page

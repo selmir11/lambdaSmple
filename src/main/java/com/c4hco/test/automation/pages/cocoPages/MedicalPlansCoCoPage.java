@@ -37,13 +37,13 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
-    @FindBy(id="mat-mdc-checkbox-10-input")
+    @FindBy(id="PlanResults-PlanCompareCheckbox_1")
     WebElement selectFirstComparebox;
 
-    @FindBy (id = "mat-mdc-checkbox-11-input")
+    @FindBy (id = "PlanResults-PlanCompareCheckbox_2")
     WebElement selectSecondComparebox;
 
-    @FindBy (id = "mat-mdc-checkbox-12-input")
+    @FindBy (id = "PlanResults-PlanCompareCheckbox_3")
     WebElement selectSThirdComparebox;
 
     @FindBy(id = "PlanResults-ComparePlans")

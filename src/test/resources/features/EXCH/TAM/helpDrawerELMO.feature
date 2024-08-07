@@ -54,6 +54,7 @@ Feature: Tests related to the help drawer on ELMO pages
     And I click Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
     And I change the language from header to "Spanish"
+    And I select "General help" icon on the Employment Info Page
     Then I validate help drawer header verbiage in "Spanish"
     Then I validate general help drawer body verbiage in "Spanish"
     Then I validate help drawer footer verbiage in "Spanish"
@@ -62,10 +63,12 @@ Feature: Tests related to the help drawer on ELMO pages
     And I select "Do you have job" icon on the Employment Info Page
     Then I validate job question verbiage in "Spanish"
     And I change the language from header to "English"
+    And I select "General help" icon on the Employment Info Page
     Then I validate job question verbiage in "English"
     And I select "Is it self-employment" icon on the Employment Info Page
-    Then I validate job question verbiage in "English"
+    Then I validate job question verbiage in "English job"
     And I change the language from header to "Spanish"
+    And I select "Is it self-employment" icon on the Employment Info Page
     Then I validate job question verbiage in "Spanish"
 
   @SLER-61
@@ -79,14 +82,17 @@ Feature: Tests related to the help drawer on ELMO pages
     And I select "Company Name" icon on the Employment Info Page
     Then I validate Company verbiage in "English"
     And I change the language from header to "Spanish"
+    And I select "Company Name" icon on the Employment Info Page
     Then I validate Company verbiage in "Spanish"
     And I select "Net Income" icon on the Employment Info Page
     Then I validate Net Income verbiage in "Spanish"
     And I change the language from header to "English"
+    And I select "Net Income" icon on the Employment Info Page
     Then I validate Net Income verbiage in "English"
     And I select "Income Change" icon on the Employment Info Page
     Then I validate Income Change verbiage in "English"
     And I change the language from header to "Spanish"
+    And I select "Income Change" icon on the Employment Info Page
     Then I validate Income Change verbiage in "Spanish"
 
   @SLER-156
