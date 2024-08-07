@@ -67,11 +67,10 @@ public class DbDataProvider_Exch {
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
     }
-    public String getMedCSRAmt(){
-        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberMedFinancialRecords());
-    }
-    public String getMedPremiumAmt(){
-        return postgresHandler.getResultFor("plan_premium_amt", exchDbQueries.getMemberMedFinancialRecords());
+
+    public Map<String,String> getSubscriberCSRDataFromDb(){
+        Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
+        return csrAmount;
     }
     public void setDataFromDb(String planName){String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
@@ -81,11 +80,12 @@ public class DbDataProvider_Exch {
      String[] issuerNameId = getIssuerNameId(hiosIssuerId);
      String issuerName = issuerNameId[0];
      String issuerId = issuerNameId[1];
+     Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmtMed =csrMap.get("1");
+        String csrAmtDen =csrMap.get("2");
      String exchPersonId = getExchPersonId();
      String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
-     String csrAmtMed = getMedCSRAmt();
-     String planPremiumAmtMed = getMedPremiumAmt();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -98,7 +98,7 @@ public class DbDataProvider_Exch {
         dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
         dbData.setCsrAmtMed(csrAmtMed);
-        dbData.setPremiumAmtMed(planPremiumAmtMed);
+        dbData.setCsrAmtDen(csrAmtDen);
         SharedData.setDbData(dbData);
     }
 
