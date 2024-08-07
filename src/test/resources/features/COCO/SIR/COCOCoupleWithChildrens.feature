@@ -135,7 +135,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "Marriage" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -176,7 +176,5 @@ Feature: CoupleWithChildrens - End to End Test
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button for all plans to pay the premium CoCo
-    And I select continue button on the Initial Payment CoCo page
-    And I click on Go To Welcome Page Button on whats next coco page
+    Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"

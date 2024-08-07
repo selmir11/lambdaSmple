@@ -53,7 +53,7 @@ Then I validate I am on the "CoCo Family Overview" page
 And I select continue on the Family Overview page
 
 Then I validate I am on the "CoCo life change event" page
-And I select "MoveToCO" life change event
+And I select "Marriage" life change event
 And I select continue on the LCE page
 
 Then I validate I am on the "CoCo Declarations and Signature" page
@@ -124,7 +124,7 @@ And I click on Sign Out in the Header for "Payment"
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "Marriage" life change event
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -142,7 +142,7 @@ And I click on Sign Out in the Header for "Payment"
 
     Then I validate I am on the "Medical Plan Compare" page
     And I verify the Medical Compare page In-Network headers and subheaders
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 
   @COCOFilterMedicalResults_CompareOutNetworkHeaders @SLCR-93
@@ -211,7 +211,7 @@ And I click on Sign Out in the Header for "Payment"
 
     Then I validate I am on the "Medical Plan Compare" page
     And I verify the Medical Compare page Out-Network headers and subheaders
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
 
 
   @COCOFilterMedicalResults_ComparePlansDeselect @SLCR-131
@@ -284,4 +284,4 @@ And I click on Sign Out in the Header for "Payment"
     And I deselect the third plan and validate on the Medical Plan Compare page
     And I verify that no plans exist on the Medical Plan Compare page
 
-    And I click on Sign Out in the Header for "Payment"
+    And I click on Sign Out in the Header for "Portal"
