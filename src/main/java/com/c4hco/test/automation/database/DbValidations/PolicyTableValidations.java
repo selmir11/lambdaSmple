@@ -91,16 +91,15 @@ public class PolicyTableValidations {
         softAssert.assertEquals(enPolicyFinAhEntities.get(1).getFinancial_period_start_date(),"2024-01-01", "Medical Policy financial start date does not match");
         softAssert.assertEquals(enPolicyFinAhEntities.get(1).getFinancial_period_end_date(),"2024-12-31", "Medical Policy financial end date does not match");
         softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_plan_premium_amt(), SharedData.getPrimaryMember().getMedicalPremiumAmt(), "Medical Policy total plan premium amount does not match");
-        if(!subscriber.getFinancialHelp()) {
-            softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_premium_reduction_amt(), SharedData.getPrimaryMember().getMedicalAptcAmt() + ".00", "Medical Policy with out FA -total premium reduction amount does not match");
-            softAssert.assertEquals(String.valueOf(enPolicyFinAhEntities.get(1).getPremium_reduction_type()), "null","Medical Policy premium reduction type does not match");
-        }else{
-            softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_premium_reduction_amt(), SharedData.getPrimaryMember().getMedicalAptcAmt(), "Medical Policy with FA total premium reduction amount does not match");
-            softAssert.assertEquals(String.valueOf(enPolicyFinAhEntities.get(1).getPremium_reduction_type()), "APTC","Medical Policy premium reduction type does not match");
-        }
-        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_responsible_amt(),  SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"Medical Policy total responsible amount does not match");
 
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_premium_reduction_amt(),
+               subscriber.getFinancialHelp()? enPolicyFinAhEntities.get(1).getTotal_premium_reduction_amt() : SharedData.getPrimaryMember().getMedicalAptcAmt()+".00",
+               "Medical APTC amount does not match");
+        softAssert.assertEquals(    String.valueOf(enPolicyFinAhEntities.get(1).getPremium_reduction_type()),
+               subscriber.getFinancialHelp() ? "APTC" : "null",
+               " Medical Policy premium reduction type does not match");
 
+        softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_responsible_amt(),  SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"--Medical Policy total responsible amount does not match");
         softAssert.assertEquals(enPolicyFinAhEntities.get(1).getTotal_csr_amt(), "0.00","Medical Policy total CSR amount does not match");
         softAssert.assertEquals(enPolicyFinAhEntities.get(1).getCsr_level(), "01", "Medical Policy CSR level does not match");
         softAssert.assertAll();
