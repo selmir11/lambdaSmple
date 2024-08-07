@@ -1,4 +1,4 @@
-@COCOMedicalResults
+@COCOMedicalResults @test
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
@@ -73,7 +73,7 @@ Then I validate I am on the "Medical Plan Compare" page
 And I select the Go Back button on the Medical Plan Compare page
 
 Then I validate I am on the "Medical Plan Results" page
-And I click on Sign Out in the Header for "Payment"
+And I click on Sign Out in the Header for "Portal"
 
 
   @COCOFilterMedicalResults_CompareInNetworkHeaders @SLCR-90
