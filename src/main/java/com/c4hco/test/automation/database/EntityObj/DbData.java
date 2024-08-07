@@ -7,6 +7,7 @@ public class DbData {
     String fipcode;
     String baseId;
     String ratingAreaName;
+    String ratingAreaId;
     String hiosIssuerId;
     String issuerName;
     String issuerId;
