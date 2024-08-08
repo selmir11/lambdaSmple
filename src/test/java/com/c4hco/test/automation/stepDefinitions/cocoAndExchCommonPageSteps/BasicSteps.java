@@ -95,6 +95,9 @@ public class BasicSteps {
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
+            case "Medical Plan Detail":
+                pageUrl = "medicalPlanCarrierDetails";
+                break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
                 break;
