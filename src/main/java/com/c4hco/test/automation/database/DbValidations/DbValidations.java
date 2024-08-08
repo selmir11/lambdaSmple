@@ -113,17 +113,17 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate,"Medical plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
+        softAssert.assertEquals(dbData.getPremiumAmtMed(), ob834Entity.getPremium_amount(), "Plan premium amount does not match for subscriber.");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateResidentialAddress(subscriber, ob834Entity, dbData);
         validateMedicalAPTCAmount(ob834Entity,dbData);
-        validateMedicalPremiumAmt(ob834Entity,dbData);
         softAssert.assertAll();
     }
 
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
+        softAssert.assertEquals(dbData.getPremiumAmtDen(), ob834Entity.getPremium_amount(), "Plan premium amount does not match for subscriber.");
         validateDentalAPTCAmount(ob834Entity,dbData);
-        validateDentalPremiumAmt(ob834Entity,dbData);
     }
 
     public void validateMedDenRec_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
@@ -148,13 +148,6 @@ public class DbValidations {
         // validateRelCode(subscriber, ob834Entity);   //WIP
         validateMemberCountDetails(ob834Entity);
         ValidatePriorSubscriber(subscriber, ob834Entity);
-    }
-
-    public void validateMedicalPremiumAmt(Ob834DetailsEntity ob834Entity,DbData dbData) {
-        softAssert.assertEquals(dbData.getPremiumAmtMed(), ob834Entity.getPremium_amount(), "Plan premium amount does not match for subscriber.");
-    }
-    public void validateDentalPremiumAmt(Ob834DetailsEntity ob834Entity,DbData dbData) {
-        softAssert.assertEquals(dbData.getPremiumAmtDen(), ob834Entity.getPremium_amount(), "Plan premium amount does not match for subscriber.");
     }
 
     public void validateSponsorId(Ob834DetailsEntity ob834Entity){

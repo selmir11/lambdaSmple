@@ -75,7 +75,7 @@ public class DbDataProvider_Exch {
         return csrAmount;
     }
     public Map<String,String> getPlanPremiumDataFromDb(){
-        Map<String,String> premiumAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","plan_premium_amt", exchDbQueries.getPremiumRecords());
+        Map<String,String> premiumAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","plan_premium_amt", exchDbQueries.getPremiumRecordsForMembers());
         return premiumAmount;
     }
 

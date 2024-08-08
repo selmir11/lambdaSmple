@@ -164,7 +164,7 @@ public class DbQueries_Exch {
                 "where application_id = '"+applicationId+"'";
     }
 
-    public String getPremiumRecords(){
+    public String getPremiumRecordsForMembers(){
         return "SELECT mcf.plan_premium_amt, p.coverage_type\n" +
                 "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
                 "JOIN "+dbName+".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
