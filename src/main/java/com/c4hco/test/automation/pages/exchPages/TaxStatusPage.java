@@ -50,6 +50,15 @@ public class TaxStatusPage {
     @FindBy(id = "selectedDependents3")
     WebElement selectedDependents3;
 
+    @FindBy(id = "selectedDependents4")
+    WebElement selectedDependents4;
+
+    @FindBy(id = "selectedDependents5")
+    WebElement selectedDependents5;
+
+    @FindBy(id = "selectedDependents6")
+    WebElement selectedDependents6;
+
 
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
@@ -128,6 +137,20 @@ public class TaxStatusPage {
         basicActions.waitForElementToBePresent(selectedDependents3, 20);
         selectedDependents3.click();
     }
+    public void iSelectDependent4(){
+        basicActions.waitForElementToBePresent(selectedDependents4, 20);
+        selectedDependents4.click();
+    }
+
+    public void iSelectDependent5(){
+        basicActions.waitForElementToBePresent(selectedDependents5, 20);
+        selectedDependents5.click();
+    }
+    public void iSelectDependent6(){
+        basicActions.waitForElementToBePresent(selectedDependents6, 20);
+        selectedDependents6.click();
+    }
+
 
     public void selectSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
