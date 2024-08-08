@@ -125,7 +125,7 @@ Feature: Regression Tests that require Seed 1
       | 8  | SEP REASON         | ADMIN_LCE |
     And I verify the policy data quality check
     And I verify the data from book of business queue table
-    And I validate Individual policy table queries
+    And I validate Individual member policy table queries
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN

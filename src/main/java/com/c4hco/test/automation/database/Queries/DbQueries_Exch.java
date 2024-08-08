@@ -60,6 +60,10 @@ public class DbQueries_Exch {
         return "select name from "+dbName+".en_rating_area "+
                 "where fips = '"+fipcode+"'";
     }
+    public String getRatingAreaId(String fipcode){
+        return "select rating_area_id from "+dbName+".en_rating_area "+
+                "where fips = '"+fipcode+"'";
+    }
 
     public String getFipcode(String zipCode){
         return "select fip_code from "+dbName+".es_zip_codes " +

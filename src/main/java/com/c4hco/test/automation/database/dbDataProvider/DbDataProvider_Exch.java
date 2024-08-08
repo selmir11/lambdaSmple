@@ -50,7 +50,9 @@ public class DbDataProvider_Exch {
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
 
     }
-
+    public String getRatingAreaId(String fipcode){
+        return postgresHandler.getResultFor("rating_area_id", exchDbQueries.getRatingAreaId(fipcode));
+    }
     public String[] getIssuerNameId(String hiosIssuerId){
         return postgresHandler.getResultForTwoColumnValues("name", "tin_num", exchDbQueries.en_issuer(hiosIssuerId));
     }
@@ -74,6 +76,7 @@ public class DbDataProvider_Exch {
     }
     public void setDataFromDb(String planName){String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
+     String ratingAreaId = getRatingAreaId(fipcode);
      String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
      String baseId = baseIdAndHiosIssuerId[0];
      String hiosIssuerId = baseIdAndHiosIssuerId[1];
@@ -90,6 +93,7 @@ public class DbDataProvider_Exch {
 
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
+        dbData.setRatingAreaId(ratingAreaId);
         dbData.setBaseId(baseId);
         dbData.setHiosIssuerId(hiosIssuerId);
         dbData.setIssuerName(issuerName);
