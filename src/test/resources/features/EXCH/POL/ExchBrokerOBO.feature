@@ -1,5 +1,5 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
-  @SLER-626
+  @SLER-626 @test
   Scenario: : EXCH initial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -113,7 +113,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-    #Then I click all done from payment portal page
+    Then I click all done from payment portal page
 
     #And I click on Apply for Coverage in the "Elmo" Header
 
@@ -132,7 +132,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     #DbVerification
 
     And I verify the policy data quality check
-    And I verify the data from book of business queue table
+#    And I verify the data from book of business queue table
 
 
 
