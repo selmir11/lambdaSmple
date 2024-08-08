@@ -55,4 +55,7 @@ public class AddAddressPageSteps {
     @Then("I click continue on the Add Address page")
     public void clickContinue(){addAddressPage.saveContinue();}
 
+    @Then("I add the tribe details")
+    public void Addtribedetails(){addAddressPage.Addtribedetails();}
+
 }
