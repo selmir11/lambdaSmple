@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.DeductionsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class DeductionsPageSteps {
@@ -19,6 +20,9 @@ public class DeductionsPageSteps {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
+
+    @And("I verify the header for Primary Member on the Deductions page in {string}")
+    public void iVerifyTextOnDeductionsInsurancePage(String language){deductionsPage.verifyHeadersDeductionsPage(language);}
 
     @Then("I click {string} as deduction option only")
     public void iSelectAddtlDeductionOptionOnly(String addtlDeductionOption){

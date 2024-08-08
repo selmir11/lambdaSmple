@@ -109,6 +109,9 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is for "Who helps you Page" Sign out only.
     WebElement signOutLinkPortal;
 
+    @FindBy(xpath = "//*[@id ='sign-out']")
+    WebElement  signOutDentalPlanResults;
+
     @FindBy(xpath = "//div[@class ='p-2 ms-2']") // this is the only one that works without getting a stale element issue
     WebElement signOutLinkWhoHelpsPage;
 
@@ -327,6 +330,7 @@ public class HeaderAndFooterPage {
                 userNameLink.click();
                 break;
             case "Exch":
+                basicActions.waitForElementToBeClickable(languageDrp, 90);
                 basicActions.waitForElementToBeClickable(userNameLinkExch, 90);
                 userNameLinkExch.click();
                 break;
@@ -353,6 +357,18 @@ public class HeaderAndFooterPage {
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
     }
+
+    public void headerLanguage(String language){
+        basicActions.waitForElementListToBePresent(centerHeaderLink,50);
+        basicActions.waitForElementToBePresent(languageDrp,50);
+        for (WebElement headerLink : centerHeaderLink) {
+            if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
+                changeLanguage(language);
+                break;
+            }
+        }
+    }
+
     public void changeLanguage(String language) {
 //        "English" and "Spanish" for CoCo and Exch Elmo pages
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
@@ -433,9 +449,14 @@ public class HeaderAndFooterPage {
                 basicActions.click(signOutLinkWhoHelpsPage);
                 break;
             case "Portal":
-                basicActions.waitForElementToBePresent(signOutLinkPortal, 10);
-                basicActions.waitForElementToBeClickable(signOutLinkPortal,10);
+                basicActions.waitForElementToBePresent(signOutLinkPortal, 20);
+                basicActions.scrollToElement(signOutLinkPortal);
                 basicActions.click(signOutLinkPortal);
+                break;
+            case "DentalPlanResults":
+                basicActions.waitForElementToBePresent(signOutDentalPlanResults, 20);
+                basicActions.scrollToElement(signOutDentalPlanResults);
+                basicActions.click(signOutDentalPlanResults);
                 break;
             case "Account Overview":
                 basicActions.waitForElementToBeClickable(signOutOverview,10);
@@ -743,6 +764,7 @@ public class HeaderAndFooterPage {
             case "Individual Portal":
                 basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
+                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
                 privacyPolicyLink.click();
                 break;
@@ -788,26 +810,32 @@ public class HeaderAndFooterPage {
         switch (MediaIcon){
             case "Facebook":
                 basicActions.waitForElementToBeClickable(FacebookIcon, 10);
+                basicActions.scrollToElement(FacebookIcon);
                 FacebookIcon.click();
                 break;
             case "X":
                 basicActions.waitForElementToBeClickable(xIcon, 10);
+                basicActions.scrollToElement(xIcon);
                 xIcon.click();
                 break;
             case "YouTube":
                 basicActions.waitForElementToBeClickable(YouTubeIcon, 10);
+                basicActions.scrollToElement(YouTubeIcon);
                 YouTubeIcon.click();
                 break;
             case "Instagram":
                 basicActions.waitForElementToBeClickable(InstagramIcon, 10);
+                basicActions.scrollToElement(InstagramIcon);
                 InstagramIcon.click();
                 break;
             case "LinkedIn":
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
+                basicActions.scrollToElement(LinkedInIcon);
                 LinkedInIcon.click();
                 break;
             case "Threads":
                 basicActions.waitForElementToBeClickable(ThreadsIcon, 10);
+                basicActions.scrollToElement(ThreadsIcon);
                 ThreadsIcon.click();
                 break;
             default:
@@ -870,11 +898,11 @@ public class HeaderAndFooterPage {
     public void verifyTextInLoginPortalFooterSpanish(){
         basicActions.waitForElementToBePresent(privacyPolicyLink,10);
         basicActions.waitForElementToBeClickable(privacyPolicyLink,10);
-        softAssert.assertEquals(privacyPolicyLink.getText(), "Poliza de privacidad");
+        softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
         softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
         softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
-        softAssert.assertEquals(followUsText.getText(), "Siguenos en:");
+        softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
         softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
         softAssert.assertEquals(xIcon.getAttribute("title"), "X");
         softAssert.assertEquals(YouTubeIcon.getAttribute("title"), "Youtube");

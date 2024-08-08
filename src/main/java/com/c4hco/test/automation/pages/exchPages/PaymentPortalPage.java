@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,18 +17,18 @@ public class PaymentPortalPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id="SOL-PayNow-AllDone-Indv")
-    WebElement allDoneBtn;
-
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    @FindBy(css = "#loader-icon .fa-spinner")
     WebElement spinner;
+
+    @FindBy(css = "#SOL-PayNow-AllDone-Indv")
+    WebElement allDone;
 
 
     public void clickAllDone(){
-        basicActions.waitForElementToDisappear(spinner, 15);
-        basicActions.waitForElementToBePresent(allDoneBtn, 30);
-        basicActions.scrollToElement(allDoneBtn);
-        allDoneBtn.click();
+        basicActions.waitForElementToDisappear(spinner, 20);;
+        basicActions.waitForElementToBePresent( allDone,30 );
+        basicActions.scrollToElement( allDone );
+        allDone.click();
     }
 }
 

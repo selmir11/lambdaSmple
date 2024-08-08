@@ -48,8 +48,8 @@ public class IncomeOptOutPage {
     }
 
     public void chooseApply(){
-        basicActions.waitForElementToBePresent(headerText, 15);
-        basicActions.waitForElementToBeClickable(apply, 15);
+        basicActions.waitForElementToBePresent(headerText, 50);
+        basicActions.waitForElementToBeClickable(apply, 50);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setFinancialHelp(true);
         apply.click();

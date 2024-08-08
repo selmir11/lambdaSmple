@@ -33,8 +33,8 @@ public class MedicalPlanResultsPage {
     WebElement firstMedicalPlanName;
 
 
-    @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
-    public WebElement continueBtn;// locators included for both QA and STG
+    @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue']")
+    public WebElement continueBtn;
 
     @FindBy(id = "PlanResults-ComparePlans")
     WebElement clickCompare;
@@ -51,25 +51,25 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
     List<WebElement> comparePlanLinks;
 
-    @FindBy(id = "SHP-PlanResults-InsuranceCompany")
+    @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
-    @FindBy(id = "SHP-PlanResults-ResetFilters")
+    @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "SHP-PlanResults-MetalTier")
+    @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
 
-    @FindBy(id = "SHP-PlanResults-HSAFilter")
+    @FindBy(id = "PlanResults-HSAFilter")
     WebElement hsaDropdown;
 
-    @FindBy(xpath = "//label[@for='SHP-PlanResults-HSAFilter-input']")
+    @FindBy(id = "PlanResults-HSAFilter-input")
     WebElement hsaOption;
 
-    @FindBy(id = "SHP-PlanResults-CoOptionPlans")
+    @FindBy(id = "PlanResults-CoOptionPlans")
     WebElement coloradoOptionDropdown;
 
-    @FindBy(css = ".mdc-checkbox #SHP-PlanResults-CoOptionPlans-input")
+    @FindBy(css = ".mdc-checkbox #PlanResults-CoOptionPlans-input")
     WebElement coloradoOptionSelection;
 
     @FindBy(css = ".c4-type-header-sm")
@@ -78,26 +78,13 @@ public class MedicalPlanResultsPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
-    @FindBy(xpath = "//span[@id='PlanResults-PremAfterSubsidy_1']")
-    WebElement planResultsAPTC;
-
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
-    public void validateAPTC(String planResultsAPTCredit){
-        basicActions.waitForElementToBePresent(planResultsAPTC, 30);
-        softAssert.assertEquals(planResultsAPTC.getText(),planResultsAPTCredit);
-    }
-    public void validateNoAPTC(String noAPTCCreditAmt) {
-        softAssert.assertFalse(basicActions.waitForElementPresence(planResultsAPTC, 20 ) );
-        softAssert.assertAll();
-
-    }
-
-    public void selectfromProviderList(String Selecting) {
+     public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
 
@@ -119,7 +106,9 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickGoBack(){
-        basicActions.waitForElementToBeClickableWithRetries( btnGoBack,30 );
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( btnGoBack,30 );
+        basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
     }
 
@@ -140,31 +129,35 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 30);
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,30 );
         insuranceCompanyDropdown.click();
 
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToBeClickable(metalTierDropdown, 30);
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent( metalTierDropdown,30 );
         metalTierDropdown.click();
 
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToBeClickable(hsaDropdown, 30);
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent(hsaDropdown, 30);
         hsaDropdown.click();
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToBePresent(hsaOption,30);
-        basicActions.waitForElementToBeClickable(hsaOption, 100);
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent(hsaOption, 100);
         hsaOption.click();
 
     }
 
     public void clickColoradoOptionDropdown() {
-        basicActions.waitForElementToBeClickable(coloradoOptionDropdown, 30);
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent(coloradoOptionDropdown, 30);
         coloradoOptionDropdown.click();
     }
 

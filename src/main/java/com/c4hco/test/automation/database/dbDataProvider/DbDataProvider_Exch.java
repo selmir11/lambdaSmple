@@ -13,6 +13,10 @@ public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
+    EnPolicyMemberAhHandler enPolicyMemberAhHandler = new EnPolicyMemberAhHandler();
+    EnPolicyFinancialAhHandler enPolicyFinancialAhHandler = new EnPolicyFinancialAhHandler();
+    EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
+    EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -46,7 +50,9 @@ public class DbDataProvider_Exch {
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
 
     }
-
+    public String getRatingAreaId(String fipcode){
+        return postgresHandler.getResultFor("rating_area_id", exchDbQueries.getRatingAreaId(fipcode));
+    }
     public String[] getIssuerNameId(String hiosIssuerId){
         return postgresHandler.getResultForTwoColumnValues("name", "tin_num", exchDbQueries.en_issuer(hiosIssuerId));
     }
@@ -63,29 +69,31 @@ public class DbDataProvider_Exch {
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
     }
-    public String getMedCSRAmt(){
-        return postgresHandler.getResultFor("csr_amt", exchDbQueries.getMemberMedFinancialRecords());
-    }
-    public String getMedPremiumAmt(){
-        return postgresHandler.getResultFor("plan_premium_amt", exchDbQueries.getMemberMedFinancialRecords());
+
+    public Map<String,String> getSubscriberCSRDataFromDb(){
+        Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
+        return csrAmount;
     }
     public void setDataFromDb(String planName){String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
+     String ratingAreaId = getRatingAreaId(fipcode);
      String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
      String baseId = baseIdAndHiosIssuerId[0];
      String hiosIssuerId = baseIdAndHiosIssuerId[1];
      String[] issuerNameId = getIssuerNameId(hiosIssuerId);
      String issuerName = issuerNameId[0];
      String issuerId = issuerNameId[1];
+     Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmtMed =csrMap.get("1");
+        String csrAmtDen =csrMap.get("2");
      String exchPersonId = getExchPersonId();
      String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
-     String csrAmtMed = getMedCSRAmt();
-     String planPremiumAmtMed = getMedPremiumAmt();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
+        dbData.setRatingAreaId(ratingAreaId);
         dbData.setBaseId(baseId);
         dbData.setHiosIssuerId(hiosIssuerId);
         dbData.setIssuerName(issuerName);
@@ -94,7 +102,7 @@ public class DbDataProvider_Exch {
         dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
         dbData.setCsrAmtMed(csrAmtMed);
-        dbData.setPremiumAmtMed(planPremiumAmtMed);
+        dbData.setCsrAmtDen(csrAmtDen);
         SharedData.setDbData(dbData);
     }
 
@@ -131,5 +139,18 @@ public class DbDataProvider_Exch {
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
+    }
+    public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
+        return enMemberCoverageFinancialAhHandler.getEnMemberCoverageFinAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
+    }
+
+    public List<EnPolicyMemberCoverageAhEntity> getEnPol_Mem_Cov_Ah_details(){
+        return enPolicyMemberCoverageAhHandler.getEnMemberCoverageAhTableDetails(exchDbQueries.enPolicy_Mem_CoverageAh());
+    }
+    public List<EnPolicyFinancialAhEntity> getEnPol_fin_ah_details(){
+        return enPolicyFinancialAhHandler.getEnPolicyFinancialAhTableDetails(exchDbQueries.enPolicyFinancialAh());
+    }
+    public List<EnPolicyMemberAhEntity> getEnPol_mem_ah_details(){
+        return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
     }
 }

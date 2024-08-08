@@ -494,26 +494,18 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
 
-        if (Name.contains("Primary")){
-            RelationshipToPrimary(Relation);
-        } else if (Name.contains("Spouse")){
-            RelationshipToSpouse(Relation);
-        } else if (Name.contains("Daughter")){
-            RelationshipToDauhter(Relation);
-        } else if (Name.contains("Son")){
-            RelationshipToSon(Relation);
-        }
-        else {
             try {
                 WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
+                basicActions.waitForElementToBeClickableWithRetries(element,10);
                 // Perform actions on the element
                 Select dropdown = new Select(element);
                 dropdown.selectByVisibleText(Relation);
+                softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
+                softAssert.assertAll();
             } catch (NoSuchElementException e) {
                 System.out.println("Element not found: " + e.getMessage());
                 // Handle the exception as needed
             }
-        }
 
     }
 }

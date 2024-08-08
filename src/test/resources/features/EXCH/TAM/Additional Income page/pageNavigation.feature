@@ -75,7 +75,8 @@ Feature: Page Navigation-Additional Income Page
     And I verify User name Link is not displayed in the "Exch" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
-    Then I validate I am on the "My Account Overview" page
+    Then I validate I am on the "Find Expert Help" page
 
+    And I click on Sign Out in the Header for "WhoHelpsYouPage"
     And I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page

@@ -60,6 +60,10 @@ public class DbQueries_Exch {
         return "select name from "+dbName+".en_rating_area "+
                 "where fips = '"+fipcode+"'";
     }
+    public String getRatingAreaId(String fipcode){
+        return "select rating_area_id from "+dbName+".en_rating_area "+
+                "where fips = '"+fipcode+"'";
+    }
 
     public String getFipcode(String zipCode){
         return "select fip_code from "+dbName+".es_zip_codes " +
@@ -99,6 +103,15 @@ public class DbQueries_Exch {
                 "WHERE p.account_id = '"+acctId+"'"+ " and coverage_type=1";
     }
 
+    public String getCSRRecords(){
+        return "SELECT mcf.csr_amt, p.coverage_type\n" +
+                "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
+                "JOIN "+dbName+".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
+                "JOIN "+dbName+".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
+                "JOIN "+dbName+".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
+                "WHERE p.account_id = '"+acctId+"'";
+    }
+
     public String getPolicyDqCheck(){
         return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId;
     }
@@ -129,14 +142,25 @@ public class DbQueries_Exch {
     }
 
     public String enMem_Coverage_FinancialAh(){
-        return "select emcfh.member_financial_start_date, emcfh.member_financial_end_date, emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.responsible_amt, emcfh.csr_amt, emcfh.premium_reduction_type, emcfh.csr_level\n"+
-        "from "+dbName+".en_member_coverage_financial_ah emcfh\n"+
+        return "select emcfh.member_coverage_financial_ah_id, emcfh.policy_member_coverage_ah_id, emcfh.member_coverage_financial_id, emcfh.policy_member_coverage_id, \n" +
+                "emcfh.submission_id, emcfh.member_financial_start_date, emcfh.member_financial_end_date, emcfh.plan_premium_amt, emcfh.premium_reduction_amt, \n" +
+                "emcfh.responsible_amt, emcfh.csr_amt, emcfh.slcsp_amt, emcfh.premium_reduction_type, emcfh.csr_level \n"+
+                "from "+dbName+".en_member_coverage_financial_ah emcfh \n"+
                 "where application_id = '"+ applicationId+"'";
     }
 
-    public String enPolicy_Mem_Coverage_FinAh(){
-        return "select epmch.policy_member_coverage_status, epmch.coverage_start_date, epmch.coverage_end_date, epmch.policy_member_coverage_status, epmch.disenrollment_reason\n" +
-                "from "+dbName+".en_policy_member_coverage_ah epmch\n"+
+    public String enPolicy_Mem_CoverageAh(){
+        return "select epmch.policy_member_coverage_ah_id, epmch.policy_member_ah_id, epmch.policy_member_coverage_id, epmch.policy_member_id, epmch.submission_id, epmch.coverage_start_date, \n" +
+                "epmch.coverage_end_date, epmch.policy_member_coverage_status, epmch.lost_insurance_due_to_non_pmt_ind, epmch.disenrollment_reason, epmch.current_ind \n" +
+                "from "+dbName+".en_policy_member_coverage_ah epmch \n"+
                 "where application_id = '"+ applicationId+"'";
+    }
+    public String enPolicyFinancialAh(){
+        return "select * from "+dbName+".en_policy_financial_ah\n " +
+                "where policy_id in (select policy_id from "+dbName+".en_policy where account_id = '"+acctId+"')";
+    }
+    public String enPolicyMemberAh(){
+        return "select * from "+dbName+".en_policy_member_ah \n" +
+                "where application_id = '"+applicationId+"'";
     }
 }

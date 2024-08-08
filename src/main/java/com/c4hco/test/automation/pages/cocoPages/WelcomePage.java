@@ -12,7 +12,7 @@ import java.util.List;
 
 public class WelcomePage {
 
-    @FindBy(xpath = "//div[@class='header-1']")
+    @FindBy(css = ".header-1")
     WebElement welcomeToConnectText;
 
     @FindBy(css = ".container .header-2")
@@ -30,7 +30,7 @@ public class WelcomePage {
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
 
-    @FindBy(xpath = "//div[@class='no-plans plans-container']")
+    @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
 
     @FindBy(css = ".plan-member-container .plan-member-first-names")
@@ -51,7 +51,7 @@ public class WelcomePage {
     @FindBy(css = ".resources-container > div > div.resources-text")
     List <WebElement> viewAdditionalResourcesText;
 
-    @FindBy(css = ".action-link")
+    @FindBy(css = ".action-link, .c4-type-links-lg")
     List<WebElement> actionLinks;
 
     SoftAssert softAssert = new SoftAssert();

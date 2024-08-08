@@ -1,4 +1,3 @@
-@test
 Feature: Test Feature - Exchange
 
   @SLER-1

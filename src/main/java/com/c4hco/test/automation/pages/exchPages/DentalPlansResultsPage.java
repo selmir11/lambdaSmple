@@ -34,11 +34,11 @@ public class DentalPlansResultsPage {
 
     @FindBy(id= "DentalPlanResults-Skip")
     WebElement dentalSkipBtn;
-
-    @FindBy (id ="mat-mdc-checkbox-28-input")
+    
+    @FindBy (id ="PlanResults-PlanCompareCheckbox_1")
     WebElement comparePlanBox1;
 
-    @FindBy (id ="mat-mdc-checkbox-29-input")
+    @FindBy (id ="PlanResults-PlanCompareCheckbox_2")
     WebElement comparePlanBox2;
 
     @FindBy(id ="DentalPlanResults-ComparePlans")
@@ -65,6 +65,10 @@ public class DentalPlansResultsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(id = "PlanResults-MonthlyPremium_1")
+    WebElement dentalPremium1;
+
+
     SoftAssert softAssert = new SoftAssert();
 
     public void iGetFirstDentalPlanName() {
@@ -82,7 +86,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickGoBack(){
-        basicActions.waitForElementToBePresent(btnGoBack,10);
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent(btnGoBack,200);
+        basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
 
     }
@@ -126,7 +132,7 @@ public class DentalPlansResultsPage {
     public void validateDentalPlanText (int index,String dentalPlanText){
         basicActions.waitForElementToBeClickableWithRetries(dropdownCoverageLevel, 10);
         String indexString = String.valueOf(index);
-        String planID = "DentalPlanResults-SelectThisPlan_" + indexString;
+        String planID = "PlanResults-PlanName_" + indexString;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         String expectedText = ePlanID.getText();
         expectedText.equals(dentalPlanText);
