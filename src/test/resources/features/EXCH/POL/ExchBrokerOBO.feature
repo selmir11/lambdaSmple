@@ -1,5 +1,5 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
-  @SLER-626 @test
+  @SLER-626 
   Scenario: : EXCH initial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
