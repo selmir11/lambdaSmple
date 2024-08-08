@@ -26,6 +26,7 @@ public class PolicyTablesEntity
     String financial_period_end_date;
     String total_plan_premium_amt;
     String total_premium_reduction_amt;
+    String total_csr_amt;
     String premium_reduction_type;
     String policy_member_coverage_status;
     String coverage_start_date;
@@ -38,4 +39,13 @@ public class PolicyTablesEntity
     String responsible_amt;
     String policy_submitted_ts;
     String policy_submitted_by;
+    String effectuated_ind_eph;
+    String effectuated_ind_epmh;
+    String premium_reduction_type_emcfh;
+    String premium_reduction_type_epfh;
+    String csr_level_epfh;
+    String csr_level_emcfh;
+    String subscriber_ind;
+    String responsible_adult_ind;
+    String created_by;
 }
