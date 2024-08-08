@@ -78,6 +78,7 @@ public class BasicSteps {
                 pageUrl = "coco/ApplicationResultsPortal/applicationResults";
                 break;
             case "My Profile":
+                basicActions.wait(3000);
                 pageUrl = "UserProfileAdmin/profile";
                 break;
             case "Forgot my password":
