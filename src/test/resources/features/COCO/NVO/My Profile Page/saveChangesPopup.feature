@@ -3,7 +3,7 @@ Feature: My Profile Page Coco
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-183 @WIP
+  @SLCR-183
   Scenario: Save Changes Popup on My Profile page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -13,6 +13,6 @@ Feature: My Profile Page Coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
-    And I click on Make Changes Button in CoCo
-    And I change Preferred Language Contact Method to "Spanish"
-    And I click on Save Button on My profile CoCo
+    Then I verify Password Popup text on My profile page CoCo "English"
+    And I change the language from header to "Spanish"
+    Then I verify Password Popup text on My profile page CoCo "Spanish"

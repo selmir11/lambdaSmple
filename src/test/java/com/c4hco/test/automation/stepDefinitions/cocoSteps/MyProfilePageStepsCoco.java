@@ -39,6 +39,7 @@ public class MyProfilePageStepsCoco {
     public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
         myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
     }
-
+    @Then("I verify Password Popup text on My profile page CoCo {string}")
+    public void iverifyPasswordPopupTextOnMyProfileCoCoPage(String language)  { myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language); }
 
 }
