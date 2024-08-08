@@ -60,6 +60,10 @@ public class DbQueries_Exch {
         return "select name from "+dbName+".en_rating_area "+
                 "where fips = '"+fipcode+"'";
     }
+    public String getRatingAreaId(String fipcode){
+        return "select rating_area_id from "+dbName+".en_rating_area "+
+                "where fips = '"+fipcode+"'";
+    }
 
     public String getFipcode(String zipCode){
         return "select fip_code from "+dbName+".es_zip_codes " +
@@ -97,6 +101,15 @@ public class DbQueries_Exch {
                 "JOIN "+dbName+".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
                 "JOIN "+dbName+".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
                 "WHERE p.account_id = '"+acctId+"'"+ " and coverage_type=1";
+    }
+
+    public String getCSRRecords(){
+        return "SELECT mcf.csr_amt, p.coverage_type\n" +
+                "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
+                "JOIN "+dbName+".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
+                "JOIN "+dbName+".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
+                "JOIN "+dbName+".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
+                "WHERE p.account_id = '"+acctId+"'";
     }
 
     public String getPolicyDqCheck(){

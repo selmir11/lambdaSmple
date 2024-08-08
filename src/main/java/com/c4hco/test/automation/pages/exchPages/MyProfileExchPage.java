@@ -92,6 +92,9 @@ public class MyProfileExchPage {
     @FindBy(css = "a[type='button']")
      WebElement CancelLink;
 
+    @FindBy(css = "div.successful-banner.ng-star-inserted")
+    WebElement SuccessfulBanner;
+
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -136,6 +139,11 @@ public class MyProfileExchPage {
     public void clickPreferredContactDrp() {
         basicActions.waitForElementToBePresent(PreferredContactDrp, 60);
         PreferredContactDrp.click();
+    }
+
+    public void clickCancelButton() {
+        basicActions.waitForElementToBeClickable(CancelLink, 15);
+        CancelLink.click();
     }
 
 //////Validation Method/////////////////////////////////////////////
@@ -447,6 +455,10 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-size"), "16px");
         softAssert.assertEquals(PasswordSaveChanges.getCssValue("color"), "rgba(252, 252, 252, 1)");
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
         softAssert.assertAll();
     }
 
@@ -458,29 +470,33 @@ public class MyProfileExchPage {
         MyProfileButtonExch.get(1).click();
         basicActions.waitForElementToBePresent(PasswordHeader, 10);
         softAssert.assertEquals(PasswordHeader.getText(), "Se requiere contrase\u00F1a");
-        softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-        softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
-        softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordHeader.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(PasswordHeader.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(PasswordContentText.getText(), "Por su seguridad, ingrese su contrase\u00F1a para guardar los cambios.");
         softAssert.assertEquals(PasswordContentText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordContentText.getCssValue("font-size"), "15px");
-        softAssert.assertEquals(PasswordContentText.getCssValue("color"), "rgba(43, 49, 60)");
+        softAssert.assertEquals(PasswordContentText.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(PasswordLabel.getText(), "Contrase\u00F1a");
         softAssert.assertEquals(PasswordLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordLabel.getCssValue("font-size"), "16px");
-        softAssert.assertEquals(PasswordLabel.getCssValue("color"), "rgba(43, 49, 60)");
+        softAssert.assertEquals(PasswordLabel.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(Showlink.getText(), "Mostrar");
         softAssert.assertEquals(Showlink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(Showlink.getCssValue("font-size"), "16px");
-        softAssert.assertEquals(Showlink.getCssValue("color"), "rgba(16, 111, 153)");
+        softAssert.assertEquals(Showlink.getCssValue("color"), "rgba(16, 111, 153, 1)");
         softAssert.assertEquals(CancelLink.getText(), "Cancelar");
         softAssert.assertEquals(CancelLink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(CancelLink.getCssValue("font-size"), "16px");
-        softAssert.assertEquals(CancelLink.getCssValue("color"), "rgba(26, 112, 179)");
+        softAssert.assertEquals(CancelLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(PasswordSaveChanges.getText(), "Guardar cambios");
         softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordSaveChanges.getCssValue("font-size"), "16px");
-        softAssert.assertEquals(PasswordSaveChanges.getCssValue("color"), "rgba(252, 252, 252)");
+        softAssert.assertEquals(PasswordSaveChanges.getCssValue("color"), "rgba(252, 252, 252, 1)");
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Los cambios se guardaron correctamente!");
         softAssert.assertAll();
     }
 }

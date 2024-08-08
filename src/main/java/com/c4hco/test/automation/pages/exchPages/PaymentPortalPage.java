@@ -20,13 +20,15 @@ public class PaymentPortalPage {
     @FindBy(css = "#loader-icon .fa-spinner")
     WebElement spinner;
 
+    @FindBy(css = "#SOL-PayNow-AllDone-Indv")
+    WebElement allDone;
+
 
     public void clickAllDone(){
-        basicActions.waitForElementToDisappear(spinner, 15);
-        WebElement allDoneBtn = basicActions.getDriver().findElement(By.id("SOL-PayNow-AllDone-Indv"));
-        basicActions.waitForElementToBePresent(allDoneBtn, 30);
-        basicActions.scrollToElement(allDoneBtn);
-        allDoneBtn.click();
+        basicActions.waitForElementToDisappear(spinner, 20);;
+        basicActions.waitForElementToBePresent( allDone,30 );
+        basicActions.scrollToElement( allDone );
+        allDone.click();
     }
 }
 

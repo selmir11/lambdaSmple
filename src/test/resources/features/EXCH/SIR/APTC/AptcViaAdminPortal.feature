@@ -200,22 +200,9 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-#  #QA Only Step
-#  Then I click all done from payment portal page
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-    Then I validate I am on the "Payment Selection" page
-    And I select the Money Order button
-    And I click continue on payment selection page
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-    Then I validate I am on the "Congratulations - What's Next?" page
-    And I click on Go To Welcome Page Button on whats next page
+
+    Then I click all done from payment portal page
+
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
     Then I validate I am on the "Let us guide you" page

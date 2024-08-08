@@ -172,10 +172,5 @@ Feature: Multiple Household Member - End to End Test
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    And I select make payment button to pay the premium CoCo
-    Then I select Continue button on the Payment Selection CoCo page
-    Then I select second make payment button to pay the premium in coco
-    Then I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    And I click on Go To Welcome Page Button on whats next coco page
+    Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
