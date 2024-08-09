@@ -185,6 +185,12 @@ public class MedicalPlanResultsPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        if(memberslist !=null){
+            for (int i = 0; i < memberslist.size(); i++) {
+                memberslist.get(i).setMedicalPlan(planName);
+            }
+        }
             do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {

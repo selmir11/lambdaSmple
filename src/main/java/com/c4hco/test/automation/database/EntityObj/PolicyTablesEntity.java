@@ -26,6 +26,7 @@ public class PolicyTablesEntity
     String financial_period_end_date;
     String total_plan_premium_amt;
     String total_premium_reduction_amt;
+    String total_responsible_amt;
     String total_csr_amt;
     String premium_reduction_type;
     String policy_member_coverage_status;
