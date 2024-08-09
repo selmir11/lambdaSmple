@@ -23,7 +23,8 @@ Feature: Enroll a in a plan 8 HH
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
-    And I click continue on Tell us about yourself page
+    Then I click Continue on my own button from Manage who helps you page
+
     Then I select "Female" as sex option
     And I select "No" as pregnancy option
     And I select "Yes" to Are You Applying
@@ -46,12 +47,12 @@ Feature: Enroll a in a plan 8 HH
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Male" and applying "NO"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Male" and applying "No"
       |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    Then I enter member with address line1 "500 DIFF drive" in city "Boulder" in state "CO" with zipcode "80020" and county "BOULDER"
+    And I enter a new member address with city "Boulder" state "CO" zip "80020" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
@@ -66,7 +67,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    Then I enter member with address line1 "901 Jailhouse rock" in city "Denver" in state "CO" with zipcode "80205" and county "Denver"
+    And I enter a new member address with city "Denver" state "CO" zip "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -90,7 +91,7 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "SecondHousehold" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -122,6 +123,7 @@ Feature: Enroll a in a plan 8 HH
     Then I add the tribe details
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    And I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -145,7 +147,7 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
-    And I select "Yes" for Federally Recognized Tribe option
+    And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
@@ -173,7 +175,7 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
-    And I select "Yes" for Federally Recognized Tribe option
+    And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "Yes" for Disability option
     And I select "No" to the recently denied medicaid question
@@ -193,7 +195,7 @@ Feature: Enroll a in a plan 8 HH
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "47000" income at "Annually" frequency
+    And I enter employment details with "47000.00" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -207,7 +209,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "600000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "600000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -248,18 +250,30 @@ Feature: Enroll a in a plan 8 HH
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
+     #Mem7
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
+    And I select the first dependent
     And I select the second dependent
     And I select the third dependent
     And I select the fourth dependent
     And I select the fifth dependent
     And I select the sixth dependent
     And I click save and continue on tax status page
+
+    Then I validate I am on the "Elmo Other Health Insurance" page
+    Then I select "None of these" as ELMO health insurance option
+    Then I click continue on the ELMO health insurance page
 
     Then I validate I am on the "Elmo Other Health Insurance" page
     Then I select "None of these" as ELMO health insurance option
