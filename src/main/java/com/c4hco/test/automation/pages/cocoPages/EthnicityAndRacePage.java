@@ -45,7 +45,15 @@ public class EthnicityAndRacePage {
 
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 90);
+        basicActions.waitForElementListToBePresentWithRetries(EthnicityAndRaceText, 90);
+        basicActions.waitForElementListToBePresent(raceButton, 90);
+        basicActions.waitForElementListToBePresent(ethnicityButton, 90);
+        basicActions.waitForElementToBePresent(goBackButton, 90);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 90);
+        basicActions.scrollToElement(saveAndContinueButton);
+        basicActions.scrollToElement(hdrEthnicityAndRace);
+        basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
 
