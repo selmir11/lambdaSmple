@@ -143,6 +143,9 @@ public class FindExpertHelpPage {
     @FindBy(id = "lbl-previous-helper-status")
     WebElement prevStatusColumnHeader;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public FindExpertHelpPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -250,8 +253,9 @@ public class FindExpertHelpPage {
     }
 
     public void clickFindBroker() {
-        basicActions.waitForElementToBePresent(findBroker,10);
-        findBroker.click();
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBeClickable(findBroker,10);
+        basicActions.click(findBroker);
     }
 
     public void validateBrokerExists(){
@@ -372,10 +376,10 @@ public class FindExpertHelpPage {
     }
 
     public void clickContinueOnMyOwnButton() {
-        basicActions.waitForElementToBePresent(assistanceText, 20);
-        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBeClickable(continueOnMyOwnButton, 20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
-        continueOnMyOwnButton.click();
+        basicActions.click(continueOnMyOwnButton);
     }
 
     public void clickRemoveBrokerButton(){
