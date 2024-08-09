@@ -147,15 +147,9 @@ public class LifeChangeEventsCoCoPage {
                 List<WebElement> memberChangeOfAddressCheckbox = null;
                 List<WebElement> changeOfAddressEventDate = null;
 
-                //When Staging objects are updated with qa objects below if condition will be removed
-                if(ApplicationProperties.getInstance().getProperty("env").equals("qa")){
-                    memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
-                    changeOfAddressEventDate = qachangeOfAddressEventDate;
-                }
-                else{
-                    memberChangeOfAddressCheckbox = stgmemberChangeOfAddressCheckbox;
-                    changeOfAddressEventDate = stgchangeOfAddressEventDate;
-                }
+                memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
+                changeOfAddressEventDate = qachangeOfAddressEventDate;
+
 
                 for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
                     basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);

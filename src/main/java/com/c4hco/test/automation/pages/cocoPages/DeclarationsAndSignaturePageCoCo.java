@@ -28,6 +28,9 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
+    @FindBy(css=".input-label.form-label.ng-star-inserted")
+    WebElement getSignature;
+
     public void enterSignatureinCoCo(){
         basicActions.waitForElementToBePresent(signatureInputField, 20);
         signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
@@ -40,5 +43,15 @@ public class DeclarationsAndSignaturePageCoCo {
     public void submitApplicationCoCo()  {
         basicActions.waitForElementToBeClickableWithRetries(continueButton,20);
         basicActions.click(continueButton);
+    }
+
+    public void enterOBOSignature(){
+        basicActions.waitForElementToBeClickable(signatureInputField, 10);
+        // Extract the text from the element
+        String originalText = getSignature.getText();
+
+        // Remove "Electronic Signature:" from the text
+        String modifiedText = originalText.replace(" Electronic Signature:", "");
+        signatureInputField.sendKeys(modifiedText);
     }
 }
