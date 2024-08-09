@@ -55,6 +55,10 @@ public class MyProfilePage {
     @FindBy(css = "div.successful-banner.ng-star-inserted")
     WebElement SuccessfulBannerCoCo;
 
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessageCoCo;
+
+
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
 
@@ -206,7 +210,135 @@ public class MyProfilePage {
         softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Los cambios se guardaron correctamente!");
         softAssert.assertAll();
     }
-}
 
+    public void verifyCancelbuttonOnMyProfileCoCoPage(String language) {
+        switch (language) {
+            case "English":
+                verifyCancelbuttonOnMyProfilePageEnglish();
+                break;
+            case "Spanish":
+                verifyCancelbuttonOnMyProfilePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyCancelbuttonOnMyProfilePageEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 10);
+        softAssert.assertEquals(CancelLinkCoCo.getText(), "Cancel");
+        CancelLinkCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyCancelbuttonOnMyProfilePageSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 100);
+        MyProfileButtonCoCo.get(1).click();
+        LanguageDrpOptionsCoCo.get(2).click();
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 40);
+        softAssert.assertEquals(CancelLinkCoCo.getText(), "Cancelar");
+        CancelLinkCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+    public void verifyErrortextpopupOnMyProfileCoCoPage(String language) {
+        switch (language) {
+            case "English":
+                verifyErrortextpopupOnMyProfileEnglish();
+                break;
+            case "Spanish":
+                verifyErrortextpopupOnMyProfileSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyErrortextpopupOnMyProfileEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 10);
+        PasswordSaveChangesCoCo.click();
+        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Please enter your password");
+        CancelLinkCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyErrortextpopupOnMyProfileSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 100);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Ingrese su contrase\u00F1a");
+        CancelLinkCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(String language) {
+        switch (language) {
+            case "English":
+                verifyIncorrectPasswordErrortextpopupOnMyProfileEnglish();
+                break;
+            case "Spanish":
+                verifyIncorrectPasswordErrortextpopupOnMyProfileSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyIncorrectPasswordErrortextpopupOnMyProfileEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 10);
+        String newPassword = "ALaska15!";
+        PasswordInputCoCo.sendKeys(newPassword);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(ErrorMessageCoCo, 40);
+        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Incorrect password. Please try again");
+        CancelLinkCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyIncorrectPasswordErrortextpopupOnMyProfileSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 100);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 40);
+        String newPassword = "ALaska15!";
+        PasswordInputCoCo.sendKeys(newPassword);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(ErrorMessageCoCo, 40);
+        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Contrase\u00F1a incorrecta. Int\u00E9ntelo de nuevo");
+        CancelLinkCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+    public void ValidatethirdattemptincorrectPasswordCoCo() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 100);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeaderCoCo, 40);
+        String newPassword = "ALaska15!";
+        PasswordInputCoCo.sendKeys(newPassword);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 40);
+        softAssert.assertAll();
+    }
+}
 
 
