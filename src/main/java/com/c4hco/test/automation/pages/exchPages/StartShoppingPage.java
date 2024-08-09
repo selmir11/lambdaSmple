@@ -75,6 +75,32 @@ public class StartShoppingPage {
                     default:
                         throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
                 }
+                subscriber.setTobacco_user(YNTobaccoUser);
+                break;
+            case "member3":
+                switch (YNTobaccoUser) {
+                    case "Yes":
+                        btnNoAndYes.get(4).click();
+                        break;
+                    case "No":
+                        btnNoAndYes.get(5).click();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
+                }
+                subscriber.setTobacco_user(YNTobaccoUser);
+                break;
+            case "member4":
+                switch (YNTobaccoUser) {
+                    case "Yes":
+                        btnNoAndYes.get(6).click();
+                        break;
+                    case "No":
+                        btnNoAndYes.get(7).click();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
+                }
                 memberList.get(memberList.size()-1).setTobacco_user(YNTobaccoUser);
                 break;
                 default:
