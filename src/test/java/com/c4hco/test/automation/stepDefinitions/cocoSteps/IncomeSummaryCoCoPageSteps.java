@@ -8,11 +8,6 @@ import io.cucumber.java.en.Then;
 public class IncomeSummaryCoCoPageSteps {
     IncomeSummaryCoCoPage incomeSummaryCoCoPage = new IncomeSummaryCoCoPage(WebDriverManager.getDriver());
 
-    @Then("I verify the total annual income to be {string}")
-    public void verifyTotalAnnualIncome(String Amount){
-        incomeSummaryCoCoPage.verifyTotalAnnualIncome(Amount);
-    }
-
     @Then("I select the projected income option {string} on Income Summary CoCo page")
     public void selectProjectedOptionCoCo(String projectedOption){incomeSummaryCoCoPage.selectProjectedIncome(projectedOption);}
 
@@ -24,4 +19,19 @@ public class IncomeSummaryCoCoPageSteps {
 
     @And("I select the No projected Income button on the Income Summary page")
     public void selectProjectedIncomeNo() {incomeSummaryCoCoPage.clickprojectedIncomeNo();}
+
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the CoCo Income Summary page in {string}")
+    public void iVerifyTextOnIncomeSummaryPage(String language){incomeSummaryCoCoPage.verifyHeadersIncomeSummaryPage(language);}
+
+    @Then("I verify the total annual income to be {string}")
+    public void verifyTotalAnnualIncome(String Amount){
+        incomeSummaryCoCoPage.verifyTotalAnnualIncome(Amount);
+    }
+
 }

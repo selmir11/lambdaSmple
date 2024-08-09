@@ -14,6 +14,9 @@ import java.util.Map;
 
 public class AccountOverviewPage {
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
@@ -56,6 +59,7 @@ public class AccountOverviewPage {
     }
 
     public void clickApplyForCurrentYear(){
+        basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent(header, 10);
         basicActions.waitForElementToBePresent(btnApplyForCurrentYear,40);
         String applyForYearText = btnApplyForCurrentYear.getText();
