@@ -49,11 +49,9 @@ public class DeclarationsAndSignaturePageCoCo {
         basicActions.waitForElementToBeClickable(signatureInputField, 10);
         // Extract the text from the element
         String originalText = getSignature.getText();
-        System.out.println(originalText);
 
         // Remove "Electronic Signature:" from the text
         String modifiedText = originalText.replace(" Electronic Signature:", "");
-        System.out.println(modifiedText);
         signatureInputField.sendKeys(modifiedText);
     }
 }

@@ -6,7 +6,7 @@ Feature: Individual adult - End to End Test
     Given I open the login page on the "login" portal
 
 
-  @SLCR-189_WIP
+  @SLCR-189
   Scenario: This will create Individual adult with Broker assistance
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -22,7 +22,6 @@ Feature: Individual adult - End to End Test
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
-    #And I validate my broker details in the current broker table are "EnrIntial Broker", "Test", "34564567658799", "80205", "719-555-1212", "BROKER", "Active"
     And I click on Sign Out in the Header for "Elmo"
 
     Given I open the login page on the "broker" portal
@@ -37,7 +36,6 @@ Feature: Individual adult - End to End Test
     Then I enter the MFA code and click Verify
     And I validate I am on the "Broker Dashboard" page
 
-    #Then I click View Your Clients button
     And I click on "colorado Connect" tab
     And I search for clients
     And I click on first client search result
@@ -87,7 +85,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a OBO signature
+    And I enter a OBO signature on the Declarations And Signature Page CoCo
     And I click Continue on the Declarations And Signature Page CoCo
 
     Then I validate I am on the "Application Results CoCo" page

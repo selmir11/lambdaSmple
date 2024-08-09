@@ -147,8 +147,6 @@ public class LifeChangeEventsCoCoPage {
                 List<WebElement> memberChangeOfAddressCheckbox = null;
                 List<WebElement> changeOfAddressEventDate = null;
 
-                //When Staging objects are updated with qa objects below if condition will be removed
-
                 memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
                 changeOfAddressEventDate = qachangeOfAddressEventDate;
 

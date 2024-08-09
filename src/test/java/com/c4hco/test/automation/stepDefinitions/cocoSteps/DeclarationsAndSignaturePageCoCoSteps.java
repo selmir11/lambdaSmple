@@ -18,7 +18,7 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     @And("I click Continue on the Declarations And Signature Page CoCo")
     public void selectContinueDeclarations(){declarationsAndSignaturePageCoCo.submitApplicationCoCo();}
 
-    @And("I enter a OBO signature")
+    @And("I enter a OBO signature on the Declarations And Signature Page CoCo")
     public void enterOBOSignature() {declarationsAndSignaturePageCoCo.enterOBOSignature();}
 
 }

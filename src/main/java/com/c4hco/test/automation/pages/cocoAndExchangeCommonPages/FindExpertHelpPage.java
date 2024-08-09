@@ -254,7 +254,7 @@ public class FindExpertHelpPage {
 
     public void clickFindBroker() {
         basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBeClickable(findBroker,10);
+        basicActions.waitForElementToBePresent(findBroker,10);
         basicActions.click(findBroker);
     }
 
@@ -377,7 +377,7 @@ public class FindExpertHelpPage {
 
     public void clickContinueOnMyOwnButton() {
         basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBeClickable(continueOnMyOwnButton, 20);
+        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
         basicActions.click(continueOnMyOwnButton);
     }
