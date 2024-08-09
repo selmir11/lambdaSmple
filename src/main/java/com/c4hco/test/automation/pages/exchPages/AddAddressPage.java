@@ -94,11 +94,22 @@ public class AddAddressPage {
     @FindBy(css = ".c4PageHeader1")
     WebElement getNameFromHeader;
 
+    @FindBy(id = "tribeState")
+    WebElement tribestate;
+    @FindBy(id = "tribeName")
+    WebElement tribeName;
+
+
+
     public void selectResidentialAddress(String index){
         basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
         switch(index){
             case "Household":
                 rdobtnHouseholdResidentialAddress.get(0).click();
+                setResidentialAddress();
+                break;
+            case "SecondHousehold":
+                rdobtnHouseholdResidentialAddress.get(1).click();
                 setResidentialAddress();
                 break;
             case "New":
@@ -152,6 +163,15 @@ public class AddAddressPage {
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
         dropdown.selectByValue("DENVER");
+    }
+
+    public void Addtribedetails(){
+
+        basicActions.waitForElementToBePresent(tribestate,20);
+        basicActions.waitForElementToBePresent(tribeName, 20);
+        tribestate.sendKeys("Colorado");
+        tribeName.sendKeys("Ute Mountain Tribe of the Ute Mountain Reservation");
+
     }
 
     public void newMailingAddress(String city, String state, String zipcode, String county){
