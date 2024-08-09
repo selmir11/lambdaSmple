@@ -1,6 +1,6 @@
 Feature: Seed07exception - Exchange
 
-  Background: Seed 07 with exception For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
+  Background: Seed 08 with exception For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -66,10 +66,7 @@ Feature: Seed07exception - Exchange
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "New" for Residential Address
-    And I enter the new residential address details
-      | addressLine1           | addressLine2          | city    | state | zipcode | county  | dob     |
-      | 101 Springs Drive      | Colorado Springs      | Denver  | CO    | 80919   | EL PASO |08281999 |
+    And I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -106,7 +103,6 @@ Feature: Seed07exception - Exchange
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
-
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -183,35 +179,6 @@ Feature: Seed07exception - Exchange
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
-    Then I select "member3" "Yes" for Tobacco Use
-    Then I select "member4" "Yes" for Tobacco Use
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 2 default groups
-    Then I click continue on grouping Members Medical page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Gold" plan
-    Then I click continue on medical plan results page
-    And I select "Anthem Colorado Option Silver Pathway Std" plan
-    Then I click continue on medical plan results page
-    Then I validate I am on the "Grouping Members Dental" page
-    And I select "Delta Dental of Colorado Family Basic Plan" plan
-    Then I click continue on dental plan results page
-    And I select "Anthem Dental Family Value" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
