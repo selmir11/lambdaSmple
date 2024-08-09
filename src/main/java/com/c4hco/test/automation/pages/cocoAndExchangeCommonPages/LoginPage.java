@@ -78,6 +78,8 @@ public class LoginPage {
     @FindBy(css = ".yellow.warning.sign.icon")
     WebElement warningIcon;
 
+    @FindBy(css = "div.help-block.text-danger.mb-3.form-group-custom.mb-0.ng-star-inserted")
+    WebElement lockedOutMessage;
 
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
@@ -109,7 +111,7 @@ public class LoginPage {
         password.sendKeys(pswd);
         System.out.println("Password::" + pswd);
         signInButton.click();
-      //  basicActions.waitForElementToDisappear(signInButton, 30);
+        //  basicActions.waitForElementToDisappear(signInButton, 30);
     }
 
     public void logInBrokerPortal(String accountType) {
@@ -408,13 +410,23 @@ public class LoginPage {
     // Add only validation methods below this line
     public void loginAsAdminAnyUser(String adminUser, String adminPassword) {
         basicActions.waitForElementToBePresent(usernameAdmin, 20);
-        usernameAdmin.sendKeys(adminUser);      }
+        usernameAdmin.sendKeys(adminUser);
+    }
 
     public void accessDeniedPageDisplays() {
         basicActions.waitForElementToBePresent(accessDenied, 20);
         softAssert.assertTrue(accessDenied.isDisplayed());
         basicActions.waitForElementToBePresent(warningIcon, 20);
         softAssert.assertTrue(warningIcon.isDisplayed());
+        softAssert.assertAll();
+        basicActions.closeBrowserTab();
+    }
+
+    public void validateLockedOutMessage() {
+        basicActions.waitForElementToBePresent(createAccountLink, 100);
+        basicActions.waitForElementToBePresent(lockedOutMessage, 100);
+        softAssert.assertEquals(lockedOutMessage.getText(), "Your account is locked");
+        softAssert.assertTrue(lockedOutMessage.isDisplayed());
         softAssert.assertAll();
         basicActions.closeBrowserTab();
     }

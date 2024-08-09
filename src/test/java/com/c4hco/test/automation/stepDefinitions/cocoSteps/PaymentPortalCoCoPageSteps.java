@@ -11,4 +11,9 @@ public class PaymentPortalCoCoPageSteps {
     public void clickAllDoneCoCo(){
         paymentPortalCoCoPage.clickAllDoneCoCo();
     }
+
+    @Then("I click all done obo from payment portal page coco")
+    public void clickAllDoneOboCoCo(){
+        paymentPortalCoCoPage.clickAllDoneOboCoCo();
+    }
 }

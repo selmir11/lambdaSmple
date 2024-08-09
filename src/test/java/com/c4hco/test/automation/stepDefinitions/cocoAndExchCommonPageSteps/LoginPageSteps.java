@@ -75,6 +75,11 @@ public class LoginPageSteps {
         loginPage.passwordRequiredMessage();
     }
 
+    @Then("I validate account is locked message on the Login page")
+    public void ivalidateLockedOutMessage() {
+        loginPage.validateLockedOutMessage();
+    }
+
     @And("I receive message I forgot username and password")
     public void iReceiveMessageIForgotUsernameAndPassword() {
         loginPage.usernameandpasswordRequiredMessage();
