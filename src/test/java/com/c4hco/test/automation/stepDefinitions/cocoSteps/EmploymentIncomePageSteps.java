@@ -26,6 +26,17 @@ public class EmploymentIncomePageSteps {
     @And("I click continue on the Employment income page")
     public void clickContinue(){employmentIncomePage.clickSaveAndContinueButton();}
 
+
+
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the CoCo Employment income page in {string}")
+    public void iVerifyTextOnEmploymentIncomePage(String language){employmentIncomePage.verifyHeadersEmploymentIncomePage(language);}
+
     @Then("I validate no errors are displayed on the Employment income page")
     public void iValidateNoErrorsPresent(){employmentIncomePage.verifyNoErrorMessage_EmploymentInfo();}
 

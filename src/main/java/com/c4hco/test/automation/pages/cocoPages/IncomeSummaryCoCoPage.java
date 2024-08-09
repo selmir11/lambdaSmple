@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +19,12 @@ public class IncomeSummaryCoCoPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy(css = ".header-1")
+    WebElement hdr_Income;
+
+    @FindBy(css = ".header-2")
+    WebElement hdr_IncomeSummary;
 
     @FindBy(css = "div.total-income-width div span")
     WebElement totalAnnualIncome;
@@ -46,12 +53,6 @@ public class IncomeSummaryCoCoPage {
         projectedIncomeNo.click();
         projectedIncomeNo.click();
     }
-    public void verifyTotalAnnualIncome(String Amount){
-        basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
-        basicActions.waitForElementToDisappear(spinner, 15);
-        softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
-        softAssert.assertAll();
-    }
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
@@ -77,4 +78,43 @@ public class IncomeSummaryCoCoPage {
         basicActions.waitForElementToBePresent(projectedIncomeInput, 10);
         projectedIncomeInput.sendKeys(amount);
     }
+
+    
+    
+    //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+    public void verifyHeadersIncomeSummaryPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersIncomeSummaryPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersIncomeSummaryPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyHeadersIncomeSummaryPageEnglish(){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_IncomeSummary.getText(), "Summary");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersIncomeSummaryPageSpanish(){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        basicActions.waitForElementToBePresent(hdr_IncomeSummary,15);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_IncomeSummary.getText(), "Resumen");
+        softAssert.assertAll();
+    }
+
+    public void verifyTotalAnnualIncome(String Amount){
+        basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
+        basicActions.waitForElementToDisappear(spinner, 15);
+        softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
+        softAssert.assertAll();
+    }
+    
 }

@@ -20,4 +20,13 @@ public class DeductionsCoCoPageSteps {
 
     @And("I select Back on the Deductions CoCo page")
     public void selectBackDeductions(){deductionsCoCoPage.clickBackButton();}
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the CoCo Deductions page in {string}")
+    public void iVerifyTextOnDeductionsPage(String language){deductionsCoCoPage.verifyHeadersDeductionsPage(language);}
+
 }

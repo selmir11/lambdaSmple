@@ -1,11 +1,13 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,10 +18,18 @@ public class LifeChangeEventsCoCoPage {
 
     private BasicActions basicActions;
 
+    SoftAssert softAssert = new SoftAssert();
+
     public LifeChangeEventsCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
+    @FindBy(css = ".header-1")
+    WebElement hdr_Lce;
+
+    @FindBy(css = ".page-header")
+    WebElement hdr_LceText;
 
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
     WebElement insuranceLossLCE;
@@ -178,4 +188,33 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(goBackButton, 10);
         goBackButton.click();
     }
+
+    //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+    public void verifyHeadersEmploymentIncomePage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersEmploymentIncomePageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersEmploymentIncomePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyHeadersEmploymentIncomePageEnglish(){
+        basicActions.waitForElementToBePresent(hdr_Lce,15);
+        softAssert.assertEquals(hdr_Lce.getText(), "Tell us about life changes");
+        softAssert.assertEquals(hdr_LceText.getText(), "Select any Life Change Event you or someone in your household has experienced within the past 60 days. The loss of other health insurance can be reported up to 60 days before you lose the insurance.");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersEmploymentIncomePageSpanish(){
+        basicActions.waitForElementToBePresent(hdr_Lce,15);
+        softAssert.assertEquals(hdr_Lce.getText(), "Inf\u00F3rmenos sobre los cambios importantes en su vida");
+        softAssert.assertEquals(hdr_LceText.getText(), "Seleccione los cambios de vida que usted o alguien de su familia haya tenido en los \u00FAltimos 60 d\u00EDas. La p\u00E9rdida de seguro de salud se puede reportar hasta 60 d\u00EDas antes de que alguien pierda su seguro.");
+        softAssert.assertAll();
+    }
+
 }

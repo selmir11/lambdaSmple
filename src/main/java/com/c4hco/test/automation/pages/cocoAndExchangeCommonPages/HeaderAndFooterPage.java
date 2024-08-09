@@ -225,6 +225,7 @@ public class HeaderAndFooterPage {
         switch (pageType){
             case "Elmo":
             basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+            basicActions.waitForElementToBePresent(connectLogoLink, 15);
             centerHeaderLink.get(1).click();
             break;
             case "Expert Help":
@@ -326,6 +327,7 @@ public class HeaderAndFooterPage {
     public void clickUserNameLink(String pageType) {
         switch (pageType) {
             case "CoCo":
+                basicActions.waitForElementToBeClickable(languageDrp, 90);
                 basicActions.waitForElementToBeClickable(userNameLink, 90);
                 userNameLink.click();
                 break;
@@ -359,8 +361,8 @@ public class HeaderAndFooterPage {
     }
 
     public void headerLanguage(String language){
-        basicActions.waitForElementListToBePresent(centerHeaderLink,50);
-        basicActions.waitForElementToBePresent(languageDrp,50);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink,50);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp,50);
         for (WebElement headerLink : centerHeaderLink) {
             if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
                 changeLanguage(language);
@@ -382,8 +384,10 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
                 break;
-            case "Spanish":
-                basicActions.waitForElementToBePresentWithRetries(languageDrp, 80);
+            case "Spanish":basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
+                basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 70);
+                basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 70);
+                basicActions.waitForElementToBePresentWithRetries(languageDrp, 70);
                 languageDrp.click();
                 basicActions.waitForElementToBePresentWithRetries(languageDrpOption.get(1), 80);
                 languageDrpOption.get(1).click();
@@ -766,7 +770,7 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
                 basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
-                privacyPolicyLink.click();
+                 privacyPolicyLink.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);

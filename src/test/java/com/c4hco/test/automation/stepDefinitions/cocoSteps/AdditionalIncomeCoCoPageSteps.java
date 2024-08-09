@@ -30,6 +30,15 @@ public class AdditionalIncomeCoCoPageSteps {
     @And("I unselect {string} option on the Additional Income CoCo page")
     public void unselectOption(String option){additionalIncomeCoCoPage.unselectOptions(option);}
 
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the CoCo Additional Income page in {string}")
+    public void iVerifyTextOnAdditionalIncomePage(String language){additionalIncomeCoCoPage.verifyHeadersAdditionalIncomePage(language);}
+
     @Then("I validate no errors are displayed on the Additional Income CoCo page")
     public void iValidateNoErrorsPresent(){additionalIncomeCoCoPage.verifyNoErrorMessage_AdditionalIncome();}
 
