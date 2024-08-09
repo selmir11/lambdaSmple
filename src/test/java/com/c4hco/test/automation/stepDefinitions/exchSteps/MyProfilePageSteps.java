@@ -24,6 +24,11 @@ public class MyProfilePageSteps {
         myProfileExchPage.clickSaveButton();
     }
 
+    @And("I click on Cancel Button on password pop on My Profile page Exch")
+    public void iclickCancelButton() {
+        myProfileExchPage.clickCancelButton();
+    }
+
     @And("I click the Change Password Button")
     public void iclickChangePasswordButton() {myProfileExchPage.clickChangePasswordButton();
     }

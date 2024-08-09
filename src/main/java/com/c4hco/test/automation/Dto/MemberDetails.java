@@ -34,7 +34,7 @@ public class MemberDetails {
     String dentalPlanEndDate;
     String medicalFinancialStartDate;
     String medicalFinancialEndDate;
-    String detntalFinancialStartDate;
+    String dentalFinancialStartDate;
     String dentalFinancialEndDate;
     String medicalPremiumAmt;
     String dentalPremiumAmt;
@@ -73,8 +73,6 @@ public class MemberDetails {
     String dependentCountTag;
     String prior_subscriber_id;
     Boolean csrEligible=false;
-    String medicalCSRamount;
-    String dentalCSRamount;
 }
 
 

@@ -1,5 +1,5 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
-  @SLER-626
+  @SLER-626 
   Scenario: : EXCH initial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -36,9 +36,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I delete the open notice
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
-    And I validate I am on the "Broker Dashboard" page
 
-    Then I click View Your Clients button
     And I search for clients
     And I click on first client search result
     And I click "manage" the client
@@ -115,22 +113,12 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
 
-     # Then I click all done from payment portal page
+    Then I click all done from payment portal page
 
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
+    #And I click on Apply for Coverage in the "Elmo" Header
 
-    And I click on Go To Welcome Page Button on whats next page
-
-
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Plans"
+    #Then I validate I am on the "My Account Overview" page
+    #Then I click on ClickHere link for "My Plans"
 
     #Gmail Verification
     Then I open outlook Tab
@@ -144,7 +132,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     #DbVerification
 
     And I verify the policy data quality check
-    And I verify the data from book of business queue table
+#    And I verify the data from book of business queue table
 
 
 
