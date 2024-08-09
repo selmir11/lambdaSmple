@@ -1,5 +1,5 @@
 @MedicalDetail @SIR
-Feature: Medical Plan Compare page related tests
+Feature: Medical Plan Detail page related tests
 
   Background:
     Given I open the login page on the "login" portal
