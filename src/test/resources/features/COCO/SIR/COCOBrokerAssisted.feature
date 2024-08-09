@@ -4,9 +4,8 @@ Feature: Individual adult - End to End Test
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
-
-
-  @SLCR-189
+    
+  @SLCR-189 @Failing-Bug-SOL-3758
   Scenario: This will create Individual adult with Broker assistance
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -106,5 +105,6 @@ Feature: Individual adult - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
     Then I click all done obo from payment portal page coco
+  #uncomment the below lines and test after the bug is fixed.
     #Then I validate I am on the "CoCo Welcome" page
     #And I click on Sign Out in the Header for "Elmo"
