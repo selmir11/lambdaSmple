@@ -108,6 +108,10 @@ public class AddAddressPage {
                 rdobtnHouseholdResidentialAddress.get(0).click();
                 setResidentialAddress();
                 break;
+            case "SecondHousehold":
+                rdobtnHouseholdResidentialAddress.get(1).click();
+                setResidentialAddress();
+                break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
                 break;
@@ -166,7 +170,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBePresent(tribestate,20);
         basicActions.waitForElementToBePresent(tribeName, 20);
         tribestate.sendKeys("Colorado");
-        tribeName.sendKeys("CO_SOUTHERN_UTE_INDIAN_TRIBE");
+        tribeName.sendKeys("Ute Mountain Tribe of the Ute Mountain Reservation");
 
     }
 
