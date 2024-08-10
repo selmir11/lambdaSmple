@@ -55,6 +55,7 @@ public class IncomeSummaryCoCoPage {
     }
 
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToBePresent(hdr_Income, 30);
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }

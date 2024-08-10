@@ -22,6 +22,9 @@ public class DentalPlanComparePage {
         PageFactory.initElements( basicActions.getDriver(), this );
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     @FindBy(id = "SHP-DentalComparePlans-GoBacktoPlans")
     WebElement goBackDentalCompare;
 
