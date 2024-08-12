@@ -4,9 +4,11 @@ import com.c4hco.test.automation.pages.exchPages.DentalPlansResultsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.testng.asserts.SoftAssert;
 
 public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
+
 
     @Then("I select first dental plan")
     public void selectFirstDentalPlan() { dentalPlansResultsPage.selectFirstDentalPlan(); }
@@ -15,6 +17,12 @@ public class DentalPlansResultsPageSteps {
     public void selectDentalPlan(String dentalPlanNames) {
         dentalPlansResultsPage.selectDentalPlan(dentalPlanNames);
     }
+
+    @And("I validate for Pediatric Dental Plans")
+    public void validatePediatric(){dentalPlansResultsPage.validatePediatric();}
+
+    @And("I validate that Pediatric Dental Plans are not available")
+    public void validatePediatricFalse(){dentalPlansResultsPage.validatePediatricFalse();}
 
     @Then("I click continue on dental plan results page")
     public void clickContinueOnDentalResultsPage() {

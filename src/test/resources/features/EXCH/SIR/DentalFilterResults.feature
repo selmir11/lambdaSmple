@@ -70,7 +70,7 @@ Feature: Dental Plan Verification test
       |High           |Delta Dental of Colorado Pediatric Comprehensive Plan    |
 
 
-  @SLER-96 @SelectVerifyDentalInsuranceCompanyFilterResults
+  @SLER-96 @SelectVerifyDentalInsuranceCompanyFilterResults  @test
   Scenario Outline: SelectVerifyDentalInsuranceCompanyFilterResults - used to be RT-1658
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -192,12 +192,12 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Dental Plan Results" page
     # validate that pediatric plan appears due to minor age under 19 - we will verify from the plan title
-    And I validate the Dental Plan option 4 has a plan result "Cigna Dental Pediatric"
-    And I click on Sign Out in the Header for "Portal"
+    And I validate for Pediatric Dental Plans
+    And I click on Sign Out in the Header for "Elmo"
 
 
   @SLER-WIP @SelectVerifyDentalPediatricPlansOnlyAdult-WIP
-  Scenario: SelectVerifyDentalPediatricPlansOnlyAdult
+ Scenario: SelectVerifyDentalPediatricPlansOnlyAdult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -253,5 +253,6 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Dental Plan Results" page
     # validate that pediatric plans do not appear due to minor age over 19 - we will verify from the plan title
-    And I validate the Dental Plan option 1 has a plan result "Anthem Dental Family Value"
+    And I validate that Pediatric Dental Plans are not available
+    And I click on Sign Out in the Header for "Elmo"
 

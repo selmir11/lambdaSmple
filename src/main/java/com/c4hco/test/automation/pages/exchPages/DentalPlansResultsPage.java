@@ -21,6 +21,8 @@ public class DentalPlansResultsPage {
     private BasicActions basicActions;
     private Optional<Integer> optionalInt;
 
+    SoftAssert softAssert = new SoftAssert();
+
     public DentalPlansResultsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -44,7 +46,7 @@ public class DentalPlansResultsPage {
     @FindBy(id ="DentalPlanResults-ComparePlans")
     WebElement btnCompareOnDentalPlanResults;
 
-    @FindBy(id = "DentalPlanResults-CoverageLevel")
+    @FindBy(css = "#DentalPlanResults-CoverageLevel")
     WebElement dropdownCoverageLevel;
 
     @FindBy(id = "DentalPlanResults-Continue")
@@ -68,8 +70,14 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-MonthlyPremium_1")
     WebElement dentalPremium1;
 
+    @FindBy(id = "PlanResults-PlanName_4")
+    WebElement pediatricdental1;
 
-    SoftAssert softAssert = new SoftAssert();
+    @FindBy(id = "PlanResults-PlanName_5")
+    WebElement pediatricdental2;
+
+    @FindBy(id = "PlanResults-PlanName_6")
+    WebElement pediatricdental3;
 
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent(dentalPlanNames, 10);
@@ -108,8 +116,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickCoverageLevelDropdown(){
-        basicActions.waitForElementToBePresent(dropdownCoverageLevel, 10);
-        basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel, 10 );
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent(dropdownCoverageLevel, 20);
+        //basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel, 10 );
         dropdownCoverageLevel.click();
 
     }
@@ -117,6 +126,18 @@ public class DentalPlansResultsPage {
         String coveragePath = "//*[text()='" + coverageLevel + "']";
         basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
     }
+
+    //public void selectfromCoverageLevelListflaky(String coverageLevel) {
+    //    String coveragePath = "//*[div ='" + coverageLevel + "']";
+    //    basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
+    //    basicActions.click();
+    //    }
+        //String planID = "PlanResults-SelectThisPlan_" + index;
+        //        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        //        basicActions.waitForElementToBeClickable(ePlanID, 30);
+        //        ePlanID.click();
+
+    //}
 
     public void clickDentalInsuranceCompanyDropdown (){
         basicActions.waitForElementToBePresent(dropdownInsuranceCompany, 10);
@@ -136,6 +157,22 @@ public class DentalPlansResultsPage {
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         String expectedText = ePlanID.getText();
         expectedText.equals(dentalPlanText);
+    }
+
+    public void validatePediatric(){
+        basicActions.waitForElementToDisappear( spinner,15 );
+        softAssert.assertEquals( pediatricdental1.getText(), "Cigna Dental Pediatric");
+        softAssert.assertEquals( pediatricdental2.getText(), "Cigna Dental Family + Pediatric");
+        softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Pediatric Enhanced Plan");
+        softAssert.assertAll();
+    }
+
+    public void validatePediatricFalse(){
+        basicActions.waitForElementToDisappear( spinner,15 );
+        softAssert.assertEquals( pediatricdental1.getText(), "EssentialSmile Colorado - Total Care", "Cigna Dental Pediatric not appearing" );
+        softAssert.assertEquals( pediatricdental2.getText(), "Anthem Dental Family Value", "Cigna Dental Family + Pediatric not appearing" );
+        softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Family Value Plan", "Delta Dental of Colorado Pediatric Enhanced Plan not appearing" );
+        softAssert.assertAll();
     }
 
     public void selectDentalPlan(String dentalPlanNames){
