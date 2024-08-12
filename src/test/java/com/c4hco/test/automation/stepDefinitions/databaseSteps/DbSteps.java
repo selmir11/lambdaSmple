@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
+import com.c4hco.test.automation.database.DbValidations.PolicyTableDBValidations;
 import com.c4hco.test.automation.database.DbValidations.PolicyTableValidations;
 import io.cucumber.java.en.And;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
+private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
@@ -18,7 +20,7 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
 
    @And("I validate the member details from policy tables")
    public void validateFromPolicyTables(){
-      dbValidations.validateDataFromPolicyTables();
+      policyTableDBValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")
