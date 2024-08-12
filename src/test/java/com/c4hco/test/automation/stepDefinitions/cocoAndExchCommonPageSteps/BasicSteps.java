@@ -210,10 +210,7 @@ public class BasicSteps {
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
-            case "Other Health Insurance":
-                pageUrl = "nes/otherHealthInsurance";
-                break;
-            case "Elmo Other Health Insurance":
+            case "Elmo Other Health Coverage":
                 pageUrl = "/otherHealthCoverage";
                 break;
             case "Elmo COBRA":
