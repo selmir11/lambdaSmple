@@ -361,7 +361,7 @@ Feature: Page validations on ELIG pages
     Then I minimize the chat window
 
   @SLER-122 @PageValidation
-  Scenario: Verify Chat Widget on the Other Health Insurance page
+  Scenario: Verify Chat Widget on the Other Health Coverage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -412,13 +412,13 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    And I validate I am on the "Elmo Other Health Coverage" page
     Then I validate chat widget is present
     And I open on chat widget
     Then I minimize the chat window
 
   @SLER-123 @PageValidation
-  Scenario: Verify Chat Widget on the Family Overview after Existing Health Insurance page
+  Scenario: Verify Chat Widget on the Family Overview after Existing Health Coverage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -469,9 +469,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I validate chat widget is present
     And I open on chat widget
@@ -529,9 +529,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -591,9 +591,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -656,9 +656,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -725,9 +725,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -1325,7 +1325,7 @@ Feature: Page validations on ELIG pages
     And I validate I am on the "Threads" page and close tab
 
   @SLER-182 @PageValidation
-  Scenario: Validate Footer on the Other Health Insurance page
+  Scenario: Validate Footer on the Other Health Coverage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1376,7 +1376,7 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    And I validate I am on the "Elmo Other Health Coverage" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -1398,7 +1398,7 @@ Feature: Page validations on ELIG pages
     And I validate I am on the "Threads" page and close tab
 
   @SLER-183 @PageValidation
-  Scenario: Validate Footer on the Family Overview after Existing Health Insurance page
+  Scenario: Validate Footer on the Family Overview after Existing Health Coverage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1449,9 +1449,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -1525,9 +1525,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -1603,9 +1603,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -1684,9 +1684,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -1769,9 +1769,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -2413,7 +2413,7 @@ Feature: Page validations on ELIG pages
     And I validate I am on the "Threads" page and close tab
 
   @SLER-203 @PageValidation
-  Scenario: Validate Footer on the Spanish Other Health Insurance page
+  Scenario: Validate Footer on the Spanish Other Health Coverage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2464,7 +2464,7 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
+    And I validate I am on the "Elmo Other Health Coverage" page
     When I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -2488,7 +2488,7 @@ Feature: Page validations on ELIG pages
     And I validate I am on the "Threads" page and close tab
 
   @SLER-204 @PageValidation
-  Scenario: Validate Footer on the Spanish Family Overview after Existing Health Insurance page
+  Scenario: Validate Footer on the Spanish Family Overview after Existing Health Coverage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2539,9 +2539,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     When I change the language from header to "Spanish NonElmo"
     And I validate I am on the "Spanish" page
@@ -2617,9 +2617,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -2697,9 +2697,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -2780,9 +2780,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -2867,9 +2867,9 @@ Feature: Page validations on ELIG pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page

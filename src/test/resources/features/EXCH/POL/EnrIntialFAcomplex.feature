@@ -271,33 +271,33 @@ Feature: Enroll a in a plan 8 HH
     And I select the sixth dependent
     And I click save and continue on tax status page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page

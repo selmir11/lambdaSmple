@@ -113,8 +113,8 @@ Feature: Tests related to the help drawer on ELMO pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "job" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
     And I set the browser resolution to 2000 x 800
     Then I validate I am on the "ESI" page
@@ -228,8 +228,8 @@ Feature: Tests related to the help drawer on ELMO pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "job" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
 #    And I set the browser resolution to 2000 x 800
     Then I validate I am on the "ESI" page

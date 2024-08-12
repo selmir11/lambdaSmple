@@ -310,7 +310,7 @@ public class BasicActions {
         String primaryMemId = SharedData.getPrimaryMemberId();
         String newUrl = "";
         switch(page){
-            case "Elmo Other Health Insurance Page":
+            case "Elmo Other Health Coverage Page":
                 newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage";
                 newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
                 getDriver().navigate().to(newUrl);
@@ -410,12 +410,12 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("WelcomePortal/declarationsAndSignature[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
-            case "Other Health Insurance portal Error Exch":
+            case "Other Health Coverage portal Error Exch":
                 newUrl = "OtherHealthCoveragePortal/error";
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
-            case "Other Health Insurance portal Unauthorized Exch":
+            case "Other Health Coverage portal Unauthorized Exch":
                 newUrl = "OtherHealthCoveragePortal/unauthorized";
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
