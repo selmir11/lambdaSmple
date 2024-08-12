@@ -191,7 +191,7 @@ Feature: Dental Plan Verification test
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    # validate that pediatric plan appears due to minor age under 19 - we will verify from the plan title
+    # validate that pediatric plan appears due to minor age under 19
     And I validate the Dental Plan option 4 has a plan result "Cigna Dental Pediatric"
     And I click on Sign Out in the Header for "Portal"
 
@@ -252,6 +252,6 @@ Feature: Dental Plan Verification test
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    # validate that pediatric plans do not appear due to minor age over 19 - we will verify from the plan title
+    # validate that pediatric plans do not appear due to minor age over 19
     And I validate the Dental Plan option 1 has a plan result "Anthem Dental Family Value"
 
