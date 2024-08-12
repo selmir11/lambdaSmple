@@ -142,9 +142,9 @@ public class FindExpertHelpPage {
 
     @FindBy(id = "lbl-previous-helper-status")
     WebElement prevStatusColumnHeader;
-
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
 
     public FindExpertHelpPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
@@ -379,7 +379,7 @@ public class FindExpertHelpPage {
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(assistanceText, 20);
         basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
+        basicActions.scrollToElement(continueOnMyOwnButton);
         basicActions.click(continueOnMyOwnButton);
     }
 
