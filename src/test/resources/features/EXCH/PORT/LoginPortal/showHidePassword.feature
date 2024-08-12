@@ -68,6 +68,7 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page
     And I click on show button in "create account"
     Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "create account" Page
+    And I change the language from header to "English"
     Examples:
       | Portal    |
       | broker    |
