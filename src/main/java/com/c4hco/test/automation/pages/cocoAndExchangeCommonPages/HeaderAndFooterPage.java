@@ -23,6 +23,9 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".center-links .clickable")
     List<WebElement> centerHeaderLink;
 
+    @FindBy (xpath = "//*[@class = 'strong vertical-ruler-left']")
+    WebElement FindAPlan;
+
     @FindBy(css = "div.top-navigation > div > nav > ul > li > a")
     List<WebElement> centerHeaderLinkNonElmo;
 
@@ -106,13 +109,14 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
-    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is for "Who helps you Page" Sign out only.
+    //@FindBy(xpath = "//*[@id ='sign-out") //
+    @FindBy(css = "#sign-out")
     WebElement signOutLinkPortal;
 
     @FindBy(xpath = "//*[@id ='sign-out']")
     WebElement  signOutDentalPlanResults;
 
-    @FindBy(xpath = "//div[@class ='p-2 ms-2']") // this is the only one that works without getting a stale element issue
+    @FindBy(xpath = "//div[@class ='p-2 ms-2']") // this is for "Who helps you Page" Sign out only.
     WebElement signOutLinkWhoHelpsPage;
 
     // =========FOOTER============== //
@@ -178,7 +182,11 @@ public class HeaderAndFooterPage {
             case "Elmo":
                 basicActions.waitForElementToBeClickable(connectLogoLink, 10);
                 connectLogoLink.click();
-            break;
+                break;
+            case "FindAPlan":
+                basicActions.waitForElementToBePresent( FindAPlan, 15 );
+                FindAPlan.click();
+                break;
             case "ExpertHelp":
                 basicActions.waitForElementToBePresent(connectLogoLinkExpertHelp,20);
                 connectLogoLinkExpertHelp.click();
