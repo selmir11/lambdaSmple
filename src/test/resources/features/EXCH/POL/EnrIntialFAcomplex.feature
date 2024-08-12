@@ -23,6 +23,7 @@ Feature: Enroll a in a plan 8 HH
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
+    Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 
     Then I select "Female" as sex option
