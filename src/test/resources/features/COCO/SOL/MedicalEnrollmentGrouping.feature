@@ -5,8 +5,8 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-164 @MedicalEnrollmentGroupingVerbiage
-  Scenario: Validate text on medical enrollment grouping page, text on buttons and page navigation
+  @SLCR-188 @MedicalEnrollmentAfterPrimaryContactChange
+  Scenario: Validate primary contact change and enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -17,7 +17,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
-    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    Then I enter details on tell us about yourself page and continue with "01161978", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
@@ -37,8 +37,33 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051979", "Female" and applying "Yes"
       |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page and continue with "Son", "01051998", "Male" and applying "Yes"
+      | Primary:Child |
+      |               |
+      | Spouse:Child  |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
