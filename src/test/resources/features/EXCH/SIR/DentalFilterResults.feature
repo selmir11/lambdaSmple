@@ -252,7 +252,7 @@ Feature: Dental Plan Verification test
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    # validate that pediatric plans do not appear for someone over 19 - we will verify from the plan title
+    # validate that pediatric plans do not appear for someone over 19 in the same area as before in minor test- we will verify from the plan title
     And I validate that Pediatric Dental Plans are not available
     And I click on Sign Out in the Header for "Elmo"
 
