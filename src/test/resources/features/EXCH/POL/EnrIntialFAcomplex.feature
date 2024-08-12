@@ -325,10 +325,12 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan for "Daughter"
+
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+  
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
 
