@@ -380,7 +380,7 @@ public class AddAddressPage {
 
     public void saveContinue(){btnSaveContinue.click();}
 
-    public  void specificaddress(String SpecificAddress){
+    public  void selectSpecificAddress(String SpecificAddress){
 
         for(int i = 0; i < selectspecificaddress.size(); i++)
 

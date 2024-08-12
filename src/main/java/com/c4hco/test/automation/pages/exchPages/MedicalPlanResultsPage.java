@@ -224,83 +224,26 @@ public class MedicalPlanResultsPage {
         Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
     }
 
-    public  void SelectSpecificMedicalPlanPerGrp1(String SpecificPlan){
-        System.out.println("Medical or Dental Results - Select " + SpecificPlan);
 
-        String[] groups = {
-                "Medical Plans for Group 1 - Primary and Niece",
-                "Medical Plans for Group 1 - SonTwo",
-                "Medical Plans for Group 1 - Nephew",
-                "Medical Plans for Group 1 - Daughter",
-                "Medical Plans for Group 2 - Primary and Niece",
-                "Medical Plans for Group 2 - SonTwo",
-                "Medical Plans for Group 2 - Nephew",
-                "Medical Plans for Group 2 - Daughter",
-                "Medical Plans for Group 3 - Primary and Niece",
-                "Medical Plans for Group 3 - SonTwo",
-                "Medical Plans for Group 3 - Nephew",
-                "Medical Plans for Group 3 - Daughter",
-                "Medical Plans for Group 4 - Primary and Niece",
-                "Medical Plans for Group 4 - SonTwo",
-                "Medical Plans for Group 4 - Nephew",
-                "Medical Plans for Group 4 - Daughter"
-        };
-
-        for (String group : groups) {
-            WebElement element = basicActions.getDriver().findElement(By.xpath("//div[text()='" + group + "']"));
-            String plans = null;
-            if (!plans.isEmpty()) {
-                selectPlan(SpecificPlan);
-                break;
-            } else {
-                if (group.endsWith("Daughter")) {
-                    WebElement btnSkip = basicActions.getDriver().findElement(By.xpath("//button[@class='btn-primary' and text()='Skip']"));
-                    btnSkip.click();
-                }
-            }
-        }
-
-
-
-
-    }
-    public void SelectSpecificMedicalPlanPerGrp(String SpecificPlan){
+    public void SelectSpecificMedicalPlanPerGrp(String SpecificPlan,String member){
 
          basicActions.waitForElementToDisappear(spinner,20);
          basicActions.waitForElementToBePresent(medicalplanheader,20);
 
-        if (medicalplanheader.getText().contains("Daughter")) {
+        String headerText = medicalplanheader.getText();
+        if (headerText.contains(member)) {
             btnSkip.click();
-        }
-        else{
-            basicActions.waitForElementToDisappear(spinner,20);
-            basicActions.waitForElementToBePresent(medicalplanheader,20);
+        } else {
             selectMedicalPlan(SpecificPlan);
             clickContinue();
-        }
+            System.out.println("Selected plan: " + SpecificPlan);
 
+        }
 
 
     }
 
 
-
-     private void selectPlan(String SpecificPlan) {
-        System.out.println("Click on Next page until plan displays");
-        WebElement txtSpecificPlan = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + SpecificPlan + "')]"));
-        while (txtSpecificPlan == null) {
-            WebElement btnNextPage = basicActions.getDriver().findElement(By.xpath("//button[contains(text(), 'Next')]"));
-            btnNextPage.click();
-            txtSpecificPlan = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + SpecificPlan + "')]"));
-        }
-
-         System.out.println("Select plan and continue");
-         WebElement btnSelectPlan = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + SpecificPlan + "')]/parent::div/parent::div //button[@class='btn-primary select']"));
-         btnSelectPlan.click();
-
-         WebElement btnContinue = basicActions.getDriver().findElement(By.xpath("//button[@class='btn-primary' and text()='Continue']"));
-         btnContinue.click();
-    }
 
 }
 
