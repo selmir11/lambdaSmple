@@ -199,4 +199,5 @@ public class DentalPlansResultsPage {
         softAssert.assertEquals(dentalPlanNamesList, Constants.DentalPlanNamesList);
         softAssert.assertAll();
         }
-    }
+
+}

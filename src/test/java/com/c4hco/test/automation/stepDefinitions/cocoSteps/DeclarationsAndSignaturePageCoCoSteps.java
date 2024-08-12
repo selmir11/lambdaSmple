@@ -21,4 +21,12 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     @And("I enter a OBO signature on the Declarations And Signature Page CoCo")
     public void enterOBOSignature() {declarationsAndSignaturePageCoCo.enterOBOSignature();}
 
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the CoCo Declarations And Signature page in {string}")
+    public void iVerifyTextOnDeclarationsAndSignaturePage(String language){declarationsAndSignaturePageCoCo.verifyHeadersDeclarationsAndSignaturePage(language);}
 }
