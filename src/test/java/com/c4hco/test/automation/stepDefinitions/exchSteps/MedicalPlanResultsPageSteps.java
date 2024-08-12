@@ -89,6 +89,13 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validatePlanCount(plansCount);
     }
 
+
+    @And("I select the {string} medical plan but skip for {string}")
+    public void selectMedicalPlanForMember(String specificPlan, String member) {
+        medPlanResultsPage.SelectSpecificMedicalPlanPerGrp(specificPlan, member);
+    }
+
+
 }
 
 

@@ -48,11 +48,13 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    }
    @And("I validate Individual member policy table queries")
    public void ivalidateIndPolicyTableQueries(){
+
       policyTableValidations.validateEnPolicyTableDetails();
       policyTableValidations.validateEnMemberCoverageFinancialAh();
       policyTableValidations.validateEnPolicyMemberCoverageAh();
       policyTableValidations.validateEnPolicyFinancialAh();
       policyTableValidations.validateEnPolicyMemberAh();
+
    }
 
 }

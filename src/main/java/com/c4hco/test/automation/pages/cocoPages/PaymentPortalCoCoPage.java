@@ -16,8 +16,14 @@ public class PaymentPortalCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "c4-type-header-lg")
+    WebElement hdr_AllDone;
+
     @FindBy(id="SOL-PayNow-AllDone-Indv")
     WebElement allDoneBtn;
+
+    @FindBy(id="SOL-PayNow-AllDone-Obo")
+    WebElement allDoneOboBtn;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
@@ -25,9 +31,17 @@ public class PaymentPortalCoCoPage {
 
     public void clickAllDoneCoCo(){
         basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.waitForElementToBePresent(hdr_AllDone, 15);
         basicActions.waitForElementToBePresent(allDoneBtn, 30);
         basicActions.scrollToElement(allDoneBtn);
         allDoneBtn.click();
+    }
+
+    public void clickAllDoneOboCoCo(){
+        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.waitForElementToBePresent(allDoneOboBtn, 30);
+        basicActions.scrollToElement(allDoneOboBtn);
+        allDoneOboBtn.click();
     }
 }
 
