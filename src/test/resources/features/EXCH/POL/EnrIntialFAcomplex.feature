@@ -23,6 +23,7 @@ Feature: Enroll a in a plan 8 HH
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
+    Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 
     Then I select "Female" as sex option
@@ -43,7 +44,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #2Member
+    #1Member
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -52,13 +53,15 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter a new member address with city "Boulder" state "CO" zip "80020" and county "BOULDER"
+    And I enter the new residential address details
+      | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
+      | 501 DIFF Drive         | Unit 23      | Boulder | CO    | 80020   | BOULDER |01011983 |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
 
 
-    #3Member
+    #2Member (spouse)
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "06281996", "Male" and applying "Yes"
       |Primary:Son|
@@ -67,7 +70,10 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter a new member address with city "Denver" state "CO" zip "80205" and county "DENVER"
+    And I enter the new residential address details
+      | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
+      | 900 Jailhouse Rock     | Unit 23      | Denver  | CO    | 80205   | DENVER  |06281996 |
+
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -80,7 +86,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #member4
+    #member3
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -91,7 +97,7 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
-    Then I select "SecondHousehold" for Residential Address
+    Then I select "501 DIFF Drive" specific Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -105,7 +111,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #member 5
+    #member 4
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -116,7 +122,7 @@ Feature: Enroll a in a plan 8 HH
       |SonTwo:Sister|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "1234 Road" specific Address
     And I select "Yes" for CO Resident option
     And I select "Yes" for Federally Recognized Tribe option
 #Tribe Selection to be added
@@ -133,7 +139,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #Member 6
+    #Member 5
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -145,7 +151,7 @@ Feature: Enroll a in a plan 8 HH
       |Daughter:Cousin|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "1234 Road" specific Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -159,7 +165,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #member7
+    #member6
 
 
     Then I click Add Another Family Member
@@ -173,7 +179,7 @@ Feature: Enroll a in a plan 8 HH
       |Nephew:Sister|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "1234 Road" specific Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -313,11 +319,22 @@ Feature: Enroll a in a plan 8 HH
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I select "member1" "Yes" for Tobacco Use
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" medical plan
+
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+  
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+
+
 
 
 
