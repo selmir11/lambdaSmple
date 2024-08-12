@@ -89,6 +89,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validatePlanCount(plansCount);
     }
 
+    @And("I select {string} specific medical plan")
+    public void SelectSpecificMedicalPlanPerGrp(String SpecificPlan) { medPlanResultsPage.SelectSpecificMedicalPlanPerGrp(SpecificPlan);
+    }
+
+
 }
 
 
