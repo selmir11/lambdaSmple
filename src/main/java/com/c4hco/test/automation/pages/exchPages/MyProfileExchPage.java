@@ -95,6 +95,8 @@ public class MyProfileExchPage {
     @FindBy(css = "div.successful-banner.ng-star-inserted")
     WebElement SuccessfulBanner;
 
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessage;
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -355,7 +357,6 @@ public class MyProfileExchPage {
     public void verifyPasswordTextOnMyProfilePageEnglish() {
         basicActions.waitForElementToBePresent(PasswordMessage, 10);
         softAssert.assertEquals(PasswordMessage.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");
-        ;
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
         softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
@@ -499,5 +500,135 @@ public class MyProfileExchPage {
         softAssert.assertEquals(SuccessfulBanner.getText(), "Los cambios se guardaron correctamente!");
         softAssert.assertAll();
     }
+
+
+
+public void verifyCancelbuttonOnMyProfileExchPage(String language) {
+    switch (language) {
+        case "English":
+            verifyCancelbuttonOnMyProfilePageEnglish();
+            break;
+        case "Spanish":
+            verifyCancelbuttonOnMyProfilePageSpanish();
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid option: " + language);
+    }
 }
 
+
+    public void verifyCancelbuttonOnMyProfilePageEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 10);
+        softAssert.assertEquals(CancelLink.getText(), "Cancel");
+        CancelLink.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyCancelbuttonOnMyProfilePageSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 100);
+        MyProfileButtonExch.get(1).click();
+        LanguageDrpOptions.get(2).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 40);
+        softAssert.assertEquals(CancelLink.getText(), "Cancelar");
+        CancelLink.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+    public void verifyErrortextpopupOnMyProfileExchPage(String language) {
+        switch (language) {
+            case "English":
+                verifyErrortextpopupOnMyProfileEnglish();
+                break;
+            case "Spanish":
+                verifyErrortextpopupOnMyProfileSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyErrortextpopupOnMyProfileEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 10);
+        PasswordSaveChanges.click();
+        softAssert.assertEquals(ErrorMessage.getText(), "Please enter your password");
+        CancelLink.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyErrortextpopupOnMyProfileSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 100);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 40);
+        PasswordSaveChanges.click();
+        softAssert.assertEquals(ErrorMessage.getText(), "Ingrese su contrase\u00F1a");
+        CancelLink.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyIncorrectPasswordErrortextpopupOnMyProfileExchPage(String language) {
+        switch (language) {
+            case "English":
+                verifyIncorrectPasswordErrortextpopupOnMyProfileEnglish();
+                break;
+            case "Spanish":
+                verifyIncorrectPasswordErrortextpopupOnMyProfileSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyIncorrectPasswordErrortextpopupOnMyProfileEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 10);
+        String newPassword = "ALaska15!";
+        PasswordInput.sendKeys(newPassword);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(ErrorMessage, 40);
+        softAssert.assertEquals(ErrorMessage.getText(), "Incorrect password. Please try again");
+        CancelLink.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyIncorrectPasswordErrortextpopupOnMyProfileSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 100);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 40);
+        String newPassword = "ALaska15!";
+        PasswordInput.sendKeys(newPassword);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(ErrorMessage, 40);
+        softAssert.assertEquals(ErrorMessage.getText(), "Contrase\u00F1a incorrecta. Int\u00E9ntelo de nuevo");
+        CancelLink.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+    public void ValidatethirdattemptincorrectPassword() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 100);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordHeader, 40);
+        String newPassword = "ALaska15!";
+        PasswordInput.sendKeys(newPassword);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 40);
+        softAssert.assertAll();
+    }
+}

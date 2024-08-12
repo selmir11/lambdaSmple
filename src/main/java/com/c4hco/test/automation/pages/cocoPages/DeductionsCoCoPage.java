@@ -1,16 +1,20 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class DeductionsCoCoPage {
     private BasicActions basicActions;
+
+    SoftAssert softAssert = new SoftAssert();
 
     public DeductionsCoCoPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -72,5 +76,37 @@ public class DeductionsCoCoPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + deductionOption);
         }
+    }
+
+    
+    //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+    public void verifyHeadersDeductionsPage(String language){
+        switch (language){
+            case "English":
+                verifyHeadersDeductionsPageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersDeductionsPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyHeadersDeductionsPageEnglish(){
+        basicActions.waitForElementToBePresent(hdr_Deductions,15);
+        softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_Deductions2.getText(), "Deductions");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersDeductionsPageSpanish(){
+        basicActions.waitForElementToBePresent(hdr_Deductions,90);
+        basicActions.waitForElementToBePresent(hdr_Deductions2,90);
+        basicActions.waitForElementToBePresent(saveAndContinueButton,90);
+        basicActions.waitForElementToBePresent(backButton,90);
+        softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_Deductions2.getText(), "Deducciones");
+        softAssert.assertAll();
     }
 }

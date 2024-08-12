@@ -61,9 +61,13 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = ".header-1")
     WebElement hdrAddInfoForYourself;
 
+    @FindBy(css = ".header-2")
+    WebElement hdr_AdditionalIncome;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
-        basicActions.waitForElementToBeClickable(hdrAddInfoForYourself, 30);
+        basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 30);
+        basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 30);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
@@ -146,6 +150,35 @@ public class AdditionalIncomeCoCoPage {
     }
 
 //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+public void verifyHeadersAdditionalIncomePage(String language){
+    switch (language){
+        case "English":
+            verifyHeadersAdditionalIncomePageEnglish();
+            break;
+        case "Spanish":
+            verifyHeadersAdditionalIncomePageSpanish();
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid option: " + language);
+    }
+}
+
+    public void verifyHeadersAdditionalIncomePageEnglish(){
+        basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
+        softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional Income");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersAdditionalIncomePageSpanish(){
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
+        basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
+        basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
+        basicActions.waitForElementListToBePresent(addIncomeButton, 90);
+        softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
+        softAssert.assertAll();
+    }
 
     public void verifyNoErrorMessage_AdditionalIncome() {
         Assert.assertTrue(basicActions.waitForElementToDisappear(errorMessage, 30), "Error is displayed");

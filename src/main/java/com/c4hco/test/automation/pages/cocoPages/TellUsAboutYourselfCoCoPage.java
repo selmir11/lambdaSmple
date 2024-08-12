@@ -66,6 +66,7 @@ public class TellUsAboutYourselfCoCoPage {
     }
 
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToBePresent(pageTitleText, 30);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }
