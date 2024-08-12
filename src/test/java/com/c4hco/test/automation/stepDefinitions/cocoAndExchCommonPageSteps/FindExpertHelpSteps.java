@@ -87,14 +87,29 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateBrokerExists();
         }
 
+        @And("I validate the current assister text exists")
+        public void iValidateCurrentAssisterTextExists() {
+                findExpertHelpPage.validateAssisterExists();
+        }
+
         @And("I validate the current broker table header labels")
         public void iValidateCurrentBrokerTableHeaderLabels(){
                 findExpertHelpPage.validateCurrentBrokerTableHeader();
         }
 
+        @And("I validate the current assister table header labels")
+        public void iValidateCurrentAssisterTableHeaderLabels(){
+                findExpertHelpPage.validateCurrentAssisterTableHeader();
+        }
+
         @And("I validate my broker details in the current broker table are {string}, {string}, {string}, {string}, {string}, {string}, {string}")
         public void iValidateBrokerDetailsCurrentBrokerTable(String brokerName, String agencyName, String licenseNumber, String zipCode, String phoneNumber, String type, String status){
                 findExpertHelpPage.validateBrokerDetailsCurrentBrokerTable(brokerName, agencyName, licenseNumber, zipCode, phoneNumber, type, status);
+        }
+
+        @And("I validate my assister details in the current assister table are {string}, {string} or {string}, {string}, {string}, Assister, Approved")
+        public void iValidateAssisterDetailsCurrentAssisterTable(String orgName, String siteIdStg, String siteIdQa, String zipCode, String phoneNumber){
+                findExpertHelpPage.validateAssisterDetailsCurrentAssisterTable(orgName, siteIdStg, siteIdQa, zipCode, phoneNumber);
         }
 
         @Then("I click the back button from Find Expert Help page")
@@ -117,9 +132,18 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.clickRemoveBrokerPopUp(removalOption);
         }
 
+        @And("I validate the Previous Broker Assister text")
+        public void iValidatePreviousBrokerAssisterText(){
+                findExpertHelpPage.validatePreviousBrokerAssisterText();
+        }
         @And("I validate the Previous Broker Assister table header labels")
         public void iValidatePreviousBrokerAssisterTableLabels(){
                 findExpertHelpPage.validatePreviousBrokerAssisterTableLabels();
+        }
+
+        @Then("I validate the Assister details in the Previous Broker Assister table are {string}, {string}, or {string}, {string}, {string}, Assister")
+        public void iValidateAssisterDetailsPrevBrokerAssisterTable(String name, String siteIdStg, String siteIdQa, String zip, String phoneNumber){
+                findExpertHelpPage.validateAssisterPrevBrokerAssisterTable(name, siteIdStg, siteIdQa, zip, phoneNumber);
         }
 
         @Then ("I validate the details in the Previous Broker Assister table are {string}, {string}, {string}, {string}, {string}")
@@ -127,8 +151,16 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validatePreviousBrokerAssisterTableData(name, licenseSiteId, zip, phoneNumber, type);
         }
 
+        @And("I validate the Previous Broker Assister table is not displayed")
+        public void iValidatePreviousBrokerAssisterTableAbsent(){
+                findExpertHelpPage.validatePreviousBrokerAssisterTableAbsent();
+        }
+
         @And("I validate no broker is authorized")
         public void iValidateNoBrokerIsAuthorized() {findExpertHelpPage.validateNoBrokerIsAuthorized();}
+
+        @And("I validate no assister is authorized")
+        public void iValidateNoAssisterIsAuthorized() {findExpertHelpPage.validateNoAssisterIsAuthorized();}
 
         @Then("I validate the Continue with my application button {string} displayed")
         public void iValidateContinueWithMyApplicationButtonExists(String expectedState){

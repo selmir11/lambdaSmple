@@ -150,18 +150,18 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select the third dependent
     And I click save and continue on tax status page
 # ohi
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -242,22 +242,22 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Tax status" page
     And I select the first dependent
     Then I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page

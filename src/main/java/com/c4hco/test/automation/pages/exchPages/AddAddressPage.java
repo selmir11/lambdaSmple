@@ -4,13 +4,17 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -100,6 +104,9 @@ public class AddAddressPage {
     WebElement tribeName;
 
 
+    @FindBy(css= ".addressradioGrp.radioGrp")
+    List<WebElement> selectspecificaddress;
+
 
     public void selectResidentialAddress(String index){
         basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
@@ -151,8 +158,9 @@ public class AddAddressPage {
 
     public void mailingAddress(){
         // Should not use this method anymore- should use genericMailingAddress method
-        basicActions.waitForElementToBePresent(headerAdditionalInfo,20);
-        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 20);
+        basicActions.waitForElementToBePresent(headerAdditionalInfo,50);
+        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 50);
+        basicActions.waitForElementToBePresent(txtMailingAddrLine2, 50);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
         txtMailingCity.sendKeys("Denver");
@@ -373,5 +381,22 @@ public class AddAddressPage {
 
     public void saveContinue(){btnSaveContinue.click();}
 
+    public  void selectSpecificAddress(String SpecificAddress){
+
+        for(int i = 0; i < selectspecificaddress.size(); i++)
+
+        {
+            String address = selectspecificaddress.get(i).getText();
+            if (address.contains(SpecificAddress)){
+                WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+SpecificAddress+"')]/parent::label/parent::div /input"));
+                radioElement.click();
+                break;
+            }
+        }
+    }
+
+
 }
+
+
 

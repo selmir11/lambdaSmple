@@ -57,8 +57,8 @@ Feature: Elig101-01 - TAM Notices
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Health First Colorado" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -141,8 +141,8 @@ Feature: Elig101-01 - TAM Notices
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Health First Colorado" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -243,10 +243,10 @@ Feature: Elig101-01 - TAM Notices
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Health First Colorado" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I select "Health First Colorado" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -354,10 +354,10 @@ Feature: Elig101-01 - TAM Notices
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Health First Colorado" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I select "Health First Colorado" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -459,10 +459,10 @@ Feature: Elig101-01 - TAM Notices
     And I select "Yes" to claim dependents
     And I select the first dependent
     And I click save and continue on tax status page
-    Then I select "CHP+" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I select "CHP+" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "CHP+" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "CHP+" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -571,10 +571,10 @@ Feature: Elig101-01 - TAM Notices
     And I select "Yes" to claim dependents
     And I select the first dependent
     And I click save and continue on tax status page
-    Then I select "CHP+" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I select "CHP+" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "CHP+" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "CHP+" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -648,12 +648,12 @@ Feature: Elig101-01 - TAM Notices
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "COBRA" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
-    Then I click continue on the Elmo OHI Cobra page
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -732,12 +732,12 @@ Feature: Elig101-01 - TAM Notices
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "COBRA" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
-    Then I click continue on the Elmo OHI Cobra page
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -807,12 +807,12 @@ Feature: Elig101-01 - TAM Notices
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Other" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "Other" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
-    Then I click continue on the Elmo OHI Individual Insurance page
+    Then I click continue on the Elmo OHC Individual Insurance page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -889,12 +889,12 @@ Feature: Elig101-01 - TAM Notices
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Other" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "Other" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
-    Then I click continue on the Elmo OHI Individual Insurance page
+    Then I click continue on the Elmo OHC Individual Insurance page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
