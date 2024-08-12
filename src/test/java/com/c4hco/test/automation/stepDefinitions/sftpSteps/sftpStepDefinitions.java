@@ -75,7 +75,7 @@ public class sftpStepDefinitions {
                 ob834Validations.validateLXREFSeg(segments);
             } else if (entry.getInsurance_line_code().equals("DEN")) {
                 sftpUtil.readEdiFile(SharedData.getDentalFileName());
-               // ob834Validations.validateLX1Seg(entry, segments);
+               ob834Validations.validateDen_LXREFSeg(segments);
             }
         }
 
