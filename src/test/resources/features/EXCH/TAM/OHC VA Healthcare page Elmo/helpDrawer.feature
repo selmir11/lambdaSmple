@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Help Drawer-OHC VA Healthcare Elmo Page
 
   Background:
