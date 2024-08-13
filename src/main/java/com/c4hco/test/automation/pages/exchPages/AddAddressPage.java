@@ -194,6 +194,18 @@ public class AddAddressPage {
         dropdown.selectByValue(county);
     }
 
+    public void newResidentialAddress(String city, String state, String zipcode, String county){
+        basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+        newResidentialAddressline1.sendKeys("1234 Road");
+        newResidentialAdressCity.sendKeys(city);
+        newResidentialAddressState.sendKeys(state);
+        newResidentialAddressZip.sendKeys(zipcode);
+
+        newResidentialAddressCounty.click();
+        Select dropdown = new Select(newResidentialAddressCounty);
+        dropdown.selectByValue(county);
+    }
+
     public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);

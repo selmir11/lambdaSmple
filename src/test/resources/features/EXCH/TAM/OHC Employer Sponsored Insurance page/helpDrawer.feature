@@ -1,4 +1,4 @@
-@TAM @helpDrawer
+@TAM @helpDrawerESI @test
 Feature: Tests related to the help drawer on ELMO pages
 
   Background: I go the login portal
@@ -39,65 +39,6 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
-
-  @SLER-60
-    #fails when run on small screens (Let's chat widget covers up help drawer footer)
-  Scenario: SLER-60 Validate help drawer text on the ELMO Employment Income Details page
-    And I set the browser resolution to 2000 x 800
-    Then I validate I am on the "Employment Income" page
-    And I change the language from header to "English"
-    Then I select the option "Yes" to employment
-    And I select "General help" icon on the Employment Info Page
-    Then I validate help drawer header verbiage in "English"
-    Then I validate general help drawer body verbiage in "English"
-    Then I validate help drawer footer verbiage in "English"
-    And I click Contact Us link in help drawer footer
-    And I validate I am on the "We Can Help" page and close tab
-    And I change the language from header to "Spanish"
-    And I select "General help" icon on the Employment Info Page
-    Then I validate help drawer header verbiage in "Spanish"
-    Then I validate general help drawer body verbiage in "Spanish"
-    Then I validate help drawer footer verbiage in "Spanish"
-    And I click Contact Us link in help drawer footer
-    And I validate I am on the "Podemos ayudar" page and close tab
-    And I select "Do you have job" icon on the Employment Info Page
-    Then I validate job question verbiage in "Spanish"
-    And I change the language from header to "English"
-    And I select "General help" icon on the Employment Info Page
-    Then I validate job question verbiage in "English"
-    And I select "Is it self-employment" icon on the Employment Info Page
-    Then I validate job question verbiage in "English job"
-    And I change the language from header to "Spanish"
-    And I select "Is it self-employment" icon on the Employment Info Page
-    Then I validate job question verbiage in "Spanish"
-
-  @SLER-61
-    #fails when run on small screens (Let's chat widget covers up help drawer footer)
-  Scenario: SLER-61 Validate help drawer text on the ELMO Employment Income Details page (self-employment)
-    And I set the browser resolution to 2000 x 800
-    Then I validate I am on the "Employment Income" page
-    And I change the language from header to "English"
-    Then I select the option "Yes" to employment
-    And I select the option "Yes" to self employment
-    And I select "Company Name" icon on the Employment Info Page
-    Then I validate Company verbiage in "English"
-    And I change the language from header to "Spanish"
-    And I select "Company Name" icon on the Employment Info Page
-    Then I validate Company verbiage in "Spanish"
-    And I select "Net Income" icon on the Employment Info Page
-    Then I validate Net Income verbiage in "Spanish"
-    And I change the language from header to "English"
-    And I select "Net Income" icon on the Employment Info Page
-    Then I validate Net Income verbiage in "English"
-    And I select "Income Change" icon on the Employment Info Page
-    Then I validate Income Change verbiage in "English"
-    And I change the language from header to "Spanish"
-    And I select "Income Change" icon on the Employment Info Page
-    Then I validate Income Change verbiage in "Spanish"
-
-  @SLER-156
-    #fails when run on small screens (Let's chat widget covers up help drawer footer)
-  Scenario: SLER-156 Validate help drawer text on the ELMO ESI page - English
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "5160000" at frequency "Annually"
@@ -118,6 +59,10 @@ Feature: Tests related to the help drawer on ELMO pages
 
     And I set the browser resolution to 2000 x 800
     Then I validate I am on the "ESI" page
+
+  @SLER-156
+    #fails when run on small screens (Let's chat widget covers up help drawer footer)
+  Scenario: SLER-156 Validate help drawer text on the ELMO ESI page - English
     And I verify the Help Drawer is "Closed English" on the ESI page
     Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Open" on the ESI page
@@ -213,26 +158,6 @@ Feature: Tests related to the help drawer on ELMO pages
   @SLER-199 @TAMSmoke
     #fails when run on small screens (Let's chat widget covers up help drawer footer)
   Scenario: SLER-199 Validate help drawer text on the ELMO ESI page - Spanish
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "5160000" at frequency "Annually"
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I click continue on the Employment Summary Page
-    Then I click None of these as additional income option and continue
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-
-#    And I set the browser resolution to 2000 x 800
-    Then I validate I am on the "ESI" page
     And I change the language from header to "Spanish"
     And I verify the Help Drawer is "Closed Spanish" on the ESI page
     Then I open or close the Help Drawer on the ESI page

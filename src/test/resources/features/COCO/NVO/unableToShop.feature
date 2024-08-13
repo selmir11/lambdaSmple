@@ -54,7 +54,7 @@ Feature:  Unable to shop (not applying for coverage)
     And I click Continue on my own button from Manage who helps you page
     And I click Primary EditUpdate on the Family Overview page
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
-    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I enter my residential address "1234 Road", "Los Angeles", "CA", "90005", "LOS ANGELES"
     And I select "Yes" for mailing address option
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page

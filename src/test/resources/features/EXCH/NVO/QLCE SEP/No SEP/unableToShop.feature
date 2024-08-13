@@ -26,7 +26,9 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
-    Then I enter generic mailing address details
+    Then I select "New" for Residential Address
+    And I enter a new residential address with city "Los Angeles" state "CA" zip "90005" and county "LOS ANGELES"
+    Then I enter member with address line1 "1234 Road" in city "Los Angeles" in state "CA" with zipcode "90005" and county "LOS ANGELES"
     And I select "No" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option

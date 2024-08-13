@@ -191,6 +191,12 @@ public class DentalPlansResultsPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setDentalPlan(dentalPlanNames);
         SharedData.setPrimaryMember(subscriber);
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        if(memberslist !=null){
+            for (int i = 0; i < memberslist.size(); i++) {
+                memberslist.get(i).setDentalPlan(dentalPlanNames);
+            }
+        }
         do {
             optionalInt = checkIfPlanPresent(dentalPlanNames);
             if (optionalInt.isPresent()) {
