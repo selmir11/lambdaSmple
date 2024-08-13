@@ -72,5 +72,3 @@ testdata/
 logs/
 Log4j/log4j-application.log
 src/main/resources/application.properties
-*.exe
-*.exe
