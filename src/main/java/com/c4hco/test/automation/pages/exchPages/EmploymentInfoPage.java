@@ -324,6 +324,30 @@ public class EmploymentInfoPage {
             case "Income Change":
                 helpIcons.get(5).click();
                 break;
+            case "Address 1":
+                helpIcons.get(4).click();
+                break;
+            case "Address 2":
+                helpIcons.get(5).click();
+                break;
+            case "City":
+                helpIcons.get(6).click();
+                break;
+            case "State":
+                helpIcons.get(7).click();
+                break;
+            case "Zip":
+                helpIcons.get(8).click();
+                break;
+            case "Gross Income":
+                helpIcons.get(9).click();
+                break;
+            case "Seasonal":
+                helpIcons.get(10).click();
+                break;
+            case "Job Income Change":
+                helpIcons.get(11).click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + label);
         }
@@ -538,6 +562,31 @@ public class EmploymentInfoPage {
         }
     }
 
+    public void validateGrossIncomeHelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
+        basicActions.waitForElementToBePresent(questionsHelpText, 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Gross Income");
+                softAssert.assertEquals(questionsHelpText.getText(), "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso bruto");
+                softAssert.assertEquals(questionsHelpText.getText(), "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void validateIncomeChangeHelpVerbiage(String language) {
         basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
@@ -555,6 +604,56 @@ public class EmploymentInfoPage {
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Igual o bajar\u00E1");
                 softAssert.assertEquals(questionsHelpText.getText(), "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateAddress1HelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
+        basicActions.waitForElementToBePresent(questionsHelpText, 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employer Address");
+                softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Direcci\u00F3n del empleador");
+                softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateSeasonalHelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
+        basicActions.waitForElementToBePresent(questionsHelpText, 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Seasonal, commission or tipped base employment");
+                softAssert.assertEquals(questionsHelpText.getText(), "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Trabajo temporal, por comisiones o por propinas");
+                softAssert.assertEquals(questionsHelpText.getText(), "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
