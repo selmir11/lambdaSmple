@@ -33,6 +33,9 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
 
+    @FindBy(id = "PlanResults-PlanDetails_1")
+    WebElement selectFirstDentalDetailButton;
+
     @FindBy(id = "DentalPlanResults-GoBack")
     WebElement btnGoBack;
 
@@ -89,6 +92,11 @@ public class DentalPlansResultsPage {
     public void selectFirstDentalPlan() {
         basicActions.waitForElementToBeClickable( selectFirstDentalPlanBtn, 20 );
         selectFirstDentalPlanBtn.click();
+    }
+
+    public void clickFirstPlanDetailBtn(){
+        basicActions.waitForElementToDisappear( spinner,15 );
+        selectFirstDentalDetailButton.click();
     }
 
     public void clickContinueOnDentalResultsPage() {
