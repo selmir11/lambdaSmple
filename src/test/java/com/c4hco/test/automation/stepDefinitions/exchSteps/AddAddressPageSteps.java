@@ -19,6 +19,9 @@ public class AddAddressPageSteps {
     public void addNewResidentialAddress(List<Map<String, String>> addressDetails){
          addAddressPage.addNewResidentialAddress(addressDetails);}
 
+    @And("I enter a new residential address with city {string} state {string} zip {string} and county {string}")
+    public void addResidentialAddressDetails(String city, String state, String zipcode, String county){addAddressPage.newResidentialAddress(city, state, zipcode, county);}
+
     @Then("I enter member with address line1 {string} in city {string} in state {string} with zipcode {string} and county {string}")
     public void mailingAddress(String addrLine1,String city,String state,String zipcode,String county){
         addAddressPage.genericMailingAddress(addrLine1, city, state, zipcode,county);}
