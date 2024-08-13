@@ -121,31 +121,21 @@ public class DentalPlansResultsPage {
 
     public void clickCoverageLevelDropdown() {
         basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBeClickableWithRetries( dropdownInsuranceCompany,10 );
         basicActions.waitForElementToBePresent( dropdownCoverageLevel, 20 );
-        //basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel, 10 );
         dropdownCoverageLevel.click();
 
     }
 
     public void selectfromCoverageLevelList(String coverageLevel) {
+        basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel,10 );
         String coveragePath = "//*[text()='" + coverageLevel + "']";
         basicActions.getDriver().findElement( By.xpath( coveragePath ) ).click();
     }
 
-    //public void selectfromCoverageLevelListflaky(String coverageLevel) {
-    //    String coveragePath = "//*[div ='" + coverageLevel + "']";
-    //    basicActions.getDriver().findElement(By.xpath(coveragePath)).click();
-    //    basicActions.click();
-    //    }
-    //String planID = "PlanResults-SelectThisPlan_" + index;
-    //        WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
-    //        basicActions.waitForElementToBeClickable(ePlanID, 30);
-    //        ePlanID.click();
-
-    //}
-
     public void clickDentalInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBePresent( dropdownInsuranceCompany, 10 );
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel,10 );
         basicActions.waitForElementToBeClickableWithRetries( dropdownInsuranceCompany, 10 );
         dropdownInsuranceCompany.click();
     }
