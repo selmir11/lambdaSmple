@@ -97,6 +97,33 @@ public class OhcMedicarePage_Elmo {
     @FindBy(id = "medicareOhc-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
+    @FindBy(css = ".header-3.content-center > a")
+    WebElement helpLnk;
+
+    @FindBy(css = "lib-help-icon a")
+    List<WebElement> helpIcons;
+
+    @FindBy(css = ".drawer-heading .body-text-1")
+    WebElement helpDrawerHeaderHelp;
+
+    @FindBy(css = ".drawer-heading .drawer-title")
+    WebElement helpDrawerHeaderMedicare;
+
+    @FindBy(css = "div > strong")
+    List<WebElement> helpDrawerMainHeaders;
+
+    @FindBy(css = ".drawer-text-content p")
+    List<WebElement> helpDrawerBodyParagraphs;
+
+    @FindBy(css = ".drawer-text-content.body-text-1 a")
+    WebElement doiMedicareLink;
+
+    @FindBy(css = ".drawer-footer h3")
+    WebElement helpDrawerFooter;
+
+    @FindBy(css = ".drawer-footer h3 a")
+    WebElement helpDrawerContactUsLink;
+
     public void clickSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         saveAndContinueBtn.click();
@@ -231,35 +258,84 @@ public class OhcMedicarePage_Elmo {
         partBInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
     }
 
+    public void clickHelpIcon(String label) {
+        basicActions.waitForElementListToBePresent(helpIcons, 10);
+        switch(label){
+            case "Help me understand":
+                helpLnk.click();
+                break;
+            case "Please enter":
+                helpIcons.get(0).click();
+                break;
+            case "currently eligible":
+                helpIcons.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + label);
+        }
+    }
+
+    public void clickHelpContactUsNavigation() {
+        basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
+        helpDrawerContactUsLink.click();
+    }
+
+    public void clickHelpDoiNavigation() {
+        basicActions.waitForElementToBePresent(doiMedicareLink, 10);
+        doiMedicareLink.click();
+    }
+
 
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    public void verifyHeadersMedicareOhcPage(String language){
+    public void verifyHeadersMedicareOhcPage(String member, String language){
         switch (language){
             case "English":
-                verifyHeadersMedicareOhcPageEnglish();
+                verifyHeadersMedicareOhcPageEnglish(member);
                 break;
             case "Spanish":
-                verifyHeadersMedicareOhcPageSpanish();
+                verifyHeadersMedicareOhcPageSpanish(member);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyHeadersMedicareOhcPageEnglish(){
+    public void verifyHeadersMedicareOhcPageEnglish(String member){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
-        softAssert.assertAll();
+        switch (member){
+            case "Primary":
+                softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
+                softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
+                softAssert.assertAll();
+                break;
+            case "Secondary":
+                softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+                softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + member);
+        }
     }
 
-    public void verifyHeadersMedicareOhcPageSpanish(){
+    public void verifyHeadersMedicareOhcPageSpanish(String member){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
-        softAssert.assertAll();
+        switch (member){
+            case "Primary":
+                softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+                softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
+                softAssert.assertAll();
+                break;
+            case "Secondary":
+                softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+                softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + member);
+        }
     }
 
     public void verifyInitialQuestions(String language){
@@ -819,6 +895,47 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
         }
+    }
+
+    public void validateHelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 30);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderMedicare, 30);
+        switch (language) {
+            case "English":
+                validateGeneralHelpBodyVerbiageEng();
+                break;
+            case "Spanish":
+                validateGeneralHelpBodyVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateGeneralHelpBodyVerbiageEng() {
+        softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+        softAssert.assertEquals(helpDrawerHeaderMedicare.getText(), "Medicare");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Medicare");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Part A");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We are asking because if this person is enrolled in this plan, they won t be eligible for financial help if they buy a Connect for Health Colorado insurance plan instead.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Tell us about anyone who is getting Medicare Part A or Part B or who is entitled to Part A, or B. By entitled, we mean that you are able to get the benefit, even if you arent actually getting it.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "If you have Medicare Part A (Hospital Insurance), you're considered covered under the health care law and don't need a Connect for Health Colorado insurance plan.\nThe decision not to enroll in Medicare when eligible, or to cancel Medicare coverage, should not be taken lightly. Consumers with questions should consult the State Health Insurance Assistance Program (SHIP) office or their Broker. For more information, please see https://doi.colorado.gov/insurance-products/health-insurance/senior-health-care-medicare");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertAll();
+    }
+
+    public void validateGeneralHelpBodyVerbiageSp() {
+        softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+        softAssert.assertEquals(helpDrawerHeaderMedicare.getText(), "Medicare");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Medicare");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Part A");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Se lo preguntamos porque, si esta persona est\u00E1 inscrita en ese plan, no tendr\u00E1 derecho a ayuda financiera si adquiere en su lugar un plan de seguro con Connect for Health Colorado.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Indique si cualquier persona que reciba beneficios de Medicare Parte A, Parte B, o que tenga derecho a recibir beneficios de la Parte A o B. Cuando decimos \"que tenga derecho\" nos referimos a que puede recibir el beneficio, aunque en la actualidad no lo est\u00E9 recibiendo.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Si tiene la Parte A de Medicare (Seguro de Hospital), est\u00E1 cubierto bajo la ley de salud y no necesita un plan de seguro con Connect for Health Colorado.\nNo debe tomarse a la ligera la decisi\u00F3n de no inscribirse en Medicare cuando es elegible, o de cancelar su cobertura de Medicare. Los consumidores que tengan preguntas deben consultar la oficina estatal del Programa de asistencia de seguro de salud (SHIP, por sus siglas en ingl\u00E9s) o con su agente. Para obtener m\u00E1s informaci\u00F3n, visite https://doi.colorado.gov/insurance-products/health-insurance/senior-health-care-medicare");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertAll();
     }
 
 

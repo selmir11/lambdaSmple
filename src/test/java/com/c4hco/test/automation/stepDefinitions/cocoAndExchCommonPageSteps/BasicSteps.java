@@ -452,6 +452,9 @@ public class BasicSteps {
             case "Employer Coverage":
                 pageUrl = "healthcare.gov/downloads/employer-coverage-tool.pdf";
                 break;
+            case "Medicare DOI":
+                pageUrl = "senior-health-care-medicare";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }

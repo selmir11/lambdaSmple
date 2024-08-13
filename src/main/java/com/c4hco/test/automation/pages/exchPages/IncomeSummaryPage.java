@@ -35,7 +35,7 @@ public class IncomeSummaryPage {
         basicActions.waitForElementToBePresent(hdr_Income,1);
         switch(projectedIncomeOption){
             case "No":
-                basicActions.waitForElementToBePresentWithRetries(hdr_Income,5);
+                basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
                 basicActions.waitForElementToBeClickableWithRetries(projectedIncomeNo, 30);
                 basicActions.scrollToElement(projectedIncomeNo);
                 projectedIncomeNo.click();
