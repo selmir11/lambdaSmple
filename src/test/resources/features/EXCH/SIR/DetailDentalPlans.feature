@@ -6,7 +6,7 @@ Feature: Dental Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-WIP @VerifyDentalDetailNavigation
-  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults - used to be RT-1966
+  Scenario: VerifyDentalDetailNavigation - used to be RT-????
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -62,12 +62,15 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
-    
+
+    Then I validate I am on the "Dental Detail" page
+    Then I click on the Go Back on the Dental Detail page
+
 
 
 
   @SLER-WIP @VerifyDentalDetailTextEnglish
-  Scenario Outline: SelectVerifyDentalInsuranceCompanyFilterResults - used to be RT-1658
+  Scenario: VerifyDentalDetailTextEnglish - used to be RT-????
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -125,7 +128,7 @@ Feature: Dental Plan Verification test
 
 
   @SLER-WIP @VerifyDentalDetailTextSpanish
-  Scenario: SelectVerifyDentalPediatricPlansOnlyMinor
+  Scenario: VerifyDentalDetailTextSpanish - used to be CCRT-
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
