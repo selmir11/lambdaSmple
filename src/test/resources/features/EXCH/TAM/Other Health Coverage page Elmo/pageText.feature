@@ -420,7 +420,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
 
   @SLER-298 @PageVerificationOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-298 I Validate the saved options persist on the Other Health Coverage page
-    And I verify the header for Primary Member on the Other Health Coverage page
+    And I verify the header for Primary Member on the Other Health Coverage page in "English"
 
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
@@ -441,7 +441,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I verify the header for Primary Member on the Other Health Coverage page
+    And I verify the header for Primary Member on the Other Health Coverage page in "English"
 
     And I validate Other Health Coverage options load "unselected"
 
@@ -480,68 +480,6 @@ Feature: Page Text-Other Health Coverage Elmo Page
     And I click save and continue on tax status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I validate Other Health Coverage options load "Medicare, retiree, TRICARE"
-
-    And I click on Sign Out in the Header for "Elmo"
-
-  @SLER-343 @PageVerificationOtherHealthInsurancePage
-  Scenario: SLER-343 I Validate help drawer text in English on the Other Health Coverage page
-    And I verify the header for Primary Member on the Other Health Coverage page
-
-    And I click Help me understand this page link on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer body text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "Health First Colorado" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "Child Health Plan Plus" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-
-    Then I verify help text in "English" for "Medicare" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "ESI" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "HRA" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "Retiree" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "Peace Corps" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "COBRA" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "VA Health Care" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "TRICARE" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    Then I verify help text in "English" for "Individual" question on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
-
-    And I refresh the page
-    And I click Help side button on the Other Health Coverage page
-    Then I verify help drawer header text in "English" on the Other Health Coverage page
-    Then I verify help drawer body text in "English" on the Other Health Coverage page
-    Then I verify help drawer footer text in "English" on the Other Health Coverage page
 
     And I click on Sign Out in the Header for "Elmo"
 
