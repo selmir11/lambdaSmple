@@ -70,7 +70,7 @@ Feature: Dental Plan Verification test
       |High           |Delta Dental of Colorado Pediatric Comprehensive Plan    |
 
 
-  @SLER-96 @SelectVerifyDentalInsuranceCompanyFilterResults  @test
+  @SLER-96 @SelectVerifyDentalInsuranceCompanyFilterResults
   Scenario Outline: SelectVerifyDentalInsuranceCompanyFilterResults - used to be RT-1658
     When I click create a new account on login page
     Then I click create my account from pre-screen page
