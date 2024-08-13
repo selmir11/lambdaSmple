@@ -24,6 +24,9 @@ public class DentalPlansResultsPageSteps {
     @And("I validate that Pediatric Dental Plans are not available")
     public void validatePediatricFalse(){dentalPlansResultsPage.validatePediatricFalse();}
 
+    @And ("I validate for Pediatric and Adult Dental Plans")
+    public void validatePediatricAndAdult(){dentalPlansResultsPage.validateAdultPediatric();}
+
     @Then("I click continue on dental plan results page")
     public void clickContinueOnDentalResultsPage() {
         dentalPlansResultsPage.clickContinueOnDentalResultsPage();
