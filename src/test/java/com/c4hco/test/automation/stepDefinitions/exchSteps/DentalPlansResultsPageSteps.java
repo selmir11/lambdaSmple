@@ -27,10 +27,12 @@ public class DentalPlansResultsPageSteps {
     @And ("I validate for Pediatric and Adult Dental Plans")
     public void validatePediatricAndAdult(){dentalPlansResultsPage.validateAdultPediatric();}
 
+    @And("I click on the First Dental Detail button")
+    public void clickFirstPlanDetailButton(){dentalPlansResultsPage.clickFirstPlanDetailBtn();}
+
     @Then("I click continue on dental plan results page")
     public void clickContinueOnDentalResultsPage() {
-        dentalPlansResultsPage.clickContinueOnDentalResultsPage();
-    }
+        dentalPlansResultsPage.clickContinueOnDentalResultsPage();}
 
     @Then("I click Go Back on Dental Plan Results page")
     public void clickGoBackButton() { dentalPlansResultsPage.clickGoBack(); }

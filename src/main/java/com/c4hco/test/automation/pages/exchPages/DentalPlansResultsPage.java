@@ -28,8 +28,13 @@ public class DentalPlansResultsPage {
         PageFactory.initElements( basicActions.getDriver(), this );
     }
 
+    @FindBy(xpath = "//*[class = 'disclaimer body-text-2']")
+    WebElement disclaimerDental;
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement selectFirstDentalPlanBtn;
+
+    @FindBy(id = "PlanResults-PlanDetails_1")
+    WebElement selectFirstDentalDetailButton;
 
     @FindBy(id = "DentalPlanResults-GoBack")
     WebElement btnGoBack;
@@ -87,6 +92,11 @@ public class DentalPlansResultsPage {
     public void selectFirstDentalPlan() {
         basicActions.waitForElementToBeClickable( selectFirstDentalPlanBtn, 20 );
         selectFirstDentalPlanBtn.click();
+    }
+
+    public void clickFirstPlanDetailBtn(){
+        basicActions.waitForElementToDisappear( spinner,15 );
+        selectFirstDentalDetailButton.click();
     }
 
     public void clickContinueOnDentalResultsPage() {
@@ -156,6 +166,8 @@ public class DentalPlansResultsPage {
 
     public void validatePediatric() {
         basicActions.waitForElementToDisappear( spinner, 15 );
+        basicActions.waitForElementToBePresent( disclaimerDental,10 );
+        basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
         softAssert.assertEquals( pediatricdental1.getText(), "Cigna Dental Pediatric" );
         softAssert.assertEquals( pediatricdental2.getText(), "Cigna Dental Family + Pediatric" );
         softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Pediatric Enhanced Plan" );
@@ -164,6 +176,8 @@ public class DentalPlansResultsPage {
 
     public void validatePediatricFalse() {
         basicActions.waitForElementToDisappear( spinner, 15 );
+        basicActions.waitForElementToBePresent( disclaimerDental,10 );
+        basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
         softAssert.assertEquals( pediatricdental1.getText(), "EssentialSmile Colorado - Total Care", "Cigna Dental Pediatric not appearing" );
         softAssert.assertEquals( pediatricdental2.getText(), "Anthem Dental Family Value", "Cigna Dental Family + Pediatric not appearing" );
         softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Family Value Plan", "Delta Dental of Colorado Pediatric Enhanced Plan not appearing" );
@@ -172,6 +186,8 @@ public class DentalPlansResultsPage {
 
     public void validateAdultPediatric() {
         basicActions.waitForElementToDisappear(spinner,15);
+        basicActions.waitForElementToBePresent( disclaimerDental,10 );
+        basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
         softAssert.assertEquals(pediatricdental1.getText(),"Delta Dental of Colorado Pediatric Comprehensive Plan");
         softAssert.assertEquals(pediatricdental2.getText(),"Anthem Dental Family");
         softAssert.assertEquals(pediatricdental3.getText(),"Cigna Dental Family + Pediatric");
