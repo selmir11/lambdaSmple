@@ -432,9 +432,9 @@ public class DbValidations {
     }
 
 
-    public void validatePolicyDqCheck(){
+    public void validatePolicyDqCheck(int keysetSize){
         Map<String,String> policyAhId =  exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
-       softAssert.assertEquals( policyAhId.keySet().size(), 2);
+       softAssert.assertEquals( policyAhId.keySet().size(), keysetSize, "Policy Ah Id keyset size does not match");
         for(String key: policyAhId.keySet()){
             softAssert.assertEquals(policyAhId.get(key), "0", "Doesn't match policyAhId.get(key)");
         }

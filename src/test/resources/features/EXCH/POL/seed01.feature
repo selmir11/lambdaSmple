@@ -113,17 +113,17 @@ Feature: Regression Tests that require Seed 1
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
     And I validate the ob834 files should have the values
-    And I validate the REF and LX segments in EDI file
-      | LX | N1 75              | REF       |
-      | 1  | PRE AMT 1          | 291.02    |
-      | 2  | APTC AMT           | 0.00      |
-      | 3  | CSR AMT            | 0.00      |
-      | 4  | RATING AREA        | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    |
-      | 7  | PRE AMT TOT        | 291.02    |
-      | 8  | SEP REASON         | ADMIN_LCE |
-    And I verify the policy data quality check
+   And I validate the REF and LX segments in EDI file
+     | LX | N1 75              | REF       | REFDEN    |
+     | 1  | PRE AMT 1          | 291.02    | 21.00     |
+     | 2  | APTC AMT           | 0.00      | 0.00      |
+     | 3  | CSR AMT            | 0.00      | 0.00      |
+     | 4  | RATING AREA        | 3         | 3         |
+     | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
+     | 6  | TOT RES AMT        | 291.02    | 21.00     |
+     | 7  | PRE AMT TOT        | 291.02    | 21.00     |
+     | 8  | SEP REASON         | ADMIN_LCE | ADMIN_LCE |
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table
     And I validate Individual member policy table queries
 
@@ -164,16 +164,18 @@ Feature: Regression Tests that require Seed 1
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
     And I validate the REF and LX segments in EDI file
-      | LX | N1 75              | REF                |
-      | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE |
-      | 2  | PRE AMT 1          | 291.02             |
-      | 3  | APTC AMT           | 0.00               |
-      | 4  | CSR AMT            | 0.00               |
-      | 5  | RATING AREA        | 3                  |
-      | 6  | SOURCE EXCHANGE ID | COHBE              |
-      | 7  | TOT RES AMT        | 291.02             |
-      | 8  | PRE AMT TOT        | 291.02             |
-    And I verify the policy data quality check
+        | LX | N1 75              | REF                | REFDEN             |
+        | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE | DEMOGRAPHIC CHANGE |
+        | 2  | PRE AMT 1          | 291.02             | 21.00              |
+        | 3  | APTC AMT           | 0.00               | 0.00               |
+        | 4  | CSR AMT            | 0.00               | 0.00               |
+        | 5  | RATING AREA        | 3                  | 3                  |
+        | 6  | SOURCE EXCHANGE ID | COHBE              | COHBE              |
+        | 7  | TOT RES AMT        | 291.02             | 21.00              |
+        | 8  | PRE AMT TOT        | 291.02             | 21.00              |
+    And I verify the policy data quality check with Policy Ah keyset size 4
+#    And I verify the data from book of business queue table
+    And I validate Individual member policy table queries
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
