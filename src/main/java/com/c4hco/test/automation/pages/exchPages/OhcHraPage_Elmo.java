@@ -77,6 +77,30 @@ public class OhcHraPage_Elmo {
     @FindBy(css = "#Ohc-Hra-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
+    @FindBy(css = ".header-3.content-center > a")
+    WebElement helpLnk;
+
+    @FindBy(css = "lib-help-icon a")
+    List<WebElement> helpIcons;
+
+    @FindBy(css = ".drawer-heading .body-text-1")
+    WebElement helpDrawerHeaderHelp;
+
+    @FindBy(css = ".drawer-heading .drawer-title")
+    WebElement helpDrawerHeaderMedicare;
+
+    @FindBy(css = "div > strong")
+    List<WebElement> helpDrawerMainHeaders;
+
+    @FindBy(css = ".drawer-text-content p")
+    List<WebElement> helpDrawerBodyParagraphs;
+
+    @FindBy(css = ".drawer-footer h3")
+    WebElement helpDrawerFooter;
+
+    @FindBy(css = ".drawer-footer h3 a")
+    WebElement helpDrawerContactUsLink;
+
 
 
     public void clickSaveAndContinue(){
@@ -142,6 +166,28 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + aptc);
         }
+    }
+
+    public void clickHelpIcon(String label) {
+        basicActions.waitForElementListToBePresent(helpIcons, 10);
+        switch(label){
+            case "Help me understand":
+                helpLnk.click();
+                break;
+            case "employer contribution":
+                helpIcons.get(0).click();
+                break;
+            case "opt out":
+                helpIcons.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + label);
+        }
+    }
+
+    public void clickHelpContactUsNavigation() {
+        basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
+        helpDrawerContactUsLink.click();
     }
 
 
@@ -741,6 +787,47 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(hraQuestionTxt.get(3).getText(),"Si recibir Cr\u00E9dito fiscal anticipado para la prima es una opci\u00F3n m\u00E1s econ\u00F3mica, \u00BFoptar\u00EDa por no recibir un aporte del empleador?");
         softAssert.assertEquals(optOutBtn.get(0).getText(),"S\u00ED");
         softAssert.assertEquals(optOutBtn.get(1).getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void validateHelpVerbiage(String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 30);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderMedicare, 30);
+        switch (language) {
+            case "English":
+                validateGeneralHelpBodyVerbiageEng();
+                break;
+            case "Spanish":
+                validateGeneralHelpBodyVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateGeneralHelpBodyVerbiageEng() {
+        softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+        softAssert.assertEquals(helpDrawerHeaderMedicare.getText(), "Health Reimbursement Arrangement (HRA)");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Employer Contribution Amount");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Individual Coverage HRA Opt Out");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "This is a Health Reimbursement Arrangement (HRA) offered by your employer to help you pay for health insurance, even if you do not sign up for it. The HRA option that your employer offers may be called a Qualified Small Employer HRA (QSEHRA) or an Individual Coverage HRA (ICHRA).");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Enter the amount the employer contributes to cover only you, not the amount they contribute toward you and your dependents (if any) or spouse.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "You may be subject to a tax penalty if you receive Advance Premium Tax Credits in addition to your employer's contribution toward an Individual Coverage HRA.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertAll();
+    }
+
+    public void validateGeneralHelpBodyVerbiageSp() {
+        softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+        softAssert.assertEquals(helpDrawerHeaderMedicare.getText(), "Provisi\u00F3n de reembolso de salud (HRA)");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "La cantidad que aporta su empleador");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Una cuenta de reembolso de gastos m\u00E9dicos de cobertura individual (ICHRA) optar por no");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si sus empleador le ofrece una Cuenta de reembolso de gastos m\u00E9dicos (HRA) para ayudarle a pagar su seguro de salud, incluso si no se inscribe en uno. La opci\u00F3n HRA que le ofrece su empleador puede ser llamada HRA de Peque\u00F1o empleador calificado (QSEHRA) o HRA de Cobertura individual (ICHRA)");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Ingrese la cantidad que aporta el empleador para cubrirlo solo a usted, no la cantidad que contribuye para usted y sus dependientes (si aplican) o c\u00F3nyuge.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Puede estar sujeto a una multa fiscal si recibe un Cr\u00E9dito fiscal anticipado para la prima adem\u00E1s del aporte de su empleador para su cobertura individual HRA.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
