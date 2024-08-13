@@ -84,6 +84,9 @@ public class MedicalPlanResultsPage {
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
+    @FindBy(id = "PlanResults-PlanDetails_1")
+    WebElement btnDetail;
+
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
@@ -119,6 +122,12 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToDisappear(spinner, 20);
          basicActions.waitForElementToBePresent(btnSkip, 30);
         btnSkip.click();
+    }
+
+    public void selectFirstMedicalPlanDetailButton(){
+         basicActions.waitForElementToDisappear( spinner,20 );
+         basicActions.waitForElementToBePresent( btnDetail,30 );
+         btnDetail.click();
     }
     public void clickCompare() {
         basicActions.waitForElementToBePresent(clickCompare, 30);
@@ -188,6 +197,12 @@ public class MedicalPlanResultsPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        if(memberslist !=null){
+            for (int i = 0; i < memberslist.size(); i++) {
+                memberslist.get(i).setMedicalPlan(planName);
+            }
+        }
             do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {

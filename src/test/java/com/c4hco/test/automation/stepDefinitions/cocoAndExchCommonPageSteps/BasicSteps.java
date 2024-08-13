@@ -96,6 +96,9 @@ public class BasicSteps {
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
+            case "Medical Plan Detail":
+                pageUrl = "medicalPlanCarrierDetails";
+                break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
                 break;
@@ -210,10 +213,7 @@ public class BasicSteps {
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
-            case "Other Health Insurance":
-                pageUrl = "nes/otherHealthInsurance";
-                break;
-            case "Elmo Other Health Insurance":
+            case "Elmo Other Health Coverage":
                 pageUrl = "/otherHealthCoverage";
                 break;
             case "Elmo COBRA":

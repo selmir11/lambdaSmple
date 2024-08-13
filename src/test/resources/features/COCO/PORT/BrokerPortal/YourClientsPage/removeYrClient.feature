@@ -27,6 +27,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
+    Then I sign out of Outlook
     Then I enter the MFA code and click Verify
     And I validate I am on the "Broker Dashboard" page
     Then I click on "colorado Connect" tab
@@ -37,6 +38,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I click on "colorado Connect" tab
     And I search for clients
     Then I validate The Client is removed successfully
+    Then I click on broker userName and logout
 
   @SLCR-55 @port
   Scenario: Verifying the removal of a single selected client
@@ -65,6 +67,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
+    Then I sign out of Outlook
     Then I enter the MFA code and click Verify
     And I validate I am on the "Broker Dashboard" page
     Then I click on "colorado Connect" tab
@@ -75,6 +78,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I click on "colorado Connect" tab
     And I search for clients
     Then I validate The Client is removed successfully
+    Then I click on broker userName and logout
 
   @SLCR-55 @port
   Scenario: Verifying the removal of multiple clients
@@ -103,6 +107,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
+    Then I sign out of Outlook
     Then I enter the MFA code and click Verify
     And I validate I am on the "Broker Dashboard" page
     Then I click on "colorado Connect" tab
