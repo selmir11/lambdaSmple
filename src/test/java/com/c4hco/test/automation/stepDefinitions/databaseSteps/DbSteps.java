@@ -38,8 +38,8 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    public void iValidateHraOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraOptions(expectedValues);}
 
 
-   @And("I verify the policy data quality check")
-   public void iValidatePolicyDqCheck(){dbValidations.validatePolicyDqCheck();}
+   @And("I verify the policy data quality check with Policy Ah keyset size {int}")
+   public void iValidatePolicyDqCheck(int keysetSize){dbValidations.validatePolicyDqCheck(keysetSize);}
 
    @And("I verify the data from book of business queue table")
    public void iValidateBookOfBusinessQ(){dbValidations.validateBookOfBusinessQ();}
