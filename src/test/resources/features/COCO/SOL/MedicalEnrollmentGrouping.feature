@@ -61,9 +61,8 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
     Then I enter details on tell us about additional members of your household page and continue with "Son", "01051998", "Male" and applying "Yes"
-      | Primary:Child |
-      |               |
-      | Spouse:Child  |
+      | Primary:Child or Other dependent |
+      | Spouse:Child or Other dependent  |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
