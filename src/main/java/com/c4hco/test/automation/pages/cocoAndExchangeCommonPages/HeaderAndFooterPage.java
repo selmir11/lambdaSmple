@@ -461,7 +461,7 @@ public class HeaderAndFooterPage {
                 basicActions.click(signOutLinkWhoHelpsPage);
                 break;
             case "Portal":
-                basicActions.waitForElementToBePresent(signOutLinkPortal, 20);
+                basicActions.waitForElementToBePresent(signOutLinkPortal, 30);
                 basicActions.scrollToElement(signOutLinkPortal);
                 basicActions.click(signOutLinkPortal);
                 break;
