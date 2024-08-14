@@ -23,12 +23,14 @@ public class WebDriverManager {
     }
 
     private static WebDriver initializeDriver() {
+        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+
+
         // Create a map to store the preferences
         Map<String, Object> prefs = new HashMap<>();
         // Disable the download prompt
         prefs.put("download.prompt_for_download", false);
         prefs.put("profile.default_content_settings.popups", 0);
-        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
 
         BasicActions basicActions = new BasicActions();
