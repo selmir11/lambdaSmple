@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
@@ -130,6 +130,8 @@ public class YourClientsPage {
 
     public void clickOptionToHandelClient(String option) {
         basicActions.waitForElementToBePresent(removeClient,100);
+
+        basicActions.scrollToElement(manageClient);
         switch (option){
             case "remove Client":
                 removeClient.click();

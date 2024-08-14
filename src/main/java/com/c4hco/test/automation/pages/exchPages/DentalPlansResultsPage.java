@@ -63,6 +63,9 @@ public class DentalPlansResultsPage {
     @FindBy(css = ".c4-type-header-sm")
     List<WebElement> dentalPlanNames;
 
+    @FindBy(css = ".header-1")
+    WebElement dentalplanheader;
+
     @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
@@ -96,17 +99,19 @@ public class DentalPlansResultsPage {
 
     public void clickFirstPlanDetailBtn(){
         basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBeClickableWithRetries( selectFirstDentalDetailButton, 15 );
         selectFirstDentalDetailButton.click();
     }
 
     public void clickContinueOnDentalResultsPage() {
+        basicActions.waitForElementToDisappear( spinner, 30 );
         basicActions.waitForElementToBePresent( continueBtnOnDentalPlanResults, 15 );
         continueBtnOnDentalPlanResults.click();
     }
 
     public void clickGoBack() {
         basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBePresent( btnGoBack, 200 );
+        basicActions.waitForElementToBeClickableWithRetries( btnGoBack, 20 );
         basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
 
@@ -260,5 +265,27 @@ public class DentalPlansResultsPage {
         softAssert.assertEquals(dentalPlanNamesList, Constants.DentalPlanNamesList);
         softAssert.assertAll();
         }
+
+    public void SelectSpecificDentalPlanPerGrp(String SpecificPlan,String member){
+
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(dentalplanheader,20);
+
+        String headerText = dentalplanheader.getText();
+        if (headerText.contains(member)) {
+            clickSkip();
+        } else {
+
+            selectDentalPlan(SpecificPlan);
+             clickContinueOnDentalResultsPage();
+                System.out.println("Selected plan: " + SpecificPlan);
+
+        }
+
+    }
+
+
+
+
 
 }
