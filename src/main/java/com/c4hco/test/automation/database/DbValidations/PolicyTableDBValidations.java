@@ -49,7 +49,7 @@ public class PolicyTableDBValidations {
 
         if(policyTablesEntity.getSubscriber_ind().equals("1")){
             //Subscriber
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId()+"-"+medicalPlanDbData.getCsrLevel(), "Hios id does not match");
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId()+"-"+"01", "Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 1, Policy end date does not match");
 
@@ -71,7 +71,6 @@ public class PolicyTableDBValidations {
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(),  SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"--Medical Policy total responsible amount does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00","Medical Policy total CSR amount does not match");
-            softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), "01", "Medical Policy CSR level does not match");
         }else {
             //Member
             List<MemberDetails> memberslist = SharedData.getMembers();
@@ -110,7 +109,7 @@ public class PolicyTableDBValidations {
 
         if(policyTablesEntity.getSubscriber_ind().equals("1")){
             //Subscriber
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbData.getBaseId()+"-"+dentalPlanDbData.getCsrLevel(), "Subscriber Hios id does not match");
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbData.getBaseId()+"-"+"01", "Subscriber Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 2, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 2, Policy end date does not match");
             softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), startDateFormatted, "Dental financial start date does not match");
@@ -124,7 +123,6 @@ public class PolicyTableDBValidations {
             softAssert.assertEquals(policyTablesEntity.getPremium_reduction_amt(), SharedData.getPrimaryMember().getDentalAptcAmt().replace("$", "")+".00", "Dental aptc amount does not match");
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type()), "null","Dental Policy premium reduction type does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00", "Dental csr amount does not match");
-            softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), "01", "Dental CSR level does not match");
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), "null", "premium reduction type in table en member coverage financial does not match.");
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
 
@@ -179,6 +177,8 @@ public class PolicyTableDBValidations {
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
         softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "epfh CSR level does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
         softAssert.assertAll();
     }
 

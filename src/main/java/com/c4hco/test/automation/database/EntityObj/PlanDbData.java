@@ -10,7 +10,6 @@ public class PlanDbData {
     String hiosIssuerId;
     String issuerName;
     String issuerId;
-    String csrLevel;
     String csrAmt;
     String premiumAmt;
 }

@@ -76,23 +76,20 @@ public class DbDataProvider_Exch {
         return csrAmount;
     }
     public void setDataFromDb(){
-
         String fipcode = getFipcode();
-     String ratingAreaName = getRatingAreaName(fipcode);
-     String ratingAreaId = getRatingAreaId(fipcode);
-
-     String exchPersonId = getExchPersonId();
-     String brokerTinNum = getTinNumForBroker();
+        String ratingAreaName = getRatingAreaName(fipcode);
+        String ratingAreaId = getRatingAreaId(fipcode);
+        String exchPersonId = getExchPersonId();
+        String brokerTinNum = getTinNumForBroker();
+        String csrLevel = getCSRLevel(); //move to dbData
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
         dbData.setRatingAreaId(ratingAreaId);
-
         dbData.setExchPersonId(exchPersonId);
-
         dbData.setBrokerTinNum(brokerTinNum);
-
+        dbData.setCsrLevel(csrLevel);
         SharedData.setDbData(dbData);
     }
 
@@ -105,7 +102,7 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
-        String csrLevel = getCSRLevel(); //move to dbData
+
         List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
             medicalPlanDetailsFromDb = new ArrayList<>();
@@ -114,6 +111,10 @@ public class DbDataProvider_Exch {
             // set details
             planDbData.setBaseId(baseId);
             planDbData.setPlanName(planName);
+            planDbData.setIssuerName(issuerName);
+            planDbData.setIssuerId(issuerId);
+            planDbData.setHiosIssuerId(hiosIssuerId);
+            planDbData.setCsrAmt(csrAmtMed);
             medicalPlanDetailsFromDb.add(planDbData);
             SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
     }
@@ -127,7 +128,6 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmt =csrMap.get("2"); //Dental
-        String csrLevel = getCSRLevel(); // Move to dbData
         List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
         if(dentalPlanDetailsFromDb==null) {
             dentalPlanDetailsFromDb = new ArrayList<>();
@@ -136,6 +136,10 @@ public class DbDataProvider_Exch {
         // set details
         planDbData.setBaseId(baseId);
         planDbData.setPlanName(planName);
+        planDbData.setIssuerName(issuerName);
+        planDbData.setIssuerId(issuerId);
+        planDbData.setHiosIssuerId(hiosIssuerId);
+        planDbData.setCsrAmt(csrAmt);
         dentalPlanDetailsFromDb.add(planDbData);
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }

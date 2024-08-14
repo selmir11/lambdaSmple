@@ -115,6 +115,7 @@ public class DbValidations {
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
         //  softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Dental Plan premium reduction type does not match");
+        softAssert.assertEquals(ob834Entity.getCsr_level(),"01", "CSR level does not match"); // WIP - GET CSR LEVEL FROM DBDATA
         validateSponsorId(ob834Entity);
         validateConstantFields(ob834Entity);
         validatePersonalDetails(subscriber, ob834Entity);
@@ -143,7 +144,6 @@ public class DbValidations {
             softAssert.assertEquals(medicalDbData.getCsrAmt()!= null ? medicalDbData.getCsrAmt():"0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
-            softAssert.assertEquals(medicalDbData.getCsrLevel(),ob834Entity.getCsr_level(),"CSR level does not match"); // WIP - GET CSR LEVEL FROM DBDATA
         }else{
             validateAptcValuesForNonSubscriber(ob834Entity);
         }
@@ -158,7 +158,6 @@ public class DbValidations {
             softAssert.assertEquals(dentalDbData.getCsrAmt()!= null ? dentalDbData.getCsrAmt():"0.00", ob834Entity.getCsr_amount(), "Dental CSR amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", "").split("/")[0].trim(), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Dental Total Premium amount does not match");
-            softAssert.assertEquals(dentalDbData.getCsrLevel(),ob834Entity.getCsr_level(),"CSR level does not match");
         }else{
             validateAptcValuesForNonSubscriber(ob834Entity);
 

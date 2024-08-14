@@ -9,4 +9,5 @@ public class DbData {
     String ratingAreaId;
     String exchPersonId;
     String brokerTinNum;
+    String csrLevel;
 }
