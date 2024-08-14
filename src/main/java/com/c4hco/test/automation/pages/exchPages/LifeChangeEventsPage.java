@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +28,9 @@ public class LifeChangeEventsPage {
 
     @FindBy(id = "continueButton")
     List<WebElement> saveAndContinueButton;
+
+    @FindBy(css = "div.col-sm-6.text-right > input")
+    WebElement saveAndContinueOnlyButton;
 
     @FindBy(css = "h1.c4PageHeader")
     WebElement textReportLifeChangeHeader;
@@ -115,7 +119,13 @@ public class LifeChangeEventsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
-        saveAndContinueButton.get(0).click();
+        String currentUrl = basicActions.getCurrentUrl();
+        if (currentUrl.contains("https://staging")) {
+            saveAndContinueButton.get(0).click();
+        } else if (currentUrl.contains("https://qa")) {
+            basicActions.scrollToElement(saveAndContinueOnlyButton);
+            saveAndContinueOnlyButton.click();
+        }
     }
 
     public void clickContinueWithApplication(){
