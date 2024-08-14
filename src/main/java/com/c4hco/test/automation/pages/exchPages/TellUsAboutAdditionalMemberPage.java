@@ -326,8 +326,12 @@ public class TellUsAboutAdditionalMemberPage {
         String Relation = parts[1]; // "Spouse"
 
         try {
-            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+ Name+"')]/parent::label/parent::div //select"));
+
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+Name+"')]/ancestor-or-self::label/parent::div //select"));
+            basicActions.waitForElementToBePresent(element,10);
+            basicActions.scrollToElement(element);
             basicActions.waitForElementToBeClickableWithRetries(element,10);
+
             // Perform actions on the element
             Select dropdown = new Select(element);
             dropdown.selectByVisibleText(Relation);

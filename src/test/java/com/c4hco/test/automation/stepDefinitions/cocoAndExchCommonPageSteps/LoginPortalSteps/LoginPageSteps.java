@@ -1,6 +1,6 @@
-package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.LoginPortalSteps;
 
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.LoginPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 

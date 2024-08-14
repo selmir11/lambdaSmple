@@ -38,4 +38,12 @@ public class GroupingMembersMedicalSteps {
 
     @And ("I click Go Back on the Medical Grouping page")
     public void clickGoBack(){groupingMembersMedical.clickGoBackButton();}
+
+
+    @And ("I get the details of medical group Members")
+    public void setTheGroupDetails(){groupingMembersMedical.setTheGroupDetails();}
+
+
 }
+
+

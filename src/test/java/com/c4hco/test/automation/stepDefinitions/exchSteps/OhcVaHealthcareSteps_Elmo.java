@@ -26,6 +26,12 @@ public class OhcVaHealthcareSteps_Elmo {
     @Then("I click {string} for insurance ending voluntary for VA Healthcare question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){OhcVaHealthcarePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
 
+    @And("I select {string} icon on the VA Healthcare Page")
+    public void iSelectHelpIcon(String labelIcon){OhcVaHealthcarePage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click VA Healthcare Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){OhcVaHealthcarePage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -54,6 +60,9 @@ public class OhcVaHealthcareSteps_Elmo {
 
     @And("I verify {string} error does not show for VA Healthcare page")
     public void iVerifyNoErrorMessage(String errorType)  {OhcVaHealthcarePage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate VA Healthcare {string} help drawer verbiage in {string}")
+    public void iValidateHelp(String helpData,String language){OhcVaHealthcarePage_Elmo.validateHelpVerbiage(helpData,language);}
 
 
 
