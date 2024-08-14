@@ -32,6 +32,12 @@ public class OhcIndividualInsuranceSteps_Elmo {
     public void iClickEndVoluntaryOption(String voluntaryEnding){
         ohcIndividualInsurancePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
 
+    @And("I select {string} icon on the Individual Insurance Page")
+    public void iSelectHelpIcon(String labelIcon){ohcIndividualInsurancePage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click Individual Insurance Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){ohcIndividualInsurancePage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -68,6 +74,9 @@ public class OhcIndividualInsuranceSteps_Elmo {
     @And("I verify the {string} Individual Insurance page data in {string}")
     public void iVerifyIndividualInsurancePageData(String dataToVerify, String language) {
         ohcIndividualInsurancePage_Elmo.verifyIndividualInsurancePageData(dataToVerify, language);}
+
+    @Then("I validate Individual Insurance {string} help drawer verbiage in {string}")
+    public void iValidateHelp(String helpData,String language){ohcIndividualInsurancePage_Elmo.validateHelpVerbiage(helpData,language);}
 
 
 
