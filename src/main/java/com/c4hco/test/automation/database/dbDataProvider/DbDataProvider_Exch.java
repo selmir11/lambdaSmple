@@ -6,6 +6,7 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -94,8 +95,8 @@ public class DbDataProvider_Exch {
 
         SharedData.setDbData(dbData);
     }
-    public void setDentalMedicalDbdata(String planName){
 
+    public void setMedicalPlanDataFromDb(String planName){
         String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
         String baseId = baseIdAndHiosIssuerId[0];
         String hiosIssuerId = baseIdAndHiosIssuerId[1];
@@ -104,19 +105,39 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
-        String csrAmtDen =csrMap.get("2");
-        String csrLevel = getCSRLevel();
-        DbData dbData = new DbData();
+        String csrLevel = getCSRLevel(); //move to dbData
+        List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
+        if(medicalPlanDetailsFromDb==null) {
+            medicalPlanDetailsFromDb = new ArrayList<>();
+        }
+            PlanDbData planDbData = new PlanDbData();
+            // set details
+            planDbData.setBaseId(baseId);
+            planDbData.setPlanName(planName);
+            medicalPlanDetailsFromDb.add(planDbData);
+            SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
+    }
 
-        dbData.setBaseId(baseId);
-        dbData.setHiosIssuerId(hiosIssuerId);
-        dbData.setIssuerName(issuerName);
-        dbData.setIssuerId(issuerId);
-        dbData.setCsrLevel(csrLevel);
-        dbData.setCsrAmtMed(csrAmtMed);
-        dbData.setCsrAmtDen(csrAmtDen);
-
-        SharedData.setDbData(dbData);
+    public void setDentalPlanDataFromDb(String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmt =csrMap.get("2"); //Dental
+        String csrLevel = getCSRLevel(); // Move to dbData
+        List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
+        if(dentalPlanDetailsFromDb==null) {
+            dentalPlanDetailsFromDb = new ArrayList<>();
+        }
+        PlanDbData planDbData = new PlanDbData();
+        // set details
+        planDbData.setBaseId(baseId);
+        planDbData.setPlanName(planName);
+        dentalPlanDetailsFromDb.add(planDbData);
+        SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
     public Boolean getDataFromOhiTables(){
