@@ -41,7 +41,6 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I click on first client search result
     And I click "manage" the client
 
-
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -53,7 +52,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "No" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    And I enter member with address line1 "P.O.BOX 1454" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    Then I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
@@ -98,10 +97,10 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     Then I click continue on application results page
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" medical plan
+    And I select "Select Health Value Bronze $6900 Medical Deductible" medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
-    Then I select "Anthem Dental Family" plan
+    Then I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
@@ -115,10 +114,6 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
     Then I click all done from payment portal page
 
-    #And I click on Apply for Coverage in the "Elmo" Header
-
-    #Then I validate I am on the "My Account Overview" page
-    #Then I click on ClickHere link for "My Plans"
 
     #Gmail Verification
     Then I open outlook Tab
