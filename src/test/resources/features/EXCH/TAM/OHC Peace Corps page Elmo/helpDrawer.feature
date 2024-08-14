@@ -59,7 +59,7 @@ Feature: Help Drawer-Other Health Coverage Page
     And I set the browser resolution to 2000 x 800
 
   @SLER-912 @HelpDrawerPeaceCorpsPage @TAMSmoke
-  Scenario: SLER-907 Validate help drawer text on the Peace Corps page - English
+  Scenario: SLER-912 Validate help drawer text on the Peace Corps page - English
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     And I select "Help me understand" icon on the Peace Corps Page
@@ -91,7 +91,7 @@ Feature: Help Drawer-Other Health Coverage Page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-913 @HelpDrawerPeaceCorpsPage
-  Scenario: SLER-906 Validate help drawer text on the Peace Corps page - Spanish
+  Scenario: SLER-913 Validate help drawer text on the Peace Corps page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     Then I click "Yes" for currently enrolled in Peace Corps question
