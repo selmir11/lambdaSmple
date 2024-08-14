@@ -58,8 +58,8 @@ Feature: Help Drawer-Other Health Coverage Page
     And I validate I am on the "Elmo Ohi Tricare" page
     And I set the browser resolution to 2000 x 800
 
-  @SLER-907 @HelpDrawerTricarePage
-  Scenario: SLER-907 Validate help drawer text on the Tricare page - English
+  @SLER-910 @HelpDrawerTricarePage
+  Scenario: SLER-910 Validate help drawer text on the Tricare page - English
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     And I select "Help me understand" icon on the Tricare Page
@@ -90,8 +90,8 @@ Feature: Help Drawer-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-906 @HelpDrawerTricarePage
-  Scenario: SLER-906 Validate help drawer text on the Tricare page - Spanish
+  @SLER-911 @HelpDrawerTricarePage
+  Scenario: SLER-911 Validate help drawer text on the Tricare page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     Then I click "Yes" for currently enrolled in Tricare question
