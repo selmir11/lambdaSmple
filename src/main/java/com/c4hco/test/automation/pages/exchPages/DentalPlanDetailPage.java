@@ -24,7 +24,7 @@ public class DentalPlanDetailPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "DentalCarrierDetails-GoBacktoPlans")
+    @FindBy(xpath = "//button[@class = 'btn-secondary m-l-15']")
     WebElement clickGoBackDetail;
 
     @FindBy(id = "DentalCarrierDetails-InNetworkTier1")
@@ -91,6 +91,7 @@ public class DentalPlanDetailPage {
     public void clickGoBackDetail() {
         basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementToBePresent(clickGoBackDetail, 15 );
+        basicActions.scrollToElement( clickGoBackDetail );
         clickGoBackDetail.click(); }
 
 
