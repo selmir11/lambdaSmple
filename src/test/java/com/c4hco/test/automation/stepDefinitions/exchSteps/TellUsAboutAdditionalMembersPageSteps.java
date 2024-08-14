@@ -50,4 +50,9 @@ public class TellUsAboutAdditionalMembersPageSteps {
         tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch(Name, DOB, gender, Relations, applying);
     }
 
+    @Then("I enter details on tell us about additional members of your household exch page and continue with Name {string}, DOB {string}, Gender {string} and applying status {string}")
+    public void setSpecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {
+        tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch( Name, DOB, gender, Relations, applying );
+    }
+
 }
