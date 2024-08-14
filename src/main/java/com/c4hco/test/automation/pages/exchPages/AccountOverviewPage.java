@@ -49,8 +49,6 @@ public class AccountOverviewPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
-
-
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -64,22 +62,17 @@ public class AccountOverviewPage {
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent(header, 10);
-        String currentUrl = basicActions.getCurrentUrl();
+        WebElement applyForYr;
 
-        WebElement btnApplyForCurrentYearBothEnv;
-        if (currentUrl.contains("https://staging")) {
-            btnApplyForCurrentYearBothEnv = btnApplyForCurrentYear;
-        } else if (currentUrl.contains("https://qa")) {
-            btnApplyForCurrentYearBothEnv = btnApplyForCurrentYearOe;
-        } else {
-            throw new IllegalStateException("Unexpected environment: " + currentUrl);
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+             applyForYr = btnApplyForCurrentYearOe;
+        } else{
+            applyForYr = btnApplyForCurrentYear;
         }
-        
-        basicActions.waitForElementToBePresent(btnApplyForCurrentYearBothEnv, 40);
-        String applyForYearText = btnApplyForCurrentYearBothEnv.getText();
-        String year = applyForYearText.replace("Apply for ", "");
+        basicActions.waitForElementToBePresent(applyForYr, 40);
+        String year = applyForYr.getText().replace("Apply for ", "");
         SharedData.setPlanYear(year);
-        btnApplyForCurrentYearBothEnv.click();
+        applyForYr.click();
     }
 
     public void clickHereLinks(String clickHereOption){

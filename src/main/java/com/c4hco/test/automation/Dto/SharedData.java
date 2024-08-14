@@ -31,6 +31,7 @@ public class SharedData {
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
     @Getter @Setter private static String dbName;
+    @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
     @Getter @Setter private static Boolean hasBroker = false;
@@ -59,6 +60,8 @@ public class SharedData {
         dbName = null;
         noticeFileName = null;
         bookOfBusinessQEntityList = null;
+        isOpenEnrollment = null;
+
     }
 
 
