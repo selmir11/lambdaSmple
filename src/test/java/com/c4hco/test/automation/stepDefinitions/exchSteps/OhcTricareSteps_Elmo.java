@@ -31,6 +31,12 @@ public class OhcTricareSteps_Elmo {
     public void iClickGoBack(){
         ohcTricarePage_Elmo.clickGoBack();}
 
+    @And("I select {string} icon on the Tricare Page")
+    public void iSelectHelpIcon(String labelIcon){ohcTricarePage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click Tricare Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){ohcTricarePage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -68,6 +74,9 @@ public class OhcTricareSteps_Elmo {
     @And("I verify {string} error does not show for Tricare page")
     public void iVerifyNoErrorMessage(String errorType)  {
         ohcTricarePage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate Tricare {string} help drawer verbiage in {string}")
+    public void iValidateHelp(String helpData,String language){ohcTricarePage_Elmo.validateHelpVerbiage(helpData,language);}
 
 
 
