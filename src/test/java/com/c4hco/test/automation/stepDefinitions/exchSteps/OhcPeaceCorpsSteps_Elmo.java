@@ -31,6 +31,12 @@ public class OhcPeaceCorpsSteps_Elmo {
     public void iClickEndVoluntaryOption(String voluntaryEnding){
         ohcPeaceCorpsPage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
 
+    @And("I select {string} icon on the Peace Corps Page")
+    public void iSelectHelpIcon(String labelIcon){ohcPeaceCorpsPage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click Peace Corps Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){ohcPeaceCorpsPage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -75,6 +81,9 @@ public class OhcPeaceCorpsSteps_Elmo {
     @And("I verify {string} error does not show for Peace Corps page")
     public void iVerifyNoErrorMessage(String errorType)  {
         ohcPeaceCorpsPage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate Peace Corps {string} help drawer verbiage in {string}")
+    public void iValidateHelp(String helpData,String language){ohcPeaceCorpsPage_Elmo.validateHelpVerbiage(helpData,language);}
     
     
     
