@@ -130,6 +130,8 @@ public class YourClientsPage {
 
     public void clickOptionToHandelClient(String option) {
         basicActions.waitForElementToBePresent(removeClient,100);
+
+        basicActions.scrollToElement(manageClient);
         switch (option){
             case "remove Client":
                 removeClient.click();
