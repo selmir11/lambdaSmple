@@ -64,8 +64,8 @@ public class PolicyTableDBValidations {
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()),
                     subscriber.getFinancialHelp() ? "APTC" : "null",
                     "Subscriber Medical Policy premium reduction type does not match");
-            softAssert.assertEquals(policyTablesEntity.getPremium_reduction_type_emcfh(), "null", "premium reduction type in table en member coverage financial does not match.");
-            softAssert.assertEquals(policyTablesEntity.getPremium_reduction_type_epfh(), "null", "premium reduction type in en policy financial ah table does not match");
+            softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), "null", "premium reduction type in table en member coverage financial does not match.");
+            softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(),  SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"--Medical Policy total responsible amount does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00","Medical Policy total CSR amount does not match");
             softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), "01", "Medical Policy CSR level does not match");
@@ -122,8 +122,8 @@ public class PolicyTableDBValidations {
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type()), "null","Dental Policy premium reduction type does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00", "Dental csr amount does not match");
             softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), "01", "Dental CSR level does not match");
-            softAssert.assertEquals(policyTablesEntity.getPremium_reduction_type_emcfh(), "null", "premium reduction type in table en member coverage financial does not match.");
-            softAssert.assertEquals(policyTablesEntity.getPremium_reduction_type_epfh(), "null", "premium reduction type in en policy financial ah table does not match");
+            softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), "null", "premium reduction type in table en member coverage financial does not match.");
+            softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
 
             softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), "SUBMITTED", "Dental member coverage status does not match");
             softAssert.assertEquals(policyTablesEntity.getSubscriber_ind(), "1", "Subscriber indicator is not 1");
