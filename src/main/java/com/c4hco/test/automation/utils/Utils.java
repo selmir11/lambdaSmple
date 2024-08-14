@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 public class Utils {
     private String env = ApplicationProperties.getInstance().getProperty("env");
     private String isLrEnv = ApplicationProperties.getInstance().getProperty("isLrEnv");
+    private String isOpenEnrollment = ApplicationProperties.getInstance().getProperty("isOpenEnrollment");
     private BasicActions basicActions;
 
     public Utils(WebDriver webDriver){
@@ -14,6 +15,7 @@ public class Utils {
         PageFactory.initElements(basicActions.getDriver(), this);
         SharedData.setEnv(env);
         SharedData.setDbName(getdbName());
+        SharedData.setIsOpenEnrollment(isOpenEnrollment);
     }
 
     public String getBaseLoginUrl(String portalType){
