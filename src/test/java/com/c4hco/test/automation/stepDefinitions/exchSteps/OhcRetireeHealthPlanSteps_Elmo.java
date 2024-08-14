@@ -26,6 +26,12 @@ public class OhcRetireeHealthPlanSteps_Elmo {
     @Then("I click {string} for insurance ending voluntary for Retiree question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){OhcRetireeHealthPlanPage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
 
+    @And("I select {string} icon on the Retiree Page")
+    public void iSelectHelpIcon(String labelIcon){OhcRetireeHealthPlanPage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click Retiree Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){OhcRetireeHealthPlanPage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -62,6 +68,9 @@ public class OhcRetireeHealthPlanSteps_Elmo {
 
     @And("I verify {string} error does not show for Retiree page")
     public void iVerifyNoErrorMessage(String errorType)  {OhcRetireeHealthPlanPage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate Retiree {string} help drawer verbiage in {string}")
+    public void iValidateHelp(String helpData,String language){OhcRetireeHealthPlanPage_Elmo.validateHelpVerbiage(helpData,language);}
 
 
 
