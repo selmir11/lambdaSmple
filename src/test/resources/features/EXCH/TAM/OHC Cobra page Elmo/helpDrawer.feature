@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Help Drawer-Other Health Coverage Page
 
   Background:
