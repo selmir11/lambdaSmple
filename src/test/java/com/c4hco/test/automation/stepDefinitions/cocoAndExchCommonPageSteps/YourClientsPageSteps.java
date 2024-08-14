@@ -6,6 +6,12 @@ import io.cucumber.java.en.Then;
 
 public class YourClientsPageSteps {
     YourClientsPage yourClientsPage = new YourClientsPage(WebDriverManager.getDriver());
+
+    @Then("I validate the Your Clients page title")
+    public void iValidateYourClientsPageTitle(){
+        yourClientsPage.validateYourClientsPageTitle();
+    }
+
     @And("I click on {string} tab")
     public void iClickOnTab(String userTab) {
         yourClientsPage.clickUserTab(userTab);
@@ -27,6 +33,12 @@ public class YourClientsPageSteps {
     public void IClickOnFirstClientSearchResult() {
         yourClientsPage.clickClientResult();
     }
+
+    @Then("I verify that my client's current status is {string}")
+    public void iVerifyCurrentClientStatus(String expectedClientStatus) {
+        yourClientsPage.verifyCurrentClientStatus(expectedClientStatus);
+    }
+
     @And("I click {string} the client")
     public void iClickTheClient(String option) {
         yourClientsPage.clickOptionToHandelClient(option);
@@ -59,6 +71,11 @@ public class YourClientsPageSteps {
     @Then("I select all clients checkbox")
     public void iSelectAllClientsCheckbox() {
         yourClientsPage.selectAllTheClientsCheckBox();
+    }
+
+    @Then("I validate the premium amount displayed for my client")
+    public void iValidateClientPremium(){
+        yourClientsPage.validateClientPremiumAmount();
     }
 }
 

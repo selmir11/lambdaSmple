@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
+import com.c4hco.test.automation.database.DbValidations.PolicyTableDBValidations;
 import com.c4hco.test.automation.database.DbValidations.PolicyTableValidations;
 import io.cucumber.java.en.And;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
+private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
@@ -17,8 +19,8 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    }
 
    @And("I validate the member details from policy tables")
-   public void validateFromPolicyTables(){
-      dbValidations.validateDataFromPolicyTables();
+   public void validateFromPolicyTables(List<Map<String, String>> expectedResult){
+      policyTableDBValidations.validateDataFromPolicyTables(expectedResult);
    }
 
    @And("I validate member details from ob834_details table")
@@ -36,8 +38,8 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    public void iValidateHraOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraOptions(expectedValues);}
 
 
-   @And("I verify the policy data quality check")
-   public void iValidatePolicyDqCheck(){dbValidations.validatePolicyDqCheck();}
+   @And("I verify the policy data quality check with Policy Ah keyset size {int}")
+   public void iValidatePolicyDqCheck(int keysetSize){dbValidations.validatePolicyDqCheck(keysetSize);}
 
    @And("I verify the data from book of business queue table")
    public void iValidateBookOfBusinessQ(){dbValidations.validateBookOfBusinessQ();}

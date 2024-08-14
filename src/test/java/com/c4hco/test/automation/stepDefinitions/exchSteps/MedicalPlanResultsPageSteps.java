@@ -13,6 +13,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
 
+    @And("I select the first plan detail")
+    public void selectFirstMedicalPlanDetailButton() {
+        medPlanResultsPage.selectFirstMedicalPlanDetailButton();
+    }
+
     @And("I select {string} medical plan")
     public void selectMedicalPlan(String medicalPlan) {
         medPlanResultsPage.selectMedicalPlan(medicalPlan);

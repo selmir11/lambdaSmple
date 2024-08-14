@@ -172,6 +172,7 @@ public class PlanSummaryMedicalDentalPage {
         List<MemberDetails> memberslist = SharedData.getMembers();
         Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
         if(!isGettingFinancialHelp){//NFA
+            basicActions.wait(3000);
             subscriber.setMedicalAptcAmt("0"); basicActions.waitForElementToDisappear(spinner, 15);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
@@ -183,6 +184,7 @@ public class PlanSummaryMedicalDentalPage {
                 }
             }
         }else {//FA
+            basicActions.wait(3000);
             String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
@@ -196,6 +198,10 @@ public class PlanSummaryMedicalDentalPage {
             for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
                 memberslist.get(i).setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
                 memberslist.get(i).setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
+                memberslist.get(i).setMedicalAptcAmt(medAPTCAmt);
+                memberslist.get(i).setTotalMedAmtAfterReduction(String.valueOf(bigDecimalmedPremiumMinusAPTC));
+                memberslist.get(i).setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText());
+                memberslist.get(i).setDentalAptcAmt("0.00");
             }
             }
         }

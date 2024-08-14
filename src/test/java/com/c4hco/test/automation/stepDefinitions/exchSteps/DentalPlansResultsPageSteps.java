@@ -4,9 +4,11 @@ import com.c4hco.test.automation.pages.exchPages.DentalPlansResultsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.testng.asserts.SoftAssert;
 
 public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
+
 
     @Then("I select first dental plan")
     public void selectFirstDentalPlan() { dentalPlansResultsPage.selectFirstDentalPlan(); }
@@ -16,10 +18,21 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.selectDentalPlan(dentalPlanNames);
     }
 
+    @And("I validate for Pediatric Dental Plans")
+    public void validatePediatric(){dentalPlansResultsPage.validatePediatric();}
+
+    @And("I validate that Pediatric Dental Plans are not available")
+    public void validatePediatricFalse(){dentalPlansResultsPage.validatePediatricFalse();}
+
+    @And ("I validate for Pediatric and Adult Dental Plans")
+    public void validatePediatricAndAdult(){dentalPlansResultsPage.validateAdultPediatric();}
+
+    @And("I click on the First Dental Detail button")
+    public void clickFirstPlanDetailButton(){dentalPlansResultsPage.clickFirstPlanDetailBtn();}
+
     @Then("I click continue on dental plan results page")
     public void clickContinueOnDentalResultsPage() {
-        dentalPlansResultsPage.clickContinueOnDentalResultsPage();
-    }
+        dentalPlansResultsPage.clickContinueOnDentalResultsPage();}
 
     @Then("I click Go Back on Dental Plan Results page")
     public void clickGoBackButton() { dentalPlansResultsPage.clickGoBack(); }

@@ -27,6 +27,7 @@ Feature:verify deauthorize broker notice Spanish Mail prefrences BN-002-04
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
+    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying

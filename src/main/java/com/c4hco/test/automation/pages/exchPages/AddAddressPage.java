@@ -158,8 +158,9 @@ public class AddAddressPage {
 
     public void mailingAddress(){
         // Should not use this method anymore- should use genericMailingAddress method
-        basicActions.waitForElementToBePresent(headerAdditionalInfo,20);
-        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 20);
+        basicActions.waitForElementToBePresent(headerAdditionalInfo,50);
+        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 50);
+        basicActions.waitForElementToBePresent(txtMailingAddrLine2, 50);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
         txtMailingCity.sendKeys("Denver");
@@ -182,6 +183,18 @@ public class AddAddressPage {
     }
 
     public void newMailingAddress(String city, String state, String zipcode, String county){
+        basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+        newResidentialAddressline1.sendKeys("1234 Road");
+        newResidentialAdressCity.sendKeys(city);
+        newResidentialAddressState.sendKeys(state);
+        newResidentialAddressZip.sendKeys(zipcode);
+
+        newResidentialAddressCounty.click();
+        Select dropdown = new Select(newResidentialAddressCounty);
+        dropdown.selectByValue(county);
+    }
+
+    public void newResidentialAddress(String city, String state, String zipcode, String county){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
         newResidentialAddressline1.sendKeys("1234 Road");
         newResidentialAdressCity.sendKeys(city);

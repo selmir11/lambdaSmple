@@ -15,6 +15,9 @@ public class HeaderAndFooterPage {
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
 
+    @FindBy(xpath = "//a[@class='logo']")
+    WebElement connectLogoNonElmo;
+
     @FindBy(css = ".logo")
     WebElement connectLogoLinkNonElmo;
     @FindBy(css = "#logo")
@@ -22,6 +25,9 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".center-links .clickable")
     List<WebElement> centerHeaderLink;
+
+    @FindBy (xpath = "//*[@class = 'strong vertical-ruler-left']")
+    WebElement FindAPlan;
 
     @FindBy(css = "div.top-navigation > div > nav > ul > li > a")
     List<WebElement> centerHeaderLinkNonElmo;
@@ -41,7 +47,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".top-navigation > div > nav > ul > span > li.stacked.dropdown > div:nth-child(1) > a")
     WebElement getAssistanceLinkNonElmo;
 
-    @FindBy(id = "get-assistance")
+    @FindBy(id = "ga")
     WebElement getAssistanceLinkLoginPortal;
 
     @FindBy(xpath = "//button[normalize-space()='Get Assistance']")
@@ -52,7 +58,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(xpath = "//div[@class='dropdown-menu show']//a")
     List<WebElement> getAssistanceLoginPortalOption;
-    
+
     @FindBy(css = ".stacked.dropdown > div.dropdown-content > a")
     WebElement getAssistanceLinkOptionNonElmo;
 
@@ -106,13 +112,14 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
-    @FindBy(xpath = "//div[@class ='p-2 sign-out']") // this is for "Who helps you Page" Sign out only.
+    //@FindBy(xpath = "//*[@id ='sign-out") //
+    @FindBy(css = "#sign-out")
     WebElement signOutLinkPortal;
 
     @FindBy(xpath = "//*[@id ='sign-out']")
     WebElement  signOutDentalPlanResults;
 
-    @FindBy(xpath = "//div[@class ='p-2 ms-2']") // this is the only one that works without getting a stale element issue
+    @FindBy(id = "nesHeader-signOut-link") // this is for "Who helps you Page" Sign out only.
     WebElement signOutLinkWhoHelpsPage;
 
     // =========FOOTER============== //
@@ -175,10 +182,18 @@ public class HeaderAndFooterPage {
 
     public void clickConnectLogoLink(String pageType) {
         switch (pageType){
+            case "NonElmo":
+                basicActions.waitForElementToBeClickable(connectLogoNonElmo, 10);
+                connectLogoNonElmo.click();
+                break;
             case "Elmo":
                 basicActions.waitForElementToBeClickable(connectLogoLink, 10);
                 connectLogoLink.click();
-            break;
+                break;
+            case "FindAPlan":
+                basicActions.waitForElementToBePresent( FindAPlan, 15 );
+                FindAPlan.click();
+                break;
             case "ExpertHelp":
                 basicActions.waitForElementToBePresent(connectLogoLinkExpertHelp,20);
                 connectLogoLinkExpertHelp.click();
@@ -228,6 +243,10 @@ public class HeaderAndFooterPage {
             basicActions.waitForElementToBePresent(connectLogoLink, 15);
             centerHeaderLink.get(1).click();
             break;
+            case "NonElmo":
+                basicActions.waitForElementListToBePresent(centerHeaderLinkNonElmo, 15);
+                centerHeaderLinkNonElmo.get(1).click();
+                break;
             case "Expert Help":
             basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
             centerHeaderLinkExpertHelp.get(1).click();
@@ -308,7 +327,7 @@ public class HeaderAndFooterPage {
             case "ExpertHelp in community":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceExpertInCoomunity, 20);
                 findExpertAssistanceExpertInCoomunity.click();
-				break;
+                break;
                 case "Lugy Page":
                 basicActions.waitForElementToBeClickable(findExpertAssistanceLugy, 20);
                     findExpertAssistanceLugy.click();
@@ -453,7 +472,7 @@ public class HeaderAndFooterPage {
                 basicActions.click(signOutLinkWhoHelpsPage);
                 break;
             case "Portal":
-                basicActions.waitForElementToBePresent(signOutLinkPortal, 20);
+                basicActions.waitForElementToBePresent(signOutLinkPortal, 30);
                 basicActions.scrollToElement(signOutLinkPortal);
                 basicActions.click(signOutLinkPortal);
                 break;
