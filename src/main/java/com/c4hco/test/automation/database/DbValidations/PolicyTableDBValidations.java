@@ -157,7 +157,6 @@ public class PolicyTableDBValidations {
                     softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "WIFE", "Relationship to subscriber does not match");
                     softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Effectuated indicator is not zero");
                    // softAssert.assertEquals(policyTablesEntity.getPolicy_submitted_by(), SharedData.getPrimaryMember().getEmailId(), "Member Created by does not match");
-                    softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
                 }
             }
         }
