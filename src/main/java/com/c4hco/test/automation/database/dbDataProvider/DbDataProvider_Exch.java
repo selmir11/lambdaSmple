@@ -74,35 +74,48 @@ public class DbDataProvider_Exch {
         Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
         return csrAmount;
     }
-    public void setDataFromDb(String planName){String fipcode = getFipcode();
+    public void setDataFromDb(){
+
+        String fipcode = getFipcode();
      String ratingAreaName = getRatingAreaName(fipcode);
      String ratingAreaId = getRatingAreaId(fipcode);
-     String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
-     String baseId = baseIdAndHiosIssuerId[0];
-     String hiosIssuerId = baseIdAndHiosIssuerId[1];
-     String[] issuerNameId = getIssuerNameId(hiosIssuerId);
-     String issuerName = issuerNameId[0];
-     String issuerId = issuerNameId[1];
-     Map<String,String> csrMap = getSubscriberCSRDataFromDb();
-        String csrAmtMed =csrMap.get("1");
-        String csrAmtDen =csrMap.get("2");
+
      String exchPersonId = getExchPersonId();
-     String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
         dbData.setRatingAreaId(ratingAreaId);
+
+        dbData.setExchPersonId(exchPersonId);
+
+        dbData.setBrokerTinNum(brokerTinNum);
+
+        SharedData.setDbData(dbData);
+    }
+    public void setDentalMedicalDbdata(String planName){
+
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmtMed =csrMap.get("1");
+        String csrAmtDen =csrMap.get("2");
+        String csrLevel = getCSRLevel();
+        DbData dbData = new DbData();
+
         dbData.setBaseId(baseId);
         dbData.setHiosIssuerId(hiosIssuerId);
         dbData.setIssuerName(issuerName);
         dbData.setIssuerId(issuerId);
-        dbData.setExchPersonId(exchPersonId);
         dbData.setCsrLevel(csrLevel);
-        dbData.setBrokerTinNum(brokerTinNum);
         dbData.setCsrAmtMed(csrAmtMed);
         dbData.setCsrAmtDen(csrAmtDen);
+
         SharedData.setDbData(dbData);
     }
 
