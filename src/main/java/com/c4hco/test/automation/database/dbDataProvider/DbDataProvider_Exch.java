@@ -105,7 +105,7 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
-        String csrLevel = getCSRLevel();
+        String csrLevel = getCSRLevel(); //move to dbData
         List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
             medicalPlanDetailsFromDb = new ArrayList<>();
@@ -127,7 +127,7 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmt =csrMap.get("2"); //Dental
-        String csrLevel = getCSRLevel();
+        String csrLevel = getCSRLevel(); // Move to dbData
         List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
         if(dentalPlanDetailsFromDb==null) {
             dentalPlanDetailsFromDb = new ArrayList<>();
