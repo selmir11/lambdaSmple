@@ -56,6 +56,9 @@ public class DentalPlansResultsPage {
     @FindBy(css= ".c4-type-header-sm")
     List<WebElement> dentalPlanNames;
 
+    @FindBy(css = ".header-1")
+    WebElement dentalplanheader;
+
     @FindBy(css = "pagination-template .pagination-next")
     WebElement nextPageArrow;
 
@@ -199,5 +202,27 @@ public class DentalPlansResultsPage {
         softAssert.assertEquals(dentalPlanNamesList, Constants.DentalPlanNamesList);
         softAssert.assertAll();
         }
+
+    public void SelectSpecificDentalPlanPerGrp(String SpecificPlan,String member){
+
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(dentalplanheader,20);
+
+        String headerText = dentalplanheader.getText();
+        if (headerText.contains(member)) {
+            clickSkip();
+        } else {
+
+            selectDentalPlan(SpecificPlan);
+             clickContinueOnDentalResultsPage();
+                System.out.println("Selected plan: " + SpecificPlan);
+
+        }
+
+    }
+
+
+
+
 
 }

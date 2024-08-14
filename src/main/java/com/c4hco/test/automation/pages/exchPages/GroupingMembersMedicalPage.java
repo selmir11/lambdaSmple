@@ -1,8 +1,10 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.GroupDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -179,5 +181,31 @@ public class GroupingMembersMedicalPage {
         Map<String, List<String>> actualMap = getGroupsByZipByUI();
         compareLists(actualMap, expectedMap);
     }
+
+
+
+    public void setTheGroupDetails() {
+        Map<String, List<String>> groupDetailsMap = new HashMap<>();
+        basicActions.waitForElementListToBePresent(noOfGroups, 10);
+        int groupsSize = noOfGroups.size();
+        SharedData.setTotalGroups(groupsSize);
+
+        for (int i = 1; i <= groupsSize; i++) {
+            List<WebElement> details = basicActions.getDriver().findElements(By.xpath("//th[contains(text(),'Medical Group # " + i + "')]/../../following-sibling::tbody//td"));
+            List<String> newDetails = new ArrayList<>();
+
+            for (WebElement detail : details) {
+                newDetails.add(detail.getText());
+            }
+
+            groupDetailsMap.put("Medical Group # " + i, newDetails);
+        }
+
+        SharedData.setGroupingDetails(groupDetailsMap);
+        System.out.println(groupDetailsMap);
+
+    }
+
+
 
 }

@@ -235,7 +235,7 @@ Feature: Enroll a in a plan 8 HH
     Then I select the projected income option "No" and continue
 
 
-#Mem4
+  #Mem4
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
@@ -323,16 +323,36 @@ Feature: Enroll a in a plan 8 HH
     Then I select "member1" "Yes" for Tobacco Use
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
+    And  I get the details of medical group Members
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-  
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on plan summary page
+    And I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+
+    Then I click all done from payment portal page
+
+
+
+
 
 
 

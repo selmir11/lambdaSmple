@@ -8,6 +8,7 @@ import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,7 @@ public class SharedData {
     @Getter @Setter private static BrokerDetails adminStaff;
     @Getter @Setter private static String noticeFileName;
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
+    @Getter @Setter private static Map<String, List<String>> groupingDetails;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -58,4 +60,6 @@ public class SharedData {
         noticeFileName = null;
         bookOfBusinessQEntityList = null;
     }
+
+
 }

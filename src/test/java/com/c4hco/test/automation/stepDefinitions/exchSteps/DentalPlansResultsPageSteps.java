@@ -78,5 +78,10 @@ public class DentalPlansResultsPageSteps {
     }
 
 
+    @And("I select the {string} Dental plan but skip for {string}")
+    public void selectDentalPlanForMember(String specificPlan, String member) {
+        dentalPlansResultsPage.SelectSpecificDentalPlanPerGrp(specificPlan, member);
+    }
+
 
 }
