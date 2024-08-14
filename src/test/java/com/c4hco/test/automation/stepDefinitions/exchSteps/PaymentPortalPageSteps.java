@@ -11,4 +11,9 @@ public class PaymentPortalPageSteps {
     public void clickAllDone(){
        paymentPortalPage.clickAllDone();
     }
+
+    @Then("I click all done from payment portal page OBO")
+    public void clickAllDoneObo(){
+       paymentPortalPage.clickAllDoneObo();
+    }
 }

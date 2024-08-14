@@ -1,4 +1,4 @@
-@TAM @helpDrawerESI @test
+@TAM @helpDrawerESI
 Feature: Tests related to the help drawer on ELMO pages
 
   Background: I go the login portal

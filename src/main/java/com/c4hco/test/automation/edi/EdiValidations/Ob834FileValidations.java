@@ -41,7 +41,7 @@ public class Ob834FileValidations {
         validateN3N4Segments(entry);
         validateDMGSegment(entry);
     }
-    public void validateLXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
+    public void validateMed_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
         //LX segement
@@ -56,7 +56,6 @@ public class Ob834FileValidations {
             int lx = Integer.parseInt(segment.get("LX"));
             String n1Expected = segment.get("N1 75");
             String refExpected = segment.get("REF");
-            //String refDenExpected = segment.get("DenREF");
 
             if (refSegListOfList.get(lx + 5).get(0).equals("LX" + lx)) {
                 softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ", N1 segment mismatch for LX " + lx);
