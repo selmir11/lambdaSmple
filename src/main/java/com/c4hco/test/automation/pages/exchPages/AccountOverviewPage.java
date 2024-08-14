@@ -23,6 +23,9 @@ public class AccountOverviewPage {
     @FindBy(css = "#submit-curr-yr-3")
     WebElement btnApplyForCurrentYear;
 
+    @FindBy(css = "#submit-curr-yr-1")
+    WebElement btnApplyForCurrentYearOe;
+
     @FindBy(css = ".linkButton")
     List<WebElement> clickHereLinks; // profile, eligibility, documents, plans
 
@@ -61,11 +64,22 @@ public class AccountOverviewPage {
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent(header, 10);
-        basicActions.waitForElementToBePresent(btnApplyForCurrentYear,40);
-        String applyForYearText = btnApplyForCurrentYear.getText();
+        String currentUrl = basicActions.getCurrentUrl();
+
+        WebElement btnApplyForCurrentYearBothEnv;
+        if (currentUrl.contains("https://staging")) {
+            btnApplyForCurrentYearBothEnv = btnApplyForCurrentYear;
+        } else if (currentUrl.contains("https://qa")) {
+            btnApplyForCurrentYearBothEnv = btnApplyForCurrentYearOe;
+        } else {
+            throw new IllegalStateException("Unexpected environment: " + currentUrl);
+        }
+        
+        basicActions.waitForElementToBePresent(btnApplyForCurrentYearBothEnv, 40);
+        String applyForYearText = btnApplyForCurrentYearBothEnv.getText();
         String year = applyForYearText.replace("Apply for ", "");
         SharedData.setPlanYear(year);
-        btnApplyForCurrentYear.click();
+        btnApplyForCurrentYearBothEnv.click();
     }
 
     public void clickHereLinks(String clickHereOption){

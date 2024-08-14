@@ -26,6 +26,12 @@ public class OhcCobraSteps_Elmo {
     @Then("I click {string} for insurance ending voluntary for COBRA question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){OhcCobraPage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
 
+    @And("I select {string} icon on the Cobra Page")
+    public void iSelectHelpIcon(String labelIcon){OhcCobraPage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click Cobra Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){OhcCobraPage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -62,6 +68,9 @@ public class OhcCobraSteps_Elmo {
 
     @And("I verify {string} error does not show for Cobra page")
     public void iVerifyNoErrorMessage(String errorType)  {OhcCobraPage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate Cobra {string} help drawer verbiage in {string}")
+    public void iValidateHelp(String helpData,String language){OhcCobraPage_Elmo.validateHelpVerbiage(helpData,language);}
 
 
 
