@@ -63,9 +63,9 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
 
-    Then I validate I am on the "Dental Detail" page
-    Then I click on the Go Back on the Dental Detail page
-
+    Then I validate I am on the "Dental Plan Detail" page
+    And I click Go Back on the Dental Detail page
+    And I click on Sign Out in the Header for "Elmo"
 
 
 
@@ -126,6 +126,7 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
 
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-WIP @VerifyDentalDetailTextSpanish
   Scenario: VerifyDentalDetailTextSpanish - used to be CCRT-

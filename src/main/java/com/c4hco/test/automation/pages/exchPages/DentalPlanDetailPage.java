@@ -90,7 +90,7 @@ public class DentalPlanDetailPage {
 
     public void clickGoBackDetail() {
         basicActions.waitForElementToDisappear( spinner,15 );
-        basicActions.waitForElementToBeClickable(clickGoBackDetail, 15 );
+        basicActions.waitForElementToBePresent(clickGoBackDetail, 15 );
         clickGoBackDetail.click(); }
 
 

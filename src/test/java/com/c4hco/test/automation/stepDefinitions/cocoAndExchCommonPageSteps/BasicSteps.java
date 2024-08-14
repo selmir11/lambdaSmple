@@ -171,6 +171,9 @@ public class BasicSteps {
             case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
                 break;
+            case "Dental Plan Detail":
+                pageUrl = "dentalPlanCarrierDetails";
+                break;
             case "Employment Income":
                 pageUrl = "employmentInfo";
                 break;
