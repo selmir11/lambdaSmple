@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.utils.BasicActions;
