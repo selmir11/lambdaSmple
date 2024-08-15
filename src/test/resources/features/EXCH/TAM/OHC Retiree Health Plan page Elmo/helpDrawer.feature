@@ -58,8 +58,8 @@ Feature: Help Drawer-Other Health Coverage Page
     And I validate I am on the "Elmo Ohi Retiree" page
     And I set the browser resolution to 2000 x 800
 
-  @SLER-907 @HelpDrawerRetireePage @TAMSmoke
-  Scenario: SLER-907 Validate help drawer text on the Retiree page - English
+  @SLER-908 @HelpDrawerRetireePage @TAMSmoke
+  Scenario: SLER-908 Validate help drawer text on the Retiree page - English
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     And I select "Help me understand" icon on the Retiree Page
@@ -90,8 +90,8 @@ Feature: Help Drawer-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-906 @HelpDrawerRetireePage
-  Scenario: SLER-906 Validate help drawer text on the Retiree page - Spanish
+  @SLER-909 @HelpDrawerRetireePage
+  Scenario: SLER-909 Validate help drawer text on the Retiree page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     Then I click "Yes" for currently enrolled in Retiree question

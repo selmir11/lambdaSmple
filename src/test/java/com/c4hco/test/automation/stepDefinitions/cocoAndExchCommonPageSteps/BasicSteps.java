@@ -327,6 +327,9 @@ public class BasicSteps {
             case "CoCo Income Summary":
                 pageUrl = "coco/income-portal/summaryDetails";
                 break;
+            case "CoCo Dependent Overview":
+                pageUrl = "coco/member-details-portal/dependent-overview";
+                break;
             case "Cancellation Request":
                 pageUrl = "EnrollmentPortal/cancellationRequest";
                 break;

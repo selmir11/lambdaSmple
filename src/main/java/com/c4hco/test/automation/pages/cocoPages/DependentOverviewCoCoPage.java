@@ -18,8 +18,16 @@ public class DependentOverviewCoCoPage {
     @FindBy(id = "ELIG-DependentOverview-SaveAndContinue")
     WebElement saveAndContinueButton;
 
+    @FindBy(id = "ELIG-DependentOverview-GoBack")
+    WebElement goBackButton;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
+    }
+
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBePresent(goBackButton, 30);
+        goBackButton.click();
     }
 }
