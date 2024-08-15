@@ -8,7 +8,6 @@ import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.asserts.SoftAssert;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -25,18 +24,17 @@ public class PolicyTableDBValidations {
             if(policyTablesEntity.getCoverage_type().equals("1")){
                 exchDbDataProvider.setMedicalPlanDataFromDb(subscriber.getMedicalPlan());
                 PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get(0); // works for 1 member only
-                validateMedicalPolicyDataFromDB(policyTablesEntity, medicalPlanDbData, expectedResult);
+                validateMedicalPolicyDataFromDB(policyTablesEntity,dbData, medicalPlanDbData, expectedResult);
             } else{
                 exchDbDataProvider.setDentalPlanDataFromDb(subscriber.getDentalPlan());
                 PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0); // // works for 1 member only
-
-                validateDentalPolicyDataFromDB(policyTablesEntity, dentalPlanDbData, expectedResult);
+                validateDentalPolicyDataFromDB(policyTablesEntity,dbData, dentalPlanDbData, expectedResult);
             }
               validateMedicalDentalPolicyDataFromDB(policyTablesEntity, dbData);
         }
     }
 
-    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, PlanDbData medicalPlanDbData,DbData dbData, List<Map<String, String>> expectedResult){
+    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity,DbData dbData, PlanDbData medicalPlanDbData, List<Map<String, String>> expectedResult){
         //This method works for members in single group
         // validate MEDICAL specific details
         // WIP - We need medicalPlanDbData/Dental only for hios id - seperate that and validate for all members.
@@ -99,7 +97,7 @@ public class PolicyTableDBValidations {
         softAssert.assertAll();
     }
 
-    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, PlanDbData dentalPlanDbData,DbData dbData, List<Map<String, String>> expectedResult){
+    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity,DbData dbData, PlanDbData dentalPlanDbData, List<Map<String, String>> expectedResult){
         //This method works for members in single group
         // validate DENTAL specific details
         String policyStartDate = SharedData.getPrimaryMember().getDentalFinancialStartDate();
