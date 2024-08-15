@@ -8,6 +8,7 @@ import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class SharedData {
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
     @Getter @Setter private static String dbName;
+    @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
     @Getter @Setter private static Boolean hasBroker = false;
@@ -38,6 +40,7 @@ public class SharedData {
     @Getter @Setter private static BrokerDetails adminStaff;
     @Getter @Setter private static String noticeFileName;
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
+    @Getter @Setter private static Map<String, List<String>> groupingDetails;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -57,5 +60,9 @@ public class SharedData {
         dbName = null;
         noticeFileName = null;
         bookOfBusinessQEntityList = null;
+        isOpenEnrollment = null;
+
     }
+
+
 }

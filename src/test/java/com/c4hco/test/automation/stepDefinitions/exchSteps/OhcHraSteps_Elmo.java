@@ -26,6 +26,12 @@ public class OhcHraSteps_Elmo {
     @Then("I select {string} for opt out on the Elmo OHI HRA page")
     public void iSelectOptOut(String aptc){ohcHraPage_Elmo.selectOptOut(aptc);}
 
+    @And("I select {string} icon on the HRA Page")
+    public void iSelectHelpIcon(String labelIcon){ohcHraPage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click HRA Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){ohcHraPage_Elmo.clickHelpContactUsNavigation();}
+
 
 
 
@@ -53,6 +59,9 @@ public class OhcHraSteps_Elmo {
 
     @And("I verify {string} error does not show for HRA page")
     public void iVerifyNoErrorMessage(String errorType)  {ohcHraPage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate HRA help drawer verbiage in {string}")
+    public void iValidateHelp(String language){ohcHraPage_Elmo.validateHelpVerbiage(language);}
 
 
 

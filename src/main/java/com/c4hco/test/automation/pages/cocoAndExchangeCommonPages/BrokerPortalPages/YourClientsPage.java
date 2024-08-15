@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
@@ -49,6 +49,26 @@ public class YourClientsPage {
     @FindBy(id = "logout-link")
     WebElement logout;
 
+    @FindBy(id = "client-data-title-row")
+    WebElement clientRow;
+
+    @FindBy(id = "status0")
+    WebElement clientStatus;
+
+    @FindBy(id = "premium-amount")
+    WebElement clientPremium;
+
+    @FindBy(xpath = "//*[@id='client-data-title-row']/span[1]")
+    WebElement clientFullName;
+
+    @FindBy(xpath = "//*[@id='elem']/app-view-clients/div/div[1]")
+    WebElement yourClientsTitle;
+
+    public void validateYourClientsPageTitle(){
+        basicActions.waitForElementToBePresent(yourClientsTitle, 10);
+        softAssert.assertEquals(yourClientsTitle.getText(),"Your Clients");
+        softAssert.assertAll();
+    }
 
     public void clickUserTab(String userTab) {
         switch (userTab){
@@ -90,8 +110,28 @@ public class YourClientsPage {
         actions.click(firstClientResult).perform();
     }
 
+    public void verifyCurrentClientStatus(String expectedClientStatus){
+        basicActions.waitForElementToBePresent(clientRow,10);
+        switch (expectedClientStatus){
+            case "NO ELIGIBILITY":
+                softAssert.assertEquals(clientStatus.getText(), "NO ELIGIBILITY");
+                break;
+            case "ELIGIBILITY ONLY":
+                softAssert.assertEquals(clientStatus.getText(), "ELIGIBILITY ONLY");
+                break;
+            case "POLICY SUBMITTED":
+                softAssert.assertEquals(clientStatus.getText(), "POLICY SUBMITTED");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + expectedClientStatus);
+        }
+        softAssert.assertAll();
+    }
+
     public void clickOptionToHandelClient(String option) {
         basicActions.waitForElementToBePresent(removeClient,100);
+
+        basicActions.scrollToElement(manageClient);
         switch (option){
             case "remove Client":
                 removeClient.click();
@@ -127,8 +167,7 @@ public class YourClientsPage {
 
     public void validateClientIsRemoved() {
         softAssert.assertTrue(emptyTable.isDisplayed());
-
-
+        softAssert.assertAll();
     }
 
     public void selectTheClient() {
@@ -164,5 +203,18 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(allClientsCheckBox, 200);
         basicActions.waitForElementToBeClickable(allClientsCheckBox, 200);
         allClientsCheckBox.click();
+    }
+
+    public void validateClientPremiumAmount(){
+        String premiumAmt =SharedData.getPrimaryMember().getMedicalPremiumAmt();
+        String clientName =SharedData.getPrimaryMember().getFullName();
+        basicActions.waitForElementToBePresent(clientRow, 200);
+
+        basicActions.waitForElementToBePresent(clientFullName, 200);
+        softAssert.assertEquals(clientFullName.getText(),clientName);
+
+        basicActions.waitForElementToBePresent(clientPremium, 200);
+        softAssert.assertEquals((clientPremium.getText().replace("$", "")), premiumAmt);
+        softAssert.assertAll();
     }
 }

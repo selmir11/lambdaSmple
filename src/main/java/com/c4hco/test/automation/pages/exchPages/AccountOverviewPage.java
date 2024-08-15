@@ -23,6 +23,9 @@ public class AccountOverviewPage {
     @FindBy(css = "#submit-curr-yr-3")
     WebElement btnApplyForCurrentYear;
 
+    @FindBy(css = "#submit-curr-yr-1")
+    WebElement btnApplyForCurrentYearOe;
+
     @FindBy(css = ".linkButton")
     List<WebElement> clickHereLinks; // profile, eligibility, documents, plans
 
@@ -46,8 +49,6 @@ public class AccountOverviewPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
-
-
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -61,11 +62,17 @@ public class AccountOverviewPage {
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent(header, 10);
-        basicActions.waitForElementToBePresent(btnApplyForCurrentYear,40);
-        String applyForYearText = btnApplyForCurrentYear.getText();
-        String year = applyForYearText.replace("Apply for ", "");
+        WebElement applyForYr;
+
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+             applyForYr = btnApplyForCurrentYearOe;
+        } else{
+            applyForYr = btnApplyForCurrentYear;
+        }
+        basicActions.waitForElementToBePresent(applyForYr, 40);
+        String year = applyForYr.getText().replace("Apply for ", "");
         SharedData.setPlanYear(year);
-        btnApplyForCurrentYear.click();
+        applyForYr.click();
     }
 
     public void clickHereLinks(String clickHereOption){

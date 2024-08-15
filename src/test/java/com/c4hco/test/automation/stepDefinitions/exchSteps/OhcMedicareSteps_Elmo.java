@@ -29,6 +29,15 @@ public class OhcMedicareSteps_Elmo {
     @Then("I enter end date of end of current month for Medicare part {string}")
     public void iEnterEndDate(String insurancePart){OhcMedicarePage_Elmo.enterEndDate(insurancePart);}
 
+    @And("I select {string} icon on the Medicare Page")
+    public void iSelectHelpIcon(String labelIcon){OhcMedicarePage_Elmo.clickHelpIcon(labelIcon);}
+
+    @And("I click Medicare Contact Us link in help drawer footer")
+    public void iClickHelpContactUsLink(){OhcMedicarePage_Elmo.clickHelpContactUsNavigation();}
+
+    @And("I click Medicare DOI link in help drawer")
+    public void iClickHelpDoiLink(){OhcMedicarePage_Elmo.clickHelpDoiNavigation();}
+
 
 
 
@@ -43,8 +52,8 @@ public class OhcMedicareSteps_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    @And("I verify the header for Primary Member on the Medicare page in {string}")
-    public void iVerifyTextOnOtherHealthInsurancePage(String language){OhcMedicarePage_Elmo.verifyHeadersMedicareOhcPage(language);}
+    @And("I verify the header for {string} Member on the Medicare page in {string}")
+    public void iVerifyTextOnOtherHealthInsurancePage(String member, String language){OhcMedicarePage_Elmo.verifyHeadersMedicareOhcPage(member, language);}
 
     @And("I verify initial questions on the Medicare page in {string}")
     public void iVerifyInitialQuestions(String language){OhcMedicarePage_Elmo.verifyInitialQuestions(language);}
@@ -72,6 +81,9 @@ public class OhcMedicareSteps_Elmo {
 
     @And("I verify {string} error does not show for Medicare page")
     public void iVerifyNoErrorMessage(String errorType)  {OhcMedicarePage_Elmo.verifyNoErrorMessage(errorType);}
+
+    @Then("I validate Medicare help drawer verbiage in {string}")
+    public void iValidateHelp(String language){OhcMedicarePage_Elmo.validateHelpVerbiage(language);}
 
 
 

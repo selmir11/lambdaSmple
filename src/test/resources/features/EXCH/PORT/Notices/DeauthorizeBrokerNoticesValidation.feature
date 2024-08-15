@@ -49,7 +49,8 @@ Feature:verify deauthorize broker notice Spanish Mail prefrences BN-002-04
     Then I click on Save Button
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
-    Then I click remove current broker Find a certified broker Page
+    Then I Remove my current Broker
+    And I "Ok" my decision to remove my current broker
     Then I validate I am on the "Find Expert Help Exch" page
     And I validate no broker is authorized
     Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header

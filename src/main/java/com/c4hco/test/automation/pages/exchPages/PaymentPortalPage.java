@@ -23,12 +23,22 @@ public class PaymentPortalPage {
     @FindBy(css = "#SOL-PayNow-AllDone-Indv")
     WebElement allDone;
 
+    @FindBy(id = "SOL-PayNow-AllDone-Obo")
+    WebElement allDoneObo;
+
 
     public void clickAllDone(){
         basicActions.waitForElementToDisappear(spinner, 20);;
         basicActions.waitForElementToBePresent( allDone,30 );
         basicActions.scrollToElement( allDone );
         allDone.click();
+    }
+
+    public void clickAllDoneObo(){
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent( allDoneObo,30 );
+        basicActions.scrollToElement( allDoneObo );
+        allDoneObo.click();
     }
 }
 
