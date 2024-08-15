@@ -71,10 +71,6 @@ public class PolicyTableDBValidations {
             softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(),  SharedData.getPrimaryMember().getTotalMedAmtAfterReduction(),"--Medical Policy total responsible amount does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00","Medical Policy total CSR amount does not match");
-
-            if (!(policyTablesEntity.getPolicy_submitted_by().equals(SharedData.getPrimaryMember().getEmailId()) || policyTablesEntity.getPolicy_submitted_by().equals("SYSTEM"))) {
-                softAssert.fail("Subscriber Submitted_by does not match either " + policyTablesEntity.getPolicy_submitted_by() + " or " + "SYSTEM");
-            }
         }else {
             //Member
             List<MemberDetails> memberslist = SharedData.getMembers();
@@ -133,9 +129,6 @@ public class PolicyTableDBValidations {
 
             softAssert.assertEquals(policyTablesEntity.getSubscriber_ind(), "1", "Subscriber indicator is not 1");
             softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
-            if (!(policyTablesEntity.getPolicy_submitted_by().equals(SharedData.getPrimaryMember().getEmailId()) || policyTablesEntity.getPolicy_submitted_by().equals("SYSTEM"))) {
-                softAssert.fail("Subscriber Submitted_by does not match either " + policyTablesEntity.getPolicy_submitted_by() + " or " + "SYSTEM");
-            }
             softAssert.assertAll();
         }else{
             //Members
@@ -158,7 +151,6 @@ public class PolicyTableDBValidations {
                     softAssert.assertEquals(policyTablesEntity.getSubscriber_ind(), "0", "Subscriber indicator is not 0");
                     softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "WIFE", "Relationship to subscriber does not match");
                     softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Effectuated indicator is not zero");
-                   // softAssert.assertEquals(policyTablesEntity.getPolicy_submitted_by(), SharedData.getPrimaryMember().getEmailId(), "Member Created by does not match");
                 }
             }
         }
@@ -167,6 +159,8 @@ public class PolicyTableDBValidations {
 
     public void validateMedicalDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, DbData dbData){
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        validateTobaccoUse(policyTablesEntity);
+        validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
         softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(SharedData.getPrimaryMember().getAccount_id()), "Subscriber account id does not match");
@@ -196,6 +190,20 @@ public class PolicyTableDBValidations {
         String year = dobData.substring(4,8);
         String formattedDOB = year+"-"+month+"-"+day;
         return formattedDOB;
+    }
+
+    private void validateTobaccoUse(PolicyTablesEntity policyTablesEntity){
+        if(policyTablesEntity.getTobacco_use() == null){
+            softAssert.assertEquals(SharedData.getPrimaryMember().getTobacco_user(),"No", "Tobacco usage for subscriber does not match");
+        }
+    }
+    private void validateSubmittedBy(PolicyTablesEntity policyTablesEntity){
+        String submittedBy = policyTablesEntity.getPolicy_submitted_by();
+        String primaryMemberEmail = SharedData.getPrimaryMember().getEmailId();
+
+        softAssert.assertTrue(submittedBy.equals(primaryMemberEmail) || submittedBy.equals("SYSTEM"),
+                "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
+        );
     }
 
 }
