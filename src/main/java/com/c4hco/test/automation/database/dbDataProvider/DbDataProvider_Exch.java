@@ -201,6 +201,21 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<String> getBrokerAuthorizationInBoB(String clientFirstName) {
+
+       return postgresHandler.getResultListFor("broker_name", exchDbQueries.verifyBrokerAuthorizationInBOB(clientFirstName));
+    }
+
+    public List<String> getApplicationSubmissionInBoB() {
+
+       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyApplicationSubmissionInBOB());
+    }
+
+    public List<String> getPolicySubmissionInBoB(int coverageType) {
+
+       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyPolicySubmissionInBOB(coverageType));
+    }
+
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }
