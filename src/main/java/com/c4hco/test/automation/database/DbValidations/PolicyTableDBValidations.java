@@ -36,7 +36,7 @@ public class PolicyTableDBValidations {
         }
     }
 
-    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, PlanDbData medicalPlanDbData, List<Map<String, String>> expectedResult){
+    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, PlanDbData medicalPlanDbData,DbData dbData, List<Map<String, String>> expectedResult){
         //This method works for members in single group
         // validate MEDICAL specific details
         // WIP - We need medicalPlanDbData/Dental only for hios id - seperate that and validate for all members.
@@ -49,7 +49,7 @@ public class PolicyTableDBValidations {
 
         if(policyTablesEntity.getSubscriber_ind().equals("1")){
             //Subscriber
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId()+"-"+"01", "Hios id does not match");
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId()+"-"+dbData.getCsrLevel(), "Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 1, Policy end date does not match");
 
@@ -99,7 +99,7 @@ public class PolicyTableDBValidations {
         softAssert.assertAll();
     }
 
-    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, PlanDbData dentalPlanDbData, List<Map<String, String>> expectedResult){
+    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, PlanDbData dentalPlanDbData,DbData dbData, List<Map<String, String>> expectedResult){
         //This method works for members in single group
         // validate DENTAL specific details
         String policyStartDate = SharedData.getPrimaryMember().getDentalFinancialStartDate();
@@ -109,7 +109,7 @@ public class PolicyTableDBValidations {
 
         if(policyTablesEntity.getSubscriber_ind().equals("1")){
             //Subscriber
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbData.getBaseId()+"-"+"01", "Subscriber Hios id does not match");
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbData.getBaseId()+"-"+dbData.getCsrLevel(), "Subscriber Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 2, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 2, Policy end date does not match");
             softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), startDateFormatted, "Dental financial start date does not match");

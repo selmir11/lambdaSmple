@@ -81,7 +81,7 @@ public class DbDataProvider_Exch {
         String ratingAreaId = getRatingAreaId(fipcode);
         String exchPersonId = getExchPersonId();
         String brokerTinNum = getTinNumForBroker();
-        String csrLevel = getCSRLevel(); //move to dbData
+        String csrLevel = getCSRLevel();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -108,7 +108,7 @@ public class DbDataProvider_Exch {
             medicalPlanDetailsFromDb = new ArrayList<>();
         }
             PlanDbData planDbData = new PlanDbData();
-            // set details
+
             planDbData.setBaseId(baseId);
             planDbData.setPlanName(planName);
             planDbData.setIssuerName(issuerName);
@@ -133,7 +133,7 @@ public class DbDataProvider_Exch {
             dentalPlanDetailsFromDb = new ArrayList<>();
         }
         PlanDbData planDbData = new PlanDbData();
-        // set details
+
         planDbData.setBaseId(baseId);
         planDbData.setPlanName(planName);
         planDbData.setIssuerName(issuerName);
