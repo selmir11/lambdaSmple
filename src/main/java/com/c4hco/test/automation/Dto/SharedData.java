@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
 import com.c4hco.test.automation.database.EntityObj.BookOfBusinessQEntity;
 import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,8 @@ public class SharedData {
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
+    @Getter @Setter private static List<PlanDbData> medicalPlanDbData;
+    @Getter @Setter private static List<PlanDbData> dentalPlanDbData;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static int totalGroups;
