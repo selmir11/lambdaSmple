@@ -135,6 +135,22 @@ public class DbQueries_Exch {
         return "select acct_holder_fn from  "+dbName+".bp_book_of_business\n "+
                 "where account_id = '"+acctId+"'";
     }
+
+    public String verifyBrokerAuthorizationInBOB(String clientFirstName){
+        return "select broker_name from  "+dbName+".bp_book_of_business\n "+
+                "where acct_holder_fn = '"+clientFirstName+"' and curr_yr_app_id is null and curr_pol_policy_status is null and nxt_yr_app_id is null and next_pol_policy_status is null";
+    }
+
+    public String verifyApplicationSubmissionInBOB(){
+        return "select account_id from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+acctId+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
+    }
+
+    public String verifyPolicySubmissionInBOB(int coverageType){
+        return "select account_id from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
+    }
+
     //Policy table queries
     public String enPolicyAh(){
         return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
