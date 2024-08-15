@@ -20,7 +20,7 @@ public class AccountOverviewPage {
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
-    @FindBy(css = "//*[@id='submit-curr-yr-3' or @id='submit-curr-yr-1']")
+    @FindBy(xpath = "//*[@id='submit-curr-yr-3' or @id='submit-curr-yr-1']")
     WebElement btnApplyForCurrentYear;  //Locator for both QA and Staging
 
     @FindBy(css = "#submit[name='applyForNextYear']")
