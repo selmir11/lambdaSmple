@@ -46,7 +46,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Employment Summary" page
     And I set the browser resolution to 2000 x 800
 
-  @SLER-920 @HelpDrawerEmploymentSummaryPage @TAMSmoke
+  @SLER-920 @HelpDrawerEmploymentSummaryPage
   Scenario: SLER-920 Validate help drawer text on the Employment Summary page - English
     And I select "Help me understand" icon on the Employment Summary Page
     Then I validate Employment Summary help drawer verbiage in "English"
@@ -137,7 +137,7 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-921 @HelpDrawerEmploymentSummaryPage @TAMSmoke
+  @SLER-921 @HelpDrawerEmploymentSummaryPage
   Scenario: SLER-921 Validate help drawer text on the Employment Summary page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
