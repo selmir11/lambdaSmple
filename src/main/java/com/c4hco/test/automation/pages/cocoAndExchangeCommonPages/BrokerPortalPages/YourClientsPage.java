@@ -129,17 +129,18 @@ public class YourClientsPage {
     }
 
     public void clickOptionToHandelClient(String option) {
-        basicActions.waitForElementToBePresent(removeClient,100);
+        basicActions.waitForElementToBePresent(clientRow,100);
 
-        basicActions.scrollToElement(manageClient);
         switch (option){
             case "remove Client":
+                basicActions.waitForElementToBePresent(removeClient,100);
                 removeClient.click();
                 break;
             case "transfer":
                 transferClient.click();
                 break;
             case "manage":
+                basicActions.scrollToElement(manageClient);
                 manageClient.click();
                 break;
             default:

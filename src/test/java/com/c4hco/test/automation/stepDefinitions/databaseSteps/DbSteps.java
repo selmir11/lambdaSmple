@@ -48,6 +48,27 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    public void iVerifyTheAccountHolderNameInBOBDB() {
       dbValidations.validateAccountHolderNameFromBOB();
    }
+
+   @And("I verify the broker authorization in BoB DB is {string}")
+   public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
+      dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
+   }
+
+   @And("I verify the client application submission in BoB DB")
+   public void iVerifyApplicationSubmissionBobDb() {
+      dbValidations.validateApplicationSubmissionBob();
+   }
+
+   @And("I verify the client's medical policy submission in BoB DB has {int} expected records")
+   public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords) {
+      dbValidations.validateMedicalPolicySubmissionBob(expectedRecords);
+   }
+
+   @And("I verify the client's dental policy submission in BoB DB has {int} expected records")
+   public void iVerifyDentalPolicySubmissionBobDb(int expectedRecords) {
+      dbValidations.validateDentalPolicySubmissionBob(expectedRecords);
+   }
+
    @And("I validate Individual member policy table queries")
    public void ivalidateIndPolicyTableQueries(){
 

@@ -466,4 +466,29 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateBrokerAuthorizationBob(String expectedBrokerName) {
+        String clientFirstName = SharedData.getPrimaryMember().getFirstName();
+        List<String> brokerAuthBOB = exchDbDataProvider.getBrokerAuthorizationInBoB(clientFirstName);
+        softAssert.assertEquals(expectedBrokerName, brokerAuthBOB.get(0));
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationSubmissionBob() {
+        List<String> applicationSubmissionBOB = exchDbDataProvider.getApplicationSubmissionInBoB();
+        softAssert.assertEquals(1, applicationSubmissionBOB .size());
+        softAssert.assertAll();
+    }
+
+    public void validateMedicalPolicySubmissionBob(int expectedRecords) {
+        List<String> medicalPolicySubmissionBOB = exchDbDataProvider.getMedicalPolicySubmissionInBoB();
+        softAssert.assertEquals(medicalPolicySubmissionBOB .size(), expectedRecords);
+        softAssert.assertAll();
+    }
+
+    public void validateDentalPolicySubmissionBob(int expectedRecords) {
+        List<String> dentalPolicySubmissionBOB = exchDbDataProvider.getDentalPolicySubmissionInBoB();
+        softAssert.assertEquals(dentalPolicySubmissionBOB .size(), expectedRecords);
+        softAssert.assertAll();
+    }
+
 }
