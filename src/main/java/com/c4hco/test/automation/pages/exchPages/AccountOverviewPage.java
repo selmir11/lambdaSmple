@@ -20,11 +20,11 @@ public class AccountOverviewPage {
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
-    @FindBy(css = "#submit-curr-yr-3")
-    WebElement btnApplyForCurrentYear;
+    @FindBy(css = "//*[@id='submit-curr-yr-3' or @id='submit-curr-yr-1']")
+    WebElement btnApplyForCurrentYear;  //Locator for both QA and Staging
 
-    @FindBy(css = "#submit-curr-yr-1")
-    WebElement btnApplyForCurrentYearOe;
+    @FindBy(css = "#submit[name='applyForNextYear']")
+    WebElement btnApplyForNextYear;
 
     @FindBy(css = ".linkButton")
     List<WebElement> clickHereLinks; // profile, eligibility, documents, plans
@@ -65,7 +65,7 @@ public class AccountOverviewPage {
         WebElement applyForYr;
 
         if(SharedData.getIsOpenEnrollment().equals("yes")){
-             applyForYr = btnApplyForCurrentYearOe;
+             applyForYr = btnApplyForNextYear;
         } else{
             applyForYr = btnApplyForCurrentYear;
         }
