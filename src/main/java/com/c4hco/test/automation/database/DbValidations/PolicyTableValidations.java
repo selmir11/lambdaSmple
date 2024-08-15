@@ -32,7 +32,7 @@ public class PolicyTableValidations {
             }else if(enPolicyEntity.getCoverage_type().equals("1")){
                 softAssert.assertEquals(enPolicyEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 1, Policy start date does not match");
                 softAssert.assertEquals(enPolicyEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 1, Policy end date does not match");
-                softAssert.assertEquals(enPolicyEntity.getEffectuated_ind(), "0", "Coverage type 2, effectuated indicator does not match");
+                softAssert.assertEquals(enPolicyEntity.getEffectuated_ind(), "0", "Coverage type 1, effectuated indicator does not match");
                 softAssert.assertEquals(enPolicyEntity.getRating_area_id(), dbData.getRatingAreaId(),"Coverage type 1,Rating area id does not match");
                 softAssert.assertEquals(enPolicyEntity.getPlan_year(), SharedData.getPlanYear(), "Coverage type 1, Plan year does not match");
                 softAssert.assertEquals(enPolicyEntity.getCurrent_ind(), "1","Coverage type 1,Current_ind does not match");
