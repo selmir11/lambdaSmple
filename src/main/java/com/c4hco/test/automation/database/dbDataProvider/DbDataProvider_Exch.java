@@ -5,7 +5,10 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
+import groovyjarjarpicocli.CommandLine;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,9 +77,20 @@ public class DbDataProvider_Exch {
         Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
         return csrAmount;
     }
-    public Map<String,String> getPlanPremiumDataFromDb(){
-        Map<String,String> premiumAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","plan_premium_amt", exchDbQueries.getPremiumRecordsForMembers());
-        return premiumAmount;
+    public Map<String ,BigDecimal>getMedDenPlanPremiumDataByCoverageType(BigDecimal coverageType){
+        List<Map<String,Object>> queryResult = PostgresHandler.retrieveResults(exchDbQueries.policyTablesQuery());
+        Map<String ,BigDecimal> planPremiumAmtMedDen = new HashMap<>();
+        for(Map<String,Object> row: queryResult){
+            BigDecimal rowCoverageType = (BigDecimal) row.get("coverage_type");
+            if (rowCoverageType != null && rowCoverageType.equals(coverageType)){
+                String  exchPersonId = (String) row.get("exch_person_id");
+                BigDecimal planPremiumAmt = (BigDecimal) row.get("plan_premium_amt");
+                if (exchPersonId != null && planPremiumAmt != null){
+                    planPremiumAmtMedDen.put(exchPersonId,planPremiumAmt);
+                }
+            }
+        }
+        return planPremiumAmtMedDen;
     }
 
     public void setDataFromDb(String planName){
@@ -89,13 +103,14 @@ public class DbDataProvider_Exch {
      String[] issuerNameId = getIssuerNameId(hiosIssuerId);
      String issuerName = issuerNameId[0];
      String issuerId = issuerNameId[1];
+     String exchPersonId = getExchPersonId();
      Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
         String csrAmtDen =csrMap.get("2");
-     Map<String,String> premiumAmtMap = getPlanPremiumDataFromDb();
-        String premiumAmtMed =premiumAmtMap.get("1");
-        String premiumAmtDen =premiumAmtMap.get("2");
-     String exchPersonId = getExchPersonId();
+     Map<String,BigDecimal> premiumAmtMapM = getMedDenPlanPremiumDataByCoverageType(BigDecimal.valueOf(1));
+        BigDecimal premiumAmtMed = premiumAmtMapM.get(exchPersonId);
+        Map<String,BigDecimal> premiumAmtMapD = getMedDenPlanPremiumDataByCoverageType(BigDecimal.valueOf(2));
+        BigDecimal premiumAmtDen =premiumAmtMapD.get(exchPersonId);
      String csrLevel = getCSRLevel();
      String brokerTinNum = getTinNumForBroker();
         DbData dbData = new DbData();

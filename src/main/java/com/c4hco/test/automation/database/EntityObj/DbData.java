@@ -2,6 +2,8 @@ package com.c4hco.test.automation.database.EntityObj;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class DbData {
     String fipcode;
@@ -15,7 +17,7 @@ public class DbData {
     String csrLevel;
     String brokerTinNum;
     String csrAmtMed;
-    String premiumAmtMed;
+    BigDecimal premiumAmtMed;
     String csrAmtDen;
-    String premiumAmtDen;
+    BigDecimal premiumAmtDen;
 }
