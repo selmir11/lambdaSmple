@@ -121,5 +121,5 @@ Feature: Broker Portal BOB - Single Subscriber NFA policy submission
     Then I verify that my client's current status is "POLICY SUBMITTED"
     Then I validate the premium amount displayed for my client
 
-    And I verify the client's medical policy submission in BoB DB has 1 expected records
-    And I verify the client's dental policy submission in BoB DB has 1 expected records
+    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 1
+    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 2

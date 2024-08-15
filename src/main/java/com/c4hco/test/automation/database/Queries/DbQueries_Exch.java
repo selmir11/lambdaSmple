@@ -146,14 +146,9 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
     }
 
-    public String verifyMedicalPolicySubmissionInBOB(){
+    public String verifyPolicySubmissionInBOB(int coverageType){
         return "select account_id from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '1' or next_pol_coverage_type = '1')";
-    }
-
-    public String verifyDentalPolicySubmissionInBOB(){
-        return "select account_id from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '2' or next_pol_coverage_type = '2')";
+                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
     }
 
     //Policy table queries

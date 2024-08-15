@@ -479,16 +479,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateMedicalPolicySubmissionBob(int expectedRecords) {
-        List<String> medicalPolicySubmissionBOB = exchDbDataProvider.getMedicalPolicySubmissionInBoB();
-        softAssert.assertEquals(medicalPolicySubmissionBOB .size(), expectedRecords);
+    public void validatePolicySubmissionBob(int expectedRecords, int coverageType) {
+        List<String> policySubmissionBOB = exchDbDataProvider.getPolicySubmissionInBoB(coverageType);
+        softAssert.assertEquals(policySubmissionBOB .size(), expectedRecords);
         softAssert.assertAll();
     }
 
-    public void validateDentalPolicySubmissionBob(int expectedRecords) {
-        List<String> dentalPolicySubmissionBOB = exchDbDataProvider.getDentalPolicySubmissionInBoB();
-        softAssert.assertEquals(dentalPolicySubmissionBOB .size(), expectedRecords);
-        softAssert.assertAll();
-    }
+
 
 }

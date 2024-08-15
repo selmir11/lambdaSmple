@@ -147,14 +147,9 @@ public class DbDataProvider_Exch {
        return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyApplicationSubmissionInBOB());
     }
 
-    public List<String> getMedicalPolicySubmissionInBoB() {
+    public List<String> getPolicySubmissionInBoB(int coverageType) {
 
-       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyMedicalPolicySubmissionInBOB());
-    }
-
-    public List<String> getDentalPolicySubmissionInBoB() {
-
-       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyDentalPolicySubmissionInBOB());
+       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyPolicySubmissionInBOB(coverageType));
     }
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){

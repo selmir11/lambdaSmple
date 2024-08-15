@@ -59,15 +59,12 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateApplicationSubmissionBob();
    }
 
-   @And("I verify the client's medical policy submission in BoB DB has {int} expected records")
-   public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords) {
-      dbValidations.validateMedicalPolicySubmissionBob(expectedRecords);
+   @And("I verify the client's policy submission in BoB DB has {int} expected records for coverage type {int}")
+   public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords, int coverageType) {
+      dbValidations.validatePolicySubmissionBob(expectedRecords, coverageType);
    }
 
-   @And("I verify the client's dental policy submission in BoB DB has {int} expected records")
-   public void iVerifyDentalPolicySubmissionBobDb(int expectedRecords) {
-      dbValidations.validateDentalPolicySubmissionBob(expectedRecords);
-   }
+
 
    @And("I validate Individual member policy table queries")
    public void ivalidateIndPolicyTableQueries(){
