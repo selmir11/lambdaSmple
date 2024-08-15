@@ -5,10 +5,10 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
-import groovyjarjarpicocli.CommandLine;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -93,43 +93,81 @@ public class DbDataProvider_Exch {
         return planPremiumAmtMedDen;
     }
 
-    public void setDataFromDb(String planName){
-     String fipcode = getFipcode();
-     String ratingAreaName = getRatingAreaName(fipcode);
-     String ratingAreaId = getRatingAreaId(fipcode);
-     String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
-     String baseId = baseIdAndHiosIssuerId[0];
-     String hiosIssuerId = baseIdAndHiosIssuerId[1];
-     String[] issuerNameId = getIssuerNameId(hiosIssuerId);
-     String issuerName = issuerNameId[0];
-     String issuerId = issuerNameId[1];
-     String exchPersonId = getExchPersonId();
-     Map<String,String> csrMap = getSubscriberCSRDataFromDb();
-        String csrAmtMed =csrMap.get("1");
-        String csrAmtDen =csrMap.get("2");
-     Map<String,BigDecimal> premiumAmtMapM = getMedDenPlanPremiumDataByCoverageType(BigDecimal.valueOf(1));
-        BigDecimal premiumAmtMed = premiumAmtMapM.get(exchPersonId);
-        Map<String,BigDecimal> premiumAmtMapD = getMedDenPlanPremiumDataByCoverageType(BigDecimal.valueOf(2));
-        BigDecimal premiumAmtDen =premiumAmtMapD.get(exchPersonId);
-     String csrLevel = getCSRLevel();
-     String brokerTinNum = getTinNumForBroker();
+    public void setDataFromDb(){
+        String fipcode = getFipcode();
+        String ratingAreaName = getRatingAreaName(fipcode);
+        String ratingAreaId = getRatingAreaId(fipcode);
+        String exchPersonId = getExchPersonId();
+        String brokerTinNum = getTinNumForBroker();
+        String csrLevel = getCSRLevel();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
         dbData.setRatingAreaId(ratingAreaId);
-        dbData.setBaseId(baseId);
-        dbData.setHiosIssuerId(hiosIssuerId);
-        dbData.setIssuerName(issuerName);
-        dbData.setIssuerId(issuerId);
         dbData.setExchPersonId(exchPersonId);
-        dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
-        dbData.setCsrAmtMed(csrAmtMed);
-        dbData.setCsrAmtDen(csrAmtDen);
-        dbData.setPremiumAmtMed(premiumAmtMed);
-        dbData.setPremiumAmtDen(premiumAmtDen);
+        dbData.setCsrLevel(csrLevel);
         SharedData.setDbData(dbData);
+    }
+
+    public void setMedicalPlanDataFromDb(String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmtMed =csrMap.get("1");
+        String exchPersonId = getExchPersonId();
+        Map<String,BigDecimal> premiumAmtMapM = getMedDenPlanPremiumDataByCoverageType(BigDecimal.valueOf(1));
+        BigDecimal premiumAmtMed = premiumAmtMapM.get(exchPersonId);
+
+        List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
+        if(medicalPlanDetailsFromDb==null) {
+            medicalPlanDetailsFromDb = new ArrayList<>();
+        }
+            PlanDbData planDbData = new PlanDbData();
+
+            planDbData.setBaseId(baseId);
+            planDbData.setPlanName(planName);
+            planDbData.setIssuerName(issuerName);
+            planDbData.setIssuerId(issuerId);
+            planDbData.setHiosIssuerId(hiosIssuerId);
+            planDbData.setCsrAmt(csrAmtMed);
+            planDbData.setPremiumAmt(premiumAmtMed);
+            medicalPlanDetailsFromDb.add(planDbData);
+            SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
+    }
+
+    public void setDentalPlanDataFromDb(String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmt =csrMap.get("2"); //Dental
+        String exchPersonId = getExchPersonId();
+        Map<String,BigDecimal> premiumAmtMapD = getMedDenPlanPremiumDataByCoverageType(BigDecimal.valueOf(2));
+        BigDecimal premiumAmtDen =premiumAmtMapD.get(exchPersonId);
+        List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
+        if(dentalPlanDetailsFromDb==null) {
+            dentalPlanDetailsFromDb = new ArrayList<>();
+        }
+        PlanDbData planDbData = new PlanDbData();
+
+        planDbData.setBaseId(baseId);
+        planDbData.setPlanName(planName);
+        planDbData.setIssuerName(issuerName);
+        planDbData.setIssuerId(issuerId);
+        planDbData.setHiosIssuerId(hiosIssuerId);
+        planDbData.setCsrAmt(csrAmt);
+        planDbData.setPremiumAmt(premiumAmtDen);
+        dentalPlanDetailsFromDb.add(planDbData);
+        SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
     public Boolean getDataFromOhiTables(){
