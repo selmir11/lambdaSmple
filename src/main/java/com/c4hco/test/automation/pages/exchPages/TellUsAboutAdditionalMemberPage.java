@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -78,6 +79,8 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(css = "#memberRelationship1 > option:nth-child(7)")
     WebElement selectHalfBrother;
 
+
+    SoftAssert softAssert = new SoftAssert();
     @FindBy(css= "#memberRelationship1 > option:nth-child(8)")
     WebElement selectSpouse;
 
@@ -322,30 +325,28 @@ public class TellUsAboutAdditionalMemberPage {
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
 
-        if (Name.contains("Primary")){
-            RelationshipToPrimary(Relation);
-        } else if (Name.contains("Spouse")){
-            RelationshipToSpouse(Relation);
-        } else if (Name.contains("Daughter")){
-            RelationshipToDauhter(Relation);
-        } else if (Name.contains("Son")){
-            RelationshipToSon(Relation);
-        }
-        else {
-            try {
-                WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::label/parent::div //select"));
-                // Perform actions on the element
-                Select dropdown = new Select(element);
-                dropdown.selectByVisibleText(Relation);
-            } catch (NoSuchElementException e) {
-                System.out.println("Element not found: " + e.getMessage());
-                // Handle the exception as needed
-            }
+        try {
+
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+Name+"')]/ancestor-or-self::label/parent::div //select"));
+            basicActions.waitForElementToBePresent(element,10);
+            basicActions.scrollToElement(element);
+            basicActions.waitForElementToBeClickableWithRetries(element,10);
+
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            dropdown.selectByVisibleText(Relation);
+            softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
+            softAssert.assertAll();
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + e.getMessage());
+            // Handle the exception as needed
         }
 
     }
 
+    }
 
-}
+
+
 
 

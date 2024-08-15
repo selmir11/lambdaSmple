@@ -14,6 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -62,6 +63,8 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "PlanResults-HSAFilter")
     WebElement hsaDropdown;
+    @FindBy(css = ".header-1")
+    WebElement medicalplanheader;
 
     @FindBy(id = "PlanResults-HSAFilter-input")
     WebElement hsaOption;
@@ -80,6 +83,9 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
+
+    @FindBy(id = "PlanResults-PlanDetails_1")
+    WebElement btnDetail;
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
@@ -116,6 +122,12 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToDisappear(spinner, 20);
          basicActions.waitForElementToBePresent(btnSkip, 30);
         btnSkip.click();
+    }
+
+    public void selectFirstMedicalPlanDetailButton(){
+         basicActions.waitForElementToDisappear( spinner,20 );
+         basicActions.waitForElementToBePresent( btnDetail,30 );
+         btnDetail.click();
     }
     public void clickCompare() {
         basicActions.waitForElementToBePresent(clickCompare, 30);
@@ -185,6 +197,12 @@ public class MedicalPlanResultsPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        if(memberslist !=null){
+            for (int i = 0; i < memberslist.size(); i++) {
+                memberslist.get(i).setMedicalPlan(planName);
+            }
+        }
             do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
@@ -221,6 +239,30 @@ public class MedicalPlanResultsPage {
         Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
     }
 
+
+    public void SelectSpecificMedicalPlanPerGrp(String SpecificPlan,String member){
+
+         basicActions.waitForElementToDisappear(spinner,20);
+         basicActions.waitForElementToBePresent(medicalplanheader,20);
+
+        String headerText = medicalplanheader.getText();
+        if (headerText.contains(member)) {
+            btnSkip.click();
+        } else {
+            selectMedicalPlan(SpecificPlan);
+            clickContinue();
+            System.out.println("Selected plan: " + SpecificPlan);
+
+        }
+
+
+    }
+
+
+
 }
+
+
+
 
 

@@ -56,9 +56,9 @@ Feature: Verify Navigation to the ELIG Pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -122,9 +122,9 @@ Feature: Verify Navigation to the ELIG Pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -214,12 +214,12 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the option "Yes" to claim as dependent
     And I select the "1" option for Who Will Claim as Dependent
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -284,9 +284,9 @@ Feature: Verify Navigation to the ELIG Pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -353,9 +353,9 @@ Feature: Verify Navigation to the ELIG Pages
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -448,12 +448,12 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the option "Yes" to claim as dependent
     And I select the "1" option for Who Will Claim as Dependent
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue

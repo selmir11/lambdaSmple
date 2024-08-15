@@ -100,6 +100,10 @@ public class MyPoliciesPage {
             }else if (memberDetailsList !=null) {
                 for (int i = 0; i < memberDetailsList.size(); i++) {
                     MemberDetails member = SharedData.getMembers().get(i);
+                    member.setMedicalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
+                    member.setMedicalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
+                    member.setMedicalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
+                    member.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
                     softAssert.assertEquals(memFirstName+" "+memLastName, member.getSignature(), "Member names from current medical plans does not match- my policies page");
                 }
             }
@@ -134,9 +138,19 @@ public class MyPoliciesPage {
         // **** Works when only one member with one medical plan and one dental plan **** //
         primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
         primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setDentalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setDentalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
         SharedData.setPrimaryMember(primaryMember);
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        if (memberDetailsList !=null) {
+            for (int i = 0; i < memberDetailsList.size(); i++) {
+                MemberDetails member = SharedData.getMembers().get(i);
+                member.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
+                member.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
+                member.setDentalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
+                member.setDentalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
+            }
+        }
 
         basicActions.waitForElementListToBePresent(memberNames, 10);
         //softAssert.assertEquals(memberNames.get(1).getText(), primaryMember.getSignature(), "member name on dental card did not match");

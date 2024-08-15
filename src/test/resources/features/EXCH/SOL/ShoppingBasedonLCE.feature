@@ -200,12 +200,12 @@ Feature: Initial Payment Page test
     And I select the option "No" to claim as dependent
     And I select the option "No" to file federal income tax return next year
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue

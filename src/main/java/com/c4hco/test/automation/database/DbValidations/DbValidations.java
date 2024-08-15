@@ -25,32 +25,6 @@ public class DbValidations {
  Calendar calendar = Calendar.getInstance();
  int currentYear = calendar.get(Calendar.YEAR);
 
-    public void validateDataFromPolicyTables(){
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        List<PolicyTablesEntity> policyEntities = exchDbDataProvider.getDataFromPolicyTables();
-
-        for(PolicyTablesEntity policyTablesEntity: policyEntities){
-            if(policyTablesEntity.getCoverage_type().equals("1")){
-                validateMedicalPolicyDataFromDB(policyTablesEntity, subscriber);
-            } else{
-                validateDentalPolicyDataFromDB(policyTablesEntity, subscriber);
-            }
-            validateMedicalDentalPolicyDataFromDB(policyTablesEntity, subscriber);
-           // softAssert.assertAll();
-        }
-    }
-
-    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, MemberDetails subscriber){
-        // validate medical specific details
-//        softAssert.assertEquals(subscriber.getMedicalPlanStartDate(), policyTablesEntity.getPolicy_start_date(), "Policy start date did not match");
-//        softAssert.assertEquals(subscriber.getMedicalPlanEndDate(), policyTablesEntity.getPolicy_end_date(), "Policy end date did not match");
-//        softAssert.assertEquals(subscriber.getFinancialStartDate(), policyTablesEntity.getFinancial_period_start_date(), "Financial start date did not match");
-//        softAssert.assertEquals(subscriber.getFinancialEndDate(), policyTablesEntity.getFinancial_period_end_date(), "Policy start date did not match");
-    }
-
-    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, MemberDetails subscriber){
-    }
-
     public void validateMedicalDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, MemberDetails subscriber){
         softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "acc id did not match");
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(),"First Name did not match");
@@ -458,9 +432,9 @@ public class DbValidations {
     }
 
 
-    public void validatePolicyDqCheck(){
+    public void validatePolicyDqCheck(int keysetSize){
         Map<String,String> policyAhId =  exchDbDataProvider.getPolicyDqCheckAndPolicyAhId();
-       softAssert.assertEquals( policyAhId.keySet().size(), 2);
+       softAssert.assertEquals( policyAhId.keySet().size(), keysetSize, "Policy Ah Id keyset size does not match");
         for(String key: policyAhId.keySet()){
             softAssert.assertEquals(policyAhId.get(key), "0", "Doesn't match policyAhId.get(key)");
         }

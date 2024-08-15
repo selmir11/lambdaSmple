@@ -21,4 +21,14 @@ public class LifeChangeEventsCoCoPageSteps {
 
     @And("I select Go Back on the LCE page")
     public void selectGoBack(){lifeChangeEventsCoCoPage.goBack();}
+
+
+
+
+
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+    @And("I verify the header for Primary Member on the CoCo LCE page in {string}")
+    public void iVerifyTextOnLcePage(String language){lifeChangeEventsCoCoPage.verifyHeadersEmploymentIncomePage(language);}
+
 }

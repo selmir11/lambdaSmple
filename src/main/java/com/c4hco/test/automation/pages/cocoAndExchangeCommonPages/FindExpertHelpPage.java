@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -68,6 +69,9 @@ public class FindExpertHelpPage {
     @FindBy(id ="broker-existing-title")
     WebElement brokerExistsText;
 
+    @FindBy(id ="assister-existing-title")
+    WebElement assisterExistsText;
+
     @FindBy(id ="broker-table-brokerName")
     WebElement brokerNameColumnHeader;
 
@@ -125,6 +129,9 @@ public class FindExpertHelpPage {
     @FindBy(xpath ="//button[@class='btn btn-lg secondary-action-button']")
     WebElement removeBrokerCancel;
 
+    @FindBy(id = "previous-helper-title")
+    WebElement previousBrokerAssisterText;
+
     @FindBy(id = "lbl-previous-helper-orgName")
     WebElement prevNameColumnHeader;
 
@@ -142,6 +149,48 @@ public class FindExpertHelpPage {
 
     @FindBy(id = "lbl-previous-helper-status")
     WebElement prevStatusColumnHeader;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+    @FindBy(id = "assister-table-orgName")
+    WebElement currentAssisterOrgNameHeader;
+
+    @FindBy(id = "assister-table-siteId")
+    WebElement currentAssisterSiteIdHeader;
+
+    @FindBy(id = "assister-table-zipCode")
+    WebElement currentAssisterZipCodeHeader;
+
+    @FindBy(id = "assister-table-phone")
+    WebElement currentAssisterPhoneHeader;
+
+    @FindBy(id = "assister-table-type")
+    WebElement currentAssisterTypeHeader;
+
+    @FindBy(id = "assister-table-status")
+    WebElement currentAssisterStatusHeader;
+
+    @FindBy(id = "assister-table-action")
+    WebElement currentAssisterActionHeader;
+
+    @FindBy(id = "assister-organizationName")
+    WebElement assisterOrgName;
+
+    @FindBy(id = "assister-exchangeId")
+    WebElement assisterSiteId;
+
+    @FindBy(id = "assister-zipCode")
+    WebElement assisterZipCode;
+
+    @FindBy(id = "assister-phoneNumber")
+    WebElement assisterPhoneNumber;
+
+    @FindBy(id = "assister-helperType")
+    WebElement assisterType;
+
+    @FindBy(id = "assister-status")
+    WebElement assisterStatus;
 
     public FindExpertHelpPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
@@ -250,13 +299,20 @@ public class FindExpertHelpPage {
     }
 
     public void clickFindBroker() {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(findBroker,10);
-        findBroker.click();
+        basicActions.click(findBroker);
     }
 
     public void validateBrokerExists(){
         basicActions.waitForElementToBePresent(brokerExistsText,100);
         softAssert.assertEquals(brokerExistsText.getText(),"This is your current Broker");
+        softAssert.assertAll();
+    }
+
+    public void validateAssisterExists(){
+        basicActions.waitForElementToBePresent(assisterExistsText,100);
+        softAssert.assertEquals(assisterExistsText.getText(),"This is your current Assister");
         softAssert.assertAll();
     }
 
@@ -273,6 +329,18 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
     }
 
+    public void validateCurrentAssisterTableHeader(){
+        basicActions.waitForElementToBePresent(currentAssisterOrgNameHeader,100);
+        softAssert.assertEquals(currentAssisterOrgNameHeader.getText(),"Organization Name");
+        softAssert.assertEquals(currentAssisterSiteIdHeader.getText(),"Site ID");
+        softAssert.assertEquals(currentAssisterZipCodeHeader.getText(),"ZIP Code");
+        softAssert.assertEquals(currentAssisterPhoneHeader.getText(),"Phone Number");
+        softAssert.assertEquals(currentAssisterTypeHeader.getText(),"Type");
+        softAssert.assertEquals(currentAssisterStatusHeader.getText(),"Status");
+        softAssert.assertEquals(currentAssisterActionHeader.getText(),"Action");
+        softAssert.assertAll();
+    }
+
     public void validateBrokerDetailsCurrentBrokerTable(String brokerName, String agencyName, String licenseNumber, String zipCode, String phoneNumber, String type, String status){
         basicActions.waitForElementToBePresent(currentBrokerName,100);
         softAssert.assertEquals(currentBrokerName.getText(),brokerName);
@@ -283,6 +351,24 @@ public class FindExpertHelpPage {
         softAssert.assertEquals(currentBrokerType.getText(),type);
         softAssert.assertEquals(currentBrokerStatus.getText(),status);
         softAssert.assertEquals(currentBrokerAction.getText(),"Remove");
+        softAssert.assertAll();
+    }
+
+    public void validateAssisterDetailsCurrentAssisterTable(String orgName, String siteIdStg, String siteIdQa, String zipCode, String phoneNumber){
+        basicActions.waitForElementToBePresent(assisterOrgName,100);
+        softAssert.assertEquals(assisterOrgName.getText(),orgName);
+
+        if(SharedData.getEnv().equals("staging")){
+            softAssert.assertEquals(assisterSiteId.getText(),siteIdStg);
+        } else{
+            softAssert.assertEquals(assisterSiteId.getText(),siteIdQa);
+        }
+
+        softAssert.assertEquals(assisterZipCode.getText(),zipCode);
+        softAssert.assertEquals(assisterPhoneNumber.getText(),phoneNumber);
+        softAssert.assertEquals(assisterType.getText(),"Assister");
+        softAssert.assertEquals(assisterStatus.getText(),"Approved");
+        softAssert.assertEquals(removeAssisterButton.getText(),"Remove");
         softAssert.assertAll();
     }
 
@@ -372,10 +458,11 @@ public class FindExpertHelpPage {
     }
 
     public void clickContinueOnMyOwnButton() {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(assistanceText, 20);
         basicActions.waitForElementToBePresent(continueOnMyOwnButton, 20);
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueOnMyOwnButton);
-        continueOnMyOwnButton.click();
+        basicActions.scrollToElement(continueOnMyOwnButton);
+        basicActions.click(continueOnMyOwnButton);
     }
 
     public void clickRemoveBrokerButton(){
@@ -395,6 +482,12 @@ public class FindExpertHelpPage {
         }
     }
 
+    public void validatePreviousBrokerAssisterText(){
+        basicActions.waitForElementToBePresent(previousBrokerAssisterText, 10);
+        softAssert.assertEquals(previousBrokerAssisterText.getText(),"Previous Brokers and/or Assisters who were authorized or had requested authorization in the past to help you.");
+        softAssert.assertAll();
+    }
+
     public void validatePreviousBrokerAssisterTableLabels(){
         basicActions.waitForElementToBePresent(prevNameColumnHeader, 10);
         softAssert.assertEquals(prevNameColumnHeader.getText(),"Name");
@@ -404,6 +497,16 @@ public class FindExpertHelpPage {
         softAssert.assertEquals(prevTypeColumnHeader.getText(),"Type");
         softAssert.assertEquals(prevStatusColumnHeader.getText(),"Status");
         softAssert.assertAll();
+    }
+
+    public void validateAssisterPrevBrokerAssisterTable(String name, String siteIdStg, String siteIdQa, String zip, String phoneNumber){
+        basicActions.waitForElementToBePresent(prevNameColumnHeader, 10);
+
+        if(SharedData.getEnv().equals("staging")){
+            validatePreviousBrokerAssisterTableData(name, siteIdStg, zip, phoneNumber, "Assister");
+        } else{
+            validatePreviousBrokerAssisterTableData(name, siteIdQa, zip, phoneNumber, "Assister");
+        }
     }
 
     public void validatePreviousBrokerAssisterTableData(String name, String licenseSiteId, String zip, String phoneNumber, String type){
@@ -437,9 +540,20 @@ public class FindExpertHelpPage {
 
     }
 
+    public void validatePreviousBrokerAssisterTableAbsent(){
+        softAssert.assertFalse(basicActions.waitForElementPresence(prevNameColumnHeader,10));
+        softAssert.assertAll();
+    }
+
     public void validateNoBrokerIsAuthorized() {
         basicActions.waitForElementToBePresent(findBroker,30);
         softAssert.assertTrue(findBroker.isDisplayed());
+        softAssert.assertAll();
+    }
+
+    public void validateNoAssisterIsAuthorized() {
+        basicActions.waitForElementToBePresent(AuthorizeAssisterOrganization,30);
+        softAssert.assertTrue(AuthorizeAssisterOrganization.isDisplayed());
         softAssert.assertAll();
     }
 

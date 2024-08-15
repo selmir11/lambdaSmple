@@ -13,6 +13,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.SelectFirstMedicalPlan();
     }
 
+    @And("I select the first plan detail")
+    public void selectFirstMedicalPlanDetailButton() {
+        medPlanResultsPage.selectFirstMedicalPlanDetailButton();
+    }
+
     @And("I select {string} medical plan")
     public void selectMedicalPlan(String medicalPlan) {
         medPlanResultsPage.selectMedicalPlan(medicalPlan);
@@ -88,6 +93,13 @@ public class MedicalPlanResultsPageSteps {
     public void validateMedicalPlanCount(String plansCount) {
         medPlanResultsPage.validatePlanCount(plansCount);
     }
+
+
+    @And("I select the {string} medical plan but skip for {string}")
+    public void selectMedicalPlanForMember(String specificPlan, String member) {
+        medPlanResultsPage.SelectSpecificMedicalPlanPerGrp(specificPlan, member);
+    }
+
 
 }
 

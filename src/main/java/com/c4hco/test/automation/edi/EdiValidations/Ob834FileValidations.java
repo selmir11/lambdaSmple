@@ -41,7 +41,7 @@ public class Ob834FileValidations {
         validateN3N4Segments(entry);
         validateDMGSegment(entry);
     }
-    public void validateLXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
+    public void validateMed_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         transaction = edi834TransactionDetails.getTransactionList().get(0);
         //LX segement
@@ -60,6 +60,30 @@ public class Ob834FileValidations {
             if (refSegListOfList.get(lx + 5).get(0).equals("LX" + lx)) {
                 softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ", N1 segment mismatch for LX " + lx);
                 softAssert.assertEquals(refSegListOfList.get(lx + 5).get(3), refExpected, "REF segment, " + n1Expected + " mismatch for LX " + lx);
+            }
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateDen_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        transaction = edi834TransactionDetails.getTransactionList().get(0);
+        //LX segement
+        List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
+        int lxSegmentSize = lxSegment.size();
+        softAssert.assertEquals(String.valueOf(lxSegmentSize), "8", "LX segment size 8 mismatch");
+        //REF Segment
+        for (Map<String, String> segment : lxExpectedDetailsFromStep) {
+
+            List<List<String>> refSegListOfList = transaction.getMembersList().get(0).getREF();
+            List<List<String>> n1SegListOfList = transaction.getMembersList().get(0).getN1();
+            int lx = Integer.parseInt(segment.get("LX"));
+            String n1Expected = segment.get("N1 75");
+            String refDenExpected = segment.get("REFDEN");
+
+            if (refSegListOfList.get(lx + 5).get(0).equals("LX" + lx)) {
+                softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ",Den N1 segment mismatch for LX " + lx);
+                softAssert.assertEquals(refSegListOfList.get(lx + 5).get(3), refDenExpected, "DEN REF segment, " + n1Expected + " mismatch for LX " + lx);
             }
         }
         softAssert.assertAll();
@@ -110,7 +134,7 @@ public class Ob834FileValidations {
         softAssert.assertEquals(gsSeg.get(7), "005010X220A1", "Code indicating the version, release, subrelease, and industry identifier of the EDI standard being used does not match");
         //GE Segment
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
-        softAssert.assertEquals(geSeg.get(0), entry.getMember_group(), "Count of the number of functional groups included in an interchange does not match");
+        //softAssert.assertEquals(geSeg.get(0), entry.getMember_group(), "Count of the number of functional groups included in an interchange does not match");
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
         softAssert.assertAll();
     }

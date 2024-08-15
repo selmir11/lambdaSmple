@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,11 @@ public class EmploymentIncomePage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = ".header-1")
+    WebElement hdr_Income;
+
+    @FindBy(css = ".header-2")
+    WebElement hdr_EmploymentIncome;
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-YesButton")
     WebElement employmentYesButton;
@@ -54,7 +60,7 @@ public class EmploymentIncomePage {
     WebElement errorMessage;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton,30);
+        basicActions.waitForElementToBePresent(saveAndContinueButton,30);
         basicActions.click(saveAndContinueButton);
     }
 
@@ -138,6 +144,33 @@ public class EmploymentIncomePage {
     }
 
 //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+public void verifyHeadersEmploymentIncomePage(String language){
+    switch (language){
+        case "English":
+            verifyHeadersEmploymentIncomePageEnglish();
+            break;
+        case "Spanish":
+            verifyHeadersEmploymentIncomePageSpanish();
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid option: " + language);
+    }
+}
+
+    public void verifyHeadersEmploymentIncomePageEnglish(){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Employment Income (Please include income from all jobs and employers.)");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeadersEmploymentIncomePageSpanish(){
+        basicActions.waitForElementToBePresent(hdr_Income,50);
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Ingresos por empleo (Incluya el ingreso que recibe de todos los trabajos y empleadores.)");
+        softAssert.assertAll();
+    }
 
     public void verifyNoErrorMessage_EmploymentInfo() {
         softAssert.assertFalse(basicActions.waitForElementPresence(errorMessage, 20));

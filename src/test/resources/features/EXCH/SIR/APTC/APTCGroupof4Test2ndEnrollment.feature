@@ -6,7 +6,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
   @SLER-GroupOf4-WIP
-  Scenario Outline: : ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
+  Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -52,7 +52,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "Spouse", DOB "10101990", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101990", "Female" and applying "Yes"
       |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
@@ -76,9 +76,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonOne", DOB "10102010", Gender "Male" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "DaughterOne", "10102010", "Male" and applying "Yes"
       |Primary:Son   |
       |Spouse:Son    |
+    And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -105,7 +106,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
       |Primary:Daughter |
       |Spouse:Daughter  |
       |SonOne:Sister    |
-    And And I mark the Additional member is pregnant as "No"
+    And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -199,21 +200,21 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select the third dependent
     And I click save and continue on tax status page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -330,17 +331,17 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -389,7 +390,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @Group6ReEnroll-WIP
-  Scenario Outline: ELIG-APTC Eligible over 400% FPL- APTCRules - group of 6 - 4 under 21 with 2 adult
+ Scenario: ELIG-APTC Eligible over 400% FPL- APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -654,29 +655,29 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select the fifth dependent
     And I click save and continue on tax status page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -793,23 +794,23 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Tax status" page
     Then I click save and continue on tax status page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page

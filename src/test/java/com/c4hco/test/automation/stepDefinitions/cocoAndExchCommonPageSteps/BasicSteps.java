@@ -78,6 +78,7 @@ public class BasicSteps {
                 pageUrl = "coco/ApplicationResultsPortal/applicationResults";
                 break;
             case "My Profile":
+                basicActions.wait(3000);
                 pageUrl = "UserProfileAdmin/profile";
                 break;
             case "Forgot my password":
@@ -94,6 +95,9 @@ public class BasicSteps {
                 break;
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
+                break;
+            case "Medical Plan Detail":
+                pageUrl = "medicalPlanCarrierDetails";
                 break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
@@ -167,6 +171,9 @@ public class BasicSteps {
             case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
                 break;
+            case "Dental Plan Detail":
+                pageUrl = "dentalPlanCarrierDetails";
+                break;
             case "Employment Income":
                 pageUrl = "employmentInfo";
                 break;
@@ -209,10 +216,7 @@ public class BasicSteps {
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
-            case "Other Health Insurance":
-                pageUrl = "nes/otherHealthInsurance";
-                break;
-            case "Elmo Other Health Insurance":
+            case "Elmo Other Health Coverage":
                 pageUrl = "/otherHealthCoverage";
                 break;
             case "Elmo COBRA":
@@ -323,6 +327,9 @@ public class BasicSteps {
             case "CoCo Income Summary":
                 pageUrl = "coco/income-portal/summaryDetails";
                 break;
+            case "CoCo Dependent Overview":
+                pageUrl = "coco/member-details-portal/dependent-overview";
+                break;
             case "Cancellation Request":
                 pageUrl = "EnrollmentPortal/cancellationRequest";
                 break;
@@ -347,7 +354,10 @@ public class BasicSteps {
             case "Broker Portal C4U link" :
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
                 break;
-                case "assistnet dashboard" :
+            case "Broker Portal Your Clients" :
+                pageUrl = "/view-clients";
+                break;
+            case "assistnet dashboard" :
                 pageUrl = "assistnet-portal/program-manager";
                 break;
             case "Error" :
@@ -450,6 +460,9 @@ public class BasicSteps {
                 break;
             case "Employer Coverage":
                 pageUrl = "healthcare.gov/downloads/employer-coverage-tool.pdf";
+                break;
+            case "Medicare DOI":
+                pageUrl = "senior-health-care-medicare";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);

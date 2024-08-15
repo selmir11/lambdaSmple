@@ -26,7 +26,9 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
-    Then I enter generic mailing address details
+    Then I select "New" for Residential Address
+    And I enter a new residential address with city "Los Angeles" state "CA" zip "90005" and county "LOS ANGELES"
+    Then I enter member with address line1 "1234 Road" in city "Los Angeles" in state "CA" with zipcode "90005" and county "LOS ANGELES"
     And I select "No" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -48,7 +50,7 @@ Feature:  Unable to shop (not eligible for QHP)
     Then I verify text that the member don't qualify for a health plan on the app results page
 
   @SLER-29 @NVOExchRegression
-  Scenario: Verify that user not able to shop (not applying for health insurance)
+  Scenario: Verify that user not able to shop (not applying for health coverage)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -134,8 +136,8 @@ Feature:  Unable to shop (not eligible for QHP)
       And I select "Single" tax filing status
       And I select "No" to claim dependents
       And I click save and continue on tax status page
-      Then I select "None of these" as ELMO health insurance option
-      Then I click continue on the ELMO health insurance page
+      Then I select "None of these" as ELMO health coverage option
+      Then I click continue on the ELMO health coverage page
       Then I click continue on family overview page
       Then I select "NoneOfThese" QLCE on tell us about life changes page
       Then I click on Save and Continue

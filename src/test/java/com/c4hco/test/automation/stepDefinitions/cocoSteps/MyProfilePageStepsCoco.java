@@ -10,7 +10,7 @@ public class MyProfilePageStepsCoco {
     MyProfilePage myProfilePage = new MyProfilePage(WebDriverManager.getDriver());
 
     @Then("I click on Go back to Welcome page Button on My Profile CoCo")
-    public void iBackToWelcomeButton(){
+    public void iBackToWelcomeButton() {
         myProfilePage.backToWelcomeButton();
     }
 
@@ -39,7 +39,31 @@ public class MyProfilePageStepsCoco {
     public void iChangePreferredLanguageContactMethodTo(String langContactPreferred) {
         myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
     }
+
     @Then("I verify Password Popup text on My profile page CoCo {string}")
-    public void iverifyPasswordPopupTextOnMyProfileCoCoPage(String language)  { myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language); }
+    public void iverifyPasswordPopupTextOnMyProfileCoCoPage(String language) {
+        myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language);
+    }
+
+
+    @Then("I Validate the error message when no password in provided on the password popup on My profile page in CoCo {string}")
+    public void iverifyErrortextpopupOnMyProfileCoCoPage(String language) {
+        myProfilePage.verifyErrortextpopupOnMyProfileCoCoPage(language);
+    }
+
+    @And("I validate the incorrect password error message on My profile page in CoCo {string}")
+    public void iverifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(String language) {
+        myProfilePage.verifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(language);
+    }
+
+    @And("I validate the functionality of the Cancel link on My profile page CoCo {string}")
+    public void iverifyCancelbuttonOnMyProfileCoCoPage(String language) {
+        myProfilePage.verifyCancelbuttonOnMyProfileCoCoPage(language);
+    }
+
+    @Then("I validate member is logged out of account after third incorrect attempt on password popup CoCo")
+    public void iValidatethirdattemptincorrectPasswordCoCo() {
+        myProfilePage.ValidatethirdattemptincorrectPasswordCoCo();
+    }
 
 }

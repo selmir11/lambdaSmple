@@ -119,15 +119,15 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "Yes" to claim dependents
     And I select the "2" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
-    Then I validate I am on the "Elmo Other Health Insurance" page
-    Then I select "None of these" as ELMO health insurance option
-    Then I click continue on the ELMO health insurance page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as currentdate minus 5 days
     Then I click on Save and Continue
@@ -148,7 +148,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Grouping Members Dental" page
    Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    Then I select "Anthem Dental Family" plan
+    Then I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
      And I click continue on plan summary page
@@ -159,23 +159,14 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-
-
-    #Then I click all done from payment portal page
-
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    Then I validate I am on the "Initial Payment" page
-    And I click continue on initial payment page
-
-    And I click on Go To Welcome Page Button on whats next page
-
+    Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Plans"
+    And I click on ClickHere link for "My Documents"
+    And I click on download enrolment document
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+
 
     #Gmail
     Then I open outlook Tab

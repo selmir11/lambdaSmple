@@ -43,8 +43,22 @@ public class MyProfilePageSteps {
    @Then("I verify Password text on My profile page {string}")
    public void verifyPasswordTextOnMyProfilePage(String language)  { myProfileExchPage.verifyPasswordTextOnMyProfileExchPage(language); }
 
+    @Then("I Validate the error message when no password in provided on the password popup on My profile page in Exch {string}")
+    public void iverifyErrortextpopupOnMyProfileExchPage(String language)  { myProfileExchPage.verifyErrortextpopupOnMyProfileExchPage(language); }
+
+    @And("I validate the incorrect password error message on My profile page in Exch {string}")
+    public void iverifyIncorrectPasswordErrortextpopupOnMyProfileExchPage(String language)  { myProfileExchPage.verifyIncorrectPasswordErrortextpopupOnMyProfileExchPage(language); }
+
     @Then("I verify Password Popup text on My profile page Exch {string}")
     public void iverifyPasswordPopupTextOnMyProfileExchPage(String language)  { myProfileExchPage.verifyPasswordPopupTextOnMyProfileExchPage(language); }
+
+    @And("I validate the functionality of the Cancel link on My profile page Exch {string}")
+    public void iverifyCancelbuttonOnMyProfileExchPage(String language)  { myProfileExchPage.verifyCancelbuttonOnMyProfileExchPage(language); }
+
+    @Then("I validate member is logged out of account after third incorrect attempt on password popup")
+    public void iValidatethirdattemptincorrectPassword() {
+        myProfileExchPage.ValidatethirdattemptincorrectPassword();
+    }
 
     @Then("I change Preferred Contact Method {string}")
     public void iChangePreferredContactMethod() {
