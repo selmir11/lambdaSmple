@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Page Text-Income Opt Out Page
 
   Background:
