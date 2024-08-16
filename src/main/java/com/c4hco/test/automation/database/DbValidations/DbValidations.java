@@ -68,7 +68,7 @@ public class DbValidations {
               PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0); // WIP for other members
               validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dentalPlanDbData);
         }
-              //validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);
+              validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);
               softAssert.assertAll();
       }
     }
