@@ -109,13 +109,12 @@ Feature: Regression Tests that require Seed 1
       | CoverageStartDate | CoverageEndDate |
       | 01-01             | 12-31           |
    And I validate member details from ob834_details table
-    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+     | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason | total_subscribers | total_dependents | total_enrollees |
+     | 021                   | 021                | EC                    |                   | ADMIN_LCE  | 1                 | 0                | 1               |
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
     And I validate the ob834 files should have the values
-   And I validate the REF and LX segments in EDI file
+    And I validate the REF and LX segments in EDI file
      | LX | N1 75              | REF       | REFDEN    |
      | 1  | PRE AMT 1          | 291.02    | 21.00     |
      | 2  | APTC AMT           | 0.00      | 0.00      |
@@ -164,9 +163,8 @@ Feature: Regression Tests that require Seed 1
       | CoverageStartDate | CoverageEndDate |
       | 01-01             | 12-31           |
     And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason |
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason | total_subscribers | total_dependents | total_enrollees |
+      | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            | 1                 | 0                | 1               |
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
     And I validate the REF and LX segments in EDI file
