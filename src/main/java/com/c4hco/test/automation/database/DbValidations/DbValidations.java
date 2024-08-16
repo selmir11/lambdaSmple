@@ -61,18 +61,18 @@ public class DbValidations {
           if(ob834Entity.getInsurance_line_code().equals("HLT")){
               exchDbDataProvider.setMedicalPlanDataFromDb(subscriber.getMedicalPlan());
               PlanDbData medicalDbData = SharedData.getMedicalPlanDbData().get(0); //WIP for other members
-              validateMedicalDbRecord_ob834Detail(subscriber, ob834Entity, medicalDbData, expectedValues, dbData);
+              validateMedicalDbRecord_ob834Detail(subscriber, ob834Entity, medicalDbData, expectedValues);
         } else {
               exchDbDataProvider.setDentalPlanDataFromDb(subscriber.getDentalPlan());
               PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0); // WIP for other members
-              validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dentalPlanDbData, dbData);
+              validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dentalPlanDbData);
         }
               validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);
               softAssert.assertAll();
       }
     }
 
-    public void validateMedicalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData medicalDbData, List<Map<String, String>> expectedValues, DbData dbData){
+    public void validateMedicalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData medicalDbData, List<Map<String, String>> expectedValues){
         String[] PlanStartDateArr = subscriber.getMedicalPlanStartDate().split("/");
         String formatPlanStartDate = PlanStartDateArr[2]+PlanStartDateArr[0]+PlanStartDateArr[1];
 
@@ -91,15 +91,15 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
        // validateResidentialAddress(subscriber, ob834Entity, dbData);
-        validateMedicalAPTCAmount(ob834Entity,medicalDbData, dbData);
+        validateMedicalAPTCAmount(ob834Entity,medicalDbData);
         softAssert.assertAll();
 
 
     }
 
-    public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData dentalDbData, DbData dbData){
+    public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData dentalDbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
-        validateDentalAPTCAmount(ob834Entity,dentalDbData, dbData);
+        validateDentalAPTCAmount(ob834Entity,dentalDbData);
     }
 
     public void validateMedDenRec_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
@@ -115,7 +115,7 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
         softAssert.assertEquals(String.valueOf(SharedData.getTotalGroups()), ob834Entity.getMember_group(), "member group did not match");
-        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Dental Plan premium reduction type does not match");
+        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         softAssert.assertEquals(ob834Entity.getCsr_level(),dbData.getCsrLevel(), "CSR level does not match");
         validateSponsorId(ob834Entity);
         validateConstantFields(ob834Entity);
@@ -137,7 +137,7 @@ public class DbValidations {
         }
     }
 
-    public void validateMedicalAPTCAmount(Ob834DetailsEntity ob834Entity, PlanDbData medicalDbData, DbData dbData){
+    public void validateMedicalAPTCAmount(Ob834DetailsEntity ob834Entity, PlanDbData medicalDbData){
         double amt = Double.parseDouble(SharedData.getPrimaryMember().getMedicalAptcAmt());
         String ExpectedPMMedicalAptcAmt = String.format("%.2f", amt);
         if (ob834Entity.getSubscriber_indicator().equals("Y")) {
@@ -145,15 +145,13 @@ public class DbValidations {
             softAssert.assertEquals(medicalDbData.getCsrAmt()!= null ? medicalDbData.getCsrAmt():"0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
-            softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "premium reduction type does not match");
-            softAssert.assertEquals(ob834Entity.getCsr_level(), dbData.getCsrLevel(), "CSR level does not match");
         }else{
             validateAptcValuesForNonSubscriber(ob834Entity);
         }
         softAssert.assertAll();
     }
 
-    public void validateDentalAPTCAmount(Ob834DetailsEntity ob834Entity, PlanDbData dentalDbData, DbData dbData){
+    public void validateDentalAPTCAmount(Ob834DetailsEntity ob834Entity, PlanDbData dentalDbData){
         double amt = Double.parseDouble(SharedData.getPrimaryMember().getDentalAptcAmt().replace("$", ""));
         String ExpectedPMDentalAptcAmt = String.format("%.2f", amt);
         if (ob834Entity.getSubscriber_indicator().equals("Y")) {
@@ -161,8 +159,6 @@ public class DbValidations {
             softAssert.assertEquals(dentalDbData.getCsrAmt()!= null ? dentalDbData.getCsrAmt():"0.00", ob834Entity.getCsr_amount(), "Dental CSR amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", "").split("/")[0].trim(), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Dental Total Premium amount does not match");
-            softAssert.assertEquals(ob834Entity.getPremium_reduction_type(),"APTC", "premium reduction type does not match");
-            softAssert.assertEquals(ob834Entity.getCsr_level(), dbData.getCsrLevel(), "CSR level does not match");
         }else{
             validateAptcValuesForNonSubscriber(ob834Entity);
 
