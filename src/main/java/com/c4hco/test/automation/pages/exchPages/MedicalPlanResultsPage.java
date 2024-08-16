@@ -112,6 +112,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickGoBack(){
+        basicActions.waitForAngular( 10 );
         basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent( btnGoBack,30 );
         basicActions.scrollToElement( btnGoBack );
