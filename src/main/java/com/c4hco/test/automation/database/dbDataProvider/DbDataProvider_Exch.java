@@ -6,6 +6,7 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -74,36 +75,73 @@ public class DbDataProvider_Exch {
         Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
         return csrAmount;
     }
-    public void setDataFromDb(String planName){String fipcode = getFipcode();
-     String ratingAreaName = getRatingAreaName(fipcode);
-     String ratingAreaId = getRatingAreaId(fipcode);
-     String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
-     String baseId = baseIdAndHiosIssuerId[0];
-     String hiosIssuerId = baseIdAndHiosIssuerId[1];
-     String[] issuerNameId = getIssuerNameId(hiosIssuerId);
-     String issuerName = issuerNameId[0];
-     String issuerId = issuerNameId[1];
-     Map<String,String> csrMap = getSubscriberCSRDataFromDb();
-        String csrAmtMed =csrMap.get("1");
-        String csrAmtDen =csrMap.get("2");
-     String exchPersonId = getExchPersonId();
-     String csrLevel = getCSRLevel();
-     String brokerTinNum = getTinNumForBroker();
+    public void setDataFromDb(){
+        String fipcode = getFipcode();
+        String ratingAreaName = getRatingAreaName(fipcode);
+        String ratingAreaId = getRatingAreaId(fipcode);
+        String exchPersonId = getExchPersonId();
+        String brokerTinNum = getTinNumForBroker();
+        String csrLevel = getCSRLevel();
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
         dbData.setRatingAreaId(ratingAreaId);
-        dbData.setBaseId(baseId);
-        dbData.setHiosIssuerId(hiosIssuerId);
-        dbData.setIssuerName(issuerName);
-        dbData.setIssuerId(issuerId);
         dbData.setExchPersonId(exchPersonId);
-        dbData.setCsrLevel(csrLevel);
         dbData.setBrokerTinNum(brokerTinNum);
-        dbData.setCsrAmtMed(csrAmtMed);
-        dbData.setCsrAmtDen(csrAmtDen);
+        dbData.setCsrLevel(csrLevel);
         SharedData.setDbData(dbData);
+    }
+
+    public void setMedicalPlanDataFromDb(String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmtMed =csrMap.get("1");
+
+        List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
+        if(medicalPlanDetailsFromDb==null) {
+            medicalPlanDetailsFromDb = new ArrayList<>();
+        }
+            PlanDbData planDbData = new PlanDbData();
+
+            planDbData.setBaseId(baseId);
+            planDbData.setPlanName(planName);
+            planDbData.setIssuerName(issuerName);
+            planDbData.setIssuerId(issuerId);
+            planDbData.setHiosIssuerId(hiosIssuerId);
+            planDbData.setCsrAmt(csrAmtMed);
+            medicalPlanDetailsFromDb.add(planDbData);
+            SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
+    }
+
+    public void setDentalPlanDataFromDb(String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmt =csrMap.get("2"); //Dental
+        List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
+        if(dentalPlanDetailsFromDb==null) {
+            dentalPlanDetailsFromDb = new ArrayList<>();
+        }
+        PlanDbData planDbData = new PlanDbData();
+
+        planDbData.setBaseId(baseId);
+        planDbData.setPlanName(planName);
+        planDbData.setIssuerName(issuerName);
+        planDbData.setIssuerId(issuerId);
+        planDbData.setHiosIssuerId(hiosIssuerId);
+        planDbData.setCsrAmt(csrAmt);
+        dentalPlanDetailsFromDb.add(planDbData);
+        SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
     public Boolean getDataFromOhiTables(){
@@ -136,6 +174,21 @@ public class DbDataProvider_Exch {
     public List<String> getAccount_holder_fn() {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
+
+    public List<String> getBrokerAuthorizationInBoB(String clientFirstName) {
+
+       return postgresHandler.getResultListFor("broker_name", exchDbQueries.verifyBrokerAuthorizationInBOB(clientFirstName));
+    }
+
+    public List<String> getApplicationSubmissionInBoB() {
+
+       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyApplicationSubmissionInBOB());
+    }
+
+    public List<String> getPolicySubmissionInBoB(int coverageType) {
+
+       return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyPolicySubmissionInBOB(coverageType));
+    }
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());

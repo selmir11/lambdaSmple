@@ -136,12 +136,6 @@ public class FindACertifiedBrokerSteps {
     public void IVerifyCurrentResultPage(String currentPage){
         findACertifiedBrokerPage.verifyCurrentBrokerResultsPage(currentPage);}
 
-
-    @Then("I click remove current broker Find a certified broker Page")
-    public void iClickRemoveCurrentBrokerFindACertifiedBrokerPage() {
-        findACertifiedBrokerPage.clickRemoveCurrentBroker();
-    }
-
     @And("I validate the have a {string} broker call you text in {string}")
     public void iValidateHaveBrokerCallYouText(String marketplace, String language){
         findACertifiedBrokerPage.validateBrokerContactYouText(marketplace, language);

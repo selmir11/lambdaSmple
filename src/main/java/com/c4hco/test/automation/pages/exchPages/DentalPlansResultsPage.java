@@ -99,17 +99,19 @@ public class DentalPlansResultsPage {
 
     public void clickFirstPlanDetailBtn(){
         basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBeClickableWithRetries( selectFirstDentalDetailButton, 15 );
         selectFirstDentalDetailButton.click();
     }
 
     public void clickContinueOnDentalResultsPage() {
+        basicActions.waitForElementToDisappear( spinner, 30 );
         basicActions.waitForElementToBePresent( continueBtnOnDentalPlanResults, 15 );
         continueBtnOnDentalPlanResults.click();
     }
 
     public void clickGoBack() {
         basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBePresent( btnGoBack, 200 );
+        basicActions.waitForElementToBeClickableWithRetries( btnGoBack, 20 );
         basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
 

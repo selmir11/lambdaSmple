@@ -3,10 +3,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
 import java.io.File;
@@ -15,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -454,6 +452,33 @@ public class BasicActions {
     }
     public static String getUniquePW(){
         return RandomStringUtils.random(8,1234+"2@ACRTYUIOPcdefghijklmnopQWERTYUIOPASDFqrstuvwxyz234566");
+    }
+
+    public Boolean waitForPageLoad(int waitTime) {
+        try {
+            new WebDriverWait( driver, Duration.ofSeconds( waitTime ) ).until( (ExpectedCondition<Boolean>) wd ->
+                    ((JavascriptExecutor) wd).executeScript( "return document.readyState" ).equals( "complete" ) );
+        } catch (TimeoutException ignore) {
+            Log.info( "Document ready state not complete" );
+            Assert.fail( "Document ready state not complete" );
+            return false;
+        }
+        return true;
+    }
+    public Boolean waitForAngular(int waitTime) {
+        driver.manage().timeouts().setScriptTimeout(waitTime, TimeUnit.SECONDS);
+        try {
+            //Wait for DOM ready
+            waitForPageLoad(waitTime);
+            //Wait for Angular ready
+            ((JavascriptExecutor) driver).executeAsyncScript(
+                    "getAllAngularTestabilities()[0].whenStable(arguments[arguments.length - 1], " + (waitTime * 1000) + ")");
+        } catch (TimeoutException ignore) {
+            Log.info( "Angular ready state not complete" );
+            Assert.fail( "Angular ready state not complete" );
+            return false;
+        }
+        return true;
     }
 }
 

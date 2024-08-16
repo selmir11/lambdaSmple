@@ -23,6 +23,9 @@ public class HouseholdPage {
     }
 
     // update locators to ids and rename methods
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
@@ -35,8 +38,11 @@ public class HouseholdPage {
     @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
 
-    @FindBy(xpath = "//*[@class = input.submitbutton]")
-    WebElement linkName;
+    @FindBy(xpath = "//input[@class = 'linkButton]")
+    WebElement linkMember;
+
+    @FindBy(xpath = "//*[@class = 'linkButton']")
+    WebElement secondlinkMember;
 
     @FindBy(xpath = "//*[@id = 'submitButton_Income']")
     WebElement editPrimaryMemberRedIcon;
@@ -97,13 +103,23 @@ public class HouseholdPage {
         editPrimaryMember.click();
     }
 
+    public void iClick2ndMemberLink(){
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent(secondlinkMember, 10);
+        softAssert.assertTrue( secondlinkMember.isDisplayed());
+        basicActions.waitForElementToBeClickable( secondlinkMember,15 );
+        secondlinkMember.click();
+
+    }
+
     public void iClickMemberLink (int index) {
         //linkName - aiming to use a different locator to activate the different rows
-        basicActions.waitForElementToBePresent(linkName, 10);
-        softAssert.assertTrue( linkName.isDisplayed());
-        basicActions.waitForElementToBeClickable( linkName,15 );
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent(linkMember, 10);
+        softAssert.assertTrue( linkMember.isDisplayed());
+        basicActions.waitForElementToBeClickable( linkMember,15 );
         index -= 1;
-        linkName.click();
+        linkMember.click();
     }
 
     public void iEditPrimaryMemberRedIcon(int index) {

@@ -1,5 +1,5 @@
-package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.YourClientsPage;
+package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BrokerPortalSteps;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages.YourClientsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
