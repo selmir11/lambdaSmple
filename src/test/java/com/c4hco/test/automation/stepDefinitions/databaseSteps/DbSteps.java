@@ -64,7 +64,10 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validatePolicySubmissionBob(expectedRecords, coverageType);
    }
 
-
+   @And("I verify there are no medical records for my client in BoB DB")
+   public void iVerifyNoMedicalPolicySubmissionBobDb() {
+      dbValidations.validateNoMedicalPolicySubmissionBob();
+   }
 
    @And("I validate Individual member policy table queries")
    public void ivalidateIndPolicyTableQueries(){
