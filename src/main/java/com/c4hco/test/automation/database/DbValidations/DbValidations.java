@@ -107,9 +107,9 @@ public class DbValidations {
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
         softAssert.assertEquals(expectedValues.get(0).get("total_enrollees"), ob834Entity.getTotal_enrollees(),"total enrollees does not match");
-        softAssert.assertEquals(expectedValues.get(0).get("total_subscribers"), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
-        softAssert.assertEquals(expectedValues.get(0).get("total_dependents"), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
-        softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
+        softAssert.assertEquals(expectedValues.get(0).get("total_subscribers"), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
+        softAssert.assertEquals(expectedValues.get(0).get("total_dependents"), ob834Entity.getTotal_dependents(), "total dependents did not match");
+        softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
