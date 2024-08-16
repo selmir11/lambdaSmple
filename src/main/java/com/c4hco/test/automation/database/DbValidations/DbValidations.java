@@ -490,6 +490,10 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
+    public void validateNoMedicalPolicySubmissionBob() {
+        Boolean hasRecords = exchDbDataProvider.getNoMedicalPolicySubmissionInBoB();
+        Assert.assertFalse(hasRecords, "Query returned records");
+        softAssert.assertAll();
+    }
 
 }
