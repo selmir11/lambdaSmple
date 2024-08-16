@@ -34,17 +34,24 @@ public class FinancialHelpAgreementsPage {
         signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
 
-    public void enterFirstTaxPayerSignature(){
-        String namePath = "(//div/div/span)[2]";
-        String signature = basicActions.getDriver().findElement(By.xpath(namePath)).getText();
-        signatureInput.click();
-        signatureInput.sendKeys(signature);
-    }
-    public void enterSecondTaxPayerSignature(){
-        String namePath = "(//div/div/span)[3]";
-        String signature = basicActions.getDriver().findElement(By.xpath(namePath)).getText();
-        signatureForSecondTaxPayer.click();
-        signatureForSecondTaxPayer.sendKeys(signature);
+    public void enterTaxPayersSignature(String taxHolder){
+        switch (taxHolder) {
+            case "taxHolder1":
+                String namePathFirstMember = "(//div/div/span)[2]";
+                String signatureFirstMember = basicActions.getDriver().findElement(By.xpath(namePathFirstMember)).getText();
+                signatureInput.click();
+                signatureInput.sendKeys(signatureFirstMember);
+                break;
+            case "taxHolder2":
+                String namePathSecondMember = "(//div/div/span)[3]";
+                String signatureSecondMember = basicActions.getDriver().findElement(By.xpath(namePathSecondMember)).getText();
+                signatureForSecondTaxPayer.click();
+                signatureForSecondTaxPayer.sendKeys(signatureSecondMember);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: ");
+        }
+
     }
 
     public void selectTermsAgreementsCheckbox(){
