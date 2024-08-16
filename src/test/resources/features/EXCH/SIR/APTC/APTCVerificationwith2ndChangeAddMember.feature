@@ -715,14 +715,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I select "member" from the who are you question
       And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
-      Examples:
-      |City     |State      |DOB        |City       |Zipcode   |
-      |NewTown  |CO         |01011958   |Eagle      |81657     |
-      |NewTown  |CO         |01011958   |Larimar    |80524     |
-      |NewTown  |CO         |01011958   |Weld       |80634     |
-      |NewTown  |CO         |01011958   |Park       |80449     |
-      |NewTown  |CO         |01011958   |Prowers    |81052     |
-      |NewTown  |CO         |01011958   |Phillips   |80731     |
 
       Then I answer all Id proofing questions and click continue
 
@@ -955,6 +947,14 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Pay now" page
       And I click on Sign Out in the Header for "Portal"
+      Examples:
+        |City     |State      |DOB        |City       |Zipcode   |
+        |NewTown  |CO         |01011958   |Eagle      |81657     |
+        |NewTown  |CO         |01011958   |Larimar    |80524     |
+        |NewTown  |CO         |01011958   |Weld       |80634     |
+        |NewTown  |CO         |01011958   |Park       |80449     |
+        |NewTown  |CO         |01011958   |Prowers    |81052     |
+        |NewTown  |CO         |01011958   |Phillips   |80731     |
 
 
 
