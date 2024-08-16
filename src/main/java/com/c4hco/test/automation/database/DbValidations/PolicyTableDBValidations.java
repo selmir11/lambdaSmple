@@ -17,6 +17,7 @@ public class PolicyTableDBValidations {
     public void validateDataFromPolicyTables(List<Map<String, String>> expectedResult){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<PolicyTablesEntity> policyEntities = exchDbDataProvider.getDataFromPolicyTables();
+        SharedData.setPolicyTablesEntities(policyEntities);
         exchDbDataProvider.setDataFromDb();
         DbData dbData = SharedData.getDbData();
 

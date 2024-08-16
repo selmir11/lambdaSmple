@@ -13,5 +13,5 @@ public class PlanDbData {
     String issuerName;
     String issuerId;
     String csrAmt;
-    BigDecimal premiumAmt;
+    String premiumAmt;
 }
