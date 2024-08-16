@@ -24,6 +24,14 @@ public class AdditionalIncomePageSteps {
     @Then("I click continue on the Additional Income page")
     public void clickContinue(){additionalIncomePage.clickContinue();}
 
+    @And("I select {string} icon on the Additional Income Page")
+    public void iSelectHelpIcon(String labelIcon){additionalIncomePage.clickHelpIcon(labelIcon);}
+
+
+    @Then("I click on {string} link in Help Drawer on the Additional Income page")
+    public void iClickHelpDrawerContactUs(String lnkName){additionalIncomePage.clickHelpContactUsNavigation(lnkName);}
+
+
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
@@ -53,5 +61,8 @@ public class AdditionalIncomePageSteps {
 
     @Then("I verify {string} error shows for additional income page")
     public void iVerifyAddtlIncomePageError(String language)  { additionalIncomePage.verifyAddtlIncomePageError(language); }
+
+    @Then("I validate Additional Income help drawer {string} verbiage in {string}")
+    public void iValidateHelp(String helpText, String language){additionalIncomePage.validateHelpVerbiage(helpText, language);}
 
 }
