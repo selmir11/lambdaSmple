@@ -164,7 +164,13 @@ public class AccountOverviewPage {
 
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {
         String noOfGroups = expectedResult.get(0).get("totalGroups");
+        String totalSubscribers = expectedResult.get(0).get("total_subscribers");
+        String totalDependents = expectedResult.get(0).get("total_dependents");
+        String totalEnrollees = expectedResult.get(0).get("total_enrollees");
         SharedData.setTotalGroups(Integer.parseInt(noOfGroups));
+        SharedData.setSubscribers(totalSubscribers);
+        SharedData.setDependents(totalDependents);
+        SharedData.setEnrollees(totalEnrollees);
     }
 
 }

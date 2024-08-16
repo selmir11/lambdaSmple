@@ -44,6 +44,9 @@ public class SharedData {
     @Getter @Setter private static String noticeFileName;
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
     @Getter @Setter private static Map<String, List<String>> groupingDetails;
+    @Getter @Setter private static String subscribers;
+    @Getter @Setter private static String dependents;
+    @Getter @Setter private static String enrollees;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
