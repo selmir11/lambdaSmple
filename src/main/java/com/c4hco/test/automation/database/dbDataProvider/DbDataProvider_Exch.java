@@ -216,6 +216,11 @@ public class DbDataProvider_Exch {
        return postgresHandler.getResultListFor("account_id", exchDbQueries.verifyPolicySubmissionInBOB(coverageType));
     }
 
+    public Boolean getNoMedicalPolicySubmissionInBoB() {
+
+        return postgresHandler.dbRecordsExisting(exchDbQueries.verifyPolicySubmissionInBOB(1));
+    }
+
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }

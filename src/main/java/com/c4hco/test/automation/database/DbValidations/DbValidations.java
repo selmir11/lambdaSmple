@@ -2,6 +2,7 @@ package com.c4hco.test.automation.database.DbValidations;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -106,16 +107,18 @@ public class DbValidations {
 
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
-//          softAssert.assertEquals(SharedData.getTotalSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match"); // WIP - set total subscribers from a step
-//          softAssert.assertEquals(SharedData.getTotalDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match"); // WIP - set total dependants from a step
-//          softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match"); // WIP - sponsor is the subscriber?
+        softAssert.assertEquals(SharedData.getScenarioDetails().getEnrollees(), ob834Entity.getTotal_enrollees(),"total enrollees does not match");
+        softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
+        softAssert.assertEquals(SharedData.getScenarioDetails().getDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match");
+        softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(),ob834Entity.getMember_id(),"Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
-        //  softAssert.assertEquals(subscriber.getMemberGroup(), ob834Entity.getMember_group(), "member group did not match"); //WIP - set data
-        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Dental Plan premium reduction type does not match");
-        softAssert.assertEquals(ob834Entity.getCsr_level(),"01", "CSR level does not match"); // WIP - GET CSR LEVEL FROM DBDATA
+        softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalGroups()), ob834Entity.getMember_group(), "member group did not match");
+        softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalMembers()),ob834Entity.getTotal_enrollees(), "Total members mismatch");
+        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
+        softAssert.assertEquals(ob834Entity.getCsr_level(),dbData.getCsrLevel(), "CSR level does not match");
         validateSponsorId(ob834Entity);
         validateConstantFields(ob834Entity);
         validatePersonalDetails(subscriber, ob834Entity);
@@ -190,7 +193,7 @@ public class DbValidations {
     }
 
     public void validateMemberCountDetails(Ob834DetailsEntity ob834Entity){
-     int totalGroups = SharedData.getTotalGroups();
+     int totalGroups = SharedData.getScenarioDetails().getTotalGroups();
         List<MemberDetails> memberList = SharedData.getMembers();
      if(totalGroups == 1 && memberList != null){
         softAssert.assertEquals( memberList.size()+1, ob834Entity.getTotal_enrollees(),"Total Enrollees does not match.");
@@ -505,6 +508,10 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
+    public void validateNoMedicalPolicySubmissionBob() {
+        Boolean hasRecords = exchDbDataProvider.getNoMedicalPolicySubmissionInBoB();
+        Assert.assertFalse(hasRecords, "Query returned records");
+        softAssert.assertAll();
+    }
 
 }

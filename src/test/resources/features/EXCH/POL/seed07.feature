@@ -1,6 +1,6 @@
-Feature: Seed07exception - Exchange
+Feature: Seed07 - Exchange
 
-  Background: Seed 07 with exception For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
+  Background: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -208,6 +208,55 @@ Feature: Seed07exception - Exchange
     And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
+    And I select "Terms of Use" agreement checkbox
+    And I select "Privacy Policy" agreement checkbox
+    And I select "Understand Law" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click continue on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    And I click "Admin LCE" from application links dropdown
+    And I look up with account id on admin tool page
+    And I change effective date to "0101" of current year from admin portal
+    Then logout from Admin Portal
+
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Eligibility"
+    Then I validate I am on the "Application History" page
+    Then I set data from application history page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate that there are 2 default groups
+    Then I click continue on grouping Members Medical page
+    And I validate I am on the "Medical Plan Results" page
+    And I select "KP Select CO Bronze 8500/50" plan
+    Then I click continue on medical plan results page
+    And I select "Anthem Colorado Option Silver Pathway Std" plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
+    Then I click continue on dental plan results page
+    And I select "Anthem Dental Family Value" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter "taxHolder1" signature on the Financial Help Agreements page
+    And I enter "taxHolder2" signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox

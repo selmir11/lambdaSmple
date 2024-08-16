@@ -464,6 +464,63 @@ public class BasicSteps {
             case "Medicare DOI":
                 pageUrl = "senior-health-care-medicare";
                 break;
+            case "Alimony Received":
+                pageUrl = "https://www.irs.gov/taxtopics/tc452";
+                break;
+            case "Capital Gains":
+                pageUrl = "https://www.irs.gov/taxtopics/tc409";
+                break;
+            case "Income from Rental":
+                pageUrl = "https://www.irs.gov/taxtopics/tc414";
+                break;
+            case "Pension":
+                pageUrl = "https://www.irs.gov/publications/p575";
+                break;
+            case "Private Retirement Income":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/p575.pdf";
+                break;
+            case "Unemployment Insurance":
+                pageUrl = "https://www.irs.gov/individuals/employees/unemployment-compensation";
+                break;
+            case "Investment Income":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/p550.pdf";
+                break;
+            case "Untaxed Foreign Income":
+                pageUrl = "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion-what-is-foreign-earned-income";
+                break;
+            case "Royalty Income":
+                pageUrl = "https://www.irs.gov/forms-pubs/about-form-1099-misc";
+                break;
+            case "Title II Income":
+                pageUrl = "https://www.disability-benefits-help.org/glossary/title-ii-benefits";
+                break;
+            case "Alimony paid out":
+                pageUrl = "https://www.irs.gov/taxtopics/tc452";
+                break;
+            case "Domestic production activities":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/i8903.pdf";
+                break;
+            case "Pre-tax retirement contribution":
+                pageUrl = "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit";
+                break;
+            case "School tuition":
+                pageUrl = "https://www.irs.gov/forms-pubs/about-form-8917";
+                break;
+            case "Self-employment tax":
+                pageUrl = "https://www.irs.gov/individuals/international-taxpayers/self-employment-tax";
+                break;
+            case "Student Loan Interest":
+                pageUrl = "https://www.irs.gov/taxtopics/tc456";
+                break;
+            case "Self-employment Health Insurance":
+                pageUrl = "https://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/";
+                break;
+            case "Self-Employment Retirement Plan":
+                pageUrl = "https://www.irs.gov/retirement-plans/retirement-plans-for-self-employed-people";
+                break;
+            case "Moving Expenses":
+                pageUrl = "https://www.irs.gov/forms-pubs/about-form-3903";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
