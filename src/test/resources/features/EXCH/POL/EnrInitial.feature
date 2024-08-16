@@ -1,5 +1,5 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106
+  @SLER-106 @test
   Scenario: Create Account & Submit FA Application & Enroll in a plan
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -15,7 +15,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "10011978" in county "BOULDER" with zipcode "80502"
+
+    And I am a member with City "Boulder" in State "CO" with dob "01011978" in county "BOULDER" with zipcode "80502"
+
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -24,7 +26,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    Then I enter member with address line1 "P.O BOX 4515" in city "Denver" in state "CO" with zipcode "80502" and county "BOULDER"
+    Then I enter member with address line1 "P.O BOX 4515" in city "Boulder" in state "CO" with zipcode "80502" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -86,6 +88,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I validate I am on the "Add Member" page
     Then I enter member details with "08012013" date of birth
     And I select "Female" as sex option
+    And I select "No" as pregnancy option
     And I select "Daughter" as relationship option
     And I select "Daughter" as relationship one option
     And I select "Sister" as relationship two option
@@ -121,6 +124,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
+
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
@@ -139,6 +143,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
@@ -159,6 +164,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -196,15 +202,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
     Then I click all done from payment portal page
-#    Then I select make payment button to pay the premium
-#    And I select Withdrawal from Bank Account button
-#    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-#    Then I select second make payment button to pay the premium
-#    And I select Withdrawal from Bank Account button
-#    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-#    And I click continue on initial payment page
-#
-#    And I click on Go To Welcome Page Button on whats next page
+
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
@@ -231,7 +229,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
         #DbVerification
 
-    And I verify the policy data quality check
+    And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table
 
 
