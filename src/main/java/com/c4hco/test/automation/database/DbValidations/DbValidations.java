@@ -67,7 +67,7 @@ public class DbValidations {
               PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0); // WIP for other members
               validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dentalPlanDbData, dbData);
         }
-              validateMedDenRec_ob834Detail(subscriber, ob834Entity, expectedValues, dbData);
+              validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);
               softAssert.assertAll();
       }
     }
@@ -102,7 +102,7 @@ public class DbValidations {
         validateDentalAPTCAmount(ob834Entity,dentalDbData, dbData);
     }
 
-    public void validateMedDenRec_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues, DbData dbData){
+    public void validateMedDenRec_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData){
 
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
