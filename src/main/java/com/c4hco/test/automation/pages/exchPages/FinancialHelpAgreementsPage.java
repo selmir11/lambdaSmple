@@ -9,18 +9,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 public class FinancialHelpAgreementsPage {
 
-
     private BasicActions basicActions;
 
     public FinancialHelpAgreementsPage (WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(),  this);
-
     }
 
     @FindBy(id ="SOL-FinHelpAgreements-Continue")
     WebElement continueButton;
-
     @FindBy(id = "SOL-FinHelpAgreements-ElectronicSignatureLegalEffect")
     WebElement signatureInput;
     @FindBy(xpath = "(//input[@id='SOL-FinHelpAgreements-ElectronicSignatureLegalEffect'])[2]")
@@ -35,23 +32,21 @@ public class FinancialHelpAgreementsPage {
     }
 
     public void enterTaxPayersSignature(String taxHolder){
+        String memberSignature;
         switch (taxHolder) {
             case "taxHolder1":
-                String namePathFirstMember = "(//div/div/span)[2]";
-                String signatureFirstMember = basicActions.getDriver().findElement(By.xpath(namePathFirstMember)).getText();
-                signatureInput.click();
-                signatureInput.sendKeys(signatureFirstMember);
+                 memberSignature = "(//div/div/span)[2]";
                 break;
             case "taxHolder2":
-                String namePathSecondMember = "(//div/div/span)[3]";
-                String signatureSecondMember = basicActions.getDriver().findElement(By.xpath(namePathSecondMember)).getText();
-                signatureForSecondTaxPayer.click();
-                signatureForSecondTaxPayer.sendKeys(signatureSecondMember);
+                 memberSignature = "(//div/div/span)[3]";
                 break;
+
             default:
                 throw new IllegalArgumentException("Invalid option: ");
         }
-
+        String signatureFirstMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
+        signatureInput.click();
+        signatureInput.sendKeys(signatureFirstMember);
     }
 
     public void selectTermsAgreementsCheckbox(){
