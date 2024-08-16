@@ -14,6 +14,10 @@ public class FinancialHelpAgreementsPageSteps {
     @And("I enter householder signature on the Financial Help Agreements page")
     public void enterAgreementSignatureEX(){financialHelpAgreementsPage.enterSignature();}
 
+    @And("I enter {string} signature on the Financial Help Agreements page")
+    public void enterAgreementSignatureTwoTaxHoldersEX(String taxHolder){
+        financialHelpAgreementsPage.enterTaxPayersSignature(taxHolder);}
+
     @And("I click continue on Financial Help Agreements page")
     public void continueInitialPaymentCoCo(){
         financialHelpAgreementsPage.clickContinue();

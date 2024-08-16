@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.GroupDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -75,7 +76,7 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
         softAssert.assertAll();
-        SharedData.setTotalGroups(groupsSize);
+        SharedData.getScenarioDetails().setTotalGroups(groupsSize);
     }
 
     public void getUniqueZipCodes(int expectedGroups) {
@@ -188,7 +189,7 @@ public class GroupingMembersMedicalPage {
         Map<String, List<String>> groupDetailsMap = new HashMap<>();
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        SharedData.setTotalGroups(groupsSize);
+        SharedData.getScenarioDetails().setTotalGroups(groupsSize);
 
         for (int i = 1; i <= groupsSize; i++) {
             List<WebElement> details = basicActions.getDriver().findElements(By.xpath("//th[contains(text(),'Medical Group # " + i + "')]/../../following-sibling::tbody//td"));
