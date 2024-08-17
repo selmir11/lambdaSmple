@@ -28,6 +28,7 @@ public class PaymentPortalPage {
 
 
     public void clickAllDone(){
+        basicActions.waitForAngular( 5 );
         basicActions.waitForElementToDisappear(spinner, 20);;
         basicActions.waitForElementToBePresent( allDone,30 );
         basicActions.scrollToElement( allDone );

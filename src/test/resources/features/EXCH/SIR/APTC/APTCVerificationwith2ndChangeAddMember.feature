@@ -151,7 +151,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    Then I click on Member Row 1
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -366,7 +366,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Family Overview" page
 
-      Then I click on the Member Row 1
+      Then I click on Member Row 1
 
       Then I validate I am on the "Application Summary" page
       Then I select the Edit Income link
@@ -607,7 +607,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Citizenship page
 
       Then I validate I am on the "Family Overview" page
-      And I click the 2nd member link
+      And I click on Member Row 1
           #Then I click the member link 3
           #Then I click on the Member Row 6
 
@@ -694,7 +694,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click on Sign Out in the Header for "Portal"
 
 
-    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413
+    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413 @test
     Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -706,26 +706,20 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Account Overview" page
       Then I apply for the current year
 
+      Then I validate I am on the "Let us guide you" page
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
 
+      Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
+      Then I validate I am on the "Report a life change" page
       And I report "MovedToColorado" and click continue
 
+      Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
-      And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
-      Examples:
-      |City     |State      |DOB        |City       |Zipcode   |
-      |NewTown  |CO         |01011958   |Eagle      |81657     |
-      |NewTown  |CO         |01011958   |Larimar    |80524     |
-      |NewTown  |CO         |01011958   |Weld       |80634     |
-      |NewTown  |CO         |01011958   |Park       |80449     |
-      |NewTown  |CO         |01011958   |Prowers    |81052     |
-      |NewTown  |CO         |01011958   |Phillips   |80731     |
-
+      And I am a member with City "<City>" in State "<State>" with DOB "<DOB>" in County "<County>" with Zipcode "<Zipcode>"
       Then I answer all Id proofing questions and click continue
-
 
       And I click continue button on Congratulations page
 
@@ -751,10 +745,12 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Financial Help" page
       And I Apply for financial help
+      
+      Then I validate I am on the "Employment Info" page
       Then I select the option "No" to employment
       And I click continue on the Employment Info Page
 
-      Then I click continue on the Employment Summary Page
+      Then I validate I am on the "Additional income" page
       Then I click None of these as additional income option and continue
 
       Then I validate I am on the "Deductions" page
@@ -805,7 +801,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on dental plan results page
 
       Then I validate I am on the "Plan Summary" page
-      And I validate the APTC Credit on the Summary page is "$0.00"
+      And I validate the APTC Credit on the Summary page is "<firstplanSummaryAPTC>"
       And I click continue on plan summary page
 
       Then I validate I am on the "Enrollment Agreements" page
@@ -831,7 +827,6 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Report a life change" page
       And I report "MovedToColorado" and click continue
 
-
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
 
@@ -854,22 +849,43 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Citizenship page
 
       Then I validate I am on the "Family Overview" page
+      Then I click Add Another Family Member
 
-      Then I click on the Member Row 1
+      Then I validate I am on the "Add Member" page
+      Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101990", "Female" and applying "Yes"
+        |Primary:Spouse|
+
+      And I mark the Additional member is pregnant as "No"
+      And I click continue on Tell us about additional members page
+
+      Then I validate I am on the "Add Address" page
+      Then I select "Household" for Residential Address
+      And I select "Yes" for CO Resident option
+      And I select "No" for Federally Recognized Tribe option
+      And I select "No" for Hardship Exemption option
+      And I select "No" for Disability option
+      And I select "No" to the recently denied medicaid question
+      And I select "No" for Incarceration option
+      And I click continue on the Add Address page
+
+      Then I validate I am on the "Citizenship" page
+      Then I select "Yes" for Citizen option
+      And I select "No" for Naturalized Immigrant option
+      And I click continue on the Citizenship page
+
+      Then I validate I am on the "Family Overview" page
+
+      Then I click on Member Row 1
 
       Then I validate I am on the "Application Summary" page
       Then I select the Edit Income link
 
-      Then I validate I am on the "Employment Summary" page
-      Then I click Edit on Income Summary row 1
-
       Then I validate I am on the "Employment Info" page
-      And I edit the income level to ""
-      And I edit the income level to "5152000"
+      Then I select the option "No" to employment
       And I click continue on the Employment Info Page
 
-      Then I validate I am on the "Employment Summary" page
-      Then I click continue on the Employment Summary Page
+      #Then I validate I am on the "Employment Summary" page
+      #Then I click continue on the Employment Summary Page
 
       Then I validate I am on the "Additional income" page
       Then I click continue on the Additional Income page
@@ -880,17 +896,51 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I click the save and continue button on the Income Summary Detail page
 
+      Then I validate I am on the "Family Overview" page
+      Then I click on Member Row 2
+
+      Then I validate I am on the "Application Summary" page
+      Then I select the Edit Income link
+
+      Then I validate I am on the "Employment Info" page
+      Then I select the option "Yes" to employment
+      Then I select the option "No" to self employment
+      Then I enter company details with addressline1 as "1234 test road" and city as "Denver" and state as "CO" and zipcode as "80205" and income "<incomeChange>" at frequency "Annually"
+      And I select the option "No" to seasonal employment
+      And I select the option "No" to projected income
+      And I click continue on the Employment Info Page
+
+      Then I validate I am on the "Employment Info" page
+      Then I click continue on the Employment Summary Page
+
+      Then I validate I am on the "Additional income" page
+      Then I click None of these as additional income option and continue
+
+      Then I validate I am on the "Deductions" page
+      Then I click None of these as deduction option and continue
+
+      Then I validate I am on the "Income Summary" page
+      Then I select the projected income option "No" and continue
+
+
       Then I validate I am on the "Tax status" page
+      And I select "Married filing jointly" tax filing status
+      And I select spouse to file taxes jointly
+      And I select "No" to claim dependents
       Then I click save and continue on tax status page
 
       And I validate I am on the "Elmo Other Health Coverage" page
+      Then I click continue on the ELMO health coverage page
+
+      And I validate I am on the "Elmo Other Health Coverage" page
+      And I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
 
       Then I validate I am on the "Tell us about life changes" page
-      And  I select "LostCoverage" QLCE on tell us about life changes page
+      And  I select "Marriage" QLCE on tell us about life changes page
       Then I click on Save and Continue
 
       Then I validate I am on the "EXCH Declarations and Signature" page
@@ -902,43 +952,29 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on view results and shop
 
       Then I validate I am on the "Application Results" page
-      Then I validate that my Tax Household's APTC value is "$1134.70/mo"
+      Then I validate that my Tax Household's APTC value is "<finalapplicationResultAPTC>"
       Then I click continue on application results page
 
       Then I validate I am on the "Start Shopping" page
       And I click continue on start shopping page
 
+      Then I validate I am on the "Grouping Members Medical" page
+      Then I click continue on grouping Members Medical page
+
       Then I validate I am on the "Medical Plan Results" page
       And I select the first medical plan
       And I click continue on medical plan results page
+
+      Then I validate I am on the "Grouping Members Dental" page
+      Then I click continue on grouping Members Dental page
 
       Then I validate I am on the "Dental Plan Results" page
       And I select first dental plan
       And I click continue on dental plan results page
 
       Then I validate I am on the "Plan Summary" page
-      And I validate the APTC Credit on the Summary page is "-$1,028.25"
-      And I click continue on plan summary page
-
-      Then I validate I am on the "Financial Help Agreements" page
-      And I click on Sign Out in the Header for "Portal"
-      Then I validate I am on the "Application Results" page
-      Then I validate that my Tax Household's APTC value is "$265.98/mo"
-      Then I click continue on application results page
-
-      Then I validate I am on the "Start Shopping" page
-      And I click continue on start shopping page
-
-      Then I validate I am on the "Medical Plan Results" page
-      And I select the first medical plan
-      And I click continue on medical plan results page
-
-      Then I validate I am on the "Dental Plan Results" page
-      And I select first dental plan
-      And I click continue on dental plan results page
-
-      Then I validate I am on the "Plan Summary" page
-      And I validate the APTC Credit on the Summary page is "-$265.98"
+      And I validate the APTC Credit on the Summary page is "<finalplanSummaryAPTC>"
+      # -$265.98
       And I click continue on plan summary page
 
       Then I validate I am on the "Financial Help Agreements" page
@@ -955,6 +991,14 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Pay now" page
       And I click on Sign Out in the Header for "Portal"
+      Examples:
+        |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
+        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1417.06/mo             |  -$1,381.56          |
+        |NewTown  |CO         |01011958   |LARIMAR    |80524     |  $8710000     |   $0.00              |   $000.00/mo              |  -$000.00            |
+        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $969.77/mo              |  -$969.77           |
+        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1065.07/mo             |  -$000.00            |
+        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1855.85/mo             |  -$000.00            |
+        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1930.89/mo             |  -$1,930.89            |
 
 
 
