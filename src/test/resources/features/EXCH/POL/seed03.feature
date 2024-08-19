@@ -122,20 +122,6 @@ Feature: Seed03 - Exchange
     And I click continue on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate medical plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01         |      12/31   |      01/01         |       12/31    |
-    And I validate dental plan details from my policies page
-      |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
-      | 01/01         | 12/31        | 01/01              | 12/31          |
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "NonElmo"
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|

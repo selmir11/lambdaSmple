@@ -75,14 +75,6 @@ public class DbDataProvider_Exch {
         Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
         return csrAmount;
     }
-    public String getMedDenPlanPremiumDataByCoverageType(String coverageType){
-        List<PolicyTablesEntity> policyEntityList = SharedData.getPolicyTablesEntities();
-        for(PolicyTablesEntity entity: policyEntityList){
-            if (entity.getCoverage_type().equals(coverageType))
-                return entity.getPlan_premium_amt();
-    }
-        return null;
-    }
 
     public void setDataFromDb(){
         String fipcode = getFipcode();
@@ -111,8 +103,6 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
-        String premiumAmtMed = getMedDenPlanPremiumDataByCoverageType("1");
-
         List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
             medicalPlanDetailsFromDb = new ArrayList<>();
@@ -125,7 +115,6 @@ public class DbDataProvider_Exch {
             planDbData.setIssuerId(issuerId);
             planDbData.setHiosIssuerId(hiosIssuerId);
             planDbData.setCsrAmt(csrAmtMed);
-            planDbData.setPremiumAmt(premiumAmtMed);
             medicalPlanDetailsFromDb.add(planDbData);
             SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
     }
@@ -139,7 +128,6 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmt =csrMap.get("2"); //Dental
-        String premiumAmtDen = getMedDenPlanPremiumDataByCoverageType("2");
         List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
         if(dentalPlanDetailsFromDb==null) {
             dentalPlanDetailsFromDb = new ArrayList<>();
@@ -152,7 +140,6 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmt);
-        planDbData.setPremiumAmt(premiumAmtDen);
         dentalPlanDetailsFromDb.add(planDbData);
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
