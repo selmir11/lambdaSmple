@@ -38,6 +38,10 @@ public class HouseHoldPageSteps {
     @And("I click the member link {int}")
     public void iClickMemberLink(int index) {houseHoldPage.iClickMemberLink(index);}
 
+    @And("I click the 2nd member link")
+    public void iClick2ndMemberLink(){houseHoldPage.iClick2ndMemberLink();}
+
+
     // WIP - primary member only - need to modify step. int we are passing is not being used.
     @Then("I click on the Member Row {int}")
     public void iEditPrimaryMember(int index) {

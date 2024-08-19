@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -20,11 +21,11 @@ public class AccountOverviewPage {
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
-    @FindBy(css = "#submit-curr-yr-3")
-    WebElement btnApplyForCurrentYear;
+    @FindBy(xpath = "//*[@id='submit-curr-yr-3' or @id='submit-curr-yr-1']")
+    WebElement btnApplyForCurrentYear;  //Locator for both QA and Staging
 
-    @FindBy(css = "#submit-curr-yr-1")
-    WebElement btnApplyForCurrentYearOe;
+    @FindBy(css = "#submit[name='applyForNextYear']")
+    WebElement btnApplyForNextYear;
 
     @FindBy(css = ".linkButton")
     List<WebElement> clickHereLinks; // profile, eligibility, documents, plans
@@ -65,7 +66,7 @@ public class AccountOverviewPage {
         WebElement applyForYr;
 
         if(SharedData.getIsOpenEnrollment().equals("yes")){
-             applyForYr = btnApplyForCurrentYearOe;
+             applyForYr = btnApplyForNextYear;
         } else{
             applyForYr = btnApplyForCurrentYear;
         }
@@ -164,7 +165,18 @@ public class AccountOverviewPage {
 
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {
         String noOfGroups = expectedResult.get(0).get("totalGroups");
-        SharedData.setTotalGroups(Integer.parseInt(noOfGroups));
-    }
+        String totalMembers = expectedResult.get(0).get("totalMembers");
+        String totalSubscribers = expectedResult.get(0).get("total_subscribers");
+        String totalDependents = expectedResult.get(0).get("total_dependents");
+        String totalEnrollees = expectedResult.get(0).get("total_enrollees");
+        ScenarioDetails scenarioDetails = new ScenarioDetails();
+        scenarioDetails.setTotalGroups(Integer.parseInt(noOfGroups));
+        scenarioDetails.setTotalMembers(Integer.parseInt(totalMembers));
+        scenarioDetails.setSubscribers(totalSubscribers);
+        scenarioDetails.setDependents(totalDependents);
+        scenarioDetails.setEnrollees(totalEnrollees);
+        SharedData.setScenarioDetails(scenarioDetails);
+
+   }
 
 }

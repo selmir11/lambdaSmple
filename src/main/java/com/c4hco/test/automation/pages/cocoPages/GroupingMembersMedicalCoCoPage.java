@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -62,7 +63,7 @@ public class GroupingMembersMedicalCoCoPage {
         int groupsSize = noOfGroups.size();
         softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
         softAssert.assertAll();
-        SharedData.setTotalGroups(groupsSize);
+        SharedData.getScenarioDetails().setTotalGroups(groupsSize);
     }
 
     public void clickOnEditMedicalGroupinglink() {

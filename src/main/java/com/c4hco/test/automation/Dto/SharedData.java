@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
 import com.c4hco.test.automation.database.EntityObj.BookOfBusinessQEntity;
 import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,9 +28,10 @@ public class SharedData {
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
+    @Getter @Setter private static List<PlanDbData> medicalPlanDbData;
+    @Getter @Setter private static List<PlanDbData> dentalPlanDbData;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
-    @Getter @Setter private static int totalGroups;
     @Getter @Setter private static String dbName;
     @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
@@ -41,6 +43,8 @@ public class SharedData {
     @Getter @Setter private static String noticeFileName;
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
     @Getter @Setter private static Map<String, List<String>> groupingDetails;
+    @Getter @Setter private static ScenarioDetails scenarioDetails;
+
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -54,14 +58,13 @@ public class SharedData {
         env = null;
         ob834DetailsEntities = null;
         dbData = null;
-        totalGroups = 0;
         planYear = null;
         groupDetails = null;
         dbName = null;
         noticeFileName = null;
         bookOfBusinessQEntityList = null;
         isOpenEnrollment = null;
-
+        scenarioDetails = null;
     }
 
 
