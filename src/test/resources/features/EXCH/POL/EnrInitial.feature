@@ -15,7 +15,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click on continue with  application button on Before you begin page
     And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "10011978" in county "BOULDER" with zipcode "80502"
+    And I am a member with City "Boulder" in State "CO" with dob "01011978" in county "BOULDER" with zipcode "80502"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -24,7 +24,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    Then I enter member with address line1 "P.O BOX 4515" in city "Denver" in state "CO" with zipcode "80502" and county "BOULDER"
+    Then I enter member with address line1 "P.O BOX 4515" in city "Boulder" in state "CO" with zipcode "80502" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -36,7 +36,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "01011980" date of birth
@@ -58,7 +57,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "05012015" date of birth
@@ -81,11 +79,11 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "08012013" date of birth
     And I select "Female" as sex option
+    And I select "No" as pregnancy option
     And I select "Daughter" as relationship option
     And I select "Daughter" as relationship one option
     And I select "Sister" as relationship two option
@@ -105,7 +103,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -172,7 +169,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
     Then I click continue on grouping Members Medical page
@@ -186,7 +182,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -196,15 +191,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
     Then I click all done from payment portal page
-#    Then I select make payment button to pay the premium
-#    And I select Withdrawal from Bank Account button
-#    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-#    Then I select second make payment button to pay the premium
-#    And I select Withdrawal from Bank Account button
-#    And I enter Bank details as Acc number "2095954" Bank Name "PNC" Routing number "122000247" Address "101 User Drive" City "Denver" Zip "80502" State "CO" bank withdrawal
-#    And I click continue on initial payment page
-#
-#    And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
@@ -231,7 +217,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
         #DbVerification
 
-    And I verify the policy data quality check
+    And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table
 
 

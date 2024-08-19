@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 
@@ -15,7 +16,7 @@ public class EnterCaseIdPage {
     public EnterCaseIdPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-
+        Assert.assertTrue(basicActions.waitForAngular(10), "page did not load in 10 seconds");
     }
 
     @FindBy(css = ".c4BodyText1")

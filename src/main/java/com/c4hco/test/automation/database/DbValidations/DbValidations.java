@@ -92,7 +92,6 @@ public class DbValidations {
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(),"Plan Year is not correct");
         softAssert.assertEquals(medicalDbData.getPremiumAmt(), ob834Entity.getPremium_amount(), "Medical Plan premium amount does not match for subscriber.");
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
-       // validateResidentialAddress(subscriber, ob834Entity, dbData);
         validateMedicalAPTCAmount(ob834Entity,medicalDbData);
         softAssert.assertAll();
     }
