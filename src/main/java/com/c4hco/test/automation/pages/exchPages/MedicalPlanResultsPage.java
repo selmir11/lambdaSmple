@@ -100,7 +100,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void SelectFirstMedicalPlan() {
-        basicActions.waitForElementToDisappear( spinner,15 )
+        basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }
