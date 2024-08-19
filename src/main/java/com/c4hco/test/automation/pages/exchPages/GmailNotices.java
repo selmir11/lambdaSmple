@@ -4,6 +4,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import jakarta.mail.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -14,7 +15,7 @@ public class GmailNotices {
     public GmailNotices(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
+        Assert.assertTrue(basicActions.waitForAngular(10), "page did not load in 10 seconds");    }
 
         public void verifyNotices() {
             try {
