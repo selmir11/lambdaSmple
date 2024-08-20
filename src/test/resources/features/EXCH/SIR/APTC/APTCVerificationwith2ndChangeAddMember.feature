@@ -692,7 +692,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Examples:
      #   |City       |State    |DOB        |County   |Zipcode      |
      #   |Leadville  |CO       |01011990   |Lake     |80461        |
-     #   |Denver     |CO       |01011990   |Lake     |80205        |
+     #   |Granby     |CO       |01011990   |Grand    |80446        |
 
 
     @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413
