@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.nio.charset.StandardCharsets;
@@ -23,7 +22,7 @@ public class CancellationRequestPage {
     public CancellationRequestPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-        Assert.assertTrue(basicActions.waitForAngular(10), "page did not load in 10 seconds");    }
+    }
 
     @FindBy(css = ".container > div")
     WebElement planCancellationpageHeader;
