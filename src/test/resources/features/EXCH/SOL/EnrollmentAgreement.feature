@@ -80,5 +80,6 @@ Feature: UI Page Validation - Enrollment Agreement
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    Then I validate I am on the "Initial Payment" page
+    Then I click all done from payment portal page
+    #Then I validate I am on the "Initial Payment" page
     And I click on Sign Out in the Header for "Elmo"

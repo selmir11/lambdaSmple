@@ -51,7 +51,7 @@ Feature: Cancel Plans Spanish Translation
     Then I click continue on start shopping page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
-    And I select "Cigna Dental Pediatric"
+    And I select "Anthem Dental Family"
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
