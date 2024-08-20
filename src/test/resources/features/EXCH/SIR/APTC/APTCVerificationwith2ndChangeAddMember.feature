@@ -235,6 +235,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I report "MovedToColorado" and click continue
       Then I select "member" from the who are you question
       And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
+
       Then I answer all Id proofing questions and click continue
       And I click continue button on Congratulations page
 
@@ -436,12 +437,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     @SLER-WIP-RT-2400 @SLER-WIP-RT-2411
-    Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400 and RT-2411
+    #Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400 and RT-2411
+      Scenario: trial run
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
       Then I validate I am on the "Login" page
-      And  I enter valid credentials to login
+      And I enter valid credentials to login
       Then I validate I am on the "Account Overview" page
       Then I apply for the current year
       Then I select "No" option on the Let us guide you page
@@ -449,7 +451,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
       And I report "MovedToColorado" and click continue
       Then I select "member" from the who are you question
-      And I am a member with City "Example" in State "CO" with dob "01011990" in county "Denver" with zipcode "80205"
+      #And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
+      And I am a member with City "Denver" in State "CO" with dob "01011990" in county "Denver" with zipcode "80205"
       Then I answer all Id proofing questions and click continue
       And I click continue button on Congratulations page
 
@@ -505,7 +508,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
 
-      Then I select "Marriage" QLCE on tell us about life changes page
+      Then I select "MoveToCO" QLCE on tell us about life changes page
       Then I click on Save and Continue
 
       Then I validate I am on the "EXCH Declarations and Signature" page
@@ -547,6 +550,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Pay now" page
       Then I click all done from payment portal page
+      # End of initial enrollment
 
       Then I validate I am on the "Account Overview" page
       Then I click on make changes button
@@ -559,8 +563,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
       Then I validate I am on the "Report a life change" page
-      And I report "MovedToColorado" and click continue
-
+      And I report "Marriage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -607,11 +610,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Citizenship page
 
       Then I validate I am on the "Family Overview" page
-      And I click on Member Row 1
-          #Then I click the member link 3
-          #Then I click on the Member Row 6
+      Then I click on Member Row 2
 
-      #Then I click continue on family overview page
       Then I validate I am on the "Application Summary" page
       Then I select the Edit Income link
 
@@ -623,26 +623,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select the option "No" to projected income
       And I click continue on the Employment Info Page
 
-      Then I click continue on the Employment Summary Page
-      Then I click None of these as additional income option and continue
-
-      Then I validate I am on the "Deductions" page
-      Then I click None of these as deduction option and continue
-      Then I select the projected income option "No" and continue
-
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Single" tax filing status
-      And I select "No" to claim dependents
-      And I click save and continue on tax status page
-
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
-
       Then I validate I am on the "Employment Summary" page
-      Then I click continue on the Employment Summary Page
+      And I click continue on the Employment Info Page
 
       Then I validate I am on the "Additional income" page
       Then I click None of these as additional income option and continue
@@ -651,13 +633,28 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click None of these as deduction option and continue
 
       Then I validate I am on the "Income Summary" page
-      Then I click the save and continue button on the Income Summary Detail page
+      Then I select the projected income option "No" and continue
+
+      #####
 
       Then I validate I am on the "Tax status" page
-      Then I click save and continue on tax status page
+      And I select the option "No" to claim as dependent
+      And I select the option "Yes" to file federal income tax return next year
+      And I select "Married filing jointly" tax filing status
+      And I select spouse to file taxes jointly
+      And I select "Yes" to claim dependents
+      And I select the first dependent
+      And I click save and continue on tax status page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I click continue on the ELMO health coverage page
+
+      And I validate I am on the "Elmo Other Health Coverage" page
+      Then I select "None of these" as ELMO health coverage option
+      Then I click continue on the ELMO health coverage page
+
+      Then I validate I am on the "Family Overview" page
+      Then I click continue on family overview page
 
       Then I validate I am on the "Tell us about life changes" page
       And  I select "LostCoverage" QLCE on tell us about life changes page
@@ -692,9 +689,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Financial Help Agreements" page
       And I click on Sign Out in the Header for "Portal"
+     # Examples:
+     #   |City       |State    |DOB        |County   |Zipcode      |
+     #   |Leadville  |CO       |01011990   |Lake     |80461        |
+     #   |Denver     |CO       |01011990   |Lake     |80205        |
 
 
-    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413 @test
+    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413
     Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -994,10 +995,10 @@ Feature: UI Tests related to APTC after second enrollment change
       Examples:
         |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
         |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1417.06/mo             |  -$1,381.56          |
-        |NewTown  |CO         |01011958   |LARIMAR    |80524     |  $8710000     |   $0.00              |   $000.00/mo              |  -$000.00            |
+        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $825.70/mo              |  -$825.70            |
         |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $969.77/mo              |  -$969.77            |
         |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1065.07/mo             |  -$974.02            |
-        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1855.85/mo             |  -$1,632.64            |
+        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1855.85/mo             |  -$1,632.64          |
         |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1930.89/mo             |  -$1,930.89          |
 
 

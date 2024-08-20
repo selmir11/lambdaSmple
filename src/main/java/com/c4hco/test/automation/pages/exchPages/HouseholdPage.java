@@ -151,7 +151,7 @@ public class HouseholdPage {
 
 
     public void iEditMember(int memberIndex){
-        basicActions.waitForElementListToBePresent(basicMemberList, 10);
+        basicActions.waitForElementListToBePresent(basicMemberList, 20);
         basicMemberList.get(memberIndex-1).click();
     }
 
