@@ -719,7 +719,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
-      And I am a member with City "<City>" in State "<State>" with DOB "<DOB>" in County "<County>" with Zipcode "<Zipcode>"
+      And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
       Then I answer all Id proofing questions and click continue
 
       And I click continue button on Congratulations page
