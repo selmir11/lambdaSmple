@@ -75,6 +75,7 @@ public class DbDataProvider_Exch {
         Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
         return csrAmount;
     }
+
     public void setDataFromDb(){
         String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
@@ -102,7 +103,6 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
-
         List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
             medicalPlanDetailsFromDb = new ArrayList<>();
