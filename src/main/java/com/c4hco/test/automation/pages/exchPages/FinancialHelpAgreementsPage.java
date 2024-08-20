@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 public class FinancialHelpAgreementsPage {
 
     private BasicActions basicActions;
@@ -14,7 +16,7 @@ public class FinancialHelpAgreementsPage {
     public FinancialHelpAgreementsPage (WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(),  this);
-    }
+        Assert.assertTrue(basicActions.waitForAngular(10), "page did not load in 10 seconds");    }
 
     @FindBy(id ="SOL-FinHelpAgreements-Continue")
     WebElement continueButton;

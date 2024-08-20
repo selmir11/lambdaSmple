@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class EditGroupingMembersDentalPage {
         basicActions = new BasicActions(webDriver);
         builder  = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-    }
+        Assert.assertTrue(basicActions.waitForAngular(10), "page did not load in 10 seconds");    }
 
     public void validateToolTipText(){
         String expectedToolTipText = "Household members can only be grouped together if they are all immediate family members who live in the same rating area and could be covered by a single insurance plan. Immediate family members include spouses, children under the age of 26, and collateral dependents (non-married, disabled tax dependents of a group member). Frequently, \"living in the same rating area\" means that all of the individuals live at the same physical address or within the same zip code. You might not be able to group members of your household if they are not considered immediate family members. For assistance, please call our Service Center at 855-752-6749.";
