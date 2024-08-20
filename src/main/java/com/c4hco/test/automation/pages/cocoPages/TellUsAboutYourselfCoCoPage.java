@@ -209,7 +209,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
@@ -278,7 +278,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y Continuar");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
