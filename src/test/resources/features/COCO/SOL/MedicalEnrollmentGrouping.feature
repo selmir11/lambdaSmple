@@ -5,7 +5,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLCR-188 @MedicalEnrollmentAfterPrimaryContactChange
+  @SLCR-188-WIP @MedicalEnrollmentAfterPrimaryContactChange
   Scenario: Validate primary contact change and enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
