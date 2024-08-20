@@ -60,11 +60,7 @@ Feature: Initial Payment Page test
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
+    Then I click all done from payment portal page
     And I click on Sign Out in the Header for "Elmo"
 
 
@@ -234,11 +230,7 @@ Feature: Initial Payment Page test
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
+    Then I click all done from payment portal page
     And I click on Sign Out in the Header for "Elmo"
 
 
@@ -372,13 +364,7 @@ Feature: Initial Payment Page test
     And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
+    Then I click all done from payment portal page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-761 @MarriageLCEGroupof3
@@ -491,10 +477,4 @@ Feature: Initial Payment Page test
     And I enter householder signature on the Enrollment Agreements page
     And I click continue on Enrollment Agreements page
     Then I click all done from payment portal page
-   #And I click All Done on Pay Now page -We need to comment this out for Staging
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    Then I select second make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
     And I click on Sign Out in the Header for "Elmo"

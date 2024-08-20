@@ -197,9 +197,11 @@ Feature: Header and Footer validation on Coco application pages
     And I select None of these as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
+    And I change the language from header to "English"
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
+    And I change the language from header to "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -207,10 +209,12 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
+    And I change the language from header to "English"
     Then I enter details on tell us about additional members of your household page and continue with "Son", "01011996", "Male" and applying "Yes"
-      | Primary: Hijo(a) o Otro dependiente |
+      | Primary:Child or Other dependent |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
+    And I change the language from header to "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
