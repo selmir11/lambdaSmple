@@ -34,15 +34,8 @@ public class HouseHoldPageSteps {
         houseHoldPage.iClickEditIncomeLink( index );
     }
 
-    // WIP - primary member only - need to modify step. int we are passing is not being used.
     @Then("I click on Member Row {int}")
     public void iEditMember(int index) {houseHoldPage.iEditMember(index); }
-
-    // WIP - primary member only - need to modify step. int we are passing is not being used.
-    @Then("I click on the Member Row Red Icon {int}")
-    public void iEditPrimaryMemberRedIcon(int index) {
-        houseHoldPage.iEditPrimaryMemberRedIcon( index );
-    }
 
     @And("I click on the table dropdown {int}")
     public void iClickTableItem(int index) {
@@ -54,6 +47,10 @@ public class HouseHoldPageSteps {
         houseHoldPage.clickMember(memName);
     }
 
+    // This one is used by others - retaining until we can get them moved off to the one above
+    @Then("I click on the Member Row {int}")
+    public void iEditPrimaryMember(int index) {houseHoldPage.iEditPrimaryMember(index);
+    }
 }
 
 
