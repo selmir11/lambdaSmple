@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR, @APTC-SIR-Single
+@APTC,@APTC-SIR, @APTC-SIR-AddMember
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal

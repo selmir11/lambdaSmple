@@ -32,7 +32,8 @@ public class EnrollmentAgreementsPage {
 
     public void selectAgreementsCheckbox(String checkbox) {
         // TO DO: Update this method and remove the wait below
-       basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
+       basicActions.waitForAngular( 30 );
+       basicActions.waitForElementListToBePresent(agreementsChckbx, 30);
         switch (checkbox) {
             case "Terms of Use":
                 agreementsChckbx.get(0).click();
