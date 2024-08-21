@@ -37,8 +37,8 @@ Feature: Spanish- Tell us about yourself page
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
-    Then I select add another family member on the Family Overview page
     And I change the language from header to "English"
+    Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Male" and applying "Yes"
       | Primary:Spouse |
     And I change the language from header to "Spanish"

@@ -152,7 +152,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Yes");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Go Back");
-        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
         softAssert.assertAll();
     }
 
@@ -182,7 +182,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Si");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Volver");
-        softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y Continuar");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
         softAssert.assertAll();
     }
 

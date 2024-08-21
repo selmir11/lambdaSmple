@@ -17,6 +17,7 @@ public class PolicyTableDBValidations {
     public void validateDataFromPolicyTables(List<Map<String, String>> expectedResult){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<PolicyTablesEntity> policyEntities = exchDbDataProvider.getDataFromPolicyTables();
+        SharedData.setPolicyTablesEntities(policyEntities);
         exchDbDataProvider.setDataFromDb();
         DbData dbData = SharedData.getDbData();
 
@@ -24,10 +25,12 @@ public class PolicyTableDBValidations {
             if(policyTablesEntity.getCoverage_type().equals("1")){
                 exchDbDataProvider.setMedicalPlanDataFromDb(subscriber.getMedicalPlan());
                 PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get(0); // works for 1 member only
+                medicalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
                 validateMedicalPolicyDataFromDB(policyTablesEntity,dbData, medicalPlanDbData, expectedResult);
             } else{
                 exchDbDataProvider.setDentalPlanDataFromDb(subscriber.getDentalPlan());
                 PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0); // // works for 1 member only
+                dentalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
                 validateDentalPolicyDataFromDB(policyTablesEntity,dbData, dentalPlanDbData, expectedResult);
             }
               validateMedicalDentalPolicyDataFromDB(policyTablesEntity, dbData);
