@@ -5,45 +5,45 @@ import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
 import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
-import com.c4hco.test.automation.sftpConfig.SftpUtil;
-import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
 import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Ob834FileValidations {
     SoftAssert softAssert = new SoftAssert();
-    SftpUtil sftpUtil = new SftpUtil();
 
     Edi834TransactionDetails edi834TransactionDetails = null;
     Transaction transaction = null;
 
     public void validateOb834File(Ob834DetailsEntity entry){
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        transaction = edi834TransactionDetails.getTransactionList().get(0);
-        validateCtrlFnGrpSegment(entry);
-        validateLSLESegment(entry);
-        validateSponsorPayerDetails(entry);
-        validateAddlMaintReason(entry);
-        validateInsSegment(entry);
-        validateDtpSegment(entry);
-        validateHierarchyLevelSeg(entry);
-        validateNM1Seg(entry);
-        validatePerSeg(entry);
-        validateBgnSeg(entry);
-        validateTrnSeg(entry);
-        validateQtySeg(entry);
-        validateHLHSeg(entry);
-        validateLUISeg(entry);
-        validateN3N4Segments(entry);
-        validateDMGSegment(entry);
+        List<Transaction> transactionList = edi834TransactionDetails.getTransactionList();
+        for(Transaction trnsaction: transactionList){
+            String primaryEmailFromEdiFile = trnsaction.getMembersList().get(0).getPER().get(0).get(5);
+           if( primaryEmailFromEdiFile.equals(entry.getPrimary_email())){
+               transaction = trnsaction;
+               validateCtrlFnGrpSegment(entry );
+               validateLSLESegment();
+               validateSponsorPayerDetails(entry);
+               validateAddlMaintReason(entry);
+               validateInsSegment(entry);
+               validateDtpSegment(entry);
+               validateHierarchyLevelSeg(entry);
+               validateNM1Seg(entry);
+               validatePerSeg(entry);
+               validateBgnSeg(entry);
+               validateTrnSeg(entry);
+               validateQtySeg(entry);
+               validateHLHSeg(entry);
+               validateLUISeg(entry);
+               validateN3N4Segments(entry);
+               validateDMGSegment(entry);
+            }
+        }
     }
     public void validateMed_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
-        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        transaction = edi834TransactionDetails.getTransactionList().get(0);
         //LX segement
         List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
         int lxSegmentSize = lxSegment.size();
@@ -93,7 +93,7 @@ public class Ob834FileValidations {
         softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
         softAssert.assertAll();
     }
-    public void validateLSLESegment(Ob834DetailsEntity entry){
+    public void validateLSLESegment(){
         List<String> lsSegment = transaction.getMembersList().get(0).getLS().get(0);
         List<String> leSegment = transaction.getMembersList().get(0).getLE().get(0);
         softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");
