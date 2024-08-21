@@ -18,6 +18,14 @@ public class DeductionsPageSteps {
     @Then("I click continue on the Deductions page")
     public void clickContinue(){deductionsPage.clickContinue();}
 
+    @And("I select {string} icon on the Deductions Page")
+    public void iSelectHelpIcon(String labelIcon){deductionsPage.clickHelpIcon(labelIcon);}
+
+    @Then("I click on {string} link in Help Drawer on the Deductions page")
+    public void iClickHelpDrawerContactUs(String lnkName){deductionsPage.clickHelpContactUsNavigation(lnkName);}
+
+
+
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
 
@@ -46,6 +54,9 @@ public class DeductionsPageSteps {
 
     @Then("I verify {string} error shows for Deductions page")
     public void iVerifyDeductionsPageError(String language)  { deductionsPage.verifyDeductionsPageError(language); }
+
+    @Then("I validate Deductions help drawer {string} verbiage in {string}")
+    public void iValidateHelp(String helpText, String language){deductionsPage.validateHelpVerbiage(helpText, language);}
 
 
 
