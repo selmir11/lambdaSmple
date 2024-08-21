@@ -1,4 +1,4 @@
-@dentalPlanDetail @SIR @test
+@dentalPlanDetail @SIR
 Feature: Dental Plan Verification test
 
   Background:
