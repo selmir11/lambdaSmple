@@ -28,10 +28,10 @@ public class PaymentPortalPage {
 
 
     public void clickAllDone(){
-        basicActions.waitForAngular( 15 );
-        basicActions.waitForElementToDisappear(spinner, 40);
-        basicActions.waitForElementToBePresent( allDone,30 );
+        basicActions.waitForElementToDisappear(spinner, 30);;
+        basicActions.waitForElementToBePresent( allDone,40 );
         basicActions.scrollToElement( allDone );
+        basicActions.waitForElementToBePresent( allDone,40 );
         allDone.click();
     }
 

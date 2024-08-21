@@ -15,6 +15,12 @@ public class EmploymentSummaryPageSteps {
         public void iClickEditIncomeLink(int Index){
         employmentSummaryPage.clickEditIncome(Index);}
 
+    @And("I select {string} icon on the Employment Summary Page")
+    public void iSelectHelpIcon(String labelIcon){employmentSummaryPage.clickHelpIcon(labelIcon);}
+
+    @Then("I click on {string} link in Help Drawer on the Employment Summary page")
+    public void iClickHelpDrawerContactUs(String lnkName){employmentSummaryPage.clickHelpContactUsNavigation(lnkName);}
+
 
 
 
@@ -26,4 +32,7 @@ public class EmploymentSummaryPageSteps {
     // Add only validation methods below this line
     @And("I verify the header for Primary Member on the Employment Summary page in {string}")
     public void iVerifyTextOnEmploymentSummaryPage(String language){employmentSummaryPage.verifyHeadersEmploymentSummaryPage(language);}
+
+    @Then("I validate Employment Summary help drawer verbiage in {string}")
+    public void iValidateHelp(String language){employmentSummaryPage.validateHelpVerbiage(language);}
 }
