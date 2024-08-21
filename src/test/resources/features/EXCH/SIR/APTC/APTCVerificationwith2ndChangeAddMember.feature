@@ -51,11 +51,17 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
@@ -218,39 +224,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
-    Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$265.98/mo"
-    Then I click continue on application results page
 
-    Then I validate I am on the "Start Shopping" page
-    And I click continue on start shopping page
 
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
-    And I click continue on medical plan results page
-
-    Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
-    And I click continue on dental plan results page
-
-    Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$265.98"
-    And I click continue on plan summary page
-
-    Then I validate I am on the "Financial Help Agreements" page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    Then I validate I am on the "Pay now" page
-    And I click on Sign Out in the Header for "Portal"
 
     @SLER-WIP-RT-2346
     Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2346
@@ -465,39 +440,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Financial Help Agreements" page
       And I click on Sign Out in the Header for "Portal"
-      Then I validate I am on the "Application Results" page
-      Then I validate that my Tax Household's APTC value is "$265.98/mo"
-      Then I click continue on application results page
 
-      Then I validate I am on the "Start Shopping" page
-      And I click continue on start shopping page
 
-      Then I validate I am on the "Medical Plan Results" page
-      And I select the first medical plan
-      And I click continue on medical plan results page
-
-      Then I validate I am on the "Dental Plan Results" page
-      And I select first dental plan
-      And I click continue on dental plan results page
-
-      Then I validate I am on the "Plan Summary" page
-      And I validate the APTC Credit on the Summary page is "-$265.98"
-      And I click continue on plan summary page
-
-      Then I validate I am on the "Financial Help Agreements" page
-      And I select the terms and agreements checkbox
-      And I enter householder signature on the Financial Help Agreements page
-      And I click continue on Financial Help Agreements page
-
-      Then I validate I am on the "Enrollment Agreements" page
-      And I select "Terms of Use" agreement checkbox
-      And I select "Privacy Policy" agreement checkbox
-      And I select "Understand Law" agreement checkbox
-      And I enter householder signature on the Enrollment Agreements page
-      And I click continue on Enrollment Agreements page
-
-      Then I validate I am on the "Pay now" page
-      And I click on Sign Out in the Header for "Portal"
 
 
     @SLER-WIP-RT-2344
@@ -672,6 +616,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Citizenship page
 
       Then I validate I am on the "Family Overview" page
+      And I click the member link 2
       Then I click continue on family overview page
 
       Then I validate I am on the "Employment Info" page

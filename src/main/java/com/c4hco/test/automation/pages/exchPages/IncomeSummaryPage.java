@@ -32,7 +32,7 @@ public class IncomeSummaryPage {
     WebElement saveAndContinueBtn;
 
     public void selectProjectedIncome(String projectedIncomeOption){
-        basicActions.waitForElementToBePresent(hdr_Income,1);
+        basicActions.waitForElementToBePresent(hdr_Income,10);
         switch(projectedIncomeOption){
             case "No":
                 basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);

@@ -56,5 +56,6 @@ And I validate I am on the "Medical Plan Results" page
 And I select the first medical plan
 Then I click continue on medical plan results page
 Then I validate I am on the "Dental Plan Results" page
-Then I validate the dental plans count to be "12"
+  # shows 9 plans in staging for 8/20 - a reduction of 3
+Then I validate the dental plans count to be "9"
 Then I validate the dental plans

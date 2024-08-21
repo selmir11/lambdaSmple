@@ -6,7 +6,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
   @SLER-GroupOf4-WIP
-  Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
