@@ -188,7 +188,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     Then I validate I am on the "Tell us about life changes" page
-    And  I select "LostCoverage" QLCE on tell us about life changes page
+    And  I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -283,11 +283,12 @@ Feature: UI Tests related to APTC after second enrollment change
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
-    Then I select "Marriage" QLCE on tell us about life changes page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -396,13 +397,14 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click save and continue on tax status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
+    #Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
     Then I validate I am on the "Tell us about life changes" page
-    And  I select "LostCoverage" QLCE on tell us about life changes page
+    And  I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -925,6 +927,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
@@ -1133,7 +1137,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
     Then I click continue on the Employment Summary Page
+
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page
@@ -1351,6 +1357,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
+
+  ##
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
@@ -1360,15 +1368,15 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to claim dependents
     And I click save and continue on tax status page
 
-  And I validate I am on the "Elmo Other Health Coverage" page
-  Then I select "None of these" as ELMO health coverage option
-  Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
 
-  Then I validate I am on the "Family Overview" page
-  Then I click continue on family overview page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
 
 
-  Then I select "Marriage" QLCE on tell us about life changes page
+    Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -1905,9 +1913,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
-
-    Then I validate I am on the "Family Overview" page
-    Then I click continue on family overview page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
