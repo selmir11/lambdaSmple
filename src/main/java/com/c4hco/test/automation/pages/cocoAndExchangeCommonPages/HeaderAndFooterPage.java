@@ -47,6 +47,9 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".top-navigation > div > nav > ul > span > li.stacked.dropdown > div:nth-child(1) > a")
     WebElement getAssistanceLinkNonElmo;
 
+    @FindBy(id = "navbarDropdown")
+    WebElement getAssistanceLinkExpertHelp;
+
     @FindBy(id = "ga")
     WebElement getAssistanceLinkLoginPortal;
 
@@ -89,7 +92,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "a[class='icon-link language']")
     WebElement languageDrpNonElmo;
 
-    @FindBy(id = "langDropdown")
+    @FindBy(id = "globe-image")
     WebElement languageDrpSignIn;
 
     @FindBy(css = "#globe p")
@@ -98,8 +101,11 @@ public class HeaderAndFooterPage {
     @FindBy(css = "#globe a")
     List<WebElement> languageDrpOption2;
 
-    @FindBy(css = ".dropdown-menu.lang-dropdown-div.shadow.show >a")
-    List<WebElement> languageDrpOptionSignIn;
+    @FindBy(id = "esp")
+    WebElement languageDrpOptionSignInSpanish;
+
+    @FindBy(id = "eng")
+    WebElement languageDrpOptionSignInEnglish;
 
     @FindBy(css = "li[class='vertical-ruler'] li")
     List<WebElement> languageDrpOptionNonElmo;
@@ -290,6 +296,10 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(getAssistanceLinkNonElmo, 15);
                 getAssistanceLinkNonElmo.click();
                 break;
+            case "Exch ExpertHelp":
+                basicActions.waitForElementToBeClickable(getAssistanceLinkExpertHelp, 20);
+                getAssistanceLinkExpertHelp.click();
+                break;
             case "Login Portal":
                 basicActions.waitForElementToBeClickable(getAssistanceLinkLoginPortal, 15);
                 getAssistanceLinkLoginPortal.click();
@@ -426,14 +436,14 @@ public class HeaderAndFooterPage {
             case "English Login":
                 basicActions.waitForElementToBePresent(languageDrpSignIn, 60);
                 languageDrpSignIn.click();
-                basicActions.waitForElementToBePresent(languageDrpOptionSignIn.get(0), 60);
-                languageDrpOptionSignIn.get(0).click();
+                basicActions.waitForElementToBePresent(languageDrpOptionSignInEnglish, 60);
+                languageDrpOptionSignInEnglish.click();
                 break;
             case "Spanish Login":
                 basicActions.waitForElementToBePresent(languageDrpSignIn, 60);
                 languageDrpSignIn.click();
-                basicActions.waitForElementToBePresent(languageDrpOptionSignIn.get(1), 60);
-                languageDrpOptionSignIn.get(1).click();
+                basicActions.waitForElementToBePresent(languageDrpOptionSignInSpanish, 60);
+                languageDrpOptionSignInSpanish.click();
                 break;
             case "English ExpertHelp":
                 basicActions.waitForElementToBePresent(languageDrp, 60);
