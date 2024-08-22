@@ -236,7 +236,7 @@ public class MedicalPlanResultsPage {
 
     public void validatePlanCount(String plansCount){
         basicActions.waitForElementToBePresent(planCount, 30);
-        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
+        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+" Medical Plans", "Medical plans count did not match");
     }
 
 
