@@ -1,7 +1,7 @@
 @BrokerPortalBOB @port
-Feature: Broker Portal BOB - Single Subscriber NFA dental only
+Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
 
-  @SLER-927
+  @SLER-929
   Scenario: : Individual account creation and broker authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -77,6 +77,29 @@ Feature: Broker Portal BOB - Single Subscriber NFA dental only
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter member details with "01011980" date of birth
+    And I select "Female" as sex option
+    And I mark the Additional member is pregnant as "No"
+    And I select "Spouse" as relationship option
+    And I select "Yes" to Is Member Applying
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "New" for Residential Address
+    And I enter a new residential address with city "Boulder" state "CO" zip "80020" and county "BOULDER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
@@ -96,12 +119,26 @@ Feature: Broker Portal BOB - Single Subscriber NFA dental only
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    And I click continue on grouping Members Medical page
+
     And I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
+
+    And I validate I am on the "Medical Plan Results" page
+    Then I click skip on medical plan results page
+
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
 
     And I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
     Then I click continue on dental plan results page
+
+    And I validate I am on the "Dental Plan Results" page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
 
@@ -121,4 +158,4 @@ Feature: Broker Portal BOB - Single Subscriber NFA dental only
     Then I verify that my client's current status is "ELIGIBILITY ONLY"
 
     And I verify there are no medical records for my client in BoB DB
-    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 2
+    And I verify the client's policy submission in BoB DB has 2 expected records for coverage type 2

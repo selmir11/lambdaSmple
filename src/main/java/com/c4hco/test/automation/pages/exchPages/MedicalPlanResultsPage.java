@@ -33,7 +33,6 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
 
-
     @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue']")
     public WebElement continueBtn;
 
@@ -93,7 +92,6 @@ public class MedicalPlanResultsPage {
      public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
-
     }
 
     public void iGetFirstPlanName() {
@@ -102,6 +100,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void SelectFirstMedicalPlan() {
+        basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }
@@ -237,7 +236,7 @@ public class MedicalPlanResultsPage {
 
     public void validatePlanCount(String plansCount){
         basicActions.waitForElementToBePresent(planCount, 30);
-        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
+        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+" Medical Plans", "Medical plans count did not match");
     }
 
 

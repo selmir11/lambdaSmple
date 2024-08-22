@@ -52,6 +52,9 @@ public class YourClientsPage {
     @FindBy(id = "client-data-title-row")
     WebElement clientRow;
 
+    @FindBy(id = "mat-expansion-panel-header-2")
+    WebElement clientSecondRow;
+
     @FindBy(id = "status0")
     WebElement clientStatus;
 
@@ -104,6 +107,8 @@ public class YourClientsPage {
 
 
     public void clickClientResult() {
+        basicActions.waitForElementToDisappear(clientSecondRow, 10);
+        basicActions.waitForElementToBePresent(clientRow,10);
         Actions actions = new Actions(basicActions.getDriver());
         WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
         basicActions.waitForElementToBePresent(firstClientResult,100);

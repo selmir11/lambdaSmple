@@ -14,7 +14,6 @@ Feature: Text - Tell us about additional members of your household page
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
-    And I change the language from header to "Spanish"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
@@ -36,6 +35,7 @@ Feature: Text - Tell us about additional members of your household page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
+    And I change the language from header to "Spanish"
     Then I validate errors are displaying on Tell Us About Additional Members Of Your Household Page CoCo "Spanish"
     And I validate the page text on Tell Us About Additional Members Of Your Household Page CoCo "Spanish"
     And I click continue on Tell us about additional members of your household page
