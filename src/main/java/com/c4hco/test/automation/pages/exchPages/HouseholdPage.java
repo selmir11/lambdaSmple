@@ -65,6 +65,9 @@ public class HouseholdPage {
     @FindBy(css = "#accountID")
     WebElement accountIdTxt;
 
+    @FindBy (css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
+    List<WebElement> basicMemberList;
+
     public void clickAddMember() {
         basicActions.waitForElementToBeClickable( addAdditionalMember,15 );
         addAdditionalMember.click();
@@ -101,15 +104,6 @@ public class HouseholdPage {
         basicActions.waitForElementToBeClickableWithRetries( editPrimaryMember,15 );
         index -= 1;
         editPrimaryMember.click();
-    }
-
-    public void iClick2ndMemberLink(){
-        basicActions.waitForElementToDisappear( spinner,15 );
-        basicActions.waitForElementToBePresent(secondlinkMember, 10);
-        softAssert.assertTrue( secondlinkMember.isDisplayed());
-        basicActions.waitForElementToBeClickable( secondlinkMember,15 );
-        secondlinkMember.click();
-
     }
 
     public void iClickMemberLink (int index) {
@@ -153,6 +147,12 @@ public class HouseholdPage {
                 break;
             }
         }
+    }
+
+
+    public void iEditMember(int memberIndex){
+        basicActions.waitForElementListToBePresent(basicMemberList, 20);
+        basicMemberList.get(memberIndex-1).click();
     }
 
 

@@ -121,7 +121,7 @@ public class EmploymentInfoPage {
     }
 
     public void isUserEmployed(String employmentOption) {
-        basicActions.waitForElementToBeClickable(btnYesEmployed, 10);
+        basicActions.waitForElementToBePresent(btnYesEmployed, 15);
         switch (employmentOption) {
             case "Yes":
                 btnYesEmployed.click();

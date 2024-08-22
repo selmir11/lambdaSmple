@@ -162,7 +162,7 @@ public class EthnicityAndRacePage {
         softAssert.assertEquals(EthnicityAndRaceText.get(8).getText(), "Not listed");
         softAssert.assertEquals(EthnicityAndRaceText.get(9).getText(), "I prefer not to answer");
         softAssert.assertEquals(goBackButton.getText(), " Go Back");
-        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
         softAssert.assertAll();
     }
 

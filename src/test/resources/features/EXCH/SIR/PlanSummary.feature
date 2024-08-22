@@ -80,7 +80,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-515-WIP @VerifyMedicalDentalPlanSummaryResultsMultiple
-   Scenario: Validate grouping members: 2 groups
+   Scenario: Validate grouping members: 2 groups - one group is unassigned to medical plans
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
@@ -219,22 +219,22 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I validate I am on the "Grouping Members Medical" page
     And I click continue on grouping Members Medical page
-
+    # group 1
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     And I click continue on medical plan results page
-
+    # group 2
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Grouping" page
     Then I click continue on grouping Members Dental page
-
+    # group 1
     Then I validate I am on the "Dental Plan Results" page
     And I select first dental plan
     And I click continue on dental plan results page
-
+    # group 2
     Then I validate I am on the "Dental Plan Results" page
     And I select first dental plan
     And I click continue on dental plan results page
