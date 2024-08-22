@@ -14,7 +14,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -222,6 +221,8 @@ public class MedicalPlanResultsPage {
     }
 
     private void clickPlanButton(int index){
+         basicActions.wait(2000);
+         basicActions.waitForElementToBePresent(spinner, 10);
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         basicActions.waitForElementToBeClickable(ePlanID, 10);
