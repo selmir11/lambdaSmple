@@ -19,6 +19,8 @@ public class MemberIdProofingPage {
         whoAreYouPage = new WhoAreYouPage(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
 
     @FindBy (css = ".container h1")
     WebElement textIdProofingInitialQuestionHeader;
@@ -39,6 +41,7 @@ public class MemberIdProofingPage {
     WebElement saveContinue;
 
     public void selectFirstOptionToAll(){
+        basicActions.waitForElementToDisappear( spinner, 15  );
         basicActions.waitForElementToBePresent(firstOptionInEmployerName, 10);
         firstOptionInEmployerName.click();
         firstOptionInHomeAddress.click();

@@ -20,6 +20,11 @@ public class WebDriverManager {
     public static WebDriver getDriver() {
         if (driver == null) {
             driver = initializeDriver();
+            if(ApplicationProperties.getInstance().getProperty("pdfTesting").equals("yes")) {
+                driver.manage().deleteAllCookies();
+                driver.get("chrome://settings/clearBrowserData");
+                driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
+            }
         }
         return driver;
     }
@@ -54,9 +59,6 @@ public class WebDriverManager {
             options.addArguments("--start-maximized");
             options.addArguments("--safebrowsing-disable-download-protection");
             options.setExperimentalOption("prefs", prefs);
-            driver.manage().deleteAllCookies();
-            driver.get("chrome://settings/clearBrowserData");
-            driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
             return new ChromeDriver(options);
         } else {
             ChromeOptions options = new ChromeOptions();

@@ -30,10 +30,12 @@ public class EnrollmentAgreementsPage {
     @FindBy(id = "SOL-EnrollmentAgreements-GoBack")
     WebElement goBackbtn;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void selectAgreementsCheckbox(String checkbox) {
-        // TO DO: Update this method and remove the wait below
-       basicActions.waitForAngular( 30 );
-       basicActions.waitForElementListToBePresent(agreementsChckbx, 30);
+       basicActions.waitForElementToDisappear( spinner, 15 );
+       basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
         switch (checkbox) {
             case "Terms of Use":
                 agreementsChckbx.get(0).click();
