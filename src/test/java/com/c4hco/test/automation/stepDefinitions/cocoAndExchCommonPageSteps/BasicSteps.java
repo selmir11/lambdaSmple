@@ -504,7 +504,25 @@ public class BasicSteps {
                 pageUrl = "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit";
                 break;
             case "School tuition":
-                pageUrl = "https://www.irs.gov/forms-pubs/about-form-8917";
+                pageUrl = "https://www.irs.gov/taxtopics/tc513";
+                break;
+            case "School tuition: Self-Employed 1":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/f1040sc.pdf";
+                break;
+            case "School tuition: Self-Employed 2":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/f1040sf.pdf";
+                break;
+            case "School tuition: Armed Forces 1":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/f1040s1.pdf";
+                break;
+            case "School tuition: Armed Forces 2":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/f2106.pdf";
+                break;
+            case "School tuition: Disability 1":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf";
+                break;
+            case "School tuition: Disability 2":
+                pageUrl = "https://www.irs.gov/pub/irs-pdf/f2106.pdf";
                 break;
             case "Self-employment tax":
                 pageUrl = "https://www.irs.gov/individuals/international-taxpayers/self-employment-tax";

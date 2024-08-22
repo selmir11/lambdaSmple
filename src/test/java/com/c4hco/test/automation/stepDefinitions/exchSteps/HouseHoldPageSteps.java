@@ -34,25 +34,8 @@ public class HouseHoldPageSteps {
         houseHoldPage.iClickEditIncomeLink( index );
     }
 
-    // WIP - Below 2 rows can be combined to one. Seems duplicate.
-    @And("I click the member link {int}")
-    public void iClickMemberLink(int index) {houseHoldPage.iClickMemberLink(index);}
-
-    @And("I click the 2nd member link")
-    public void iClick2ndMemberLink(){houseHoldPage.iClick2ndMemberLink();}
-
-
-    // WIP - primary member only - need to modify step. int we are passing is not being used.
-    @Then("I click on the Member Row {int}")
-    public void iEditPrimaryMember(int index) {
-        houseHoldPage.iEditPrimaryMember(index);
-    }
-
-    // WIP - primary member only - need to modify step. int we are passing is not being used.
-    @Then("I click on the Member Row Red Icon {int}")
-    public void iEditPrimaryMemberRedIcon(int index) {
-        houseHoldPage.iEditPrimaryMemberRedIcon( index );
-    }
+    @Then("I click on Member Row {int}")
+    public void iEditMember(int index) {houseHoldPage.iEditMember(index); }
 
     @And("I click on the table dropdown {int}")
     public void iClickTableItem(int index) {
@@ -64,6 +47,10 @@ public class HouseHoldPageSteps {
         houseHoldPage.clickMember(memName);
     }
 
+    // This one is used by others - retaining until we can get them moved off to the one above
+    @Then("I click on the Member Row {int}")
+    public void iEditPrimaryMember(int index) {houseHoldPage.iEditPrimaryMember(index);
+    }
 }
 
 
