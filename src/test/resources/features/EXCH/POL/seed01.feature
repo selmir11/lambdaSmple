@@ -114,7 +114,6 @@ Feature: Regression Tests that require Seed 1
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
     And I validate the ob834 files should have the values
-    And I validate the REF and LX segments in EDI file
      | LX | N1 75              | REF       | REFDEN    |
      | 1  | PRE AMT 1          | 291.02    | 21.00     |
      | 2  | APTC AMT           | 0.00      | 0.00      |
@@ -126,7 +125,6 @@ Feature: Regression Tests that require Seed 1
      | 8  | SEP REASON         | ADMIN_LCE | ADMIN_LCE |
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table
-#    And I validate Individual member policy table queries
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -167,7 +165,6 @@ Feature: Regression Tests that require Seed 1
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
-    And I validate the REF and LX segments in EDI file
         | LX | N1 75              | REF                | REFDEN             |
         | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE | DEMOGRAPHIC CHANGE |
         | 2  | PRE AMT 1          | 291.02             | 21.00              |
@@ -178,8 +175,7 @@ Feature: Regression Tests that require Seed 1
         | 7  | TOT RES AMT        | 291.02             | 21.00              |
         | 8  | PRE AMT TOT        | 291.02             | 21.00              |
     And I verify the policy data quality check with Policy Ah keyset size 4
-#    And I verify the data from book of business queue table
-#    And I validate Individual member policy table queries
+    And I verify the data from book of business queue table
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB

@@ -7,6 +7,7 @@ import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import io.cucumber.java.en.And;
 
 import java.util.List;
+import java.util.Map;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
@@ -43,7 +44,7 @@ public class sftpStepDefinitions {
     }
 
     @And("I validate the ob834 files should have the values")
-    public void validateOb834Records() {
+    public void validateOb834Records(List<Map<String, String>> segments) {
 
         List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
 

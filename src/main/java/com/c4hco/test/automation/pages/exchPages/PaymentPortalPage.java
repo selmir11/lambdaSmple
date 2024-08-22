@@ -30,7 +30,7 @@ public class PaymentPortalPage {
         basicActions.waitForElementToDisappear(spinner, 30);;
         basicActions.waitForElementToBePresent( allDone,40 );
         basicActions.scrollToElement( allDone );
-        allDone.click();
+        basicActions.clickElementWithRetries(allDone, 30);
     }
 
     public void clickAllDoneObo(){
