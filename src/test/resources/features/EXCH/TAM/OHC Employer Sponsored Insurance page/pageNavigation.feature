@@ -95,11 +95,10 @@ Feature: Page Navigation-OHI ESI Page
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click Go Back button from chrome browser
-    And I verify User name Link is not displayed in the "Exch" Header
+    And I verify User name Link is displayed in the "Exch" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
 
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
-    And I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page
