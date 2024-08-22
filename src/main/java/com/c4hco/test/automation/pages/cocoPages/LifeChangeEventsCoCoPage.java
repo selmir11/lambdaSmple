@@ -94,7 +94,7 @@ public class LifeChangeEventsCoCoPage {
     WebElement spinner;
 
     public String getCurrentDate(){
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd");
         Date date = new Date();
         // Now format the date
         return dateFormat.format(date);
