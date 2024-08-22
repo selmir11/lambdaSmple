@@ -51,11 +51,17 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
