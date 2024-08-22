@@ -172,9 +172,9 @@ public class EligNotices {
     public static String healthFirstColorado(String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
-        String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
         String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
-        String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+        String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa Medicaid de %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
         String spanishTemplate2 = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
 
         String primaryName = SharedData.getPrimaryMember().getFullName();
@@ -219,7 +219,7 @@ public class EligNotices {
                         primaryName,
                         taxCreditInfoMedicaid(language),
                         member0Name,
-                        healthFirstInfo(language),
+                        healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
                         healthPlanInfo(language),
@@ -237,7 +237,7 @@ public class EligNotices {
                         primaryName,
                         taxCreditInfoMedicaid(language),
                         member0Name,
-                        healthFirstInfo(language),
+                        healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
                         healthPlanInfo(language),
@@ -267,7 +267,7 @@ public class EligNotices {
     public static String healthFirstInfo (String language){
         return switch (language) {
             case "English"->
-                    "Medicaid Program) or Child Health Plan Plus (CHP+).\n" +
+                    "Program) or Child Health Plan Plus (CHP+).\n" +
                     "Information \n" +
                     "about Health \n" +
                     "First \n" +
@@ -283,7 +283,7 @@ public class EligNotices {
                     "If you are not interested in Health First Colorado or CHP+ coverage, see \n" +
                     "the  section below.Additional information for your household\n";
             case "Spanish"->
-                    "Medicaid de Colorado) o para Child Health Plan Plus (CHP+).\n" +
+                    "Colorado) o para Child Health Plan Plus (CHP+).\n" +
                     "Informaci\u00F3n\n" +
                     "acerca de\n" +
                     "Health First\n" +
@@ -298,6 +298,44 @@ public class EligNotices {
                     "Connect for Health Colorado\n" +
                     "Si no le interesa la cobertura de Health First Colorado ni de CHP+, revise\n" +
                     "a continuaci\u00F3n la secci\u00F3n Informaci\u00F3n adicional para su familia.\n";
+            default -> throw new IllegalArgumentException("Invalid option: " + language);
+        };
+    }
+
+    public static String healthFirstInfoSecondary (String language){
+        return switch (language) {
+            case "English"->
+                    "Medicaid Program) or Child Health Plan Plus (CHP+).\n" +
+                            "Information \n" +
+                            "about Health \n" +
+                            "First \n" +
+                            "Colorado or \n" +
+                            "CHP+\n" +
+                            "You may qualify for Health First Colorado (Colorado\u2019s Medicaid program) \n" +
+                            "or Child Health Plan Plus (CHP+). We have sent information from your \n" +
+                            "application to the State of Colorado. They will officially determine if you \n" +
+                            "qualify for Health First Colorado or CHP+ and send you a letter telling you \n" +
+                            "if you qualify.\n" +
+                            "If you have any questions about this, visit Health First Colorado \u2022 Connect \n" +
+                            "for Health Colorado\n" +
+                            "If you are not interested in Health First Colorado or CHP+ coverage, see \n" +
+                            "the  section below.Additional information for your household\n";
+            case "Spanish"->
+                    "Medicaid de Colorado) o para Child Health Plan Plus (CHP+).\n" +
+                            "Informaci\u00F3n\n" +
+                            "acerca de\n" +
+                            "Health First\n" +
+                            "Colorado o\n" +
+                            "CHP+\n" +
+                            "Posiblemente califique para Health First Colorado (el programa Medicaid\n" +
+                            "de Colorado) o para Child Health Plan Plus (CHP+). Hemos enviado\n" +
+                            "informaci\u00F3n obtenida de su solicitud al Gobierno del estado de Colorado.\n" +
+                            "Ellos determinar\u00E1n oficialmente si califica para Health First Colorado o\n" +
+                            "para CHP+ y le enviar\u00E1n una carta para informarle su decisi\u00F3n.\n" +
+                            "Si tiene alguna duda a este respecto, visite Health First Colorado \u2022\n" +
+                            "Connect for Health Colorado\n" +
+                            "Si no le interesa la cobertura de Health First Colorado ni de CHP+, revise\n" +
+                            "a continuaci\u00F3n la secci\u00F3n Informaci\u00F3n adicional para su familia.\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -389,9 +427,9 @@ public class EligNotices {
     public static String chpPlus(String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
-        String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
         String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
-        String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
+        String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa Medicaid de %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
         String spanishTemplate2 = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
 
         String primaryName = SharedData.getPrimaryMember().getFullName();
@@ -436,7 +474,7 @@ public class EligNotices {
                         primaryName,
                         taxCreditInfoChp(language),
                         member0Name,
-                        healthFirstInfo(language),
+                        healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
                         healthPlanInfo(language),
@@ -454,7 +492,7 @@ public class EligNotices {
                         primaryName,
                         taxCreditInfoChp(language),
                         member0Name,
-                        healthFirstInfo(language),
+                        healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
                         healthPlanInfo(language),
@@ -496,7 +534,7 @@ public class EligNotices {
                     "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
                     "(CHP+)\n" +
                     "A menos que tenga una circunstancia excepcional, si es casado/a debe\n" +
-                    "declarar impuestos como casado que presenta su declaraci\u00F3n en pareja\n";
+                    "declarar impuestos como casado que presenta su declaracin en pareja\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -530,7 +568,7 @@ public class EligNotices {
                     "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
                     "(CHP+)\n" +
                     "A menos que tenga una circunstancia excepcional, si es casado/a debe\n" +
-                    "declarar impuestos como casado que presenta su declaraci\u00F3n en pareja\n";
+                    "declarar impuestos como casado que presenta su declaracin en pareja\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -720,7 +758,7 @@ public class EligNotices {
                             "para "+currentYear+"\n" +
                             "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
                             "costos compartidos porque:\n" +
-                            "Est\u00E1 inscrito\u002Fa en un plan de salud a trav\u00E9s de COBRA\n";
+                            "Est inscrito\u002Fa en un plan de salud a travs de COBRA\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -748,7 +786,7 @@ public class EligNotices {
                             "para "+currentYear+"\n" +
                             "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
                             "costos compartidos porque:\n" +
-                            "Est\u00E1 inscrito\u002Fa en otro seguro de salud\n";
+                            "Est inscrito\u002Fa en otro seguro de salud\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -810,8 +848,8 @@ public class EligNotices {
                 "N\u00FAmero de Cuenta: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
                 timestamp+" a las \n" +
                 "Apreciable "+SharedData.getPrimaryMember().getFullName()+",\n" +
-                "Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de su\n" +
-                "familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
+                "Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de\n" +
+                "su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
                 "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                 "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n" +
                 resultsType(docType, language, memberNumber)+

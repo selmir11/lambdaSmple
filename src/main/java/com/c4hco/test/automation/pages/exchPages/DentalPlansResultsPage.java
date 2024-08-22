@@ -93,6 +93,7 @@ public class DentalPlansResultsPage {
     }
 
     public void selectFirstDentalPlan() {
+        basicActions.waitForElementToDisappear( spinner,10 );
         basicActions.waitForElementToBeClickable( selectFirstDentalPlanBtn, 20 );
         selectFirstDentalPlanBtn.click();
     }
