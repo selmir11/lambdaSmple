@@ -59,22 +59,6 @@ public class sftpStepDefinitions {
         }
     }
 
-
-//    @And("I validate the REF and LX segments in EDI file")
-//    public void validateLXN1REFSegments(List<Map<String, String>> segments) {
-//        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
-//        for (Ob834DetailsEntity entry : ob834Entries) {
-//            if (entry.getInsurance_line_code().equals("HLT")) {
-//                sftpUtil.readEdiFile(SharedData.getMedicalFileName());
-//                ob834Validations.validateMed_LXREFSeg(segments);
-//            } else if (entry.getInsurance_line_code().equals("DEN")) {
-//                sftpUtil.readEdiFile(SharedData.getDentalFileName());
-//               ob834Validations.validateDen_LXREFSeg(segments);
-//            }
-//        }
-//
-//    }
-
     @And("I read the edi file locally")
     public void readEdiFile(){
         sftpUtil.readEdiFromLocal();
