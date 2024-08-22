@@ -179,6 +179,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
 
     public void clickGoBack() {
+        basicActions.waitForElementToBeClickable(goBackButton,20);
         basicActions.click(goBackButton);
     }
 

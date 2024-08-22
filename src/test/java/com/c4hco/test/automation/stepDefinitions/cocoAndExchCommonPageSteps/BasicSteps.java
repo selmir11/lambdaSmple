@@ -9,6 +9,7 @@ import org.testng.Assert;
 
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
+    BasicActions actions = BasicActions.getInstance();
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page) {
@@ -587,4 +588,7 @@ public class BasicSteps {
     public void iClickGoBackButtonFromChromeBrowser() {
         basicActions.clickBackButtonFromBrowser();
     }
+
+    @Then("I wait for {int} milliseconds")
+    public void iWait(int waitTime) {actions.wait(waitTime);}
 }
