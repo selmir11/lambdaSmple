@@ -37,7 +37,7 @@ public class PaymentPortalPage {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent( allDoneObo,30 );
         basicActions.scrollToElement( allDoneObo );
-        allDoneObo.click();
+        basicActions.clickElementWithRetries(allDoneObo, 30);
     }
 }
 

@@ -15,12 +15,16 @@ public class OhcHealthReimbursementArrangementPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "submitButton")
-    List<WebElement> goBackAndContinueButton;
+    @FindBy(id = "Ohc-Hra-SaveAndContinue")
+    WebElement continueButton;
+
+    @FindBy(id = "Ohc-Hra-GoBack")
+    WebElement goBackButton;
 
 
 
     public void clickGoBack() {
-        basicActions.click(goBackAndContinueButton.get(0));
+        basicActions.waitForElementToBePresent(goBackButton,20);
+        basicActions.click(goBackButton);
     }
 }

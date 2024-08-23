@@ -15,6 +15,12 @@ public class EmploymentSummaryPageSteps {
         public void iClickEditIncomeLink(int Index){
         employmentSummaryPage.clickEditIncome(Index);}
 
+    @Then("I click on Add job or self-employment on the Employment Summary Page")
+    public void iSelectAddJob(){employmentSummaryPage.clickAddJob();}
+
+    @Then("I click on Remove job {string} entered for Primary on the Employment Summary Page")
+    public void iSelectRemoveJob(String DeleteJob){employmentSummaryPage.clickRemoveJob(DeleteJob);}
+
     @And("I select {string} icon on the Employment Summary Page")
     public void iSelectHelpIcon(String labelIcon){employmentSummaryPage.clickHelpIcon(labelIcon);}
 
