@@ -110,15 +110,17 @@ public class DbQueries_Exch {
         return  "set search_path ="+dbName;
     }
 
-    public String getBookOfBusinessQ(){
+    public String getBookOfBusinessQ(String eventType){
         return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages\n" +
                 "where application_id = 'book_of_business_q:policy-svc'\n" +
                 "and message->>'householdAccountId' = '"+acctId+"'\n" +
+                "and eventType ='"+eventType+"' \n"+
                 "ORDER BY created_ts desc";
     }
     public String policyId(){
-        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy ep \n" +
-                "where account_id =  '"+acctId+"' ORDER BY created_ts desc";
+        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy_ah ep \n" +
+                "where account_id =  '"+acctId+"' ORDER BY created_ts desc \n"+
+                "and current_ind = '1'";
     }
 
     public String getAcct_holder_fnFromBOB(){
@@ -148,7 +150,7 @@ public class DbQueries_Exch {
     }
     public String appIdFromEnPolicyAh(){
         return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
-                "where account_id = '"+ acctId+"'" +" and current_ind = 0";
+                "where account_id = '"+ acctId+"'" +" and current_ind = 1";
     }
 
 
