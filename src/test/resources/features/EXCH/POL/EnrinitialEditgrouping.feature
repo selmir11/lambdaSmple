@@ -38,11 +38,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03051989" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -166,6 +163,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
+
 
 
     #Gmail

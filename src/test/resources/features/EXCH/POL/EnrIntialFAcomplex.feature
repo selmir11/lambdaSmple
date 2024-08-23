@@ -350,8 +350,13 @@ Feature: Enroll a in a plan 8 HH
 
     Then I click all done from payment portal page
 
-
-
+    Then I validate I am on the "Account Overview" page
+    And I click on ClickHere link for "My Documents"
+    And I click on download enrolment document
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    
 
     #Gmail Verification
     Then I open outlook Tab
