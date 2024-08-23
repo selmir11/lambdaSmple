@@ -103,6 +103,113 @@ Feature: Page Navigation-OHI ESI Page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
 
+  @SLER-958 @PageTextESI
+  Scenario: SLER-958 Delete employer from Employer Summary and ESI is removed from DB
+    Then I select the Go Back button on the ESI page
+    Then I click Go back on the ELMO health coverage page
+    Then I click on the Member Row 0
+    Then I select the Edit Income link
+    And I validate I am on the "Employment Summary" page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "4500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I select "CHP+" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "250.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click continue on the ESI page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "No" for insurance ending in 60 days in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
+    Then I click on the Member Row 0
+    Then I select the Edit Income link
+
+    And I validate I am on the "Employment Summary" page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
+      |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |
+    Then I click on Remove job "Second" entered for Primary on the Employment Summary Page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
+      |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            0         |                            |                          |                      |                         |                             |                                     |                               |        1           |            0           |                        |
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I validate Other Health Coverage options load "Medicaid, CHP+, COBRA"
+
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-963 @PageTextESI
+  Scenario: SLER-963 Delete employer from Employer Summary and ESI is not removed from DB
+    Then I select the Go Back button on the ESI page
+    Then I click Go back on the ELMO health coverage page
+    Then I click on the Member Row 0
+    Then I select the Edit Income link
+    And I validate I am on the "Employment Summary" page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "4500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I select "Health First Colorado" as ELMO health coverage option
+    Then I select "CHP+" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "250.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click continue on the ESI page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "No" for insurance ending in 60 days in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
+    Then I click on the Member Row 0
+    Then I select the Edit Income link
+
+    And I validate I am on the "Employment Summary" page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
+      |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |
+    Then I click on Remove job "First" entered for Primary on the Employment Summary Page
+    And I validate I am on the "Employment Summary" page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
+      |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I validate Other Health Coverage options load "Medicaid, CHP+, ESI, COBRA"
+
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
   @SLER-964 @PageVerificationEsiPage
   Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHI application to the ELMO Exch ESI page
     Then I select "HRA" as ELMO health coverage option

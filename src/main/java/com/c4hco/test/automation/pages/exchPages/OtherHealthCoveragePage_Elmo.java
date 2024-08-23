@@ -837,6 +837,14 @@ public class OtherHealthCoveragePage_Elmo {
                 uncheckedIndexes = new int[]{0, 1, 3, 4, 6, 7, 8, 10, 11};
                 checkedIndexes = new int[]{2, 5, 9};
                 break;
+            case "Medicaid, CHP+, COBRA":
+                uncheckedIndexes = new int[]{2, 3, 4, 5, 6, 8, 10, 11};
+                checkedIndexes = new int[]{0, 1, 7};
+                break;
+            case "Medicaid, CHP+, ESI, COBRA":
+                uncheckedIndexes = new int[]{2, 4, 5, 6, 8, 10, 11};
+                checkedIndexes = new int[]{0, 1, 3, 7};
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + checkboxExpected);
         }
