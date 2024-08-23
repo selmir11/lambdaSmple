@@ -103,7 +103,7 @@ Feature: Page Navigation-OHI ESI Page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
 
-  @SLER-964 @PageVerificationEsiPage @test
+  @SLER-964 @PageVerificationEsiPage
   Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHI application to the ELMO Exch ESI page
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
