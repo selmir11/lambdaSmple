@@ -53,6 +53,9 @@ public class DependentOverviewCoCoPage {
             case "English":
                 verifyTextOnDependentOverviewPageEnglish();
                 break;
+            case "Spanish":
+                verifyTextOnDependentOverviewPageSpanish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );
         }
@@ -68,5 +71,16 @@ public class DependentOverviewCoCoPage {
         softAssert.assertEquals(goBackButton.getText(), " Go Back");
         softAssert.assertAll();
         }
+
+    public void verifyTextOnDependentOverviewPageSpanish() {
+        basicActions.waitForElementToBePresent(hdr_DependentOverview,15);
+        softAssert.assertEquals(hdr_DependentOverview.getText(), "Resumen del dependiente");
+        softAssert.assertEquals(dependentOverviewQuestionText.getText(), "\u00BFEs " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + " una persona discapacitada no casado y dependiente en su familia?");
+        softAssert.assertEquals(dependentOverviewYesButton.getText(), "Si");
+        softAssert.assertEquals(dependentOverviewNoButton.getText(), "  No");
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
+        softAssert.assertEquals(goBackButton.getText(), " Volver");
+        softAssert.assertAll();
+    }
 
     }
