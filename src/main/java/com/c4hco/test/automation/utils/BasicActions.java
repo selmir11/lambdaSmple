@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.utils;
+
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -7,11 +8,10 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
 import java.io.File;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.*;
 import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -156,6 +156,25 @@ public class BasicActions {
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
             } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element is not present");
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public Boolean clickElementWithRetries(WebElement webElement, int waitTime) {
+        int retries = 5; // Number of retries to handle element interception
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+               webElement.click();
+                return true;
+            } catch (ElementClickInterceptedException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
