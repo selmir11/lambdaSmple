@@ -146,6 +146,11 @@ public class DbQueries_Exch {
         return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
                 "where account_id = '"+ acctId+"'";
     }
+    public String appIdFromEnPolicyAh(){
+        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
+                "where account_id = '"+ acctId+"'" +" and current_ind = 0";
+    }
+
 
     public String enMem_Coverage_FinancialAh(){
         return "select emcfh.member_coverage_financial_ah_id, emcfh.policy_member_coverage_ah_id, emcfh.member_coverage_financial_id, emcfh.policy_member_coverage_id, \n" +

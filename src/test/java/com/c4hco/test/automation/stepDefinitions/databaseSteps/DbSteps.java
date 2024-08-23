@@ -41,8 +41,8 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify the policy data quality check with Policy Ah keyset size {int}")
    public void iValidatePolicyDqCheck(int keysetSize){dbValidations.validatePolicyDqCheck(keysetSize);}
 
-   @And("I verify the data from book of business queue table")
-   public void iValidateBookOfBusinessQ(){dbValidations.validateBookOfBusinessQ();}
+   @And("I verify the data from book of business queue table with {string} as event type")
+   public void iValidateBookOfBusinessQ(String eventType){dbValidations.validateBookOfBusinessQ(eventType);}
 
    @And("I verify the account holder Name in BOB DB")
    public void iVerifyTheAccountHolderNameInBOBDB() {

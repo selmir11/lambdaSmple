@@ -170,7 +170,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
     }
     public List<String> getApplicationId(){
-        return postgresHandler.getResultListFor("application_id", exchDbQueries.enPolicyAh());
+        return postgresHandler.getResultListFor("application_id", exchDbQueries.appIdFromEnPolicyAh());
     }
 
 
