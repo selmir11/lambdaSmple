@@ -103,7 +103,8 @@ Feature:verify deauthorize broker notice Spanish Mail prefrences BN-002-04
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
-    Then I click remove current broker Find a certified broker Page
+    Then I Remove my current Broker
+    And I "Ok" my decision to remove my current broker
     And I validate no broker is authorized
     Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
     And I click link my docs on accountOverview page

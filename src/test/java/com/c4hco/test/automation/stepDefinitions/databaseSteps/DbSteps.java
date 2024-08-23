@@ -69,15 +69,15 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateNoMedicalPolicySubmissionBob();
    }
 
-   @And("I validate Individual member policy table queries")
-   public void ivalidateIndPolicyTableQueries(){
-
-      policyTableValidations.validateEnPolicyTableDetails();
-      policyTableValidations.validateEnMemberCoverageFinancialAh();
-      policyTableValidations.validateEnPolicyMemberCoverageAh();
-      policyTableValidations.validateEnPolicyFinancialAh();
-      policyTableValidations.validateEnPolicyMemberAh();
-
-   }
+//   @And("I validate Individual member policy table queries")
+//   public void ivalidateIndPolicyTableQueries(){
+//
+//      policyTableValidations.validateEnPolicyTableDetails();
+//      policyTableValidations.validateEnMemberCoverageFinancialAh();
+//      policyTableValidations.validateEnPolicyMemberCoverageAh();
+//      policyTableValidations.validateEnPolicyFinancialAh();
+//      policyTableValidations.validateEnPolicyMemberAh();
+//
+//   }
 
 }

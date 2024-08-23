@@ -326,7 +326,7 @@ public class TellUsAboutAdditionalMemberPage {
         String Relation = parts[1]; // "Spouse"
 
         try {
-
+            basicActions.waitForElementToBePresent(selectRelationship, 40);
             WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+Name+"')]/ancestor-or-self::label/parent::div //select"));
             basicActions.waitForElementToBePresent(element,10);
             basicActions.scrollToElement(element);
