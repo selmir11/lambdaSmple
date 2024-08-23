@@ -76,7 +76,7 @@ public class OtherHealthCoveragePage_Elmo {
 
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader,15);
         basicActions.waitForElementListToBePresent(existingHealthInsurancePageTxt1,15);
         basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox,15);
         switch(insuranceOption){
