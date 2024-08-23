@@ -85,7 +85,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
 
 
-  @COCOFilterMedicalResults_SilverEnhanced_Only @SLCR-2025
+  @COCOFilterMedicalResults_SilverEnhanced_Only @SLCR-WIP
   Scenario Outline: This will validate the different SES carrier plan results after COCO filters are set for Silver Enhanced
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -163,7 +163,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
       | Select Health               | Select Health Value Colorado Option Silver Off Exchange                   |
 
   @COCOVerifyPlanTotalSilverEnhanced @SLCR-273-WIP
-  Scenario: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results
+  Scenario: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results - CCRT-630
   # Only available during SES Open Enrollment - 2023 had this option available for 1 week due to enrollment max limits reached
   # Once established only a filter change like due to a filter change will change the result
     When I click create a new account on login page

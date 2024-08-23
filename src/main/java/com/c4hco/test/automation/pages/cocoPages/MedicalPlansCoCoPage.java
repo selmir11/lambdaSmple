@@ -62,7 +62,6 @@ public class MedicalPlansCoCoPage {
     WebElement silverEnhancedBox;
 
     @FindBy(xpath = "//*[@class = 'col-12 col-xl-5 responsive-text-align-left ng-star-inserted']")
-    //@FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planTotalsCoCo;
 
      public void selectFirstMedicalPlanCoCo() {
