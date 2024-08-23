@@ -16,4 +16,7 @@ public class DependentOverviewCoCoPageSteps {
     public void clickGoBack() {
         dependentOverviewCoCoPage.clickGoBackButton();
     }
+
+    @Then("I verify text on the Dependent Overview page in {string}")
+    public void verifyAddInfoForYourselfPageText(String Language)  { dependentOverviewCoCoPage.verifyTextOnDependentOverview(Language); }
 }

@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,15 @@ public class EmploymentSummaryPage {
 
     @FindBy(xpath = "//*[starts-with(@id,'edit')]")
     WebElement lnkEditIncome;
+
+    @FindBy(css = "[id^='remove-employer-']")
+    List<WebElement> lnkRemoveJob;
+
+    @FindBy(css = "app-confirmation-dialog button")
+    List<WebElement> lnkRemoveContinue;
+
+    @FindBy(css = ".col-3.content-center")
+    WebElement btnAddJob;
 
     @FindBy(css = "lib-help-icon a")
     WebElement helpLnk;
@@ -131,6 +141,32 @@ public class EmploymentSummaryPage {
         Index -=1;
         lnkEditIncome.click();
 
+    }
+
+    public void clickAddJob(){
+        basicActions.waitForElementToBePresent(btnAddJob,20);
+        btnAddJob.click();
+    }
+
+    public void clickRemoveJob(String DeleteJob){
+        String setEmployerName;
+        basicActions.waitForElementListToBePresent(lnkRemoveJob,20);
+        switch (DeleteJob) {
+            case "First":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                System.out.println("First employer is "+setEmployerName);
+                lnkRemoveJob.get(0).click();
+                break;
+            case "Second":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                System.out.println("Second employer is "+setEmployerName);
+                lnkRemoveJob.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid member type: " + DeleteJob);
+        }
+        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 20);
+        lnkRemoveContinue.get(0).click();
     }
 
     public void clickHelpIcon(String label) {
