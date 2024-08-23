@@ -58,6 +58,13 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(id = "PlanResults-MetalTier_0-input")
+    WebElement silverEnhancedBox;
+
+    @FindBy(xpath = "//*[@class = 'col-12 col-xl-5 responsive-text-align-left ng-star-inserted']")
+    //@FindBy(css = ".plan-results-container .responsive-text-align-left")
+    WebElement planTotalsCoCo;
+
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -84,8 +91,28 @@ public class MedicalPlansCoCoPage {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
+    public void selectSilverEnhancedBox(){
+         basicActions.waitForElementToDisappear( spinner, 20);
+         basicActions.waitForElementToBePresent( silverEnhancedBox, 10 );
+         silverEnhancedBox.click();
+    }
+
+    public void validateCOCOPlanTotals(String planTotal){
+         basicActions.waitForElementToDisappear( spinner,30 );
+         basicActions.waitForElementToBePresent( planTotalsCoCo,20 );
+        Assert.assertEquals(planTotalsCoCo.getText(), planTotal+" of "+planTotal+" Medical Plans", "Medical plans count did not match");
+
+    }
+
+    public void validateSESCOCOPlanTotals(String sesPlanTotal){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent( planTotalsCoCo,20 );
+        Assert.assertEquals(planTotalsCoCo.getText(), sesPlanTotal+" of "+sesPlanTotal+" Medical Plans", "Medical plans count did not match");
+
+    }
 
     public void selectfromProviderList(String Selecting) {
+        basicActions.waitForElementToDisappear( spinner,20 );
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
 
