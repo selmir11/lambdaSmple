@@ -182,10 +182,10 @@ Feature: Navigation-Life Change Event Page
     Then I validate I am on the "CoCo life change event" page
     And I change the C4 url to "LCE portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    And I verify User name Link is not displayed in the "CoCo" Header
+    And I verify User name Link is displayed in the "CoCo" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header
-    Then I validate I am on the "CoCo Welcome" page
+    Then I validate I am on the "FindExpertHelpCoco" page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

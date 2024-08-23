@@ -37,7 +37,7 @@ public class FindACertifiedBrokerPage {
     @FindBy(id ="findBroker-searchBroker-btn")
     WebElement searchButton;
 
-    @FindBy(xpath ="//*[@id='mat-expansion-panel-header-0']/span/mat-panel-title")
+    @FindBy(xpath ="//*[contains(@id, 'mat-expansion-panel-header')]/span/mat-panel-title")
     WebElement moreDetails;
 
     @FindBy(xpath ="//*[@id='mat-expansion-panel-header-0']/span/mat-panel-title")
