@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan 8 HH
-  @SLER-832 #WIP
+  @SLER-832  @test
   Scenario: : EXCH intial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -349,6 +349,25 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on Enrollment Agreements page
 
     Then I click all done from payment portal page
+
+
+
+
+    #Gmail Verification
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+    #DbVerification
+
+    And I verify the policy data quality check
+    And I verify the data from book of business queue table
+
+
 
 
 
