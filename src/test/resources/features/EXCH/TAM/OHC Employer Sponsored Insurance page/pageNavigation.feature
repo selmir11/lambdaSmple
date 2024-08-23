@@ -55,11 +55,11 @@ Feature: Page Navigation-OHI ESI Page
     And I select "No" to claim dependents
     And I click save and continue on tax status page
     Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
 
 
   @SLER-687 @PageNavigationESI
   Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHI Portal, Exchange
+    Then I click continue on the ELMO health coverage page
     #Step1
     And I validate I am on the "ESI" page
     And I change the C4 url to "Other Health Coverage portal Error Exch"
@@ -208,3 +208,80 @@ Feature: Page Navigation-OHI ESI Page
 
     And I click on Sign Out in the Header for "Elmo"
 
+
+
+  @SLER-964 @PageVerificationEsiPage
+  Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHI application to the ELMO Exch ESI page
+    Then I select "HRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I select the Go Back button on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "250.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo HRA" page
+    Then I select the Go Back button on the HRA page
+    And I validate I am on the "ESI" page
+    Then I select the Go Back button on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "HRA" as ELMO health coverage option
+    Then I select "Medicare" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohi Medicare" page
+    Then I click "Yes" for currently eligible in Medicare question
+    Then I check checkbox for Part "A"
+    Then I enter Part A amount of "150.00"
+    Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
+    Then I click continue on the Elmo OHC Medicare page
+    And I validate I am on the "ESI" page
+    Then I select the Go Back button on the ESI page
+    And I validate I am on the "Elmo Ohi Medicare" page
+    Then I click continue on the Elmo OHC Medicare page
+    And I validate I am on the "ESI" page
+    Then I click continue on the ESI page
+    And I validate I am on the "Family Overview" page
+
+    Then I click Add Another Family Member
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "Medicare" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I click "No" for offer family plans question
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click Go back on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page in "English"
+
+    And I click on Sign Out in the Header for "Elmo"
