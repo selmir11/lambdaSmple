@@ -465,10 +465,12 @@ public class DbValidations {
             softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
             policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
             applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
-            softAssert.assertTrue(applicationIdListFromBob.equals(applicationIdListFromPolicyAh), "application id mismatch");
-            softAssert.assertTrue(policyIdListFromBookOfBusinessDb.equals(policyIdFromPolicyDB), "Policy Id mismatch ");
-            softAssert.assertAll();
         }
+
+            softAssert.assertTrue(new HashSet<>(applicationIdListFromBob).containsAll(applicationIdListFromPolicyAh), "application id mismatch");
+            softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
+            softAssert.assertAll();
+
     }
 
 

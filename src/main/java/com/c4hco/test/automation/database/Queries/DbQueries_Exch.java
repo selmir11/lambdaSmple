@@ -111,15 +111,11 @@ public class DbQueries_Exch {
     }
 
     public String getBookOfBusinessQ(String eventType){
-        return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages\n" +
-                "where application_id = 'book_of_business_q:policy-svc'\n" +
-                "and message->>'householdAccountId' = '"+acctId+"'\n" +
-                "and eventType ='"+eventType+"' \n"+
-                "ORDER BY created_ts desc";
+        return " select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages " +" where application_id = 'book_of_business_q:policy-svc' " +" and message->>'householdAccountId' = '"+acctId+"' " + " and message->>'eventType' ='"+eventType+"' ORDER BY created_ts desc";
     }
     public String policyId(){
-        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy_ah ep \n" +
-                "where account_id =  '"+acctId+"' ORDER BY created_ts desc \n"+
+        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy_ah ep " +
+                "where account_id =  '"+acctId+"' " +
                 "and current_ind = '1'";
     }
 
@@ -145,12 +141,12 @@ public class DbQueries_Exch {
 
     //Policy table queries
     public String enPolicyAh(){
-        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
-                "where account_id = '"+ acctId+"'";
+        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph " +
+                "where account_id = '"+acctId+"'";
     }
     public String appIdFromEnPolicyAh(){
-        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
-                "where account_id = '"+ acctId+"'" +" and current_ind = 1";
+        return "select application_id from "+dbName+".en_policy_ah " +
+                "where account_id = '"+acctId+"' and current_ind = 1";
     }
 
 
