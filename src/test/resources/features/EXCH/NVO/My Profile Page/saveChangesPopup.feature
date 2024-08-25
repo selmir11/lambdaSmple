@@ -3,7 +3,7 @@ Feature: My Profile Page Exch
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLER-792
+  @SLER-792  @NVOExchRegression
   Scenario: Save Changes Popup on My Profile page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -18,7 +18,7 @@ Feature: My Profile Page Exch
     Then I verify Password Popup text on My profile page Exch "Spanish"
 
 
-  @SLER-830
+  @SLER-830 @NVOExchRegression
   Scenario: Validation of password Popup on My profile page
     When I click create a new account on login page
     Then I click create my account from pre-screen page

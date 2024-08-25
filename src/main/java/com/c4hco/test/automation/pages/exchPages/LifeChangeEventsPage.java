@@ -88,6 +88,7 @@ public class LifeChangeEventsPage {
     WebElement iconHelp;
 
     public void selectLCE(String lceOption){
+        basicActions.waitForElementToBePresent(saveAndContinueOnlyButton,20);
         switch(lceOption){
             case "Birth":
                     lceInputCheckbox.get(0).click();

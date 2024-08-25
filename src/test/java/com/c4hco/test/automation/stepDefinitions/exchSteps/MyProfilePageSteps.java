@@ -32,7 +32,21 @@ public class MyProfilePageSteps {
     @And("I click the Change Password Button")
     public void iclickChangePasswordButton() {myProfileExchPage.clickChangePasswordButton();
     }
+    @And("I validate Email save changes on My Profile page")
+    public void iValidateSaveChangesEmail() {myProfileExchPage.ValidateSaveChangesEmail();
+    }
 
+    @And("I validate phone number save changes on My Profile page")
+    public void iValidateSaveChangesPhonenumber() {myProfileExchPage.ValidateSaveChangesPhonenumber();
+    }
+
+    @And("I validate Preferred Language save changes on My Profile page")
+    public void iValidateSaveChangesLanguage() {myProfileExchPage.ValidateSaveChangesLanguage();
+    }
+
+    @And("I validate Preferred Contact Method save changes on My Profile page")
+    public void iValidateSaveChangesContactMethod() {myProfileExchPage.ValidateSaveChangesContactMethod();
+    }
 
 ///////////////////////////////////Validation Steps/////////////////
 

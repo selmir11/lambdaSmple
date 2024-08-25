@@ -803,12 +803,31 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(helpCircleButton.get(10).getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertAll();
     }
-    public void verifyHeadersOtherHealthCoveragePage(String language){
+    public void verifyHeadersOtherHealthCoveragePage(String member, String language){
         basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn,15);
         switch (language){
             case "English":
-                softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-                softAssert.assertAll();
+                switch (member){
+                    case "Primary":
+                        softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
+                        softAssert.assertAll();
+                        break;
+                    case "Secondary":
+                        String expectedSecondaryText = "Other Health Coverage: " + SharedData.getMembers().get(0).getFullName();
+                        String actualSecondaryText = existingHealthInsuranceHeader.getText();
+                        softAssert.assertTrue(actualSecondaryText.equalsIgnoreCase(expectedSecondaryText), "The text does not match! Expected: " + expectedSecondaryText + " but found: " + actualSecondaryText);
+                        softAssert.assertAll();
+                        break;
+                    case "Third":
+                        String expectedThirdText = "Other Health Coverage: " + SharedData.getMembers().get(1).getFullName();
+                        String actualThirdText = existingHealthInsuranceHeader.getText();
+                        softAssert.assertTrue(actualThirdText.equalsIgnoreCase(expectedThirdText), "The text does not match! Expected: " + expectedThirdText + " but found: " + actualThirdText);
+                        softAssert.assertAll();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + member);
+                }
                 break;
             case "Spanish":
                 softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));

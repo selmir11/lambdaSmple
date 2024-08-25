@@ -54,7 +54,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
 
   @SLER-343 @PageVerificationOtherHealthInsurancePage
   Scenario: SLER-343 I Validate help drawer text in English on the Other Health Coverage page
-    And I verify the header for Primary Member on the Other Health Coverage page in "English"
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I click Help me understand this page link on the Other Health Coverage page
     Then I verify help drawer header text in "English" on the Other Health Coverage page
@@ -137,13 +137,14 @@ Feature: Page Text-Other Health Coverage Elmo Page
     And I click Contact Us link in help drawer footer of the Other Health Coverage page
     And I validate I am on the "We Can Help" page and close tab
 
+    And I set the browser resolution to Maximized
     And I click on Sign Out in the Header for "Elmo"
 
 
   @SLER-860 @PageVerificationOtherHealthInsurancePage
   Scenario: SLER-860 I Validate help drawer text in Spanish on the Other Health Coverage page
     And I change the language from header to "Spanish"
-    And I verify the header for Primary Member on the Other Health Coverage page in "Spanish"
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "Spanish"
 
     And I click Help me understand this page link on the Other Health Coverage page
     Then I verify help drawer header text in "Spanish" on the Other Health Coverage page
@@ -226,5 +227,6 @@ Feature: Page Text-Other Health Coverage Elmo Page
     And I click Contact Us link in help drawer footer of the Other Health Coverage page
     And I validate I am on the "We Can Help" page and close tab
 
+    And I set the browser resolution to Maximized
     And I click on Sign Out in the Header for "Elmo"
 
