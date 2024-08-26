@@ -420,7 +420,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
 
   @SLER-298 @PageVerificationOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-298 I Validate the saved options persist on the Other Health Coverage page
-    And I verify the header for Primary Member on the Other Health Coverage page in "English"
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
@@ -441,7 +441,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I verify the header for Primary Member on the Other Health Coverage page in "English"
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I validate Other Health Coverage options load "unselected"
 

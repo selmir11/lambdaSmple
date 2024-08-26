@@ -124,7 +124,7 @@ Feature: Regression Tests that require Seed 1
      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
      | 8  | SEP REASON         | ADMIN_LCE | ADMIN_LCE |
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -175,7 +175,7 @@ Feature: Regression Tests that require Seed 1
         | 7  | TOT RES AMT        | 291.02             | 21.00              |
         | 8  | PRE AMT TOT        | 291.02             | 21.00              |
     And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
