@@ -12,6 +12,7 @@ import org.testng.Assert;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MedicalPlansCoCoPage {
@@ -54,6 +55,12 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
+
+    @FindBy(css = ".premium-summary .c4-type-header-md")
+    List<WebElement> mothlyPremiumValue;
+
+    @FindBy(css = "#dropdownBasic1")
+    WebElement premiumSortingDropdown;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
@@ -145,5 +152,66 @@ public class MedicalPlansCoCoPage {
             }
         } while(optionalInt.isEmpty());
     }
+
+    public void clickSortingDropdown(String sortingValue) {
+        basicActions.waitForElementToDisappear(spinner,10);
+        basicActions.waitForElementToBePresent(premiumSortingDropdown, 30);
+        premiumSortingDropdown.click();
+        WebElement value = basicActions.getDriver().findElement(By.xpath("//strong[contains(text(),'"+sortingValue+"')]"));
+        value.click();
+    }
+
+    public void evaluateSortingValue(String sortingTypeSelection){
+         while (nextPageArrow.isEnabled()) {
+             basicActions.waitForElementToDisappear(spinner, 10);
+             basicActions.waitForElementToBePresent(mothlyPremiumValue.get(0), 30);
+
+             if (sortingTypeSelection.contains("Monthly Premium- Low to High")) {
+                 Assert.assertTrue(isSortedAscending(), "Medical Plan sorting done as expected Monthly Premium- Low to High");
+             } else if (sortingTypeSelection.contains("Monthly Premium- High to Low")) {
+                 Assert.assertTrue(isSortedDescending(), "Medical Plan sorting done as expected Monthly Premium- High to Low");
+             } else {
+                 System.out.println("Input not mathing with any of the sorting option");
+             }
+             nextPageArrow.click();
+         }
+
+
+    }
+
+    public boolean isSortedAscending() {
+
+        List<String> stringList = mothlyPremiumValue.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < stringList.size() - 1; i++) {
+            double currentAmount = Double.parseDouble(stringList.get(i).replace("$", ""));
+            double nextAmount = Double.parseDouble(stringList.get(i + 1).replace("$", ""));
+            if (currentAmount > nextAmount) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSortedDescending() {
+
+        List<String> amounts = mothlyPremiumValue.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < amounts.size() - 1; i++) {
+            double currentAmount = Double.parseDouble(amounts.get(i).replace("$", ""));
+            double nextAmount = Double.parseDouble(amounts.get(i + 1).replace("$", ""));
+            if (currentAmount < nextAmount) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
 
 }
