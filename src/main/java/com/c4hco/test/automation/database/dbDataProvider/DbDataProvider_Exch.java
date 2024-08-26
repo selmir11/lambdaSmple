@@ -169,6 +169,9 @@ public class DbDataProvider_Exch {
     public List<String> getPolicyId(){
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
     }
+    public List<String> getApplicationId(){
+        return postgresHandler.getResultListFor("application_id", exchDbQueries.enPolicyAh());
+    }
 
 
     public List<String> getAccount_holder_fn() {

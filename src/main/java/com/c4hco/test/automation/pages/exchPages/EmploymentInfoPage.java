@@ -135,6 +135,7 @@ public class EmploymentInfoPage {
     }
 
     public void isUserSelfEmplyed(String selfEmploymentOption) {
+        basicActions.waitForElementToBeClickable(btnYesSelfEmployed,20);
         switch (selfEmploymentOption) {
             case "Yes":
                 btnYesSelfEmployed.click();

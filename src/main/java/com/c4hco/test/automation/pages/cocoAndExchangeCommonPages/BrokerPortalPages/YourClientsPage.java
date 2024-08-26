@@ -99,6 +99,7 @@ public class YourClientsPage {
     }
 
     public void searchForClient(){
+        basicActions.waitForElementToBePresent(clientSecondRow, 1000);
         basicActions.waitForElementToBePresent(searchClient, 1000);
         String firstName =SharedData.getPrimaryMember().getFirstName();
         searchClient.sendKeys(firstName);

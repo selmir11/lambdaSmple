@@ -30,6 +30,17 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.selectfromMetalTierList(metalOption);
     }
 
+    @And ("I select Silver Enhanced option")
+    public void selectSilverEnhanced(){
+        medicalPlansCoCoPage.selectSilverEnhancedBox();
+    }
+
+    @And( "I validate the plan totals are {string} on the COCO Medical Plan Results page" )
+    public void validateCOCOPlanTotals(String planTotal){medicalPlansCoCoPage.validateCOCOPlanTotals(planTotal);}
+
+    @And( "I validate the SES plan totals are {string} on the COCO Medical Plan Results page" )
+    public void validateSESCOCOPlanTotals(String planTotal){medicalPlansCoCoPage.validateSESCOCOPlanTotals(planTotal);}
+
     @And("I select {string} to filter for desired COCO plan provider")
     public void selectfromProviderList(String carrierOption) {
         medicalPlansCoCoPage.selectfromProviderList(carrierOption);
