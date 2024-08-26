@@ -13,7 +13,7 @@ Feature: print functionality on the Colorado Connect My Clients page
     And I delete the open notice
     Then I sign out of Outlook
     Then I enter the MFA code and click Verify
-    Then I validate I am on the "Broker Dashboard" page
+    Then I validate I am on the "Broker Portal Your Clients" page
     And I click on "colorado Connect" tab
     Then I verify that Print button is visible and enable
     Then I click on broker userName and logout
