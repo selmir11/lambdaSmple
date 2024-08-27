@@ -257,7 +257,10 @@ public class BasicSteps {
                 pageUrl = "nes/applyMA";
                 break;
             case "Broker Dashboard":
-                pageUrl = "/broker-portal/";
+                pageUrl = "/broker-portal/broker";
+                break;
+            case "Agency Dashboard":
+                pageUrl = "/broker-portal/agency";
                 break;
             case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
