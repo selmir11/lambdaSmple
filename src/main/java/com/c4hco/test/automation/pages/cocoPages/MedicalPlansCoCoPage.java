@@ -188,20 +188,16 @@ public class MedicalPlansCoCoPage {
         value.click();
     }
 
-    public boolean elementExists(WebDriver driver, By locator) {
-        return !driver.findElements(locator).isEmpty();
-    }
-
     public void evaluateSortingValue(String sortingTypeSelection){
-        while (elementExists(basicActions.getDriver(), By.xpath("//a[@class='ng-star-inserted']"))) {
+        while (basicActions.elementExists(basicActions.getDriver(), By.xpath("//a[@class='ng-star-inserted']"))) {
             try {
                 basicActions.waitForElementToDisappear(spinner, 10);
                 basicActions.waitForElementToBePresent(mothlyPremiumValue.get(0), 30);
 
                 if (sortingTypeSelection.contains("Monthly Premium- Low to High")) {
-                    Assert.assertTrue(isSortedAscending(mothlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
+                    Assert.assertTrue(basicActions.isSortedAscending(mothlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
                 } else if (sortingTypeSelection.contains("Monthly Premium- High to Low")) {
-                    Assert.assertTrue(isSortedDescending(mothlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
+                    Assert.assertTrue(basicActions.isSortedDescending(mothlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
                 }
                 else if (sortingTypeSelection.contains("Annual Deductible- Low to High")) {
                     List<WebElement> webElementList = new ArrayList<>();
@@ -212,7 +208,7 @@ public class MedicalPlansCoCoPage {
                         WebElement element = basicActions.getDriver().findElement(By.xpath(dynamicXPath));
                         webElementList.add(element);
                     }
-                    Assert.assertTrue(isSortedAscending(webElementList), "Medical Plan sorting for Annual Deductible- Low to High");
+                    Assert.assertTrue(basicActions.isSortedAscending(webElementList), "Medical Plan sorting for Annual Deductible- Low to High");
                 }
                 else if (sortingTypeSelection.contains("Annual Deductible- High to Low")) {
                     List<WebElement> webElementList = new ArrayList<>();
@@ -222,7 +218,7 @@ public class MedicalPlansCoCoPage {
                         WebElement element = basicActions.getDriver().findElement(By.xpath(dynamicXPath));
                         webElementList.add(element);
                     }
-                    Assert.assertTrue(isSortedDescending(webElementList), "Medical Plan sorting for Annual Deductible- High to Low");
+                    Assert.assertTrue(basicActions.isSortedDescending(webElementList), "Medical Plan sorting for Annual Deductible- High to Low");
                 }
                 nextPageArrow.click();
             } catch (Exception e) {
@@ -232,40 +228,5 @@ public class MedicalPlansCoCoPage {
 
 
     }
-
-    public boolean isSortedAscending(List<WebElement> objectDetails) {
-        basicActions.waitForElementListToBePresentWithRetries(objectDetails,10);
-        List<String> stringList = objectDetails.stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
-
-        for (int i = 0; i < stringList.size() - 1; i++) {
-            double currentAmount = Double.parseDouble(stringList.get(i).replace("$", ""));
-            double nextAmount = Double.parseDouble(stringList.get(i + 1).replace("$", ""));
-            if (currentAmount > nextAmount) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean isSortedDescending(List<WebElement> objectDetails) {
-        basicActions.waitForElementListToBePresentWithRetries(objectDetails,10);
-        List<String> amounts = objectDetails.stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
-
-        for (int i = 0; i < amounts.size() - 1; i++) {
-            double currentAmount = Double.parseDouble(amounts.get(i).replace("$", ""));
-            double nextAmount = Double.parseDouble(amounts.get(i + 1).replace("$", ""));
-            if (currentAmount < nextAmount) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-
 
 }
