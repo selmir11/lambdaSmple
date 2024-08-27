@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.MedicalPlansCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 
 public class MedicalPlansCoCoPageSteps {
@@ -58,6 +59,16 @@ public class MedicalPlansCoCoPageSteps {
     @And("I select {string} coco medical plan")
     public void selectMedPlan(String medicalPlan) {
         medicalPlansCoCoPage.selectCoCoMedicalplan(medicalPlan);
+    }
+
+    @And("I select the sorting {string} option in coco medical page")
+    public void clickSortingDropdown(String sortingValue) {
+        medicalPlansCoCoPage.clickSortingDropdown(sortingValue);
+    }
+
+    @Then("I validate sorting based on {string} in coco medical page")
+    public void validateMedicalPremiumSorting(String sortingTypeSelection) {
+        medicalPlansCoCoPage.evaluateSortingValue(sortingTypeSelection);
     }
 
 }
