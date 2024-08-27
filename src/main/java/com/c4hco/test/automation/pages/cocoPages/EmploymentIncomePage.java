@@ -59,6 +59,9 @@ public class EmploymentIncomePage {
     @FindBy(css = ".input-error-message")
     WebElement errorMessage;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresent(saveAndContinueButton,30);
         basicActions.click(saveAndContinueButton);
@@ -67,11 +70,13 @@ public class EmploymentIncomePage {
     public void answerEmploymentQs(String employment){
         switch(employment) {
             case "Yes":
-                basicActions.waitForElementToBeClickable(employmentYesButton, 100);
+                basicActions.waitForElementToDisappear( spinner, 20 );
+                basicActions.waitForElementToBePresent(employmentYesButton, 100);
                 employmentYesButton.click();
                 break;
             case "No":
-                basicActions.waitForElementToBeClickable(employmentNoButton, 100);
+                basicActions.waitForElementToDisappear( spinner, 20 );
+                basicActions.waitForElementToBePresent(employmentNoButton, 100);
                 employmentNoButton.click();
                 break;
             default:

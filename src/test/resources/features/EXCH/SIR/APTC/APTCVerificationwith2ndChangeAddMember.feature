@@ -701,7 +701,7 @@ Feature: UI Tests related to APTC after second enrollment change
      #   |Granby     |CO       |01011990   |Grand    |80446        |
 
 
-    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413
+    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413 @test
     Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -720,8 +720,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      Then I validate I am on the "Report a life change" page
-      And I report "MovedToColorado" and click continue
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question

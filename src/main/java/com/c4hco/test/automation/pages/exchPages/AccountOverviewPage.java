@@ -97,7 +97,8 @@ public class AccountOverviewPage {
     }
 
     public void iClickOnMakeChanges(){
-        basicActions.waitForElementToBePresent(header, 10);
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent(header, 30);
         basicActions.click(makeChangesButton);
     }
 
