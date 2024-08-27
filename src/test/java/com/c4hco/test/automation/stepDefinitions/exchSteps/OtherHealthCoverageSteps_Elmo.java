@@ -42,8 +42,8 @@ public class OtherHealthCoverageSteps_Elmo {
     @And("I verify help icons on the Other Health Coverage page")
     public void iVerifyHelpIconsOnOtherHealthCoveragePage(){otherHealthCoveragePage_Elmo.verifyHelIconsOnOtherHealthCoveragePage();}
 
-    @And("I verify the header for Primary Member on the Other Health Coverage page in {string}")
-    public void iVerifyHeadersOtherHealthCoveragePage(String language){otherHealthCoveragePage_Elmo.verifyHeadersOtherHealthCoveragePage(language);}
+    @And("I verify the header for {string} Member on the Other Health Coverage page in {string}")
+    public void iVerifyHeadersOtherHealthCoveragePage(String member, String language){otherHealthCoveragePage_Elmo.verifyHeadersOtherHealthCoveragePage(member, language);}
 
     @And("I validate Other Health Coverage options load {string}")
     public void iVerifyCheckboxesAttribute(String checkboxExpected){otherHealthCoveragePage_Elmo.verifyCheckboxesAttribute(checkboxExpected);}

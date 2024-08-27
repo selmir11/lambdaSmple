@@ -31,42 +31,56 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(css = ".page-header")
     WebElement hdr_LceText;
 
+    @FindBy(css = "#ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement insuranceLossLCEContainer;
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
     WebElement insuranceLossLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-LOSS_OF_MEC_OTHER')]")
     List<WebElement> allMemberInsuranceLossCheckbox;
     @FindBy (xpath = "//input[contains(@id, 'ELIG-LceMember-LOSS_OF_MEC_OTHER')]")
     List<WebElement> insuranceLossEventDate;
+    @FindBy(css = "#ELIG-LceOption-BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement birthLCEContainer;
     @FindBy(id = "ELIG-LceOption-BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION-checkBoxButton")
     WebElement birthLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-BIRTH')]")
     List<WebElement> allMembersBirthCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-BIRTH')]")
     List<WebElement> birthEventDate;
+    @FindBy(css = "#ELIG-LceOption-PREGNANCY-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement pregnancyLCEContainer;
     @FindBy(id = "ELIG-LceOption-PREGNANCY-checkBoxButton")
     WebElement pregnancyLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-PREGNANCY')]")
     List<WebElement> allMembersPregnancyCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-PREGNANCY')]")
     List<WebElement> pregnancyEventDate;
+    @FindBy(css = "#ELIG-LceOption-MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement marriageLCEContainer;
     @FindBy(id ="ELIG-LceOption-MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER-checkBoxButton")
     WebElement marriageLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-MARRIAGE')]")
     List<WebElement> allMembersMarriageCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-MARRIAGE')]")
     List<WebElement> marriageEventDate;
+    @FindBy(css = "#ELIG-LceOption-DIVORCE_ANNULMENT_OR_SEPARATION-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement divorceLCEContainer;
     @FindBy(id ="ELIG-LceOption-DIVORCE_ANNULMENT_OR_SEPARATION-checkBoxButton")
     WebElement divorceLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-DIVORCE')]")
     List<WebElement> allMembersDivorceCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-DIVORCE')]")
     List<WebElement> divorceEventDate;
+    @FindBy(css = "#ELIG-LceOption-DEATH-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement deathLCEContainer;
     @FindBy(id ="ELIG-LceOption-DEATH-checkBoxButton")
     WebElement deathLCE;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-DEATH')]")
     List<WebElement> allMembersDeathCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-DEATH')]")
     List<WebElement> deathEventDate;
+    @FindBy(css = "#ELIG-LceOption-CHANGE_OF_RESIDENCE-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement addressChangeLCEContainer;
     @FindBy(id="ELIG-LceOption-CHANGE_OF_RESIDENCE-checkBoxButton")
     WebElement addressChangeLCE; //Moved to Colorado
     @FindBy(css=".c4-input [id^='ELIG-LceMember-CHANGE_OF_RESIDENCE-Member'][role='checkbox']")
@@ -83,6 +97,9 @@ public class LifeChangeEventsCoCoPage {
 
     @FindBy(xpath = "//button[contains(@id,'movedToColorado-checkBoxButton')]")
     List<WebElement> movedToColoradoCheckbox;
+    @FindBy(css = "#ELIG-LceOption-noneOfThese-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
+    //@FindBy(css = "#-container > div.row.input-row > div > lib-checkbox-control > label")
+    WebElement noneOfTheseLCEContainer;
     @FindBy(id ="ELIG-LceOption-noneOfThese-checkBoxButton")
     WebElement noneOfTheseLCE;
     @FindBy(id = "LceOverview-SaveAndContinue")
@@ -217,4 +234,166 @@ public class LifeChangeEventsCoCoPage {
         softAssert.assertAll();
     }
 
+    public void verifyLCECheckboxState(String LCEType,String Selection){
+        basicActions.waitForElementToDisappear(spinner,20);
+        switch (LCEType) {
+            case "InsuranceLoss":
+                basicActions.waitForElementToBePresent(insuranceLossLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(insuranceLossLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(insuranceLossLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "Birth":
+                basicActions.waitForElementToBePresent(birthLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(birthLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(birthLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "Pregnancy":
+                basicActions.waitForElementToBePresent(pregnancyLCEContainer,25);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(pregnancyLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(pregnancyLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "Marriage":
+                basicActions.waitForElementToBePresent(marriageLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(marriageLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(marriageLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "Divorce":
+                basicActions.waitForElementToBePresent(divorceLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(divorceLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(divorceLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "Death":
+                basicActions.waitForElementToBePresent(deathLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(deathLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(deathLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "MoveToCO":
+                basicActions.waitForElementToBePresent(addressChangeLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(addressChangeLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(addressChangeLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "NoneOfThese":
+                basicActions.waitForElementToBePresent(noneOfTheseLCEContainer,15);
+                switch (Selection) {
+                    case "is":
+                        softAssert.assertEquals(noneOfTheseLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(noneOfTheseLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "AllSingle":
+                basicActions.waitForElementToBePresent(insuranceLossLCEContainer,15);
+                switch (Selection){
+                    case "is":
+                        softAssert.assertEquals(insuranceLossLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(birthLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(pregnancyLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(marriageLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(divorceLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(addressChangeLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(noneOfTheseLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(insuranceLossLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(birthLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(pregnancyLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(marriageLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(divorceLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(addressChangeLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(noneOfTheseLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+            case "All":
+                basicActions.waitForElementToBePresent(insuranceLossLCEContainer,15);
+                switch (Selection){
+                    case "is":
+                        softAssert.assertEquals(insuranceLossLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(birthLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(pregnancyLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(marriageLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(divorceLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(deathLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(addressChangeLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertEquals(noneOfTheseLCEContainer.getAttribute("className"), "checkbox-container checked");
+                        softAssert.assertAll();
+                        break;
+                    case "is not":
+                        softAssert.assertEquals(insuranceLossLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(birthLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(pregnancyLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(marriageLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(divorceLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(deathLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(addressChangeLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertEquals(noneOfTheseLCEContainer.getAttribute("className"), "checkbox-container");
+                        softAssert.assertAll();
+                        break;
+                }
+                break;
+
+        }
+    }
 }

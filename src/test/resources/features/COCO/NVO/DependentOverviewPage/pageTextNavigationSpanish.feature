@@ -1,10 +1,10 @@
-Feature: Navigation - Dependent Overview page
+Feature: Page text, navigation - Dependent Overview page in Spanish
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-260 @NVOCoCoRegression
-  Scenario: Navigation on the Dependent Overview page
+  @SLCR-270 @NVOCoCoRegression
+  Scenario: Page text, navigation on the Dependent Overview page in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -40,7 +40,7 @@ Feature: Navigation - Dependent Overview page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
     Then I enter details on tell us about additional members of your household page and continue with "Daughter", "01011996", "Female" and applying "Yes"
-     |Primary:Child or Other dependent|
+      |Primary:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -62,11 +62,13 @@ Feature: Navigation - Dependent Overview page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo Dependent Overview" page
+    And I change the language from header to "Spanish"
+    Then I verify text on the Dependent Overview page in "Spanish"
     Then I click Go Back on the Dependent Overview page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     And I click Continue on the Dependent Overview Page CoCo
-    And I select "InsuranceLoss" life change event
+    And I select None of these life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

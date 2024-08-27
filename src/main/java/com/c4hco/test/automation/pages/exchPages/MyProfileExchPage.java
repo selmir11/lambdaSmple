@@ -21,6 +21,9 @@ public class MyProfileExchPage {
     @FindBy(id = "myProfile_email")
     WebElement EmailAddress;
 
+    @FindBy(css = "#email")
+    WebElement InputEmail;
+
     @FindBy(id = "myProfile_username")
     WebElement UsernameProfile;
 
@@ -47,8 +50,14 @@ public class MyProfileExchPage {
     @FindBy(id = "myProfile_mobilePhone")
     WebElement Mobilephone;
 
+    @FindBy(css = "#mobilePhone")
+    WebElement updateMobilePhone;
+
     @FindBy(id = "myProfile_homePhone")
     WebElement Homephone;
+
+    @FindBy(css = "#homePhone")
+    WebElement inputHomePhone;
 
     @FindBy(css = "h1.myProfile_title")
     WebElement MyProfileHeader;
@@ -78,19 +87,19 @@ public class MyProfileExchPage {
     WebElement PasswordSaveChanges;
 
     @FindBy(css = "p.heading")
-    WebElement  PasswordHeader;
+    WebElement PasswordHeader;
 
     @FindBy(css = "p.content")
     WebElement PasswordContentText;
 
     @FindBy(css = "label[for='userPassword']")
-    WebElement  PasswordLabel;
+    WebElement PasswordLabel;
 
     @FindBy(css = "a.toggle-links")
-     WebElement Showlink;
+    WebElement Showlink;
 
     @FindBy(css = "a[type='button']")
-     WebElement CancelLink;
+    WebElement CancelLink;
 
     @FindBy(css = "div.successful-banner.ng-star-inserted")
     WebElement SuccessfulBanner;
@@ -502,19 +511,18 @@ public class MyProfileExchPage {
     }
 
 
-
-public void verifyCancelbuttonOnMyProfileExchPage(String language) {
-    switch (language) {
-        case "English":
-            verifyCancelbuttonOnMyProfilePageEnglish();
-            break;
-        case "Spanish":
-            verifyCancelbuttonOnMyProfilePageSpanish();
-            break;
-        default:
-            throw new IllegalArgumentException("Invalid option: " + language);
+    public void verifyCancelbuttonOnMyProfileExchPage(String language) {
+        switch (language) {
+            case "English":
+                verifyCancelbuttonOnMyProfilePageEnglish();
+                break;
+            case "Spanish":
+                verifyCancelbuttonOnMyProfilePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
-}
 
 
     public void verifyCancelbuttonOnMyProfilePageEnglish() {
@@ -629,6 +637,124 @@ public void verifyCancelbuttonOnMyProfileExchPage(String language) {
         PasswordInput.sendKeys(newPassword);
         PasswordSaveChanges.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 40);
+        softAssert.assertAll();
+    }
+
+    public void ValidateSaveChangesEmail() {
+        // Update email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmail = "updated.automation1023@test.com";
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        InputEmail.sendKeys(newEmail);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        // Revert email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        InputEmail.sendKeys(SharedData.getPrimaryMember().getEmailId());
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
+    }
+
+
+    public void ValidateSaveChangesPhonenumber() {
+        /////update mobile number//////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 200);
+        MyProfileButtonExch.get(1).click();
+        System.out.println("phoneNumber ::" + SharedData.getPrimaryMember().getPhoneNumber());
+        String newMobile = "7205210110";
+        updateMobilePhone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        updateMobilePhone.sendKeys(newMobile);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        ////// Update home phone number///////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 200);
+        MyProfileButtonExch.get(1).click();
+        System.out.println("phoneNumber ::" + SharedData.getPrimaryMember().getPhoneNumber());
+        String newHome = "3037182114";
+        inputHomePhone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        inputHomePhone.sendKeys(newHome);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 20);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+
+        softAssert.assertAll();
+    }
+
+    public void ValidateSaveChangesLanguage() {
+        /////update Language to Spanish//////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 200);
+        MyProfileButtonExch.get(1).click();
+        LanguageDrpOptions.get(2).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 20);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        ////// Update Language to English///////
+
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 200);
+        MyProfileButtonExch.get(1).click();
+        LanguageDrpOptions.get(1).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
+    }
+
+    public void ValidateSaveChangesContactMethod() {
+        /////update contact method to Mail//////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 200);
+        MyProfileButtonExch.get(1).click();
+        PreferredContactDrpOptions.get(2).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 20);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        ////// Update contact method to Email///////
+
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 200);
+        MyProfileButtonExch.get(1).click();
+        PreferredContactDrpOptions.get(1).click();
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
         softAssert.assertAll();
     }
 }
