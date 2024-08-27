@@ -388,6 +388,12 @@ public class BasicSteps {
             case "Program Manager" :
                 pageUrl = "/AdminPortal/programManager/";
                 break;
+            case "Application Summary Completed" :
+                pageUrl = "applicationSummary";
+                break;
+            case "Application Details" :
+                pageUrl = "oboApplSummary";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
