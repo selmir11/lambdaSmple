@@ -350,3 +350,10 @@ And I click on Sign Out in the Header for "Portal"
     Then I validate I am on the "Medical Plan Results" page
     And I select the sorting "Monthly Premium- Low to High" option in coco medical page
     Then I validate sorting based on "Monthly Premium- Low to High" in coco medical page
+    And I select the sorting "Monthly Premium- High to Low" option in coco medical page
+    Then I validate sorting based on "Monthly Premium- High to Low" in coco medical page
+    And I select the sorting "Annual Deductible- Low to High" option in coco medical page
+    Then I validate sorting based on "Annual Deductible- Low to High" in coco medical page
+    And I select the sorting "Annual Deductible- High to Low" option in coco medical page
+    Then I validate sorting based on "Annual Deductible- High to Low" in coco medical page
+    And I click on Sign Out in the Header for "Elmo"
