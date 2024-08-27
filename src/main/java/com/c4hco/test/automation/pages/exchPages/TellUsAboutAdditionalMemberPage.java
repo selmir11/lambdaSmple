@@ -123,6 +123,12 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "ssn")
     WebElement txtSSN;
 
+    @FindBy(id = "haveAppliedForSSNYes")
+    WebElement rdbhaveAppliedForSSNYes;
+
+    @FindBy(id = "haveSsn")
+    WebElement rdbhaveSsn;
+
     @FindBy(id = "continueButton")
     WebElement btnsaveAndContinue;
 
@@ -173,7 +179,43 @@ public class TellUsAboutAdditionalMemberPage {
 
         SharedData.setMembers(memberList);
     }
+    public void enterMemberDetailswithoutsnn(String DOB){
+        String frstName = "Son"+getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(13);
+        basicActions.waitForElementToBePresent(txtheader,1);
+        basicActions.waitForElementToBePresent(txtfirstName,30);
+        txtfirstName.sendKeys(frstName);
+        txtmiddleName.sendKeys(mdlName);
+        txtlastName.sendKeys(lastName);
+        txtdateOfBirth.sendKeys(DOB);
 
+        List<MemberDetails> memberList = SharedData.getMembers();
+        int memberCount =0;
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }else{
+            memberCount = memberList.size();
+        }
+        memberCount++;
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setDependentCountTag("member"+memberCount);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+    }
+    public  void selectNoSSn(){
+        basicActions.waitForElementToBePresent(rdbhaveSsn,1);
+        rdbhaveSsn.click();
+        basicActions.waitForElementToBePresent(rdbhaveAppliedForSSNYes,1);
+        rdbhaveAppliedForSSNYes.click();
+    }
     public void selectSex(String Sex){
         switch(Sex){
             case "Female":
@@ -252,7 +294,7 @@ public class TellUsAboutAdditionalMemberPage {
         LocalDate DOBCalculate = currentDate.minusDays(Days);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(DOBCalculate);
-        enterMemberDetails(actualdob);
+        enterMemberDetailswithoutsnn(actualdob);
     }
 
     public void specificAdditionalMemberDetailsExch(String Name, String DOB, String gender, List<String> Relations, String applying){

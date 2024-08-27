@@ -13,7 +13,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "11281986" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -61,6 +61,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "Son" as relationship option
     And I select "Son" as relationship one option
     And I select "Yes" to Is Member Applying
+    And I select no SSN
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -80,7 +81,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "250000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "25000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -93,7 +94,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select the projected income option "No" and continue
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "300000" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "30000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -138,19 +139,35 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click continue on application results page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
+    Then I click on edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Medical" page
+    Then I create new group in edit medical grouping page and drag members to the new group
+     |Primary,Spouse,Son:Group1|
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+    Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" medical plan
+    And I select "KP Select CO Bronze 8500/50" plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-   Then I click continue on grouping Members Dental page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      |Primary,Spouse,Son:Group1|
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     Then I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
      And I click continue on plan summary page
-
-
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    Then I validate I am on the "Enrollment Agreements" page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox
@@ -163,8 +180,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-
-
 
     #Gmail
     Then I open outlook Tab
