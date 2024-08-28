@@ -22,6 +22,7 @@ public class DeclarationsAndSignaturePage {
     WebElement holdOnEllipsis;
 
     public void enterSignature(int index){
+        basicActions.waitForElementToBePresent(submitContinue,20);
         String namePath = "(//div/label/b[1])["+index+"]";
         String signature = basicActions.getDriver().findElement(By.xpath(namePath)).getText();
 
