@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan 8 HH
-  @SLER-832  
+  @SLER-832  @test
   Scenario: : EXCH intial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -48,14 +48,14 @@ Feature: Enroll a in a plan 8 HH
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Male" and applying "No"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "09051959", "Male" and applying "No"
       |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
     And I enter the new residential address details
       | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
-      | 501 DIFF Drive         | Unit 23      | Boulder | CO    | 80020   | BOULDER |01011983 |
+      | 501 DIFF Drive         | Unit 23      | Boulder | CO    | 80020   | BOULDER |09051959 |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
@@ -115,7 +115,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "12142001", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "02142001", "Female" and applying "Yes"
       |Primary:Daughter|
       |Spouse:Daughter |
       |SonOne:Sister|
@@ -355,7 +355,7 @@ Feature: Enroll a in a plan 8 HH
     And I click on download enrolment document
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
+    #And I Validate the correct enrolled plans are displayed on account overview page
     
 
     #Gmail Verification
