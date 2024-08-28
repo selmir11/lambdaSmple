@@ -128,7 +128,7 @@ public class DetailedEDIPage {
     private List<String> getColumnData(int columnIndex) {
         List<String> columnData = new ArrayList<>();
         for (WebElement row : tablerows) {
-            WebElement cell = row.findElement(By.xpath("td[" + columnIndex + "]"));  // Adjust XPath for cells
+            WebElement cell = row.findElement(By.xpath("td[" + columnIndex + "]"));
             columnData.add(cell.getText());
         }
         columnData.removeIf(String::isEmpty);
