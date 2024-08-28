@@ -67,14 +67,10 @@ Feature: Simple NFA - Single Applicant
     And I click continue on Enrollment Agreements page
 
     Then I click all done from payment portal page
-
-#    Then I select make payment button to pay the premium
-#    And I click continue on payment selection page
-#    And I select second make payment button to pay the premium
-#    And I click continue on payment selection page
-#    And I click continue on initial payment page
-#
-#    And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    And I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
@@ -93,5 +89,5 @@ Feature: Simple NFA - Single Applicant
 
     #DbVerification
 
-    And I verify the policy data quality check
+    And I verify the policy data quality check with Policy Ah keyset size 1
     #And I verify the data from book of business queue table
