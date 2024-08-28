@@ -76,7 +76,9 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
         softAssert.assertAll();
-        SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        if(!(SharedData.getScenarioDetails() == null)) {
+            SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        }
     }
 
     public void getUniqueZipCodes(int expectedGroups) {

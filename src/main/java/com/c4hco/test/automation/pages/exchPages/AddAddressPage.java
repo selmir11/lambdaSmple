@@ -135,7 +135,6 @@ public class AddAddressPage {
         String getHeader = getNameFromHeader.getText();
         String[] memNameSubstring = getHeader.split(" ");
         String memFName = memNameSubstring[memNameSubstring.length-1];
-        System.out.println(memFName);
         return memFName;
     }
 
