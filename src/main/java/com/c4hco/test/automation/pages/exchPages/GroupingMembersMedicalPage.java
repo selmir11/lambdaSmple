@@ -189,7 +189,7 @@ public class GroupingMembersMedicalPage {
         Map<String, List<String>> groupDetailsMap = new HashMap<>();
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        //SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        SharedData.getScenarioDetails().setTotalGroups(groupsSize);
 
         for (int i = 1; i <= groupsSize; i++) {
             List<WebElement> details = basicActions.getDriver().findElements(By.xpath("//th[contains(text(),'Medical Group # " + i + "')]/../../following-sibling::tbody//td"));
