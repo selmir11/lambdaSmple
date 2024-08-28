@@ -33,6 +33,15 @@ public class EnrollmentAgreementsPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(id="SOL-EnrollmentAgreements-UnderstandAndAgree")
+    WebElement understandAcknowledgeChckbx;
+
+    @FindBy(id = "SOL-EnrollmentAgreements-UnderstandElectronicSignature")
+    WebElement understandSigChckbx;
+
+    @FindBy(id="SOL-EnrollmentAgreements-SubmitEnrollment")
+    WebElement submitEnrollmentBtn;
+
     public void selectAgreementsCheckbox(String checkbox) {
        basicActions.waitForElementToDisappear( spinner, 15 );
        basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
@@ -51,6 +60,21 @@ public class EnrollmentAgreementsPage {
         }
     }
 
+    public void selectAgreementCheckboxExch(String checkboxOption) {
+        basicActions.waitForElementToDisappear( spinner, 15 );
+        basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
+        switch (checkboxOption) {
+            case "Acknowledgement":
+                understandAcknowledgeChckbx.click();
+                break;
+            case "Submit":
+                understandSigChckbx.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option selected to click checkboxes: " + checkboxOption);
+        }
+    }
+
     public void enterSignature(){
             basicActions.waitForElementToBeClickable(signatureInput, 10);
             signatureInput.sendKeys(SharedData.getPrimaryMember().getSignature());
@@ -61,6 +85,13 @@ public class EnrollmentAgreementsPage {
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         continueBtn.click();
     }
+    public void clickSubmitEnrollment() {
+        basicActions.waitForElementToBePresent(submitEnrollmentBtn, 15);
+        basicActions.scrollToElement( submitEnrollmentBtn );
+        submitEnrollmentBtn.click();
+    }
+
+    //submitEnrollmentBtn
 
     public void clickGoBack() {
         basicActions.waitForElementToBePresent( goBackbtn,30 );

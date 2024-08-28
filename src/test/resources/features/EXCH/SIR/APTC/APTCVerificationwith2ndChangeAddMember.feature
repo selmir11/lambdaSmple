@@ -238,7 +238,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
       Then I click on continue with  application button on Before you begin page
-      And I report "MovedToColorado" and click continue
+      #And I report "MovedToColorado" and click continue - Not available during Open Enrollment
       Then I select "member" from the who are you question
       And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
 
@@ -328,11 +328,14 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on plan summary page
 
       Then I validate I am on the "Enrollment Agreements" page
-      And I select "Terms of Use" agreement checkbox
-      And I select "Privacy Policy" agreement checkbox
-      And I select "Understand Law" agreement checkbox
+      And I select the "Acknowledgement" agreement checkbox
+      And I select the "Submit" agreement checkbox
+      #And I select "Terms of Use" agreement checkbox
+      #And I select "Privacy Policy" agreement checkbox
+      #And I select "Understand Law" agreement checkbox
       And I enter householder signature on the Enrollment Agreements page
-      And I click continue on Enrollment Agreements page
+      And I click submit enrollment on Enrollment Agreements page
+      #And I click continue on Enrollment Agreements page
 
       Then I validate I am on the "Pay now" page
       Then I click all done from payment portal page
@@ -443,8 +446,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     @SLER-WIP-RT-2400 @SLER-WIP-RT-2411
-    #Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400 and RT-2411
-      Scenario: trial run
+      # ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400 and RT-2411
+    Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400 and RT-2411
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
@@ -457,7 +460,6 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
       And I report "MovedToColorado" and click continue
       Then I select "member" from the who are you question
-      #And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
       And I am a member with City "Denver" in State "CO" with dob "01011990" in county "Denver" with zipcode "80205"
       Then I answer all Id proofing questions and click continue
       And I click continue button on Congratulations page
@@ -641,8 +643,6 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      #####
-
       Then I validate I am on the "Tax status" page
       And I select the option "No" to claim as dependent
       And I select the option "Yes" to file federal income tax return next year
@@ -695,13 +695,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Financial Help Agreements" page
       And I click on Sign Out in the Header for "Portal"
-     # Examples:
-     #   |City       |State    |DOB        |County   |Zipcode      |
-     #   |Leadville  |CO       |01011990   |Lake     |80461        |
-     #   |Granby     |CO       |01011990   |Grand    |80446        |
+      Examples:
+        |City       |State    |DOB        |County   |Zipcode      |
+        |Leadville  |CO       |01011990   |Lake     |80461        |
+        |Granby     |CO       |01011990   |Grand    |80446        |
 
 
-    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413 @test
+    @SLER-WIP-RT-2398 @SLER-WIP-RT-2399 @SLER-WIP-RT-2401 @SLER-WIP-RT-2405 @SLER-WIP-RT-2412 @SLER-WIP-RT-2413
     Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
       When I click create a new account on login page
       Then I click create my account from pre-screen page

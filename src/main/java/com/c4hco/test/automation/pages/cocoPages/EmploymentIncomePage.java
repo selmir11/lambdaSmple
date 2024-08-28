@@ -68,14 +68,13 @@ public class EmploymentIncomePage {
     }
 
     public void answerEmploymentQs(String employment){
+        basicActions.waitForElementToDisappear( spinner, 20 );
         switch(employment) {
             case "Yes":
-                basicActions.waitForElementToDisappear( spinner, 20 );
                 basicActions.waitForElementToBePresent(employmentYesButton, 100);
                 employmentYesButton.click();
                 break;
             case "No":
-                basicActions.waitForElementToDisappear( spinner, 20 );
                 basicActions.waitForElementToBePresent(employmentNoButton, 100);
                 employmentNoButton.click();
                 break;

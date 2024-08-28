@@ -12,12 +12,23 @@ public class EnrollmentAgreementsPageSteps {
         enrollmentAgreementsPage.selectAgreementsCheckbox(checkboxOption);
     }
 
+    // new route - 8/28/24  - EXCH
+    @And("I select the {string} agreement checkbox")
+    public void selectAgreementCheckboxExch(String checkboxOption){
+        enrollmentAgreementsPage.selectAgreementCheckboxExch(checkboxOption);
+    }
+
     @And("I enter householder signature on the Enrollment Agreements page")
     public void enterAgreementSignatureCoCo(){enrollmentAgreementsPage.enterSignature();}
 
     @And("I click continue on Enrollment Agreements page")
     public void continueInitialPaymentCoCo(){
         enrollmentAgreementsPage.clickContinue();
+    }
+    // new route - 8/28/24 - EXCH
+    @And("I click submit enrollment on Enrollment Agreements page")
+    public void submitEnrollmentEXCH(){
+        enrollmentAgreementsPage.clickSubmitEnrollment();
     }
 
     @And("I click Go Back on the Enrollment Agreements page")
