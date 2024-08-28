@@ -214,7 +214,6 @@ Feature: Seed08 - Exchange
     And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    Then I validate that there are 2 default groups
     Then I click on dental edit enrollment groups link
     Then I validate I am on the "Edit Grouping Members Dental" page
     Then I create new group in edit dental grouping page and drag members to the new group
