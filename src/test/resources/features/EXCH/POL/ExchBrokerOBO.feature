@@ -61,11 +61,10 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
 
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03022010" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Daughter" as relationship option
-    And I select "Yes" to Is Member Applying
+
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "03022010", "Female" and applying "Yes"
+      |Primary:Daughter|
+
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -114,6 +113,13 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
     Then I click all done from payment portal page
 
+    Then I validate I am on the "Account Overview" page
+    And I click on ClickHere link for "My Documents"
+    And I click on download enrolment document
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+
 
     #Gmail Verification
     Then I open outlook Tab
@@ -127,7 +133,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     #DbVerification
 
     And I verify the policy data quality check
-#    And I verify the data from book of business queue table
+    And I verify the data from book of business queue table
 
 
 
