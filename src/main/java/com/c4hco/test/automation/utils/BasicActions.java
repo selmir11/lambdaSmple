@@ -15,6 +15,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class BasicActions {
     private WebDriver driver;
@@ -496,6 +497,42 @@ public class BasicActions {
             Log.info( "Angular ready state not complete" );
             Assert.fail( "Angular ready state not complete" );
             return false;
+        }
+        return true;
+    }
+
+    public boolean elementExists(WebDriver driver, By locator) {
+        return !driver.findElements(locator).isEmpty();
+    }
+
+    public boolean isSortedAscending(List<WebElement> objectDetails) {
+        waitForElementListToBePresentWithRetries(objectDetails,10);
+        List<String> stringList = objectDetails.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < stringList.size() - 1; i++) {
+            double currentAmount = Double.parseDouble(stringList.get(i).replace("$", ""));
+            double nextAmount = Double.parseDouble(stringList.get(i + 1).replace("$", ""));
+            if (currentAmount > nextAmount) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSortedDescending(List<WebElement> objectDetails) {
+        waitForElementListToBePresentWithRetries(objectDetails,10);
+        List<String> amounts = objectDetails.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < amounts.size() - 1; i++) {
+            double currentAmount = Double.parseDouble(amounts.get(i).replace("$", ""));
+            double nextAmount = Double.parseDouble(amounts.get(i + 1).replace("$", ""));
+            if (currentAmount < nextAmount) {
+                return false;
+            }
         }
         return true;
     }

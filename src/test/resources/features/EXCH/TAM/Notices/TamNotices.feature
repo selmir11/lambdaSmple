@@ -1,4 +1,4 @@
-@TAM @TamNotices @TAMSmoke
+@TAM @TamPdf @TAMSmoke
 Feature: Elig101-01 - TAM Notices
 
   Background:
@@ -75,7 +75,6 @@ Feature: Elig101-01 - TAM Notices
     Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
     Then I validate "Application Results": "Health First Colorado" notice in "English" for "1" members
-
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "Application Results" in "English"
