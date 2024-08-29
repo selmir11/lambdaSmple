@@ -388,6 +388,12 @@ public class BasicSteps {
             case "Program Manager" :
                 pageUrl = "/AdminPortal/programManager/";
                 break;
+            case "Manage Plans" :
+                pageUrl = "/policies";
+                break;
+            case "Individual CoCo" :
+                pageUrl = "/AdminPortal/coco/individual/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

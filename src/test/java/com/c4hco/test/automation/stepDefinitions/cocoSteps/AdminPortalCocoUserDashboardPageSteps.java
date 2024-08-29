@@ -11,4 +11,5 @@ public class AdminPortalCocoUserDashboardPageSteps {
     public void iClickOnButton(String DashboardButtons) {
         adminPortalCocoUserDashboardPage.clickFromDashboardButtons(DashboardButtons);
     }
+
 }
