@@ -15,6 +15,7 @@ public class EnrollmentAgreementsCoCoPageSteps {
     @And("I enter householder signature on the Enrollment Agreements page CoCo")
     public void enterAgreementSignatureCoCo(){enrollmentAgreementsCoCoPage.enterSignatureAgreementsCoCo();}
 
+    // WIP - Remove the step once the new code is in STG
     @And("I select continue button on the Enrollment Agreements CoCo page")
     public void continueInitialPaymentCoCo(){
         enrollmentAgreementsCoCoPage.selectContinueCoCo();
