@@ -15,7 +15,7 @@ Feature: Tests the current broker table and Change Broker button on the Manage w
     And I click on Find Expert Assistance in the "individual dashboard" Header
     Then I validate I am on the "Find Expert Help Exch" page
     Then I verify Find Expert Help header Text in "English"
-    And I click on Get Assistance in the "Login Portal" Header
+    And I click on Get Assistance in the "Exch ExpertHelp" Header
     And I click on Find Expert Assistance in the "Exch ExpertHelp" Header
     Then I verify Find Expert Help header Text in "English"
     And I click on Find a Broker

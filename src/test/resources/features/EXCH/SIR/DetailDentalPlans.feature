@@ -5,8 +5,8 @@ Feature: Dental Plan Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-WIP @VerifyDentalDetailNavigation
-  Scenario: VerifyDentalDetailNavigation - this is a breakaway from CCRT-398
+  @SLER-955 @VerifyDentalDetailNavigation
+  Scenario: VerifyDentalDetailNavigation - this is a breakaway from RT-1653
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -128,7 +128,7 @@ Feature: Dental Plan Verification test
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-WIP @VerifyDentalDetailTextSpanish
+  @SLER-834 @VerifyDentalDetailTextSpanish
   Scenario: VerifyDentalDetailTextSpanish - used to be CCRT-292
     When I click create a new account on login page
     Then I click create my account from pre-screen page

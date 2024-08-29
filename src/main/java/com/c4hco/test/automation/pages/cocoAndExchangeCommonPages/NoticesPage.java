@@ -269,6 +269,7 @@ public class NoticesPage {
                 break;
             case "EN-002-04" :
                 VerifyTheNoticeTextEN00204();
+                break;
             case "AM-016-07" :
                 VerifyTheNoticeTextAM01607();
                 break;
@@ -379,7 +380,6 @@ public class NoticesPage {
     }
 
     public void VerifyTheNoticeTextEN00204() {
-
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         String formattedDate = currentDate.format(formatter);

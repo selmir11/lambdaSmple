@@ -12,14 +12,14 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "login page" Page
 
     And I click on show button in "login page"
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
 
     Then I validate Show button is displayed and enabled in "login portal Spanish"
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "login page" Page
     And I click on show button in "login page"
     Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "login page" Page
 
-    And I change the language from header to "English"
+    And I change the language from header to "English Login"
     Examples:
       | Portal    | usernameSTG                          | PWQA      | usernameQA                           | PWQA      |
       | login     | soukainatesting+headerstg@gmail.com  | ALaska12! | AutomationUser.bweczfgtTest@test.com | ALaska12! |
@@ -42,7 +42,7 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
     And I click on show button in "create account"
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
 
     Then I validate Show button is displayed and enabled in "create account Spanish"
     Then I validate when show password is displayed as "Show" the code is encrypted in "create account" Page
@@ -62,13 +62,13 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
     And I click on show button in "create account"
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
 
     Then I validate Show button is displayed and enabled in "create account Spanish"
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page
     And I click on show button in "create account"
     Then I validate when show password is displayed as "MOSTRAR" the code is encrypted in "create account" Page
-    And I change the language from header to "English"
+    And I change the language from header to "English Login"
     Examples:
       | Portal    |
       | broker    |
@@ -94,7 +94,7 @@ Feature:Implement 'show/hide password' on password field in login portal
     Then I validate when show password is displayed as "Hide" the code is encrypted in "create account" Page
 
     And I click on show button in "create account"
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
 
     Then I validate Show button is displayed and enabled in "create account Spanish"
     Then I validate when show password is displayed as "OCULTAR" the code is encrypted in "create account" Page

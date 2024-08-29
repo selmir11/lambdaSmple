@@ -38,11 +38,8 @@ Feature: Seed07exception - Exchange
     And I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05271963" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "05271963", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -59,11 +56,9 @@ Feature: Seed07exception - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "08281999" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "08281999", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
@@ -84,13 +79,10 @@ Feature: Seed07exception - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05052001" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "In Law" as relationship option
-    And I select "In Law" as relationship one option
-    And I select "Spouse" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "InLaw", "05052001", "Female" and applying "Yes"
+      |Primary:In Law|
+      |Spouse:In Law |
+      |Son:Spouse    |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "recent option" for Residential Address
@@ -191,7 +183,7 @@ Feature: Seed07exception - Exchange
     Then I validate that there are 2 default groups
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Gold" plan
+    And I select "KP Select CO Bronze 8500/50" plan
     Then I click continue on medical plan results page
     And I select "Anthem Colorado Option Silver Pathway Std" plan
     Then I click continue on medical plan results page
@@ -204,7 +196,8 @@ Feature: Seed07exception - Exchange
     And I click continue on plan summary page
 
     And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
+    And I enter "taxHolder1" signature on the Financial Help Agreements page
+    And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Terms of Use" agreement checkbox

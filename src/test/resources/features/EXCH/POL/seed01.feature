@@ -1,10 +1,10 @@
 Feature: Regression Tests that require Seed 1
 
  Background: Seed 01 For Exchange- Single Applicant NFA
-    Given I set the test scenario details
-      | totalGroups | totalMembers |
-      | 1           | 1            |
-    Given I open the login page on the "login" portal
+   Given I set the test scenario details
+     | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+     | 1           | 1            | 1                 | 0                | 1               |
+   Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -109,13 +109,11 @@ Feature: Regression Tests that require Seed 1
       | CoverageStartDate | CoverageEndDate |
       | 01-01             | 12-31           |
    And I validate member details from ob834_details table
-    | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
-    | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
+     | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+     | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
     And I validate the ob834 files should have the values
-   And I validate the REF and LX segments in EDI file
      | LX | N1 75              | REF       | REFDEN    |
      | 1  | PRE AMT 1          | 291.02    | 21.00     |
      | 2  | APTC AMT           | 0.00      | 0.00      |
@@ -126,8 +124,7 @@ Feature: Regression Tests that require Seed 1
      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
      | 8  | SEP REASON         | ADMIN_LCE | ADMIN_LCE |
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table
-#    And I validate Individual member policy table queries
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
   @RT-2246
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
@@ -164,12 +161,10 @@ Feature: Regression Tests that require Seed 1
       | CoverageStartDate | CoverageEndDate |
       | 01-01             | 12-31           |
     And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason |
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
-      | 001                   | 001                 | 25                   | DEMOGRAPHIC CHANGE |            |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
-    And I validate the REF and LX segments in EDI file
         | LX | N1 75              | REF                | REFDEN             |
         | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE | DEMOGRAPHIC CHANGE |
         | 2  | PRE AMT 1          | 291.02             | 21.00              |
@@ -180,8 +175,7 @@ Feature: Regression Tests that require Seed 1
         | 7  | TOT RES AMT        | 291.02             | 21.00              |
         | 8  | PRE AMT TOT        | 291.02             | 21.00              |
     And I verify the policy data quality check with Policy Ah keyset size 4
-#    And I verify the data from book of business queue table
-#    And I validate Individual member policy table queries
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
   @SLER-296-WIP
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB

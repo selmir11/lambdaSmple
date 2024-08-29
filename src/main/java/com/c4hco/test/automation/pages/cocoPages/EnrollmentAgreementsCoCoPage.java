@@ -31,7 +31,11 @@ public class EnrollmentAgreementsCoCoPage {
     @FindBy(id="SOL-EnrollmentAgreements-GoBack")
     WebElement goBackBtn;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void selectAgreementsCheckboxCoCo(String checkbox){
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(signatureLabel,20);
         switch(checkbox){
             case "Terms of Use":

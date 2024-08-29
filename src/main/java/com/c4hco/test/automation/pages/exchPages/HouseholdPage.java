@@ -23,6 +23,9 @@ public class HouseholdPage {
     }
 
     // update locators to ids and rename methods
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
@@ -35,8 +38,11 @@ public class HouseholdPage {
     @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
 
-    @FindBy(xpath = "//*[@class = input.submitbutton]")
-    WebElement linkName;
+    @FindBy(xpath = "//input[@class = 'linkButton]")
+    WebElement linkMember;
+
+    @FindBy(xpath = "//*[@class = 'linkButton']")
+    WebElement secondlinkMember;
 
     @FindBy(xpath = "//*[@id = 'submitButton_Income']")
     WebElement editPrimaryMemberRedIcon;
@@ -59,6 +65,9 @@ public class HouseholdPage {
     @FindBy(css = "#accountID")
     WebElement accountIdTxt;
 
+    @FindBy (css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
+    List<WebElement> basicMemberList;
+
     public void clickAddMember() {
         basicActions.waitForElementToBeClickable( addAdditionalMember,15 );
         addAdditionalMember.click();
@@ -80,6 +89,7 @@ public class HouseholdPage {
         }
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
+        System.out.println("Account_id : "+new BigDecimal(accId));
     }
 
 
@@ -99,11 +109,12 @@ public class HouseholdPage {
 
     public void iClickMemberLink (int index) {
         //linkName - aiming to use a different locator to activate the different rows
-        basicActions.waitForElementToBePresent(linkName, 10);
-        softAssert.assertTrue( linkName.isDisplayed());
-        basicActions.waitForElementToBeClickable( linkName,15 );
+        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToBePresent(linkMember, 10);
+        softAssert.assertTrue( linkMember.isDisplayed());
+        basicActions.waitForElementToBeClickable( linkMember,15 );
         index -= 1;
-        linkName.click();
+        linkMember.click();
     }
 
     public void iEditPrimaryMemberRedIcon(int index) {
@@ -137,6 +148,12 @@ public class HouseholdPage {
                 break;
             }
         }
+    }
+
+
+    public void iEditMember(int memberIndex){
+        basicActions.waitForElementListToBePresent(basicMemberList, 20);
+        basicMemberList.get(memberIndex-1).click();
     }
 
 

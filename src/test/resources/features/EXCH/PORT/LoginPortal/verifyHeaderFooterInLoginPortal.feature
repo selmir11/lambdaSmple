@@ -29,7 +29,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "Customer Service" page and close tab
     Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I click Go Back button from chrome browser
-    Then I change the language from header to "Spanish"
+    Then I change the language from header to "Spanish Login"
     Then I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "Login" page
     And I click Go Back button from chrome browser
@@ -71,7 +71,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "LinkedIn" page and close tab
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
     Then I validate I am on the "Create Account" page
     And I verify Create Your Account Header in "Spanish"
     Then I verify field headers in "Spanish"
@@ -123,7 +123,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "Customer Service" page and close tab
     Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I click Go Back button from chrome browser
-    Then I change the language from header to "Spanish"
+    Then I change the language from header to "Spanish Login"
     Then I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "Login" page
     And I click Go Back button from chrome browser
@@ -145,7 +145,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "Customer Service" page and close tab
     Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I click Go Back button from chrome browser
-    Then I change the language from header to "English"
+    Then I change the language from header to "English Login"
     And I verify text on the "Exch" "Footer" in "English"
     Then I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -165,7 +165,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "LinkedIn" page and close tab
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
     Then I validate I am on the "Forgot my password" page
     Then I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -213,7 +213,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "Customer Service" page and close tab
     Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I click Go Back button from chrome browser
-    Then I change the language from header to "Spanish"
+    Then I change the language from header to "Spanish Login"
     Then I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "Login" page
     And I click Go Back button from chrome browser
@@ -235,7 +235,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "Customer Service" page and close tab
     Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I click Go Back button from chrome browser
-    Then I change the language from header to "English"
+    Then I change the language from header to "English Login"
     And I verify text on the "Exch" "Footer" in "English"
     Then I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -255,7 +255,7 @@ Feature: Verify common header in Login Portal
     And I validate I am on the "LinkedIn" page and close tab
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
     Then I validate I am on the "forgotUsername" page
     Then I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab

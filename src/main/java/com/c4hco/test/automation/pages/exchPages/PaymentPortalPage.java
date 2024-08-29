@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,17 +27,17 @@ public class PaymentPortalPage {
 
 
     public void clickAllDone(){
-        basicActions.waitForElementToDisappear(spinner, 20);;
-        basicActions.waitForElementToBePresent( allDone,30 );
+        basicActions.waitForElementToDisappear(spinner, 30);;
+        basicActions.waitForElementToBePresent( allDone,40 );
         basicActions.scrollToElement( allDone );
-        allDone.click();
+        basicActions.clickElementWithRetries(allDone, 30);
     }
 
     public void clickAllDoneObo(){
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent( allDoneObo,30 );
         basicActions.scrollToElement( allDoneObo );
-        allDoneObo.click();
+        basicActions.clickElementWithRetries(allDoneObo, 30);
     }
 }
 

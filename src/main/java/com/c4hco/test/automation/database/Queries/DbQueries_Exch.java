@@ -11,7 +11,7 @@ public class DbQueries_Exch {
 
     public String policyTablesQuery() {
 
-        return "select eph.account_id, eph.application_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
+        return "select eph.account_id, eph.application_id,em.exch_person_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
                 "eph.policy_status, eph.current_ind, eph.effectuated_ind as effectuated_ind_eph, eph.policy_start_date, eph.policy_end_date, epfh.csr_level as csr_level_epfh, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
                 "epfh.total_premium_reduction_amt, epfh.total_responsible_amt, epfh.premium_reduction_type as premium_reduction_type_epfh, epfh.total_csr_amt, epmch.policy_member_coverage_status,epmh.member_id, epmh.responsible_adult_ind, epmh.subscriber_ind, epmh.created_by, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
                 "emcfh.csr_level as csr_level_emcfh, emcfh.member_financial_start_date, emcfh.member_financial_end_date,  emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh, emcfh.responsible_amt, eph.policy_submitted_ts, eph.policy_submitted_by\n" +
@@ -93,16 +93,6 @@ public class DbQueries_Exch {
     public String brokerId() {
         return "SELECT agency_tin_ein FROM "+dbName+".bp_agency where agency_name = '"+agencyName+"'";
     }
-    public String getMemberMedFinancialRecords(){
-        return "SELECT mcf.member_financial_start_date, mcf.member_financial_end_date, mcf.plan_premium_amt, mcf.premium_reduction_amt, \n" +
-                "mcf.responsible_amt, mcf.csr_amt, mcf.premium_reduction_type, mcf.csr_level, p.coverage_type\n" +
-                "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
-                "JOIN "+dbName+".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
-                "JOIN "+dbName+".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
-                "JOIN "+dbName+".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
-                "WHERE p.account_id = '"+acctId+"'"+ " and coverage_type=1";
-    }
-
     public String getCSRRecords(){
         return "SELECT mcf.csr_amt, p.coverage_type\n" +
                 "FROM  "+dbName+".en_member_coverage_financial_ah mcf\n" +
@@ -120,26 +110,45 @@ public class DbQueries_Exch {
         return  "set search_path ="+dbName;
     }
 
-    public String getBookOfBusinessQ(){
-        return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages\n" +
-                "where application_id = 'book_of_business_q:policy-svc'\n" +
-                "and message->>'householdAccountId' = '"+acctId+"'\n" +
-                "ORDER BY created_ts desc";
+    public String getBookOfBusinessQ(String eventType){
+        return " select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages " +" where application_id = 'book_of_business_q:policy-svc' " +" and message->>'householdAccountId' = '"+acctId+"' " + " and message->>'eventType' ='"+eventType+"' ORDER BY created_ts desc";
     }
     public String policyId(){
-        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy ep \n" +
-                "where account_id =  '"+acctId+"' ORDER BY created_ts desc";
+        return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy_ah ep " +
+                "where account_id =  '"+acctId+"' " +
+                "and current_ind = '1'";
     }
 
     public String getAcct_holder_fnFromBOB(){
         return "select acct_holder_fn from  "+dbName+".bp_book_of_business\n "+
                 "where account_id = '"+acctId+"'";
     }
+
+    public String verifyBrokerAuthorizationInBOB(String clientFirstName){
+        return "select broker_name from  "+dbName+".bp_book_of_business\n "+
+                "where acct_holder_fn = '"+clientFirstName+"' and curr_yr_app_id is null and curr_pol_policy_status is null and nxt_yr_app_id is null and next_pol_policy_status is null";
+    }
+
+    public String verifyApplicationSubmissionInBOB(){
+        return "select account_id from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+acctId+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
+    }
+
+    public String verifyPolicySubmissionInBOB(int coverageType){
+        return "select account_id from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
+    }
+
     //Policy table queries
     public String enPolicyAh(){
-        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph \n" +
-                "where account_id = '"+ acctId+"'";
+        return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph " +
+                "where account_id = '"+acctId+"'";
     }
+    public String appIdFromEnPolicyAh(){
+        return "select application_id from "+dbName+".en_policy_ah " +
+                "where account_id = '"+acctId+"' and current_ind = 1";
+    }
+
 
     public String enMem_Coverage_FinancialAh(){
         return "select emcfh.member_coverage_financial_ah_id, emcfh.policy_member_coverage_ah_id, emcfh.member_coverage_financial_id, emcfh.policy_member_coverage_id, \n" +
@@ -170,4 +179,5 @@ public class DbQueries_Exch {
                 "from "+dbName+".es_manual_verif_request\n"+
                 "where account_id = '"+acctId+"'";
     }
+
 }

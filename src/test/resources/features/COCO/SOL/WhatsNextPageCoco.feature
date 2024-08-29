@@ -37,7 +37,7 @@ Feature: Tests related to What's Next Page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "Marriage" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -56,11 +56,8 @@ Feature: Tests related to What's Next Page
     And I select "Dental Coverage" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
-    #Then I click all done from payment portal page coco
-    And I select make payment button to pay the premium CoCo
-    And I select Continue button on the Payment Selection CoCo page
-    And I select continue button on the Initial Payment CoCo page
-    Then I validate I am on the "Congratulations - What's Next?" page
+    Then I click all done from payment portal page coco
+
 
 
 

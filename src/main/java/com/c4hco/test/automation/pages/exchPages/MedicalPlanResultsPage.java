@@ -14,7 +14,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -32,7 +31,6 @@ public class MedicalPlanResultsPage {
 
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
-
 
     @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue']")
     public WebElement continueBtn;
@@ -93,7 +91,6 @@ public class MedicalPlanResultsPage {
      public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
-
     }
 
     public void iGetFirstPlanName() {
@@ -102,6 +99,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void SelectFirstMedicalPlan() {
+        basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);
         selectFirstPlan.click();
     }
@@ -112,6 +110,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickGoBack(){
+        basicActions.waitForAngular( 10 );
         basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent( btnGoBack,30 );
         basicActions.scrollToElement( btnGoBack );
@@ -198,6 +197,7 @@ public class MedicalPlanResultsPage {
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
         List<MemberDetails> memberslist = SharedData.getMembers();
+        basicActions.waitForElementToDisappear(spinner, 30);
         if(memberslist !=null){
             for (int i = 0; i < memberslist.size(); i++) {
                 memberslist.get(i).setMedicalPlan(planName);
@@ -222,6 +222,8 @@ public class MedicalPlanResultsPage {
     }
 
     private void clickPlanButton(int index){
+         basicActions.wait(2000);
+         basicActions.waitForElementToBePresent(spinner, 10);
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         basicActions.waitForElementToBeClickable(ePlanID, 10);
@@ -236,7 +238,7 @@ public class MedicalPlanResultsPage {
 
     public void validatePlanCount(String plansCount){
         basicActions.waitForElementToBePresent(planCount, 30);
-        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+"  Medical Plans", "Medical plans count did not match");
+        Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+" Medical Plans", "Medical plans count did not match");
     }
 
 

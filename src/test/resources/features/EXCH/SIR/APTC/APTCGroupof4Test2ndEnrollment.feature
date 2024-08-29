@@ -6,7 +6,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
   @SLER-GroupOf4-WIP
-  Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4 - baseline for group APTC tests
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -52,7 +52,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101990", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "Spouse", DOB "10101990", Gender "Female" and applying status "Yes"
       |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
@@ -76,9 +76,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "DaughterOne", "10102010", "Male" and applying "Yes"
-      |Primary:Son   |
-      |Spouse:Son    |
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "DaughterOne", DOB "10102010", Gender "Female" and applying status "Yes"
+      |Primary:Daughter  |
+      |Spouse:Daughter   |
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
 
@@ -102,10 +102,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "DaughterOne", DOB "10102010", Gender "Female" and applying status "Yes"
-      |Primary:Daughter |
-      |Spouse:Daughter  |
-      |SonOne:Sister    |
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "DaughterTwo", DOB "10102010", Gender "Female" and applying status "Yes"
+      |Primary:Daughter    |
+      |Spouse:Daughter     |
+      |DaughterOne:Sister  |
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
 

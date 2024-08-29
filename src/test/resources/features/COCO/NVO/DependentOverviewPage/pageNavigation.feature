@@ -66,8 +66,11 @@ Feature: Navigation - Dependent Overview page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     And I click Continue on the Dependent Overview Page CoCo
-    Then I validate I am on the "CoCo life change event" page
-    And I select Go Back on the LCE page
-    And I select continue on the Family Overview page
+    And I select "InsuranceLoss" life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

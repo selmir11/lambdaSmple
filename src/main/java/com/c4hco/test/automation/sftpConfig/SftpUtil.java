@@ -78,6 +78,21 @@ public class SftpUtil {
         }
     }
 
+    public void uploadFileInSftp(String fileName, String remoteFilePath) throws JSchException {
+        connectToSftp();
+        String localPath = SharedData.getLocalPathToDownloadFile();
+        ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+        channelSftp.connect();
+        try{
+           channelSftp.put(localPath+fileName, remoteFilePath);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            channelSftp.disconnect();
+            disconnectFromSftp();
+        }
+    }
+
     public void disconnectFromSftp(){
         if(session != null && session.isConnected()){
             session.disconnect();

@@ -66,6 +66,9 @@ public class ApplicationResultsPage {
     @FindBy(css = ".tot-sav .tot-sav-head-right")
     WebElement totalAptcValue;
 
+    @FindBy(css = ".left-div > div > div button")
+    WebElement applicationSummaryLnk;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage(WebDriver webDriver) {
@@ -157,5 +160,10 @@ public class ApplicationResultsPage {
 
     public void validateTextOnPage(String text) {
         basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath("//*[contains(text(),\""+text+"\")]")), 15);
+    }
+
+    public void clickViewApplicationSummary() {
+        basicActions.waitForElementToBePresent(applicationSummaryLnk, 20);
+        applicationSummaryLnk.click();
     }
 }

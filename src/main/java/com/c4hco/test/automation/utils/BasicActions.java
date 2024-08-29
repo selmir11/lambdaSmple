@@ -1,22 +1,21 @@
 package com.c4hco.test.automation.utils;
+
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
 import java.io.File;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.*;
 import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class BasicActions {
     private WebDriver driver;
@@ -158,6 +157,25 @@ public class BasicActions {
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
             } catch (StaleElementReferenceException e) {
+                retries--;
+                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+            } catch (TimeoutException e) {
+                Log.info("Element is not present");
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public Boolean clickElementWithRetries(WebElement webElement, int waitTime) {
+        int retries = 5; // Number of retries to handle element interception
+        while (retries > 0) {
+            try {
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+               webElement.click();
+                return true;
+            } catch (ElementClickInterceptedException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -454,6 +472,69 @@ public class BasicActions {
     }
     public static String getUniquePW(){
         return RandomStringUtils.random(8,1234+"2@ACRTYUIOPcdefghijklmnopQWERTYUIOPASDFqrstuvwxyz234566");
+    }
+
+    public Boolean waitForPageLoad(int waitTime) {
+        try {
+            new WebDriverWait( driver, Duration.ofSeconds( waitTime ) ).until( (ExpectedCondition<Boolean>) wd ->
+                    ((JavascriptExecutor) wd).executeScript( "return document.readyState" ).equals( "complete" ) );
+        } catch (TimeoutException ignore) {
+            Log.info( "Document ready state not complete" );
+            Assert.fail( "Document ready state not complete" );
+            return false;
+        }
+        return true;
+    }
+    public Boolean waitForAngular(int waitTime) {
+        driver.manage().timeouts().setScriptTimeout(waitTime, TimeUnit.SECONDS);
+        try {
+            //Wait for DOM ready
+            waitForPageLoad(waitTime);
+            //Wait for Angular ready
+            ((JavascriptExecutor) driver).executeAsyncScript(
+                    "getAllAngularTestabilities()[0].whenStable(arguments[arguments.length - 1], " + (waitTime * 1000) + ")");
+        } catch (TimeoutException ignore) {
+            Log.info( "Angular ready state not complete" );
+            Assert.fail( "Angular ready state not complete" );
+            return false;
+        }
+        return true;
+    }
+
+    public boolean elementExists(WebDriver driver, By locator) {
+        return !driver.findElements(locator).isEmpty();
+    }
+
+    public boolean isSortedAscending(List<WebElement> objectDetails) {
+        waitForElementListToBePresentWithRetries(objectDetails,10);
+        List<String> stringList = objectDetails.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < stringList.size() - 1; i++) {
+            double currentAmount = Double.parseDouble(stringList.get(i).replace("$", ""));
+            double nextAmount = Double.parseDouble(stringList.get(i + 1).replace("$", ""));
+            if (currentAmount > nextAmount) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSortedDescending(List<WebElement> objectDetails) {
+        waitForElementListToBePresentWithRetries(objectDetails,10);
+        List<String> amounts = objectDetails.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < amounts.size() - 1; i++) {
+            double currentAmount = Double.parseDouble(amounts.get(i).replace("$", ""));
+            double nextAmount = Double.parseDouble(amounts.get(i + 1).replace("$", ""));
+            if (currentAmount < nextAmount) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 

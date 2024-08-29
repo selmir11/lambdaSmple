@@ -50,7 +50,8 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "01011980", "Female", "Spouse", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Wife", "01011980", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -81,7 +82,9 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "01011990", "Male", "Unrelated", "Unrelated", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "UnrelatedOne", "01011990", "Male" and applying "Yes"
+      | Primary:Unrelated |
+      | Wife:Unrelated    |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -112,7 +115,10 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "01011990", "Male", "Unrelated", "Unrelated", "Spouse", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "UnrelatedTwo", "01011990", "Male" and applying "Yes"
+      | Primary:Unrelated   |
+      | Wife:Unrelated      |
+      | UnrelatedOne:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"

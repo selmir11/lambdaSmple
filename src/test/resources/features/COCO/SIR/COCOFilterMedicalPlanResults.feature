@@ -98,7 +98,6 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
 
-
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -155,6 +154,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
       | Kaiser Permanente           | KP Colorado Option Silver Enhanced 94% AV                                 |
       | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%            |
       | Select Health               | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange      |
+
+
+
 
 
 

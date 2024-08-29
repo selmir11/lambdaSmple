@@ -41,25 +41,49 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify the policy data quality check with Policy Ah keyset size {int}")
    public void iValidatePolicyDqCheck(int keysetSize){dbValidations.validatePolicyDqCheck(keysetSize);}
 
-   @And("I verify the data from book of business queue table")
-   public void iValidateBookOfBusinessQ(){dbValidations.validateBookOfBusinessQ();}
+   @And("I verify the data from book of business queue table with {string} as event type")
+   public void iValidateBookOfBusinessQ(String eventType){dbValidations.validateBookOfBusinessQ(eventType);}
 
    @And("I verify the account holder Name in BOB DB")
    public void iVerifyTheAccountHolderNameInBOBDB() {
       dbValidations.validateAccountHolderNameFromBOB();
    }
-   @And("I validate Individual member policy table queries")
-   public void ivalidateIndPolicyTableQueries(){
 
-      policyTableValidations.validateEnPolicyTableDetails();
-      policyTableValidations.validateEnMemberCoverageFinancialAh();
-      policyTableValidations.validateEnPolicyMemberCoverageAh();
-      policyTableValidations.validateEnPolicyFinancialAh();
-      policyTableValidations.validateEnPolicyMemberAh();
-
+   @And("I verify the broker authorization in BoB DB is {string}")
+   public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
+      dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
    }
 
    @And("I validate MVR details for account")
    public void iValidateMVRDetails(List<Map<String, String>> expectedValues){dbValidations.validateMVR(expectedValues);}
 
 }
+
+   @And("I verify the client application submission in BoB DB")
+   public void iVerifyApplicationSubmissionBobDb() {
+      dbValidations.validateApplicationSubmissionBob();
+   }
+
+   @And("I verify the client's policy submission in BoB DB has {int} expected records for coverage type {int}")
+   public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords, int coverageType) {
+      dbValidations.validatePolicySubmissionBob(expectedRecords, coverageType);
+   }
+
+   @And("I verify there are no medical records for my client in BoB DB")
+   public void iVerifyNoMedicalPolicySubmissionBobDb() {
+      dbValidations.validateNoMedicalPolicySubmissionBob();
+   }
+
+//   @And("I validate Individual member policy table queries")
+//   public void ivalidateIndPolicyTableQueries(){
+//
+//      policyTableValidations.validateEnPolicyTableDetails();
+//      policyTableValidations.validateEnMemberCoverageFinancialAh();
+//      policyTableValidations.validateEnPolicyMemberCoverageAh();
+//      policyTableValidations.validateEnPolicyFinancialAh();
+//      policyTableValidations.validateEnPolicyMemberAh();
+//
+//   }
+
+}
+

@@ -52,6 +52,9 @@ public class YourClientsPage {
     @FindBy(id = "client-data-title-row")
     WebElement clientRow;
 
+    @FindBy(id = "mat-expansion-panel-header-2")
+    WebElement clientSecondRow;
+
     @FindBy(id = "status0")
     WebElement clientStatus;
 
@@ -96,6 +99,7 @@ public class YourClientsPage {
     }
 
     public void searchForClient(){
+        basicActions.waitForElementToBePresent(clientSecondRow, 1000);
         basicActions.waitForElementToBePresent(searchClient, 1000);
         String firstName =SharedData.getPrimaryMember().getFirstName();
         searchClient.sendKeys(firstName);
@@ -104,6 +108,8 @@ public class YourClientsPage {
 
 
     public void clickClientResult() {
+        basicActions.waitForElementToDisappear(clientSecondRow, 10);
+        basicActions.waitForElementToBePresent(clientRow,10);
         Actions actions = new Actions(basicActions.getDriver());
         WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
         basicActions.waitForElementToBePresent(firstClientResult,100);
@@ -129,17 +135,18 @@ public class YourClientsPage {
     }
 
     public void clickOptionToHandelClient(String option) {
-        basicActions.waitForElementToBePresent(removeClient,100);
+        basicActions.waitForElementToBePresent(clientRow,100);
 
-        basicActions.scrollToElement(manageClient);
         switch (option){
             case "remove Client":
+                basicActions.waitForElementToBePresent(removeClient,100);
                 removeClient.click();
                 break;
             case "transfer":
                 transferClient.click();
                 break;
             case "manage":
+                basicActions.scrollToElement(manageClient);
                 manageClient.click();
                 break;
             default:
