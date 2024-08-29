@@ -6,16 +6,8 @@ import io.cucumber.java.en.And;
 
 public class EnrollmentAgreementsPageSteps {
     EnrollmentAgreementsPage enrollmentAgreementsPage = new EnrollmentAgreementsPage(WebDriverManager.getDriver());
-    // old function  - remove after 8/29/24
     @And("I select {string} agreement checkbox")
     public void selectAgreementCheckboxCoCo(String checkboxOption){
-        enrollmentAgreementsPage.selectAgreementsCheckbox(checkboxOption);
-    }
-    ////////////////////////////
-
-    // new route - 8/28/24  - EXCH
-    @And("I select the {string} agreement checkbox")
-    public void selectAgreementCheckboxExch(String checkboxOption){
         enrollmentAgreementsPage.selectAgreementsCheckbox(checkboxOption);
     }
 
