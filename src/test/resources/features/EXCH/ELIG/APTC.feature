@@ -257,6 +257,7 @@ Feature: UI Tests related to APTC
     And I wait for hold on content to disappear
     Then I validate that my APTC value is "$617.83/mo"
     Then I click on view results and shop
+    And I change views to Tax Household 1
     Then I validate that my Tax Household's APTC value is "$363.44/mo"
     And I change views to Tax Household 2
     And I validate that my Tax Household's APTC value is "$254.39/mo"

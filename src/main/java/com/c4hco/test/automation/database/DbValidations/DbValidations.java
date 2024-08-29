@@ -459,10 +459,17 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
         softAssert.assertEquals(SharedData.getMembers().get(0).getFirstName(), acct_holderBOB.get(0));
+        softAssert.assertAll();
+    }
+
+    public void validateMVR(List<Map<String, String>> expectedValues){
+        EsManualVerifRequestEntity actualResult = exchDbDataProvider.getEsMVR_options();
+        System.out.println(actualResult);
+
+        softAssert.assertEquals(actualResult.getManual_verification_type(), expectedValues.get(0).get("manual_verification_type"));
         softAssert.assertAll();
     }
 

@@ -59,4 +59,7 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 
    }
 
+   @And("I validate MVR details for account")
+   public void iValidateMVRDetails(List<Map<String, String>> expectedValues){dbValidations.validateMVR(expectedValues);}
+
 }

@@ -20,7 +20,7 @@ public class AccountOverviewPage {
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
-    @FindBy(css = "#submit-curr-yr-3")
+    @FindBy(name = "applyForCurrentYear")
     WebElement btnApplyForCurrentYear;
 
     @FindBy(css = "#submit-curr-yr-1")

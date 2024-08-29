@@ -93,6 +93,7 @@ public class ApplicationResultsPage {
     public void changeTaxHouseHold(int taxHH){
         String taxHouseHold = "Tax Household #"+taxHH+" benefits";
 
+        basicActions.waitForElementToBePresent(selectTaxHouseHold, 10);
         Select dropdown = new Select(selectTaxHouseHold);
         dropdown.selectByVisibleText(taxHouseHold);
     }
