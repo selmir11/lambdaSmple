@@ -39,6 +39,31 @@ public class YourClientsPageSteps {
         yourClientsPage.verifyCurrentClientStatus(expectedClientStatus);
     }
 
+    @And("I verify my client's name is displayed")
+    public void iVerifyClientFullName() {
+        yourClientsPage.verifyClientFullName();
+    }
+
+    @And("I verify my client's second subscriber's name")
+    public void iVerifySecondSubscriberName() {
+        yourClientsPage.verifySecondSubscriberName();
+    }
+
+    @Then("I verify that my client's second subscriber status is POLICY SUBMITTED")
+    public void iVerifySecondClientStatus() {
+        yourClientsPage.verifySecondClientStatus();
+    }
+
+    @And("I verify my client's third subscriber's name")
+    public void iVerifyThirdSubscriberName() {
+        yourClientsPage.verifyThirdSubscriberName();
+    }
+
+    @Then("I verify that my client's third subscriber status is POLICY SUBMITTED")
+    public void iVerifyThirdClientStatus() {
+        yourClientsPage.verifyThirdClientStatus();
+    }
+
     @And("I click {string} the client")
     public void iClickTheClient(String option) {
         yourClientsPage.clickOptionToHandelClient(option);
