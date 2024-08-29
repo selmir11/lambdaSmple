@@ -645,6 +645,6 @@ Feature: CoupleWithChildrens - End to End Test
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-    
+
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"

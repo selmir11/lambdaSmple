@@ -512,14 +512,10 @@ Feature: Individual adult - End to End Test
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select the "Acknowledgement" agreement checkbox CoCo
-    And I select the "Submit" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-    #And I select continue button on the Enrollment Agreements CoCo page
-    #And I select "Terms of Use" agreement checkbox CoCo
-    #And I select "Privacy Policy" agreement checkbox CoCo
-    #And I select "Dental Coverage" agreement checkbox CoCo
 
     Then I click all done obo from payment portal page coco
     #uncomment the below lines and test after the bug is fixed.
