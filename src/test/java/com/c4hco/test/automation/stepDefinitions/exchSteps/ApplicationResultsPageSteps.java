@@ -51,4 +51,9 @@ public class ApplicationResultsPageSteps {
     public void iVerifyTheMemberIsNotEligibleForAQualifiedHealthPlan(String Text) {
         applicationResultsPage.validateTextOnPage(Text);
     }
+
+    @Then("I click View Application Summary link")
+    public void iClickViewApplicationSummary(){
+        applicationResultsPage.clickViewApplicationSummary();
+    }
 }

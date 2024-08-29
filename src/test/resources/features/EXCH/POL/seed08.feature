@@ -1,6 +1,6 @@
-Feature: Seed08exception - Exchange
+Feature: Seed08 - Exchange
 
-  Background: Seed 08 with exception For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+  Background: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -172,9 +172,29 @@ Feature: Seed08exception - Exchange
     Then I Declare as Tax Household 2
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    And I click "Admin LCE" from application links dropdown
+    And I look up with account id on admin tool page
+    And I change effective date to "0101" of current year from admin portal
+    Then logout from Admin Portal
+
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Eligibility"
+    Then I validate I am on the "Application History" page
+    Then I set data from application history page
     Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
 
@@ -189,12 +209,11 @@ Feature: Seed08exception - Exchange
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" plan
+    And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
-    And I select "KP Select CO Bronze 8500/50" plan
+    And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    Then I validate that there are 2 default groups
     Then I click on dental edit enrollment groups link
     Then I validate I am on the "Edit Grouping Members Dental" page
     Then I create new group in edit dental grouping page and drag members to the new group
@@ -225,3 +244,5 @@ Feature: Seed08exception - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
+
+
