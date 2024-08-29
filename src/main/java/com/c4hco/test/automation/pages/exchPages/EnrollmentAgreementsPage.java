@@ -46,6 +46,7 @@ public class EnrollmentAgreementsPage {
        basicActions.waitForElementToDisappear( spinner, 15 );
        basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
         switch (checkbox) {
+            // WIP - Remove the first 3 cases once the code is deployed to STG
             case "Terms of Use":
                 agreementsChckbx.get(0).click();
                 break;
@@ -55,15 +56,6 @@ public class EnrollmentAgreementsPage {
             case "Understand Law":
                 agreementsChckbx.get(2).click();
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid option selected to click checkboxes: " + checkbox);
-        }
-    }
-
-    public void selectAgreementCheckboxExch(String checkboxOption) {
-        basicActions.waitForElementToDisappear( spinner, 15 );
-        basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
-        switch (checkboxOption) {
             case "Acknowledgement":
                 understandAcknowledgeChckbx.click();
                 break;
@@ -71,9 +63,10 @@ public class EnrollmentAgreementsPage {
                 understandSigChckbx.click();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option selected to click checkboxes: " + checkboxOption);
+                throw new IllegalArgumentException("Invalid option selected to click checkboxes: " + checkbox);
         }
     }
+
 
     public void enterSignature(){
             basicActions.waitForElementToBeClickable(signatureInput, 10);
@@ -81,6 +74,7 @@ public class EnrollmentAgreementsPage {
     }
 
     public void clickContinue() {
+
         basicActions.waitForElementToBeClickable(continueBtn, 5);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         continueBtn.click();
@@ -90,8 +84,6 @@ public class EnrollmentAgreementsPage {
         basicActions.scrollToElement( submitEnrollmentBtn );
         submitEnrollmentBtn.click();
     }
-
-    //submitEnrollmentBtn
 
     public void clickGoBack() {
         basicActions.waitForElementToBePresent( goBackbtn,30 );

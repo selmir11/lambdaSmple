@@ -47,9 +47,6 @@ public class MedicalPlanResultsPage {
     @FindBy (id="MedicalPlanResults-Skip")
     WebElement btnSkip;
 
-    //@FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
-    //List<WebElement> comparePlanLinks;
-
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
     WebElement firstCompareBox;
 
@@ -144,10 +141,6 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToBePresent( firstCompareBox,10 );
         firstCompareBox.click();
         secondCompareBox.click();
-
-        //basicActions.waitForElementListToBePresent(comparePlanLinks, 30);
-        //comparePlanLinks.get(0).click();
-        //comparePlanLinks.get(1).click();
     }
 
     public void clickInsuranceCompanyDropdown() {

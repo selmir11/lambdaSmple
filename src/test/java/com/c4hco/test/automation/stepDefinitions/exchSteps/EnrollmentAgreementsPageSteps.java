@@ -16,7 +16,7 @@ public class EnrollmentAgreementsPageSteps {
     // new route - 8/28/24  - EXCH
     @And("I select the {string} agreement checkbox")
     public void selectAgreementCheckboxExch(String checkboxOption){
-        enrollmentAgreementsPage.selectAgreementCheckboxExch(checkboxOption);
+        enrollmentAgreementsPage.selectAgreementsCheckbox(checkboxOption);
     }
 
     @And("I enter householder signature on the Enrollment Agreements page")
