@@ -14,10 +14,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.validateBluBar();
     }
 
-    @And("I validate title and labels on Manage page Coco account")
-    public void iContainerTitleLabelsCoco() {
-        adminPortalManagePlansPage.containerTitleLabelsCoco();
-    }
+    @And("I validate title and labels on Manage page")
+    public void iContainerTitleLabels() {
+        adminPortalManagePlansPage.containerTitleLabels();      }
 
     @Then("I check default year displays")
     public void iCheckDefaultCurrentYear() {
@@ -68,6 +67,10 @@ public class AdminPortalManagePlansSteps {
     @And("I validate buttons displayed on CoCo Manage page")
     public void iResetMakeChangeButtonsCocoDisplayed() {
         adminPortalManagePlansPage.resetMakeChangeButtonsCocoDisplayed();       }
+    @And("I validate title and labels on Manage page Coco account")
+    public void iContainerTitleLabelsCoco() {
+        adminPortalManagePlansPage.containerTitleLabelsCoco();
+    }
 
 }
 
