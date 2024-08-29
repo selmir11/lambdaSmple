@@ -170,12 +170,13 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
@@ -341,12 +342,13 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
@@ -498,12 +500,13 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
@@ -636,11 +639,12 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
