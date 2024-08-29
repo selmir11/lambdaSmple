@@ -30,11 +30,6 @@ public class EnrollmentAgreementsCoCoPageSteps {
         enrollmentAgreementsCoCoPage.validatePageText();
     }
 
-    // new code for 8/29/24 code move to STG
-    @And("I select the {string} agreement checkbox CoCo")
-    public void selectAgreementSigCheckboxCoCo(String checkboxOption){
-        enrollmentAgreementsCoCoPage.selectAgreementCheckboxCoCo(checkboxOption);
-    }
 
     // new code for 8/29/24 code move to STG
     @And("I select submit enrollment button on the Enrollment Agreements CoCo page")

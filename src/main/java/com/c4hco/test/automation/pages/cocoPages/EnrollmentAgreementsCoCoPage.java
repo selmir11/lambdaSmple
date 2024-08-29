@@ -46,6 +46,7 @@ public class EnrollmentAgreementsCoCoPage {
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(signatureLabel,20);
         switch(checkbox){
+            // remove this area after code update 8/29
             case "Terms of Use":
                 agreementsCheckbox.get(0).click();
                 break;
@@ -55,15 +56,7 @@ public class EnrollmentAgreementsCoCoPage {
             case "Dental Coverage":
                 agreementsCheckbox.get(2).click();
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +checkbox);
-        }
-    }
-
-    public void selectAgreementCheckboxCoCo(String agreementsChckbx) {
-        basicActions.waitForElementToDisappear( spinner, 15 );
-        basicActions.waitForElementToBePresent(understandAcknowledgeChckbx, 10);
-        switch (agreementsChckbx) {
+            /////////////////////////////////////////////
             case "Acknowledgement":
                 understandAcknowledgeChckbx.click();
                 break;
@@ -71,9 +64,10 @@ public class EnrollmentAgreementsCoCoPage {
                 understandSigChckbx.click();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option selected to click checkboxes: " + agreementsChckbx);
+                throw new IllegalArgumentException("Invalid option: " +checkbox);
         }
     }
+
     public void enterSignatureAgreementsCoCo(){
         basicActions.waitForElementToBePresent(signatureLabel, 10);
         String label = signatureLabel.getText();
