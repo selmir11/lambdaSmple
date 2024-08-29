@@ -16,6 +16,8 @@ public class EnrollmentAgreementsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
     @FindBy(css="mat-checkbox input")
     List<WebElement> agreementsCheckbox;
 
@@ -31,13 +33,20 @@ public class EnrollmentAgreementsCoCoPage {
     @FindBy(id="SOL-EnrollmentAgreements-GoBack")
     WebElement goBackBtn;
 
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
-    WebElement spinner;
+
+    @FindBy(id="SOL-EnrollmentAgreements-UnderstandAndAgree")
+    WebElement understandAcknowledgeChckbx;
+
+    @FindBy(id = "SOL-EnrollmentAgreements-UnderstandElectronicSignature")
+    WebElement understandSigChckbx;
+    @FindBy(id="SOL-EnrollmentAgreements-SubmitEnrollment")
+    WebElement submitEnrollmentBtn;
 
     public void selectAgreementsCheckboxCoCo(String checkbox){
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(signatureLabel,20);
         switch(checkbox){
+            // remove this area after code update 8/29
             case "Terms of Use":
                 agreementsCheckbox.get(0).click();
                 break;
@@ -46,6 +55,13 @@ public class EnrollmentAgreementsCoCoPage {
                 break;
             case "Dental Coverage":
                 agreementsCheckbox.get(2).click();
+                break;
+            /////////////////////////////////////////////
+            case "Acknowledgement":
+                understandAcknowledgeChckbx.click();
+                break;
+            case "Submit":
+                understandSigChckbx.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +checkbox);
@@ -65,6 +81,12 @@ public class EnrollmentAgreementsCoCoPage {
     public void selectContinueCoCo() {
         basicActions.waitForElementToBeClickable(continueButton, 5);
         continueButton.click();
+    }
+
+    public void clickSubmitEnrollment() {
+        basicActions.waitForElementToBePresent(submitEnrollmentBtn, 15);
+        basicActions.scrollToElement( submitEnrollmentBtn );
+        submitEnrollmentBtn.click();
     }
 
     public void clickBackBtn() {
