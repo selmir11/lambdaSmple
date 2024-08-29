@@ -173,4 +173,20 @@ public class DbQueries_Exch {
                 "where application_id = '"+applicationId+"'";
     }
 
+    public String countOfPersonIds(){
+        return "Select count(exch_person_id)\n" +
+                "From "+dbName+".ES_MEMBER\n" +
+                "Where exch_person_id in (\n" +
+                "Select exch_person_id \n " +
+                "from "+dbName+".ES_MEMBER mcf\n" +
+                "JOIN "+dbName+".ES_HOUSEHOLD pmc ON mcf.household_id = pmc.household_id\n" +
+                "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"')";
+    }
+
+    public String esHousehold(){
+        return "select * from "+dbName+".ES_MEMBER mcf\n" +
+                "JOIN "+dbName+".ES_HOUSEHOLD pmc ON mcf.household_id = pmc.household_id\n" +
+                "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
 }

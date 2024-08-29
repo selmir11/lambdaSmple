@@ -69,15 +69,21 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateNoMedicalPolicySubmissionBob();
    }
 
-//   @And("I validate Individual member policy table queries")
-//   public void ivalidateIndPolicyTableQueries(){
-//
-//      policyTableValidations.validateEnPolicyTableDetails();
-//      policyTableValidations.validateEnMemberCoverageFinancialAh();
-//      policyTableValidations.validateEnPolicyMemberCoverageAh();
-//      policyTableValidations.validateEnPolicyFinancialAh();
-//      policyTableValidations.validateEnPolicyMemberAh();
-//
-//   }
+   @And("I validate Individual member policy table queries")
+   public void ivalidateIndPolicyTableQueries(){
+
+      policyTableValidations.validateEnPolicyTableDetails();
+      policyTableValidations.validateEnMemberCoverageFinancialAh();
+      policyTableValidations.validateEnPolicyMemberCoverageAh();
+      policyTableValidations.validateEnPolicyFinancialAh();
+      policyTableValidations.validateEnPolicyMemberAh();
+
+   }
+
+   @And("I verify Person ID is unique in the DB")
+   public void iValidateUniquePersonId(){policyTableValidations.validateUniquePersonId();}
+
+   @And("I verify Person ID review status is Manual Review Required")
+   public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
 
 }

@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.asserts.SoftAssert;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -119,6 +120,18 @@ public class PolicyTableValidations {
         softAssert.assertEquals(enPolMemAhEntities.get(1).getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(enPolMemAhEntities.get(1).getResponsible_adult_ind(), "0", "Responsible adult indicator is not zero");
         softAssert.assertEquals(enPolMemAhEntities.get(1).getCreated_by(), SharedData.getPrimaryMember().getEmailId(), "Created by does not match");
+        softAssert.assertAll();
+    }
+
+    public void validateUniquePersonId(){
+            List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getCountOfPersonIds();
+        softAssert.assertEquals(esMemberHouseholdEntities.get(0).getCount(), "1", "Count of Person IDs is not 1");
+        softAssert.assertAll();
+    }
+
+    public void validatePersonIdReviewStatus(){
+            List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getEsHousehold();
+        softAssert.assertEquals(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "MANUAL_REVIEW_REQUIRED", "Status is not Manual Review Required");
         softAssert.assertAll();
     }
 
