@@ -114,7 +114,7 @@ public class MedicalPlansCoCoPage {
     public void validateSESCOCOPlanTotals(String sesPlanTotal){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( planTotalsCoCo,20 );
-        Assert.assertEquals(planTotalsCoCo.getText(), sesPlanTotal+" of "+sesPlanTotal+" Medical Plans", "Medical plans count did not match");
+        Assert.assertEquals(planTotalsCoCo.getText(), sesPlanTotal+" of 24 Medical Plans", "Medical plans count did not match");
 
     }
 
