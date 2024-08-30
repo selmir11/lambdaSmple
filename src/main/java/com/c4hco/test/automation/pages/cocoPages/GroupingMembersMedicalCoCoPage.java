@@ -54,6 +54,7 @@ public class GroupingMembersMedicalCoCoPage {
 
     public void clickContinue() {
         basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForAngular( 20 );
         basicActions.waitForElementToBePresent(continueButton, 20);
         basicActions.waitForElementToBeClickable(continueButton, 30);
         continueButton.click();

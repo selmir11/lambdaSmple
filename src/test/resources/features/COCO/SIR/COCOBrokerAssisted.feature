@@ -48,7 +48,6 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
 
-
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -60,7 +59,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Ethnicity and race page
 
     And I select "Yes" employment option
-    And I enter "40,000.00" income amount
+    And I enter "4000000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -107,8 +106,12 @@ Feature: Individual adult - End to End Test
 
     Then I click all done obo from payment portal page coco
 
-    Then I validate I am on the "CoCo Welcome" page
-    And I click on Sign Out in the Header for "Elmo"
+     #Then I validate I am on the "CoCo Welcome" page
+    #And I click on Sign Out in the Header for "Elmo"
+
+    And I validate I am on the "Agency Dashboard" page
+    And I click on Sign Out in the Header for "NonElmo"
+
 
   @SLCR-193
   Scenario: This will create 2 couples with Broker assistance
