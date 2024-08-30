@@ -284,7 +284,7 @@ And I click on Sign Out in the Header for "Elmo"
     And I deselect the third plan and validate on the Medical Plan Compare page
     And I verify that no plans exist on the Medical Plan Compare page
 
-    And I click on Sign Out in the Header for "Portal"
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-272
   Scenario: This will create Individual adult and ensure Sorting works properly and Sort's as it should in coco medical plan page
@@ -356,4 +356,5 @@ And I click on Sign Out in the Header for "Elmo"
     Then I validate sorting based on "Annual Deductible- Low to High" in coco medical page
     And I select the sorting "Annual Deductible- High to Low" option in coco medical page
     Then I validate sorting based on "Annual Deductible- High to Low" in coco medical page
+
     And I click on Sign Out in the Header for "Elmo"

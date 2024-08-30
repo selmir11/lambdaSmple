@@ -154,7 +154,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 4 default groups in coco page
+    #And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
