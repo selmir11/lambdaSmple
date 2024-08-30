@@ -1,4 +1,4 @@
-@COCO @EndToEndTestGroup @test
+@COCO @EndToEndTestGroup
 Feature: CoupleWithChildrens - End to End Test
 
   Background: I go the login portal
