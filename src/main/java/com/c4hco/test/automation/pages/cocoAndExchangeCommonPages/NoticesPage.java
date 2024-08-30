@@ -101,6 +101,9 @@ public class NoticesPage {
     @FindBy(xpath= "//*[@id='x_passwordResetConfirmationBody']/p")
     List<WebElement> bodyConfirmationPW;
 
+    @FindBy(id = "x_policyInformation")
+    WebElement policyinformation;
+
 
 
 
@@ -385,11 +388,29 @@ public class NoticesPage {
         String formattedDate = currentDate.format(formatter);
         softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
         System.out.println(formattedDate);
+
         softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
         softAssert.assertAll();
     }
     public void clickThePasswordResetLink() {
         basicActions.waitForElementToBePresent(resetPWLink,20);
         resetPWLink.click();
+    }
+
+    public void verifydentalpolicynotice(String DentalPlocitydetails){
+         System.out.println(policyinformation.getText());
+         WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'"+DentalPlocitydetails+"')]"));
+        basicActions.waitForElementToBePresent(policyDetails,30) ;
+       softAssert.assertTrue(policyDetails.getText().contains(DentalPlocitydetails));
+
+    }
+
+
+    public void verifymedicalpolicynotice(String MedicalPlocitydetails){
+        System.out.println(policyinformation.getText());
+        WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'"+MedicalPlocitydetails+"')]"));
+        basicActions.waitForElementToBePresent(policyDetails,30) ;
+        softAssert.assertTrue(policyDetails.getText().contains(MedicalPlocitydetails));
+
     }
 }
