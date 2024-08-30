@@ -58,6 +58,18 @@ public class YourClientsPage {
     @FindBy(id = "status0")
     WebElement clientStatus;
 
+    @FindBy(id = "status")
+    WebElement secondClientStatus;
+
+    @FindBy(id = "fullName0")
+    WebElement secondClientFullName;
+
+    @FindBy(xpath = "(//span[@id='fullName0'])[2]")
+    WebElement thirdClientFullName;
+
+    @FindBy(xpath = "(//span[@id='status'])[2]")
+    WebElement thirdClientStatus;
+
     @FindBy(id = "premium-amount")
     WebElement clientPremium;
 
@@ -131,6 +143,43 @@ public class YourClientsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + expectedClientStatus);
         }
+        softAssert.assertAll();
+    }
+
+    public void verifyClientFullName(){
+        basicActions.waitForElementToBePresent(clientRow,10);
+        basicActions.waitForElementToBePresent(clientFullName, 200);
+        softAssert.assertEquals(clientFullName.getText(),SharedData.getPrimaryMember().getFullName());
+        softAssert.assertAll();
+    }
+
+    public void verifySecondSubscriberName(){
+        basicActions.waitForElementToBePresent(clientRow,10);
+        basicActions.waitForElementToBePresent(secondClientFullName,10);
+        String clientName = SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName();
+        softAssert.assertEquals(secondClientFullName.getText(), clientName);
+        softAssert.assertAll();
+    }
+
+    public void verifySecondClientStatus(){
+        basicActions.waitForElementToBePresent(clientRow,10);
+        basicActions.waitForElementToBePresent(secondClientStatus,10);
+        softAssert.assertEquals(secondClientStatus.getText(), "POLICY SUBMITTED");
+        softAssert.assertAll();
+    }
+
+    public void verifyThirdSubscriberName(){
+        basicActions.waitForElementToBePresent(clientRow,10);
+        basicActions.waitForElementToBePresent(thirdClientFullName,10);
+        String clientName = SharedData.getMembers().get(1).getFirstName() + " " + SharedData.getMembers().get(1).getLastName();
+        softAssert.assertEquals(thirdClientFullName.getText(), clientName);
+        softAssert.assertAll();
+    }
+
+    public void verifyThirdClientStatus(){
+        basicActions.waitForElementToBePresent(clientRow,10);
+        basicActions.waitForElementToBePresent(thirdClientStatus,10);
+        softAssert.assertEquals(thirdClientStatus.getText(), "POLICY SUBMITTED");
         softAssert.assertAll();
     }
 

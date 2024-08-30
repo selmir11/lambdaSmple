@@ -73,7 +73,7 @@ Then I validate I am on the "Medical Plan Compare" page
 And I select the Go Back button on the Medical Plan Compare page
 
 Then I validate I am on the "Medical Plan Results" page
-And I click on Sign Out in the Header for "Portal"
+And I click on Sign Out in the Header for "Elmo"
 
 
   @COCOFilterMedicalResults_CompareInNetworkHeaders @SLCR-90
@@ -142,7 +142,7 @@ And I click on Sign Out in the Header for "Portal"
 
     Then I validate I am on the "Medical Plan Compare" page
     And I verify the Medical Compare page In-Network headers and subheaders
-    And I click on Sign Out in the Header for "Portal"
+    And I click on Sign Out in the Header for "Elmo"
 
 
   @COCOFilterMedicalResults_CompareOutNetworkHeaders @SLCR-93
@@ -211,7 +211,7 @@ And I click on Sign Out in the Header for "Portal"
 
     Then I validate I am on the "Medical Plan Compare" page
     And I verify the Medical Compare page Out-Network headers and subheaders
-    And I click on Sign Out in the Header for "Portal"
+    And I click on Sign Out in the Header for "Elmo"
 
 
   @COCOFilterMedicalResults_ComparePlansDeselect @SLCR-131
