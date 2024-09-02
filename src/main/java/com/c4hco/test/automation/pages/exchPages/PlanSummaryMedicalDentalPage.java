@@ -32,7 +32,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(css = ".summary-container p")
     List<WebElement> planSummaryHeading;
 
-    @FindBy(xpath = "//div[@class='shopping-parent-container']")
+    @FindBy(xpath = "//*[contains(text(),\"Medical Plans\")]")
     WebElement planSummaryMedicalplanheading;
 
     @FindBy(xpath = "//span[normalize-space()='Premiums Before Savings']")
@@ -44,7 +44,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(xpath = "//*[contains(text(),\"Amount you pay\")]")
     WebElement planSummaryMedicalAmtyoupay;
 
-    @FindBy(xpath = "//th[normalize-space()='Dental Plans']")
+    @FindBy(xpath = "//*[contains(text(),\"Dental Plans\")]")
     WebElement planSummaryDentalplanheading;
 
     @FindBy(xpath = "//span[normalize-space()='Premiums Before Savings']")
@@ -58,7 +58,9 @@ public class PlanSummaryMedicalDentalPage {
 
     @FindBy(xpath = "//span[normalize-space()='No medical plan selected for this group.']")
     WebElement planSummaryNoMedicalPlan;
-
+    
+    @FindBy(xpath="//span[contains(@id,'PlanSummary-MedicalPlanName_1')]")
+    WebElement planSummaryNoMedicalPlanSingle;
     @FindBy(xpath = "//span[normalize-space()='No dental plan selected for this group.']")
     WebElement planSummaryNoDentalPlan;
 
@@ -90,6 +92,7 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
     public void verifyTextPlanSummaryPage(){
+        basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementListToBePresent(planSummaryHeading,10);
 
         softAssert.assertEquals(planSummaryHeading.get(0).getText(), "Here are your plans");
@@ -116,6 +119,13 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertTrue(planSummaryNoMedicalPlan.isDisplayed(), "No medical plan selected is not display");
         softAssert.assertTrue(planSummaryNoDentalPlan.isDisplayed(), "No dental plan selected is not display");
 
+        softAssert.assertAll();
+    }
+
+    public void verifyNoMedicalSingle(){
+       basicActions.waitForElementToDisappear( spinner,15 );
+       basicActions.scrollToElement( planSummaryNoMedicalPlanSingle );
+        softAssert.assertTrue(planSummaryNoMedicalPlanSingle.isDisplayed(), "No medical plan selected for this group.");
         softAssert.assertAll();
     }
 

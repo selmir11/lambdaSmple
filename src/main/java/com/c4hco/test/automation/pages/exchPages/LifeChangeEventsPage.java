@@ -87,7 +87,11 @@ public class LifeChangeEventsPage {
     @FindBy(css = "#LossOfCovgButton i")
     WebElement iconHelp;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     public void selectLCE(String lceOption){
+        basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent(saveAndContinueOnlyButton,20);
         switch(lceOption){
             case "Birth":

@@ -12,10 +12,10 @@ public class EnrollmentAgreementsCoCoPageSteps {
     public void selectAgreementCheckboxCoCo(String checkboxOption){
         enrollmentAgreementsCoCoPage.selectAgreementsCheckboxCoCo(checkboxOption);
     }
-
     @And("I enter householder signature on the Enrollment Agreements page CoCo")
     public void enterAgreementSignatureCoCo(){enrollmentAgreementsCoCoPage.enterSignatureAgreementsCoCo();}
 
+    // WIP - Remove the step once the new code is in STG
     @And("I select continue button on the Enrollment Agreements CoCo page")
     public void continueInitialPaymentCoCo(){
         enrollmentAgreementsCoCoPage.selectContinueCoCo();
@@ -30,4 +30,15 @@ public class EnrollmentAgreementsCoCoPageSteps {
     public void validatePageText(){
         enrollmentAgreementsCoCoPage.validatePageText();
     }
+
+
+    // new code for 8/29/24 code move to STG
+    @And("I select submit enrollment button on the Enrollment Agreements CoCo page")
+    public void clickSubmitEnrollment(){
+        enrollmentAgreementsCoCoPage.clickSubmitEnrollment();
+    }
+
+
+
+
 }

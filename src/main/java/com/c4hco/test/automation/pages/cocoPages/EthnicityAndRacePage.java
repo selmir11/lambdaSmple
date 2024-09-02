@@ -43,6 +43,8 @@ public class EthnicityAndRacePage {
     @FindBy(id = "ELIG-RaceEthnicity-GoBack")
     WebElement goBackButton;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 90);
@@ -80,7 +82,8 @@ public class EthnicityAndRacePage {
     }
 
     public void raceSelection(String race){
-        basicActions.waitForElementListToBePresent(raceButton, 30);
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementListToBePresent(raceButton, 40);
         switch (race) {
             case "American Indian/Alaskan Native":
                 raceButton.get(0).click();

@@ -89,6 +89,7 @@ public class HouseholdPage {
         }
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAccount_id(new BigDecimal(accId));
+        System.out.println("Account_id : "+new BigDecimal(accId));
     }
 
 

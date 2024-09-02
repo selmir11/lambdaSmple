@@ -38,6 +38,9 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @And("I click continue on Tell us about additional members page")
     public void clickSaveAndContinue(){tellUsAboutAdditionalMemberPage.clickSaveAndContinue();}
 
+    @And("I select no SSN")
+    public void selectNoSSn(){tellUsAboutAdditionalMemberPage.selectNoSSn();}
+
     @Then("I enter member details with age as {int}")
     public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}
 
@@ -54,5 +57,7 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void setSpecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {
         tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch( Name, DOB, gender, Relations, applying );
     }
+
+
 
 }

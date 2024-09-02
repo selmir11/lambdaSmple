@@ -73,7 +73,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I select the COCO Metal Tier dropdown
   And I select "<metalOption>" to filter for a  COCO Metal Tier plan
   And I validate the COCO plan option 1 has text "<metalPlanText>"
-
+  And I click on Sign Out in the Header for "Elmo"
   Examples:
   |metalOption      |metalPlanText                                                       |
   |Silver Enhanced  |Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std   |
@@ -145,7 +145,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select the COCO Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired COCO plan provider
     And I validate the COCO plan option 1 has text "<planText>"
-
+    And I click on Sign Out in the Header for "Elmo"
     Examples:
       | carrierOption               | planText                                                                  |
       | Anthem                      | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std         |
