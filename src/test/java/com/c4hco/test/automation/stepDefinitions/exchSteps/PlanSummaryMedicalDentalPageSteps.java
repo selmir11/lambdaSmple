@@ -29,6 +29,8 @@ public class PlanSummaryMedicalDentalPageSteps {
         planSummaryMedicalDentalPage.verifyPlanSummaryPage();
     }
 
+    @And( "I verify one entry has no assigned medical plan" )
+    public void verifyNoMedicalSingle(){planSummaryMedicalDentalPage.verifyNoMedicalSingle();}
 
     @And("I validate the APTC Credit on the Summary page is {string}")
     public void verifyAPTCPlanSummaryAmt (String aPTCPlanSummaryAmt ) {

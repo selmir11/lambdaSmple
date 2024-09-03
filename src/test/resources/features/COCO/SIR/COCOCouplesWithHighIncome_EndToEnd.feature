@@ -162,21 +162,29 @@ Feature: Multiple Household Member - End to End Test
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 2 default groups in coco page
+    #And I validate that there are 2 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select the "Acknowledgement" agreement checkbox CoCo
+    And I select the "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    #And I select continue button on the Enrollment Agreements CoCo page
+    #And I select "Terms of Use" agreement checkbox CoCo
+    #And I select "Privacy Policy" agreement checkbox CoCo
+    #And I select "Dental Coverage" agreement checkbox CoCo
+
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"

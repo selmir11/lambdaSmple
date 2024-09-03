@@ -131,12 +131,12 @@ public class DbQueries_Exch {
 
     public String verifyApplicationSubmissionInBOB(){
         return "select account_id from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+acctId+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
     }
 
     public String verifyPolicySubmissionInBOB(int coverageType){
         return "select account_id from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
     }
 
     //Policy table queries
