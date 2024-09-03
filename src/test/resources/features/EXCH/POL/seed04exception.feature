@@ -138,11 +138,10 @@ Feature: Seed04exception - Exchange
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
