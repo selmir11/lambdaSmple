@@ -69,8 +69,8 @@ Feature: Dental Plan Verification test
 
 
 
-  @SLER-WIP @VerifyDentalDetailTextEnglish
-  Scenario: VerifyDentalDetailTextEnglish - used to be CCRT-398
+  @SLER-995-WIP @VerifyDentalDetailTextEnglish
+  Scenario: VerifyDentalDetailTextEnglish -
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -126,10 +126,13 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
 
+    Then I validate I am on the "Dental Plan Details" page
+    And Verify English text on the Dental Detail page
+
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-834 @VerifyDentalDetailTextSpanish
-  Scenario: VerifyDentalDetailTextSpanish - used to be CCRT-292
+  @SLER-996-WIP @VerifyDentalDetailTextSpanish
+  Scenario: VerifyDentalDetailTextSpanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -185,6 +188,9 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
+
+    Then I validate I am on the "Dental Plan Details" page
+    And Verify Spanish text on the Dental Detail page
 
     # validate that pediatric plan appears due to minor age under 19 - we will verify from the plan title
 
