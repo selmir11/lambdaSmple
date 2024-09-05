@@ -185,6 +185,11 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I click change primary contact on my profile page
     Then I select the second household member as primary contact
     Then I validate I am on the "My Profile" page
+    Then I click on Go back to Welcome page Button on My Profile CoCo
+    Then I click on "Find a Plan" link on welcome page
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+
 
 
 
