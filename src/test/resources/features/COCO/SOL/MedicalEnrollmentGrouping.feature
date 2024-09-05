@@ -137,7 +137,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "01051998", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page and continue with "Son", "01052005", "Male" and applying "Yes"
       | Primary:Child or Other dependent |
       | Wife:Child or Other dependent    |
     And I click continue on Tell us about additional members of your household page
@@ -181,6 +181,10 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Profile" link on welcome page
+    And I click change primary contact on my profile page
+    Then I select the second household member as primary contact
+    Then I validate I am on the "My Profile" page
 
 
 
