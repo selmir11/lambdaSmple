@@ -1,9 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
-        import org.openqa.selenium.By;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
+        import org.openqa.selenium.*;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.support.PageFactory;
         import org.testng.Assert;
@@ -64,8 +62,18 @@ public class AdminPortalManagePlansPage{
     WebElement btnMedSave;
     @FindBy(id = "Manage Plans-Save Button Dental")
     WebElement btnDentalSave;
-
-
+    @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]") ////app-plan-container//div[1]/app-current-plan//app-plan-member-info//div[@id='coverageStartDate_1']//input[1]
+    WebElement coverageStartdate;
+    @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")   //  //div[@id='financialStartDate_1']//input[@type='date'], //div[@class='medical-plan-container']//app-current-plan//div[@class='plan-member-info']//div[@id='financialStartDate_1']//input[@type='text']
+    WebElement financialStartDate;
+    @FindBy(xpath = "//app-drop-down-select[@id='change-reason']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement reasonForTheChange;
+    @FindBy(xpath = "//span[normalize-space()='Recon']")
+    WebElement optionRecon;
+    @FindBy(xpath = "//input[@class='input-change-details ng-untouched ng-pristine ng-valid']")
+    WebElement additionalReasonText;
+    @FindBy(xpath = "//button[normalize-space()='Confirm']")
+    WebElement confirmChangesButton;
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -144,4 +152,37 @@ public class AdminPortalManagePlansPage{
         softAssert.assertEquals(btnMedReset.getText(), "Reset Changes");
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertAll();     }
+
+    public void clickSaveButton() {
+        basicActions.waitForElementToBePresent(btnMedSave, 20);
+        btnMedSave.click();
+        softAssert.assertAll();
+    }
+
+    public void updateCoverageStartDate(String covStartDate){
+        basicActions.scrollToElement( coverageStartdate );
+        basicActions.waitForElementToBePresent(coverageStartdate,30);
+        coverageStartdate.click();
+        coverageStartdate.clear();
+        coverageStartdate.sendKeys(covStartDate);
+        softAssert.assertAll();
+    }
+
+    public void updateFinancialStartDate(String finStartDate){
+        basicActions.waitForElementToBePresent(financialStartDate,30);
+        financialStartDate.click();
+        financialStartDate.clear();
+        financialStartDate.sendKeys(finStartDate);
+        softAssert.assertAll();
+    }
+
+    public void selectReasonForTheChange(){
+        basicActions.waitForElementToBeClickable(reasonForTheChange,10);
+        reasonForTheChange.click();
+        basicActions.waitForElementToBeClickable(optionRecon, 10);
+        optionRecon.click();
+        basicActions.waitForElementToBePresent(additionalReasonText, 10);
+        additionalReasonText.sendKeys("Testing");
+        confirmChangesButton.click();
+    }
 }

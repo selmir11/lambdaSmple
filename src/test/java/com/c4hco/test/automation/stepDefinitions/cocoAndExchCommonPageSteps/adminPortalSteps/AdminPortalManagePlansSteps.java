@@ -72,5 +72,21 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.containerTitleLabelsCoco();
     }
 
+    @And("I click Save Button Medical")
+    public void iClickSaveButtonMedical() {
+        adminPortalManagePlansPage.clickSaveButton();
+    }
+    @And("I update the Coverage Start date to {string}")
+    public void iUpdateCoverageStartDate(String newCoverageDate){
+        adminPortalManagePlansPage.updateCoverageStartDate(newCoverageDate);
+    }
+    @And("I update the Financial Start date to {string}")
+    public void iUpdateFinancialStartDate(String newFinancialDate){
+        adminPortalManagePlansPage.updateFinancialStartDate(newFinancialDate);
+    }
+    @And ("I select the reason to confirm the changes")
+    public void iselectTheReason (){
+        adminPortalManagePlansPage.selectReasonForTheChange();
+    }
 }
 

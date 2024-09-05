@@ -72,9 +72,12 @@ public class TellUsAboutYourselfCoCoPage {
     }
 
     public void specificMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         enterMemberDOBTbox(dateOfBirth);
         genderSelection(gender);
         applyingForCoverage(applying);
+        subscriber.setDob(dateOfBirth);
+        subscriber.setGender(gender);
         clickSaveAndContinueButton();
     }
 

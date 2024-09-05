@@ -29,7 +29,8 @@ public class WelcomePage {
 
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
-
+    @FindBy(css = "#planYear option")
+    List<WebElement> planYearSelectorOptions;
     @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
 
@@ -65,6 +66,12 @@ public class WelcomePage {
     public void clickApplyForInsurance() {
         basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 30);
         applyForCurrentYearButton.click(); }
+
+    public void selectPlanyear(String planYear){
+        basicActions.waitForElementToBeClickable(planYearSelectorDp,10);
+        planYearSelectorDp.click();
+        basicActions.selectValueFromDropdown(planYearSelectorDp,planYearSelectorOptions,planYear);
+    }
 
     public void clickActionLinks(String actionLink) {
         basicActions.waitForElementListToBePresentWithRetries(actionLinks, 5);
