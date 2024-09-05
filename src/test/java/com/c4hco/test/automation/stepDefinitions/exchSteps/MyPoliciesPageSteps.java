@@ -54,4 +54,11 @@ public class MyPoliciesPageSteps {
     public void clickMedicalPlansCancelButton(String btnDetail){
         myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
+
+    @And("I validate enrInitial simple NFA application medical and dental plan details from my policies page")
+    public void enrInitialSimpleNFAMedPlanDetails(){
+        myPoliciesPage.iSetMedicalDentalPlanDates();
+        myPoliciesPage.medValidationsBasedOnFirstNextMonth();
+        myPoliciesPage.denValidationsBasedOnFirstNextMonth();
+    }
 }
