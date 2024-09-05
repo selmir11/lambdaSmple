@@ -5,7 +5,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-GroupOf4-WIP
+  @SLER-GroupOf4-WIP-PASS
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -21,7 +21,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on save and continue button
 
     Then I click on continue with  application button on Before you begin page
-    #And I report "MovedToColorado" and click continue  - changed for 2025
+    And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011990" in county "Rio Grande" with zipcode "81144"
@@ -259,11 +259,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -390,7 +389,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-  @Group6ReEnroll-WIP
+  @Group6ReEnroll-WIP-PASS
  Scenario: ELIG-APTC Eligible over 400% FPL- APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -723,11 +722,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
