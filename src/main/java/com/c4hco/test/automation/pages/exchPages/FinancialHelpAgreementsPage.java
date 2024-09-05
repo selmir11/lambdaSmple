@@ -36,17 +36,21 @@ public class FinancialHelpAgreementsPage {
         switch (taxHolder) {
             case "taxHolder1":
                  memberSignature = "(//div/div/span)[2]";
+                String signatureFirstMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
+                signatureInput.click();
+                signatureInput.sendKeys(signatureFirstMember);
                 break;
             case "taxHolder2":
                  memberSignature = "(//div/div/span)[3]";
+                String signatureSecondMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
+                signatureForSecondTaxPayer.click();
+                signatureForSecondTaxPayer.sendKeys(signatureSecondMember);
                 break;
 
             default:
                 throw new IllegalArgumentException("Invalid option: ");
         }
-        String signatureFirstMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
-        signatureInput.click();
-        signatureInput.sendKeys(signatureFirstMember);
+
     }
 
     public void selectTermsAgreementsCheckbox(){

@@ -161,13 +161,16 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForTwoColumnValuesInMap("policy_ah_id", "en_policy_dq_check", exchDbQueries.getPolicyDqCheck());
     }
 
-    public List<BookOfBusinessQEntity> getBookOfBusinessQ(){
-        return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ());
+    public List<BookOfBusinessQEntity> getBookOfBusinessQ(String eventType){
+        return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ(eventType));
     }
 
 
     public List<String> getPolicyId(){
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
+    }
+    public List<String> getApplicationId(){
+        return postgresHandler.getResultListFor("application_id", exchDbQueries.appIdFromEnPolicyAh());
     }
 
 

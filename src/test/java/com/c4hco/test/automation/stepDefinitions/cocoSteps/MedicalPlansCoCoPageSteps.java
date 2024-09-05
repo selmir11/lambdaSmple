@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.MedicalPlansCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 
 public class MedicalPlansCoCoPageSteps {
@@ -29,6 +30,17 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.selectfromMetalTierList(metalOption);
     }
 
+    @And ("I select Silver Enhanced option")
+    public void selectSilverEnhanced(){
+        medicalPlansCoCoPage.selectSilverEnhancedBox();
+    }
+
+    @And( "I validate the plan totals are {string} on the COCO Medical Plan Results page" )
+    public void validateCOCOPlanTotals(String planTotal){medicalPlansCoCoPage.validateCOCOPlanTotals(planTotal);}
+
+    @And( "I validate the SES plan totals are {string} on the COCO Medical Plan Results page" )
+    public void validateSESCOCOPlanTotals(String planTotal){medicalPlansCoCoPage.validateSESCOCOPlanTotals(planTotal);}
+
     @And("I select {string} to filter for desired COCO plan provider")
     public void selectfromProviderList(String carrierOption) {
         medicalPlansCoCoPage.selectfromProviderList(carrierOption);
@@ -47,6 +59,16 @@ public class MedicalPlansCoCoPageSteps {
     @And("I select {string} coco medical plan")
     public void selectMedPlan(String medicalPlan) {
         medicalPlansCoCoPage.selectCoCoMedicalplan(medicalPlan);
+    }
+
+    @And("I select the sorting {string} option in coco medical page")
+    public void clickSortingDropdown(String sortingValue) {
+        medicalPlansCoCoPage.clickSortingDropdown(sortingValue);
+    }
+
+    @Then("I validate sorting based on {string} in coco medical page")
+    public void validateMedicalPremiumSorting(String sortingTypeSelection) {
+        medicalPlansCoCoPage.evaluateSortingValue(sortingTypeSelection);
     }
 
 }

@@ -38,11 +38,8 @@ Feature: Seed07 - Exchange
     And I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05271963" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "05271963", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -59,11 +56,9 @@ Feature: Seed07 - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "08281999" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "08281999", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
@@ -84,13 +79,10 @@ Feature: Seed07 - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05052001" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "In Law" as relationship option
-    And I select "In Law" as relationship one option
-    And I select "Spouse" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "InLaw", "05052001", "Female" and applying "Yes"
+      |Primary:In Law|
+      |Spouse:In Law |
+      |Son:Spouse    |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "recent option" for Residential Address
@@ -179,9 +171,29 @@ Feature: Seed07 - Exchange
     Then I Declare as Tax Household 2
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    And I click "Admin LCE" from application links dropdown
+    And I look up with account id on admin tool page
+    And I change effective date to "0101" of current year from admin portal
+    Then logout from Admin Portal
+
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Eligibility"
+    Then I validate I am on the "Application History" page
+    Then I set data from application history page
     Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I select "member3" "Yes" for Tobacco Use
     Then I select "member4" "Yes" for Tobacco Use
@@ -208,55 +220,6 @@ Feature: Seed07 - Exchange
     And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
-
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    And I click "Admin LCE" from application links dropdown
-    And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
-    Then logout from Admin Portal
-
-    Given I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Eligibility"
-    Then I validate I am on the "Application History" page
-    Then I set data from application history page
-    Then I click on view results and shop
-    Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
-    Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 2 default groups
-    Then I click continue on grouping Members Medical page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" plan
-    Then I click continue on medical plan results page
-    And I select "Anthem Colorado Option Silver Pathway Std" plan
-    Then I click continue on medical plan results page
-    Then I validate I am on the "Grouping Members Dental" page
-    And I select "Delta Dental of Colorado Family Basic Plan" plan
-    Then I click continue on dental plan results page
-    And I select "Anthem Dental Family Value" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter "taxHolder1" signature on the Financial Help Agreements page
-    And I enter "taxHolder2" signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
     And I select "Terms of Use" agreement checkbox
     And I select "Privacy Policy" agreement checkbox
     And I select "Understand Law" agreement checkbox

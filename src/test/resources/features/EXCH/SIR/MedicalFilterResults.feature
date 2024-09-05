@@ -17,7 +17,7 @@ Feature: Medical Plan Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
@@ -56,6 +56,7 @@ Feature: Medical Plan Verification test
     And I select the Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired plan provider
     And I validate the plan option 1 has text "<planText>"
+    And I click on Sign Out in the Header for "Portal"
 
     Examples:
       | carrierOption               | planText                                                          |

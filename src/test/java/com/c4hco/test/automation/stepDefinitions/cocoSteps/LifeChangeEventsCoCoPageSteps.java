@@ -31,4 +31,7 @@ public class LifeChangeEventsCoCoPageSteps {
     @And("I verify the header for Primary Member on the CoCo LCE page in {string}")
     public void iVerifyTextOnLcePage(String language){lifeChangeEventsCoCoPage.verifyHeadersEmploymentIncomePage(language);}
 
+    @Then("I verify {string} life change event {string} selected")
+    public void iVerifyLCECheckboxState(String LCEType, String Selection){lifeChangeEventsCoCoPage.verifyLCECheckboxState(LCEType, Selection);}
+
 }

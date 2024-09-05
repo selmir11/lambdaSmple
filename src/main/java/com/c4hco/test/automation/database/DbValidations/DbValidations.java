@@ -2,7 +2,6 @@ package com.c4hco.test.automation.database.DbValidations;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -447,22 +446,31 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateBookOfBusinessQ(){
-        List<BookOfBusinessQEntity> bookOfBusinessQList =  exchDbDataProvider.getBookOfBusinessQ();
+    public void validateBookOfBusinessQ(String eventType) {
+        List<BookOfBusinessQEntity> bookOfBusinessQList = exchDbDataProvider.getBookOfBusinessQ(eventType);
         List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
-        for(BookOfBusinessQEntity bookOfBusinessQEntity: bookOfBusinessQList){
-            softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange");
-            softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q");
-            softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), "POLICY_SUBMISSION");
-            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear));
-            softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED");
-            softAssert.assertEquals(bookOfBusinessQEntity.getApplicationid(), SharedData.getPrimaryMember().getApplication_id());
-            softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate));
-            policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
-        }
+        List<String> applicationIdListFromBob = new ArrayList<>();
+
+        // WIP - get these from existing policyTables instead of new tables/queries.
+        List<String> applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
         List<String> policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
-        softAssert.assertTrue(policyIdListFromBookOfBusinessDb.equals(policyIdFromPolicyDB));
-        softAssert.assertAll();
+
+        for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
+            softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
+            softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
+            softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
+            policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
+            applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
+        }
+
+            softAssert.assertTrue(new HashSet<>(applicationIdListFromBob).containsAll(applicationIdListFromPolicyAh), "application id mismatch");
+            softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
+            softAssert.assertAll();
+
     }
 
 

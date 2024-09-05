@@ -73,7 +73,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I select the COCO Metal Tier dropdown
   And I select "<metalOption>" to filter for a  COCO Metal Tier plan
   And I validate the COCO plan option 1 has text "<metalPlanText>"
-
+  And I click on Sign Out in the Header for "Elmo"
   Examples:
   |metalOption      |metalPlanText                                                       |
   |Silver Enhanced  |Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std   |
@@ -97,7 +97,6 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
-
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -146,7 +145,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select the COCO Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired COCO plan provider
     And I validate the COCO plan option 1 has text "<planText>"
-
+    And I click on Sign Out in the Header for "Elmo"
     Examples:
       | carrierOption               | planText                                                                  |
       | Anthem                      | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std         |
@@ -155,6 +154,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
       | Kaiser Permanente           | KP Colorado Option Silver Enhanced 94% AV                                 |
       | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%            |
       | Select Health               | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange      |
+
+
+
 
 
 

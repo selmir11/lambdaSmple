@@ -1,11 +1,12 @@
 @SIR
 
 Feature: Individual adult - End to End Test
-
+#Failing-general progression issues in Admin area - not a clean line of functions to test out the SIR pages
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-189 @Failing-Bug-SOL-3758
+  @SLCR-189
+
   Scenario: This will create Individual adult with Broker assistance
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -37,7 +38,8 @@ Feature: Individual adult - End to End Test
 
     And I click on "colorado Connect" tab
     And I search for clients
-    And I click on first client search result
+    Then I click on client search results row 1
+    #And I click on first client search result
     And I click "manage" the client
 
     And I apply for the current year in CoCo
@@ -105,9 +107,9 @@ Feature: Individual adult - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select continue button on the Enrollment Agreements CoCo page
     Then I click all done obo from payment portal page coco
-  #uncomment the below lines and test after the bug is fixed.
-    #Then I validate I am on the "CoCo Welcome" page
-    #And I click on Sign Out in the Header for "Elmo"
+
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-193
   Scenario: This will create 2 couples with Broker assistance
@@ -342,8 +344,8 @@ Feature: Individual adult - End to End Test
     And I delete the open notice
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
-    And I validate I am on the "Broker Dashboard" page
 
+    Then I validate I am on the "Broker Portal Your Clients" page
     And I click on "colorado Connect" tab
     And I search for clients
     And I click on first client search result
@@ -508,12 +510,17 @@ Feature: Individual adult - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select the "Acknowledgement" agreement checkbox CoCo
+    And I select the "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    #And I select continue button on the Enrollment Agreements CoCo page
+    #And I select "Terms of Use" agreement checkbox CoCo
+    #And I select "Privacy Policy" agreement checkbox CoCo
+    #And I select "Dental Coverage" agreement checkbox CoCo
+
     Then I click all done obo from payment portal page coco
     #uncomment the below lines and test after the bug is fixed.
     #Then I validate I am on the "CoCo Welcome" page

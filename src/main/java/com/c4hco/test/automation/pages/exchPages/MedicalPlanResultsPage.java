@@ -14,7 +14,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -48,8 +47,11 @@ public class MedicalPlanResultsPage {
     @FindBy (id="MedicalPlanResults-Skip")
     WebElement btnSkip;
 
-    @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
-    List<WebElement> comparePlanLinks;
+    @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
+    WebElement firstCompareBox;
+
+    @FindBy(id = "PlanResults-PlanCompareCheckbox_2")
+    WebElement secondCompareBox;
 
     @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
@@ -135,9 +137,10 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 30);
-        comparePlanLinks.get(0).click();
-        comparePlanLinks.get(1).click();
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( firstCompareBox,10 );
+        firstCompareBox.click();
+        secondCompareBox.click();
     }
 
     public void clickInsuranceCompanyDropdown() {
@@ -198,6 +201,7 @@ public class MedicalPlanResultsPage {
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
         List<MemberDetails> memberslist = SharedData.getMembers();
+        basicActions.waitForElementToDisappear(spinner, 30);
         if(memberslist !=null){
             for (int i = 0; i < memberslist.size(); i++) {
                 memberslist.get(i).setMedicalPlan(planName);
@@ -222,6 +226,8 @@ public class MedicalPlanResultsPage {
     }
 
     private void clickPlanButton(int index){
+         basicActions.wait(2000);
+         basicActions.waitForElementToBePresent(spinner, 10);
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
         basicActions.waitForElementToBeClickable(ePlanID, 10);

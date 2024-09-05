@@ -31,10 +31,10 @@ Feature: Tests related to the Family Overview page
     And I click Continue on my own button from Manage who helps you page
     And I change the C4 url to "Family Overview portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    And I verify User name Link is not displayed in the "CoCo" Header
+    And I verify User name Link is displayed in the "CoCo" Header
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header
-    Then I validate I am on the "CoCo Welcome" page
+    Then I validate I am on the "FindExpertHelpCoco" page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
