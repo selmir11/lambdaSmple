@@ -183,17 +183,41 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Profile" link on welcome page
     And I click change primary contact on my profile page
     Then I select the second household member as primary contact
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
-    Then I click on "Find a Plan" link on welcome page
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "MoveToCO" life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on coco start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate text on the medical grouping page coco
+    Then I click continue on grouping Members Medical coco page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "Plan Summary" page
+    And I click continue on coco plan summary page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
 
 
 
