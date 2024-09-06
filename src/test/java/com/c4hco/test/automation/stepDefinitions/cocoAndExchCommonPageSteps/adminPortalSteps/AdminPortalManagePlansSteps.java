@@ -20,8 +20,7 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I check default year displays")
     public void iCheckDefaultCurrentYear() {
-        adminPortalManagePlansPage.checkDefaultCurrentYear();
-    }
+        adminPortalManagePlansPage.checkDefaultCurrentYear();       }
 
     @Then("I verify both buttons Medical and Dental is checked")
     public void iVerifyButtonsCheckedBoth() {
@@ -34,9 +33,7 @@ public class AdminPortalManagePlansSteps {
     }
     @And("I validate {string} medical button displays on Manage page")
     public void iVerifySaveButtonDisplayed(String saveMed) {
-        adminPortalManagePlansPage.verifySaveButtonDisplayed(saveMed);
-    }
-
+        adminPortalManagePlansPage.verifySaveButtonDisplayed(saveMed);      }
     @Then("I click Make Changes Medical button")
     public void iClickMakeChangesMedical() {
         adminPortalManagePlansPage.clickMakeChangesMedical();
@@ -71,6 +68,14 @@ public class AdminPortalManagePlansSteps {
     public void iContainerTitleLabelsCoco() {
         adminPortalManagePlansPage.containerTitleLabelsCoco();
     }
-
+    @Then("I check for Previous Medical container display")
+    public void iCheckPreviousFinancialMedical() {
+        adminPortalManagePlansPage.checkPreviousFinancialMedical();       }
+    @Then("I check for Previous Dental container display")
+    public void iCheckPreviousFinancialDental() {
+        adminPortalManagePlansPage.checkPreviousFinancialDental();       }
+    @Then("I verify Years in dropdown starting from {string} as expected")
+    public void iValidateYearsDropdown(String lowerYear){
+        adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
 }
 
