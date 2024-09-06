@@ -160,6 +160,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBePresent(headerAdditionalInfo,50);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 50);
         basicActions.waitForElementToBePresent(txtMailingAddrLine2, 50);
+        basicActions.waitForElementToBePresent(txtMailingCity, 50);
         txtMailingAddrLine1.sendKeys("1234 Road");
         txtMailingAddrLine2.sendKeys("Unit ABCD1234");
         txtMailingCity.sendKeys("Denver");
