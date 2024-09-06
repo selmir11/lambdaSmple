@@ -86,11 +86,10 @@ Feature: Tests related to the Application Results link
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
     And I click Continue button on the Medical Dental Page CoCo
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from header to "Spanish"

@@ -297,7 +297,7 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlan.getText(), "Medical Plan");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
-        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
+        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "1-303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Monthly Plan Payment");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mo");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
@@ -332,7 +332,7 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlan.getText(), "Plan m\u00E9dico");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
-        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
+        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "1-303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Pago mensual del plan");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mes");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");
