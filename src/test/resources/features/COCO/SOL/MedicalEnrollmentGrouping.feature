@@ -171,13 +171,18 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate the text on "Go Back" "Save and Exit" and "Continue" buttons on medical grouping page coco
     Then I validate text on the medical grouping page coco
-    Then I click Go Back on the Medical Grouping page coco
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on coco start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    And I click save and exit on Medical Grouping page coco
+    Then I click continue on grouping Members Medical coco page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "Plan Summary" page
+    And I click continue on coco plan summary page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
