@@ -82,7 +82,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Welcome" page
 
 
-  @SLCR-188-WIP @MedicalEnrollmentAfterPrimaryContactChange
+  @SLCR-188 @MedicalEnrollmentAfterPrimaryContactChange
   Scenario: Validate primary contact change and enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
