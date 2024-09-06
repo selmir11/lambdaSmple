@@ -86,9 +86,9 @@ Feature: UI Page Validation - Financial Agreement
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health insurance option
+    Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I select "None of these" as ELMO health insurance option
+    Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -165,7 +165,8 @@ Feature: UI Page Validation - Financial Agreement
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -187,14 +188,10 @@ Feature: UI Page Validation - Financial Agreement
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     And I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I validate I am on the "Initial Payment" page
-    Then I select make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    And I click on Sign Out in the Header for "NonElmo"
 

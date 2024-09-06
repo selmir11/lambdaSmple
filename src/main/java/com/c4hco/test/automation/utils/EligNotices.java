@@ -534,7 +534,7 @@ public class EligNotices {
                     "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
                     "(CHP+)\n" +
                     "A menos que tenga una circunstancia excepcional, si es casado/a debe\n" +
-                    "declarar impuestos como casado que presenta su declaracin en pareja\n";
+                    "declarar impuestos como casado que presenta su declaraci\u00F3n en pareja\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -568,7 +568,7 @@ public class EligNotices {
                     "Nos dijo que califica para Health First Colorado o Child Health Plan Plus\n" +
                     "(CHP+)\n" +
                     "A menos que tenga una circunstancia excepcional, si es casado/a debe\n" +
-                    "declarar impuestos como casado que presenta su declaracin en pareja\n";
+                    "declarar impuestos como casado que presenta su declaraci\u00F3n en pareja\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -758,7 +758,7 @@ public class EligNotices {
                             "para "+currentYear+"\n" +
                             "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
                             "costos compartidos porque:\n" +
-                            "Est inscrito\u002Fa en un plan de salud a travs de COBRA\n";
+                            "Est\u00E1 inscrito\u002Fa en un plan de salud a trav\u00E9s de COBRA\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }
@@ -786,7 +786,7 @@ public class EligNotices {
                             "para "+currentYear+"\n" +
                             "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
                             "costos compartidos porque:\n" +
-                            "Est inscrito\u002Fa en otro seguro de salud\n";
+                            "Est\u00E1 inscrito\u002Fa en otro seguro de salud\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
     }

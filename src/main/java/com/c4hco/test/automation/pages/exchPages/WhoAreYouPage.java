@@ -111,6 +111,37 @@ public class WhoAreYouPage {
         backSaveAndContinue.get(1).click();
     }
 
+    public void specificMemberSsnDetails(String ssn, String City, String State, String zipcode, String county, String dateOfBirth){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        Address address = new Address();
+        basicActions.waitForElementToBePresent(StreetAddress1,20);
+        StreetAddress1.sendKeys(addressLine1);
+        memberCity.sendKeys(City);
+
+        basicActions.waitForElementToBeClickable(memberState,15);
+        memberState.click();
+        basicActions.selectValueFromDropdown(memberState, stateDropdownOptions, State);
+
+        memberZip.sendKeys(zipcode);
+
+        basicActions.waitForElementToBeClickable(countyDropDown,15);
+        countyDropDown.click();
+        basicActions.waitForElementListToBePresent(countyDropdownOptions, 20);
+        basicActions.selectValueFromDropdown(countyDropDown, countyDropdownOptions, county);
+
+        memberDOB.sendKeys(dateOfBirth);
+        subscriber.setDob(dateOfBirth);
+        memberSSN.sendKeys(ssn);
+        subscriber.setSsn(ssn);
+        address.setAddressLine1(addressLine1);
+        address.setAddressCity(City);
+        address.setAddressState(State);
+        address.setAddressZipcode(zipcode);
+        address.setAddressCounty(county);
+        subscriber.setResAddress(address);
+        backSaveAndContinue.get(1).click();
+    }
+
     public void ContinueId() {
         //TO DO: How is this continue diff from above backSaveAndContinue and click?
         StreetAddress1.sendKeys(addressLine1);

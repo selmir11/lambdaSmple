@@ -55,13 +55,13 @@ Feature: Page Navigation-OHI ESI Page
     And I select "No" to claim dependents
     And I click save and continue on tax status page
     Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
 
 
   @SLER-687 @PageNavigationESI
   Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHI Portal, Exchange
-    Then I click continue on the ELMO health coverage page
     #Step1
-    And I validate I am on the "ESI" page
     And I change the C4 url to "Other Health Coverage portal Error Exch"
     Then I validate I am on the "Error" page
     And I click Back to Welcome page Button on error Exch page
@@ -212,6 +212,7 @@ Feature: Page Navigation-OHI ESI Page
 
   @SLER-964 @PageVerificationEsiPage
   Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHI application to the ELMO Exch ESI page
+    Then I select the Go Back button on the ESI page
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
