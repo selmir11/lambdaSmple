@@ -447,6 +447,7 @@ public class DbValidations {
     }
 
     public void validateBookOfBusinessQ(String eventType) {
+        getCurrentdate();
         List<BookOfBusinessQEntity> bookOfBusinessQList = exchDbDataProvider.getBookOfBusinessQ(eventType);
         List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
         List<String> applicationIdListFromBob = new ArrayList<>();

@@ -47,6 +47,7 @@ Feature: Simple NFA - Single Applicant
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -69,7 +70,14 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I validate enrInitial simple NFA application medical and dental plan details from my policies page
+    And Validate medical plan details from my policies page with start date "First Of Next Month"
+    And Validate dental plan details from my policies page with start date "First Of Next Month"
+
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I click on ClickHere link for "My Documents"
@@ -88,6 +96,5 @@ Feature: Simple NFA - Single Applicant
     And I switch to the tab number 0
 
     #DbVerification
-
     And I verify the policy data quality check with Policy Ah keyset size 2
-    #And I verify the data from book of business queue table
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
