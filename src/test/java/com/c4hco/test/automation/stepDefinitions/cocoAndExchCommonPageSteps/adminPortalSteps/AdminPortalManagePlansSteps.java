@@ -77,5 +77,22 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify Years in dropdown starting from {string} as expected")
     public void iValidateYearsDropdown(String lowerYear){
         adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
+
+    @And("I click Save Button Medical")
+    public void iClickSaveButtonMedical() {
+        adminPortalManagePlansPage.clickSaveButton();
+    }
+    @And("I update the Coverage Start date to {string}")
+    public void iUpdateCoverageStartDate(String newCoverageDate){
+        adminPortalManagePlansPage.updateCoverageStartDate(newCoverageDate);
+    }
+    @And("I update the Financial Start date to {string}")
+    public void iUpdateFinancialStartDate(String newFinancialDate){
+        adminPortalManagePlansPage.updateFinancialStartDate(newFinancialDate);
+    }
+    @And ("I select the reason to confirm the changes")
+    public void iselectTheReason (){
+        adminPortalManagePlansPage.selectReasonForTheChange();
+    }
 }
 

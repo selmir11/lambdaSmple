@@ -1,9 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
-        import org.openqa.selenium.By;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
+        import org.openqa.selenium.*;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.support.PageFactory;
         import org.testng.Assert;
@@ -79,6 +77,18 @@ public class AdminPortalManagePlansPage{
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select/div/div[2]/div[1]")
     WebElement secondYearInList;
 
+    @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
+    WebElement coverageStartdate;
+    @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
+    WebElement financialStartDate;
+    @FindBy(xpath = "//app-drop-down-select[@id='change-reason']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement reasonForTheChange;
+    @FindBy(xpath = "//span[normalize-space()='Recon']")
+    WebElement optionRecon;
+    @FindBy(xpath = "//input[@class='input-change-details ng-untouched ng-pristine ng-valid']")
+    WebElement additionalReasonText;
+    @FindBy(xpath = "//button[normalize-space()='Confirm']")
+    WebElement confirmChangesButton;
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -118,6 +128,8 @@ public class AdminPortalManagePlansPage{
         softAssert.assertAll();    }
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
+        basicActions.scrollToElement(btnMakeChangeMed);
+        basicActions.waitForElementToBeClickable(btnMakeChangeMed,10);
         btnMakeChangeMed.click();       }
     public void clickResetChangesMedical() {
         basicActions.waitForElementToBePresent(btnMedReset, 10);
@@ -182,4 +194,34 @@ public class AdminPortalManagePlansPage{
                 "2025");
         softAssert.assertEquals(secondYearInList.getText(), lowerYear);
         softAssert.assertAll();     }
+
+    public void clickSaveButton() {
+        basicActions.waitForElementToBePresent(btnMedSave, 20);
+        btnMedSave.click();
+    }
+
+    public void updateCoverageStartDate(String covStartDate){
+        basicActions.scrollToElement( coverageStartdate );
+        basicActions.waitForElementToBePresent(coverageStartdate,30);
+        coverageStartdate.click();
+        coverageStartdate.clear();
+        coverageStartdate.sendKeys(covStartDate);
+    }
+
+    public void updateFinancialStartDate(String finStartDate){
+        basicActions.waitForElementToBePresent(financialStartDate,30);
+        financialStartDate.click();
+        financialStartDate.clear();
+        financialStartDate.sendKeys(finStartDate);
+    }
+
+    public void selectReasonForTheChange(){
+        basicActions.waitForElementToBeClickable(reasonForTheChange,10);
+        reasonForTheChange.click();
+        basicActions.waitForElementToBeClickable(optionRecon, 10);
+        optionRecon.click();
+        basicActions.waitForElementToBePresent(additionalReasonText, 10);
+        additionalReasonText.sendKeys("Testing");
+        confirmChangesButton.click();
+    }
 }
