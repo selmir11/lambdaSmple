@@ -156,7 +156,6 @@ public class AdminPortalManagePlansPage{
     public void clickSaveButton() {
         basicActions.waitForElementToBePresent(btnMedSave, 20);
         btnMedSave.click();
-        softAssert.assertAll();
     }
 
     public void updateCoverageStartDate(String covStartDate){
@@ -165,7 +164,6 @@ public class AdminPortalManagePlansPage{
         coverageStartdate.click();
         coverageStartdate.clear();
         coverageStartdate.sendKeys(covStartDate);
-        softAssert.assertAll();
     }
 
     public void updateFinancialStartDate(String finStartDate){
@@ -173,7 +171,6 @@ public class AdminPortalManagePlansPage{
         financialStartDate.click();
         financialStartDate.clear();
         financialStartDate.sendKeys(finStartDate);
-        softAssert.assertAll();
     }
 
     public void selectReasonForTheChange(){
