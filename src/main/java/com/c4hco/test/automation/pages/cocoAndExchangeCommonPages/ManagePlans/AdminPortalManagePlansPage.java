@@ -62,6 +62,21 @@ public class AdminPortalManagePlansPage{
     WebElement btnMedSave;
     @FindBy(id = "Manage Plans-Save Button Dental")
     WebElement btnDentalSave;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div")
+    WebElement previousFinancialMed;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[2]/div[2]/app-previous-plan/div")
+    WebElement previousFinancialDental;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div/div[2]")
+    WebElement previousFinancialNoMed;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[2]/div[2]/app-previous-plan/div/div[2]")
+    WebElement previousFinancialNoDental;
+    @FindBy(css = "#enrollments-container > div.plan-header > div.select-year > div:nth-child(2) > app-plan-year-dropdown > div > app-drop-down-select > div > div.drop-down-option.drop-down-option-selected")
+    WebElement planYearDownErrow;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select")
+    WebElement planYearList;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select/div/div[2]/div[1]")
+    WebElement secondYearInList;
+
     @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
     WebElement coverageStartdate;
     @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
@@ -113,6 +128,8 @@ public class AdminPortalManagePlansPage{
         softAssert.assertAll();    }
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
+        basicActions.scrollToElement(btnMakeChangeMed);
+        basicActions.waitForElementToBeClickable(btnMakeChangeMed,10);
         btnMakeChangeMed.click();       }
     public void clickResetChangesMedical() {
         basicActions.waitForElementToBePresent(btnMedReset, 10);
@@ -151,6 +168,31 @@ public class AdminPortalManagePlansPage{
         basicActions.waitForElementToBePresent(btnMedReset,20);
         softAssert.assertEquals(btnMedReset.getText(), "Reset Changes");
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
+        softAssert.assertAll();     }
+    public void checkPreviousFinancialMedical(){
+        basicActions.waitForElementToBePresent(previousFinancialMed,20);
+        softAssert.assertEquals(previousFinancialMed.getText(), "Previous Financial Periods - Medical");
+        softAssert.assertEquals(previousFinancialNoMed.getText(), "No Past Financial Periods - Medical");
+        softAssert.assertAll();     }
+    public void checkPreviousFinancialDental(){
+        basicActions.waitForElementToBePresent(previousFinancialDental,20);
+        softAssert.assertEquals(previousFinancialDental.getText(), "Previous Financial Periods - Dental");
+        softAssert.assertEquals(previousFinancialNoDental.getText(), "No Past Financial Periods - Dental");
+        softAssert.assertAll();     }
+    public void validateYearsDropdown(String lowerYear){
+        basicActions.waitForElementToBePresent(planYearList,20);
+        softAssert.assertTrue(planYearDownErrow.isDisplayed());
+        basicActions.click(dpdCurrentYearMP);
+        basicActions.waitForElementToBePresent(planYearList,20);
+        softAssert.assertEquals(planYearList.getText(), "2024\n" +
+                "2019\n" +
+                "2020\n" +
+                "2021\n" +
+                "2022\n" +
+                "2023\n" +
+                "2024\n" +
+                "2025");
+        softAssert.assertEquals(secondYearInList.getText(), lowerYear);
         softAssert.assertAll();     }
 
     public void clickSaveButton() {
