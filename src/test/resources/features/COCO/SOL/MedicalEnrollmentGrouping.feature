@@ -164,7 +164,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "MoveToCO" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I Declare as Tax Household 1
+    And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
@@ -198,7 +198,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "MoveToCO" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I Declare as Tax Household 1
+    And I enter a OBO signature on the Declarations And Signature Page CoCo
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
