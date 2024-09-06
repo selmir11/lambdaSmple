@@ -225,6 +225,28 @@ public class CreateAccountPage {
         submitButton.click();
     }
 
+    public void createSpecificAccount(String fName, String lName, String appType){
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
+        SharedData.setAppType(appType);
+        addSpecificDetails(fName, lName);
+        switch(appType){
+            case "coco":
+                cocoTermsOfUseCheckbox.click();
+                break;
+            case "exchange":
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            case "Admin exchange":
+                onBehalfOfPrimaryUserCheckbox.click();
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+
+        }
+        submitButton.click();
+    }
+
     public void createGeneralAccountOutlook(String appType, String emailBase){
         // Creates the primary user/Account holder
         basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
@@ -278,6 +300,16 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
+    public void initializeSpecificData(String fName, String lName){
+        MemberDetails subscriber = new MemberDetails();
+        subscriber.setFirstName(fName);
+        subscriber.setLastName(lName);
+        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+getUniqueString(6)+"@test.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
+    }
+
     public void addDetails(){
         initializeData();
         sendDetails();
@@ -321,6 +353,25 @@ public class CreateAccountPage {
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);
     }
+
+    public void addSpecificDetails(String fName, String lName){
+        initializeSpecificData(fName, lName);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 60);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        email.sendKeys(subscriber.getEmailId());
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
+        subscriber.setRelation_to_subscriber("SELF");
+        SharedData.setPrimaryMember(subscriber);
+    }
+
     public void createGeneralAccountGmail(String appType, String emailBase){
         // Creates the primary user/Account holder
         basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );

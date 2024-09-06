@@ -88,7 +88,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -103,7 +103,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Family Overview" page
@@ -117,7 +117,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -192,13 +192,13 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 2
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
 #Step 3
     Then I select "None of these" as ELMO health coverage option
@@ -217,32 +217,32 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 5
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 #Step 6
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
 #Step 7
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 8
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -250,7 +250,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
 #Step 9
     Then I click Go Back on the Elmo OHI HRA page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I select "HRA" as ELMO health coverage option
 #Step 10
@@ -262,7 +262,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 11
     Then I select "TRICARE" as ELMO health coverage option
@@ -271,7 +271,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
 #Step 12
     Then I click Go Back on the Elmo OHC Tricare page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Tricare" page
@@ -280,7 +280,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -288,7 +288,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
 #Step 14
     Then I click Go Back on the Elmo OHC Individual Insurance page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I wait for 400 milliseconds
+    Then I wait for 700 milliseconds
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
