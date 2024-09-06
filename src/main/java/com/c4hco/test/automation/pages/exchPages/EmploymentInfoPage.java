@@ -298,9 +298,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForAngular( 90 );
         basicActions.waitForElementToBePresent(btnContinue,90);
-        //basicActions.waitForElementToBePresent(txtHeaderPart1,90);
+        basicActions.waitForElementToBePresent(txtHeaderPart1,90);
         basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }
