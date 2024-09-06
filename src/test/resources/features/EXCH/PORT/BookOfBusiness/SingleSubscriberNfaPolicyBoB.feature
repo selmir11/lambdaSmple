@@ -30,7 +30,7 @@ Feature: Broker Portal BOB - Single Subscriber NFA policy submission
 
     And I verify the broker authorization in BoB DB is "Preston Saunders"
 
-  Scenario: : Associated broker working OBO to submit an NFA application and enroll in a plan
+    #Associated broker working OBO to submit an NFA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+PrestonSaunders@outlook.com" password "ALaska12!" and "C4PortTesting+PSaundersQA@outlook.com" password "ALaska12!"
@@ -105,11 +105,10 @@ Feature: Broker Portal BOB - Single Subscriber NFA policy submission
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
 
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     And I validate I am on the "Pay now" page
     Then I click all done from payment portal page OBO
