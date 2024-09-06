@@ -80,4 +80,10 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 //
 //   }
 
+   @And("I verify Person ID is unique in the DB")
+   public void iValidateUniquePersonId(){policyTableValidations.validateUniquePersonId();}
+
+   @And("I verify Person ID review status is Manual Review Required")
+   public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
+
 }

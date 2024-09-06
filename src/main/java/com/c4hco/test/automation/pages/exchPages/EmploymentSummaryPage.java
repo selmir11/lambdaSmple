@@ -103,8 +103,26 @@ public class EmploymentSummaryPage {
     @FindBy(css = "ul:nth-child(24) > li:nth-child(5) > a, ul:nth-child(23) > li:nth-child(5) > a")
     WebElement helpDrawerPreTaxRetirementContributionLink;
 
-    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a, ul:nth-child(23) > li:nth-child(6) > a")
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(5), ul:nth-child(23) > li:nth-child(6) > a:nth-child(5)")
     WebElement helpDrawerSchoolTuitionLink;
+
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(8), ul:nth-child(23) > li:nth-child(6) > a:nth-child(8)")
+    WebElement helpDrawerSchoolTuitionSelfEmpLink;
+
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(9), ul:nth-child(23) > li:nth-child(6) > a:nth-child(9)")
+    WebElement helpDrawerSchoolTuitionSelfEmp2Link;
+
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(12), ul:nth-child(23) > li:nth-child(6) > a:nth-child(12)")
+    WebElement helpDrawerSchoolTuitionArmedForcesLink;
+
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(13), ul:nth-child(23) > li:nth-child(6) > a:nth-child(13)")
+    WebElement helpDrawerSchoolTuitionArmedForces2Link;
+
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(16), ul:nth-child(23) > li:nth-child(6) > a:nth-child(16)")
+    WebElement helpDrawerSchoolTuitionDisabilityLink;
+
+    @FindBy(css = "ul:nth-child(24) > li:nth-child(6) > a:nth-child(17), ul:nth-child(23) > li:nth-child(6) > a:nth-child(17)")
+    WebElement helpDrawerSchoolTuitionDisability2Link;
 
     @FindBy(css = "ul:nth-child(24) > li:nth-child(7) > a, ul:nth-child(23) > li:nth-child(7) > a")
     WebElement helpDrawerSelfEmploymentTaxLink;
@@ -248,6 +266,30 @@ public class EmploymentSummaryPage {
                 basicActions.scrollToElement(helpDrawerSchoolTuitionLink);
                 helpDrawerSchoolTuitionLink.click();
                 break;
+            case "School tuition: Self-Employed 1":
+                basicActions.scrollToElement(helpDrawerSchoolTuitionSelfEmpLink);
+                helpDrawerSchoolTuitionSelfEmpLink.click();
+                break;
+            case "School tuition: Self-Employed 2":
+                basicActions.scrollToElement(helpDrawerSchoolTuitionSelfEmp2Link);
+                helpDrawerSchoolTuitionSelfEmp2Link.click();
+                break;
+            case "School tuition: Armed Forces 1":
+                basicActions.scrollToElement(helpDrawerSchoolTuitionArmedForcesLink);
+                helpDrawerSchoolTuitionArmedForcesLink.click();
+                break;
+            case "School tuition: Armed Forces 2":
+                basicActions.scrollToElement(helpDrawerSchoolTuitionArmedForces2Link);
+                helpDrawerSchoolTuitionArmedForces2Link.click();
+                break;
+            case "School tuition: Disability 1":
+                basicActions.scrollToElement(helpDrawerSchoolTuitionDisabilityLink);
+                helpDrawerSchoolTuitionDisabilityLink.click();
+                break;
+            case "School tuition: Disability 2":
+                basicActions.scrollToElement(helpDrawerSchoolTuitionDisability2Link);
+                helpDrawerSchoolTuitionDisability2Link.click();
+                break;
             case "Self-employment tax":
                 basicActions.scrollToElement(helpDrawerSelfEmploymentTaxLink);
                 helpDrawerSelfEmploymentTaxLink.click();
@@ -370,8 +412,14 @@ public class EmploymentSummaryPage {
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(21).getText(), "Health Savings Account\nA type of savings account that lets you set aside money on a pre-tax basis to pay for qualified medical expenses. Enter contributions made to your health savings account, up to the yearly limit. For more information see IRS Form 8889.");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(22).getText(), "Pre-tax retirement account contribution\nA pre-tax contribution is a payment made to a retirement account with money that has not been taxed. For more information, see:\nhttps://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
         softAssert.assertEquals(helpDrawerPreTaxRetirementContributionLink.getText(), "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
-        softAssert.assertEquals(helpDrawerBodySubParagraphs.get(23).getText(), "School tuition and fees\nCertain school tuition and fees are able to be deducted from your taxes. For more information, see:\nhttps://www.irs.gov/forms-pubs/about-form-8917");
-        softAssert.assertEquals(helpDrawerSchoolTuitionLink.getText(), "https://www.irs.gov/forms-pubs/about-form-8917");
+        softAssert.assertEquals(helpDrawerBodySubParagraphs.get(23).getText(), "School tuition and fees\nCertain school tuition and fees are able to be deducted from your taxes. For more information, see:\n\nhttps://www.irs.gov/taxtopics/tc513\n\nSelf-Employed Individuals \u2013 https://www.irs.gov/pub/irs-pdf/f1040sc.pdf or https://www.irs.gov/pub/irs-pdf/f1040sf.pdf\n\nArmed Forces Reservists, Qualified Performing Artists, and State/Local Government Officials \u2013 https://www.irs.gov/pub/irs-pdf/f1040s1.pdf and https://www.irs.gov/pub/irs-pdf/f2106.pdf\n\nIndividuals with a Disability - https://www.irs.gov/pub/irs-pdf/f1040sa.pdf and https://www.irs.gov/pub/irs-pdf/f2106.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionLink.getText(), "https://www.irs.gov/taxtopics/tc513");
+        softAssert.assertEquals(helpDrawerSchoolTuitionSelfEmpLink.getText(), "https://www.irs.gov/pub/irs-pdf/f1040sc.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionSelfEmp2Link.getText(), "https://www.irs.gov/pub/irs-pdf/f1040sf.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionArmedForcesLink.getText(), "https://www.irs.gov/pub/irs-pdf/f1040s1.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionArmedForces2Link.getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionDisabilityLink.getText(), "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionDisability2Link.getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(24).getText(), "Self-employment tax\nSelf-employment income is income that arises from the performance of personal services, but which cannot be classified as wages because an employer-employee relationship does not exist between the payer and the payee. The Internal Revenue Code imposes the self-employment tax on the self-employment income of any U.S. citizen or resident alien who has such self-employment income. For more information, see:\nhttps://www.irs.gov/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerSelfEmploymentTaxLink.getText(), "https://www.irs.gov/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(25).getText(), "Student Loan Interest\nStudent loan interest is interest you paid during the year on a qualified student loan. For more information, see:\nhttps://www.irs.gov/taxtopics/tc456");
@@ -441,8 +489,14 @@ public class EmploymentSummaryPage {
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(21).getText(), "Cuenta de ahorros de salud\nUn tipo de cuenta de ahorros que le permite ahorrar dinero en una base antes de impuestos para pagar los gastos m\u00E9dicos calificados. Ingrese las contribuciones hechas a su cuenta de ahorros de salud, hasta el l\u00EDmite anual. Para m\u00E1s informaci\u00F3n, consulte el formulario 8889 del IRS.");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(22).getText(), "Aportes a la cuenta de retiro antes de impuestos\nUn aporte antes de impuestos es un pago realizado a una cuenta de retiro con dinero que no ha sido sujeto a impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
         softAssert.assertEquals(helpDrawerPreTaxRetirementContributionLink.getText(), "https://www.irs.gov/es/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
-        softAssert.assertEquals(helpDrawerBodySubParagraphs.get(23).getText(), "Colegiatura y cuotas escolares\nCiertas colegiaturas y cuotas de inscripci\u00F3n pueden ser deducidas de sus impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/forms-pubs/about-form-8917");
-        softAssert.assertEquals(helpDrawerSchoolTuitionLink.getText(), "https://www.irs.gov/es/forms-pubs/about-form-8917");
+        softAssert.assertEquals(helpDrawerBodySubParagraphs.get(23).getText(), "Colegiatura y cuotas escolares\nCiertas colegiaturas y cuotas de inscripci\u00F3n pueden ser deducidas de sus impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\n\nhttps://www.irs.gov/es/taxtopics/tc513\n\nTrabajadores independientes: https://www.irs.gov/pub/irs-pdf/f1040scs.pdf o https://www.irs.gov/pub/irs-pdf/f1040sfs.pdf\n\nReservistas de las Fuerzas Armadas, artistas ejecutantes calificados y funcionarios del gobierno estatal y local: https://www.irs.gov/pub/irs-pdf/f1040s1s.pdf y https://www.irs.gov/pub/irs-pdf/f2106.pdf\n\nPersonas con alguna discapacidad: https://www.irs.gov/pub/irs-pdf/f1040sa.pdf y https://www.irs.gov/pub/irs-pdf/f2106.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionLink.getText(), "https://www.irs.gov/es/taxtopics/tc513");
+        softAssert.assertEquals(helpDrawerSchoolTuitionSelfEmpLink.getText(), "https://www.irs.gov/pub/irs-pdf/f1040scs.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionSelfEmp2Link.getText(), "https://www.irs.gov/pub/irs-pdf/f1040sfs.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionArmedForcesLink.getText(), "https://www.irs.gov/pub/irs-pdf/f1040s1s.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionArmedForces2Link.getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionDisabilityLink.getText(), "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf");
+        softAssert.assertEquals(helpDrawerSchoolTuitionDisability2Link.getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(24).getText(), "Impuesto al trabajo independiente\nEl ingreso como trabajador independiente es ingreso que se genera por servicios personales otorgados, los cuales no pueden ser clasificados como sueldos, ya que no existe una relaci\u00F3n de empleador y el empleado entre el pagador y el beneficiario. El C\u00F3digo de impuestos internos impone el impuesto de trabajador independiente al ingreso de trabajo independiente sujeto a impuestos a todos los ciudadanos estadounidenses o extranjeros residentes que tienen dicho ingreso como trabajador independiente. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerSelfEmploymentTaxLink.getText(), "https://www.irs.gov/es/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(25).getText(), "Inter\u00E9s por pr\u00E9stamo de estudiante\nEl inter\u00E9s del pr\u00E9stamo estudiantil que paga durante el a\u00F1o de un pr\u00E9stamo estudiantil calificado. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc456");
