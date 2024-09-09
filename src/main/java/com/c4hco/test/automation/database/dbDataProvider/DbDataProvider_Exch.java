@@ -23,6 +23,7 @@ public class DbDataProvider_Exch {
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
     MemberDetails primaryMember = SharedData.getPrimaryMember();
+    EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     String fipcode;
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
@@ -213,5 +214,13 @@ public class DbDataProvider_Exch {
     }
     public List<EnPolicyMemberAhEntity> getEnPol_mem_ah_details(){
         return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
+    }
+
+    public List<EsMemberHouseholdEntity> getCountOfPersonIds(){
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.countOfPersonIds());
+    }
+
+    public List<EsMemberHouseholdEntity> getEsHousehold(){
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.esHousehold());
     }
 }
