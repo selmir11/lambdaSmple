@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,15 @@ public class PaymentPortalPage {
     @FindBy(id = "SOL-PayNow-AllDone-Obo")
     WebElement allDoneObo;
 
+    @FindBy(css = "#SOL-PayNow-PayNow-Medical-0")
+    WebElement PayNowButton;
+
+    @FindBy(id = "userPassword")
+    WebElement password;
+
+    @FindBy(id = "password-button")
+    WebElement continueButton;
+
 
     public void clickAllDone(){
         basicActions.waitForElementToDisappear(spinner, 30);;
@@ -38,6 +48,24 @@ public class PaymentPortalPage {
         basicActions.waitForElementToBePresent( allDoneObo,30 );
         basicActions.scrollToElement( allDoneObo );
         basicActions.clickElementWithRetries(allDoneObo, 30);
+    }
+    public void clickPayNowButton() {
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(PayNowButton, 40);
+        basicActions.scrollToElement(PayNowButton);
+        basicActions.clickElementWithRetries(PayNowButton, 30);
+    }
+    public void password() {
+        basicActions.waitForElementToBePresent(password, 10);
+        String pswd = SharedData.getPrimaryMember().getPassword();
+        basicActions.waitForElementToBePresent(password, 10);
+        password.sendKeys(pswd);
+        System.out.println("Password::" + pswd);
+    }
+
+    public void clickContinue(){
+        basicActions.waitForElementToBePresent(continueButton, 10);
+        continueButton.click();
     }
 }
 

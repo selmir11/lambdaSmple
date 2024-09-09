@@ -16,4 +16,17 @@ public class PaymentPortalPageSteps {
     public void clickAllDoneObo(){
        paymentPortalPage.clickAllDoneObo();
     }
+
+    @Then("I click Pay Now button payment portal page")
+    public void clickPayNowButton(){paymentPortalPage.clickPayNowButton();
+    }
+
+    @Then("I enter user password on payment portal page")
+    public void password() {paymentPortalPage.password();
+    }
+
+    @Then("I click continue on payment portal page")
+    public void clickContinue() {paymentPortalPage.clickContinue();
+    }
+
 }
