@@ -76,4 +76,8 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.selectMultiplePlanstoCompare();
     }
 
+    @And("Verify {string} hyperlink present in coco Medical Plan Results page and navigates to {string}")
+    public void verifyHealthcareOrgLink(String hyperLink, String pageUrl){
+        medicalPlansCoCoPage.verifyURLforHealthCare(hyperLink,pageUrl);
+    }
 }
