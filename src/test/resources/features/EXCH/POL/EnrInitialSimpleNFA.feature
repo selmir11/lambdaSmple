@@ -1,6 +1,9 @@
 Feature: Simple NFA - Single Applicant
   @SLER-34 
   Scenario: Simple NFA flow with single applicant
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                | 1               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -98,3 +101,23 @@ Feature: Simple NFA - Single Applicant
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+    # RT-1262
+    And I validate the member details from policy tables
+      | CoverageStartDate | CoverageEndDate |
+      | 10-01             | 12-31           |
+    And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should not be empty
+    And I validate the ob834 files should have the values
+      | LX | N1 75              | REF       | REFDEN    |
+      | 1  | PRE AMT 1          | 291.02    | 21.00     |
+      | 2  | APTC AMT           | 0.00      | 0.00      |
+      | 3  | CSR AMT            | 0.00      | 0.00      |
+      | 4  | RATING AREA        | 3         | 3         |
+      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
+      | 6  | TOT RES AMT        | 291.02    | 21.00     |
+      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
+      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |

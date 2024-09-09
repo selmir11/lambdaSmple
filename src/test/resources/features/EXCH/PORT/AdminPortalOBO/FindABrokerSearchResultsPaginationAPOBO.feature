@@ -13,7 +13,7 @@ Feature: Tests broker search results pagination on the Find a Certified Broker p
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I validate I am on the "Account Overview" page
-    And I click on Get Assistance in the "Exch" Header
+    And I click on Get Assistance in the "Exch NonElmo" Header
     And I click on Find Expert Assistance in the "individual dashboard" Header
     And I click on Find a Broker
     Then I enter "Denver" into the broker location search box
