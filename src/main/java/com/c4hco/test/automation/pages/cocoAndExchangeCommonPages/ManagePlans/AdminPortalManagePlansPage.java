@@ -71,12 +71,11 @@ public class AdminPortalManagePlansPage{
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[2]/div[2]/app-previous-plan/div/div[2]")
     WebElement previousFinancialNoDental;
     @FindBy(css = "#enrollments-container > div.plan-header > div.select-year > div:nth-child(2) > app-plan-year-dropdown > div > app-drop-down-select > div > div.drop-down-option.drop-down-option-selected")
-    WebElement planYearDownErrow;
+    WebElement planYearDownArrow;
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select")
     WebElement planYearList;
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select/div/div[2]/div[1]")
     WebElement secondYearInList;
-
     @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
     WebElement coverageStartdate;
     @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
@@ -89,6 +88,12 @@ public class AdminPortalManagePlansPage{
     WebElement additionalReasonText;
     @FindBy(xpath = "//button[normalize-space()='Confirm']")
     WebElement confirmChangesButton;
+    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select/div/div[1]")
+    WebElement yearsDpdArrow;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
+    List<WebElement> currentMedicalData;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
+    List<WebElement> currentDentalData;
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -181,7 +186,7 @@ public class AdminPortalManagePlansPage{
         softAssert.assertAll();     }
     public void validateYearsDropdown(String lowerYear){
         basicActions.waitForElementToBePresent(planYearList,20);
-        softAssert.assertTrue(planYearDownErrow.isDisplayed());
+        softAssert.assertTrue(planYearDownArrow.isDisplayed());
         basicActions.click(dpdCurrentYearMP);
         basicActions.waitForElementToBePresent(planYearList,20);
         softAssert.assertEquals(planYearList.getText(), "2024\n" +
@@ -214,7 +219,6 @@ public class AdminPortalManagePlansPage{
         financialStartDate.clear();
         financialStartDate.sendKeys(finStartDate);
     }
-
     public void selectReasonForTheChange(){
         basicActions.waitForElementToBeClickable(reasonForTheChange,10);
         reasonForTheChange.click();
@@ -224,4 +228,30 @@ public class AdminPortalManagePlansPage{
         additionalReasonText.sendKeys("Testing");
         confirmChangesButton.click();
     }
+    public void verifyLabelsDataMedical() {
+        basicActions.waitForElementListToBePresent(currentMedicalData, 5000);
+        String[] expectedHeaders = {"Anthem Silver Pathway HMO 6500 Rx Copay $0 Select Drugs","Policy Coverage: 01/01/2024 to 12/31/2024","Latest Application Date:","11/28/2023","Financial Start Date:","01/01/2024","EHB Premium:","$1,598.46","Financial End Date:","12/31/2024","CSR Amount:","$0.00","Plan Premium:","$1,598.46","Latest LCE and Date:","","Plan APTC:","$511.57","Rating Area:","3","Premium after Subsidy:","$1,086.89","Service Area:","COS001","Plan AV:","70.54%","Policy ID:","3935009010","HIOS ID:","76680CO0220067-01"};
+        for (int i = 0; i < currentMedicalData.size(); i++) {
+            String actualHeader = currentMedicalData.get(i).getText();
+            if (!actualHeader.equals(expectedHeaders[i])) {
+                System.out.println("Label mismatch: Expected " + expectedHeaders[i] + ", but got " + actualHeader);
+            }
+        }
+    }
+    public void verifyLabelsDataDental() {
+        basicActions.waitForElementListToBePresent(currentDentalData, 5000);
+        String[] expectedHeaders = {"Anthem Dental Family","Policy Coverage: 01/01/2024 to 12/31/2024","Latest Application Date:","11/28/2023","Financial Start Date:","01/01/2024","EHB Premium:","$41.86","Financial End Date:","12/31/2024","CSR Amount:","$0.00","Plan Premium:","$41.86","Latest LCE and Date:","","Plan APTC:","$0.00","Rating Area:","3","Premium after Subsidy:","$41.86","Service Area:","COS003","Plan AV:","0.00%","Policy ID:","2399001105","HIOS ID:","87269CO1120003-01"};
+        for (int i = 0; i < currentDentalData.size(); i++) {
+            String actualHeader = currentDentalData.get(i).getText();
+            if (!actualHeader.equals(expectedHeaders[i])) {
+                System.out.println("Label mismatch: Expected " + expectedHeaders[i] + ", but got " + actualHeader);
+            }
+        }
+    }
+    public void collapsYearDropdown() {
+        basicActions.waitForElementToBePresent(yearsDpdArrow, 10);
+        yearsDpdArrow.click();
+        basicActions.switchtoactiveTab();       }
+
 }
+

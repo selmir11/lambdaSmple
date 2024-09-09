@@ -77,7 +77,6 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify Years in dropdown starting from {string} as expected")
     public void iValidateYearsDropdown(String lowerYear){
         adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
-
     @And("I click Save Button Medical")
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
@@ -94,5 +93,14 @@ public class AdminPortalManagePlansSteps {
     public void iselectTheReason (){
         adminPortalManagePlansPage.selectReasonForTheChange();
     }
+    @And("I check current Medical container labels and data display")
+    public void iVerifyLabelsDataMedical() {
+        adminPortalManagePlansPage.verifyLabelsDataMedical();       }
+    @Then("I check current Dental container labels and data display")
+    public void iVerifyLabelsDataDental() {
+        adminPortalManagePlansPage.verifyLabelsDataDental();       }
+    @And("I collapse year dropdown")
+    public void iCollapsYearDropdown() {
+        adminPortalManagePlansPage.collapsYearDropdown();       }
 }
 
