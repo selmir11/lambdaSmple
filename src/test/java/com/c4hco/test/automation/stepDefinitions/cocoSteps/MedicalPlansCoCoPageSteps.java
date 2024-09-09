@@ -71,4 +71,9 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.evaluateSortingValue(sortingTypeSelection);
     }
 
+    @And( "I select 2 plans from page one and 1 plan from page two and click the Compare button" )
+    public void selectPlansfromDifferentPgetoCompare(){
+        medicalPlansCoCoPage.selectMultiplePlanstoCompare();
+    }
+
 }

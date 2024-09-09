@@ -229,4 +229,13 @@ public class MedicalPlansCoCoPage {
 
     }
 
+    public void selectMultiplePlanstoCompare(){
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,20 );
+        selectFirstComparebox.click();
+        selectSecondComparebox.click();
+        paginateRight();
+        selectFirstComparebox.click();
+        selectCompareButton.click();
+    }
+
 }
