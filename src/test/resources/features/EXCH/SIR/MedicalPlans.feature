@@ -1,6 +1,6 @@
 @MedicalPlans
   Feature: Tests related to medical plans
-    @SLER-72-WIP
+    @SLER-73
     Scenario: Validate medical plans count
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
