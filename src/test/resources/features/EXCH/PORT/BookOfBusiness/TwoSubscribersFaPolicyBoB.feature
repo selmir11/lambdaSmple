@@ -1,8 +1,8 @@
 @BrokerPortalBOB @port
-Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
+Feature: Broker Portal OBO - Two subscribers submit FA Application and enroll in a plan
 
-  @SLER-929
-  Scenario: : Individual account creation and broker authorization
+  @SLER-1013
+  Scenario: : Two subscribers FA application and enrollment
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -30,7 +30,7 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
 
     And I verify the broker authorization in BoB DB is "Maggie Walker"
 
-    #Associated broker working OBO to submit an NFA application and enroll in a plan
+    #Agency owner working OBO to submit an FA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+MWalkerSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MaggieWalker@outlook.com" password "ALaska12!"
@@ -85,9 +85,9 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     And I select "Spouse" as relationship option
     And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
+
     Then I validate I am on the "Add Address" page
-    Then I select "New" for Residential Address
-    And I enter a new residential address with city "Boulder" state "CO" zip "80020" and county "BOULDER"
+    Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -95,6 +95,7 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -102,7 +103,46 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
 
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
-    And I Apply for no financial help
+    And I Apply for financial help
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as " CO " and zipcode as "80205" and income "1000000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as " CO " and zipcode as "80205" and income "1000000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I click continue on family overview page
 
     Then I validate I am on the "Tell us about life changes" page
     Then I select "Birth" QLCE on tell us about life changes page
@@ -115,26 +155,20 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
 
     And I verify the client application submission in BoB DB
 
+    And I click on No Thanks on good news page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
+
     Then I validate I am on the "Grouping Members Medical" page
     And I click continue on grouping Members Medical page
-
     And I validate I am on the "Medical Plan Results" page
-    Then I click skip on medical plan results page
-
-    And I validate I am on the "Medical Plan Results" page
-    Then I click skip on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
-
-    And I validate I am on the "Dental Plan Results" page
-    Then I select first dental plan
-    Then I click continue on dental plan results page
-
     And I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
     Then I click continue on dental plan results page
@@ -151,10 +185,14 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     Then I click all done from payment portal page OBO
 
     And I validate I am on the "Broker Portal Your Clients" page
+    And I validate I am on the "Agency Dashboard" page
     Then I validate the Your Clients page title
+    And I wait for 2000 milliseconds
     And I search for clients
     And I click on first client search result
-    Then I verify that my client's current status is "ELIGIBILITY ONLY"
+    And I wait for 1000 milliseconds
+    And I verify my client's name is displayed
+    Then I verify that my client's current status is "POLICY SUBMITTED"
 
-    And I verify there are no medical records for my client in BoB DB
-    And I verify the client's policy submission in BoB DB has 2 expected records for coverage type 2
+    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 1
+    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 2

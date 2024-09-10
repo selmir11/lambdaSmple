@@ -176,11 +176,10 @@ Feature: Broker Portal BOB - Three Subscriber Groups NFA policy submission
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
 
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     And I validate I am on the "Pay now" page
     Then I click all done from payment portal page OBO

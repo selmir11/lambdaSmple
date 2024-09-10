@@ -21,6 +21,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on save and continue button
 
     Then I click on continue with  application button on Before you begin page
+    # LCE is removed during Open Enrollment
     And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question

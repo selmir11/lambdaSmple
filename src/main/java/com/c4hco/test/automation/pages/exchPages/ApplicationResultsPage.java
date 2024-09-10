@@ -162,7 +162,7 @@ public class ApplicationResultsPage {
     }
 
     public void clickViewApplicationSummary() {
-        basicActions.waitForElementToBePresent(applicationSummaryLnk, 20);
+        basicActions.waitForElementToBePresent(applicationSummaryLnk, 30);
         applicationSummaryLnk.click();
     }
 }

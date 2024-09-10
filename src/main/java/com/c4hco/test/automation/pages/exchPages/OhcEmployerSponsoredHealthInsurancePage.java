@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,10 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OhcEmployerSponsoredHealthInsurancePage {
     private BasicActions basicActions;
@@ -329,30 +327,25 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         esiMonthlyAmountFamilyInput.sendKeys(familyAmount);
     }
 
-    public void clickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues){
-        for(int i=0; i<expectedValues.size();i++){
-            String txtToClick =  expectedValues.get(i).get("enrollmentStatus");
-            clickFamilyEnrollmentStatusMember(txtToClick, i);
+    public void clickFamilyEnrollmentStatusMembers(List<String> expectedValues) {
+//        status types are Enrolled, TypeAccess (Offered but not enrolled), NoAccess
+        for (String option : expectedValues) {
+            String[] parts = option.split(":");
+
+            String name = parts[0].trim();
+            String enrollmentStatus = parts[1].trim();
+
+            clickFamilyEnrollmentStatusMember(name, enrollmentStatus);
         }
     }
 
-    public void clickFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
-        switch (enrollmentStatus) {
-            case "Enrolled":
-                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
-                basicActions.click(esiFamilyEnrolledBtn.get(memberIndex));
-                break;
-            case "Offered":
-                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
-                basicActions.click(esiFamilyOfferedBtn.get(memberIndex));
-                break;
-            case "No Option":
-                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
-                basicActions.click(esiFamilyNoOptionBtn.get(memberIndex));
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + enrollmentStatus);
-        }
+    private void clickFamilyEnrollmentStatusMember(String name, String enrollmentStatus) {
+        String xpath = String.format("//*[contains(text(),'%s')]//following::button[contains(@id, 'Button') and contains(@id,'%s')]", name, enrollmentStatus);
+
+        System.out.println("XPath: " + xpath);
+
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
     }
 
     public void clickMainHelp() {

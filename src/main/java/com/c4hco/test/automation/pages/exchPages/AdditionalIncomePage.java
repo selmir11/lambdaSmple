@@ -24,7 +24,7 @@ public class AdditionalIncomePage {
     @FindBy(css = ".additional-income-row button")
     List<WebElement> addtlIncomeOptionsCheckbox;
 
-    @FindBy(css = ".checkbox-description .body-text-1")
+    @FindBy(css = "lib-checkbox-control span")
     List<WebElement> addtlIncomeOptionsName;
 
     @FindBy(css = ".monetary-input-container input")

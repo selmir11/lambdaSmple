@@ -369,6 +369,7 @@ public class MyDocumentsPage {
     }
 
     public  void downloadEnrolmentDocument() {
+        basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 50);
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         expandDownloadEnrolmentDocument.click();

@@ -67,7 +67,7 @@ public class IncomeSummaryPage {
     WebElement helpDrawerContactUsLink;
 
     public void selectProjectedIncome(String projectedIncomeOption){
-        basicActions.waitForElementToBePresent(hdr_Income,20);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,10);
         switch(projectedIncomeOption){
             case "No":
                 basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
