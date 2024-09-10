@@ -74,11 +74,14 @@ public class GroupingMembersMedicalPage {
     public void noOfMedicalGroups(int totalGroups) {
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
-        softAssert.assertAll();
-        if(!(SharedData.getScenarioDetails() == null)) {
+        if(SharedData.getScenarioDetails()!=null){
             SharedData.getScenarioDetails().setTotalGroups(groupsSize);
         }
+        ScenarioDetails scenarioDetails = new ScenarioDetails();
+        scenarioDetails.setTotalGroups(groupsSize);
+        SharedData.setScenarioDetails(scenarioDetails);
+        softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
+        softAssert.assertAll();
     }
 
     public void getUniqueZipCodes(int expectedGroups) {
@@ -191,8 +194,12 @@ public class GroupingMembersMedicalPage {
         Map<String, List<String>> groupDetailsMap = new HashMap<>();
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
-        SharedData.getScenarioDetails().setTotalGroups(groupsSize);
-
+        if(SharedData.getScenarioDetails()!=null){
+            SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        }
+        ScenarioDetails scenarioDetails = new ScenarioDetails();
+        scenarioDetails.setTotalGroups(groupsSize);
+        SharedData.setScenarioDetails(scenarioDetails);
         for (int i = 1; i <= groupsSize; i++) {
             List<WebElement> details = basicActions.getDriver().findElements(By.xpath("//th[contains(text(),'Medical Group # " + i + "')]/../../following-sibling::tbody//td"));
             List<String> newDetails = new ArrayList<>();
