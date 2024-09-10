@@ -477,7 +477,6 @@ Feature: Individual adult - End to End Test
     Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
-    #And I validate that there are 3 default groups in coco page
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
