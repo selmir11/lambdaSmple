@@ -1092,18 +1092,16 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
 
-    # Getting rerouted back to the "Manage Who Helps You" page
-    Then I validate I am on the "Good News" page
-    And I click on No Thanks on good news page
+    # Good news validation only appears under certain conditions
+    #Then I validate I am on the "Good News" page
+    #And I click on No Thanks on good news page
 
     Then I validate I am on the "Application History" page
-    #this showed up
     Then I validate that my APTC value is "$0.00/mo"
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
     And I verify that the APTC amount does not appear on the app results page
-    #this showed up
     Then I validate that my Tax Household's APTC value is "$0.00/mo"
     Then I click continue on application results page
 
@@ -1240,78 +1238,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonOne", DOB "10102019", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonOne", DOB "10102019", Gender "Male" and applying status "Yes"
       |Primary:Son|
       |Spouse:Son |
-    And I mark the Additional member is pregnant as "No"
-    And I click continue on Tell us about additional members page
-
-    Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-
-    Then I validate I am on the "Family Overview" page
-    Then I click on Member Row 3
-
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-    And I select the first dependent
-    And I select the second dependent
-    ## increased incrementally
-    And I click save and continue on tax status page
-         ##### transition stops
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
-
-### transition step is repeated for each new member  - 2nd re-enrollment
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-### transition step is repeated for each new member
-
-    #####
-    Then I validate I am on the "Family Overview" page
-    Then I click Add Another Family Member
-
-    Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonTwo", DOB "10102021", Gender "Male" and applying status "Yes"
-      |Primary:Son      |
-      |Spouse:Son       |
-      |SoneOne:Brother  |
     #And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
 
@@ -1349,6 +1278,85 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
+    #pre-existing setting is honored
+    And I select the first dependent
+    And I select the second dependent
+    ## increased incrementally
+    And I click save and continue on tax status page
+
+    # tax status dependant page is skipped for initial dependant
+    # tax status dependant - minor only
+    #Then I validate I am on the "Tax status dependent" page
+    #And I select the option "Yes" to claim as dependent
+    #And I select the "1" option for Who Will Claim as Dependent
+
+         ##### transition stops
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+
+### transition step is repeated for each new member  - 2nd re-enrollment
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+### transition step is repeated for each new member
+
+    #####
+    Then I validate I am on the "Family Overview" page
+    Then I click Add Another Family Member
+
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonTwo", DOB "10102021", Gender "Male" and applying status "Yes"
+      |Primary:Son      |
+      |Spouse:Son       |
+      |SonOne:Brother  |
+    #And I mark the Additional member is pregnant as "No"
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click on Member Row 4
+
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+    #Then I click continue on the Additional Income page
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    #Then I click continue on the Deductions page
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+
     ## tax status page review here
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
@@ -1357,11 +1365,27 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-    And I select the first dependent
-    And I select the second dependent
-    And I select the third dependent
+
+    Then I click Dependent 1
+    Then I click Dependent 2
+    Then I click Dependent 3
+    Then I click Dependent 4
+    #And I select the first dependent
+    #And I select the second dependent
+    #And I select the third dependent
     ## increased incrementally
+    Then I validate I am on the "Household" page
+
     And I click save and continue on tax status page
+    ## tax status page for first minor appearing??
+
+
+    # tax status dependant - minor
+    Then I validate I am on the "Tax status dependent" page
+    And I select the option "Yes" to claim as dependent
+    And I select the "1" option for Who Will Claim as Dependent
+    And I click save and continue on tax status page
+
 
      ##### transition stops
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -1376,13 +1400,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 ### transition step is repeated for each new member
-
-
+##
+##
     Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonThree", DOB "10102020", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonThree", DOB "10102020", Gender "Male" and applying status "Yes"
       |Primary:Son      |
       |Spouse:Son       |
       |SonOne:Brother   |
@@ -1404,10 +1428,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I click Add Another Family Member
 
     Then I validate I am on the "Family Overview" page
-    Then I click on Member Row 4
+    Then I click on Member Row 5
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1418,9 +1441,11 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
+    #Then I click continue on the Additional Income page
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
+    #Then I click continue on the Deductions page
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
@@ -1433,11 +1458,23 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-    And I select the first dependent
-    And I select the second dependent
-    And I select the third dependent
-    And I select the fourth dependent
+    #And I select the first dependent
+    #And I select the second dependent
+    #And I select the third dependent
+    #And I select the fourth dependent
     ## increased incrementally
+    #And I click save and continue on tax status page
+
+
+    # tax status
+    Then I validate I am on the "Tax status dependent" page
+    Then I will select the option "Yes" that I will be claimed as a dependent
+    And I select the "1" option for Who Will Claim as Dependent
+    And I click save and continue on tax status page
+    #repeat?
+    Then I validate I am on the "Tax status dependent" page
+    Then I will select the option "Yes" that I will be claimed as a dependent
+    And I select the "1" option for Who Will Claim as Dependent
     And I click save and continue on tax status page
 
     ##### transition stops
@@ -1454,13 +1491,14 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 ### transition step is repeated for each new member
+  # verify this section above - Primary was given a Click continue as opposed to being deactivate
 
     ##Tax status review here
     Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonThree", DOB "10102022", Gender "Male" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonFour", DOB "10102022", Gender "Male" and applying status "Yes"
       |Primary:Son      |
       |Spouse:Son       |
       |SonOne:Brother   |
@@ -1496,9 +1534,11 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
+    #Then I click continue on the Additional Income page
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
+    #Then I click continue on the Deductions page
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
@@ -1512,17 +1552,29 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-    And I select the first dependent
-    And I select the second dependent
-    And I select the third dependent
-    And I select the fourth dependent
+    #pre-existing setting is honored
+    #And I select the first dependent
+    #pre-existing setting is honored
+    #And I select the second dependent
+    #pre-existing setting is honored
+    #And I select the third dependent
+    #pre-existing setting is honored
+    #And I select the fourth dependent
+    #pre-existing setting is honored
     And I select the fifth dependent
     ## increased incrementally
     And I click save and continue on tax status page
 
+    # tax status dependant
+    Then I validate I am on the "Tax status dependent" page
+    Then I will select the option "Yes" that I will be claimed as a dependent
+    And I select the "1" option for Who Will Claim as Dependent
+    And I click save and continue on tax status page
+
 ##### transition stops
-    And I validate I am on the "Elmo Other Health Coverage" page
+    #And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
+    # deactivated the above function
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page

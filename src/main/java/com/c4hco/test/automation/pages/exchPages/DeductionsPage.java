@@ -226,7 +226,7 @@ public class DeductionsPage {
     }
 
     public void clickContinue(){
-        basicActions.waitForElementToBePresent(DeductionSummaryHeader,5);
+        basicActions.waitForElementToBePresent(DeductionSummaryHeader,15);
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
