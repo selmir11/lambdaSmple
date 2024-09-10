@@ -194,7 +194,6 @@ Feature: New payment portal - currently in QA only
     Then I click Pay Later button payment portal page
     Then I click Pay Later Continue
     Then I click all done from payment portal page
-    And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
 
 
