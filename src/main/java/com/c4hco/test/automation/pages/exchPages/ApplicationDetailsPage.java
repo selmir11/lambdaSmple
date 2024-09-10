@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -69,7 +70,7 @@ public class ApplicationDetailsPage {
             if (filesAfter != null) {
                 for (File file : filesAfter) {
                     if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
-                        if (file.length() > 0) {
+                        if (file.length() > 0 && isFileDownloadComplete(file)) {
                             SharedData.setNoticeFileName(file.getName());
                             return file.getName();
                         }
@@ -84,6 +85,17 @@ public class ApplicationDetailsPage {
             }
         }
         return null;
+    }
+
+    private static boolean isFileDownloadComplete(File file) {
+        long initialSize = file.length();
+        try {
+            TimeUnit.SECONDS.sleep(2); // Wait for 2 seconds to check if file size changes
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        long newSize = file.length();
+        return initialSize == newSize; // If the size hasn't changed, download is complete
     }
 
     private static boolean fileExists(File[] files, File file) {
@@ -125,20 +137,13 @@ public class ApplicationDetailsPage {
 //        for data, add space in front due to no space if data is blank
 //        Ex: " Yes"
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
-        String backgroundColor;
-        switch (highlight) {
-            case "Yellow":
-                backgroundColor = "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
-                break;
-            case "Plain":
-                backgroundColor = "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
-                break;
-            case "Red":
-                backgroundColor = "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + highlight);
-        }
+        String backgroundColor = switch (highlight) {
+            case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Plain" -> "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
+            default -> throw new IllegalArgumentException("Invalid option: " + highlight);
+        };
         switch (detail){
             case "Employer Sponsored Insurance":
                 softAssert.assertEquals(ohcDetails.get(0).getText(), "Employer Sponsored Insurance");
@@ -222,10 +227,134 @@ public class ApplicationDetailsPage {
                 softAssert.assertEquals(ohcDetails.get(7).getCssValue("background"),backgroundColor);
                 softAssert.assertAll();
                 break;
+            case "Family plan offered":
+                softAssert.assertEquals(ohcDetails.get(8).getText(), "Family plan offered"+ data);
+                softAssert.assertEquals(ohcDetails.get(8).getCssValue("background"),backgroundColor);
+                softAssert.assertAll();
+                break;
+            case "Lowest-Cost Monthly Family Premium Amount":
+                softAssert.assertEquals(ohcDetails.get(9).getText(), "Lowest-Cost Monthly Family Premium Amount"+ data);
+                softAssert.assertEquals(ohcDetails.get(9).getCssValue("background"),backgroundColor);
+                softAssert.assertAll();
+                break;
+            case "Enrolled":
+                softAssert.assertEquals(ohcDetails.get(10).getText(), "Enrolled"+ data);
+                softAssert.assertEquals(ohcDetails.get(10).getCssValue("background"),backgroundColor);
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + detail);
         }
     }
+
+    public void verifyOhcFamilyDetailsColor(List<String> familyOption){
+        basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
+
+        List<String> enrolledMembers = new ArrayList<>();
+        List<String> offeredMembers = new ArrayList<>();
+        List<String> noOptionMembers = new ArrayList<>();
+
+        for (String option : familyOption) {
+            String[] parts = option.split(":");
+            String name = parts.length > 0 ? parts[0].trim() : "";
+            String relation = parts.length > 1 ? parts[1].trim() : "";
+            String highlight = parts.length > 2 ? parts[2].trim() : "";
+
+            if (relation.isEmpty() || highlight.isEmpty()) {
+                continue;
+            }
+
+            switch (relation) {
+                case "Enrolled":
+                    if (!name.isEmpty()) {
+                        enrolledMembers.add(getString(name));
+                    }
+                    break;
+                case "Offered a plan but not enrolled":
+                    if (!name.isEmpty()) {
+                        offeredMembers.add(getString(name));
+                    }
+                    break;
+                case "No option to enroll":
+                    if (!name.isEmpty()) {
+                        noOptionMembers.add(getString(name));
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid relation: " + relation);
+            }
+
+            String backgroundColor = switch (highlight) {
+                case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
+                case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
+                case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
+                case "Plain" -> "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
+                default -> throw new IllegalArgumentException("Invalid highlight color: " + highlight);
+            };
+
+            int index = switch (relation) {
+                case "Enrolled" -> 10;
+                case "Offered a plan but not enrolled" -> 11;
+                case "No option to enroll" -> 12;
+                default -> throw new IllegalArgumentException("Invalid relation: " + relation);
+            };
+
+            softAssert.assertEquals(ohcDetails.get(index).getCssValue("background"), backgroundColor);
+        }
+
+        if (!enrolledMembers.isEmpty()) {
+            String enrolledText = enrolledMembers.size() > 1
+                    ? String.join(", ", enrolledMembers)
+                    : enrolledMembers.get(0);
+            softAssert.assertEquals(ohcDetails.get(10).getText(), "Enrolled " + enrolledText.trim());
+        }
+
+        if (!offeredMembers.isEmpty()) {
+            String offeredText = offeredMembers.size() > 1
+                    ? String.join(", ", offeredMembers)
+                    : offeredMembers.get(0);
+            softAssert.assertEquals(ohcDetails.get(11).getText(), "Offered a plan but not enrolled " + offeredText.trim());
+        }
+
+        if (!noOptionMembers.isEmpty()) {
+            String noOptionText = noOptionMembers.size() > 1
+                    ? String.join(", ", noOptionMembers)
+                    : noOptionMembers.get(0);
+            softAssert.assertEquals(ohcDetails.get(12).getText(), "No option to enroll " + noOptionText.trim());
+        }
+
+        softAssert.assertAll();
+    }
+
+    private static String getString(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return "";
+        }
+
+        String memberFullName = "";
+
+        switch (name) {
+            case "Member1FullName":
+                if (SharedData.getMembers().size() > 0) {
+                    memberFullName = SharedData.getMembers().get(0).getFullMiddleName();
+                }
+                break;
+            case "Member2FullName":
+                if (SharedData.getMembers().size() > 1) {
+                    memberFullName = SharedData.getMembers().get(1).getFullMiddleName();
+                }
+                break;
+            case "Member3FullName":
+                if (SharedData.getMembers().size() > 2) {
+                    memberFullName = SharedData.getMembers().get(2).getFullMiddleName();
+                }
+                break;
+            default:
+                break;
+        }
+        return memberFullName;
+    }
+
 
     private static String extractTextFromPDF(Path pdfPath) throws IOException {
         try (PDDocument document = PDDocument.load(new File(pdfPath.toString()))) {
@@ -234,7 +363,7 @@ public class ApplicationDetailsPage {
         }
     }
 
-    public boolean verifyOhcPdfText(String data, String language, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String voluntarily)throws IOException {
+    public boolean verifyOhcPdfText(String data, String language, String minValue,  String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily)throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
@@ -244,16 +373,16 @@ public class ApplicationDetailsPage {
 
         // Verify the text
         switch (data) {
-            case "Added Job":
+            case "Other Health Coverage":
                 switch (language){
                     case "English":
                         String startPhrase = "Other Health Coverage";
                         int startIndex = pdfContent.indexOf(startPhrase);
                         if (startIndex != -1) {
                             String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getApplicationDetails(premium, enrolled, insruanceEnding, ending, lastSet, voluntarily))) {
+                            if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getApplicationDetails(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily))) {
                                 String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationDetailsPdf.getApplicationDetails(premium, enrolled, insruanceEnding, ending, lastSet, voluntarily).split("\n");
+                                String[] expectedLines = ApplicationDetailsPdf.getApplicationDetails(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily).split("\n");
 
                                 StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -276,9 +405,9 @@ public class ApplicationDetailsPage {
                         int startIndexSp = pdfContent.indexOf(startPhraseSp);
                         if (startIndexSp != -1) {
                             String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getApplicationDetailsSp(premium, enrolled, insruanceEnding, ending, lastSet, voluntarily))) {
+                            if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getApplicationDetailsSp(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily))) {
                                 String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationDetailsPdf.getApplicationDetailsSp(premium, enrolled, insruanceEnding, ending, lastSet, voluntarily).split("\n");
+                                String[] expectedLines = ApplicationDetailsPdf.getApplicationDetailsSp(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily).split("\n");
 
                                 StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -303,6 +432,41 @@ public class ApplicationDetailsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + data);
         }
+        return true;
+    }
+
+    public boolean verifyOhcPdfFamilyText(String offered, String premium, List<String> familyOption)throws IOException {
+        String filePath = SharedData.getLocalPathToDownloadFile();
+        String fileName = SharedData.getNoticeFileName();
+        String pathAndName = filePath+"//"+fileName;
+        System.out.println("path and name is "+pathAndName);
+        // Read the PDF content using PDFBox
+        String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+
+        // Verify the text
+            String startPhrase = "Family plan offered";
+            int startIndex = pdfContent.indexOf(startPhrase);
+            if (startIndex != -1) {
+                String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
+                if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getFamilyApplicationDetails(offered, premium, familyOption))) {
+                    String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                    String[] expectedLines = ApplicationDetailsPdf.getFamilyApplicationDetails(offered, premium, familyOption).split("\n");
+
+                    StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                    for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                        String pdfLine = pdfLines[i].trim();
+                        String expectedLine = expectedLines[i].trim();
+
+                        if (!pdfLine.equals(expectedLine)) {
+                            differences.append("Difference at line ").append(i + 1).append(":\n");
+                            differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                            differences.append("Expected line: [").append(expectedLine).append("]\n");
+                            Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                        }
+                    }
+                }
+            }
         return true;
     }
 
