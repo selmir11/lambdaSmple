@@ -172,7 +172,7 @@ public class NoticesPage {
 
     }
     public void openMFANotice(){
-        basicActions.waitForElementToBePresent(noticeOkta,20);
+        basicActions.waitForElementToBePresentWithRetries(noticeOkta,20);
         noticeOkta.click();
     }
 
