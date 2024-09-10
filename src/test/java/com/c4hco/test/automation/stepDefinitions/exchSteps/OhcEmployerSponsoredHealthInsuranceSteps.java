@@ -58,7 +58,7 @@ public class OhcEmployerSponsoredHealthInsuranceSteps {
         ohcEmployerSponsoredHealthInsurancePage.enterMonthlyFamilyAmount(familyAmount);}
 
     @Then("I click enrollment status for the members")
-    public void iClickFamilyEnrollmentStatusMembers(List<Map<String, String>> expectedValues)
+    public void iClickFamilyEnrollmentStatusMembers(List<String> expectedValues)
     {
         ohcEmployerSponsoredHealthInsurancePage.clickFamilyEnrollmentStatusMembers(expectedValues);}
 
