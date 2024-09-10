@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan (FAMILY OF 3)
-  @SLER-41
+  @SLER-41 @test
   Scenario: : EXCH intial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -189,6 +189,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And  I validate the notices dental policy data "Primary"
     And  I validate the notices dental policy data "Spouse"
     And  I validate the notices dental policy data "Son"
+    And  I validate the notices medical policy data "KP Select CO Bronze 8500/50"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

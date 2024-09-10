@@ -101,6 +101,11 @@ public class NoticesPageSteps {
         noticesPage.verifydentalpolicynotice(DentalPlocitydetails);
     }
 
+    @And("I validate the notices medical policy data {string}")
+    public void verifymedicalpolicynotice(String MedicalPlocitydetails ) {
+        noticesPage.verifydentalpolicynotice(MedicalPlocitydetails);
+    }
+
     @Then("I click the password reset link")
     public void iClickThePasswordResetLink() {
         noticesPage.clickThePasswordResetLink();
