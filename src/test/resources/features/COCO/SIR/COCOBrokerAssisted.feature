@@ -100,12 +100,13 @@ Feature: Individual adult - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
-    And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
     Then I click all done obo from payment portal page coco
 
     Then I validate I am on the "CoCo Welcome" page
@@ -512,14 +513,11 @@ Feature: Individual adult - End to End Test
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select the "Acknowledgement" agreement checkbox CoCo
-    And I select the "Submit" agreement checkbox CoCo
-    And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select submit enrollment button on the Enrollment Agreements CoCo page
-    #And I select continue button on the Enrollment Agreements CoCo page
-    #And I select "Terms of Use" agreement checkbox CoCo
-    #And I select "Privacy Policy" agreement checkbox CoCo
-    #And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
 
     Then I click all done obo from payment portal page coco
     #uncomment the below lines and test after the bug is fixed.

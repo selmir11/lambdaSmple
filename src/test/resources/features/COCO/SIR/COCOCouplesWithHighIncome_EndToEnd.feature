@@ -177,8 +177,8 @@ Feature: Multiple Household Member - End to End Test
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select the "Acknowledgement" agreement checkbox CoCo
-    And I select the "Submit" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     #And I select continue button on the Enrollment Agreements CoCo page

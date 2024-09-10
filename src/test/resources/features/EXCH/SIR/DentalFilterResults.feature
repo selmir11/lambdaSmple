@@ -135,7 +135,7 @@ Feature: Dental Plan Verification test
     |Delta Dental        |Delta Dental of Colorado Pediatric Comprehensive Plan   |
     |Solstice Health     |EssentialSmile Colorado - Total Care                    |
 
-  @SLER-837-WIP @SelectVerifyDentalPediatricPlansOnlyMinor
+  @SLER-837 @SelectVerifyDentalPediatricPlansOnlyMinor
   Scenario: SelectVerifyDentalPediatricPlansOnlyMinor
     When I click create a new account on login page
     Then I click create my account from pre-screen page
