@@ -12,11 +12,10 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage = new TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage(WebDriverManager.getDriver());
 
 
-   @Then("I enter details on tell us about additional members of your household page and continue with {string}, {string}, {string} and applying {string}")
+   @Then("I enter details on tell us about additional members of your household page with {string}, {string}, {string}, and applying {string}")
    public void EnterspecificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, String applying, List<String> Relations) {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.specificAdditionalMemberDetailsCoCo(Name, DOB, gender, Relations, applying);
    }
-
 
    @Then("I enter details on tell us about additional members of your household page in Spanish and continue with {string}, {string}, {string}, and applying {string}")
    public void EnterspecificAdditionalMemberDetailsCoCoSpanish(String DOB, String gender, String Relation, String applying) {
