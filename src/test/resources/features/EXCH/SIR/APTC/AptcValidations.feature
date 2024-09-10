@@ -62,6 +62,7 @@ Feature:APTC tests to validate the APTC Re-calculation with income greater than 
 
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -69,6 +70,7 @@ Feature:APTC tests to validate the APTC Re-calculation with income greater than 
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
     Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
@@ -93,6 +95,7 @@ Feature:APTC tests to validate the APTC Re-calculation with income greater than 
     And I select "Yes" to claim dependents
     And I select the first dependent
     And I click save and continue on tax status page
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page

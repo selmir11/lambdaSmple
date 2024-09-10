@@ -5,7 +5,7 @@ Feature: Medical Plan Verification test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-25-WIP @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
+  @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
   Scenario Outline: SelectVerifyCarrierfilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -17,7 +17,7 @@ Feature: Medical Plan Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
@@ -67,7 +67,7 @@ Feature: Medical Plan Verification test
       | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Bronze                 |
       | Select Health               | Select Health Value Bronze $6900 Medical Deductible               |
 
-  @SLER-73 @SelectVerifyMetalFilterResults
+  @SLER-25 @SelectVerifyMetalFilterResults
   Scenario Outline: SelectVerifyMetalFilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page

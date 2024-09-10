@@ -59,7 +59,7 @@ Scenario: Validate dental plans count - single adult
     Then I validate I am on the "Dental Plan Results" page
     Then I validate the dental plans count to be "9"
 
-  @SLER-WIP @dentalPlanMinorNamesAndCount
+  @SLER-1003-WIP @dentalPlanMinorNamesAndCount
   Scenario: Validate dental plans count - single minor
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -119,7 +119,7 @@ Scenario: Validate dental plans count - single adult
     Then I validate the dental plans count to be "12"
 
 
-@DentalPlanResults-WIP
+@DentalPlanResults-WIP @SLER-1004
   Scenario: Validate dental plans available under fixed constants - single adult
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

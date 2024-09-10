@@ -320,8 +320,10 @@ Feature: CoupleWithChildrens - End to End Test
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
+
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
+
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|

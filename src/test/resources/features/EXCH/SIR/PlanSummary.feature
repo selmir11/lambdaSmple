@@ -23,8 +23,8 @@ Feature: Medical and Dental Plan Summary Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-
-    #And I report "MovedToColorado" and click continue
+    # remove below line with Open Enrollment
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question

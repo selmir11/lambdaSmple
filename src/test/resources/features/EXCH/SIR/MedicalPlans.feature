@@ -1,6 +1,6 @@
 @MedicalPlans
   Feature: Tests related to medical plans
-    @newtest - WIP
+    @SLER-73
     Scenario: Validate medical plans count
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -54,7 +54,7 @@
       And I validate I am on the "Medical Plan Results" page
       Then I validate the medical plans count to be "83"
 
-    @newtest-WIP
+    @SLER-994-WIP
     Scenario: Validate medical plans available
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
