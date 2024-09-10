@@ -1,7 +1,7 @@
 @SLER-827
-Feature: Trigger Notice IND_Welcome Message AM-016-07
+Feature: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-016-08
   @SLER-827
-  Scenario: Trigger Notice IND_Welcome Message AM-016-07
+  Scenario: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-016-08 English
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     Then I click create forgot "password"
@@ -27,6 +27,34 @@ Feature: Trigger Notice IND_Welcome Message AM-016-07
     And I verify the notice Text for "AM-016-08" in "English" for "Exch"
     Then I delete the open notice
     And I sign out of Outlook
-
+    
+    @SLER-1009
+  Scenario: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-016-08 Spanish
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    Then I click create forgot "password"
+    And I validate I am on the "Forgot my password" page
+    Then I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I enter valid email to any env QA "testing.soukaina+hpjwlmcTest@outlook.com" STG "AutomationUser.gabmbhgpTest@test.com"
+    And I click submit button
+    Then I verify notice is sent to the client text in "Spanish"
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
+    Then I open the notice "Enlace para el restablecimiento de la contraseña" in "Spanish"
+    And I verify the notice Text for "AM-016-07" in "Spanish" for "Exch"
+    Then I click the password reset link
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I enter the new password in create new password page
+    Then I validate I am on the "Login" page
+    And I login as individual with password reset code to any env QA "testing.soukaina+hpjwlmcTest@outlook.com" STG "AutomationUser.gabmbhgpTest@test.com"
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
+    Then I open the notice "Confirmación: Restablecimiento de la contraseña de la cuenta" in "Spanish"
+    And I verify the notice Text for "AM-016-08" in "Spanish" for "Exch"
+    Then I delete the open notice
+    And I sign out of Outlook
 
 

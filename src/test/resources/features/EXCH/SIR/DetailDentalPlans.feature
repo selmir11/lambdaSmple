@@ -125,6 +125,10 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
+    And I select the InNetwork link on the Dental Detail page
+    And I validate the text headers and subheaders for the InNetwork Dental Detail page
+    And I select the OutNetwork link on the Dental Detail page
+    And I validate the text headers and subheaders for the OutNetwork Dental Detail page
 
     And I click on Sign Out in the Header for "Elmo"
 

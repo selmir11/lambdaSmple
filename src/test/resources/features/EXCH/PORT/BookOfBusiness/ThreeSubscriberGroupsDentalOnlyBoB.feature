@@ -1,7 +1,7 @@
 @BrokerPortalBOB @port
-Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
+Feature: Broker Portal BOB - Three Subscriber Groups NFA dental only
 
-  @SLER-929
+  @SLER-972
   Scenario: : Individual account creation and broker authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -30,7 +30,7 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
 
     And I verify the broker authorization in BoB DB is "Maggie Walker"
 
-    #Associated broker working OBO to submit an NFA application and enroll in a plan
+  #Agency owner working OBO to submit an NFA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+MWalkerSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MaggieWalker@outlook.com" password "ALaska12!"
@@ -100,6 +100,30 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter member details with "02141995" date of birth
+    And I select "Female" as sex option
+    And I mark the Additional member is pregnant as "No"
+    And I select "Daughter" as relationship option
+    And I select "Daughter" as relationship one option
+    And I select "Yes" to Is Member Applying
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "New" for Residential Address
+    Then I enter a new member address with city "Boulder" state "CO" zip "80301" and county "BOULDER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
@@ -128,8 +152,15 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     And I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
 
+    And I validate I am on the "Medical Plan Results" page
+    Then I click skip on medical plan results page
+
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
+
+    And I validate I am on the "Dental Plan Results" page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
 
     And I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
@@ -151,10 +182,14 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     Then I click all done from payment portal page OBO
 
     And I validate I am on the "Broker Portal Your Clients" page
+    And I validate I am on the "Agency Dashboard" page
     Then I validate the Your Clients page title
+    And I wait for 2000 milliseconds
     And I search for clients
     And I click on first client search result
+    And I wait for 1000 milliseconds
+    And I verify my client's name is displayed
     Then I verify that my client's current status is "ELIGIBILITY ONLY"
 
     And I verify there are no medical records for my client in BoB DB
-    And I verify the client's policy submission in BoB DB has 2 expected records for coverage type 2
+    And I verify the client's policy submission in BoB DB has 3 expected records for coverage type 2

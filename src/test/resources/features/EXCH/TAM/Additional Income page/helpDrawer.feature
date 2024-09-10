@@ -195,6 +195,7 @@ Feature: Page Text-Additional Income Page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     And I select "Help me understand" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Full" verbiage in "Spanish"
     Then I click on "Alimony Received" link in Help Drawer on the Additional Income page
     And I validate I am on the "Alimony Received" page and close tab
@@ -221,6 +222,7 @@ Feature: Page Text-Additional Income Page
     And I select "Help me understand" icon on the Additional Income Page
 
     And I select "side help" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Full" verbiage in "Spanish"
     Then I click on "Alimony Received" link in Help Drawer on the Additional Income page
     And I validate I am on the "Alimony Received" page and close tab
@@ -247,6 +249,7 @@ Feature: Page Text-Additional Income Page
     And I select "close side help" icon on the Additional Income Page
 
     And I select "Alimony Received" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Alimony Received" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Alimony Received" page and close tab
@@ -255,6 +258,7 @@ Feature: Page Text-Additional Income Page
     And I select "Alimony Received" icon on the Additional Income Page
 
     And I select "Capital Gains" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Capital Gains" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Capital Gains" page and close tab
@@ -263,6 +267,8 @@ Feature: Page Text-Additional Income Page
     And I select "Capital Gains" icon on the Additional Income Page
 
     And I select "Income from rental property" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
+    And I verify the header for Primary Member on the Additional Income page in "Spanish"
     Then I validate Additional Income help drawer "Income from rental property" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Income from Rental" page and close tab
@@ -271,6 +277,7 @@ Feature: Page Text-Additional Income Page
     And I select "Income from rental property" icon on the Additional Income Page
 
     And I select "Pension" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Pension" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Pension" page and close tab
@@ -279,6 +286,7 @@ Feature: Page Text-Additional Income Page
     And I select "Pension" icon on the Additional Income Page
 
     And I select "Private Retirement income" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Private Retirement income" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Private Retirement Income" page and close tab
@@ -287,6 +295,8 @@ Feature: Page Text-Additional Income Page
     And I select "Private Retirement income" icon on the Additional Income Page
 
     And I select "Income from Social Security" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
+    And I verify the header for Primary Member on the Additional Income page in "Spanish"
     Then I validate Additional Income help drawer "Income from Social Security" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Title II Income" page and close tab
@@ -295,6 +305,7 @@ Feature: Page Text-Additional Income Page
     And I select "Income from Social Security" icon on the Additional Income Page
 
     And I select "Unemployment insurance benefit" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Unemployment insurance benefit" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Unemployment Insurance" page and close tab
@@ -303,6 +314,7 @@ Feature: Page Text-Additional Income Page
     And I select "Unemployment insurance benefit" icon on the Additional Income Page
 
     And I select "Investment Income" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Investment Income" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Investment Income" page and close tab
@@ -311,12 +323,15 @@ Feature: Page Text-Additional Income Page
     And I select "Investment Income" icon on the Additional Income Page
 
     And I select "Cash Support" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
+    And I verify the header for Primary Member on the Additional Income page in "Spanish"
     Then I validate Additional Income help drawer "Cash Support" verbiage in "Spanish"
     And I click on "Contact Us" link in Help Drawer on the Additional Income page
     And I validate I am on the "We Can Help" page and close tab
     And I select "Cash Support" icon on the Additional Income Page
 
     And I select "Untaxed foreign income" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Untaxed foreign income" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Untaxed Foreign Income" page and close tab
@@ -325,6 +340,7 @@ Feature: Page Text-Additional Income Page
     And I select "Untaxed foreign income" icon on the Additional Income Page
 
     And I select "Royalty income" icon on the Additional Income Page
+    Then I validate I am on the "Additional income" page
     Then I validate Additional Income help drawer "Royalty income" verbiage in "Spanish"
     Then I click on "Item" link in Help Drawer on the Additional Income page
     And I validate I am on the "Royalty Income" page and close tab

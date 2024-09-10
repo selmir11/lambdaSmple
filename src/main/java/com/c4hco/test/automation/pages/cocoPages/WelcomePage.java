@@ -29,7 +29,8 @@ public class WelcomePage {
 
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
-
+    @FindBy(css = "#planYear option")
+    List<WebElement> planYearSelectorOptions;
     @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
 
@@ -65,6 +66,12 @@ public class WelcomePage {
     public void clickApplyForInsurance() {
         basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 30);
         applyForCurrentYearButton.click(); }
+
+    public void selectPlanyear(String planYear){
+        basicActions.waitForElementToBeClickable(planYearSelectorDp,10);
+        planYearSelectorDp.click();
+        basicActions.selectValueFromDropdown(planYearSelectorDp,planYearSelectorOptions,planYear);
+    }
 
     public void clickActionLinks(String actionLink) {
         basicActions.waitForElementListToBePresentWithRetries(actionLinks, 5);
@@ -290,7 +297,7 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlan.getText(), "Medical Plan");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
-        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
+        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "1-303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Monthly Plan Payment");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mo");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
@@ -325,7 +332,7 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlan.getText(), "Plan m\u00E9dico");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
-        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
+        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "1-303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Pago mensual del plan");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mes");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");

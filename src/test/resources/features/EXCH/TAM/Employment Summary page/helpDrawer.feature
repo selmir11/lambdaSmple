@@ -78,6 +78,18 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Pre-tax retirement contribution" page and close tab
     Then I click on "School tuition" link in Help Drawer on the Employment Summary page
     And I validate I am on the "School tuition" page and close tab
+    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
+    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
+    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
+    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
+    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 1" page and close tab
+    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 2" page and close tab
     Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
     And I validate I am on the "Self-employment tax" page and close tab
     Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
@@ -91,6 +103,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on "Contact Us" link in Help Drawer on the Employment Summary page
     And I validate I am on the "We Can Help" page and close tab
     And I select "Help me understand" icon on the Employment Summary Page
+    Then I validate I am on the "Employment Summary" page
     And I select "side help" icon on the Employment Summary Page
     Then I validate Employment Summary help drawer verbiage in "English"
     Then I click on "Alimony Received" link in Help Drawer on the Employment Summary page
@@ -121,6 +134,18 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Pre-tax retirement contribution" page and close tab
     Then I click on "School tuition" link in Help Drawer on the Employment Summary page
     And I validate I am on the "School tuition" page and close tab
+    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
+    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
+    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
+    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
+    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 1" page and close tab
+    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 2" page and close tab
     Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
     And I validate I am on the "Self-employment tax" page and close tab
     Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
@@ -171,6 +196,18 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Pre-tax retirement contribution" page and close tab
     Then I click on "School tuition" link in Help Drawer on the Employment Summary page
     And I validate I am on the "School tuition" page and close tab
+    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
+    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
+    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
+    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
+    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 1" page and close tab
+    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 2" page and close tab
     Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
     And I validate I am on the "Self-employment tax" page and close tab
     Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
@@ -214,6 +251,18 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Pre-tax retirement contribution" page and close tab
     Then I click on "School tuition" link in Help Drawer on the Employment Summary page
     And I validate I am on the "School tuition" page and close tab
+    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
+    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
+    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
+    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
+    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 1" page and close tab
+    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
+    And I validate I am on the "School tuition: Disability 2" page and close tab
     Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
     And I validate I am on the "Self-employment tax" page and close tab
     Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page

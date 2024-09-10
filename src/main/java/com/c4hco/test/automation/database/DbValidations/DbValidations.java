@@ -447,6 +447,7 @@ public class DbValidations {
     }
 
     public void validateBookOfBusinessQ(String eventType) {
+        getCurrentdate();
         List<BookOfBusinessQEntity> bookOfBusinessQList = exchDbDataProvider.getBookOfBusinessQ(eventType);
         List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
         List<String> applicationIdListFromBob = new ArrayList<>();
@@ -483,13 +484,13 @@ public class DbValidations {
     public void validateBrokerAuthorizationBob(String expectedBrokerName) {
         String clientFirstName = SharedData.getPrimaryMember().getFirstName();
         List<String> brokerAuthBOB = exchDbDataProvider.getBrokerAuthorizationInBoB(clientFirstName);
-        softAssert.assertEquals(expectedBrokerName, brokerAuthBOB.get(0));
+        softAssert.assertEquals(brokerAuthBOB.get(0), expectedBrokerName);
         softAssert.assertAll();
     }
 
     public void validateApplicationSubmissionBob() {
         List<String> applicationSubmissionBOB = exchDbDataProvider.getApplicationSubmissionInBoB();
-        softAssert.assertEquals(1, applicationSubmissionBOB .size());
+        softAssert.assertEquals(applicationSubmissionBOB .size(), 1);
         softAssert.assertAll();
     }
 

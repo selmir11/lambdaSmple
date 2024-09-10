@@ -394,6 +394,9 @@ public class BasicSteps {
             case "Application Details" :
                 pageUrl = "oboApplSummary";
                 break;
+            case "Manage Plans" :
+                pageUrl = "/policies";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

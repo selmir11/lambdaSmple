@@ -20,8 +20,7 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I check default year displays")
     public void iCheckDefaultCurrentYear() {
-        adminPortalManagePlansPage.checkDefaultCurrentYear();
-    }
+        adminPortalManagePlansPage.checkDefaultCurrentYear();       }
 
     @Then("I verify both buttons Medical and Dental is checked")
     public void iVerifyButtonsCheckedBoth() {
@@ -34,9 +33,7 @@ public class AdminPortalManagePlansSteps {
     }
     @And("I validate {string} medical button displays on Manage page")
     public void iVerifySaveButtonDisplayed(String saveMed) {
-        adminPortalManagePlansPage.verifySaveButtonDisplayed(saveMed);
-    }
-
+        adminPortalManagePlansPage.verifySaveButtonDisplayed(saveMed);      }
     @Then("I click Make Changes Medical button")
     public void iClickMakeChangesMedical() {
         adminPortalManagePlansPage.clickMakeChangesMedical();
@@ -71,6 +68,39 @@ public class AdminPortalManagePlansSteps {
     public void iContainerTitleLabelsCoco() {
         adminPortalManagePlansPage.containerTitleLabelsCoco();
     }
-
+    @Then("I check for Previous Medical container display")
+    public void iCheckPreviousFinancialMedical() {
+        adminPortalManagePlansPage.checkPreviousFinancialMedical();       }
+    @Then("I check for Previous Dental container display")
+    public void iCheckPreviousFinancialDental() {
+        adminPortalManagePlansPage.checkPreviousFinancialDental();       }
+    @Then("I verify Years in dropdown starting from {string} as expected")
+    public void iValidateYearsDropdown(String lowerYear){
+        adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
+    @And("I click Save Button Medical")
+    public void iClickSaveButtonMedical() {
+        adminPortalManagePlansPage.clickSaveButton();
+    }
+    @And("I update the Coverage Start date to {string}")
+    public void iUpdateCoverageStartDate(String newCoverageDate){
+        adminPortalManagePlansPage.updateCoverageStartDate(newCoverageDate);
+    }
+    @And("I update the Financial Start date to {string}")
+    public void iUpdateFinancialStartDate(String newFinancialDate){
+        adminPortalManagePlansPage.updateFinancialStartDate(newFinancialDate);
+    }
+    @And ("I select the reason to confirm the changes")
+    public void iselectTheReason (){
+        adminPortalManagePlansPage.selectReasonForTheChange();
+    }
+    @And("I check current Medical container labels and data display")
+    public void iVerifyLabelsDataMedical() {
+        adminPortalManagePlansPage.verifyLabelsDataMedical();       }
+    @Then("I check current Dental container labels and data display")
+    public void iVerifyLabelsDataDental() {
+        adminPortalManagePlansPage.verifyLabelsDataDental();       }
+    @And("I collapse year dropdown")
+    public void iCollapsYearDropdown() {
+        adminPortalManagePlansPage.collapsYearDropdown();       }
 }
 
