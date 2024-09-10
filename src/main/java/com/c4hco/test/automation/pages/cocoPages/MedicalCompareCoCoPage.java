@@ -214,6 +214,15 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(id = "SHP-MedicalComparePlans-OutOfNetwork")
     public WebElement selectOutofNetworkLink;
 
+    @FindBy(xpath = "//div[@id='SHP-MedicalComparePlans-InNetworkTier1-panel'] //button")
+    public List<WebElement> drpDwnPlanDetails;
+
+    @FindBy(id = "SHP-MedicalComparePlans-InNetworkTier1")
+    public WebElement selectInNetworkTier1Link;
+
+    @FindBy(css = ".pt-5")
+    public WebElement planHeaderdetails;
+
     public void  clickMedicalCompareGoBack() {
           basicActions.waitForElementToBeClickable(medicalCompareGoBack, 20);
           medicalCompareGoBack.click();}
@@ -396,6 +405,28 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue(getTxtInfertilityTreatment.isDisplayed(),"Incorrect Header");
 
 
+    }
+
+    public void verifySpanishTextMedicalplancmpr(List<String> planDetails){
+        softAssert.assertEquals(planHeaderdetails.getText(), planDetails.get(0));
+        softAssert.assertEquals(selectInNetworkTier1Link.getText(), planDetails.get(1));
+        softAssert.assertEquals(selectOutofNetworkLink.getText(), planDetails.get(2));
+        softAssert.assertEquals(drpDwnPlanDetails.get(0).getText(), planDetails.get(3));
+        softAssert.assertEquals(drpDwnPlanDetails.get(1).getText(), planDetails.get(4));
+        softAssert.assertEquals(drpDwnPlanDetails.get(2).getText(), planDetails.get(5));
+        softAssert.assertEquals(drpDwnPlanDetails.get(3).getText(), planDetails.get(6));
+        softAssert.assertEquals(drpDwnPlanDetails.get(4).getText(), planDetails.get(7));
+        softAssert.assertEquals(drpDwnPlanDetails.get(5).getText(), planDetails.get(8));
+        softAssert.assertEquals(drpDwnPlanDetails.get(6).getText(), planDetails.get(9));
+        softAssert.assertEquals(drpDwnPlanDetails.get(7).getText(), planDetails.get(10));
+        softAssert.assertEquals(drpDwnPlanDetails.get(8).getText(), planDetails.get(11));
+        softAssert.assertEquals(drpDwnPlanDetails.get(9).getText(), planDetails.get(12));
+        softAssert.assertEquals(drpDwnPlanDetails.get(10).getText(), planDetails.get(13));
+        softAssert.assertEquals(drpDwnPlanDetails.get(11).getText(), planDetails.get(14));
+        softAssert.assertEquals(drpDwnPlanDetails.get(12).getText(), planDetails.get(15));
+        softAssert.assertEquals(medicalCompareGoBack.getText(),planDetails.get(16));
+        softAssert.assertAll();
+        medicalCompareGoBack.click();
     }
 
 }
