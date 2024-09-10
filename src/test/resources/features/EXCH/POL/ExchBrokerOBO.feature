@@ -105,11 +105,10 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I click continue on plan summary page
 
 
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I click all done from payment portal page
 

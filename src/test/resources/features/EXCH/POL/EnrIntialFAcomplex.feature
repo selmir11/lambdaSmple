@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan 8 HH
-  @SLER-832  
+  @SLER-832
   Scenario: : EXCH intial application
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -342,11 +342,10 @@ Feature: Enroll a in a plan 8 HH
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I click all done from payment portal page
 
