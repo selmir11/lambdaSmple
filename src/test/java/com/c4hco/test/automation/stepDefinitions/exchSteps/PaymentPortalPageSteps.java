@@ -20,13 +20,18 @@ public class PaymentPortalPageSteps {
     @Then("I click Pay Now button payment portal page")
     public void clickPayNowButton(){paymentPortalPage.clickPayNowButton();
     }
-
     @Then("I enter user password on payment portal page")
     public void password() {paymentPortalPage.password();
     }
 
     @Then("I click continue on payment portal page")
     public void clickContinue() {paymentPortalPage.clickContinue();
+    }
+    @Then("I click Pay Later button payment portal page")
+    public void clickPayLaterButton() {paymentPortalPage.clickPayLaterButton();
+    }
+    @Then("I click Pay Later Continue")
+    public void clickPayLaterContinue() {paymentPortalPage.clickPayLaterContinue();
     }
 
 }

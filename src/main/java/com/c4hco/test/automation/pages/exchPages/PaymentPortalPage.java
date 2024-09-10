@@ -35,6 +35,15 @@ public class PaymentPortalPage {
     @FindBy(id = "password-button")
     WebElement continueButton;
 
+    @FindBy(css = "#SOL-PayNow-PayLaterLink-Medical-0")
+    WebElement PayLaterButton;
+
+    @FindBy(css = "#SOL-PayNow-ModalContinue-Medical-0")
+    WebElement PayLaterContinue;
+
+
+
+
 
     public void clickAllDone(){
         basicActions.waitForElementToDisappear(spinner, 30);;
@@ -64,8 +73,22 @@ public class PaymentPortalPage {
     }
 
     public void clickContinue(){
-        basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.waitForElementToBeClickable(continueButton, 10);
         continueButton.click();
+
     }
+    public void clickPayLaterButton() {
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(PayLaterButton, 40);
+        basicActions.scrollToElement(PayLaterButton);
+        basicActions.clickElementWithRetries(PayLaterButton, 30);
+    }
+    public void clickPayLaterContinue() {
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(PayLaterContinue, 40);
+        basicActions.scrollToElement(PayLaterContinue);
+        basicActions.clickElementWithRetries(PayLaterContinue, 30);
+    }
+
 }
 
