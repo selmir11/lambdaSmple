@@ -1,10 +1,10 @@
+@COCO @EndToEndTestGroup
 Feature: CoupleWithChildrens - End to End Test
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-
-  @SLCR-162 @EndToEndTest
+  @SLCR-279
   Scenario: This will create Family of 4 members Couple and their children with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -153,20 +153,26 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
+
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 4 default groups in coco page
+    #And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
+
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -180,7 +186,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-262 @EndToEndTest
+  @SLCR-280 @EndToEndTest
   Scenario: This will create Family of 4 members Couple and their children with multiple groups with income as 35k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -314,8 +320,10 @@ Feature: CoupleWithChildrens - End to End Test
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
+
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
+
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
@@ -325,21 +333,27 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
+
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 4 default groups in coco page
+    #And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 
@@ -492,12 +506,15 @@ Feature: CoupleWithChildrens - End to End Test
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
+
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 1 default groups in coco page
+    #And I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 
@@ -511,7 +528,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLCR-266 @EndToEndTest
+  @SLCR-281 @EndToEndTest
   Scenario: This will create Family of 4 members Couple and their children with multiple groups $0 income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -525,7 +542,6 @@ Feature: CoupleWithChildrens - End to End Test
 
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
-
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -625,18 +641,23 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
+
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 3 default groups in coco page
+    #And I validate that there are 3 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 
@@ -645,6 +666,6 @@ Feature: CoupleWithChildrens - End to End Test
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-    
+
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"

@@ -43,6 +43,9 @@ public class BasicSteps {
             case "Start Shopping":
                 pageUrl = "PreShoppingPortal/startShopping";
                 break;
+            case "CoCo Start Shopping":
+                pageUrl = "coco/PreShoppingPortal/startShopping";
+                break;
             case "Deductions":
                 pageUrl = "/IncomePortal/deductions";
                 break;
@@ -97,11 +100,17 @@ public class BasicSteps {
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
+            case "CoCo Medical Plan Results":
+                pageUrl = "coco/PlanSelectionPortal/medicalPlanResults";
+                break;
             case "Medical Plan Detail":
                 pageUrl = "medicalPlanCarrierDetails";
                 break;
             case "Grouping Members Medical":
                 pageUrl = "groupingMembersMedical";
+                break;
+            case "CoCo Grouping Members Medical":
+                pageUrl = "coco/PreShoppingPortal/groupingMembersMedical";
                 break;
             case "Grouping Members Dental":
                 pageUrl = "PreShoppingPortal/groupingMembersDental";
@@ -202,6 +211,9 @@ public class BasicSteps {
             case "Plan Summary":
                 pageUrl = "planSummaryMedicalDental";
                 break;
+            case "Coco Plan Summary":
+                pageUrl = "coco/PlanSelectionPortal/planSummaryMedicalDental";
+                break;
             case "My Policies":
                 pageUrl = "/EnrollmentPortal/myPolicies";
                 break;
@@ -255,6 +267,9 @@ public class BasicSteps {
                 break;
             case "Enrollment Agreements":
                 pageUrl = "PaymentPortal/enrollmentAgreements";
+                break;
+            case "CoCo Enrollment Agreements":
+                pageUrl = "coco/PaymentPortal/enrollmentAgreements";
                 break;
             case "Good News":
                 pageUrl = "nes/applyMA";

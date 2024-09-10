@@ -113,7 +113,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
 
     public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, List<String> Relations, String applying) {
 
-        String frstName = Name+getUniqueString(8);
+        String frstName = Name + getUniqueString(8);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
         basicActions.waitForElementToBePresent(txtFirstName, 30);
@@ -132,17 +132,17 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         member.setLastName(lastName);
         member.setMiddleName(mdlName);
         member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setSignature(frstName + " " + lastName);
+        member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
 
         enterMemberDOB(DOB);
         genderSelection(gender);
-        applyingForCoverage(applying);
-        for(String Relation : Relations) {
+        for (String Relation : Relations) {
             selectRelationship(Relation);
+            applyingForCoverage(applying);
         }
     }
 

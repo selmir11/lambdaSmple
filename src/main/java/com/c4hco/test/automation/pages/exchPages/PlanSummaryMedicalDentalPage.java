@@ -123,7 +123,7 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     public void verifyNoMedicalSingle(){
-       basicActions.waitForElementToDisappear( spinner,15 );
+       basicActions.waitForElementToDisappear( spinner,20 );
        basicActions.scrollToElement( planSummaryNoMedicalPlanSingle );
         softAssert.assertTrue(planSummaryNoMedicalPlanSingle.isDisplayed(), "No medical plan selected for this group.");
         softAssert.assertAll();

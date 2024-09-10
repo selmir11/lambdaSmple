@@ -1,4 +1,4 @@
-@TAM @test
+@TAM
 Feature: Secondary User-Other Health Coverage Elmo Page
 
   Background:
