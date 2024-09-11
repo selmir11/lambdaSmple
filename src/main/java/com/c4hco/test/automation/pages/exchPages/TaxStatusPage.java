@@ -168,10 +168,10 @@ public class TaxStatusPage {
         saveAndContinueBtn.click();
     }
 
-    public void iselectDependentMember(int dependentindex) {
+    public void iselectDependentMember(int dependentIndex) {
         basicActions.waitForElementListToBePresent(selectDependent,15);
         basicActions.waitForElementListToBePresentWithRetries( selectDependent,15 );
-        selectDependent.get( dependentindex ).click();
+        selectDependent.get( dependentIndex ).click();
     }
 
 

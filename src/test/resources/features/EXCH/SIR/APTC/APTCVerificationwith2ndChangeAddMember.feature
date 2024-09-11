@@ -1332,25 +1332,16 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-    #pre-existing setting is honored
     And I select the first dependent
     And I select the second dependent
-    ## increased incrementally
     And I click save and continue on tax status page
 
-    # tax status dependant page is skipped for initial dependant
-    # tax status dependant - minor only
-    #Then I validate I am on the "Tax status dependent" page
-    #And I select the option "Yes" to claim as dependent
-    #And I select the "1" option for Who Will Claim as Dependent
-
-         ##### transition stops
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
 
-### transition step is repeated for each new member  - 2nd re-enrollment
+### transition step is repeated for each new member added
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1413,10 +1404,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
 
+    Then I click Dependent 0
     Then I click Dependent 1
     Then I click Dependent 2
+    # Someone Else
     Then I click Dependent 3
-    Then I click Dependent 4
+    #Then I click Dependent 4
+
     #And I select the first dependent
     #And I select the second dependent
     #And I select the third dependent
@@ -1432,7 +1426,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "Yes" to claim as dependent
     And I select the "1" option for Who Will Claim as Dependent
     And I click save and continue on tax status page
-
 
      ##### transition stops
     And I validate I am on the "Elmo Other Health Coverage" page
