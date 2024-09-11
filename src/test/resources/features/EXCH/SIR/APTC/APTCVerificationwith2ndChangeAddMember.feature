@@ -752,7 +752,7 @@ Feature: UI Tests related to APTC after second enrollment change
         |Granby     |CO       |01011990   |Grand    |80446        |1500000  |  $0.00      | 7500000      | $1134.70/mo     | -$1,028.25 | 01012011|
 
 
-    @SLER-666 @SLER-667 @SLER-669 @SLER-670 @SLER-672 @SLER-673
+    @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
     Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
       When I click create a new account on login page
       Then I click create my account from pre-screen page

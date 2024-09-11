@@ -1,4 +1,4 @@
-@SIRRegression
+@SIRRegression @APTC-SIR
 Feature:APTC tests to validate the APTC Re-calculation with income greater than 400%
 
   @RT-2398_WIP

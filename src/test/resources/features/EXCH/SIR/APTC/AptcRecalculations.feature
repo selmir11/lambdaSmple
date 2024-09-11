@@ -1,4 +1,4 @@
-@SIRRegression
+@SIRRegression @APTC-SIR
 Feature:APTC recalculation tests
 
   Background: I go the login portal
