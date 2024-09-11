@@ -103,7 +103,7 @@ public class NoticesPageSteps {
 
     @And("I validate the notices medical policy data {string}")
     public void verifymedicalpolicynotice(String MedicalPlocitydetails ) {
-        noticesPage.verifydentalpolicynotice(MedicalPlocitydetails);
+        noticesPage.verifymedicalpolicynotice(MedicalPlocitydetails);
     }
 
     @Then("I click the password reset link")

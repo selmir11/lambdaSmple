@@ -125,6 +125,9 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And  I validate the notices dental policy data "EssentialSmile Colorado - Total Care"
+    And  I validate the notices dental policy data "Daughter"
+    And  I validate the notices medical policy data "Select Health Value Bronze $6900 Medical Deductible"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

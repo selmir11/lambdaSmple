@@ -362,6 +362,14 @@ Feature: Enroll a in a plan 8 HH
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And  I validate the notices dental policy data "Anthem Dental Family"
+    And  I validate the notices dental policy data "Primary"
+    And  I validate the notices dental policy data "Spouse"
+    And  I validate the notices dental policy data "SonTwo"
+    And  I validate the notices dental policy data "Daughter"
+    And  I validate the notices dental policy data "Nephew"
+    And  I validate the notices dental policy data "Niece"
+    And  I validate the notices medical policy data "Cigna Connect Colorado Option Bronze"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

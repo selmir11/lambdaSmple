@@ -7,8 +7,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I enter general mandatory data for "Admin exchange" account creation with email "MGC4testing"@outlook.com
     And I search for user and click email from search results
     And I click "On Behalf Of (OBO)" from application links dropdown
-   # And I initiate incoming page
-   # Then I validate I am on the "Account Overview" page
+    And I initiate incoming page
+    Then I validate I am on the "Account Overview" page
 
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -39,11 +39,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "01011980" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -60,11 +57,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "05012015" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "05012015", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -82,13 +77,10 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "08012013" date of birth
-    And I select "Female" as sex option
-    And I select "No" as pregnancy option
-    And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
-    And I select "Sister" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "08012013", "Female" and applying "Yes"
+      |Primary:Daughter|
+      |Spouse:Daughter |
+      |SonOne:Sister|
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -205,12 +197,17 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
       | Anthem Colorado Option Bronze Pathway Essentials Std |
       | Anthem Dental Family                                 |
     Then logout from Admin Portal
-
     #Gmail
     Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    And  I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And  I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And  I validate the notices dental policy data "Anthem Dental Family"
+    And  I validate the notices dental policy data "Primary"
+    And  I validate the notices dental policy data "Spouse"
+    And  I validate the notices dental policy data "SonOne"
+    And  I validate the notices dental policy data "Daughter"
+    And  I validate the notices medical policy data "Anthem Colorado Option Bronze Pathway Essentials Std"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

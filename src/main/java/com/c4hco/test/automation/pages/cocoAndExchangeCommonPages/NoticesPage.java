@@ -428,8 +428,8 @@ public class NoticesPage {
          System.out.println(policyinformation.getText());
          WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'"+DentalPlocitydetails+"')]"));
         basicActions.waitForElementToBePresent(policyDetails,30) ;
-       softAssert.assertTrue(policyDetails.getText().contains(DentalPlocitydetails));
-
+        softAssert.assertTrue(policyDetails.getText().contains(DentalPlocitydetails));
+        softAssert.assertAll();
     }
 
 
@@ -438,6 +438,6 @@ public class NoticesPage {
         WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'"+MedicalPlocitydetails+"')]"));
         basicActions.waitForElementToBePresent(policyDetails,30) ;
         softAssert.assertTrue(policyDetails.getText().contains(MedicalPlocitydetails));
-
+        softAssert.assertAll();
     }
 }
