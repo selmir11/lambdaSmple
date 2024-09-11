@@ -61,7 +61,7 @@ public class TaxStatusPage {
 
     @FindBy(id = "selectedDependents6")
     WebElement selectedDependents6;
-    
+
 
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){

@@ -1093,6 +1093,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    # appeared here in this spot in QA for first time 9/11/24
+    #Then I validate I am on the "Ethnicity and Race" page
+    #And I select "I prefer not to answer" ethnicity option
+    #And I select "I prefer not to answer" race option
+    #And I click save and continue on the Race and Ethnicity page
+
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -1404,28 +1411,28 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
 
-    Then I click Dependent 0
-    Then I click Dependent 1
-    Then I click Dependent 2
+    #Then I click Dependent 0
+    #Then I click Dependent 1
+    #Then I click Dependent 2
     # Someone Else
-    Then I click Dependent 3
+    #Then I click Dependent 3
     #Then I click Dependent 4
 
-    #And I select the first dependent
+    And I select the first dependent
     #And I select the second dependent
-    #And I select the third dependent
+    And I select the third dependent
     ## increased incrementally
-    Then I validate I am on the "Household" page
+
 
     And I click save and continue on tax status page
     ## tax status page for first minor appearing??
 
 
     # tax status dependant - minor
-    Then I validate I am on the "Tax status dependent" page
-    And I select the option "Yes" to claim as dependent
-    And I select the "1" option for Who Will Claim as Dependent
-    And I click save and continue on tax status page
+    #Then I validate I am on the "Tax status dependent" page
+    #And I select the option "Yes" to claim as dependent
+    #And I select the "1" option for Who Will Claim as Dependent
+    #And I click save and continue on tax status page
 
      ##### transition stops
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -1498,11 +1505,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
     ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-    #And I select the first dependent
-    #And I select the second dependent
-    #And I select the third dependent
-    #And I select the fourth dependent
+    And I select the first dependent
+    And I select the second dependent
+    And I select the third dependent
+    And I select the fourth dependent
     ## increased incrementally
+    Then I validate I am on the "Household" page
     #And I click save and continue on tax status page
 
 
