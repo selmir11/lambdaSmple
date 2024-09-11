@@ -3,13 +3,20 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.TaxStatusPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 
 public class TaxStatusPageSteps {
     TaxStatusPage taxStatusPage = new TaxStatusPage(WebDriverManager.getDriver());
 
+    // Tax Status Dependent page
     @And("I select the option {string} to claim as dependent")
     public void selectDependantClaim(String claimAsDependentOption){
+        taxStatusPage.claimAsDependent(claimAsDependentOption);
+    }
+
+    @Then ("I will select the option {string} that I will be claimed as a dependent")
+    public void selectClaimAsDependant(String claimAsDependentOption){
         taxStatusPage.claimAsDependent(claimAsDependentOption);
     }
 
@@ -62,4 +69,7 @@ public class TaxStatusPageSteps {
     public void iClickSaveAndContinue(){
         taxStatusPage.selectSaveAndContinue();
     }
+
+    @Then("I click Dependent {int}")
+    public void iselectDependentMember(int index) {taxStatusPage.iselectDependentMember(index); }
 }
