@@ -81,13 +81,13 @@ public class AdminPortalManagePlansSteps {
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
     }
-    @And("I update the Coverage Start date to {string}")
-    public void iUpdateCoverageStartDate(String newCoverageDate){
-        adminPortalManagePlansPage.updateCoverageStartDate(newCoverageDate);
+    @And("I update the Coverage Start date for member {string} to {string}")
+    public void iUpdateCoverageStartDate(String memberNo, String covStartDate){
+        adminPortalManagePlansPage.updateCoverageStartDate(memberNo,covStartDate);
     }
-    @And("I update the Financial Start date to {string}")
-    public void iUpdateFinancialStartDate(String newFinancialDate){
-        adminPortalManagePlansPage.updateFinancialStartDate(newFinancialDate);
+    @And("I update the Financial Start date for member {string} to {string}")
+    public void iUpdateFinancialStartDate(String memberNo, String  financialStartDate){
+        adminPortalManagePlansPage.updateFinancialStartDate(memberNo, financialStartDate);
     }
     @And ("I select the reason to confirm the changes")
     public void iselectTheReason (){

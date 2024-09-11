@@ -205,21 +205,24 @@ public class AdminPortalManagePlansPage{
         btnMedSave.click();
     }
 
-    public void updateCoverageStartDate(String covStartDate){
-        basicActions.scrollToElement( coverageStartdate );
-        basicActions.waitForElementToBePresent(coverageStartdate,30);
-        basicActions.waitForElementToBeClickable(coverageStartdate,10);
-        coverageStartdate.click();
-        coverageStartdate.clear();
-        coverageStartdate.sendKeys(covStartDate);
+    public void updateCoverageStartDate(String memberNo, String covStartDate){
+        WebElement coverageStartdateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_"+memberNo+"']//input[1]"));
+        basicActions.scrollToElement( coverageStartdateMem );
+        basicActions.waitForElementToBePresent(coverageStartdateMem,30);
+        basicActions.waitForElementToBeClickable(coverageStartdateMem,10);
+        coverageStartdateMem.click();
+        coverageStartdateMem.clear();
+        coverageStartdateMem.sendKeys(covStartDate);
     }
 
-    public void updateFinancialStartDate(String finStartDate){
-        basicActions.waitForElementToBePresent(financialStartDate,30);
-        basicActions.waitForElementToBeClickable(financialStartDate,10);
-        financialStartDate.click();
-        financialStartDate.clear();
-        financialStartDate.sendKeys(finStartDate);
+    public void updateFinancialStartDate(String memberNo,String finStartDate){
+        WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_"+memberNo+"']//input[@type='date']"));
+        basicActions.scrollToElement( financialStartDateMem );
+        basicActions.waitForElementToBePresent(financialStartDateMem,30);
+        basicActions.waitForElementToBeClickable(financialStartDateMem,10);
+        financialStartDateMem.click();
+        financialStartDateMem.clear();
+        financialStartDateMem.sendKeys(finStartDate);
     }
     public void selectReasonForTheChange(){
         basicActions.waitForElementToBeClickable(reasonForTheChange,10);
