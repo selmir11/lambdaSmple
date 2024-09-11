@@ -27,8 +27,8 @@ public class ApplicationDetailsPageSteps {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
-    @And("I verify the OHC header highlight on Application Details")
-    public void iVerifyOhcHeaderColor() {applicationDetailsPage.verifyOhcHeaderColor();}
+    @And("I verify the OHC header highlight {string} on Application Details")
+    public void iVerifyOhcHeaderColor(String highlight) {applicationDetailsPage.verifyOhcHeaderColor(highlight);}
 
     @And("I verify the OHC detail {string} highlight {string} on Application Details with data of {string}")
     public void iVerifyOhcDetailsColor(String detail, String highlight, String data) {applicationDetailsPage.verifyOhcDetailsColor(detail, highlight, data);}

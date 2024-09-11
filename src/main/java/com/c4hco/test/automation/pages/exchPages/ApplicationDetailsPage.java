@@ -37,8 +37,11 @@ public class ApplicationDetailsPage {
         PageFactory.initElements((basicActions.getDriver()),this);
     }
 
-    @FindBy(css = "#submit")
-    List<WebElement> pageLinks;
+    @FindBy(name = "toggleChanges")
+    WebElement showChangesBtn;
+
+    @FindBy(name = "downloadAsPDF")
+    WebElement downloadPdf;
 
     @FindBy(id = "doubleAccord-insur0")
     WebElement hdrOtherHealthCoverage;
@@ -48,13 +51,14 @@ public class ApplicationDetailsPage {
 
 
     public void clickViewAppDetails(){
-        basicActions.waitForElementListToBePresent(pageLinks,20);
-        pageLinks.get(0).click();
+        basicActions.waitForElementToBePresent(showChangesBtn,20);
+        showChangesBtn.click();
     }
 
     public void clickDownloadPdfLink(){
-        basicActions.waitForElementListToBePresent(pageLinks,20);
-        pageLinks.get(1).click();
+        basicActions.waitForElementToBePresent(downloadPdf,20);
+        basicActions.scrollToElement(downloadPdf);
+        downloadPdf.click();
 
         waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
@@ -126,10 +130,17 @@ public class ApplicationDetailsPage {
 
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
-    public void verifyOhcHeaderColor(){
+    public void verifyOhcHeaderColor(String highlight){
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
+        String backgroundColor = switch (highlight) {
+            case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Plain" -> "rgb(230, 242, 213) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
+            default -> throw new IllegalArgumentException("Invalid option: " + highlight);
+        };
         softAssert.assertEquals(hdrOtherHealthCoverage.getText(), "Other Health Coverage");
-        softAssert.assertEquals(hdrOtherHealthCoverage.getCssValue("background"),"rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(hdrOtherHealthCoverage.getCssValue("background"),backgroundColor);
         softAssert.assertAll();
     }
 
