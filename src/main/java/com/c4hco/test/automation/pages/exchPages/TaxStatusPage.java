@@ -61,13 +61,7 @@ public class TaxStatusPage {
 
     @FindBy(id = "selectedDependents6")
     WebElement selectedDependents6;
-
-    @FindBy(xpath = "selectedDependents input-checkbox")
-    List selectedDependent;
-
-    public void dependantList(String selectDependent){
-
-    }
+    
 
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
