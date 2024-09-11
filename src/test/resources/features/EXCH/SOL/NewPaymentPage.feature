@@ -102,7 +102,7 @@ Feature: New payment portal - currently in QA only
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-190-WIP @PayLater
+  @SLER-1016 @PayLater
   Scenario: Validate Pay Later on Payment page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
