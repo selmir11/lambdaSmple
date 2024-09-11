@@ -1,6 +1,7 @@
 Feature: Regression Tests that require Seed 1
 # verification WIP
-Scenario: : : : Seed 01 For COCO- Single Applicant with Income of $19k
+  @SLCR-137
+Background: Seed 01 For COCO- Single Applicant with Income of $19k
 
   Given I open the login page on the "login" portal
   And I validate I am on the "Login" page

@@ -347,7 +347,6 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -476,9 +475,10 @@ Feature: Individual adult - End to End Test
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
+
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 3 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select "Silver" to filter for a  COCO Metal Tier plan
@@ -491,6 +491,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 

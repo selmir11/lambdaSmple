@@ -181,7 +181,7 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SelectGoBackFromAgreementsToPreShoppingMultiGrouping @SLER-735
+  @SLER-735 @SelectGoBackFromAgreementsToPreShoppingMultiGrouping
   Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - Multi groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page

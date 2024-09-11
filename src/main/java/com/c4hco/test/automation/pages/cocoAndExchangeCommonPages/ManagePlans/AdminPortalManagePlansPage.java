@@ -208,6 +208,7 @@ public class AdminPortalManagePlansPage{
     public void updateCoverageStartDate(String covStartDate){
         basicActions.scrollToElement( coverageStartdate );
         basicActions.waitForElementToBePresent(coverageStartdate,30);
+        basicActions.waitForElementToBeClickable(coverageStartdate,10);
         coverageStartdate.click();
         coverageStartdate.clear();
         coverageStartdate.sendKeys(covStartDate);
@@ -215,6 +216,7 @@ public class AdminPortalManagePlansPage{
 
     public void updateFinancialStartDate(String finStartDate){
         basicActions.waitForElementToBePresent(financialStartDate,30);
+        basicActions.waitForElementToBeClickable(financialStartDate,10);
         financialStartDate.click();
         financialStartDate.clear();
         financialStartDate.sendKeys(finStartDate);

@@ -20,7 +20,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
     #And I report "NoneOfThese" and click continue
-    #And I report "Marriage" and click continue
+    And I report "Marriage" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
