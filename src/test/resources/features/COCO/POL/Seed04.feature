@@ -1,6 +1,6 @@
+@SLCR-140
 Feature: Regression Tests that require Seed 4
 # verification WIP
-  @SLCR-140
   Background: Seed 04 For COCO- Minor only Applicant with Responsible Person Income of $35k
 
     Given I open the login page on the "login" portal
@@ -18,11 +18,10 @@ Feature: Regression Tests that require Seed 4
     Then I enter details on tell us about yourself page and continue with "09052000", "Female", and applying "No"
     And I enter my residential address "104 Coco Drive", "Colorado Springs", "CO", "80919", "El Paso"
     And I select "Yes" for mailing address option
-   # And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
+    And I select "American Indian/Alaskan Native" race option
     And I click continue on the Ethnicity and race page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -39,14 +38,14 @@ Feature: Regression Tests that require Seed 4
     And I select continue on the income Summary CoCo page
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "05052019", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "05052019", "Female", and applying "Yes"
       | Primary:Child or Other dependent |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "104 COCO DRIVE", "Colorado Springs", "CO", "80919", "El Paso"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
+    And I select "American Indian/Alaskan Native" race option
     And I click continue on the Ethnicity and race page
     And I select "No" employment option
     And I click continue on the Employment income page

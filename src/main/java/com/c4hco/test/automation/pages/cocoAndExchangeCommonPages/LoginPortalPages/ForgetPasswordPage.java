@@ -138,6 +138,7 @@ public class ForgetPasswordPage {
                 resetPassword.get(0).sendKeys(resetPW);
                 resetPassword.get(1).sendKeys(resetPW);
                 submitBtn.click();
+                System.out.println(resetPW);
                 break;}
                 basicActions.getDriver().switchTo().window(handle);
         }
