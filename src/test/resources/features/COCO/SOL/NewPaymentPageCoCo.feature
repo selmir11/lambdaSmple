@@ -7,7 +7,7 @@ Feature: New payment portal - payment page related tests
     And I validate I am on the "Login" page
 
   @SLCR-293 @PayNowCoCo
-  Scenario: Validate PayNow on Payment page CoCo
+  Scenario: Validate no payment due on Payment page CoCo
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
