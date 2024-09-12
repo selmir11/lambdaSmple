@@ -143,7 +143,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Yellow" on Application Details with data of ""
@@ -197,7 +197,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
@@ -247,7 +247,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
@@ -455,7 +455,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
@@ -525,7 +525,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
@@ -599,7 +599,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
@@ -675,7 +675,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
     And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
@@ -703,5 +703,87 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
+
+  @SLER-1014
+  Scenario: SLER-1014 I want to verify OHC header on Application Summary and Application Details
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "5160000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I validate I am on the "ESI" page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "500.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    Then I enter the end date as "Current Month" on the ESI page
+    Then I select the Are you voluntarily ending "Yes" button on the ESI page
+    Then I click continue on the ESI page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click View Application Summary link
+#    Steps 1 & 2
+    Then I validate I am on the "Application Summary Completed" page
+    And I verify the OHC header on Application Summary in "English"
+    Then I click on Download as PDF on Application Summary
+    Then I validate PDF "Other Health Coverage" Header in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify the OHC header on Application Summary in "Spanish"
+    Then I click on Download as PDF on Application Summary
+    Then I validate PDF "Other Health Coverage" Header in "Spanish"
+#    Steps 3 & 4
+    And I change the language from header to "English NonElmo"
+    And I click on Sign Out in the Header for "NonElmo"
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I search for user and click email from search results
+    Then I verify Primary account holder and account number displays
+    Then I verify the option in years displays
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
+    Then I validate I am on the "Account Overview" page
+    And I click on Find a Plan in the "NonElmo" Header
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click View Application Summary link
+    Then I validate I am on the "Application Summary Completed" page
+    Then I click on View Application Details
+    Then I validate I am on the "Application Details" page
+    And I verify the OHC header highlight "Plain" on Application Details
+    Then I click on Download as PDF on Application Details
+    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Yes" "Current Month" end date of "" "" ""
+    And I change the language from header to "Spanish NonElmo"
+    Then I click on Download as PDF on Application Details
+    Then I validate PDF OHC data "Other Health Coverage" in "Spanish" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Yes" "Current Month" end date of "" "" ""
+
+    And I close current tab and switch back to previous tab
+    Then logout from Admin Portal
 
 
