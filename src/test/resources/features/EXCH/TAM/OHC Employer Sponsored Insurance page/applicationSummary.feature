@@ -786,7 +786,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1017 @test
+  @SLER-1017
   Scenario: SLER-1017 I want to show and hide changes for ESI information in the OBO Application Summary Single Members
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
@@ -946,7 +946,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1018 @test
+  @SLER-1018
   Scenario: SLER-1018 I want to show and hide changes for ESI information in the OBO Application Summary Multi Members
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"
