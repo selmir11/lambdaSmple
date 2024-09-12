@@ -253,6 +253,16 @@ public class ApplicationDetailsPage {
                 softAssert.assertEquals(ohcDetails.get(10).getCssValue("background"),backgroundColor);
                 softAssert.assertAll();
                 break;
+            case "None":
+                softAssert.assertEquals(ohcDetails.get(0).getText(), "None"+ data);
+                softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),backgroundColor);
+                softAssert.assertAll();
+                break;
+            case "1 Removed":
+                softAssert.assertEquals(ohcDetails.get(1).getText(), "1 Current Coverage(s) removed"+ data);
+                softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),backgroundColor);
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + detail);
         }
