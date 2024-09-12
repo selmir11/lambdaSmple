@@ -129,7 +129,6 @@ public class ForgetPasswordPage {
     }
 
     public void enterTheNewPasswordInCreateNewPasswordPage() {
-        basicActions.switchtoactiveTab();
         Set<String> handles = basicActions.getDriver().getWindowHandles();
         for (String handle : handles) {
             if (basicActions.getDriver().getCurrentUrl().contains("aws.connectforhealthco.com/login-portal/createPassword")) {
