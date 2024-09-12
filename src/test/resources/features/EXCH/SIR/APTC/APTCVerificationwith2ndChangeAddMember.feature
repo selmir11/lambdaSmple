@@ -225,7 +225,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
 
-    @SLER-999-WIP @test
+    @SLER-999
     Scenario Outline: ELIG-APTCRules - 1 member add enrollment - income change - formerly RT-2346
       When I click create a new account on login page
       Then I click create my account from pre-screen page
