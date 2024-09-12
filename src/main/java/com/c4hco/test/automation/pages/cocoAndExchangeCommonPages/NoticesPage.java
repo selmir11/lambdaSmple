@@ -459,12 +459,53 @@ public class NoticesPage {
     }
 
     public void verifydentalpolicynotice(String DentalPlocitydetails){
-         System.out.println(policyinformation.getText());
-         WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'"+DentalPlocitydetails+"')]"));
+
+        WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'"+DentalPlocitydetails+"')]"));
         basicActions.waitForElementToBePresent(policyDetails,30) ;
+        for(int i=0; i<SharedData.getMembers().size();i++){
+            String policymemberdetails = SharedData.getMembers().get(i).getFullName();
+            System.out.println(policymemberdetails);
+            if(DentalPlocitydetails.contains(policymemberdetails)){
+                System.out.println(policymemberdetails);
+            }
+
+        }
         softAssert.assertTrue(policyDetails.getText().contains(DentalPlocitydetails));
         softAssert.assertAll();
     }
+
+    public void verifyemailPolicyNoticedetails(String PolicynoticeDetails) {
+
+        WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + PolicynoticeDetails + "')]"));
+        basicActions.waitForElementToBePresent(policyDetails, 30);
+
+        System.out.println("Dental Policy Details: " + PolicynoticeDetails);
+
+        for (int i = 0; i < SharedData.getMembers().size(); i++) {
+            String policyMemberDetails = SharedData.getMembers().get(i).getFullName();
+
+            System.out.println("Checking member details: " + policyMemberDetails);
+
+            if (PolicynoticeDetails.contains(policyMemberDetails)) {
+                System.out.println("Member details found: " + policyMemberDetails);
+            } else {
+                String policyMemberDetailsPrimary = SharedData.getPrimaryMember().getFullName();
+
+                System.out.println("Checking primary member details: " + policyMemberDetailsPrimary);
+
+                if (PolicynoticeDetails.contains(policyMemberDetailsPrimary)) {
+                    System.out.println("Primary member details found: " + policyMemberDetailsPrimary);
+                }
+            }
+        }
+
+        boolean isPolicyDetailsCorrect = policyDetails.getText().contains(PolicynoticeDetails);
+        System.out.println("Is policy detail present: " + isPolicyDetailsCorrect);
+        softAssert.assertTrue(isPolicyDetailsCorrect, "Policy details mismatch.");
+        softAssert.assertAll();
+    }
+
+
 
 
     public void verifymedicalpolicynotice(String MedicalPlocitydetails){
