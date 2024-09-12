@@ -172,7 +172,7 @@ public class NoticesPage {
 
     }
     public void openMFANotice(){
-        basicActions.waitForElementToBePresent(noticeOkta,20);
+        basicActions.waitForElementToBePresentWithRetries(noticeOkta,20);
         noticeOkta.click();
     }
 
@@ -245,9 +245,43 @@ public class NoticesPage {
             case "Coco":
             verifyTheNoticeCoco(noticeNumber,language);
             break;
+            case "Broker":
+            verifyTheNoticeBroker(noticeNumber,language);
+            break;
         default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber + typeAPP);
         }
+    }
+
+    private void verifyTheNoticeBroker(String noticeNumber, String language) {
+        switch (noticeNumber){
+            case "AM-016-07":
+                VerifyTheNoticeTextAM01607broker();
+                break;
+            case "AM-016-08":
+                VerifyTheNoticeTextAM01608broker();
+                break;
+        default:
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber );
+        }
+    }
+
+    private void VerifyTheNoticeTextAM01608broker() {
+        softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
+        softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. as soon as possible to protect your account.");
+        softAssert.assertAll();
+    }
+
+    private void VerifyTheNoticeTextAM01607broker() {
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
+
+        } else if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
+        }
+        softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
+        softAssert.assertEquals(bodyText1607part2.getText(),"If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertAll();
     }
 
     public void verifyTheNoticeEXCH(String noticeNumber, String language){

@@ -282,6 +282,16 @@ public class BasicActions {
             }
         }
     }
+    public void switchToUrlPage(String URL) {
+    Set<String> handles = getDriver().getWindowHandles();
+        for (String handle : handles) {
+        if (getDriver().getCurrentUrl().contains(URL)) {
+            System.out.println(getDriver().getCurrentUrl());
+            System.out.println("The URL matches the desired link.");
+            getDriver().switchTo().window(handle);
+                break;}
+        switchtoactiveTab();
+        }}
     public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
@@ -471,7 +481,7 @@ public class BasicActions {
         return noticesFolderPath;
     }
     public static String getUniquePW(){
-        return RandomStringUtils.random(8,1234+"2@ACRTYUIOPcdefghijklmnopQWERTYUIOPASDFqrstuvwxyz234566");
+        return  RandomStringUtils.random(2, "@&%@@")+RandomStringUtils.randomAlphanumeric(8)+RandomStringUtils.random(1,"QWERTYUIOPASD")+RandomStringUtils.randomNumeric(2);
     }
 
     public Boolean waitForPageLoad(int waitTime) {

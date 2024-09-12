@@ -129,7 +129,6 @@ public class ForgetPasswordPage {
     }
 
     public void enterTheNewPasswordInCreateNewPasswordPage() {
-        basicActions.switchtoactiveTab();
         Set<String> handles = basicActions.getDriver().getWindowHandles();
         for (String handle : handles) {
             if (basicActions.getDriver().getCurrentUrl().contains("aws.connectforhealthco.com/login-portal/createPassword")) {
@@ -138,6 +137,7 @@ public class ForgetPasswordPage {
                 resetPassword.get(0).sendKeys(resetPW);
                 resetPassword.get(1).sendKeys(resetPW);
                 submitBtn.click();
+                System.out.println(resetPW);
                 break;}
                 basicActions.getDriver().switchTo().window(handle);
         }

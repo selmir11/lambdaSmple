@@ -36,7 +36,7 @@ Feature: Page Validation-Additional information for additional member page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Male", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page

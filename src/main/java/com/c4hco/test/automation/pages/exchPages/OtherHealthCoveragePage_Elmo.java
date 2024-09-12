@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +17,7 @@ public class OtherHealthCoveragePage_Elmo {
     BasicActions basicActions;
     Actions action;
     SoftAssert softAssert = new SoftAssert();
+    private WebDriver driver;
     public OtherHealthCoveragePage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
@@ -123,6 +125,7 @@ public class OtherHealthCoveragePage_Elmo {
     }
 
     public void clickSaveAndContinue(){
+        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 20);
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
@@ -803,38 +806,48 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(helpCircleButton.get(10).getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertAll();
     }
-    public void verifyHeadersOtherHealthCoveragePage(String member, String language){
-        basicActions.waitForElementToBePresent(existingHealthInsuranceHeader,15);
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn,15);
-        switch (language){
+
+    public void verifyHeadersOtherHealthCoveragePage(String member, String language) {
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 15);
+
+        String expectedText = "";
+        switch (language) {
             case "English":
-                switch (member){
-                    case "Primary":
-                        softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-                        softAssert.assertAll();
-                        break;
-                    case "Secondary":
-                        String expectedSecondaryText = "Other Health Coverage: " + SharedData.getMembers().get(0).getFullName();
-                        String actualSecondaryText = existingHealthInsuranceHeader.getText();
-                        softAssert.assertTrue(actualSecondaryText.equalsIgnoreCase(expectedSecondaryText), "The text does not match! Expected: " + expectedSecondaryText + " but found: " + actualSecondaryText);
-                        softAssert.assertAll();
-                        break;
-                    case "Third":
-                        String expectedThirdText = "Other Health Coverage: " + SharedData.getMembers().get(1).getFullName();
-                        String actualThirdText = existingHealthInsuranceHeader.getText();
-                        softAssert.assertTrue(actualThirdText.equalsIgnoreCase(expectedThirdText), "The text does not match! Expected: " + expectedThirdText + " but found: " + actualThirdText);
-                        softAssert.assertAll();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + member);
-                }
+                expectedText = "Other Health Coverage: ";
                 break;
             case "Spanish":
-                softAssert.assertTrue(existingHealthInsuranceHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
-                softAssert.assertAll();
+                expectedText = "Otra cobertura de salud: ";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+
+        String memberName = getMemberFullName(member);
+        expectedText += memberName;
+
+        basicActions.wait(3000);
+        WebElement value = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+expectedText+"')]"));
+        basicActions.waitForElementToBePresent(value, 50);
+
+        String actualText = existingHealthInsuranceHeader.getText();
+        softAssert.assertTrue(actualText.equalsIgnoreCase(expectedText), "The text does not match! Expected: " + expectedText + " but found: " + actualText);
+        softAssert.assertAll();
+    }
+
+    private String getMemberFullName(String member) {
+        switch (member) {
+            case "Primary":
+                return SharedData.getPrimaryMember().getFullName();
+            case "Secondary":
+                return SharedData.getMembers().get(0).getFullName();
+            case "Third":
+                return SharedData.getMembers().get(1).getFullName();
+            case "Forth":
+                return SharedData.getMembers().get(2).getFullName();
+            default:
+                throw new IllegalArgumentException("Invalid option: " + member);
         }
     }
 

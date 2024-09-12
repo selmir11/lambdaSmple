@@ -284,7 +284,7 @@ Feature: Verify COCO Medical Plan results
     And I deselect the third plan and validate on the Medical Plan Compare page
     And I verify that no plans exist on the Medical Plan Compare page
 
-    And I click on Sign Out in the Header for "Portal"
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-272 @CoCo_RegressionTest
   Scenario: This will create Individual adult and ensure Sorting works properly and Sort's as it should in coco medical plan page
@@ -356,6 +356,7 @@ Feature: Verify COCO Medical Plan results
     Then I validate sorting based on "Annual Deductible- Low to High" in coco medical page
     And I select the sorting "Annual Deductible- High to Low" option in coco medical page
     Then I validate sorting based on "Annual Deductible- High to Low" in coco medical page
+
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-276 @CoCo_RegressionTest @ComparePlan_FromMultiplePage

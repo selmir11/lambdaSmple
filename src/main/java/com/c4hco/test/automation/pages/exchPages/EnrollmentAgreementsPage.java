@@ -75,7 +75,7 @@ public class EnrollmentAgreementsPage {
 
     public void clickContinue() {
 
-        basicActions.waitForElementToBeClickable(continueBtn, 5);
+        basicActions.waitForElementToBePresent(continueBtn, 20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         continueBtn.click();
     }
@@ -86,8 +86,7 @@ public class EnrollmentAgreementsPage {
     }
 
     public void clickGoBack() {
-        basicActions.waitForElementToBePresent( goBackbtn,30 );
-        basicActions.waitForElementToBeClickable( goBackbtn,10 );
+        basicActions.waitForElementToBePresent( goBackbtn,45 );
         basicActions.scrollToElement( goBackbtn );
         goBackbtn.click();
 

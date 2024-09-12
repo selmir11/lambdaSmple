@@ -270,11 +270,17 @@ public class CreateAccountPage {
         submitButton.click();
     }
 
+    public String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
 
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
-        subscriber.setLastName(getUniqueString(8)+"Test");
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -284,7 +290,7 @@ public class CreateAccountPage {
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("Primary"+ getUniqueString(6));
-        subscriber.setLastName(getUniqueString(7)+"Test");
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(7)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -292,8 +298,8 @@ public class CreateAccountPage {
     }
     public void initializeDataGmail(String emailBase){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName(getUniqueString(10)+"TestMember");
-        subscriber.setLastName(getUniqueString(10)+"Test");
+        subscriber.setFirstName(capitalizeFirstLetter(getUniqueString(10)+"TestMember"));
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(10)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -435,8 +441,8 @@ public class CreateAccountPage {
 
     public void initializeBrokerData(String accountType, String emailBase){
         BrokerDetails user = new BrokerDetails();
-        user.setFirstName(getUniqueString(8)+"TestBroker");
-        user.setLastName(getUniqueString(8)+"Test");
+        user.setFirstName(capitalizeFirstLetter(getUniqueString(8)+"TestBroker"));
+        user.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
         user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
         user.setPhoneNumber((String) generatePhoneNumber());
         user.setLicense((String) generateBrokerLicense());
