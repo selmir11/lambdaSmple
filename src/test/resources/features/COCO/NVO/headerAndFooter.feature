@@ -69,7 +69,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "English"
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "01011996", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "01011996", "Male", and applying "Yes"
       | Primary:Child or Other dependent |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -210,7 +210,7 @@ Feature: Header and Footer validation on Coco application pages
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I change the language from header to "English"
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "01011996", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "01011996", "Male", and applying "Yes"
       | Primary:Child or Other dependent |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -498,7 +498,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click Continue on my own button from Manage who helps you page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members of your household page
 
@@ -513,7 +513,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click Continue on my own button from Manage who helps you page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "04212013", "Female", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
@@ -525,7 +525,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click Continue on my own button from Manage who helps you page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "12222016", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
       |Daughter:Sibling             |
