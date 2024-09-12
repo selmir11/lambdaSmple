@@ -153,14 +153,16 @@ Feature: Seed03 - COCO
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date for member "1" to "01012024"
-    And I update the Coverage Start date for member "2" to "01012024"
-    And I update the Coverage Start date for member "3" to "01012024"
-    And I update the Coverage Start date for member "4" to "01012024"
-    And I update the Financial Start date for member "1" to "01012024"
-    And I update the Financial Start date for member "2" to "01012024"
-    And I update the Financial Start date for member "3" to "01012024"
-    And I update the Financial Start date for member "4" to "01012024"
+    And I update the Coverage Start date of member
+      |1:01012024|
+      |2:01012024|
+      |3:01012024|
+      |4:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+      |2:01012024|
+      |3:01012024|
+      |4:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
