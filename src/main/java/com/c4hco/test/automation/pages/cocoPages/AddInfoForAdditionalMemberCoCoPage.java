@@ -106,6 +106,27 @@ public class AddInfoForAdditionalMemberCoCoPage {
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
     }
+    public void addMemberCompleteResidentialAddressCoCo(String addressLine1, String addressLine2, String city, String state, String zipcode, String county) {
+        basicActions.waitForElementToBePresent(addressLine1Input, 30);
+        addressLine1Input.sendKeys(addressLine1);
+
+        basicActions.waitForElementToBePresent(addressLine2Input, 30);
+        addressLine2Input.sendKeys(addressLine2);
+
+        basicActions.waitForElementToBePresent(cityInput, 30);
+        cityInput.sendKeys(city);
+
+        basicActions.waitForElementToBePresent(stateDropdown, 30);
+        stateDropdown.click();
+        basicActions.selectValueFromDropdown(stateDropdown, stateDropdownOptions, state);
+
+        basicActions.waitForElementToBePresent(zipcodeInput, 30);
+        zipcodeInput.sendKeys(zipcode);
+
+        basicActions.waitForElementToBeClickable(countyDropdown, 30);
+        countyDropdown.click();
+        basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
+    }
 
     public void clickGoBackButton() {
         basicActions.waitForElementToBeClickable(goBackButton, 30);

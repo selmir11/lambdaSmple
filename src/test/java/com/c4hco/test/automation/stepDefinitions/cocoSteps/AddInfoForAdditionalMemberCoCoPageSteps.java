@@ -12,6 +12,9 @@ public class AddInfoForAdditionalMemberCoCoPageSteps {
     @And("I enter residential address details for additional member {string}, {string}, {string}, {string}, {string}")
     public void enterMemberResidentialCOAddress(String addressLine1, String city, String state, String zipcode, String county){addInfoForAdditionalMemberPage.addMemberResidentialAddressCoCo(addressLine1, city, state, zipcode, county);}
 
+    @And("I enter complete residential address details for additional member {string}, {string}, {string}, {string}, {string}, {string}")
+    public void enterMemberResidentialCOAddress(String addressLine1, String addressLine2, String city, String state, String zipcode, String county){addInfoForAdditionalMemberPage.addMemberCompleteResidentialAddressCoCo(addressLine1, addressLine2, city, state, zipcode, county);}
+
     @And("I select {string} for live in Colorado option for additional member")
     public void iAnswerLiveInColoradoQuestion(String YNLiveInColorado){addInfoForAdditionalMemberPage.liveInColoradoSelection(YNLiveInColorado);}
 
