@@ -16,4 +16,8 @@ public class PaymentPortalCoCoPageSteps {
     public void clickAllDoneOboCoCo(){
         paymentPortalCoCoPage.clickAllDoneOboCoCo();
     }
+
+    @Then("I verify text for disabled issuers on Payment Portal Page CoCo")
+    public void verifyDisabledTextonPaymentPageCoCO()  {paymentPortalCoCoPage.verifyDisabledTextonPaymentPageCoCO();
+    }
 }

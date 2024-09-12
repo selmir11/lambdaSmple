@@ -33,5 +33,8 @@ public class PaymentPortalPageSteps {
     @Then("I click Pay Later Continue")
     public void clickPayLaterContinue() {paymentPortalPage.clickPayLaterContinue();
     }
+    @Then("I verify text for disabled issuers on Payment Portal Page")
+    public void verifyDisabledTextonPaymentPage()  {paymentPortalPage.verifyDisabledTextonPaymentPage();
+    }
 
 }

@@ -43,6 +43,9 @@ public class PaymentPortalPage {
     @FindBy(css ="._pendo-close-guide")
     WebElement recomendC4HCOToFriendPopUp;
 
+    @FindBy(xpath = "//div[@class= 'payment-option-disabled ng-star-inserted']")
+    WebElement CoordinatePayment;
+
 
 
 
@@ -94,6 +97,11 @@ public class PaymentPortalPage {
         basicActions.waitForElementToBePresent(PayLaterContinue, 40);
         basicActions.scrollToElement(PayLaterContinue);
         basicActions.clickElementWithRetries(PayLaterContinue, 30);
+    }
+    public void verifyDisabledTextonPaymentPage() {
+        basicActions.waitForElementToBePresent(CoordinatePayment, 10);
+        softAssert.assertEquals(CoordinatePayment.getText(), "Your insurance company will contact you within 10 business days to coordinate payment.");
+        softAssert.assertAll();
     }
 
 }
