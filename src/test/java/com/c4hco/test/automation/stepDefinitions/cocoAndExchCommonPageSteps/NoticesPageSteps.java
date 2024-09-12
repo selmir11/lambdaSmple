@@ -96,7 +96,7 @@ public class NoticesPageSteps {
     }
 
 
-    @And("I validate the notices  policy data {string}")
+    @And("I validate the notices dental policy data {string}")
     public void verifyemailPolicyNoticedetails(String Plocitydetails ) {
         noticesPage.verifyemailPolicyNoticedetails(Plocitydetails);
     }
