@@ -28,6 +28,9 @@ public class PaymentPortalCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(xpath = "//div[@class= 'payment-option-disabled ng-star-inserted']")
+    WebElement CoordinatePayment;
+
 
     public void clickAllDoneCoCo(){
         basicActions.waitForElementToDisappear(spinner, 15);
@@ -42,6 +45,11 @@ public class PaymentPortalCoCoPage {
         basicActions.waitForElementToBePresent(allDoneOboBtn, 30);
         basicActions.scrollToElement(allDoneOboBtn);
         allDoneOboBtn.click();
+    }
+    public void verifyDisabledTextonPaymentPageCoCO() {
+       basicActions.waitForElementToBePresent(CoordinatePayment, 10);
+       softAssert.assertEquals(CoordinatePayment.getText(), "Your insurance company will contact you within 10 business days to coordinate payment.");
+       softAssert.assertAll();
     }
 }
 
