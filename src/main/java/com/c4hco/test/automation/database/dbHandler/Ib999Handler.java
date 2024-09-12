@@ -69,7 +69,7 @@ public class Ib999Handler {
                 basicActions.wait(10000);
                 dbDataList = getIb999Details(query);
                 iterationCount++;
-                if(iterationCount>25){
+                if(iterationCount>30){
                     break;
                 }
                 System.out.println("---- Waiting for the ib999 file ---- ");
