@@ -240,8 +240,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       #Not available during Open Enrollment
       And I report "MovedToColorado" and click continue
-
-
+      
       Then I select "member" from the who are you question
       And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
       Then I answer all Id proofing questions and click continue
