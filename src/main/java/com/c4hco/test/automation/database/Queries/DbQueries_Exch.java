@@ -37,6 +37,11 @@ public class DbQueries_Exch {
              "where account_id = '"+acctId+"'\n "+
              "and current_ind = '1'";
     }
+    public String ib999Details(String grpCtlNum){
+        return "SELECT * FROM "+dbName+".ib999_detail \n" +
+                "where ak1_group_ctrl_number = '"+grpCtlNum+"'\n " +
+                "ORDER BY created_ts DESC";
+    }
 
     public String getEAPID(){
         return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy\n" +

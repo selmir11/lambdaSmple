@@ -81,7 +81,7 @@ public class DbValidations {
 
         String[] finStartDate = subscriber.getMedicalFinancialStartDate().split("/");
         String formatedFinStartDate = finStartDate[2]+finStartDate[0]+finStartDate[1];
-
+        SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), medicalDbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), medicalDbData.getIssuerId(), "Insurer Id did not match!");
@@ -98,6 +98,7 @@ public class DbValidations {
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData dentalDbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         softAssert.assertEquals(dentalDbData.getPremiumAmt(), ob834Entity.getPremium_amount(), "Dental Plan premium amount does not match for subscriber.");
+        SharedData.setDenGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         validateDentalAPTCAmount(ob834Entity,dentalDbData);
     }
 

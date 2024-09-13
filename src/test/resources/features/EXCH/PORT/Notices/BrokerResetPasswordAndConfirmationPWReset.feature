@@ -11,30 +11,32 @@ Feature: Trigger Broker Password reset and confirmation Notices AM-016-07 AND AM
     And I click submit button
     Then I verify notice is sent to the client text in "English"
     Then I open outlook Tab
+    Then I switch to the tab number 0
+    And I close current tab and switch back to previous tab
     And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
     Then I open the notice "Password Reset Link" in "English"
     And I verify the notice Text for "AM-016-07" in "English" for "Broker"
     Then I click the password reset link
     Then I delete the open notice
-    And I sign out of Outlook
+    Then I switch to the tab number 2
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
     And I login as individual with password reset code to any env QA "<qaEmail>" STG "<stgEmail>"
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
+    Then I switch to the tab number 1
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
-    Then I switch to the tab number 3
+    Then I switch to the tab number 2
     Then I enter the MFA code and click Verify
     And I validate I am on the "<pages>" page
 
     Then I click on broker userName and logout
-    Then I switch to the tab number 3
+    Then I switch to the tab number 1
     Then I open the notice "Confirmation: Account Password Reset" in "English"
     And I verify the notice Text for "AM-016-08" in "English" for "Broker"
     And I delete the open notice
     Then I sign out of Outlook
+    Then I switch to the tab number 0
     Examples:
       | portal    | qaEmail                                | stgEmail                                | pages                      |
       | broker    | testing.reset+brokerrestqa@outlook.com | testing.reset+brokerrestSTG@outlook.com | Broker Portal Your Clients |
