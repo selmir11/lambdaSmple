@@ -51,6 +51,14 @@ public class HouseHoldPageSteps {
     @Then("I click on the Member Row {int}")
     public void iEditPrimaryMember(int index) {houseHoldPage.iEditPrimaryMember(index);
     }
+
+    @Then("I click on Remove this Member")
+    public void iClickRemoveMember() {houseHoldPage.clickRemoveMember();
+    }
+
+    @Then("I click on {string} in the Remove Member frame")
+    public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option);
+    }
 }
 
 

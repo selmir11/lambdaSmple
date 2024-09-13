@@ -1,9 +1,13 @@
-Feature: Regression Tests that require Seed 4
-# verification WIP
-  Background: Seed 04 For COCO- Minor only Applicant with Responsible Person Income of $35k
 
+@SOLRegression
+Feature: New payment portal - payment page related tests
+
+  Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
+
+  @SLCR-293 @PayNowCoCo
+  Scenario: Validate no payment due on Payment page CoCo
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -14,19 +18,15 @@ Feature: Regression Tests that require Seed 4
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
-    Then I enter details on tell us about yourself page and continue with "09052000", "Female", and applying "No"
-    And I enter my residential address "104 Coco Drive", "Colorado Springs", "CO", "80919", "El Paso"
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     And I select "I prefer not to answer" ethnicity option
-    And I select "American Indian/Alaskan Native" race option
+    And I select "I prefer not to answer" race option
     And I click continue on the Ethnicity and race page
-    And I select "Yes" employment option
-    And I enter "35,000.00" income amount
-    And I select "Annually" income frequency option
-    And I select "No" income seasonal option
-    And I select "No" income changes option
+    And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
@@ -34,25 +34,6 @@ Feature: Regression Tests that require Seed 4
     And I select None of these as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
-    And I select continue on the income Summary CoCo page
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page with "Daughter", "05052019", "Female", and applying "Yes"
-      | Primary:Child or Other dependent |
-    And I click continue on Tell us about additional members of your household page
-    And I enter residential address details for additional member "104 COCO DRIVE", "Colorado Springs", "CO", "80919", "El Paso"
-    And I select "Yes" for live in Colorado option for additional member
-    And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "American Indian/Alaskan Native" race option
-    And I click continue on the Ethnicity and race page
-    And I select "No" employment option
-    And I click continue on the Employment income page
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
-    And I select continue on the Deductions CoCo page
-    Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
@@ -67,7 +48,7 @@ Feature: Regression Tests that require Seed 4
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Bronze" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -76,6 +57,10 @@ Feature: Regression Tests that require Seed 4
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
-    Then I validate I am on the "CoCo Welcome" page
-    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+

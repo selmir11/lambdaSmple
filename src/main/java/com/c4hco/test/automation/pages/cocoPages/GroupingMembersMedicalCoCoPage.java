@@ -53,15 +53,21 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void clickContinue() {
-        basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresent(continueButton, 10);
-        basicActions.waitForElementToBeClickable(continueButton, 20);
+        basicActions.waitForElementToDisappear( spinner,25 );
+        basicActions.waitForElementToBePresent(continueButton, 20);
+        basicActions.waitForElementToBeClickable(continueButton, 30);
         continueButton.click();
     }
 
     public void noOfMedicalGroups(int totalGroups) {
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
+        if(SharedData.getScenarioDetails()!=null){
+            SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        }
+        ScenarioDetails scenarioDetails = new ScenarioDetails();
+        scenarioDetails.setTotalGroups(groupsSize);
+        SharedData.setScenarioDetails(scenarioDetails);
         softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
         softAssert.assertAll();
         if(!(SharedData.getScenarioDetails() == null)) {

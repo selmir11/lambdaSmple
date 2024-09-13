@@ -481,7 +481,7 @@ public class BasicActions {
         return noticesFolderPath;
     }
     public static String getUniquePW(){
-        return  RandomStringUtils.random(2, "@&%@@")+RandomStringUtils.randomAlphanumeric(8)+RandomStringUtils.random(1,"QWERTYUIOPASD");
+        return  RandomStringUtils.random(2, "@&%@@")+RandomStringUtils.randomAlphanumeric(8)+RandomStringUtils.random(1,"QWERTYUIOPASD")+RandomStringUtils.randomNumeric(2);
     }
 
     public Boolean waitForPageLoad(int waitTime) {

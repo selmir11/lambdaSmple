@@ -90,6 +90,9 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(id = "ELIG-Ohc-Esi-empVoluntaryEnd-NoButton")
     WebElement esiVoluntarilyEndingNoBtn;
 
+    @FindBy(css = "#ELIG-Ohc-Esi-FamilyCoveragePlanOffered-container span.error-message")
+    WebElement esiFamilyOfferedError;
+
     @FindBy(id = "ELIG-Ohc-Esi-FamilyCoveragePlanOffered-YesButton")
     WebElement esiFamilyOfferedYesBtn;
 
@@ -99,8 +102,14 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "#ELIG-Ohc-Esi-EmpSponsCovgFamilyMonthlyPremium")
     WebElement esiMonthlyAmountFamilyInput;
 
+    @FindBy(css = "#ELIG-Ohc-Esi-EmpSponsCovgFamilyMonthlyPremium-container span.error-message")
+    WebElement esiFamilyAmountError;
+
     @FindBy(css = "#ELIG-Ohc-Esi-MemberCoverage > div > span")
     WebElement esiMemberStatusTxt;
+
+    @FindBy(css = "#ELIG-Ohc-Esi-MemberCoverage span.error-message")
+    WebElement esiFamilyStatusError;
 
     @FindBy(css = "app-other-member-coverage > div > span")
     List<WebElement> esiFamilyMemberTxt;
@@ -844,50 +853,68 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyErrorMessage(String errorType, String language) {
+        WebElement errorElement;
         switch (errorType) {
             case "Which Job":
-                verifyWhichJobError(language);
+                errorElement = whichJobError;
+                verifyPleaseSelectError(language, errorElement);
                 break;
             case "Min Value":
-                verifyMinValueError(language);
+                errorElement = minValueError;
+                verifyPleaseSelectError(language, errorElement);
                 break;
             case "Amount":
-                verifyAmountError(language);
+                errorElement = amountError;
+                verifyAmountError(language, errorElement);
                 break;
             case "Currently Enrolled":
-                verifyCurrentlyEnrolledError(language);
+                errorElement = currentlyEnrolledError;
+                verifyPleaseSelectError(language, errorElement);
                 break;
             case "Insurance Ending":
-                verifyInsuranceEndingError(language);
+                errorElement = insuranceEndingError;
+                verifyPleaseSelectError(language, errorElement);
                 break;
             case "Input Date":
                 verifyInputEndDateError(language);
                 break;
             case "Voluntary End":
-                verifyEndVoluntaryError(language);
+                errorElement = endVoluntaryError;
+                verifyPleaseSelectError(language, errorElement);
+                break;
+            case "Family Offered":
+                errorElement = esiFamilyOfferedError;
+                verifyPleaseSelectError(language, errorElement);
+                break;
+            case "Family Amount":
+                errorElement = esiFamilyAmountError;
+                verifyAmountError(language, errorElement);
+                break;
+            case "Family Status":
+                verifyFamilyStatusError(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
         }
     }
 
-    public void verifyWhichJobError(String language) {
-        basicActions.waitForElementToBePresent(whichJobError, 20);
+    public void verifyPleaseSelectError(String language, WebElement element) {
+        basicActions.waitForElementToBePresent(element, 20);
         switch (language) {
             case "English":
-                softAssert.assertEquals(whichJobError.getText(), "Please select one of the options below");
-                softAssert.assertEquals(whichJobError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(whichJobError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(whichJobError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(whichJobError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(element.getText(), "Please select one of the options below");
+                softAssert.assertEquals(element.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(element.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(whichJobError.getText(), "Seleccione una de las siguientes opciones");
-                softAssert.assertEquals(whichJobError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(whichJobError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(whichJobError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(whichJobError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(element.getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(element.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(element.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             default:
@@ -895,95 +922,23 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         }
     }
 
-    public void verifyMinValueError(String language) {
-        basicActions.waitForElementToBePresent(minValueError, 20);
+    public void verifyAmountError(String language, WebElement element) {
+        basicActions.waitForElementToBePresent(element, 20);
         switch (language) {
             case "English":
-                softAssert.assertEquals(minValueError.getText(), "Please select one of the options below");
-                softAssert.assertEquals(minValueError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(minValueError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(minValueError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(minValueError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(element.getText(), "Amount is required");
+                softAssert.assertEquals(element.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(element.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(minValueError.getText(), "Seleccione una de las siguientes opciones");
-                softAssert.assertEquals(minValueError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(minValueError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(minValueError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(minValueError.getCssValue("color"), "rgba(150, 0, 0, 1)");
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifyAmountError(String language) {
-        basicActions.waitForElementToBePresent(amountError, 20);
-        switch (language) {
-            case "English":
-                softAssert.assertEquals(amountError.getText(), "Amount is required");
-                softAssert.assertEquals(amountError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(amountError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(amountError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(amountError.getCssValue("color"), "rgba(150, 0, 0, 1)");
-                softAssert.assertAll();
-                break;
-            case "Spanish":
-                softAssert.assertEquals(amountError.getText(), "Esta cantidad es obligatoria");
-                softAssert.assertEquals(amountError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(amountError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(amountError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(amountError.getCssValue("color"), "rgba(150, 0, 0, 1)");
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifyCurrentlyEnrolledError(String language) {
-        basicActions.waitForElementToBePresent(currentlyEnrolledError, 20);
-        switch (language) {
-            case "English":
-                softAssert.assertEquals(currentlyEnrolledError.getText(), "Please select one of the options below");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
-                softAssert.assertAll();
-                break;
-            case "Spanish":
-                softAssert.assertEquals(currentlyEnrolledError.getText(), "Seleccione una de las siguientes opciones");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifyInsuranceEndingError(String language) {
-        basicActions.waitForElementToBePresent(insuranceEndingError, 20);
-        switch (language) {
-            case "English":
-                softAssert.assertEquals(insuranceEndingError.getText(), "Please select one of the options below");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
-                softAssert.assertAll();
-                break;
-            case "Spanish":
-                softAssert.assertEquals(insuranceEndingError.getText(), "Seleccione una de las siguientes opciones");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(element.getText(), "Esta cantidad es obligatoria");
+                softAssert.assertEquals(element.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(element.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             default:
@@ -1050,23 +1005,23 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         }
     }
 
-    public void verifyEndVoluntaryError(String language) {
-        basicActions.waitForElementToBePresent(endVoluntaryError, 20);
+    public void verifyFamilyStatusError(String language) {
+        basicActions.waitForElementToBePresent(esiFamilyStatusError, 20);
         switch (language) {
             case "English":
-                softAssert.assertEquals(endVoluntaryError.getText(), "Please select one of the options below");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(esiFamilyStatusError.getText(), "Please select one option for each individual below");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(endVoluntaryError.getText(), "Seleccione una de las siguientes opciones");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(esiFamilyStatusError.getText(), "Seleccione una opci\u00F3n para cada individuo a continuaci\u00F3n");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(esiFamilyStatusError.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             default:
@@ -1102,6 +1057,18 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 break;
             case "Voluntary End":
                 softAssert.assertTrue(basicActions.waitForElementToDisappear(endVoluntaryError, 10));
+                softAssert.assertAll();
+                break;
+            case "Family Offered":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(esiFamilyOfferedError, 10));
+                softAssert.assertAll();
+                break;
+            case "Family Amount":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(esiFamilyAmountError, 10));
+                softAssert.assertAll();
+                break;
+            case "Family Status":
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(esiFamilyStatusError, 10));
                 softAssert.assertAll();
                 break;
             default:

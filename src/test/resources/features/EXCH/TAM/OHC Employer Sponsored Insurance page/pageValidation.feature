@@ -241,9 +241,22 @@ Feature: Page Text-Other Health Coverage Page
     And I verify "Voluntary End" error in "English" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     And I verify "Voluntary End" error does not show for ESI page
+    And I verify "Family Offered" error in "English" on the ESI page
+    Then I click "Yes" for offer family plans question
+    And I verify "Family Offered" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Family Amount" error in "English" on the ESI page
+    Then I enter "300.00" for offer family amount question
+    And I verify "Family Amount" error does not show for ESI page
+    And I verify "Family Status" error in "English" on the ESI page
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    And I verify "Family Status" error in "English" on the ESI page
+    Then I click enrollment status for the members
+      |      Kid:Enrolled    |
+    And I verify "Family Status" error does not show for ESI page
 
     And I click on Sign Out in the Header for "Elmo"
-
 
   @SLER-342 @PageValidationOhiEsiElmo
   Scenario: SLER-342 I can see ESI's standard errors consistently - Spanish
@@ -289,6 +302,20 @@ Feature: Page Text-Other Health Coverage Page
     And I verify "Voluntary End" error in "Spanish" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     And I verify "Voluntary End" error does not show for ESI page
+    And I verify "Family Offered" error in "Spanish" on the ESI page
+    Then I click "Yes" for offer family plans question
+    And I verify "Family Offered" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Family Amount" error in "Spanish" on the ESI page
+    Then I enter "300.00" for offer family amount question
+    And I verify "Family Amount" error does not show for ESI page
+    And I verify "Family Status" error in "Spanish" on the ESI page
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    And I verify "Family Status" error in "Spanish" on the ESI page
+    Then I click enrollment status for the members
+      |      Kid:Enrolled    |
+    And I verify "Family Status" error does not show for ESI page
 
     And I click on Sign Out in the Header for "Elmo"
 

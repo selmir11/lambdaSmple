@@ -172,7 +172,7 @@ public class NoticesPage {
 
     }
     public void openMFANotice(){
-        basicActions.waitForElementToBePresent(noticeOkta,20);
+        basicActions.waitForElementToBePresentWithRetries(noticeOkta,20);
         noticeOkta.click();
     }
 
@@ -191,7 +191,7 @@ public class NoticesPage {
 
 
     public void enterValidMfaCode(){
-        basicActions.switchToUrlPage("aws.connectforhealthco.com/login-portal/login");
+        basicActions.switchToParentPage("LoginPortalUi");
         basicActions.waitForElementToBePresent(boxVerificationCode,20);
         boxVerificationCode.sendKeys(MFACode);
         btnVerify.click();

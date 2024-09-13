@@ -30,6 +30,9 @@ public class IncomeOptOutPage {
     @FindBy(id = "ApplyForFinancialHelp")
     WebElement apply;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -48,6 +51,7 @@ public class IncomeOptOutPage {
     }
 
     public void chooseApply(){
+        basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(headerText, 50);
         basicActions.waitForElementToBeClickableWithRetries(apply, 50);
         basicActions.scrollToElement(apply);

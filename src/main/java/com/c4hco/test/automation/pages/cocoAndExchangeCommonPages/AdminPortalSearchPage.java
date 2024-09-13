@@ -233,6 +233,8 @@ public class AdminPortalSearchPage {
     }
 
     public void selectCocoIndiviual () {
+        basicActions.waitForElementToBePresent(coco, 20);
+        basicActions.waitForElementToBeClickable(coco, 20);
         coco.click();
     }
 

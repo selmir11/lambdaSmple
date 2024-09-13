@@ -19,6 +19,7 @@ public class DbDataProvider_Exch {
     EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
     EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
+    Ib999Handler ib999Handler = new Ib999Handler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
@@ -32,6 +33,9 @@ public class DbDataProvider_Exch {
 
     public List<Ob834DetailsEntity> getOb83Db4Details(){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
+    }
+    public List<Ib999Entity> getIb999Details(String ak1grp_ctrl_number){
+        return ib999Handler.getIbDetailsAfterCompleted(exchDbQueries.ib999Details(ak1grp_ctrl_number));
     }
 
     public Map<String,String> getEap_id(){

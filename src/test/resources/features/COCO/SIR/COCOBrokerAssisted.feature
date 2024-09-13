@@ -34,12 +34,10 @@ Feature: Individual adult - End to End Test
     And I delete the open notice
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
-    And I validate I am on the "Broker Dashboard" page
 
+    And I validate I am on the "Agency Dashboard" page
     And I click on "colorado Connect" tab
-    And I search for clients
-    Then I click on client search results row 1
-    #And I click on first client search result
+    And I click on first client search result
     And I click "manage" the client
 
     And I apply for the current year in CoCo
@@ -49,7 +47,6 @@ Feature: Individual adult - End to End Test
 
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
-
 
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -62,7 +59,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Ethnicity and race page
 
     And I select "Yes" employment option
-    And I enter "40,000.00" income amount
+    And I enter "4000000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -102,15 +99,19 @@ Feature: Individual adult - End to End Test
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
 
     Then I click all done obo from payment portal page coco
 
-    Then I validate I am on the "CoCo Welcome" page
-    And I click on Sign Out in the Header for "Elmo"
+     #Then I validate I am on the "CoCo Welcome" page
+    #And I click on Sign Out in the Header for "Elmo"
+
+    And I validate I am on the "Agency Dashboard" page
+    And I click on Sign Out in the Header for "NonElmo"
+
 
   @SLCR-193
   Scenario: This will create 2 couples with Broker assistance
@@ -306,12 +307,13 @@ Feature: Individual adult - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
     Then I click all done obo from payment portal page coco
    #uncomment the below lines and test after the bug is fixed.
     #Then I validate I am on the "CoCo Welcome" page
@@ -513,11 +515,10 @@ Feature: Individual adult - End to End Test
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
 
     Then I click all done obo from payment portal page coco
     #uncomment the below lines and test after the bug is fixed.
