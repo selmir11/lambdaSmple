@@ -229,7 +229,12 @@ public class DbDataProvider_Exch {
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.esHousehold());
     }
 
+
     public EsHouseholdContactEntity getEsHouseholdContactDetails() {
         return esHouseholdContactDbHandler.getEsHouseholdContactDetails(exchDbQueries.getEmailStored());
+    }
+    public EsMemberHraAhEntity getOptionsFromHraAhDbTables(){
+        return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
+
     }
 }

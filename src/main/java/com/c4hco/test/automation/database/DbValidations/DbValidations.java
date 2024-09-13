@@ -506,6 +506,17 @@ public class DbValidations {
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
+    public void validateHraAhOptions(List<Map<String, String>> expectedValues) {
+        EsMemberHraAhEntity actualResult = exchDbDataProvider.getOptionsFromHraAhDbTables();
+        System.out.println(actualResult);
+
+        softAssert.assertEquals(actualResult.getPlan_year(), expectedValues.get(0).get("plan_year"));
+        softAssert.assertEquals(actualResult.getEmplr_hra_ctb(), expectedValues.get(0).get("emplr_hra_ctb"));
+        softAssert.assertEquals(actualResult.getHra_type(), expectedValues.get(0).get("hra_type"));
+        softAssert.assertEquals(actualResult.getEmplr_ctb_optout_ind(), expectedValues.get(0).get("emplr_ctb_optout_ind"));
+        softAssert.assertEquals(actualResult.getHra_not_affordable_ind(), expectedValues.get(0).get("hra_not_affordable_ind"));
+        softAssert.assertAll();
+    }
 
     public void ValidateDuplicateEmail(String accountEmail) {
         EsHouseholdContactEntity actualResult = exchDbDataProvider.getEsHouseholdContactDetails();

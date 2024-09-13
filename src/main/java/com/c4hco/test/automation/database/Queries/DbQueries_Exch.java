@@ -199,7 +199,13 @@ public class DbQueries_Exch {
                 "join "+dbName+".es_household_contact m on m.household_id=p.household_id\n" +
                 "where account_id = "+acctId+"\n" +
                 "order by p.created_ts desc limit 1";
-
+    }
+  
+    public String getPrimaryHraAhRecords(){
+        return "select *\n" +
+                "From  "+dbName+".es_member_hra_ah\n" +
+                "where member_id = '"+SharedData.getPrimaryMemberId()+"' \n" +
+                "order by updated_ts asc limit 1";
     }
 
 }
