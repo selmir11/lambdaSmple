@@ -1,19 +1,20 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
+
 
 public class NoticesPage {
 
@@ -474,38 +475,33 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    public void verifyemailPolicyNoticedetails(String PolicynoticeDetails) {
 
-        WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + PolicynoticeDetails + "')]"));
-        basicActions.waitForElementToBePresent(policyDetails, 30);
 
-        System.out.println("Dental Policy Details: " + PolicynoticeDetails);
+    public void verifyEmailPolicyNoticeDetails(String noticeInputDetails) {
+        List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
 
-        for (int i = 0; i < SharedData.getMembers().size(); i++) {
-            String policyMemberDetails = SharedData.getMembers().get(i).getFullName();
+        for (String expectedDetail : expectedList) {
+            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + expectedDetail + "')]"));
 
-            System.out.println("Checking member details: " + policyMemberDetails);
+            basicActions.waitForElementToBePresent(policyDetails, 30);
 
-            if (PolicynoticeDetails.contains(policyMemberDetails)) {
-                System.out.println("Member details found: " + policyMemberDetails);
-            } else {
-                String policyMemberDetailsPrimary = SharedData.getPrimaryMember().getFullName();
+            for (int i = 0; i < SharedData.getMembers().size(); i++) {
+                String policyMemberDetails = SharedData.getMembers().get(i).getFullName();
+                String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
 
-                System.out.println("Checking primary member details: " + policyMemberDetailsPrimary);
+                if (policyDetails.getText().contains(policyMemberDetails)) {
+                    System.out.println("Member details found: " + policyMemberDetails);
+                    Assert.assertTrue(policyDetails.getText().contains(policyMemberDetails), "Member details not found");
+                }
 
-                if (PolicynoticeDetails.contains(policyMemberDetailsPrimary)) {
-                    System.out.println("Primary member details found: " + policyMemberDetailsPrimary);
+                if (policyDetails.getText().contains(primaryMemberDetails)) {
+                    System.out.println("Primary member details found: " + primaryMemberDetails);
+                    Assert.assertTrue(policyDetails.getText().contains(primaryMemberDetails), "Primary member details not found");
                 }
             }
+            Assert.assertTrue(policyDetails.getText().contains(expectedDetail), "Given plan details not found: " + expectedDetail);
         }
-
-        boolean isPolicyDetailsCorrect = policyDetails.getText().contains(PolicynoticeDetails);
-        System.out.println("Is policy detail present: " + isPolicyDetailsCorrect);
-        softAssert.assertTrue(isPolicyDetailsCorrect, "Policy details mismatch.");
-        softAssert.assertAll();
     }
-
-
 
 
     public void verifymedicalpolicynotice(String MedicalPlocitydetails){
