@@ -227,4 +227,8 @@ public class DbDataProvider_Exch {
     public List<EsMemberHouseholdEntity> getEsHousehold(){
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.esHousehold());
     }
+
+    public EsMemberHraAhEntity getOptionsFromHraAhDbTables(){
+        return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
+    }
 }

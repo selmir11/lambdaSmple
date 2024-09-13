@@ -194,4 +194,11 @@ public class DbQueries_Exch {
                 "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 
+    public String getPrimaryHraAhRecords(){
+        return "select *\n" +
+                "From  "+dbName+".es_member_hra_ah\n" +
+                "where member_id = '"+SharedData.getPrimaryMemberId()+"' \n" +
+                "order by updated_ts asc limit 1";
+    }
+
 }
