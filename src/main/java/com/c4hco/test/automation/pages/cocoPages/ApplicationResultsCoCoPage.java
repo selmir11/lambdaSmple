@@ -35,6 +35,8 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css = ".body-text-1")
     WebElement submitNewApplicationText;
+    @FindBy(css = "div.plan-name.eligible")
+    WebElement eligiblePlanSESOff;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -71,4 +73,11 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(submitNewApplicationText.getText(), "If your situation changes you can submit a new application to re-apply and newly qualify.");
         softAssert.assertAll();
     }
+    public void verifyEligibleplans(String ses){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
+        if(ses.equals("off")) {
+            softAssert.assertEquals(eligiblePlanSESOff.getText(), "Health insurance plans through Colorado Connect");
+        }
+        softAssert.assertAll();
+        }
 }

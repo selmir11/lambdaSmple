@@ -64,6 +64,7 @@ public class WelcomePage {
     }
 
     public void clickApplyForInsurance() {
+        basicActions.waitForElementToBePresent(applyForCurrentYearButton, 40);
         basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 30);
         applyForCurrentYearButton.click(); }
 
