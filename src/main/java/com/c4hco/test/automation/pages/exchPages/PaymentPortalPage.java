@@ -40,6 +40,8 @@ public class PaymentPortalPage {
 
     @FindBy(css = "#SOL-PayNow-ModalContinue-Medical-0")
     WebElement PayLaterContinue;
+    @FindBy(css ="._pendo-close-guide")
+    WebElement recomendC4HCOToFriendPopUp;
 
     @FindBy(xpath = "//div[@class= 'payment-option-disabled ng-star-inserted']")
     WebElement CoordinatePayment;
@@ -52,6 +54,10 @@ public class PaymentPortalPage {
         basicActions.waitForElementToDisappear(spinner, 30);;
         basicActions.waitForElementToBePresent( allDone,40 );
         basicActions.scrollToElement( allDone );
+        basicActions.waitForElementToBeClickable(allDone,10);
+        if(recomendC4HCOToFriendPopUp.isDisplayed()){
+            recomendC4HCOToFriendPopUp.click();
+        }
         basicActions.clickElementWithRetries(allDone, 30);
     }
 
