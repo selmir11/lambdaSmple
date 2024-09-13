@@ -286,9 +286,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I select the projected income option "No" and continue
 
-      #Then I validate I am on the "Family Overview" page
-      #Then I click continue on family overview page
-
       Then I validate I am on the "Tax status" page
       And I select the option "No" to claim as dependent
       And I select the option "Yes" to file federal income tax return next year
@@ -318,7 +315,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on view results and shop
 
       Then I validate I am on the "Application Results" page
-      #Then I validate that my Tax Household's APTC value is "<expectedInitialAPTCResult>"
+
       And I verify that the APTC amount does not appear on the app results page
       Then I click continue on application results page
 
@@ -338,11 +335,6 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Plan Summary" page
       And I validate the APTC Credit on the Summary page is "<initialAPTCSummaryResult>"
       And I click continue on plan summary page
-
-      #Then I validate I am on the "Financial Help Agreements" page
-      #And I select the terms and agreements checkbox
-      #And I enter householder signature on the Financial Help Agreements page
-      #And I click continue on Financial Help Agreements page
 
       Then I validate I am on the "Enrollment Agreements" page
       And I select "Acknowledgement" agreement checkbox
@@ -437,10 +429,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
-      #Then I click the save and continue button on the Income Summary Detail page
-
-      #Then I validate I am on the "Tax status" page
-      #Then I click save and continue on tax status page
 
       Then I validate I am on the "Tax status" page
       And I select the option "No" to claim as dependent
@@ -471,9 +459,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Application History" page
       Then I click on view results and shop
-
-      #Then I validate I am on the "Good News" page
-      #And I click on No Thanks on good news page
 
       Then I validate I am on the "Application Results" page
       Then I validate that my Tax Household's APTC value is "<expectedPostAPTCResult>"
@@ -570,9 +555,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I select the projected income option "No" and continue
 
-      #Then I validate I am on the "Family Overview" page
-      #Then I click continue on family overview page
-
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
@@ -595,15 +577,12 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
 
-      #Then I validate I am on the "Good News" page
-      #And I click on No Thanks on good news page
-
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
     Then I validate that my Tax Household's APTC value is "<expectedInitialAPTCResult>"
-      #And I verify that the APTC amount does not appear on the app results page
+
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -721,10 +700,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-      #Then I click the save and continue button on the Income Summary Detail page
 
-      #Then I validate I am on the "Tax status" page
-      #Then I click save and continue on tax status page
 
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
@@ -839,14 +815,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Employment Income" page
       Then I select the option "No" to employment
-      #And I select the option "No" to self employment
-      #And I enter employment details with "<income1>" income at "Annually" frequency
-      #And I select the option "No" to seasonal employment
-      #And I select the option "No" to projected income
       And I click continue on the Employment Info Page
-
-      #Then I validate I am on the "Employment Summary" page
-      #Then I click continue on the Employment Summary Page
 
       Then I validate I am on the "Additional income" page
       Then I click None of these as additional income option and continue
@@ -1115,14 +1084,9 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Employment Income" page
     Then I select the option "No" to employment
-      #And I select the option "No" to self employment
-      #And I enter employment details with "<income1>" income at "Annually" frequency
-      #And I select the option "No" to seasonal employment
-      #And I select the option "No" to projected income
+
     And I click continue on the Employment Info Page
 
-      #Then I validate I am on the "Employment Summary" page
-      #Then I click continue on the Employment Summary Page
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
@@ -1302,10 +1266,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-
-      #### Good News insert
-    #Then I validate I am on the "Good News" page
-    #And I click on No Thanks on good news page
 
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
@@ -1533,9 +1493,6 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I select the option "No" to employment
       And I click continue on the Employment Info Page
 
-      #Then I validate I am on the "Employment Summary" page
-      #Then I click continue on the Employment Summary Page
-
       Then I validate I am on the "Additional income" page
       Then I click continue on the Additional Income page
 
@@ -1684,11 +1641,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    
-    #Then I validate I am on the "Ethnicity and Race" page
-    #And I select "I prefer not to answer" ethnicity option
-    #And I select "I prefer not to answer" race option
-    #And I click save and continue on the Race and Ethnicity page
 
 
     Then I select "Yes" for Citizen option
@@ -1702,7 +1654,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    # income change here
+
     And I enter employment details with "10000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
@@ -1736,10 +1688,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-
-    # Good news validation only appears under certain conditions
-    #Then I validate I am on the "Good News" page
-    #And I click on No Thanks on good news page
 
     Then I validate I am on the "Application History" page
     Then I validate that my APTC value is "$0.00/mo"
@@ -1863,22 +1811,17 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
-    ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
+
     And I select the first dependent
-    ## increased incrementally
     And I click save and continue on tax status page
 
-            ##### transition stops
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
 
-### transition step is repeated for each new member  - 2nd re-enrollment
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-### transition step is repeated for each new member
 
-    ## 2nd re-enrollment addition steps change
     Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
@@ -1886,7 +1829,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I enter details on tell us about additional members of your household exch page and continue with Name "SonOne", DOB "10102019", Gender "Male" and applying status "Yes"
       |Primary:Son|
       |Spouse:Son |
-    #And I mark the Additional member is pregnant as "No"
+
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -1929,7 +1872,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
-    ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
+
     And I select the first dependent
     And I select the second dependent
     And I click save and continue on tax status page
@@ -1939,13 +1882,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
 
-### transition step is repeated for each new member added
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-### transition step is repeated for each new member
 
-    #####
     Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
@@ -1954,8 +1895,6 @@ Feature: UI Tests related to APTC after second enrollment change
       |Primary:Son      |
       |Spouse:Son       |
       |SonOne:Brother  |
-    #And I mark the Additional member is pregnant as "No"
-    And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -1984,30 +1923,22 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
-    #Then I click continue on the Additional Income page
+
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
-    #Then I click continue on the Deductions page
+
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    ## tax status page review here
+
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
-    ### transition step is repeated for each new member after each new member added - 2nd re-enrollment
-
-    #Then I click Dependent 0
-    #Then I click Dependent 1
-    #Then I click Dependent 2
-    # Someone Else
-    #Then I click Dependent 3
-    #Then I click Dependent 4
 
     And I select the first dependent
     #And I select the second dependent
