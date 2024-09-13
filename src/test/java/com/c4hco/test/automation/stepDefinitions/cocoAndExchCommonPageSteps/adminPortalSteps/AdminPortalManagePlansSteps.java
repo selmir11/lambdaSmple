@@ -4,6 +4,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class AdminPortalManagePlansSteps {
 
     AdminPortalManagePlansPage adminPortalManagePlansPage = new AdminPortalManagePlansPage(WebDriverManager.getDriver());
@@ -81,14 +83,16 @@ public class AdminPortalManagePlansSteps {
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
     }
-    @And("I update the Coverage Start date to {string}")
-    public void iUpdateCoverageStartDate(String newCoverageDate){
-        adminPortalManagePlansPage.updateCoverageStartDate(newCoverageDate);
+
+    @And("I update the Coverage Start date of member")
+    public void coverageStartDate(List<String> memberCoverageStrtDtList) {
+        adminPortalManagePlansPage.memberCoverageStrtDate(memberCoverageStrtDtList);
     }
-    @And("I update the Financial Start date to {string}")
-    public void iUpdateFinancialStartDate(String newFinancialDate){
-        adminPortalManagePlansPage.updateFinancialStartDate(newFinancialDate);
+    @And("I update the Financial Start date of member")
+    public void financialStartDate(List<String> memberFinancialStrtDtList) {
+        adminPortalManagePlansPage.memberFinancialStrtDate(memberFinancialStrtDtList);
     }
+
     @And ("I select the reason to confirm the changes")
     public void iselectTheReason (){
         adminPortalManagePlansPage.selectReasonForTheChange();
