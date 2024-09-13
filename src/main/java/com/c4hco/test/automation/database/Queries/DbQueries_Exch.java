@@ -194,4 +194,12 @@ public class DbQueries_Exch {
                 "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 
+    public String getEmailStored(){
+        return "select * from "+dbName+".es_household p\n" +
+                "join "+dbName+".es_household_contact m on m.household_id=p.household_id\n" +
+                "where account_id = "+acctId+"\n" +
+                "order by p.created_ts desc limit 1";
+
+    }
+
 }

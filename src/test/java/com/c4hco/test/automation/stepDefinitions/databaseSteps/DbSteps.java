@@ -86,4 +86,9 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify Person ID review status is Manual Review Required")
    public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
 
+
+   @And("I validate data displays duplicate email as {string} in DB")
+   public void iValidateDuplicateEmail(String accountEmail) {dbValidations.ValidateDuplicateEmail(accountEmail);
+   }
+
 }

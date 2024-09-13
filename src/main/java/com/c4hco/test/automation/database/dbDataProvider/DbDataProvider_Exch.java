@@ -25,6 +25,7 @@ public class DbDataProvider_Exch {
     PostgresHandler postgresHandler = new PostgresHandler();
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
+    EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     String fipcode;
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
@@ -226,5 +227,9 @@ public class DbDataProvider_Exch {
 
     public List<EsMemberHouseholdEntity> getEsHousehold(){
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.esHousehold());
+    }
+
+    public EsHouseholdContactEntity getEsHouseholdContactDetails() {
+        return esHouseholdContactDbHandler.getEsHouseholdContactDetails(exchDbQueries.getEmailStored());
     }
 }

@@ -69,7 +69,6 @@ Feature: QLCE Birth during closed enrollment
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
 
-    And I click on Sign Out in the Header for "NonElmo"
 
 
     Examples:
