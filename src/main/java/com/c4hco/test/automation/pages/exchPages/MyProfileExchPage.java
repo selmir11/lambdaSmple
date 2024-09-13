@@ -107,6 +107,24 @@ public class MyProfileExchPage {
     @FindBy(css = ".error-message")
     WebElement ErrorMessage;
 
+    @FindBy(css = ".content_line_label.red-text")
+    WebElement  EmailinUseMessage;
+
+    @FindBy(css = ".session-expiration-alert-modal-header.ng-tns-c1380103175-0")
+    WebElement Headertimeout;
+
+    @FindBy(css = "p[class='ng-tns-c1380103175-0']")
+    WebElement Questiontext;
+
+    @FindBy(css = "button[class='btn-primary-action-button ng-tns-c1380103175-0']")
+    WebElement YesTimeout;
+
+    @FindBy(css = "button[class='btn-second-action-button ng-tns-c1380103175-0']\n")
+    WebElement NoTimeout;
+
+
+
+
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -608,7 +626,7 @@ public class MyProfileExchPage {
         PasswordInput.sendKeys(newPassword);
         PasswordSaveChanges.click();
         basicActions.waitForElementToBePresent(ErrorMessage, 40);
-        softAssert.assertEquals(ErrorMessage.getText(), "Incorrect password. Please try again");
+        softAssert.assertEquals(ErrorMessage.getText(), "Incorrect password. After three failed attempts, your account will be locked for 15 minutes.");
         CancelLink.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
@@ -623,7 +641,7 @@ public class MyProfileExchPage {
         PasswordInput.sendKeys(newPassword);
         PasswordSaveChanges.click();
         basicActions.waitForElementToBePresent(ErrorMessage, 40);
-        softAssert.assertEquals(ErrorMessage.getText(), "Contrase\u00F1a incorrecta. Int\u00E9ntelo de nuevo");
+        softAssert.assertEquals(ErrorMessage.getText(), "Contrase\u00F1a incorrecta. Despu\u00E9s de tres intentos fallidos, su cuenta se bloquear\u00E1 durante 15 minutos.");
         CancelLink.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
@@ -755,6 +773,92 @@ public class MyProfileExchPage {
         PasswordSaveChanges.click();
         basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
         softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
+    }
+
+    public void verifyEmailUseErrorMessage(String language) {
+        switch (language) {
+            case "English":
+                ValidateEmailinuseErrorEnglish();
+                break;
+            case "Spanish":
+                ValidateEmailinuseErrorSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void ValidateEmailinuseErrorEnglish() {
+        // Update email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmail =  "testlraccount@test.com";
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        InputEmail.sendKeys(newEmail);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(EmailinUseMessage, 10);
+        softAssert.assertEquals(EmailinUseMessage.getText(), "Email already in use");
+        softAssert.assertAll();
+    }
+
+
+    public void ValidateEmailinuseErrorSpanish() {
+
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmail =  "testlraccount@test.com";
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        InputEmail.sendKeys(newEmail);
+        MyProfileButtonExch.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInput, 40);
+        PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
+        PasswordSaveChanges.click();
+        basicActions.waitForElementToBePresent(EmailinUseMessage, 10);
+        softAssert.assertEquals(EmailinUseMessage.getText(), "Correo electr\u00F3nico en uso");
+        softAssert.assertAll();
+    }
+    public void VerifyTimeoutPopup(String language) {
+        switch (language) {
+            case "English":
+                verifyTimeoutPopupEnglish();
+                break;
+            case "Spanish":
+                verifyTimeoutPopupSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyTimeoutPopupEnglish() {
+        basicActions.wait(900000);
+        //basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
+        softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
+        softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
+        basicActions.waitForElementToBePresent(YesTimeout, 10);
+        YesTimeout.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyTimeoutPopupSpanish() {
+        basicActions.waitForElementToBePresent(Headertimeout, 840000);
+        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
+        softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
+        softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
+        YesTimeout.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
     }
 }

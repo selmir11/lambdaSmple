@@ -308,7 +308,7 @@ public class MyProfilePage {
         PasswordInputCoCo.sendKeys(newPassword);
         PasswordSaveChangesCoCo.click();
         basicActions.waitForElementToBePresent(ErrorMessageCoCo, 40);
-        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Incorrect password. Please try again");
+        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Incorrect password. After three failed attempts, your account will be locked for 15 minutes.");
         CancelLinkCoCo.click();
         basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
         softAssert.assertAll();
@@ -323,7 +323,7 @@ public class MyProfilePage {
         PasswordInputCoCo.sendKeys(newPassword);
         PasswordSaveChangesCoCo.click();
         basicActions.waitForElementToBePresent(ErrorMessageCoCo, 40);
-        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Contrase\u00F1a incorrecta. Int\u00E9ntelo de nuevo");
+        softAssert.assertEquals(ErrorMessageCoCo.getText(), "Contrase\u00F1a incorrecta. Despu\u00E9s de tres intentos fallidos, su cuenta se bloquear\u00E1 durante 15 minutos.");
         CancelLinkCoCo.click();
         basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
         softAssert.assertAll();
