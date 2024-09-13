@@ -205,22 +205,41 @@ public class AdminPortalManagePlansPage{
         btnMedSave.click();
     }
 
-    public void updateCoverageStartDate(String covStartDate){
-        basicActions.scrollToElement( coverageStartdate );
-        basicActions.waitForElementToBePresent(coverageStartdate,30);
-        basicActions.waitForElementToBeClickable(coverageStartdate,10);
-        coverageStartdate.click();
-        coverageStartdate.clear();
-        coverageStartdate.sendKeys(covStartDate);
+    public void memberCoverageStrtDate(List<String> memberCoverageStrtDtList){
+        for(String memberCoverageStrtDate:memberCoverageStrtDtList ){
+            String[] parts = memberCoverageStrtDate.split(":");
+            String memberNo = parts[0];
+            String coverageStartDateValue = parts[1];
+
+            basicActions.scrollToElement( coverageStartdate );
+            basicActions.waitForElementToBePresent(coverageStartdate,30);
+            basicActions.waitForElementToBeClickable(coverageStartdate,10);
+
+            WebElement coverageStartdate = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_"+memberNo+"']//input[1]"));
+            coverageStartdate.click();
+            coverageStartdate.clear();
+            coverageStartdate.sendKeys(coverageStartDateValue);
+
+        }
+    }
+    public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList){
+        for(String memberFinancialStrtDate:memberFinancialStrtDtList ){
+            String[] parts = memberFinancialStrtDate.split(":");
+            String memberNo = parts[0];
+            String financialStartDateValue = parts[1];
+
+            basicActions.scrollToElement( financialStartDate );
+            basicActions.waitForElementToBePresent(financialStartDate,30);
+            basicActions.waitForElementToBeClickable(financialStartDate,10);
+
+            WebElement financialStartDate = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_"+memberNo+"']//input[1]"));
+            financialStartDate.click();
+            financialStartDate.clear();
+            financialStartDate.sendKeys(financialStartDateValue);
+
+        }
     }
 
-    public void updateFinancialStartDate(String finStartDate){
-        basicActions.waitForElementToBePresent(financialStartDate,30);
-        basicActions.waitForElementToBeClickable(financialStartDate,10);
-        financialStartDate.click();
-        financialStartDate.clear();
-        financialStartDate.sendKeys(finStartDate);
-    }
     public void selectReasonForTheChange(){
         basicActions.waitForElementToBeClickable(reasonForTheChange,10);
         reasonForTheChange.click();
