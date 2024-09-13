@@ -39,7 +39,7 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     And I click Go Back on Tell us about additional members of your household page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "01011996", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "01011996", "Female", and applying "Yes"
       |Primary:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
