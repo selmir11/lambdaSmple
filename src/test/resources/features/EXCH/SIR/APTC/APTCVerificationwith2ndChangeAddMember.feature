@@ -1684,8 +1684,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
-    # appeared here in this spot in QA for first time 9/11/24
+    
     #Then I validate I am on the "Ethnicity and Race" page
     #And I select "I prefer not to answer" ethnicity option
     #And I select "I prefer not to answer" race option
