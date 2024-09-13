@@ -132,6 +132,7 @@ public class AdminPortalManagePlansPage{
         softAssert.assertEquals(btnMedSave.getText(), saveMed);
         softAssert.assertAll();    }
     public void clickMakeChangesMedical() {
+        basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
         basicActions.scrollToElement(btnMakeChangeMed);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed,10);
@@ -205,21 +206,38 @@ public class AdminPortalManagePlansPage{
         btnMedSave.click();
     }
 
-    public void memberCoverageStrtDate(List<String> memberCoverageStrtDtList){
-        for(String memberCoverageStrtDate:memberCoverageStrtDtList ){
+    public void memberCoverageStrtDate(List<String> memberCoverageStrtDtList) {
+        for(String memberCoverageStrtDate : memberCoverageStrtDtList) {
             String[] parts = memberCoverageStrtDate.split(":");
             String memberNo = parts[0];
             String coverageStartDateValue = parts[1];
 
-            basicActions.scrollToElement( coverageStartdate );
-            basicActions.waitForElementToBePresent(coverageStartdate,30);
-            basicActions.waitForElementToBeClickable(coverageStartdate,10);
+           basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
+            basicActions.waitForElementToBePresent(coverageStartdate, 30);
+            basicActions.waitForElementToBeClickable(coverageStartdate, 30);
+            basicActions.scrollToElement(coverageStartdate);
 
-            WebElement coverageStartdate = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_"+memberNo+"']//input[1]"));
-            coverageStartdate.click();
-            coverageStartdate.clear();
-            coverageStartdate.sendKeys(coverageStartDateValue);
+            boolean elementUpdated = false;
+            int attempts = 0;
 
+            while(!elementUpdated && attempts < 3) {
+                try {
+                    WebElement coverageStartdateMem = basicActions.getDriver()
+                            .findElement(By.xpath("//div[@id='coverageStartDate_" + memberNo + "']//input[1]"));
+
+                    coverageStartdateMem.click();
+                    coverageStartdateMem.clear();
+                    coverageStartdateMem.sendKeys(coverageStartDateValue);
+
+                    elementUpdated = true;
+                } catch (StaleElementReferenceException e) {
+                    attempts++;
+                                    }
+            }
+
+            if (!elementUpdated) {
+                throw new RuntimeException("Failed to update coverage start date after multiple attempts.");
+            }
         }
     }
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList){
@@ -230,12 +248,12 @@ public class AdminPortalManagePlansPage{
 
             basicActions.scrollToElement( financialStartDate );
             basicActions.waitForElementToBePresent(financialStartDate,30);
-            basicActions.waitForElementToBeClickable(financialStartDate,10);
+            basicActions.waitForElementToBeClickable(financialStartDate,30);
 
-            WebElement financialStartDate = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_"+memberNo+"']//input[1]"));
-            financialStartDate.click();
-            financialStartDate.clear();
-            financialStartDate.sendKeys(financialStartDateValue);
+            WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_"+memberNo+"']//input[1]"));
+            financialStartDateMem.click();
+            financialStartDateMem.clear();
+            financialStartDateMem.sendKeys(financialStartDateValue);
 
         }
     }
