@@ -86,4 +86,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify Person ID review status is Manual Review Required")
    public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
 
+
+   @And("I validate data displays duplicate email as {string} in DB")
+   public void iValidateDuplicateEmail(String accountEmail) {dbValidations.ValidateDuplicateEmail(accountEmail);}
+
+   @And("I verify the HRA options selected in the DB after Application Results")
+   public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
+
 }

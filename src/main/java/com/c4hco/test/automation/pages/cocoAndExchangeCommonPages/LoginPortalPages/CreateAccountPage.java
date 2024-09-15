@@ -218,6 +218,10 @@ public class CreateAccountPage {
                 onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            case "Admin coco":
+                onBehalfOfPrimaryUserCheckbox.click();
+                cocoTermsOfUseCheckbox.click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);
 

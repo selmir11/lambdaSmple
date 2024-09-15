@@ -125,7 +125,7 @@ public class OtherHealthCoveragePage_Elmo {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 20);
+        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 40);
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();

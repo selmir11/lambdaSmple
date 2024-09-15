@@ -195,7 +195,7 @@ public class NoticesPage {
 
 
     public void enterValidMfaCode(){
-        basicActions.switchToUrlPage("aws.connectforhealthco.com/login-portal/login");
+        basicActions.switchToParentPage("LoginPortalUi");
         basicActions.waitForElementToBePresent(boxVerificationCode,20);
         boxVerificationCode.sendKeys(MFACode);
         btnVerify.click();
