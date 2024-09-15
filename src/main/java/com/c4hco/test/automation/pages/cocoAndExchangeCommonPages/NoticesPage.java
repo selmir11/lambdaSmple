@@ -485,13 +485,16 @@ public class NoticesPage {
 
             basicActions.waitForElementToBePresent(policyDetails, 30);
 
-            for (int i = 0; i < SharedData.getMembers().size(); i++) {
-                String policyMemberDetails = SharedData.getMembers().get(i).getFullName();
+
+
+                for(int i=0; i<SharedData.getMembers().size();i++){
+                    String policymemberdetails = SharedData.getMembers().get(i).getFullName();
+                    System.out.println(policymemberdetails);
                 String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
 
-                if (policyDetails.getText().contains(policyMemberDetails)) {
-                    System.out.println("Member details found: " + policyMemberDetails);
-                    Assert.assertTrue(policyDetails.getText().contains(policyMemberDetails), "Member details not found");
+                if (policyDetails.getText().contains(policymemberdetails)) {
+                    System.out.println("Member details found: " + policymemberdetails);
+                    Assert.assertTrue(policyDetails.getText().contains(policymemberdetails), "Member details not found");
                 }
 
                 if (policyDetails.getText().contains(primaryMemberDetails)) {
