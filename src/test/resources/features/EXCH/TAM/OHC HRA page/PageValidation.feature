@@ -213,3 +213,62 @@ Feature: Page Validation-OHI HRA Elmo Page
       |   2024  |    450.00   |  ICHRA |                    |          0           |
 
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-1032 @PageValidationOhiHraElmo
+  Scenario: SLER-1032 I validate HRA data is saved in Application History DB
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "6.00" amount on the Elmo OHI HRA page
+    Then I select "ICHRA" for HRA type
+    Then I select "Yes" for opt out on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
+    Then I validate I am on the "Application History" page
+    And I verify the HRA options selected in the DB after Application Results
+      |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
+      |   2024  |    6.00     |  ICHRA |         1          |          1           |
+
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    Then I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo HRA" page
+    Then I enter "575.65" amount on the Elmo OHI HRA page
+    Then I select "QSEHRA" for HRA type
+    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
+    Then I validate I am on the "Application History" page
+    And I verify the HRA options selected in the DB after Application Results
+      |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
+      |   2024  |    575.65   | QSEHRA |                    |            0         |
+
+    And I click on Sign Out in the Header for "NonElmo"
+
+

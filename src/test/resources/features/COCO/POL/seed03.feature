@@ -116,6 +116,7 @@ Feature: Seed03 - COCO
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
+    #    And I select None of these life change event  --OPEN ENROLLMENT ONLY--
     And I select "MoveToCO" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -128,6 +129,9 @@ Feature: Seed03 - COCO
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "CoCo Medical Plan Results" page
+    #  --SES ON--
+    #    And I select "Select Health Value Colorado Option Silver Enhanced 94% Off Exchange" coco medical plan
+    #  --SES OFF --
     And I select "Select Health Value Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Coco Plan Summary" page
@@ -149,8 +153,16 @@ Feature: Seed03 - COCO
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date to "01012024"
-    And I update the Financial Start date to "01012024"
+    And I update the Coverage Start date of member
+      |1:01012024|
+      |2:01012024|
+      |3:01012024|
+      |4:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+      |2:01012024|
+      |3:01012024|
+      |4:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

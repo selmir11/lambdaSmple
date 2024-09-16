@@ -121,3 +121,8 @@ Feature: Simple NFA - Single Applicant
       | 6  | TOT RES AMT        | 291.02    | 21.00     |
       | 7  | PRE AMT TOT        | 291.02    | 21.00     |
       | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
+
+      # RT-1276
+    And I upload medical and dental edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
+    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"

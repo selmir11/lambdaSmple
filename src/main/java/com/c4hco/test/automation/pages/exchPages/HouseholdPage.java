@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,7 +55,7 @@ public class HouseholdPage {
     WebElement familyOverviewTable;
 
     @FindBy(xpath = "//*[@class = 'fa fa-plus-circle toggleAddlRow']")
-    WebElement tableDropdown;
+    List<WebElement> tableDropdown;
 
     @FindBy(css = "input[value='Edit'][alt='Submit']")
     WebElement redIcon;
@@ -67,6 +68,12 @@ public class HouseholdPage {
 
     @FindBy (css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
     List<WebElement> basicMemberList;
+
+    @FindBy (name = "hhDeleteMember")
+    WebElement removeMemberLnk;
+
+    @FindBy(tagName = "iframe")
+    WebElement RemoveMemberIframe;
 
     public void clickAddMember() {
         basicActions.waitForElementToBeClickable( addAdditionalMember,15 );
@@ -125,9 +132,9 @@ public class HouseholdPage {
 
     public void iClickTableItem(int index){
         basicActions.waitForElementToBePresent(editPrimaryMember,30);
-        basicActions.waitForElementToBePresent(tableDropdown,30);
+        basicActions.waitForElementListToBePresent(tableDropdown,30);
         index-= 1;
-        tableDropdown.click();
+        tableDropdown.get(index).click();
     }
     public void clickBasicInfoMember1Button(int member) {
         basicActions.waitForElementListToBePresent(memberBasicInformation, 15);
@@ -154,6 +161,26 @@ public class HouseholdPage {
     public void iEditMember(int memberIndex){
         basicActions.waitForElementListToBePresent(basicMemberList, 20);
         basicMemberList.get(memberIndex-1).click();
+    }
+
+    public void clickRemoveMember(){
+        basicActions.waitForElementToBePresent(removeMemberLnk, 20);
+        basicActions.scrollToElement(removeMemberLnk);
+        removeMemberLnk.click();
+    }
+
+    public void clickOptionOnRemoveWindow(String option)  {
+        Alert alert = basicActions.getDriver().switchTo().alert();
+        switch (option){
+            case "OK":
+                alert.accept();
+                break;
+            case "Cancel":
+                alert.dismiss();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + option);
+        }
     }
 
 
