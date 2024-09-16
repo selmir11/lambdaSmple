@@ -1,4 +1,5 @@
-@APTC,@APTC-SIR, @APTC-SIR-AddMember
+@APTC,@APTC-SIR, @APTC-SIR-AddMember  @test
+  #SLER-325, SLER-999, SLER-998, @SLER-802, @SLER-803, SLER-804, @SLER-805, @SLER-806, SLER-807, @SLER-808, @SLER-809,
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal
@@ -6,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-325
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2397 - born 1982 and 2011
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-325- formerly RT-2397 - born 1982 and 2011
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -226,7 +227,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     @SLER-999
-    Scenario Outline: ELIG-APTCRules - 1 member add enrollment - income change - formerly RT-2346
+    Scenario Outline: ELIG-APTCRules - SLER-999 - formerly RT-2346 - 1 member add enrollment - income change -
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
@@ -495,7 +496,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-998
-  Scenario Outline: ELIG-APTCRules - 1 member add enrollment - income change - formerly RT-2344
+  Scenario Outline: ELIG-APTCRules - SLER-998 -  formerly RT-2344 - 1 member add enrollment - income change
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -768,7 +769,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-807
-      # ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400
+      # ELIG-APTCRules - SLER - 807 - formerly RT-2400
     Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2400
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -1037,7 +1038,7 @@ Feature: UI Tests related to APTC after second enrollment change
         |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$310.05/mo      |-$310.05    |01012007   |
 
   @SLER-804
-      # ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2411
+      # ELIG- APTCRules - SLER-804 - formerly RT-2411
   Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2411
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1305,7 +1306,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
-    Scenario Outline: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
+    Scenario Outline: ELIG-APTCRules - formerly RT-2398, RT-2399, RT-2401, RT-2405, RT-2412, RT-2413
       When I click create a new account on login page
       Then I click create my account from pre-screen page
 
