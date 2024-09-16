@@ -13,8 +13,8 @@ public class ApplicationResultsPageSteps {
         applicationResultsPage.clickBtnContinue();
     }
 
-    @Then("I validate that my Tax Household's APTC value is {string}")
-    public void validateTHHAPTC(String expectedAPTC){applicationResultsPage.validateAPTCByTHH(expectedAPTC);}
+    @Then("I validate that my Tax Household's {int} APTC value is {string}")
+    public void validateTHHAPTC(int THHNum, String expectedAPTC){applicationResultsPage.validateAPTCByTHH(THHNum, expectedAPTC);}
 
     @Then("I change views to Tax Household {int}")
     public void changeTaxHouseholdDropdown(int THHNum){applicationResultsPage.changeTaxHouseHold(THHNum);}
