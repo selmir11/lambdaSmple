@@ -274,7 +274,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate that my APTC value is "$802.29/mo"
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$802.29/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$802.29/mo"
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
