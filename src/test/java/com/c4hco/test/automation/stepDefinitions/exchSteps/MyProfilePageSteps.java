@@ -98,4 +98,11 @@ public class MyProfilePageSteps {
     public void iSelectTheSecondHouseholdMemberAsPrimaryContact() {
         myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact();
     }
+
+    @And("I validate Email error message in {string} on my Profile Page")
+    public void iverifyEmailUseErrorMessage(String language)  { myProfileExchPage.verifyEmailUseErrorMessage(language); }
+
+    @And("I validate timeout session popup {string} on My Profile page")
+    public void iVerifyTimeoutPopup(String language)  { myProfileExchPage.VerifyTimeoutPopup(language); }
 }
+

@@ -518,4 +518,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void ValidateDuplicateEmail(String accountEmail) {
+        EsHouseholdContactEntity actualResult = exchDbDataProvider.getEsHouseholdContactDetails();
+
+        softAssert.assertEquals(actualResult.getEmail(), accountEmail);
+        System.out.println("Account  Email "+accountEmail);
+        System.out.println("Database Email "+actualResult.getEmail());
+        softAssert.assertAll();
+    }
 }
