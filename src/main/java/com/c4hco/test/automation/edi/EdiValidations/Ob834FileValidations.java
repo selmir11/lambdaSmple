@@ -63,7 +63,6 @@ public class Ob834FileValidations {
             }
         }
         softAssert.assertAll();
-        System.out.println("=======End of medical file validations for validateMed_LXREFSeg========");
     }
 
     public void validateDen_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
