@@ -56,10 +56,14 @@ public class sftpStepDefinitions {
         for (Ob834DetailsEntity entry : ob834Entries) {
             if (entry.getInsurance_line_code().equals("HLT")) {
                 sftpUtil.readEdiFile(SharedData.getMedicalFileName());
+                System.out.println("***********Validating Medical EDI File::"+SharedData.getMedicalFileName()+"***********");
                 ob834Validations.validateOb834File(entry);
+                ob834Validations.validateMed_LXREFSeg(segments);
             } else if (entry.getInsurance_line_code().equals("DEN")) {
+                System.out.println("***********Validating Dental EDI File::"+SharedData.getDentalFileName()+"***********");
                 sftpUtil.readEdiFile(SharedData.getDentalFileName());
                 ob834Validations.validateOb834File(entry);
+                ob834Validations.validateDen_LXREFSeg(segments);
             }
         }
     }

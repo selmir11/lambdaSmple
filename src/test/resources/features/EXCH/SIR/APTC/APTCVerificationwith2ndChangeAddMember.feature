@@ -204,7 +204,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -462,7 +462,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on view results and shop
 
       Then I validate I am on the "Application Results" page
-      Then I validate that my Tax Household's APTC value is "<expectedPostAPTCResult>"
+      Then I validate that my Tax Household's 1 APTC value is "<expectedPostAPTCResult>"
       Then I click continue on application results page
 
       Then I validate I am on the "Start Shopping" page
@@ -582,7 +582,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "<expectedInitialAPTCResult>"
+    Then I validate that my Tax Household's 1 APTC value is "<expectedInitialAPTCResult>"
 
     Then I click continue on application results page
 
@@ -734,7 +734,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "<expectedPostAPTCResult>"
+    Then I validate that my Tax Household's 1 APTC value is "<expectedPostAPTCResult>"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1005,7 +1005,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on view results and shop
 
       Then I validate I am on the "Application Results" page
-      Then I validate that my Tax Household's APTC value is "<expectedAptc2>"
+      Then I validate that my Tax Household's 1 APTC value is "<expectedAptc2>"
       Then I click continue on application results page
 
       Then I validate I am on the "Start Shopping" page
@@ -1272,7 +1272,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "<expectedAptc2>"
+    Then I validate that my Tax Household's 1 APTC value is "<expectedAptc2>"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1559,7 +1559,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on view results and shop
 
       Then I validate I am on the "Application Results" page
-      Then I validate that my Tax Household's APTC value is "<finalapplicationResultAPTC>"
+      Then I validate that my Tax Household's 1 APTC value is "<finalapplicationResultAPTC>"
       Then I click continue on application results page
 
       Then I validate I am on the "Start Shopping" page
@@ -1696,7 +1696,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Application Results" page
     And I verify that the APTC amount does not appear on the app results page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2177,7 +2177,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
