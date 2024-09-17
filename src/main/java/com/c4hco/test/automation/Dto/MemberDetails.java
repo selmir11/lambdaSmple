@@ -12,7 +12,7 @@ public class MemberDetails {
     String middleInitial;
     String suffix;
     String emailId;
-    String password = "ALaska12!";
+    String password = "Selenium11!";
     String phoneNumber;
     String alternatePhNum;
     String ssn;
