@@ -224,9 +224,9 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     Then I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Enhanced Plan" plan
+    And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
-    And I select "Delta Dental of Colorado Family Enhanced Plan" plan
+    And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
