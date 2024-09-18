@@ -142,10 +142,7 @@ Feature: Broker Assisted - End to End Test
     Then I enter the MFA code and click Verify
 
     And I validate I am on the "Agency Dashboard" page
-    #Then I click View Your Clients button
-
     And I click on "colorado Connect" tab
-    #And I search for clients
     And I click on first client search result
     And I click "manage" the client
 
