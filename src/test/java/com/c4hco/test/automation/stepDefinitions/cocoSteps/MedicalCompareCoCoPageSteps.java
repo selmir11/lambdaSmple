@@ -33,8 +33,8 @@ public class MedicalCompareCoCoPageSteps {
     @And("I verify that no plans exist on the Medical Plan Compare page")
     public void verifyNoPlansSelectedTxt(){medicalCompareCoCoPage.verifyNoPlansSelectedTxt();}
 
-    @And("I verify Spanish text in Medical plan Compare coco page")
-    public void verifySpanishTextinMedicalCompr(List<String> planDetails){
-        medicalCompareCoCoPage.verifySpanishTextMedicalplancmpr(planDetails);
+    @And("I verify text in Medical plan Compare coco page")
+    public void verifyTextinMedicalCompr(List<String> planDetails){
+        medicalCompareCoCoPage.verifyTextMedicalplancmpr(planDetails);
     }
 }
