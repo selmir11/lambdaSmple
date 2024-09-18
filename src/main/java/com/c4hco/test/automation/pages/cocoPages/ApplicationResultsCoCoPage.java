@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,7 +37,7 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = ".body-text-1")
     WebElement submitNewApplicationText;
     @FindBy(css = "div.plan-name.eligible")
-    WebElement eligiblePlanSESOff;
+    WebElement eligiblePlan;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -73,10 +74,12 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(submitNewApplicationText.getText(), "If your situation changes you can submit a new application to re-apply and newly qualify.");
         softAssert.assertAll();
     }
-    public void verifyEligibleplans(String ses){
+    public void verifyEligibleplans(){
         basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
-        if(ses.equals("off")) {
-            softAssert.assertEquals(eligiblePlanSESOff.getText(), "Health insurance plans through Colorado Connect");
+        if(SharedData.getSes().equals("yes")){
+            softAssert.assertEquals(eligiblePlan.getText(), "Silver Enhanced Savings");
+        } else{
+            softAssert.assertEquals(eligiblePlan.getText(), "Health insurance plans through Colorado Connect");
         }
         softAssert.assertAll();
         }

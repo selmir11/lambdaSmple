@@ -24,8 +24,8 @@ public class ApplicationResultsPageSteps {
     public void verifyTextDoNotQualifyForHealthPlan () {
         applicationResultsCoCoPage.verifyTextNotQualifyForPlanOnAppResultsPage();
     }
-    @Then("I verify eligible plan on Application Result page coco if SES is {string}")
-    public void verifyEligiblePlan(String ses) {
-        applicationResultsCoCoPage.verifyEligibleplans(ses);
+    @Then("I verify eligible plan on Application Result page coco depends on SES")
+    public void verifyEligiblePlan() {
+        applicationResultsCoCoPage.verifyEligibleplans();
     }
 }
