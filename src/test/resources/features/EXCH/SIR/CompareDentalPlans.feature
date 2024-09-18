@@ -6,7 +6,7 @@ Feature: Medical Plan Results page related tests
     And I validate I am on the "Login" page
 
   @CompareDentalPlansLink @SLER-80
-  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Dental) - formerly RT-1980
+  Scenario: SLER-80 - Validate the Navigation and Functionality of Compare Plans Link (Dental) - formerly RT-1980
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -64,7 +64,7 @@ Feature: Medical Plan Results page related tests
     Then I click on Sign Out in the Header for "DentalPlanResults"
 
   @DentalCompareTextValidation @SLER-727
-  Scenario: Validate the Text on Compare Plans page (Dental)
+  Scenario: SLER-727 - Validate the Text on Compare Plans page (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

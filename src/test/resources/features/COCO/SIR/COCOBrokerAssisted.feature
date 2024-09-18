@@ -1,13 +1,12 @@
-@SIR
-
-Feature: Individual adult - End to End Test
+@SIR @COCO @test
+#contains SLCR-189, SLCR-193,SLCR-194
+Feature: Broker Assisted - End to End Test
 #Failing-general progression issues in Admin area - not a clean line of functions to test out the SIR pages
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-189
-
-  Scenario: This will create Individual adult with Broker assistance
+  Scenario: SLCR-189 - This will create Individual adult with Broker assistance
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -27,12 +26,15 @@ Feature: Individual adult - End to End Test
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "enrintialtest@outlook.com" password "ALaska12!" and "enrintialtest@outlook.com" password "ALaska12!"
+
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "enrintialtest@outlook.com" and "ALaska12!"
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
     And I sign out of Outlook
+
+    # where is the code being added? - I am finding myself on the step below but there is a signin broker page here with login credentials required
     Then I enter the MFA code and click Verify
 
     And I validate I am on the "Agency Dashboard" page
@@ -104,17 +106,14 @@ Feature: Individual adult - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
 
-    Then I click all done obo from payment portal page coco
-
-     #Then I validate I am on the "CoCo Welcome" page
-    #And I click on Sign Out in the Header for "Elmo"
+    Then I click all done from payment portal page coco
 
     And I validate I am on the "Agency Dashboard" page
     And I click on Sign Out in the Header for "NonElmo"
 
 
   @SLCR-193
-  Scenario: This will create 2 couples with Broker assistance
+  Scenario: SLCR-193 - This will create 2 couples with Broker assistance
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -141,11 +140,12 @@ Feature: Individual adult - End to End Test
     And I delete the open notice
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
-    And I validate I am on the "Broker Dashboard" page
-    Then I click View Your Clients button
+
+    And I validate I am on the "Agency Dashboard" page
+    #Then I click View Your Clients button
 
     And I click on "colorado Connect" tab
-    And I search for clients
+    #And I search for clients
     And I click on first client search result
     And I click "manage" the client
 
@@ -169,7 +169,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Ethnicity and race page
 
     And I select "Yes" employment option
-    And I enter "45,000.00" income amount
+    And I enter "4500000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -188,7 +188,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "07271963", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "07271963", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -216,7 +216,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "08281999", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "08281999", "Male", and applying "Yes"
       | Primary:Child or Other dependent |
       | Wife:Child or Other dependent    |
     And I click continue on Tell us about additional members of your household page
@@ -249,7 +249,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "DaughterInLaw", "05052001", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "DaughterInLaw", "05052001", "Female", and applying "Yes"
       | Primary:Other Relative |
       | Wife:Other Relative    |
       | Son:Spouse             |
@@ -314,13 +314,13 @@ Feature: Individual adult - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
 
-    Then I click all done obo from payment portal page coco
-   #uncomment the below lines and test after the bug is fixed.
-    #Then I validate I am on the "CoCo Welcome" page
-    #And I click on Sign Out in the Header for "Elmo"
+    Then I click all done from payment portal page coco
+
+    Then I validate I am on the "Agency Dashboard" page
+    And I click on Sign Out in the Header for "NonElmo"
 
   @SLCR-194
-  Scenario: This will create couple with children with Broker assistance
+  Scenario: SLCR-194 - This will create couple with children with Broker assistance
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -374,7 +374,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Ethnicity and race page
 
     And I select "Yes" employment option
-    And I enter "10,000.00" income amount
+    And I enter "1000000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -393,7 +393,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -425,7 +425,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "04212013", "Female", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
@@ -454,7 +454,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "12222016", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
       |Daughter:Sibling             |

@@ -1,4 +1,5 @@
 @SIRRegression @APTC-SIR
+  # SLER-778
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
@@ -10,6 +11,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I validate I am on the "Admin search" page
     Then I click create account on admin portal
     And I enter general mandatory data for "exchange" account creation
+
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results

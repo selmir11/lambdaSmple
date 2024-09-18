@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-131
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-131 - formerly RT-2349 - 40 year old
+  Scenario: ELIG-APTCRules - SLER-131 - formerly RT-2349 - 40 year old - lost coverage
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -190,7 +190,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     Then I validate I am on the "Tell us about life changes" page
-    And  I select "MoveToCO" QLCE on tell us about life changes page
+    And  I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
