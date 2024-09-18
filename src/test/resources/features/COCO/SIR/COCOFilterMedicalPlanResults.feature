@@ -139,9 +139,9 @@ Feature: Verify COCO Medical Plan results
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And Verify "HealthCare.gov" hyperlink present in coco Medical Plan Results page and navigates to "https://www.healthcare.gov/quality-ratings/"
+    And Verify "Learn more about these ratings." hyperlink present in coco Medical Plan Results page and navigates to "https://www.healthcare.gov/quality-ratings/"
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And Verify "CuidadoDeSalud.gov/es/" hyperlink present in coco Medical Plan Results page and navigates to "https://www.cuidadodesalud.gov/es/quality-ratings/"
+    And Verify "Obtenga más información sobre estas calificaciones." hyperlink present in coco Medical Plan Results page and navigates to "https://www.cuidadodesalud.gov/es/quality-ratings/"
     And I click on Sign Out in the Header for "Elmo"
 
 

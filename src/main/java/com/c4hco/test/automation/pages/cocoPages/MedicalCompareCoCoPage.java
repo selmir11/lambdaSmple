@@ -407,7 +407,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     }
 
-    public void verifySpanishTextMedicalplancmpr(List<String> planDetails){
+    public void verifyTextMedicalplancmpr(List<String> planDetails){
         softAssert.assertEquals(planHeaderdetails.getText(), planDetails.get(0));
         softAssert.assertEquals(selectInNetworkTier1Link.getText(), planDetails.get(1));
         softAssert.assertEquals(selectOutofNetworkLink.getText(), planDetails.get(2));

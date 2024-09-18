@@ -80,4 +80,9 @@ public class MedicalPlansCoCoPageSteps {
     public void verifyHealthcareOrgLink(String hyperLink, String pageUrl){
         medicalPlansCoCoPage.verifyURLforHealthCare(hyperLink,pageUrl);
     }
+
+    @And("I click on the Plan Details button for the first Medical plan on the Coco Medical Plan page")
+    public void planDetailsbutton(){
+        medicalPlansCoCoPage.selectFirstPlanDetailsCoCo();
+    }
 }
