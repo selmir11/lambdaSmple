@@ -34,7 +34,7 @@ Feature: Broker Assisted - End to End Test
     And I delete the open notice
     And I sign out of Outlook
 
-    # where is the code being added? - I am finding myself on the step below but there is a signin broker page here with login credentials required
+    # review with Carri then remove when transition issue resolved
     Then I enter the MFA code and click Verify
 
     And I validate I am on the "Agency Dashboard" page
