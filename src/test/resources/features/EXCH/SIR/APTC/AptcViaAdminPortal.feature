@@ -3,7 +3,7 @@
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
-  Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
+  Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
