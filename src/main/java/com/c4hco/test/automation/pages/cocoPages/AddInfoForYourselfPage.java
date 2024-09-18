@@ -98,7 +98,8 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementListToBePresent(stateDropdownOptions, 90);
         basicActions.waitForElementListToBePresentWithRetries(AddInfoForYourselfPageText, 90);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
-        basicActions.scrollToElement(saveAndContinueButton);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 150);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 150);
         saveAndContinueButton.click();
     }
 
