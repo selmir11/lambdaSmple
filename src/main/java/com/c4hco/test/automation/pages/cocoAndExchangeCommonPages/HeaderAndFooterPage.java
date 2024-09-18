@@ -390,8 +390,9 @@ public class HeaderAndFooterPage {
     }
 
     public void headerLanguage(String language){
-        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink,50);
-        basicActions.waitForElementToBePresentWithRetries(languageDrp,50);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink,100);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp,100);
+        basicActions.waitForElementToBeClickableWithRetries(languageDrp,100);
         for (WebElement headerLink : centerHeaderLink) {
             if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
                 changeLanguage(language);
