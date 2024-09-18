@@ -494,7 +494,7 @@ Feature: Verify COCO Medical Plan results
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    And I verify Spanish text in Medical plan Compare coco page
+    And I verify text in Medical plan Compare coco page
       | Comparación de planes                                          |
       | Dentro la red Nivel 1                                          |
       | Fuera de la red                                                |
@@ -665,6 +665,8 @@ Feature: Verify COCO Medical Plan results
       | Additional EHB Benefits                  |
       | Go Back to Plans                         |
     And I click on Sign Out in the Header for "Elmo"
+
+
 
 
 
