@@ -192,8 +192,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
 
     #DbVerification
 
-    And I verify the policy data quality check
-    And I verify the data from book of business queue table
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
 

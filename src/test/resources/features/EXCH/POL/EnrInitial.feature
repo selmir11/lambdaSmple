@@ -215,7 +215,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
         #DbVerification
 
     And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
 

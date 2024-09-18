@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 
+import com.c4hco.test.automation.Dto.Edi.Member;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
@@ -477,15 +478,13 @@ public class NoticesPage {
 
 
 
-    public void verifyEmailPolicyNoticeDetails(String noticeInputDetails) {
+    public void verifyEmailPolicyNoticeDetails1(String noticeInputDetails) {
         List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
 
         for (String expectedDetail : expectedList) {
             WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + expectedDetail + "')]"));
 
             basicActions.waitForElementToBePresent(policyDetails, 30);
-
-
 
                 for(int i=0; i<SharedData.getMembers().size();i++){
                     String policymemberdetails = SharedData.getMembers().get(i).getFullName();
@@ -505,6 +504,34 @@ public class NoticesPage {
             Assert.assertTrue(policyDetails.getText().contains(expectedDetail), "Given plan details not found: " + expectedDetail);
         }
     }
+
+    public void verifyEmailPolicyNoticeDetails(String noticeInputDetails) {
+        List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
+
+        for (String expectedDetail : expectedList) {
+            String[] detailParts = expectedDetail.split(":");
+            String prefix = detailParts[0].trim();
+            String expectedName = detailParts[1].trim();
+
+            String fullNameFromSharedData = null;
+            for (int i = 0; i < SharedData.getMembers().size(); i++) {
+                if (SharedData.getMembers().get(i).getFullName().startsWith(prefix)) {
+                    fullNameFromSharedData = SharedData.getMembers().get(i).getFullName();
+                    break;
+                }
+            }
+
+            if (fullNameFromSharedData == null) {
+                Assert.fail("No member found with prefix " + prefix);
+            }
+
+            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + fullNameFromSharedData + "')]"));
+            basicActions.waitForElementToBePresent(policyDetails, 30);
+
+            Assert.assertTrue(policyDetails.getText().contains(fullNameFromSharedData), "Member details not found: " + fullNameFromSharedData);
+        }
+    }
+
 
 
     public void verifymedicalpolicynotice(String MedicalPlocitydetails){
