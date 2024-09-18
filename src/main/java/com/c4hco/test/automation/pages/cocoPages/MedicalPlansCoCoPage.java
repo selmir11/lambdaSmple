@@ -75,6 +75,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "planQualityRatingsLink")
     WebElement planQualityRatingsLink;
 
+    @FindBy(id = "PlanResults-PlanDetails_1")
+    WebElement firstPlanDetailsbtn;
+
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -233,6 +236,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectMultiplePlanstoCompare(){
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent( insuranceCompanyDropdown,20 );
         selectFirstComparebox.click();
         selectSecondComparebox.click();
@@ -254,4 +258,9 @@ public class MedicalPlansCoCoPage {
         basicActions.switchToParentPage("Shopping Portal");
     }
 
+    public void selectFirstPlanDetailsCoCo() {
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBeClickable(firstPlanDetailsbtn, 20);
+        firstPlanDetailsbtn.click();
+    }
 }
