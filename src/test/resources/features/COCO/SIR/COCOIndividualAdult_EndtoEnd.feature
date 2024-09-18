@@ -1,4 +1,4 @@
-@SIR
+@SIR @COCO
 
 Feature: Individual adult - End to End Test
 
@@ -7,7 +7,7 @@ Feature: Individual adult - End to End Test
 
 
   @SLCR-157 @EndToEndTest
-  Scenario: This will create Individual adult with no assistance annually salary of 40K
+  Scenario: SLCR-157 - This will create Individual adult with no assistance annually salary of 40K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -82,7 +82,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-159 @EndToEndTest
-  Scenario: This will create Individual adult with no assistance annually salary of 13K
+  Scenario: SLCR-159 - This will create Individual adult with no assistance annually salary of 13K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -158,7 +158,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-182 @EndToEndTest
-  Scenario: This will create Family of 2 members, Couples with multiple groups
+  Scenario: SLCR-182 - This will create Family of 2 members, Couples with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -203,7 +203,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -403,7 +403,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "MinorTwo", "03052012", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "MinorTwo", "03052012", "Male", and applying "Yes"
       | Primary:Sibling |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -435,7 +435,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "MinorThree", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "MinorThree", "12222016", "Male", and applying "Yes"
       | Primary:Sibling  |
       | MinorTwo:Sibling |
     And I click continue on Tell us about additional members of your household page
@@ -633,7 +633,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -757,7 +757,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "MinorTwo", "01012018", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "MinorTwo", "01012018", "Male", and applying "Yes"
       | Primary:Sibling |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -785,7 +785,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "MinorThree", "01012018", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "MinorThree", "01012018", "Male", and applying "Yes"
       | Primary:Sibling  |
       | MinorTwo:Sibling |
     And I click continue on Tell us about additional members of your household page
@@ -900,7 +900,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "MinorTwo", "01012018", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "MinorTwo", "01012018", "Male", and applying "Yes"
       | Primary:Sibling |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -928,7 +928,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "MinorThree", "01012018", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "MinorThree", "01012018", "Male", and applying "Yes"
       | Primary:Sibling  |
       | MinorTwo:Sibling |
     And I click continue on Tell us about additional members of your household page
@@ -999,7 +999,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-267 @EndToEndTest
-  Scenario: This will create Individual adult with no assistance annually salary of 10K
+  Scenario: SLCR-267 - This will create Individual adult with no assistance annually salary of 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -1083,7 +1083,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-268 @EndToEndTest
-  Scenario: This will create Individual adult with no assistance annually salary of 80K
+  Scenario: SLCR-268 - This will create Individual adult with no assistance annually salary of 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
