@@ -19,7 +19,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
 
-    #And I report "NoneOfThese" and click continue
     And I report "Marriage" and click continue
 
     Then I select "member" from the who are you question
@@ -202,7 +201,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$139.14/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$139.14/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -398,7 +397,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click save and continue on tax status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    #Then I select "None of these" as ELMO health coverage option
+
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
@@ -417,7 +416,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$265.98/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$265.98/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -642,7 +641,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$837.85/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$837.85/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -855,7 +854,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$944.39/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$944.39/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1070,7 +1069,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$646.42/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$646.42/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1284,7 +1283,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$384.17/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$384.17/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1501,7 +1500,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$727.71/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$727.71/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1715,7 +1714,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1928,7 +1927,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2141,7 +2140,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2353,7 +2352,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$350.03/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$350.03/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2566,7 +2565,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page

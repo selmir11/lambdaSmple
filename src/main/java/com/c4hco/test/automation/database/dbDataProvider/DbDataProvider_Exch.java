@@ -19,11 +19,13 @@ public class DbDataProvider_Exch {
     EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
     EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
+    Ib999Handler ib999Handler = new Ib999Handler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
+    EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     String fipcode;
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
@@ -32,6 +34,9 @@ public class DbDataProvider_Exch {
 
     public List<Ob834DetailsEntity> getOb83Db4Details(){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
+    }
+    public List<Ib999Entity> getIb999Details(String ak1grp_ctrl_number){
+        return ib999Handler.getIbDetailsAfterCompleted(exchDbQueries.ib999Details(ak1grp_ctrl_number));
     }
 
     public Map<String,String> getEap_id(){
@@ -222,5 +227,14 @@ public class DbDataProvider_Exch {
 
     public List<EsMemberHouseholdEntity> getEsHousehold(){
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.esHousehold());
+    }
+
+
+    public EsHouseholdContactEntity getEsHouseholdContactDetails() {
+        return esHouseholdContactDbHandler.getEsHouseholdContactDetails(exchDbQueries.getEmailStored());
+    }
+    public EsMemberHraAhEntity getOptionsFromHraAhDbTables(){
+        return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
+
     }
 }

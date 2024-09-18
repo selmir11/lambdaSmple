@@ -21,9 +21,10 @@ public class WelcomePage {
     @FindBy(xpath = "//div[@class='body-text-1 apply-text-body']")
     WebElement theAnnualOpenEnrollmentText;
 
-    @FindBy(css = ".apply-button-container button")
-    WebElement applyForCurrentYearButton;
-
+    @FindBy(xpath = "//*[@id='ELIG-WelcomePage-ApplyForInsurance-2024' or @id='ELIG-WelcomePage-ApplyForInsurance-2024']")
+    WebElement applyForCurrentYearButton; //Locator for both QA and Staging
+    @FindBy(css = "button#ELIG-WelcomePage-ApplyForInsurance-2025")
+    WebElement btnApplyForNextYearCoco;
     @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
 
@@ -64,8 +65,19 @@ public class WelcomePage {
     }
 
     public void clickApplyForInsurance() {
-        basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 30);
-        applyForCurrentYearButton.click(); }
+        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+        WebElement applyForYrCoco;
+
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+            applyForYrCoco = btnApplyForNextYearCoco;
+        } else{
+            applyForYrCoco = applyForCurrentYearButton;
+        }
+        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
+        String year = applyForYrCoco.getText().replace("Apply for ", "");
+        SharedData.setPlanYear(year);
+        applyForYrCoco.click();
+    }
 
     public void selectPlanyear(String planYear){
         basicActions.waitForElementToBeClickable(planYearSelectorDp,10);

@@ -37,6 +37,11 @@ public class DbQueries_Exch {
              "where account_id = '"+acctId+"'\n "+
              "and current_ind = '1'";
     }
+    public String ib999Details(String grpCtlNum){
+        return "SELECT * FROM "+dbName+".ib999_detail \n" +
+                "where ak1_group_ctrl_number = '"+grpCtlNum+"'\n " +
+                "ORDER BY created_ts DESC";
+    }
 
     public String getEAPID(){
         return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy\n" +
@@ -187,6 +192,20 @@ public class DbQueries_Exch {
         return "select * from "+dbName+".ES_MEMBER mcf\n" +
                 "JOIN "+dbName+".ES_HOUSEHOLD pmc ON mcf.household_id = pmc.household_id\n" +
                 "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
+    public String getEmailStored(){
+        return "select * from "+dbName+".es_household p\n" +
+                "join "+dbName+".es_household_contact m on m.household_id=p.household_id\n" +
+                "where account_id = "+acctId+"\n" +
+                "order by p.created_ts desc limit 1";
+    }
+  
+    public String getPrimaryHraAhRecords(){
+        return "select *\n" +
+                "From  "+dbName+".es_member_hra_ah\n" +
+                "where member_id = '"+SharedData.getPrimaryMemberId()+"' \n" +
+                "order by updated_ts asc limit 1";
     }
 
 }

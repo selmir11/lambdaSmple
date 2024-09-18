@@ -4,6 +4,7 @@ package com.c4hco.test.automation.sftpConfig;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.edi.ediUtil.Edi834Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
+import com.c4hco.test.automation.utils.BasicActions;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class SftpUtil {
     private Session session;
     Edi834Util edi834Util = new Edi834Util();
+    BasicActions basicActions = new BasicActions();
 
     public SftpUtil(){
     }
@@ -81,10 +83,11 @@ public class SftpUtil {
     public void uploadFileInSftp(String fileName, String remoteFilePath) throws JSchException {
         connectToSftp();
         String localPath = SharedData.getLocalPathToDownloadFile();
+        basicActions.wait(3000);
         ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
         channelSftp.connect();
         try{
-           channelSftp.put(localPath+fileName, remoteFilePath);
+           channelSftp.put(localPath+"/"+fileName, remoteFilePath);
         }catch(Exception e){
             e.printStackTrace();
         }finally {
