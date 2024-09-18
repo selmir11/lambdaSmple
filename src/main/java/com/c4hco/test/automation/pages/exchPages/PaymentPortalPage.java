@@ -40,7 +40,7 @@ public class PaymentPortalPage {
 
     @FindBy(css = "#SOL-PayNow-ModalContinue-Medical-0")
     WebElement PayLaterContinue;
-    //@FindBy(css ="._pendo-close-guide")
+
     @FindBy(xpath = "//button[@id='pendo-close-guide-a06a6288']")
     WebElement recomendC4HCOToFriendPopUp;
 
