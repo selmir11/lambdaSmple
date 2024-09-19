@@ -460,8 +460,139 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyFamilyOfferedToEnrollOption(String currentlyOffered){
-        switch (currentlyOffered){
+    public void verifyCurrentSelections(String question, String dataOffered){
+        switch (question){
+            case "Min Value":
+                verifyMinValueOption(dataOffered);
+                break;
+            case "Amount":
+                verifyAmountOption(dataOffered);
+                break;
+            case "Currently Enrolled":
+                verifyCurrentlyEnrolledOption(dataOffered);
+                break;
+            case "Insurance Ending":
+                verifyInsuranceEndingOption(dataOffered);
+                break;
+            case "Input Date":
+                verifyInputDateOption(dataOffered);
+                break;
+            case "Voluntary End":
+                verifyVoluntarilyEndOption(dataOffered);
+                break;
+            case "Family Offered":
+                verifyFamilyOfferedToEnrollOption(dataOffered);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + question);
+        }
+    }
+
+    public void verifyMinValueOption(String dataOffered){
+        switch (dataOffered){
+            case "Yes":
+                basicActions.waitForElementToBePresent(esiMinValueStandardYesBtn,15);
+                softAssert.assertTrue(esiMinValueStandardYesBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(esiMinValueStandardNoBtn,15);
+                softAssert.assertTrue(esiMinValueStandardNoBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "I don't know":
+                basicActions.waitForElementToBePresent(esiMinValueStandardDontKnowBtn,15);
+                softAssert.assertTrue(esiMinValueStandardDontKnowBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataOffered);
+        }
+    }
+
+    public void verifyAmountOption(String dataOffered){
+        basicActions.waitForElementToBePresent(esiMonthlyAmountInput,15);
+        softAssert.assertTrue(esiMonthlyAmountInput.getAttribute("value").equals(dataOffered));
+        softAssert.assertAll();
+    }
+
+    public void verifyCurrentlyEnrolledOption(String dataOffered){
+        switch (dataOffered){
+            case "Yes":
+                basicActions.waitForElementToBePresent(esiCurrentlyEnrolledYesBtn,15);
+                softAssert.assertTrue(esiCurrentlyEnrolledYesBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(esiCurrentlyEnrolledNoBtn,15);
+                softAssert.assertTrue(esiCurrentlyEnrolledNoBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataOffered);
+        }
+    }
+
+    public void verifyInsuranceEndingOption(String dataOffered){
+        switch (dataOffered){
+            case "Yes":
+                basicActions.waitForElementToBePresent(esiInsuranceEndYesBtn,15);
+                softAssert.assertTrue(esiInsuranceEndYesBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(esiInsuranceEndNoBtn,15);
+                softAssert.assertTrue(esiInsuranceEndNoBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataOffered);
+        }
+    }
+
+    public void verifyInputDateOption(String dataOffered){
+        basicActions.waitForElementToBePresent(esiEndDateInput, 60);
+        calendar.setTime(today);
+
+        switch (dataOffered){
+            case "Current Month":
+                calendar.add(Calendar.MONTH, 1);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, -1);
+                Date lastDayOfMonth = calendar.getTime();
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd");
+                softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(endOfCurrentMonth.format(lastDayOfMonth)));
+                softAssert.assertAll();
+                break;
+            case "Today":
+                DateFormat todayDate = new SimpleDateFormat("yyyy-MM-dd");
+                softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(todayDate.format(today)));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataOffered);
+        }
+    }
+
+    public void verifyVoluntarilyEndOption(String dataOffered){
+        switch (dataOffered){
+            case "Yes":
+                basicActions.waitForElementToBePresent(esiVoluntarilyEndingYesBtn,15);
+                softAssert.assertTrue(esiVoluntarilyEndingYesBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(esiVoluntarilyEndingNoBtn,15);
+                softAssert.assertTrue(esiVoluntarilyEndingNoBtn.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataOffered);
+        }
+    }
+
+    public void verifyFamilyOfferedToEnrollOption(String dataOffered){
+        switch (dataOffered){
             case "Yes":
                 basicActions.waitForElementToBePresent(esiFamilyOfferedYesBtn,15);
                 softAssert.assertTrue(esiFamilyOfferedYesBtn.getAttribute("class").contains("selected"));
@@ -473,7 +604,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + currentlyOffered);
+                throw new IllegalArgumentException("Invalid option: " + dataOffered);
         }
     }
 

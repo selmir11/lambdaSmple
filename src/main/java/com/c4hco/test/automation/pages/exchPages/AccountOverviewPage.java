@@ -21,7 +21,7 @@ public class AccountOverviewPage {
     @FindBy(css = "li.vertical-ruler")
     WebElement userNameExchLink;
 
-    @FindBy(xpath = "//*[@id='submit-curr-yr-3' or @id='submit-curr-yr-1']")
+    @FindBy(xpath = "//*[@id='submit-curr-yr-3' or @id='submit-curr-yr-1' or @id='submit-curr-yr-6']")
     WebElement btnApplyForCurrentYear;  //Locator for both QA and Staging
 
     @FindBy(css = "#submit[name='applyForNextYear']")
@@ -61,7 +61,7 @@ public class AccountOverviewPage {
     }
 
     public void clickApplyForCurrentYear(){
-        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToDisappear( spinner, 30 );
         basicActions.waitForElementToBePresent(header, 10);
         WebElement applyForYr;
 

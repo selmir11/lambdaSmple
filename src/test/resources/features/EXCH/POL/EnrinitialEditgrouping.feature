@@ -168,11 +168,10 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
@@ -192,8 +191,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
 
     #DbVerification
 
-    And I verify the policy data quality check
-    And I verify the data from book of business queue table
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
 

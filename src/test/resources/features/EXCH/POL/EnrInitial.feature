@@ -39,7 +39,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "01011980" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
+    |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
     And I select "Spouse" as relationship option
     And I select "Yes" to Is Member Applying
@@ -60,10 +61,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "05012015" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "05012015", "Male" and applying "Yes"
+    |Primary:Son|
+    |Spouse:Son |
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -81,13 +81,10 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "08012013" date of birth
-    And I select "Female" as sex option
-    And I select "No" as pregnancy option
-    And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
-    And I select "Sister" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "08012013", "Female" and applying "Yes"
+    |Primary:Daughter|
+    |Spouse:Daughter |
+    |SonOne:Sister|
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -185,11 +182,10 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
@@ -208,7 +204,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     #Gmail
     Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    And  I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
     Then I delete the open notice
@@ -218,7 +214,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
         #DbVerification
 
     And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
 

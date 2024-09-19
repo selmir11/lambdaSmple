@@ -861,6 +861,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(10).getText(), "Ingresos del T\u00EDtulo II\nLos beneficios del T\u00EDtulo II son los beneficios mensuales que emite la Administraci\u00F3n del Seguro Social para reclamos por discapacidad. Para m\u00E1s informaci\u00F3n, ver:\nhttps://www.disability-benefits-help.org/glossary/title-ii-benefits");
         softAssert.assertEquals(helpDrawerTitle2IncomeLink.getText(), "https://www.disability-benefits-help.org/glossary/title-ii-benefits");
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(11).getText(), "Ingresos gravables de origen tribal\nIncluya \u00FAnicamente la parte de los ingresos reportados que recibi\u00F3 de origen tribal como ind\u00EDgena norteamericano o nativo de Alaska. Tipos de ingresos comunes son:\n\u2022 Pagos per c\u00E1pita de la tribu proveniente de recursos naturales, derechos de uso, arrendamientos o regal\u00EDas.\n\u2022 Pagos provenientes de recursos naturales, agricultura, ganader\u00EDa, pesca, arrendamientos o regal\u00EDas de tierras designadas como tierras en fideicomiso ind\u00EDgenas por el Departamento del Interior (incluidas reservas ind\u00EDgenas y antiguas reservas ind\u00EDgenas).\n\u2022 Dinero de la venta de patrimonio de significado cultural.");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -879,6 +881,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Pensi\u00F3n alimenticia recibida");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Cantidades recibidas del c\u00F3nyuge o exc\u00F3nyuge por acuerdo de divorcio o separaci\u00F3n (incluyendo una sentencia de divorcio, una sentencia de separaci\u00F3n por manutenci\u00F3n o un acuerdo de separaci\u00F3n por escrito) pueden ser consideradas pensi\u00F3n alimenticia cuando declare sus impuestos federales sobre los ingresos. Para m\u00E1s informaci\u00F3n visite:\nhttps://www.irs.gov/es/taxtopics/tc452\n\nSi su divorcio o separaci\u00F3n finaliz\u00F3 en o antes del 31 de diciembre de 2018, debe incluir la pensi\u00F3n alimenticia que recibi\u00F3 en sus Otras fuentes de ingreso. Si su divorcio o separaci\u00F3n finaliz\u00F3 en o despu\u00E9s del 1\u00BA de enero de 2019, no incluya la pensi\u00F3n alimenticia que recibi\u00F3 en sus Otras fuentes de ingreso.");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/taxtopics/tc452");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -897,6 +901,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ganancias de capital");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Ganancias de capital es un aumento de un bien capital (inversi\u00F3n o bienes ra\u00EDces) que le proporciona un mayor valor al precio de compra. La ganancia se obtiene hasta que se vende la propiedad. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc409");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/taxtopics/tc409");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -915,6 +921,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos por renta de propiedades");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "El efectivo o valor razonable de mercado de la propiedad o servicios que recibe por el uso del bien o propiedad personal le es sujeto a impuestos como ingreso por rentas. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc414");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/taxtopics/tc414");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -933,6 +941,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Pensi\u00F3n");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Es posible que deba reportar ingresos por planes de pensi\u00F3n y anualidad en su declaraci\u00F3n de impuestos sobre los ingresos. Cualquier ingreso que reporte en su declaraci\u00F3n de impuestos debe ingresarlo aqu\u00ED. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/publications/p575");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/publications/p575");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -951,6 +961,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos privados por retiro");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Los ingresos privados por retiro pueden incluir retiros y aportes a IRA, 401(k), 403(b) y 457(b), no Seguro Social. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/publications/p575");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/publications/p575");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -969,6 +981,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos del T\u00EDtulo II");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Los beneficios del T\u00EDtulo II son los beneficios mensuales que emite la Administraci\u00F3n del Seguro Social para reclamos por discapacidad. Para m\u00E1s informaci\u00F3n, ver:\nhttps://www.disability-benefits-help.org/glossary/title-ii-benefits");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.disability-benefits-help.org/glossary/title-ii-benefits");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -987,6 +1001,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Beneficio del seguro de desempleo");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "La compensaci\u00F3n por desempleo generalmente incluye cualquier cantidad recibida bajo las leyes de compensaci\u00F3n por desempleo de Estados Unidos o de un estado, incluyendo el seguro de beneficios estatales por desempleo. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/individuals/employees/unemployment-compensation");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/individuals/employees/unemployment-compensation");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1005,6 +1021,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos derivados de inversiones");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Los ingresos derivados de inversiones incluyen los dividendos y otras ganancias, como se reflejan tanto en las l\u00EDneas 9 y 14 del 1040, como en los ingresos por intereses (l\u00EDnea 8). Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/publications/p550");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/publications/p550");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1021,6 +1039,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Apoyo en efectivo");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Si obtiene un ingreso en efectivo de cualquier fuente, debe reportarlo aqu\u00ED.");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1039,6 +1059,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos obtenidos en el extranjero no gravados");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "El ingreso extranjero obtenido es ingreso que recibe por servicios otorgados en un pa\u00EDs extranjero durante un per\u00EDodo en el que su residencia fiscal es en un pa\u00EDs extranjero y durante el que cumple ya sea con el criterio de la residencia leg\u00EDtima o de presencia f\u00EDsica. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/individuals/international-taxpayers/foreign-earned-income-exclusion-what-is-foreign-earned-income");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/individuals/international-taxpayers/foreign-earned-income-exclusion-what-is-foreign-earned-income");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1057,6 +1079,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos por regal\u00EDas");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "El ingreso por regal\u00EDas es un pago recibido por el uso y utilizaci\u00F3n de trabajos art\u00EDsticos o literarios, derechos de patente y de minerales. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/forms-pubs/about-form-1099-misc");
         softAssert.assertEquals(helpDrawerParagraphLink.getText(), "https://www.irs.gov/es/forms-pubs/about-form-1099-misc");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1073,6 +1097,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderAddtionalIncome.getText(), "Ingresos gravables de origen tribal");
         softAssert.assertEquals(helpDrawerParagraphs.getText(), "Incluya \u00FAnicamente la parte de los ingresos reportados que recibi\u00F3 de origen tribal como ind\u00EDgena norteamericano o nativo de Alaska. Tipos de ingresos comunes son:\n\u2022 Pagos per c\u00E1pita de la tribu proveniente de recursos naturales, derechos de uso, arrendamientos o regal\u00EDas.\n\u2022 Pagos provenientes de recursos naturales, agricultura, ganader\u00EDa, pesca, arrendamientos o regal\u00EDas de tierras designadas como tierras en fideicomiso ind\u00EDgenas por el Departamento del Interior (incluidas reservas ind\u00EDgenas y antiguas reservas ind\u00EDgenas).\n\u2022 Dinero de la venta de patrimonio de significado cultural.");
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter);
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
