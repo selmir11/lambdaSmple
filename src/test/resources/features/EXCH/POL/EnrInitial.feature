@@ -202,12 +202,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And  I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And  I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And  I validate the notices dental policy data "Anthem Dental Family"
-    And  I validate the notices dental policy data "Primary"
-    And  I validate the notices dental policy data "Spouse"
-    And  I validate the notices dental policy data "SonOne"
-    And  I validate the notices dental policy data "Daughter"
-    And  I validate the notices medical policy data "Anthem Colorado Option Bronze Pathway Essentials Std"
+    And I validate the notices Dental policy data "Anthem Dental Family"
+    And I validate the notices  policy member data "Primary;Spouse;SonOne;Daughter"
+    And I validate the notices medical policy data "Anthem Colorado Option Bronze Pathway Essentials Std"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

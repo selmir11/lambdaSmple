@@ -189,7 +189,6 @@ public class TellUsAboutAdditionalMemberPage {
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
         txtdateOfBirth.sendKeys(DOB);
-
         List<MemberDetails> memberList = SharedData.getMembers();
         int memberCount =0;
         if (memberList == null) {
@@ -205,11 +204,13 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setFullMiddleName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
-    }
+
+       }
     public  void selectNoSSn(){
         basicActions.waitForElementToBePresent(rdbhaveSsn,1);
         rdbhaveSsn.click();
