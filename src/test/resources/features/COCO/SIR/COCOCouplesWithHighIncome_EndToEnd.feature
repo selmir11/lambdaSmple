@@ -1,10 +1,11 @@
+@SIR @COCO
 Feature: Multiple Household Member - End to End Test
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-160 @EndToEndTest
-  Scenario: This will create Multiple household member with primary having High Income
+  Scenario: SLCR-160 - This will create Multiple household member with primary having High Income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -50,7 +51,7 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "01011980", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "01011980", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -82,7 +83,7 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "UnrelatedOne", "01011990", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "UnrelatedOne", "01011990", "Male", and applying "Yes"
       | Primary:Unrelated |
       | Wife:Unrelated    |
     And I click continue on Tell us about additional members of your household page
@@ -115,7 +116,7 @@ Feature: Multiple Household Member - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "UnrelatedTwo", "01011990", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "UnrelatedTwo", "01011990", "Male", and applying "Yes"
       | Primary:Unrelated   |
       | Wife:Unrelated      |
       | UnrelatedOne:Spouse |
@@ -162,7 +163,7 @@ Feature: Multiple Household Member - End to End Test
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    #And I validate that there are 2 default groups in coco page
+    And I validate that there are 2 default groups in coco page
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page

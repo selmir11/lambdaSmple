@@ -6,7 +6,7 @@ Feature: Medical Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults
-  Scenario Outline: SelectVerifyCarrierfilterResults
+  Scenario Outline: SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, - SelectVerifyCarrierfilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -68,7 +68,7 @@ Feature: Medical Plan Verification test
       | Select Health               | Select Health Value Bronze $6900 Medical Deductible               |
 
   @SLER-25 @SelectVerifyMetalFilterResults
-  Scenario Outline: SelectVerifyMetalFilterResults
+  Scenario Outline: SLER-25 - SelectVerifyMetalFilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -126,7 +126,7 @@ Feature: Medical Plan Verification test
 
 
   @SLER-72 @SelectVerifyHSAResults
-  Scenario: SelectVerifyHSAResults
+  Scenario: SLER-72 - SelectVerifyHSAResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -178,7 +178,7 @@ Feature: Medical Plan Verification test
     And I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
 
   @SLER-74  @SelectVerifyColoradoOptionResults
-  Scenario: SelectVerifyColoradoOptionResults
+  Scenario: SLER-74 - SelectVerifyColoradoOptionResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

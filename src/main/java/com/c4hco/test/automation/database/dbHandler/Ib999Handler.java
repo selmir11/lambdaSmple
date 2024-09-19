@@ -69,7 +69,8 @@ public class Ib999Handler {
                 basicActions.wait(10000);
                 dbDataList = getIb999Details(query);
                 iterationCount++;
-                if(iterationCount>30){
+                if(iterationCount>35){
+                    System.out.println("Iteration count is greater than 35. ");
                     break;
                 }
                 System.out.println("---- Waiting for the ib999 file ---- ");

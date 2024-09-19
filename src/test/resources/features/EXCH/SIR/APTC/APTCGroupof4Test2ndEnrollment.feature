@@ -6,7 +6,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
   @SLER-GroupOf4-WIP-PASS
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4  - 60K to 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -134,7 +134,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "1000000" income at "Annually" frequency
+    And I enter employment details with "6000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -314,7 +314,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Employment Info" page
     And I edit the income level to ""
-    And I edit the income level to "3500000"
+    And I edit the income level to "8000000"
     And I click continue on the Employment Info Page
 
     Then I validate I am on the "Employment Summary" page

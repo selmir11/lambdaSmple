@@ -43,7 +43,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    Then I verify eligible plan on Application Result page coco if SES is "off"
+    Then I verify eligible plan on Application Result page coco depends on SES
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page

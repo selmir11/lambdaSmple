@@ -349,16 +349,16 @@ public class EligNotices {
                     "Health \n" +
                     "insurance \n" +
                     "plan for " + currentYear + "\n" +
-                    "You can purchase a health insurance plan for " + currentYear + ". Log into your Connect for Health \n" +
-                    "Colorado account and select a plan that fits your needs.\n" +
+                    "You can enroll in a health insurance plan for " + currentYear + " if you qualify for a Special Enrollment\n" +
+                    "Period or if it\u2019s Open Enrollment.\n" +
                     "Enroll in a plan by " + lceCloseDate + ".\n";
             case "Spanish"->
                     "Plan de\n" +
                     "seguro de\n" +
                     "salud para\n" +
                     currentYear+"\n" +
-                    "Puede adquirir un plan de seguro de salud para "+currentYear+". Inicie sesi\u00F3n con su cuenta de\n" +
-                    "Connect for Health Colorado y seleccione un plan que se ajuste a sus necesidades.\n" +
+                    "Puede inscribirse en un plan de seguro de salud para "+currentYear+" si califica para un per\u00EDodo\n" +
+                    "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
                     "Inscr\u00EDbase en un plan antes del "+lceCloseDate+".\n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };
@@ -720,16 +720,16 @@ public class EligNotices {
                     "Health\n" +
                     "insurance\n" +
                     "plan for "+currentYear+"\n" +
-                    "You can purchase a health insurance plan for "+currentYear+". Log into your Connect for Health\n" +
-                    "Colorado account and select a plan that fits your needs.\n" +
+                    "You can enroll in a health insurance plan for "+currentYear+" if you qualify for a Special Enrollment\n" +
+                    "Period or if it\u2019s Open Enrollment.\n" +
                     "Enroll in a plan by "+lceCloseDate+". \n";
             case "Spanish"->
                     "Plan de\n" +
                     "seguro de\n" +
                     "salud para\n" +
                     currentYear+"\n" +
-                    "Puede adquirir un plan de seguro de salud para "+currentYear+". Inicie sesi\u00F3n con su cuenta de\n" +
-                    "Connect for Health Colorado y seleccione un plan que se ajuste a sus necesidades.\n"+
+                    "Puede inscribirse en un plan de seguro de salud para "+currentYear+" si califica para un per\u00EDodo\n" +
+                    "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n"+
                     "Inscr\u00EDbase en un plan antes del "+lceCloseDate+". \n";
             default -> throw new IllegalArgumentException("Invalid option: " + language);
         };

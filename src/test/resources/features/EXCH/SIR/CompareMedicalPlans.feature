@@ -6,7 +6,7 @@ Feature: Medical Plan Compare page related tests
     And I validate I am on the "Login" page
 
    @MedicalComparePlansLink @SLER-46
-  Scenario: Validate the Navigation and Functionality of Compare Plans Link (Medical) - formerly RT-1971
+  Scenario: SLER-46 - Validate the Navigation and Functionality of Compare Plans Link (Medical) - formerly RT-1971
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -63,7 +63,7 @@ Feature: Medical Plan Compare page related tests
     Then I click on Sign Out in the Header for "Portal"
 
     @MedicalCompareDetailTextVerification @SLER-726
-  Scenario: Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
+  Scenario: SLER-726 - Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
