@@ -1,4 +1,4 @@
-@COCOMedicalResults @SES
+@SIR @COCO @COCOMedicalResults @SES
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal

@@ -104,11 +104,10 @@ Feature: Simple NFA - Single Applicant
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I validate policy tables with medical coverage start date as "First Of Next Month"
+    And I validate policy tables with dental coverage start date as "First Of Next Month"
 
     # RT-1262
-    And I validate the member details from policy tables
-      | CoverageStartDate | CoverageEndDate |
-      | 10-01             | 12-31           |
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |

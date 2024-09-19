@@ -1,11 +1,11 @@
-@COCOMedicalResults
+@@SIR @COCO @COCOMedicalResults
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
   @COCOFilterMedicalResults_NoSilver @SLCR-84
-  Scenario Outline: This will verify the COCO filters provide a correct medical plan result - this is a merge of CCRT-389 to SCLR-84
+  Scenario Outline: SLCR-84 - This will verify the COCO filters provide a correct medical plan result - this is a merge of CCRT-389 to SCLR-84
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -139,9 +139,9 @@ Feature: Verify COCO Medical Plan results
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And Verify "HealthCare.gov" hyperlink present in coco Medical Plan Results page and navigates to "https://www.healthcare.gov/quality-ratings/"
+    And Verify "Learn more about these ratings." hyperlink present in coco Medical Plan Results page and navigates to "https://www.healthcare.gov/quality-ratings/"
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And Verify "CuidadoDeSalud.gov/es/" hyperlink present in coco Medical Plan Results page and navigates to "https://www.cuidadodesalud.gov/es/quality-ratings/"
+    And Verify "Obtenga más información sobre estas calificaciones." hyperlink present in coco Medical Plan Results page and navigates to "https://www.cuidadodesalud.gov/es/quality-ratings/"
     And I click on Sign Out in the Header for "Elmo"
 
 

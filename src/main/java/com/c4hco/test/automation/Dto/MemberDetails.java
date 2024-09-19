@@ -37,6 +37,10 @@ public class MemberDetails {
     String medicalFinancialEndDate;
     String dentalFinancialStartDate;
     String dentalFinancialEndDate;
+    String medicalCoverageStartDate;
+    String medicalCoverageEndDate;
+    String dentalCoverageStartDate;
+    String dentalCoverageEndDate;
     String medicalPremiumAmt;
     String dentalPremiumAmt;
     String aptcAmt;
