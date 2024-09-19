@@ -283,7 +283,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -315,7 +315,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "04212013", "Female", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
@@ -344,7 +344,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "12222016", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
       |Daughter:Sibling             |
@@ -472,7 +472,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -500,7 +500,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "04212013", "Female", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
@@ -529,7 +529,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "12222016", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
       |Daughter:Sibling             |
@@ -658,7 +658,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "04212013", "Female", and applying "Yes"
       |Primary:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -686,7 +686,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "12222016", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Daughter:Sibling             |
     And I click continue on Tell us about additional members of your household page

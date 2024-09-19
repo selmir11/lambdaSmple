@@ -1,11 +1,11 @@
-@medicalPlanLoadTests
+@PlanLoadTest
 Feature: Medical Plan Verification test
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-36 @SLER-44 @SLER-53 @SLER-56 @SLER-62 @SLER-63 @SelectVerifyCarrierFilterResults-PlanLoadTest
+  @SelectVerifyCarrierFilterResults-PlanLoadTest
   Scenario: SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, - SelectVerifyCarrierfilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -80,7 +80,7 @@ Feature: Medical Plan Verification test
      # | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Bronze                 |
      # | Select Health               | Select Health Value Bronze $6900 Medical Deductible               |
 
-  @SLER-25 @SelectVerifyMetalFilterResults-PlanLoadTest
+  @SelectVerifyMetalFilterResults-PlanLoadTest
   Scenario Outline: SLER-25 - SelectVerifyMetalFilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -138,7 +138,7 @@ Feature: Medical Plan Verification test
     |Gold             |Elevate Health Plans Colorado Option Gold  |
 
 
-  @SLER-72 @SelectVerifyHSAResults-PlanLoadTest
+  @SelectVerifyHSAResults-PlanLoadTest
   Scenario: SLER-72 - SelectVerifyHSAResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -190,7 +190,7 @@ Feature: Medical Plan Verification test
     And I select the HSA option
     And I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
 
-  @SLER-74  @SelectVerifyColoradoOptionResults-PlanLoadTest
+  @SelectVerifyColoradoOptionResults-PlanLoadTest
   Scenario: SLER-74 - SelectVerifyColoradoOptionResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -243,7 +243,7 @@ Feature: Medical Plan Verification test
     And I validate the plan option 3 has text "RMHP Colorado Doctors Plan Colorado Option Bronze"
 
 
-  @SLER-1036-PlanLoadTest
+  @InitialSingleZeroAPTCTPlanLoadTest
   Scenario: ELIG-APTCRules - verify initial APTC calculation - linked to EXCH Plan Load SIR-2505 - 10k - Good News path
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -351,7 +351,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1006-WIP-PlanLoadTest
+  @intiailsinglelocationmultiplePlanLoadTest
   Scenario Outline: ELIG-APTCRules - verify initial APTC calculations - linked to EXCH Plan Load SIR-2505
     When I click create a new account on login page
     Then I click create my account from pre-screen page
