@@ -113,7 +113,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
 
-  @SLER-239 @PageTextOtherHealthInsurancePage @TAMSmoke @test
+  @SLER-239 @PageTextOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-239 I Validate saved data on the ESI page for multiple members
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -200,7 +200,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-341 @PageValidationOhiEsiElmo @test
+  @SLER-341 @PageValidationOhiEsiElmo
   Scenario: SLER-341 I can see ESI's standard errors consistently - English
     And I verify the "No Job Section" ESI page data in "English"
     Then I click continue on the ESI page
@@ -259,7 +259,7 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-342 @PageValidationOhiEsiElmo @test
+  @SLER-342 @PageValidationOhiEsiElmo
   Scenario: SLER-342 I can see ESI's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
