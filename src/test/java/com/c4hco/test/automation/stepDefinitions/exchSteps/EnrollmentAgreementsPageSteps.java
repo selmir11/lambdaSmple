@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 
 public class EnrollmentAgreementsPageSteps {
     EnrollmentAgreementsPage enrollmentAgreementsPage = new EnrollmentAgreementsPage(WebDriverManager.getDriver());
+    // WIP - clean up steps that are not being used anymore
     @And("I select {string} agreement checkbox")
     public void selectAgreementCheckboxCoCo(String checkboxOption){
         enrollmentAgreementsPage.selectAgreementsCheckbox(checkboxOption);

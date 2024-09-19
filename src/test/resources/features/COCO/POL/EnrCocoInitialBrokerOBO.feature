@@ -1,5 +1,5 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
-  @SLCR-298 #WIP
+  @SLCR-298
   Scenario: Simple NFA flow with HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
     Given I open the login page on the "login" portal
@@ -32,7 +32,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     Then I enter the MFA code and click Verify
 
     And I click on "colorado Connect" tab
-    And I search for clients
+    And I search for clients in "coco" tab
     And I click on first client search result
     And I click "manage" the client
 
@@ -105,6 +105,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-    Then I click all done from payment portal page coco
+    Then I click all done obo from payment portal page coco
+    Then I click on broker userName and logout
 
 
