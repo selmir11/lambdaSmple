@@ -24,11 +24,10 @@ public class YourClientsPageSteps {
     public void iVerifyThatPrintButtonIsVisibleAndEnable() {yourClientsPage.verifyPrintButtonIsDisplayed();}
 
 
-    @And("I search for clients")
-    public void iSearchForClients() {
-        yourClientsPage.searchForClient();
+    @And("I search for clients in {string} tab")
+    public void iSearchForClients(String page) {
+        yourClientsPage.searchForClient(page);
     }
-
     @Then("I click on first client search result")
     public void IClickOnFirstClientSearchResult() {
         yourClientsPage.clickClientResult();
