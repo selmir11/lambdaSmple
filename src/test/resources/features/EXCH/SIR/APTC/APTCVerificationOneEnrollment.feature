@@ -12,12 +12,16 @@ Feature: UI Tests related to APTC after initial enrollment
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
     Then I click on continue with  application button on Before you begin page
+
     And I report "MovedToColorado" and click continue
+
     Then I select "member" from the who are you question
   # location change
     And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
@@ -125,7 +129,10 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    #need to remove LCE step during OE
+    #And I report "MovedToColorado" and click continue
+
     Then I select "member" from the who are you question
   # location change
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
@@ -192,11 +199,11 @@ Feature: UI Tests related to APTC after initial enrollment
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Application History" page
+    Then I validate that my APTC value is "<applicationHistoryAPTC>"
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-  # APTC variance
-    Then I validate that my APTC value is "<applicationResultAPTC>"
+    Then I validate that my Tax Household's 1 APTC value is "<applicationResultAPTC>"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -214,13 +221,25 @@ Feature: UI Tests related to APTC after initial enrollment
     And I validate the APTC Credit on the Summary page is "<planSummaryAPTC>"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+
     Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
+    Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
     Examples:
-      | City    | State | DOB      | County   | Zipcode | income   | applicationResultAPTC | planSummaryAPTC |
-      | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $848.24/mo            | -$1,381.56      |
-      | NewTown | CO    | 01011958 | LARIMER  | 80524   | $8710000 | $414.00/mo            | -$825.70        |
-      | NewTown | CO    | 01011958 | WELD     | 80634   | $6997000 | $504.52/mo            | -$969.77        |
-      | NewTown | CO    | 01011958 | PARK     | 80449   | $6000000 | $554.32/mo            | -$974.02        |
-      | NewTown | CO    | 01011958 | PROWERS  | 81052   | $5000000 | $1154.84/mo           | -$1,632.64      |
-      | NewTown | CO    | 01011958 | PHILLIPS | 80731   | $4300000 | $1241.85/mo           | -$1,930.89      |
+      | City    | State | DOB      | County   | Zipcode | income   | applicationHistoryAPTC | applicationResultAPTC | planSummaryAPTC |
+      | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $848.24/mo            | $848.24/mo             | -$848.24        |
+      | NewTown | CO    | 01011958 | LARIMER  | 80524   | $8710000 | $414.00/mo            | $414.00/mo             | -$414.00        |
+      | NewTown | CO    | 01011958 | WELD     | 80634   | $6997000 | $504.52/mo            | $504.52/mo             | -$504.52        |
+      | NewTown | CO    | 01011958 | PARK     | 80449   | $6000000 | $554.32/mo            | $554.32/mo             | -$554.32        |
+      | NewTown | CO    | 01011958 | PROWERS  | 81052   | $5000000 | $1154.84/mo           | $1154.84/mo            | -$1,028.25      |
+      | NewTown | CO    | 01011958 | PHILLIPS | 80731   | $4300000 | $1241.85/mo           | $1241.85/m             | -$1,166.73      |
+
