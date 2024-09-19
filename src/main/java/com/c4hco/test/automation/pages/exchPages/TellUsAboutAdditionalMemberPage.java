@@ -179,7 +179,7 @@ public class TellUsAboutAdditionalMemberPage {
 
         SharedData.setMembers(memberList);
     }
-    public void enterMemberDetailswithoutsnn(String DOB){
+    public void MemberDetailswithoutsnnnumber(String DOB){
         String frstName = "Son"+getUniqueString(8);
         String mdlName = capitalizeFirstLetter(getUniqueString(8));
         String lastName = capitalizeFirstLetter(getUniqueString(13));
@@ -295,7 +295,7 @@ public class TellUsAboutAdditionalMemberPage {
         LocalDate DOBCalculate = currentDate.minusDays(Days);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(DOBCalculate);
-        enterMemberDetailswithoutsnn(actualdob);
+        MemberDetailswithoutsnnnumber(actualdob);
     }
 
     public void specificAdditionalMemberDetailsExch(String Name, String DOB, String gender, List<String> Relations, String applying){

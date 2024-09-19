@@ -13,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -509,4 +510,21 @@ public class NoticesPage {
         softAssert.assertTrue(actualPlanDetails.equals(MedicalPlocitydetails), "Expected plan details: '" + MedicalPlocitydetails + "', but found: '" + actualPlanDetails + "'");
         softAssert.assertAll();
     }
+
+    //WIP
+    public void verifypolicycoveragestartdatenotice() {
+        WebElement planDetailsElement = basicActions.getDriver().findElement(
+                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4]"));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -5);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        String formattedDate = "Coverage Start Date: " + dateFormat.format(calendar.getTime());
+        String planDetailsText = planDetailsElement.getText();
+        if(planDetailsText.contains(formattedDate)) {
+            System.out.println("Coverage start date matches the expected date: " + formattedDate);
+        } else {
+            System.out.println("Coverage start date does NOT match. Expected: " + formattedDate + ", Found: " + planDetailsText);
+        }
+    }
+
 }
