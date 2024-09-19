@@ -10,10 +10,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 public class NoticesPage {
 
@@ -100,6 +98,9 @@ public class NoticesPage {
     WebElement resetPWLink;
     @FindBy(xpath= "//*[@id='x_passwordResetConfirmationBody']/p")
     List<WebElement> bodyConfirmationPW;
+
+    @FindBy(id = "x_policyInformation")
+    WebElement policyinformation;
 
 
 
