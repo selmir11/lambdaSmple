@@ -95,8 +95,8 @@ public class AdminPortalManagePlansPage{
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
     List<WebElement> currentDentalData;
     @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected']")
-    WebElement selectPolicyDropdown;     //app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected'],  css = "#selectPolicy > div > div.drop-down-option.drop-down-option-selected"
-    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span[@id='option_3']")  ////div[@class='drop-down-secondary-options']//span[@id='option_3'], //div[@class='drop-down-secondary-options']//div[3]
+    WebElement selectPolicyDropdown;
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span[@id='option_3']")
     WebElement selectGroup2PolicyDropdown;
 
     public void validateBluBar(){
