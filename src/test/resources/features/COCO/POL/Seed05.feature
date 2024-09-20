@@ -70,7 +70,7 @@ Feature: Seed05 - COCO
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
-    And I enter complete residential address details for additional member "101 Diff Drive", "Seed05", "Denver", "CO", "80205", "DENVER"
+    And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
@@ -100,7 +100,7 @@ Feature: Seed05 - COCO
       |Son:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
-    And I enter complete residential address details for additional member "101 Diff Drive", "Seed05", "Denver", "CO", "80205", "DENVER"
+    And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
@@ -164,8 +164,22 @@ Feature: Seed05 - COCO
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date to "01012024"
-    And I update the Financial Start date to "01012024"
+    And I update the Coverage Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    And I select Group2 from the SelectPolicy Dropdown to update the dates
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+      |2:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

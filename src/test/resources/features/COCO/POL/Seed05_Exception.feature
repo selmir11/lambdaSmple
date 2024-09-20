@@ -1,7 +1,7 @@
-Feature: Seed05 - COCO
+Feature: Seed05 W Exception - COCO
 # verification WIP
 
-  Scenario: Seed 05 For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
+  Scenario: Seed 05 W Exception For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -70,7 +70,7 @@ Feature: Seed05 - COCO
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
-    And I enter complete residential address details for additional member "101 Diff Drive", "Seed05", "Denver", "CO", "80205", "DENVER"
+    And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
@@ -100,7 +100,7 @@ Feature: Seed05 - COCO
       |Son:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
-    And I enter complete residential address details for additional member "101 Diff Drive", "Seed05", "Denver", "CO", "80205", "DENVER"
+    And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
@@ -132,14 +132,16 @@ Feature: Seed05 - COCO
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I validate that there are 2 default groups in coco page
     And  I click on edit enrollment groups link in coco page
-    And I edit groups in edit medical grouping coco page
+    #And I edit groups in edit medical grouping coco page
+    And I create new group in edit medical grouping coco page and drag members to the new group
       | Primary,Wife:Group1 |
       | Son,DIL:Group2 |
     Then I click save button to save the groups in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
-    And I select "Anthem Colorado Option Bronze Pathway Essential Std" coco medical plan
+    Then I validate I am on the "CoCo Medical Plan Results" page
+    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     And I select "RMHP Colorado Doctors Plan Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo

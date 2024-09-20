@@ -94,6 +94,10 @@ public class AdminPortalManagePlansPage{
     List<WebElement> currentMedicalData;
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
     List<WebElement> currentDentalData;
+    @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement selectPolicyDropdown;     //app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected'],  css = "#selectPolicy > div > div.drop-down-option.drop-down-option-selected"
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span[@id='option_3']")  ////div[@class='drop-down-secondary-options']//span[@id='option_3'], //div[@class='drop-down-secondary-options']//div[3]
+    WebElement selectGroup2PolicyDropdown;
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -202,6 +206,8 @@ public class AdminPortalManagePlansPage{
         softAssert.assertAll();     }
 
     public void clickSaveButton() {
+        basicActions.scrollToElement(btnMedSave);
+        basicActions.waitForElementToBePresent(btnMedReset,20);
         basicActions.waitForElementToBePresent(btnMedSave, 20);
         btnMedSave.click();
     }
@@ -267,6 +273,17 @@ public class AdminPortalManagePlansPage{
         additionalReasonText.sendKeys("Testing");
         confirmChangesButton.click();
     }
+
+    public void getGroup2FromSelectPolicyDropdown(){
+        basicActions.scrollToElement(selectPolicyDropdown);
+        basicActions.waitForElementToBePresent(txtTitleManagePlans,20);
+        basicActions.waitForElementToBePresent(chkMedical,20);
+        basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdown,30);
+        basicActions.click(selectPolicyDropdown);
+        basicActions.waitForElementToBeClickable(selectGroup2PolicyDropdown,30);
+        basicActions.click(selectGroup2PolicyDropdown);
+    }
+
     public void verifyLabelsDataMedical() {
         basicActions.waitForElementListToBePresent(currentMedicalData, 5000);
         String[] expectedHeaders = {"Anthem Silver Pathway HMO 6500 Rx Copay $0 Select Drugs","Policy Coverage: 01/01/2024 to 12/31/2024","Latest Application Date:","11/28/2023","Financial Start Date:","01/01/2024","EHB Premium:","$1,598.46","Financial End Date:","12/31/2024","CSR Amount:","$0.00","Plan Premium:","$1,598.46","Latest LCE and Date:","","Plan APTC:","$511.57","Rating Area:","3","Premium after Subsidy:","$1,086.89","Service Area:","COS001","Plan AV:","70.54%","Policy ID:","3935009010","HIOS ID:","76680CO0220067-01"};

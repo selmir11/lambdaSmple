@@ -92,7 +92,10 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDate(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDate(memberFinancialStrtDtList);
     }
-
+    @And("I select Group2 from the SelectPolicy Dropdown to update the dates")
+    public void getGroup2SelectPolicyDropdown(){
+         adminPortalManagePlansPage.getGroup2FromSelectPolicyDropdown();
+    }
     @And ("I select the reason to confirm the changes")
     public void iselectTheReason (){
         adminPortalManagePlansPage.selectReasonForTheChange();
