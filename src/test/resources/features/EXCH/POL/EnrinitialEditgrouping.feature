@@ -185,9 +185,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the notices Dental policy data "Cigna Dental Family + Pediatric"
-    And I validate the notices  policy member data "Primary;Spouse;Son"
-    And I validate the notices medical policy data "KP Select CO Bronze 8500/50"
+    And I validate the notices Dental policy member data "Cigna Dental Family + Pediatric;Primary;Spouse;Son"
+    And I validate the notices medical policy data "KP Select CO Bronze 8500/50;Primary;Spouse;Son"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

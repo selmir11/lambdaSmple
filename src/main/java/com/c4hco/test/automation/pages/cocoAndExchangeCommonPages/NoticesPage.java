@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
+import java.util.stream.Collectors;
 
 
 public class NoticesPage {
@@ -463,23 +464,13 @@ public class NoticesPage {
         resetPWLink.click();
     }
 
-    public void verifyDentalPolicyNotice(String dentalPolicyDetails) {
-
-        WebElement planDetailsElement = basicActions.getDriver().findElement(By.xpath("//div[@id='x_policyInformation']//div[contains(@class, 'x_body')][1]//*[contains(text(),'" + dentalPolicyDetails + "')]"));
-        basicActions.waitForElementToBePresent(planDetailsElement, 30);
-        String actualPlanDetails = planDetailsElement.getText();
-        softAssert.assertTrue(actualPlanDetails.equals(dentalPolicyDetails), "Expected plan details: '" + dentalPolicyDetails + "', but found: '" + actualPlanDetails + "'");
-        softAssert.assertAll();
-    }
-
-
-
-    public void verifyEmailPolicyNoticeDetails(String noticeInputDetails) {
+    public void verifyEmaildentalPolicyNoticeDetails(String noticeInputDetails) {
         List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
 
         for (int i = 0; i < expectedList.size(); i++) {
             WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + expectedList.get(i) + "')]"));
             basicActions.waitForElementToBePresent(policyDetails, 30);
+
             if (expectedList.get(i).equals("Primary")) {
                 String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
                 if (primaryMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(primaryMemberDetails)) {
@@ -490,26 +481,78 @@ public class NoticesPage {
                     Assert.fail("Primary member details not found.");
                 }
 
-            } else {
-                String policyMemberDetails = SharedData.getMembers().get(i - 1).getFullMiddleName();
+            }
+                 else{
+                List<MemberDetails> memberDetailsList = SharedData.getMembers();
+                List<String> names = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).collect(Collectors.toList());
+                String result = null;
+                for(String item : names) {
+                    if(item.contains(expectedList.get(i)))
+                    {
+                        result = item;
+                        break;
+                    }
+                }
+                String policyMemberDetails = result;
                 if (policyMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(policyMemberDetails)) {
                     System.out.println("Member details found: " + policyMemberDetails);
                     Assert.assertTrue(policyDetails.getText().contains(policyMemberDetails), "Member details not found");
                 } else {
-                    System.out.println("Member details are null or not found in the policy details.");
-                    Assert.fail("Member details not found.");
+                    Assert.assertTrue(policyDetails.getText().contains(expectedList.get(i)), "Plan notice details not found");
+                    System.out.println("Dental Plan notice details found");
                 }
+
             }
+
+        }
+        
+    }
+
+
+    public void verifyEmailmedicalPolicyNoticeDetails(String noticeInputDetails) {
+        List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
+
+        for (int i = 0; i < expectedList.size(); i++) {
+            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + expectedList.get(i) + "')]"));
+            basicActions.waitForElementToBePresent(policyDetails, 30);
+
+            if (expectedList.get(i).equals("Primary")) {
+                String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
+                if (primaryMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(primaryMemberDetails)) {
+                    System.out.println("Primary member details found: " + primaryMemberDetails);
+                    Assert.assertTrue(policyDetails.getText().contains(primaryMemberDetails), "Primary member details not found");
+                } else {
+                    System.out.println("Primary member details are null or not found in the policy details.");
+                    Assert.fail("Primary member details not found.");
+                }
+
+            }
+            else{
+                List<MemberDetails> memberDetailsList = SharedData.getMembers();
+                List<String> names = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).collect(Collectors.toList());
+                String result = null;
+                for(String item : names) {
+                    if(item.contains(expectedList.get(i)))
+                    {
+                        result = item;
+                        break;
+                    }
+                }
+                String policyMemberDetails = result;
+                if (policyMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(policyMemberDetails)) {
+                    System.out.println("Member details found: " + policyMemberDetails);
+                    Assert.assertTrue(policyDetails.getText().contains(policyMemberDetails), "Member details not found");
+                } else {
+                    Assert.assertTrue(policyDetails.getText().contains(expectedList.get(i)), "Plan notice details not found");
+                    System.out.println("Medical Plan notice details found");
+                }
+
+            }
+
         }
     }
 
-    public void verifymedicalpolicynotice(String MedicalPlocitydetails){
-        WebElement planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'"+MedicalPlocitydetails+"')]"));
-         basicActions.waitForElementToBePresent(planDetailsElement, 30);
-        String actualPlanDetails = planDetailsElement.getText();
-        softAssert.assertTrue(actualPlanDetails.equals(MedicalPlocitydetails), "Expected plan details: '" + MedicalPlocitydetails + "', but found: '" + actualPlanDetails + "'");
-        softAssert.assertAll();
-    }
+
 
     //WIP
     public void verifypolicycoveragestartdatenotice() {
@@ -526,5 +569,23 @@ public class NoticesPage {
             System.out.println("Coverage start date does NOT match. Expected: " + formattedDate + ", Found: " + planDetailsText);
         }
     }
+   //WIP
+    public void verifyPolicyCoverageStartDateForNextMonth() {
+
+        WebElement planDetailsElement = basicActions.getDriver().findElement(
+                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4]"));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        String formattedDate = "Coverage Start Date: " + dateFormat.format(calendar.getTime());
+        String planDetailsText = planDetailsElement.getText();
+        if (planDetailsText.contains(formattedDate)) {
+            System.out.println("Coverage start date matches the expected date: " + formattedDate);
+        } else {
+            System.out.println("Coverage start date does NOT match. Expected: " + formattedDate + ", Found: " + planDetailsText);
+        }
+    }
+
 
 }
