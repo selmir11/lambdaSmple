@@ -110,26 +110,12 @@ public class YourClientsPage {
         printBtn.click();
     }
 
-    public void searchForClient(String page){
-        switch (page){
-            case "exch" :
-                basicActions.waitForElementToBePresent(clientSecondRow, 1000);
-                basicActions.waitForElementToBePresent(searchClient, 1000);
-                String firstNameExch =SharedData.getPrimaryMember().getFirstName();
-                searchClient.sendKeys(firstNameExch);
-                searchClient.sendKeys(Keys.ENTER);
-                break;
-            case "coco" :
-                basicActions.waitForElementToBePresent(coloradoConnectTab, 1000);
-                basicActions.waitForElementToBePresent(searchClient, 1000);
-                String firstNameCoco =SharedData.getPrimaryMember().getFirstName();
-                searchClient.sendKeys(firstNameCoco);
-                searchClient.sendKeys(Keys.ENTER);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + page);
-        }
-
+    public void searchForClient(){
+        basicActions.waitForElementToBePresent(clientSecondRow, 1000);
+        basicActions.waitForElementToBePresent(searchClient, 1000);
+        String firstName =SharedData.getPrimaryMember().getFirstName();
+        searchClient.sendKeys(firstName);
+        searchClient.sendKeys(Keys.ENTER);
     }
 
 
