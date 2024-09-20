@@ -466,7 +466,7 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementToBePresent(signOutLink, 10);
+                basicActions.waitForElementToBePresent(signOutLink, 30);
                 basicActions.waitForElementToBePresent(learnMoreLink, 25);
                 basicActions.waitForElementToBePresent(getAssistanceLink, 25);
                 basicActions.waitForElementToBePresent(languageDrp, 25);

@@ -95,9 +95,9 @@ public class OhcEmployerSponsoredHealthInsuranceSteps {
     public void iVerifyTextOnOtherHealthInsurancePage(String language){
         ohcEmployerSponsoredHealthInsurancePage.verifyHeadersEsiOhcPage(language);}
 
-    @And("I verify offer family health plans is {string} on the ESI page")
-    public void iVerifyFamilyOfferedToEnrollOption(String currentlyOffered){
-        ohcEmployerSponsoredHealthInsurancePage.verifyFamilyOfferedToEnrollOption(currentlyOffered);}
+    @And("I verify {string} is {string} on the ESI page")
+    public void iVerifyCurrentSelections(String question, String dataOffered){
+        ohcEmployerSponsoredHealthInsurancePage.verifyCurrentSelections(question, dataOffered);}
 
     @And("I verify offered family amount is {string} on the ESI page")
     public void iVerifyMonthlyAmount(String familyAmount){

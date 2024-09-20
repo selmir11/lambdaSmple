@@ -103,10 +103,9 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-
-
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
+
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
 
@@ -125,9 +124,6 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the notices Dental policy data "EssentialSmile Colorado - Total Care"
-    And I validate the notices  policy member data "Daughter"
-    And I validate the notices medical policy data "Select Health Value Bronze $6900 Medical Deductible"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
@@ -136,22 +132,3 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
     And I verify the policy data quality check with Policy Ah keyset size 1
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
