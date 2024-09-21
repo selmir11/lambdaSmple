@@ -89,3 +89,18 @@ Feature: Verify COCO Medical Plan Detail page
       | Preferred Drug List                      |
       | Provider Network                         |
       | Go Back to Plans                         |
+    And I verify dropdown controls in coco plan detail page
+      | General Details                          |
+      | Provider Office Visits                   |
+      | Prescription Drugs                       |
+      | Facilities                               |
+      | Maternity                                |
+      | Emergency Care                           |
+      | Mental Health Benefits                   |
+      | Testing                                  |
+      | Medical Devices                          |
+      | Habilitative and Rehabilitative Services |
+      | Home Care & Hospice                      |
+      | Additional EHB Benefits                  |
+    And I select the Go Back button on the coco Medical Plan Detail page
+    And I click on Sign Out in the Header for "Elmo"
