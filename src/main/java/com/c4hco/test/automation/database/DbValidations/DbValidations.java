@@ -418,7 +418,10 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getTricare_end_voluntary_ind3(), expectedValues.get(0).get("tricare_end_voluntary_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_enrl_covg_ind3(), expectedValues.get(0).get("peace_corps_enrl_covg_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_covg_end_soon_ind3(), expectedValues.get(0).get("peace_corps_covg_end_soon_ind3"));
-        softAssert.assertEquals(actualResult.getPeace_corps_end_voluntary_ind3(), expectedValues.get(0).get("peace_corps_end_voluntary_ind3"));
+        softAssert.assertEquals(actualResult.getCurr_year_esi_afford_ind3(), expectedValues.get(0).get("curr_year_esi_afford_ind3"));
+        softAssert.assertEquals(actualResult.getNext_year_esi_afford_ind3(), expectedValues.get(0).get("next_year_esi_afford_ind3"));
+        softAssert.assertEquals(actualResult.getCurr_year_esi_family_afford_ind3(), expectedValues.get(0).get("curr_year_esi_family_afford_ind3"));
+        softAssert.assertEquals(actualResult.getNext_year_esi_family_afford_ind3(), expectedValues.get(0).get("next_year_esi_family_afford_ind3"));
         softAssert.assertAll();
     }
     public void validateHraOptions(List<Map<String, String>> expectedValues) {

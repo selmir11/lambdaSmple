@@ -1,10 +1,77 @@
-@SIR @COCO @COCOMedicalResults @SES
+@PlanLoadTest
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-@COCOFilterMedicalResultsWithSilverEnhanced @SLCR-85
+@GetToMedCoCo
+  Scenario: This will get the user to the Coco Plan Results area
+  When I click create a new account on login page
+  Then I click create my account from pre-screen page
+  And I enter general mandatory data for "coco" account creation
+
+  Then I validate I am on the "Login" page
+  And  I enter valid credentials to login
+  And I apply for the current year in CoCo
+
+  Then I validate I am on the "Find Expert Help" page
+  And I click Continue on my own button from Manage who helps you page
+
+  Then I validate I am on the "CoCo Family Overview" page
+  Then I click Primary EditUpdate on the Family Overview page
+  And I click Go Back on the tell us about yourself page
+
+  Then I validate I am on the "CoCo Family Overview" page
+  And I verify button text Manage who helps you in "English"
+  Then I click Manage who helps you on the Family Overview page
+
+  Then I validate I am on the "Find Expert Help" page
+  And I click Continue on my own button from Manage who helps you page
+
+  Then I click Primary EditUpdate on the Family Overview page
+  Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+  And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+  And I select "Yes" for mailing address option
+  And I select "Yes" for live in Colorado option
+  And I click continue on the Add info for yourself page
+  And I select "I prefer not to answer" ethnicity option
+  And I select "I prefer not to answer" race option
+  And I click continue on the Ethnicity and race page
+  And I select "Yes" employment option
+  And I enter "1000000" income amount
+  And I select "Annually" income frequency option
+  And I select "No" income seasonal option
+  And I select "No" income changes option
+  And I click continue on the Employment income page
+  And I select None of these as additional income option
+  And I select continue on the Additional Income CoCO page
+
+  Then I validate I am on the "CoCo Deductions" page
+  And I select None of these as deductions option
+  And I select continue on the Deductions CoCo page
+  Then I select the projected income option "No" on Income Summary CoCo page
+  And I select continue on the income Summary CoCo page
+
+  Then I validate I am on the "CoCo Family Overview" page
+  And I select continue on the Family Overview page
+
+  Then I validate I am on the "CoCo life change event" page
+  And I select "MoveToCO" life change event
+  And I select continue on the LCE page
+
+  Then I validate I am on the "CoCo Declarations and Signature" page
+  And I enter a valid signature
+  And I click Continue on the Declarations And Signature Page CoCo
+
+  Then I validate I am on the "Application Results CoCo" page
+  And I click Continue on the Application Results Page CoCo
+
+  Then I validate I am on the "Start Shopping" page
+  Then I click continue on start shopping page
+
+  Then I validate I am on the "Medical Plan Results" page
+
+@COCOFilterMedicalResultsWithSilverEnhanced-PlanLoadTest
 Scenario Outline: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results - SLCR-85
   # Only available during SES Open Enrollment - 2023 had this option available for 1 week due to enrollment max limits reached
   # SES plans appear when the income total is below 20K for each individual - or 10K if its a couple
@@ -85,7 +152,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
 
 
-  @COCOFilterMedicalResults_SilverEnhanced_Only @SLCR-278
+  @COCOFilterMedicalResults_SilverEnhanced_Only-PlanLoadTest
   Scenario Outline: This will validate the different SES carrier plan results after COCO filters are set for Silver Enhanced
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -161,9 +228,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
       | Denver Health               | Elevate Health Plans Colorado Option Silver Off Exchange                  |
       | Kaiser Permanente           | KP Colorado Option Silver Enhanced 94% AV                                 |
       | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94% AV         |
-      | Select Health               | Select Health Value Colorado Option Silver Off Exchange                   |
+      | Select Health               | Select Health Value Colorado Option Silver Enhanced 94% AV                   |
 
-  @COCOVerifyPlanTotalSilverEnhanced @SLCR-273
+  @COCOVerifyPlanTotalSilverEnhanced-PlanLoadTest
   Scenario: This will verify the existence of the COCO Silver Enhanced metal filter and verify total available SES plans in area - CCRT-630
   # Only available during SES Open Enrollment - 2023 had this option available for 1 week due to enrollment max limits reached
   # Once established only a filter change like due to a filter change will change the result
@@ -231,13 +298,13 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the plan totals are "24" on the COCO Medical Plan Results page
+    And I validate the plan totals are "25" on the COCO Medical Plan Results page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
     And I validate the SES plan totals are "6" on the COCO Medical Plan Results page
     Then I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-162 @EndToEndTest
+  @EndToEndTest-PlanLoadTest
   Scenario: This will create Family of 4 members Couple and their children with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -387,7 +454,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
     Then I validate I am on the "Grouping Members Medical" page
-    #And I validate that there are 4 default groups in coco page
+    And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -426,7 +493,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-262 @EndToEndTest
+  @Familyof4PlanLoadTest
   Scenario: This will create Family of 4 members Couple and their children with multiple groups with income as 35k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -612,7 +679,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-266 @EndToEndTest
+  @EndToEndTestfamilyfourzeroincome
   Scenario: This will create Family of 4 members Couple and their children with multiple groups $0 income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -688,7 +755,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "CoCo Tell us about additional members" page
     Then I enter details on tell us about additional members of your household page with "Son", "12222016", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
-      |Daughter:Sibling             |
+      |Daughter:Sibling                |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -761,7 +828,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-195 @EndToEndTest
+  @EndToEndTest-PlanLoadTest-Minor
   Scenario: This will create Individual Minor with no assistance annually salary of 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page

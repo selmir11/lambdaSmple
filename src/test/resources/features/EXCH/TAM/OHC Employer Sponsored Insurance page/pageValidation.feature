@@ -150,7 +150,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
 #Step 1
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "No" on the ESI page
+    And I verify "Family Offered" is "No" on the ESI page
 #Step 2
     Then I click continue on the ESI page
 #Step 3
@@ -159,7 +159,7 @@ Feature: Page Text-Other Health Coverage Page
 #Step 4
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "No" on the ESI page
+    And I verify "Family Offered" is "No" on the ESI page
     Then I click "Yes" for offer family plans question
     Then I enter "650.00" for offer family amount question
     Then I click enrollment status for the members
@@ -172,8 +172,9 @@ Feature: Page Text-Other Health Coverage Page
 #Step 6
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "Yes" on the ESI page
+    And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "650.00" on the ESI page
+    Then I wait for 500 milliseconds
     Then I verify enrollment status for the members
       |   enrollmentStatus    |
       |      Enrolled         |
@@ -188,7 +189,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "None of these" as ELMO health coverage option
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "Yes" on the ESI page
+    And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "800.00" on the ESI page
     Then I verify enrollment status for the members
       |   enrollmentStatus    |
