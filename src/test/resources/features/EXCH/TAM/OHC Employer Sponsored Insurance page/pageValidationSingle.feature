@@ -50,6 +50,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
+    And I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
@@ -343,5 +344,233 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
+  @SLER-1062 @PageValidationOhiEsiElmo
+  Scenario: SLER-1062 I want to have my affordability calculated for plan year so that it can be used to determine insurance eligibility
+#    Step 1
+    And I verify the header for Primary Member on the ESI page in "English"
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "50.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           50.00             |                                     |                               |            1            |            1            |                                |                                |
+#    Step 2
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "500.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          500.00             |                                     |                               |            0            |            0            |                                |                                |
+#    Step 3
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101975", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "50.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "150.00" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as ELMO health coverage option
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           50.00             |                1                    |           150.00              |            1            |            1            |                1               |                 1              |
+#    Step 4
+    Then I click Go back on the ELMO health coverage page
+    Then I enter "550.00" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "550.00" for offer family amount question
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          550.00             |                1                    |           550.00              |            0            |            0            |                0               |                 0              |
 
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-1063 @PageValidationOhiEsiElmo
+  Scenario: SLER-1063 I want to have my affordability calculated so that it can be used to determine insurance eligibility
+#    Step 3
+    And I verify the header for Primary Member on the ESI page in "English"
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "174.80" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click continue on the ESI page
+#    Step 4
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                                     |                               |            0            |            0            |                                |                                |
+#    Step 5
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "174.79" for employee amount question on the ESI page
+    Then I click continue on the ESI page
+#    Step 6
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.79             |                                     |                               |            1            |            1            |                                |                                |
+#    Step 7
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "375.67" for employee amount question on the ESI page
+    Then I click continue on the ESI page
+#    Step 8
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          375.67             |                                     |                               |            0            |            0            |                                |                                |
+#    Step 9
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101975", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+#    Step 11
+    And I validate I am on the "ESI" page
+    Then I enter "174.79" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "174.79" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as ELMO health coverage option
+#    Step 12
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.79             |                  1                  |           174.79              |            1            |            1            |               1                |               1                |
+#    Step 13
+    Then I click Go back on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "174.80" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "174.80" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as ELMO health coverage option
+#    Step 14
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                  1                  |           174.80              |            0            |            0            |               0                |               0                |
+#    Step 15
+    Then I click Go back on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "375.67" for employee amount question on the ESI page
+    Then I enter "375.67" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as ELMO health coverage option
+#    Step 16
+    And I verify the OHI options selected in the DB
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          375.67             |                  1                  |           375.67              |            0            |            0            |               0                |               0                |
+
+    And I click on Sign Out in the Header for "Elmo"
 
