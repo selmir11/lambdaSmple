@@ -1,6 +1,6 @@
 Feature: Simple NFA - Single Applicant
   @SLER-34 
-  Scenario: Simple NFA flow with single applicant
+  Background: Simple NFA flow with single applicant
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -85,11 +85,12 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "My Account Overview" page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
+#    validate the downloaded document -WIP
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    #Gmail
+    #Gmail # Add all the validations -WIP
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
@@ -104,7 +105,7 @@ Feature: Simple NFA - Single Applicant
     And I validate policy tables with medical coverage start date as "First Of Next Month"
     And I validate policy tables with dental coverage start date as "First Of Next Month"
 
-    # RT-1262
+  @SLER-1069  # RT-1262
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
@@ -122,6 +123,6 @@ Feature: Simple NFA - Single Applicant
       | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
 
       # RT-1276
-    And I upload medical and dental edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
