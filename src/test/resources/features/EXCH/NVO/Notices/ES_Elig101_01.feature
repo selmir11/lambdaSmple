@@ -503,7 +503,7 @@ Feature: Eligibility Notices
 
     Then I click on My Account in the "NonElmo" Header
 
-  @SLER-990 @MFReady
+  @SLER-990 @WIP
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 1 person; ES
     # EMAIL CHECK
     # Apply for current year

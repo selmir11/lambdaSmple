@@ -483,7 +483,7 @@ Feature: Eligibility Notices
     Then I validate "Application Results": "QHP" notice in "English" for "1" members
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-960 @MFReady
+  @SLER-960 @WIP
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 1 person
     # EMAIL CHECK
     # Apply for current year
@@ -604,7 +604,7 @@ Feature: Eligibility Notices
     Then I validate "Application Results": "ANAI" notice in "English" for "1" members
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-961 @MFReady
+  @SLER-961 @WIP
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 2 person
     # EMAIL CHECK
     # Apply for current year
