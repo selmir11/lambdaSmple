@@ -36,6 +36,9 @@ public class StartShoppingPage {
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
+    @FindBy(id = "SHP-StartShop-GoBack")
+    WebElement goBackbtn;
+
     public void clickBtnSaveNExit(){
         saveAndExitButton.click();
     }
@@ -122,5 +125,11 @@ public class StartShoppingPage {
         softAssert.assertEquals(bodyText.get(3), "Next, you'll set up your shopping groups.");
         softAssert.assertEquals(bodyText.get(4), "Not ready to shop? Now's a good time to save your progress.");
         softAssert.assertAll();
+    }
+
+    public void iclickGoBack(){
+        basicActions.waitForElementToBePresent(goBackbtn,10);
+        basicActions.scrollToElement(goBackbtn);
+        goBackbtn.click();
     }
 }
