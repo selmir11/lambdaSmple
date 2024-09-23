@@ -26,11 +26,21 @@ public class PlanSummaryMedicalDentalCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(id = "PlanSummary-GoBack")
+    WebElement goBackbtn;
+
     public void continueButton(){
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
         basicActions.scrollToElement(continueBtnOnPlanSummary);
         basicActions.click(continueBtnOnPlanSummary);
+    }
+
+    public void iclickGoBack(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(goBackbtn,10);
+        basicActions.scrollToElement(goBackbtn);
+        goBackbtn.click();
     }
 }
