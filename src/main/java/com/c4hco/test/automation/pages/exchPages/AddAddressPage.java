@@ -78,6 +78,12 @@ public class AddAddressPage {
     @FindBy(id = "areYouDisabilityNo")
     WebElement rdobtnDisabilityNo;
 
+    @FindBy(id = "fullTimeStudentNoYes")
+    WebElement rdobtnStudentYes;
+    @FindBy(id = "fullTimeStudentNo")
+    WebElement rdobtnStudentNo;
+
+
     @FindBy(id = "livedinFosterCareYes")
     WebElement rdobtnFosterCareYes;
     @FindBy(id="livedinFosterCareNo")
@@ -352,6 +358,20 @@ public class AddAddressPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + YNDisabled);
         }
+    }
+
+    public void isMemberStudent(String YNStudent){
+        switch(YNStudent){
+            case "Yes":
+                rdobtnStudentYes.click();
+                break;
+            case "No":
+                rdobtnStudentNo.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNStudent);
+        }
+
     }
 
     public void hasUserBeenDeniedMedicaid(String YNDenied){

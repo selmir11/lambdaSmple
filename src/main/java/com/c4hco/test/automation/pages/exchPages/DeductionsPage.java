@@ -187,6 +187,9 @@ public class DeductionsPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     public void selectAddtlDeductionOption(String addtlDeductionOption, String Amount, String Frequency){
         switch(addtlDeductionOption){
             case "Alimony or spousal support paid out":
@@ -219,6 +222,7 @@ public class DeductionsPage {
     }
 
     public void selectNoneAddtlDeductionOption(){
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 20);
         addtlDeductionOptionsCheckbox.get(10).click();
         basicActions.scrollToElement(saveAndContinueBtn);
