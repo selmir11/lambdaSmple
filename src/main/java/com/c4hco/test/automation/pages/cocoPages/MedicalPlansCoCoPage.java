@@ -78,6 +78,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "PlanResults-PlanDetails_1")
     WebElement firstPlanDetailsbtn;
 
+    @FindBy(id = "MedicalPlanResults-GoBack")
+    WebElement goBackbtn;
+
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -262,5 +265,11 @@ public class MedicalPlansCoCoPage {
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBeClickable(firstPlanDetailsbtn, 20);
         firstPlanDetailsbtn.click();
+    }
+
+    public void iclickGoBack(){
+        basicActions.waitForElementToBePresent(goBackbtn,10);
+        basicActions.scrollToElement(goBackbtn);
+        goBackbtn.click();
     }
 }
