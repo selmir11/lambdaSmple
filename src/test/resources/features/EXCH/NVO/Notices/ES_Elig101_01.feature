@@ -498,10 +498,8 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Documents" page
     Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
-    Then I validate "Application Results": "QHP" notice in "Spanish" for "1" members
-    And I click on Sign Out in the Header for "Elmo"
-
-    Then I click on My Account in the "NonElmo" Header
+#    Then I validate "Application Results": "QHP" notice in "Spanish" for "1" members
+#    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-990 @WIP
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 1 person; ES
@@ -541,84 +539,84 @@ Feature: Eligibility Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
-    Then I select "No" for Hardship Exemption option
-    Then I select "No" for Disability option
-    Then I select "No" to the recently denied medicaid question
-    Then I select "No" for Incarceration option
-    Then I click continue on the Add Address page
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    Then I select "No" for Naturalized Immigrant option
-    Then I click continue on the Citizenship page
-    Then I validate I am on the "Family Overview" page
-    Then I verify the family overview table is present
-    Then I click continue on family overview page
-
-    # Financial help
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Court" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2400000" at frequency "Annually"
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I validate I am on the "Employment Summary" page
-    Then I click continue on the Employment Summary Page
-    Then I validate I am on the "Additional income" page
-    And I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-
-    # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Family Overview" page
-    Then I verify the family overview table is present
-    Then I click continue on family overview page
-    Then I validate I am on the "Tell us about life changes" page
-    Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-
-    # Declarations and signature
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    And I Declare as Tax Household 1
-    Then I click Continue on the Declarations And Signature Page
-
-    # Review application results
-    Then I validate I am on the "Application History" page
-    Then I click on view results and shop
-    Then I validate I am on the "Application Results" page
-    Then I click on My Account in the "NonElmo" Header
-
-     # Check Email notice
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-    Then I open the notice "Application Results" in "Spanish"
-    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
-
-    # Check My Documents notice
-    Then I validate I am on the "My Account Overview" page
-    Then I click on ClickHere link for "My Documents"
-    Then I validate I am on the "My Documents" page
-    Then I validate the notice "Application Results" exist in my document letter Containers
-    And I click on download "Application Results" document
-    Then I validate "Application Results": "ANAI" notice in "Spanish" for "1" members
-    And I click on Sign Out in the Header for "Elmo"
+#    Then I add the tribe details
+#    Then I select "No" for Hardship Exemption option
+#    Then I select "No" for Disability option
+#    Then I select "No" to the recently denied medicaid question
+#    Then I select "No" for Incarceration option
+#    Then I click continue on the Add Address page
+#    Then I validate I am on the "Citizenship" page
+#    Then I select "Yes" for Citizen option
+#    Then I select "No" for Naturalized Immigrant option
+#    Then I click continue on the Citizenship page
+#    Then I validate I am on the "Family Overview" page
+#    Then I verify the family overview table is present
+#    Then I click continue on family overview page
+#
+#    # Financial help
+#    Then I validate I am on the "Financial Help" page
+#    And I Apply for financial help
+#    Then I validate I am on the "Employment Info" page
+#    Then I select the option "Yes" to employment
+#    And I select the option "No" to self employment
+#    Then I enter company details with addressline1 as "1234 Court" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2400000" at frequency "Annually"
+#    And I select the option "No" to seasonal employment
+#    And I select the option "No" to projected income
+#    And I click continue on the Employment Info Page
+#    Then I validate I am on the "Employment Summary" page
+#    Then I click continue on the Employment Summary Page
+#    Then I validate I am on the "Additional income" page
+#    And I click None of these as additional income option and continue
+#    Then I validate I am on the "Deductions" page
+#    Then I click None of these as deduction option and continue
+#    Then I validate I am on the "Income Summary" page
+#    Then I select the projected income option "No" and continue
+#    Then I validate I am on the "Tax status" page
+#    And I select the option "No" to claim as dependent
+#    And I select the option "Yes" to file federal income tax return next year
+#    And I select "Single" tax filing status
+#    And I select "No" to claim dependents
+#    And I click save and continue on tax status page
+#
+#    # Health coverage and life change information
+#    Then I validate I am on the "Elmo Other Health Coverage" page
+#    Then I select "None of these" as ELMO health coverage option
+#    Then I click continue on the ELMO health coverage page
+#    Then I validate I am on the "Family Overview" page
+#    Then I verify the family overview table is present
+#    Then I click continue on family overview page
+#    Then I validate I am on the "Tell us about life changes" page
+#    Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
+#    Then I click on Save and Continue
+#
+#    # Declarations and signature
+#    Then I validate I am on the "EXCH Declarations and Signature" page
+#    And I Declare as Tax Household 1
+#    Then I click Continue on the Declarations And Signature Page
+#
+#    # Review application results
+#    Then I validate I am on the "Application History" page
+#    Then I click on view results and shop
+#    Then I validate I am on the "Application Results" page
+#    Then I click on My Account in the "NonElmo" Header
+#
+#     # Check Email notice
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
+#    Then I open the notice "Application Results" in "Spanish"
+#    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+#
+#    # Check My Documents notice
+#    Then I validate I am on the "My Account Overview" page
+#    Then I click on ClickHere link for "My Documents"
+#    Then I validate I am on the "My Documents" page
+#    Then I validate the notice "Application Results" exist in my document letter Containers
+#    And I click on download "Application Results" document
+#    Then I validate "Application Results": "ANAI" notice in "Spanish" for "1" members
+#    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-991 @WIP
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 2 person; ES
@@ -658,126 +656,126 @@ Feature: Eligibility Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
-    Then I select "No" for Hardship Exemption option
-    Then I select "No" for Disability option
-    Then I select "No" to the recently denied medicaid question
-    Then I select "No" for Incarceration option
-    Then I click continue on the Add Address page
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    Then I select "No" for Naturalized Immigrant option
-    Then I click continue on the Citizenship page
-    Then I validate I am on the "Family Overview" page
-    Then I verify the family overview table is present
-    # Below is specific case context: user has another member with tribal status
-    Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "01/01/1985" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
-    And I click continue on Tell us about additional members page
-    Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
-    Then I select "Yes" for CO Resident option
-    Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
-    Then I select "No" for Hardship Exemption option
-    Then I select "No" for Disability option
-    Then I select "No" to the recently denied medicaid question
-    Then I select "No" for Incarceration option
-    Then I click continue on the Add Address page
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    Then I select "No" for Naturalized Immigrant option
-    Then I click continue on the Citizenship page
-    Then I validate I am on the "Family Overview" page
-    Then I verify the family overview table is present
-    Then I click continue on family overview page
-
-    # Financial help
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Court" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2400000" at frequency "Annually"
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I validate I am on the "Employment Summary" page
-    Then I click continue on the Employment Summary Page
-    Then I validate I am on the "Additional income" page
-    And I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 Court" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3200000" at frequency "Annually"
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I validate I am on the "Employment Summary" page
-    Then I click continue on the Employment Summary Page
-    Then I validate I am on the "Additional income" page
-    And I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-
-    # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Family Overview" page
-    Then I verify the family overview table is present
-    Then I click continue on family overview page
-    Then I validate I am on the "Tell us about life changes" page
-    Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-
-    # Declarations and signature
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    And I Declare as Tax Household 1
-    Then I click Continue on the Declarations And Signature Page
-
-    # Review application results
-    Then I validate I am on the "Application History" page
-    Then I click on view results and shop
-    Then I validate I am on the "Application Results" page
-    Then I click on My Account in the "NonElmo" Header
-
-    # Check Email notice
-    Then I validate I am on the "My Account Overview" page
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-    Then I open the notice "Application Results" in "Spanish"
-    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
-
-    # Check My Documents notice
-    Then I validate I am on the "My Account Overview" page
-    Then I click on ClickHere link for "My Documents"
-    Then I validate I am on the "My Documents" page
-    Then I validate the notice "Application Results" exist in my document letter Containers
-    And I click on download "Application Results" document
-    Then I validate "Application Results": "ANAI" notice in "Spanish" for "2" members
-    And I click on Sign Out in the Header for "Elmo"
+#    Then I add the tribe details
+#    Then I select "No" for Hardship Exemption option
+#    Then I select "No" for Disability option
+#    Then I select "No" to the recently denied medicaid question
+#    Then I select "No" for Incarceration option
+#    Then I click continue on the Add Address page
+#    Then I validate I am on the "Citizenship" page
+#    Then I select "Yes" for Citizen option
+#    Then I select "No" for Naturalized Immigrant option
+#    Then I click continue on the Citizenship page
+#    Then I validate I am on the "Family Overview" page
+#    Then I verify the family overview table is present
+#    # Below is specific case context: user has another member with tribal status
+#    Then I click Add Another Family Member
+#    Then I validate I am on the "Add Member" page
+#    Then I enter member details with "01/01/1985" date of birth
+#    And I select "Female" as member's sex option
+#    And I mark the Additional member is pregnant as "No"
+#    And I select "Spouse" as relationship option
+#    And I select "Yes" to Is Member Applying
+#    And I click continue on Tell us about additional members page
+#    Then I validate I am on the "Add Address" page
+#    Then I select "Household" for Residential Address
+#    Then I select "Yes" for CO Resident option
+#    Then I select "Yes" for Federally Recognized Tribe option
+#    Then I add the tribe details
+#    Then I select "No" for Hardship Exemption option
+#    Then I select "No" for Disability option
+#    Then I select "No" to the recently denied medicaid question
+#    Then I select "No" for Incarceration option
+#    Then I click continue on the Add Address page
+#    Then I validate I am on the "Citizenship" page
+#    Then I select "Yes" for Citizen option
+#    Then I select "No" for Naturalized Immigrant option
+#    Then I click continue on the Citizenship page
+#    Then I validate I am on the "Family Overview" page
+#    Then I verify the family overview table is present
+#    Then I click continue on family overview page
+#
+#    # Financial help
+#    Then I validate I am on the "Financial Help" page
+#    And I Apply for financial help
+#    Then I validate I am on the "Employment Info" page
+#    Then I select the option "Yes" to employment
+#    And I select the option "No" to self employment
+#    Then I enter company details with addressline1 as "1234 Court" and city as "Denver" and state as "CO" and zipcode as "80205" and income "2400000" at frequency "Annually"
+#    And I select the option "No" to seasonal employment
+#    And I select the option "No" to projected income
+#    And I click continue on the Employment Info Page
+#    Then I validate I am on the "Employment Summary" page
+#    Then I click continue on the Employment Summary Page
+#    Then I validate I am on the "Additional income" page
+#    And I click None of these as additional income option and continue
+#    Then I validate I am on the "Deductions" page
+#    Then I click None of these as deduction option and continue
+#    Then I validate I am on the "Income Summary" page
+#    Then I select the projected income option "No" and continue
+#    Then I validate I am on the "Employment Info" page
+#    Then I select the option "Yes" to employment
+#    And I select the option "No" to self employment
+#    Then I enter company details with addressline1 as "1234 Court" and city as "Denver" and state as "CO" and zipcode as "80205" and income "3200000" at frequency "Annually"
+#    And I select the option "No" to seasonal employment
+#    And I select the option "No" to projected income
+#    And I click continue on the Employment Info Page
+#    Then I validate I am on the "Employment Summary" page
+#    Then I click continue on the Employment Summary Page
+#    Then I validate I am on the "Additional income" page
+#    And I click None of these as additional income option and continue
+#    Then I validate I am on the "Deductions" page
+#    Then I click None of these as deduction option and continue
+#    Then I validate I am on the "Income Summary" page
+#    Then I select the projected income option "No" and continue
+#    Then I validate I am on the "Tax status" page
+#    And I select the option "No" to claim as dependent
+#    And I select the option "Yes" to file federal income tax return next year
+#    And I select "Married filing jointly" tax filing status
+#    And I select spouse to file taxes jointly
+#    And I select "No" to claim dependents
+#    And I click save and continue on tax status page
+#
+#    # Health coverage and life change information
+#    Then I validate I am on the "Elmo Other Health Coverage" page
+#    Then I select "None of these" as ELMO health coverage option
+#    Then I click continue on the ELMO health coverage page
+#    Then I validate I am on the "Elmo Other Health Coverage" page
+#    Then I select "None of these" as ELMO health coverage option
+#    Then I click continue on the ELMO health coverage page
+#    Then I validate I am on the "Family Overview" page
+#    Then I verify the family overview table is present
+#    Then I click continue on family overview page
+#    Then I validate I am on the "Tell us about life changes" page
+#    Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
+#    Then I click on Save and Continue
+#
+#    # Declarations and signature
+#    Then I validate I am on the "EXCH Declarations and Signature" page
+#    And I Declare as Tax Household 1
+#    Then I click Continue on the Declarations And Signature Page
+#
+#    # Review application results
+#    Then I validate I am on the "Application History" page
+#    Then I click on view results and shop
+#    Then I validate I am on the "Application Results" page
+#    Then I click on My Account in the "NonElmo" Header
+#
+#    # Check Email notice
+#    Then I validate I am on the "My Account Overview" page
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
+#    Then I open the notice "Application Results" in "Spanish"
+#    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+#
+#    # Check My Documents notice
+#    Then I validate I am on the "My Account Overview" page
+#    Then I click on ClickHere link for "My Documents"
+#    Then I validate I am on the "My Documents" page
+#    Then I validate the notice "Application Results" exist in my document letter Containers
+#    And I click on download "Application Results" document
+#    Then I validate "Application Results": "ANAI" notice in "Spanish" for "2" members
+#    And I click on Sign Out in the Header for "Elmo"

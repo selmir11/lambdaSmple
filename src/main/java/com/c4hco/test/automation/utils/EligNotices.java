@@ -25,27 +25,14 @@ public class EligNotices {
         }
     }
 
-    private static String getLceCloseDate(String language) {
+    private static String getLceCloseDate(String language, String docType) {
         Locale locale;
+        Integer daysFromNow = 60;
+        
+        if (docType.equals("ANAI")){daysFromNow=90;}
+        
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, 60);
-
-        switch (language.toLowerCase()) {
-            case "spanish":
-                locale = new Locale("es", "ES");
-                return new SimpleDateFormat("d 'de' MMMM 'del' yyyy", locale).format(calendar.getTime());
-            case "english":
-                locale = Locale.ENGLISH;
-                return new SimpleDateFormat("MMMM d, yyyy", locale).format(calendar.getTime());
-            default:
-                throw new IllegalArgumentException("Unsupported language: " + language);
-        }
-    }
-
-    private static String getANAILceCloseDate(String language) {
-        Locale locale;
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, 90);
+        calendar.add(Calendar.DATE, daysFromNow);
 
         switch (language.toLowerCase()) {
             case "spanish":
@@ -82,6 +69,41 @@ public class EligNotices {
         return new SimpleDateFormat("yyyy").format(calendar.getTime());
     }
 
+    public static String getMailApplicationResults(String docType, String language, String memberNumber) {
+        String timestamp = getCurrentTimestamp(language);
+        String pageTotal = "0";
+
+        switch (docType) {
+            case "Ineligible: Did Not Apply" -> {
+                pageTotal = "7";
+            }
+            case "Ineligible: Not CO Resident" -> {
+                pageTotal = "7";
+            }
+            case "Health First Colorado" -> {
+                pageTotal = "8";
+            }
+            case "ANAI" -> {
+                pageTotal = "10";
+            }
+            default -> throw new IllegalArgumentException("Invalid docType:" + docType);
+        }
+
+
+        return String.format("Page  of 1 "+pageTotal+" Questions? Call 855-752-6749\n" +
+                "Connect for Health Colorado\n" +
+                "4600 South Ulster Street Suite 300\n" +
+                "Denver CO 80237\n" +
+                SharedData.getPrimaryMember().getFullName()+"\n" +
+                SharedData.getPrimaryMember().getMailingAddress().getAddressLine1()+"\n" +
+                SharedData.getPrimaryMember().getMailingAddress().getAddressCity()+
+                " "+SharedData.getPrimaryMember().getMailingAddress().getAddressState()+
+                " "+SharedData.getPrimaryMember().getMailingAddress().getAddressZipcode()+"\n" +
+                "NOTICEELG10101\n" +
+                "ELG-101-01\n" +
+                "Account Number: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
+                timestamp+" at \n");
+    }
 
     public static String getApplicationResults(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
@@ -174,7 +196,7 @@ public class EligNotices {
 
     public static String introParagraph(String docType, String language) {
         String timestamp = getCurrentTimestamp(language);
-        String lceCloseDate = getLceCloseDate(language);
+        String lceCloseDate = getLceCloseDate(language, docType);
         String inelig = "did not open a Special Enrollment Period";
         String ineligES = "familiar no permite un Per\u00EDodo de inscripci\u00F3n especial";
 
@@ -235,19 +257,19 @@ public class EligNotices {
     
     public static String resultsType(String docType, String language, String memberNumber){
         return switch (docType) {
-            case "Health First Colorado" -> healthFirstColorado(language, memberNumber);
-            case "CHP" -> chpPlus(language, memberNumber);
-            case "Cobra" -> cobra(language, memberNumber);
-            case "Individual Insurance" -> individualInsurance(language, memberNumber);
+            case "Health First Colorado" -> healthFirstColorado(docType, language, memberNumber);
+            case "CHP" -> chpPlus(docType, language, memberNumber);
+            case "Cobra" -> cobra(docType, language, memberNumber);
+            case "Individual Insurance" -> individualInsurance(docType, language, memberNumber);
             case "Ineligible: Did Not Apply" -> ineligDidNotApply(language, memberNumber);
             case "Ineligible: Not CO Resident" -> ineligNotCORes(language, memberNumber);
-            case "ANAI" -> ANAIGain(language, memberNumber);
-            case "QHP" -> QHP(language, memberNumber);
+            case "ANAI" -> ANAIGain(docType, language, memberNumber);
+            case "QHP" -> QHP(docType, language, memberNumber);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
 
-    public static String infoNeeded(String language, String memberNumber) {
+    public static String infoNeeded(String docType, String language, String memberNumber) {
 
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName().replace(".",".\n") : "";
@@ -260,9 +282,9 @@ public class EligNotices {
                                 "What information is needed? When is the information due?\n" +
                                 "%s Proof of your American Indian or\n" +
                                 "Alaska Native status\n" +
-                                getANAILceCloseDate(language)+"\n" +
+                                getLceCloseDate(language, docType)+"\n" +
                                 "%s Proof of financial help eligibility\n" +
-                                getANAILceCloseDate(language)+"\n",
+                                getLceCloseDate(language, docType)+"\n",
                         SharedData.getPrimaryMember().getFullName(),
                         SharedData.getPrimaryMember().getFullName()
                 );
@@ -274,10 +296,10 @@ public class EligNotices {
                                 "%s Comprobante de su estatus de\n" +
                                 "ind\u00EDgena norteamericano o nativo de\n" +
                                 "Alaska\n" +
-                                getANAILceCloseDate(language)+"\n" +
+                                getLceCloseDate(language, docType)+"\n" +
                                 "%s Comprobante de su elegibilidad para\n" +
                                 "recibir ayuda financiera\n" +
-                                getANAILceCloseDate(language)+"\n",
+                                getLceCloseDate(language, docType)+"\n",
                         SharedData.getPrimaryMember().getFullName(),
                         SharedData.getPrimaryMember().getFullName()
                 );
@@ -289,14 +311,14 @@ public class EligNotices {
                         "What information is needed? When is the information due?\n" +
                         "%s Proof of your American Indian or\n" +
                         "Alaska Native status\n" +
-                        getANAILceCloseDate(language)+"\n" +
-                        "%s Proof of financial help eligibility "+getANAILceCloseDate(language)+"\n" +
+                        getLceCloseDate(language, docType)+"\n" +
+                        "%s Proof of financial help eligibility "+getLceCloseDate(language, docType)+"\n" +
                         member0Name+"\n" +
                         "Proof of your American Indian or\n" +
                         "Alaska Native status\n" +
-                        getANAILceCloseDate(language)+"\n" +
+                        getLceCloseDate(language, docType)+"\n" +
                         member0Name+"\n"+
-                        "Proof of financial help eligibility "+getANAILceCloseDate(language)+"\n",
+                        "Proof of financial help eligibility "+getLceCloseDate(language, docType)+"\n",
                         SharedData.getPrimaryMember().getFullName(),
                         SharedData.getPrimaryMember().getFullName());
                 case "Spanish" -> String.format("Mensaje para el miembro 2 en espa\u00F1ol.");
@@ -306,7 +328,7 @@ public class EligNotices {
         };
     }
 
-    public static String moreInformationNeeded(String language, String memberNumber) {
+    public static String moreInformationNeeded(String docType, String language, String memberNumber) {
 
        switch (memberNumber) {
            case "1" -> {
@@ -318,7 +340,7 @@ public class EligNotices {
                                "pay for your health insurance plan. Even if someone in your household is not applying through Connect for Health\n" +
                                "Colorado or may qualify for Health First Colorado or Child Health Plan Plus, we still need the information listed below.\n" +
                                "Please note you only have a few days to submit your documents by the due date!\n" +
-                               infoNeeded(language, memberNumber) +
+                               infoNeeded(docType, language, memberNumber) +
                                "Potential reasons we were unable to verify your eligibility for financial help:\n" +
                                "Advance payments of the premium tax credit were made to your health insurance company in a previous\n" +
                                "year to reduce your premium costs, and we cannot verify whether a federal income tax return was filed\n" +
@@ -395,7 +417,7 @@ public class EligNotices {
                                "solicitud, aun cuando alguien de su familia no est\u00E9 solicitando seguro por medio de Connect for Health Colorado, o si\n" +
                                "califica para Health First Colorado o Child Health Plan Plus.\n" +
                                "\u00A1Tenga en cuenta que solo tiene pocos d\u00EDas para enviar sus documentos para la fecha l\u00EDmite!\n") +
-                               infoNeeded(language, memberNumber) +
+                               infoNeeded(docType, language, memberNumber) +
                                "Posibles motivos por lo que no pudimos verificar su elegibilidad para recibir ayuda financiera:\n" +
                                "Los pagos anticipados del cr\u00E9dito fiscal para la prima fueron pagados el a\u00F1o anterior a su compa\u00F1\u00EDa de\n" +
                                "seguros de salud para reducir los costos de su prima, y no podemos verificar si se present\u00F3 una\n" +
@@ -482,7 +504,7 @@ public class EligNotices {
                                "pay for your health insurance plan. Even if someone in your household is not applying through Connect for Health\n" +
                                "Colorado or may qualify for Health First Colorado or Child Health Plan Plus, we still need the information listed below.\n" +
                                "Please note you only have a few days to submit your documents by the due date!\n" +
-                               infoNeeded(language, memberNumber) +
+                               infoNeeded(docType, language, memberNumber) +
                                "Potential reasons we were unable to verify your eligibility for financial help:\n" +
                                "Advance payments of the premium tax credit were made to your health insurance company in a previous\n" +
                                "year to reduce your premium costs, and we cannot verify whether a federal income tax return was filed\n" +
@@ -561,11 +583,11 @@ public class EligNotices {
        }
     }
 
-    public static String QHP(String language, String memberNumber){
+    public static String QHP(String docType, String language, String memberNumber){
         String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language)+".\n";
+        String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType)+".\n";
         String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language)+".\n";
+        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType)+".\n";
         String atpc = "$295.29";
         String pct = "94";
 
@@ -653,7 +675,7 @@ public class EligNotices {
 
     }
 
-    public static String ANAIGain(String language, String memberNumber) {
+    public static String ANAIGain(String docType, String language, String memberNumber) {
 
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
@@ -702,7 +724,7 @@ public class EligNotices {
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 "Enroll in a plan by December 31, 2024.\n" +
                                 englishTemplate2 +
-                                moreInformationNeeded(language, memberNumber)
+                                moreInformationNeeded(docType, language, memberNumber)
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate +
@@ -738,7 +760,7 @@ public class EligNotices {
                                 "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
                                 "Inscr\u00EDbase en un plan antes del 31 de diciembre del 2024.\n" +
                                 spanishTemplate2 +
-                                moreInformationNeeded(language, memberNumber)
+                                moreInformationNeeded(docType, language, memberNumber)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
@@ -802,7 +824,7 @@ public class EligNotices {
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 "Enroll in a plan by December 31, 2024.\n" +
                                 englishTemplate3 +
-                                moreInformationNeeded(language, memberNumber)
+                                moreInformationNeeded(docType, language, memberNumber)
 
                 );
                 case "Spanish" -> String.format(
@@ -928,7 +950,7 @@ public class EligNotices {
 
     }
 
-    public static String healthFirstColorado(String language, String memberNumber) {
+    public static String healthFirstColorado(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -949,7 +971,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language)
                 );
@@ -960,7 +982,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language)
                 );
@@ -974,14 +996,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoMedicaidSecondary(language)
                 );
@@ -992,14 +1014,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoMedicaidSecondary(language)
                 );
@@ -1099,8 +1121,8 @@ public class EligNotices {
         };
     }
 
-    public static String healthPlanInfo(String language){
-        String lceCloseDate = getLceCloseDate(language);
+    public static String healthPlanInfo(String docType, String language){
+        String lceCloseDate = getLceCloseDate(language, docType);
         String currentYear = getCurrentYear();
 
         return switch (language) {
@@ -1183,7 +1205,7 @@ public class EligNotices {
         };
     }
 
-    public static String chpPlus(String language, String memberNumber) {
+    public static String chpPlus(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -1204,7 +1226,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language)
                 );
@@ -1215,7 +1237,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language)
                 );
@@ -1229,14 +1251,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoChpSecondary(language)
                 );
@@ -1247,14 +1269,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoChpSecondary(language)
                 );
@@ -1332,7 +1354,7 @@ public class EligNotices {
         };
     }
 
-    public static String cobra(String language, String memberNumber) {
+    public static String cobra(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -1348,7 +1370,7 @@ public class EligNotices {
                         englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName
@@ -1357,7 +1379,7 @@ public class EligNotices {
                         spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName
@@ -1369,12 +1391,12 @@ public class EligNotices {
                         englishTemplate + englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         firstOfNextMonth,
                         member0Name,
                         cobraInfo(language),
@@ -1384,12 +1406,12 @@ public class EligNotices {
                         spanishTemplate + spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         firstOfNextMonth,
                         member0Name,
                         cobraInfo(language),
@@ -1401,7 +1423,7 @@ public class EligNotices {
         };
     }
 
-    public static String individualInsurance(String language, String memberNumber) {
+    public static String individualInsurance(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -1417,7 +1439,7 @@ public class EligNotices {
                         englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName
@@ -1426,7 +1448,7 @@ public class EligNotices {
                         spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName
@@ -1438,12 +1460,12 @@ public class EligNotices {
                         englishTemplate + englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         firstOfNextMonth,
                         member0Name,
                         IndividualInsuranceInfo(language),
@@ -1453,7 +1475,7 @@ public class EligNotices {
                         spanishTemplate + spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName,
@@ -1470,8 +1492,8 @@ public class EligNotices {
         };
     }
 
-    public static String healthInsuranceInfo(String language){
-        String lceCloseDate = getLceCloseDate(language);
+    public static String healthInsuranceInfo(String docType, String language){
+        String lceCloseDate = getLceCloseDate(language, docType);
         String currentYear = getCurrentYear();
 
         return switch (language) {
@@ -1600,7 +1622,7 @@ public class EligNotices {
 
     public static String getApplicationResultsSpanish(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
-        String lceCloseDate = getLceCloseDate(language);
+        String lceCloseDate = getLceCloseDate(language, docType);
 
         return String.format("ELG-101-01\n" +
                 SharedData.getPrimaryMember().getEmailId()+"\n" +
