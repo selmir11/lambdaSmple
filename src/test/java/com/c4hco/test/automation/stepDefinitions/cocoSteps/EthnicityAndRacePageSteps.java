@@ -32,4 +32,11 @@ public class EthnicityAndRacePageSteps {
     public void validateTheSelectionOfOptionsEthnicityAndRace(String Section) {
         ethnicityAndRacePage.validateTheSelectionOfOptions(Section);
     }
+
+    // NEW ELMO page
+    @And("I select {string} for race and ethnicity option")
+    public void iSelectMemberRaceEthnicity(String memberRaceEthnicity){ethnicityAndRacePage.raceEthnicitySelection(memberRaceEthnicity);}
+
+    @And("I click save and continue on the Race and Ethnicity page")
+    public void iClickContinue(){ethnicityAndRacePage.clickSaveAndContinue();}
 }
