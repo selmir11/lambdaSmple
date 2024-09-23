@@ -569,9 +569,9 @@ public class EligNotices {
         String atpc = "$295.29";
         String pct = "94";
 
-        //        String primaryName = SharedData.getPrimaryMember().getFullName();
-//        List<MemberDetails> memberList = SharedData.getMembers();
-//        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
         return switch (memberNumber) {
             case "1" -> switch (language) {
                 case "English" -> String.format(
@@ -821,9 +821,8 @@ public class EligNotices {
         String spanishTemplate = " , no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName();
         String spanishTemplate2 = "Usted no es residente de Colorado\n";
 
-//        String primaryName = SharedData.getPrimaryMember().getFullName();
-//        List<MemberDetails> memberList = SharedData.getMembers();
-//        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
 
         return switch (memberNumber) {
             case "1" -> switch (language) {
@@ -869,9 +868,8 @@ public class EligNotices {
         String spanishTemplate = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
         String spanishTemplate2 = "Usted no solicit\u00F3 seguro de salud\n";
 
-        String primaryName = SharedData.getPrimaryMember().getFullName();
-//        List<MemberDetails> memberList = SharedData.getMembers();
-//        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
 
         return switch (memberNumber) {
             case "1" -> switch (language) {
