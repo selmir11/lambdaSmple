@@ -106,6 +106,7 @@ Feature: Simple NFA - Single Applicant
     And I validate policy tables with dental coverage start date as "First Of Next Month"
 
   @SLER-1069  # RT-1262
+    Scenario: validate both medical and dental ob834 files
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
