@@ -108,6 +108,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickContinue() {
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent(continueBtn,30);
         continueBtn.click();
     }

@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -66,6 +67,20 @@ public class MedicalPlanDetailCoCoPage {
         softAssert.assertEquals(medicalCompareGoBack.getText(), planDetails.get(18));
         softAssert.assertAll();
     }
+
+    public void verifyDropdownMedicalplancmpr(List<String> planDetails) {
+        basicActions.waitForElementToDisappear(spinner,20);
+        for(int i=0;i<planDetails.size();i++){
+            WebElement dropdownCtrol=basicActions.getDriver().findElement(By.xpath("//button[contains(text(),'"+planDetails.get(i)+"')]"));
+            softAssert.assertTrue(dropdownCtrol.isEnabled());
+            softAssert.assertAll();
+            dropdownCtrol.click();
+        }
+    }
+
+    public void  clickMedicalDetailGoBack() {
+        basicActions.waitForElementToBeClickable(medicalCompareGoBack, 20);
+        medicalCompareGoBack.click();}
 
 
 }

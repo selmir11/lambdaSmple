@@ -85,4 +85,9 @@ public class MedicalPlansCoCoPageSteps {
     public void planDetailsbutton(){
         medicalPlansCoCoPage.selectFirstPlanDetailsCoCo();
     }
+
+    @Then("I click Go Back on coco medical plan page")
+    public void clickGoBackStartShoppingPage() {
+        medicalPlansCoCoPage.iclickGoBack();
+    }
 }

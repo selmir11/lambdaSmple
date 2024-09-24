@@ -44,7 +44,7 @@ public class DbQueries_Exch {
     }
 
     public String getEAPID(){
-        return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy\n" +
+        return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy_ah\n" +
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
 

@@ -62,6 +62,9 @@ public class TaxStatusPage {
     @FindBy(id = "selectedDependents6")
     WebElement selectedDependents6;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
 
     public void claimAsDependent(String claimAsDependentOption){
         switch(claimAsDependentOption){
@@ -163,7 +166,7 @@ public class TaxStatusPage {
     }
 
     public void iselectDependentMember(int dependentIndex) {
-        basicActions.waitForElementListToBePresent(selectDependent,15);
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementListToBePresentWithRetries( selectDependent,15 );
         selectDependent.get( dependentIndex ).click();
     }

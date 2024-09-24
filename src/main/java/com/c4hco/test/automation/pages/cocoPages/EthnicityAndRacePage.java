@@ -46,6 +46,13 @@ public class EthnicityAndRacePage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    // NEW ELMO page
+    @FindBy(css = "button[role='checkbox'].checkbox-mark")
+    List<WebElement> raceEthnicityButton;
+
+    @FindBy(css = "lib-navigations-buttons.btn-primary-action-button")
+    WebElement saveAndContinue_Button;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 90);
         basicActions.waitForElementListToBePresentWithRetries(EthnicityAndRaceText, 90);
@@ -221,4 +228,45 @@ public class EthnicityAndRacePage {
                 }
             }
         }
+
+        // NEW ELMO page
+    public void raceEthnicitySelection(String raceEthnicity){
+        basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
+        switch (raceEthnicity) {
+            case "Asian or Asian American":
+                raceEthnicityButton.get(0).click();
+                break;
+            case "Black or African American":
+                raceEthnicityButton.get(1).click();
+                break;
+            case "Hispanic or Latino":
+                raceEthnicityButton.get(2).click();
+                break;
+            case "Indigenous or Native American":
+                raceEthnicityButton.get(3).click();
+                break;
+            case "Middle Eastern or North African":
+                raceEthnicityButton.get(4).click();
+                break;
+            case "Native Hawaiian or Pacific Islander":
+                raceEthnicityButton.get(5).click();
+                break;
+            case "White or European":
+                raceEthnicityButton.get(6).click();
+                break;
+            case "Not listed":
+                raceEthnicityButton.get(7).click();
+                break;
+            case "Prefer not to answer":
+                raceEthnicityButton.get(8).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
+        }
+    }
+
+    public void clickSaveAndContinue() {
+        basicActions.waitForElementToBeClickable(saveAndContinue_Button, 30);
+        saveAndContinue_Button.click();
+    }
     }
