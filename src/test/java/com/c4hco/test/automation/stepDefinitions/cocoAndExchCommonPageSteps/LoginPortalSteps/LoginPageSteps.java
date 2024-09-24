@@ -21,6 +21,7 @@ public class LoginPageSteps {
            public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
         }
+
     @When("I login as {string} and {string} individual existing user")
     public void iLoginAsExistingIndividual(String userIndividual,String password) {
         loginPage.loginAsExistingIndividual(userIndividual, password);}
@@ -142,7 +143,13 @@ public class LoginPageSteps {
     public void iSeeNewAlarmingPage() {
         loginPage.accessDeniedPageDisplays();   }
 
+    @And("I click user type icon {string} and validate the options text in the login page")
+    public void iClickUserTypeIconAndValidateTheOptionsTextInTheLoginPage(String portal) {
+        loginPage.clickUserTypeIconInTheLoginPage(portal);
+    }
 
-
-
+    @Then("I click the option {string} requested")
+    public void iClickTheOptionRequested(String userOption) {
+        loginPage.clickTheOptionRequested(userOption);
+    }
 }
