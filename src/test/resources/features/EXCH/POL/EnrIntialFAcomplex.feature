@@ -355,7 +355,7 @@ Feature: Enroll a in a plan 8 HH
     And I click on download enrolment document
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    #And I Validate the correct enrolled plans are displayed on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
     
 
     #Gmail Verification
@@ -363,15 +363,25 @@ Feature: Enroll a in a plan 8 HH
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate the notices Dental policy member data "Anthem Dental Family Value"
+      |Primary|
+      |Nephew   |
+      |SonTwo   |
+      |Niece   |
+    And  I validate the notices  policy member data for coverage start date for next month
+    And I validate the notices medical policy member data "Cigna Connect Colorado Option Bronze"
+      |Primary|
+      |Nephew |
+      |SonTwo |
+      |Niece  |
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
 
     #DbVerification
 
-    And I verify the policy data quality check
-    And I verify the data from book of business queue table
-
+    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
 
