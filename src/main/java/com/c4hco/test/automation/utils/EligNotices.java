@@ -25,10 +25,14 @@ public class EligNotices {
         }
     }
 
-    private static String getLceCloseDate(String language) {
+    private static String getLceCloseDate(String language, String docType) {
         Locale locale;
+        Integer daysFromNow = 60;
+        
+        if (docType.equals("ANAI")){daysFromNow=90;}
+        
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, 60);
+        calendar.add(Calendar.DATE, daysFromNow);
 
         switch (language.toLowerCase()) {
             case "spanish":
@@ -65,20 +69,51 @@ public class EligNotices {
         return new SimpleDateFormat("yyyy").format(calendar.getTime());
     }
 
+    public static String getMailApplicationResults(String docType, String language, String memberNumber) {
+        String timestamp = getCurrentTimestamp(language);
+        String pageTotal = "0";
+
+        switch (docType) {
+            case "Ineligible: Did Not Apply" -> {
+                pageTotal = "7";
+            }
+            case "Ineligible: Not CO Resident" -> {
+                pageTotal = "7";
+            }
+            case "Health First Colorado" -> {
+                pageTotal = "8";
+            }
+            case "ANAI" -> {
+                pageTotal = "10";
+            }
+            default -> throw new IllegalArgumentException("Invalid docType:" + docType);
+        }
+
+
+        return String.format("Page  of 1 "+pageTotal+" Questions? Call 855-752-6749\n" +
+                "Connect for Health Colorado\n" +
+                "4600 South Ulster Street Suite 300\n" +
+                "Denver CO 80237\n" +
+                SharedData.getPrimaryMember().getFullName()+"\n" +
+                SharedData.getPrimaryMember().getMailingAddress().getAddressLine1()+"\n" +
+                SharedData.getPrimaryMember().getMailingAddress().getAddressCity()+
+                " "+SharedData.getPrimaryMember().getMailingAddress().getAddressState()+
+                " "+SharedData.getPrimaryMember().getMailingAddress().getAddressZipcode()+"\n" +
+                "NOTICEELG10101\n" +
+                "ELG-101-01\n" +
+                "Account Number: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
+                timestamp+" at \n");
+    }
+
     public static String getApplicationResults(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
-        String lceCloseDate = getLceCloseDate(language);
 
         return String.format("ELG-101-01\n" +
             SharedData.getPrimaryMember().getEmailId()+"\n" +
             "Account Number: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
             timestamp+" at \n" +
-            "Dear "+SharedData.getPrimaryMember().getFullName()+",\n" +
-            "We received new or updated information about your household on "+timestamp+". The change to your household\u2019s \n" +
-            "information is considered a Qualified Life Change Event, which means you can enroll in a health insurance plan or make \n" +
-            "changes to your current plan through a Special Enrollment Period.\n" +
-            "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n" +
-            resultsType(docType, language, memberNumber)+
+            introParagraph(docType, language) +
+            resultsType(docType, language, memberNumber) +
             "Reporting changes about your household:\n" +
             "If you have changes in your household after you enroll in a plan through Connect for Health Colorado, you should report \n" +
             "them to us within 30 days. Some changes, called \u201CQualified Life Change Events,\u201D may allow your household to shop for \n" +
@@ -158,18 +193,764 @@ public class EligNotices {
             " Additional Language Assistance\n" +
             " Additional Language Assistance");
     }
+
+    public static String introParagraph(String docType, String language) {
+        String timestamp = getCurrentTimestamp(language);
+        String lceCloseDate = getLceCloseDate(language, docType);
+        String inelig = "did not open a Special Enrollment Period";
+        String ineligES = "familiar no permite un Per\u00EDodo de inscripci\u00F3n especial";
+
+        if (docType.equals("Ineligible: Did Not Apply") || docType.equals("Ineligible: Not CO Resident")) {
+            switch (language) {
+                case "English" -> {
+                    return String.format("Dear "+SharedData.getPrimaryMember().getFullName()+",\n" +
+                            "We received new or updated information about your household on "+timestamp+". The change to your household\u2019 \n" +
+                            "s information for your household to enroll in a new health insurance plan. If "+inelig+"\n" +
+                            "you disagree with this determination, including the ability to enroll in a new plan, you can appeal this decision following\n" +
+                            "the steps in the Disagree with your determination section below.\n");
+                }
+                case "Spanish" -> {
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+getCurrentTimestamp(language)+". El cambio a su informaci\u00F3n\n" +
+                    "para que su familia se inscriba en un nuevo plan de seguro "+ineligES+"\n" +
+                    "de salud. Si no est\u00E1 de acuerdo con tal determinaci\u00F3n, incluida la posibilidad de inscribirse en un nuevo plan, puede\n" +
+                    "apelar contra esta decisi\u00F3n siguiendo los pasos que se indican en la secci\u00F3n siguiente No est\u00E1 de acuerdo con la\n" +
+                    "determinaci\u00F3n.\n");
+                }
+                default -> throw new IllegalArgumentException("Invalid language: " + language);
+            }
+        } else if (docType.equals("ANAI")) {
+            switch (language) {
+                case "English" -> {
+                    return String.format("Dear "+SharedData.getPrimaryMember().getFullName()+",\n" +
+                    "We received new or updated information about your household on "+timestamp+". The change to your household\u2019 \n" +
+                    "s information is considered a Qualified Life Change Event, which means you can enroll in a health insurance plan or\n" +
+                    "make changes to your current plan through a Special Enrollment Period.\n" +
+                    "You can enroll in a new plan or make changes to your current plan by December 31, 2024.\n");
+                }
+                case "Spanish" -> {
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+getCurrentTimestamp(language)+". El cambio en la informaci\u00F3n\n" +
+                            "de su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan\n" +
+                            "de seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
+                            "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del 31 de diciembre del 2024.\n");
+                }
+                default -> throw new IllegalArgumentException("Invalid language: " +language);
+            }
+        } else {
+            switch (language) {
+                case "English" -> {
+                    return String.format("Dear "+SharedData.getPrimaryMember().getFullName()+",\n" +
+                            "We received new or updated information about your household on "+timestamp+". The change to your household\u2019 \n" +
+                            "s information is considered a Qualified Life Change Event, which means you can enroll in a health insurance plan or \n" +
+                            "make changes to your current plan through a Special Enrollment Period.\n" +
+                            "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n");
+                }
+                case "Spanish" -> {
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n\n" +
+                    "de su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan\n" +
+                    "de seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
+                    "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n");
+                }
+                default -> throw new IllegalArgumentException("Invalid language: " + language);
+            }
+        }
+    }
     
     public static String resultsType(String docType, String language, String memberNumber){
         return switch (docType) {
-            case "Health First Colorado" -> healthFirstColorado(language, memberNumber);
-            case "CHP" -> chpPlus(language, memberNumber);
-            case "Cobra" -> cobra(language, memberNumber);
-            case "Individual Insurance" -> individualInsurance(language, memberNumber);
+            case "Health First Colorado" -> healthFirstColorado(docType, language, memberNumber);
+            case "CHP" -> chpPlus(docType, language, memberNumber);
+            case "Cobra" -> cobra(docType, language, memberNumber);
+            case "Individual Insurance" -> individualInsurance(docType, language, memberNumber);
+            case "Ineligible: Did Not Apply" -> ineligDidNotApply(language, memberNumber);
+            case "Ineligible: Not CO Resident" -> ineligNotCORes(language, memberNumber);
+            case "ANAI" -> ANAIGain(docType, language, memberNumber);
+            case "QHP" -> QHP(docType, language, memberNumber);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
 
-    public static String healthFirstColorado(String language, String memberNumber) {
+    public static String infoNeeded(String docType, String language, String memberNumber) {
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName().replace(".",".\n") : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        "Who needs to provide\n" +
+                                "information?\n" +
+                                "What information is needed? When is the information due?\n" +
+                                "%s Proof of your American Indian or\n" +
+                                "Alaska Native status\n" +
+                                getLceCloseDate(language, docType)+"\n" +
+                                "%s Proof of financial help eligibility\n" +
+                                getLceCloseDate(language, docType)+"\n",
+                        SharedData.getPrimaryMember().getFullName(),
+                        SharedData.getPrimaryMember().getFullName()
+                );
+                case "Spanish" -> String.format(
+                        "\u00BFQui\u00E9n necesita proporcionar\n" +
+                                "informaci\u00F3n?\n" +
+                                "\u00BFQu\u00E9 informaci\u00F3n se necesita? \u00BFCu\u00E1ndo es la fecha l\u00EDmite para\n" +
+                                "enviar la informaci\u00F3n?\n" +
+                                "%s Comprobante de su estatus de\n" +
+                                "ind\u00EDgena norteamericano o nativo de\n" +
+                                "Alaska\n" +
+                                getLceCloseDate(language, docType)+"\n" +
+                                "%s Comprobante de su elegibilidad para\n" +
+                                "recibir ayuda financiera\n" +
+                                getLceCloseDate(language, docType)+"\n",
+                        SharedData.getPrimaryMember().getFullName(),
+                        SharedData.getPrimaryMember().getFullName()
+                );
+                default -> throw new IllegalArgumentException("Unexpected value: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format("Who needs to provide\n" +
+                        "information?\n" +
+                        "What information is needed? When is the information due?\n" +
+                        "%s Proof of your American Indian or\n" +
+                        "Alaska Native status\n" +
+                        getLceCloseDate(language, docType)+"\n" +
+                        "%s Proof of financial help eligibility "+getLceCloseDate(language, docType)+"\n" +
+                        member0Name+"\n" +
+                        "Proof of your American Indian or\n" +
+                        "Alaska Native status\n" +
+                        getLceCloseDate(language, docType)+"\n" +
+                        member0Name+"\n"+
+                        "Proof of financial help eligibility "+getLceCloseDate(language, docType)+"\n",
+                        SharedData.getPrimaryMember().getFullName(),
+                        SharedData.getPrimaryMember().getFullName());
+                case "Spanish" -> String.format("Mensaje para el miembro 2 en espa\u00F1ol.");
+                default -> throw new IllegalArgumentException("Unexpected value: " + language);
+            };
+            default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+        };
+    }
+
+    public static String moreInformationNeeded(String docType, String language, String memberNumber) {
+
+       switch (memberNumber) {
+           case "1" -> {
+               switch (language) {
+                   case "English" -> {
+                       return String.format("More information needed\n" +
+                               "We\u2019re sorry, we were unable to verify everything you provided and need additional information. If you do not send the\n" +
+                               "information by the due date listed below, you could lose your health insurance plan or the financial help you\u2019re getting to\n" +
+                               "pay for your health insurance plan. Even if someone in your household is not applying through Connect for Health\n" +
+                               "Colorado or may qualify for Health First Colorado or Child Health Plan Plus, we still need the information listed below.\n" +
+                               "Please note you only have a few days to submit your documents by the due date!\n" +
+                               infoNeeded(docType, language, memberNumber) +
+                               "Potential reasons we were unable to verify your eligibility for financial help:\n" +
+                               "Advance payments of the premium tax credit were made to your health insurance company in a previous\n" +
+                               "year to reduce your premium costs, and we cannot verify whether a federal income tax return was filed\n" +
+                               "to reconcile the payments you received.\n" +
+                               "You chose not to allow us to check income data, including information from tax returns, to determine\n" +
+                               "your eligibility for financial help when you completed an application.\n" +
+                               "We were unable to confirm the information you provided about household income against trusted data\n" +
+                               "sources.\n" +
+                               "If you would like to allow the Marketplace to use information from your tax returns for future applications and\n" +
+                               "determinations of financial help, update your application to agree to have us check income data from federal sources.\n" +
+                               "What are acceptable documents for verifying your eligibility for financial help?\n" +
+                               "Provide at least one document from List A and one document from List B.\n" +
+                               "List A:\n" +
+                               "Pay stub/check\n" +
+                               "Employer statement\n" +
+                               "Self-employment ledger\n" +
+                               "Last year's tax document\n" +
+                               "Social Security income statement\n" +
+                               "Retirement income statement\n" +
+                               "Unemployment amount letter\n" +
+                               "Investment income statement\n" +
+                               "Other official income document\n" +
+                               "For a complete list of acceptable documents, visit https://ConnectforHealthCo.com/find-answers/after-\n" +
+                               "you-buy/submit-documents/\n" +
+                               "Provide income documents that add up to the total household income that you listed on the application. The document\n" +
+                               "(s) must include:\n" +
+                               "Who is making each form of income;\n" +
+                               "The source of each form of income;\n" +
+                               "The specific amount for each source of income;\n" +
+                               "The frequency of the income (weekly, monthly, annually) for each source of income.\n" +
+                               "Potential updates to your financial help\n" +
+                               "When we receive your documents, we will use the amount and frequency for each income source to calculate an\n" +
+                               "annual total. We will then update the household annual income amount listed in your application with the new annual\n" +
+                               "total. After, we will submit a new application to determine the financial help programs you could qualify for and amount\n" +
+                               "of financial help (if any).\n" +
+                               "List B:\n" +
+                               "A copy of the Form 8962 you submitted with the federal income tax return you most recently filed.\n" +
+                               "Visit  for directions on responding to this request if:http://connectforhealthco.com/acceptable-documents/\n" +
+                               "You have not yet filed a tax return because you have an extension;\n" +
+                               "You have not received Advance Payments of the Premium Tax Credits to lower your\n" +
+                               "monthly payment in the past.\n" +
+                               "Why you must reconcile tax credit\n" +
+                               "The IRS requires you to file a federal income tax return using Form 8962, Premium Tax Credit (PTC), if you or\n" +
+                               "someone in your household received any advance payments of the premium tax credit. Form 8962 determines how\n" +
+                               "much tax credit you qualified for based on your actual income and household size as shown on your federal income\n" +
+                               "tax return. If you don't file a tax return using Form 8962, your household will no longer qualify for Advance Payments\n" +
+                               "of the Premium Tax Credit.\n" +
+                               "What are acceptable documents for verifying American Indian or Alaska Native status?\n" +
+                               "Tribal enrollment/membership document\n" +
+                               "Bureau of Indian Affairs issued document\n" +
+                               "Other official federally recognized tribal document\n" +
+                               "For a complete list of acceptable documents, visit https://ConnectforHealthCo.com/find-answers/after-\n" +
+                               "you-buy/submit-documents/\n" +
+                               "Where do I send my documents?\n" +
+                               "Please send a copy of your document(s) in one of the following ways. Do not send your original documents. Be\n" +
+                               "sure to write your name and Connect for Health Colorado\u00AE account number on each page you send. Your\n" +
+                               "account number can be found at the top of this letter.\n" +
+                               "Upload a copy of your document to your Connect for Health Colorado\u00AE account.\n" +
+                               "Fax a copy of your document to: 855-346-5175\n" +
+                               "Mail a copy of your document to:\n" +
+                               "Verifications\n" +
+                               "Connect for Health Colorado\n" +
+                               "4600 South Ulster Street Suite 300\n" +
+                               "Denver CO 80237\n" +
+                               "We will notify you once we review your document(s). If you have questions, believe you already provided the information\n" +
+                               "listed above, or need more time to provide the requested information, please call the Connect for Health Colorado\u00AE\n" +
+                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n");
+                   }
+                   case "Spanish" -> {
+                       return String.format("Se requiere m\u00E1s informaci\u00F3n\n" +
+                               "Lamentablemente, no pudimos confirmar todos los datos que proporcion\u00F3 y necesitamos m\u00E1s informaci\u00F3n. Si no env\u00EDa la\n" +
+                               "informaci\u00F3n para la fecha l\u00EDmite abajo indicada, puede perder su plan de seguro de salud o la reducci\u00F3n de costos que\n" +
+                               "obtiene para pagar su plan de seguro de salud. Necesitamos todas las verificaciones de la familia para tramitar la\n" +
+                               "solicitud, aun cuando alguien de su familia no est\u00E9 solicitando seguro por medio de Connect for Health Colorado, o si\n" +
+                               "califica para Health First Colorado o Child Health Plan Plus.\n" +
+                               "\u00A1Tenga en cuenta que solo tiene pocos d\u00EDas para enviar sus documentos para la fecha l\u00EDmite!\n") +
+                               infoNeeded(docType, language, memberNumber) +
+                               "Posibles motivos por lo que no pudimos verificar su elegibilidad para recibir ayuda financiera:\n" +
+                               "Los pagos anticipados del cr\u00E9dito fiscal para la prima fueron pagados el a\u00F1o anterior a su compa\u00F1\u00EDa de\n" +
+                               "seguros de salud para reducir los costos de su prima, y no podemos verificar si se present\u00F3 una\n" +
+                               "declaraci\u00F3n de impuesto federal sobre los ingresos para conciliar los pagos que recibi\u00F3.\n" +
+                               "Eligi\u00F3 no permitirnos revisar los datos de su ingreso, incluida la informaci\u00F3n de su declaraci\u00F3n de\n" +
+                               "impuestos, para determinar su elegibilidad para recibir ayuda financiera cuando llen\u00F3 una solicitud.\n" +
+                               "No pudimos confirmar la informaci\u00F3n proporcionada sobre su ingreso familiar con las fuentes de datos\n" +
+                               "confiables.\n" +
+                               "Si desea permitir al Mercado utilizar informaci\u00F3n sobre sus declaraciones de impuestos para futuras solicitudes y\n" +
+                               "determinaciones sobre la ayuda financiera, actualice su solicitud para estar de acuerdo en que revisemos los datos\n" +
+                               "de su ingreso con las fuentes federales.\n" +
+                               "\u00BFQu\u00E9 documentos son aceptables para verificar su elegibilidad para recibir ayuda financiera?\n" +
+                               "Proporcione por lo menos un documento de la lista A y un documento de la lista B.\n" +
+                               "Lista A:\n" +
+                               "Recibo de pago/cheque\n" +
+                               "Declaraci\u00F3n del empleador\n" +
+                               "Libro contable de trabajador independiente\n" +
+                               "Documento de impuestos del a\u00F1o pasado\n" +
+                               "Estado de cuenta del ingreso del seguro social\n" +
+                               "Estado de cuenta de ingresos por jubilaci\u00F3n\n" +
+                               "Carta de la cantidad por desempleo\n" +
+                               "Estado de cuenta de ingresos por inversiones\n" +
+                               "Otros documentos oficiales de ingresos\n" +
+                               "Para obtener una lista completa de los documentos aceptables, visite https://connectforhealthco.com\n" +
+                               "/es/encuentre-respuestas/despues-de-adquirir/enviar-documentos/\n" +
+                               "Proporcione documentos sobre ingresos que sumen el ingreso familiar total que indic\u00F3 en la solicitud. Los\n" +
+                               "documentos deben incluir:\n" +
+                               "qui\u00E9n obtiene cada forma de ingresos;\n" +
+                               "la fuente de cada forma de ingresos;\n" +
+                               "la cantidad espec\u00EDfica de cada fuente de ingresos;\n" +
+                               "frecuencia de los ingresos (semanal, mensual, anual) para cada fuente de ingresos.\n" +
+                               "Posibles actualizaciones a su ayuda financiera\n" +
+                               "Cuando recibamos sus documentos, utilizaremos la cantidad y frecuencia para cada fuente de ingresos para calcular\n" +
+                               "un total anual. Luego actualizaremos la cantidad de su ingreso familiar anual indicada en su solicitud con el nuevo\n" +
+                               "total anual. Despu\u00E9s, enviaremos una nueva solicitud para determinar los programas de ayuda financiera a los que\n" +
+                               "podr\u00EDa calificar y la cantidad de ayuda financiera (si la hubiera).\n" +
+                               "Lista B:\n" +
+                               "Una copia del Formulario 8962 que envi\u00F3 con su m\u00E1s reciente declaraci\u00F3n del impuesto federal sobre\n" +
+                               "los ingresos.\n" +
+                               "Visite  https://connectforhealthco.com/es/encuentre-respuestas/despues-de-adquirir/enviar-documentos/\n" +
+                               "para recibir instrucciones en c\u00F3mo responder a esta solicitud si usted:\n" +
+                               "no ha presentado anteriormente su declaraci\u00F3n de impuestos porque tiene una extensi\u00F3n;\n" +
+                               "no ha recibido anteriormente los pagos anticipados del cr\u00E9dito fiscal para la prima en el\n" +
+                               "pasado.\n" +
+                               "Por qu\u00E9 debe reconciliar su cr\u00E9dito fiscal\n" +
+                               "El Servicio de Rentas Internas (IRS) le exige presentar su declaraci\u00F3n del impuesto federal sobre los ingresos\n" +
+                               "utilizando el Formulario 8962 (Cr\u00E9dito fiscal para el pago de la prima) si usted o un miembro familiar recibi\u00F3 alg\u00FAn\n" +
+                               "pago anticipado del cr\u00E9dito fiscal para el pago de la prima. El Formulario 8962 determina para cu\u00E1nto cr\u00E9dito fiscal\n" +
+                               "calific\u00F3 basado en sus ingresos actuales y el tama\u00F1o de la familia como lo muestra su declaraci\u00F3n de impuesto\n" +
+                               "federal sobre los ingresos. Si no presenta una declaraci\u00F3n de impuestos utilizando el Formulario 8962, su familia ya\n" +
+                               "no calificar\u00E1 para el Pago anticipado del cr\u00E9dito fiscal para el pago de la prima.\n" +
+                               "\u00BFQu\u00E9 documentos son aceptables para verificar el estatus de ind\u00EDgena norteamericano o nativo de Alaska?\n" +
+                               "Documento de membres\u00EDa de inscripci\u00F3n tribal\n" +
+                               "Documento emitido por la Oficina de Asuntos Ind\u00EDgenas\n" +
+                               "Otro documento oficial tribal reconocido por las autoridades federales\n" +
+                               "Para obtener una lista completa de los documentos aceptables, visite https://connectforhealthco.com\n" +
+                               "/es/encuentre-respuestas/despues-de-adquirir/enviar-documentos/\n" +
+                               "\u00BFA d\u00F3nde debo enviar mis documentos?\n" +
+                               "Favor de enviar una copia de su(s) documento(s) por uno de los medios a continuaci\u00F3n. No env\u00EDe sus\n" +
+                               "documentos originales. Aseg\u00FArese de escribir su nombre y su n\u00FAmero de cuenta de Connect for Health\n" +
+                               "Colorado\u00AE en cada p\u00E1gina que env\u00EDe. Puede encontrar su n\u00FAmero de cuenta en la parte superior de esta carta.\n" +
+                               "Suba una copia de su documento a su cuenta de Connect for Health Colorado\u00AE.\n" +
+                               "Env\u00EDe por fax una copia de su documento a: 855-346-5175\n" +
+                               "Env\u00EDe por correo una copia de su documento a:\n" +
+                               "Verifications\n" +
+                               "Connect for Health Colorado\n" +
+                               "4600 South Ulster Street Suite 300\n" +
+                               "Denver CO 80237\n" +
+                               "Le notificaremos una vez que hayamos revisado su(s) documento(s). Si tiene alguna pregunta, si cree que ya\n" +
+                               "proporcion\u00F3 la informaci\u00F3n anteriormente mencionada, o si necesita m\u00E1s tiempo para proporcionar la informaci\u00F3n\n" +
+                               "requerida, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432)\n" +
+                               "de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n"
+                               ;
+                   }
+                   default -> throw new IllegalArgumentException("Unexpected value: " + language);
+               }
+           }
+           case "2" -> {
+               switch (language) {
+                   case "English" -> {
+                       return String.format("More information needed\n" +
+                               "We\u2019re sorry, we were unable to verify everything you provided and need additional information. If you do not send the\n" +
+                               "information by the due date listed below, you could lose your health insurance plan or the financial help you\u2019re getting to\n" +
+                               "pay for your health insurance plan. Even if someone in your household is not applying through Connect for Health\n" +
+                               "Colorado or may qualify for Health First Colorado or Child Health Plan Plus, we still need the information listed below.\n" +
+                               "Please note you only have a few days to submit your documents by the due date!\n" +
+                               infoNeeded(docType, language, memberNumber) +
+                               "Potential reasons we were unable to verify your eligibility for financial help:\n" +
+                               "Advance payments of the premium tax credit were made to your health insurance company in a previous\n" +
+                               "year to reduce your premium costs, and we cannot verify whether a federal income tax return was filed\n" +
+                               "to reconcile the payments you received.\n" +
+                               "You chose not to allow us to check income data, including information from tax returns, to determine\n" +
+                               "your eligibility for financial help when you completed an application.\n" +
+                               "We were unable to confirm the information you provided about household income against trusted data\n" +
+                               "sources.\n" +
+                               "If you would like to allow the Marketplace to use information from your tax returns for future applications and\n" +
+                               "determinations of financial help, update your application to agree to have us check income data from federal sources.\n" +
+                               "What are acceptable documents for verifying your eligibility for financial help?\n" +
+                               "Provide at least one document from List A and one document from List B.\n" +
+                               "List A:\n" +
+                               "Pay stub/check\n" +
+                               "Employer statement\n" +
+                               "Self-employment ledger\n" +
+                               "Last year's tax document\n" +
+                               "Social Security income statement\n" +
+                               "Retirement income statement\n" +
+                               "Unemployment amount letter\n" +
+                               "Investment income statement\n" +
+                               "Other official income document\n" +
+                               "For a complete list of acceptable documents, visit https://ConnectforHealthCo.com/find-answers/after-\n" +
+                               "you-buy/submit-documents/\n" +
+                               "Provide income documents that add up to the total household income that you listed on the application. The document\n" +
+                               "(s) must include:\n" +
+                               "Who is making each form of income;\n" +
+                               "The source of each form of income;\n" +
+                               "The specific amount for each source of income;\n" +
+                               "The frequency of the income (weekly, monthly, annually) for each source of income.\n" +
+                               "Potential updates to your financial help\n" +
+                               "When we receive your documents, we will use the amount and frequency for each income source to calculate an\n" +
+                               "annual total. We will then update the household annual income amount listed in your application with the new annual\n" +
+                               "total. After, we will submit a new application to determine the financial help programs you could qualify for and amount\n" +
+                               "of financial help (if any).\n" +
+                               "List B:\n" +
+                               "A copy of the Form 8962 you submitted with the federal income tax return you most recently filed.\n" +
+                               "Visit  for directions on responding to this request if:http://connectforhealthco.com/acceptable-documents/ \n" +
+                               "You have not yet filed a tax return because you have an extension;\n" +
+                               "You have not received Advance Payments of the Premium Tax Credits to lower your\n" +
+                               "monthly payment in the past.\n" +
+                               "Why you must reconcile tax credit\n" +
+                               "The IRS requires you to file a federal income tax return using Form 8962, Premium Tax Credit (PTC), if you or\n" +
+                               "someone in your household received any advance payments of the premium tax credit. Form 8962 determines how\n" +
+                               "much tax credit you qualified for based on your actual income and household size as shown on your federal income\n" +
+                               "tax return. If you don't file a tax return using Form 8962, your household will no longer qualify for Advance Payments\n" +
+                               "of the Premium Tax Credit.\n" +
+                               "What are acceptable documents for verifying American Indian or Alaska Native status?\n" +
+                               "Tribal enrollment/membership document\n" +
+                               "Bureau of Indian Affairs issued document\n" +
+                               "Other official federally recognized tribal document\n" +
+                               "For a complete list of acceptable documents, visit https://ConnectforHealthCo.com/find-answers/after-\n" +
+                               "you-buy/submit-documents/\n" +
+                               "Where do I send my documents?\n" +
+                               "Please send a copy of your document(s) in one of the following ways. Do not send your original documents. Be\n" +
+                               "sure to write your name and Connect for Health Colorado\u00AE account number on each page you send. Your\n" +
+                               "account number can be found at the top of this letter.\n" +
+                               "Upload a copy of your document to your Connect for Health Colorado\u00AE account.\n" +
+                               "Fax a copy of your document to: 855-346-5175\n" +
+                               "Mail a copy of your document to:\n" +
+                               "Verifications\n" +
+                               "Connect for Health Colorado\n" +
+                               "4600 South Ulster Street Suite 300\n" +
+                               "Denver CO 80237\n" +
+                               "We will notify you once we review your document(s). If you have questions, believe you already provided the information\n" +
+                               "listed above, or need more time to provide the requested information, please call the Connect for Health Colorado\u00AE\n" +
+                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n");
+                   }
+                   case "Spanish" -> {
+                       return String.format("");
+                   }
+                   default -> throw new IllegalArgumentException("Unexpected value: " + language);
+               }
+           }
+           default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+       }
+    }
+
+    public static String QHP(String docType, String language, String memberNumber){
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType)+".\n";
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType)+".\n";
+        String atpc = "$295.29";
+        String pct = "94";
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                        "Premium\n" +
+                        "Tax Credits\n" +
+                        "for "+getCurrentYear()+"\n" +
+                        "Your household qualifies to receive up to $295.29 a month to use towards\n" +
+                        "lowering the cost of your monthly health insurance premiums when you\n" +
+                        "enroll through Connect for Health Colorado. Based on your application,\n" +
+                        "this applies to "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                        englishTemplate2 +
+                        englishTemplate +
+                        "Cost-Sharing\n" +
+                        "Reduction for\n" +
+                        getCurrentYear()+"\n"+
+                        "You qualify for a reduction in your out-of-pocket costs, such as deductibles\n" +
+                        "and copayments when you visit a doctor or fill a prescription. Your Cost-\n" +
+                        "Sharing Reduction level is "+pct+". This is the average amount the health\n" +
+                        "insurance company will pay over the course of a year.\n" +
+                        "You must enroll in a Silver-level plan to receive these reductions in your outof-pocket costs.\n" +
+                        englishTemplate2 +
+                        "Health\n" +
+                        "insurance\n" +
+                        "plan for "+getCurrentYear()+"\n" +
+                        "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
+                        "Period or if it\u2019s Open Enrollment.\n" +
+                        englishTemplate2,
+                        pct
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate +
+                        "Cr\u00E9ditos\n" +
+                                "fiscales para\n" +
+                                "el pago de la\n" +
+                                "cuota para\n" +
+                                getCurrentYear()+"\n" +
+                                "Su familia tiene derecho a recibir hasta $295.29 al mes para reducir el\n" +
+                                "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
+                                "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
+                                "estos ahorros se aplican a: "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                spanishTemplate2 +
+                                spanishTemplate +
+                                "Reducci\u00F3n\n" +
+                                "de los costos\n" +
+                                "compartidos\n" +
+                                "para "+getCurrentYear()+"\n" +
+                                "Usted califica para la reducci\u00F3n de sus costos de desembolso, como\n" +
+                                "deducibles y copagos, cuando acuda al m\u00E9dico o surta una receta. Su nivel\n" +
+                                "de reducci\u00F3n de los costos compartidos es de "+pct+". Es el importe promedio\n" +
+                                "que la compa\u00F1\u00EDa de seguros m\u00E9dicos pagar\u00E1 en el transcurso de un a\u00F1o.\n" +
+                                "Debe inscribirse en un plan de nivel Plata para recibir estas reducciones en\n" +
+                                "sus costos de desembolso.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate +
+                                "Plan de\n" +
+                                "seguro de\n" +
+                                "salud para\n" +
+                                getCurrentYear()+"\n" +
+                                "Puede inscribirse en un plan de seguro de salud para 2024 si califica para un per\u00EDodo\n" +
+                                "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
+                                spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+
+
+
+    }
+
+    public static String ANAIGain(String docType, String language, String memberNumber) {
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+member0Name+"\n ";
+        String englishTemplate3 = "Verification is\n"+"needed\n"+"We\u2019re missing some information!\n"+
+                                    "You are temporarily approved for 90 days, but we need more information\n"+
+                                    "from you to continue your coverage after the 90 days. Please see the\n"+
+                                    "\u201cMore information needed\u201D section below for what is needed and next\n"+"steps.\n";
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Se requiere\n" + "verificaci\u00F3n\n" + "Nos falta alguna informaci\u00F3n!\n" +
+                                    "Ha sido aprobado provisionalmente por 90 d\u00EDas, pero necesitamos m\u00E1s\n" +
+                                    "informaci\u00F3n para que su cobertura contin\u00FAe despu\u00E9s de esos 90 d\u00EDas. En\n" +
+                                    "la secci\u00F3n \"Se requiere m\u00E1s informaci\u00F3n\" que aparece en seguida se\n" +
+                                    "indica lo que se necesita y los pasos siguientes.\n";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                getCurrentYear() + "\n" +
+                                "Your household qualifies to receive up to $399.89 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate2 +
+                                englishTemplate +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                getCurrentYear()+"\n" +
+                                "You qualify for a Zero Cost-Sharing Reduction plan. This means you won\u2019t\n" +
+                                "have to pay any out-of-pocket costs, such as deductibles and copayments\n" +
+                                "when you visit a doctor or fill a prescription.\n" +
+                                "You must enroll in a Silver-level plan to receive these reductions in your out-\n" +
+                                "of-pocket costs.\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate2 +
+                                englishTemplate +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+getCurrentYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate2 +
+                                moreInformationNeeded(docType, language, memberNumber)
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate +
+                                "Cr\u00E9ditos\n" +
+                                "fiscales para\n" +
+                                "el pago de la\n" +
+                                "cuota para\n" +
+                                getCurrentYear()+"\n" +
+                                "Su familia tiene derecho a recibir hasta $399.89 al mes para reducir el\n" +
+                                "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
+                                "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
+                                "estos ahorros se aplican a: "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                "Inscr\u00EDbase en un plan antes del 31 de diciembre del 2024.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate +
+                                "Reducci\u00F3n\n" +
+                                "de los costos\n" +
+                                "compartidos\n" +
+                                "para "+getCurrentYear()+"\n" +
+                                "Usted califica para un plan de cero costos compartidos. Eso significa que no\n" +
+                                "tendr\u00E1 que pagar costos de desembolso, como deducibles y copagos,\n" +
+                                "cuando acuda al m\u00E9dico o surta una receta.\n" +
+                                "Debe inscribirse en un plan de nivel Plata para recibir estas reducciones en\n" +
+                                "sus costos de desembolso.\n" +
+                                "Inscr\u00EDbase en un plan antes del 31 de diciembre del 2024.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate +
+                                "Plan de\n" +
+                                "seguro de\n" +
+                                "salud para\n" +
+                                getCurrentYear()+"\n" +
+                                "Puede inscribirse en un plan de seguro de salud para 2024 si califica para un per\u00EDodo\n" +
+                                "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
+                                "Inscr\u00EDbase en un plan antes del 31 de diciembre del 2024.\n" +
+                                spanishTemplate2 +
+                                moreInformationNeeded(docType, language, memberNumber)
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                getCurrentYear() + "\n" +
+                                "Your household qualifies to receive up to $573.06 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate3 +
+                                englishTemplate +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                getCurrentYear()+"\n" +
+                                "You qualify for a Zero Cost-Sharing Reduction plan. This means you won\u2019t\n" +
+                                "have to pay any out-of-pocket costs, such as deductibles and copayments\n" +
+                                "when you visit a doctor or fill a prescription.\n" +
+                                "You must enroll in a Silver-level plan to receive these reductions in your out-\n" +
+                                "of-pocket costs.\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate3 +
+                                englishTemplate +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+getCurrentYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate3 +
+                                englishTemplate2 +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                getCurrentYear() + "\n" +
+                                "Your household qualifies to receive up to $573.06 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+member0Name+"\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate3 +
+                                englishTemplate2 +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                getCurrentYear()+"\n" +
+                                "You qualify for a Zero Cost-Sharing Reduction plan. This means you won\u2019t\n" +
+                                "have to pay any out-of-pocket costs, such as deductibles and copayments\n" +
+                                "when you visit a doctor or fill a prescription.\n" +
+                                "You must enroll in a Silver-level plan to receive these reductions in your out-\n" +
+                                "of-pocket costs.\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate3 +
+                                englishTemplate2 +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+getCurrentYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                "Enroll in a plan by December 31, 2024.\n" +
+                                englishTemplate3 +
+                                moreInformationNeeded(docType, language, memberNumber)
+
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+
+    }
+
+    public static String ineligNotCORes(String language, String memberNumber) {
+        String englishTemplate = " , you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "You are not a Colorado resident\n";
+        String spanishTemplate = " , no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName();
+        String spanishTemplate2 = "Usted no es residente de Colorado\n";
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                        "Premium Tax\n" +
+                        "Credits or\n" +
+                        "Cost-Sharing\n" +
+                        "Reduction for\n" +
+                        getCurrentYear() + "\n" +
+                        "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because: \n" +
+                        englishTemplate2 +
+                        englishTemplate +
+                        "Health\n" +
+                        "insurance\n" +
+                        "plan for "+getCurrentYear()+"\n" +
+                        "You do not qualify for a health insurance plan through Connect for Health Colorado\n" +
+                        "because:\n" +
+                        englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+
+    }
+
+    public static String ineligDidNotApply(String language, String memberNumber) {
+        String englishTemplate = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "You did not apply for health insurance\n";
+        String spanishTemplate = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Usted no solicit\u00F3 seguro de salud\n";
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                        "Premium Tax\n" +
+                        "Credits or\n" +
+                        "Cost-Sharing\n" +
+                        "Reduction for\n" +
+                        getCurrentYear() + "\n" +
+                        "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because: \n" +
+                        englishTemplate2 +
+                        englishTemplate +
+                        "Health\n" +
+                        "insurance\n" +
+                        "plan for "+getCurrentYear()+"\n" +
+                        "You do not qualify for a health insurance plan through Connect for Health Colorado\n" +
+                        "because:\n" +
+                        englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate +
+                        "Cr\u00E9ditos\n" +
+                        "fiscales para\n" +
+                        "el pago de la\n" +
+                        "cuota o\n" +
+                        "reducci\u00F3n de\n" +
+                        "los costos\n" +
+                        "compartidos\n" +
+                        "para "+getCurrentYear()+"\n" +
+                        "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                        "costos compartidos porque:\n"+
+                        spanishTemplate2 +
+                        spanishTemplate +
+                        "Plan de\n" +
+                        "seguro de\n" +
+                        "salud para\n" +
+                        getCurrentYear()+"\n" +
+                        "No califica para adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health\n" +
+                        "Colorado porque:\n" +
+                        spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+
+    }
+
+    public static String healthFirstColorado(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -190,7 +971,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language)
                 );
@@ -201,7 +982,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language)
                 );
@@ -215,14 +996,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoMedicaidSecondary(language)
                 );
@@ -233,14 +1014,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoMedicaid(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoMedicaidSecondary(language)
                 );
@@ -340,8 +1121,8 @@ public class EligNotices {
         };
     }
 
-    public static String healthPlanInfo(String language){
-        String lceCloseDate = getLceCloseDate(language);
+    public static String healthPlanInfo(String docType, String language){
+        String lceCloseDate = getLceCloseDate(language, docType);
         String currentYear = getCurrentYear();
 
         return switch (language) {
@@ -424,7 +1205,7 @@ public class EligNotices {
         };
     }
 
-    public static String chpPlus(String language, String memberNumber) {
+    public static String chpPlus(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -445,7 +1226,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language)
                 );
@@ -456,7 +1237,7 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language)
                 );
@@ -470,14 +1251,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoChpSecondary(language)
                 );
@@ -488,14 +1269,14 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         primaryName,
                         taxCreditInfoChp(language),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(language),
+                        healthPlanInfo(docType, language),
                         member0Name,
                         taxCreditInfoChpSecondary(language)
                 );
@@ -573,7 +1354,7 @@ public class EligNotices {
         };
     }
 
-    public static String cobra(String language, String memberNumber) {
+    public static String cobra(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -589,7 +1370,7 @@ public class EligNotices {
                         englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName
@@ -598,7 +1379,7 @@ public class EligNotices {
                         spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName
@@ -610,12 +1391,12 @@ public class EligNotices {
                         englishTemplate + englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         firstOfNextMonth,
                         member0Name,
                         cobraInfo(language),
@@ -625,12 +1406,12 @@ public class EligNotices {
                         spanishTemplate + spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         cobraInfo(language),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         firstOfNextMonth,
                         member0Name,
                         cobraInfo(language),
@@ -642,7 +1423,7 @@ public class EligNotices {
         };
     }
 
-    public static String individualInsurance(String language, String memberNumber) {
+    public static String individualInsurance(String docType, String language, String memberNumber) {
         String firstOfNextMonth = getFirstOfNextMonth(language);
 
         String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
@@ -658,7 +1439,7 @@ public class EligNotices {
                         englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName
@@ -667,7 +1448,7 @@ public class EligNotices {
                         spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName
@@ -679,12 +1460,12 @@ public class EligNotices {
                         englishTemplate + englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         firstOfNextMonth,
                         member0Name,
                         IndividualInsuranceInfo(language),
@@ -694,7 +1475,7 @@ public class EligNotices {
                         spanishTemplate + spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(language),
+                        healthInsuranceInfo(docType, language),
                         primaryName,
                         IndividualInsuranceInfo(language),
                         primaryName,
@@ -711,8 +1492,8 @@ public class EligNotices {
         };
     }
 
-    public static String healthInsuranceInfo(String language){
-        String lceCloseDate = getLceCloseDate(language);
+    public static String healthInsuranceInfo(String docType, String language){
+        String lceCloseDate = getLceCloseDate(language, docType);
         String currentYear = getCurrentYear();
 
         return switch (language) {
@@ -841,17 +1622,14 @@ public class EligNotices {
 
     public static String getApplicationResultsSpanish(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
-        String lceCloseDate = getLceCloseDate(language);
+        String lceCloseDate = getLceCloseDate(language, docType);
 
         return String.format("ELG-101-01\n" +
                 SharedData.getPrimaryMember().getEmailId()+"\n" +
                 "N\u00FAmero de Cuenta: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
                 timestamp+" a las \n" +
                 "Apreciable "+SharedData.getPrimaryMember().getFullName()+",\n" +
-                "Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de\n" +
-                "su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
-                "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
-                "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n" +
+                introParagraph(docType,language) +
                 resultsType(docType, language, memberNumber)+
                 "Informe de cambios en su situaci\u00F3n familiar:\n" +
                 "Si ocurren cambios en su situaci\u00F3n familiar despu\u00E9s de haberse inscrito en un plan por medio de Connect for Health\n" +

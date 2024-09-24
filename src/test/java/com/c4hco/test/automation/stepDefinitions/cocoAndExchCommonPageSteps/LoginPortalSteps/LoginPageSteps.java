@@ -21,6 +21,7 @@ public class LoginPageSteps {
            public void iEnterValidCredentials(){
             loginPage.logInWithValidCredentials();
         }
+
     @When("I login as {string} and {string} individual existing user")
     public void iLoginAsExistingIndividual(String userIndividual,String password) {
         loginPage.loginAsExistingIndividual(userIndividual, password);}
