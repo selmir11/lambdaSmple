@@ -462,14 +462,17 @@ public class NoticesPage {
     }
 
 
-    public void verifyEmaildentalPolicyNoticeDetails(String noticeInputDetails) {
-        List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
+    public void validateDentalPolicyMemberData(String noticeInputDetails, List<String> NoticedetailsdentalMembers) {
 
-        for (int i = 0; i < expectedList.size(); i++) {
-            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + expectedList.get(i) + "')]"));
+        WebElement Noticeplandetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + noticeInputDetails + "')]"));
+        Assert.assertTrue(Noticeplandetails.getText().contains(noticeInputDetails), "Plan notice details not found");
+        System.out.println("Dental Plan notice details found");
+
+        for (int i = 0; i < NoticedetailsdentalMembers.size(); i++) {
+            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + NoticedetailsdentalMembers.get(i) + "')]"));
             basicActions.waitForElementToBePresent(policyDetails, 30);
 
-            if (expectedList.get(i).equals("Primary")) {
+            if (NoticedetailsdentalMembers.get(i).equals("Primary")) {
                 String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
                 if (primaryMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(primaryMemberDetails)) {
                     System.out.println("Primary member details found: " + primaryMemberDetails);
@@ -478,15 +481,12 @@ public class NoticesPage {
                     System.out.println("Primary member details are null or not found in the policy details.");
                     Assert.fail("Primary member details not found.");
                 }
-
-            }
-            else{
+            } else {
                 List<MemberDetails> memberDetailsList = SharedData.getMembers();
                 List<String> names = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).collect(Collectors.toList());
                 String result = null;
-                for(String item : names) {
-                    if(item.contains(expectedList.get(i)))
-                    {
+                for (String item : names) {
+                    if (item.contains(NoticedetailsdentalMembers.get(i))) {
                         result = item;
                         break;
                     }
@@ -496,25 +496,24 @@ public class NoticesPage {
                     System.out.println("Member details found: " + policyMemberDetails);
                     Assert.assertTrue(policyDetails.getText().contains(policyMemberDetails), "Member details not found");
                 } else {
-                    Assert.assertTrue(policyDetails.getText().contains(expectedList.get(i)), "Plan notice details not found");
-                    System.out.println("Dental Plan notice details found");
+                    System.out.println("Member details are null or not found in the policy details.");
+                    Assert.fail("Member details not found.");
                 }
-
             }
-
         }
-
     }
 
+    public void validatemedicalPolicyMemberData(String noticeInputDetails, List<String> NoticedetailsmedicalMembers) {
 
-    public void verifyEmailmedicalPolicyNoticeDetails(String noticeInputDetails) {
-        List<String> expectedList = Arrays.asList(noticeInputDetails.split(";"));
+        WebElement Noticeplandetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + noticeInputDetails + "')]"));
+        Assert.assertTrue(Noticeplandetails.getText().contains(noticeInputDetails), "Plan notice details not found");
+        System.out.println("Medical Plan notice details found");
 
-        for (int i = 0; i < expectedList.size(); i++) {
-            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + expectedList.get(i) + "')]"));
+        for (int i = 0; i < NoticedetailsmedicalMembers.size(); i++) {
+            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + NoticedetailsmedicalMembers.get(i) + "')]"));
             basicActions.waitForElementToBePresent(policyDetails, 30);
 
-            if (expectedList.get(i).equals("Primary")) {
+            if (NoticedetailsmedicalMembers.get(i).equals("Primary")) {
                 String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
                 if (primaryMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(primaryMemberDetails)) {
                     System.out.println("Primary member details found: " + primaryMemberDetails);
@@ -523,39 +522,34 @@ public class NoticesPage {
                     System.out.println("Primary member details are null or not found in the policy details.");
                     Assert.fail("Primary member details not found.");
                 }
-
-            }
-            else{
+            } else {
                 List<MemberDetails> memberDetailsList = SharedData.getMembers();
                 List<String> names = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).collect(Collectors.toList());
                 String result = null;
-                for(String item : names) {
-                    if(item.contains(expectedList.get(i)))
-                    {
+
+                for (String item : names) {
+                    if (item.contains(NoticedetailsmedicalMembers.get(i))) {
                         result = item;
                         break;
                     }
                 }
+
                 String policyMemberDetails = result;
                 if (policyMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(policyMemberDetails)) {
                     System.out.println("Member details found: " + policyMemberDetails);
                     Assert.assertTrue(policyDetails.getText().contains(policyMemberDetails), "Member details not found");
                 } else {
-                    Assert.assertTrue(policyDetails.getText().contains(expectedList.get(i)), "Plan notice details not found");
-                    System.out.println("Medical Plan notice details found");
+                    System.out.println("Member details are null or not found in the policy details.");
+                    Assert.fail("Member details not found.");
                 }
-
             }
-
         }
     }
 
 
-
-    //WIP
-    public void verifypolicycoveragestartdatenotice() {
+    public void verifypolicycoveragestartdatenoticeminusfivedays() {
         WebElement planDetailsElement = basicActions.getDriver().findElement(
-                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4]"));
+                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, -5);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
@@ -567,19 +561,24 @@ public class NoticesPage {
             System.out.println("Coverage start date does NOT match. Expected: " + formattedDate + ", Found: " + planDetailsText);
         }
     }
-    //WIP
     public void verifyPolicyCoverageStartDateForNextMonth() {
 
         WebElement planDetailsElement = basicActions.getDriver().findElement(
-                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4]"));
+                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
+
+        String displayedDate = planDetailsElement.getText();
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 1);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
-
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String expectedDate = sdf.format(calendar.getTime());
+        if (displayedDate.equals(expectedDate)) {
+            System.out.println("Coverage start date matches: " + expectedDate);
+        } else {
+            System.out.println("Coverage start date does not match. Expected: "
+                    + expectedDate + ", but found: " + displayedDate);
+        }
     }
-
-
-
 
 
 

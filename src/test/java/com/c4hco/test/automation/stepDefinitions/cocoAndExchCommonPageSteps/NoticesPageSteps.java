@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.NoticesPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+
 public class NoticesPageSteps {
 
     NoticesPage noticesPage = new NoticesPage(WebDriverManager.getDriver());
@@ -95,17 +97,28 @@ public class NoticesPageSteps {
         noticesPage.VerifyTheNoticeTextAM01603();
     }
 
+    @And("I validate the notices  policy member data for coverage start date for next month")
+    public void verifyPolicyCoverageStartDateForNextMonth() {
+        noticesPage.verifyPolicyCoverageStartDateForNextMonth();
+    }
+
+    @And("I validate the notices  policy member data for coverage start date minus five days")
+    public void verifypolicycoveragestartdatenoticeminusfivedays() {
+        noticesPage.verifypolicycoveragestartdatenoticeminusfivedays();
+    }
+
 
     @And("I validate the notices Dental policy member data {string}")
-    public void verifyemailPolicyNoticedetails(String noticeInputDetails ) {
-        noticesPage.verifyEmaildentalPolicyNoticeDetails(noticeInputDetails);
+    public void validateDentalPolicyMemberData(String noticeInputDetails, List <String> NoticedetailsdentalMembers) {
+        noticesPage.validateDentalPolicyMemberData(noticeInputDetails, NoticedetailsdentalMembers);
     }
 
 
-    @And("I validate the notices medical policy data {string}")
-    public void verifymedicalpolicynotice(String MedicalPlocitydetails ) {
-        noticesPage.verifyEmailmedicalPolicyNoticeDetails(MedicalPlocitydetails);
+    @And("I validate the notices medical policy member data {string}")
+    public void validatemedicalPolicyMemberData(String noticeInputDetails, List <String> NoticedetailsmedicalMembers) {
+        noticesPage.validatemedicalPolicyMemberData(noticeInputDetails, NoticedetailsmedicalMembers);
     }
+
 
     @Then("I click the password reset link")
     public void iClickThePasswordResetLink() {
