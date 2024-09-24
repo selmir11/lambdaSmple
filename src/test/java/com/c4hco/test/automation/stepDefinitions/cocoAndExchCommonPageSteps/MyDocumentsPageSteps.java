@@ -45,6 +45,11 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.verifyPDFText(expectedText, docType, language, memberNumber);
     }
 
+    @Then("I validate Mail {string}: {string} notice in {string} for {string} members")
+    public void iValidateMailNotice(String expectedText, String docType, String language, String memberNumber) throws IOException {
+        myDocumentsPage.verifyMailPDFText(expectedText, docType, language, memberNumber);
+    }
+
     @And("I click on upload another document")
     public void iClickOnUploadAnotherDocument() {
         myDocumentsPage.clickUploadAnotherDocument();
