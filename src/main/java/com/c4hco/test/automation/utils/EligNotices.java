@@ -71,38 +71,71 @@ public class EligNotices {
 
     public static String getMailApplicationResults(String docType, String language, String memberNumber) {
         String timestamp = getCurrentTimestamp(language);
-        String pageTotal = "0";
 
-        switch (docType) {
-            case "Ineligible: Did Not Apply" -> {
-                pageTotal = "7";
-            }
-            case "Ineligible: Not CO Resident" -> {
-                pageTotal = "7";
-            }
-            case "Health First Colorado" -> {
-                pageTotal = "8";
-            }
-            case "ANAI" -> {
-                pageTotal = "10";
-            }
-            default -> throw new IllegalArgumentException("Invalid docType:" + docType);
-        }
+        return switch (language) {
+            case "English" ->
+                String.format("Page  of 1 " + getPageTotal(docType, language, memberNumber) + " Questions? Call 855-752-6749\n" +
+                        "Connect for Health Colorado\n" +
+                        "4600 South Ulster Street Suite 300\n" +
+                        "Denver CO 80237\n" +
+                        SharedData.getPrimaryMember().getFullName() + "\n" +
+                        SharedData.getPrimaryMember().getMailingAddress().getAddressLine1() + "\n" +
+                        SharedData.getPrimaryMember().getMailingAddress().getAddressCity() +
+                        " " + SharedData.getPrimaryMember().getMailingAddress().getAddressState() +
+                        " " + SharedData.getPrimaryMember().getMailingAddress().getAddressZipcode() + "\n" +
+                        "NOTICEELG10101\n" +
+                        "ELG-101-01\n" +
+                        "Account Number: " + SharedData.getPrimaryMember().getAccount_id() + "\n" +
+                        timestamp + " at \n");
 
+            case "Spanish" ->
+                String.format("Pagin\u00E1  de 1 "+getPageTotal(docType, language, memberNumber)+" Questions? Call 855-752-6749\n" +
+                        "Connect for Health Colorado\n" +
+                        "4600 South Ulster Street Suite 300\n" +
+                        "Denver CO 80237\n" +
+                        SharedData.getPrimaryMember().getFullName()+"\n" +
+                        SharedData.getPrimaryMember().getMailingAddress().getAddressLine1()+"\n" +
+                        SharedData.getPrimaryMember().getMailingAddress().getAddressCity()+
+                        " "+SharedData.getPrimaryMember().getMailingAddress().getAddressState()+
+                        " "+SharedData.getPrimaryMember().getMailingAddress().getAddressZipcode()+"\n" +
+                        "NOTICEELG10101\n" +
+                        "ELG-101-01\n" +
+                        "N\u00FAmero de Cuenta: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
+                        timestamp+ " a las \n");
+            default -> throw new IllegalStateException("Unexpected value: " + language);
+        };
+    }
 
-        return String.format("Page  of 1 "+pageTotal+" Questions? Call 855-752-6749\n" +
-                "Connect for Health Colorado\n" +
-                "4600 South Ulster Street Suite 300\n" +
-                "Denver CO 80237\n" +
-                SharedData.getPrimaryMember().getFullName()+"\n" +
-                SharedData.getPrimaryMember().getMailingAddress().getAddressLine1()+"\n" +
-                SharedData.getPrimaryMember().getMailingAddress().getAddressCity()+
-                " "+SharedData.getPrimaryMember().getMailingAddress().getAddressState()+
-                " "+SharedData.getPrimaryMember().getMailingAddress().getAddressZipcode()+"\n" +
-                "NOTICEELG10101\n" +
-                "ELG-101-01\n" +
-                "Account Number: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
-                timestamp+" at \n");
+    private static String getPageTotal(String docType, String language, String memberNumber) {
+
+        return switch (docType) {
+          case "Ineligible: Did Not Apply" -> "7";
+          case "Ineligible: Not CO Resident" -> "7";
+          case "QHP" -> "7";
+          case "Health First Colorado" -> "8";
+          case "ANAI" -> getANAIPageTotal(language, memberNumber);
+          default -> throw new IllegalArgumentException("Unexpected value: " + docType);
+        };
+
+    }
+
+    private static String getANAIPageTotal(String language, String memberNumber) {
+
+        return switch (memberNumber) {
+            case "1" ->
+                switch (language) {
+                case "English" -> "10";
+                case "Spanish" -> "10";
+                default -> throw new IllegalArgumentException("Unexpected language: " + language);
+                };
+            case "2" ->
+                switch (language) {
+                case "English" -> "11";
+                case "Spanish" -> "12";
+                default -> throw new IllegalArgumentException("Unexpected language: " + language);
+                };
+            default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+        };
     }
 
     public static String getApplicationResults(String docType, String language, String memberNumber) {
