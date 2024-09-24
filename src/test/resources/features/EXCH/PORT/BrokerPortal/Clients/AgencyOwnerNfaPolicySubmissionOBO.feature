@@ -1,4 +1,4 @@
-@BrokerPortalClients @port
+@BrokerPortalClients @port @SLER-916
 Feature: Broker Portal OBO - Submit NFA Application and enroll in a plan
 
   @SLER-916
@@ -27,7 +27,7 @@ Feature: Broker Portal OBO - Submit NFA Application and enroll in a plan
     And I click Authorized broker
     And I validate current Broker text exists
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
-
+  @SLER-916
   Scenario: : Agency owner working OBO to submit an NFA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
@@ -104,13 +104,12 @@ Feature: Broker Portal OBO - Submit NFA Application and enroll in a plan
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
 
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
 
-    And I validate I am on the "Pay now" page
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
     Then I click all done from payment portal page OBO
 
     And I validate I am on the "Broker Portal Your Clients" page

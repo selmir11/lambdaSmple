@@ -18,6 +18,15 @@ public class BasicSteps {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
+            case "Admin Login":
+                pageUrl = "login-portal/login/adminUsers";
+                break;
+                case "Program Manager Login":
+                pageUrl = "login-portal/login/programManagers";
+                break;
+                case "Broker Portal Login":
+                pageUrl = "login-portal/login/brokers";
+                break;
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
