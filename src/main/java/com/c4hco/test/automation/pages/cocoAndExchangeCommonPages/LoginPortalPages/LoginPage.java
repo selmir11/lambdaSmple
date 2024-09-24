@@ -13,6 +13,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LoginPage {
 
     SoftAssert softAssert = new SoftAssert();
@@ -80,6 +84,10 @@ public class LoginPage {
 
     @FindBy(css = "div.help-block.text-danger.mb-3.form-group-custom.mb-0.ng-star-inserted")
     WebElement lockedOutMessage;
+    @FindBy(id = "user-type-selection")
+    WebElement userIcon;
+    @FindBy(xpath = "//a[@id='user-type-selection']//p")
+    List<WebElement> userIconDropdown;
 
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
@@ -429,5 +437,41 @@ public class LoginPage {
         softAssert.assertTrue(lockedOutMessage.isDisplayed());
         softAssert.assertAll();
         basicActions.closeBrowserTab();
+    }
+
+    public void clickUserTypeIconInTheLoginPage(String portal) {
+        basicActions.waitForElementToBePresent(userIcon,30);
+        userIcon.click();
+
+        List<String> indUserOptions = Arrays.asList("Broker Portal", "Program Manager Account", "Admin Portal");
+        List<String> indUserOptionsSP = Arrays.asList("Portal del agente","Cuenta del gerente de programa","Portal del administrador");
+
+
+        List<String> existingOptions = new ArrayList<>();
+        for (WebElement userIconeOption : userIconDropdown) {
+            String text = userIconeOption.getText();
+            existingOptions.add(text);
+        }
+        switch (portal){
+            case "Ind Portal":
+              softAssert.assertEquals(existingOptions,indUserOptions);
+              break;
+            case "Ind Portal SP":
+                softAssert.assertEquals(existingOptions,indUserOptionsSP);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + portal);
+        }
+        softAssert.assertAll();
+    }
+
+    public void clickTheOptionRequested(String userOption) {
+        for (WebElement userIconeOption : userIconDropdown) {
+            String text = userIconeOption.getText();
+            if (text.equals(userOption)){
+                userIconeOption.click();
+                break;
+            }
+        }
     }
 }
