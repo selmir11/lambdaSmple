@@ -92,6 +92,7 @@ public class EditGroupingMemberMedicalCoCoPage {
 
     public void createNewGroup(List<String> grouping) {
         basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(createNewGroupLink,40);
         while (grouping.size()+1 != dragAMemberHere.size()) {
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
