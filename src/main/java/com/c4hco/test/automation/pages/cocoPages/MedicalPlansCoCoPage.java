@@ -31,7 +31,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
 
-    @FindBy(id = "PlanResults-InsuranceCompany")
+    @FindBy(xpath = "//*[@id='PlanResults-InsuranceCompany']")
     WebElement insuranceCompanyDropdown;
 
     @FindBy(id = "PlanResults-ResetFilters")
@@ -81,18 +81,23 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "MedicalPlanResults-GoBack")
     WebElement goBackbtn;
 
+    @FindBy(id ="PlanResults-MonthlyPremium_1")
+    WebElement planIndividualTotalCoCo;
+
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
     }
 
     public void selectContinueMedicalPlansCoCo() {
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBeClickableWithRetries(continueButton, 20);
         continueButton.click();
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToBeClickable(insuranceCompanyDropdown, 30);
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresentWithRetries(insuranceCompanyDropdown, 40);
         insuranceCompanyDropdown.click();
 
     }
@@ -125,6 +130,17 @@ public class MedicalPlansCoCoPage {
         basicActions.waitForElementToBePresent( planTotalsCoCo,20 );
         Assert.assertEquals(planTotalsCoCo.getText(), sesPlanTotal+" of 24 Medical Plans", "Medical plans count did not match");
 
+    }
+
+    public void validateCOCOPlanIndividualPremium(int index, String planIndividualTotal){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent( planIndividualTotalCoCo,20 );
+        //index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
+        String indexString = String.valueOf(index); //turns the int index into a string value.
+        String planIndividualPremium = "PlanResults-MonthlyPremium_" + indexString; //sets the ID String using the index
+        WebElement ePlanPremiumID = basicActions.getDriver().findElement(By.id(planIndividualPremium)); //sets the Web element based on the ID
+        String expectedText = ePlanPremiumID.getText();
+        expectedText.equals(planIndividualTotal); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
     public void selectfromProviderList(String Selecting) {

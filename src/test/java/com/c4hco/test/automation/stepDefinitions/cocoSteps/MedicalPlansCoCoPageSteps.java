@@ -16,8 +16,7 @@ public class MedicalPlansCoCoPageSteps {
     public void selectContinueMedPlansCoCo(){medicalPlansCoCoPage.selectContinueMedicalPlansCoCo();}
 
     @And("I select the COCO Insurance Company dropdown")
-    public void clickInsuranceCompanyDropdown() {
-        medicalPlansCoCoPage.clickInsuranceCompanyDropdown();
+    public void clickInsuranceCompanyDropdown() {medicalPlansCoCoPage.clickInsuranceCompanyDropdown();
     }
 
     @And("I select the COCO Metal Tier dropdown")
@@ -39,16 +38,17 @@ public class MedicalPlansCoCoPageSteps {
     public void validateCOCOPlanTotals(String planTotal){medicalPlansCoCoPage.validateCOCOPlanTotals(planTotal);}
 
     @And( "I validate the SES plan totals are {string} on the COCO Medical Plan Results page" )
-    public void validateSESCOCOPlanTotals(String planTotal){medicalPlansCoCoPage.validateSESCOCOPlanTotals(planTotal);}
+    public void validateSESCOCOPlanTotals(String planIndividualTotal){medicalPlansCoCoPage.validateSESCOCOPlanTotals(planIndividualTotal);}
+
+    @And( "I validate the Plan {int} total is {string} on the COCO Medical Plan Results page" )
+    public void validateCOCOPlanIndividualPremium(int Index,String planCocoPremium){medicalPlansCoCoPage.validateCOCOPlanIndividualPremium(Index,planCocoPremium);}
 
     @And("I select {string} to filter for desired COCO plan provider")
-    public void selectfromProviderList(String carrierOption) {
-        medicalPlansCoCoPage.selectfromProviderList(carrierOption);
+    public void selectfromProviderList(String carrierOption) {medicalPlansCoCoPage.selectfromProviderList(carrierOption);
     }
 
     @And("I validate the COCO plan option {int} has text {string}")
-    public void validatePlanText(int Index, String planText) {
-        medicalPlansCoCoPage.validatePlanResults(Index, planText);
+    public void validatePlanText(int Index, String planText) {medicalPlansCoCoPage.validatePlanResults(Index, planText);
     }
 
     @And( "I select initial 3 plans and click the Compare button" )
