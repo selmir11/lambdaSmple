@@ -13,7 +13,7 @@ Feature: Trigger Admin user Password reset and confirmation Notices AM-016-07 AN
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
     Then I open the notice "Password Reset Link" in "English"
-    And I verify the notice Text for "AM-016-07" in "English" for "Exch"
+    And I verify the notice Text for "AM-016-07" in "English" for "Broker"
     Then I click the password reset link
     Then I delete the open notice
     And I sign out of Outlook
@@ -22,6 +22,6 @@ Feature: Trigger Admin user Password reset and confirmation Notices AM-016-07 AN
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
     Then I open the notice "Confirmation: Account Password Reset" in "English"
-    And I verify the notice Text for "AM-016-08" in "English" for "Exch"
+    And I verify the notice Text for "AM-016-08" in "English" for "Broker"
     Then I delete the open notice
     And I sign out of Outlook
