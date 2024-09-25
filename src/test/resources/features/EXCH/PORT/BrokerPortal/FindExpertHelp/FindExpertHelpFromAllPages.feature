@@ -53,9 +53,9 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   And I click on Get Assistance in the "Exch" Header
   And I click on Find Expert Assistance in the "Exch" Header
   Then I click Go Back button from chrome browser
-
+  Then I click continue on application results page
   And I click continue on start shopping page
-  Then I validate I am on the "Medical Plan Results" page
+  Then I validate I am on the "Start Shopping" page
   And I click on Get Assistance in the "Exch" Header
   And I click on Find Expert Assistance in the "Exch" Header
   Then I click Go Back button from chrome browser
@@ -71,15 +71,16 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   Then I click on Get Assistance in the "Exch" Header
   And I click on Find Expert Assistance in the "Exch" Header
   Then I click Go Back button from chrome browser
-  And I select "Terms of Use" agreement checkbox
-  And I select "Privacy Policy" agreement checkbox
-  And I select "Understand Law" agreement checkbox
+  Then I validate I am on the "Enrollment Agreements" page
+  And I select "Acknowledgement" agreement checkbox
+  And I select "Submit" agreement checkbox
   And I enter householder signature on the Enrollment Agreements page
-  And I click continue on Enrollment Agreements page
-  Then I validate I am on the "Pay now" page
-  Then I click all done from payment portal page
-  Then I validate I am on the "Account Overview" page
-  And I click on Sign Out in the Header for "NonElmo"
+  Then I click submit enrollment on Enrollment Agreements page
+  #And I click continue on Enrollment Agreements page
+  #Then I validate I am on the "Pay now" page
+  #Then I click all done from payment portal page
+  #Then I validate I am on the "Account Overview" page
+  #And I click on Sign Out in the Header for "NonElmo"
 
 
 
