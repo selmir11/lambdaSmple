@@ -1,9 +1,9 @@
 @MVR
 Feature: Testing Manual Verification Requests (MVRs)
 
-#  Background: I go the login portal
-#    Given I open the login page on the "login" portal
-#    And I validate I am on the "Login" page
+  Background: I go the login portal
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
 
   Scenario: Income MVR
     When I click create a new account on login page
@@ -97,3 +97,5 @@ Feature: Testing Manual Verification Requests (MVRs)
   Scenario: Testing CRM
     Then I log into the CRM system
     Then I search for user via Email and open first option
+    Then I open the MVR/DVR Tab on contact page
+    Then I open the "Income" MVR

@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CRMPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,7 @@ public class CRMDashboardPage {
         basicActions.waitForElementToBePresent(txtCRMDashSearchBox, 30);
         txtCRMDashSearchBox.sendKeys("AutomationUser.douggeahgx@test.com");
 
-        basicActions.waitForElementToBePresent(btnFirstContactOption, 30);
+        basicActions.wait(5000);
+        txtCRMDashSearchBox.sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
     }
 }

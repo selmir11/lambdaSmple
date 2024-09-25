@@ -1,3 +1,4 @@
+@ELIG
 Feature: Page validations on ELIG pages
 
   Background:

@@ -1,3 +1,4 @@
+@ELIG
 Feature: Verify all English and Spanish Text on ELIG pages
 
   Background:

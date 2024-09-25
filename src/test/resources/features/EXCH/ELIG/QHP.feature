@@ -1,4 +1,4 @@
-@QHP
+@QHP @ELIG
 Feature: Testing will verify eligibility rules for Qualified Health Plan
 
   Background: I go the login portal

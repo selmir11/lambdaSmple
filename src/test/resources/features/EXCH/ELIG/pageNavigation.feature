@@ -1,3 +1,4 @@
+@ELIG
 Feature: Verify Navigation to the ELIG Pages
 
   Background:

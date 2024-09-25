@@ -1,4 +1,4 @@
-@APTC
+@APTC @ELIG
 Feature: UI Tests related to APTC
 
   Background: I go the login portal
