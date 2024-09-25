@@ -62,7 +62,7 @@ public class MedicalPlansCoCoPageSteps {
     @And("I validate the COCO plan option {int} has text {string}")
     public void validatePlanText(int Index, String planText) {
         medicalPlansCoCoPage.validatePlanResults(Index, planText);}
-    
+
     @Then("I validate sorting based on {string} in coco medical page")
     public void validateMedicalPremiumSorting(String sortingTypeSelection) {
         medicalPlansCoCoPage.evaluateSortingValue(sortingTypeSelection);
