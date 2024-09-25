@@ -39,10 +39,7 @@ public class MedicalPlansCoCoPageSteps {
 
     @And( "I validate the SES plan totals are {string} on the COCO Medical Plan Results page" )
     public void validateSESCOCOPlanTotals(String planIndividualTotal){medicalPlansCoCoPage.validateSESCOCOPlanTotals(planIndividualTotal);}
-
-    @And( "I validate the Plan {int} total is {string} on the COCO Medical Plan Results page" )
-    public void validateCOCOPlanIndividualPremium(int Index,String planCocoPremium){medicalPlansCoCoPage.validateCOCOPlanIndividualPremium(Index,planCocoPremium);}
-
+    
     @And("I select {string} to filter for desired COCO plan provider")
     public void selectfromProviderList(String carrierOption) {medicalPlansCoCoPage.selectfromProviderList(carrierOption);
     }
