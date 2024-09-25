@@ -1,5 +1,8 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.Address;
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -95,7 +98,8 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementListToBePresent(stateDropdownOptions, 90);
         basicActions.waitForElementListToBePresentWithRetries(AddInfoForYourselfPageText, 90);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
-        basicActions.scrollToElement(saveAndContinueButton);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 150);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 150);
         saveAndContinueButton.click();
     }
 
@@ -129,6 +133,8 @@ public class AddInfoForYourselfPage {
     }
 
     public void memberResidentialAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        Address address = new Address();
         basicActions.waitForElementToBePresent(addressLine1Input, 30);
         addressLine1Input.sendKeys(addressLine1);
 
@@ -145,9 +151,17 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementToBeClickable(countyDropdown, 30);
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
+
+        address.setAddressLine1(addressLine1);
+        address.setAddressCity(city);
+        address.setAddressState(state);
+        address.setAddressZipcode(zipcode);
+        address.setAddressCounty(county);
+        subscriber.setResAddress(address);
     }
 
     public void memberMailingAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(mailingAddressLine1Input, 30);
         mailingAddressLine1Input.sendKeys(addressLine1);
         basicActions.waitForElementToBePresent(mailingCityInput, 30);
@@ -162,6 +176,13 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementToBeClickable(mailingCountyDropdown, 30);
         mailingCountyDropdown.click();
         basicActions.selectValueFromDropdown(mailingCountyDropdown, mailingCountyDropdownOptions, county);
+        Address mailinglAddress = new Address();
+        mailinglAddress.setAddressLine1(addressLine1);
+        mailinglAddress.setAddressCity(city);
+        mailinglAddress.setAddressState(state);
+        mailinglAddress.setAddressZipcode(zipcode);
+        mailinglAddress.setAddressCounty(county);
+        subscriber.setMailingAddress(mailinglAddress);
     }
 
     public void clickGoBackButton() {

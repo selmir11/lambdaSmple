@@ -21,15 +21,17 @@ public class WelcomePage {
     @FindBy(xpath = "//div[@class='body-text-1 apply-text-body']")
     WebElement theAnnualOpenEnrollmentText;
 
-    @FindBy(css = ".apply-button-container button")
-    WebElement applyForCurrentYearButton;
-
+    @FindBy(xpath = "//*[@id='ELIG-WelcomePage-ApplyForInsurance-2024' or @id='ELIG-WelcomePage-ApplyForInsurance-2024']")
+    WebElement applyForCurrentYearButton; //Locator for both QA and Staging
+    @FindBy(css = "button#ELIG-WelcomePage-ApplyForInsurance-2025")
+    WebElement btnApplyForNextYearCoco;
     @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
 
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
-
+    @FindBy(css = "#planYear option")
+    List<WebElement> planYearSelectorOptions;
     @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
 
@@ -63,8 +65,25 @@ public class WelcomePage {
     }
 
     public void clickApplyForInsurance() {
-        basicActions.waitForElementToBeClickable(applyForCurrentYearButton, 30);
-        applyForCurrentYearButton.click(); }
+        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+        WebElement applyForYrCoco;
+
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+            applyForYrCoco = btnApplyForNextYearCoco;
+        } else{
+            applyForYrCoco = applyForCurrentYearButton;
+        }
+        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
+        String year = applyForYrCoco.getText().replace("Apply for ", "");
+        SharedData.setPlanYear(year);
+        applyForYrCoco.click();
+    }
+
+    public void selectPlanyear(String planYear){
+        basicActions.waitForElementToBeClickable(planYearSelectorDp,10);
+        planYearSelectorDp.click();
+        basicActions.selectValueFromDropdown(planYearSelectorDp,planYearSelectorOptions,planYear);
+    }
 
     public void clickActionLinks(String actionLink) {
         basicActions.waitForElementListToBePresentWithRetries(actionLinks, 5);
@@ -290,7 +309,7 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlan.getText(), "Medical Plan");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
-        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
+        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "1-303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Monthly Plan Payment");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mo");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Additional Resources");
@@ -325,7 +344,7 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlan.getText(), "Plan m\u00E9dico");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), policyName);
         softAssert.assertEquals(policyMedicalDetails.get(1).getText(), policyLevel);
-        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "303-602-2090");
+        softAssert.assertEquals(policyMedicalDetails.get(3).getText(), "1-303-602-2090");
         softAssert.assertEquals(policyMonthlyDetails.get(0).getText(), "Pago mensual del plan");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText(), "$"+policyPremium+"/mes");
         softAssert.assertEquals(containerHeaderText.get(2).getText(), "Otros recursos");

@@ -1,4 +1,5 @@
 @APTC,@APTC-SIR, @APTC-SIR-Single
+  # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal
@@ -6,18 +7,21 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-131
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2349 - 40 year old
+  Scenario: ELIG-APTCRules - SLER-131 - formerly RT-2349 - 40 year old - lost coverage
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
+
     And I report "Marriage" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -106,12 +110,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -188,7 +190,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     Then I validate I am on the "Tell us about life changes" page
-    And  I select "MoveToCO" QLCE on tell us about life changes page
+    And  I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -200,7 +202,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$139.14/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$139.14/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -222,7 +224,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2350 - 40 year old
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-322 - formerly RT-2350 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -322,11 +324,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -397,7 +398,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click save and continue on tax status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    #Then I select "None of these" as ELMO health coverage option
+
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
@@ -416,7 +417,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$265.98/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$265.98/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -440,17 +441,16 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
-    And I click on Sign Out in the Header for "Portal"
+    Then I click all done from payment portal page
 
     @SLER-319
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2351 - 60 year old
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-319 - formerly RT-2351 - 60 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -549,14 +549,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+      Then I validate I am on the "Enrollment Agreements" page
+      And I select "Acknowledgement" agreement checkbox
+      And I select "Submit" agreement checkbox
+      And I enter householder signature on the Enrollment Agreements page
+      And I click submit enrollment on Enrollment Agreements page
 
-    Then I validate I am on the "Pay now" page
+
+      Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
@@ -642,7 +642,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$837.85/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$837.85/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -664,7 +664,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-320
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2352 - 62 year old
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-320 - formerly RT-2352 - 62 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -764,11 +764,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -855,7 +855,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$944.39/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$944.39/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -877,7 +877,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-321
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2353 - 50 year old
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-321 - formerly RT-2353 - 50 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -979,11 +979,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1070,7 +1070,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$646.42/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$646.42/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1092,7 +1092,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-323
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2354 - 40 year old //born in 1976
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-323 - formerly RT-2354 - 40 year old //born in 1976
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1194,11 +1194,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1285,7 +1284,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$384.17/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$384.17/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1307,7 +1306,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
 @SLER-375
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2355 - 40 year old
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-375 - formerly RT-2355 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1410,11 +1409,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1502,7 +1501,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$727.71/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$727.71/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1524,7 +1523,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-324
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - formerly RT-2356 - 65 year old
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-324 -formerly RT-2356 - 65 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1624,11 +1623,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1716,7 +1715,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1737,9 +1736,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  # index issue
   @SLER-691
-  Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2340 - income change from 10K to 100K
+  Scenario: ELIG-APTC Eligible-APTCRules - SLER-691 - formerly RT-2340 - income change from 10K to 100K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1839,11 +1837,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -1930,7 +1927,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1952,7 +1949,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-690
-  Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2341- income change from 100K to 10K
+  Scenario: ELIG-APTC Eligible-APTCRules - SLER-690 - formerly RT-2341- income change from 100K to 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2052,11 +2049,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -2144,7 +2140,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2166,7 +2162,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-689
-  Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2342- income change from 50K to 35K
+  Scenario: ELIG-APTC Eligible-APTCRules - SLER-689 - formerly RT-2342- income change from 50K to 35K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2266,11 +2262,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -2357,7 +2352,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$350.03/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$350.03/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2379,7 +2374,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-692
-  Scenario: ELIG-APTC Eligible-APTCRules - formerly RT-2343- income change from 50K to 65K
+  Scenario: ELIG-APTC Eligible-APTCRules - SLER-692 -formerly RT-2343- income change from 50K to 65K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2479,11 +2474,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
@@ -2570,7 +2565,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page

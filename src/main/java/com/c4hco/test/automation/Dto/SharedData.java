@@ -21,6 +21,10 @@ public class SharedData {
     @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities;
     @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
     @Getter @Setter private static String dentalFileName;
+    @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
+    @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
+    @Getter @Setter private static String medicalIb999FileName;
+    @Getter @Setter private static String dentalIb999FileName;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
@@ -32,6 +36,7 @@ public class SharedData {
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
     @Getter @Setter private static String isOpenEnrollment;
+    @Getter @Setter private static String ses;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
     @Getter @Setter private static Boolean hasBroker = false;
@@ -42,6 +47,9 @@ public class SharedData {
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
     @Getter @Setter private static Map<String, List<String>> groupingDetails;
     @Getter @Setter private static ScenarioDetails scenarioDetails;
+    @Getter @Setter private static String medGroupCtlNumber;
+    @Getter @Setter private static String denGroupCtlNumber;
+
 
 
     public static void reset(){
@@ -63,6 +71,7 @@ public class SharedData {
         noticeFileName = null;
         bookOfBusinessQEntityList = null;
         isOpenEnrollment = null;
+        ses = null;
         scenarioDetails = null;
     }
 

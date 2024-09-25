@@ -175,7 +175,7 @@ Feature: End to End Testing
     And I select continue on the income Summary CoCo page
 
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "Spouse", "08111990", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Spouse", "08111990", "Male", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -195,7 +195,7 @@ Feature: End to End Testing
     And I select continue on the income Summary CoCo page
 
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "04252005", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "04252005", "Male", and applying "Yes"
       |Primary:Child or Other dependent |
       |Spouse:Child or Other dependent    |
     And I click continue on Tell us about additional members of your household page
@@ -216,7 +216,7 @@ Feature: End to End Testing
     And I select continue on the income Summary CoCo page
 
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "03132008", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "03132008", "Female", and applying "Yes"
       | Primary:Child or Other dependent |
       | Spouse:Child or Other dependent  |
       | Son:Sibling                    |
@@ -294,11 +294,10 @@ Feature: End to End Testing
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
     And I click Continue button on the Medical Dental Page CoCo
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"

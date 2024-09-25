@@ -47,8 +47,11 @@ public class MedicalPlanResultsPage {
     @FindBy (id="MedicalPlanResults-Skip")
     WebElement btnSkip;
 
-    @FindBy(xpath = "//input[contains (@id, 'mat-mdc-checkbox')]")
-    List<WebElement> comparePlanLinks;
+    @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
+    WebElement firstCompareBox;
+
+    @FindBy(id = "PlanResults-PlanCompareCheckbox_2")
+    WebElement secondCompareBox;
 
     @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
@@ -105,12 +108,13 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickContinue() {
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent(continueBtn,30);
         continueBtn.click();
     }
 
     public void clickGoBack(){
-        basicActions.waitForAngular( 10 );
+        basicActions.waitForAngular(20 );
         basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent( btnGoBack,30 );
         basicActions.scrollToElement( btnGoBack );
@@ -134,13 +138,14 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementListToBePresent(comparePlanLinks, 30);
-        comparePlanLinks.get(0).click();
-        comparePlanLinks.get(1).click();
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( firstCompareBox,10 );
+        firstCompareBox.click();
+        secondCompareBox.click();
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( insuranceCompanyDropdown,30 );
         insuranceCompanyDropdown.click();
 

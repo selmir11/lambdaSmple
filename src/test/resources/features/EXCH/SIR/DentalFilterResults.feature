@@ -6,7 +6,7 @@ Feature: Dental Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-81 @SelectVerifyDentalCoverageLevelFilterResults
-  Scenario Outline: SelectVerifyDentalCoverageLevelFilterResults - used to be RT-1966
+  Scenario Outline: SLER-81 - SelectVerifyDentalCoverageLevelFilterResults - used to be RT-1966
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -71,7 +71,7 @@ Feature: Dental Plan Verification test
 
 
   @SLER-96 @SelectVerifyDentalInsuranceCompanyFilterResults
-  Scenario Outline: SelectVerifyDentalInsuranceCompanyFilterResults - used to be RT-1658
+  Scenario Outline: SLER-96 - SelectVerifyDentalInsuranceCompanyFilterResults - used to be RT-1658
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -135,8 +135,8 @@ Feature: Dental Plan Verification test
     |Delta Dental        |Delta Dental of Colorado Pediatric Comprehensive Plan   |
     |Solstice Health     |EssentialSmile Colorado - Total Care                    |
 
-  @SLER-837-WIP @SelectVerifyDentalPediatricPlansOnlyMinor
-  Scenario: SelectVerifyDentalPediatricPlansOnlyMinor
+  @SLER-837 @SelectVerifyDentalPediatricPlansOnlyMinor
+  Scenario: SLER-837 - SelectVerifyDentalPediatricPlansOnlyMinor
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -197,7 +197,7 @@ Feature: Dental Plan Verification test
 
 
   @SLER-862 @SelectVerifyDentalPediatricPlansOnlyAdult
- Scenario: SelectVerifyDentalPediatricPlansOnlyAdult
+ Scenario: SLER-862 - SelectVerifyDentalPediatricPlansOnlyAdult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -257,7 +257,7 @@ Feature: Dental Plan Verification test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-863 @SelectVerifyDentalPediatricPlansAdultWithMinor
-  Scenario: Verify Pediatric plans available for group of two
+  Scenario: SLER-863 - Verify Pediatric plans available for group of two
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

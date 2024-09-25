@@ -224,9 +224,9 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     Then I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Enhanced Plan" plan
+    And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
-    And I select "Delta Dental of Colorado Family Enhanced Plan" plan
+    And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
@@ -236,11 +236,10 @@ Feature: Seed08 - Exchange
     And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"

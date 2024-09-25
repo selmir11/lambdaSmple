@@ -218,6 +218,32 @@ public class CreateAccountPage {
                 onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            case "Admin coco":
+                onBehalfOfPrimaryUserCheckbox.click();
+                cocoTermsOfUseCheckbox.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + appType);
+
+        }
+        submitButton.click();
+    }
+
+    public void createSpecificAccount(String fName, String lName, String appType){
+        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
+        SharedData.setAppType(appType);
+        addSpecificDetails(fName, lName);
+        switch(appType){
+            case "coco":
+                cocoTermsOfUseCheckbox.click();
+                break;
+            case "exchange":
+                exchangeTermsOfUseCheckbox.click();
+                break;
+            case "Admin exchange":
+                onBehalfOfPrimaryUserCheckbox.click();
+                exchangeTermsOfUseCheckbox.click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);
 
@@ -271,11 +297,18 @@ public class CreateAccountPage {
         submitButton.click();
     }
 
+    public String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
 
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
-        subscriber.setLastName(getUniqueString(8)+"Test");
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -296,7 +329,7 @@ public class CreateAccountPage {
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("Primary"+ getUniqueString(6));
-        subscriber.setLastName(getUniqueString(7)+"Test");
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(7)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -304,9 +337,19 @@ public class CreateAccountPage {
     }
     public void initializeDataGmail(String emailBase){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName(getUniqueString(10)+"TestMember");
-        subscriber.setLastName(getUniqueString(10)+"Test");
+        subscriber.setFirstName(capitalizeFirstLetter(getUniqueString(10)+"TestMember"));
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(10)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
+    }
+
+    public void initializeSpecificData(String fName, String lName){
+        MemberDetails subscriber = new MemberDetails();
+        subscriber.setFirstName(fName);
+        subscriber.setLastName(lName);
+        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+getUniqueString(6)+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
@@ -351,6 +394,28 @@ public class CreateAccountPage {
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
         phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        String primaryPhone = subscriber.getPhoneNumber().replaceAll("-", "");
+        subscriber.setPhoneNumber(primaryPhone);
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        preferredLanguageButtonEnglish.click();
+        subscriber.setSpokenLanguage("English");
+        subscriber.setWrittenLanguage("English");
+        primaryUserCheckbox.click();
+        subscriber.setRelation_to_subscriber("SELF");
+        SharedData.setPrimaryMember(subscriber);
+    }
+
+    public void addSpecificDetails(String fName, String lName){
+        initializeSpecificData(fName, lName);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 60);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        email.sendKeys(subscriber.getEmailId());
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
         password.sendKeys(subscriber.getPassword());
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
@@ -360,6 +425,7 @@ public class CreateAccountPage {
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);
     }
+
     public void createGeneralAccountGmail(String appType, String emailBase){
         // Creates the primary user/Account holder
         basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
@@ -419,8 +485,8 @@ public class CreateAccountPage {
 
     public void initializeBrokerData(String accountType, String emailBase){
         BrokerDetails user = new BrokerDetails();
-        user.setFirstName(getUniqueString(8)+"TestBroker");
-        user.setLastName(getUniqueString(8)+"Test");
+        user.setFirstName(capitalizeFirstLetter(getUniqueString(8)+"TestBroker"));
+        user.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
         user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
         user.setPhoneNumber((String) generatePhoneNumber());
         user.setLicense((String) generateBrokerLicense());

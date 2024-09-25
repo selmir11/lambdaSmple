@@ -113,7 +113,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
 
     public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, List<String> Relations, String applying) {
 
-        String frstName = Name+getUniqueString(8);
+        String frstName = Name + getUniqueString(8);
         String mdlName = getUniqueString(8);
         String lastName = getUniqueString(12);
         basicActions.waitForElementToBePresent(txtFirstName, 30);
@@ -132,17 +132,17 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         member.setLastName(lastName);
         member.setMiddleName(mdlName);
         member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setSignature(frstName + " " + lastName);
+        member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
 
         enterMemberDOB(DOB);
         genderSelection(gender);
-        applyingForCoverage(applying);
-        for(String Relation : Relations) {
+        for (String Relation : Relations) {
             selectRelationship(Relation);
+            applyingForCoverage(applying);
         }
     }
 
@@ -334,32 +334,32 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertEquals(PageTitle.getText(), "Informaci\u00F3n sobre otros miembros de su familia");
         softAssert.assertEquals(PageTitle.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PageTitle.getCssValue("font-size"), "36px");
-        softAssert.assertEquals(PageTitle.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(PageTitle.getCssValue("color"), "rgba(43, 49, 60, 1)");
         specificAdditionalMemberDetailsCoCoSpanish("01011982","Masculino", "C\u00F3nyuge", "Si");
         softAssert.assertEquals(textValidation.get(0).getText(), "Nombre");
         softAssert.assertEquals(textValidation.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(0).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(0).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(textValidation.get(1).getText(), "Segundo nombre o inicial (opcional)");
         softAssert.assertEquals(textValidation.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(1).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(1).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(textValidation.get(2).getText(), "Apellido(s)");
         softAssert.assertEquals(textValidation.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(2).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(2).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(textValidation.get(3).getText(), "T\u00EDtulo o tratamiento opcional");
         softAssert.assertEquals(textValidation.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(3).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(3).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(textValidation.get(4).getText(), "Fecha de nacimiento");
         softAssert.assertEquals(textValidation.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(4).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(4).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(textValidation.get(5).getText(), "Sexo");
         softAssert.assertEquals(textValidation.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(5).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(5).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(genderButton.get(0).getText(), "Femenino");
         softAssert.assertEquals(genderButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(0).getCssValue("font-size"), "20px");
@@ -372,12 +372,12 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1)+"'s?");
         softAssert.assertEquals(textValidation.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(6).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(6).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(RelationshipOption.getText(), "Seleccione\nC\u00F3nyuge\nPadre/madre o tutor\nHijo(a) o Otro dependiente\nHermano(a)\nPadrastro/madrastra\nHijastro/hijastra\nPareja\nOtro parentesco\nSin parentesco");
         softAssert.assertEquals(textValidation.get(7).getText(), "\u00BFEsta solicitando seguro de salud?");
         softAssert.assertEquals(textValidation.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(7).getCssValue("font-size"), "16px");
-        softAssert.assertEquals(textValidation.get(7).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(textValidation.get(7).getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(applyButton.get(0).getText(), "  Si");
         softAssert.assertEquals(applyButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(applyButton.get(0).getCssValue("font-size"), "20px");

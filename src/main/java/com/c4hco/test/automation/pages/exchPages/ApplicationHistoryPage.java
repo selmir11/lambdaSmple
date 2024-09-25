@@ -37,10 +37,11 @@ public class ApplicationHistoryPage {
     public void iSetApplicationId(){
         String applicationid = applicationSummary.get(0).getText();
         SharedData.getPrimaryMember().setApplication_id(applicationid);
+        System.out.println("Application Id : "+ applicationid);
     }
 
     public void validateAPTC(String expectedAPTC){
-        basicActions.waitForElementToBePresent(lblAPTCValue, 15);
+        basicActions.waitForElementToBePresent(lblAPTCValue, 30);
         String APTC = lblAPTCValue.getText();
         Assert.assertTrue(APTC.contains(expectedAPTC),"Incorrected APTC Amount! Expected "+expectedAPTC+" but "+APTC+" displayed.");
     }

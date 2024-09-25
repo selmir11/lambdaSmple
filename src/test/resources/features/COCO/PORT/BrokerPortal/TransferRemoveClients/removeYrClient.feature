@@ -69,7 +69,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I delete the open notice
     Then I sign out of Outlook
     Then I enter the MFA code and click Verify
-    And I validate I am on the "Broker Dashboard" page
+    And I validate I am on the "Agency Dashboard" page
     Then I click on "colorado Connect" tab
     And I search for clients
     Then I select the client searched
@@ -109,13 +109,13 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I delete the open notice
     Then I sign out of Outlook
     Then I enter the MFA code and click Verify
-    And I validate I am on the "Broker Dashboard" page
+    And I validate I am on the "Agency Dashboard" page
     Then I click on "colorado Connect" tab
     Then I select all clients checkbox
     And I select the "Remove Selected Clients" option from the header of the broker container
     Then I click "ok" remove client
     Then I click on "colorado Connect" tab
-    And I search for clients
+    Then I validate The Client is removed successfully
     Then I click on broker userName and logout
     Then I open the login page on the "login" portal
     And  I enter valid credentials to login

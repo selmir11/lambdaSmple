@@ -25,6 +25,9 @@ public class StartShoppingPageSteps {
     @Then("I select {string} {string} for Tobacco Use")
     public void isMemberTobaccoUser(String member, String YNTobaccoUser){startShoppingPage.isMemberTobaccoUser(member, YNTobaccoUser);}
 
-
+    @Then("I click Go Back on start shopping page")
+    public void clickGoBackStartShoppingPage(){
+        startShoppingPage.iclickGoBack();
+    }
 
 }

@@ -37,9 +37,14 @@ public class DbQueries_Exch {
              "where account_id = '"+acctId+"'\n "+
              "and current_ind = '1'";
     }
+    public String ib999Details(String grpCtlNum){
+        return "SELECT * FROM "+dbName+".ib999_detail \n" +
+                "where ak1_group_ctrl_number = '"+grpCtlNum+"'\n " +
+                "ORDER BY created_ts DESC";
+    }
 
     public String getEAPID(){
-        return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy\n" +
+        return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy_ah\n" +
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
 
@@ -131,12 +136,12 @@ public class DbQueries_Exch {
 
     public String verifyApplicationSubmissionInBOB(){
         return "select account_id from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+acctId+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"' and (curr_yr_app_id is not null or nxt_yr_app_id is not null)";
     }
 
     public String verifyPolicySubmissionInBOB(int coverageType){
         return "select account_id from  "+dbName+".bp_book_of_business\n "+
-                "where account_id = '"+acctId+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
     }
 
     //Policy table queries
@@ -178,6 +183,36 @@ public class DbQueries_Exch {
         return "select *\n" +
                 "from "+dbName+".es_manual_verif_request\n"+
                 "where account_id = '"+acctId+"'";
+    }
+
+    public String countOfPersonIds(){
+        return "Select count(exch_person_id)\n" +
+                "From "+dbName+".ES_MEMBER\n" +
+                "Where exch_person_id in (\n" +
+                "Select exch_person_id \n " +
+                "from "+dbName+".ES_MEMBER mcf\n" +
+                "JOIN "+dbName+".ES_HOUSEHOLD pmc ON mcf.household_id = pmc.household_id\n" +
+                "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"')";
+    }
+
+    public String esHousehold(){
+        return "select * from "+dbName+".ES_MEMBER mcf\n" +
+                "JOIN "+dbName+".ES_HOUSEHOLD pmc ON mcf.household_id = pmc.household_id\n" +
+                "and pmc.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
+    public String getEmailStored(){
+        return "select * from "+dbName+".es_household p\n" +
+                "join "+dbName+".es_household_contact m on m.household_id=p.household_id\n" +
+                "where account_id = "+acctId+"\n" +
+                "order by p.created_ts desc limit 1";
+    }
+  
+    public String getPrimaryHraAhRecords(){
+        return "select *\n" +
+                "From  "+dbName+".es_member_hra_ah\n" +
+                "where member_id = '"+SharedData.getPrimaryMemberId()+"' \n" +
+                "order by updated_ts asc limit 1";
     }
 
 }

@@ -8,6 +8,7 @@ public class Utils {
     private String env = ApplicationProperties.getInstance().getProperty("env");
     private String isLrEnv = ApplicationProperties.getInstance().getProperty("isLrEnv");
     private String isOpenEnrollment = ApplicationProperties.getInstance().getProperty("isOpenEnrollment");
+    private String ses = ApplicationProperties.getInstance().getProperty("ses");
     private BasicActions basicActions;
 
     public Utils(WebDriver webDriver){
@@ -16,6 +17,7 @@ public class Utils {
         SharedData.setEnv(env);
         SharedData.setDbName(getdbName());
         SharedData.setIsOpenEnrollment(isOpenEnrollment);
+        SharedData.setSes(ses);
     }
 
     public String getBaseLoginUrl(String portalType){

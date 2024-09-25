@@ -71,4 +71,23 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.evaluateSortingValue(sortingTypeSelection);
     }
 
+    @And( "I select 2 plans from page one and 1 plan from page two and click the Compare button" )
+    public void selectPlansfromDifferentPgetoCompare(){
+        medicalPlansCoCoPage.selectMultiplePlanstoCompare();
+    }
+
+    @And("Verify {string} hyperlink present in coco Medical Plan Results page and navigates to {string}")
+    public void verifyHealthcareOrgLink(String hyperLink, String pageUrl){
+        medicalPlansCoCoPage.verifyURLforHealthCare(hyperLink,pageUrl);
+    }
+
+    @And("I click on the Plan Details button for the first Medical plan on the Coco Medical Plan page")
+    public void planDetailsbutton(){
+        medicalPlansCoCoPage.selectFirstPlanDetailsCoCo();
+    }
+
+    @Then("I click Go Back on coco medical plan page")
+    public void clickGoBackStartShoppingPage() {
+        medicalPlansCoCoPage.iclickGoBack();
+    }
 }

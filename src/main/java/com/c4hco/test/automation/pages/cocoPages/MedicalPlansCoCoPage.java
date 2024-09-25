@@ -72,6 +72,15 @@ public class MedicalPlansCoCoPage {
     @FindBy(xpath = "//*[@class = 'col-12 col-xl-5 responsive-text-align-left ng-star-inserted']")
     WebElement planTotalsCoCo;
 
+    @FindBy(id = "planQualityRatingsLink")
+    WebElement planQualityRatingsLink;
+
+    @FindBy(id = "PlanResults-PlanDetails_1")
+    WebElement firstPlanDetailsbtn;
+
+    @FindBy(id = "MedicalPlanResults-GoBack")
+    WebElement goBackbtn;
+
      public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -114,7 +123,7 @@ public class MedicalPlansCoCoPage {
     public void validateSESCOCOPlanTotals(String sesPlanTotal){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( planTotalsCoCo,20 );
-        Assert.assertEquals(planTotalsCoCo.getText(), sesPlanTotal+" of "+sesPlanTotal+" Medical Plans", "Medical plans count did not match");
+        Assert.assertEquals(planTotalsCoCo.getText(), sesPlanTotal+" of 24 Medical Plans", "Medical plans count did not match");
 
     }
 
@@ -229,4 +238,38 @@ public class MedicalPlansCoCoPage {
 
     }
 
+    public void selectMultiplePlanstoCompare(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,20 );
+        selectFirstComparebox.click();
+        selectSecondComparebox.click();
+        paginateRight();
+        selectFirstComparebox.click();
+        selectCompareButton.click();
+    }
+
+    public void verifyURLforHealthCare(String hyperLink,String pageUrl){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent(planQualityRatingsLink,20);
+        basicActions.scrollToElement(planQualityRatingsLink);
+        Assert.assertTrue(planQualityRatingsLink.isDisplayed(),"Healthcare.Org hyperlink text not available in Coco Medical Plan page");
+        Assert.assertEquals(planQualityRatingsLink.getText(),hyperLink);
+        planQualityRatingsLink.click();
+        basicActions.switchtoactiveTab();
+        Assert.assertTrue( basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
+        basicActions.closeBrowserTab();
+        basicActions.switchToParentPage("Shopping Portal");
+    }
+
+    public void selectFirstPlanDetailsCoCo() {
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBeClickable(firstPlanDetailsbtn, 20);
+        firstPlanDetailsbtn.click();
+    }
+
+    public void iclickGoBack(){
+        basicActions.waitForElementToBePresent(goBackbtn,10);
+        basicActions.scrollToElement(goBackbtn);
+        goBackbtn.click();
+    }
 }

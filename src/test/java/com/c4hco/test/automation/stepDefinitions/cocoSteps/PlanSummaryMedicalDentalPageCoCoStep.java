@@ -3,6 +3,9 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.PlanSummaryMedicalDentalCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+
+import java.util.List;
 
 public class PlanSummaryMedicalDentalPageCoCoStep {
 
@@ -12,5 +15,15 @@ public class PlanSummaryMedicalDentalPageCoCoStep {
         public void continueButton(){
             planSummaryMedicalDentalCoCoPage.continueButton();
         }
+
+    @Then("I click Go Back on coco plan summary page")
+    public void clickGoBackStartShoppingPage(){
+        planSummaryMedicalDentalCoCoPage.iclickGoBack();
+    }
+
+    @Then("I validate text on coco plan summary page")
+    public void verifyTextinPlanSummaryPage(List<String> textDetails){
+            planSummaryMedicalDentalCoCoPage.verifyTextinPlanSummary(textDetails);
+    }
 
     }

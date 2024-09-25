@@ -103,13 +103,11 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
 
-
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
     Then I click all done from payment portal page
 
@@ -132,24 +130,5 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
     #DbVerification
 
-    And I verify the policy data quality check
-    And I verify the data from book of business queue table
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    And I verify the policy data quality check with Policy Ah keyset size 1
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type

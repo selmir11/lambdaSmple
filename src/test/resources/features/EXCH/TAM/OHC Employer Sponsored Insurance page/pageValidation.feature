@@ -12,6 +12,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
+    Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
@@ -39,11 +40,8 @@ Feature: Page Text-Other Health Coverage Page
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101975" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101975", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -61,11 +59,9 @@ Feature: Page Text-Other Health Coverage Page
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10102001" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Kid", "10102001", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -83,6 +79,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Citizenship page
 
     Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I select the option "Yes" to employment
@@ -128,7 +125,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     And I click on Apply for Coverage in the "Elmo" Header
 
     Then I validate I am on the "My Account Overview" page
@@ -153,7 +150,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
 #Step 1
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "No" on the ESI page
+    And I verify "Family Offered" is "No" on the ESI page
 #Step 2
     Then I click continue on the ESI page
 #Step 3
@@ -162,13 +159,12 @@ Feature: Page Text-Other Health Coverage Page
 #Step 4
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "No" on the ESI page
+    And I verify "Family Offered" is "No" on the ESI page
     Then I click "Yes" for offer family plans question
     Then I enter "650.00" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      Enrolled         |
-      |      Offered          |
+      |      Spouse:Enrolled    |
+      |      Kid:TypeAccess     |
 #Step 5
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -176,8 +172,9 @@ Feature: Page Text-Other Health Coverage Page
 #Step 6
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "Yes" on the ESI page
+    And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "650.00" on the ESI page
+    Then I wait for 500 milliseconds
     Then I verify enrollment status for the members
       |   enrollmentStatus    |
       |      Enrolled         |
@@ -185,15 +182,14 @@ Feature: Page Text-Other Health Coverage Page
 #Step 7
     Then I enter "800.00" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      Offered          |
-      |      No Option        |
+      |      Spouse:TypeAccess    |
+      |      Kid:NoAccess         |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify offer family health plans is "Yes" on the ESI page
+    And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "800.00" on the ESI page
     Then I verify enrollment status for the members
       |   enrollmentStatus    |
@@ -246,9 +242,22 @@ Feature: Page Text-Other Health Coverage Page
     And I verify "Voluntary End" error in "English" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     And I verify "Voluntary End" error does not show for ESI page
+    And I verify "Family Offered" error in "English" on the ESI page
+    Then I click "Yes" for offer family plans question
+    And I verify "Family Offered" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Family Amount" error in "English" on the ESI page
+    Then I enter "300.00" for offer family amount question
+    And I verify "Family Amount" error does not show for ESI page
+    And I verify "Family Status" error in "English" on the ESI page
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    And I verify "Family Status" error in "English" on the ESI page
+    Then I click enrollment status for the members
+      |      Kid:Enrolled    |
+    And I verify "Family Status" error does not show for ESI page
 
     And I click on Sign Out in the Header for "Elmo"
-
 
   @SLER-342 @PageValidationOhiEsiElmo
   Scenario: SLER-342 I can see ESI's standard errors consistently - Spanish
@@ -294,6 +303,20 @@ Feature: Page Text-Other Health Coverage Page
     And I verify "Voluntary End" error in "Spanish" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     And I verify "Voluntary End" error does not show for ESI page
+    And I verify "Family Offered" error in "Spanish" on the ESI page
+    Then I click "Yes" for offer family plans question
+    And I verify "Family Offered" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Family Amount" error in "Spanish" on the ESI page
+    Then I enter "300.00" for offer family amount question
+    And I verify "Family Amount" error does not show for ESI page
+    And I verify "Family Status" error in "Spanish" on the ESI page
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    And I verify "Family Status" error in "Spanish" on the ESI page
+    Then I click enrollment status for the members
+      |      Kid:Enrolled    |
+    And I verify "Family Status" error does not show for ESI page
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -343,9 +366,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "650.00" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      Enrolled         |
-      |      Offered          |
+      |      Spouse:Enrolled    |
+      |      Kid:TypeAccess     |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -361,9 +383,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I enter "325.27" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      No Option        |
-      |      Offered          |
+      |      Spouse:NoAccess    |
+      |      Kid:TypeAccess     |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -378,9 +399,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "230.01" for employee amount question on the ESI page
     Then I enter "700.00" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      No Option        |
-      |      No Option        |
+      |      Spouse:NoAccess    |
+      |      Kid:NoAccess       |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -395,9 +415,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "120.87" for employee amount question on the ESI page
     Then I enter "456.45" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      Enrolled         |
-      |      Enrolled         |
+      |      Spouse:Enrolled    |
+      |      Kid:Enrolled       |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -412,9 +431,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "221.03" for employee amount question on the ESI page
     Then I enter "963.45" for offer family amount question
     Then I click enrollment status for the members
-      |   enrollmentStatus    |
-      |      Offered          |
-      |      Offered          |
+      |      Spouse:TypeAccess    |
+      |      Kid:TypeAccess       |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option

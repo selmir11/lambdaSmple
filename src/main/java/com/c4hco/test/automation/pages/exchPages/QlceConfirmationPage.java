@@ -79,6 +79,14 @@ public class QlceConfirmationPage {
     List<WebElement> allMemberLostCoverageCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> lostCoverageEventDate;
+
+    @FindBy(id = "gainOfAIANStatus")
+    WebElement tribalStatusLCE;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForGainOfTribalStatus')]")
+    List<WebElement> allMembersGainedTribalStatusCheckbox;
+    @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForGainOfTribalStatus')]")
+    List<WebElement> tribalStatusEventDate;
+
     //None of These
     @FindBy(id ="noneOfThese")
     WebElement noneOfTheseLCE;
@@ -139,6 +147,15 @@ public class QlceConfirmationPage {
                     allMemberLostCoverageCheckbox.get(i).click();
                     lostCoverageEventDate.get(i).click();
                     lostCoverageEventDate.get(i).sendKeys(getCurrentDate());
+                }
+                break;
+            case "GainOfTribalStatus":
+                basicActions.waitForElementToBeClickable(tribalStatusLCE, 10);
+                tribalStatusLCE.click();
+                for (var i = 0; i < allMembersGainedTribalStatusCheckbox.size(); i++) {
+                    allMembersGainedTribalStatusCheckbox.get(i).click();
+                    tribalStatusEventDate.get(i).click();
+                    tribalStatusEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
             case "NoneOfThese":

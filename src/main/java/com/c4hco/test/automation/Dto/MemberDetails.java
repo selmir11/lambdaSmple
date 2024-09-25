@@ -12,7 +12,7 @@ public class MemberDetails {
     String middleInitial;
     String suffix;
     String emailId;
-    String password = "ALaska12!";
+    String password = "Selenium11!";
     String phoneNumber;
     String alternatePhNum;
     String ssn;
@@ -20,6 +20,7 @@ public class MemberDetails {
     String relation_to_subscriber;
     String signature;
     String fullName;
+    String fullMiddleName;
     String dob;
     String zipcode;
     Address resAddress;
@@ -36,6 +37,10 @@ public class MemberDetails {
     String medicalFinancialEndDate;
     String dentalFinancialStartDate;
     String dentalFinancialEndDate;
+    String medicalCoverageStartDate;
+    String medicalCoverageEndDate;
+    String dentalCoverageStartDate;
+    String dentalCoverageEndDate;
     String medicalPremiumAmt;
     String dentalPremiumAmt;
     String aptcAmt;

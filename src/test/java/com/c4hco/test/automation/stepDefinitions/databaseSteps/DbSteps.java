@@ -83,5 +83,28 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 //
 //   }
 
+   @And("I verify Person ID is unique in the DB")
+   public void iValidateUniquePersonId(){policyTableValidations.validateUniquePersonId();}
+
+   @And("I verify Person ID review status is Manual Review Required")
+   public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
+   @And("I validate policy tables with medical coverage start date as {string}")
+   public void iValidateMedCoverageOnMyPoliciesPage(String startDate){
+      policyTableDBValidations.validateMedCoverageStartDate(startDate);
+
+   }
+   @And("I validate policy tables with dental coverage start date as {string}")
+   public void iValidateDenCoverageOnMyPoliciesPage(String startDate){
+      policyTableDBValidations.validateDenCoverageStartDate(startDate);
+
+   }
+
+
+   @And("I validate data displays duplicate email as {string} in DB")
+   public void iValidateDuplicateEmail(String accountEmail) {dbValidations.ValidateDuplicateEmail(accountEmail);}
+
+   @And("I verify the HRA options selected in the DB after Application Results")
+   public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
+
 }
 

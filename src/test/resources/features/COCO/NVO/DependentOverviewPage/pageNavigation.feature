@@ -18,9 +18,8 @@ Feature: Navigation - Dependent Overview page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Indigenous or Native American" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -39,7 +38,7 @@ Feature: Navigation - Dependent Overview page
     And I click Go Back on Tell us about additional members of your household page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "01011996", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Daughter", "01011996", "Female", and applying "Yes"
      |Primary:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -47,9 +46,8 @@ Feature: Navigation - Dependent Overview page
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Asian or Asian American" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option

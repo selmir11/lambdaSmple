@@ -1,8 +1,9 @@
-@SIRRegression
+@SIRRegression @APTC-SIR
+  # SLER-778
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
-  Scenario: Account creation, shopping, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
+  Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -10,6 +11,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I validate I am on the "Admin search" page
     Then I click create account on admin portal
     And I enter general mandatory data for "exchange" account creation
+
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
@@ -274,7 +276,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate that my APTC value is "$802.29/mo"
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's APTC value is "$802.29/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$802.29/mo"
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page

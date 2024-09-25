@@ -41,6 +41,9 @@ public class TaxStatusPage {
     @FindBy(id = "selectedClaimedByMemberId1")
     WebElement lblheadOfHousehold;
 
+    @FindBy(xpath = "//*[@class = 'selectedDependents input-checkbox']")
+    List<WebElement> selectDependent;
+
     @FindBy(id = "selectedDependents1")
     WebElement selectedDependents1;
 
@@ -58,6 +61,9 @@ public class TaxStatusPage {
 
     @FindBy(id = "selectedDependents6")
     WebElement selectedDependents6;
+
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
 
 
     public void claimAsDependent(String claimAsDependentOption){
@@ -158,5 +164,12 @@ public class TaxStatusPage {
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
+
+    public void iselectDependentMember(int dependentIndex) {
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementListToBePresentWithRetries( selectDependent,15 );
+        selectDependent.get( dependentIndex ).click();
+    }
+
 
 }

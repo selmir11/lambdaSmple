@@ -3,7 +3,7 @@ Feature: Tests related to dental plans
 
 @SLER-747 @dentalPlanAdultNamesAndCount @failingInQA-ReportingABug
 # 2nd and 3rd plans are flipped in QA. Defect with the order.
-Scenario: Validate dental plans count - single adult
+Scenario: SLER-747 - Validate dental plans count - single adult
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -59,8 +59,8 @@ Scenario: Validate dental plans count - single adult
     Then I validate I am on the "Dental Plan Results" page
     Then I validate the dental plans count to be "9"
 
-  @SLER-WIP @dentalPlanMinorNamesAndCount
-  Scenario: Validate dental plans count - single minor
+  @SLER-1003-WIP @dentalPlanMinorNamesAndCount
+  Scenario: SLER-1003 - Validate dental plans count - single minor
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -119,8 +119,8 @@ Scenario: Validate dental plans count - single adult
     Then I validate the dental plans count to be "12"
 
 
-@DentalPlanResults-WIP
-  Scenario: Validate dental plans available under fixed constants - single adult
+@DentalPlanResults-WIP @SLER-1004
+  Scenario: SLER-1004 - Validate dental plans available under fixed constants - single adult
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page

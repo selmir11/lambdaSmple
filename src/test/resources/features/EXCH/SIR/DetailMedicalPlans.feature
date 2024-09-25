@@ -6,7 +6,7 @@ Feature: Medical Plan Detail page related tests
     And I validate I am on the "Login" page
 
   @MedicalDetailPlansLink @SLER-835
-  Scenario: Validate the Navigation and Functionality of Detail Plans Link (Medical) - new split from RT-1675
+  Scenario: SLER-835 - Validate the Navigation and Functionality of Detail Plans Link (Medical) - new split from RT-1675
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -60,7 +60,7 @@ Feature: Medical Plan Detail page related tests
     Then I click on Sign Out in the Header for "Portal"
 
   @MedicalDetailTextVerificationEnglish @SLER-769
-  Scenario: Validate the English text detail information of the Detail Plans page (Medical) - formerly RT-1675
+  Scenario: SLER-769 - Validate the English text detail information of the Detail Plans page (Medical) - formerly RT-1675
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -121,7 +121,7 @@ Feature: Medical Plan Detail page related tests
     Then I click on Sign Out in the Header for "Portal"
 
   @MedicalDetailTextVerificationSpanish @SLER-834
-  Scenario: Validate the Spanish text detail information of the Detail Plans page (Medical) - formerly CCRT-292
+  Scenario: SLER-834 - Validate the Spanish text detail information of the Detail Plans page (Medical) - formerly CCRT-292
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

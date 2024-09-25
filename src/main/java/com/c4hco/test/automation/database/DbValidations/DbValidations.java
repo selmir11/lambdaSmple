@@ -81,7 +81,7 @@ public class DbValidations {
 
         String[] finStartDate = subscriber.getMedicalFinancialStartDate().split("/");
         String formatedFinStartDate = finStartDate[2]+finStartDate[0]+finStartDate[1];
-
+        SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), medicalDbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), medicalDbData.getIssuerId(), "Insurer Id did not match!");
@@ -98,6 +98,7 @@ public class DbValidations {
     public void validateDentalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData dentalDbData){
         softAssert.assertTrue(ob834Entity.getInsurance_line_code().equals("DEN"));
         softAssert.assertEquals(dentalDbData.getPremiumAmt(), ob834Entity.getPremium_amount(), "Dental Plan premium amount does not match for subscriber.");
+        SharedData.setDenGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         validateDentalAPTCAmount(ob834Entity,dentalDbData);
     }
 
@@ -417,7 +418,10 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getTricare_end_voluntary_ind3(), expectedValues.get(0).get("tricare_end_voluntary_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_enrl_covg_ind3(), expectedValues.get(0).get("peace_corps_enrl_covg_ind3"));
         softAssert.assertEquals(actualResult.getPeace_corps_covg_end_soon_ind3(), expectedValues.get(0).get("peace_corps_covg_end_soon_ind3"));
-        softAssert.assertEquals(actualResult.getPeace_corps_end_voluntary_ind3(), expectedValues.get(0).get("peace_corps_end_voluntary_ind3"));
+        softAssert.assertEquals(actualResult.getCurr_year_esi_afford_ind3(), expectedValues.get(0).get("curr_year_esi_afford_ind3"));
+        softAssert.assertEquals(actualResult.getNext_year_esi_afford_ind3(), expectedValues.get(0).get("next_year_esi_afford_ind3"));
+        softAssert.assertEquals(actualResult.getCurr_year_esi_family_afford_ind3(), expectedValues.get(0).get("curr_year_esi_family_afford_ind3"));
+        softAssert.assertEquals(actualResult.getNext_year_esi_family_afford_ind3(), expectedValues.get(0).get("next_year_esi_family_afford_ind3"));
         softAssert.assertAll();
     }
     public void validateHraOptions(List<Map<String, String>> expectedValues) {
@@ -447,6 +451,7 @@ public class DbValidations {
     }
 
     public void validateBookOfBusinessQ(String eventType) {
+        getCurrentdate();
         List<BookOfBusinessQEntity> bookOfBusinessQList = exchDbDataProvider.getBookOfBusinessQ(eventType);
         List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
         List<String> applicationIdListFromBob = new ArrayList<>();
@@ -490,13 +495,13 @@ public class DbValidations {
     public void validateBrokerAuthorizationBob(String expectedBrokerName) {
         String clientFirstName = SharedData.getPrimaryMember().getFirstName();
         List<String> brokerAuthBOB = exchDbDataProvider.getBrokerAuthorizationInBoB(clientFirstName);
-        softAssert.assertEquals(expectedBrokerName, brokerAuthBOB.get(0));
+        softAssert.assertEquals(brokerAuthBOB.get(0), expectedBrokerName);
         softAssert.assertAll();
     }
 
     public void validateApplicationSubmissionBob() {
         List<String> applicationSubmissionBOB = exchDbDataProvider.getApplicationSubmissionInBoB();
-        softAssert.assertEquals(1, applicationSubmissionBOB .size());
+        softAssert.assertEquals(applicationSubmissionBOB .size(), 1);
         softAssert.assertAll();
     }
 
@@ -511,5 +516,24 @@ public class DbValidations {
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
+    public void validateHraAhOptions(List<Map<String, String>> expectedValues) {
+        EsMemberHraAhEntity actualResult = exchDbDataProvider.getOptionsFromHraAhDbTables();
+        System.out.println(actualResult);
 
+        softAssert.assertEquals(actualResult.getPlan_year(), expectedValues.get(0).get("plan_year"));
+        softAssert.assertEquals(actualResult.getEmplr_hra_ctb(), expectedValues.get(0).get("emplr_hra_ctb"));
+        softAssert.assertEquals(actualResult.getHra_type(), expectedValues.get(0).get("hra_type"));
+        softAssert.assertEquals(actualResult.getEmplr_ctb_optout_ind(), expectedValues.get(0).get("emplr_ctb_optout_ind"));
+        softAssert.assertEquals(actualResult.getHra_not_affordable_ind(), expectedValues.get(0).get("hra_not_affordable_ind"));
+        softAssert.assertAll();
+    }
+
+    public void ValidateDuplicateEmail(String accountEmail) {
+        EsHouseholdContactEntity actualResult = exchDbDataProvider.getEsHouseholdContactDetails();
+
+        softAssert.assertEquals(actualResult.getEmail(), accountEmail);
+        System.out.println("Account  Email "+accountEmail);
+        System.out.println("Database Email "+actualResult.getEmail());
+        softAssert.assertAll();
+    }
 }

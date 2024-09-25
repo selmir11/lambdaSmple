@@ -51,3 +51,24 @@ Feature: My profile page
     And I click on the Username Link Exch
     Then I validate I am on the "My Profile" page
     And I validate Preferred Contact Method save changes on My Profile page
+
+
+  @SLER-969 @WIP
+  Scenario: My Profile Email Error validation
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Profile"
+    Then I validate I am on the "My Profile" page
+    And I validate Email error message in "English" on my Profile Page
+    Then I validate data displays duplicate email as "testlraccount@test.com" in DB
+    Then I click on Go back to Welcome page Button on My Profile Exch
+    Then I validate I am on the "My Account Overview" page
+    Then I click on ClickHere link for "My Profile"
+    And I change the language from header to "Spanish"
+    And I validate Email error message in "Spanish" on my Profile Page
+
+

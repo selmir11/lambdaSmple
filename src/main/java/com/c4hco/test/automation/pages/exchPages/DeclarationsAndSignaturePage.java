@@ -15,6 +15,9 @@ public class DeclarationsAndSignaturePage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = ".container h1")
+    WebElement hdrDeclarations;
+
     @FindBy(name = "continue")
     WebElement submitContinue;
 
@@ -22,6 +25,7 @@ public class DeclarationsAndSignaturePage {
     WebElement holdOnEllipsis;
 
     public void enterSignature(int index){
+        basicActions.waitForElementToBePresent(hdrDeclarations,20);
         basicActions.waitForElementToBePresent(submitContinue,20);
         String namePath = "(//div/label/b[1])["+index+"]";
         String signature = basicActions.getDriver().findElement(By.xpath(namePath)).getText();

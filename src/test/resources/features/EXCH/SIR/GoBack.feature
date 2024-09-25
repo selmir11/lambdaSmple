@@ -6,7 +6,7 @@ Feature: Dental Plans page tests
     And I validate I am on the "Login" page
 
   @SLER-35 @SLER-718 @SelectGoBackFromAgreementsToPreShopping
-  Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - individual
+  Scenario: SLER-718 - Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - individual
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -70,6 +70,8 @@ Feature: Dental Plans page tests
 
     Then I validate I am on the "Dental Plan Results" page
     Then I click Go Back on Dental Plan Results page
+
+    And I click Go Back on the Enrollment Agreements page
     
     Then I validate I am on the "Medical Plan Results" page
     Then I click Go Back on the medical plan results page
@@ -78,7 +80,7 @@ Feature: Dental Plans page tests
     And I click on Sign Out in the Header for "Elmo"
 
   @SelectGoBackFromAgreementsToPreShoppingSingleGrouping @SLER-734
-  Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - one group
+  Scenario: SLER-734 - Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - one group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -181,8 +183,8 @@ Feature: Dental Plans page tests
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SelectGoBackFromAgreementsToPreShoppingMultiGrouping @SLER-735
-  Scenario: Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - Multi groups
+  @SLER-735 @SelectGoBackFromAgreementsToPreShoppingMultiGrouping
+  Scenario: SLER-735 - Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - Multi groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

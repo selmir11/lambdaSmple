@@ -6,7 +6,7 @@ Feature: Dental Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-955 @VerifyDentalDetailNavigation
-  Scenario: VerifyDentalDetailNavigation - this is a breakaway from RT-1653
+  Scenario: SLER-955 - VerifyDentalDetailNavigation - this is a breakaway from RT-1653
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -21,7 +21,7 @@ Feature: Dental Plan Verification test
     And I report "MovedToColorado" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "DENVER" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
     Then I validate I am on the "Identify Proofing - Congratulations" page
@@ -69,8 +69,8 @@ Feature: Dental Plan Verification test
 
 
 
-  @SLER-WIP @VerifyDentalDetailTextEnglish
-  Scenario: VerifyDentalDetailTextEnglish - used to be CCRT-398
+  @SLER-995-WIP @VerifyDentalDetailTextEnglish
+  Scenario: SLER-995 - VerifyDentalDetailTextEnglish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -126,10 +126,16 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
 
+    Then I validate I am on the "Dental Plan Detail" page
+    And I select the InNetwork link on the Dental Detail page
+    And I validate the text headers and subheaders for the InNetwork Dental Detail page
+    And I select the OutNetwork link on the Dental Detail page
+    And I validate the text headers and subheaders for the OutNetwork Dental Detail page
+
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-834 @VerifyDentalDetailTextSpanish
-  Scenario: VerifyDentalDetailTextSpanish - used to be CCRT-292
+  @SLER-996-WIP @VerifyDentalDetailTextSpanish
+  Scenario: SLER-996 - VerifyDentalDetailTextSpanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -185,6 +191,9 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
+
+    Then I validate I am on the "Dental Plan Details" page
+    And I verify the Spanish text on the Dental Detail page
 
     # validate that pediatric plan appears due to minor age under 19 - we will verify from the plan title
 

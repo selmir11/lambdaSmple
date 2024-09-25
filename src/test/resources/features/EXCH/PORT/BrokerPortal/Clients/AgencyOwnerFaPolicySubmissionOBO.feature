@@ -117,22 +117,18 @@ Feature: Broker Portal OBO - Submit FA Application and enroll in a plan
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    Then I select first dental plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on medical plan results page
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    And I click continue on dental plan results page
+    Then I validate I am on the "Plan Summary" page
     And I click continue on plan summary page
-
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-
-    And I validate I am on the "Pay now" page
+    Then I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page OBO
-
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the Your Clients page title
     And I search for clients

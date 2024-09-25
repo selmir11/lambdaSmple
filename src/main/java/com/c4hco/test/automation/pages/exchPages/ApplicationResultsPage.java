@@ -64,7 +64,7 @@ public class ApplicationResultsPage {
     WebElement totalSavingsSection;
 
     @FindBy(css = ".tot-sav .tot-sav-head-right")
-    WebElement totalAptcValue;
+    List<WebElement> totalAptcValue;
 
     @FindBy(css = ".left-div > div > div button")
     WebElement applicationSummaryLnk;
@@ -80,11 +80,13 @@ public class ApplicationResultsPage {
         continueBtn.click();
     }
 
-    public void validateAPTCByTHH(String expectedAPTC){
-        basicActions.waitForElementToBePresent(totalSavingsSection, 10);
+    public void validateAPTCByTHH(int THHNum, String expectedAPTC){
+        basicActions.waitForElementToBePresent(headerText, 20);
+        basicActions.waitForElementToBePresent(totalSavingsSection, 20);
         basicActions.scrollToElement(totalSavingsSection);
-        basicActions.waitForElementToBePresent(totalAptcValue, 10);
-        Assert.assertEquals(totalAptcValue.getText(), expectedAPTC, "APTC Amount did not match!");
+        basicActions.waitForElementListToBePresent(totalAptcValue, 20);
+        int index = THHNum - 1;
+        Assert.assertEquals(totalAptcValue.get(index).getText(), expectedAPTC, "APTC Amount did not match!");
     }
 
     public void validateAPTCNotAppearing(){
@@ -163,7 +165,7 @@ public class ApplicationResultsPage {
     }
 
     public void clickViewApplicationSummary() {
-        basicActions.waitForElementToBePresent(applicationSummaryLnk, 20);
+        basicActions.waitForElementToBePresent(applicationSummaryLnk, 30);
         applicationSummaryLnk.click();
     }
 }

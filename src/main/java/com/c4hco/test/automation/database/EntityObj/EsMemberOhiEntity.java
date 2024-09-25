@@ -47,4 +47,8 @@ public class EsMemberOhiEntity {
     String peace_corps_enrl_covg_ind3;
     String peace_corps_covg_end_soon_ind3;
     String peace_corps_end_voluntary_ind3;
+    String curr_year_esi_afford_ind3;
+    String next_year_esi_afford_ind3;
+    String curr_year_esi_family_afford_ind3;
+    String next_year_esi_family_afford_ind3;
 }
