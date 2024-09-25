@@ -99,5 +99,6 @@ public class PlanSummaryMedicalDentalCoCoPage {
         softAssert.assertEquals(goBackbtn.getText(),textDetails.get(10));
         softAssert.assertEquals(SvaeandExitbtn.getText(),textDetails.get(11));
         softAssert.assertEquals(continueBtnOnPlanSummary.getText(),textDetails.get(12));
+        softAssert.assertAll();
     }
 }
