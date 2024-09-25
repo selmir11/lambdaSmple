@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class PlanSummaryMedicalDentalPageCoCoStep {
 
         PlanSummaryMedicalDentalCoCoPage planSummaryMedicalDentalCoCoPage = new PlanSummaryMedicalDentalCoCoPage(WebDriverManager.getDriver());
@@ -17,6 +19,11 @@ public class PlanSummaryMedicalDentalPageCoCoStep {
     @Then("I click Go Back on coco plan summary page")
     public void clickGoBackStartShoppingPage(){
         planSummaryMedicalDentalCoCoPage.iclickGoBack();
+    }
+
+    @Then("I validate text on coco plan summary page")
+    public void verifyTextinPlanSummaryPage(List<String> textDetails){
+            planSummaryMedicalDentalCoCoPage.verifyTextinPlanSummary(textDetails);
     }
 
     }
