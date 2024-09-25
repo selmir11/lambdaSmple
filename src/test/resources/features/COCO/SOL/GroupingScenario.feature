@@ -4,9 +4,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
-
-  @SLCR-161 @groupingbysiblingswithoutparents
-  Scenario: Two members both siblings in the household, Parents not applying, one group should exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -21,6 +18,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
 
+
+  @SLCR-161 @groupingbysiblingswithoutparents
+  Scenario: Two members both siblings in the household, Parents not applying, one group should exist
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "No"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -133,6 +133,111 @@ Feature: UI Page Validation - Grouping Members (Medical)
 
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
+
+    Then I validate I am on the "CoCo life change event" page
+    And I select "MoveToCO" life change event
+    And I select continue on the LCE page
+
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on coco start shopping page
+
+    Then I validate I am on the "Grouping Members Medical" page
+    And I validate that there are 1 default groups in coco page
+
+  @SLCR-331
+  Scenario: SLCR-331 - Validate that minor step kids are grouped with step parent
+    Then I enter details on tell us about yourself page and continue with "10101990", "Male", and applying "Yes"
+    And I enter my residential address "1234 Downing street", "Englewood", "CO", "80111", "Arapahoe"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+    And I select "Yes" employment option
+    And I enter "30,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+      #Step Daughter
+    Then I enter details on tell us about additional members of your household page with "StepDaughter", "10102007", "Female", and applying "Yes"
+      | Primary:Stepchild |
+
+    And I click continue on Tell us about additional members of your household page
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Downing street", "Englewood", "CO", "80111", "Arapahoe"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+
+    And I select "No" employment option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "StepSon", "10102009", "Male", and applying "Yes"
+      | Primary:Stepchild |
+      | StepDaughter:Sibling|
+    And I click continue on Tell us about additional members of your household page
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "123 Downing", "Centennial", "CO", "80111", "Arapahoe"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "I prefer not to answer" ethnicity option
+    And I select "I prefer not to answer" race option
+    And I click continue on the Ethnicity and race page
+
+    And I select "No" employment option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
