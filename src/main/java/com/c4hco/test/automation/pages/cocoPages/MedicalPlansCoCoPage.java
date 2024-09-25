@@ -135,7 +135,6 @@ public class MedicalPlansCoCoPage {
     public void validateCOCOPlanIndividualPremium(int index, String planIndividualTotal){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( planIndividualTotalCoCo,20 );
-        //index = index - 1; //Index of the page starts at 0, so we take the visible order and subtract 1
         String indexString = String.valueOf(index); //turns the int index into a string value.
         String planIndividualPremium = "PlanResults-MonthlyPremium_" + indexString; //sets the ID String using the index
         WebElement ePlanPremiumID = basicActions.getDriver().findElement(By.id(planIndividualPremium)); //sets the Web element based on the ID

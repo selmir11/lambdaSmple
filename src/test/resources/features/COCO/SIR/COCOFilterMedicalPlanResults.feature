@@ -77,6 +77,7 @@ Feature: Verify COCO Medical Plan results
       | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%            |
       | Select Health               | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange      |
 
+
   @SLCR-284 @CoCo_RegressionTest
   Scenario: This will verify the hyperlink text in COCO Medical plan page
     When I click create a new account on login page
