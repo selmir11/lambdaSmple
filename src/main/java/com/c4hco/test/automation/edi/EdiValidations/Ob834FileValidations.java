@@ -8,6 +8,7 @@ import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,23 @@ public class Ob834FileValidations {
     Edi834TransactionDetails edi834TransactionDetails = null;
     Transaction transaction = null;
 
+    public void getDataByEmailAndAccNum(){
+        String email = SharedData.getPrimaryMember().getEmailId();
+        List<Transaction> updatedTransactionList = new ArrayList<>();
+        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        List<Transaction> transactionList = edi834TransactionDetails.getTransactionList();
+        for(Transaction trans: transactionList) {
+            String primaryEmailFromEdiFile = trans.getMembersList().get(0).getPER().get(0).get(5);
+            if( primaryEmailFromEdiFile.equals(email)) {
+                updatedTransactionList.add(trans);
+            }
+        }
+        edi834TransactionDetails.setTransactionList(updatedTransactionList);
+        SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
+    }
+
     public void validateOb834File(Ob834DetailsEntity entry){
+        getDataByEmailAndAccNum();
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         List<Transaction> transactionList = edi834TransactionDetails.getTransactionList();
         for(Transaction trnsaction: transactionList){

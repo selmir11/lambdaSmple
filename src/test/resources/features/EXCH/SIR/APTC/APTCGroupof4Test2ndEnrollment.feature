@@ -857,3 +857,1032 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
+  @Group9Enroll-WIP-ProdBug-SIR-2810
+  Scenario: ELIG- APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I click on continue with  application button on Before you begin page
+    #Open Enrollment - LCE not required
+    And I report "MovedToColorado" and click continue
+
+    Then I select "member" from the who are you question
+    And I am a member with City "Example" in State "CO" with dob "01011968" in county "EL PASO" with zipcode "80902"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011972", "Female" and applying "Yes"
+      |Primary:Spouse|
+    And I mark the Additional member is pregnant as "No"
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "07011999", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012000", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012005", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+  ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012006", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+     ### - add member end
+
+     ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012006", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+      |SonFour:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    ### - add member end
+     ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+     #minor
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012009", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+      |SonFour:Brother|
+      |SonFive:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    #Then I select "No" for Foster care in state of Colorado
+    #Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    ### - add member end
+     ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+     #minor
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012010", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+      |SonFour:Brother|
+      |SonFive:Brother|
+      |SonSix:Brother|
+
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    #Then I select "No" for Foster care in state of Colorado
+    #Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+
+    ### - add member end
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "6000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Employment Summary" page
+    And I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member one
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member two
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member three
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member four
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member five
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member six
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member seven
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member eight
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+
+    ## tax status
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+
+
+    # - initial tries have missed dependent 7 and
+    Then I click Dependent 0
+    Then I click Dependent 1
+    Then I click Dependent 2
+    Then I click Dependent 3
+    Then I click Dependent 4
+    Then I click Dependent 5
+    #And I select the first dependent
+    #And I select the second dependent
+    #And I select the third dependent
+    #And I select the fourth dependent
+    #And I select the fifth dependent
+    #And I select the sixth dependent
+    # this is where the selections are getting missed
+    Then I click Dependent 6
+    Then I click Dependent 7
+    #And I select the seventh dependent
+    #And I select the eighth dependent
+
+    And I click save and continue on tax status page
+
+    # 9 members
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    And I click on No Thanks on good news page
+
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+
+    Then I validate I am on the "Application Results" page
+    And I verify that the APTC amount does not appear on the app results page
+    Then I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    And I click continue on start shopping page
+
+    Then I validate I am on the "Grouping Members Medical" page
+    And I click continue on grouping Members Medical page
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the Insurance Company dropdown
+    And I select "Select Health" to filter for desired plan provider
+    And I select the Metal Tier dropdown
+    And I select "Bronze" to filter for a Metal Tier plan
+    And I validate the plan option 2 has text "Select Health Value Colorado Option Bronze"
+    And I click continue on medical plan results page
+
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    And I click continue on dental plan results page
+
+    Then I validate I am on the "Plan Summary" page
+    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I click continue on plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
+    Then I validate I am on the "Pay now" page
+    And I click on Sign Out in the Header for "Portal"
+
+  Scenario: ELIG- APTCRules - group of 9 Variable 2 - 4 under 19, 3 young adults - with 2 adult parents - ages are different
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I click on continue with  application button on Before you begin page
+    #Open Enrollment - LCE not required
+    #And I report "MovedToColorado" and click continue
+
+    Then I select "member" from the who are you question
+    And I am a member with City "Example" in State "CO" with dob "01011967" in county "EL PASO" with zipcode "80902"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011971", "Female" and applying "Yes"
+      |Primary:Spouse|
+    And I mark the Additional member is pregnant as "No"
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01011999", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012000", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012005", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+  ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012006", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+     ### - add member end
+
+     ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012006", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+      |SonFour:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I select "No" for Foster care in state of Colorado
+    Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    ### - add member end
+     ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+     #minor
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012009", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+      |SonFour:Brother|
+      |SonFive:Brother|
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    #Then I select "No" for Foster care in state of Colorado
+    #Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    ### - add member end
+     ### - add member begin
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+     #minor
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012010", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+      |SonOne:Brother|
+      |SonTwo:Brother|
+      |SonThree:Brother|
+      |SonFour:Brother|
+      |SonFive:Brother|
+      |SonSix:Brother|
+
+    And I click continue on Tell us about additional members page
+
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    #Then I select "No" for Foster care in state of Colorado
+    #Then I select "Yes" for Fulltime Student option
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+
+    ### - add member end
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "6000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Employment Summary" page
+    And I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member one
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member two
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member three
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member four
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member five
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member six
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member seven
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    #member eight
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+
+    ## tax status
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the first dependent
+    And I select the second dependent
+    And I select the third dependent
+    And I select the fourth dependent
+    And I select the fifth dependent
+    And I select the sixth dependent
+    And I select the seventh dependent
+    And I select the eighth dependent
+
+    #And I click save and continue on tax status page
+
+    # 9 members
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    And I click on No Thanks on good news page
+
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+
+    Then I validate I am on the "Application Results" page
+    And I verify that the APTC amount does not appear on the app results page
+    Then I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    And I click continue on start shopping page
+
+    Then I validate I am on the "Grouping Members Medical" page
+    And I click continue on grouping Members Medical page
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the Insurance Company dropdown
+    And I select "Select Health" to filter for desired plan provider
+    And I select the Metal Tier dropdown
+    And I select "Bronze" to filter for a Metal Tier plan
+    And I validate the plan option 2 has text "Select Health Value Colorado Option Bronze"
+    And I click continue on medical plan results page
+
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    And I click continue on dental plan results page
+
+    Then I validate I am on the "Plan Summary" page
+    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I click continue on plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+
+    Then I validate I am on the "Pay now" page
+    And I click on Sign Out in the Header for "Portal"
+
+
+

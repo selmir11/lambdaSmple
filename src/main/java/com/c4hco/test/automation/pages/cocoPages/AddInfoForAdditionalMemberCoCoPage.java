@@ -127,7 +127,6 @@ public class AddInfoForAdditionalMemberCoCoPage {
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
     }
-
     public void clickGoBackButton() {
         basicActions.waitForElementToBeClickable(goBackButton, 30);
         goBackButton.click();
