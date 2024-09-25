@@ -14,7 +14,4 @@ public class RaceAndEthnicityPageSteps {
     @And("I click continue on the Race and Ethnicity page")
     public void clickContinue(){RaceAndEthnicityPage.clickSaveAndContinueButton();}
 
-    @And("I click Go back on the Race and Ethnicity page")
-    public void clickGoBackButton(){RaceAndEthnicityPage.clickGoBackButton();}
-
 }

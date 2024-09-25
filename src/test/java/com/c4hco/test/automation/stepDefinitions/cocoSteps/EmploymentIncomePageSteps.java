@@ -27,8 +27,7 @@ public class EmploymentIncomePageSteps {
     public void clickContinue(){employmentIncomePage.clickSaveAndContinueButton();}
 
 
-    @And("I click Go back on the Employment income page")
-    public void clickGoBackButton(){employmentIncomePage.clickGoBackButton();}
+
 
 
 

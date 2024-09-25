@@ -229,9 +229,6 @@ public class BasicSteps {
             case "Tell us about yourself":
                 pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
                 break;
-            case "Additional Information for Yourself":
-                pageUrl = "nes/addAddress";
-                break;
             case "Family Overview":
                 pageUrl = "nes/household";
                 break;
@@ -322,8 +319,8 @@ public class BasicSteps {
             case "EDI Transactions":
                 pageUrl = "/edi-transactions";
                 break;
-            case "Elmo Race and Ethnicity" :
-                pageUrl = "/member-details-portal/race-ethnicity/";
+            case "CoCo Ethnicity and Race" :
+                pageUrl = "/coco/member-details-portal/race-ethnicity/";
                 break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
