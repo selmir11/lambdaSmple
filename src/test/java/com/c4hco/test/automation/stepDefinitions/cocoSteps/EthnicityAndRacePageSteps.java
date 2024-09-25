@@ -14,7 +14,10 @@ public class EthnicityAndRacePageSteps {
     @And("I select {string} race option")
     public void iSelectMemberRace(String memberRace){ethnicityAndRacePage.raceSelection(memberRace);}
 
-    @And("I click Go Back on the Race and Ethnicity page")
+    @And("I click continue on the Ethnicity and race page")
+    public void clickContinue(){ethnicityAndRacePage.clickSaveAndContinueButton();}
+
+    @And("I click Go Back on the Ethnicity and Race page")
     public void clickGoBack(){ethnicityAndRacePage.clickGoBackButton();}
 
     @Then("I verify text on the Ethnicity And Race page in {string}")

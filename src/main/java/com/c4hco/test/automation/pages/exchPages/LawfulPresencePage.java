@@ -205,10 +205,6 @@ public class LawfulPresencePage {
         getMemberId();
         saveContinue.click();}
 
-    public  void clickGoBack(){
-        basicActions.waitForElementToBeClickable(btnBack, 20);
-        btnBack.click();}
-
     public void getMemberId() {
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
         MemberDetails subscriber = SharedData.getPrimaryMember();

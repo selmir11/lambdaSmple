@@ -22,10 +22,6 @@ public class RaceAndEthnicityPage {
     @FindBy(css = "lib-navigations-buttons.btn-primary-action-button")
     WebElement saveAndContinueButton;
 
-    @FindBy(css = "Lib-navigations-buttons.btn-second-action-button")
-    WebElement goBackButton;
-
-
     public void raceEthnicitySelection(String raceEthnicity){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
         switch (raceEthnicity) {
@@ -64,10 +60,5 @@ public class RaceAndEthnicityPage {
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
-    }
-
-    public void clickGoBackButton() {
-        basicActions.waitForElementToBeClickable(goBackButton, 30);
-        goBackButton.click();
     }
 }

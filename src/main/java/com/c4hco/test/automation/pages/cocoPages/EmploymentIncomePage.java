@@ -62,18 +62,9 @@ public class EmploymentIncomePage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
-    @FindBy(css = "#EmploymentIncomeJob-GoBack")
-    WebElement goBackButton;
-
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresent(saveAndContinueButton,30);
         basicActions.click(saveAndContinueButton);
-    }
-
-
-    public void clickGoBackButton() {
-        basicActions.waitForElementToBePresent(goBackButton,30);
-        basicActions.click(goBackButton);
     }
 
     public void answerEmploymentQs(String employment){
