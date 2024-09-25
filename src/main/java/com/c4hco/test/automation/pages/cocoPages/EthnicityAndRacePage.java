@@ -39,10 +39,7 @@ public class EthnicityAndRacePage {
 
     @FindBy(id = "ELIG-RaceEthnicity-SaveAndContinue")
     WebElement saveAndContinueButton;
-
-    //@FindBy(id = "ELIG-RaceEthnicity-GoBack")
-    //WebElement goBackButton;
-
+    
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
