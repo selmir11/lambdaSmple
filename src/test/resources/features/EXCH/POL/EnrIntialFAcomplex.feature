@@ -368,7 +368,6 @@ Feature: Enroll a in a plan 8 HH
       |Nephew   |
       |SonTwo   |
       |Niece   |
-    And  I validate the notices  policy member data for coverage start date for next month
     And I validate the notices medical policy member data "Cigna Connect Colorado Option Bronze"
       |Primary|
       |Nephew |

@@ -46,7 +46,7 @@ public class TellUsAboutAdditionalMembersPageSteps {
 
 
     @Then("I enter new born with minus {int} days as DOB")
-    public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.Newbornwithcurrentdatelessthanfivedays(Days);}
+    public void iEnterMemberDOBwithminusfive(int Days){tellUsAboutAdditionalMemberPage.newbornwithcurrentdatelessthanfivedays(Days);}
 
     @Then("I enter details on tell us about additional members of your household exch page and continue with {string}, {string}, {string} and applying {string}")
     public void EnterspecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {

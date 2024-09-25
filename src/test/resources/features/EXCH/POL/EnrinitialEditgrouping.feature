@@ -192,7 +192,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
       |Primary|
       |Spouse|
       |Son   |
-    And  I validate the notices  policy member data for coverage start date minus five days
+    And  I validate the notices policy member data for coverage start date "currentday minus five days"
     And I validate the notices medical policy member data "KP Select CO Bronze 8500/50"
       |Primary|
       |Spouse|

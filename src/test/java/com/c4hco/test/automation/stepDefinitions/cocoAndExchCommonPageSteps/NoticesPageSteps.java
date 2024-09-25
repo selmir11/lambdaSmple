@@ -97,26 +97,21 @@ public class NoticesPageSteps {
         noticesPage.VerifyTheNoticeTextAM01603();
     }
 
-    @And("I validate the notices  policy member data for coverage start date for next month")
-    public void verifyPolicyCoverageStartDateForNextMonth() {
-        noticesPage.verifyPolicyCoverageStartDateForNextMonth();
-    }
-
-    @And("I validate the notices  policy member data for coverage start date minus five days")
-    public void verifypolicycoveragestartdatenoticeminusfivedays() {
-        noticesPage.verifypolicycoveragestartdatenoticeminusfivedays();
+    @And("I validate the notices policy member data for coverage start date {string}")
+    public void verifyPolicyCoverageStartDate(String dateType) {
+        noticesPage.verifypolicycoveragestartdate(dateType);
     }
 
 
     @And("I validate the notices Dental policy member data {string}")
-    public void validateDentalPolicyMemberData(String noticeInputDetails, List <String> NoticedetailsdentalMembers) {
-        noticesPage.validateDentalPolicyMemberData(noticeInputDetails, NoticedetailsdentalMembers);
+    public void validatedentalpolicymemberData(String noticeInputDetails, List <String> NoticedetailsdentalMembers) {
+        noticesPage.validatedentalpolicymemberData(noticeInputDetails, NoticedetailsdentalMembers);
     }
 
 
     @And("I validate the notices medical policy member data {string}")
-    public void validatemedicalPolicyMemberData(String noticeInputDetails, List <String> NoticedetailsmedicalMembers) {
-        noticesPage.validatemedicalPolicyMemberData(noticeInputDetails, NoticedetailsmedicalMembers);
+    public void validatemedicalpolicymemberdata(String noticeInputDetails, List <String> NoticedetailsmedicalMembers) {
+        noticesPage.validatemedicalpolicymemberdata(noticeInputDetails, NoticedetailsmedicalMembers);
     }
 
 
