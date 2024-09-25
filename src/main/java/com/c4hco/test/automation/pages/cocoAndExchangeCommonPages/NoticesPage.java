@@ -468,12 +468,12 @@ public class NoticesPage {
         System.out.println("Dental Plan notice details found");
 
         for (int i = 0; i < NoticedetailsdentalMembers.size(); i++) {
-            WebElement policyDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + NoticedetailsdentalMembers.get(i) + "')]"));
-            basicActions.waitForElementToBePresent(policyDetails, 30);
+            WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + NoticedetailsdentalMembers.get(i) + "')]"));
+            basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
 
             if (NoticedetailsdentalMembers.get(i).equals("Primary")) {
                 String primaryMemberDetails = SharedData.getPrimaryMember().getFullName();
-                if (primaryMemberDetails != null && policyDetails.getText() != null && policyDetails.getText().contains(primaryMemberDetails)) {
+                if (primaryMemberDetails != null && policyDetailsFromEmailNotice.getText() != null && policyDetails.getText().contains(primaryMemberDetails)) {
                     System.out.println("Primary member details found: " + primaryMemberDetails);
                     Assert.assertTrue(policyDetails.getText().contains(primaryMemberDetails), "Primary member details not found");
                 } else {
@@ -484,9 +484,9 @@ public class NoticesPage {
                 List<MemberDetails> memberDetailsList = SharedData.getMembers();
                 List<String> names = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).collect(Collectors.toList());
                 String result = null;
-                for (String item : names) {
-                    if (item.contains(NoticedetailsdentalMembers.get(i))) {
-                        result = item;
+                for (String memberfullname : names) {
+                    if (memberfullname.contains(NoticedetailsdentalMembers.get(i))) {
+                        result = memberfullname;
                         break;
                     }
                 }
