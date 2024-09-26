@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +45,41 @@ public class StartShoppingCoCoPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();
+    }
+    public void memberTobaccoUser(String member, String YNTobaccoUser) {
+        basicActions.waitForElementListToBePresent(btnNoAndYes,20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> memberList = SharedData.getMembers();
+        switch (member) {
+            case "member1":
+                switch (YNTobaccoUser) {
+                    case "Yes":
+                        btnNoAndYes.get(0).click();
+                        break;
+                    case "No":
+                        btnNoAndYes.get(1).click();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
+                }
+                subscriber.setTobacco_user(YNTobaccoUser);
+                break;
+            case "member2":
+                switch (YNTobaccoUser) {
+                    case "Yes":
+                        btnNoAndYes.get(2).click();
+                        break;
+                    case "No":
+                        btnNoAndYes.get(3).click();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
+                }
+                memberList.get(memberList.size()-1).setTobacco_user(YNTobaccoUser);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + member);
+        }
     }
 
 }
