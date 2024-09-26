@@ -359,13 +359,13 @@ public class WelcomePage {
         softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
-    public void ValidatePlanDetailsOnWelcomePage(String memberName,String planName){
-        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
-        WebElement planDetails = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+memberName+"')]/ancestor::div[@class='plan-member-names-container']/parent::div/parent::div //div[@class='plan-name']"));
-        basicActions.waitForElementToBeClickable(planDetails,30) ;
-        softAssert.assertEquals(planDetails.getText(),planName);
-        softAssert.assertAll();
-    }
+//    public void ValidatePlanDetailsOnWelcomePage(String memberName,String planName){
+//        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+//        WebElement planDetails = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+memberName+"')]/ancestor::div[@class='plan-member-names-container']/parent::div/parent::div //div[@class='plan-name']"));
+//        basicActions.waitForElementToBeClickable(planDetails,30) ;
+//        softAssert.assertEquals(planDetails.getText(),planName);
+//        softAssert.assertAll();
+//    }
 }
 
 
