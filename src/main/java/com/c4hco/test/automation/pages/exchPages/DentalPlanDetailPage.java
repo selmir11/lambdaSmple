@@ -187,7 +187,7 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals(txtInDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
         txtInGeneralDetails.click();
         txtInDiagnosticChild.click();
-        //softAssert.assertEquals( subheader.get(1).getText(), data.get(11), "Cleaning Child" );
+        // assertions not working here  - review
         softAssert.assertEquals( subheader.get(1).getText(), "Cleaning Child" );
         softAssert.assertEquals( txtFlourideChild.getText(), "Flouride Treatments Child" );
         softAssert.assertEquals( txtOralExamsChild.getText(), "Oral Exams Child");
