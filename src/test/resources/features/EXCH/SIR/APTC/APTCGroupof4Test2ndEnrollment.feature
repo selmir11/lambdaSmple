@@ -45,6 +45,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -67,6 +70,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -94,6 +100,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -120,6 +129,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -298,6 +310,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -429,6 +444,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -450,6 +468,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -474,6 +495,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -496,6 +520,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -520,6 +547,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -546,6 +576,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -760,6 +793,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -897,6 +933,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -918,6 +957,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -943,6 +985,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -966,6 +1011,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -991,6 +1039,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1020,6 +1071,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1052,6 +1106,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1083,6 +1140,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     #Then I select "No" for Foster care in state of Colorado
     #Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1117,6 +1177,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     #Then I select "No" for Foster care in state of Colorado
     #Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1416,6 +1479,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -1437,6 +1503,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1462,6 +1531,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1485,6 +1557,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1510,6 +1585,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1539,6 +1617,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1571,6 +1652,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
 
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1602,6 +1686,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     #Then I select "No" for Foster care in state of Colorado
     #Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1636,6 +1723,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     #Then I select "No" for Foster care in state of Colorado
     #Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
