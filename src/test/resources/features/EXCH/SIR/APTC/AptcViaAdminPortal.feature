@@ -28,6 +28,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I am a member with City "Denver" in State "CO" with dob "01011991" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
@@ -41,6 +42,10 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -79,6 +84,10 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -100,14 +109,21 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -115,33 +131,42 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
     Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
+
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
+
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
+
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
+
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
@@ -220,6 +245,10 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
