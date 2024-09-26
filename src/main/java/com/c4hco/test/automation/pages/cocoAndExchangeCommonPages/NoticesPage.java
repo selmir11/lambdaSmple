@@ -460,24 +460,19 @@ public class NoticesPage {
         resetPWLink.click();
     }
 
-
     public void validatedentalpolicymemberData(String noticeInputDetails, List<String> noticedetailsDentalMembers) {
-
         WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + noticeInputDetails + "')]"));
         Assert.assertTrue(noticePlanDetails.getText().contains(noticeInputDetails), "Plan notice details not found");
         for (String memberType : noticedetailsDentalMembers) {
             WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + memberType + "')]"));
             basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-
             String memberDetails = null;
-
             if (memberType.equals("Primary")) {
                 memberDetails = SharedData.getPrimaryMember().getFullName();
             } else {
                 List<MemberDetails> memberDetailsList = SharedData.getMembers();
                 memberDetails = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).filter(fullName -> fullName.contains(memberType)).findFirst().orElse(null);
             }
-
             if (memberDetails != null && policyDetailsFromEmailNotice.getText() != null && policyDetailsFromEmailNotice.getText().contains(memberDetails)) {
                 Assert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberDetails), memberType + " member details not found");
             } else {
@@ -487,7 +482,6 @@ public class NoticesPage {
     }
 
     public void validatemedicalpolicymemberdata(String noticeInputDetails, List<String> noticedetailsMedicalMembers) {
-
         WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + noticeInputDetails + "')]"));
         Assert.assertTrue(noticePlanDetails.getText().contains(noticeInputDetails), "Plan notice details not found");
         for (String memberType : noticedetailsMedicalMembers) {
@@ -509,8 +503,7 @@ public class NoticesPage {
     }
 
     public void verifypolicycoveragestartdate(String dateType) {
-        WebElement planDetailsElement = basicActions.getDriver().findElement(
-                By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
+        WebElement planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
         Calendar calendar = Calendar.getInstance();
         String expectedDate = "";
         SimpleDateFormat dateFormat;
