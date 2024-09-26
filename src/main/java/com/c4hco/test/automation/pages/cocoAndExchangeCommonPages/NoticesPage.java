@@ -503,45 +503,12 @@ public class NoticesPage {
     private String getMemFullName(String memPrefix){
         String memFullName = null;
         if (memPrefix.equals("Primary")) {
-            memFullName = SharedData.getPrimaryMember().getFullName();
+            memFullName = SharedData.getPrimaryMember().getFullName(); // WIP - Check if this is name is with full middle name or not
         } else {
             List<MemberDetails> memberDetailsList = SharedData.getMembers();
-            memFullName = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+            memFullName = memberDetailsList.stream().map(MemberDetails::getCompleteFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
         }
         return memFullName;
-    }
-
-    public void verifypolicycoveragestartdate(String planType, String dateType) {
-        WebElement planDetailsElement = null;
-        if (planType.equalsIgnoreCase("dental")) {
-            planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4]"));
-        } else if (planType.equalsIgnoreCase("medical")) {
-            planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
-        } else {
-            System.out.println("Invalid plan type provided: " + planType);
-            return;
-        }
-        Calendar calendar = Calendar.getInstance();
-        String expectedDate = "";
-        SimpleDateFormat dateFormat;
-
-        if (dateType.equalsIgnoreCase("next month first")) {
-            calendar.add(Calendar.MONTH, 1);
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-            expectedDate = dateFormat.format(calendar.getTime());
-        } else if (dateType.equalsIgnoreCase("currentday minus five days")) {
-            calendar.add(Calendar.DAY_OF_YEAR, -5);
-            dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
-            expectedDate = "Coverage Start Date: " + dateFormat.format(calendar.getTime());
-        }
-
-        String displayedDate = planDetailsElement.getText();
-        if (displayedDate.contains(expectedDate)) {
-            System.out.println("Coverage start date matches: " + expectedDate);
-        } else {
-            System.out.println("Coverage start date does not match. Expected: " + expectedDate + ", but found: " + displayedDate);
-        }
     }
 
 }

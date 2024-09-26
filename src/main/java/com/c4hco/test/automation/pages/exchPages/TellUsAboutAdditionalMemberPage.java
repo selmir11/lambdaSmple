@@ -204,7 +204,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setFullMiddleName(frstName+" "+mdlName+" "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
@@ -290,7 +290,7 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob=dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
-    public void newbornwithcurrentdatelessthanfivedays(int Days) {
+    public void newbornDob(int Days) {
         LocalDate currentDate = LocalDate.now();
         LocalDate DOBCalculate = currentDate.minusDays(Days);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
