@@ -151,7 +151,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    AAnd I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
