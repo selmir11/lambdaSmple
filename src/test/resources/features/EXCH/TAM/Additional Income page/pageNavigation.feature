@@ -1,4 +1,4 @@
-@TAM
+@TAM @TamExch
 Feature: Page Navigation-Additional Income Page
 
   Background:
@@ -35,6 +35,8 @@ Feature: Page Navigation-Additional Income Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -63,6 +65,7 @@ Feature: Page Navigation-Additional Income Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click on the Member Row 0
     Then I select the Edit Income link

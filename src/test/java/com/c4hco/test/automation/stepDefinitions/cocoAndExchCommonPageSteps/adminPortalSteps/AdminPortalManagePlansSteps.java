@@ -92,7 +92,6 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDate(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDate(memberFinancialStrtDtList);
     }
-
     @And ("I select the reason to confirm the changes")
     public void iselectTheReason (){
         adminPortalManagePlansPage.selectReasonForTheChange();

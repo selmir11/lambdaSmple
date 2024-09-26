@@ -1,4 +1,4 @@
-@TAM
+@TAM @TamExch
 Feature: Page Text-Other Health Coverage Page
 
   Background:
@@ -32,6 +32,8 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I get the Primary Member ID
@@ -182,6 +184,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -226,6 +229,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -307,6 +311,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -351,6 +356,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -395,6 +401,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -439,6 +446,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -483,6 +491,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1

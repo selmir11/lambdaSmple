@@ -1,4 +1,4 @@
-@TAM
+@TAM @TamExch
 Feature: Page Validation-OHI Individual Insurance Elmo Page
 
   Background:
@@ -32,6 +32,8 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I get the Primary Member ID
