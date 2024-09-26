@@ -463,27 +463,27 @@ public class NoticesPage {
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
         // Validating plan name and member names
         String planName = "";
-        WebElement policyDetailsFromEmailNotice;
-        String memPrefix = "";
         switch(planType){
             case "medical":
                 planName =  SharedData.getPrimaryMember().getMedicalPlan();
-                policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + memPrefix + "')]"));
-
+                validateMembers("4", membersOnPolicy);
+                break;
 
             case "dental":
                 planName =  SharedData.getPrimaryMember().getDentalPlan();
-                policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + memPrefix + "')]"));
-
+                validateMembers("1", membersOnPolicy);
+                break;
 
         }
+        validatePlanDetails(planName);
+        softAssert.assertAll();
+    }
 
-        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + planName + "')]"));
-
-        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
-
+    private void validateMembers(String locatorStringByPlan, List<String> membersOnPolicy){
         for (String memPrefix : membersOnPolicy) {
             String memberName = getMemFullName(memPrefix);
+
+           WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorStringByPlan+"] //*[contains(text(),'" + memPrefix + "')]"));
 
             if(memberName!=null){
                 basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
@@ -492,7 +492,12 @@ public class NoticesPage {
                 Assert.fail("Member name is set to null");
             }
         }
-        softAssert.assertAll();
+
+    }
+
+    private void validatePlanDetails(String planName){
+        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + planName + "')]"));
+        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
     }
 
     private String getMemFullName(String memPrefix){
