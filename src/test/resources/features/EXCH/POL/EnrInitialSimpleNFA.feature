@@ -95,7 +95,7 @@ Feature: Simple NFA - Single Applicant
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the notices Dental policy member data "Delta Dental of Colorado Family Basic Plan"
+    And I validate the email notice details for "medical" plan
       |Primary|
     And I validate the notices medical policy member data "Elevate Health Plans Colorado Option Bronze"
       |Primary|

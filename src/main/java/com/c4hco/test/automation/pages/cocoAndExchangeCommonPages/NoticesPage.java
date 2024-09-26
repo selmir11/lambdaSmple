@@ -460,8 +460,24 @@ public class NoticesPage {
         resetPWLink.click();
     }
 
-    public void validateDetailsFromEmailPolicy(String planName, List<String> membersOnPolicy) {
+    public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
         // Validating plan name and member names
+        String planName = "";
+        WebElement policyDetailsFromEmailNotice;
+        String memPrefix = "";
+        switch(planType){
+            case "medical":
+                planName =  SharedData.getPrimaryMember().getMedicalPlan();
+                policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + memPrefix + "')]"));
+
+
+            case "dental":
+                planName =  SharedData.getPrimaryMember().getDentalPlan();
+                policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + memPrefix + "')]"));
+
+
+        }
+
         WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + planName + "')]"));
 
         softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
@@ -470,7 +486,6 @@ public class NoticesPage {
             String memberName = getMemFullName(memPrefix);
 
             if(memberName!=null){
-                WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + memPrefix + "')]"));
                 basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
                 softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
             } else {
