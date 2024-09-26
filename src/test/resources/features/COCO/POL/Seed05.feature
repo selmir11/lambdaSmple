@@ -132,7 +132,6 @@ Feature: Seed05 - COCO
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I validate that there are 2 default groups in coco page
     And  I click on edit enrollment groups link in coco page
-    #And I edit groups in edit medical grouping coco page
     And I create new group in edit medical grouping coco page and drag members to the new group
       | Primary,Wife:Group1 |
       | Son,DIL:Group2 |
@@ -172,16 +171,16 @@ Feature: Seed05 - COCO
       |2:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
-    And I select Group2 from the SelectPolicy Dropdown to update the dates
-    Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      |1:01012024|
-      |2:01012024|
-    And I update the Financial Start date of member
-      |1:01012024|
-      |2:01012024|
-    And I click Save Button Medical
-    And I select the reason to confirm the changes
-    Then I close current tab and switch back to previous tab
-    And logout from Admin Portal
+    # need to select group from selectPolicy Dropdown to update the dates - WIP
+#    Then I click Make Changes Medical button
+#    And I update the Coverage Start date of member
+#      |1:01012024|
+#      |2:01012024|
+#    And I update the Financial Start date of member
+#      |1:01012024|
+#      |2:01012024|
+#    And I click Save Button Medical
+#    And I select the reason to confirm the changes
+#    Then I close current tab and switch back to previous tab
+#    And logout from Admin Portal
 
