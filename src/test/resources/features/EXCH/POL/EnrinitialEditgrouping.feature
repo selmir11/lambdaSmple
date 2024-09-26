@@ -151,7 +151,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" plan
+    And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
