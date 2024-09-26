@@ -460,50 +460,35 @@ public class NoticesPage {
         resetPWLink.click();
     }
 
-    public void validateMemDetailsFromDentalPolicy(String dentalPlan, List<String> membersOnDentalPolicy) {
-        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + dentalPlan + "')]"));
+    public void validateDetailsFromEmailPolicy(String planName, List<String> membersOnPolicy) {
+        // Validating plan name and member names
+        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + planName + "')]"));
 
-        softAssert.assertTrue(noticePlanDetails.getText().contains(dentalPlan), "Dental Plan Name is not found in the email Notice");
+        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
 
-        String memberName = null;
-        for (String memPrefix : membersOnDentalPolicy) {
+        for (String memPrefix : membersOnPolicy) {
+            String memberName = getMemFullName(memPrefix);
 
-            WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + memPrefix + "')]"));
-            basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-
-            if (memPrefix.equals("Primary")) {
-                 memberName = SharedData.getPrimaryMember().getFullName();
+            if(memberName!=null){
+                WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + memPrefix + "')]"));
+                basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
+                softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
             } else {
-                List<MemberDetails> memberDetailsList = SharedData.getMembers();
-                 memberName = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+                Assert.fail("Member name is set to null");
             }
-            if(memberName.equals(null)){
-                Assert.fail("Member Name is NULL");
-            }
-            softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
         }
         softAssert.assertAll();
     }
 
-    public void validatemedicalpolicymemberdata(String noticeInputDetails, List<String> noticedetailsMedicalMembers) {
-        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + noticeInputDetails + "')]"));
-        Assert.assertTrue(noticePlanDetails.getText().contains(noticeInputDetails), "Plan notice details not found");
-        for (String memberType : noticedetailsMedicalMembers) {
-            WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4] //*[contains(text(),'" + memberType + "')]"));
-            basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-            String memberDetails = null;
-            if (memberType.equals("Primary")) {
-                memberDetails = SharedData.getPrimaryMember().getFullName();
-            } else {
-                List<MemberDetails> memberDetailsList = SharedData.getMembers();
-                memberDetails = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).filter(fullName -> fullName.contains(memberType)).findFirst().orElse(null);
-            }
-            if (memberDetails != null && policyDetailsFromEmailNotice.getText() != null && policyDetailsFromEmailNotice.getText().contains(memberDetails)) {
-                Assert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberDetails), memberType + " member details not found");
-            } else {
-                Assert.fail(memberType + " member details not found.");
-            }
+    private String getMemFullName(String memPrefix){
+        String memFullName = null;
+        if (memPrefix.equals("Primary")) {
+            memFullName = SharedData.getPrimaryMember().getFullName();
+        } else {
+            List<MemberDetails> memberDetailsList = SharedData.getMembers();
+            memFullName = memberDetailsList.stream().map(MemberDetails::getFullMiddleName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
         }
+        return memFullName;
     }
 
     public void verifypolicycoveragestartdate(String dateType) {

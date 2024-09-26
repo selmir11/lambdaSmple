@@ -105,13 +105,13 @@ public class NoticesPageSteps {
 
     @And("I validate the notices Dental policy member data {string}")
     public void validatedentalpolicymemberData(String dentalPlan, List <String> memberListOnPolicy) {
-        noticesPage.validateMemDetailsFromDentalPolicy(dentalPlan, memberListOnPolicy);
+        noticesPage.validateDetailsFromEmailPolicy(dentalPlan, memberListOnPolicy);
     }
 
 
     @And("I validate the notices medical policy member data {string}")
     public void validatemedicalpolicymemberdata(String noticeInputDetails, List <String> NoticedetailsmedicalMembers) {
-        noticesPage.validatemedicalpolicymemberdata(noticeInputDetails, NoticedetailsmedicalMembers);
+        noticesPage.validateDetailsFromEmailPolicy(noticeInputDetails, NoticedetailsmedicalMembers);
     }
 
 
