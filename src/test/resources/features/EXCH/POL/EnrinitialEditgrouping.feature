@@ -179,6 +179,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
+    And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
 
