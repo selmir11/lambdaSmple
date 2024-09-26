@@ -174,36 +174,6 @@ public class DentalPlanDetailPage {
         inNetworkDentalDetailLink.click();}
 
 
-    public void clickInDiagnosticChild(){
-        basicActions.waitForElementToBePresent( txtInDiagnosticChild,15 );
-        txtInDiagnosticChild.click();
-    }
-
-    public void clickInDiagnosticAdult(){
-        basicActions.waitForElementToBePresent( txtInDiagnosticAdult, 15 );
-        txtInDiagnosticAdult.click();
-    }
-
-    public void clickInBasicChild(){
-        basicActions.waitForElementToBePresent( txtInBasicServicesChild,15 );
-        txtInBasicServicesChild.click();
-    }
-
-    public void clickInBasicAdult(){
-        basicActions.waitForElementToBePresent( txtInBasicServicesAdult,15 );
-        txtInBasicServicesAdult.click();
-    }
-
-    public void clickInMajorChild(){
-        basicActions.waitForElementToBePresent( txtInMajorServicesChild,15 );
-        txtInBasicServicesChild.click();
-    }
-
-    public void clickInMajorAdult(){
-        basicActions.waitForElementToBePresent( txtInMajorServicesAdult,15 );
-        txtInMajorServicesAdult.click();
-    }
-
     public void clickOutNetworkDental() {
         basicActions.waitForElementToBeClickable(outNetworkDentalDetailLink, 15 );
         outNetworkDentalDetailLink.click();}
@@ -266,28 +236,33 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals(txtInMonthlyPremium.getText(), "Monthly Premium");
         softAssert.assertEquals(txtInGeneralDetails.getText(), "General Details");
         softAssert.assertEquals(txtInDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
+        txtInGeneralDetails.click();
         txtInDiagnosticChild.click();
         softAssert.assertEquals( txtCleaningChild.getText(), "Cleaning Child" );
         softAssert.assertEquals( txtFlourideChild.getText(), "Flouride Treatments Child" );
         softAssert.assertEquals( txtOralExamsChild.getText(), "Oral Exams Child");
         softAssert.assertEquals( txtXraysChild.getText(),"X-rays Child" );
         softAssert.assertEquals(txtInDiagnosticAdult.getText(), "Diagnostic and Preventive Services Adult");
+        txtInDiagnosticChild.click();
         txtInDiagnosticAdult.click();
         softAssert.assertEquals( txtCleaningAdult.getText(), "Cleaning Adult" );
         softAssert.assertEquals( txtOralExamsAdult.getText(), "Oral Exams Adult");
         softAssert.assertEquals(txtXraysAdult.getText(), "X-rays Adult");
         softAssert.assertEquals( txtInBasicServicesChild.getText(),"Basic Services Child" );
+        txtInDiagnosticAdult.click();
         txtInBasicServicesChild.click();
         softAssert.assertEquals( txtAmalgamChild.getText(), "Amalgam (Steel) Fillings Child" );
         softAssert.assertEquals( txtPeriodonticsChild.getText(), "Peridontics - Other Child" );
         softAssert.assertEquals( txtResinChild.getText(), "Resin (white plastic) Fillings Child");
         softAssert.assertEquals( txtSedativeFluidChild.getText(),"Sedative Fillings Child" );
         softAssert.assertEquals(txtInBasicServicesAdult.getText(), "Basic Services Adult");
+        txtInBasicServicesChild.click();
         txtInBasicServicesAdult.click();
         softAssert.assertEquals( txtAmalgamAdult.getText(), "Amalgam (Steel) Fillings Adult" );
         softAssert.assertEquals( txtPeriodonticsAdult.getText(), "Peridontics - Other Adult" );
         softAssert.assertEquals( txtSedativeFluidAdult.getText(),"Sedative Fillings Adult" );
         softAssert.assertEquals(txtInMajorServicesChild.getText(), "Major Services Child");
+        txtInBasicServicesAdult.click();
         txtInMajorServicesChild.click();
         softAssert.assertEquals( txtDenturesChild.getText(),"Dentures and Bridges Child" );
         softAssert.assertEquals( txtImplantsChild.getText(),"Implants Child" );
@@ -295,12 +270,14 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals( txtOralSurgeryChild.getText(),"Oral Surgery Child" );
         softAssert.assertEquals( txtRootCanalChild.getText(),"Root canal therapy Child" );
         softAssert.assertEquals(txtInMajorServicesAdult.getText(), "Major Services Adult");
+        txtInMajorServicesChild.click();
         txtInMajorServicesAdult.click();
         softAssert.assertEquals( txtDenturesAdult.getText(),"Dentures and Bridges Adult" );
         softAssert.assertEquals( txtImplantsAdult.getText(),"Implants Adult" );
         softAssert.assertEquals( txtOrthodontiaAdult.getText(),"Medically Necessary Orthodontia Child" );
         softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Oral Surgery Adult" );
         softAssert.assertEquals( txtRootCanalAdult.getText(),"Root canal therapy Adult" );
+        txtInMajorServicesAdult.click();
         softAssert.assertAll();
 
 
