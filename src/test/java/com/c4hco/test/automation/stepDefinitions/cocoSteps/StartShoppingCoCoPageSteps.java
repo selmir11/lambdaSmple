@@ -17,7 +17,5 @@ public class StartShoppingCoCoPageSteps {
     public void clickSaveAndExit() {
         startShoppingCoCoPage.clickBtnSaveNExit();
     }
-    @Then("I select {string} {string} for Tobacco Use coco")
-    public void tobaccoUser(String member, String YNTobaccoUser){startShoppingCoCoPage.memberTobaccoUser(member, YNTobaccoUser);}
 
 }
