@@ -40,6 +40,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
       |Primary:Spouse|
+
+
+
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -148,7 +151,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" plan
+    And I select "KP Select CO Bronze 8500/50" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
@@ -176,15 +179,26 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
+    And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
+
 
     #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate the email notice details for "dental" plan
+      |Primary|
+      |Spouse|
+      |Son   |
+    And I validate the "dental" policy coverage start date for "currentday minus five days"
+    And I validate the email notice details for "medical" plan
+      |Primary|
+      |Spouse|
+      |Son   |
+    And  I validate the "medical" policy coverage start date for "currentday minus five days"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
