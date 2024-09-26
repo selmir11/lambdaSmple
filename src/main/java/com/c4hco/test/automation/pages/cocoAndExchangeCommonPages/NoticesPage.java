@@ -467,15 +467,16 @@ public class NoticesPage {
             case "medical":
                 planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
+                validatePlanDetails("4", planName);
                 break;
 
             case "dental":
                 planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
+                validatePlanDetails("1", planName);
                 break;
 
         }
-        validatePlanDetails(planName);
         softAssert.assertAll();
     }
 
@@ -492,11 +493,10 @@ public class NoticesPage {
                 Assert.fail("Member name is set to null");
             }
         }
-
     }
 
-    private void validatePlanDetails(String planName){
-        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1] //*[contains(text(),'" + planName + "')]"));
+    private void validatePlanDetails(String locatorByPlan, String planName){
+        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorByPlan+"] //*[contains(text(),'" + planName + "')]"));
         softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
     }
 

@@ -104,7 +104,7 @@ public class NoticesPageSteps {
 
 
     @And("I validate the email notice details for {string} plan")
-    public void validatedentalpolicymemberData(String planType, List <String> memberListOnPolicy) {
+    public void validatePolicyDetailsInEmail(String planType, List <String> memberListOnPolicy) {
         noticesPage.validateDetailsFromEmailPolicy(planType, memberListOnPolicy);
     }
 
