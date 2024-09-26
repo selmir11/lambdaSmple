@@ -192,11 +192,12 @@ Feature: Enroll a in a plan (FAMILY OF 3)
       |Primary|
       |Spouse|
       |Son   |
-    And  I validate the notices policy member data for coverage start date "currentday minus five days"
+    And I validate the "dental" policy coverage start date for "currentday minus five days"
     And I validate the email notice details for "medical" plan
       |Primary|
       |Spouse|
       |Son   |
+    And  I validate the "medical" policy coverage start date for "currentday minus five days"
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0

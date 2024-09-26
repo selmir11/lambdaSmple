@@ -511,11 +511,20 @@ public class NoticesPage {
         return memFullName;
     }
 
-    public void verifypolicycoveragestartdate(String dateType) {
-        WebElement planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
+    public void verifypolicycoveragestartdate(String planType, String dateType) {
+        WebElement planDetailsElement = null;
+        if (planType.equalsIgnoreCase("dental")) {
+            planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[4]"));
+        } else if (planType.equalsIgnoreCase("medical")) {
+            planDetailsElement = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[1]"));
+        } else {
+            System.out.println("Invalid plan type provided: " + planType);
+            return;
+        }
         Calendar calendar = Calendar.getInstance();
         String expectedDate = "";
         SimpleDateFormat dateFormat;
+
         if (dateType.equalsIgnoreCase("next month first")) {
             calendar.add(Calendar.MONTH, 1);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -526,6 +535,7 @@ public class NoticesPage {
             dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
             expectedDate = "Coverage Start Date: " + dateFormat.format(calendar.getTime());
         }
+
         String displayedDate = planDetailsElement.getText();
         if (displayedDate.contains(expectedDate)) {
             System.out.println("Coverage start date matches: " + expectedDate);

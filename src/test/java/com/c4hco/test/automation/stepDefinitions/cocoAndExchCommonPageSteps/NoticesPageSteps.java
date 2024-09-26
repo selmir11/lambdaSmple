@@ -97,11 +97,10 @@ public class NoticesPageSteps {
         noticesPage.VerifyTheNoticeTextAM01603();
     }
 
-    @And("I validate the notices policy member data for coverage start date {string}")
-    public void verifyPolicyCoverageStartDate(String dateType) {
-        noticesPage.verifypolicycoveragestartdate(dateType);
+    @And("I validate the {string} policy coverage start date for {string}")
+    public void verifyPolicyCoverageStartDate(String planType, String dateType) {
+        noticesPage.verifypolicycoveragestartdate(planType, dateType);
     }
-
 
     @And("I validate the email notice details for {string} plan")
     public void validatePolicyDetailsInEmail(String planType, List <String> memberListOnPolicy) {
