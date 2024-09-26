@@ -106,8 +106,8 @@ public class NoticesPage {
 
     @FindBy(id = "x_policyInformation")
     WebElement policyinformation;
-
-
+    @FindBy(css ="#x_policyInformation .x_body dl dt")
+    List<WebElement> emailPolicyDetails;
 
 
     public String MFACode = "";
@@ -452,8 +452,18 @@ public class NoticesPage {
         String formattedDate = currentDate.format(formatter);
         softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
         System.out.println(formattedDate);
+        softAssert.assertTrue(EmailDate.getText().contains(formattedDate), "Email generated date mismatch");
         softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
         softAssert.assertAll();
+    }
+
+    public String firstDateOfNextMonth(){
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+        LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
+        // Format the dates
+        String formattedStartDate = firstDayOfNextMonth.format(formatter);
+        return formattedStartDate;
     }
     public void clickThePasswordResetLink() {
         basicActions.waitForElementToBePresent(resetPWLink,20);
@@ -461,6 +471,7 @@ public class NoticesPage {
     }
 
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
+        String coverageStartDate = firstDateOfNextMonth();
         // Validating plan name and member names
         String planName = "";
         switch(planType){
@@ -468,12 +479,14 @@ public class NoticesPage {
                 planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
                 validatePlanDetails("4", planName);
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(coverageStartDate), "Medical coverage date mismatch");
                 break;
 
             case "dental":
                 planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
                 validatePlanDetails("1", planName);
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(coverageStartDate), "Dental coverage date mismatch");
                 break;
 
         }
@@ -498,6 +511,7 @@ public class NoticesPage {
     private void validatePlanDetails(String locatorByPlan, String planName){
         WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorByPlan+"] //*[contains(text(),'" + planName + "')]"));
         softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
+        softAssert.assertAll();
     }
 
     private String getMemFullName(String memPrefix){
