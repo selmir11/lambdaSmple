@@ -75,8 +75,6 @@ Feature: Dental Plans page tests
 
     Then I validate I am on the "Dental Plan Results" page
     Then I click Go Back on Dental Plan Results page
-
-    And I click Go Back on the Enrollment Agreements page
     
     Then I validate I am on the "Medical Plan Results" page
     Then I click Go Back on the medical plan results page
