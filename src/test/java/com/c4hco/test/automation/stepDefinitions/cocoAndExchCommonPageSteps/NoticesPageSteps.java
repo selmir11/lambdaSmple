@@ -108,13 +108,6 @@ public class NoticesPageSteps {
         noticesPage.validateDetailsFromEmailPolicy(planType, memberListOnPolicy);
     }
 
-
-    @And("I validate the notices medical policy member data {string}")
-    public void validatemedicalpolicymemberdata(String noticeInputDetails, List <String> NoticedetailsmedicalMembers) {
-        noticesPage.validateDetailsFromEmailPolicy(noticeInputDetails, NoticedetailsmedicalMembers);
-    }
-
-
     @Then("I click the password reset link")
     public void iClickThePasswordResetLink() {
         noticesPage.clickThePasswordResetLink();

@@ -97,7 +97,7 @@ Feature: Simple NFA - Single Applicant
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
     And I validate the email notice details for "medical" plan
       |Primary|
-    And I validate the notices medical policy member data "Elevate Health Plans Colorado Option Bronze"
+    And I validate the email notice details for "dental" plan
       |Primary|
     Then I delete the open notice
     And I sign out of Outlook
