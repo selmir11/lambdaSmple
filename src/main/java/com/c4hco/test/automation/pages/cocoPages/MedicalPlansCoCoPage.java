@@ -287,4 +287,20 @@ public class MedicalPlansCoCoPage {
         basicActions.scrollToElement(goBackbtn);
         goBackbtn.click();
     }
+
+    public void validatePlanSelection(String planName){
+        basicActions.waitForElementToDisappear(spinner,20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setMedicalPlan(planName);
+        SharedData.setPrimaryMember(subscriber);
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                WebElement selectedPlan = basicActions.getDriver().findElement(By.id("PlanResults-RemovePlan_"+(optionalInt.get()+1)));
+                Assert.assertTrue(selectedPlan.isDisplayed());
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+    }
 }

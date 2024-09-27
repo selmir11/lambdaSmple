@@ -93,4 +93,9 @@ public class MedicalPlansCoCoPageSteps {
     public void clickGoBackStartShoppingPage() {
         medicalPlansCoCoPage.iclickGoBack();
     }
+
+    @Then("Validate {string} coco medical plan is selected")
+    public void validateSelectedPlan(String planName) {
+        medicalPlansCoCoPage.validatePlanSelection(planName);
+    }
 }
