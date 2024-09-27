@@ -40,9 +40,6 @@ public class EthnicityAndRacePage {
     @FindBy(id = "ELIG-RaceEthnicity-SaveAndContinue")
     WebElement saveAndContinueButton;
 
-    @FindBy(id = "ELIG-RaceEthnicity-GoBack")
-    WebElement goBackButton;
-
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
@@ -52,6 +49,13 @@ public class EthnicityAndRacePage {
 
     @FindBy(css = "lib-navigations-buttons.btn-primary-action-button")
     WebElement saveAndContinue_Button;
+
+
+    @FindBy(css = "Lib-navigations-buttons.btn-second-action-button")
+    WebElement goBackButton;
+
+
+
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 90);
