@@ -100,6 +100,7 @@ public class NoticesPageSteps {
     @And("I validate the email notice details for {string} plan")
     public void validatePolicyDetailsInEmail(String planType, List <String> memberListOnPolicy) {
         noticesPage.validateDetailsFromEmailPolicy(planType, memberListOnPolicy);
+        noticesPage.validateGmailCoverageStartDate(planType);
     }
     @Then("I click the password reset link")
     public void iClickThePasswordResetLink() {

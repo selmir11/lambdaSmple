@@ -466,9 +466,22 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(resetPWLink,20);
         resetPWLink.click();
     }
+    public void validateGmailCoverageStartDate(String planType){
+        String coverageStartDate = firstDateOfNextMonth();
+        switch(planType) {
+            case "medical":
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(coverageStartDate), "Medical coverage date mismatch");
+                break;
+            case "dental":
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(coverageStartDate), "Dental coverage date mismatch");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+        softAssert.assertAll();
+    }
 
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
-        String coverageStartDate = firstDateOfNextMonth();
         // Validating plan name and member names
         String planName = "";
         switch(planType){
@@ -476,14 +489,12 @@ public class NoticesPage {
                 planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
                 validatePlanDetails("4", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(coverageStartDate), "Medical coverage date mismatch");
                 break;
 
             case "dental":
                 planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
                 validatePlanDetails("1", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(coverageStartDate), "Dental coverage date mismatch");
                 break;
 
         }
