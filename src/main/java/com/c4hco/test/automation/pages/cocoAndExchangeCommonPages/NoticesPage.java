@@ -453,50 +453,42 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
         softAssert.assertAll();
     }
-
-    public String firstDateOfNextMonth(){
-        LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
-        LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
-        // Format the dates
-        String formattedStartDate = firstDayOfNextMonth.format(formatter);
-        return formattedStartDate;
-    }
     public void clickThePasswordResetLink() {
         basicActions.waitForElementToBePresent(resetPWLink,20);
         resetPWLink.click();
     }
-    public void validateGmailCoverageStartDate(String planType){
-        String coverageStartDate = firstDateOfNextMonth();
-        switch(planType) {
-            case "medical":
-                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(coverageStartDate), "Medical coverage date mismatch");
-                break;
-            case "dental":
-                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(coverageStartDate), "Dental coverage date mismatch");
+    public String validateGmailCoverageStartDate(String startDate){
+        String formattedStartDate;
+        switch(startDate) {
+            case "First Of Next Month":
+                LocalDate today = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+                LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
+                formattedStartDate = firstDayOfNextMonth.format(formatter);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + planType);
+                throw new IllegalArgumentException("Invalid option: " + startDate);
         }
-        softAssert.assertAll();
+        return formattedStartDate;
     }
 
-    public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
-        // Validating plan name and member names
+    public void validateDetailsFromEmailPolicy(String planType, String startDate, List<String> membersOnPolicy) {
+       String coverageStartDate = validateGmailCoverageStartDate(startDate);
+        // Validating plan name and member names and coverage start date
         String planName = "";
         switch(planType){
             case "medical":
                 planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
                 validatePlanDetails("4", planName);
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(coverageStartDate), "Medical coverage date mismatch");
                 break;
-
             case "dental":
                 planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
                 validatePlanDetails("1", planName);
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(coverageStartDate), "Dental coverage date mismatch");
                 break;
-
         }
         softAssert.assertAll();
     }
