@@ -33,6 +33,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
@@ -89,6 +91,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -166,6 +169,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -220,6 +224,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -275,6 +280,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -292,6 +298,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -310,6 +317,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -400,6 +408,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -489,6 +498,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -557,6 +567,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -633,6 +644,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -827,6 +839,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -908,6 +921,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -960,6 +974,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1025,6 +1040,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 2
     Then I click on Remove this Member
@@ -1154,6 +1170,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -1220,6 +1237,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -1276,6 +1294,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -1333,6 +1352,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1350,6 +1370,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1368,6 +1389,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1458,6 +1480,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -1520,6 +1543,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -1590,6 +1614,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -1662,6 +1687,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1

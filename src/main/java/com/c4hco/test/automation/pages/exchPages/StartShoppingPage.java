@@ -22,13 +22,13 @@ public class StartShoppingPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
+    @FindBy(id = "SOL-StartShop-Continue")
     WebElement btnContinue;
 
     @FindBy(css = ".container .radio-button")
     List<WebElement> btnNoAndYes;
 
-    @FindBy(id = "SHP-StartShop-SaveAndExit")
+    @FindBy(id = "SOL-StartShop-SaveAndExit")
     WebElement saveAndExitButton;
 
     @FindBy(css = ".container .header-1")
@@ -36,7 +36,7 @@ public class StartShoppingPage {
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
-    @FindBy(id = "SHP-StartShop-GoBack")
+    @FindBy(id = "SOL-StartShop-GoBack")
     WebElement goBackbtn;
 
     public void clickBtnSaveNExit(){
