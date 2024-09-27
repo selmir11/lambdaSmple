@@ -357,17 +357,17 @@ public class ApplicationDetailsPage {
         switch (name) {
             case "Member1FullName":
                 if (SharedData.getMembers().size() > 0) {
-                    memberFullName = SharedData.getMembers().get(0).getFullMiddleName();
+                    memberFullName = SharedData.getMembers().get(0).getCompleteFullName();
                 }
                 break;
             case "Member2FullName":
                 if (SharedData.getMembers().size() > 1) {
-                    memberFullName = SharedData.getMembers().get(1).getFullMiddleName();
+                    memberFullName = SharedData.getMembers().get(1).getCompleteFullName();
                 }
                 break;
             case "Member3FullName":
                 if (SharedData.getMembers().size() > 2) {
-                    memberFullName = SharedData.getMembers().get(2).getFullMiddleName();
+                    memberFullName = SharedData.getMembers().get(2).getCompleteFullName();
                 }
                 break;
             default:

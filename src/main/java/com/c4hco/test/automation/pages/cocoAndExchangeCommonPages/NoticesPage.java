@@ -10,13 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class NoticesPage {
 
@@ -521,6 +518,7 @@ public class NoticesPage {
         } else {
             List<MemberDetails> memberDetailsList = SharedData.getMembers();
             memFullName = memberDetailsList.stream().map(MemberDetails::getCompleteFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+
         }
         return memFullName;
     }
