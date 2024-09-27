@@ -709,3 +709,232 @@ Feature: CoupleWithChildrens - End to End Test
 
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-337 @EndToEndTest
+  Scenario: SLCR-337 - This will create 3 groups - 2 couples 1 adult (SES plan not viewable)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    And I apply for the current year in CoCo
+
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click Primary EditUpdate on the Family Overview page
+
+    Then I enter details on tell us about yourself page and continue with "05101977", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "20,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "Wife", "07081980", "Female", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "50,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "UnrelatedOne", "07081995", "Male", and applying "Yes"
+      | Primary:Other Relative |
+      | Wife:Other Relative    |
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "50,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "UnrelatedTwo", "07081995", "Female", and applying "Yes"
+      | Primary:Unrelated   |
+      | Wife:Unrelated      |
+      | UnrelatedOne:Spouse |
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "50,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "UnrelatedThree", "07081950", "Female", and applying "Yes"
+      | Primary:Unrelated   |
+      | Wife:Unrelated      |
+      | UnrelatedOne:Unrelated |
+      | UnrelatedTwo:Unrelated |
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "50,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select None of these as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    And I select continue on the Family Overview page
+
+    Then I validate I am on the "CoCo life change event" page
+    And I select "MoveToCO" life change event
+    And I select continue on the LCE page
+
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on coco start shopping page
+
+    Then I validate I am on the "Grouping Members Medical" page
+    And I validate that there are 3 default groups in coco page
+    Then I click continue on grouping Members Medical coco page
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "KP Colorado Option Silver X" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "KP Colorado Option Silver X" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
+    Then I click all done from payment portal page coco
+    And I click on Sign Out in the Header for "Elmo"

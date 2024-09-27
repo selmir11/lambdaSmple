@@ -6,6 +6,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 
+import java.util.List;
+
 public class MedicalPlansCoCoPageSteps {
     MedicalPlansCoCoPage medicalPlansCoCoPage = new MedicalPlansCoCoPage(WebDriverManager.getDriver());
 
@@ -97,5 +99,10 @@ public class MedicalPlansCoCoPageSteps {
     @Then("Validate {string} coco medical plan is selected")
     public void validateSelectedPlan(String planName) {
         medicalPlansCoCoPage.validatePlanSelection(planName);
+    }
+
+    @Then("I validate text on coco medical plan page")
+    public void validateTextinMedicalPlan(List<String> testDatavalues) {
+        medicalPlansCoCoPage.validateMedicalPlanText(testDatavalues);
     }
 }
