@@ -1,4 +1,4 @@
-@TAM @pageNavigation
+@TAM @pageNavigation @TamCoCo
 Feature: Tests related to the Family Overview page
 
   Background: I go to the login portal

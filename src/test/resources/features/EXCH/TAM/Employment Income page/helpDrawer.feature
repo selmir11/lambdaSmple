@@ -1,4 +1,4 @@
-@TAM @helpDrawerEmploymentIncome
+@TAM @TamExch @helpDrawerEmploymentIncome
 Feature: Tests related to the help drawer on ELMO pages
 
   Background: I go the login portal
@@ -33,6 +33,8 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
