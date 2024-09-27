@@ -174,12 +174,13 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
     }
-    public void memberDetailswithoutsnnnumber(String DOB){
+    private void memDetailsWithoutSsn(String DOB){
         String frstName = "Son"+getUniqueString(8);
         String mdlName = capitalizeFirstLetter(getUniqueString(8));
         String lastName = capitalizeFirstLetter(getUniqueString(13));
@@ -295,7 +296,7 @@ public class TellUsAboutAdditionalMemberPage {
         LocalDate DOBCalculate = currentDate.minusDays(Days);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(DOBCalculate);
-        memberDetailswithoutsnnnumber(actualdob);
+        memDetailsWithoutSsn(actualdob);
     }
 
     public void specificAdditionalMemberDetailsExch(String Name, String DOB, String gender, List<String> Relations, String applying){
@@ -324,7 +325,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setFullMiddleName(frstName+" "+mdlName+" "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
