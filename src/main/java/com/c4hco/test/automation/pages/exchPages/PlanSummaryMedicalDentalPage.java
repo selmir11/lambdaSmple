@@ -218,5 +218,8 @@ public class PlanSummaryMedicalDentalPage {
         subscriber.setDentalAptcAmt("$0");
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
         SharedData.setPrimaryMember(subscriber);
+        System.out.println("med premium amt::"+SharedData.getPrimaryMember().getMedicalPremiumAmt());
+        System.out.println("dental premium amt::"+SharedData.getPrimaryMember().getDentalPremiumAmt());
+
     }
 }

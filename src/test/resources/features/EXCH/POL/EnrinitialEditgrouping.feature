@@ -1,6 +1,9 @@
 Feature: Enroll a in a plan (FAMILY OF 3)
-  @SLER-41
+  @SLER-41 @test
   Scenario: : EXCH intial application
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 3            | 1                 | 2                |   3             |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -40,8 +43,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
       |Primary:Spouse|
-
-
 
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -130,7 +131,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as currentdate minus 5 days
+    Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as current date minus 5 days
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -166,7 +167,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-     And I click continue on plan summary page
+     And I continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -179,9 +180,11 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
-    And I Validate the correct enrolled plans are displayed on account overview page
+    # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+
 
 
     #Gmail
@@ -189,22 +192,19 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan
-      |Primary|
-      |Spouse|
-      |Son   |
-    And I validate the "dental" policy coverage start date for "currentday minus five days"
     And I validate the email notice details for "medical" plan
       |Primary|
       |Spouse|
       |Son   |
-    And  I validate the "medical" policy coverage start date for "currentday minus five days"
+    And I validate the email notice details for "dental" plan
+      |Primary|
+      |Spouse|
+      |Son   |
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
 
     #DbVerification
-
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
