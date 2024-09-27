@@ -135,7 +135,7 @@ Feature: Medical Plan Compare page related tests
     Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"
 
-  @SLER-1086-WIP
+  @SLER-1086
   Scenario: SLER-1086 - Validate the 3 Compare box selection limit and Warning (Medical) -  4 checks
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -192,7 +192,7 @@ Feature: Medical Plan Compare page related tests
 
     Then I validate I am on the "Medical Plan Results" page
     Then I click on the compare links on the first 4 medical plans
-    #And I validate the Compare Warning Box
+    And I validate the Compare Warning Box
 
     Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"

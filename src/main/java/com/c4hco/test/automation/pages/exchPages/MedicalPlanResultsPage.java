@@ -59,7 +59,9 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-PlanCompareCheckbox_4")
     WebElement fourthCompareBox;
 
-    @FindBy(className = "row justify-content-center m-4 text-center body-text-1")
+    //@FindBy(xpath = "//*[@class = 'row justify-content-center m-4 text-center body-text-1']")
+    //@FindBy(xpath = "//span[normalize-space()='You may select two or three plans to compare.']")
+    @FindBy(xpath = "//*[@class = 'container-fluid']")
     WebElement compareWarningText;
 
     @FindBy(id = "MedicalPlanResults-Okay")
@@ -176,8 +178,8 @@ public class MedicalPlanResultsPage {
 
     public void validateCompareBoxWarningTxt(){
         basicActions.waitForElementToDisappear( spinner,20 );
-        basicActions.waitForElementToBeClickableWithRetries( compareWarningText,20);
-        softAssert.assertEquals( compareWarningText, "You may select two or three plans to compare");
+        basicActions.waitForElementToBePresentWithRetries( compareWarningText,20);
+        softAssert.assertEquals(compareWarningText.getText(), "You may select two or three plans to compare.\n" +"Okay");
         softAssert.assertAll();
         compareWarningOKbutton.click();
     }
