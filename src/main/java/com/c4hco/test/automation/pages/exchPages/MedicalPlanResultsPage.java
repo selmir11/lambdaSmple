@@ -59,8 +59,6 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-PlanCompareCheckbox_4")
     WebElement fourthCompareBox;
 
-    //@FindBy(xpath = "//*[@class = 'row justify-content-center m-4 text-center body-text-1']")
-    //@FindBy(xpath = "//span[normalize-space()='You may select two or three plans to compare.']")
     @FindBy(xpath = "//*[@class = 'container-fluid']")
     WebElement compareWarningText;
 
