@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan (FAMILY OF 3)
-  @SLER-41 @test
+  @SLER-41
   Scenario: : EXCH intial application
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |

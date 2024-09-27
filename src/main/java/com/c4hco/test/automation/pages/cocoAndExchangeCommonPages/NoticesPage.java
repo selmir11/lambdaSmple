@@ -501,18 +501,8 @@ public class NoticesPage {
         String memFullName = null;
         if (memPrefix.equals("Primary")) {
             memFullName = SharedData.getPrimaryMember().getFullName(); // WIP - Check if this is name is with full middle name or not
-            System.out.println("===fullname==="+memFullName);
-
         } else {
             List<MemberDetails> memberDetailsList = SharedData.getMembers();
-
-            for(MemberDetails member: memberDetailsList){
-
-                if(member.getCompleteFullName().contains(memPrefix)){
-                    memFullName = member.getCompleteFullName();
-                    break;
-                }
-            }
             memFullName = memberDetailsList.stream().map(MemberDetails::getCompleteFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
 
         }
