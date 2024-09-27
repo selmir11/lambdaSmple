@@ -22,7 +22,7 @@ public class StartShoppingPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SOL-StartShop-Continue")
+    @FindBy(id = "SHP-StartShop-Continue")
     WebElement btnContinue;
 
     @FindBy(css = ".container .radio-button")
