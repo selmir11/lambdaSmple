@@ -179,6 +179,9 @@ public class HeaderAndFooterPage {
     @FindBy(id = "instagram-img")
     WebElement InstagramIcon;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
@@ -409,12 +412,15 @@ public class HeaderAndFooterPage {
 
         switch (language) {
             case "English":
+                basicActions.waitForElementToDisappear(spinner,20);
                 basicActions.waitForElementToBePresent(languageDrp, 60);
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
                 break;
-            case "Spanish":basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
+            case "Spanish":
+                basicActions.waitForElementToDisappear(spinner,20);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
                 basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 70);
                 basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 70);
                 basicActions.waitForElementToBePresentWithRetries(languageDrp, 70);
