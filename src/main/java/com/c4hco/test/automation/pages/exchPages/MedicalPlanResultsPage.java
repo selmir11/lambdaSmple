@@ -56,6 +56,15 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-PlanCompareCheckbox_3")
     WebElement thirdCompareBox;
 
+    @FindBy(id = "PlanResults-PlanCompareCheckbox_4")
+    WebElement fourthCompareBox;
+
+    @FindBy(className = "row justify-content-center m-4 text-center body-text-1")
+    WebElement compareWarningText;
+
+    @FindBy(id = "MedicalPlanResults-Okay")
+    WebElement compareWarningOKbutton;
+
     @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
@@ -153,6 +162,24 @@ public class MedicalPlanResultsPage {
         firstCompareBox.click();
         secondCompareBox.click();
         thirdCompareBox.click();
+    }
+
+    public void clickFirstFourCompareButtons(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( firstCompareBox,10 );
+        firstCompareBox.click();
+        secondCompareBox.click();
+        thirdCompareBox.click();
+        fourthCompareBox.click();
+
+    }
+
+    public void validateCompareBoxWarningTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBeClickableWithRetries( compareWarningText,20);
+        softAssert.assertEquals( compareWarningText, "You may select two or three plans to compare");
+        softAssert.assertAll();
+        compareWarningOKbutton.click();
     }
 
     public void clickInsuranceCompanyDropdown() {
