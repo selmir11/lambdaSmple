@@ -134,7 +134,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click on continue with  application button on Before you begin page
 
     #need to remove LCE step during OE
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
   # location change
