@@ -185,8 +185,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-
-
     #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"

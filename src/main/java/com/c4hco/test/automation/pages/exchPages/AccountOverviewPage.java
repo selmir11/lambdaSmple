@@ -156,18 +156,12 @@ public class AccountOverviewPage {
         // only the locator for the plan details change but the value will stay same for the entire group. Hence comparing with primary member.
         softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
 
-        System.out.println("medical premium amt from page:::"+planInformationTable.get(totalDependents+3).getText());
-       System.out.println("medical premium amt from shared data::"+SharedData.getPrimaryMember().getMedicalPremiumAmt());
-
         softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
         softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
 
-        System.out.println("dental premium amt from page:::"+planInformationTable.get(totalDependents+8).getText());
-        System.out.println("dental premium amt from shared data::"+SharedData.getPrimaryMember().getDentalPremiumAmt());
-
         softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
 
-     //   softAssert.assertAll();
+       softAssert.assertAll();
     }
 
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {
