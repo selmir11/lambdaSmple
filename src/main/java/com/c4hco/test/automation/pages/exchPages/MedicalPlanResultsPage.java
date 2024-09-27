@@ -53,6 +53,9 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-PlanCompareCheckbox_2")
     WebElement secondCompareBox;
 
+    @FindBy(id = "PlanResults-PlanCompareCheckbox_3")
+    WebElement thirdCompareBox;
+
     @FindBy(id = "PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
@@ -142,6 +145,14 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToBePresent( firstCompareBox,10 );
         firstCompareBox.click();
         secondCompareBox.click();
+    }
+
+    public void clickFirstThreeCompareButtons(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( firstCompareBox,10 );
+        firstCompareBox.click();
+        secondCompareBox.click();
+        thirdCompareBox.click();
     }
 
     public void clickInsuranceCompanyDropdown() {
