@@ -477,6 +477,7 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
+
     private void validateMembers(String locatorStringByPlan, List<String> membersOnPolicy){
         for (String memPrefix : membersOnPolicy) {
             String memberName = getMemFullName(memPrefix);
