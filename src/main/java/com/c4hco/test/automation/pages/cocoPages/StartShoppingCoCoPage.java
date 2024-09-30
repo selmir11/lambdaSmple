@@ -21,13 +21,13 @@ public class StartShoppingCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
+    @FindBy(id = "SOL-StartShop-Continue")
     WebElement btnContinue;
 
     @FindBy(css = ".container .radio-button")
     List<WebElement> btnNoAndYes;
 
-    @FindBy(id = "SHP-StartShop-SaveAndExit")
+    @FindBy(id = "SOL-StartShop-SaveAndExit")
     WebElement saveAndExitButton;
 
     @FindBy(css = ".container .header-1")
