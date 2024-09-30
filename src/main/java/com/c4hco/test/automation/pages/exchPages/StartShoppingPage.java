@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,85 +40,26 @@ public class StartShoppingPage {
     @FindBy(id = "SOL-StartShop-GoBack")
     WebElement goBackbtn;
 
-    public void clickBtnSaveNExit(){
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+    public void clickBtnSaveNExit() {
         saveAndExitButton.click();
     }
-    public void iclickContinue(){
-        basicActions.waitForElementListToBePresent(btnNoAndYes,10);
+
+    public void iclickContinue() {
+        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();
     }
-
-    public void isMemberTobaccoUser(String member, String YNTobaccoUser) {
-        basicActions.waitForElementListToBePresent(btnNoAndYes,20);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        List<MemberDetails> memberList = SharedData.getMembers();
-        switch (member) {
-            case "member1":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(0).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(1).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                subscriber.setTobacco_user(YNTobaccoUser);
-                break;
-            case "member2":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(2).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(3).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                subscriber.setTobacco_user(YNTobaccoUser);
-                break;
-            case "member3":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(4).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(5).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                subscriber.setTobacco_user(YNTobaccoUser);
-                break;
-            case "member4":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(6).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(7).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                memberList.get(memberList.size()-1).setTobacco_user(YNTobaccoUser);
-                break;
-                default:
-                    throw new IllegalArgumentException("Invalid option: " + member);
-        }
-    }
-
-
+    
     //-----------------------Validations------------------------//
-    public void verifyTextOnTobaccoPage(){ 
-        basicActions.waitForElementToBePresent(headerText,10);
+    public void verifyTextOnTobaccoPage() {
+        basicActions.waitForElementToBePresent(headerText, 10);
         softAssert.assertEquals(headerText.getText(), "It's almost time to start shopping for a health insurance plan!");
         softAssert.assertEquals(bodyText.get(1), "First, we need to ask you about tobacco usage.");
-        softAssert.assertEquals(bodyText.get(2),"Within the last 6 months, has any member of your household used tobacco products regularly");
+        softAssert.assertEquals(bodyText.get(2), "Within the last 6 months, has any member of your household used tobacco products regularly");
         softAssert.assertEquals(btnNoAndYes.get(1), "No");
         softAssert.assertEquals(btnNoAndYes.get(2), "Yes");
         softAssert.assertEquals(saveAndExitButton.getText(), "Save and Exit");
@@ -127,9 +69,22 @@ public class StartShoppingPage {
         softAssert.assertAll();
     }
 
-    public void iclickGoBack(){
-        basicActions.waitForElementToBePresent(goBackbtn,10);
+    public void iclickGoBack() {
+        basicActions.waitForElementToBePresent(goBackbtn, 10);
         basicActions.scrollToElement(goBackbtn);
         goBackbtn.click();
+    }
+
+    public void tobaccoPage(String tobaccoUsageDetails) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
+
+        String[] NameDetails = tobaccoUsageDetails.split(",");
+
+        for (String Name : NameDetails) {
+            WebElement tobaccoUsageYes = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'" + Name + "')]/parent::p/following-sibling::label)[1]"));
+            tobaccoUsageYes.click();
+        }
+
     }
 }
