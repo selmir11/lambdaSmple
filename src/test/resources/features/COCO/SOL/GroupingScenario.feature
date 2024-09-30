@@ -52,16 +52,17 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "01011980", "Female", "Spouse", and applying "No"
+    Then I enter details on tell us about additional members of your household page with "Wife", "07081980", "Female", and applying "No"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "60,000.00" income amount
@@ -83,16 +84,17 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "01012010", "Male", "Child or Other dependent", "Child or Other dependent", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son", "01012010", "Male", and applying "Yes"
+      |Primary:Child or Other dependent|
+      |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -110,16 +112,18 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "03052012", "Male", "Child or Other dependent", "Child or Other dependent", "Sibling", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Son2", "03052012", "Male", and applying "Yes"
+      |Primary:Child or Other dependent|
+      |Wife:Child or Other dependent|
+      |Son:Sibling                  |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -190,10 +194,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I enter residential address details for additional member "1234 Downing street", "Englewood", "CO", "80111", "Arapahoe"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -219,10 +223,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I enter residential address details for additional member "123 Downing", "Centennial", "CO", "80111", "Arapahoe"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -299,10 +302,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
       And I enter residential address details for additional member "1234 Downing street", "Englewood", "CO", "80111", "Arapahoe"
       And I select "Yes" for live in Colorado option for additional member
       And I click continue on the Additional information for additional member page
-      Then I validate I am on the "CoCo Ethnicity and Race" page
-      And I select "I prefer not to answer" ethnicity option
-      And I select "I prefer not to answer" race option
-      And I click continue on the Ethnicity and race page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I select "Prefer not to answer" for race and ethnicity option
+      And I click save and continue on the Race and Ethnicity page
 
       And I select "No" employment option
       And I click continue on the Employment income page
@@ -328,10 +330,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
       And I enter residential address details for additional member "123 Downing", "Centennial", "CO", "80111", "Arapahoe"
       And I select "Yes" for live in Colorado option for additional member
       And I click continue on the Additional information for additional member page
-      Then I validate I am on the "CoCo Ethnicity and Race" page
-      And I select "I prefer not to answer" ethnicity option
-      And I select "I prefer not to answer" race option
-      And I click continue on the Ethnicity and race page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I select "Prefer not to answer" for race and ethnicity option
+      And I click save and continue on the Race and Ethnicity page
 
       And I select "No" employment option
       And I click continue on the Employment income page
@@ -415,10 +416,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I enter residential address details for additional member "1234 Downing street", "Englewood", "CO", "80111", "Arapahoe"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -444,10 +444,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I enter residential address details for additional member "123 Downing", "Centennial", "CO", "80111", "Arapahoe"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
