@@ -36,6 +36,8 @@ Feature:  Unable to shop (not eligible for QHP)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -75,6 +77,11 @@ Feature:  Unable to shop (not eligible for QHP)
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for no financial help
     Then I select "LostCoverage" QLCE on tell us about life changes page
@@ -114,6 +121,8 @@ Feature:  Unable to shop (not eligible for QHP)
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
+      And I select "Prefer not to answer" for race and ethnicity
+      And I click continue on the Race and Ethnicity page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
