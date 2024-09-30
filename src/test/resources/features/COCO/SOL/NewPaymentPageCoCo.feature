@@ -1,5 +1,4 @@
-
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: New payment portal - payment page related tests
 
   Background:

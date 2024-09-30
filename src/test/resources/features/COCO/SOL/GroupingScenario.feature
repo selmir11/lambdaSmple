@@ -1,4 +1,4 @@
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: UI Page Validation - Grouping Members (Medical)
 
   Background:

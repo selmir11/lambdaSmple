@@ -1,5 +1,5 @@
 
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: UI Page Validation - Enrollment Agreements page related tests
 
   Background:

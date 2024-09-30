@@ -44,6 +44,6 @@ public class DeclarationsAndSignaturePage {
     }
 
     public void waitForHoldOnContentToDisappear(){
-    basicActions.waitForElementToDisappear(holdOnEllipsis, 120);
+        basicActions.waitForElementToDisappear(holdOnEllipsis, 120);
     }
 }

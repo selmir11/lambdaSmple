@@ -1,4 +1,4 @@
-@SLER-41 @E2E_EXCH @test
+@SLER-41 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
   Scenario: : EXCH Initial Application

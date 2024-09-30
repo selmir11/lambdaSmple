@@ -1,4 +1,4 @@
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: UI Page Validation - Tobacco Usage page related tests
 
   Background:
