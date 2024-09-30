@@ -48,6 +48,8 @@ Feature: Tests related to What's Next Page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "Plan Summary" page
+    And I click Continue button on the Medical Dental Page CoCo
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
     And I select "Submit" agreement checkbox CoCo
@@ -55,6 +57,8 @@ Feature: Tests related to What's Next Page
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
+
+
 
 
 
