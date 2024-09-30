@@ -157,11 +157,15 @@ public class AccountOverviewPage {
         softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
 
         softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
+        softAssert.assertEquals(planInformationTable.get(totalDependents+4).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
+
+
         softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
 
         softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
 
-       softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {

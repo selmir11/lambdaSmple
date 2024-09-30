@@ -49,6 +49,15 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.clickFirstThreeCompareButtons();
     }
 
+    @Then("I click on the compare links on the first 4 medical plans")
+    public void clickFirstFourCompareButtons() {
+        medPlanResultsPage.clickFirstFourCompareButtons();
+    }
+    @And( "I validate the Compare Warning Box" )
+    public void validateCompareBoxWarningTxt(){
+        medPlanResultsPage.validateCompareBoxWarningTxt();
+    }
+
     @And("I select the Insurance Company dropdown")
     public void clickInsuranceCompanyDropdown() {
         medPlanResultsPage.clickInsuranceCompanyDropdown();
