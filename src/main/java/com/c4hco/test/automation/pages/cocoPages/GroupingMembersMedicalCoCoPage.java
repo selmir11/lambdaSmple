@@ -18,7 +18,7 @@ public class GroupingMembersMedicalCoCoPage {
     @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
     WebElement continueButton;
 
-    @FindBy(css = "th.th-title")
+    @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
     List<WebElement> noOfGroups;
 
     @FindBy(css = "#SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
@@ -39,7 +39,7 @@ public class GroupingMembersMedicalCoCoPage {
     @FindBy(css=".imp-message.body-text-1")
     WebElement helpText;
 
-    @FindBy(id="title")
+    @FindBy(css=".c4-type-header-sm")
     List<WebElement> medicalGroupTitle;
 
     @FindBy(css="#loader-icon .fa-spinner")
