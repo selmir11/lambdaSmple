@@ -70,6 +70,7 @@ public class StartShoppingPage {
     }
 
     public void iclickGoBack() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(goBackbtn, 10);
         basicActions.scrollToElement(goBackbtn);
         goBackbtn.click();
