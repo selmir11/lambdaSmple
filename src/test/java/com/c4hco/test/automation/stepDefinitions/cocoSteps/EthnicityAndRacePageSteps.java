@@ -6,16 +6,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class EthnicityAndRacePageSteps {
+    // WIP - remove steps and code related to old page
     EthnicityAndRacePage ethnicityAndRacePage = new EthnicityAndRacePage(WebDriverManager.getDriver());
-
-    @And("I select {string} ethnicity option")
-    public void iSelectMemberEthnicity(String memberEthnicity){ethnicityAndRacePage.ethnicitySelection(memberEthnicity);}
-
-    @And("I select {string} race option")
-    public void iSelectMemberRace(String memberRace){ethnicityAndRacePage.raceSelection(memberRace);}
-
-    @And("I click continue on the Ethnicity and race page")
-    public void clickContinue(){ethnicityAndRacePage.clickSaveAndContinueButton();}
 
     @And("I click Go Back on the Race and Ethnicity page")
     public void clickGoBack(){ethnicityAndRacePage.clickGoBackButton();}

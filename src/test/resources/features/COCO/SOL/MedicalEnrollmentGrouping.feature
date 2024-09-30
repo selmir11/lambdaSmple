@@ -22,9 +22,9 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -99,9 +99,9 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -236,9 +236,9 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
