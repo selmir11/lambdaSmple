@@ -13,7 +13,7 @@ public class QlceConfirmationPageSteps {
         qlceConfirmationPage.selectQLCE(qlceOption);
     }
 
-    @Then("I select {string} QLCE on tell us about life changes page for last member and select DOB as currentdate minus {int} days")
+    @Then("I select {string} QLCE on tell us about life changes page for last member and select DOB as current date minus {int} days")
     public void selectQlceTypeforlastmemebr(String qlceOption,int days){
         qlceConfirmationPage.selectBirthLCEForLastMember(qlceOption,days);
     }

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -131,36 +132,39 @@ public class AccountOverviewPage {
 
     public void verifyMemberNames() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
-        softAssert.assertEquals(medicalMemberNames.get(0).getText(), primaryMember.getFirstName() + " " + primaryMember.getLastName(), "Primary member name does not match");
+        List<String> expectedMemberNames = new ArrayList<>();
+        List<String> actualMemberNames = new ArrayList<>();
+        expectedMemberNames.add(primaryMember.getSignature());
+        actualMemberNames.add(medicalMemberNames.get(0).getText());
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
+
         if(memberDetailsList !=null) {
             for (int i = 0; i < memberDetailsList.size(); i++) {
                 MemberDetails member = SharedData.getMembers().get(i);
-                softAssert.assertEquals(planInformationTable.get(i + 2).getText(), member.getFirstName() + " " + member.getLastName(), "Member name does not match");
+                expectedMemberNames.add(member.getFirstName()+" "+member.getLastName());
+                actualMemberNames.add(planInformationTable.get(i+2).getText());
             }
         }
+        softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size()==expectedMemberNames.size());
         softAssert.assertAll();
     }
 
     public void verifyPlanInfo() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
-        List<MemberDetails> memberDetailsList = SharedData.getMembers();
-        if(memberDetailsList !=null) {
-            int totalMembers = memberDetailsList.size();
-            for (int i = 0; i < totalMembers; i++) {
-                MemberDetails member = SharedData.getMembers().get(i);
-                softAssert.assertEquals(planInformationTable.get(i + 3).getText(), member.getMedicalPlan(), "Members Medical Plan Name does not match");
-                softAssert.assertEquals(planInformationTable.get(i + 4).getText(), "$" + member.getMedicalPremiumAmt(), "Members Medical premium amount does not match");
-                softAssert.assertEquals(planInformationTable.get(i + 9).getText(), member.getDentalPlan(), "Members Dental Plan Name does not match");
-                softAssert.assertEquals(planInformationTable.get(i + 10).getText() + ".00", member.getDentalPremiumAmt(), "Members Dental Premium amount does not match");
-            }
-        }else{
-            softAssert.assertEquals(planInformationTable.get(2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
-            softAssert.assertEquals(planInformationTable.get(3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
-            softAssert.assertEquals(planInformationTable.get(7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
-            softAssert.assertEquals(planInformationTable.get(8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
-        }
+        int totalDependents = Integer.parseInt(SharedData.getScenarioDetails().getDependents());
+        // only the locator for the plan details change but the value will stay same for the entire group. Hence comparing with primary member.
+        softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
+
+        softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
+        softAssert.assertEquals(planInformationTable.get(totalDependents+4).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
+
+
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
+
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
+
         softAssert.assertAll();
     }
 

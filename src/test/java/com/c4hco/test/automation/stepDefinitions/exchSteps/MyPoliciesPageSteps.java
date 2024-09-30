@@ -55,6 +55,7 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
     @And ("Validate medical plan details from my policies page with start date {string}")
+
     public void medicalPlanValidationsOnMypoliciesPage(String startDate){
         myPoliciesPage.validateMedPolicyFinancialStartDate(startDate);
     }

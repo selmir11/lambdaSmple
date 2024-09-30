@@ -43,8 +43,8 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -134,7 +134,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click on continue with  application button on Before you begin page
 
     #need to remove LCE step during OE
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
   # location change
@@ -156,8 +156,8 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
