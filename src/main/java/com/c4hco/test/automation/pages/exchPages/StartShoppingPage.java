@@ -53,70 +53,7 @@ public class StartShoppingPage {
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();
     }
-
-    public void isMemberTobaccoUser(String member, String YNTobaccoUser) {
-        basicActions.waitForElementListToBePresent(btnNoAndYes, 20);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        List<MemberDetails> memberList = SharedData.getMembers();
-        switch (member) {
-            case "member1":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(0).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(1).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                subscriber.setTobacco_user(YNTobaccoUser);
-                break;
-            case "member2":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(2).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(3).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                subscriber.setTobacco_user(YNTobaccoUser);
-                break;
-            case "member3":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(4).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(5).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                subscriber.setTobacco_user(YNTobaccoUser);
-                break;
-            case "member4":
-                switch (YNTobaccoUser) {
-                    case "Yes":
-                        btnNoAndYes.get(6).click();
-                        break;
-                    case "No":
-                        btnNoAndYes.get(7).click();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + YNTobaccoUser);
-                }
-                memberList.get(memberList.size() - 1).setTobacco_user(YNTobaccoUser);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + member);
-        }
-    }
-
-
+    
     //-----------------------Validations------------------------//
     public void verifyTextOnTobaccoPage() {
         basicActions.waitForElementToBePresent(headerText, 10);
