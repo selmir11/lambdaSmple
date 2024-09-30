@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,6 +37,9 @@ public class StartShoppingCoCoPage {
     WebElement headerText;
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
 
     public void clickBtnSaveNExit(){
         saveAndExitButton.click();
@@ -79,6 +83,20 @@ public class StartShoppingCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + member);
+        }
+    }
+
+    public void tobaccoPage(List<String> tobaccoUsageDetails) {
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementListToBePresent(btnNoAndYes,10);
+        for (int i = 0; i < tobaccoUsageDetails.size(); i++) {
+            String[] groupDetail = tobaccoUsageDetails.get(i).split(":");
+            String[] Names = groupDetail[0].split(",");
+
+            for (String Name : Names) {
+                WebElement yesBtn = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'"+Name+"')]/parent::p/following-sibling::label)[1]"));
+                yesBtn.click();
+            }
         }
     }
 
