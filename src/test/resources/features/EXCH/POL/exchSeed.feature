@@ -1,6 +1,5 @@
 Feature: Test Feature - Exchange
 
-  @test
   Scenario: Test Only Scenario-edi999
   And I read the edi999 file locally
 

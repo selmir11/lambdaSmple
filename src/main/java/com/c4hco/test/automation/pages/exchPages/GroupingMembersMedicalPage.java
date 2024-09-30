@@ -24,7 +24,6 @@ public class GroupingMembersMedicalPage {
     @FindBy(css = "th.th-title")
     List<WebElement> noOfGroups;
     @FindBy(id="SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
-   // @FindBy(id = "SHP-MedicalGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
