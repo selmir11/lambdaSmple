@@ -59,7 +59,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
@@ -84,7 +83,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page with "Son", "01012010", "Male", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "SonOne", "01012010", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
@@ -112,10 +111,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page with "Son2", "03052012", "Male", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "SonTwo", "03052012", "Male", and applying "Yes"
       |Primary:Child or Other dependent|
       |Wife:Child or Other dependent|
-      |Son:Sibling                  |
+      |SonOne:Sibling                  |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
