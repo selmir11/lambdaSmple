@@ -1,20 +1,22 @@
-@TAM @TamExch
-Feature: Secondary User-Other Health Coverage Elmo Page
+Feature: Page Navigation-Race And Ethnicity page
 
-  Background:
+  Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
+
+  @SLER-1075 @PageTextRaceAndEthnicity @NVOExchRegression
+  Scenario: Validate Race and Ethnicity page navigation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
-    And I enter valid credentials to login
+    And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
+    And I report "LostCoverage" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -32,16 +34,22 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click Go back on the Race and Ethnicity page
+    Then I validate I am on the "Additional Information for Yourself" page
+    And I click continue on the Add Address page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+    Then I click Go back on the Citizenship page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
-    And I get the Primary Member ID
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "01011980" date of birth
+    Then I enter member details with "10101945" date of birth
     And I select "Female" as sex option
     And I mark the Additional member is pregnant as "No"
     And I select "Spouse" as relationship option
@@ -56,46 +64,18 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click Go back on the Race and Ethnicity page
+    Then I validate I am on the "Additional Information for Yourself" page
+    And I click continue on the Add Address page
+    And I select "White or European" for race and ethnicity
     And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Citizenship" page
+    Then I click Go back on the Citizenship page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click continue on family overview page
-    And I Apply for financial help
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-    Then I click None of these as additional income option and continue
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-    Then I click None of these as additional income option and continue
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the "1" option for Who Will Claim as Dependents
-    And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-
-  @SLER-714 @PageTextOtherHealthInsurancePage
-  Scenario: SLER-714 I Validate the page text is different for a secondary user on the Other Health Coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    And I change the language from header to "Spanish"
-    And I validate I am on the "Spanish" page
-    Then I verify text on the Other Health Coverage page in "Spanish Secondary"
-
-    And I change the language from header to "English"
-    And I verify text on the Other Health Coverage page in "English Secondary"
-    And I verify the checkboxes on the Other Health Coverage page
-    And I verify help icons on the Other Health Coverage page
-
-    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Financial Help" page

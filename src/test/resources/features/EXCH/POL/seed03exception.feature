@@ -45,11 +45,8 @@ Feature: Seed03exception - Exchange
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "03021995" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -81,8 +78,8 @@ Feature: Seed03exception - Exchange
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select "member1" "Yes" for Tobacco Use
-    Then I select "member2" "Yes" for Tobacco Use
+    Then I click Yes to the Tobacco usage question on start shopping page
+      |Primary,Spouse|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page

@@ -49,6 +49,9 @@ public class LawfulPresencePageSteps {
     @Then("I click continue on the Citizenship page")
     public void clickContinue(){lawfulPresencePage.clickContinue();}
 
+    @Then("I click Go back on the Citizenship page")
+    public void clickGoBack(){lawfulPresencePage.clickGoBack();}
+
     @And("I get the Primary Member ID")
     public void iGetPrimaryMemberId(){lawfulPresencePage.getMemberId();}
 

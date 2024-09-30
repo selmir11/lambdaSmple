@@ -1,6 +1,9 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,14 +38,31 @@ public class StartShoppingCoCoPage {
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
-    public void clickBtnSaveNExit(){
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+    public void clickBtnSaveNExit() {
         saveAndExitButton.click();
     }
-    public void iclickContinue(){
-        basicActions.waitForElementListToBePresent(btnNoAndYes,10);
+
+    public void iclickContinue() {
+        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();
+    }
+
+    public void tobaccoPage(String tobaccoUsageDetails) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
+
+        String[] NameDetails = tobaccoUsageDetails.split(",");
+
+        for (String Name : NameDetails) {
+            WebElement tobaccoUsageYes = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'" + Name + "')]/parent::p/following-sibling::label)[1]"));
+            tobaccoUsageYes.click();
+        }
+
     }
 
 }

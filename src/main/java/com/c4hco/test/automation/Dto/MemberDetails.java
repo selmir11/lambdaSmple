@@ -20,7 +20,7 @@ public class MemberDetails {
     String relation_to_subscriber;
     String signature;
     String fullName;
-    String fullMiddleName;
+    String completeFullName;
     String dob;
     String zipcode;
     Address resAddress;
