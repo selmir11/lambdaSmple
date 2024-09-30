@@ -119,13 +119,13 @@ public class BasicSteps {
                 pageUrl = "groupingMembersMedical";
                 break;
             case "CoCo Grouping Members Medical":
-                pageUrl = "coco/PreShoppingPortal/groupingMembersMedical";
+                pageUrl = "coco/PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Grouping Members Dental":
                 pageUrl = "PreShoppingPortal/groupingMembersDental";
                 break;
             case "Edit Grouping Members Medical":
-                pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
+                pageUrl = "PreShoppingPortal/manageGroupingMembers";
                 break;
             case "Edit Grouping Members Dental":
                 pageUrl = "PreShoppingPortal/editGroupingMembersDental";

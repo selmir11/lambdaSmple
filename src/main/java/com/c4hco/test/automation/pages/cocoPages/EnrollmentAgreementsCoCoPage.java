@@ -90,6 +90,7 @@ public class EnrollmentAgreementsCoCoPage {
     }
 
     public void clickBackBtn() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(goBackBtn, 5);
         basicActions.scrollToElement(goBackBtn);
         goBackBtn.click();

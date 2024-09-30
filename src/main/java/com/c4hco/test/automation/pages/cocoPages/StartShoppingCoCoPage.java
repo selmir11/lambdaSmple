@@ -46,7 +46,7 @@ public class StartShoppingCoCoPage {
     }
 
     public void iclickContinue() {
-        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
+        basicActions.waitForElementToDisappear( spinner,40 );
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();

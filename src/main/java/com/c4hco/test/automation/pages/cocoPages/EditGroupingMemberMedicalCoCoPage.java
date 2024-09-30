@@ -18,21 +18,28 @@ public class EditGroupingMemberMedicalCoCoPage {
 
     Actions builder;
 
-    @FindBy(id = "SHP-EditMedicalGroupingMembers-Cancel")
+    @FindBy(id = "SOL-EditMedicalGroupingMembers-Cancel")
     WebElement cancelButtonOnEditEnrollmentPage;
-    @FindBy(id = "SHP-EditMedicalGroupingMembers-CreateANewGroup")
+
+    @FindBy(xpath = "//*[@id = 'SOL-ManageGroupingMembers-CreateANewGroup']")
     WebElement createNewGroupLink;
+
+    @FindBy(id = "SOL-ManageGroupingMembers-GoBack")
+    WebElement goBackButtonOnEditEnrollmentPage;
 
     @FindBy(css = ".container .groupHeading")
     List<WebElement> noOfmedicalGroups;
 
-    @FindBy(id ="SHP-EditMedicalGroupingMembers-Save")
+    @FindBy(id ="SOL-ManageGroupingMembers-SaveGroups")
     WebElement saveButtonOnEditGroupingPage;
+
+    @FindBy(id = "SOL-ManageGroupingMembers-ResetTheGroups")
+    WebElement resetButtonOnEditEnrollmentPage;
 
     @FindBy(css = ".m-4")
     List<WebElement> successMessage;
 
-    @FindBy(id = "SHP-EditMedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-EditMedicalGroupingMembers-Continue")
     WebElement successContinue;
 
     @FindBy(xpath = "//div[@class='dragHere']/parent::div")
@@ -55,6 +62,7 @@ public class EditGroupingMemberMedicalCoCoPage {
     }
 
     public void iCreateNewGroup() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(createNewGroupLink, 10);
         createNewGroupLink.click();
     }
@@ -91,8 +99,9 @@ public class EditGroupingMemberMedicalCoCoPage {
     }
 
     public void createNewGroup(List<String> grouping) {
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 60);
         basicActions.waitForElementToBePresent(createNewGroupLink,40);
+        basicActions.scrollToElement( createNewGroupLink );
         while (grouping.size()+1 != dragAMemberHere.size()) {
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
