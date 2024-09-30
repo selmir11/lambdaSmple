@@ -95,9 +95,9 @@ Feature: Simple NFA - Single Applicant
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan
+    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
       |Primary|
-    And I validate the email notice details for "medical" plan
+    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
       |Primary|
     Then I delete the open notice
     And I sign out of Outlook
