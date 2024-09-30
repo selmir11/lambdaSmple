@@ -1,6 +1,7 @@
+@SLER-41 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
-  @SLER-41
-  Scenario: : EXCH intial application
+
+  Scenario: : EXCH Initial Application
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 3            | 1                 | 2                |   3             |
@@ -35,6 +36,10 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -54,6 +59,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -76,6 +83,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -185,6 +194,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
+    And I validate policy tables with medical coverage start date as "First Of Next Month"
+    And I validate policy tables with dental coverage start date as "First Of Next Month"
+
     #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
@@ -205,6 +217,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+    #RT-2268
 
 
 

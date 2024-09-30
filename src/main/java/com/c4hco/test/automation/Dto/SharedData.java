@@ -2,10 +2,10 @@ package com.c4hco.test.automation.Dto;
 
 import com.c4hco.test.automation.Dto.Edi.CommonEDISegments;
 import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.Ib999Segments;
 import com.c4hco.test.automation.database.EntityObj.*;
 import lombok.Getter;
 import lombok.Setter;
-
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +28,7 @@ public class SharedData {
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
+    @Getter @Setter private static Ib999Segments ib999Segments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static List<PlanDbData> medicalPlanDbData;
@@ -73,6 +74,7 @@ public class SharedData {
         isOpenEnrollment = null;
         ses = null;
         scenarioDetails = null;
+        ib999Segments = null;
     }
 
 

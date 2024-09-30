@@ -104,6 +104,8 @@ Feature: Regression Tests that require Seed 1
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
+   # WIP - Modify the below method to pass coverage dates to be first of current year and endOfCurrent year
+   # Q?: What would financial start and end dates look like when there is NFA
     And I validate the member details from policy tables
       | CoverageStartDate | CoverageEndDate |
       | 01-01             | 12-31           |

@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.GroupDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -24,7 +23,7 @@ public class GroupingMembersMedicalPage {
     WebElement medicalGroup1;
     @FindBy(css = "th.th-title")
     List<WebElement> noOfGroups;
-    @FindBy(id = "SHP-MedicalGroupingMembers-EditMyEnrollmentGroups")
+    @FindBy(id="SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
