@@ -116,7 +116,7 @@ public class BasicSteps {
                 pageUrl = "medicalPlanCarrierDetails";
                 break;
             case "Grouping Members Medical":
-                pageUrl = "groupingMembersMedical";
+                pageUrl = "viewGroupingMembers";
                 break;
             case "CoCo Grouping Members Medical":
                 pageUrl = "coco/PreShoppingPortal/groupingMembersMedical";

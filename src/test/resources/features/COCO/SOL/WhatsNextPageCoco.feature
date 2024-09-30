@@ -1,4 +1,4 @@
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: Tests related to What's Next Page
 
   Background:
