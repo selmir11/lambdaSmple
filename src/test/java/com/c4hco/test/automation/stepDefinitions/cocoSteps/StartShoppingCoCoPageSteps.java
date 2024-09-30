@@ -20,13 +20,8 @@ public class StartShoppingCoCoPageSteps {
         startShoppingCoCoPage.clickBtnSaveNExit();
     }
 
-    @Then("I select {string} {string} for Tobacco Use coco")
-    public void tobaccoUser(String member, String YNTobaccoUser) {
-        startShoppingCoCoPage.memberTobaccoUser(member, YNTobaccoUser);
-    }
-
     @Then("I click Yes to the Tobacco usage question on coco start shopping page")
-    public void tobaccoYesUser(List<String> tobaccoUsageUserDetails) {
+    public void tobaccoYesUser(String tobaccoUsageUserDetails) {
         startShoppingCoCoPage.tobaccoPage(tobaccoUsageUserDetails);
     }
 

@@ -33,7 +33,7 @@ public class StartShoppingPageSteps {
     }
 
     @Then("I click Yes to the Tobacco usage question on start shopping page")
-    public void clickYestoTobaccoQuestion(List<String> tobaccoUsageUserDetails){
+    public void clickYestoTobaccoQuestion(String tobaccoUsageUserDetails){
         startShoppingPage.tobaccoPage(tobaccoUsageUserDetails);
     }
 

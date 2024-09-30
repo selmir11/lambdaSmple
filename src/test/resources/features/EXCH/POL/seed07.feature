@@ -195,8 +195,8 @@ Feature: Seed07 - Exchange
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select "member3" "Yes" for Tobacco Use
-    Then I select "member4" "Yes" for Tobacco Use
+    Then I click Yes to the Tobacco usage question on start shopping page
+    |Son,InLaw|
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

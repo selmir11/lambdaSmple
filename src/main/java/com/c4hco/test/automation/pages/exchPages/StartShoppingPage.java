@@ -138,17 +138,16 @@ public class StartShoppingPage {
         goBackbtn.click();
     }
 
-    public void tobaccoPage(List<String> tobaccoUsageDetails) {
-        basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementListToBePresent(btnNoAndYes,10);
-        for (int i = 0; i < tobaccoUsageDetails.size(); i++) {
-            String[] groupDetail = tobaccoUsageDetails.get(i).split(":");
-            String[] Names = groupDetail[0].split(",");
+    public void tobaccoPage(String tobaccoUsageDetails) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
 
-            for (String Name : Names) {
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'"+Name+"')]/parent::p/following-sibling::label)[1]"));
-                dragElement.click();
-            }
+        String[] NameDetails = tobaccoUsageDetails.split(",");
+
+        for (String Name : NameDetails) {
+            WebElement tobaccoUsageYes = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'" + Name + "')]/parent::p/following-sibling::label)[1]"));
+            tobaccoUsageYes.click();
         }
+
     }
 }
