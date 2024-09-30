@@ -28,7 +28,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    And I select "I prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
