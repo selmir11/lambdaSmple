@@ -37,17 +37,17 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
-      |Primary:Spouse|
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -81,7 +81,6 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
 
-
   @SLCR-188 @MedicalEnrollmentAfterPrimaryContactChange
   Scenario: Validate primary contact change and enrollment
     When I click create a new account on login page
@@ -114,17 +113,17 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051979", "Female" and applying "Yes"
-      |Primary:Spouse|
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051979", "Female", and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -137,18 +136,18 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Son", "01052005", "Male" and applying "Yes"
-      | Primary:Child or Other dependent |
-      | Wife:Child or Other dependent    |
+    Then I enter details on tell us about additional members of your household page with "Son", "01052005", "Male", and applying "Yes"
+      |Primary:Child or Other dependent|
+      |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -251,7 +250,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Wife", "03051989", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
@@ -259,9 +258,9 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -274,18 +273,18 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page and continue with "Daughter", "01052015", "Male" and applying "Yes"
-      | Primary:Child or Other dependent |
-      | Wife:Child or Other dependent    |
+    Then I enter details on tell us about additional members of your household page with "Daughter", "01052015", "Female", and applying "Yes"
+      |Primary:Child or Other dependent|
+      |Wife:Child or Other dependent|
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option

@@ -366,6 +366,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
       Then I validate I am on the "Grouping Members Medical" page
       And I validate that there are 1 default groups in coco page
       Then I click on edit enrollment groups link in coco page
+      Then I validate I am on the "Edit Grouping Members Medical" page
       Then I create new group in edit medical grouping coco page and drag members to the new group
         |Primary:Group1|
         |StepSon,StepDaughter:Group2|
@@ -480,6 +481,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     And I validate that there are 1 default groups in coco page
     Then I click on edit enrollment groups link in coco page
+    Then I validate I am on the "Edit Grouping Members Medical" page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary,StepSon:Group1|
       |StepDaughter:Group2|
