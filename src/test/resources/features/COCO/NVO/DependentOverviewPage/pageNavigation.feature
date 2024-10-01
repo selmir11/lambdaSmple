@@ -18,6 +18,7 @@ Feature: Navigation - Dependent Overview page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Indigenous or Native American" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -45,7 +46,7 @@ Feature: Navigation - Dependent Overview page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Asian or Asian American" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

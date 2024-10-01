@@ -35,7 +35,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -43,9 +43,8 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "English"
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -83,7 +82,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -91,9 +90,8 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "English"
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -173,7 +171,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -181,9 +179,8 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -225,7 +222,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -233,9 +230,8 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -377,7 +373,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click continue on the Add info for yourself page
 
     #Ethnicity and Race
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I verify text on the "CoCo" "Header" in "English"
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
@@ -389,16 +385,17 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
+    Then I validate I am on the "CoCo Additional information for yourself" page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -409,7 +406,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -419,9 +416,8 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
