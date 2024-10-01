@@ -15,7 +15,7 @@ public class GroupingMembersMedicalCoCoPage {
 
     private BasicActions basicActions;
 
-    @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
 
     @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
