@@ -120,6 +120,7 @@ Feature: Medical Plan Verification test
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
