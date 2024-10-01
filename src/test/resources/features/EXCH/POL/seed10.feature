@@ -28,6 +28,12 @@ Feature: Seed10 - Exchange
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
 #    //GRANDMA
     And I click Add Another Family Member
@@ -43,6 +49,12 @@ Feature: Seed10 - Exchange
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
 #    //GRAND DAUGHTER
     And I click Add Another Family Member
@@ -63,6 +75,9 @@ Feature: Seed10 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -87,6 +102,9 @@ Feature: Seed10 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option

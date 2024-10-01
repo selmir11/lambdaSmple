@@ -27,14 +27,14 @@ public class GroupingMembersMedicalPage {
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
-    @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
     @FindBy(id = "globe-image")
     WebElement glodeImageDropdown;
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
-    @FindBy(id = "SHP-MedicalGroupingMembers-GoBack")
+    @FindBy(id = "SOL-ViewGroupingMembers-GoBack")
     WebElement goBackButton;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
@@ -50,9 +50,10 @@ public class GroupingMembersMedicalPage {
     SoftAssert softAssert = new SoftAssert();
 
     public void clickContinue() {
-        basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(continueButton, 20);
         basicActions.waitForElementToBeClickable(continueButton, 10);
+        basicActions.scrollToElement( continueButton );
         basicActions.click(continueButton);
     }
 
@@ -65,8 +66,9 @@ public class GroupingMembersMedicalPage {
     }
 
     public void clickOnEditMedicalGroupinglink() {
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 10);
-        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 30);
+        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 50);
         editMyEnrollmentGroupsButton.click();
     }
 
@@ -172,7 +174,7 @@ public class GroupingMembersMedicalPage {
         softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText(), "Medical Enrollment Groups");
         softAssert.assertEquals(groupingPageText.get(0).getText(), "It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
         softAssert.assertEquals(groupingPageText.get(1).getText(), "Remember: Costs within a group count towards each group's deductible and out of pocket maximum.");
-        // softAssert.assertEquals(medicalGroup1.getText(),"Medical Group # 1");
+         softAssert.assertEquals(medicalGroup1.getText(),"Medical Group #1");
         softAssert.assertEquals(editMyEnrollmentGroupsButton, "Edit my enrollment groups");
         softAssert.assertEquals(backAndSaveAndExitButtons.get(0).getText(), "Go Back");
         softAssert.assertEquals(backAndSaveAndExitButtons.get(1).getText(), "Save and Exit");

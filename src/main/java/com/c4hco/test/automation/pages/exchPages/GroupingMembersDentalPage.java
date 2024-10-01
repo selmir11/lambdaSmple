@@ -11,14 +11,17 @@ import java.util.List;
 
 public class GroupingMembersDentalPage {
 
-    @FindBy(id = "SHP-DentalGroupingMembers-EditMyEnrollmentGroups")
+    @FindBy(id = "SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsLink;
 
-    @FindBy(id = "SHP-DentalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
 
-    @FindBy(id = "SHP-DentalGroupingMembers-GoBack")
+    @FindBy(id = "SOL-ViewGroupingMembers-GoBack")
     WebElement goBackButton;
+
+    @FindBy(id = "SOL-ViewGroupingMembers-SaveAndExit")
+    WebElement saveExitButton;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
