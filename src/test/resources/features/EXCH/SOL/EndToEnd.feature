@@ -249,7 +249,7 @@ Feature: End to End Tests
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are "3" default groups
+    Then I validate that there are 3 default groups
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
     Then I click continue on medical plan results page
@@ -258,7 +258,7 @@ Feature: End to End Tests
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    Then I validate that there are "3" default groups
+    Then I validate that there are 3 default groups
     Then I click continue on grouping Members Dental page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
