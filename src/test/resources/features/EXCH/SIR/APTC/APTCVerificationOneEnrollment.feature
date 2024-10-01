@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR, @APTC-SIR-Single @test
+@APTC,@APTC-SIR, @APTC-SIR-Single
 Feature: UI Tests related to APTC after initial enrollment
 
   Background: I go the login portal
