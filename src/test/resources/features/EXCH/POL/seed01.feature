@@ -108,7 +108,7 @@ Feature: Regression Tests that require Seed 1
    # Q?: What would financial start and end dates look like when there is NFA
     And I validate the member details from policy tables
       | CoverageStartDate | CoverageEndDate |
-      | startOfCurrYr     | 12-31           |
+      | 01-01             | 12-31           |
    And I validate member details from ob834_details table
      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
