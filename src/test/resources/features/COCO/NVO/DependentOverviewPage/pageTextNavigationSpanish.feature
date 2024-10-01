@@ -18,6 +18,7 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Asian or Asian American" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
