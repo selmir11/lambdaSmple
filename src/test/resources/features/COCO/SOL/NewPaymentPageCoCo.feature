@@ -58,8 +58,3 @@ Feature: New payment portal - payment page related tests
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
-
-
-
-
-
