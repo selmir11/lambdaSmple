@@ -1,4 +1,4 @@
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: Tests related to What's Next Page
 
   Background:
@@ -22,9 +22,11 @@ Feature: Tests related to What's Next Page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -51,13 +53,18 @@ Feature: Tests related to What's Next Page
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Plan Summary" page
     And I click Continue button on the Medical Dental Page CoCo
-    And I select "Terms of Use" agreement checkbox CoCo
-    And I select "Privacy Policy" agreement checkbox CoCo
-    And I select "Dental Coverage" agreement checkbox CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select continue button on the Enrollment Agreements CoCo page
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
 
 
 
 
+
+    Then I click all done from payment portal page coco

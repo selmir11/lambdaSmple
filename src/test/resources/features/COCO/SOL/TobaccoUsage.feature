@@ -1,4 +1,4 @@
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: UI Page Validation - Tobacco Usage page related tests
 
   Background:
@@ -28,9 +28,12 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click continue on the Race and Ethnicity page
+    And I select "No" employment option
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "65,000.00" income amount
@@ -84,9 +87,9 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "65,000.00" income amount
     And I select "Annually" income frequency option
@@ -111,7 +114,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    Then I validate the text on "Go Back" "Save and Exit" and "Continue" buttons on tobacco usage page coco
+    Then I validate the text on "Go back" "Save and Exit" and "Continue" buttons on tobacco usage page coco
 
     And I click go back on the tobacco usage page coco
     Then I validate I am on the "Application Results CoCo" page

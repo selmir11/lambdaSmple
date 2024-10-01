@@ -174,12 +174,13 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
     }
-    public void enterMemberDetailswithoutsnn(String DOB){
+    private void memDetailsWithoutSsn(String DOB){
         String frstName = "Son"+getUniqueString(8);
         String mdlName = capitalizeFirstLetter(getUniqueString(8));
         String lastName = capitalizeFirstLetter(getUniqueString(13));
@@ -189,7 +190,6 @@ public class TellUsAboutAdditionalMemberPage {
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
         txtdateOfBirth.sendKeys(DOB);
-
         List<MemberDetails> memberList = SharedData.getMembers();
         int memberCount =0;
         if (memberList == null) {
@@ -205,11 +205,13 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
-    }
+
+       }
     public  void selectNoSSn(){
         basicActions.waitForElementToBePresent(rdbhaveSsn,1);
         rdbhaveSsn.click();
@@ -289,12 +291,12 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob=dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
-    public void Newbornwithcurrentdatelessthanfivedays(int Days) {
+    public void newbornDob(int Days) {
         LocalDate currentDate = LocalDate.now();
         LocalDate DOBCalculate = currentDate.minusDays(Days);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(DOBCalculate);
-        enterMemberDetailswithoutsnn(actualdob);
+        memDetailsWithoutSsn(actualdob);
     }
 
     public void specificAdditionalMemberDetailsExch(String Name, String DOB, String gender, List<String> Relations, String applying){
@@ -323,7 +325,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setDob(DOB);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setFullMiddleName(frstName+" "+mdlName+" "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
         member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 

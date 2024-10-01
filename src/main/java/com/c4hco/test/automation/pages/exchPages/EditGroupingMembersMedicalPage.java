@@ -15,13 +15,13 @@ import java.util.List;
 public class EditGroupingMembersMedicalPage {
     @FindBy(id ="SHP-EditMedicalGroupingMembers-Cancel")
     WebElement cancelButtonOnEditEnrollmentPage;
-    @FindBy(id ="SHP-EditMedicalGroupingMembers-CreateANewGroup")
+    @FindBy(id ="SOL-ManageGroupingMembers-CreateANewGroup")
     WebElement createNewGroupLink;
 
     @FindBy(css = "div.cdk-drag")
     List<WebElement> groupingMemebers;
 
-    @FindBy(xpath = "//div[@class='dragHere']/parent::div")
+    @FindBy(xpath = "//div[contains(@class,'drag-here')]/parent::div")
     List<WebElement> dragAMemberHere;
     @FindBy(css = ".row .redTxt")
     WebElement errorText;
@@ -184,7 +184,7 @@ public class EditGroupingMembersMedicalPage {
             String[] groupDetail =  group.split(":");
             String[] Names = groupDetail[0].split(",");
             for(String Name: Names){
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + Name + "')]"));
                 WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size()-1);
                 basicActions.wait(3000);
                 basicActions.scrollToElement(dragElement);

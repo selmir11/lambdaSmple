@@ -79,7 +79,7 @@ public class PlanSummaryMedicalDentalCoCoPage {
     public void iclickGoBack(){
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(goBackbtn,10);
-        basicActions.scrollToElement(goBackbtn);
+        basicActions.scrollToElement(continueBtnOnPlanSummary);
         goBackbtn.click();
     }
 

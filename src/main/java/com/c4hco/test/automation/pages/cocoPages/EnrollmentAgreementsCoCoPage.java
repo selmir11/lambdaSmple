@@ -45,6 +45,7 @@ public class EnrollmentAgreementsCoCoPage {
     public void selectAgreementsCheckboxCoCo(String checkbox){
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(signatureLabel,20);
+        basicActions.waitForElementListToBePresent(agreementsCheckbox, 10);
         switch(checkbox){
             // remove this area after code update 8/29
             case "Terms of Use":
@@ -90,6 +91,7 @@ public class EnrollmentAgreementsCoCoPage {
     }
 
     public void clickBackBtn() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(goBackBtn, 5);
         basicActions.scrollToElement(goBackBtn);
         goBackBtn.click();
