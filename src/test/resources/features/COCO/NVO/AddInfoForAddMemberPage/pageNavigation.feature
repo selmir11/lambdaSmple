@@ -18,9 +18,8 @@ Feature: Navigation-Additional information for additional member page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -41,8 +40,8 @@ Feature: Navigation-Additional information for additional member page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I click Go Back on the Ethnicity and Race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional info for additional member" page
     Then I click Go Back on the Additional information for additional member page
     Then I validate I am on the "CoCo Tell us about additional members" page
