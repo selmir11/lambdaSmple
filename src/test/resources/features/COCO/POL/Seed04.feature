@@ -20,6 +20,7 @@ Feature: Regression Tests that require Seed 4
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -43,6 +44,7 @@ Feature: Regression Tests that require Seed 4
     And I enter residential address details for additional member "104 COCO DRIVE", "Colorado Springs", "CO", "80919", "El Paso"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

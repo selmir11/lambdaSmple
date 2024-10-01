@@ -1,6 +1,6 @@
 Feature: Regression Tests that require Seed 4
 # verification WIP
-  
+
   Scenario: Seed 04 For COCO- Minor only Applicant with Responsible Person Income of $35k
 
     Given I open the login page on the "login" portal
