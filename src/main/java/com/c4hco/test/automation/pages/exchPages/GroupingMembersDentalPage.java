@@ -14,7 +14,7 @@ public class GroupingMembersDentalPage {
     @FindBy(id = "SHP-DentalGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsLink;
 
-    @FindBy(id = "SHP-DentalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
 
     @FindBy(id = "SHP-DentalGroupingMembers-GoBack")

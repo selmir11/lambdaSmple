@@ -27,14 +27,14 @@ public class GroupingMembersMedicalPage {
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
-    @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
     @FindBy(id = "globe-image")
     WebElement glodeImageDropdown;
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
-    @FindBy(id = "SHP-MedicalGroupingMembers-GoBack")
+    @FindBy(id = "SOL-MedicalGroupingMembers-GoBack")
     WebElement goBackButton;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
