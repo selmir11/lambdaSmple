@@ -22,9 +22,10 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -49,7 +50,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -102,9 +103,10 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -119,8 +121,6 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page with "Wife", "03051979", "Female" and applying "Yes"
-      |Primary:Spouse|
     Then I enter details on tell us about additional members of your household page with "Wife", "03051979", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
@@ -247,9 +247,10 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -294,7 +295,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
