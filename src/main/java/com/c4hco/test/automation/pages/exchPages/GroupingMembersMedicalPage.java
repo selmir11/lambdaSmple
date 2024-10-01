@@ -52,6 +52,7 @@ public class GroupingMembersMedicalPage {
     public void clickContinue() {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueButton, 20);
+        basicActions.waitForElementToBeClickable(continueButton, 10);
         basicActions.scrollToElement( continueButton );
         basicActions.click(continueButton);
     }
