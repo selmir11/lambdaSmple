@@ -1,16 +1,15 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EditGroupingMemberMedicalCoCoPage {
 
@@ -21,7 +20,7 @@ public class EditGroupingMemberMedicalCoCoPage {
     @FindBy(id = "SOL-EditMedicalGroupingMembers-Cancel")
     WebElement cancelButtonOnEditEnrollmentPage;
 
-    @FindBy(xpath = "//*[@id = 'SOL-ManageGroupingMembers-CreateANewGroup']")
+   @FindBy(id = "SOL-ManageGroupingMembers-CreateANewGroup")
     WebElement createNewGroupLink;
 
     @FindBy(id = "SOL-ManageGroupingMembers-GoBack")
@@ -36,13 +35,16 @@ public class EditGroupingMemberMedicalCoCoPage {
     @FindBy(id = "SOL-ManageGroupingMembers-ResetTheGroups")
     WebElement resetButtonOnEditEnrollmentPage;
 
-    @FindBy(css = ".m-4")
-    List<WebElement> successMessage;
+    @FindBy(id = "SOL-ManageGroupingMembers-PopUpHeader")
+    WebElement successHeader;
+
+    @FindBy(id = "SOL-ManageGroupingMembers-PopUpMessage")
+    WebElement successMsg;
 
     @FindBy(id = "SOL-EditMedicalGroupingMembers-Continue")
     WebElement successContinue;
 
-    @FindBy(xpath = "//div[@class='dragHere']/parent::div")
+    @FindBy(id = "SOL-ManageGroupingMembers-DragAMember")
     List<WebElement> dragAMemberHere;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
@@ -56,29 +58,6 @@ public class EditGroupingMemberMedicalCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void ivalidateImOnEditGroupingMedicalPage() {
-        createNewGroupLink.isDisplayed();
-        createNewGroupLink.isEnabled();
-    }
-
-    public void iCreateNewGroup() {
-        basicActions.waitForElementToDisappear( spinner,30 );
-        basicActions.waitForElementToBePresent(createNewGroupLink, 10);
-        createNewGroupLink.click();
-    }
-
-    public void cancelEditGroupingMembers() {
-        basicActions.waitForElementToBePresent(cancelButtonOnEditEnrollmentPage, 20);
-        basicActions.waitForElementToBeClickable(cancelButtonOnEditEnrollmentPage, 10);
-        cancelButtonOnEditEnrollmentPage.click();
-        basicActions.waitForElementToDisappear(createNewGroupLink, 10);
-    }
-
-    public void iGetNumberOfGroups(int groups) {
-        softAssert.assertEquals(noOfmedicalGroups.size(), groups);
-        softAssert.assertAll();
-    }
-
     public void iClickSaveButton(){
         softAssert.assertTrue(saveButtonOnEditGroupingPage.isEnabled());
         basicActions.waitForElementToBePresent(saveButtonOnEditGroupingPage,20);
@@ -87,9 +66,9 @@ public class EditGroupingMemberMedicalCoCoPage {
     }
 
     public void iValidateSuccessMessage() {
-        basicActions.waitForElementListToBePresent(successMessage, 10);
-        softAssert.assertEquals(successMessage.get(0).getText(), "Success");
-        softAssert.assertEquals(successMessage.get(1).getText(), "Success! Your enrollment groupings are valid and have been successfully saved. Click 'Continue' to go on.");
+        basicActions.waitForElementToBePresent(successHeader, 10);
+        softAssert.assertEquals(successHeader.getText(), "Success");
+        softAssert.assertEquals(successMsg.getText(), "Your enrollment groups are valid and have been successfully saved.");
         softAssert.assertAll();
     }
 
@@ -111,7 +90,7 @@ public class EditGroupingMemberMedicalCoCoPage {
             String[] Names = groupDetail[0].split(",");
 
             for (String Name : Names) {
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//*[@id=\"SOL-ManageGroupingMembers-MemberDetails\"]/span[contains(text(), '"+Name+"')]"));
                 WebElement dropElement = dragAMemberHere.get(i + 1);
                 basicActions.scrollToElement(dragElement);
                 // Scroll the drop element into view
