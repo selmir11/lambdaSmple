@@ -34,7 +34,7 @@ public class GroupingMembersMedicalPage {
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
-    @FindBy(id = "SHP-MedicalGroupingMembers-GoBack")
+    @FindBy(id = "SOL-MedicalGroupingMembers-GoBack")
     WebElement goBackButton;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
