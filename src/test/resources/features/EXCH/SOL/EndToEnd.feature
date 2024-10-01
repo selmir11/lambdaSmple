@@ -151,8 +151,8 @@ Feature: End to End Tests
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
-
-
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "10102007" date of birth
