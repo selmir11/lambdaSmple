@@ -367,6 +367,9 @@ public class NoticesPage {
             case "AM-016-01":
                 VerifyTheNoticeTextAM01601coco(language);
                 break;
+            case "EN-002-04" :
+                VerifyTheNoticeTextEN00204();
+                break;
 
             default:
                 throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
