@@ -32,6 +32,8 @@ Feature: Seed07 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -50,6 +52,8 @@ Feature: Seed07 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -73,6 +77,8 @@ Feature: Seed07 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -94,6 +100,8 @@ Feature: Seed07 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -196,7 +204,7 @@ Feature: Seed07 - Exchange
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click Yes to the Tobacco usage question on start shopping page
-    |Son,InLaw|
+      |Son,InLaw|
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -208,6 +216,7 @@ Feature: Seed07 - Exchange
     And I select "Anthem Colorado Option Silver Pathway Std" plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     And I select "Anthem Dental Family Value" plan
