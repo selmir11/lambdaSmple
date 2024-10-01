@@ -15,7 +15,7 @@ public class GroupingMembersMedicalCoCoPage {
 
     private BasicActions basicActions;
 
-    @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
 
     @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
@@ -24,20 +24,23 @@ public class GroupingMembersMedicalCoCoPage {
     @FindBy(css = "#SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;
 
-    @FindBy(id="SOL-MedicalGroupingMembers-SaveAndExit")
+    @FindBy(id="SOL-ViewGroupingMembers-SaveAndExit")
     WebElement saveAndExitBtn;
 
-    @FindBy(id="SOL-MedicalGroupingMembers-GoBack")
+    @FindBy(id="SOL-ViewGroupingMembers-GoBack")
     WebElement goBackBtn;
 
-    @FindBy(css=".container .header-1")
+    @FindBy(id="SOL-ViewGroupingMembers-MedicalEnrollmentTitle")
     WebElement header;
 
-    @FindBy(css=".col-9.body-text-1")
-    WebElement bodyText;
+    @FindBy(id = "SOL-ViewGroupingMembers-GroupsMedicalTitle")
+    WebElement groupsTitle;
 
-    @FindBy(css=".imp-message.body-text-1")
-    WebElement helpText;
+    @FindBy(id="SOL-ViewGroupingMembers-EnrollmentGroups1stParagraph")
+    WebElement firstParaTxt;
+
+    @FindBy(id="SOL-ViewGroupingMembers-EnrollmentGroups2ndParagraph")
+    WebElement secondParaTxt;
 
     @FindBy(css=".c4-type-header-sm")
     List<WebElement> medicalGroupTitle;
@@ -94,6 +97,7 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void validateBtnTxt(String goBackTxt, String saveExitTxt, String continueBtnTxt){
+        basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresent(goBackBtn, 10);
         basicActions.waitForElementToBePresent(saveAndExitBtn, 10);
         basicActions.waitForElementToBePresent(continueButton, 10);
@@ -105,11 +109,11 @@ public class GroupingMembersMedicalCoCoPage {
 
     public void validateTextOnPage(){
         basicActions.waitForElementListToBePresent(medicalGroupTitle, 10);
-        softAssert.assertEquals(header.getText(), "Medical Enrollment Groups","header mismatch");
-        softAssert.assertEquals(bodyText.getText(), "It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.", "bodyText did not match");
-        softAssert.assertEquals(helpText.getText(), "Remember: Costs within a group count towards each group\u2019s deductible and out of pocket maximum.", "Help text did not match");
-        softAssert.assertEquals(editMyEnrollmentGroupsButton.getText(), "Edit my enrollment groups", "Edit Enrollment link text did not match");
-        softAssert.assertEquals(medicalGroupTitle.get(0).getText(), "Medical Group # 1","medical group title mismatch");
+        softAssert.assertEquals(header.getText()+" "+groupsTitle.getText(), "Medical Enrollment Groups","header mismatch");
+        softAssert.assertEquals(firstParaTxt.getText(), "Enrollment groups let you choose who enrolls in the same plan together. Remember that costs within a group count towards each group’s deductible and out-of-pocket maximum. In some cases, changing your enrollment groups may make coverage more affordable for your household.", "Text from first paragraph did not match");
+        softAssert.assertEquals(secondParaTxt.getText(), "We\u2019ve set up suggested groups based on who is in your family, where they live, and what they\u2019re eligible for, but you can choose to move them into groups of your choice.", "Text from second paragraph did not match");
+        softAssert.assertEquals(editMyEnrollmentGroupsButton.getText(), "Edit my suggested groups", "Edit Enrollment link text did not match");
+        softAssert.assertEquals(medicalGroupTitle.get(0).getText(), "Medical Group #1","medical group title mismatch");
         softAssert.assertAll();
     }
 }
