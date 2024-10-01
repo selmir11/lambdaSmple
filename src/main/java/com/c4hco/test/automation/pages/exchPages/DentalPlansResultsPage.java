@@ -184,9 +184,9 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear( spinner, 15 );
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
         basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
-        softAssert.assertEquals( pediatricdental1.getText(), "EssentialSmile Colorado - Total Care", "Cigna Dental Pediatric not appearing" );
-        softAssert.assertEquals( pediatricdental2.getText(), "Anthem Dental Family Value", "Cigna Dental Family + Pediatric not appearing" );
-        softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Family Value Plan", "Delta Dental of Colorado Pediatric Enhanced Plan not appearing" );
+        softAssert.assertEquals( pediatricdental1.getText(), "Anthem Dental Family", "Cigna Dental Pediatric not appearing" );
+        softAssert.assertEquals( pediatricdental2.getText(), "Delta Dental of Colorado Family Basic Plan", "Cigna Dental Family + Pediatric not appearing" );
+        softAssert.assertEquals( pediatricdental3.getText(), "Cigna Dental Family + Pediatric", "Delta Dental of Colorado Pediatric Enhanced Plan not appearing" );
         softAssert.assertAll();
     }
 

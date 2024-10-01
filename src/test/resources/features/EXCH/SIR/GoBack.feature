@@ -1,4 +1,5 @@
 @SIR
+  # contains  SLER-35, SLER-718, SLER-734, SLER-735,
 Feature: Dental Plans page tests
 
   Background:

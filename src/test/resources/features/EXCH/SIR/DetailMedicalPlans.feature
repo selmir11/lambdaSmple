@@ -1,4 +1,5 @@
-@MedicalDetail @SIR @test
+@MedicalDetail @SIR
+  # contains SLER-834, SLER-835
 Feature: Medical Plan Detail page related tests
 
   Background:
