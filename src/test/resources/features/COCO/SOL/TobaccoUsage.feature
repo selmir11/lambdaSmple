@@ -28,9 +28,9 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click continue on the Race and Ethnicity page
+    And I select "No" employment option
 
     And I select "Yes" employment option
     And I enter "65,000.00" income amount
