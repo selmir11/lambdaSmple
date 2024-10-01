@@ -122,7 +122,7 @@ public class BasicSteps {
                 pageUrl = "coco/PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Grouping Members Dental":
-                pageUrl = "PreShoppingPortal/groupingMembersDental";
+                pageUrl = "PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Edit Grouping Members Medical":
                 pageUrl = "PreShoppingPortal/manageGroupingMembers";

@@ -27,7 +27,7 @@ public class GroupingMembersMedicalPage {
     WebElement editMyEnrollmentGroupsButton;
     @FindBy(css = ".row .btn-secondary")
     List<WebElement> backAndSaveAndExitButtons;
-    @FindBy(id = "SHP-MedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ViewGroupingMembers-Continue")//"SHP-MedicalGroupingMembers-Continue")
     WebElement continueButton;
     @FindBy(id = "globe-image")
     WebElement glodeImageDropdown;
@@ -66,7 +66,7 @@ public class GroupingMembersMedicalPage {
 
     public void clickOnEditMedicalGroupinglink() {
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 10);
-        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 30);
+        basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 50);
         editMyEnrollmentGroupsButton.click();
     }
 
