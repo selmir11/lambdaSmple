@@ -111,7 +111,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    Then I validate the text on "Go Back" "Save and Exit" and "Continue" buttons on tobacco usage page coco
+    Then I validate the text on "Go back" "Save and Exit" and "Continue" buttons on tobacco usage page coco
 
     And I click go back on the tobacco usage page coco
     Then I validate I am on the "Application Results CoCo" page
