@@ -1,7 +1,5 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -48,6 +46,7 @@ public class StartShoppingCoCoPage {
     public void iclickContinue() {
         basicActions.waitForElementToDisappear( spinner,40 );
         softAssert.assertTrue(basicActions.waitForElementToBePresent(btnContinue, 30));
+        basicActions.waitForElementToBeClickableWithRetries(btnContinue, 30);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", btnContinue);
         btnContinue.click();
     }

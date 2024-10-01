@@ -41,7 +41,7 @@ public class EditGroupingMemberMedicalCoCoPage {
     @FindBy(id = "SOL-ManageGroupingMembers-PopUpMessage")
     WebElement successMsg;
 
-    @FindBy(id = "SOL-EditMedicalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ManageGroupingMembers-PopUp-Continue")
     WebElement successContinue;
 
     @FindBy(id = "SOL-ManageGroupingMembers-DragAMember")
