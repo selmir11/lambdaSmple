@@ -22,17 +22,23 @@ public class EditGroupingMembersDentalPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id ="SHP-EditDentalGroupingMembers-CreateANewGroup")
-    WebElement createNewGroupLink;
-
     @FindBy(xpath = "//div[@class='dragHere']/parent::div")
     List<WebElement> dragAMemberHere;
 
-    @FindBy(id ="SHP-EditDentalGroupingMembers-Save")
+    @FindBy(id ="SOL-ManageGroupingMembers-CreateANewGroup")
+    WebElement createNewGroupLink;
+
+    @FindBy(id ="SOL-ManageGroupingMembers-SaveGroups")
     WebElement saveButtonOnEditDentalGroupingPage;
 
-    @FindBy(id = "SHP-EditDentalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ManageGroupingMembers-PopUp-Continue")
     WebElement ctnBtnSuccessModal;
+
+    @FindBy(id="SOL-ManageGroupingMembers-ResetTheGroups")
+    WebElement resetButtonOnEditDentalGroupingPage;
+
+    @FindBy(id="SOL-ManageGroupingMembers-GoBack")
+    WebElement goBackButtononEditDentalGroupingPage;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
