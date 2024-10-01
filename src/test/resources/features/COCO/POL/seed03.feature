@@ -1,5 +1,4 @@
 Feature: Seed03 - COCO
-
   Scenario: Seed 03 For COCO- Family of 4
 
     Given I open the login page on the "login" portal
@@ -19,9 +18,8 @@ Feature: Seed03 - COCO
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Asian" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
     And I select "Annually" income frequency option
@@ -46,10 +44,8 @@ Feature: Seed03 - COCO
     And I enter residential address details for additional member "103 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Asian" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -72,10 +68,9 @@ Feature: Seed03 - COCO
     And I enter residential address details for additional member "103 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Asian" race option
-    And I click continue on the Ethnicity and race page
+    #Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -99,10 +94,9 @@ Feature: Seed03 - COCO
     And I enter residential address details for additional member "103 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Asian" race option
-    And I click continue on the Ethnicity and race page
+    #Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page

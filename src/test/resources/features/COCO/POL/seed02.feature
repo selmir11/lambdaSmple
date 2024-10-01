@@ -1,6 +1,7 @@
 Feature: Seed02 - Coco
 
-  Background: Seed 02 For Coco -  Husband+Wife with FA
+
+  Scenario: Seed 02 For Coco -  Husband+Wife with FA
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -24,9 +25,8 @@ Feature: Seed02 - Coco
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Black/African American" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
     And I select "Annually" income frequency option
@@ -47,9 +47,8 @@ Feature: Seed02 - Coco
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Black/African American" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -104,8 +103,10 @@ Feature: Seed02 - Coco
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date to "01012024"
-    And I update the Financial Start date to "01012024"
+    And I update the Coverage Start date of member
+      |1:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

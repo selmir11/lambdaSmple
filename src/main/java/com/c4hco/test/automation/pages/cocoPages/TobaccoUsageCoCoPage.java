@@ -12,7 +12,7 @@ import java.util.List;
 public class TobaccoUsageCoCoPage {
     SoftAssert softAssert = new SoftAssert();
 
-    @FindBy(css = "#SHP-StartShop-Continue")
+    @FindBy(css = "#SOL-StartShop-Continue")
     WebElement continueButton;
     private BasicActions basicActions;
 

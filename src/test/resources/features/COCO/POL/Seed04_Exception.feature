@@ -1,6 +1,7 @@
 Feature: Regression Tests that require Seed 4
 # verification WIP
-  Background: Seed 04 For COCO- Minor only Applicant with Responsible Person Income of $35k
+  
+  Scenario: Seed 04 For COCO- Minor only Applicant with Responsible Person Income of $35k
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -19,9 +20,8 @@ Feature: Regression Tests that require Seed 4
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "American Indian/Alaskan Native" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
     And I select "Annually" income frequency option
@@ -43,9 +43,8 @@ Feature: Regression Tests that require Seed 4
     And I enter residential address details for additional member "104 COCO DRIVE", "Colorado Springs", "CO", "80919", "El Paso"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "American Indian/Alaskan Native" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option

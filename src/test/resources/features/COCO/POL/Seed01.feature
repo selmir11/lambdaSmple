@@ -1,7 +1,7 @@
 @SLCR-137
 Feature: Regression Tests that require Seed 1
 # verification WIP
-Background: Seed 01 For COCO- Single Applicant with Income of $19k
+Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
 
   Given I open the login page on the "login" portal
   And I validate I am on the "Login" page
@@ -21,9 +21,8 @@ Background: Seed 01 For COCO- Single Applicant with Income of $19k
   And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
   And I select "Yes" for live in Colorado option
   And I click continue on the Add info for yourself page
-  And I select "I prefer not to answer" ethnicity option
-  And I select "I prefer not to answer" race option
-  And I click continue on the Ethnicity and race page
+  And I select "Prefer not to answer" for race and ethnicity option
+  And I click save and continue on the Race and Ethnicity page
   And I select "Yes" employment option
   And I enter "30,000.00" income amount
   And I select "Annually" income frequency option
@@ -71,8 +70,10 @@ Background: Seed 01 For COCO- Single Applicant with Income of $19k
   And I search for user and click email from search results
   Then I click on "Manage Plans" user dashboard button
   Then I click Make Changes Medical button
-  And I update the Coverage Start date to "01012024"
-  And I update the Financial Start date to "01012024"
+  And I update the Coverage Start date of member
+    |1:01012024|
+  And I update the Financial Start date of member
+    |1:01012024|
   And I click Save Button Medical
   And I select the reason to confirm the changes
   Then I close current tab and switch back to previous tab
