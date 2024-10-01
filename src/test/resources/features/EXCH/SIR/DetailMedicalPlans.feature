@@ -1,4 +1,4 @@
-@MedicalDetail @SIR
+@MedicalDetail @SIR @test
 Feature: Medical Plan Detail page related tests
 
   Background:
@@ -127,9 +127,9 @@ Feature: Medical Plan Detail page related tests
     And I validate the Plan Detail Disclaimer text
 
     And I validate the text headers and subheaders for the InNetwork Detail page
-    And I click the Plan Detail OutNetwork Link
+    And I click the English Plan Detail OutNetwork Link
     And I validate the text headers and subheaders for the OutNetwork Detail page
-    And I click the Plan Detail InNetwork Link
+    And I click the English Plan Detail InNetwork Link
     And I click Go Back on the Plan Detail page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -192,13 +192,13 @@ Feature: Medical Plan Detail page related tests
     And I select the first plan detail
 
     Then I validate I am on the "Medical Plan Detail" page
-    And I validate the Spanish Plan Detail summary pdf link
-    And I validate the Spanish Plan Detail Disclaimer text
     And I validate the Spanish text headers and subheaders for the InNetwork Detail page
-    And I click the OutNetwork Link
+    And I click the Spanish Plan Detail OutNetwork Link
     And I validate the Spanish text headers and subheaders for the OutNetwork Detail page
-    And I click the Plan Detail InNetwork Link
-    And I click Go Back on the Plan Detail page
+    And I click the Spanish Plan Detail InNetwork Link
+    And I validate the Spanish Plan Detail Disclaimer text
+    And I validate the Spanish Plan Detail summary pdf link
+    And I click Spanish Go Back on the Plan Detail page
 
     Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"
