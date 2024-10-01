@@ -36,7 +36,7 @@ public class StartShoppingCoCoPage {
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
-    @FindBy(css="c4-type-body-md center")
+    @FindBy(css=".c4-type-body-md")
     WebElement tobaccoUsageTxt;
 
     @FindBy(id = "SOL-StartShop-GoBack")
