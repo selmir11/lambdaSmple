@@ -17,8 +17,7 @@ public class GroupingMembersMedicalSteps {
     }
 
     @Then("I click continue on grouping Members Medical page")
-    public void clickContinue(){
-        groupingMembersMedical.clickContinue();
+    public void clickContinue(){groupingMembersMedical.clickContinue();
     }
 
     @Then("I validate that there are {int} default groups with different zipcodes")

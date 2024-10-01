@@ -86,6 +86,7 @@ public class EnrollmentAgreementsPage {
     }
 
     public void clickGoBack() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( goBackbtn,45 );
         basicActions.scrollToElement( goBackbtn );
         goBackbtn.click();

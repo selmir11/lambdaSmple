@@ -379,7 +379,7 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity pagee
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
