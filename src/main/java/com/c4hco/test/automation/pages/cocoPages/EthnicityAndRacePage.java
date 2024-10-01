@@ -56,71 +56,11 @@ public class EthnicityAndRacePage {
 
 
 
-
-    public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 90);
-        basicActions.waitForElementListToBePresentWithRetries(EthnicityAndRaceText, 90);
-        basicActions.waitForElementListToBePresent(raceButton, 90);
-        basicActions.waitForElementListToBePresent(ethnicityButton, 90);
-        basicActions.waitForElementToBePresent(goBackButton, 90);
-        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 90);
-        basicActions.scrollToElement(saveAndContinueButton);
-        basicActions.scrollToElement(hdrEthnicityAndRace);
-        basicActions.scrollToElement(saveAndContinueButton);
-        saveAndContinueButton.click();
-    }
-
     public void clickGoBackButton() {
         basicActions.waitForElementToBeClickable(goBackButton, 30);
         goBackButton.click();
     }
 
-    public void ethnicitySelection(String ethnicity){
-        basicActions.waitForElementListToBePresent(ethnicityButton, 30);
-        switch (ethnicity) {
-            case "Hispanic/Latino":
-                ethnicityButton.get(0).click();
-                break;
-            case "Non-Hispanic/Latino":
-                ethnicityButton.get(1).click();
-                break;
-            case "I prefer not to answer":
-                ethnicityButton.get(2).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + ethnicity);
-        }
-    }
-
-    public void raceSelection(String race){
-        basicActions.waitForElementToDisappear( spinner, 20 );
-        basicActions.waitForElementListToBePresent(raceButton, 40);
-        switch (race) {
-            case "American Indian/Alaskan Native":
-                raceButton.get(0).click();
-                break;
-            case "Asian":
-                raceButton.get(1).click();
-                break;
-            case "Black/African American":
-                raceButton.get(2).click();
-                break;
-            case "Native Hawaiian/Other Pacific Islander":
-                raceButton.get(3).click();
-                break;
-            case "White/Caucasian":
-                raceButton.get(4).click();
-                break;
-            case "Not listed":
-                raceButton.get(5).click();
-                break;
-            case "I prefer not to answer":
-                raceButton.get(6).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + race);
-        }
-    }
 
     public void verifyTextOnEthnicityAndRace(String language) {
         basicActions.waitForElementToBePresent(saveAndContinueButton, 10);

@@ -1,4 +1,4 @@
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: Tests related to What's Next Page
 
   Background:
@@ -24,6 +24,9 @@ Feature: Tests related to What's Next Page
     And I click continue on the Add info for yourself page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option

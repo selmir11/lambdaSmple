@@ -27,7 +27,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -81,7 +81,6 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
-
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click Go Back on coco plan summary page
 
@@ -96,6 +95,7 @@ Feature: Shopping Page - Continue and Go back funtionality
 
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
     And I select "Submit" agreement checkbox CoCo
@@ -127,8 +127,9 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    #And I select "Prefer not to answer" for race and ethnicity option
-    #And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
@@ -158,8 +159,9 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    #And I select "Prefer not to answer" for race and ethnicity option
-    #And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
@@ -190,8 +192,9 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    #And I select "Prefer not to answer" for race and ethnicity option
-    #And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -220,9 +223,9 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    #And I select "Prefer not to answer" for race and ethnicity option
-    #And I click save and continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -242,14 +245,21 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I validate I am on the "CoCo life change event" page
     And I select "MoveToCO" life change event
     And I select continue on the LCE page
+
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
+
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
+
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
+
+    Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I click on edit enrollment groups link in coco page
+
+    Then I validate I am on the "Edit Grouping Members Medical" page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
       |Wife:Group2|

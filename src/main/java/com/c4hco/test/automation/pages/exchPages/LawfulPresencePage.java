@@ -107,6 +107,7 @@ public class LawfulPresencePage {
                 rdobtnCitizenYes.click();
                 break;
             case "No":
+                basicActions.waitForElementToBePresent(rdobtnCitizenNo,50);
                 rdobtnCitizenNo.click();
         }
     }

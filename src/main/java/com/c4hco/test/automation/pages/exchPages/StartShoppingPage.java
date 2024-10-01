@@ -23,7 +23,7 @@ public class StartShoppingPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "SHP-StartShop-Continue")
+    @FindBy(id = "SOL-StartShop-Continue")
     WebElement btnContinue;
 
     @FindBy(css = ".container .radio-button")
@@ -70,6 +70,7 @@ public class StartShoppingPage {
     }
 
     public void iclickGoBack() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(goBackbtn, 10);
         basicActions.scrollToElement(goBackbtn);
         goBackbtn.click();
