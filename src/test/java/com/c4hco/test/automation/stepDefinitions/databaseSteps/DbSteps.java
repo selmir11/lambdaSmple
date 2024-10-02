@@ -49,6 +49,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateAccountHolderNameFromBOB();
    }
 
+   @And("I verify the client's updated email address in BoB DB")
+   public void iVerifyUpdatedEmailAddressBOBDB() {
+      dbValidations.verifyUpdatedEmailAddressBOB();
+   }
+
    @And("I verify the broker authorization in BoB DB is {string}")
    public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
       dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
