@@ -1,4 +1,5 @@
 @medicalPlanFilterResults
+  # contains SLER-25, SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, SLER-72, SLER-74
 Feature: Medical Plan Verification test
 
   Background:
@@ -120,6 +121,7 @@ Feature: Medical Plan Verification test
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue

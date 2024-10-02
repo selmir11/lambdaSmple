@@ -1,4 +1,4 @@
-@medicalDentalPlanSummary @test
+@medicalDentalPlanSummary
 Feature: Medical and Dental Plan Summary Verification test
 
   Background:
@@ -84,7 +84,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-515 @VerifyUnassignedMedicalPlanSummaryResultsMultiple
-   Scenario: SLER-515 - Validate grouping members: 2 groups - one group is unassigned to medical plans
+  Scenario: SLER-515 - Validate grouping members: 2 groups - one group is unassigned to medical plans
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page

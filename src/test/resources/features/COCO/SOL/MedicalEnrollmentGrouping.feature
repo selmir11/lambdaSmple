@@ -26,6 +26,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -51,6 +52,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
