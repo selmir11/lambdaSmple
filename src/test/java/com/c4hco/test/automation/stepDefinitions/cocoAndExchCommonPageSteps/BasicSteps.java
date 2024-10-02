@@ -185,7 +185,7 @@ public class BasicSteps {
                 pageUrl = "nes/qlceConfirmation";
                 break;
             case "Dental Grouping":
-                pageUrl = "groupingMembersDental/";
+                pageUrl = "viewGroupingMembers/";
                 break;
             case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
