@@ -37,7 +37,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -49,7 +49,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -63,7 +63,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -76,7 +76,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -95,7 +95,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -109,7 +109,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -142,7 +142,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -156,7 +156,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -172,7 +172,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -187,7 +187,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -209,7 +209,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
@@ -224,7 +224,7 @@ Feature: Tests related to the Deductions page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
 
