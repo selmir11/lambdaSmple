@@ -157,8 +157,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -382,8 +380,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -618,8 +614,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -840,8 +834,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1060,13 +1052,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     #Primary
-      Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
 
-      Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
-      And I click continue on the Citizenship page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
 
@@ -1287,8 +1277,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1512,8 +1500,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1730,13 +1716,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     #Primary
-      Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
 
-      Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
-      And I click continue on the Citizenship page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
 
@@ -1955,8 +1939,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -2176,8 +2158,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -2397,8 +2377,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    #Then I select "Yes" for Citizen option
-    #And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
