@@ -263,6 +263,8 @@ public class MedicalDetailPage {
         goBackDetail.click();
     }
 
+
+
     public void clickInNetworkLink(){
         basicActions.waitForElementToBePresent( inNetwork1,15 );
         softAssert.assertEquals(inNetwork1.getText(), "In Network Tier 1");
@@ -324,8 +326,8 @@ public class MedicalDetailPage {
         basicActions.scrollToElement(disclaimerSpanishDetail);
         basicActions.waitForElementToBePresent( disclaimerSpanishDetail,15 );
         disclaimerSpanishDetail.isDisplayed();
-        //softAssert.assertEquals(disclaimerSpanishDetail.getText(), "Es posible que algunos detalles y documentos del plan no estén disponibles en español. Vea los detalles del plan y el resumen de beneficios y cobertura para obtener la información más completa y precisa.");
-        //softAssert.assertAll();
+        softAssert.assertEquals(disclaimerSpanishDetail.getText(), "Es posible que algunos detalles y documentos del plan no est\u00e9n disponibles en espa\u00f1ol. Vea los detalles del plan y el resumen de beneficios y cobertura para obtener la informaci\u00f3n m\u00e1s completa y precisa.");
+        softAssert.assertAll();
     }
 
     public void validateSpanishPlanDocuments(){
@@ -361,12 +363,12 @@ public class MedicalDetailPage {
         softAssert.assertEquals(inThreeHeader.getText(), "Medicamentos recetados");
         softAssert.assertEquals(inFourHeader.getText(), "Instalaciones");
         softAssert.assertEquals(inFiveHeader.getText(), "Maternidad");
-        softAssert.assertEquals(inSixHeader.getText(), "Atención de emergencia");
+        softAssert.assertEquals(inSixHeader.getText(), "Atenci\u00f3n de emergencia");
         softAssert.assertEquals(inSevenHeader.getText(), "Beneficios de salud mental");
         softAssert.assertEquals(inEightHeader.getText(), "Pruebas");
-        softAssert.assertEquals(inNineHeader.getText(), "Dispositivos médicos");
-        softAssert.assertEquals(inTenHeader.getText(), "Servicios de habilitación y rehabilitación");
-        softAssert.assertEquals(inElevenHeader.getText(), "Atención a domicilio y a pacientes con enfermedades terminales");
+        softAssert.assertEquals(inNineHeader.getText(), "Dispositivos m\u00e9dicos");
+        softAssert.assertEquals(inTenHeader.getText(), "Servicios de habilitaci\u00f3n y rehabilitaci\u00f3n");
+        softAssert.assertEquals(inElevenHeader.getText(), "Atenci\u00f3n a domicilio y a pacientes con enfermedades terminales");
         softAssert.assertEquals(inTwelveHeader.getText(), "Beneficios esenciales de salud adicionales");
         softAssert.assertAll();
     }
@@ -378,12 +380,12 @@ public class MedicalDetailPage {
         softAssert.assertEquals(outThreeHeader.getText(), "Medicamentos recetados");
         softAssert.assertEquals(outFourHeader.getText(), "Instalaciones");
         softAssert.assertEquals(outFiveHeader.getText(), "Maternidad");
-        softAssert.assertEquals(outSixHeader.getText(), "Atención de emergencia");
+        softAssert.assertEquals(outSixHeader.getText(), "Atenci\u00f3n de emergencia");
         softAssert.assertEquals(outSevenHeader.getText(), "Beneficios de salud mental");
         softAssert.assertEquals(outEightHeader.getText(), "Pruebas");
-        softAssert.assertEquals(outNineHeader.getText(), "Dispositivos médicos");
-        softAssert.assertEquals(outTenHeader.getText(), "Servicios de habilitación y rehabilitación");
-        softAssert.assertEquals(outElevenHeader.getText(), "Atención a domicilio y a pacientes con enfermedades terminales");
+        softAssert.assertEquals(outNineHeader.getText(), "Dispositivos m\u00e9dicos");
+        softAssert.assertEquals(outTenHeader.getText(), "Servicios de habilitaci\u00f3n y rehabilitaci\u00f3n");
+        softAssert.assertEquals(outElevenHeader.getText(), "Atenci\u00f3n a domicilio y a pacientes con enfermedades terminales");
         softAssert.assertEquals(outTwelveHeader.getText(), "Beneficios esenciales de salud adicionales");
         softAssert.assertAll();
     }

@@ -1,4 +1,5 @@
 @dentalPlanDetail @SIR
+  # contains SLER-955,
 Feature: Dental Plan Verification test
 
   Background:
