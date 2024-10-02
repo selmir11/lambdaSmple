@@ -1267,8 +1267,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
-
-
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "10101975" date of birth
