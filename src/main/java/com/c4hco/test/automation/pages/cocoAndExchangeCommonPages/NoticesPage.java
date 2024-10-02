@@ -1,17 +1,22 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class NoticesPage {
 
@@ -454,4 +459,56 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(resetPWLink,20);
         resetPWLink.click();
     }
+
+    public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
+        // Validating plan name and member names
+        String planName = "";
+        switch(planType){
+            case "medical":
+                planName =  SharedData.getPrimaryMember().getMedicalPlan();
+                validateMembers("4", membersOnPolicy);
+                validatePlanDetails("4", planName);
+                break;
+
+            case "dental":
+                planName =  SharedData.getPrimaryMember().getDentalPlan();
+                validateMembers("1", membersOnPolicy);
+                validatePlanDetails("1", planName);
+                break;
+
+        }
+        softAssert.assertAll();
+    }
+
+    private void validateMembers(String locatorStringByPlan, List<String> membersOnPolicy){
+        for (String memPrefix : membersOnPolicy) {
+            String memberName = getMemFullName(memPrefix);
+
+           WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorStringByPlan+"] //*[contains(text(),'" + memPrefix + "')]"));
+
+            if(memberName!=null){
+                basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
+                softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
+            } else {
+                Assert.fail("Member name is set to null");
+            }
+        }
+    }
+
+    private void validatePlanDetails(String locatorByPlan, String planName){
+        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorByPlan+"] //*[contains(text(),'" + planName + "')]"));
+        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
+    }
+
+    private String getMemFullName(String memPrefix){
+        String memFullName = null;
+        if (memPrefix.equals("Primary")) {
+            memFullName = SharedData.getPrimaryMember().getFullName(); // WIP - Check if this is name is with full middle name or not
+        } else {
+            List<MemberDetails> memberDetailsList = SharedData.getMembers();
+            memFullName = memberDetailsList.stream().map(MemberDetails::getCompleteFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+        }
+        return memFullName;
+    }
+
 }

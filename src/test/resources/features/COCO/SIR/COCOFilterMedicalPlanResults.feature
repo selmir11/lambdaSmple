@@ -26,9 +26,9 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -77,6 +77,7 @@ Feature: Verify COCO Medical Plan results
       | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%            |
       | Select Health               | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange      |
 
+
   @SLCR-284 @CoCo_RegressionTest
   Scenario: This will verify the hyperlink text in COCO Medical plan page
     When I click create a new account on login page
@@ -93,16 +94,15 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
 
-
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "CoCo Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
