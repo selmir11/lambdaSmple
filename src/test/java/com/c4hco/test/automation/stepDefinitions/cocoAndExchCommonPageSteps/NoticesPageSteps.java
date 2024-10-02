@@ -97,9 +97,9 @@ public class NoticesPageSteps {
         noticesPage.VerifyTheNoticeTextAM01603();
     }
 
-    @And("I validate the email notice details for {string} plan")
-    public void validatePolicyDetailsInEmail(String planType, List <String> memberListOnPolicy) {
-        noticesPage.validateDetailsFromEmailPolicy(planType, memberListOnPolicy);
+    @And("I validate the email notice details for {string} plan with coverage start date {string}")
+    public void validatePolicyDetailsInEmail(String planType, String startDate, List <String> memberListOnPolicy) {
+        noticesPage.validateDetailsFromEmailPolicy(planType, startDate, memberListOnPolicy);
     }
     @Then("I click the password reset link")
     public void iClickThePasswordResetLink() {

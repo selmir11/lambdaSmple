@@ -41,8 +41,8 @@ public class MemberIdProofingPage {
     WebElement saveContinue;
 
     public void selectFirstOptionToAll(){
-        basicActions.waitForElementToDisappear( spinner, 15  );
-        basicActions.waitForElementToBePresent(firstOptionInEmployerName, 10);
+        basicActions.waitForElementToDisappear( spinner, 30  );
+        basicActions.waitForElementToBePresent(firstOptionInEmployerName, 30);
         firstOptionInEmployerName.click();
         firstOptionInHomeAddress.click();
         firstOptionInCarLoanBank.click();

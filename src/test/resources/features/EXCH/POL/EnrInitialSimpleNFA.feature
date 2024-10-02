@@ -95,9 +95,9 @@ Feature: Simple NFA - Single Applicant
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan
+    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
       |Primary|
-    And I validate the email notice details for "medical" plan
+    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
       |Primary|
     Then I delete the open notice
     And I sign out of Outlook
@@ -106,6 +106,7 @@ Feature: Simple NFA - Single Applicant
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    # WIP - Validate financial sstart/end dates, coverage start/end dates and all of policy table validations
     And I validate policy tables with medical coverage start date as "First Of Next Month"
     And I validate policy tables with dental coverage start date as "First Of Next Month"
 

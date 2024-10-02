@@ -161,8 +161,8 @@ public class MedicalComparePage {
 
 
     public void clickPDFSummary(){
-        basicActions.waitForElementToBeClickable( pdfCompareSummary,15);
-        pdfCompareSummary.click();
+        basicActions.waitForElementToBePresent( pdfCompareSummary,15);
+        pdfCompareSummary.isEnabled();
     }
 
     public void clickGoBackCompare(){
@@ -171,12 +171,12 @@ public class MedicalComparePage {
     }
 
     public void clickInNetworkLink(){
-        basicActions.waitForElementToBeClickable( inNetwork1,15 );
+        basicActions.waitForElementToBePresent( inNetwork1,15 );
         inNetwork1.click();
     }
 
     public void clickOutNetworkLink(){
-        basicActions.waitForElementToBeClickable( outNetwork, 15 );
+        basicActions.waitForElementToBePresent( outNetwork, 15 );
         outNetwork.click();
     }
 

@@ -46,11 +46,12 @@ public class DentalPlanDetailPage {
     @FindBy(id = "ngb-accordion-item-0-toggle")
     WebElement txtInGeneralDetails;
 
-
     @FindBy(id = "ngb-accordion-item-1-toggle")
     WebElement txtInDiagnosticChild;
 
-    //(xpath = "//*[contains(text(),\"Find medical care and enrollment assistance\")]")
+    @FindBy(xpath = "//*[class = 'td-sub-title']")
+    List<WebElement> subheader;
+
     @FindBy(xpath = " //*[contains(text(),\"Cleaning Child\")]")
     WebElement txtCleaningChild;
 
@@ -186,7 +187,8 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals(txtInDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
         txtInGeneralDetails.click();
         txtInDiagnosticChild.click();
-        softAssert.assertEquals( txtCleaningChild.getText(), "Cleaning Child" );
+        // assertions not working here  - review
+        softAssert.assertEquals( subheader.get(1).getText(), "Cleaning Child" );
         softAssert.assertEquals( txtFlourideChild.getText(), "Flouride Treatments Child" );
         softAssert.assertEquals( txtOralExamsChild.getText(), "Oral Exams Child");
         softAssert.assertEquals( txtXraysChild.getText(),"X-rays Child" );

@@ -35,6 +35,9 @@ Feature: Cancel Plans Spanish Translation
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -55,18 +58,11 @@ Feature: Cancel Plans Spanish Translation
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I select the Money Order button
-    And I click continue on payment selection page
-    And I click continue on initial payment page
-    And I click on Go To Welcome Page Button on whats next page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Plans"
     And I click on "Cancel Medical Plan" button

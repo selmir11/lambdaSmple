@@ -29,9 +29,8 @@ import io.cucumber.java.en.Then;
             medicalDetailPage.validateEnglishTextHeadersInNetwork();
         }
 
-        @And("I click the Plan Detail OutNetwork Link")
-        public void clickOutNetworkLink() {
-            medicalDetailPage.clickOutNetworkLink();
+        @And("I click the English Plan Detail OutNetwork Link")
+        public void clickOutNetworkLink() {medicalDetailPage.clickOutNetworkLink();
         }
 
         @And("I validate the text headers and subheaders for the OutNetwork Detail page")
@@ -39,9 +38,8 @@ import io.cucumber.java.en.Then;
             medicalDetailPage.validateEnglishTextHeadersOutNetwork();
         }
 
-        @And("I click the Plan Detail InNetwork Link")
-        public void clickInNetworkLink() {
-            medicalDetailPage.clickInNetworkLink();
+        @And("I click the English Plan Detail InNetwork Link")
+        public void clickInNetworkLink() {medicalDetailPage.clickInNetworkLink();
         }
 
         @And("I click Go Back on the Plan Detail page")
@@ -65,8 +63,7 @@ import io.cucumber.java.en.Then;
         }
 
         @And("I validate the Spanish Plan Detail Disclaimer text")
-        public void validateSpanishDisclaimerText() {
-            medicalDetailPage.validateSpanishDisclaimerText();
+        public void validateSpanishDisclaimerText() {medicalDetailPage.validateSpanishDisclaimerText();
         }
 
         @And("I validate the Spanish plan documents")
@@ -90,13 +87,11 @@ import io.cucumber.java.en.Then;
         }
 
         @And("I click Spanish Go Back on the Plan Detail page")
-        public void clickSpanishGoBackDetail() {
-            medicalDetailPage.clickSpanishGoBackDetail();
+        public void clickSpanishGoBackDetail() {medicalDetailPage.clickSpanishGoBackDetail();
         }
 
         @And("I click the Spanish Plan Detail InNetwork Link")
-        public void clickSpanishInNetworkLink() {
-            medicalDetailPage.clickSpanishInNetworkLink();
+        public void clickSpanishInNetworkLink() {medicalDetailPage.clickSpanishInNetworkLink();
         }
 
         @And("I click the Spanish Plan Detail OutNetwork Link")

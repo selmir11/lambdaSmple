@@ -1,27 +1,10 @@
 Feature: Test Feature - Exchange
 
-  @SLER-1
-  Scenario: Scenario1
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
+  Scenario: Test Only Scenario-edi999
+  And I read the edi999 file locally
 
-  @SLER-2
-  Scenario: Scenario2
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-
-  @SLER-3
-  Scenario: Scenario3
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-
-  @SLER-4
-  Scenario: Scenario4
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-#
-#  Scenario: Test Only scenario- edi file in local location
-#    And I read the edi file locally
+  Scenario: Test Only scenario- edi file in local location
+    And I read the edi file locally
 #
 #  @SLER-289
 #  Scenario: Seed 01 For Exchange

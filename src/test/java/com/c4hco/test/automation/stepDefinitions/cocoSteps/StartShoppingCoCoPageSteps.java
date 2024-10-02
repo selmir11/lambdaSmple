@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.StartShoppingCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class StartShoppingCoCoPageSteps {
@@ -9,16 +10,34 @@ public class StartShoppingCoCoPageSteps {
     StartShoppingCoCoPage startShoppingCoCoPage = new StartShoppingCoCoPage(WebDriverManager.getDriver());
 
     @Then("I click continue on coco start shopping page")
-    public void clickContinueStartShoppingPage(){
+    public void clickContinueStartShoppingPage() {
         startShoppingCoCoPage.iclickContinue();
     }
 
-    @Then("I click save and exit on coco start shopping page")
-    public void clickSaveAndExit() {
-        startShoppingCoCoPage.clickBtnSaveNExit();
+    @Then("I click Yes to the Tobacco usage question on coco start shopping page")
+    public void tobaccoYesUser(String tobaccoUsageUserDetails) {
+        startShoppingCoCoPage.tobaccoPage(tobaccoUsageUserDetails);
     }
-    @Then("I select {string} {string} for Tobacco Use coco")
-    public void tobaccoUser(String member, String YNTobaccoUser){startShoppingCoCoPage.memberTobaccoUser(member, YNTobaccoUser);}
+
+    @Then("I verify text on Tobacco Usage Page CoCo")
+    public void verifyTextOnTobaccoPage()  {
+        startShoppingCoCoPage.verifyTextOnTobaccoPage();
+    }
+
+    @And("I click go back on the tobacco usage page coco")
+    public void clickBackBtn(){
+        startShoppingCoCoPage.clickBackBtn();
+    }
+
+    @And("I click on save and exit on tobacco usage page in coco")
+    public void clickSaveAndExit(){
+        startShoppingCoCoPage.clickSaveAndExit();
+    }
+
+    @Then("I validate the text on {string} {string} and {string} buttons on tobacco usage page coco")
+    public void validateButtonText(String goBackTxt, String saveExitTxt, String continueBtnTxt){
+        startShoppingCoCoPage.validateBtnTxt(goBackTxt, saveExitTxt, continueBtnTxt);
+    }
 
 
 }

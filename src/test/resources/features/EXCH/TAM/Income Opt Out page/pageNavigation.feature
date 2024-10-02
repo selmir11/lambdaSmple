@@ -1,4 +1,4 @@
-@TAM
+@TAM @TamExch
 Feature: Page Navigation-Income Opt Out Page
 
   Background:
@@ -32,6 +32,8 @@ Feature: Page Navigation-Income Opt Out Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -101,6 +103,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -115,6 +118,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -130,6 +134,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -144,6 +149,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -169,6 +175,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -184,6 +191,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -232,7 +240,6 @@ Feature: Page Navigation-Income Opt Out Page
 
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -242,6 +249,7 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from header to "Spanish NonElmo"
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -249,7 +257,6 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -259,6 +266,7 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from header to "Spanish NonElmo"
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -267,7 +275,6 @@ Feature: Page Navigation-Income Opt Out Page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -277,6 +284,7 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from header to "Spanish NonElmo"
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -284,7 +292,6 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -294,6 +301,7 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from header to "Spanish NonElmo"
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -311,7 +319,6 @@ Feature: Page Navigation-Income Opt Out Page
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I click on Apply for Coverage in the "ExpertHelp" Header
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -322,6 +329,7 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from header to "Spanish NonElmo"
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 
@@ -339,6 +347,7 @@ Feature: Page Navigation-Income Opt Out Page
     And I change the language from header to "Spanish NonElmo"
     And I click continue on Tell us about yourself page
     And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
 

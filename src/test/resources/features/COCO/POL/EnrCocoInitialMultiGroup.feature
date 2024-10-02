@@ -19,9 +19,9 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Native Hawaiian/Other Pacific Islander" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -46,10 +46,9 @@ Feature: Coco Initial Application Multi group
     And I enter residential address details for additional member "105 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Native Hawaiian/Other Pacific Islander" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -72,10 +71,9 @@ Feature: Coco Initial Application Multi group
     And I enter complete residential address details for additional member addressLine1 "500 Diff Drive",addressLine2 "",city "Colorado Springs",state "CO",zipcode "80919",county "EL PASO"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Not listed" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -102,10 +100,9 @@ Feature: Coco Initial Application Multi group
     And I enter complete residential address details for additional member addressLine1 "500 Diff Drive",addressLine2 "",city "Colorado Springs",state "CO",zipcode "80919",county "EL PASO"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Not listed" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -127,8 +124,8 @@ Feature: Coco Initial Application Multi group
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "CoCo Start Shopping" page
-    Then I select "member1" "Yes" for Tobacco Use coco
-    Then I select "member2" "Yes" for Tobacco Use coco
+    Then I click Yes to the Tobacco usage question on coco start shopping page
+    |Primary,Wife|
     Then I click continue on coco start shopping page
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I validate that there are 2 default groups in coco page

@@ -21,7 +21,6 @@ public class MemberDetails {
     String signature;
     String fullName;
     String completeFullName;
-    String fullMiddleName;
     String dob;
     String zipcode;
     Address resAddress;
