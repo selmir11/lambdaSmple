@@ -1,4 +1,5 @@
 @MedicalPlans
+  # contains SLER-73
   Feature: Tests related to medical plans
     @SLER-73
     Scenario: Validate medical plans count

@@ -34,7 +34,7 @@ public class GroupingMembersMedicalPage {
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
-    @FindBy(id = "SOL-MedicalGroupingMembers-GoBack")
+    @FindBy(id = "SOL-ViewGroupingMembers-GoBack")
     WebElement goBackButton;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
@@ -66,6 +66,7 @@ public class GroupingMembersMedicalPage {
     }
 
     public void clickOnEditMedicalGroupinglink() {
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 10);
         basicActions.waitForElementToBeClickable(editMyEnrollmentGroupsButton, 50);
         editMyEnrollmentGroupsButton.click();
