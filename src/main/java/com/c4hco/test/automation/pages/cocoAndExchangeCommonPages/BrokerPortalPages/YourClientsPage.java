@@ -75,7 +75,6 @@ public class YourClientsPage {
 
     @FindBy(xpath = "//*[@id='client-data-title-row']/span[1]")
     WebElement clientFullName;
-
     @FindBy(xpath = "//*[@id='elem']/app-view-clients/div/div[1]")
     WebElement yourClientsTitle;
 
@@ -114,6 +113,13 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(clientSecondRow, 1000);
         basicActions.waitForElementToBePresent(searchClient, 1000);
         String firstName =SharedData.getPrimaryMember().getFirstName();
+        searchClient.sendKeys(firstName);
+        searchClient.sendKeys(Keys.ENTER);
+    }
+
+    public void searchForTheSecondaryClient(){
+        basicActions.waitForElementToBePresent(searchClient, 1000);
+        String firstName =SharedData.getMembers().get(0).getFirstName();
         searchClient.sendKeys(firstName);
         searchClient.sendKeys(Keys.ENTER);
     }
@@ -181,6 +187,7 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(thirdClientStatus,10);
         softAssert.assertEquals(thirdClientStatus.getText(), "POLICY SUBMITTED");
         softAssert.assertAll();
+
     }
 
     public void clickOptionToHandelClient(String option) {
@@ -271,6 +278,12 @@ public class YourClientsPage {
 
         basicActions.waitForElementToBePresent(clientPremium, 200);
         softAssert.assertEquals((clientPremium.getText().replace("$", "")), premiumAmt);
+        softAssert.assertAll();
+    }
+
+    public void verifyThatTheClientNameMuchThePrimaryContact() {
+        basicActions.waitForElementToBePresent(clientFullName,20);
+        softAssert.assertTrue(clientFullName.getText().contains(SharedData.getMembers().get(0).getFirstName()));
         softAssert.assertAll();
     }
 }
