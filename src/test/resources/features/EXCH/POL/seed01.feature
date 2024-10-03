@@ -35,6 +35,9 @@ Feature: Regression Tests that require Seed 1
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+   Then I validate I am on the "Elmo Race and Ethnicity" page
+   And I select "Prefer not to answer" for race and ethnicity
+   And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -104,6 +107,8 @@ Feature: Regression Tests that require Seed 1
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
+   # WIP - Modify the below method to pass coverage dates to be first of current year and endOfCurrent year
+   # Q?: What would financial start and end dates look like when there is NFA
     And I validate the member details from policy tables
       | CoverageStartDate | CoverageEndDate |
       | 01-01             | 12-31           |
@@ -234,11 +239,8 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "03051989" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -268,8 +270,8 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select "member1" "No" for Tobacco Use
-    Then I select "member2" "No" for Tobacco Use
+    Then I click Yes to the Tobacco usage question on start shopping page
+      |Primary,Spouse|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page

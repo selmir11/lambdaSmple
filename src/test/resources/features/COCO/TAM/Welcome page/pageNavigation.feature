@@ -1,4 +1,4 @@
-@TAM
+@TAM @TamCoCo
 Feature: Navigation-Welcome Page
 
   Background: I go the login portal

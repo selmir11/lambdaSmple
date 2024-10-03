@@ -1,5 +1,5 @@
 @SIRRegression @APTC-SIR
-  # SLER-778
+  # SLER-778 formerly RT-1618
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
@@ -43,8 +43,8 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -85,8 +85,8 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -110,8 +110,8 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -246,34 +246,44 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Add Address" page
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
+
     Then I validate I am on the "Family Overview" page
     And I click on the Member Row 1
+
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
+
     Then I validate I am on the "Employment Summary" page
     Then I click Edit on Income Summary row 1
+
     Then I validate I am on the "Employment Info" page
     And I edit the income level to "4500000"
     And I click continue on the Employment Info Page
+
     Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
+
     Then I validate I am on the "Additional income" page
     And I click None of these as additional income option
     Then I click None of these as additional income option and continue
 #    And I click None of these as additional income option
 #    Then I click continue on the Additional Income page
+
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
+
     Then I validate I am on the "Income Summary" page
     Then I click the save and continue button on the Income Summary Detail page
+
     Then I validate I am on the "Tax status" page
     And I select the first dependent
     Then I click save and continue on tax status page
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I select "None of these" as ELMO health coverage option
@@ -290,51 +300,67 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I select "None of these" as ELMO health coverage option
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I validate I am on the "Tell us about life changes" page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
+
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
     Then I validate I am on the "Good News" page
     Then I click on No Thanks on good news page
+
     Then I validate I am on the "Application History" page
     Then I validate that my APTC value is "$802.29/mo"
     Then I click on view results and shop
+
     Then I validate I am on the "Application Results" page
     Then I validate that my Tax Household's 1 APTC value is "$802.29/mo"
     And I click continue on application results page
+
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
+
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
+
     Then I validate I am on the "Edit Grouping Members Medical" page
      # Then I validate that there are 1 default groups
     Then I create new group in edit medical grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     Then I click save button to save the groups
     Then I click on continue button on success pop-up
+
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
+
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
+
     Then I validate I am on the "Edit Grouping Members Dental" page
       # Then I validate that there are 1 default dental groups
     Then I create new group in edit dental grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     And I click save button to save the dental groups
     And I click on continue button on success pop-up from edit grouping dental page
+
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
+
     Then I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
     Then I click continue on dental plan results page
+
     Then I validate I am on the "Plan Summary" page
     Then I validate the APTC Credit on the Summary page is "-$802.29"
     And I click on Sign Out in the Header for "Elmo"

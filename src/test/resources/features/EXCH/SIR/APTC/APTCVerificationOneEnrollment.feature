@@ -1,4 +1,6 @@
 @APTC,@APTC-SIR, @APTC-SIR-Single
+
+  # SLER-1036,
 Feature: UI Tests related to APTC after initial enrollment
 
   Background: I go the login portal
@@ -43,8 +45,8 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -120,8 +122,8 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1006-WIP
-  Scenario Outline: ELIG-APTCRules - verify initial APTC calculations - linked to EXCH Plan Load SIR-2505
+  @SLER-1006
+  Scenario Outline: ELIG -APTCRules - SLER-1006 - linked to EXCH Plan Load SIR-2505 - verify initial APTC calculations
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -134,7 +136,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click on continue with  application button on Before you begin page
 
     #need to remove LCE step during OE
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
   # location change
@@ -156,8 +158,8 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option

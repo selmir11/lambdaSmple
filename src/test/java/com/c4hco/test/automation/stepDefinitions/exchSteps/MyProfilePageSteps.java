@@ -24,6 +24,11 @@ public class MyProfilePageSteps {
         myProfileExchPage.clickSaveButton();
     }
 
+    @And("I click on the My Profile Save Button while OBO")
+    public void iclickSaveButtonObo() {
+        myProfileExchPage.clickSaveButtonObO();
+    }
+
     @And("I click on Cancel Button on password pop on My Profile page Exch")
     public void iclickCancelButton() {
         myProfileExchPage.clickCancelButton();
@@ -92,6 +97,11 @@ public class MyProfilePageSteps {
     @And("I click change primary contact on my profile page")
     public void iClickChangePrimaryContactOnMyProfilePage() {
         myProfileExchPage.ClickChangePrimaryContactOnMyProfilePage();
+    }
+
+    @And("I update the contact email address")
+    public void iUpdateContactEmailAddress() {
+        myProfileExchPage.UpdateContactEmailAddress();
     }
 
     @Then("I select the second household member as primary contact")

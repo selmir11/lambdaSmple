@@ -116,16 +116,16 @@ public class BasicSteps {
                 pageUrl = "medicalPlanCarrierDetails";
                 break;
             case "Grouping Members Medical":
-                pageUrl = "groupingMembersMedical";
+                pageUrl = "viewGroupingMembers";
                 break;
             case "CoCo Grouping Members Medical":
-                pageUrl = "coco/PreShoppingPortal/groupingMembersMedical";
+                pageUrl = "coco/PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Grouping Members Dental":
-                pageUrl = "PreShoppingPortal/groupingMembersDental";
+                pageUrl = "PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Edit Grouping Members Medical":
-                pageUrl = "PreShoppingPortal/editGroupingMembersMedical";
+                pageUrl = "PreShoppingPortal/manageGroupingMembers";
                 break;
             case "Edit Grouping Members Dental":
                 pageUrl = "PreShoppingPortal/editGroupingMembersDental";
@@ -185,7 +185,7 @@ public class BasicSteps {
                 pageUrl = "nes/qlceConfirmation";
                 break;
             case "Dental Grouping":
-                pageUrl = "groupingMembersDental/";
+                pageUrl = "viewGroupingMembers/";
                 break;
             case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
@@ -228,6 +228,9 @@ public class BasicSteps {
                 break;
             case "Tell us about yourself":
                 pageUrl = "nes/nesBrokerRedirect?lang=en&planYearClicked=true";
+                break;
+            case "Additional Information for Yourself":
+                pageUrl = "nes/addAddress";
                 break;
             case "Family Overview":
                 pageUrl = "nes/household";
@@ -319,8 +322,8 @@ public class BasicSteps {
             case "EDI Transactions":
                 pageUrl = "/edi-transactions";
                 break;
-            case "CoCo Ethnicity and Race" :
-                pageUrl = "/coco/member-details-portal/race-ethnicity/";
+            case "Elmo Race and Ethnicity" :
+                pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";

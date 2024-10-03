@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR, @APTC-SIR-Single
+@APTC @APTC-SIR @APTC-SIR-Single
   # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
@@ -41,6 +41,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -151,12 +152,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -262,8 +262,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
+
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -373,12 +375,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -495,8 +496,10 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
+
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -567,14 +570,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
 
-      Then I validate I am on the "Enrollment Agreements" page
-      And I select "Acknowledgement" agreement checkbox
-      And I select "Submit" agreement checkbox
-      And I enter householder signature on the Enrollment Agreements page
-      And I click submit enrollment on Enrollment Agreements page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
 
-      Then I validate I am on the "Pay now" page
+    Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
@@ -606,12 +609,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -716,6 +718,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -826,12 +829,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -936,8 +938,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I select "Prefer not to answer" for race and ethnicity option
+      And I click save and continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1048,12 +1051,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1158,6 +1160,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -1269,12 +1272,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1379,6 +1381,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -1402,7 +1405,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
-
   ##
     Then I select the projected income option "No" and continue
 
@@ -1493,12 +1495,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1603,6 +1604,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -1681,7 +1683,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
 
-
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
@@ -1714,12 +1715,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -1824,6 +1824,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -1933,13 +1934,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
-
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -2044,6 +2043,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -2138,7 +2138,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
 
-
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
@@ -2154,12 +2153,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -2264,6 +2262,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -2373,12 +2372,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    #Primary
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
@@ -2483,6 +2481,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -2593,6 +2592,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 

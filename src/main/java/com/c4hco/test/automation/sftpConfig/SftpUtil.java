@@ -3,6 +3,7 @@ package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.edi.ediUtil.Edi834Util;
+import com.c4hco.test.automation.edi.ediUtil.Edi999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.jcraft.jsch.ChannelSftp;
@@ -20,6 +21,7 @@ import java.util.Date;
 public class SftpUtil {
     private Session session;
     Edi834Util edi834Util = new Edi834Util();
+    Edi999Util edi999Util = new Edi999Util();
     BasicActions basicActions = new BasicActions();
 
     public SftpUtil(){
@@ -165,6 +167,22 @@ public class SftpUtil {
                 edi834Util.parseEdiFile(inputStream);
             } else {
                 System.err.println("File 'edi_384' not found in the resource folder.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void readEdi999FromLocal(){
+        try{
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("999_DNV_file");
+
+            if (inputStream != null) {
+                System.out.println("File found");
+                edi999Util.parseEdi999(inputStream);
+            } else {
+                System.err.println("File 'edi_999' not found in the resource folder.");
             }
         }catch (Exception e){
             e.printStackTrace();

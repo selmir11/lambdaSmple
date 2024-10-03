@@ -7,7 +7,7 @@ import io.cucumber.java.en.*;
 public class PlanSummaryMedicalDentalPageSteps {
     PlanSummaryMedicalDentalPage planSummaryMedicalDentalPage = new PlanSummaryMedicalDentalPage(WebDriverManager.getDriver());
 
-    // WIP - revisit the below 2 steps - only one is valid
+    // WIP - Remove the below step
    @And("I click continue on plan summary page")
     public void continueButton(){
        planSummaryMedicalDentalPage.continueButton();

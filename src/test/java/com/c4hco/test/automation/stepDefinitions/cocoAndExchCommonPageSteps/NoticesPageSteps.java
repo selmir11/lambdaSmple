@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.NoticesPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+
 public class NoticesPageSteps {
 
     NoticesPage noticesPage = new NoticesPage(WebDriverManager.getDriver());
@@ -95,7 +97,10 @@ public class NoticesPageSteps {
         noticesPage.VerifyTheNoticeTextAM01603();
     }
 
-
+    @And("I validate the email notice details for {string} plan with coverage start date {string}")
+    public void validatePolicyDetailsInEmail(String planType, String startDate, List <String> memberListOnPolicy) {
+        noticesPage.validateDetailsFromEmailPolicy(planType, startDate, memberListOnPolicy);
+    }
     @Then("I click the password reset link")
     public void iClickThePasswordResetLink() {
         noticesPage.clickThePasswordResetLink();

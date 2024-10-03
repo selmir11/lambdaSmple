@@ -49,6 +49,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateAccountHolderNameFromBOB();
    }
 
+   @And("I verify the client's updated email address in BoB DB")
+   public void iVerifyUpdatedEmailAddressBOBDB() {
+      dbValidations.verifyUpdatedEmailAddressBOB();
+   }
+
    @And("I verify the broker authorization in BoB DB is {string}")
    public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
       dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
@@ -85,15 +90,15 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 
    @And("I verify Person ID review status is Manual Review Required")
    public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
+
+   // !!!!!!!WIP - This needs to be revisited!!!!!!!!
    @And("I validate policy tables with medical coverage start date as {string}")
    public void iValidateMedCoverageOnMyPoliciesPage(String startDate){
       policyTableDBValidations.validateMedCoverageStartDate(startDate);
-
    }
    @And("I validate policy tables with dental coverage start date as {string}")
    public void iValidateDenCoverageOnMyPoliciesPage(String startDate){
       policyTableDBValidations.validateDenCoverageStartDate(startDate);
-
    }
 
 

@@ -1,5 +1,4 @@
-
-@SOLRegression
+@SOLRegression @COCO_SOL
 Feature: New payment portal - payment page related tests
 
   Background:
@@ -23,9 +22,9 @@ Feature: New payment portal - payment page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -59,8 +58,3 @@ Feature: New payment portal - payment page related tests
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
-
-
-
-
-

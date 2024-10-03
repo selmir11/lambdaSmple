@@ -107,6 +107,7 @@ public class LawfulPresencePage {
                 rdobtnCitizenYes.click();
                 break;
             case "No":
+                basicActions.waitForElementToBePresent(rdobtnCitizenNo,50);
                 rdobtnCitizenNo.click();
         }
     }
@@ -204,6 +205,10 @@ public class LawfulPresencePage {
         basicActions.waitForElementToBeClickable(saveContinue, 20);
         getMemberId();
         saveContinue.click();}
+
+    public  void clickGoBack(){
+        basicActions.waitForElementToBeClickable(btnBack, 20);
+        btnBack.click();}
 
     public void getMemberId() {
         List<MemberDetails> memberDetailsList = SharedData.getMembers();

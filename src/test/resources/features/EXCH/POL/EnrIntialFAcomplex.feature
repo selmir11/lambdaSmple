@@ -320,7 +320,8 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select "member1" "Yes" for Tobacco Use
+    Then I click Yes to the Tobacco usage question on start shopping page
+    |Primary|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     And  I get the details of medical group Members
@@ -355,7 +356,7 @@ Feature: Enroll a in a plan 8 HH
     And I click on download enrolment document
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    #And I Validate the correct enrolled plans are displayed on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
     
 
     #Gmail Verification
@@ -369,9 +370,8 @@ Feature: Enroll a in a plan 8 HH
 
     #DbVerification
 
-    And I verify the policy data quality check
-    And I verify the data from book of business queue table
-
+    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
 
