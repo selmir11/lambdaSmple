@@ -110,7 +110,7 @@ public class YourClientsPageSteps {
 
     @Then("I verify that the client name match the primary contact")
     public void iVerifyThatTheClientNameMatchThePrimaryContact() {
-        yourClientsPage.verifyThatTheClientNameMatchThePrimaryContact();
+        yourClientsPage.verifyClientNameAsPrimary();
     }
 }
 
