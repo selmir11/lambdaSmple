@@ -30,10 +30,10 @@ import io.cucumber.java.en.Then;
 
     @Then("I validate action link text on welcome page in {string}")
     public void verifyActionLinkText(String language)  { welcomePage.validateActionLinksText(language); }
-    @And("Validate correct medical plan enrolled for {string} is {string} displayed on coco welcome page")
-    public void validateMedPlanDetails(String memberName, String planName){
-        welcomePage.ValidatePlanDetailsOnWelcomePage(memberName,planName);
-    }
+        @And("I Validate the correct enrolled plans are displayed on coco welcome page")
+        public void validatePlanDetails(){
+            welcomePage.verifyMemberNamesOnWelcomePage();
+        }
 
     }
 

@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.Edi.Member;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.By;
@@ -62,6 +64,8 @@ public class WelcomePage {
 
     @FindBy(css = ".action-link, .c4-type-links-lg")
     List<WebElement> actionLinks;
+    @FindBy(xpath = "//p[@class='plan-member-full-names']/span")
+    List<WebElement> medicalMemberNames;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -371,13 +375,41 @@ public class WelcomePage {
         softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
-    public void ValidatePlanDetailsOnWelcomePage(String memberName,String planName){
+    public void verifyMemberNamesOnWelcomePage() {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
-        WebElement planDetails = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+memberName+"')]/ancestor::div[@class='plan-member-names-container']/parent::div/parent::div //div[@class='plan-name']"));
-        basicActions.waitForElementToBeClickable(planDetails,30) ;
-        softAssert.assertEquals(planDetails.getText(),planName);
+        MemberDetails primaryMember = SharedData.getPrimaryMember();
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        basicActions.waitForElementToBePresent(planYearText, 20);
+        for (int i = 0; i < medicalMemberNames.size(); i++) {
+            basicActions.waitForElementToBePresent(policyMedicalPlan, 40);
+            String memberNames = medicalMemberNames.get(i).getText().trim();
+            String trimmedText = memberNames.substring(0, memberNames.length() - 1);
+            if (trimmedText.contains(primaryMember.getFirstName())) {
+                if(medicalMemberNames.size() == 1){
+                    softAssert.assertEquals(memberNames, primaryMember.getFirstName() + " " + primaryMember.getLastName(), "Primary member name does not match");
+                }
+                else {
+                    softAssert.assertEquals(trimmedText, primaryMember.getFirstName() + " " + primaryMember.getLastName(), "Primary member name does not match");
+                }
+                } else {
+                for (int j = 0; j < memberDetailsList.size(); j++) {
+                    if (trimmedText.contains(memberDetailsList.get(j).getFirstName())) {
+                        if (i == medicalMemberNames.size() - 1) {
+                            basicActions.waitForElementToBePresent(policyMedicalPlan, 40);
+                            softAssert.assertEquals(memberNames, memberDetailsList.get(j).getCompleteFullName(), "Member name does not match");
+                        }
+                        else {
+                            basicActions.waitForElementToBePresent(policyMedicalPlan, 40);
+                            softAssert.assertEquals(trimmedText, memberDetailsList.get(j).getCompleteFullName(), "Member name does not match");
+                        }
+                        break;
+                    }
+                }
+            }
+        }
         softAssert.assertAll();
     }
+
 }
 
 
