@@ -1,4 +1,4 @@
-@SLCR-48
+@SLCR-48 @portCOCO
 Feature: print functionality on the Colorado Connect My Clients page
   @SLCR-48
   Scenario: print functionality on My Clients page

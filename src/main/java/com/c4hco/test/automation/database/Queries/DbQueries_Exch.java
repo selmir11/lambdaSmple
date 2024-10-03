@@ -129,6 +129,11 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'";
     }
 
+    public String getClientEmailFromBOB(){
+        return "select email from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
     public String verifyBrokerAuthorizationInBOB(String clientFirstName){
         return "select broker_name from  "+dbName+".bp_book_of_business\n "+
                 "where acct_holder_fn = '"+clientFirstName+"' and curr_yr_app_id is null and curr_pol_policy_status is null and nxt_yr_app_id is null and next_pol_policy_status is null";

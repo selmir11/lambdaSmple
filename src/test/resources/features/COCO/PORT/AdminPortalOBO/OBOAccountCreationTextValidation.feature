@@ -1,4 +1,4 @@
-@PORT
+@PORT @portCOCO
 Feature: Account creation page text verification
 
   @PORT @SLCR-67

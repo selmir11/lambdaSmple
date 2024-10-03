@@ -1,4 +1,4 @@
-@SLER-352
+@SLER-352 @FindExpertHelp
 Feature: Verify the navigation from My Documents get assistance from OBO
   @SLER-352
   Scenario: Verify the navigation from My Documents get assistance from OBO

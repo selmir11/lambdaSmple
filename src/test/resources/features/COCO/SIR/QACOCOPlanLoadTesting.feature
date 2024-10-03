@@ -34,9 +34,11 @@ Feature: Verify COCO Medical Plan results
   And I select "Yes" for mailing address option
   And I select "Yes" for live in Colorado option
   And I click continue on the Add info for yourself page
-  And I select "I prefer not to answer" ethnicity option
-  And I select "I prefer not to answer" race option
-  And I click continue on the Ethnicity and race page
+
+  Then I validate I am on the "Elmo Race and Ethnicity" page
+  And I select "Prefer not to answer" for race and ethnicity option
+  And I click save and continue on the Race and Ethnicity page
+
   And I select "Yes" employment option
   And I enter "1000000" income amount
   And I select "Annually" income frequency option
@@ -104,7 +106,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I select "Yes" for live in Colorado option
   And I click continue on the Add info for yourself page
 
-  Then I validate I am on the "CoCo Ethnicity and Race" page
+  Then I validate I am on the "Elmo Race and Ethnicity" page
   And I select "Prefer not to answer" for race and ethnicity option
   And I click save and continue on the Race and Ethnicity page
 
@@ -176,7 +178,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -264,7 +266,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -329,7 +331,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -361,7 +363,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -394,7 +396,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -424,7 +426,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -523,7 +525,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -555,7 +557,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -584,7 +586,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -714,7 +716,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -746,7 +748,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -775,7 +777,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -869,7 +871,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 

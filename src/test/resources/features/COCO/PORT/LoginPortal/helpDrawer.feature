@@ -1,4 +1,4 @@
-@helpDrawer
+@helpDrawer @portCOCO
 Feature: Tests related to the help drawer
 
   @SLCR-27

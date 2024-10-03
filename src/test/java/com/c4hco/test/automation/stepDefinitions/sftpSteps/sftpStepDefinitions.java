@@ -16,9 +16,9 @@ import java.util.Map;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
-    Ob834FileValidations ob834Validations = new Ob834FileValidations();
+     Ob834FileValidations ob834Validations = new Ob834FileValidations();
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
-    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
+   Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
     @And("I download the file(s) from sftp server with location {string}")
     public void downloadFiles(String remoteLocation)  {
         // move the code to sftp Util - WIP
@@ -75,6 +75,11 @@ public class sftpStepDefinitions {
         sftpUtil.readEdiFromLocal();
         // edi834Validations.validateOb834Record();
     }
+    @And("I read the edi999 file locally")
+    public void readEdi999File(){
+        sftpUtil.readEdi999FromLocal();
+    }
+
     @And("I upload medical and dental ob834 edi files to sftp server with location {string}")
     public void uploadAfileToSftp(String remoteFilePath) throws JSchException {
         List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();

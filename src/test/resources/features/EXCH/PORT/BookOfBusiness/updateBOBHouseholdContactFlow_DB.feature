@@ -1,4 +1,4 @@
-@SLER-779
+@SLER-779 @BrokerPortalBOB
 Feature: Update book of business householdContactUpdate flow to also change householdContactInd
 
   @BOB  @SLER-779
@@ -23,11 +23,41 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     Then I validate the Find a Certified Broker near you page title in "English"
-    Then I Search authorized Broker "Amethyst"
+    Then I Search authorized Broker "Maggie Walker"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    Then I click Continue with my application
+    And I validate current Broker text exists
+    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+
+#Agency owner working OBO to submit an FA application and enroll in a plan
+    Given I open the login page on the "broker" portal
+    And I validate I am on the "Login" page
+    And I login as Broker User any environment "C4PortTesting+MWalkerSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MaggieWalker@outlook.com" password "ALaska12!"
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
+    Then I open the MFA notice
+    And I get the MFA code
+    And I delete the open notice
+    Then I sign out of Outlook
+    Then I enter the MFA code and click Verify
+
+    And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
+    And I search for clients
+    And I click on first client search result
+    Then I verify that my client's current status is "NO ELIGIBILITY"
+    And I click "manage" the client
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+
+    And I report "Birth" and click continue
+
+    Then I verify Manage who helps you header text in "English"
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -39,6 +69,9 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I get the Primary Member ID
@@ -60,6 +93,9 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -102,12 +138,14 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I click on view results and shop
     Then I validate I am on the "Application Results" page
     And I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
     And I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
+
+    Then I validate I am on the "Medical Enrollment Groups" page
     And I click continue on grouping Members Medical page
     And I select the first medical plan
     And I click continue on medical plan results page
-    Then I validate I am on the "Grouping Members Dental" page
+    Then I validate I am on the "Medical Enrollment Groups" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
     And I select first dental plan
@@ -120,13 +158,25 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I validate I am on the "Pay now" page
-    Then I click all done from payment portal page
+    Then I click all done from payment portal page OBO
+    And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
+    And I search for clients
+    And I click on first client search result
+    Then I verify that my client's current status is "POLICY SUBMITTED"
+    And I click "manage" the client
     Then I validate I am on the "Account Overview" page
     And I click on the Username Link Exch
     Then I validate I am on the "My Profile" page
     And I click change primary contact on my profile page
     Then I select the second household member as primary contact
     Then I validate I am on the "My Profile" page
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
+    And I search for the secondary client on the same household
+    And I click on first client search result
+    Then I verify that the client name match the primary contact
     And I verify the account holder Name in BOB DB
 
 

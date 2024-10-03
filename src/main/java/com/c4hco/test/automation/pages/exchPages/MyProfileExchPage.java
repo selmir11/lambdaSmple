@@ -154,6 +154,15 @@ public class MyProfileExchPage {
         PasswordSaveChanges.click();
     }
 
+    public void clickSaveButtonObO() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
+    }
+
     public void clickChangePasswordButton() {
         basicActions.waitForElementToBeClickable(PasswordButton, 15);
         PasswordButton.click();
@@ -428,6 +437,15 @@ public class MyProfileExchPage {
     public void ClickChangePrimaryContactOnMyProfilePage() {
         basicActions.waitForElementToBePresent(changePrimaryContact, 80);
         changePrimaryContact.click();
+    }
+
+    public void UpdateContactEmailAddress() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmail = "Updated"+SharedData.getPrimaryMember().getEmailId();
+        SharedData.getPrimaryMember().setEmailId(newEmail);
+        InputEmail.clear();
+        InputEmail.sendKeys(newEmail);
     }
 
     public void SelectTheSecondHouseholdMemberAsPrimaryContact() {

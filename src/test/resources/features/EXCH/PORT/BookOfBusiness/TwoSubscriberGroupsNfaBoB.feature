@@ -73,6 +73,10 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA policy submission
     Then I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -95,6 +99,10 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA policy submission
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -119,7 +127,7 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA policy submission
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate I am on the "Medical Enrollment Groups" page
     And I click continue on grouping Members Medical page
 
     And I validate I am on the "Medical Plan Results" page
@@ -130,7 +138,7 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA policy submission
     And I select the first medical plan
     Then I click continue on medical plan results page
 
-    Then I validate I am on the "Grouping Members Dental" page
+    Then I validate I am on the "Medical Enrollment Groups" page
     Then I click continue on grouping Members Dental page
 
     And I validate I am on the "Dental Plan Results" page

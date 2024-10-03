@@ -31,6 +31,6 @@ Feature: Page text, navigation, validation - Additional information for yourself
     And I enter my mailing address "4321 Road", "Colorado Springs", "CO", "80916", "EL PASO"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
