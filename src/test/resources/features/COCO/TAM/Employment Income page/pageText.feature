@@ -33,7 +33,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -43,7 +43,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Find a Plan in the "Elmo" Header
@@ -55,7 +55,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I click on My Account in the "Elmo" Header
@@ -66,7 +66,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Learn More in the Header
@@ -83,7 +83,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I click on the Username in the "CoCo" Header
@@ -95,7 +95,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -125,7 +125,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "CoCo Employment Income" page
@@ -137,7 +137,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "CoCo Employment Income" page
@@ -151,7 +151,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "CoCo Employment Income" page
@@ -164,7 +164,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "CoCo Employment Income" page
@@ -184,7 +184,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
     And I verify the header for Primary Member on the CoCo Employment income page in "Spanish"
@@ -197,7 +197,7 @@ Feature: Tests related to the Employment Income page
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
 
     And I validate I am on the "CoCo Employment Income" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language

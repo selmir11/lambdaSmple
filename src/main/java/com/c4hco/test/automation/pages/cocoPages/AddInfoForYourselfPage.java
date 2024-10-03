@@ -100,6 +100,7 @@ public class AddInfoForYourselfPage {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 150);
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 150);
+        basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
 

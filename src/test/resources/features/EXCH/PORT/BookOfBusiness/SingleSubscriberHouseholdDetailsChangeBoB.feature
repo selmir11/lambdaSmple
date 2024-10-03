@@ -1,7 +1,7 @@
 @BrokerPortalBOB @port
-Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
+Feature: Broker Portal BOB - Single Subscriber Household details change
 
-  @SLER-929
+  @SLER-1091
   Scenario: : Individual account creation and broker authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -21,19 +21,19 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
+    Then I Search authorized Broker "PORT BoB-Testing"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
 
-    And I verify the broker authorization in BoB DB is "Maggie Walker"
+    And I verify the broker authorization in BoB DB is "PORT BoB-Testing"
 
-    #Associated broker working OBO to submit an NFA application and enroll in a plan
+  #Agency owner working OBO to submit an NFA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "C4PortTesting+MWalkerSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MaggieWalker@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "carrimautomation+BoB@gmail.com" password "ALaska12!" and "carrimautomation+BoBQA@gmail.com" password "ALaska12!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
@@ -72,37 +72,10 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Ethnicity and Race" page
+
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-
-    Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "01011980" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
-    And I click continue on Tell us about additional members page
-    Then I validate I am on the "Add Address" page
-    Then I select "New" for Residential Address
-    And I enter a new residential address with city "Boulder" state "CO" zip "80020" and county "BOULDER"
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-    Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
-    And I click continue on the Race and Ethnicity page
-
-    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -126,28 +99,14 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-    Then I validate I am on the "Medical Enrollment Groups" page
-    And I click continue on grouping Members Medical page
-
     And I validate I am on the "Medical Plan Results" page
-    Then I click skip on medical plan results page
-
-    And I validate I am on the "Medical Plan Results" page
-    Then I click skip on medical plan results page
-
-    Then I validate I am on the "Medical Enrollment Groups" page
-    Then I click continue on grouping Members Dental page
-
+    And I select the first medical plan
+    Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
     Then I click continue on dental plan results page
-
-    And I validate I am on the "Dental Plan Results" page
-    Then I select first dental plan
-    Then I click continue on dental plan results page
-
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
+    And I continue on plan summary page
 
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -161,7 +120,28 @@ Feature: Broker Portal BOB - Two Subscriber Groups NFA dental only
     Then I validate the Your Clients page title
     And I search for clients
     And I click on first client search result
-    Then I verify that my client's current status is "ELIGIBILITY ONLY"
+    Then I verify that my client's current status is "POLICY SUBMITTED"
+    Then I validate the premium amount displayed for my client
 
-    And I verify there are no medical records for my client in BoB DB
-    And I verify the client's policy submission in BoB DB has 2 expected records for coverage type 2
+    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 1
+    And I verify the client's policy submission in BoB DB has 1 expected records for coverage type 2
+
+    #Updating the householder information
+    And I click "manage" the client
+    Then I validate I am on the "Account Overview" page
+    And I click on the Username Link Exch
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    And I update the contact email address
+    And I click on the My Profile Save Button while OBO
+
+    Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
+
+    And I validate I am on the "Broker Portal Your Clients" page
+    And I validate I am on the "Agency Dashboard" page
+    Then I validate the Your Clients page title
+    And I search for clients
+    And I click on first client search result
+    Then I verify that my client's current status is "POLICY SUBMITTED"
+
+    And I verify the client's updated email address in BoB DB

@@ -63,7 +63,7 @@ public class AccountOverviewPage {
 
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBePresent(header, 10);
+        basicActions.waitForElementToBePresent(header, 30);
         WebElement applyForYr;
 
         if(SharedData.getIsOpenEnrollment().equals("yes")){

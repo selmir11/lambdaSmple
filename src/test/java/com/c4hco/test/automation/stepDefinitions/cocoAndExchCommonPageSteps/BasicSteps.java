@@ -84,6 +84,9 @@ public class BasicSteps {
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
                 break;
+                case "Individual CoCo":
+                pageUrl = "/AdminPortal/coco/individual/";
+                break;
             case "Application Results":
                 pageUrl = "nes/applicationResults";
                 break;
@@ -185,7 +188,7 @@ public class BasicSteps {
                 pageUrl = "nes/qlceConfirmation";
                 break;
             case "Dental Grouping":
-                pageUrl = "groupingMembersDental/";
+                pageUrl = "viewGroupingMembers/";
                 break;
             case "Dental Plan Compare":
                 pageUrl = "dentalCompare";
@@ -325,6 +328,9 @@ public class BasicSteps {
             case "Elmo Race and Ethnicity" :
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
+            case "Ethnicity and Race" :
+                pageUrl = "/member-details-portal/race-ethnicity/";
+                break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
@@ -423,6 +429,9 @@ public class BasicSteps {
                 break;
             case "Application Details" :
                 pageUrl = "oboApplSummary";
+                break;
+                case "Medical Enrollment Groups" :
+                pageUrl = "PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Manage Plans" :
                 pageUrl = "/policies";

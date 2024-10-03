@@ -184,6 +184,11 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<String> getClientEmailInBoB() {
+
+       return postgresHandler.getResultListFor("email", exchDbQueries.getClientEmailFromBOB());
+    }
+
     public List<String> getBrokerAuthorizationInBoB(String clientFirstName) {
 
        return postgresHandler.getResultListFor("broker_name", exchDbQueries.verifyBrokerAuthorizationInBOB(clientFirstName));

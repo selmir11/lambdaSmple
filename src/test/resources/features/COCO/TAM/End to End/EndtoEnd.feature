@@ -282,7 +282,7 @@ Feature: End to End Testing
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    And I click Continue on the Tobacco Usage Page CoCo
+    Then I click continue on coco start shopping page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
     And I click Continue button on the Medical Dental Page CoCo
@@ -303,7 +303,7 @@ Feature: End to End Testing
     Then I click Primary EditUpdate on the Family Overview page
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
     And I select continue on the Deductions CoCo page
