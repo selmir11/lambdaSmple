@@ -1,11 +1,12 @@
 @COCOMedicalPlanDetailsPage
+  # SLCR-301,
 Feature: Verify COCO Medical Plan Detail page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-301 @CoCo_RegressionTest
-  Scenario: This will verify Text and Dropdown in COCO Plan Details page from medical plan page
+  Scenario: SLCR-301 - This will verify Text and Dropdown in COCO Plan Details page from medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
