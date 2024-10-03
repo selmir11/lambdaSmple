@@ -1235,7 +1235,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate thatd there are 2 default groups
+    Then I validate that there are 2 default groups
 
   @SLER-713 @groupingbysiblingswithoutparents
   Scenario: Two members both siblings in the household, Parents not applying, one group should exist
