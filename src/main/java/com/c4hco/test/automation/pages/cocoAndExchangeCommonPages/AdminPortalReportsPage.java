@@ -17,13 +17,13 @@ public class AdminPortalReportsPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);   }
 
-    @FindBy(css = "thead td:nth-child(3) span:nth-child(1)")
+    @FindBy(css = "thead td:nth-child(4) span:nth-child(1)")
     WebElement eventTime;
-    @FindBy(css = "thead td:nth-child(6) span:nth-child(1)")
+    @FindBy(css = "thead td:nth-child(7) span:nth-child(1)")
     WebElement detailKey;
     @FindBy(css = ".report-title")
     WebElement titleAccountActivity;
-    @FindBy(xpath = "//tr/td[2]")
+    @FindBy(xpath = "//tr/td[3]")
     List<WebElement> eventCodeList;
 
     public void validateTitleAccountActivity()  {
