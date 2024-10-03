@@ -61,16 +61,18 @@ Feature: Broker Assisted - End to End Test
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
+    And I enter "0000000" income amount
     And I enter "4000000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Deductions" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
-    Then I validate I am on the "CoCo Deductions" page
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as deductions option
     And I select continue on the Deductions CoCo page
 
@@ -147,6 +149,7 @@ Feature: Broker Assisted - End to End Test
     And I click on first client search result
     And I click "manage" the client
 
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help Exch OBO" page
@@ -162,10 +165,11 @@ Feature: Broker Assisted - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
+    And I enter "00000000" income amount
     And I enter "4500000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
@@ -196,8 +200,8 @@ Feature: Broker Assisted - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity pagee
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
