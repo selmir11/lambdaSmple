@@ -1,4 +1,4 @@
-@TAM @TamExch
+@TAM @TamExch @test
 Feature: Page Text-Other Health Coverage Page
 
   Background:
@@ -11,7 +11,6 @@ Feature: Page Text-Other Health Coverage Page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -487,11 +486,427 @@ Feature: Page Text-Other Health Coverage Page
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           2             |           475.00            |                   0                 |                               |           0             |            0            |
 
-
-
-
-
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-1084 @PageValidationOhiEsiElmo
+  Scenario: SLER-1084 I want the family of 3 affordability flags aggregated on submitted application
+    Then I select the Go Back button on the ESI page
+    Then I click Go back on the ELMO health coverage page
+    Then I click on Member Row 2
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "2000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I click Go back on the ELMO health coverage page
+    Then I click on Member Row 3
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "700000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "314.63" for offer family amount question
+    Then I click enrollment status for the members
+      |    Spouse:TypeAccess    |
+      |    Kid:TypeAccess       |
+    Then I click continue on the ESI page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I select the "0" employer for "Secondary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "314.63" for offer family amount question
+    Then I click enrollment status for the members
+      |    Primary:TypeAccess    |
+      |    Kid:TypeAccess        |
+    Then I click continue on the ESI page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I select the "0" employer for "Third" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "314.62" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "314.62" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:TypeAccess     |
+      |      Primary:TypeAccess    |
+    Then I click continue on the ESI page
+#    Step 16
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text does not display on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate the aptc section doesn't exist on the application history page
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Qualified Health Plan  |
+      |      Spouse:Qualified Health Plan   |
+      |      Kid:Qualified Health Plan      |
+    And I verify that the APTC amount does not appear on the app results page
+#    Step Extra 1 = Step 7 on SLER-1077
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on the ESI page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on the ESI page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:TypeAccess     |
+      |      Primary:TypeAccess    |
+    Then I click continue on the ESI page
+#    Step Extra 2 = Step 8 on SLER-1077
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
+    Then I validate that my APTC value is "1291.62/mo"
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan  |
+      |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
+      |      Kid:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan      |
+    Then I validate that my Tax Household's 1 APTC value is "$1291.62/mo"
+#    Step Extra 3 = Step 9 on SLER-1077
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on the ESI page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I enter "314.62" for employee amount question on the ESI page
+    Then I enter "314.62" for offer family amount question
+    Then I click continue on the ESI page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:TypeAccess     |
+      |      Primary:TypeAccess    |
+    Then I click continue on the ESI page
+#    Step Extra 4 = Step 10 on SLER-1077
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text does not display on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate the aptc section doesn't exist on the application history page
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Qualified Health Plan  |
+      |      Spouse:Qualified Health Plan   |
+      |      Kid:Qualified Health Plan      |
+    And I verify that the APTC amount does not appear on the app results page
+#    Step Extra 5 = Step 11 on SLER-1077
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I enter "314.62" for employee amount question on the ESI page
+    Then I enter "314.62" for offer family amount question
+    Then I click continue on the ESI page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+#    Step Extra 6 = Step 12 on SLER-1077
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+#    Step Extra 7 = Step 13 on SLER-1077
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+#    Step Extra 8 = Step 14 on SLER-1077
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
+    Then I validate that my APTC value is "1291.62/mo"
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan  |
+      |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
+      |      Kid:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan      |
+    Then I validate that my Tax Household's 1 APTC value is "$1291.62/mo"
+#    Step Extra 9 = Step Extra 1 on SLER-1077
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "314.62" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+#    Step Extra 10 = Step Extra 2 on SLER-1077
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
+    Then I validate that my APTC value is "965.49/mo"
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan  |
+      |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
+      |      Kid:Qualified Health Plan      |
+    Then I validate that my Tax Household's 1 APTC value is "$965.49/mo"
+#    Step Extra 11 = Step Extra 3 on SLER-1077
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Spouse" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "314.62" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "314.63" for offer family amount question
+    Then I click enrollment status for the members
+      |    Spouse:TypeAccess     |
+      |    Kid:TypeAccess        |
+    Then I click continue on the ESI page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I verify the header for "Third" Member on the Other Health Coverage page in "English"
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "314.63" for offer family amount question
+    Then I click continue on the ESI page
+#    Step Extra 12 = Step Extra 4 on SLER-1077
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
+    Then I validate that my APTC value is "836.01/mo"
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Qualified Health Plan  |
+      |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
+      |      Kid:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan      |
+    Then I validate that my Tax Household's 1 APTC value is "$836.01/mo"
+
+    And I click on Sign Out in the Header for "NonElmo"
     
 
 

@@ -1,4 +1,4 @@
-@TAM @TamExch
+@TAM @TamExch @test
 Feature: Page Text-Other Health Coverage Page
 
   Background:
@@ -11,7 +11,6 @@ Feature: Page Text-Other Health Coverage Page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -565,7 +564,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 15
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "375.67" for employee amount question on the ESI page
+    Then I enter "100.67" for employee amount question on the ESI page
     Then I enter "375.67" for offer family amount question
     Then I click enrollment status for the members
       |      Spouse:Enrolled    |
@@ -576,7 +575,74 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 16
     And I verify the OHI options selected in the DB
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          375.67             |                  1                  |           375.67              |            0            |            0            |               0                |               0                |
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          100.67             |                  1                  |           375.67              |            1            |            1            |               0                |               0                |
 
     And I click on Sign Out in the Header for "Elmo"
 
+  @SLER-1064 @PageValidationOhiEsiElmo
+  Scenario: SLER-1064 I want the individual and family affordability flags aggregated on submitted application
+#    Step 1
+    And I verify the header for Primary Member on the ESI page in "English"
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "174.79" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click continue on the ESI page
+#    Step 2
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text does not display on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate the aptc section doesn't exist on the application history page
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Qualified Health Plan   |
+    And I verify that the APTC amount does not appear on the app results page
+#    Step 3
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    And I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I validate I am on the "Tax status" page
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I enter "300.00" for employee amount question on the ESI page
+    Then I click continue on the ESI page
+#    Step 4
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
+    Then I validate that my APTC value is "437.72/mo"
+    Then I click on view results and shop
+    Then I validate the member application results
+      |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
+    Then I validate that my Tax Household's 1 APTC value is "$437.72/mo"
+
+    And I click on Sign Out in the Header for "NonElmo"
