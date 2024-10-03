@@ -134,7 +134,7 @@ public class EditGroupingMembersMedicalPage {
      public void iValidateSuccessMessage() {
          basicActions.waitForElementListToBePresent(successMessage,10);
          softAssert.assertEquals(successMessage.get(0).getText(), "Success");
-         softAssert.assertEquals(successMessage.get(1).getText(), "Success! Your enrollment groupings are valid and have been successfully saved. Click 'Continue' to go on.");
+         softAssert.assertEquals(successMessage.get(1).getText(), "Your enrollment groups are valid and have been successfully saved.");
          softAssert.assertAll();
     }
      public void iClickContinueOnSuccessPopup(){
