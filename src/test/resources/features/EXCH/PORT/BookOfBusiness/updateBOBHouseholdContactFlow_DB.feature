@@ -176,7 +176,7 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     Then I validate the Your Clients page title
     And I search for the secondary client on the same household
     And I click on first client search result
-    Then I verify that the client name much the primary contact
+    Then I verify that the client name match the primary contact
     And I verify the account holder Name in BOB DB
 
 

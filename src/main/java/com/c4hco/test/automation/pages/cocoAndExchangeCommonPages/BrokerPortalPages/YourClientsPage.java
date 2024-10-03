@@ -281,7 +281,7 @@ public class YourClientsPage {
         softAssert.assertAll();
     }
 
-    public void verifyThatTheClientNameMuchThePrimaryContact() {
+    public void verifyThatTheClientNameMatchThePrimaryContact() {
         basicActions.waitForElementToBePresent(clientFullName,20);
         softAssert.assertTrue(clientFullName.getText().contains(SharedData.getMembers().get(0).getFirstName()));
         softAssert.assertAll();

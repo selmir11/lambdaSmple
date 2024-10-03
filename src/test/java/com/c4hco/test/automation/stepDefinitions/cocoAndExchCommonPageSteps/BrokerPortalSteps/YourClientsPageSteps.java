@@ -108,9 +108,9 @@ public class YourClientsPageSteps {
         yourClientsPage.searchForTheSecondaryClient();
     }
 
-    @Then("I verify that the client name much the primary contact")
-    public void iVerifyThatTheClientNameMuchThePrimaryContact() {
-        yourClientsPage.verifyThatTheClientNameMuchThePrimaryContact();
+    @Then("I verify that the client name match the primary contact")
+    public void iVerifyThatTheClientNameMatchThePrimaryContact() {
+        yourClientsPage.verifyThatTheClientNameMatchThePrimaryContact();
     }
 }
 
