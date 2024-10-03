@@ -209,6 +209,9 @@ public class OhcEmployerSponsoredHealthInsurancePage {
             case "Secondary":
                 setEmployerName = SharedData.getMembers().get(index).getEmployerName();
                 break;
+            case "Third":
+                setEmployerName = SharedData.getMembers().get(1).getEmployerName();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid member type: " + member);
         }
