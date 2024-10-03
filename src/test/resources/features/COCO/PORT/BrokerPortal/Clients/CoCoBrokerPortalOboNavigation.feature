@@ -1,4 +1,4 @@
-@BrokerPortalCoCoClients @port
+@BrokerPortalCoCoClients @port @portCOCO
 Feature: Broker Portal CoCo client OBO navigation for owners and brokers
 
   @SLCR-274
