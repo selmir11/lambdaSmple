@@ -23,6 +23,9 @@ public class PlanSummaryMedicalDentalCoCoPage {
     @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
+    @FindBy(id = "PlanSummary-SaveAndExit")
+    WebElement planSummaryMedicalSaveExit;
+
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
     WebElement medicalPremiumAfterAPTCAmt;
 
@@ -40,9 +43,6 @@ public class PlanSummaryMedicalDentalCoCoPage {
 
     @FindBy(css = ".th-title.header-2")
     WebElement txtPlanHeader;
-
-    @FindBy(id = "PlanSummary-MedicalPlanChangePlan_0")
-    WebElement txtMedicalPlanChange;
 
     @FindBy(css = ".float-start.link-text-2")
     WebElement txtViewPlanDetails;
@@ -68,6 +68,49 @@ public class PlanSummaryMedicalDentalCoCoPage {
     @FindBy(xpath ="((//div[@class='plan-card plan-summary-card']/div)[4] //span)[1]")
     WebElement txtAmountyouPay;
 
+    @FindBy(xpath = "//*[contains(text(),\"Medical Plans\")]")
+    WebElement planSummaryMedicalplanheading;
+
+    @FindBy(xpath = "//*[contains(text(),\"Planes m\u00e9dicos\")]")
+    WebElement planSummaryMedicalplanheadingSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),\"Total of Medical Plans\")]")
+    WebElement planSummaryMedicalplanTotalHeading;
+
+    @FindBy(xpath = "//*[contains(text(),\"View Plan Details\")]")
+    WebElement planSummaryMedicalViewPlanLink;
+
+    @FindBy(xpath = "//*[contains(text(),\"Ver los detalles del plan\")]")
+    WebElement planSummaryMedicalViewPlanLinkSpanish;
+
+    @FindBy(xpath = "//span[normalize-space()='Premiums Before Savings']")
+    WebElement planSummaryMedicalpremium;
+
+    @FindBy(xpath = "//span[normalize-space()='Primas Antes de los Descuentos']")
+    WebElement planSummaryMedicalpremiumSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),\"Money you save\")]")
+    WebElement planSummaryMedicalpremiumcredit;
+
+    @FindBy(xpath = "//*[contains(text(),\"Dinero que ahorra\")]")
+    WebElement planSummaryMedicalpremiumcreditSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),\"Amount you pay\")]")
+    WebElement planSummaryMedicalAmtyoupay;
+
+    @FindBy(xpath = "//*[contains(text(),\"Cantidad que paga\")]")
+    WebElement planSummaryMedicalAmtyoupaySpanish;
+
+    @FindBy(css = ".summary-container p")
+    List<WebElement> planSummaryHeading;
+
+    @FindBy(id = "PlanSummary-medicalDentalPDF")
+    WebElement linkSummaryPDF;
+
+    @FindBy(id = "PlanSummary-MedicalPlanChangePlan_0")
+    WebElement planSummaryMedicalChangeplanLink;
+
+
     public void continueButton(){
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
@@ -83,22 +126,40 @@ public class PlanSummaryMedicalDentalCoCoPage {
         goBackbtn.click();
     }
 
-    public void verifyTextinPlanSummary(List<String> textDetails){
-        basicActions.waitForElementToDisappear(spinner,20);
-        softAssert.assertEquals(txtmedicalDentalPDF.getText(),textDetails.get(0));
-        softAssert.assertEquals(txttitle.get(0).getText(),textDetails.get(1));
-        softAssert.assertEquals(txttitle.get(1).getText(),textDetails.get(2));
-        softAssert.assertEquals(txtPlanHeader.getText(),textDetails.get(3));
-        softAssert.assertEquals(txtMedicalPlanChange.getText(),textDetails.get(4));
-        softAssert.assertEquals(txtPlanamnt.getText(),textDetails.get(5));
-        softAssert.assertEquals(txtTotalAmountYouPay.getText(),textDetails.get(5));
-        softAssert.assertEquals(txtTotalofMedicalPlan.getText(),textDetails.get(6));
-        softAssert.assertEquals(txtPremiumsBeforeSaving.getText(),textDetails.get(7));
-        softAssert.assertEquals(txtMoneyYouSave.getText(),textDetails.get(8));
-        softAssert.assertEquals(txtAmountyouPay.getText(),textDetails.get(9));
-        softAssert.assertEquals(goBackbtn.getText(),textDetails.get(10));
-        softAssert.assertEquals(SvaeandExitbtn.getText(),textDetails.get(11));
-        softAssert.assertEquals(continueBtnOnPlanSummary.getText(),textDetails.get(12));
+    public void verifyEnglishTextPlanSummaryCOCOPage(){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementListToBePresent(planSummaryHeading,20);
+        softAssert.assertEquals( linkSummaryPDF.getText(), "Download PDF");
+        softAssert.assertEquals(planSummaryHeading.get(0).getText(), "Here are your plans");
+        softAssert.assertEquals(planSummaryHeading.get(1).getText(), "and what they will cost");
+        softAssert.assertEquals(planSummaryMedicalplanheading.getText(), "Medical Plans");
+        softAssert.assertEquals(planSummaryMedicalChangeplanLink.getText(),"Change Plan");
+        softAssert.assertEquals(planSummaryMedicalViewPlanLink.getText(), "View Plan Details");
+        softAssert.assertEquals(txtTotalofMedicalPlan.getText(), "Total of Medical Plans");
+        softAssert.assertEquals(planSummaryMedicalpremium.getText(), "Premiums Before Savings");
+        softAssert.assertEquals(planSummaryMedicalpremiumcredit.getText(), "Money you save");
+        softAssert.assertEquals(planSummaryMedicalAmtyoupay.getText(), "Amount you pay");
+        softAssert.assertEquals(goBackbtn.getText(),"Go Back");
+        softAssert.assertEquals(planSummaryMedicalSaveExit.getText(),"Save and Exit");
+        softAssert.assertEquals(continueBtnOnPlanSummary.getText(),"Continue");
+        softAssert.assertAll();
+    }
+    public void verifySpanishextPlanSummaryCOCOPage(){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementListToBePresent(planSummaryHeading,20);
+        softAssert.assertEquals( linkSummaryPDF.getText(), "Descargar PDF");
+        softAssert.assertEquals(planSummaryHeading.get(0).getText(), "Aqu\u00ed est\u00e1n sus planes");
+        softAssert.assertEquals(planSummaryHeading.get(1).getText(), "y lo que costar\u00e1n");
+        softAssert.assertEquals(planSummaryMedicalplanheadingSpanish.getText(),"Planes m\u00e9dicos"); // Medical Plans
+        softAssert.assertEquals(planSummaryMedicalChangeplanLink.getText(),"Cambiar de Plan"); // Change Plan
+        softAssert.assertEquals(planSummaryMedicalViewPlanLinkSpanish.getText(),"Ver los detalles del plan");// View Plan Details
+        softAssert.assertEquals(txtTotalofMedicalPlan.getText(),"Costo Total de los Planes M\u00e9dicos"); //Total of Medical Plans
+        softAssert.assertEquals(planSummaryMedicalpremiumSpanish.getText(),"Primas Antes de los Descuentos"); // Premiums Before Savings
+        softAssert.assertEquals(planSummaryMedicalpremiumcreditSpanish.getText(),"Dinero que ahorra"); // Money you save
+        softAssert.assertEquals(planSummaryMedicalAmtyoupaySpanish.getText(),"Cantidad que paga"); //Amount Pay
+        softAssert.assertEquals(goBackbtn.getText(),"Volver");
+        softAssert.assertEquals(planSummaryMedicalSaveExit.getText(),"Guardar y Salir");
+        softAssert.assertEquals(continueBtnOnPlanSummary.getText(),"Continuar");
         softAssert.assertAll();
     }
 }

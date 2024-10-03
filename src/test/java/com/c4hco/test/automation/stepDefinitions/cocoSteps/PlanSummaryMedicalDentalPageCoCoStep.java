@@ -21,9 +21,13 @@ public class PlanSummaryMedicalDentalPageCoCoStep {
         planSummaryMedicalDentalCoCoPage.iclickGoBack();
     }
 
-    @Then("I validate text on coco plan summary page")
-    public void verifyTextinPlanSummaryPage(List<String> textDetails){
-            planSummaryMedicalDentalCoCoPage.verifyTextinPlanSummary(textDetails);
+    @Then ("I validate the English text on the Plan Summary CoCo page")
+    public void verifyEnglishTextPlanSummaryCOCOPage(){planSummaryMedicalDentalCoCoPage.verifyEnglishTextPlanSummaryCOCOPage();
     }
+
+    @Then ("I validate the Spanish text on the Plan Summary CoCo page")
+    public void verifySpanishextPlanSummaryCOCOPage(){planSummaryMedicalDentalCoCoPage.verifySpanishextPlanSummaryCOCOPage();
+    }
+
 
     }
