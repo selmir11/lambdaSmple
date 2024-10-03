@@ -11,7 +11,7 @@ Feature: Admin Portal agency verify data
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
-    And I verify container "Renewals" and "2024" is displayed
+    And I verify container "Renewals" and "Plan Year 2024" is displayed
     And I click Go Back on admin portal broker dashboard
     Then I validate I am on the "Admin search" page
     Then I logout from Admin Portal
