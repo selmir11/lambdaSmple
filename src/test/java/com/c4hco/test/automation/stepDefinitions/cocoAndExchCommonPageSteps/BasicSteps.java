@@ -325,6 +325,9 @@ public class BasicSteps {
             case "Elmo Race and Ethnicity" :
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
+            case "Exch Ethnicity and Race" :
+                pageUrl = "/member-details-portal/race-ethnicity/";
+                break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;

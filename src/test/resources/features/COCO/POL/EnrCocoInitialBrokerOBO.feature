@@ -31,9 +31,11 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
 
+    And I validate I am on the "Broker Portal Your Clients" page
     And I click on "colorado Connect" tab
-    And I search for clients
     And I click on first client search result
+#    And I search for clients
+#    And I click on first client search result
     And I click "manage" the client
 
     Then I validate I am on the "CoCo Welcome" page
@@ -46,9 +48,11 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Black/African American" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+#    And I select "I prefer not to answer" ethnicity option
+#    And I select "Black/African American" race option
+#    And I click continue on the Ethnicity and race page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
     And I select "Annually" income frequency option
@@ -69,9 +73,11 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Black/African American" race option
-    And I click continue on the Ethnicity and race page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+#    And I select "I prefer not to answer" ethnicity option
+#    And I select "Black/African American" race option
+#    And I click continue on the Ethnicity and race page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option

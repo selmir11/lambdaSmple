@@ -1,6 +1,6 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
   @SLER-626 
-  Scenario: : EXCH initial application
+  Scenario: : EXCH initial application Broker OBO Minor Only
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -56,6 +56,14 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
+    Then I validate I am on the "Exch Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
 
     Then I click Add Another Family Member
 
@@ -75,6 +83,9 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Exch Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
