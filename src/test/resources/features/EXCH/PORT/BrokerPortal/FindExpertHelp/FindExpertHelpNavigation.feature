@@ -1,4 +1,4 @@
-@SLER-314
+@SLER-314 @FindExpertHelp
 Feature:Verify the navigation from get assistance from my documents page and my profile page in both English and Spanish
 @SLER-314
   Scenario: Verify the navigation from get assistance from my documents page in both English and Spanish
