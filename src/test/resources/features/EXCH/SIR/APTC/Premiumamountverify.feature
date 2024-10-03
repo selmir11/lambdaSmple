@@ -1,7 +1,6 @@
 Feature: Premium is not $0 when 4+ children
   @SLER-676-WIP #WIP
   Scenario: : Premium is not $0 when 4+ children are on plan together scenario 3
-
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -14,7 +13,7 @@ Feature: Premium is not $0 when 4+ children
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
+    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "11281990" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -33,6 +32,9 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -51,6 +53,9 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -69,6 +74,9 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -89,6 +97,9 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -110,6 +121,9 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -131,6 +145,9 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -254,9 +271,23 @@ Feature: Premium is not $0 when 4+ children
     Then I validate I am on the "Grouping Members Medical" page
     And  I get the details of medical group Members
     Then I click continue on grouping Members Medical page
-
-
-
+    Then I validate I am on the "Medical Plan Results" page
+    And  I validate medical premium amount is not zero
+    And  I click skip on medical plan results page
+    And  I validate medical premium amount is not zero
+    And  I click skip on medical plan results page
+    And  I validate medical premium amount is not zero
+    And  I click skip on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And  I validate dental premium amount is  zero
+    And I click Skip on Dental Plan Results page
+    And  I validate dental premium amount is  zero
+    And I click Skip on Dental Plan Results page
+    And  I validate dental premium amount is  zero
+    And I click Skip on Dental Plan Results page
+    And I click on Sign Out in the Header for "Portal"
 
 
 

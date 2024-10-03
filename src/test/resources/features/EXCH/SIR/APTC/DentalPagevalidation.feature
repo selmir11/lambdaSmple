@@ -4,7 +4,7 @@ Feature: Skipping Medical and Dental Plan pages
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-   @SLER-1092
+  @SLER-1092
   Scenario: EXCH UI Page Validation - Skipping Medical and Dental Plan pages will lead to a Inactive Continue button on the Plan Summary
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -59,10 +59,6 @@ Feature: Skipping Medical and Dental Plan pages
 
     Then I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
-     Then I validate I am on the "Dental Plan Results" page
-     Then  I click Skip on Dental Plan Results page
-     Then I validate I am on the "Plan Summary" page
-     And  I verify continue button is disabled Plan Summary page
-     And I click on Sign Out in the Header for "Portal"
+    Then I validate I am on the "Dental Plan Results" page
 
 

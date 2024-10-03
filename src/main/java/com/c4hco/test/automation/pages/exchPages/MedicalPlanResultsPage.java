@@ -103,6 +103,9 @@ public class MedicalPlanResultsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(xpath = "(//div[./span[text()='Monthly Premium']]/child::div//span[1])[1]/following-sibling::span[6]")
+    WebElement txtpremiumamnt;
+
      public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
@@ -134,7 +137,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickSkip(){
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 30);
          basicActions.waitForElementToBePresent(btnSkip, 30);
         btnSkip.click();
     }
@@ -301,6 +304,19 @@ public class MedicalPlanResultsPage {
         }
 
 
+    }
+
+
+    public void verifypremiumamountisnotzero() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(txtpremiumamnt, 20);
+        String premiumAmount = txtpremiumamnt.getText().trim();
+        if (premiumAmount.isEmpty()) {
+            softAssert.fail("Premium amount is empty, unable to verify the value.");
+        } else {
+            softAssert.assertNotEquals(premiumAmount, "$0.00", "Premium is $0.00, which is not expected.");
+        }
+        softAssert.assertAll();
     }
 
 

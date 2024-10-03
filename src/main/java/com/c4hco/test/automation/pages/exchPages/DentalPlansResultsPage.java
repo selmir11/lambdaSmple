@@ -87,6 +87,22 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-PlanName_6")
     WebElement pediatricdental3;
 
+    @FindBy(xpath = "(//app-dental-plan-card)[1]")
+    WebElement firstDentalPlanCard;
+
+    @FindBy(xpath = "(//div[./span[text()='Monthly Premium']]/child::div//span[1])[1]/following-sibling::span[6]")
+    WebElement txtpremiumamnt;
+
+    public void SHPDentalresultsPageValidation(){
+        basicActions.waitForElementToDisappear(spinner, 30);
+        softAssert.assertTrue(dentalplanheader.isDisplayed(), "Dental plan heading did not match");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Adult Deductible"), "Adult deductible text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Out-of-Pocket Max"), "Out of pocket max text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible (Under 18)"), "Pediatric deductible text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Plan Details"), "Plan details text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Select this Plan"), "Select this plan text is not displayed");
+        softAssert.assertAll();
+    }
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent( dentalPlanNames, 10 );
         SharedData.setFirstPlanNameOnDentalResultsPage( dentalPlanNames.get( 0 ).getText() );
@@ -285,6 +301,18 @@ public class DentalPlansResultsPage {
         }
 
     }
+
+    public void verifypremiumamountiszero() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(txtpremiumamnt, 20);
+        String premiumAmount = txtpremiumamnt.getText().trim();
+        if (premiumAmount.isEmpty()) {
+            softAssert.fail("Premium amount is empty, unable to verify the value.");
+        } else {
+            softAssert.assertEquals(premiumAmount, "$0.00", "Premium amount is not zero. Found: " + premiumAmount);
+        }
+    }
+
 
 
 
