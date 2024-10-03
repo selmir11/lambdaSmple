@@ -102,7 +102,7 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    }
 
 
-   @And("I validate data displays shared data email in DB")
+   @And("I validate initial email remains in the database")
    public void iValidateDatabaseEmail() {dbValidations.validateDatabaseEmail();}
 
    @And("I verify the HRA options selected in the DB after Application Results")

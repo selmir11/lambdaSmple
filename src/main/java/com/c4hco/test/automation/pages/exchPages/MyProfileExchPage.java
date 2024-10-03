@@ -859,8 +859,8 @@ public class MyProfileExchPage {
 
     public void verifyTimeoutPopupEnglish() {
         basicActions.wait(900000);
-        //basicActions.waitForElementToBePresent(Headertimeout, 2000000);
-//        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
+        basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
         basicActions.waitForElementToBePresent(YesTimeout, 10);

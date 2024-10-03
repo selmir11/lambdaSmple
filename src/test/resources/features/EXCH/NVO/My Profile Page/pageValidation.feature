@@ -96,7 +96,7 @@ Feature: My profile page
     And I validate Email save changes on My Profile page
     And I wait for 9000 milliseconds
     And I validate Email error message in "English" on my Profile Page
-    Then I validate data displays shared data email in DB
+    Then I validate initial email remains in the database
     Then I click on Go back to Welcome page Button on My Profile Exch
     Then I validate I am on the "My Account Overview" page
     Then I click on ClickHere link for "My Profile"
