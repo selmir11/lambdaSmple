@@ -1,4 +1,4 @@
-@port
+@port @portCOCO
 Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Portal
   @SLCR-55 @port
   Scenario: verifying the removal of a single client

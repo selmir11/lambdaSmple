@@ -63,6 +63,9 @@ Feature: Broker Portal OBO - Submit FA Application and enroll in a plan
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
