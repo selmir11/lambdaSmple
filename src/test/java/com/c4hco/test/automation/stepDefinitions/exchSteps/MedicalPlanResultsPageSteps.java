@@ -113,6 +113,10 @@ public class MedicalPlanResultsPageSteps {
     public void selectMedicalPlanForMember(String specificPlan, String member) {
         medPlanResultsPage.SelectSpecificMedicalPlanPerGrp(specificPlan, member);
     }
+    @And("I validate medical premium amount is not zero")
+    public void verifypremiumamountisnotzero() {
+        medPlanResultsPage.verifyPremiumAmountIsNotZero();
+    }
 
 
 }
