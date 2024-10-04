@@ -13,30 +13,34 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 public class EditGroupingMembersMedicalPage {
-    @FindBy(id ="SHP-EditMedicalGroupingMembers-Cancel")
+    @FindBy(id ="SOL-EditMedicalGroupingMembers-Cancel")
     WebElement cancelButtonOnEditEnrollmentPage;
     @FindBy(id ="SOL-ManageGroupingMembers-CreateANewGroup")
     WebElement createNewGroupLink;
 
     @FindBy(css = "div.cdk-drag")
-    List<WebElement> groupingMemebers;
+    List<WebElement> groupingMembers;
 
-    @FindBy(xpath = "//div[contains(@class,'drag-here')]/parent::div")
+    
+    @FindBy(id ="SOL-ManageGroupingMembers-DragAMember")
     List<WebElement> dragAMemberHere;
+    @FindBy(id ="SOL-ManageGroupingMembers-DragAMemberNotEnrolling")
+    List<WebElement> dragAMemberNotEnrolling;
+
     @FindBy(css = ".row .redTxt")
     WebElement errorText;
     @FindBy(css = ".container .groupHeading")
     List<WebElement> noOfmedicalGroups;
-    @FindBy(id="SHP-EditMedicalGroupingMembers-CreateANewGroup")
+    @FindBy(id="SOL-EditMedicalGroupingMembers-CreateANewGroup")
     WebElement createNewGroup;
-    @FindBy(id ="SHP-EditMedicalGroupingMembers-Save")
+    @FindBy(id ="SOL-ManageGroupingMembers-SaveGroups")
     WebElement saveButtonOnEditGroupingPage;
 
-    @FindBy(id = "SHP-EditMedicalGroupingMembers-ResetTheGroups")
+    @FindBy(id = "SOL-EditMedicalGroupingMembers-ResetTheGroups")
     WebElement resetgroupsButton;
     @FindBy(css = ".m-4")
     List<WebElement> successMessage;
-    @FindBy(id="SHP-EditMedicalGroupingMembers-Continue")
+    @FindBy(id="SOL-ManageGroupingMembers-PopUp-Continue")
     WebElement successContinue;
 
     @FindBy(css = ".container div:nth-child(2) div span u")
@@ -59,12 +63,12 @@ public class EditGroupingMembersMedicalPage {
     }
 
      public void ivalidateImOnEditGroupingMedicalPage(){
-         createNewGroup.isDisplayed();
-         createNewGroup.isEnabled();
+         createNewGroupLink.isDisplayed();
+         createNewGroupLink.isEnabled();
      }
      public void iCreateNewGroup(){
-        basicActions.waitForElementToBePresent(createNewGroup,10);
-        createNewGroup.click();
+        basicActions.waitForElementToBePresent(createNewGroupLink,10);
+        createNewGroupLink.click();
      }
     public void cancelEditGroupingMembers(){
         basicActions.waitForElementToBePresent(cancelButtonOnEditEnrollmentPage,20);
@@ -79,17 +83,17 @@ public class EditGroupingMembersMedicalPage {
     }
 
     public void dragAndDropMembersCreateGroup() {
-        basicActions.waitForElementToBePresent(groupingMemebers.get(3),10);
+        basicActions.waitForElementToBePresent(groupingMembers.get(3),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(1),10 );
-          builder.clickAndHold(groupingMemebers.get(3))
+          builder.clickAndHold(groupingMembers.get(3))
                 .moveToElement(dragAMemberHere.get(1))
                 .release(dragAMemberHere.get(1)).build()
                 .perform();
           basicActions.wait(3000);
     }
     public void groupParentWith26YearOldChild(){
-        basicActions.waitForElementListToBePresent(groupingMemebers,10);
-        builder.clickAndHold(groupingMemebers.get(1))
+        basicActions.waitForElementListToBePresent(groupingMembers,10);
+        builder.clickAndHold(groupingMembers.get(1))
                 .moveToElement(dragAMemberHere.get(1))
                 .release(dragAMemberHere.get(1)).build().perform();
         basicActions.wait(3000);
@@ -112,16 +116,16 @@ public class EditGroupingMembersMedicalPage {
     }
 
     public void dragAndDropChildrenToSeparateGroup() {
-        basicActions.waitForElementToBePresent(groupingMemebers.get(2),10);
+        basicActions.waitForElementToBePresent(groupingMembers.get(2),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(3),10 );
-        builder.clickAndHold(groupingMemebers.get(1))
+        builder.clickAndHold(groupingMembers.get(1))
                 .moveToElement(dragAMemberHere.get(3))
                 .release(dragAMemberHere.get(3)).build()
                 .perform();
             basicActions.wait(2000);
-            basicActions.waitForElementToBePresent(groupingMemebers.get(1),10);
+            basicActions.waitForElementToBePresent(groupingMembers.get(1),10);
         basicActions.waitForElementToBePresent(dragAMemberHere.get(3),10 );
-        builder.clickAndHold(groupingMemebers.get(1))
+        builder.clickAndHold(groupingMembers.get(1))
                 .moveToElement(dragAMemberHere.get(3))
                 .release(dragAMemberHere.get(3)).build()
                 .perform();
@@ -130,7 +134,7 @@ public class EditGroupingMembersMedicalPage {
      public void iValidateSuccessMessage() {
          basicActions.waitForElementListToBePresent(successMessage,10);
          softAssert.assertEquals(successMessage.get(0).getText(), "Success");
-         softAssert.assertEquals(successMessage.get(1).getText(), "Success! Your enrollment groupings are valid and have been successfully saved. Click 'Continue' to go on.");
+         softAssert.assertEquals(successMessage.get(1).getText(), "Your enrollment groups are valid and have been successfully saved.");
          softAssert.assertAll();
     }
      public void iClickContinueOnSuccessPopup(){
@@ -150,20 +154,20 @@ public class EditGroupingMembersMedicalPage {
     public void dragAndDropMemberToCreateGroup(String Grouping) {
         switch (Grouping) {
             case "Create Group":
-                basicActions.waitForElementToBePresent(groupingMemebers.get(2), 10);
+                basicActions.waitForElementToBePresent(groupingMembers.get(2), 10);
                 basicActions.waitForElementToBePresent(dragAMemberHere.get(2), 10);
-                builder.clickAndHold(groupingMemebers.get(2))
+                builder.clickAndHold(groupingMembers.get(2))
                         .moveToElement(dragAMemberHere.get(2))
                         .release(dragAMemberHere.get(2)).build()
                         .perform();
                 basicActions.wait(3000);
                 break;
-            case "Unassigned Member":
-                basicActions.waitForElementToBePresent(groupingMemebers.get(1), 10);
-                basicActions.waitForElementToBePresent(dragAMemberHere.get(0), 10);
-                builder.clickAndHold(groupingMemebers.get(1))
-                        .moveToElement(dragAMemberHere.get(0))
-                        .release(dragAMemberHere.get(0)).build()
+            case "Not Enrolling":
+                basicActions.waitForElementToBePresent(groupingMembers.get(1), 10);
+                basicActions.waitForElementToBePresent(dragAMemberNotEnrolling.get(0), 10);
+                builder.clickAndHold(groupingMembers.get(1))
+                        .moveToElement(dragAMemberNotEnrolling.get(0))
+                        .release(dragAMemberNotEnrolling.get(0)).build()
                         .perform();
                 basicActions.wait(3000);
                 break;
