@@ -527,11 +527,11 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void ValidateDuplicateEmail(String accountEmail) {
+    public void validateDatabaseEmail() {
         EsHouseholdContactEntity actualResult = exchDbDataProvider.getEsHouseholdContactDetails();
 
-        softAssert.assertEquals(actualResult.getEmail(), accountEmail);
-        System.out.println("Account  Email "+accountEmail);
+        softAssert.assertEquals(actualResult.getEmail(), SharedData.getPrimaryMember().getEmailId());
+        System.out.println("Account  Email "+SharedData.getPrimaryMember().getEmailId());
         System.out.println("Database Email "+actualResult.getEmail());
         softAssert.assertAll();
     }
