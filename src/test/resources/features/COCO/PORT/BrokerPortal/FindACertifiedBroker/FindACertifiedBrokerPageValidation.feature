@@ -1,4 +1,4 @@
-@FindACertifiedBroker @port
+@FindACertifiedBroker @port @portCOCO
 Feature: Find a Certified Broker page validation
 
   @SLCR-86

@@ -1,4 +1,4 @@
-@SLER-138
+@SLER-138 @LoginPortal
 Feature:Chat Widget in Login Portal
   @SLER-138
 Scenario: MFA code

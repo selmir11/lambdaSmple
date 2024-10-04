@@ -12,7 +12,7 @@ public class AdminPortalIndividualDashboardSteps {
 
     AdminPortalIndividualDashboardPage adminPortalIndividualDashboardPage = new AdminPortalIndividualDashboardPage(WebDriverManager.getDriver());
 
-    @Then("I verify {string} container title")
+    @Then("I verify Reports container title")
     public void iVerifyContainerTitle() {
         adminPortalIndividualDashboardPage.verifyContainerTitle();
     }
