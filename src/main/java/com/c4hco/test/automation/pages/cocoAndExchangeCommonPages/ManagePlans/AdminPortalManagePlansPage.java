@@ -94,10 +94,7 @@ public class AdminPortalManagePlansPage{
     List<WebElement> currentMedicalData;
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
     List<WebElement> currentDentalData;
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
-    WebElement spinner;
-    //@FindBy(xpath = "//app-drop-down-select[@id='selectPolicy' and contains(@class,'dropdown-container')]")
-    @FindBy(css = ".current-plan-header .drop-down-arrow")
+    @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy' and contains(@class,'dropdown-container')]")
     WebElement selectPolicyDropdown;
     @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[1]/div[1]/app-current-plan/div/div[1]/div/p[2]")
     WebElement selectPolicyDropdownOptions;
@@ -306,10 +303,8 @@ public class AdminPortalManagePlansPage{
         basicActions.switchtoactiveTab();       }
 
     public void selectMemberNameFromPolicyDropdown(String Membername){
-      //   basicActions.wait(4000);
- //       basicActions.waitForPageLoad(1000);
-//        basicActions.waitForElementToDisappear( spinner, 15 );
-//        basicActions.waitForElementToBePresent(chkMedical,20);
+        basicActions.wait(4000);    // WIP - Need to remove the wait.
+        basicActions.waitForElementToBePresent(chkMedical,20);
         basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdown,30);
         basicActions.scrollToElement(selectPolicyDropdown);
         basicActions.click(selectPolicyDropdown);
