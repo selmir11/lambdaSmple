@@ -202,7 +202,7 @@ public class DbQueries_Exch {
     public String getEmailStored(){
         return "select * from "+dbName+".es_household p\n" +
                 "join "+dbName+".es_household_contact m on m.household_id=p.household_id\n" +
-                "where account_id = "+acctId+"\n" +
+                "where p.account_id = '"+acctId+"' \n" +
                 "order by p.created_ts desc limit 1";
     }
   
