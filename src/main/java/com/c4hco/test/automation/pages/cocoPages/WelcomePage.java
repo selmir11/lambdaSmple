@@ -39,7 +39,7 @@ public class WelcomePage {
 
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
-    @FindBy(css = "#planYear option")
+    @FindBy(css = "#plan-year-selector option")
     List<WebElement> planYearSelectorOptions;
     @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
@@ -90,6 +90,7 @@ public class WelcomePage {
 
     public void selectPlanyear(String planYear){
         basicActions.waitForElementToBeClickable(planYearSelectorDp,10);
+        basicActions.scrollToElement(planYearSelectorDp);
         planYearSelectorDp.click();
         basicActions.selectValueFromDropdown(planYearSelectorDp,planYearSelectorOptions,planYear);
     }
@@ -320,10 +321,11 @@ public class WelcomePage {
         else if (currentUrl == "https://qa") {
             softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to make changes.");
         }
-        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Make changes");
+        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Make changes for 2024");
+        softAssert.assertEquals(btnApplyForNextYearCoco.getText(), "Apply for 2025");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
         softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getPrimaryMember().getFirstName());
         softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(policyMedicalPlan.getText(), "Medical Plan");

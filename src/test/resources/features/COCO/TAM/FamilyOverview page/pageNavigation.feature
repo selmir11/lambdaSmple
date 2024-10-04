@@ -3,17 +3,18 @@ Feature: Tests related to the Family Overview page
 
   Background: I go to the login portal
     Given I open the login page on the "login" portal
-
-  @SLCR-149 @PageNavigationFamilyOverview @TAMSmoke
-  Scenario: SLCR-149 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Family Overview portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
+
+  @SLCR-149 @PageNavigationFamilyOverview @TAMSmoke
+  Scenario: SLCR-149 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Family Overview portal
     #Step1
     Then I validate I am on the "CoCo Family Overview" page
     And I change the C4 url to "Family Overview portal Error CoCo"
