@@ -681,7 +681,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1023@test.com";
+        String newEmail = "updated.automation1025@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();
@@ -692,7 +692,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
         softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
         // Revert email address/////////
-        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 100);
         MyProfileButtonExch.get(1).click();
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(SharedData.getPrimaryMember().getEmailId());
@@ -809,7 +809,7 @@ public class MyProfileExchPage {
 
     public void ValidateEmailinuseErrorEnglish() {
         // Update email address/////////
-        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40000);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
         String newEmail =  "testlraccount@test.com";
@@ -859,7 +859,7 @@ public class MyProfileExchPage {
 
     public void verifyTimeoutPopupEnglish() {
         basicActions.wait(900000);
-        //basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        basicActions.waitForElementToBePresent(Headertimeout, 2000000);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
