@@ -1235,6 +1235,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
     Then I validate I am on the "Grouping Members Medical" page
+    And I get the details of medical group Members
     Then I validate that there are 2 default groups
 
   @SLER-713 @groupingbysiblingswithoutparents
