@@ -15,6 +15,9 @@ public class WelcomePage {
     @FindBy(css = ".header-1")
     WebElement welcomeToConnectText;
 
+    @FindBy(css = "div.c4-alert-content a")
+    WebElement takeQuizLnk;
+
     @FindBy(xpath = "//div[contains(@class, 'c4-type-header')]")
     WebElement containerMainHeaderText;
 
@@ -89,6 +92,12 @@ public class WelcomePage {
         basicActions.waitForElementToBeClickable(planYearSelectorDp,10);
         planYearSelectorDp.click();
         basicActions.selectValueFromDropdown(planYearSelectorDp,planYearSelectorOptions,planYear);
+    }
+
+    public void clickTakeQuiz(){
+        basicActions.waitForElementToBePresent(welcomeToConnectText,10);
+        basicActions.waitForElementToBeClickable(takeQuizLnk,10);
+        takeQuizLnk.click();
     }
 
     public void clickActionLinks(String actionLink) {

@@ -43,6 +43,9 @@ public class BasicSteps {
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
                 break;
+            case "CAC Screener":
+                pageUrl = "/coco/WelcomePortal/cacScreener";
+                break;
             case "CoCo Welcome":
                 pageUrl = "/coco/WelcomePortal";
                 break;
