@@ -90,8 +90,12 @@ public class DentalPlansResultsPage {
     @FindBy(xpath = "(//app-dental-plan-card)[1]")
     WebElement firstDentalPlanCard;
 
-    @FindBy(xpath = "(//div[./span[text()='Monthly Premium']]/child::div//span[1])[1]/following-sibling::span[6]")
+    @FindBy(xpath = "(//*[@id='DentalPlanResults-MonthlyPremium'])[1]")
+    WebElement monthlypremiumdropdown;
+
+    @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
     WebElement txtpremiumamnt;
+
 
     public void SHPDentalresultsPageValidation(){
         basicActions.waitForElementToDisappear(spinner, 30);
@@ -303,10 +307,9 @@ public class DentalPlansResultsPage {
     }
 
     public void verifyPremiumAmountIsZero() {
-        basicActions.waitForElementToDisappear(spinner, 20);
-        basicActions.waitForElementToBePresent(txtpremiumamnt, 20);
-        String premiumAmount = txtpremiumamnt.getText().trim();
-        softAssert.assertEquals(premiumAmount, "$0.00", "Premium is not $0.00, which is not expected.");
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(txtpremiumamnt, 30);
+        softAssert.assertEquals(txtpremiumamnt.getAttribute("innerText"), "0");
         softAssert.assertAll();
     }
 

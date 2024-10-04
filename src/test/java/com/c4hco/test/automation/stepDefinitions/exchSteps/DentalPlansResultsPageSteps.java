@@ -97,7 +97,7 @@ public class DentalPlansResultsPageSteps {
     }
 
     @And("I validate dental premium amount is  zero")
-    public void verifypremiumamountisnotzero() {
+    public void verifypremiumamountiszero() {
         dentalPlansResultsPage.verifyPremiumAmountIsZero();
     }
 
