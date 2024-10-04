@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class ApplicationResultsPageSteps {
     ApplicationResultsPage applicationResultsPage = new ApplicationResultsPage(WebDriverManager.getDriver());
 
@@ -56,4 +58,7 @@ public class ApplicationResultsPageSteps {
     public void iClickViewApplicationSummary(){
         applicationResultsPage.clickViewApplicationSummary();
     }
+
+    @Then("I validate the member application results")
+    public void iValidateMemberResults(List<String> expectedValues){applicationResultsPage.validateMemberResults(expectedValues);}
 }
