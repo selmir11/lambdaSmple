@@ -115,7 +115,7 @@ public class MedicalPlanResultsPageSteps {
     }
     @And("I validate medical premium amount is not zero")
     public void verifypremiumamountisnotzero() {
-        medPlanResultsPage.verifypremiumamountisnotzero();
+        medPlanResultsPage.verifyPremiumAmountIsNotZero();
     }
 
 

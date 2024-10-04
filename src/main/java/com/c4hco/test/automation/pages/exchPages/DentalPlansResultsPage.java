@@ -302,15 +302,12 @@ public class DentalPlansResultsPage {
 
     }
 
-    public void verifypremiumamountiszero() {
+    public void verifyPremiumAmountIsZero() {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(txtpremiumamnt, 20);
         String premiumAmount = txtpremiumamnt.getText().trim();
-        if (premiumAmount.isEmpty()) {
-            softAssert.fail("Premium amount is empty, unable to verify the value.");
-        } else {
-            softAssert.assertEquals(premiumAmount, "$0.00", "Premium amount is not zero. Found: " + premiumAmount);
-        }
+        softAssert.assertEquals(premiumAmount, "$0.00", "Premium is not $0.00, which is not expected.");
+        softAssert.assertAll();
     }
 
 

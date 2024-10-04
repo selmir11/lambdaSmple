@@ -307,15 +307,11 @@ public class MedicalPlanResultsPage {
     }
 
 
-    public void verifypremiumamountisnotzero() {
+    public void verifyPremiumAmountIsNotZero() {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(txtpremiumamnt, 20);
         String premiumAmount = txtpremiumamnt.getText().trim();
-        if (premiumAmount.isEmpty()) {
-            softAssert.fail("Premium amount is empty, unable to verify the value.");
-        } else {
-            softAssert.assertNotEquals(premiumAmount, "$0.00", "Premium is $0.00, which is not expected.");
-        }
+        softAssert.assertNotEquals(premiumAmount, "$0.00", "Premium is $0.00, which is not expected.");
         softAssert.assertAll();
     }
 
