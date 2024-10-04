@@ -199,7 +199,7 @@ Feature: Medical Plan Compare page related tests
 
 
 
-  @MedicalCompareDetailTextVerification @SLER-726
+   @SLER-726 @MedicalCompareDetailTextVerification
   Scenario: SLER-726 - Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
     When I click create a new account on login page
     Then I click create my account from pre-screen page
