@@ -21,7 +21,7 @@ public class EditGroupingMembersMedicalPage {
     @FindBy(css = "div.cdk-drag")
     List<WebElement> groupingMembers;
 
-    //@FindBy(xpath = "//div[contains(@class,'drag-here')]/parent::div")
+    
     @FindBy(id ="SOL-ManageGroupingMembers-DragAMember")
     List<WebElement> dragAMemberHere;
     @FindBy(id ="SOL-ManageGroupingMembers-DragAMemberNotEnrolling")
