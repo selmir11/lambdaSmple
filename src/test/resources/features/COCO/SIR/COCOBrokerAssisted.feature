@@ -61,7 +61,7 @@ Feature: Broker Assisted - End to End Test
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
-    And I enter "00000000" income amount
+    #And I enter "00000000" income amount
     And I enter "4000000" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
