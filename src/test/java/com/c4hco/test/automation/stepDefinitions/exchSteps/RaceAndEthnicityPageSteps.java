@@ -20,4 +20,14 @@ public class RaceAndEthnicityPageSteps {
 
     @Then("I verify text on the Race and Ethnicity page in {string}")
     public void verifyRaceEthnicityPageText(String language)  { RaceAndEthnicityPage.verifyTextOnRaceAndEthnicityPage(language); }
+
+    @Then("I validate the error messages on the Race and Ethnicity in {string}")
+    public void verifyErrorMessagesOnTheRaceAndEthnicity(String Language) {
+        RaceAndEthnicityPage.verifyErrorMessagesRaceAndEthnicity(Language);
+    }
+
+    @Then("I validate the text box input and checkbox selection")
+    public void validateTextBoxAndCheckboxSelection() {
+        RaceAndEthnicityPage.validateTextBoxInputAndCheckboxSelection();
+    }
 }
