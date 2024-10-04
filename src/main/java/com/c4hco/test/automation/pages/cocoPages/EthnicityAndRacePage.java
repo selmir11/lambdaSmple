@@ -19,28 +19,6 @@ public class EthnicityAndRacePage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "[id='ethnicity-show-options-container']  button")
-    List<WebElement> ethnicityButton;
-
-    @FindBy(xpath = "//*[contains(@id, 'ELIG-Race-')]")
-    List<WebElement> raceButton;
-
-    @FindBy(css = ".header-1")
-    WebElement hdrEthnicityAndRace;
-
-    @FindBy(css = "p.error-text")
-    List<WebElement> errorMessages;
-
-    @FindBy(css = ".svg-inline--fa.fa-exclamation-circle")
-    List<WebElement> exclamationMarkIcon;
-
-    @FindBy(id = "ELIG-RaceEthnicity-SaveAndContinue")
-    WebElement saveAndContinueButton;
-
-    @FindBy(css=".fas.fa-spinner.fa-spin")
-    WebElement spinner;
-
-    // NEW ELMO page
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
@@ -68,7 +46,14 @@ public class EthnicityAndRacePage {
     @FindBy(css = "input#notListedReason")
     WebElement notListedReason;
 
+    @FindBy(css = ".error-message")
+    WebElement errorMessage;
 
+    @FindBy(css = "svg.feather.feather-alert-circle")
+    WebElement alertCircleIcon;
+
+    @FindBy(css = ".checkbox-container")
+    List<WebElement> checkboxContainer;
 
     public void clickGoBackButton() {
         basicActions.waitForElementToBeClickable(goBackButton, 30);
@@ -77,41 +62,24 @@ public class EthnicityAndRacePage {
 
 
     public void verifyTextOnEthnicityAndRace(String language) {
-        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+        basicActions.waitForElementToBePresent(saveAndContinue_Button, 10);
         switch (language) {
             case "English":
                 verifyTextOnEthnicityAndRaceEnglish();
                 break;
-            //case "Spanish":
-            //    verifyTextOnEthnicityAndRaceSpanish();
-            //    break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );
         }
     }
 
     public void verifyErrorMessagesEthnicityAndRace(String language) {
-        basicActions.waitForElementListToBePresent(errorMessages, 10);
+        basicActions.waitForElementToBePresent(errorMessage, 10);
         switch (language) {
             case "English":
                 verifyErrorMessagesEthnicityAndRaceEnglish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void validateTheSelectionOfOptions(String Section) {
-        basicActions.waitForElementToBePresent(hdrEthnicityAndRace, 10);
-        switch (Section) {
-            case "Ethnicity":
-                validateTheSelectionOfOptionsEthnicity();
-                break;
-            case "Race":
-                validateTheSelectionOfOptionsRace();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + Section);
         }
     }
 
@@ -185,59 +153,55 @@ public class EthnicityAndRacePage {
         }
 
     public void verifyErrorMessagesEthnicityAndRaceEnglish() {
-        softAssert.assertEquals(errorMessages.get(0).getText(), "Ethnicity is required");
-        softAssert.assertTrue(exclamationMarkIcon.get(0).isDisplayed());
-        softAssert.assertEquals(errorMessages.get(1).getText(), "Race is required (select all that apply)");
-        softAssert.assertTrue(exclamationMarkIcon.get(1).isDisplayed());
+        softAssert.assertEquals(errorMessage.getText(), "Please select one or more of the options below");
+        softAssert.assertTrue(alertCircleIcon.isDisplayed());
+        raceEthnicityButton.get(7).click();
+        saveAndContinue_Button.click();
+        softAssert.assertEquals(errorMessage.getText(), "Please enter your race and ethnicity");
+        softAssert.assertTrue(alertCircleIcon.isDisplayed());
+        raceEthnicityButton.get(7).click();
         softAssert.assertAll();
     }
 
-    public void validateTheSelectionOfOptionsEthnicity() {
-        for (int i = 0; i < 3; i++) {
-            ethnicityButton.get(i).click();
+    public void validateTextBoxInputAndCheckboxSelection() {
+        for (int i = 0; i < 8; i++) {
+            raceEthnicityButton.get(i).click();
         }
 
-        //Only 1 ethnicity option can be selected at a time
-        int selectedCount = 0;
-        for (WebElement button : ethnicityButton) {
-            if (button.getAttribute("class").contains("race-ethnicity-check-box-selected")) {
-                selectedCount++;
+        //More than 1 option can be selected (up to 8), except 'Prefer not to answer'
+        //If 'Prefer not to answer' is selected, then all other options will be unselected
+        for (int i = 0; i < 8; i++) {
+            if (!checkboxContainer.get(i).getAttribute("class").contains("checked")) {
+                throw new AssertionError("Race and Ethnicity option " + (i + 1) + " is not selected.");
             }
         }
 
-        //Verify that only one option is selected
-        if (selectedCount != 1) {
-            throw new AssertionError("Expected only one ethnicity option to be selected, but found " + selectedCount);
+        raceEthnicityButton.get(8).click();
+
+        if (!checkboxContainer.get(8).getAttribute("class").contains("checked")) {
+            throw new AssertionError("Prefer not to answer option 7 is not selected.");
         }
+
+        for (int i = 0; i < 8; i++) {
+            if (checkboxContainer.get(i).getAttribute("class").contains("checked")) {
+                throw new AssertionError("Race and Ethnicity option " + (i + 1) + " is selected, but it shouldn't be.");
+            }
+        }
+        //Text box accepts up to 50 characters. Allowing commas, hyphens, slashes, and spaces
+        raceEthnicityButton.get(7).click();
+        notListedReason.sendKeys("user,- /input");
+        softAssert.assertEquals(notListedReason.getAttribute("value"), "user,- /input");
+        notListedReason.clear();
+        notListedReason.sendKeys("user$5@1-input");
+        softAssert.assertEquals(notListedReason.getAttribute("value"), "user-input");
+        notListedReason.clear();
+        notListedReason.sendKeys("characterscharacterscharacterscharacterscharacterscharacters");
+        softAssert.assertEquals(notListedReason.getAttribute("value"), "characterscharacterscharacterscharacterscharacters");
+        notListedReason.clear();
+        raceEthnicityButton.get(7).click();
+        softAssert.assertAll();
     }
 
-    public void validateTheSelectionOfOptionsRace() {
-        for (int i = 0; i < 6; i++) {
-            raceButton.get(i).click();
-        }
-
-        //For race options, more than 1 option can be selected (up to 6), but only if the 'I prefer not to answer' option is not selected
-        //If 'I prefer not to answer' is selected, then all other race options will be unselected
-        for (int i = 0; i < 6; i++) {
-            if (!raceButton.get(i).getAttribute("class").contains("race-ethnicity-check-box-selected")) {
-                throw new AssertionError("Race option " + (i + 1) + " is not selected.");
-            }
-        }
-
-        raceButton.get(6).click();
-
-        if (!raceButton.get(6).getAttribute("class").contains("race-ethnicity-check-box-selected")) {
-            throw new AssertionError("Race option 7 is not selected.");
-        }
-
-            for (int i = 0; i < 6; i++) {
-                if (raceButton.get(i).getAttribute("class").contains("race-ethnicity-check-box-selected")) {
-                    throw new AssertionError("Race option " + (i + 1) + " is selected, but it shouldn't be.");
-                }
-            }
-        }
-
-        // NEW ELMO page
     public void raceEthnicitySelection(String raceEthnicity){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
         switch (raceEthnicity) {
