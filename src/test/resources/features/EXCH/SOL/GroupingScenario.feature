@@ -1228,7 +1228,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I wait for hold on content to disappear
     Then I validate I am on the "Edit Grouping Members Medical" page
     And I validate there is create new group link
-   # Then I click on create new group button on edit enrollment groups page
     Then I drag and drop "Not Enrolling" to make new group
     Then I validate I am on the "Edit Grouping Members Medical" page
     Then I click save button to save the groups
