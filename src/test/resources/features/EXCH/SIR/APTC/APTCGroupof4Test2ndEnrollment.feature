@@ -209,7 +209,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Financial Help Agreements" page
     Then I click all done from payment portal page
 
-  @SLER-GroupOf2-2831-WIP @test
+  @SLER-GroupOf2-2831-WIP
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 2 - same address - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
