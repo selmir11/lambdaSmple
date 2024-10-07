@@ -298,6 +298,7 @@ public class AdminPortalSearchPage {
         }
     }
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
+        basicActions.wait(2000);
         if (SharedData.getEnv().equals("staging")){
             searchInputList.get(0).sendKeys(accountIdSTG);
         }else {
