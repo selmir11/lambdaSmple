@@ -17,7 +17,6 @@ import java.util.Map;
 public class PolicyTableDBValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
-    BasicActions basicActions = new BasicActions();
 
     public void validateDataFromPolicyTables(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
