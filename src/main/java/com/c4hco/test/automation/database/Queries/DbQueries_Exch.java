@@ -149,6 +149,15 @@ public class DbQueries_Exch {
                 "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
     }
 
+    public String verifyAgencyCommissionTinDb(){
+        return "select bca.commission_tin from  "+dbName+".bp_client_authorization bca\n "+
+                "join "+dbName+".bp_agency ba on bca.agency_id = ba.agency_id\n" +
+                "join "+dbName+".bp_agency_staff bas on bas.agency_id = ba.agency_id \n" +
+                "join "+dbName+".bp_staff bs on bs.staff_id = bas.staff_id \n" +
+                "group by ba.agency_name,bca.agency_id, authorization_status,ba.agency_status, ba.agency_tin_ein, bca.commission_tin, bs.first_name\n" +
+                "having authorization_status = 'APPROVED' and ba.agency_status = 'ACTIVE' and ba.agency_name = 'Sidney Armstrong Agency' and bs.first_name = 'Sidney';";
+    }
+
     //Policy table queries
     public String enPolicyAh(){
         return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph " +
