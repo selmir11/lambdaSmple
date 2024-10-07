@@ -546,5 +546,16 @@ public class BasicActions {
         }
         return true;
     }
+    public String doubleAmountFormat(String amountText){
+        String cleanedAmountText = amountText.replaceAll("[^\\d.]", "");
+        // Parse the amount string to a double
+        double amount = Double.parseDouble(cleanedAmountText);
+        // Check if the amount is a whole number
+        if (amount % 1 == 0) {
+            return String.format("%.0f", amount); // No decimals for whole numbers
+        } else {
+            return String.format("%.2f", amount); // Two decimals for fractional amounts
+        }
+    }
 }
 
