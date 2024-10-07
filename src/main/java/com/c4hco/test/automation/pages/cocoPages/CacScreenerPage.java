@@ -16,7 +16,6 @@ import static com.c4hco.test.automation.utils.WebDriverManager.getDriver;
 
 public class CacScreenerPage {
     private BasicActions basicActions;
-    JavascriptExecutor js = (JavascriptExecutor) getDriver();
     SoftAssert softAssert = new SoftAssert();
     public CacScreenerPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);

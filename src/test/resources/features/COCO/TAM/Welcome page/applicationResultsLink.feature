@@ -3,9 +3,6 @@ Feature: Tests related to the Application Results link
 
   Background: I go to the login portal
     Given I open the login page on the "login" portal
-
-  @SLCR-25 @TAMSmoke
-  Scenario: SLCR-25 Validate Action links navigation and text
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     And I click create my account from pre-screen page
@@ -13,7 +10,11 @@ Feature: Tests related to the Application Results link
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
+
+  @SLCR-25 @TAMSmoke
+  Scenario: SLCR-25 Validate Action links navigation and text
     And I change the language from header to "Spanish"
     And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
