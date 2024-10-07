@@ -109,7 +109,7 @@ Feature: Regression Tests that require Seed 1
     And I click on Sign Out in the Header for "Elmo"
    # WIP - Modify the below method to pass coverage dates to be first of current year and endOfCurrent year
    # Q?: What would financial start and end dates look like when there is NFA
-    And I validate the member details from policy tables
+    And I validate the member details from policy tables with coverage start date "First Day Of Current Year" and end date "Last Day Of Current Year"
     And I validate member details from ob834_details table
      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
@@ -159,7 +159,7 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Application History" page
     Then I set data from application history page
     And I click on Sign Out in the Header for "NonElmo"
-    And I validate the member details from policy tables
+    And I validate the member details from policy tables with coverage start date "First Day Of Current Year" and end date "Last Day Of Current Year"
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
