@@ -142,6 +142,14 @@ public class YourClientsPage {
         actions.click(firstClientResult).perform();
     }
 
+    public void clickFirstClient() {
+        basicActions.waitForElementToBePresent(clientRow,10);
+        Actions actions = new Actions(basicActions.getDriver());
+        WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
+        basicActions.waitForElementToBePresent(firstClientResult,100);
+        actions.click(firstClientResult).perform();
+    }
+
     public void verifyCurrentClientStatus(String expectedClientStatus){
         basicActions.waitForElementToBePresent(clientRow,10);
         switch (expectedClientStatus){
