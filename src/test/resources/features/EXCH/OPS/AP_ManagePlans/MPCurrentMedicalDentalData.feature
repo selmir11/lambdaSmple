@@ -18,10 +18,12 @@ Feature: Manage Plans: Current Med & Dent Data Years dropdown
     Then I verify Primary account holder and account number displays
     And I validate title and labels on Manage page
     Then I check default year displays
-  #  And I check current Medical container labels and data display
+    And I check current Medical container labels and data display
     Then I check current Dental container labels and data display
-#    Then I verify Years in dropdown starting from "2019" as expected
-#    And I collapse year dropdown
-#    And I check for Previous Medical container display
-#    And I check for Previous Dental container display
-#    Then I logout from Admin Portal
+    And I check for Previous Medical container display
+    And I check for Previous Dental container display
+    Then I verify Years in dropdown starting from "2019" as expected
+    And I collapse year dropdown
+    And I check for Previous Medical container display
+    And I check for Previous Dental container display
+    Then I logout from Admin Portal

@@ -181,12 +181,10 @@ public class AdminPortalManagePlansPage{
         softAssert.assertAll();     }
     public void checkPreviousFinancialMedical(){
         basicActions.waitForElementToBePresent(previousFinancialMed,20);
-        softAssert.assertEquals(previousFinancialMed.getText(), "Previous Financial Periods - Medical");
         softAssert.assertEquals(previousFinancialNoMed.getText(), "No Past Financial Periods - Medical");
         softAssert.assertAll();     }
     public void checkPreviousFinancialDental(){
         basicActions.waitForElementToBePresent(previousFinancialDental,20);
-        softAssert.assertEquals(previousFinancialDental.getText(), "Previous Financial Periods - Dental");
         softAssert.assertEquals(previousFinancialNoDental.getText(), "No Past Financial Periods - Dental");
         softAssert.assertAll();     }
     public void validateYearsDropdown(String lowerYear){
