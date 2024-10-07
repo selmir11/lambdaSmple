@@ -47,6 +47,14 @@ public class RaceAndEthnicityPage {
     @FindBy(css = "input#notListedReason")
     WebElement notListedReason;
 
+    @FindBy(css = ".error-message")
+    WebElement errorMessage;
+
+    @FindBy(css = "svg.feather.feather-alert-circle")
+    WebElement alertCircleIcon;
+
+    @FindBy(css = ".checkbox-container")
+    List<WebElement> checkboxContainer;
 
     public void raceEthnicitySelection(String raceEthnicity){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
@@ -173,4 +181,65 @@ public class RaceAndEthnicityPage {
         softAssert.assertAll();
     }
 
+    public void verifyErrorMessagesRaceAndEthnicity(String language) {
+        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
+        switch (language) {
+            case "English":
+                verifyErrorMessagesRaceAndEthnicityEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyErrorMessagesRaceAndEthnicityEnglish() {
+        softAssert.assertEquals(errorMessage.getText(), "Please select one or more of the options below");
+        softAssert.assertTrue(alertCircleIcon.isDisplayed());
+        raceEthnicityButton.get(7).click();
+        saveAndContinueButton.click();
+        softAssert.assertEquals(errorMessage.getText(), "Please enter your race and ethnicity");
+        softAssert.assertTrue(alertCircleIcon.isDisplayed());
+        raceEthnicityButton.get(7).click();
+        softAssert.assertAll();
+    }
+
+    public void validateTextBoxInputAndCheckboxSelection() {
+        for (int i = 0; i < 7; i++) {
+            raceEthnicityButton.get(i).click();
+        }
+
+        //More than 1 option can be selected (up to 8), except 'Prefer not to answer'
+        //If 'Prefer not to answer' is selected, then all other options will be unselected
+        for (int i = 0; i < 7; i++) {
+            if (!checkboxContainer.get(i).getAttribute("class").contains("checked")) {
+                throw new AssertionError("Race and Ethnicity option " + (i + 1) + " is not selected.");
+            }
+        }
+
+        raceEthnicityButton.get(8).click();
+
+        if (!checkboxContainer.get(8).getAttribute("class").contains("checked")) {
+            throw new AssertionError("Prefer not to answer option 7 is not selected.");
+        }
+
+        for (int i = 0; i < 7; i++) {
+            if (checkboxContainer.get(i).getAttribute("class").contains("checked")) {
+                throw new AssertionError("Race and Ethnicity option " + (i + 1) + " is selected, but it shouldn't be.");
+            }
+        }
+
+        //Text box accepts up to 50 characters. Allowing commas, hyphens, slashes, and spaces
+        raceEthnicityButton.get(7).click();
+        notListedReason.sendKeys("user,- /input");
+        softAssert.assertEquals(notListedReason.getAttribute("value"), "user,- /input");
+        notListedReason.clear();
+        notListedReason.sendKeys("user$5@1-input");
+        softAssert.assertEquals(notListedReason.getAttribute("value"), "user-input");
+        notListedReason.clear();
+        notListedReason.sendKeys("characterscharacterscharacterscharacterscharacterscharacters");
+        softAssert.assertEquals(notListedReason.getAttribute("value"), "characterscharacterscharacterscharacterscharacters");
+        notListedReason.clear();
+        raceEthnicityButton.get(7).click();
+        softAssert.assertAll();
+    }
 }

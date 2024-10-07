@@ -17,6 +17,9 @@ import io.cucumber.java.en.Then;
         @And("I select year {string} from My Current Plan container")
         public void iSelectPlanYear(String planYear) {welcomePage.selectPlanyear(planYear);}
 
+        @And("I select take a short quiz on welcome page")
+        public void iClickTakeQuiz() {welcomePage.clickTakeQuiz();}
+
 // ############################## VALIDATION STEPS #########################
         // Add only validation methods below this line
     @Then("I verify text on the Welcome page for first time signed into an account in {string}")
