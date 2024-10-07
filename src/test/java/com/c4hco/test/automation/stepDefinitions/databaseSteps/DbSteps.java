@@ -74,6 +74,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateNoMedicalPolicySubmissionBob();
    }
 
+   @And("I verify my agency commission TIN in the database")
+   public void iVerifyAgencyCommissionTinDb() {
+      dbValidations.verifyAgencyCommissionTinDb();
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //

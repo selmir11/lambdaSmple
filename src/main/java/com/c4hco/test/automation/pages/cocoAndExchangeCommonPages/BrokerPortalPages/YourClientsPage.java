@@ -1,12 +1,17 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
+
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
 
 
 public class YourClientsPage {
@@ -52,7 +57,10 @@ public class YourClientsPage {
     @FindBy(id = "client-data-title-row")
     WebElement clientRow;
 
-    @FindBy(id = "mat-expansion-panel-header-2")
+    @FindBy(css = ".mat-content #client-data-title-row")
+    List<WebElement> clientsList;
+
+    @FindBy(xpath = "(//mat-expansion-panel-header[contains(@id, 'mat-expansion-panel-header')])[2]")
     WebElement clientSecondRow;
 
     @FindBy(id = "status0")
@@ -110,7 +118,7 @@ public class YourClientsPage {
     }
 
     public void searchForClient(){
-        basicActions.waitForElementToBePresent(clientSecondRow, 1000);
+        basicActions.waitForElementListToBePresent(clientsList, 1000);
         basicActions.waitForElementToBePresent(searchClient, 1000);
         String firstName =SharedData.getPrimaryMember().getFirstName();
         searchClient.sendKeys(firstName);

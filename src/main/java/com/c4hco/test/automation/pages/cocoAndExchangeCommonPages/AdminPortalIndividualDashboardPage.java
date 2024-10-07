@@ -129,6 +129,21 @@ public class AdminPortalIndividualDashboardPage {
     WebElement orgName;
     @FindBy(xpath = "//th[normalize-space()='First Name']")
     WebElement clientFirstName;
+    @FindBy(xpath = "//div[.='Renewal Status: PENDING']")
+    WebElement renewalsStatus;
+    @FindBy(css = "#medicalData > span")
+    WebElement renewalMed;
+    @FindBy(css = "#medicalData > div > span.body-text-coverage")
+    WebElement renewalMedCoverage;
+    @FindBy(css = "#medicalData > div > span.body-text-1")
+    WebElement coverageMedPlan;
+    @FindBy(css = "#dentalData > span")
+    WebElement renewalDental;
+    @FindBy(css = "#dentalData > div > span.body-text-coverage")
+    WebElement renewalDentalCoverage;
+    @FindBy(css = "#dentalData > div > span.body-text-1")
+    WebElement coverageDentalPlan;
+
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -317,5 +332,18 @@ public class AdminPortalIndividualDashboardPage {
     public void clickGoBackONAdminPortalProgramManager() {
         basicActions.waitForElementToBePresent(goBack,20);
         goBack.click(); }
+    public void verifyStatusIsDisplayed(String containerStatus) {
+        basicActions.waitForElementToBePresent(renewalsStatus, 10);
+        softAssert.assertEquals(renewalsStatus.getText(), containerStatus);
+        softAssert.assertAll();    }
+    public void validateMedicalAndDentalPlans(String renewalMedical, String medicalCoverage, String medPlanData, String renewalDent, String dentalCoverage, String dentPlanData) {
+        basicActions.waitForElementToBePresent(renewalMed, 10);
+        softAssert.assertEquals(renewalMed.getText(), renewalMedical);
+        softAssert.assertEquals(renewalMedCoverage.getText(), medicalCoverage);
+        softAssert.assertEquals(coverageMedPlan.getText(), medPlanData);
+        softAssert.assertEquals(renewalDental.getText(), renewalDent);
+        softAssert.assertEquals(renewalDentalCoverage.getText(), dentalCoverage);
+        softAssert.assertEquals(coverageDentalPlan.getText(), dentPlanData);
+        softAssert.assertAll();    }
 }
 
