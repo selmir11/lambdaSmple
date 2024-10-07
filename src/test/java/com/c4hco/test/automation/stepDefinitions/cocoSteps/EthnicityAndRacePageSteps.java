@@ -6,7 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class EthnicityAndRacePageSteps {
-    // WIP - remove steps and code related to old page
+
     EthnicityAndRacePage ethnicityAndRacePage = new EthnicityAndRacePage(WebDriverManager.getDriver());
 
     @And("I click Go Back on the Race and Ethnicity page")
@@ -20,15 +20,14 @@ public class EthnicityAndRacePageSteps {
         ethnicityAndRacePage.verifyErrorMessagesEthnicityAndRace(Language);
     }
 
-    @And("I validate the selection options of the {string} question")
-    public void validateTheSelectionOfOptionsEthnicityAndRace(String Section) {
-        ethnicityAndRacePage.validateTheSelectionOfOptions(Section);
-    }
-
-    // NEW ELMO page
     @And("I select {string} for race and ethnicity option")
     public void iSelectMemberRaceEthnicity(String memberRaceEthnicity){ethnicityAndRacePage.raceEthnicitySelection(memberRaceEthnicity);}
 
     @And("I click save and continue on the Race and Ethnicity page")
     public void iClickContinue(){ethnicityAndRacePage.clickSaveAndContinue();}
+
+    @Then("I validate the text box input and checkbox selection behavior")
+    public void validateTextBoxAndCheckboxSelection() {
+        ethnicityAndRacePage.validateTextBoxInputAndCheckboxSelection();
+    }
 }

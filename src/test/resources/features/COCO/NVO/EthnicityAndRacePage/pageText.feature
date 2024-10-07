@@ -19,7 +19,13 @@ Feature: Page Text-Ethnicity And Race page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Not listed" for race and ethnicity option
     Then I verify text on the Ethnicity And Race page in "English"
+    And I select "Not listed" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 

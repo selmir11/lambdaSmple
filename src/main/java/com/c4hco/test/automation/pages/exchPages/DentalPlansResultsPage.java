@@ -87,6 +87,26 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-PlanName_6")
     WebElement pediatricdental3;
 
+    @FindBy(xpath = "(//app-dental-plan-card)[1]")
+    WebElement firstDentalPlanCard;
+
+    @FindBy(xpath = "(//*[@id='DentalPlanResults-MonthlyPremium'])[1]")
+    WebElement monthlypremiumdropdown;
+
+    @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
+    WebElement txtpremiumamnt;
+
+
+    public void SHPDentalresultsPageValidation(){
+        basicActions.waitForElementToDisappear(spinner, 30);
+        softAssert.assertTrue(dentalplanheader.isDisplayed(), "Dental plan heading did not match");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Adult Deductible"), "Adult deductible text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Out-of-Pocket Max"), "Out of pocket max text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible (Under 18)"), "Pediatric deductible text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Plan Details"), "Plan details text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Select this Plan"), "Select this plan text is not displayed");
+        softAssert.assertAll();
+    }
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent( dentalPlanNames, 10 );
         SharedData.setFirstPlanNameOnDentalResultsPage( dentalPlanNames.get( 0 ).getText() );
@@ -285,6 +305,14 @@ public class DentalPlansResultsPage {
         }
 
     }
+
+    public void verifyPremiumAmountIsZero() {
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(txtpremiumamnt, 30);
+        softAssert.assertEquals(txtpremiumamnt.getAttribute("innerText"), "0");
+        softAssert.assertAll();
+    }
+
 
 
 

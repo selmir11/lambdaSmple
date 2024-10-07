@@ -96,5 +96,10 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.SelectSpecificDentalPlanPerGrp(specificPlan, member);
     }
 
+    @And("I validate dental premium amount is  zero")
+    public void verifypremiumamountiszero() {
+        dentalPlansResultsPage.verifyPremiumAmountIsZero();
+    }
+
 
 }
