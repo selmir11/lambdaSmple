@@ -328,20 +328,36 @@ public class CacScreenerPage {
         basicActions.waitForElementToBePresent(resultsHeaderTxt, 40);
         switch (language) {
             case "English":
-                switch (section) {
-                    case "Main":
-                        validatePageTextMainEnglish();
-                        break;
-                }
+                validatePageTextEnglish(section);
                 break;
             case "Spanish":
-                switch (section) {
-                    case "Main":
-                        validatePageTextMainSpanish();
-                        break;
-                }
+                validatePageTextSpanish(section);
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
+    }
+
+    public void validatePageTextEnglish(String section) {
+        basicActions.waitForElementToBePresent(resultsHeaderTxt, 40);
+            switch (section) {
+                case "Main":
+                    validatePageTextMainEnglish();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + section);
+            }
+    }
+
+    public void validatePageTextSpanish(String section) {
+        basicActions.waitForElementToBePresent(resultsHeaderTxt, 40);
+            switch (section) {
+                case "Main":
+                    validatePageTextMainSpanish();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + section);
+            }
     }
 
     public void validatePageTextMainEnglish(){
