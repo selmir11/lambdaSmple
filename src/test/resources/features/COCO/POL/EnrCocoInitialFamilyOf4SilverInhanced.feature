@@ -120,10 +120,11 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    And I select year "2024" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
-#    And I click on "My Plans" link on welcome page
-#    And Validate selected medical plan for "Son" is "Elevate Health Plans Colorado Option Bronze"
-#    And Validate selected medical plan for "Daughter" is "Elevate Health Plans Colorado Option Bronze"
-#    And Validate selected medical plan for "Spouse" is "Elevate Health Plans Colorado Option Bronze"
-#    And Validate selected medical plan for "Primary" is "Elevate Health Plans Colorado Option Bronze"
-#    And I click on Sign Out in the Header for "Elmo"
+    And I click on "My Plans" link on welcome page
+    And Validate selected medical plan for "Son" is "Elevate Health Plans Colorado Option Bronze"
+    And Validate selected medical plan for "Daughter" is "Elevate Health Plans Colorado Option Bronze"
+    And Validate selected medical plan for "Spouse" is "Elevate Health Plans Colorado Option Bronze"
+    And Validate selected medical plan for "Primary" is "Elevate Health Plans Colorado Option Bronze"
+    And I click on Sign Out in the Header for "Elmo"

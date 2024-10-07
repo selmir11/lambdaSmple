@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -69,6 +71,7 @@ public class PlanSummaryMedicalDentalCoCoPage {
     WebElement txtAmountyouPay;
 
     public void continueButton(){
+        setPlansPremiumAmtCoco();
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
@@ -100,5 +103,23 @@ public class PlanSummaryMedicalDentalCoCoPage {
         softAssert.assertEquals(SvaeandExitbtn.getText(),textDetails.get(11));
         softAssert.assertEquals(continueBtnOnPlanSummary.getText(),textDetails.get(12));
         softAssert.assertAll();
+    }
+    public void setPlansPremiumAmtCoco() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        basicActions.waitForElementToDisappear(spinner, 25);
+        basicActions.waitForElementToBePresent(txtPremiumsBeforeSaving, 40);
+        subscriber.setMedicalAptcAmt("0");
+        String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
+        subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+        subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
+        if (memberslist != null) {
+            for (int i = 0; i < memberslist.size(); i++) {
+                memberslist.get(i).setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+                memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
+            }
+        }
+        SharedData.setPrimaryMember(subscriber);
     }
 }

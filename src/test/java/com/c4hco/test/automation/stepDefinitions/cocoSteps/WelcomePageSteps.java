@@ -5,7 +5,9 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-    public class WelcomePageSteps {
+import java.util.List;
+
+public class WelcomePageSteps {
         WelcomePage welcomePage = new WelcomePage(WebDriverManager.getDriver());
 
         @And("I apply for the current year in CoCo")
@@ -36,6 +38,7 @@ import io.cucumber.java.en.Then;
         @And("I Validate the correct enrolled plans are displayed on coco welcome page")
         public void validatePlanDetails(){
             welcomePage.verifyMemberNamesOnWelcomePage();
+            welcomePage.verifyMPlanDetails();
         }
 
     }
