@@ -1,11 +1,11 @@
-Feature: Skipping Medical and Dental Plan pages
+Feature: UI Page Validation - Plan Results (Dental)
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-WIP
-  Scenario: EXCH UI Page Validation - Skipping Medical and Dental Plan pages will lead to a Inactive Continue button on the Plan Summary
+  @SLER-1098 # RT-1658
+  Scenario: This test case will verify the page content, navigation, and functionality of the Plan Results (Dental) page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -60,5 +60,13 @@ Feature: Skipping Medical and Dental Plan pages
     Then I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
     Then I validate I am on the "Dental Plan Results" page
+    And  I validate the text in dental plan results page
+    Then I click on the First Dental Detail button
+    Then I validate I am on the "Dental Plan Detail" page
+    And I click Go Back on the Dental Detail page
+    Then I validate I am on the "Dental Plan Results" page
+    Then I select first dental plan
+    And  I click on the remove plan button on dental plan results page
+    And I click on Sign Out in the Header for "Portal"
 
 
