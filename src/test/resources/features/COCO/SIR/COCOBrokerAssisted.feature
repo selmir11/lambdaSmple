@@ -197,7 +197,7 @@ Feature: Broker Assisted - End to End Test
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity pagee
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
