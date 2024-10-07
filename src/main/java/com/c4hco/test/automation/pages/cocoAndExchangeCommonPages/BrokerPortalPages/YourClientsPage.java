@@ -1,12 +1,17 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
+
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
 
 
 public class YourClientsPage {
@@ -52,8 +57,8 @@ public class YourClientsPage {
     @FindBy(id = "client-data-title-row")
     WebElement clientRow;
 
-    @FindBy(id = "mat-expansion-panel-header-2")
-    WebElement clientSecondRow;
+    @FindBy(css = ".mat-content #client-data-title-row")
+    List<WebElement> clientsList;
 
     @FindBy(id = "status0")
     WebElement clientStatus;
@@ -75,7 +80,6 @@ public class YourClientsPage {
 
     @FindBy(xpath = "//*[@id='client-data-title-row']/span[1]")
     WebElement clientFullName;
-
     @FindBy(xpath = "//*[@id='elem']/app-view-clients/div/div[1]")
     WebElement yourClientsTitle;
 
@@ -111,16 +115,23 @@ public class YourClientsPage {
     }
 
     public void searchForClient(){
-        basicActions.waitForElementToBePresent(clientSecondRow, 1000);
+        basicActions.waitForElementListToBePresent(clientsList, 1000);
         basicActions.waitForElementToBePresent(searchClient, 1000);
         String firstName =SharedData.getPrimaryMember().getFirstName();
         searchClient.sendKeys(firstName);
         searchClient.sendKeys(Keys.ENTER);
     }
 
+    public void searchForTheSecondaryClient(){
+        basicActions.waitForElementToBePresent(searchClient, 1000);
+        String firstName =SharedData.getMembers().get(0).getFirstName();
+        searchClient.sendKeys(firstName);
+        searchClient.sendKeys(Keys.ENTER);
+    }
+
 
     public void clickClientResult() {
-        basicActions.waitForElementToDisappear(clientSecondRow, 10);
+        basicActions.waitForElementListToBePresent(clientsList, 10);
         basicActions.waitForElementToBePresent(clientRow,10);
         Actions actions = new Actions(basicActions.getDriver());
         WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
@@ -181,6 +192,7 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(thirdClientStatus,10);
         softAssert.assertEquals(thirdClientStatus.getText(), "POLICY SUBMITTED");
         softAssert.assertAll();
+
     }
 
     public void clickOptionToHandelClient(String option) {
@@ -271,6 +283,12 @@ public class YourClientsPage {
 
         basicActions.waitForElementToBePresent(clientPremium, 200);
         softAssert.assertEquals((clientPremium.getText().replace("$", "")), premiumAmt);
+        softAssert.assertAll();
+    }
+
+    public void verifyClientNameAsPrimary() {
+        basicActions.waitForElementToBePresent(clientFullName,20);
+        softAssert.assertTrue(clientFullName.getText().contains(SharedData.getMembers().get(0).getFirstName()));
         softAssert.assertAll();
     }
 }

@@ -102,5 +102,15 @@ public class YourClientsPageSteps {
     public void iValidateClientPremium(){
         yourClientsPage.validateClientPremiumAmount();
     }
+
+    @And("I search for the secondary client on the same household")
+    public void iSearchForTheSecondaryClientOnTheSameHousehold() {
+        yourClientsPage.searchForTheSecondaryClient();
+    }
+
+    @Then("I verify that the client name match the primary contact")
+    public void iVerifyThatTheClientNameMatchThePrimaryContact() {
+        yourClientsPage.verifyClientNameAsPrimary();
+    }
 }
 

@@ -93,7 +93,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalsYear;
     @FindBy(xpath = "//div[.='There is no Renewal data for this year']")
     WebElement noRenewalsText;
-    @FindBy(id = "username")
+    @FindBy(xpath = "//td[@id='username']")
     WebElement pmUsername;
     @FindBy(xpath = "//input[@id='program-manager-email-input']")
     WebElement emailProgramManager;
@@ -167,7 +167,7 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     public void verifyContainerTitle() {
-        basicActions.waitForElementToBePresent(reportsTitle, 10);
+        basicActions.waitForElementToBePresent(reportsTitle, 20);
         softAssert.assertTrue(reportsTitle.isDisplayed());
         softAssert.assertAll();     }
     public void viewReportLinks(String searchText) {
@@ -283,6 +283,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(renewalsYear.getText(), defaultYear);
         softAssert.assertAll();    }
     public void VerifyProgramManagerInformationAccountSummary() {
+        basicActions.waitForElementToBePresent(pmUsername,20);
         if (SharedData.getEnv().equals("qa")) {
             softAssert.assertEquals(pmUsername.getText(), "profile@test.com");
             softAssert.assertEquals(pmPhone.getText(), "333-333-3333 ext12345");

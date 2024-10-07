@@ -43,6 +43,9 @@ public class BasicSteps {
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
                 break;
+            case "CAC Screener":
+                pageUrl = "/coco/WelcomePortal/cacScreener";
+                break;
             case "CoCo Welcome":
                 pageUrl = "/coco/WelcomePortal";
                 break;
@@ -83,6 +86,9 @@ public class BasicSteps {
                 break;
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
+                break;
+                case "Individual CoCo":
+                pageUrl = "/AdminPortal/coco/individual/";
                 break;
             case "Application Results":
                 pageUrl = "nes/applicationResults";
@@ -325,6 +331,9 @@ public class BasicSteps {
             case "Elmo Race and Ethnicity" :
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
+            case "Ethnicity and Race" :
+                pageUrl = "/member-details-portal/race-ethnicity/";
+                break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
@@ -423,6 +432,9 @@ public class BasicSteps {
                 break;
             case "Application Details" :
                 pageUrl = "oboApplSummary";
+                break;
+                case "Medical Enrollment Groups" :
+                pageUrl = "PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Manage Plans" :
                 pageUrl = "/policies";

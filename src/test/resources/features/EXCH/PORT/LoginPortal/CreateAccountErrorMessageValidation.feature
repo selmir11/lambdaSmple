@@ -1,4 +1,4 @@
-@CreateAccount @port
+@CreateAccount @port @LoginPortal
 Feature: Verify the error messages on the Create Account page
 
   @SLER-538
