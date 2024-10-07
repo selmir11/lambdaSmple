@@ -34,6 +34,11 @@ public class YourClientsPageSteps {
         yourClientsPage.clickClientResult();
     }
 
+    @Then("I click on the first client in my list")
+    public void IClickOnFirstClient() {
+        yourClientsPage.clickFirstClient();
+    }
+
     @Then("I verify that my client's current status is {string}")
     public void iVerifyCurrentClientStatus(String expectedClientStatus) {
         yourClientsPage.verifyCurrentClientStatus(expectedClientStatus);
