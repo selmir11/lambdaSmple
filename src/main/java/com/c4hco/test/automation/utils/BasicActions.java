@@ -10,6 +10,8 @@ import org.testng.Assert;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -556,6 +558,18 @@ public class BasicActions {
         } else {
             return String.format("%.2f", amount); // Two decimals for fractional amounts
         }
+    }
+    public static String getFirstOfJanuary() { // January 1st of current year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear(), 1, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+    public static String getLastDayOfYear() {// December 31st of the current year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear(), 12, 31);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
     }
 }
 

@@ -110,9 +110,7 @@ Feature: Regression Tests that require Seed 1
    # WIP - Modify the below method to pass coverage dates to be first of current year and endOfCurrent year
    # Q?: What would financial start and end dates look like when there is NFA
     And I validate the member details from policy tables
-      | CoverageStartDate | CoverageEndDate |
-      | 01-01             | 12-31           |
-   And I validate member details from ob834_details table
+    And I validate member details from ob834_details table
      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I download the files from sftp server with location "/outboundedi/"
@@ -162,8 +160,6 @@ Feature: Regression Tests that require Seed 1
     Then I set data from application history page
     And I click on Sign Out in the Header for "NonElmo"
     And I validate the member details from policy tables
-      | CoverageStartDate | CoverageEndDate |
-      | 01-01             | 12-31           |
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
