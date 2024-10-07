@@ -515,6 +515,14 @@ public class DbValidations {
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
+
+    public void verifyAgencyCommissionTinDb() {
+        String expectedAgencyTin = SharedData.getAgencyOwner().getAgencyTin();
+        List<String> agencyTinDb = exchDbDataProvider.getAgencyCommissionTinDb();
+        softAssert.assertEquals(agencyTinDb.get(0), expectedAgencyTin);
+        softAssert.assertAll();
+    }
+
     public void validateHraAhOptions(List<Map<String, String>> expectedValues) {
         EsMemberHraAhEntity actualResult = exchDbDataProvider.getOptionsFromHraAhDbTables();
         System.out.println(actualResult);

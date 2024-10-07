@@ -117,4 +117,9 @@ public class AgencyDetailsSteps {
     public void iValidateAgencyHidAddressTooltipText(){
         agencyDetailsPage.validateAgencyHideAddressTooltipText();
     }
+
+    @Then("I update my agency TIN")
+    public void iUpdateAgencyTin(){
+        agencyDetailsPage.updateAgencyTin();
+    }
 }
