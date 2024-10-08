@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import io.cucumber.plugin.event.Node;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -102,6 +103,9 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
+    @FindBy(xpath = "//div[@id='MPcollapse'] //span[contains(@class,'ngx-slider-floor')]")
+    WebElement txtpremiumamnt;
+
 
      public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
@@ -134,7 +138,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickSkip(){
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 30);
          basicActions.waitForElementToBePresent(btnSkip, 30);
         btnSkip.click();
     }
@@ -301,6 +305,14 @@ public class MedicalPlanResultsPage {
         }
 
 
+    }
+
+
+    public void verifyPremiumAmountIsNotZero() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(txtpremiumamnt, 20);
+        softAssert.assertNotEquals(txtpremiumamnt.getAttribute("innerText"), "0");
+        softAssert.assertAll();
     }
 
 

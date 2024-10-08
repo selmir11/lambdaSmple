@@ -118,8 +118,7 @@ public class FindExpertHelpSteps {
         }
 
         @Then("I click Continue on my own button from Manage who helps you page")
-        public void iClickContinueOnOwnButton() {
-                findExpertHelpPage.clickContinueOnMyOwnButton();
+        public void iClickContinueOnOwnButton() {findExpertHelpPage.clickContinueOnMyOwnButton();
         }
 
         @Then("I Remove my current Broker")

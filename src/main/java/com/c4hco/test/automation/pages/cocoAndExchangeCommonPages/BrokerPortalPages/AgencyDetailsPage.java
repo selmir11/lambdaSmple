@@ -1,13 +1,16 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import java.util.Random;
 
 public class AgencyDetailsPage {
     SoftAssert softAssert = new SoftAssert();
@@ -368,5 +371,23 @@ public class AgencyDetailsPage {
 
         softAssert.assertEquals(agencyHideAddressTooltipText.getText(), "By default address lines 1 and 2 display in the search results on the \u2018Find a Certified Broker near you\u2019 page. If you do not want your address displayed to the public, please check the box here and only city, state and zip code will display for your location.");
         softAssert.assertAll();
+    }
+
+    public String generateAgencyTin(){
+        Random rand = new Random();
+        int num = 100000000 + rand.nextInt(900000000);
+        return Integer.toString(num);
+    }
+
+    public void updateAgencyTin(){
+        basicActions.waitForElementToBePresent(agencyTin, 10);
+        String newAgencyTin = generateAgencyTin();
+
+        BrokerDetails owner = new BrokerDetails();
+        owner.setAgencyTin(newAgencyTin);
+        SharedData.setAgencyOwner(owner);
+        System.out.println("The agency TIN is " +SharedData.getAgencyOwner().getAgencyTin());
+        agencyTin.clear();
+        agencyTin.sendKeys(newAgencyTin);
     }
 }

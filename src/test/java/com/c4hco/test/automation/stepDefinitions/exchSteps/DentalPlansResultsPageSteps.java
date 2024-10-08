@@ -24,11 +24,17 @@ public class DentalPlansResultsPageSteps {
     @And("I validate that Pediatric Dental Plans are not available")
     public void validatePediatricFalse(){dentalPlansResultsPage.validatePediatricFalse();}
 
+    @And("I validate the text in dental plan results page")
+    public void DentalresultspagetextValidation(){dentalPlansResultsPage.DentalresultspagetextValidation();}
+
     @And ("I validate for Pediatric and Adult Dental Plans")
     public void validatePediatricAndAdult(){dentalPlansResultsPage.validateAdultPediatric();}
 
     @And("I click on the First Dental Detail button")
     public void clickFirstPlanDetailButton(){dentalPlansResultsPage.clickFirstPlanDetailBtn();}
+
+    @And("I click on the remove plan button on dental plan results page")
+    public void removeplanondentalplanresults(){dentalPlansResultsPage.removeplanondentalplanresults();}
 
     @Then("I click continue on dental plan results page")
     public void clickContinueOnDentalResultsPage() {
@@ -94,6 +100,11 @@ public class DentalPlansResultsPageSteps {
     @And("I select the {string} Dental plan but skip for {string}")
     public void selectDentalPlanForMember(String specificPlan, String member) {
         dentalPlansResultsPage.SelectSpecificDentalPlanPerGrp(specificPlan, member);
+    }
+
+    @And("I validate dental premium amount is  zero")
+    public void verifypremiumamountiszero() {
+        dentalPlansResultsPage.verifyPremiumAmountIsZero();
     }
 
 

@@ -34,6 +34,11 @@ public class YourClientsPageSteps {
         yourClientsPage.clickClientResult();
     }
 
+    @Then("I click on the first client in my list")
+    public void IClickOnFirstClient() {
+        yourClientsPage.clickFirstClient();
+    }
+
     @Then("I verify that my client's current status is {string}")
     public void iVerifyCurrentClientStatus(String expectedClientStatus) {
         yourClientsPage.verifyCurrentClientStatus(expectedClientStatus);
@@ -101,6 +106,16 @@ public class YourClientsPageSteps {
     @Then("I validate the premium amount displayed for my client")
     public void iValidateClientPremium(){
         yourClientsPage.validateClientPremiumAmount();
+    }
+
+    @And("I search for the secondary client on the same household")
+    public void iSearchForTheSecondaryClientOnTheSameHousehold() {
+        yourClientsPage.searchForTheSecondaryClient();
+    }
+
+    @Then("I verify that the client name match the primary contact")
+    public void iVerifyThatTheClientNameMatchThePrimaryContact() {
+        yourClientsPage.verifyClientNameAsPrimary();
     }
 }
 

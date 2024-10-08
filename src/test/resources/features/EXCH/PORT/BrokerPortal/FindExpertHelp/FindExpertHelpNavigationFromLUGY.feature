@@ -1,4 +1,4 @@
-@SLER-351
+@SLER-351 @FindExpertHelp
 Feature:Verify the navigation from get assistance from LUGY Pages
   @SLER-351
   Scenario: Verify the navigation from get assistance from LUGY Pages

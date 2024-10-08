@@ -1,4 +1,4 @@
-@SLCR-38
+@SLCR-38 @portCOCO
 Feature: Find expert help page validation
 
   @SLCR-38

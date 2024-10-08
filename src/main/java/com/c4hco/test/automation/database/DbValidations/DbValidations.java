@@ -515,6 +515,14 @@ public class DbValidations {
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
+
+    public void verifyAgencyCommissionTinDb() {
+        String expectedAgencyTin = SharedData.getAgencyOwner().getAgencyTin();
+        List<String> agencyTinDb = exchDbDataProvider.getAgencyCommissionTinDb();
+        softAssert.assertEquals(agencyTinDb.get(0), expectedAgencyTin);
+        softAssert.assertAll();
+    }
+
     public void validateHraAhOptions(List<Map<String, String>> expectedValues) {
         EsMemberHraAhEntity actualResult = exchDbDataProvider.getOptionsFromHraAhDbTables();
         System.out.println(actualResult);
@@ -527,11 +535,11 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void ValidateDuplicateEmail(String accountEmail) {
+    public void validateDatabaseEmail() {
         EsHouseholdContactEntity actualResult = exchDbDataProvider.getEsHouseholdContactDetails();
 
-        softAssert.assertEquals(actualResult.getEmail(), accountEmail);
-        System.out.println("Account  Email "+accountEmail);
+        softAssert.assertEquals(actualResult.getEmail(), SharedData.getPrimaryMember().getEmailId());
+        System.out.println("Account  Email "+SharedData.getPrimaryMember().getEmailId());
         System.out.println("Database Email "+actualResult.getEmail());
         softAssert.assertAll();
     }

@@ -222,4 +222,12 @@ public class PlanSummaryMedicalDentalPage {
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
         SharedData.setPrimaryMember(subscriber);
     }
+
+
+    public void verifyContinueButtonIsDisabled() {
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 20);
+        String buttonClass = continueBtnOnPlanSummary.getAttribute("class");
+        softAssert.assertTrue(buttonClass.contains("button-disabled"), "Continue button is enabled, but it should be disabled.");
+        softAssert.assertAll();
+    }
 }

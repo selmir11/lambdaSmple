@@ -1228,14 +1228,13 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I wait for hold on content to disappear
     Then I validate I am on the "Edit Grouping Members Medical" page
     And I validate there is create new group link
-    Then I click on create new group button on edit enrollment groups page
-    Then I drag and drop "Unassigned Member" to make new group
+    Then I drag and drop "Not Enrolling" to make new group
     Then I validate I am on the "Edit Grouping Members Medical" page
     Then I click save button to save the groups
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 2 default groups
+    Then I validate that there are 1 default groups
 
   @SLER-713 @groupingbysiblingswithoutparents
   Scenario: Two members both siblings in the household, Parents not applying, one group should exist
@@ -1267,8 +1266,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
-
-
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter member details with "10101975" date of birth
@@ -1282,6 +1283,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
