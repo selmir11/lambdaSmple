@@ -88,7 +88,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "English"
     And I check "InsuranceLoss" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "English"
-    #
+    # Birth check
     And I check "Birth" life change event checkbox
     Then I verify "Please select member" error "does not" exist in "English"
     And I select continue on the LCE page
@@ -99,7 +99,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "English"
     And I check "Birth" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "English"
-    #
+    # Pregnancy check
     And I check "Pregnancy" life change event checkbox
     Then I verify "Please select member" error "does not" exist in "English"
     And I select continue on the LCE page
@@ -110,7 +110,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "English"
     And I check "Pregnancy" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "English"
-    #
+    # Marriage check
     And I check "Marriage" life change event checkbox
     Then I verify "Please select member" error "does not" exist in "English"
     And I select continue on the LCE page
@@ -121,7 +121,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "English"
     And I check "Marriage" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "English"
-    #
+    # Divorce check
     And I check "Divorce" life change event checkbox
     Then I verify "Please select member" error "does not" exist in "English"
     And I select continue on the LCE page
@@ -132,7 +132,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "English"
     And I check "Divorce" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "English"
-    #
+    # Move check
     And I check "Move" life change event checkbox
     Then I verify "Please select member" error "does not" exist in "English"
     And I select continue on the LCE page
