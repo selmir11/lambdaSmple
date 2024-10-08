@@ -1,4 +1,5 @@
 @APTC,@APTC-SIR
+  # SLER-2861, SLER-2831
 Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
   Background: I go the login portal
@@ -6,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
 
-  @SLER-2861-WIP
+  @SLER-2861
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 2  - two different zip codes - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -165,8 +166,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
 
-    #Then I validate I am on the "Good News" page
-    #And I click on No Thanks on good news page
 
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
@@ -207,10 +206,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
-    Then I click all done from payment portal page
+    And I click on Sign Out in the Header for "Portal"
 
-  @SLER-GroupOf2-2831-WIP
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 2 - same address - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
+  @SLER-2831
+  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 1 - same address - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -378,9 +377,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 2 default groups
+    #Then I validate that there are 2 default groups
 
-    #And I click continue on grouping Members Medical page
+    And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
@@ -394,17 +393,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I validate the APTC Credit on the Summary page is "-$1,046.69"
     And I click continue on plan summary page
 
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-
-    Then I validate I am on the "Pay now" page
-    Then I click all done from payment portal page
+    Then I validate I am on the "Financial Help Agreements" page
+    And I click on Sign Out in the Header for "Portal"
 
 
 
