@@ -476,7 +476,7 @@ public class NoticesPage {
     }
 
     public void validateDetailsFromEmailPolicy(String planType, String startDate, List<String> membersOnPolicy) {
-       String coverageStartDate = validateGmailCoverageStartDate(startDate);
+       String coverageStartDate = basicActions.getDateBasedOnRequirement(startDate);
         // Validating plan name and member names and coverage start date
         String planName = "";
         switch(planType){
