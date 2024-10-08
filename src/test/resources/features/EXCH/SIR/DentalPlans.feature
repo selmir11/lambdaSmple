@@ -75,8 +75,8 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I validate I am on the "Dental Plan Results" page
     Then I validate the dental plans count to be "9"
 
-  @SLER-1003-WIP @dentalPlanMinorNamesAndCount
-  Scenario: SLER-1003 - Validate dental plans count - single minor
+  @SLER-1003 @dentalPlanMinorCount
+  Scenario: SLER-1003 - Validate dental plans count - single minor - no income
     Given I open the login page on the "login" portal
 
     And I validate I am on the "Login" page
@@ -91,7 +91,9 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
+
     And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "11282019" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -123,16 +125,12 @@ Scenario: SLER-747 - Validate dental plans count - single adult
 
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
-    Then I wait for 500 milliseconds
-
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
-    Then I click continue on the Employment Summary Page
+    And I click continue on the Employment Info Page
 
-    Then I validate I am on the "Addtional income" page
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page
@@ -161,6 +159,11 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    Then I click on No Thanks on good news page
+
+    Then I validate I am on the "Application History" page
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
