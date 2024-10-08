@@ -12,6 +12,9 @@ Feature: Verify COCO Medical Plan results
 
   Then I validate I am on the "Login" page
   And  I enter valid credentials to login
+  Then I click continue signing in on the CAC Screener page
+
+  Then I validate I am on the "CoCo Welcome" page
   And I apply for the current year in CoCo
 
   Then I validate I am on the "Find Expert Help" page
@@ -70,7 +73,7 @@ Feature: Verify COCO Medical Plan results
 
   Then I validate I am on the "Start Shopping" page
   Then I click continue on start shopping page
-
+  
   Then I validate I am on the "Medical Plan Results" page
 
 @COCOFilterMedicalResultsWithSilverEnhanced-PlanLoadTest
@@ -83,6 +86,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
   Then I validate I am on the "Login" page
   And  I enter valid credentials to login
+  Then I click continue signing in on the CAC Screener page
+
+  Then I validate I am on the "CoCo Welcome" page
   And I apply for the current year in CoCo
 
   Then I validate I am on the "Find Expert Help" page
@@ -164,6 +170,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -243,6 +252,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -314,8 +326,12 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -508,8 +524,12 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -700,8 +720,12 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -857,6 +881,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
