@@ -62,9 +62,9 @@ public class AdminPortalManagePlansPage{
     WebElement btnMedSave;
     @FindBy(id = "Manage Plans-Save Button Dental")
     WebElement btnDentalSave;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div")
+    @FindBy(xpath = "//div[text()='Previous Financial Periods - Medical']")
     WebElement previousFinancialMed;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[2]/div[2]/app-previous-plan/div")
+    @FindBy(xpath = "//div[text()='Previous Financial Periods - Dental']")
     WebElement previousFinancialDental;
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div/div[2]")
     WebElement previousFinancialNoMed;

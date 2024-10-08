@@ -42,6 +42,9 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-Skip")
     WebElement dentalSkipBtn;
 
+    @FindBy(id = "PlanResults-RemovePlan_1")
+    WebElement removeplan;
+
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
     WebElement comparePlanBox1;
 
@@ -87,7 +90,7 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-PlanName_6")
     WebElement pediatricdental3;
 
-    @FindBy(xpath = "(//app-dental-plan-card)[1]")
+    @FindBy(xpath = "(//div[@class='col detail-pane'])[1]")
     WebElement firstDentalPlanCard;
 
     @FindBy(xpath = "(//*[@id='DentalPlanResults-MonthlyPremium'])[1]")
@@ -95,9 +98,11 @@ public class DentalPlansResultsPage {
 
     @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
     WebElement txtpremiumamnt;
+    @FindBy(id = "DentalPlanResults-SaveAndExit")
+    WebElement Saveandexit;
 
 
-    public void SHPDentalresultsPageValidation(){
+    public void DentalresultspagetextValidation(){
         basicActions.waitForElementToDisappear(spinner, 30);
         softAssert.assertTrue(dentalplanheader.isDisplayed(), "Dental plan heading did not match");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Adult Deductible"), "Adult deductible text is not displayed");
@@ -105,8 +110,13 @@ public class DentalPlansResultsPage {
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible (Under 18)"), "Pediatric deductible text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Plan Details"), "Plan details text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Select this Plan"), "Select this plan text is not displayed");
+        softAssert.assertTrue(btnGoBack.getText().contains("Go Back"), "Go Back text is not displayed");
+        softAssert.assertTrue(dentalSkipBtn.getText().contains("Skip"), "Skip text is not displayed");
+        softAssert.assertTrue(continueBtnOnDentalPlanResults.getText().contains("Continue"), "Continue text is not displayed");
+        softAssert.assertTrue(Saveandexit.getText().contains("Save and Exit"), "Save and Exit text is not displayed");
         softAssert.assertAll();
     }
+
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent( dentalPlanNames, 10 );
         SharedData.setFirstPlanNameOnDentalResultsPage( dentalPlanNames.get( 0 ).getText() );
@@ -128,6 +138,12 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear( spinner, 30 );
         basicActions.waitForElementToBePresent( continueBtnOnDentalPlanResults, 15 );
         continueBtnOnDentalPlanResults.click();
+    }
+
+    public void removeplanondentalplanresults() {
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        basicActions.waitForElementToBePresent( removeplan, 15 );
+        removeplan.click();
     }
 
     public void clickGoBack() {
@@ -313,8 +329,7 @@ public class DentalPlansResultsPage {
         softAssert.assertAll();
     }
 
-
-
+    
 
 
 

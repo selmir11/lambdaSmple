@@ -60,6 +60,9 @@ public class YourClientsPage {
     @FindBy(css = ".mat-content #client-data-title-row")
     List<WebElement> clientsList;
 
+    @FindBy(xpath = "(//mat-expansion-panel-header[contains(@id, 'mat-expansion-panel-header')])[2]")
+    WebElement clientSecondRow;
+
     @FindBy(id = "status0")
     WebElement clientStatus;
 
@@ -131,7 +134,15 @@ public class YourClientsPage {
 
 
     public void clickClientResult() {
-        basicActions.waitForElementListToBePresent(clientsList, 10);
+        basicActions.waitForElementToDisappear(clientSecondRow, 10);
+        basicActions.waitForElementToBePresent(clientRow,10);
+        Actions actions = new Actions(basicActions.getDriver());
+        WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
+        basicActions.waitForElementToBePresent(firstClientResult,100);
+        actions.click(firstClientResult).perform();
+    }
+
+    public void clickFirstClient() {
         basicActions.waitForElementToBePresent(clientRow,10);
         Actions actions = new Actions(basicActions.getDriver());
         WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
