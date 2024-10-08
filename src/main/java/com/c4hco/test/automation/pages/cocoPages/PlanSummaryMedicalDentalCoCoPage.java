@@ -126,6 +126,22 @@ public class PlanSummaryMedicalDentalCoCoPage {
         goBackbtn.click();
     }
 
+    public void validateTextPlanSummaryCOCOPage(String language){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        switch(language){
+            case "English":
+                verifyEnglishTextPlanSummaryCOCOPage();
+                break;
+            case "Spanish":
+                verifySpanishTextPlanSummaryCOCOPage();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+        }
+
+    }
+
     public void verifyEnglishTextPlanSummaryCOCOPage(){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementListToBePresent(planSummaryHeading,20);
@@ -144,7 +160,7 @@ public class PlanSummaryMedicalDentalCoCoPage {
         softAssert.assertEquals(continueBtnOnPlanSummary.getText(),"Continue");
         softAssert.assertAll();
     }
-    public void verifySpanishextPlanSummaryCOCOPage(){
+    public void verifySpanishTextPlanSummaryCOCOPage(){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementListToBePresent(planSummaryHeading,20);
         softAssert.assertEquals( linkSummaryPDF.getText(), "Descargar PDF");

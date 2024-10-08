@@ -13,6 +13,8 @@ Feature: Verify text in Medical Plan Summary Page
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -70,7 +72,7 @@ Feature: Verify text in Medical Plan Summary Page
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
-    Then I validate the English text on the Plan Summary CoCo page
+    And I validate the "English" text on the Plan Summary COCO page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-329
@@ -81,6 +83,8 @@ Feature: Verify text in Medical Plan Summary Page
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -139,5 +143,5 @@ Feature: Verify text in Medical Plan Summary Page
 
     Then I validate I am on the "planSummaryMedicalDental" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate the Spanish text on the Plan Summary CoCo page
+    And I validate the "Spanish" text on the Plan Summary COCO page
     And I click on Sign Out in the Header for "Elmo"
