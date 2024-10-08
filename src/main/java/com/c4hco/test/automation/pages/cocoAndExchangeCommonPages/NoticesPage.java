@@ -460,20 +460,6 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(resetPWLink,20);
         resetPWLink.click();
     }
-    public String validateGmailCoverageStartDate(String startDate){
-        String formattedStartDate;
-        switch(startDate) {
-            case "First Of Next Month":
-                LocalDate today = LocalDate.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
-                LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
-                formattedStartDate = firstDayOfNextMonth.format(formatter);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + startDate);
-        }
-        return formattedStartDate;
-    }
 
     public void validateDetailsFromEmailPolicy(String planType, String startDate, List<String> membersOnPolicy) {
        String coverageStartDate = basicActions.getDateBasedOnRequirement(startDate);
