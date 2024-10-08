@@ -46,7 +46,7 @@ public class AccountOverviewPage {
 
     @FindBy(css = ".table-bordered tr:nth-child(1) td:nth-child(2) span b")
     List<WebElement> medicalMemberNames;
-    @FindBy(css = "p select option:nth-child(1)")
+    @FindBy(css = "option[selected='selected']")
     WebElement planYearOnWelcomeBackPage;
 
     private BasicActions basicActions;
@@ -152,7 +152,7 @@ public class AccountOverviewPage {
 
     public void verifyPlanInfo() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
-     //   softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
+        softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
         int totalDependents = Integer.parseInt(SharedData.getScenarioDetails().getDependents());
         // only the locator for the plan details change but the value will stay same for the entire group. Hence comparing with primary member.
         softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
