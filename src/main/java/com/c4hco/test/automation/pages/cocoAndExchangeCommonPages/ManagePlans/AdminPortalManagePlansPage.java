@@ -6,6 +6,9 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import org.openqa.selenium.support.PageFactory;
         import org.testng.Assert;
         import org.testng.asserts.SoftAssert;
+
+        import java.time.LocalDate;
+        import java.time.format.DateTimeFormatter;
         import java.util.List;
         import java.util.Optional;
 
@@ -78,8 +81,20 @@ public class AdminPortalManagePlansPage{
     WebElement secondYearInList;
     @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
     WebElement coverageStartdate;
+    @FindBy(xpath= "//div[@id='coverageEndDate_1']//input[1]")
+    WebElement coverageEndDate;
+    @FindBy(xpath= "//div[@id='coverageEndDate_2']//input[1]")
+    WebElement coverageEndDateSecondMember;
     @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
     WebElement financialStartDate;
+
+    @FindBy(xpath= "//div[@id='financialEndDate_1']//input[1]")
+    WebElement financialEndDate;
+    @FindBy(id= "financialEndDate_1")
+    WebElement financialEndDateText;
+    @FindBy(xpath= "//div[@id='financialEndDate_2']//input[1]")
+    WebElement financialEndDateSecondMember;
+
     @FindBy(xpath = "//app-drop-down-select[@id='change-reason']//div[@class='drop-down-option drop-down-option-selected']")
     WebElement reasonForTheChange;
     @FindBy(xpath = "//span[normalize-space()='Recon']")
@@ -138,7 +153,6 @@ public class AdminPortalManagePlansPage{
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
-        basicActions.scrollToElement(btnMakeChangeMed);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed,10);
         btnMakeChangeMed.click();       }
     public void clickResetChangesMedical() {
@@ -275,6 +289,7 @@ public class AdminPortalManagePlansPage{
         basicActions.waitForElementToBePresent(confirmChangesButton, 20);
         confirmChangesButton.click();
         softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical,20));
+        softAssert.assertAll();
     }
 
     public void verifyLabelsDataMedical() {
@@ -314,5 +329,31 @@ public class AdminPortalManagePlansPage{
         basicActions.waitForElementToBePresent(coverageStartdate,20);
    }
 
+    public static String getEndOfMonthDate() {
+    LocalDate today = LocalDate.now();
+    LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+        String endDate = endOfMonth.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+    return endDate;
+    }
+
+    public void updateTheCoverageEndDateToTheLastDateOfTheMonth() {
+        basicActions.waitForElementToBePresent(coverageEndDate,60);
+        System.out.println("End of current month date: " + getEndOfMonthDate());
+        coverageEndDate.sendKeys(getEndOfMonthDate());
+        coverageEndDateSecondMember.sendKeys(getEndOfMonthDate());
+    }
+
+
+    public void updateTheFinancialEndDateToTheLastDateOfTheMonth() {
+        basicActions.waitForElementToBePresent(financialEndDate,60);
+        financialEndDate.sendKeys(getEndOfMonthDate());
+        financialEndDateSecondMember.sendKeys(getEndOfMonthDate());
+    }
+
+    public void verifyTheCoverageEndDateMatchTheLastDateOfTheMonth() {
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical,20));
+        softAssert.assertEquals(financialEndDateText.getText(),getEndOfMonthDate());
+        softAssert.assertAll();
+    }
 }
 
