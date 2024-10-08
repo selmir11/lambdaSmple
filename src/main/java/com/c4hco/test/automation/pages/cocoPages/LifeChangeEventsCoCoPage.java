@@ -518,48 +518,46 @@ public class LifeChangeEventsCoCoPage {
     public void verifyErrorMessage(String errorType, String exist, String language) {
         switch (errorType) {
             case "Please select option":
-                switch (exist){
-                    case "does":
-                        basicActions.waitForElementPresence(selectLCEError, 1);
-                        verifyLCEError(language);
-                        break;
-                    case "does not":
-                        softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEError, 1).booleanValue(), false);
-                        softAssert.assertAll();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + exist);
-                }
+                verifySelectOptionError(language, exist);
                 break;
             case "Please select member":
-                switch (exist){
-                    case "does":
-                        basicActions.waitForElementPresence(selectLCEMemberError, 1);
-                        verifyLCEMemberError(language);
-                        break;
-                    case "does not":
-                        softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEMemberError, 1).booleanValue(), false);
-                        softAssert.assertAll();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + exist);
-                }
+                verifySelectMemberError(language, exist);
                 break;
             case "Event date":
-                switch (exist){
-                    case "does":
-                        verifyLCEDateError(language);
-                        break;
-                    case "does not":
-                        softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEDateError, 1).booleanValue(), false);
-                        softAssert.assertAll();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + exist);
-                }
+                verifyEnterDateError(language, exist);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
+        }
+    }
+
+    public void verifySelectOptionError(String language, String exist){
+        switch (exist){
+            case "does":
+                basicActions.waitForElementPresence(selectLCEError, 1);
+                verifyLCEError(language);
+                break;
+            case "does not":
+                softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEError, 1).booleanValue(), false);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + exist);
+        }
+    }
+
+    public void verifySelectMemberError(String language, String exist){
+        switch (exist){
+            case "does":
+                basicActions.waitForElementPresence(selectLCEMemberError, 1);
+                verifyLCEMemberError(language);
+                break;
+            case "does not":
+                softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEMemberError, 1).booleanValue(), false);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 
@@ -583,6 +581,20 @@ public class LifeChangeEventsCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyEnterDateError(String language, String exist){
+        switch (exist){
+            case "does":
+                verifyLCEDateError(language);
+                break;
+            case "does not":
+                softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEDateError, 1).booleanValue(), false);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 
