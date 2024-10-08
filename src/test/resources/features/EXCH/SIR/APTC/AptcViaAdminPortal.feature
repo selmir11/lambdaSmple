@@ -4,21 +4,17 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
   Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
-    Given I open the login page on the "admin" portal
-    And I refresh the page
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin search" page
-    Then I click create account on admin portal
-    And I enter general mandatory data for "exchange" account creation
 
-    And I validate I am on the "Admin search" page
-    And I select "individual" checkbox on Admin Portal Dashboard
+    Given I open the login page on the "admin" portal
+    Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    Then I click create account on admin portal
+    And I enter general mandatory data for "Admin exchange" account creation with email "MGC4testing"@outlook.com
     And I search for user and click email from search results
     And I click "On Behalf Of (OBO)" from application links dropdown
-
+    And I initiate incoming page
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    And I apply for the current year
+
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -64,6 +60,8 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -223,13 +221,12 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
     And I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
 
-    Then I click all done from payment portal page
+     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -246,7 +243,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Add Address" page
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -346,8 +342,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
-
-    Then I validate I am on the "Edit Grouping Members Dental" page
       # Then I validate that there are 1 default dental groups
     Then I create new group in edit dental grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
