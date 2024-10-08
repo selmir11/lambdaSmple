@@ -117,13 +117,6 @@ public class DentalPlansResultsPage {
         softAssert.assertAll();
     }
 
-    public void verifydentalplans(){ //WIP
-        basicActions.waitForElementToDisappear(spinner, 30);
-        softAssert.assertTrue(dentalPlanNames.get(0).getText().equals("EssentialSmile Colorado - Total Care"), "EssentialSmile Colorado - Total Care are not displayed.");
-        softAssert.assertTrue(dentalPlanNames.get(1).getText().equals("Anthem Dental Family Value"), "Anthem Dental Family Value are not displayed.");
-        softAssert.assertTrue(dentalPlanNames.get(2).getText().equals("Delta Dental of Colorado Family Value Plan"), "Colorado Family Value Plan are not displayed.");
-        softAssert.assertAll();
-    }
     public void iGetFirstDentalPlanName() {
         basicActions.waitForElementListToBePresent( dentalPlanNames, 10 );
         SharedData.setFirstPlanNameOnDentalResultsPage( dentalPlanNames.get( 0 ).getText() );

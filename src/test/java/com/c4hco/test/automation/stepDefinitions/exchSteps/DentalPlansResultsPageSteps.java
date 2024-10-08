@@ -27,10 +27,6 @@ public class DentalPlansResultsPageSteps {
     @And("I validate the text in dental plan results page")
     public void DentalresultspagetextValidation(){dentalPlansResultsPage.DentalresultspagetextValidation();}
 
-    @And("I validate the dental plans results page")
-    public void verifydentalplans(){dentalPlansResultsPage.verifydentalplans();}
-
-
     @And ("I validate for Pediatric and Adult Dental Plans")
     public void validatePediatricAndAdult(){dentalPlansResultsPage.validateAdultPediatric();}
 
