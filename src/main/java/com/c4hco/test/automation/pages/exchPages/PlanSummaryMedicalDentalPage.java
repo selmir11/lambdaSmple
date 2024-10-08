@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -68,7 +69,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
     WebElement medicalPremiumAfterAPTCAmt;
 
-    @FindBy(xpath="//span[contains(@id,'PlanSummary-MedicalPremiumReductionAmount')]")//css=".reduction-amount")
+    @FindBy(css = "#PlanSummary-MedicalPremiumReductionAmount_0")
     List<WebElement> medicalAPTCAmt;
 
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")

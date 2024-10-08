@@ -158,8 +158,7 @@ public class MyPoliciesPage {
                 "dental plan name did not match. Actual on page::"+planNames.get(1).getText()+"::Expected::"+primaryMember.getDentalPlan());
         softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getDentalPlanStartDate(), "Dental start date didn't match");
         softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getDentalPlanEndDate(), "Dental end date didnt match");
-
-        softAssert.assertEquals(premiumAmt.get(1).getText(), primaryMember.getDentalPremiumAmt(), "Dental premium did not match");
+        softAssert.assertEquals(premiumAmt.get(1).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$", ""), "Dental premium did not match");
         softAssert.assertTrue(policyNumSubscriber.get(6).getText().equals("Exchange Policy Number:"));
         softAssert.assertEquals(policyNumSubscriber.get(7).getText(), primaryMember.getDentalEapid_db(), "Dental EAPID mismatch");
         softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
@@ -224,7 +223,7 @@ public class MyPoliciesPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()));
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
-        softAssert.assertEquals(tableRecord.get(2).getText(), primaryMember.getDentalPremiumAmt(), "Dental premium did not match" );
+        softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
         softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00")); //  financial help
         softAssert.assertEquals(tableRecord.get(4).getText(), primaryMember.getDentalPlanStartDate(), "dental plan start date did not match");
         softAssert.assertEquals(tableRecord.get(5).getText(), primaryMember.getDentalPlanEndDate(), "dental plan end date did not match");
