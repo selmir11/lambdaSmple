@@ -56,23 +56,17 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
-    Then I validate I am on the "Exch Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Hispanic or Latino" for race and ethnicity
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-
     Then I click Add Another Family Member
-
-
     Then I validate I am on the "Add Member" page
-
     Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "03022010", "Female" and applying "Yes"
       |Primary:Daughter|
-
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -83,8 +77,8 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Exch Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Hispanic or Latino" for race and ethnicity
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
