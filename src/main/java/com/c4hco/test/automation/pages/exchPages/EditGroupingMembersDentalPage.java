@@ -67,7 +67,7 @@ public class EditGroupingMembersDentalPage {
             String[] groupDetail =  group.split(":");
             String[] Names = groupDetail[0].split(",");
             for(String Name: Names){
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + Name + "')]"));
                 WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size()-1);
                 basicActions.wait(3000);
                 basicActions.scrollToElement(dragElement);

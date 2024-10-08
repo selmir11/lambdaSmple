@@ -21,7 +21,7 @@ public class GroupingMembersMedicalPage {
     List<WebElement> groupingPageText;
     @FindBy(css = ".th-title")
     WebElement medicalGroup1;
-    @FindBy(css = "th.th-title")
+    @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
     List<WebElement> noOfGroups;
     @FindBy(id="SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;

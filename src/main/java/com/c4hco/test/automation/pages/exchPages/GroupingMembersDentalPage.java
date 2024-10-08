@@ -26,7 +26,7 @@ public class GroupingMembersDentalPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(css = "table .th-title")
+    @FindBy(css = "#SOL-ViewGroupingMembers-DentalGroup")
     List<WebElement> groupTitle;
 
     private BasicActions basicActions;
