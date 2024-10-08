@@ -75,7 +75,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I validate I am on the "Dental Plan Results" page
     Then I validate the dental plans count to be "9"
 
-  @SLER-1003 @dentalPlanMinorCount @test
+  @SLER-1003 @dentalPlanMinorCount
   Scenario: SLER-1003 - Validate dental plans count - single minor - no income
     Given I open the login page on the "login" portal
 
