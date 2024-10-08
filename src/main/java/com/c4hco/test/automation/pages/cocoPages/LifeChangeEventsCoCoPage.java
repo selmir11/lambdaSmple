@@ -31,6 +31,12 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(css = ".page-header")
     WebElement hdr_LceText;
 
+    @FindBy(css = "body > app-root > lib-base-layout > div > main > div > app-lce-page > app-container > div > div > div.parent-position > lib-list-error > lib-error-msg > div")
+    WebElement selectLCEError;
+    @FindBy(xpath = "//*[text()='Please select who this change applies to:']")
+    WebElement selectLCEMemberError;
+    @FindBy(xpath = "//*[text()='Event date required']")
+    WebElement selectLCEDateError;
     @FindBy(css = "#ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
     WebElement insuranceLossLCEContainer;
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
@@ -183,6 +189,119 @@ public class LifeChangeEventsCoCoPage {
                     memberChangeOfAddressCheckbox.get(i).click();
                     basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i),10);
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
+                    movedToColoradoCheckbox.get(i).click();
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + LCEType);
+        }
+    }
+
+    public void selectLCECheckbox(String LCEType) {
+        basicActions.waitForElementToDisappear(spinner,20);
+        switch (LCEType) {
+            case "InsuranceLoss":
+                basicActions.waitForElementToBeClickable(insuranceLossLCE,10);
+                insuranceLossLCE.click();
+                break;
+            case "Birth":
+                basicActions.waitForElementToBeClickable(birthLCE,10);
+                birthLCE.click();
+                break;
+            case "Pregnancy":
+                basicActions.waitForElementToBeClickable(pregnancyLCE,10);
+                pregnancyLCE.click();
+                break;
+            case "Marriage":
+                basicActions.waitForElementToBeClickable(marriageLCE,10);
+                marriageLCE.click();
+                break;
+            case "Divorce":
+                basicActions.waitForElementToBeClickable(divorceLCE,10);
+                divorceLCE.click();
+                break;
+            case "Death":
+                basicActions.waitForElementToBeClickable(deathLCE,10);
+                deathLCE.click();
+                break;
+            case "Move":
+                basicActions.waitForElementToBeClickable(addressChangeLCE,10);
+                addressChangeLCE.click();
+                break;
+            case "MoveToCO":
+                basicActions.waitForElementToBeClickable(addressChangeLCE,10);
+                addressChangeLCE.click();
+                List<WebElement> memberChangeOfAddressCheckbox = null;
+                List<WebElement> changeOfAddressEventDate = null;
+
+                memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
+                changeOfAddressEventDate = qachangeOfAddressEventDate;
+
+
+                for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
+                    basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);
+                    memberChangeOfAddressCheckbox.get(i).click();
+                    basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i),10);
+                    changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
+                    movedToColoradoCheckbox.get(i).click();
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + LCEType);
+        }
+    }
+
+    public void selectMemberForLCE(String LCEType) {
+        basicActions.waitForElementToDisappear(spinner,20);
+        switch (LCEType) {
+            case "InsuranceLoss":
+                for (WebElement memberInsuranceLossCheckbox : allMemberInsuranceLossCheckbox) {
+                    memberInsuranceLossCheckbox.click();
+                }
+                break;
+            case "Birth":
+                for (WebElement membersBirthCheckbox : allMembersBirthCheckbox) {
+                    membersBirthCheckbox.click();
+                }
+                break;
+            case "Pregnancy":
+                for (WebElement membersPregnancyCheckbox : allMembersPregnancyCheckbox) {
+                    membersPregnancyCheckbox.click();
+                }
+                break;
+            case "Marriage":
+                for (WebElement membersMarriageCheckbox : allMembersMarriageCheckbox) {
+                    membersMarriageCheckbox.click();
+                }
+                break;
+            case "Divorce":
+                for (WebElement membersDivorceCheckbox : allMembersDivorceCheckbox) {
+                    membersDivorceCheckbox.click();
+                }
+                break;
+            case "Death":
+                for (WebElement membersDeathCheckbox : allMembersDeathCheckbox) {
+                    membersDeathCheckbox.click();
+                }
+                break;
+            case "Move":
+                List<WebElement> memberChangeOfAddressCheckbx = null;
+
+                memberChangeOfAddressCheckbx = qamemberChangeOfAddressCheckbox;
+                for (WebElement changeOfAddressCheckbx : memberChangeOfAddressCheckbx) {
+                    basicActions.waitForElementToBeClickable(changeOfAddressCheckbx, 10);
+                    changeOfAddressCheckbx.click();
+                }
+                break;
+            case "MoveToCO":
+                List<WebElement> memberChangeOfAddressCheckbox = null;
+
+                memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
+
+
+                for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
+                    basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);
+                    memberChangeOfAddressCheckbox.get(i).click();
                     movedToColoradoCheckbox.get(i).click();
                 }
                 break;
@@ -394,6 +513,122 @@ public class LifeChangeEventsCoCoPage {
                 }
                 break;
 
+        }
+    }
+    public void verifyErrorMessage(String errorType, String exist, String language) {
+        switch (errorType) {
+            case "Please select option":
+                switch (exist){
+                    case "does":
+                        basicActions.waitForElementPresence(selectLCEError, 1);
+                        verifyLCEError(language);
+                        break;
+                    case "does not":
+                        softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEError, 1).booleanValue(), false);
+                        softAssert.assertAll();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + exist);
+                }
+                break;
+            case "Please select member":
+                switch (exist){
+                    case "does":
+                        basicActions.waitForElementPresence(selectLCEMemberError, 1);
+                        verifyLCEMemberError(language);
+                        break;
+                    case "does not":
+                        softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEMemberError, 1).booleanValue(), false);
+                        softAssert.assertAll();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + exist);
+                }
+                break;
+            case "Event date":
+                switch (exist){
+                    case "does":
+                        verifyLCEDateError(language);
+                        break;
+                    case "does not":
+                        softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEDateError, 1).booleanValue(), false);
+                        softAssert.assertAll();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + exist);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + errorType);
+        }
+    }
+
+    public void verifyLCEError(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(selectLCEError.getText(), "Please select one or more of the options below:");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(selectLCEError.getText(), "Seleccione una o más de las siguientes opciones:");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCEMemberError(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(selectLCEMemberError.getText(), "Please select who this change applies to:");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(selectLCEMemberError.getText(), "Seleccione la persona a quien aplica este cambio:");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(selectLCEMemberError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCEDateError(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(selectLCEDateError.getText(), "Event date required");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(selectLCEDateError.getText(), "La fecha del evento es obligatoria");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 }

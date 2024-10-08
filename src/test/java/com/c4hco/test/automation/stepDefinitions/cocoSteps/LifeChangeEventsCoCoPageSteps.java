@@ -13,6 +13,14 @@ public class LifeChangeEventsCoCoPageSteps {
         lifeChangeEventsCoCoPage.selectLCE(lceOption);
     }
 
+    @And("I check {string} life change event checkbox")
+    public void selectQLCEOptionCheckbox(String lceOption){
+        lifeChangeEventsCoCoPage.selectLCECheckbox(lceOption);
+    }
+
+    @And("I select all members of {string} Life Change Event")
+    public void selectMemberForLCEOption(String lifeChangeEvent){lifeChangeEventsCoCoPage.selectMemberForLCE(lifeChangeEvent);}
+
     @And("I select None of these life change event")
     public void selectNoneOfTheseLCEOption(){lifeChangeEventsCoCoPage.selectNoneOfThese();}
 
@@ -33,5 +41,8 @@ public class LifeChangeEventsCoCoPageSteps {
 
     @Then("I verify {string} life change event {string} selected")
     public void iVerifyLCECheckboxState(String LCEType, String Selection){lifeChangeEventsCoCoPage.verifyLCECheckboxState(LCEType, Selection);}
+
+    @Then("I verify {string} error {string} exist in {string}")
+    public void iVerifyErrorMessage(String errorType, String exist,String language){lifeChangeEventsCoCoPage.verifyErrorMessage(errorType, exist, language);}
 
 }
