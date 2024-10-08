@@ -123,6 +123,35 @@ Scenario: SLER-747 - Validate dental plans count - single adult
 
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+    Then I wait for 500 milliseconds
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+
+    Then I validate I am on the "Employment Info" page
+    Then I select the option "No" to employment
+    Then I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Addtional income" page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
 
     Then I validate I am on the "Tell us about life changes" page
     Then I select "Birth" QLCE on tell us about life changes page
