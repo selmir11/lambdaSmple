@@ -214,6 +214,38 @@ public class CacScreenerPage {
         retakeQuizBtn.click();
     }
 
+    public void clickResultBtn(String option){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt, 40);
+        switch(option) {
+            case "HealthFirst button":
+                basicActions.scrollToElement(resultsHealthFirstColoradoBtn);
+                resultsHealthFirstColoradoBtn.click();
+                break;
+            case "HealthFirst link":
+                basicActions.scrollToElement(resultsHealthFirstColoradoNextLnk);
+                resultsHealthFirstColoradoNextLnk.click();
+                break;
+            case "C4HCO":
+                basicActions.scrollToElement(resultsC4HCOBtn);
+                resultsC4HCOBtn.click();
+                break;
+            case "SES Renewal":
+                basicActions.scrollToElement(resultsSESRenewalBtn);
+                resultsSESRenewalBtn.click();
+                break;
+            case "SES New":
+                basicActions.scrollToElement(resultsSESNewBtn);
+                resultsSESNewBtn.click();
+                break;
+            case "Enrollment Expert":
+                basicActions.scrollToElement(needHelpLnk);
+                needHelpLnk.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + option);
+        }
+    }
+
 
 
 
@@ -297,13 +329,15 @@ public class CacScreenerPage {
                 expectedTexts.put("header", "These are the coverage options available to your household:");
                 expectedTexts.put("HealthFirst", "Health First Colorado or Child Health Plan Plus (CHP+)");
                 expectedTexts.put("C4HCO", "Connect for Health Colorado");
-                expectedTexts.put("SES", "The OmniSalud program (through Colorado Connect)");
+                expectedTexts.put("SES Renewal", "The OmniSalud program (through Colorado Connect)");
+                expectedTexts.put("SES New", "The OmniSalud program (through Colorado Connect)");
                 break;
             case "Spanish":
                 expectedTexts.put("header", "Estas son las opciones de cobertura disponibles para su familia:"); // Add actual Spanish text
                 expectedTexts.put("HealthFirst", "Health First Colorado o Child Health Plan Plus (CHP+)");
                 expectedTexts.put("C4HCO", "Connect for Health Colorado");
-                expectedTexts.put("SES", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+                expectedTexts.put("SES Renewal", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+                expectedTexts.put("SES New", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -324,8 +358,11 @@ public class CacScreenerPage {
             case "C4HCO":
                 softAssert.assertEquals(resultsC4HCOHdrTxt.getText(), expectedText);
                 break;
-            case "SES":
+            case "SES Renewal":
                 softAssert.assertEquals(resultsSESRenewalHdrTxt.getText(), expectedText);
+                break;
+            case "SES New":
+                softAssert.assertEquals(resultsSESNewHdrTxt.getText(), expectedText);
                 break;
         }
         softAssert.assertAll();
