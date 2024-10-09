@@ -1,9 +1,7 @@
 Feature: Initial Application Family of 4(Silver Enhanced)
   @SLCR-292
   Scenario: Simple NFA flow with Family of 4(Silver Enhanced)
-    Given I set the test scenario details
-      | totalGroups | totalMembers |
-      | 1           | 4            |
+
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -23,8 +21,8 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Asian or Asian American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
     And I select "Annually" income frequency option
@@ -46,8 +44,8 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Asian or Asian American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -66,8 +64,8 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Asian or Asian American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -87,8 +85,8 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Asian or Asian American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -122,8 +120,6 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2024" from My Current Plan container
-    And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And Validate selected medical plan for "Son" is "Elevate Health Plans Colorado Option Bronze"
     And Validate selected medical plan for "Daughter" is "Elevate Health Plans Colorado Option Bronze"

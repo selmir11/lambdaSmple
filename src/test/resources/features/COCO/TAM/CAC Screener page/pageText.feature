@@ -35,7 +35,7 @@ Feature: Page Text-Welcome Page
     And I validate results option for "header" on CAC Screener page displays in "English"
     And I validate results option for "HealthFirst" on CAC Screener page displays in "English"
     And I validate results option for "C4HCO" on CAC Screener page displays in "English"
-    And I validate results option for "SES" on CAC Screener page displays in "English"
+    And I validate results option for "SES Renewal" on CAC Screener page displays in "English"
 
     Then I click Retake quiz button on the CAC Screener page
     And I validate "Yes" option for "under 19" on CAC Screener page is "false"
@@ -55,11 +55,11 @@ Feature: Page Text-Welcome Page
     Then I click See results button on the CAC Screener page
     And I validate results option for "header" on CAC Screener page displays in "English"
     And I validate results option for "C4HCO" on CAC Screener page displays in "English"
-    And I validate results option for "SES" on CAC Screener page displays in "English"
+    And I validate results option for "SES Renewal" on CAC Screener page displays in "English"
     And I refresh the page
     And I validate results option for "header" on CAC Screener page displays in "English"
     And I validate results option for "C4HCO" on CAC Screener page displays in "English"
-    And I validate results option for "SES" on CAC Screener page displays in "English"
+    And I validate results option for "SES Renewal" on CAC Screener page displays in "English"
     And I validate "Yes" option for "under 19" on CAC Screener page is "false"
     And I validate "No" option for "under 19" on CAC Screener page is "true"
     And I validate "Yes" option for "pregnant" on CAC Screener page is "false"
@@ -96,7 +96,7 @@ Feature: Page Text-Welcome Page
     And I validate results option for "header" on CAC Screener page displays in "Spanish"
     And I validate results option for "HealthFirst" on CAC Screener page displays in "Spanish"
     And I validate results option for "C4HCO" on CAC Screener page displays in "Spanish"
-    And I validate results option for "SES" on CAC Screener page displays in "Spanish"
+    And I validate results option for "SES Renewal" on CAC Screener page displays in "Spanish"
 
     Then I click Retake quiz button on the CAC Screener page
     And I validate "Yes" option for "under 19" on CAC Screener page is "false"
@@ -116,11 +116,11 @@ Feature: Page Text-Welcome Page
     Then I click See results button on the CAC Screener page
     And I validate results option for "header" on CAC Screener page displays in "Spanish"
     And I validate results option for "C4HCO" on CAC Screener page displays in "Spanish"
-    And I validate results option for "SES" on CAC Screener page displays in "Spanish"
+    And I validate results option for "SES Renewal" on CAC Screener page displays in "Spanish"
     And I refresh the page
     And I validate results option for "header" on CAC Screener page displays in "Spanish"
     And I validate results option for "C4HCO" on CAC Screener page displays in "Spanish"
-    And I validate results option for "SES" on CAC Screener page displays in "Spanish"
+    And I validate results option for "SES Renewal" on CAC Screener page displays in "Spanish"
     And I validate "Yes" option for "under 19" on CAC Screener page is "false"
     And I validate "No" option for "under 19" on CAC Screener page is "true"
     And I validate "Yes" option for "pregnant" on CAC Screener page is "false"

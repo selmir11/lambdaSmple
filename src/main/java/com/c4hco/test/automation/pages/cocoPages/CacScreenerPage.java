@@ -97,14 +97,68 @@ public class CacScreenerPage {
     @FindBy(css = ".results.ng-star-inserted > div")
     WebElement resultsHeaderTxt;
 
-    @FindBy(xpath = "//app-enrollment-option[contains(@keyprefix, 'healthFirstColorado')]//div[contains(@class, 'c4-type-header-sm')]")
-    WebElement resultsHealthFirstColoradoTxt;
+    @FindBy(css = "#healthFirstColorado-enrollment-option img")
+    WebElement resultsHealthFirstColoradoImg;
 
-    @FindBy(xpath = "//app-enrollment-option[contains(@keyprefix, 'connectForHealthColorado')]//div[contains(@class, 'c4-type-header-sm')]")
-    WebElement resultsC4HCOtxt;
+    @FindBy(css = "#healthFirstColorado-enrollment-option .c4-type-header-sm")
+    WebElement resultsHealthFirstColoradoHdrTxt;
 
-    @FindBy(xpath = "//app-enrollment-option[contains(@keyprefix, 'coloradoConnectReenroll')]//div[contains(@class, 'c4-type-header-sm')]")
-    WebElement resultsSEStxt;
+    @FindBy(css = "#healthFirstColorado-enrollment-option .main-text")
+    WebElement resultsHealthFirstColoradoMainTxt;
+
+    @FindBy(css = "#healthFirstColorado-enrollment-option .next-step")
+    WebElement resultsHealthFirstColoradoNextTxt;
+
+    @FindBy(css = "#healthFirstColorado-enrollment-option .next-step a")
+    WebElement resultsHealthFirstColoradoNextLnk;
+
+    @FindBy(css = "#healthFirstColorado-enrollment-option .nav-link")
+    WebElement resultsHealthFirstColoradoBtn;
+
+    @FindBy(css = "#connectForHealthColorado-enrollment-option img")
+    WebElement resultsC4HCOImg;
+
+    @FindBy(css = "#connectForHealthColorado-enrollment-option .c4-type-header-sm")
+    WebElement resultsC4HCOHdrTxt;
+
+    @FindBy(css = "#connectForHealthColorado-enrollment-option .main-text")
+    WebElement resultsC4HCOMainTxt;
+
+    @FindBy(css = "#connectForHealthColorado-enrollment-option .next-step")
+    WebElement resultsC4HCONextTxt;
+
+    @FindBy(css = "#connectForHealthColorado-enrollment-option .nav-link")
+    WebElement resultsC4HCOBtn;
+
+    @FindBy(css = "#cocoReenroll-enrollment-option img")
+    WebElement resultsSESRenewalImg;
+
+    @FindBy(css = "#cocoReenroll-enrollment-option .c4-type-header-sm")
+    WebElement resultsSESRenewalHdrTxt;
+
+    @FindBy(css = "#cocoReenroll-enrollment-option .main-text")
+    WebElement resultsSESRenewalMainTxt;
+
+    @FindBy(css = "#cocoReenroll-enrollment-option .next-step")
+    WebElement resultsSESRenewalNextTxt;
+
+    @FindBy(css = "#cocoReenroll-enrollment-option .nav-link")
+    WebElement resultsSESRenewalBtn;
+
+    @FindBy(css = "#cocoNewEnroll-enrollment-option img")
+    WebElement resultsSESNewImg;
+
+    @FindBy(css = "#cocoNewEnroll-enrollment-option .c4-type-header-sm")
+    WebElement resultsSESNewHdrTxt;
+
+    @FindBy(css = "#cocoNewEnroll-enrollment-option .main-text")
+    WebElement resultsSESNewMainTxt;
+
+    @FindBy(css = "#cocoNewEnroll-enrollment-option .next-step")
+    WebElement resultsSESNewNextTxt;
+
+    @FindBy(css = "#cocoNewEnroll-enrollment-option .nav-link")
+    WebElement resultsSESNewBtn;
 
     @FindBy(css = ".footer-buttons button")
     WebElement continueSignInBtn;
@@ -158,6 +212,38 @@ public class CacScreenerPage {
         basicActions.waitForElementToBeClickable(retakeQuizBtn, 20);
         basicActions.scrollToElement(retakeQuizBtn);
         retakeQuizBtn.click();
+    }
+
+    public void clickResultBtn(String option){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt, 40);
+        switch(option) {
+            case "HealthFirst button":
+                basicActions.scrollToElement(resultsHealthFirstColoradoBtn);
+                resultsHealthFirstColoradoBtn.click();
+                break;
+            case "HealthFirst link":
+                basicActions.scrollToElement(resultsHealthFirstColoradoNextLnk);
+                resultsHealthFirstColoradoNextLnk.click();
+                break;
+            case "C4HCO":
+                basicActions.scrollToElement(resultsC4HCOBtn);
+                resultsC4HCOBtn.click();
+                break;
+            case "SES Renewal":
+                basicActions.scrollToElement(resultsSESRenewalBtn);
+                resultsSESRenewalBtn.click();
+                break;
+            case "SES New":
+                basicActions.scrollToElement(resultsSESNewBtn);
+                resultsSESNewBtn.click();
+                break;
+            case "Enrollment Expert":
+                basicActions.scrollToElement(needHelpLnk);
+                needHelpLnk.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + option);
+        }
     }
 
 
@@ -243,13 +329,15 @@ public class CacScreenerPage {
                 expectedTexts.put("header", "These are the coverage options available to your household:");
                 expectedTexts.put("HealthFirst", "Health First Colorado or Child Health Plan Plus (CHP+)");
                 expectedTexts.put("C4HCO", "Connect for Health Colorado");
-                expectedTexts.put("SES", "The OmniSalud program (through Colorado Connect)");
+                expectedTexts.put("SES Renewal", "The OmniSalud program (through Colorado Connect)");
+                expectedTexts.put("SES New", "The OmniSalud program (through Colorado Connect)");
                 break;
             case "Spanish":
                 expectedTexts.put("header", "Estas son las opciones de cobertura disponibles para su familia:"); // Add actual Spanish text
                 expectedTexts.put("HealthFirst", "Health First Colorado o Child Health Plan Plus (CHP+)");
                 expectedTexts.put("C4HCO", "Connect for Health Colorado");
-                expectedTexts.put("SES", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+                expectedTexts.put("SES Renewal", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+                expectedTexts.put("SES New", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -265,13 +353,16 @@ public class CacScreenerPage {
                 softAssert.assertEquals(resultsHeaderTxt.getText(), expectedText);
                 break;
             case "HealthFirst":
-                softAssert.assertEquals(resultsHealthFirstColoradoTxt.getText(), expectedText);
+                softAssert.assertEquals(resultsHealthFirstColoradoHdrTxt.getText(), expectedText);
                 break;
             case "C4HCO":
-                softAssert.assertEquals(resultsC4HCOtxt.getText(), expectedText);
+                softAssert.assertEquals(resultsC4HCOHdrTxt.getText(), expectedText);
                 break;
-            case "SES":
-                softAssert.assertEquals(resultsSEStxt.getText(), expectedText);
+            case "SES Renewal":
+                softAssert.assertEquals(resultsSESRenewalHdrTxt.getText(), expectedText);
+                break;
+            case "SES New":
+                softAssert.assertEquals(resultsSESNewHdrTxt.getText(), expectedText);
                 break;
         }
         softAssert.assertAll();
@@ -281,13 +372,13 @@ public class CacScreenerPage {
         basicActions.waitForElementToBePresent(resultsHeaderTxt, 40);
         switch (screenerOption) {
             case "HealthFirst":
-                softAssert.assertFalse(basicActions.waitForElementPresence(resultsHealthFirstColoradoTxt,30));
+                softAssert.assertFalse(basicActions.waitForElementPresence(resultsHealthFirstColoradoHdrTxt,30));
                 break;
             case "C4HCO":
-                softAssert.assertFalse(basicActions.waitForElementPresence(resultsC4HCOtxt,30));
+                softAssert.assertFalse(basicActions.waitForElementPresence(resultsC4HCOHdrTxt,30));
                 break;
             case "SES":
-                softAssert.assertFalse(basicActions.waitForElementPresence(resultsSEStxt,30));
+                softAssert.assertFalse(basicActions.waitForElementPresence(resultsSESRenewalHdrTxt,30));
                 break;
         }
         softAssert.assertAll();
@@ -344,6 +435,18 @@ public class CacScreenerPage {
                 case "Main":
                     validatePageTextMainEnglish();
                     break;
+                case "HealthFirst":
+                    validatePageHealthFirstTextEnglish();
+                    break;
+                case "C4HCO":
+                    validatePageC4HCOTextEnglish();
+                    break;
+                case "SES Renewal":
+                    validatePageSESRenewalTextEnglish();
+                    break;
+                case "SES New":
+                    validatePageSESNewTextEnglish();
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + section);
             }
@@ -354,6 +457,18 @@ public class CacScreenerPage {
             switch (section) {
                 case "Main":
                     validatePageTextMainSpanish();
+                    break;
+                case "HealthFirst":
+                    validatePageHealthFirstTextSpanish();
+                    break;
+                case "C4HCO":
+                    validatePageC4HCOTextSpanish();
+                    break;
+                case "SES Renewal":
+                    validatePageSESRenewalTextSpanish();
+                    break;
+                case "SES New":
+                    validatePageSESNewTextSpanish();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + section);
@@ -406,12 +521,14 @@ public class CacScreenerPage {
         softAssert.assertEquals(pregnantAnswer.get(2).getText(), "No");
         softAssert.assertEquals(dacaQuestion.getText(), "\u00BFAlg\u00FAn miembro de su familia recibe la Consideraci\u00F3n de Acci\u00F3n Diferida para los Llegados en la Infancia (DACA, por su sigla en ingl\u00E9s)?");
         softAssert.assertEquals(dacaSubQuestion.getText(), "\u00BFQu\u00E9 es DACA?");
+        basicActions.scrollToElement(dacaSubQuestion);
         builder.moveToElement(dacaSubQuestion).perform();
         softAssert.assertEquals(dacaTootlTip.getText(), "DACA es una pol\u00EDtica federal que protege a los inmigrantes elegibles que llegaron a los Estados Unidos cuando eran ni\u00F1os contra la deportaci\u00F3n, entre otras cosas.");
         softAssert.assertEquals(dacaAnswer.get(1).getText(), "S\u00ED");
         softAssert.assertEquals(dacaAnswer.get(2).getText(), "No");
         softAssert.assertEquals(sesQuestion.getText(), "\u00BFAlg\u00FAn miembro de su familia recibe actualmente ayuda financiera de Ahorros SilverEnhanced a trav\u00E9s del programa de OmniSalud?");
         softAssert.assertEquals(sesSubQuestion.getText(), "\u00BFC\u00F3mo puedo saber si estoy recibiendo Ahorros SilverEnhanced?");
+        basicActions.scrollToElement(sesSubQuestion);
         builder.moveToElement(sesSubQuestion).perform();
         softAssert.assertEquals(sesTootlTip.getText(), "Si est\u00E1 inscrito en Ahorros SilverEnhanced, su plan de seguro de salud mostrar\u00E1 las palabras \u201CSilver Enhanced 94\u0025\u201D en el nombre.");
         softAssert.assertEquals(sesAnswer.get(1).getText(), "S\u00ED");
@@ -419,6 +536,102 @@ public class CacScreenerPage {
         softAssert.assertEquals(seeResultsBtn.getText(), "Ver resultados");
         softAssert.assertEquals(needHelpBanner.getText(), "\u00BFNecesita ayuda para decidir qu\u00E9 hacer?\nContacte a un experto en inscripci\u00F3n certificado.");
         softAssert.assertEquals(continueSignInBtn.getText(), "Continuar con el inicio de sesi\u00F3n");
+        softAssert.assertAll();
+    }
+
+    public void validatePageHealthFirstTextEnglish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsHealthFirstColoradoImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsHealthFirstColoradoHdrTxt.getText(), "Health First Colorado or Child Health Plan Plus (CHP+)");
+        softAssert.assertEquals(resultsHealthFirstColoradoMainTxt.getText(), "Anyone in your household who is under 19 or pregnant may qualify for Health First Colorado or CHP+ as of January 1st, 2025. This is because of a new Colorado law that makes these individuals eligible for Medicaid programs, regardless of documentation status.");
+        softAssert.assertEquals(resultsHealthFirstColoradoNextTxt.getText(), "Next step: Visit HealthFirstColorado.com to see if your income qualifies and get started.");
+        softAssert.assertEquals(resultsHealthFirstColoradoBtn.getText(), "Go to Health First Colorado");
+        softAssert.assertAll();
+    }
+
+    public void validatePageHealthFirstTextSpanish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsHealthFirstColoradoImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsHealthFirstColoradoHdrTxt.getText(), "Health First Colorado o Child Health Plan Plus (CHP+)");
+        softAssert.assertEquals(resultsHealthFirstColoradoMainTxt.getText(), "Alguna persona de su familia que est\u00E9 embarazada o sea menor de 19 a\u00F1os podr\u00EDa calificar para el programa Health First Colorado o CHP+ a partir del 1\u00BA de enero de 2025 gracias a una nueva ley de Colorado que permite que estas personas sean elegibles para programas de Medicaid, independientemente del estado de su documentaci\u00F3n.");
+        softAssert.assertEquals(resultsHealthFirstColoradoNextTxt.getText(), "Paso siguiente: Paso siguiente: visite HealthFirstColorado.com para saber si su ingreso califica e iniciar el proceso.");
+        softAssert.assertEquals(resultsHealthFirstColoradoBtn.getText(), "Ir a Health First Colorado");
+        softAssert.assertAll();
+    }
+
+    public void validatePageC4HCOTextEnglish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsC4HCOImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsC4HCOHdrTxt.getText(), "Connect for Health Colorado");
+        softAssert.assertEquals(resultsC4HCOMainTxt.getText(), "Due to a new regulation, anyone in your household that has DACA status can enroll in health coverage through Connect for Health Colorado. They may also qualify for financial help to reduce the cost of health coverage.");
+        softAssert.assertEquals(resultsC4HCONextTxt.getText(), "Next step: Log out and create a new account through Connect for Health Colorado, using a different email than your Colorado Connect account.");
+        softAssert.assertEquals(resultsC4HCOBtn.getText(), "Create Connect for Health Colorado Account");
+        softAssert.assertAll();
+    }
+
+    public void validatePageC4HCOTextSpanish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsC4HCOImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsC4HCOHdrTxt.getText(), "Connect for Health Colorado");
+        softAssert.assertEquals(resultsC4HCOMainTxt.getText(), "Debido a una nueva reglamentaci\u00F3n, cualquier miembro de su familia que tenga un estado DACA puede inscribirse en una cobertura de salud a trav\u00E9s de Connect for Health Colorado. Es posible que tambi\u00E9n califique para obtener ayuda financiera que le permitir\u00E1 reducir el costo de dicha cobertura.");
+        softAssert.assertEquals(resultsC4HCONextTxt.getText(), "Paso siguiente: Paso siguiente: cierre la sesi\u00F3n y cree una cuenta nueva a trav\u00E9s de Connect for Health Colorado usando un correo electr\u00F3nico diferente al de su cuenta de Colorado Connect.");
+        softAssert.assertEquals(resultsC4HCOBtn.getText(), "Crear una cuenta de Connect for Health Colorado");
+        softAssert.assertAll();
+    }
+
+    public void validatePageSESRenewalTextEnglish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsSESRenewalImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsSESRenewalHdrTxt.getText(), "The OmniSalud program (through Colorado Connect)");
+        softAssert.assertEquals(resultsSESRenewalMainTxt.getText(), "Anyone in your household who receives SilverEnhanced Savings has a chance to claim the same financial help for 2025. You should submit an application by November 22nd to claim it.");
+        softAssert.assertEquals(resultsSESRenewalNextTxt.getText(), "Next step: Continue to your Colorado Connect account");
+        softAssert.assertEquals(resultsSESRenewalBtn.getText(), "Re-enroll for 2025");
+        softAssert.assertAll();
+    }
+
+    public void validatePageSESRenewalTextSpanish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsSESRenewalImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsSESRenewalHdrTxt.getText(), "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+        softAssert.assertEquals(resultsSESRenewalMainTxt.getText(), "Cualquier miembro de su familia que reciba Ahorros SilverEnhanced tiene la oportunidad de solicitar la misma ayuda financiera para 2025. Para reclamarla, debe enviar una solicitud a m\u00E1s tardar el 22 de noviembre.");
+        softAssert.assertEquals(resultsSESRenewalNextTxt.getText(), "Paso siguiente: Paso siguiente: contin\u00FAe a su cuenta de Colorado Connect.");
+        softAssert.assertEquals(resultsSESRenewalBtn.getText(), "Reinscribirse para 2025");
+        softAssert.assertAll();
+    }
+
+    public void validatePageSESNewTextEnglish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsSESNewImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsSESNewHdrTxt.getText(), "The OmniSalud program (through Colorado Connect)");
+        softAssert.assertEquals(resultsSESNewMainTxt.getText(), "Some individuals in your household may qualify for coverage offered through the OmniSalud Program. This program is provided through a separate, secure marketplace \u2013 called Colorado Connect \u2013 where people can enroll in private health plans and apply for financial help regardless of immigration status.");
+        softAssert.assertEquals(resultsSESNewNextTxt.getText(), "Next step: Continue to your Colorado Connect account");
+        softAssert.assertEquals(resultsSESNewBtn.getText(), "Continue to Colorado Connect");
+        softAssert.assertAll();
+    }
+
+    public void validatePageSESNewTextSpanish(){
+        basicActions.waitForElementToBePresent(resultsHeaderTxt,10);
+        basicActions.scrollToElement(resultsHeaderTxt);
+
+        softAssert.assertTrue(resultsSESNewImg.isDisplayed(), "Image is NOT displayed on the page.");
+        softAssert.assertEquals(resultsSESNewHdrTxt.getText(), "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+        softAssert.assertEquals(resultsSESNewMainTxt.getText(), "Es posible que algunos miembros de su familia califiquen para obtener la cobertura que se ofrece a trav\u00E9s del programa de OmniSalud. Este programa se ofrece a trav\u00E9s de un mercado seguro independiente (llamado Colorado Connect) donde las personas se pueden inscribir en planes de salud privados y solicitar ayuda financiera independientemente de su estatus migratorio.");
+        softAssert.assertEquals(resultsSESNewNextTxt.getText(), "Paso siguiente: Paso siguiente: contin\u00FAe a su cuenta de Colorado Connect.");
+        softAssert.assertEquals(resultsSESNewBtn.getText(), "Contin\u00FAe a su cuenta de Colorado Connect");
         softAssert.assertAll();
     }
 

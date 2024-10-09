@@ -20,6 +20,9 @@ public class CacScreenerPageSteps {
     @Then("I click Retake quiz button on the CAC Screener page")
     public void iClickRetakeQuiz(){cacScreenerPage.clickRetakeQuiz();}
 
+    @Then("I click {string} in results on the CAC Screener page")
+    public void iClickResultBtn(String option){cacScreenerPage.clickResultBtn(option);}
+
 
 
 

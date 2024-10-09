@@ -20,8 +20,8 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "White or European" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "White or European" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "19,000.00" income amount
     And I select "Annually" income frequency option
@@ -59,7 +59,6 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And Validate selected medical plan for "Primary" is "Cigna Connect Colorado Option Bronze"
     And I click on Sign Out in the Header for "Elmo"

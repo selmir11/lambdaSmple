@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class AccountOverviewPage {
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
 
-    @FindBy(id = "submit-curr-yr-6")
+    @FindBy(id = "submit-curr-yr-4")
     WebElement makeChangesButton;
 
     @FindBy(css = ".c4PageHeader-large")
@@ -45,7 +46,7 @@ public class AccountOverviewPage {
 
     @FindBy(css = ".table-bordered tr:nth-child(1) td:nth-child(2) span b")
     List<WebElement> medicalMemberNames;
-    @FindBy(css = "p select option:nth-child(1)")
+    @FindBy(css = "option[selected='selected']")
     WebElement planYearOnWelcomeBackPage;
 
     private BasicActions basicActions;
@@ -158,13 +159,10 @@ public class AccountOverviewPage {
 
         softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
         softAssert.assertEquals(planInformationTable.get(totalDependents+4).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
-
-
+        //Dental
         softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
-
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
-
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText(), "$"+basicActions.doubleAmountFormat(primaryMember.getDentalPremiumAmt()), "Primary Dental Premium amount does not match");
+        softAssert.assertEquals(planInformationTable.get(9).getText(), primaryMember.getDentalAptcAmt(), "Dental APTC amount on account overview page mismatch");
         softAssert.assertAll();
     }
 
