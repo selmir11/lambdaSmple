@@ -402,7 +402,7 @@ Feature: Go Back tests
     And I click on Sign Out in the Header for "Elmo"
 
     @SLER-1104
-  Scenario: Go Back navigation for Two Tax household grouping  - group of 2  - two different zip codes - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
+  Scenario: SLER-1104 - Go Back navigation for Two Tax household grouping  - group of 2  - two different zip codes - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -442,6 +442,7 @@ Feature: Go Back tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page  
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
