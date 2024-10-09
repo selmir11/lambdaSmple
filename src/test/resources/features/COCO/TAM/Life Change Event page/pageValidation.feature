@@ -8,7 +8,7 @@ Feature: Page validation - Life Change Event page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
+    #Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
@@ -70,3 +70,76 @@ Feature: Page validation - Life Change Event page
     And I select continue on the Family Overview page
     Then I verify "AllSingle" life change event "is not" selected
     #Then I verify "NoneOfThese" life change event "is" selected
+
+  @SLCR-330
+  Scenario: SLCR-330 Verify error states of LCE page.
+    Then I verify "AllSingle" life change event "is not" selected
+    Then I verify "Please select option" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select option" error "does" exist in "English"
+    # Insurance loss check
+    And I check "InsuranceLoss" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "English"
+    Then I verify "Event date" error "does not" exist in "English"
+    And I select all members of "InsuranceLoss" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "English"
+    And I check "InsuranceLoss" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "English"
+    # Birth check
+    And I check "Birth" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "English"
+    Then I verify "Event date" error "does not" exist in "English"
+    And I select all members of "Birth" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "English"
+    And I check "Birth" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "English"
+    # Pregnancy check
+    And I check "Pregnancy" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "English"
+    Then I verify "Event date" error "does not" exist in "English"
+    And I select all members of "Pregnancy" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "English"
+    And I check "Pregnancy" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "English"
+    # Marriage check
+    And I check "Marriage" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "English"
+    Then I verify "Event date" error "does not" exist in "English"
+    And I select all members of "Marriage" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "English"
+    And I check "Marriage" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "English"
+    # Divorce check
+    And I check "Divorce" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "English"
+    Then I verify "Event date" error "does not" exist in "English"
+    And I select all members of "Divorce" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "English"
+    And I check "Divorce" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "English"
+    # Move check
+    And I check "Move" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "English"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "English"
+    Then I verify "Event date" error "does not" exist in "English"
+    And I select all members of "Move" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "English"
+    And I check "Move" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "English"
