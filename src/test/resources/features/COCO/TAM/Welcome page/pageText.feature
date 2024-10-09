@@ -107,6 +107,7 @@ Feature: Page Text-Welcome Page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
 
+    And I select year "2024" from My Current Plan container
     Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "English"
 
     And I click on Sign Out in the Header for "Elmo"
@@ -220,6 +221,7 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I select year "2024" from My Current Plan container
     Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"

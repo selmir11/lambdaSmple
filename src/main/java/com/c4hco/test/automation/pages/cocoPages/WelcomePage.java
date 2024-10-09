@@ -160,8 +160,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Additional Resources");
         softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
@@ -189,8 +189,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Otros recursos");
         softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
@@ -241,8 +241,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Additional Resources");
         softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
@@ -270,8 +270,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Otros recursos");
         softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
@@ -367,10 +367,10 @@ public class WelcomePage {
         else if (currentUrl == "https://qa") {
             softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para hacer cambios.");
         }
-        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Hacer cambios");
+        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Hacer cambios para 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
         softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getPrimaryMember().getFirstName());
         softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(policyMedicalPlan.getText(), "Plan m\u00E9dico");
