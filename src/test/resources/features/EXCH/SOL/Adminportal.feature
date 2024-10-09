@@ -273,7 +273,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-796-WIP
+  @SLER-796
   Scenario: Admin Portal OBO - FA - LCE Marriage
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -286,8 +286,9 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I select "individual" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
     And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
+    And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -406,10 +407,9 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     And I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I validate I am on the "Initial Payment" page
-    #And I click on Sign Out in the Header for "Elmo"
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
