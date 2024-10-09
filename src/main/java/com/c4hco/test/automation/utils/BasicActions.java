@@ -341,46 +341,6 @@ public class BasicActions {
         String primaryMemId = SharedData.getPrimaryMemberId();
         String newUrl = "";
         switch(page){
-            case "Elmo Other Health Coverage Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage";
-                newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo COBRA Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/cobra";
-                newUrl = currentUrl.replace("nes/cobra", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Retiree Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/retiree";
-                newUrl = currentUrl.replace("nes/retireeHealth", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Medicare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/medicare";
-                newUrl = currentUrl.replace("nes/medicare", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi VA Healthcare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/va";
-                newUrl = currentUrl.replace("nes/vaHealth", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Individual Insurance Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/individual";
-                newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Peace Corps Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/peaceCorps";
-                newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
-                getDriver().navigate().to(newUrl);
-				break;
-            case "Elmo Ohi Tricare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/tricare";
-                newUrl = currentUrl.replace("nes/tricare", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
             case "Income portal Error CoCo":
                 newUrl = "income-portal/error";
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);

@@ -114,5 +114,8 @@ public class MyProfilePageSteps {
 
     @And("I validate timeout session popup {string} on My Profile page")
     public void iVerifyTimeoutPopup(String language)  { myProfileExchPage.VerifyTimeoutPopup(language); }
+
+    @Then("I validate Primary Contact Change Popup {string} on My profile page")
+    public void ivalidateChangePrimaryContactpopop(String language)  { myProfileExchPage.validateChangePrimaryContactpopop(language); }
 }
 
