@@ -1,7 +1,9 @@
 Feature: Initial Application Family of 4(Silver Enhanced)
   @SLCR-292
   Scenario: Simple NFA flow with Family of 4(Silver Enhanced)
-
+    Given I set the test scenario details
+      | totalGroups | totalMembers |
+      | 1           | 4            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page

@@ -3,9 +3,11 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.WelcomePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 import java.util.List;
+import java.util.Map;
 
 public class WelcomePageSteps {
         WelcomePage welcomePage = new WelcomePage(WebDriverManager.getDriver());
@@ -38,10 +40,13 @@ public class WelcomePageSteps {
         @And("I Validate the correct enrolled plans are displayed on coco welcome page")
         public void validatePlanDetails(){
             welcomePage.verifyMemberNamesOnWelcomePage();
-            welcomePage.verifyMPlanDetails();
+            welcomePage.verifyMyPlanDetails();
         }
-
+    @Given("I set the test scenario details")
+    public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult) {
+        welcomePage.setScenarioDetailsCoco(expectedResult);
     }
+}
 
 
 

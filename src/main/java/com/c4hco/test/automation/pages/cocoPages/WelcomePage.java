@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.Edi.Member;
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.By;
@@ -11,7 +12,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class WelcomePage {
 
@@ -386,34 +390,38 @@ public class WelcomePage {
         softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
-    public void verifyMemberNamesOnWelcomePage() {
-        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        List<MemberDetails> memberDetailsList = SharedData.getMembers();
-        basicActions.waitForElementToBePresent(planYearText, 20);
-        String[] memberName = medicalMemberNames.getText().split(", ");
-        for (String element : memberName) {
-            if (element.contains(primaryMember.getFirstName())){
-                softAssert.assertEquals(element, primaryMember.getFirstName() + " " + primaryMember.getLastName(), "Primary member name does not match");
-            }else {
-                for (int i = 0; i < element.length(); i++){
-                    for(int j = 0; j < memberDetailsList.size(); j++ ){
-                        if (element.contains(memberDetailsList.get(j).getFirstName())){
-                            softAssert.assertEquals(element, memberDetailsList.get(j).getCompleteFullName(), "Member name does not match");
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-        softAssert.assertAll();
+public void verifyMemberNamesOnWelcomePage() {
+    basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+    basicActions.waitForElementToBePresent(planYearText, 20);
+    basicActions.waitForElementToBePresent(medicalMemberNames, 10);
+    List<String> memberNamesList = new ArrayList<>();
+    MemberDetails primaryMember = SharedData.getPrimaryMember();
+    memberNamesList.add(primaryMember.getFullName());
+    List<MemberDetails> memberDetailsList = SharedData.getMembers();
+    memberDetailsList.equals(SharedData.getScenarioDetails().getTotalMembers());
+    for (MemberDetails memName : memberDetailsList) {
+        memberNamesList.add(memName.getCompleteFullName());
     }
-    public void verifyMPlanDetails(){
+    String[] memberNamesListWelcomePage = medicalMemberNames.getText().split(", ");
+    ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(memberNamesListWelcomePage));
+    softAssert.assertEquals(memberNamesListWelcomePage.length, memberNamesList.size(), "total names count from sharedData and UI did not match");
+    softAssert.assertTrue(arrayList.containsAll(memberNamesList), "names of members did not match");
+    softAssert.assertAll();
+}
+    public void verifyMyPlanDetails(){
         MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(planYearSelectorOptions.get(1).getText(), SharedData.getPlanYear(),"Plan Year does not match");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText().substring(0,7), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
         softAssert.assertAll();
+    }
+    public void setScenarioDetailsCoco(List<Map<String, String>> expectedResult) {
+        String noOfGroups = expectedResult.get(0).get("totalGroups");
+        String totalMembers = expectedResult.get(0).get("totalMembers");
+        ScenarioDetails scenarioDetails = new ScenarioDetails();
+        scenarioDetails.setTotalGroups(Integer.parseInt(noOfGroups));
+        scenarioDetails.setTotalMembers(Integer.parseInt(totalMembers));
+        SharedData.setScenarioDetails(scenarioDetails);
     }
 }
 
