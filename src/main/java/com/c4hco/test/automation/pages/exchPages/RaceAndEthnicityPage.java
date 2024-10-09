@@ -56,6 +56,9 @@ public class RaceAndEthnicityPage {
     @FindBy(css = ".checkbox-container")
     List<WebElement> checkboxContainer;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
     public void raceEthnicitySelection(String raceEthnicity){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
         switch (raceEthnicity) {
@@ -92,6 +95,7 @@ public class RaceAndEthnicityPage {
     }
 
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         saveAndContinueButton.click();
     }
