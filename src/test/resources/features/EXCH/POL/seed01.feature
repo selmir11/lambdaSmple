@@ -1,6 +1,6 @@
 Feature: Regression Tests that require Seed 1
 
- Background: Seed 01 For Exchange- Single Applicant NFA
+ Scenario: : Seed 01 For Exchange- Single Applicant NFA
    Given I set the test scenario details
      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
      | 1           | 1            | 1                 | 0                | 1               |
@@ -89,13 +89,12 @@ Feature: Regression Tests that require Seed 1
    And I select "Submit" agreement checkbox
    And I enter householder signature on the Enrollment Agreements page
    And I click submit enrollment on Enrollment Agreements page
-
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I validate medical plan details from my policies page
+   And I validate medical plan details from my policies page
       |PolicyStartDate| PolicyEndDate| FinancialStartDate |FinancialEndDate|
       | 01/01         |      12/31   |      01/01         |       12/31    |
     And I validate dental plan details from my policies page
@@ -139,12 +138,12 @@ Feature: Regression Tests that require Seed 1
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
-    Then I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I update SSN number to new SSN number "123456789"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     Then I verify the family overview table is present

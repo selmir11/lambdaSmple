@@ -20,8 +20,8 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -47,8 +47,8 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -72,8 +72,9 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Not Listed" for race and ethnicity
+#    Textbox to enter race to come
+    And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -101,8 +102,9 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Not Listed" for race and ethnicity
+#    Textbox to enter race to come
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
