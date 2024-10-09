@@ -12,10 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WelcomePage {
 
@@ -402,10 +399,11 @@ public void verifyMemberNamesOnWelcomePage() {
     for (MemberDetails memName : memberDetailsList) {
         memberNamesList.add(memName.getCompleteFullName());
     }
-    String[] memberNamesListWelcomePage = medicalMemberNames.getText().split(", ");
-    ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(memberNamesListWelcomePage));
-    softAssert.assertEquals(memberNamesListWelcomePage.length, memberNamesList.size(), "total names count from sharedData and UI did not match");
-    softAssert.assertTrue(arrayList.containsAll(memberNamesList), "names of members did not match");
+    List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
+    Collections.sort(memberNamesList);
+    Collections.sort(memberNamesListWelcomePage);
+    softAssert.assertEquals(memberNamesListWelcomePage.size(), memberNamesList.size(), "total names count from sharedData and UI did not match");
+    softAssert.assertEquals(memberNamesListWelcomePage, memberNamesList, "Names of members did not match");
     softAssert.assertAll();
 }
     public void verifyMyPlanDetails(){

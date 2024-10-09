@@ -42,7 +42,7 @@ public class WelcomePageSteps {
             welcomePage.verifyMemberNamesOnWelcomePage();
             welcomePage.verifyMyPlanDetails();
         }
-    @Given("I set the test scenario details")
+    @Given("I set the test scenario details in coco")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult) {
         welcomePage.setScenarioDetailsCoco(expectedResult);
     }
