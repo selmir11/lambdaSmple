@@ -302,4 +302,25 @@ public class YourClientsPage {
         softAssert.assertTrue(clientFullName.getText().contains(SharedData.getMembers().get(0).getFirstName()));
         softAssert.assertAll();
     }
+
+    public void validateSearchBoxSpecialCharacters() {
+        basicActions.waitForElementToBePresent(searchClient,20);
+        searchClient.sendKeys("#$%!@&*()");
+        softAssert.assertEquals(searchClient.getAttribute("value"), "");
+        softAssert.assertAll();
+    }
+
+    public void validateNumbersNotAllowedSearchBox() {
+        basicActions.waitForElementToBePresent(searchClient,20);
+        searchClient.sendKeys("0123456789");
+        softAssert.assertEquals(searchClient.getAttribute("value"), "");
+        softAssert.assertAll();
+    }
+
+    public void validateSpacesNotAllowedSearchBox() {
+        basicActions.waitForElementToBePresent(searchClient,20);
+        searchClient.sendKeys("FirstName LastName");
+        softAssert.assertEquals(searchClient.getAttribute("value"), "FirstNameLastName");
+        softAssert.assertAll();
+    }
 }

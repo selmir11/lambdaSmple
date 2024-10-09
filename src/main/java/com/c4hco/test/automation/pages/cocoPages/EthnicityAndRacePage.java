@@ -67,6 +67,9 @@ public class EthnicityAndRacePage {
             case "English":
                 verifyTextOnEthnicityAndRaceEnglish();
                 break;
+            case "Spanish":
+                verifyTextOnEthnicityAndRaceSpanish();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );
         }
@@ -77,6 +80,9 @@ public class EthnicityAndRacePage {
         switch (language) {
             case "English":
                 verifyErrorMessagesEthnicityAndRaceEnglish();
+                break;
+            case "Spanish":
+                verifyErrorMessagesEthnicityAndRaceSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -152,12 +158,92 @@ public class EthnicityAndRacePage {
             softAssert.assertAll();
         }
 
+    public void verifyTextOnEthnicityAndRaceSpanish() {
+        softAssert.assertEquals(hdrRaceAndEthnicity.getText(), "Origen \u00E9tnico y raza: " +
+                Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
+                Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1));
+        softAssert.assertEquals(hdrRaceAndEthnicity.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(hdrRaceAndEthnicity.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(subHdrRaceAndEthnicity.getText(), "Al seleccionar la raza y el origen \u00E9tnico de esta persona nos ayuda a mejorar el servicio para todos los habitantes de Colorado. Usamos esta informaci\u00F3n para garantizar que todos reciban un acceso justo a la cobertura. Al brindar esta informaci\u00F3n, usted no se ver\u00E1 afectado en cuanto a la elegibilidad, las opciones de los planes o los costos.");
+        softAssert.assertEquals(subHdrRaceAndEthnicity.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(subHdrRaceAndEthnicity.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(selectAllThatApplyText.getText(), "Seleccione todas las que correspondan");
+        softAssert.assertEquals(selectAllThatApplyText.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(selectAllThatApplyText.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(0).getText(), "Asi\u00E1tico o asi\u00E1tico americano");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(0).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(0).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(1).getText(), "Raza negra o afroamericano");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(1).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(1).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(2).getText(), "Hispano o latino");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(2).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(2).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(3).getText(), "Ind\u00EDgena o nativo norteamericano");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(3).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(3).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(4).getText(), "del Medio Oriente o del norte de \u00C1frica");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(4).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(4).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(5).getText(), "Nativo de Haw\u00E1i u otras islas del Pac\u00EDfico");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(5).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(5).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(6).getText(), "Raza blanca o europeo");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(6).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(7).getText(), "No est\u00E1 en la lista");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(7).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(7).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(8).getText(), "Prefiero no responder");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(8).getCssValue("font-size"), "20px");
+        softAssert.assertEquals(RaceAndEthnicityTypesText.get(8).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(notListedReason.getAttribute("placeholder"), "Su raza y origen \u00E9tnico");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(0).getText(), "Ejemplos: chino, filipino, japon\u00E9s, coreano, del sur de Asia, vietnamita, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(0).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(0).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(1).getText(), "Ejemplos: et\u00EDope, haitiano, nigeriano, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(1).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(1).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(2).getText(), "Ejemplos: colombiano, cubano, mexicano, puertorrique\u00F1o, salvadore\u00F1o, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(2).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(2).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(3).getText(), "Ejemplos: nativos de Alaska, tribu Blackfeet, Gobierno Tradicional Inupiat, Naci\u00F3n Navajo, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(3).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(3).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(4).getText(), "Ejemplos: egipcio, iran\u00ED, israel\u00ED, liban\u00E9s, marroqu\u00ED, palestino, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(4).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(4).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(5).getText(), "Ejemplos: chamorro, guame\u00F1o, samoano, tongano, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(5).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(5).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(6).getText(), "Ejemplos: ingl\u00E9s, franc\u00E9s, alem\u00E1n, irland\u00E9s, italiano, polaco, etc.");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(6).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getText(), "Complete el espacio en blanco con su raza y origen \u00E9tnico");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getCssValue("font-size"), "14px");
+        softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(goBackButton.getText(), "< Volver");
+        softAssert.assertEquals(saveAndContinue_Button.getText(), "Guardar y continuar");
+        softAssert.assertAll();
+    }
+
     public void verifyErrorMessagesEthnicityAndRaceEnglish() {
         softAssert.assertEquals(errorMessage.getText(), "Please select one or more of the options below");
         softAssert.assertTrue(alertCircleIcon.isDisplayed());
         raceEthnicityButton.get(7).click();
         saveAndContinue_Button.click();
         softAssert.assertEquals(errorMessage.getText(), "Please enter your race and ethnicity");
+        softAssert.assertTrue(alertCircleIcon.isDisplayed());
+        raceEthnicityButton.get(7).click();
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessagesEthnicityAndRaceSpanish() {
+        softAssert.assertEquals(errorMessage.getText(), "Seleccione una o m\u00E1s de las opciones siguientes");
+        softAssert.assertTrue(alertCircleIcon.isDisplayed());
+        raceEthnicityButton.get(7).click();
+        saveAndContinue_Button.click();
+        softAssert.assertEquals(errorMessage.getText(), "Por favor ingrese/indique su raza y origen \u00E9tnico");
         softAssert.assertTrue(alertCircleIcon.isDisplayed());
         raceEthnicityButton.get(7).click();
         softAssert.assertAll();
@@ -240,5 +326,11 @@ public class EthnicityAndRacePage {
     public void clickSaveAndContinue() {
         basicActions.waitForElementToBeClickable(saveAndContinue_Button, 30);
         saveAndContinue_Button.click();
+    }
+
+    public void selectNotListedAndEnterCustomText(String customText) {
+        raceEthnicityButton.get(7).click();
+        basicActions.waitForElementToBePresent(notListedReason, 10);
+        notListedReason.sendKeys(customText);
     }
     }
