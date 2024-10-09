@@ -11,8 +11,8 @@ public class PlanSummaryMedicalDentalPageCoCoStep {
 
         PlanSummaryMedicalDentalCoCoPage planSummaryMedicalDentalCoCoPage = new PlanSummaryMedicalDentalCoCoPage(WebDriverManager.getDriver());
 
-        @And("I click continue on coco plan summary page")
-        public void continueButton(){
+    @And("I click continue on coco plan summary page")
+    public void continueButton(){
             planSummaryMedicalDentalCoCoPage.continueButton();
         }
 
@@ -21,9 +21,8 @@ public class PlanSummaryMedicalDentalPageCoCoStep {
         planSummaryMedicalDentalCoCoPage.iclickGoBack();
     }
 
-    @Then("I validate text on coco plan summary page")
-    public void verifyTextinPlanSummaryPage(List<String> textDetails){
-            planSummaryMedicalDentalCoCoPage.verifyTextinPlanSummary(textDetails);
+    @And ("I validate the {string} text on the Plan Summary COCO page")
+    public void validateTextPlanSummaryCOCOPage(String language) {planSummaryMedicalDentalCoCoPage.validateTextPlanSummaryCOCOPage(language);
     }
 
     }
