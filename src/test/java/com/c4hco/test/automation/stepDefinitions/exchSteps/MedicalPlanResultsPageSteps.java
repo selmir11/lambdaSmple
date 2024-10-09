@@ -24,8 +24,7 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @Then("I click continue on medical plan results page")
-    public void selectContinueOnMedicalPlanResultsPage() {
-        medPlanResultsPage.clickContinue();
+    public void selectContinueOnMedicalPlanResultsPage() {medPlanResultsPage.clickContinue();
     }
 
     @Then("I click skip on medical plan results page")
@@ -53,6 +52,7 @@ public class MedicalPlanResultsPageSteps {
     public void clickFirstFourCompareButtons() {
         medPlanResultsPage.clickFirstFourCompareButtons();
     }
+
     @And( "I validate the Compare Warning Box" )
     public void validateCompareBoxWarningTxt(){
         medPlanResultsPage.validateCompareBoxWarningTxt();
@@ -82,6 +82,11 @@ public class MedicalPlanResultsPageSteps {
     public void validatePlanText(int Index, String planText) {
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
+
+    //@And( "I select plan option {int} that has text {string}" )
+    //public void selectSpecificPlan(int Index, String planSelection){
+    //    medPlanResultsPage.selectSpecificPlan(Index, planSelection);
+    //}
 
     @And("I click the HSA dropdown")
     public void clickHSADropdown() {
