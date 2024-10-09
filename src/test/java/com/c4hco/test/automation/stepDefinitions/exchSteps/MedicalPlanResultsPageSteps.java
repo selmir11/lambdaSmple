@@ -83,11 +83,6 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
 
-    //@And( "I select plan option {int} that has text {string}" )
-    //public void selectSpecificPlan(int Index, String planSelection){
-    //    medPlanResultsPage.selectSpecificPlan(Index, planSelection);
-    //}
-
     @And("I click the HSA dropdown")
     public void clickHSADropdown() {
         medPlanResultsPage.clickHSADropdown();
