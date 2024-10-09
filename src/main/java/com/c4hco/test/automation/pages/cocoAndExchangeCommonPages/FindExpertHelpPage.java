@@ -463,8 +463,6 @@ public class FindExpertHelpPage {
         basicActions.waitForElementToBePresent(continueOnMyOwnButton, 50);
         basicActions.scrollToElement(continueOnMyOwnButton);
         continueOnMyOwnButton.click();
-
-//        basicActions.click(continueOnMyOwnButton);
     }
 
     public void clickRemoveBrokerButton(){
