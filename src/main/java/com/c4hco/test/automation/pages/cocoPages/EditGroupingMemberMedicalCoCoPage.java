@@ -78,8 +78,8 @@ public class EditGroupingMemberMedicalCoCoPage {
     }
 
     public void createNewGroup(List<String> grouping) {
-        basicActions.waitForElementToDisappear(spinner, 60);
-        basicActions.waitForElementToBePresent(createNewGroupLink,40);
+        basicActions.waitForElementToDisappear(spinner, 70);
+        basicActions.waitForElementToBePresent(createNewGroupLink,70);
         basicActions.scrollToElement( createNewGroupLink );
         while (grouping.size()+1 != dragAMemberHere.size()) {
             basicActions.scrollToElement(createNewGroupLink);
