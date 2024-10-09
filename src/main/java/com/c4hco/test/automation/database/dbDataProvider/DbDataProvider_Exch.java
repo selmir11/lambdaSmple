@@ -184,6 +184,11 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<String> getClientEmailInBoB() {
+
+       return postgresHandler.getResultListFor("email", exchDbQueries.getClientEmailFromBOB());
+    }
+
     public List<String> getBrokerAuthorizationInBoB(String clientFirstName) {
 
        return postgresHandler.getResultListFor("broker_name", exchDbQueries.verifyBrokerAuthorizationInBOB(clientFirstName));
@@ -202,6 +207,11 @@ public class DbDataProvider_Exch {
     public Boolean getNoMedicalPolicySubmissionInBoB() {
 
         return postgresHandler.dbRecordsExisting(exchDbQueries.verifyPolicySubmissionInBOB(1));
+    }
+
+    public List<String> getAgencyCommissionTinDb() {
+
+        return postgresHandler.getResultListFor("commission_tin", exchDbQueries.verifyAgencyCommissionTinDb());
     }
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){

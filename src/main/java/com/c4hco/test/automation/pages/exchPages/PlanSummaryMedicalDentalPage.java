@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -68,7 +69,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(id="PlanSummary-MedicalPremiumAmount_0")
     WebElement medicalPremiumAfterAPTCAmt;
 
-    @FindBy(xpath="//span[contains(@id,'PlanSummary-MedicalPremiumReductionAmount')]")//css=".reduction-amount")
+    @FindBy(css = "#PlanSummary-MedicalPremiumReductionAmount_0")
     List<WebElement> medicalAPTCAmt;
 
     @FindBy(id="PlanSummary-DentalPremiumAmount_0")
@@ -221,5 +222,13 @@ public class PlanSummaryMedicalDentalPage {
         subscriber.setDentalAptcAmt("$0");
         subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
         SharedData.setPrimaryMember(subscriber);
+    }
+
+
+    public void verifyContinueButtonIsDisabled() {
+        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 20);
+        String buttonClass = continueBtnOnPlanSummary.getAttribute("class");
+        softAssert.assertTrue(buttonClass.contains("button-disabled"), "Continue button is enabled, but it should be disabled.");
+        softAssert.assertAll();
     }
 }

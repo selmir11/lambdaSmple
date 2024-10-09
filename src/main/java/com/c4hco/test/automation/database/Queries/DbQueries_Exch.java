@@ -129,6 +129,11 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'";
     }
 
+    public String getClientEmailFromBOB(){
+        return "select email from  "+dbName+".bp_book_of_business\n "+
+                "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
     public String verifyBrokerAuthorizationInBOB(String clientFirstName){
         return "select broker_name from  "+dbName+".bp_book_of_business\n "+
                 "where acct_holder_fn = '"+clientFirstName+"' and curr_yr_app_id is null and curr_pol_policy_status is null and nxt_yr_app_id is null and next_pol_policy_status is null";
@@ -142,6 +147,15 @@ public class DbQueries_Exch {
     public String verifyPolicySubmissionInBOB(int coverageType){
         return "select account_id from  "+dbName+".bp_book_of_business\n "+
                 "where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"' and (curr_pol_coverage_type = '"+coverageType+"' or next_pol_coverage_type = '"+coverageType+"')";
+    }
+
+    public String verifyAgencyCommissionTinDb(){
+        return "select bca.commission_tin from  "+dbName+".bp_client_authorization bca\n "+
+                "join "+dbName+".bp_agency ba on bca.agency_id = ba.agency_id\n" +
+                "join "+dbName+".bp_agency_staff bas on bas.agency_id = ba.agency_id \n" +
+                "join "+dbName+".bp_staff bs on bs.staff_id = bas.staff_id \n" +
+                "group by ba.agency_name,bca.agency_id, authorization_status,ba.agency_status, ba.agency_tin_ein, bca.commission_tin, bs.first_name\n" +
+                "having authorization_status = 'APPROVED' and ba.agency_status = 'ACTIVE' and ba.agency_name = 'Sidney Armstrong Agency' and bs.first_name = 'Sidney';";
     }
 
     //Policy table queries
@@ -197,7 +211,7 @@ public class DbQueries_Exch {
     public String getEmailStored(){
         return "select * from "+dbName+".es_household p\n" +
                 "join "+dbName+".es_household_contact m on m.household_id=p.household_id\n" +
-                "where account_id = "+acctId+"\n" +
+                "where p.account_id = '"+acctId+"' \n" +
                 "order by p.created_ts desc limit 1";
     }
   

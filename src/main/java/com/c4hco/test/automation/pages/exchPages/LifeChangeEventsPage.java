@@ -95,11 +95,11 @@ public class LifeChangeEventsPage {
         basicActions.waitForElementToBePresent(saveAndContinueOnlyButton,20);
         switch(lceOption){
             case "Birth":
-                    lceInputCheckbox.get(0).click();
-                    break;
+                lceInputCheckbox.get(0).click();
+                break;
             case "Pregnancy":
-                    lceInputCheckbox.get(1).click();
-                    break;
+                lceInputCheckbox.get(1).click();
+                break;
             case "Marriage":
                 lceInputCheckbox.get(2).click();
                 break;
@@ -110,8 +110,8 @@ public class LifeChangeEventsPage {
                 lceInputCheckbox.get(4).click();
                 break;
             case "MovedToColorado":
-                    lceInputCheckbox.get(6).click();
-                    break;
+                lceInputCheckbox.get(6).click();
+                break;
             case "Change of Incarceration Status":
                 lceInputCheckbox.get(7).click();
                 break;
@@ -124,13 +124,8 @@ public class LifeChangeEventsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
-        String currentUrl = basicActions.getCurrentUrl();
-        if (currentUrl.contains("https://staging")) {
-            saveAndContinueButton.get(0).click();
-        } else if (currentUrl.contains("https://qa")) {
-            basicActions.scrollToElement(saveAndContinueOnlyButton);
-            saveAndContinueOnlyButton.click();
-        }
+        basicActions.scrollToElement(saveAndContinueOnlyButton);
+        saveAndContinueOnlyButton.click();
     }
 
     public void clickContinueWithApplication(){

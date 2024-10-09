@@ -43,6 +43,9 @@ public class BasicSteps {
             case "My Account Overview":
                 pageUrl = "nes/myAccountOverview";
                 break;
+            case "CAC Screener":
+                pageUrl = "/coco/WelcomePortal/cacScreener";
+                break;
             case "CoCo Welcome":
                 pageUrl = "/coco/WelcomePortal";
                 break;
@@ -83,6 +86,9 @@ public class BasicSteps {
                 break;
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
+                break;
+                case "Individual CoCo":
+                pageUrl = "/AdminPortal/coco/individual/";
                 break;
             case "Application Results":
                 pageUrl = "nes/applicationResults";
@@ -325,6 +331,9 @@ public class BasicSteps {
             case "Elmo Race and Ethnicity" :
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
+            case "Ethnicity and Race" :
+                pageUrl = "/member-details-portal/race-ethnicity/";
+                break;
             case "CoCo Tell us about yourself" :
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
@@ -423,6 +432,9 @@ public class BasicSteps {
                 break;
             case "Application Details" :
                 pageUrl = "oboApplSummary";
+                break;
+                case "Medical Enrollment Groups" :
+                pageUrl = "PreShoppingPortal/viewGroupingMembers";
                 break;
             case "Manage Plans" :
                 pageUrl = "/policies";
@@ -581,6 +593,15 @@ public class BasicSteps {
                 break;
             case "Moving Expenses":
                 pageUrl = "https://www.irs.gov/forms-pubs/about-form-3903";
+                break;
+            case "Health First Co Apply":
+                pageUrl = "https://healthfirstcolorado.com/apply-now/";
+                break;
+            case "Create Account":
+                pageUrl = "connectforhealthco.com/login-portal/createAccount";
+                break;
+            case "OmniSalud Help":
+                pageUrl = "https://connectforhealthco.com/get-started/omnisalud-help/";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);

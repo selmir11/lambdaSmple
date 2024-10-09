@@ -1,4 +1,4 @@
-@BrokerPortalCoCoClients @port
+@BrokerPortalCoCoClients @port @portCOCO
 Feature: Broker Portal CoCo client OBO navigation for owners and brokers
 
   @SLCR-274
@@ -17,7 +17,7 @@ Feature: Broker Portal CoCo client OBO navigation for owners and brokers
     And I validate I am on the "Broker Portal Your Clients" page
     And I validate I am on the "Agency Dashboard" page
     And I click on "colorado Connect" tab
-    And I click on first client search result
+    And I click on the first client in my list
     And I click "manage" the client
     Then I validate I am on the "CoCo Welcome" page
 
@@ -41,7 +41,7 @@ Feature: Broker Portal CoCo client OBO navigation for owners and brokers
     And I validate I am on the "Broker Portal Your Clients" page
     And I validate I am on the "Broker Dashboard" page
     And I click on "colorado Connect" tab
-    And I click on first client search result
+    And I click on the first client in my list
     And I click "manage" the client
     Then I validate I am on the "CoCo Welcome" page
 

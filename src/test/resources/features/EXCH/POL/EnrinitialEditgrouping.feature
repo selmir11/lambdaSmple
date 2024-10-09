@@ -1,7 +1,7 @@
 @SLER-41 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  Scenario: : EXCH Initial Application
+  Scenario: : EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 3            | 1                 | 2                |   3             |
@@ -36,10 +36,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Middle Eastern or North African" for race and ethnicity
     And I click continue on the Race and Ethnicity page
-
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -59,7 +58,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -83,7 +83,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Middle Eastern or North African" for race and ethnicity
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

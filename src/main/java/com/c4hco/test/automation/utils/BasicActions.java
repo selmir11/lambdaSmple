@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.utils;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -10,6 +11,8 @@ import org.testng.Assert;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -545,6 +548,57 @@ public class BasicActions {
             }
         }
         return true;
+    }
+    public String doubleAmountFormat(String amountText){
+        String formattedAmt = amountText.replaceAll("[^\\d.]", "");
+        // Parse the amount string to a double
+        double amount = Double.parseDouble(formattedAmt);
+        // Check if the amount is a whole number
+        if (amount % 1 == 0) {
+            return String.format("%.0f", amount); // No decimals for whole numbers
+        } else {
+            return String.format("%.2f", amount); // Two decimals for fractional amounts
+        }
+    }
+    public String getFirstOfJanCurrYr() { // January 1st of current year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear(), 1, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+    public String getLastDayOfCurrYr() {// December 31st of the current year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear(), 12, 31);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+    public String firstDateOfNextMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfNextMonth.format(formatter);
+    }
+
+    public String  getDateBasedOnRequirement(String dateRequirement) {
+        String date = null;
+        switch (dateRequirement) {
+            case "First Day Of Current Year":
+               date = getFirstOfJanCurrYr();
+                break;
+            case "Last Day Of Current Year": 
+               date = getLastDayOfCurrYr();
+                break;
+            case "Birth Date":
+
+                break;
+            case "First Of Next Month":
+                date =  firstDateOfNextMonth();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dateRequirement);
+
+        }
+        return date;
     }
 }
 

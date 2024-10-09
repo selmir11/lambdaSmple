@@ -1,4 +1,4 @@
-@CreateAccount @port
+@CreateAccount @port @LoginPortal
 Feature: Verify the error messages on the broker Create Account page
 
   @SLER-540

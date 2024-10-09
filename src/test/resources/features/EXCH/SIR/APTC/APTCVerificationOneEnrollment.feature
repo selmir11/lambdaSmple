@@ -177,7 +177,9 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
     Then I click continue on the Employment Summary Page
+
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page

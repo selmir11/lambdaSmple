@@ -18,9 +18,9 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate the member details from policy tables")
-   public void validateFromPolicyTables(List<Map<String, String>> expectedResult){
-      policyTableDBValidations.validateDataFromPolicyTables(expectedResult);
+   @And("I validate the member details from policy tables with coverage start date {string} and end date {string}")
+   public void validateFromPolicyTables(String startDate, String endDate){
+      policyTableDBValidations.validateDataFromPolicyTables(startDate, endDate);
    }
 
    @And("I validate member details from ob834_details table")
@@ -49,6 +49,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateAccountHolderNameFromBOB();
    }
 
+   @And("I verify the client's updated email address in BoB DB")
+   public void iVerifyUpdatedEmailAddressBOBDB() {
+      dbValidations.verifyUpdatedEmailAddressBOB();
+   }
+
    @And("I verify the broker authorization in BoB DB is {string}")
    public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
       dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
@@ -67,6 +72,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify there are no medical records for my client in BoB DB")
    public void iVerifyNoMedicalPolicySubmissionBobDb() {
       dbValidations.validateNoMedicalPolicySubmissionBob();
+   }
+
+   @And("I verify my agency commission TIN in the database")
+   public void iVerifyAgencyCommissionTinDb() {
+      dbValidations.verifyAgencyCommissionTinDb();
    }
 
 //   @And("I validate Individual member policy table queries")
@@ -97,8 +107,8 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    }
 
 
-   @And("I validate data displays duplicate email as {string} in DB")
-   public void iValidateDuplicateEmail(String accountEmail) {dbValidations.ValidateDuplicateEmail(accountEmail);}
+   @And("I validate initial email remains in the database")
+   public void iValidateDatabaseEmail() {dbValidations.validateDatabaseEmail();}
 
    @And("I verify the HRA options selected in the DB after Application Results")
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}

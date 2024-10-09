@@ -3,14 +3,12 @@ Feature: Navigation-Life Change Event Page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
-
-  @SLCR-44 @PageNavigationLCEPage @TAMSmoke
-  Scenario: SLCR-44 Navigate to and from LCE page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
@@ -38,6 +36,8 @@ Feature: Navigation-Life Change Event Page
     And I select Go Back on the LCE page
     And I select continue on the Family Overview page
 
+  @SLCR-44 @PageNavigationLCEPage @TAMSmoke
+  Scenario: SLCR-44 Navigate to and from LCE page
     # Test footer links
     Then I validate I am on the "CoCo life change event" page
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -136,6 +136,7 @@ Feature: Navigation-Life Change Event Page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page

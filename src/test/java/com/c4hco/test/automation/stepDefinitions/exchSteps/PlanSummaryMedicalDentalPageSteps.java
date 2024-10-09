@@ -40,4 +40,7 @@ public class PlanSummaryMedicalDentalPageSteps {
     public void goBackSummaryPage() { planSummaryMedicalDentalPage.goBackPlanSummaryPage();}
 
 
+    @And( "I verify continue button is disabled Plan Summary page" )
+    public void verifycontinueButtonIsDisabled() { planSummaryMedicalDentalPage.verifyContinueButtonIsDisabled();}
+
 }

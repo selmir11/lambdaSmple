@@ -105,5 +105,10 @@ public class AdminPortalManagePlansSteps {
     @And("I collapse year dropdown")
     public void iCollapsYearDropdown() {
         adminPortalManagePlansPage.collapsYearDropdown();       }
+
+    @And("I select {string} from the SelectPolicy Dropdown to update the dates")
+    public void iSelectMemberNameFromPolicyDropdown(String MemberName){
+        adminPortalManagePlansPage.selectMemberNameFromPolicyDropdown( MemberName);
+    }
 }
 
