@@ -1289,7 +1289,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1107 @Group9Enroll-SIR-2810 
+  @SLER-1107 @Group9Enroll-SIR-2810
   Scenario: ELIG- APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -2242,6 +2242,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
+
     And I select the first dependent
     And I select the second dependent
     And I select the third dependent
@@ -2325,7 +2326,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "Bronze" to filter for a Metal Tier plan
     And I validate the plan option 2 has text "Select Health Value Colorado Option Bronze"
     And I select "Select Health Value Colorado Option Bronze" medical plan
-    #And I select plan option 2 that has text "Select Health Value Colorado Option Bronze"
     And I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
