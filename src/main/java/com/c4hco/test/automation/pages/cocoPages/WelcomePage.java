@@ -65,6 +65,15 @@ public class WelcomePage {
     @FindBy(css = ".action-link, .c4-type-links-lg")
     List<WebElement> actionLinks;
 
+    @FindBy(css = "lib-notification-banner .c4-alert-title")
+    WebElement cacBannerHdr;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-content")
+    WebElement cacBannerTxt;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-content a")
+    WebElement cacBannerLnk;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -380,6 +389,24 @@ public class WelcomePage {
         softAssert.assertEquals(actionLinks.get(3).getText(), "Mis Documentos y Cartas");
         softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
+    }
+
+    public void validateCacBannerText(String language) {
+        basicActions.waitForElementToBePresent(containerMainHeaderText, 5);
+        switch(language) {
+            case "English":
+                softAssert.assertEquals(cacBannerHdr.getText(), "Health Insurance News");
+                softAssert.assertEquals(cacBannerTxt.getText(), "There have been several important changes to health coverage policies this year. You may have new coverage options for 2025. To see if these changes affect you and your family, take a short quiz.");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(cacBannerHdr.getText(), "Noticia sobre seguros de salud");
+                softAssert.assertEquals(cacBannerTxt.getText(), "Este a\u00F1o, se han dado varios cambios importantes en las pol\u00EDticas de cobertura de salud. \u200CEs posible que en 2025 cuente con opciones de cobertura nuevas. Para saber si los cambios le afectan a usted y a su familia, complete la siguiente encuesta breve.");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
 }
 
