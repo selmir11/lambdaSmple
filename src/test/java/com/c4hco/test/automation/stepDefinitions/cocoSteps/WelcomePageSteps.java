@@ -34,6 +34,9 @@ import io.cucumber.java.en.Then;
     @Then("I validate action link text on welcome page in {string}")
     public void verifyActionLinkText(String language)  { welcomePage.validateActionLinksText(language); }
 
+    @Then("I validate CAC Screener banner text on welcome page in {string}")
+    public void verifyCacBannerText(String language)  { welcomePage.validateCacBannerText(language); }
+
 
 
 
