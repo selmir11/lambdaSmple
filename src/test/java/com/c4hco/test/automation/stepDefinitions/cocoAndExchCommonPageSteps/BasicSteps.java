@@ -594,6 +594,15 @@ public class BasicSteps {
             case "Moving Expenses":
                 pageUrl = "https://www.irs.gov/forms-pubs/about-form-3903";
                 break;
+            case "Health First Co Apply":
+                pageUrl = "https://healthfirstcolorado.com/apply-now/";
+                break;
+            case "Create Account":
+                pageUrl = "connectforhealthco.com/login-portal/createAccount";
+                break;
+            case "OmniSalud Help":
+                pageUrl = "https://connectforhealthco.com/get-started/omnisalud-help/";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
