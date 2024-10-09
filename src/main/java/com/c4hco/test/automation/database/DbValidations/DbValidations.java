@@ -236,7 +236,7 @@ public class DbValidations {
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
         softAssert.assertEquals(dateFormatted, ob834Entity.getMember_dob(), "dob did not match");
         softAssert.assertEquals(ob834Entity.getMember_gender(), subscriber.getGender().substring(0,1) , "gender did not match");
-        softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()): "7" ,ob834Entity.getMember_race(),"Race did not match");
+        softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()): "C" ,ob834Entity.getMember_race(),"Race did not match");
         softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(subscriber.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber() ,ob834Entity.getAlternate_phone(), "alternate phone did not match"  );
