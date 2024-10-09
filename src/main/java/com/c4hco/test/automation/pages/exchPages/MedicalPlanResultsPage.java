@@ -103,6 +103,7 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
+
     @FindBy(xpath = "//div[@id='MPcollapse'] //span[contains(@class,'ngx-slider-floor')]")
     WebElement txtpremiumamnt;
 

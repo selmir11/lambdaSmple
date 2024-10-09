@@ -30,4 +30,4 @@ public class RaceAndEthnicityPageSteps {
     public void validateTextBoxAndCheckboxSelection() {
         RaceAndEthnicityPage.validateTextBoxInputAndCheckboxSelection();
     }
-}
+  }
