@@ -27,6 +27,10 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    public void validateOb834Details(List<Map<String, String>> expectedValues){
       dbValidations.validateOb834FromDb(expectedValues);
    }
+   @And("I set ib999 entites for both medical and dental files")
+   public void setib999(){
+      dbValidations.setIb999DetailsEntity();
+   }
 
    @And("I verify the OHI info in the DB")
    public void validateOhiInfo(){dbValidations.validateOhiDetails();}
