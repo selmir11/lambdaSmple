@@ -1,10 +1,13 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
+import com.google.common.eventbus.Subscribe;
 import com.jcraft.jsch.JSchException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -19,6 +22,11 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.List;
 
@@ -376,5 +384,136 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
         basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
         downloadEnrolmentDoc.click();
+        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
+    }
+
+    public void verifyTexInPDF(List<String> testDetails) {
+        String filePath = SharedData.getLocalPathToDownloadFile();
+        String fileName = SharedData.getNoticeFileName();
+        String pathAndName = filePath+"//"+fileName;
+        System.out.println("path and name is "+pathAndName);
+        List<String> newTestDetails = new ArrayList<>(testDetails);
+
+        // Read the PDF content using PDFValidator
+        String pdfText = null;
+        try {
+            extractPDFText(pathAndName);
+            pdfText = pdfContent;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        newTestDetails.add(getCoverageDate());
+        newTestDetails.addAll(getDetailsForVerification());
+
+        for(String testData : newTestDetails) {
+
+            if(testData.contains("Primary")){
+                testData = SharedData.getPrimaryMember().getFullName();
+            }
+            else {
+                for(MemberDetails memberDetail:SharedData.getMembers()){
+                    String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
+                    if (memberFullName.contains(testData)){
+                        testData = memberFullName;
+                        break;
+                    }
+                }
+            }
+            System.out.println(testData);
+            softAssert.assertTrue((validateContent(pdfText,testData)),testData+" text not exist in downloaded pdf file");
+            softAssert.assertAll();
+            //System.out.println(getFullNameForRelation(testData));
+        }
+    }
+
+    // Method to extract text from the PDF
+    String pdfContent = null;
+    public void extractPDFText(String filePath) throws IOException {
+        File file = new File(filePath);
+        PDDocument document = PDDocument.load(file);
+        PDFTextStripper pdfStripper = new PDFTextStripper();
+        pdfContent = pdfStripper.getText(document);
+        document.close();
+    }
+
+    public static boolean validateContent(String pdfText, String expectedText) {
+        return pdfText.contains(expectedText);
+    }
+
+    public static String getCoverageDate(){
+        // Get current date
+        LocalDate today = LocalDate.now();
+
+        // Determine the appropriate coverage start date
+        LocalDate coverageStartDate;
+        if (today.getDayOfMonth() <= 15) {
+            coverageStartDate = today.plusMonths(1).withDayOfMonth(1); // 1st of next month
+        } else {
+            coverageStartDate = today.plusMonths(2).withDayOfMonth(1); // 1st of next-to-next month
+        }
+
+        // Format the date as "Coverage Start Date: November 01, 2024"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH);
+        String expectedCoverageDate = "Coverage Start Date: " + coverageStartDate.format(formatter);
+        return expectedCoverageDate;
+    }
+
+    public static ArrayList<String> getDetailsForVerification() {
+
+        ArrayList<String> inputValues = new ArrayList();
+
+        String PrimaryMemberName = SharedData.getPrimaryMember().getFullName();
+        String primaryMemberMail = SharedData.getPrimaryMember().getEmailId();
+
+        // Get current date
+        String pdfGeneratedDate = dateFormatter(LocalDate.now());
+
+        //policyId
+        String policyId = "Your Colorado Connect® Policy ID is "+SharedData.getPrimaryMember().getPolicyId();
+
+        //planDetails
+        String MedicalPlanDetails = SharedData.getPrimaryMember().getMedicalPlan();
+        String DentalPlanDetails = SharedData.getPrimaryMember().getDentalPlan();
+        if(SharedData.getPrimaryMember().getMedicalPremiumAmt()!=null){
+            String MedicalPremiumAmnt = "Monthly Premium: "+SharedData.getPrimaryMember().getMedicalPremiumAmt();
+            inputValues.add(MedicalPremiumAmnt);
+        }
+        if(SharedData.getPrimaryMember().getMedicalPremiumAmt()!=null){
+            String DentalPremiumAmnt = "Monthly Premium: "+SharedData.getPrimaryMember().getDentalPremiumAmt();
+            inputValues.add(DentalPremiumAmnt);
+        }
+
+
+
+        ArrayList<String> inputValues2 = new ArrayList();
+
+        for(MemberDetails memberDetail:SharedData.getMembers()){
+            String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
+            String memberMedicalPlanDetails = memberDetail.getMedicalPlan();
+            String memberDentalPlanDetails = memberDetail.getDentalPlan();
+            inputValues2.add(memberFullName);
+            inputValues2.add(memberMedicalPlanDetails);
+            inputValues2.add(memberDentalPlanDetails);
+        }
+
+        inputValues2.removeIf(item -> item == null);
+        inputValues.add(PrimaryMemberName);
+        inputValues.add(primaryMemberMail);
+        inputValues.add(pdfGeneratedDate);
+        inputValues.add(MedicalPlanDetails);
+        inputValues.add(DentalPlanDetails);
+        inputValues.add(policyId);
+        inputValues.addAll(inputValues2);
+        inputValues.removeIf(item -> item == null);
+        System.out.println(inputValues);
+        return inputValues;
+    }
+
+    public static String dateFormatter(LocalDate date){
+        // Format the date as "Coverage Start Date: November 01, 2024"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
+        String expectedDate = date.format(formatter);
+        return expectedDate;
     }
 }

@@ -7,6 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 import java.awt.*;
+import java.util.List;
 import java.io.IOException;
 
 public class MyDocumentsPageSteps {
@@ -73,4 +74,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I verify user can select each type from type dropdown")
     public void iVerifyUserCanSelectEachTypeFromTypeDropdown() {myDocumentsPage.selectType();
         }
+
+    @And("Validate below details from the downloaded pdf file")
+    public void validatePDFText(List<String> testDetails){
+        myDocumentsPage.verifyTexInPDF(testDetails);
+    }
     }
