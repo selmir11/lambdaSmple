@@ -1,7 +1,7 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
   @SLCR-297
   Scenario: Simple NFA flow with Single Applicant(Silver Enhanced)
-    Given I set the test scenario details
+    Given I set the test scenario details in coco
       | totalGroups | totalMembers |
       | 1           | 1            |
     Given I open the login page on the "login" portal

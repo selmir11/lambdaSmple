@@ -187,14 +187,15 @@ public class PlanSummaryMedicalDentalCoCoPage {
         List<MemberDetails> memberslist = SharedData.getMembers();
         basicActions.waitForElementToDisappear(spinner, 25);
         basicActions.waitForElementToBePresent(txtPremiumsBeforeSaving, 40);
-        subscriber.setMedicalAptcAmt("0");
-        String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
-        subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
-        subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
-        if (memberslist != null) {
-            for (int i = 0; i < memberslist.size(); i++) {
-                memberslist.get(i).setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
-                memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
+        String  ses = SharedData.getSes();
+        if(ses.equals("no")){
+            subscriber.setMedicalAptcAmt("0");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
+            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
+            if (memberslist != null) {
+                for (int i = 0; i < memberslist.size(); i++) {
+                    memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
+                }
             }
         }
         SharedData.setPrimaryMember(subscriber);
