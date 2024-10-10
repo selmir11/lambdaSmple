@@ -38,7 +38,6 @@ public class EditGroupingMembersMedicalPage {
     WebElement sameZipTxt;
     @FindBy(css = ".cdk-drop-list .c4-type-header-sm")
     List<WebElement> containerTxtList;
-    // total size -1 is not enrolling
     @FindBy(id = "SOL-ManageGroupingMembers-DragAMember")
     List<WebElement> dragAMemberHere;
     @FindBy(id = "SOL-ManageGroupingMembers-DragAMemberNotEnrolling")
