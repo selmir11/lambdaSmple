@@ -1289,7 +1289,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @Group9Enroll-WIP-ProdBug-SIR-2810
+  @SLER-1107 @Group9Enroll-SIR-2810
   Scenario: SLER-1107 - ELIG- APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1444,7 +1444,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-  ### - add member begin
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
 
@@ -1475,9 +1474,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-     ### - add member end
 
-     ### - add member begin
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
 
@@ -1510,8 +1507,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    ### - add member end
-     ### - add member begin
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
      #minor
@@ -1533,8 +1528,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
-    #Then I select "No" for Foster care in state of Colorado
-    #Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
 
     And I select "Prefer not to answer" for race and ethnicity
@@ -1545,8 +1538,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    ### - add member end
-     ### - add member begin
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
      #minor
@@ -1570,8 +1561,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
-    #Then I select "No" for Foster care in state of Colorado
-    #Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
 
     And I select "Prefer not to answer" for race and ethnicity
@@ -1581,7 +1570,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
 
     ### - add member end
     Then I validate I am on the "Family Overview" page
@@ -1713,7 +1701,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    ## tax status
     Then I validate I am on the "Tax status" page
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
@@ -1721,29 +1708,16 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
 
-
-    # - initial tries have missed dependent 7 and
+    # 8 dependants
     Then I click Dependent 0
     Then I click Dependent 1
     Then I click Dependent 2
     Then I click Dependent 3
     Then I click Dependent 4
     Then I click Dependent 5
-    #And I select the first dependent
-    #And I select the second dependent
-    #And I select the third dependent
-    #And I select the fourth dependent
-    #And I select the fifth dependent
-    #And I select the sixth dependent
-    # this is where the selections are getting missed
     Then I click Dependent 6
     Then I click Dependent 7
-    #And I select the seventh dependent
-    #And I select the eighth dependent
-
     And I click save and continue on tax status page
-
-    # 9 members
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1814,6 +1788,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select the Metal Tier dropdown
     And I select "Bronze" to filter for a Metal Tier plan
     And I validate the plan option 2 has text "Select Health Value Colorado Option Bronze"
+    And I select "Select Health Value Colorado Option Bronze" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
