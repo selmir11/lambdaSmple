@@ -395,7 +395,6 @@ public void verifyMemberNamesOnWelcomePage() {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     memberNamesList.add(primaryMember.getFullName());
     List<MemberDetails> memberDetailsList = SharedData.getMembers();
-    memberDetailsList.equals(SharedData.getScenarioDetails().getTotalMembers());
     for (MemberDetails memName : memberDetailsList) {
         memberNamesList.add(memName.getCompleteFullName());
     }
