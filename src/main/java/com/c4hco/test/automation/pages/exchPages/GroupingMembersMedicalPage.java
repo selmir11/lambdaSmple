@@ -34,7 +34,7 @@ public class GroupingMembersMedicalPage {
     @FindBy(id = "SOL-ViewGroupingMembers-SaveAndExit")
     WebElement saveAndExitBtn;
     @FindBy(id = "globe-image")
-    WebElement glodeImageDropdown;
+    WebElement globeImageDropdown;
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
@@ -73,7 +73,6 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBePresent( saveAndExitBtn,20 );
         basicActions.scrollToElement( saveAndExitBtn );
         saveAndExitBtn.click();;
-
     }
 
     public void clickOnEditMedicalGroupinglink() {
@@ -191,7 +190,7 @@ public class GroupingMembersMedicalPage {
         softAssert.assertEquals(goBackButton.getText(), "Go back");
         softAssert.assertEquals(saveAndExitBtn.getText(), "Save and Exit");
         softAssert.assertEquals(continueButton.getText(), "Continue");
-        softAssert.assertTrue(glodeImageDropdown.isEnabled());
+        softAssert.assertTrue(globeImageDropdown.isEnabled());
         softAssert.assertAll();
     }
 
