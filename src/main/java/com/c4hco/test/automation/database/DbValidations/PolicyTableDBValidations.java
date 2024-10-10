@@ -237,28 +237,5 @@ public class PolicyTableDBValidations {
         SharedData.setPrimaryMember(primaryMember);
     }
 
-
-    public void validateMedCoverageStartDate(String expectedStartDate){
-        switch (expectedStartDate) {
-            case "First Of Next Month":
-                setMedCoverageStartDateFirstOfNextMonth();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + expectedStartDate);
-        }
-      //  validateMedCoverageDate();
-    }
-    public void validateDenCoverageStartDate(String expectedStartDate){
-        switch (expectedStartDate) {
-            case "First Of Next Month":
-                setDenCoverageStartDateFirstOfNextMonth();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + expectedStartDate);
-        }
-       // validateDenCoverageDate();
-    }
-
-
 }
 
