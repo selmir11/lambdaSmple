@@ -847,6 +847,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
@@ -873,6 +874,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
@@ -899,7 +901,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012010", "Male" and applying "Yes"
       |Primary:Son|
@@ -925,7 +929,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012010", "Male" and applying "Yes"
       |Primary:Son|
@@ -952,9 +958,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
 
+    Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012010", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -1336,6 +1343,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
@@ -1362,6 +1370,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
@@ -1389,7 +1398,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012000", "Male" and applying "Yes"
       |Primary:Son|
@@ -1416,7 +1427,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012005", "Male" and applying "Yes"
       |Primary:Son|
@@ -1444,9 +1457,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
 
+    Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012006", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -1475,9 +1489,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
 
+    Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012006", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -1507,7 +1522,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
      #minor
     Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012009", "Male" and applying "Yes"
@@ -1538,7 +1555,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
      #minor
     Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012010", "Male" and applying "Yes"
@@ -1859,6 +1878,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
@@ -1886,6 +1906,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
@@ -1914,7 +1935,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012000", "Male" and applying "Yes"
       |Primary:Son|
@@ -1942,7 +1965,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012005", "Male" and applying "Yes"
       |Primary:Son|
@@ -1971,9 +1996,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
 
+    Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012006", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -2003,10 +2029,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
 
+    Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012006", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -2037,7 +2063,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
      #minor
     Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012009", "Male" and applying "Yes"
@@ -2069,8 +2097,9 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-
+    Then I validate I am on the "Family Overview" page
     Then I click Add Another Family Member
+
     Then I validate I am on the "Add Member" page
      #minor
     Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012010", "Male" and applying "Yes"
@@ -2104,7 +2133,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    ### - add member end
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
