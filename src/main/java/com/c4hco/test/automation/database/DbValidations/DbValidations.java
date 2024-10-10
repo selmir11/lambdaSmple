@@ -523,6 +523,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void verifyExchHouseholdIdDb() {
+        Boolean hasRecords = exchDbDataProvider.getExchHouseholdIdBoB();
+        Assert.assertTrue(hasRecords, "Query returned no records");
+        softAssert.assertAll();
+    }
+
     public void validateHraAhOptions(List<Map<String, String>> expectedValues) {
         EsMemberHraAhEntity actualResult = exchDbDataProvider.getOptionsFromHraAhDbTables();
         System.out.println(actualResult);

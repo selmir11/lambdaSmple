@@ -79,6 +79,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyAgencyCommissionTinDb();
    }
 
+   @And("I verify the new Exchange individual account's household ID in the database")
+   public void iVerifyExchHouseholdIdDb() {
+      dbValidations.verifyExchHouseholdIdDb();
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //
