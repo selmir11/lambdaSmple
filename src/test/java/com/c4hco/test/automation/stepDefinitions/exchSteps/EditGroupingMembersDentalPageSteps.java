@@ -29,4 +29,9 @@ public class EditGroupingMembersDentalPageSteps {
     public void IContinue() {
         editGroupingMembersDentalPage.iClickContinueOnSuccessPopup();
     }
+
+    @Then("I validate the text on the edit dental grouping page")
+    public void validateTxtOnPage(){
+        editGroupingMembersDentalPage.validatePageText();
+    }
 }
