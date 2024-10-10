@@ -1,5 +1,5 @@
 @SIR @COCO @EndToEndTestGroup
-  #SLCR-279, SLCR-280, SLCR-264, SLCR-281
+  #SLCR-279, SLCR-264, SLCR-280, SLCR-281, SLCR-337
 Feature: CoupleWithChildrens - End to End Test
 
   Background: I go the login portal

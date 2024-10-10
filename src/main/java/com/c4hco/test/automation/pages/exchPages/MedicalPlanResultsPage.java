@@ -104,6 +104,7 @@ public class MedicalPlanResultsPage {
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
+
     @FindBy(xpath = "//div[@id='MPcollapse'] //span[contains(@class,'ngx-slider-floor')]")
     WebElement txtpremiumamnt;
 
@@ -126,7 +127,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickContinue() {
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(continueBtn,30);
         continueBtn.click();
     }
@@ -189,7 +190,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent( insuranceCompanyDropdown,30 );
         insuranceCompanyDropdown.click();
 
