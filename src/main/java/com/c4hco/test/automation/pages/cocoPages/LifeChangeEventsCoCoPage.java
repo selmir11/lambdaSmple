@@ -545,13 +545,17 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifySelectOptionErrorNotPresent(String language){
-        if (Objects.equals(language, "English")){
-            softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Please select one or more of the options below:"), false);
-            softAssert.assertAll();
-        }
-        if (Objects.equals(language, "Spanish")) {
-            softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones:"), false);
-            softAssert.assertAll();
+        switch (language){
+            case "English":
+                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Please select one or more of the options below:"), false);
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones:"), false);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -618,13 +622,17 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifyLCEMemberErrorNotPresent(String language){
-        if (Objects.equals(language, "English")) {
-            softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Please select who this change applies to:"), false);
-            softAssert.assertAll();
-        }
-        if (Objects.equals(language, "Spanish")) {
-            softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Seleccione la persona a quien aplica este cambio:"), false);
-            softAssert.assertAll();
+        switch (language){
+            case "English":
+                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Please select who this change applies to:"), false);
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Seleccione la persona a quien aplica este cambio:"), false);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -644,13 +652,17 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifySelectDateErrorNotPresent(String language){
-        if (Objects.equals(language, "English")) {
-            softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Event date required"), false);
-            softAssert.assertAll();
-        }
-        if (Objects.equals(language, "Spanish")) {
-            softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "La fecha del evento es obligatoria"), false);
-            softAssert.assertAll();
+        switch (language){
+            case "English":
+                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Event date required"), false);
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "La fecha del evento es obligatoria"), false);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
