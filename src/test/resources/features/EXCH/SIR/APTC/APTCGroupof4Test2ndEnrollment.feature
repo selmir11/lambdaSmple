@@ -1811,7 +1811,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
 
-    @SLER-1108 @Group9-2adults-3youngAdults-4minors @test
+    @SLER-1108 @Group9-2adults-3youngAdults-4minors 
   Scenario: SLER-1108 - ELIG- APTCRules - group of 9 Variable 2 - 4 under 19, 3 young adults - with 2 adult parents - ages are different
     When I click create a new account on login page
     Then I click create my account from pre-screen page
