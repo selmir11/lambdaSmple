@@ -75,6 +75,7 @@ public class SharedData {
         ses = null;
         scenarioDetails = null;
         ib999Segments = null;
+        medicalPlanHeaders=null;
     }
 
 
