@@ -110,8 +110,7 @@ Feature: Simple NFA - Single Applicant
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     # WIP - Validate financial sstart/end dates, coverage start/end dates and all of policy table validations
-    And I validate policy tables with medical coverage start date as "First Of Next Month"
-    And I validate policy tables with dental coverage start date as "First Of Next Month"
+    And I validate the member details from policy tables with coverage start date "First Of Next Month" and end date "Last Day Of Current Year"
 
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
