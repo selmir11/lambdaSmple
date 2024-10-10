@@ -50,7 +50,7 @@ public class EditGroupingMembersDentalPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(xpath = "//div[@class='dragHere']/parent::div")
+    @FindBy(id = "SOL-ManageGroupingMembers-DragAMember")
     List<WebElement> dragAMemberHere;
 
     @FindBy(id ="SOL-ManageGroupingMembers-CreateANewGroup")
