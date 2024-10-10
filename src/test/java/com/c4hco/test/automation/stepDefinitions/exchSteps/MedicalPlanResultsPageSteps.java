@@ -83,6 +83,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validatePlanResults(Index, planText);
     }
 
+    @And("I store the medical plan market names from results page")
+    public void getMedicalPlanMarketNames() {
+        medPlanResultsPage.getMedicalPlanMarketNames();
+    }
+
     @And("I click the HSA dropdown")
     public void clickHSADropdown() {
         medPlanResultsPage.clickHSADropdown();

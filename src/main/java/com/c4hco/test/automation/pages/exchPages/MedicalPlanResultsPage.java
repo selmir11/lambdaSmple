@@ -13,8 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -95,6 +94,8 @@ public class MedicalPlanResultsPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
+    @FindBy(css = "pagination-template .pagination-next a")
+    List<WebElement> nextPageArrowlist;
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
@@ -107,7 +108,8 @@ public class MedicalPlanResultsPage {
     WebElement txtpremiumamnt;
 
 
-     public void selectfromProviderList(String Selecting) {
+
+    public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
@@ -314,6 +316,29 @@ public class MedicalPlanResultsPage {
         softAssert.assertNotEquals(txtpremiumamnt.getAttribute("innerText"), "0");
         softAssert.assertAll();
     }
+
+    public void getMedicalPlanMarketNames() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        List<String> medicalPlanHeaders = new ArrayList<>();
+        while (true) {
+            for (WebElement planName : medicalPlanNamesList) {
+                if (planName != null) {
+                    medicalPlanHeaders.add(planName.getText());
+                }
+            }
+            if (nextPageArrowlist != null && !nextPageArrowlist.isEmpty() && nextPageArrowlist.get(0).isEnabled()) {
+                nextPageArrowlist.get(0).click();
+                basicActions.waitForElementToDisappear(spinner, 20);
+                basicActions.waitForElementToBePresent(medicalPlanNamesList.get(0), 20);
+            } else {
+                break;
+            }
+        }
+        SharedData.setMedicalPlanHeaders(medicalPlanHeaders);
+        int count = SharedData.getMedicalPlanHeaders().size();
+        System.out.println("Count of medical plan headers: " + count);
+    }
+
 
 
 }

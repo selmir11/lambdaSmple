@@ -50,7 +50,7 @@ public class SharedData {
     @Getter @Setter private static ScenarioDetails scenarioDetails;
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
-
+    @Getter @Setter private static List<String> medicalPlanHeaders;
 
 
     public static void reset(){
