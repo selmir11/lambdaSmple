@@ -14,9 +14,9 @@ import java.util.List;
 public class EditGroupingMembersDentalPage {
 
 
-    @FindBy(id = "SOL-ManageGroupingMembers-EditMedicalTitle")
+    @FindBy(id = "SOL-ManageGroupingMembers-EditDentalTitle")
     WebElement pageTitle1;
-    @FindBy(id = "SOL-ManageGroupingMembers-EditMedicalGroupsTitle")
+    @FindBy(id = "SOL-ManageGroupingMembers-EditDentalGroupsTitle")
     WebElement pageTitle2;
     @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentGroups1stParagraph")
     WebElement para1;
