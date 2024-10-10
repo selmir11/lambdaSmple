@@ -1,10 +1,11 @@
 @@SIR @COCO @COCOMedicalResults
+  # SLCR-84, SLCR-284, SLCR-338, SLCR-339,
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @COCOFilterMedicalResults_NoSilver @SLCR-84
+   @SLCR-84 @COCOFilterMedicalResults_NoSilver
   Scenario Outline: SLCR-84 - This will verify the COCO filters provide a correct medical plan result - this is a merge of CCRT-389 to SCLR-84
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -12,6 +13,9 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -79,13 +83,16 @@ Feature: Verify COCO Medical Plan results
 
 
   @SLCR-284 @CoCo_RegressionTest
-  Scenario: This will verify the hyperlink text in COCO Medical plan page
+  Scenario: SLCR-284 - This will verify the hyperlink text in COCO Medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -145,13 +152,16 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-339 @CoCo_RegressionTest
-  Scenario: This will verify Spanish Text on Select Plan Results page
+  Scenario: SLCR-339 - This will verify Spanish Text on Select Plan Results page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -252,7 +262,7 @@ Feature: Verify COCO Medical Plan results
       | Obtenga más información sobre estas calificaciones.                                                                                                                                                                                                               |
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-338 @EndToEndTest
+  @SLCR-338
   Scenario: SLCR-338 - This will verify Spanish-English Text changes for Plan Selection - family
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -260,6 +270,9 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page

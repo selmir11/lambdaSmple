@@ -1,11 +1,11 @@
 @SIR @COCO @COCOMedicalResults
+  #SLCR-90, SLCR-91, SLCR-93, SLCR-131, SLCR-272, SLCR-276, SLCR-277, SLCR-286, SLCR-287
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-
-  @COCOFilterMedicalResults_ComparePlans @SLCR-91
+   @SLCR-91 @COCOFilterMedicalResults_ComparePlans
   Scenario: This will track the Plan Compare path and then use the Go Back button
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -13,6 +13,9 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -75,14 +78,17 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @COCOFilterMedicalResults_CompareInNetworkHeaders @SLCR-90
-  Scenario: This will verify the COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
+  @SLCR-90 @COCOFilterMedicalResults_CompareInNetworkHeaders
+  Scenario: SLCR-90 - This will verify the COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -144,7 +150,7 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @COCOFilterMedicalResults_CompareOutNetworkHeaders @SLCR-93
+   @SLCR-93 @COCOFilterMedicalResults_CompareOutNetworkHeaders
   Scenario: This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -152,6 +158,9 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -212,14 +221,17 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @COCOFilterMedicalResults_ComparePlansDeselect @SLCR-131
-  Scenario: This will track the Plan Compare path and then use the Go Back button
+   @SLCR-131 @COCOFilterMedicalResults_ComparePlansDeselect
+  Scenario: SLCR-131 - This will track the Plan Compare path and then use the Go Back button
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -284,13 +296,16 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-272 @CoCo_RegressionTest
-  Scenario: This will create Individual adult and ensure Sorting works properly and Sort's as it should in coco medical plan page
+  Scenario: SLCR-272 - This will create Individual adult and ensure Sorting works properly and Sort's as it should in coco medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -356,13 +371,16 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-276 @CoCo_RegressionTest @ComparePlan_FromMultiplePage
-  Scenario: This will verify the COCO Compare plan page
+  Scenario: SLCR-276 - This will verify the COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -422,13 +440,16 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-277 @CoCo_RegressionTest @SpanishTextVerification
-  Scenario: This will verify the spanish text in COCO Compare plan page
+  Scenario: SLCR-277 - This will verify the spanish text in COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -509,13 +530,16 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-286 @CoCo_RegressionTest @ComparePlan_FromMultiplePage
-  Scenario: This will verify the COCO Compare plan page from medical plan page
+  Scenario: SLCR-286 - This will verify the COCO Compare plan page from medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -575,13 +599,16 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-287 @CoCo_RegressionTest
-  Scenario: This will verify Text and Dropdown in COCO Compare plan page from medical plan page
+  Scenario: SLCR-287 - This will verify Text and Dropdown in COCO Compare plan page from medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page

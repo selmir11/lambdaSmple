@@ -1,6 +1,6 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
   @SLER-106
-  Scenario: Create Account & Submit FA Application & Enroll in a plan
+  Scenario: Family of 4  FA Application Enrolls in a plan Admin Portal OBO
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
@@ -32,6 +32,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -54,6 +57,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -75,6 +81,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -96,6 +105,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option

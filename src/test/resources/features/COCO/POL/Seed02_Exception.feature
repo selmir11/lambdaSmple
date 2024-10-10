@@ -13,7 +13,7 @@ Feature: Seed02 with exception - Coco
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Mister Broker"
+    Then I Search authorized Broker "ENR"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker

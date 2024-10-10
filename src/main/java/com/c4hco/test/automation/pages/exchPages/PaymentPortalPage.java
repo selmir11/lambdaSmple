@@ -20,7 +20,7 @@ public class PaymentPortalPage {
     @FindBy(css = "#loader-icon .fa-spinner")
     WebElement spinner;
 
-    @FindBy(css = "#SOL-PayNow-AllDone-Indv")
+    @FindBy(id = "SOL-PayNow-AllDone-Indv")
     WebElement allDone;
 
     @FindBy(id = "SOL-PayNow-AllDone-Obo")

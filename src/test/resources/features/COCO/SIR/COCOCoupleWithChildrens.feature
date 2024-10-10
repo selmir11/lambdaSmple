@@ -1,5 +1,5 @@
 @SIR @COCO @EndToEndTestGroup
-  #SLCR-279, SLCR-280, SLCR-264, SLCR-281
+  #SLCR-279, SLCR-264, SLCR-280, SLCR-281, SLCR-337
 Feature: CoupleWithChildrens - End to End Test
 
   Background: I go the login portal
@@ -10,8 +10,12 @@ Feature: CoupleWithChildrens - End to End Test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -203,8 +207,12 @@ Feature: CoupleWithChildrens - End to End Test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -254,7 +262,7 @@ Feature: CoupleWithChildrens - End to End Test
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity pagee
+    And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -391,8 +399,12 @@ Feature: CoupleWithChildrens - End to End Test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -563,8 +575,12 @@ Feature: CoupleWithChildrens - End to End Test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -718,6 +734,9 @@ Feature: CoupleWithChildrens - End to End Test
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page

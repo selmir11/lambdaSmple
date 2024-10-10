@@ -1,9 +1,9 @@
 Feature: Regression Tests that require Seed 1 w/exception
 
-  Background: Seed 01 w/exception For Exchange- Single Applicant NFA
+  Scenario: Seed 01 w/exception For Exchange- Single Applicant NFA
     Given I set the test scenario details
-      | totalGroups | totalMembers |
-      | 1           | 1            |
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                | 1               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
