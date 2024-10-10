@@ -134,7 +134,7 @@ public class BasicSteps {
                 pageUrl = "PreShoppingPortal/manageGroupingMembers";
                 break;
             case "Edit Grouping Members Dental":
-                pageUrl = "PreShoppingPortal/editGroupingMembersDental";
+                pageUrl = "PreShoppingPortal/manageGroupingMembers";
                 break;
             case "Spanish":
                 pageUrl = "lang=es";
