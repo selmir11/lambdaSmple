@@ -226,7 +226,8 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
 
-     Then I click all done from payment portal page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -267,8 +268,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Additional income" page
     And I click None of these as additional income option
     Then I click None of these as additional income option and continue
-#    And I click None of these as additional income option
-#    Then I click continue on the Additional Income page
 
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
@@ -327,7 +326,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click on edit enrollment groups link
 
     Then I validate I am on the "Edit Grouping Members Medical" page
-     # Then I validate that there are 1 default groups
+    Then I validate that there are 1 default groups
     Then I create new group in edit medical grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     Then I click save button to save the groups
