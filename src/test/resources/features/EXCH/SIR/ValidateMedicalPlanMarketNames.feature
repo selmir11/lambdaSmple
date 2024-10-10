@@ -1,8 +1,6 @@
-
 Feature: Tests related to medical plans
 
- @SLER-679-WIP
-
+ @SLER-1123-WIP
 Scenario:  set of medical plan results with plans was consistent through the year - all pages in the results were checked
 
   Given I open the login page on the "login" portal

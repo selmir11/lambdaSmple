@@ -95,8 +95,6 @@ public class MedicalPlanResultsPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
-    @FindBy(css = "pagination-template .pagination-next a")
-    List<WebElement> nextPageArrowlist;
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
