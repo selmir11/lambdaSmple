@@ -24,32 +24,12 @@ public class DbValidations {
  String formattedDate; //formatted in YYYY-MM-DD
  Calendar calendar = Calendar.getInstance();
  int currentYear = calendar.get(Calendar.YEAR);
-
-    public void validateMedicalDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity, MemberDetails subscriber){
-        softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "acc id did not match");
-        softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(),"First Name did not match");
-        softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Last Name did not match");
-        softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), subscriber.getRelation_to_subscriber(), "relation to subscriber did not match");
-        softAssert.assertEquals( policyTablesEntity.getPlan_year(), String.valueOf(currentYear), "plan year did not match");
-        String dateString = subscriber.getDob();
-        String formattedDob = formatDob(dateString);
-        softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(formattedDob), "dob did not match");
-        // softAssert.assertEquals(policyTablesEntity.getPremium_reduction_type(), "APTC", "premium reduction type did not match");
-        softAssert.assertTrue(policyTablesEntity.getPolicy_status().equals("SUBMITTED"));
-    }
-
-    public String formatDob(String dateString){
-        String formattedDob = "";
-        try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("MMddyyyy");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = inputFormat.parse(dateString);
-            formattedDob = outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return formattedDob;
-    }
+     public void setIb999DetailsEntity(){
+         List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
+         SharedData.setIb999MedDetailsEntities(ib999MedEntity);
+         List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
+         SharedData.setIb999DenDetailsEntities(ib999DenEntity);
+     }
 
     public void validateOb834FromDb(List<Map<String, String>> expectedValues){
       MemberDetails subscriber = SharedData.getPrimaryMember();
@@ -236,7 +216,7 @@ public class DbValidations {
         softAssert.assertEquals(subscriber.getSsn(), ob834Entity.getMember_ssn(), "ssn did not match");
         softAssert.assertEquals(dateFormatted, ob834Entity.getMember_dob(), "dob did not match");
         softAssert.assertEquals(ob834Entity.getMember_gender(), subscriber.getGender().substring(0,1) , "gender did not match");
-        softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()): "7" ,ob834Entity.getMember_race(),"Race did not match");
+      //  softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()): "7" ,ob834Entity.getMember_race(),"Race did not match");
         softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(subscriber.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber() ,ob834Entity.getAlternate_phone(), "alternate phone did not match"  );

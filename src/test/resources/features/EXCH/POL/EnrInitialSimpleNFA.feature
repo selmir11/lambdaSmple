@@ -93,7 +93,7 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    #Gmail # Add all the validations -WIP
+    #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
@@ -134,5 +134,6 @@ Feature: Simple NFA - Single Applicant
     And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
+    And I set ib999 entites for both medical and dental files
     And I validate the contents of ib999 medical file
     And I validate the contents of ib999 dental file
