@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.plugin.event.Node;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -320,26 +321,30 @@ public class MedicalPlanResultsPage {
 
     public void getMedicalPlanMarketNames() {
         basicActions.waitForElementToDisappear(spinner, 20);
-        List<String> medicalPlansList = new ArrayList<>();
-        while (true) {
-            for (WebElement planName : medicalPlanNamesList) {
-                medicalPlansList.add(planName.getText());
-            }
-
-            if (nextPageArrowlist != null && !nextPageArrowlist.isEmpty() && nextPageArrowlist.get(0).isEnabled()) {
-                nextPageArrowlist.get(0).click();
-                basicActions.waitForElementToDisappear(spinner, 20);
-                basicActions.waitForElementToBePresent(medicalPlanNamesList.get(0), 20);
-            } else {
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 20);
+        do{
+            getPlanNamesFromPage();
+            if(checkIfLastPage()){
                 break;
             }
+            paginateRight();
+        }while(true);
+    }
+
+    private Boolean checkIfLastPage() {
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
+        return !nextPageArrowlist.get(1).isEnabled();
+    }
+
+    private void getPlanNamesFromPage(){
+        List<String> medicalPlansList = new ArrayList<>();
+
+        for (WebElement planName : medicalPlanNamesList) {
+            medicalPlansList.add(planName.getText());
         }
         SharedData.setMedicalPlanHeaders(medicalPlansList);
         int count = SharedData.getMedicalPlanHeaders().size();
-        System.out.println("Count of medical plan headers: " + count);
     }
-
-
 
 }
 
