@@ -342,8 +342,8 @@ public class MedicalPlanResultsPage {
         for (WebElement planName : medicalPlanNamesList) {
             medicalPlansList.add(planName.getText());
         }
-        SharedData.setMedicalPlanHeaders(medicalPlansList);
-        int count = SharedData.getMedicalPlanHeaders().size();
+        SharedData.setMedicalPlansList(medicalPlansList);
+        int count = SharedData.getMedicalPlansList().size();
     }
 
 }
