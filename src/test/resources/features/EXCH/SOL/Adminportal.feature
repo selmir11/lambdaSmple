@@ -14,6 +14,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select "individual" checkbox on Admin Portal Dashboard
   And I search for user and click email from search results
   And I click "On Behalf Of (OBO)" from application links dropdown
+  And I initiate incoming page
   Then I validate I am on the "Account Overview" page
   Then I apply for the current year
   Then I select "No" option on the Let us guide you page
@@ -132,6 +133,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I select "individual" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
     And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -192,6 +194,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I select "individual" checkbox on Admin Portal Dashboard
       And I search for user and click email from search results
       And I click "On Behalf Of (OBO)" from application links dropdown
+      And I initiate incoming page
       Then I validate I am on the "Account Overview" page
       Then I apply for the current year
       Then I select "No" option on the Let us guide you page
