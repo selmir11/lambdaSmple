@@ -320,13 +320,12 @@ public class MedicalPlanResultsPage {
 
     public void getMedicalPlanMarketNames() {
         basicActions.waitForElementToDisappear(spinner, 20);
-        List<String> medicalPlanHeaders = new ArrayList<>();
+        List<String> medicalPlansList = new ArrayList<>();
         while (true) {
             for (WebElement planName : medicalPlanNamesList) {
-                if (planName != null) {
-                    medicalPlanHeaders.add(planName.getText());
-                }
+                medicalPlansList.add(planName.getText());
             }
+
             if (nextPageArrowlist != null && !nextPageArrowlist.isEmpty() && nextPageArrowlist.get(0).isEnabled()) {
                 nextPageArrowlist.get(0).click();
                 basicActions.waitForElementToDisappear(spinner, 20);
@@ -335,7 +334,7 @@ public class MedicalPlanResultsPage {
                 break;
             }
         }
-        SharedData.setMedicalPlanHeaders(medicalPlanHeaders);
+        SharedData.setMedicalPlanHeaders(medicalPlansList);
         int count = SharedData.getMedicalPlanHeaders().size();
         System.out.println("Count of medical plan headers: " + count);
     }
