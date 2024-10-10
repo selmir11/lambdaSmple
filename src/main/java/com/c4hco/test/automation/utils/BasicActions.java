@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.utils;
 
-import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -134,7 +133,7 @@ public class BasicActions {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException ignore) {
+        } catch (TimeoutException|NoSuchElementException ignore) {
             Log.info("Element is not present");
             return false;
         }

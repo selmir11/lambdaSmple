@@ -322,28 +322,30 @@ public class MedicalPlanResultsPage {
     public void getMedicalPlanMarketNames() {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementListToBePresent(medicalPlanNamesList, 20);
-        do{
+        while (true) {
             getPlanNamesFromPage();
-            if(checkIfLastPage()){
+            if (checkIfLastPage()) {
                 break;
             }
             paginateRight();
-        }while(true);
+        }
     }
 
     private Boolean checkIfLastPage() {
         basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
-        return !nextPageArrowlist.get(1).isEnabled();
+        return !basicActions.waitForElementToBePresent(nextPageArrow, 10);
     }
 
     private void getPlanNamesFromPage(){
-        List<String> medicalPlansList = new ArrayList<>();
+        List<String> medicalPlansList = SharedData.getMedicalPlanHeaders();
+        if(medicalPlansList==null){
+            medicalPlansList = new ArrayList<>();
+        }
 
         for (WebElement planName : medicalPlanNamesList) {
             medicalPlansList.add(planName.getText());
         }
         SharedData.setMedicalPlanHeaders(medicalPlansList);
-        int count = SharedData.getMedicalPlanHeaders().size();
     }
 
 }
