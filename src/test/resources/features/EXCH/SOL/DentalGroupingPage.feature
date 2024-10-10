@@ -1,5 +1,5 @@
 @SOLRegression
-Feature: UI Page Validation - Medical Grouping Page
+Feature: UI Page Validation - Dental Grouping Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -11,8 +11,8 @@ Feature: UI Page Validation - Medical Grouping Page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1109 @medicalGroupingPageValidation @MedGrpingPageNavigation
-  Scenario: Validate the Medical Grouping Page Text and Page Navigation
+  @SLER-1110 @dentalGroupingPageValidation @DentalGrpingPageNavigation
+  Scenario: Validate the Dental Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -81,10 +81,14 @@ Feature: UI Page Validation - Medical Grouping Page
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
-    And I verify text on Medical grouping page
-    And I click Go Back on the Medical Grouping page
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on start shopping page
-    And I validate I am on the "Grouping Members Medical" page
-    And I click save and exit from the medical grouping page
+    Then I click continue on grouping Members Medical page
+    And I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I validate I am on the "Dental Grouping" page
+    And I verify text on Dental grouping page
+    And I click Go Back on the Dental Grouping page
+    And I validate I am on the "Medical Plan Results" page
+    Then I click continue on medical plan results page
+    And I click save and exit from the dental grouping page
     Then I validate I am on the "Login" page
