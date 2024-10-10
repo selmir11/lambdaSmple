@@ -117,5 +117,20 @@ public class YourClientsPageSteps {
     public void iVerifyThatTheClientNameMatchThePrimaryContact() {
         yourClientsPage.verifyClientNameAsPrimary();
     }
+
+    @Then("I validate the search box cannot contain special characters")
+    public void iVerifySearchBoxSpecialCharacters() {
+        yourClientsPage.validateSearchBoxSpecialCharacters();
+    }
+
+    @Then("I validate numbers are not allowed in the search box")
+    public void iVerifySearchBoxNumbers() {
+        yourClientsPage.validateNumbersNotAllowedSearchBox();
+    }
+
+    @Then("I validate spaces are not allowed in the search box")
+    public void iVerifySearchBoxSpaces() {
+        yourClientsPage.validateSpacesNotAllowedSearchBox();
+    }
 }
 

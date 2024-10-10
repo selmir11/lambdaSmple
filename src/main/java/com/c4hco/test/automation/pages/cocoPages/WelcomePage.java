@@ -1,18 +1,14 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
-import com.c4hco.test.automation.Dto.Edi.Member;
-import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.*;
+import java.util.List;
 
 public class WelcomePage {
 
@@ -68,8 +64,15 @@ public class WelcomePage {
 
     @FindBy(css = ".action-link, .c4-type-links-lg")
     List<WebElement> actionLinks;
-    @FindBy(css = ".plan-member-names-container .plan-member-full-names")
-    WebElement medicalMemberNames;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-title")
+    WebElement cacBannerHdr;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-content")
+    WebElement cacBannerTxt;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-content a")
+    WebElement cacBannerLnk;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -157,8 +160,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Additional Resources");
         softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
@@ -186,8 +189,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Otros recursos");
         softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
@@ -238,8 +241,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "You have not yet enrolled in a plan for 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Additional Resources");
         softAssert.assertEquals(actionLinks.get(0).getText(), "My Profile");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "View and update your account information");
@@ -267,8 +270,8 @@ public class WelcomePage {
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
-        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2024");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
+        softAssert.assertEquals(youHaveNotEnrolled.getText(), "A\u00FAn no se ha inscrito en un plan para 2025");
         softAssert.assertEquals(containerHeaderText.get(1).getText(), "Otros recursos");
         softAssert.assertEquals(actionLinks.get(0).getText(), "Mi perfil");
         softAssert.assertEquals(viewAdditionalResourcesText.get(0).getText(), "Ver y actualizar la informaci\u00F3n de su cuenta");
@@ -364,10 +367,10 @@ public class WelcomePage {
         else if (currentUrl == "https://qa") {
             softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para hacer cambios.");
         }
-        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Hacer cambios");
+        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Hacer cambios para 2024");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
-        softAssert.assertEquals(planYearSelectorDp.getText(), "2024\n2023");
+        softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
         softAssert.assertEquals(enrolledFirstNames.getText(), SharedData.getPrimaryMember().getFirstName());
         softAssert.assertEquals(enrolledFullNames.getText(), SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(policyMedicalPlan.getText(), "Plan m\u00E9dico");
@@ -387,38 +390,23 @@ public class WelcomePage {
         softAssert.assertEquals(viewAdditionalResourcesText.get(3).getText(), "Vea sus documentos");
         softAssert.assertAll();
     }
-public void verifyMemberNamesOnWelcomePage() {
-    basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
-    basicActions.waitForElementToBePresent(planYearText, 20);
-    basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-    List<String> memberNamesList = new ArrayList<>();
-    MemberDetails primaryMember = SharedData.getPrimaryMember();
-    memberNamesList.add(primaryMember.getFullName());
-    List<MemberDetails> memberDetailsList = SharedData.getMembers();
-    for (MemberDetails memName : memberDetailsList) {
-        memberNamesList.add(memName.getCompleteFullName());
-    }
-    List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
-    Collections.sort(memberNamesList);
-    Collections.sort(memberNamesListWelcomePage);
-    softAssert.assertEquals(memberNamesListWelcomePage.size(), memberNamesList.size(), "total names count from sharedData and UI did not match");
-    softAssert.assertEquals(memberNamesListWelcomePage, memberNamesList, "Names of members did not match");
-    softAssert.assertAll();
-}
-    public void verifyMyPlanDetails(){
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        softAssert.assertEquals(planYearSelectorOptions.get(1).getText(), SharedData.getPlanYear(),"Plan Year does not match");
-        softAssert.assertEquals(policyMedicalDetails.get(0).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
-        softAssert.assertEquals(policyMonthlyDetails.get(1).getText().substring(0,7), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
-        softAssert.assertAll();
-    }
-    public void setScenarioDetailsCoco(List<Map<String, String>> expectedResult) {
-        String noOfGroups = expectedResult.get(0).get("totalGroups");
-        String totalMembers = expectedResult.get(0).get("totalMembers");
-        ScenarioDetails scenarioDetails = new ScenarioDetails();
-        scenarioDetails.setTotalGroups(Integer.parseInt(noOfGroups));
-        scenarioDetails.setTotalMembers(Integer.parseInt(totalMembers));
-        SharedData.setScenarioDetails(scenarioDetails);
+
+    public void validateCacBannerText(String language) {
+        basicActions.waitForElementToBePresent(containerMainHeaderText, 5);
+        switch(language) {
+            case "English":
+                softAssert.assertEquals(cacBannerHdr.getText(), "Health Insurance News");
+                softAssert.assertEquals(cacBannerTxt.getText(), "There have been several important changes to health coverage policies this year. You may have new coverage options for 2025. To see if these changes affect you and your family, take a short quiz.");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(cacBannerHdr.getText(), "Noticia sobre seguros de salud");
+                softAssert.assertEquals(cacBannerTxt.getText(), "Este a\u00F1o, se han dado varios cambios importantes en las pol\u00EDticas de cobertura de salud. \u200CEs posible que en 2025 cuente con opciones de cobertura nuevas. Para saber si los cambios le afectan a usted y a su familia, complete la siguiente encuesta breve.");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
 }
 

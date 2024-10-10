@@ -1,5 +1,5 @@
 @SIR @COCO
-
+    # SLCR-157, SLCR-159, SLCR-195, SLCR-255, SLCR-256, SLCR-257, SLCR-263, SLCR-265, SLCR-267, SLCR-268, SLCR-316, SLCR-317,
 Feature: Individual adult - End to End Test
 
   Background: I go the login portal
@@ -289,7 +289,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-195 @EndToEndTest
-  Scenario: This will create Individual Minor with no assistance annually salary of 10K
+  Scenario: SLCR-195 - This will create Individual Minor with no assistance annually salary of 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -368,7 +368,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-255 @EndToEndTest
-  Scenario: This will create Family of 3 members as minors with multiple groups
+  Scenario: SLCR-255 - This will create Family of 3 members as minors with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -529,7 +529,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-256 @EndToEndTest
-  Scenario: This will create Individual adult with no assistance annually salary of 19K
+  Scenario: SLCR-256 - This will create Individual adult with no assistance annually salary of 19K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -608,7 +608,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-257 @EndToEndTest
-  Scenario: This will create Family of 2 members Couples with multiple groups
+  Scenario: SLCR-257 - This will create Family of 2 members Couples with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -740,7 +740,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-263 @EndToEndTest
-  Scenario: This will create Family of 3 members as minor siblings with multiple groups
+  Scenario: SLCR-263 - This will create Family of 3 members as minor siblings with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -896,7 +896,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-265 @EndToEndTest
-  Scenario: This will create Family of 3 members as minor siblings with multiple groups $0 income
+  Scenario: SLCR-265 - This will create Family of 3 members as minor siblings with multiple groups $0 income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -1222,7 +1222,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-316 @EndToEndTest
-  Scenario: This will create Family of 3 members as minors with multiple groups - 3 kids  - 3 groups
+  Scenario: SLCR-316 - This will create Family of 3 members as minors with multiple groups - 3 kids  - 3 groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -1383,7 +1383,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-317 @EndToEndTest
-  Scenario: This will create Individual Minor COCO - Open Enrollment: 1 minor (SES plan not viewable)
+  Scenario: SLCR-317 - This will create Individual Minor COCO - Open Enrollment: 1 minor (SES plan not viewable)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation

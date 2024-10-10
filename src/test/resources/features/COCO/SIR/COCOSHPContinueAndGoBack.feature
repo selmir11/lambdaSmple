@@ -1,5 +1,5 @@
 @SIR @COCO
-
+ #SLCR-318, SLCR-332,
 Feature: Shopping Page - Continue and Go back funtionality
 
   Background: I go the login portal
