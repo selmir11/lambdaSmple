@@ -305,10 +305,7 @@ public class MedicalPlanResultsPage {
             selectMedicalPlan(SpecificPlan);
             clickContinue();
             System.out.println("Selected plan: " + SpecificPlan);
-
         }
-
-
     }
 
 
@@ -337,7 +334,7 @@ public class MedicalPlanResultsPage {
     }
 
     private void getPlanNamesFromPage(){
-        List<String> medicalPlansList = SharedData.getMedicalPlanHeaders();
+        List<String> medicalPlansList = SharedData.getMedicalPlansList();
         if(medicalPlansList==null){
             medicalPlansList = new ArrayList<>();
         }
@@ -345,7 +342,7 @@ public class MedicalPlanResultsPage {
         for (WebElement planName : medicalPlanNamesList) {
             medicalPlansList.add(planName.getText());
         }
-        SharedData.setMedicalPlanHeaders(medicalPlansList);
+        SharedData.setMedicalPlansList(medicalPlansList);
     }
 
 }
