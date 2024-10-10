@@ -1830,7 +1830,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
 
-  @Group9-2adults-3youngAdults-4minors
+    @SLER-1108 @Group9-2adults-3youngAdults-4minors 
   Scenario: SLER-1108 - ELIG- APTCRules - group of 9 Variable 2 - 4 under 19, 3 young adults - with 2 adult parents - ages are different
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1847,7 +1847,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I click on continue with  application button on Before you begin page
     #Open Enrollment - LCE not required
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011967" in county "EL PASO" with zipcode "80902"
@@ -1870,6 +1870,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1896,6 +1897,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1924,6 +1926,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1953,6 +1956,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1983,6 +1987,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -2015,6 +2020,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -2048,6 +2054,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Fulltime Student option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -2081,6 +2088,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -2116,6 +2124,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -2123,7 +2132,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2261,19 +2269,16 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
-
-    And I select the first dependent
-    And I select the second dependent
-    And I select the third dependent
-    And I select the fourth dependent
-    And I select the fifth dependent
-    And I select the sixth dependent
-    And I select the seventh dependent
-    And I select the eighth dependent
-
-    #And I click save and continue on tax status page
-
-    # 9 members
+    # 8 dependants
+    Then I click Dependent 0
+    Then I click Dependent 1
+    Then I click Dependent 2
+    Then I click Dependent 3
+    Then I click Dependent 4
+    Then I click Dependent 5
+    Then I click Dependent 6
+    Then I click Dependent 7
+    And I click save and continue on tax status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
