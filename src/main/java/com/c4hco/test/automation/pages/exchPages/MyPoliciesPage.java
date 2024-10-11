@@ -78,12 +78,16 @@ public class MyPoliciesPage {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
 
-    public void validateEnrolledMedicalPlanDetails(List<Map<String, String>> expectedResult) {
+    public void validateEnrolledMedicalPlanDetails(String startDate, String endDate) {
+        String polBeginDate = basicActions.getDateBasedOnRequirement(startDate);
+        String polEndDate = basicActions.getDateBasedOnRequirement(endDate);
+        polBeginDate=  basicActions.changeDateFormat(polBeginDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        polEndDate = basicActions.changeDateFormat(polEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
         // **** Works when only one member with one medical plan **** //
-        primaryMember.setMedicalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setMedicalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setMedicalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setMedicalPlanStartDate(polBeginDate);
+        primaryMember.setMedicalPlanEndDate(polEndDate);
+        primaryMember.setMedicalFinancialStartDate(polBeginDate);
+        primaryMember.setMedicalFinancialEndDate(polEndDate);
         SharedData.setPrimaryMember(primaryMember);
         //Validating member names from table - medical
         basicActions.waitForElementListToBePresent(memberNames, 10);
@@ -100,10 +104,10 @@ public class MyPoliciesPage {
             }else if (memberDetailsList !=null) {
                 for (int i = 0; i < memberDetailsList.size(); i++) {
                     MemberDetails member = SharedData.getMembers().get(i);
-                    member.setMedicalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
-                    member.setMedicalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
-                    member.setMedicalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
-                    member.setMedicalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
+                    member.setMedicalPlanStartDate(polBeginDate);
+                    member.setMedicalPlanEndDate(polEndDate);
+                    member.setMedicalFinancialStartDate(polBeginDate);
+                    member.setMedicalFinancialEndDate(polEndDate);
                     softAssert.assertEquals(memFirstName+" "+memLastName, member.getSignature(), "Member names from current medical plans does not match- my policies page");
                 }
             }
@@ -134,21 +138,25 @@ public class MyPoliciesPage {
         softAssert.assertAll();
     }
 
-    public void validateDentalPlanDetails(List<Map<String, String>> expectedResult){
+    public void validateDentalPlanDetails( String startDate,String endDate){
+        String polBeginDate = basicActions.getDateBasedOnRequirement(startDate);
+        String polEndDate = basicActions.getDateBasedOnRequirement(endDate);
+        polBeginDate=  basicActions.changeDateFormat(polBeginDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        polEndDate = basicActions.changeDateFormat(polEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
         // **** Works when only one member with one medical plan and one dental plan **** //
-        primaryMember.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setDentalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
-        primaryMember.setDentalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
+        primaryMember.setDentalPlanStartDate(polBeginDate);
+        primaryMember.setDentalPlanEndDate(polEndDate);
+        primaryMember.setDentalFinancialStartDate(polBeginDate);
+        primaryMember.setDentalFinancialEndDate(polEndDate);
         SharedData.setPrimaryMember(primaryMember);
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
         if (memberDetailsList !=null) {
             for (int i = 0; i < memberDetailsList.size(); i++) {
                 MemberDetails member = SharedData.getMembers().get(i);
-                member.setDentalPlanStartDate(expectedResult.get(0).get("PolicyStartDate")+"/"+SharedData.getPlanYear());
-                member.setDentalPlanEndDate(expectedResult.get(0).get("PolicyEndDate")+"/"+SharedData.getPlanYear());
-                member.setDentalFinancialStartDate(expectedResult.get(0).get("FinancialStartDate")+"/"+SharedData.getPlanYear());
-                member.setDentalFinancialEndDate(expectedResult.get(0).get("FinancialEndDate")+"/"+SharedData.getPlanYear());
+                member.setDentalPlanStartDate(polBeginDate);
+                member.setDentalPlanEndDate(polEndDate);
+                member.setDentalFinancialStartDate(polBeginDate);
+                member.setDentalFinancialEndDate(polEndDate);
             }
         }
 
