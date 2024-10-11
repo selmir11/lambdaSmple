@@ -75,6 +75,7 @@ Feature: Verify COCO Medical Plan results
   Then I click continue on start shopping page
   
   Then I validate I am on the "Medical Plan Results" page
+  Then I validate I am on the "Start Shopping" page
 
 @COCOFilterMedicalResultsWithSilverEnhanced-PlanLoadTest
 Scenario Outline: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results - SLCR-85
