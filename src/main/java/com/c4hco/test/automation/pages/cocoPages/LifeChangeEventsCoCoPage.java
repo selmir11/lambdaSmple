@@ -535,9 +535,7 @@ public class LifeChangeEventsCoCoPage {
                 verifyLCEError(language);
                 break;
             case "does not":
-                if (basicActions.waitForElementToBePresent(selectLCEError, 1)){
-                    verifySelectOptionErrorNotPresent(language);
-                }
+                verifySelectOptionErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + exist);
@@ -545,13 +543,17 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifySelectOptionErrorNotPresent(String language){
+        // Check if there are any error messages on page.  Return if there aren't any.
+        if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
+            return;
+        }
         switch (language){
             case "English":
-                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Please select one or more of the options below:"), false);
+                softAssert.assertNotEquals(selectLCEError.getText(), "Please select one or more of the options below:");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones:"), false);
+                softAssert.assertNotEquals(selectLCEError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones:");
                 softAssert.assertAll();
                 break;
             default:
@@ -566,9 +568,7 @@ public class LifeChangeEventsCoCoPage {
                 verifyLCEMemberError(language);
                 break;
             case "does not":
-                if (basicActions.waitForElementToBePresent(selectLCEError, 1)) {
-                    verifyLCEMemberErrorNotPresent(language);
-                }
+                verifyLCEMemberErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + exist);
@@ -622,13 +622,17 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifyLCEMemberErrorNotPresent(String language){
+        // Check if there are any error messages on page.  Return if there aren't any.
+        if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
+            return;
+        }
         switch (language){
             case "English":
-                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Please select who this change applies to:"), false);
+                softAssert.assertNotEquals(selectLCEError.getText(), "Please select who this change applies to:");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Seleccione la persona a quien aplica este cambio:"), false);
+                softAssert.assertNotEquals(selectLCEError.getText(), "Seleccione la persona a quien aplica este cambio:");
                 softAssert.assertAll();
                 break;
             default:
@@ -642,9 +646,7 @@ public class LifeChangeEventsCoCoPage {
                 verifyLCEDateError(language);
                 break;
             case "does not":
-                if (basicActions.waitForElementToBePresent(selectLCEError, 1)) {
-                    verifySelectDateErrorNotPresent(language);
-                }
+                verifySelectDateErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + exist);
@@ -652,13 +654,17 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifySelectDateErrorNotPresent(String language){
+        // Check if there are any error messages on page.  Return if there aren't any.
+        if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
+            return;
+        }
         switch (language){
             case "English":
-                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "Event date required"), false);
+                softAssert.assertNotEquals(selectLCEError.getText(), "Event date required");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(Objects.equals(selectLCEError.getText(), "La fecha del evento es obligatoria"), false);
+                softAssert.assertNotEquals(selectLCEError.getText(), "La fecha del evento es obligatoria");
                 softAssert.assertAll();
                 break;
             default:
