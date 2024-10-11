@@ -217,3 +217,16 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "Spanish"
     And I check "Move" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "Spanish"
+
+  @SLCR-352
+  Scenario: LCE page saves "None of these" after saving previous entry
+    And I select "Divorce" life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I select Go Back on the Declarations and Signature page
+    Then I verify "Divorce" life change event "is" selected
+    And I select None of these life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I select Go Back on the Declarations and Signature page
+    Then I verify "NoneOfThese" life change event "is" selected
