@@ -1,6 +1,6 @@
 Feature: Enroll a in a plan 8 HH
   @SLER-832  
-  Scenario: : EXCH intial application - Complex Household
+  Scenario: : EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -64,6 +64,10 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Asian or Asian American" for race and ethnicity
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
 
     #2Member (son1)
     Then I click Add Another Family Member
@@ -134,7 +138,6 @@ Feature: Enroll a in a plan 8 HH
     Then I select "1234 Road" specific Address
     And I select "Yes" for CO Resident option
     And I select "Yes" for Federally Recognized Tribe option
-#Tribe Selection to be added
     Then I add the tribe details
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
@@ -171,9 +174,8 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Not listed" for race and ethnicity
-#    text box input to come
-    And I click continue on the Race and Ethnicity page
+    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -202,9 +204,8 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Not listed" for race and ethnicity
-#    text box input to come
-    And I click continue on the Race and Ethnicity page
+    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -229,7 +230,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "600000.00" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "60000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -283,7 +284,6 @@ Feature: Enroll a in a plan 8 HH
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
-    And I select the first dependent
     And I select the second dependent
     And I select the third dependent
     And I select the fourth dependent
