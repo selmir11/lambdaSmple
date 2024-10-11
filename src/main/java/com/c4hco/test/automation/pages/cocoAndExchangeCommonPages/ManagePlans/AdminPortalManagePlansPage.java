@@ -98,11 +98,11 @@ public class AdminPortalManagePlansPage{
     WebElement selectPolicyDropdown;
     @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[1]/div[1]/app-current-plan/div/div[1]/div/p[2]")
     WebElement selectPolicyDropdownOptions;
-    @FindBy(xpath = "//*[@id='premium_1']")
+    @FindBy(id = "premium_1")
     WebElement financialPremiumData;
-    @FindBy(css = "#status_1")
+    @FindBy(id = "status_1")
     WebElement coverageStatusData;
-    @FindBy(xpath = "//*[@id='planAPTC_1']")
+    @FindBy(id = "id='planAPTC_1")
     WebElement financialAptcData;
 
     public void validateBluBar(){
