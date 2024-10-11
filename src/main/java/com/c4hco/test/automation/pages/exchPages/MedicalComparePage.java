@@ -120,6 +120,13 @@ public class MedicalComparePage {
     WebElement outThirteenHeader;
 
 
+    @FindBy(xpath = "//*[contains(text(), 'Plan Details')]")
+    WebElement clickPlanDetailLink;
+
+    public void clickPlanDetailLink(){
+        basicActions.waitForElementToBePresent(header, 20);
+        clickPlanDetailLink.click();
+    }
 
     public void validateInNetworkTextHeaders() {
         basicActions.waitForElementToBePresent(header, 10);
