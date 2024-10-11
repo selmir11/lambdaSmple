@@ -31,6 +31,10 @@ public class MedicalPlanComparePageSteps {
     @And( "I validate the text headers and subheaders for the OutNetwork Compare page" )
     public void validateOutNetworkTextHeaders(){medicalComparePage.validateOutNetworkTextHeaders();}
 
+    @And( "I validate the Plan Detail link and click" )
+    public void validateComparePlanDetailLink(){medicalComparePage.clickPlanDetailLink();}
+
+
 
 
 

@@ -164,6 +164,12 @@ public class DbQueries_Exch {
                 "where ehc.email = '"+SharedData.getPrimaryMember().getEmailId()+"';";
     }
 
+    public String verifyBrokerAuthorizationStatusBOB(){
+        return "select bca.authorization_status from "+dbName+".es_household_contact ehc\n" +
+                "join "+dbName+".bp_client_authorization bca on bca.household_id  = ehc.household_id \n" +
+                "where ehc.email = '"+SharedData.getPrimaryMember().getEmailId()+"';";
+    }
+
     //Policy table queries
     public String enPolicyAh(){
         return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph " +
