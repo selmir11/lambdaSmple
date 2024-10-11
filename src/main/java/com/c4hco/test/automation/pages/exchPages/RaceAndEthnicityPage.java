@@ -333,4 +333,10 @@ public class RaceAndEthnicityPage {
         raceEthnicityButton.get(7).click();
         softAssert.assertAll();
     }
+
+    public void selectNotListedAndEnterText(String customText) {
+        raceEthnicityButton.get(7).click();
+        basicActions.waitForElementToBePresent(notListedReason, 10);
+        notListedReason.sendKeys(customText);
+    }
 }

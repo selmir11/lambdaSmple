@@ -39,5 +39,9 @@ Feature: Page Validation-Race And Ethnicity page
     Then I validate the error messages on the Race and Ethnicity in "English"
     Then I validate the text box input and checkbox selection
     Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select Not listed for race and ethnicity and enter "Mixed race" in the text box
+    And I click continue on the Race and Ethnicity page
+    Then I click Go back on the Citizenship page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

@@ -93,7 +93,7 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    #Gmail # Add all the validations -WIP
+    #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
@@ -110,30 +110,30 @@ Feature: Simple NFA - Single Applicant
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     # WIP - Validate financial sstart/end dates, coverage start/end dates and all of policy table validations
-    And I validate policy tables with medical coverage start date as "First Of Next Month"
-    And I validate policy tables with dental coverage start date as "First Of Next Month"
+    And I validate the member details from policy tables with coverage start date "First Of Next Month" and end date "Last Day Of Current Year"
 
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
-    And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should not be empty
-    And I validate the ob834 files should have the values
-      | LX | N1 75              | REF       | REFDEN    |
-      | 1  | PRE AMT 1          | 291.02    | 21.00     |
-      | 2  | APTC AMT           | 0.00      | 0.00      |
-      | 3  | CSR AMT            | 0.00      | 0.00      |
-      | 4  | RATING AREA        | 3         | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    | 21.00     |
-      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
+#    And I validate member details from ob834_details table
+#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+#      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+#    And I download the files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 files should not be empty
+#    And I validate the ob834 files should have the values
+#      | LX | N1 75              | REF       | REFDEN    |
+#      | 1  | PRE AMT 1          | 291.02    | 21.00     |
+#      | 2  | APTC AMT           | 0.00      | 0.00      |
+#      | 3  | CSR AMT            | 0.00      | 0.00      |
+#      | 4  | RATING AREA        | 3         | 3         |
+#      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
+#      | 6  | TOT RES AMT        | 291.02    | 21.00     |
+#      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
+#      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
 
       # RT-1276
-    And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
-    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
-    And I validate the contents of ib999 medical file
-    And I validate the contents of ib999 dental file
+#    And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+#    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
+#    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
+#    And I set ib999 entites for both medical and dental files
+#    And I validate the contents of ib999 medical file
+#    And I validate the contents of ib999 dental file

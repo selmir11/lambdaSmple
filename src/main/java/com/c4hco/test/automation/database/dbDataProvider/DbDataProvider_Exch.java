@@ -214,6 +214,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("commission_tin", exchDbQueries.verifyAgencyCommissionTinDb());
     }
 
+    public Boolean getExchHouseholdIdBoB() {
+
+        return postgresHandler.dbRecordsExisting(exchDbQueries.verifyExchHouseholdIdBOB());
+    }
+
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }

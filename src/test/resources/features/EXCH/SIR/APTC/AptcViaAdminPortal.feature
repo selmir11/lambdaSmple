@@ -188,55 +188,73 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     Then I validate I am on the "Tell us about life changes" page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
+
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
     Then I validate I am on the "Good News" page
     Then I click on No Thanks on good news page
+
     Then I validate I am on the "Application History" page
     Then I validate the aptc section doesn't exist on the application history page
     Then I click on view results and shop
+
     Then I validate I am on the "Application Results" page
     And I click continue on application results page
+
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
+
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
     Then I click continue on grouping Members Medical page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     Then I click continue on medical plan results page
+
     Then I validate I am on the "Grouping Members Dental" page
     Then I validate that there are 1 default dental groups
     Then I click continue on grouping Members Dental page
+
     Then I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
     Then I click continue on dental plan results page
+
     Then I validate I am on the "Plan Summary" page
     Then I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
+
     And I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
 
-     Then I click all done from payment portal page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
+
     Then I validate I am on the "Let us guide you" page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
+
     Then I validate I am on the "Report a life change" page
     And I report "MovedToColorado" and click continue
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     And I click continue on Tell us about yourself page
@@ -267,8 +285,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Additional income" page
     And I click None of these as additional income option
     Then I click None of these as additional income option and continue
-#    And I click None of these as additional income option
-#    Then I click continue on the Additional Income page
 
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
@@ -327,7 +343,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click on edit enrollment groups link
 
     Then I validate I am on the "Edit Grouping Members Medical" page
-     # Then I validate that there are 1 default groups
+    Then I validate that there are 1 default groups
     Then I create new group in edit medical grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     Then I click save button to save the groups

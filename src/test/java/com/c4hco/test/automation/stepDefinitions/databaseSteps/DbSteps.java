@@ -27,6 +27,10 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    public void validateOb834Details(List<Map<String, String>> expectedValues){
       dbValidations.validateOb834FromDb(expectedValues);
    }
+   @And("I set ib999 entites for both medical and dental files")
+   public void setib999(){
+      dbValidations.setIb999DetailsEntity();
+   }
 
    @And("I verify the OHI info in the DB")
    public void validateOhiInfo(){dbValidations.validateOhiDetails();}
@@ -79,6 +83,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyAgencyCommissionTinDb();
    }
 
+   @And("I verify the new Exchange individual account's household ID in the database")
+   public void iVerifyExchHouseholdIdDb() {
+      dbValidations.verifyExchHouseholdIdDb();
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //
@@ -95,17 +104,6 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 
    @And("I verify Person ID review status is Manual Review Required")
    public void iValidatePersonIdReviewStatus(){policyTableValidations.validatePersonIdReviewStatus();}
-
-   // !!!!!!!WIP - This needs to be revisited!!!!!!!!
-   @And("I validate policy tables with medical coverage start date as {string}")
-   public void iValidateMedCoverageOnMyPoliciesPage(String startDate){
-      policyTableDBValidations.validateMedCoverageStartDate(startDate);
-   }
-   @And("I validate policy tables with dental coverage start date as {string}")
-   public void iValidateDenCoverageOnMyPoliciesPage(String startDate){
-      policyTableDBValidations.validateDenCoverageStartDate(startDate);
-   }
-
 
    @And("I validate initial email remains in the database")
    public void iValidateDatabaseEmail() {dbValidations.validateDatabaseEmail();}

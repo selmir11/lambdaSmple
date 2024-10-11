@@ -463,6 +463,9 @@ public class NoticesPage {
 
     public void validateDetailsFromEmailPolicy(String planType, String startDate, List<String> membersOnPolicy) {
        String coverageStartDate = basicActions.getDateBasedOnRequirement(startDate);
+        LocalDate date = LocalDate.parse(coverageStartDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+        String emailFormattedDate = date.format(formatter);
         // Validating plan name and member names and coverage start date
         String planName = "";
         switch(planType){
@@ -470,13 +473,13 @@ public class NoticesPage {
                 planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
                 validatePlanDetails("4", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(coverageStartDate), "Medical coverage date mismatch");
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(emailFormattedDate), "Medical coverage date mismatch");
                 break;
             case "dental":
                 planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
                 validatePlanDetails("1", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(coverageStartDate), "Dental coverage date mismatch");
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(emailFormattedDate), "Dental coverage date mismatch");
                 break;
         }
         softAssert.assertAll();
