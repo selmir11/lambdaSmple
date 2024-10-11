@@ -8,8 +8,7 @@ public class PaymentPortalPageSteps {
     PaymentPortalPage paymentPortalPage = new PaymentPortalPage(WebDriverManager.getDriver());
 
     @Then("I click all done from payment portal page")
-    public void clickAllDone(){
-       paymentPortalPage.clickAllDone();
+    public void clickAllDone(){paymentPortalPage.clickAllDone();
     }
 
     @Then("I click all done from payment portal page OBO")
