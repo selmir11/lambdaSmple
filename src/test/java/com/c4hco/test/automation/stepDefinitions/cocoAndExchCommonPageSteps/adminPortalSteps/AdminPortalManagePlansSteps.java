@@ -121,9 +121,6 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.updateTheFinancialEndDate(memberFinancialEndDTList);
     }
 
-    @And("I verify the coverage end date match the last date of the month")
-    public void iVerifyTheCoverageEndDateMatchTheLastDateOfTheMonth() {
-        adminPortalManagePlansPage.verifyTheCoverageEndDateMatchTheLastDateOfTheMonth();
-    }
+
 }
 
