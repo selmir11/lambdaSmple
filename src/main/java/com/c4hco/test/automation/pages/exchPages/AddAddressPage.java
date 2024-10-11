@@ -184,7 +184,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBePresent(tribestate,20);
         basicActions.waitForElementToBePresent(tribeName, 20);
         tribestate.sendKeys("Colorado");
-        tribeName.sendKeys("Ute Mountain Tribe of the Ute Mountain Reservation");
+        tribeName.sendKeys("Southern Ute Indian Tribe of the Southern Ute Reservation");
 
     }
 
