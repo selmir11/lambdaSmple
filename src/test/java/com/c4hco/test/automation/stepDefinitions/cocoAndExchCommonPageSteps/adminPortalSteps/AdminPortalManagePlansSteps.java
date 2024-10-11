@@ -111,14 +111,14 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.selectMemberNameFromPolicyDropdown( MemberName);
     }
 
-    @Then("I update the coverage end date to the last date of the month")
-    public void iUpdateTheCoverageEndDateToTheLastDateOfTheMonth() {
-        adminPortalManagePlansPage.updateTheCoverageEndDateToTheLastDateOfTheMonth();
+    @Then("I update the coverage end date")
+    public void iUpdateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
+        adminPortalManagePlansPage.updateTheCoverageEndDate(memberCoverageEndDTList);
     }
 
-    @And("I update the financial end date to the last date of the month")
-    public void iUpdateTheFinancialEndDateToTheLastDateOfTheMonth() {
-        adminPortalManagePlansPage.updateTheFinancialEndDateToTheLastDateOfTheMonth();
+    @And("I update the financial end date")
+    public void iUpdateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
+        adminPortalManagePlansPage.updateTheFinancialEndDateToTheLastDateOfTheMonth(memberFinancialEndDTList);
     }
 
     @And("I verify the coverage end date match the last date of the month")

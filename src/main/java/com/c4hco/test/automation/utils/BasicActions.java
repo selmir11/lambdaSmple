@@ -44,7 +44,7 @@ public class BasicActions {
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
     public void clickBackButtonFromBrowser() {
-        getDriver().navigate().back();
+       getDriver().navigate().back();
     }
 
     private static class LazyHolder {
@@ -558,6 +558,13 @@ public class BasicActions {
 
         }
         return date;
+    }
+
+    public String endOfMonthDate() {
+        LocalDate today = LocalDate.now();
+        LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return endOfMonth.format(formatter);
     }
 }
 

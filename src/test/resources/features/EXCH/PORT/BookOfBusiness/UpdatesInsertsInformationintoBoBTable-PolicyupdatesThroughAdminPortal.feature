@@ -125,8 +125,12 @@ Feature:Updates/Inserts Information into BoB Table - Policy updates through Admi
 
     And I validate I am on the "Manage Plans" page
     And I click Make Changes Medical button
-    Then I update the coverage end date to the last date of the month
-    And I update the financial end date to the last date of the month
+    Then I update the coverage end date
+      |1:end of month|
+      |2:end of month|
+    And I update the financial end date
+      |1:end of month|
+      |2:end of month|
     And I click Save Button Medical
    Then I wait for 200 milliseconds
     And I select the reason to confirm the changes

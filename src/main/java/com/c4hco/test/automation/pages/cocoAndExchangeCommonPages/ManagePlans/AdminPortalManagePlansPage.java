@@ -1,16 +1,13 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
-        import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
         import org.openqa.selenium.*;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.support.PageFactory;
         import org.testng.Assert;
         import org.testng.asserts.SoftAssert;
-
-        import java.time.LocalDate;
-        import java.time.format.DateTimeFormatter;
         import java.util.List;
-        import java.util.Optional;
+
+
 
 public class AdminPortalManagePlansPage{
 
@@ -81,10 +78,8 @@ public class AdminPortalManagePlansPage{
     WebElement secondYearInList;
     @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
     WebElement coverageStartdate;
-    @FindBy(xpath= "//div[@id='coverageEndDate_1']//input[1]")
-    WebElement coverageEndDate;
     @FindBy(xpath= "//div[@id='coverageEndDate_2']//input[1]")
-    WebElement coverageEndDateSecondMember;
+    WebElement coverageEndDate;
     @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
     WebElement financialStartDate;
 
@@ -239,7 +234,6 @@ public class AdminPortalManagePlansPage{
 
             boolean elementUpdated = false;
             int attempts = 0;
-
             while(!elementUpdated && attempts < 3) {
                 try {
                     WebElement coverageStartdateMem = basicActions.getDriver()
@@ -329,30 +323,49 @@ public class AdminPortalManagePlansPage{
         basicActions.waitForElementToBePresent(coverageStartdate,20);
    }
 
-    public static String getEndOfMonthDate() {
-    LocalDate today = LocalDate.now();
-    LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
-        String endDate = endOfMonth.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-    return endDate;
+
+
+    public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
+        for(String memberFinancialEndDate:memberCoverageEndDTList ){
+            String[] parts = memberFinancialEndDate.split(":");
+            String memberNo = parts[0];
+            String coverageEndDateValue = "";
+            if(parts[1].equals("end of month")){
+                coverageEndDateValue=basicActions.endOfMonthDate();
+            }else{
+                coverageEndDateValue =parts[1];
+            }
+            basicActions.scrollToElement( coverageEndDate );
+            basicActions.waitForElementToBePresent(coverageEndDate,30);
+
+            WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_"+memberNo+"']//input[1]"));
+            financialEndDateMem.sendKeys(coverageEndDateValue);
+        }
     }
 
-    public void updateTheCoverageEndDateToTheLastDateOfTheMonth() {
-        basicActions.waitForElementToBePresent(coverageEndDate,60);
-        System.out.println("End of current month date: " + getEndOfMonthDate());
-        coverageEndDate.sendKeys(getEndOfMonthDate());
-        coverageEndDateSecondMember.sendKeys(getEndOfMonthDate());
-    }
 
+    public void updateTheFinancialEndDateToTheLastDateOfTheMonth(List<String> memberFinancialEndDTList) {
+        for(String memberFinancialEndDate:memberFinancialEndDTList ){
+            String[] parts = memberFinancialEndDate.split(":");
+            String memberNo = parts[0];
+            String financialStartDateValue = "";
+                   if(parts[1].equals("end of month")){
+                    financialStartDateValue=basicActions.endOfMonthDate();
+            }else{
+                       financialStartDateValue =parts[1];
+                   }
+            basicActions.scrollToElement( financialEndDate );
+            basicActions.waitForElementToBePresent(financialEndDate,30);
+            basicActions.waitForElementToBeClickable(financialEndDate,30);
 
-    public void updateTheFinancialEndDateToTheLastDateOfTheMonth() {
-        basicActions.waitForElementToBePresent(financialEndDate,60);
-        financialEndDate.sendKeys(getEndOfMonthDate());
-        financialEndDateSecondMember.sendKeys(getEndOfMonthDate());
+            WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_"+memberNo+"']//input[1]"));
+            financialEndDateMem.sendKeys(financialStartDateValue);
+        }
     }
 
     public void verifyTheCoverageEndDateMatchTheLastDateOfTheMonth() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical,20));
-        softAssert.assertEquals(financialEndDateText.getText(),getEndOfMonthDate());
+        softAssert.assertEquals(financialEndDateText.getText(),basicActions.endOfMonthDate());
         softAssert.assertAll();
     }
 }
