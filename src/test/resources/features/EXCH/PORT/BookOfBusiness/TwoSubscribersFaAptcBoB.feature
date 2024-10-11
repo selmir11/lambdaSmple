@@ -1,4 +1,4 @@
-@BrokerPortalBOB @port @lastupdate
+@BrokerPortalBOB @port @BOB
 Feature: Broker Portal OBO - Two subscribers submit FA APTC policy submission
 
   @SLER-1027

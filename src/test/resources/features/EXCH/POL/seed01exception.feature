@@ -65,11 +65,40 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
+    And I continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And Validate medical plan details from my policies page with start date "First Of Next Month"
+    And Validate dental plan details from my policies page with start date "First Of Next Month"
+    And I click View Plan History link from medical plan card
+    And I validate medical plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from dental plan card
+    And I validate dental plan details from plan history
+    And I click on Sign Out in the Header for "Elmo"
+#    Validations are WIP
+    And I validate the member details from policy tables with coverage start date "First Of Next Month" and end date "Last Day Of Current Year"
+    And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should not be empty
+    And I validate the ob834 files should have the values
+      | LX | N1 75              | REF       | REFDEN    |
+      | 1  | PRE AMT 1          | 291.02    | 21.00     |
+      | 2  | APTC AMT           | 0.00      | 0.00      |
+      | 3  | CSR AMT            | 0.00      | 0.00      |
+      | 4  | RATING AREA        | 3         | 3         |
+      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
+      | 6  | TOT RES AMT        | 291.02    | 21.00     |
+      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
+      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
