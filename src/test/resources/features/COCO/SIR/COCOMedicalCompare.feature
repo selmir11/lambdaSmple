@@ -1,5 +1,5 @@
 @SIR @COCO @COCOMedicalResults
-  #SLCR-90, SLCR-91, SLCR-93, SLCR-131, SLCR-272, SLCR-276, SLCR-277, SLCR-286, SLCR-287
+  #SLCR-90, SLCR-91, SLCR-93, SLCR-131, SLCR-272, SLCR-276, SLCR-277, SLCR-286, SLCR-287, SCLR-360
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
