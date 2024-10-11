@@ -118,7 +118,7 @@ public class AdminPortalManagePlansSteps {
 
     @And("I update the financial end date")
     public void iUpdateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
-        adminPortalManagePlansPage.updateTheFinancialEndDateToTheLastDateOfTheMonth(memberFinancialEndDTList);
+        adminPortalManagePlansPage.updateTheFinancialEndDate(memberFinancialEndDTList);
     }
 
     @And("I verify the coverage end date match the last date of the month")

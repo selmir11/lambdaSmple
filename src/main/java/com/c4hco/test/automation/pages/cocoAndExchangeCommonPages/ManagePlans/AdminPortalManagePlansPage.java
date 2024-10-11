@@ -344,7 +344,7 @@ public class AdminPortalManagePlansPage{
     }
 
 
-    public void updateTheFinancialEndDateToTheLastDateOfTheMonth(List<String> memberFinancialEndDTList) {
+    public void updateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
         for(String memberFinancialEndDate:memberFinancialEndDTList ){
             String[] parts = memberFinancialEndDate.split(":");
             String memberNo = parts[0];
