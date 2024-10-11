@@ -88,6 +88,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyExchHouseholdIdDb();
    }
 
+   @And("I verify broker deauthorization in the database")
+   public void iVerifyBrokerAuthorizationStatusDb() {
+      dbValidations.verifyBrokerAuthorizationStatusDb();
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //

@@ -219,6 +219,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.dbRecordsExisting(exchDbQueries.verifyExchHouseholdIdBOB());
     }
 
+    public List<String> getBrokerAuthorizationStatusBoB() {
+
+        return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
+    }
+
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }

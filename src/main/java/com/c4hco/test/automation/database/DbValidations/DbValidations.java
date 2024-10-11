@@ -509,6 +509,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void verifyBrokerAuthorizationStatusDb() {
+        List<String> authorizationStatusDB = exchDbDataProvider.getBrokerAuthorizationStatusBoB();
+        Assert.assertEquals(authorizationStatusDB.get(0), "AUTHORIZATION_REVOKED_CLIENT");
+        softAssert.assertAll();
+    }
+
     public void validateHraAhOptions(List<Map<String, String>> expectedValues) {
         EsMemberHraAhEntity actualResult = exchDbDataProvider.getOptionsFromHraAhDbTables();
         System.out.println(actualResult);
