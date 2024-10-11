@@ -78,7 +78,7 @@ Feature: Verify COCO Medical Plan results
     And I click on Sign Out in the Header for "Elmo"
 
   @SCLR-360
-  Scenario: This will track the Plan Compare path and verify that the Plan detail link works
+  Scenario: SCLR-360 - This will track the Plan Compare path and verify that the Plan detail link works
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
