@@ -323,8 +323,6 @@ public class AdminPortalManagePlansPage{
         basicActions.waitForElementToBePresent(coverageStartdate,20);
    }
 
-
-
     public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
         for(String memberFinancialEndDate:memberCoverageEndDTList ){
             String[] parts = memberFinancialEndDate.split(":");
@@ -363,10 +361,5 @@ public class AdminPortalManagePlansPage{
         }
     }
 
-    public void verifyTheCoverageEndDateMatchTheLastDateOfTheMonth() {
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical,20));
-        softAssert.assertEquals(financialEndDateText.getText(),basicActions.endOfMonthDate());
-        softAssert.assertAll();
-    }
 }
 
