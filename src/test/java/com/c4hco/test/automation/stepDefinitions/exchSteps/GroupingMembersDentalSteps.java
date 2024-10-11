@@ -24,6 +24,15 @@ public class GroupingMembersDentalSteps {
         groupingMembersDental.validateDefaultDentalGroups(defaultGrps);
     }
 
+    @And("I verify text on Dental grouping page")
+    public void medicalGroupingEnglish(){
+        groupingMembersDental.verifyDentalGroupingPageVerbiage();
+    }
+
+    @And ("I click save and exit from the dental grouping page")
+    public void clickSaveExit(){groupingMembersDental.clickSaveAndExit();}
+
+
     }
 
 

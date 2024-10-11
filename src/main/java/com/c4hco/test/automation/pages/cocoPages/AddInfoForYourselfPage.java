@@ -93,7 +93,7 @@ public class AddInfoForYourselfPage {
     List<WebElement> exclamationMarkIcon;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
+        basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself, 90);
         basicActions.waitForElementListToBePresent(liveInColoradoButtons, 90);
         basicActions.waitForElementListToBePresent(stateDropdownOptions, 90);
         basicActions.waitForElementListToBePresentWithRetries(AddInfoForYourselfPageText, 90);

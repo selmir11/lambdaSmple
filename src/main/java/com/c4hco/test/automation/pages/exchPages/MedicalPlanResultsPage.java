@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.plugin.event.Node;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -108,7 +108,8 @@ public class MedicalPlanResultsPage {
     WebElement txtpremiumamnt;
 
 
-     public void selectfromProviderList(String Selecting) {
+
+    public void selectfromProviderList(String Selecting) {
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
@@ -125,7 +126,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickContinue() {
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(continueBtn,30);
         continueBtn.click();
     }
@@ -188,7 +189,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent( insuranceCompanyDropdown,30 );
         insuranceCompanyDropdown.click();
 
@@ -302,10 +303,7 @@ public class MedicalPlanResultsPage {
             selectMedicalPlan(SpecificPlan);
             clickContinue();
             System.out.println("Selected plan: " + SpecificPlan);
-
         }
-
-
     }
 
 
@@ -316,6 +314,34 @@ public class MedicalPlanResultsPage {
         softAssert.assertAll();
     }
 
+    public void getMedicalPlanMarketNames() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 20);
+        while (true) {
+            getPlanNamesFromPage();
+            if (checkIfLastPage()) {
+                break;
+            }
+            paginateRight();
+        }
+    }
+
+    private Boolean checkIfLastPage() {
+        basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
+        return !basicActions.waitForElementToBePresent(nextPageArrow, 10);
+    }
+
+    private void getPlanNamesFromPage(){
+        List<String> medicalPlansList = SharedData.getMedicalPlansList();
+        if(medicalPlansList==null){
+            medicalPlansList = new ArrayList<>();
+        }
+
+        for (WebElement planName : medicalPlanNamesList) {
+            medicalPlansList.add(planName.getText());
+        }
+        SharedData.setMedicalPlansList(medicalPlansList);
+    }
 
 }
 

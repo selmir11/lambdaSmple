@@ -79,7 +79,7 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void clickOnEditMedicalGroupinglink() {
-        basicActions.waitForElementToDisappear( spinner,50 );
+        basicActions.waitForElementToDisappear( spinner,70 );
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 40);
         editMyEnrollmentGroupsButton.click();
     }
