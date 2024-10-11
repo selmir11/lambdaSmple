@@ -633,5 +633,23 @@ Feature: Initial Payment Page test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Death" and click continue
-    Then I select "member" from the who are you question
+    And I report "Marriage" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I select "Death" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    And I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on start shopping page
