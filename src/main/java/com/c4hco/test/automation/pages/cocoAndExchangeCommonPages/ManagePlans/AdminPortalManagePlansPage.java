@@ -108,6 +108,12 @@ public class AdminPortalManagePlansPage{
     WebElement selectPolicyDropdown;
     @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[1]/div[1]/app-current-plan/div/div[1]/div/p[2]")
     WebElement selectPolicyDropdownOptions;
+    @FindBy(id = "premium_1")
+    WebElement financialPremiumData;
+    @FindBy(id = "status_1")
+    WebElement coverageStatusData;
+    @FindBy(id = "id='planAPTC_1")
+    WebElement financialAptcData;
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -148,6 +154,7 @@ public class AdminPortalManagePlansPage{
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
+        basicActions.scrollToElement(btnMakeChangeMed);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed,10);
         btnMakeChangeMed.click();       }
     public void clickResetChangesMedical() {
@@ -282,8 +289,7 @@ public class AdminPortalManagePlansPage{
         additionalReasonText.sendKeys("Testing");
         basicActions.waitForElementToBePresent(confirmChangesButton, 20);
         confirmChangesButton.click();
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical,20));
-        softAssert.assertAll();
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(coverageStatusData,30));
     }
 
     public void verifyLabelsDataMedical() {
@@ -312,15 +318,16 @@ public class AdminPortalManagePlansPage{
         basicActions.switchtoactiveTab();       }
 
     public void selectMemberNameFromPolicyDropdown(String Membername){
-        basicActions.wait(4000);    // WIP - Need to remove the wait.
         basicActions.waitForElementToBePresent(chkMedical,20);
         basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdown,30);
         basicActions.scrollToElement(selectPolicyDropdown);
         basicActions.click(selectPolicyDropdown);
         WebElement dropdown = selectPolicyDropdownOptions.findElement(By.xpath(".//span[contains(text(),'"+ Membername+ "')]/parent::div"));
-        basicActions.waitForElementToBePresentWithRetries(dropdown,20);
-        basicActions.click(dropdown);
-        basicActions.waitForElementToBePresent(coverageStartdate,20);
+        basicActions.waitForElementToBePresentWithRetries(dropdown,30);
+        basicActions.clickElementWithRetries(dropdown,20);
+        basicActions.waitForElementToBePresentWithRetries(coverageStatusData,20);
+        basicActions.waitForElementToBePresentWithRetries(financialPremiumData,20);
+        basicActions.waitForElementToBePresentWithRetries(financialAptcData,20);
    }
 
     public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
