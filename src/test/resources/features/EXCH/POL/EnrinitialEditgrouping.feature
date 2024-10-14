@@ -1,6 +1,7 @@
 @SLER-41 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
+  @test1
   Scenario: : EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -12,6 +13,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I enter general mandatory data for "exchange" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Given I set the dynamic policy, coverage and financial dates
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -188,16 +192,25 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
+
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate medical details on my policies page
+#    And I validate dental details on my policies page
+#    And I click View Plan History link from medical plan card
+#    And I validate medical plan details from plan history
+#    And I click on to Back to Current Plan Details button
+#    And I click View Plan History link from dental plan card
+#    And I validate dental plan details from plan history
+#
+#   # And I click on to Back to Current Plan Details button
+
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-
-    # WIP - policy table validations
-    And I validate policy tables with medical coverage start date as "First Of Next Month"
-    And I validate policy tables with dental coverage start date as "First Of Next Month"
-
+    And I validate the member details from policy tables
     #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"

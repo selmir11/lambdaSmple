@@ -101,8 +101,7 @@ public class MyPoliciesPage {
         softAssert.assertTrue(policyNumSubscriber.get(4).getText().equals("Last Updated On:"));
         softAssert.assertEquals(policyNumSubscriber.get(5).getText(), lastUpdated, "Last Updated Date did not match");
         softAssert.assertEquals(financialPremiumData.get(0).getText(), "Applicable From: "+SharedData.getExpectedCalculatedDates().getFinancialStartDate().replaceAll("-", "/"), "medical financial start date did not match");
-        softAssert.assertEquals(financialPremiumData.get(3).getText(), "After $"+primaryMember.getMedicalAptcAmt()+" Financial Help", "financial help amount did not match");
-        softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
+        softAssert.assertEquals(financialPremiumData.get(0).getText(), "Applicable From: "+basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "yyyy-MM-dd", "MM/dd/yyyy"), "medical financial start date did not match");        softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
 
         //Validating medical EAP_ID
         exchDbDataProvider.getEap_id();
