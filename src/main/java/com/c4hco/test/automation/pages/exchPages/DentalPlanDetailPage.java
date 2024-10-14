@@ -87,9 +87,10 @@ public class DentalPlanDetailPage {
 
     @FindBy(xpath = " \"//*[contains(text(),\\\"Resin (white plastic) Fillings Child\\\")]\")")
     WebElement txtResinChild;
+
     @FindBy(xpath = " \"//*[contains(text(),\\\"Sedative Fillings Child\\\")]\")")
     WebElement txtSedativeFluidChild;
-    //
+
     @FindBy(id = "ngb-accordion-item-4-toggle")
     WebElement txtInBasicServicesAdult;
 
@@ -114,6 +115,7 @@ public class DentalPlanDetailPage {
 
     @FindBy(xpath = " \"//*[contains(text(),\\\"Medically Necessary Orthodontia Child\\\")]\")")
     WebElement txtOrthodontiaChild;
+
     @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Surgery Child\\\")]\")")
     WebElement txtOralSurgeryChild;
 
@@ -131,6 +133,7 @@ public class DentalPlanDetailPage {
 
     @FindBy(xpath = " \"//*[contains(text(),\\\"Medically Necessary Orthodontia Adult\\\")]\")")
     WebElement txtOrthodontiaAdult;
+
     @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Surgery Adult\\\")]\")")
      WebElement txtOralSurgeryAdult;
 

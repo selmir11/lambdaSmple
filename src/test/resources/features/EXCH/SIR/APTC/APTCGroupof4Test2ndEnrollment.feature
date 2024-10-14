@@ -1,5 +1,5 @@
 @APTC,@APTC-SIR
-  # SLER-2861, SLER-2831
+  #  SLER-1150, SLER-1151,
 Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
   Background: I go the login portal
@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate I am on the "Login" page
 
 
-  @SLER-2861
+  @SLER-1151
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 2  - two different zip codes - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -208,7 +208,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-2831
+  @SLER-1150
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 1 - same address - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page

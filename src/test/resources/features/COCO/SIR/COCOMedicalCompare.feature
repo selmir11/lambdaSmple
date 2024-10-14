@@ -144,6 +144,7 @@ Feature: Verify COCO Medical Plan results
     And I select initial 3 plans and click the Compare button
     And I validate the Plan Detail link and click
 
+    Then I validate I am on the "Medical Plan Results" page
     And I click on Sign Out in the Header for "Elmo"
 
 
