@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -13,9 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -79,15 +76,15 @@ public class MyPoliciesPage {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
 
     public void validateEnrolledMedicalPlanDetails(String startDate, String endDate) {
-        String polBeginDate = basicActions.getDateBasedOnRequirement(startDate);
-        String polEndDate = basicActions.getDateBasedOnRequirement(endDate);
-        polBeginDate=  basicActions.changeDateFormat(polBeginDate, "yyyy-MM-dd", "MM/dd/yyyy");
-        polEndDate = basicActions.changeDateFormat(polEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String policyBgnDt = basicActions.getDateBasedOnRequirement(startDate);
+        String policyEndDt = basicActions.getDateBasedOnRequirement(endDate);
+        policyBgnDt=  basicActions.changeDateFormat(policyBgnDt, "yyyy-MM-dd", "MM/dd/yyyy");
+        policyEndDt = basicActions.changeDateFormat(policyEndDt, "yyyy-MM-dd", "MM/dd/yyyy");
         // **** Works when only one member with one medical plan **** //
-        primaryMember.setMedicalPlanStartDate(polBeginDate);
-        primaryMember.setMedicalPlanEndDate(polEndDate);
-        primaryMember.setMedicalFinancialStartDate(polBeginDate);
-        primaryMember.setMedicalFinancialEndDate(polEndDate);
+        primaryMember.setMedicalPlanStartDate(policyBgnDt);
+        primaryMember.setMedicalPlanEndDate(policyEndDt);
+        primaryMember.setMedicalFinancialStartDate(policyBgnDt);
+        primaryMember.setMedicalFinancialEndDate(policyEndDt);
         SharedData.setPrimaryMember(primaryMember);
         //Validating member names from table - medical
         basicActions.waitForElementListToBePresent(memberNames, 10);
@@ -104,14 +101,13 @@ public class MyPoliciesPage {
             }else if (memberDetailsList !=null) {
                 for (int i = 0; i < memberDetailsList.size(); i++) {
                     MemberDetails member = SharedData.getMembers().get(i);
-                    member.setMedicalPlanStartDate(polBeginDate);
-                    member.setMedicalPlanEndDate(polEndDate);
-                    member.setMedicalFinancialStartDate(polBeginDate);
-                    member.setMedicalFinancialEndDate(polEndDate);
+                    member.setMedicalPlanStartDate(policyBgnDt);
+                    member.setMedicalPlanEndDate(policyEndDt);
+                    member.setMedicalFinancialStartDate(policyBgnDt);
+                    member.setMedicalFinancialEndDate(policyEndDt);
                     softAssert.assertEquals(memFirstName+" "+memLastName, member.getSignature(), "Member names from current medical plans does not match- my policies page");
                 }
             }
-            softAssert.assertAll();
         }
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getMedicalPlanStartDate(), "medical plan date did not match");
         softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getMedicalPlanEndDate(), "medical plan end date did not match");
