@@ -7,7 +7,6 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +51,8 @@ public class SharedData {
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
     @Getter @Setter private static List<String> medicalPlansList;
+
+
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
         firstPlanNameOnDentalResultsPage = null;
@@ -76,7 +77,6 @@ public class SharedData {
         ib999Segments = null;
         medicalPlansList=null;
     }
-
 
 
 }

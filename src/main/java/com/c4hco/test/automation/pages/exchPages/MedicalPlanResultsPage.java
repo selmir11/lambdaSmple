@@ -95,8 +95,6 @@ public class MedicalPlanResultsPage {
     @FindBy(css = "pagination-template .pagination-next a")
     WebElement nextPageArrow;
 
-    @FindBy(css = "pagination-template .pagination-next a")
-    List<WebElement> nextPageArrowlist;
     @FindBy(css = ".plan-results-container .responsive-text-align-left")
     WebElement planCount;
 
@@ -305,10 +303,7 @@ public class MedicalPlanResultsPage {
             selectMedicalPlan(SpecificPlan);
             clickContinue();
             System.out.println("Selected plan: " + SpecificPlan);
-
         }
-
-
     }
 
 
@@ -322,28 +317,30 @@ public class MedicalPlanResultsPage {
     public void getMedicalPlanMarketNames() {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementListToBePresent(medicalPlanNamesList, 20);
-        do{
+        while (true) {
             getPlanNamesFromPage();
-            if(checkIfLastPage()){
+            if (checkIfLastPage()) {
                 break;
             }
             paginateRight();
-        }while(true);
+        }
     }
 
     private Boolean checkIfLastPage() {
         basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
-        return !nextPageArrowlist.get(1).isEnabled();
+        return !basicActions.waitForElementToBePresent(nextPageArrow, 10);
     }
 
     private void getPlanNamesFromPage(){
-        List<String> medicalPlansList = new ArrayList<>();
+        List<String> medicalPlansList = SharedData.getMedicalPlansList();
+        if(medicalPlansList==null){
+            medicalPlansList = new ArrayList<>();
+        }
 
         for (WebElement planName : medicalPlanNamesList) {
             medicalPlansList.add(planName.getText());
         }
         SharedData.setMedicalPlansList(medicalPlansList);
-        int count = SharedData.getMedicalPlansList().size();
     }
 
 }
