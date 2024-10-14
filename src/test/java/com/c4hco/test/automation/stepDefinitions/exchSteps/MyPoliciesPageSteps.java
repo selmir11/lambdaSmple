@@ -10,14 +10,14 @@ import java.util.Map;
 public class MyPoliciesPageSteps {
     MyPoliciesPage myPoliciesPage = new MyPoliciesPage(WebDriverManager.getDriver());
 
-    @And("I validate medical plan details from my policies page")
-    public void validateMedPlanDetails(List<Map<String, String>> expectedResult){
-        myPoliciesPage.validateEnrolledMedicalPlanDetails(expectedResult);
+    @And("I validate med details on my policies page with policy and financial start date {string} and end date {string}")
+    public void validateMedPlanDetails(String startDate, String endDate){
+        myPoliciesPage.validateEnrolledMedicalPlanDetails(startDate,endDate);
     }
 
-    @And("I validate dental plan details from my policies page")
-    public void validateDentalPlanDetails(List<Map<String, String>> expectedResult) {
-        myPoliciesPage.validateDentalPlanDetails(expectedResult);
+    @And("I validate den details on my policies page with policy and financial start date {string} and end date {string}")
+    public void validateDentalPlanDetails(String startDate, String endDate) {
+        myPoliciesPage.validateDentalPlanDetails(startDate,endDate);
     }
 
     @And("I click View Plan History link from medical plan card")

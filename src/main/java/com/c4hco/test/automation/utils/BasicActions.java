@@ -537,6 +537,12 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+    public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
+        LocalDate date = LocalDate.parse(dateString, inputFormatter);
+        return date.format(outputFormatter);
+    }
 
     public String  getDateBasedOnRequirement(String dateRequirement) {
         String date = null;
