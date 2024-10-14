@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.ExpectedCalculatedDates;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -180,5 +181,25 @@ public class AccountOverviewPage {
         SharedData.setScenarioDetails(scenarioDetails);
 
    }
+
+    public void setDates(List<Map<String, String>> expectedResult) {
+        ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
+
+        String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
+        String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
+        String coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
+        String coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
+        String financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
+        String financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
+
+        expectedCalculatedDates.setPolicyStartDate(policyStartDate);
+        expectedCalculatedDates.setPolicyEndDate(policyEndDate);
+        expectedCalculatedDates.setCoverageStartDate(coverageStartDate);
+        expectedCalculatedDates.setCoverageEndDate(coverageEndDate);
+        expectedCalculatedDates.setFinancialStartDate(financialStartDate);
+        expectedCalculatedDates.setFinancialEndDate(financialEndDate);
+        SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+
+    }
 
 }

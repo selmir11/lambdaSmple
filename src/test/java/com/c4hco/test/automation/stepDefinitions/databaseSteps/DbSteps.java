@@ -19,8 +19,8 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    }
 
    @And("I validate the member details from policy tables")
-   public void validateFromPolicyTables(List<Map<String, String>> expectedValues){
-      policyTableDBValidations.validateDataFromPolicyTables(expectedValues);
+   public void validateFromPolicyTables(){
+      policyTableDBValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")

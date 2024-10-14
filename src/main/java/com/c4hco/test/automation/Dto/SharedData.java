@@ -52,6 +52,7 @@ public class SharedData {
     @Getter @Setter private static String denGroupCtlNumber;
     @Getter @Setter private static List<String> medicalPlansList;
     @Getter @Setter private static String calculatedDob;
+    @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
 
 
     public static void reset(){
@@ -78,7 +79,6 @@ public class SharedData {
         ib999Segments = null;
         medicalPlansList=null;
         calculatedDob = null;
+        expectedCalculatedDates = null;
     }
-
-
 }

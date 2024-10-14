@@ -1,9 +1,13 @@
 Feature: Regression Tests that require Seed 1
-
+  
  Scenario: : Seed 01 For Exchange- Single Applicant NFA
    Given I set the test scenario details
      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
      | 1           | 1            | 1                 | 0                | 1               |
+    Given I set the dynamic policy, coverage and financial dates
+    | PolicyStartDate           | PolicyEndDate           | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate          |
+    | First Day Of Current Year | Last Day Of Current Year| First Day Of Current Year  | Last Day Of Current Year |  First Day Of Current Year| Last Day Of Current Year  |
+
    Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -94,21 +98,24 @@ Feature: Regression Tests that require Seed 1
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-   And I validate the member details from policy tables
-     | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate          |
-     | First Day of Current Year  | Last Day of Current Year |  First Day of Current Year| Last Day of Current Year  |
 
+   # WIP - separate policy and financial start end dates and for other members
   And I validate med details on my policies page with policy and financial start date "First Day Of Current Year" and end date "Last Day Of Current Year"
   And I validate den details on my policies page with policy and financial start date "First Day Of Current Year" and end date "Last Day Of Current Year"
+
     And I click View Plan History link from medical plan card
+
+   # WIP for other members
     And I validate medical plan details from plan history
+
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from dental plan card
+
+   # WIP - for other members
     And I validate dental plan details from plan history
+
     And I click on Sign Out in the Header for "Elmo"
-   # WIP - Modify the below method to pass coverage dates to be first of current year and endOfCurrent year
-   # Q?: What would financial start and end dates look like when there is NFA
-    And I validate the member details from policy tables with coverage start date "First Day Of Current Year" and end date "Last Day Of Current Year"
+   And I validate the member details from policy tables
     And I validate member details from ob834_details table
      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
