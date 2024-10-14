@@ -67,11 +67,10 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter new born with minus 5 days as DOB
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    And I get the newborn dob as "current date minus 5days"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
     And I select no SSN
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -188,13 +187,14 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
     And I click on ClickHere link for "My Documents"
     And I click on download enrolment document
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
 
+    # WIP - policy table validations
     And I validate policy tables with medical coverage start date as "First Of Next Month"
     And I validate policy tables with dental coverage start date as "First Of Next Month"
 

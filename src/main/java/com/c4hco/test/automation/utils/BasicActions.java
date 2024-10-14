@@ -537,6 +537,12 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+    public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
+        LocalDate date = LocalDate.parse(dateString, inputFormatter);
+        return date.format(outputFormatter);
+    }
 
     public String  getDateBasedOnRequirement(String dateRequirement) {
         String date = null;
@@ -565,6 +571,20 @@ public class BasicActions {
         LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return endOfMonth.format(formatter);
+    }
+
+    public void getDob(String dob){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dobCalculator = currentDate;
+        switch(dob){
+            case "current date minus 5days":
+                dobCalculator = currentDate.minusDays(5);
+                break;
+            default: Assert.fail("Did not find the case entered");
+        }
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String actualdob = dateFormat.format(dobCalculator);
+        SharedData.setCalculatedDob(actualdob);
     }
 }
 
