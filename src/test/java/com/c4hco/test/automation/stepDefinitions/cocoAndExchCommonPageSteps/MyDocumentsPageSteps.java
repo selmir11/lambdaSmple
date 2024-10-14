@@ -75,8 +75,4 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyUserCanSelectEachTypeFromTypeDropdown() {myDocumentsPage.selectType();
         }
 
-    @And("Validate below details from the downloaded pdf file")
-    public void validatePDFText(List<String> testDetails){
-        myDocumentsPage.verifyTexInPDF(testDetails);
-    }
     }
