@@ -1,5 +1,5 @@
 Feature: Regression Tests that require Seed 1
-  
+
  Scenario: : Seed 01 For Exchange- Single Applicant NFA
    Given I set the test scenario details
      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
