@@ -1296,7 +1296,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1107 @Group9Enroll-SIR-2810 @test
+  @SLER-1107 @Group9Enroll-SIR-2810
   Scenario: SLER-1107 - APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
     When I click create a new account on login page
     Then I click create my account from pre-screen page
