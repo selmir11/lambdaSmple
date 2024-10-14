@@ -26,9 +26,6 @@ public class MyPoliciesPage {
     @FindBy(css = ".current-policy .txt-name")
     List<WebElement> memberNames;  // Gives names of all members - both medical and dental
 
-    @FindBy(css = ".current-policy .current-policy-container")
-    List<WebElement> cardsList;
-
     @FindBy(css = ".current-policy-data .pDate span:nth-child(2)")
     List<WebElement> planStartAndEndDate; // update this locator - split and have one for plan start date and one for plan end date
 
