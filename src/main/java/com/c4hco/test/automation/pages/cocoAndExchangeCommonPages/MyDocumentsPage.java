@@ -384,6 +384,5 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
         basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
         downloadEnrolmentDoc.click();
-        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 }
