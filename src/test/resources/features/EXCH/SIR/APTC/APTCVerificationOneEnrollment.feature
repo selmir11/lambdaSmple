@@ -1,6 +1,6 @@
 @APTC,@APTC-SIR, @APTC-SIR-Single
 
-  # SLER-1036,
+  # SLER-1036,SLER-1006
 Feature: UI Tests related to APTC after initial enrollment
 
   Background: I go the login portal
