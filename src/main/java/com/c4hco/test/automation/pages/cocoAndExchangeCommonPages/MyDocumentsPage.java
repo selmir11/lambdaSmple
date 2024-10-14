@@ -6,8 +6,6 @@ import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
-import com.google.common.eventbus.Subscribe;
 import com.jcraft.jsch.JSchException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
