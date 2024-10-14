@@ -44,9 +44,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter member details with age as {int}")
     public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}
 
-
-    @Then("I enter new born with minus {int} days as DOB")
-    public void iEnterMemberDOB(int Days){tellUsAboutAdditionalMemberPage.newbornDob(Days);}
+    @And("I get the newborn dob as {string}")
+    public void iGetMemberDOB(String dob){tellUsAboutAdditionalMemberPage.getDob(dob);}
 
     @Then("I enter details on tell us about additional members of your household exch page and continue with {string}, {string}, {string} and applying {string}")
     public void EnterspecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {
