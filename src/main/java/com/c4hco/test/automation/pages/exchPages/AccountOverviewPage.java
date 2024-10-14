@@ -195,8 +195,8 @@ public class AccountOverviewPage {
         String coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
         String financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
         String financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
-        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
-        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String planStartDate =  policyStartDate.replaceAll("-","/");
+        String planEndDate = policyEndDate.replaceAll("-", "/");
 
         expectedCalculatedDates.setPolicyStartDate(policyStartDate);
         expectedCalculatedDates.setPolicyEndDate(policyEndDate);
