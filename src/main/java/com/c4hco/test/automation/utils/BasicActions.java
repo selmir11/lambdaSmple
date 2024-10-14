@@ -572,5 +572,19 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return endOfMonth.format(formatter);
     }
+
+    public void getDob(String dob){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dobCalculator = currentDate;
+        switch(dob){
+            case "current date minus 5days":
+                dobCalculator = currentDate.minusDays(5);
+                break;
+            default: Assert.fail("Did not find the case entered");
+        }
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String actualdob = dateFormat.format(dobCalculator);
+        SharedData.setCalculatedDob(actualdob);
+    }
 }
 
