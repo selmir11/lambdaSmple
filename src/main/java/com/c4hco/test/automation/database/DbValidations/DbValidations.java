@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -18,7 +19,8 @@ import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 
 public class DbValidations {
   DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
-  SoftAssert softAssert = new SoftAssert();
+    BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
  String formattedDate; //formatted in YYYY-MM-DD
  Calendar calendar = Calendar.getInstance();
  int currentYear = calendar.get(Calendar.YEAR);
@@ -51,14 +53,10 @@ public class DbValidations {
     }
 
     public void validateMedicalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData medicalDbData, List<Map<String, String>> expectedValues){
-        String[] PlanStartDateArr = subscriber.getPlanStartDate().split("/");
-        String formatPlanStartDate = PlanStartDateArr[2]+PlanStartDateArr[0]+PlanStartDateArr[1];
+        String formatPlanStartDate = basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getPolicyStartDate(), "yyyy-mm-dd", "yyyymmdd");
+        String formatMedicalPlanEndDate  =basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getPolicyEndDate(), "yyyy-mm-dd", "yyyymmdd");
+        String formatedFinStartDate =basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "yyyy-mm-dd", "yyyymmdd");
 
-        String[] dateArr = subscriber.getPlanEndDate().split("/");
-        String formatMedicalPlanEndDate  =dateArr[2]+dateArr[0]+dateArr[1];
-
-        String[] finStartDate = subscriber.getMedicalFinancialStartDate().split("/");
-        String formatedFinStartDate = finStartDate[2]+finStartDate[0]+finStartDate[1];
         SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), medicalDbData.getIssuerName(), "Insurer Name did not match!");
