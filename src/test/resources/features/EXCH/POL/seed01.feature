@@ -94,6 +94,10 @@ Feature: Regression Tests that require Seed 1
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+   And I validate the member details from policy tables
+     | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate          |
+     | First Day of Current Year  | Last Day of Current Year |  First Day of Current Year| Last Day of Current Year  |
+
   And I validate med details on my policies page with policy and financial start date "First Day Of Current Year" and end date "Last Day Of Current Year"
   And I validate den details on my policies page with policy and financial start date "First Day Of Current Year" and end date "Last Day Of Current Year"
     And I click View Plan History link from medical plan card
@@ -154,7 +158,9 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Application History" page
     Then I set data from application history page
     And I click on Sign Out in the Header for "NonElmo"
-    And I validate the member details from policy tables with coverage start date "First Day Of Current Year" and end date "Last Day Of Current Year"
+    And I validate the member details from policy tables
+      | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate          |
+      | First Day of Current Year  | Last Day of Current Year |  First Day of Current Year| Last Day of Current Year  |
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
