@@ -183,7 +183,11 @@ public class AccountOverviewPage {
    }
 
     public void setDates(List<Map<String, String>> expectedResult) {
+        // These details are same for medical and dental. If dental plan has different values, then we should rely on a different step.
+        // WIP - Set for all members
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
+
 
         String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
         String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
@@ -191,6 +195,8 @@ public class AccountOverviewPage {
         String coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
         String financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
         String financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
+        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
 
         expectedCalculatedDates.setPolicyStartDate(policyStartDate);
         expectedCalculatedDates.setPolicyEndDate(policyEndDate);
@@ -198,7 +204,12 @@ public class AccountOverviewPage {
         expectedCalculatedDates.setCoverageEndDate(coverageEndDate);
         expectedCalculatedDates.setFinancialStartDate(financialStartDate);
         expectedCalculatedDates.setFinancialEndDate(financialEndDate);
+
+        subscriber.setPlanStartDate(planStartDate);
+        subscriber.setPlanEndDate(planEndDate);
+
         SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+        SharedData.setPrimaryMember(subscriber);
 
     }
 

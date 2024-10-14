@@ -8,8 +8,6 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -53,10 +51,10 @@ public class DbValidations {
     }
 
     public void validateMedicalDbRecord_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, PlanDbData medicalDbData, List<Map<String, String>> expectedValues){
-        String[] PlanStartDateArr = subscriber.getMedicalPlanStartDate().split("/");
+        String[] PlanStartDateArr = subscriber.getPlanStartDate().split("/");
         String formatPlanStartDate = PlanStartDateArr[2]+PlanStartDateArr[0]+PlanStartDateArr[1];
 
-        String[] dateArr = subscriber.getMedicalPlanEndDate().split("/");
+        String[] dateArr = subscriber.getPlanEndDate().split("/");
         String formatMedicalPlanEndDate  =dateArr[2]+dateArr[0]+dateArr[1];
 
         String[] finStartDate = subscriber.getMedicalFinancialStartDate().split("/");
