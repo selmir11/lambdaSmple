@@ -303,7 +303,7 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
         softAssert.assertEquals(whenYouPayTxt.getText(), "When you pay for your health insurance using a Health Reimbursement Arrangement (HRA) provided through your employer, you may be required to buy a plan outside of Connect for Health Colorado. Confirm with your employer whether you have a salary reduction arrangement, as it could affect your ability to sign up for a plan through our Marketplace.");
         softAssert.assertEquals(hraQuestionTxt.get(0).getText(),"Select the plan year for your HRA coverage.");
-        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024");
+        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024\n2025");
         softAssert.assertEquals(hraQuestionTxt.get(1).getText(),"Enter the amount your employer contributes each month to an HRA for your coverage.");
         softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
         softAssert.assertEquals(hraQuestionTxt.get(2).getText(),"What type of HRA is your employer offering?");
