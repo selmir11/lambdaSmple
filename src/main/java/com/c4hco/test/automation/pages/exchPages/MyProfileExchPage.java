@@ -73,11 +73,11 @@ public class MyProfileExchPage {
 
     @FindBy(css = "span.change-password-msg")
     WebElement PasswordMessage;
-    @FindBy(xpath = "//span[.=' Change ']")
+    @FindBy(css = ".action-link.col-sm-2.float-end.ng-star-inserted")
     WebElement changePrimaryContact;
     @FindBy(id = "contactNames")
     WebElement primaryContactDRP;
-    @FindBy(xpath = "//button[.='Save']")
+    @FindBy(css = ".btn.btn-lg.btn-md.btn-sml.primary-action-button.mb-1.ms-3")
     WebElement savePrimaryContact;
 
     @FindBy(css = "#userPassword")
@@ -122,8 +122,26 @@ public class MyProfileExchPage {
     @FindBy(css = "button[class='btn-second-action-button ng-tns-c1380103175-0']\n")
     WebElement NoTimeout;
 
+    @FindBy(css = ".row.header-2.popup-page-header")
+    WebElement headerChangePrimary;
 
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+   WebElement cancelPrimaryPopup;
 
+    @FindBy(xpath = "//button[normalize-space()='Cancelar'] ")
+    WebElement getCancelPrimaryPopupSp;
+
+    @FindBy(css = "a#privacyPolicyLink.action-link1")
+    WebElement privacyPolicy;
+
+    @FindBy(css = "a#termsOfUseLink.action-link1")
+    WebElement termsOfUse;
+
+    @FindBy(xpath = "//*[@id='contactNames']/option[1]")
+    WebElement dpdPrimaryChangeOpt1;
+
+    @FindBy(xpath = "//*[@id='contactNames']/option[2]")
+    WebElement dpdPrimaryChangeOpt2;
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -877,6 +895,55 @@ public class MyProfileExchPage {
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
         YesTimeout.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
+
+    public void validateChangePrimaryContactpopop(String language) {
+        switch (language) {
+            case "English":
+                validateChangePrimaryContactpopopEnglish();
+                break;
+            case "Spanish":
+                validateChangePrimaryContactpopopSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void validateChangePrimaryContactpopopEnglish() {
+        basicActions.waitForElementToBePresent(headerChangePrimary, 2000);
+        softAssert.assertEquals(headerChangePrimary.getText(), "Change Primary Contact");
+        primaryContactDRP.click();
+        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getPrimaryMember().getFullName());
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRP.sendKeys(firstName);
+        primaryContactDRP.sendKeys(Keys.ENTER);
+        softAssert.assertEquals(cancelPrimaryPopup.getText(), "Cancel");
+        softAssert.assertEquals(savePrimaryContact.getText(), "Save");
+        softAssert.assertEquals(privacyPolicy.getText(), "Privacy Policy");
+        softAssert.assertEquals(termsOfUse.getText(), "Terms Of Use");
+        cancelPrimaryPopup.click();
+        softAssert.assertAll();
+    }
+
+
+    public void validateChangePrimaryContactpopopSpanish() {
+        basicActions.waitForElementToBePresent(headerChangePrimary, 2000);
+        softAssert.assertEquals(headerChangePrimary.getText(), "Cambiar el contacto principal");
+        primaryContactDRP.click();
+        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getPrimaryMember().getFullName());
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRP.sendKeys(firstName);
+        primaryContactDRP.sendKeys(Keys.ENTER);
+        softAssert.assertEquals(getCancelPrimaryPopupSp.getText(), "Cancelar");
+        softAssert.assertEquals(savePrimaryContact.getText(), "Guardar");
+        softAssert.assertEquals(privacyPolicy.getText(), "Pol\u00EDtica de privacidad");
+        softAssert.assertEquals(termsOfUse.getText(), "T\u00E9rminos de uso");
+        savePrimaryContact.click();
         softAssert.assertAll();
     }
 }

@@ -97,6 +97,7 @@ public class RaceAndEthnicityPage {
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
+        basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
     }
 
@@ -331,5 +332,11 @@ public class RaceAndEthnicityPage {
         notListedReason.clear();
         raceEthnicityButton.get(7).click();
         softAssert.assertAll();
+    }
+
+    public void selectNotListedAndEnterText(String customText) {
+        raceEthnicityButton.get(7).click();
+        basicActions.waitForElementToBePresent(notListedReason, 10);
+        notListedReason.sendKeys(customText);
     }
 }

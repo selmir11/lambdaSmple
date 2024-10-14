@@ -121,6 +121,9 @@ public class BasicSteps {
             case "Medical Plan Detail":
                 pageUrl = "medicalPlanCarrierDetails";
                 break;
+            case "Medical Plan Detail CoCo":
+                pageUrl = "/PlanSelectionPortal/medicalPlanCarrierDetails/";
+                break;
             case "Grouping Members Medical":
                 pageUrl = "viewGroupingMembers";
                 break;
@@ -134,7 +137,7 @@ public class BasicSteps {
                 pageUrl = "PreShoppingPortal/manageGroupingMembers";
                 break;
             case "Edit Grouping Members Dental":
-                pageUrl = "PreShoppingPortal/editGroupingMembersDental";
+                pageUrl = "PreShoppingPortal/manageGroupingMembers";
                 break;
             case "Spanish":
                 pageUrl = "lang=es";

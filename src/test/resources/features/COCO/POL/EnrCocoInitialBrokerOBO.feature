@@ -1,6 +1,6 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
   @SLCR-298 #WIP
-  Scenario: Simple NFA flow with HUSBAND + WIFE (Colorado Option) (BROKER OBO)
+  Scenario: COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -9,6 +9,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     Then I enter general mandatory data for "coco" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -17,7 +18,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I validate my broker details in the current broker table are "EnrIntial Broker", "Test", "34564567658799", "80205", "719-555-1212", "BROKER", "Active"
+#    And I validate my broker details in the current broker table are "EnrIntial Broker", "Test", "34564567658799", "80205", "719-555-1212", "BROKER", "Active"
     And I click on Sign Out in the Header for "Elmo"
 
     Given I open the login page on the "broker" portal

@@ -1,4 +1,4 @@
-@BrokerPortalBOB @port
+@BrokerPortalBOB @port @BOB
 Feature: Broker Portal OBO - Three Subscriber Groups FA APTC policy submission
 
   @SLER-1012
@@ -258,6 +258,7 @@ Feature: Broker Portal OBO - Three Subscriber Groups FA APTC policy submission
     And I wait for 1000 milliseconds
     And I verify my client's name is displayed
     Then I verify that my client's current status is "POLICY SUBMITTED"
+    And I wait for 500 milliseconds
     And I verify my client's second subscriber's name
     Then I verify that my client's second subscriber status is POLICY SUBMITTED
     And I verify my client's third subscriber's name

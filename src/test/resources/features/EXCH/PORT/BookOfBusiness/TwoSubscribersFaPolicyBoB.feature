@@ -1,4 +1,4 @@
-@BrokerPortalBOB @port
+@BrokerPortalBOB @port @BOB
 Feature: Broker Portal OBO - Two subscribers submit FA Application and enroll in a plan
 
   @SLER-1013

@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.utils;
 
-import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -45,7 +44,7 @@ public class BasicActions {
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
     public void clickBackButtonFromBrowser() {
-        getDriver().navigate().back();
+       getDriver().navigate().back();
     }
 
     private static class LazyHolder {
@@ -134,7 +133,7 @@ public class BasicActions {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException ignore) {
+        } catch (TimeoutException|NoSuchElementException ignore) {
             Log.info("Element is not present");
             return false;
         }
@@ -341,46 +340,6 @@ public class BasicActions {
         String primaryMemId = SharedData.getPrimaryMemberId();
         String newUrl = "";
         switch(page){
-            case "Elmo Other Health Coverage Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage";
-                newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo COBRA Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/cobra";
-                newUrl = currentUrl.replace("nes/cobra", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Retiree Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/retiree";
-                newUrl = currentUrl.replace("nes/retireeHealth", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Medicare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/medicare";
-                newUrl = currentUrl.replace("nes/medicare", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi VA Healthcare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/va";
-                newUrl = currentUrl.replace("nes/vaHealth", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Individual Insurance Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/individual";
-                newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Peace Corps Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/peaceCorps";
-                newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
-                getDriver().navigate().to(newUrl);
-				break;
-            case "Elmo Ohi Tricare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/tricare";
-                newUrl = currentUrl.replace("nes/tricare", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
             case "Income portal Error CoCo":
                 newUrl = "income-portal/error";
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
@@ -599,6 +558,13 @@ public class BasicActions {
 
         }
         return date;
+    }
+
+    public String endOfMonthDate() {
+        LocalDate today = LocalDate.now();
+        LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return endOfMonth.format(formatter);
     }
 }
 

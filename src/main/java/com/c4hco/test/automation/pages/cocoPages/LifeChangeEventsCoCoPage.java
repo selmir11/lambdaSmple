@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class LifeChangeEventsCoCoPage {
 
@@ -31,12 +32,8 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(css = ".page-header")
     WebElement hdr_LceText;
 
-    @FindBy(css = "body > app-root > lib-base-layout > div > main > div > app-lce-page > app-container > div > div > div.parent-position > lib-list-error > lib-error-msg > div")
+    @FindBy(className = "error-message")
     WebElement selectLCEError;
-    @FindBy(xpath = "//*[text()='Please select who this change applies to:']")
-    WebElement selectLCEMemberError;
-    @FindBy(xpath = "//*[text()='Event date required']")
-    WebElement selectLCEDateError;
     @FindBy(css = "#ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
     WebElement insuranceLossLCEContainer;
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
@@ -538,23 +535,40 @@ public class LifeChangeEventsCoCoPage {
                 verifyLCEError(language);
                 break;
             case "does not":
-                softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEError, 1).booleanValue(), false);
-                softAssert.assertAll();
+                verifySelectOptionErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 
+    public void verifySelectOptionErrorNotPresent(String language){
+        // Check if there are any error messages on page.  Return if there aren't any.
+        if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
+            return;
+        }
+        switch (language){
+            case "English":
+                softAssert.assertNotEquals(selectLCEError.getText(), "Please select one or more of the options below:");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertNotEquals(selectLCEError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones:");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifySelectMemberError(String language, String exist){
         switch (exist){
             case "does":
-                basicActions.waitForElementPresence(selectLCEMemberError, 1);
+                basicActions.waitForElementPresence(selectLCEError, 1);
                 verifyLCEMemberError(language);
                 break;
             case "does not":
-                softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEMemberError, 1).booleanValue(), false);
-                softAssert.assertAll();
+                verifyLCEMemberErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + exist);
@@ -567,16 +581,58 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getText(), "Please select one or more of the options below:");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
-                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(selectLCEError.getText(), "Seleccione una o más de las siguientes opciones:");
+                softAssert.assertEquals(selectLCEError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones:");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
-                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCEMemberError(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(selectLCEError.getText(), "Please select who this change applies to:");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(selectLCEError.getText(), "Seleccione la persona a quien aplica este cambio:");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCEMemberErrorNotPresent(String language){
+        // Check if there are any error messages on page.  Return if there aren't any.
+        if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
+            return;
+        }
+        switch (language){
+            case "English":
+                softAssert.assertNotEquals(selectLCEError.getText(), "Please select who this change applies to:");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertNotEquals(selectLCEError.getText(), "Seleccione la persona a quien aplica este cambio:");
                 softAssert.assertAll();
                 break;
             default:
@@ -590,30 +646,25 @@ public class LifeChangeEventsCoCoPage {
                 verifyLCEDateError(language);
                 break;
             case "does not":
-                softAssert.assertEquals(basicActions.waitForElementPresence(selectLCEDateError, 1).booleanValue(), false);
-                softAssert.assertAll();
+                verifySelectDateErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 
-    public void verifyLCEMemberError(String language){
-        switch (language) {
+    public void verifySelectDateErrorNotPresent(String language){
+        // Check if there are any error messages on page.  Return if there aren't any.
+        if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
+            return;
+        }
+        switch (language){
             case "English":
-                softAssert.assertEquals(selectLCEMemberError.getText(), "Please select who this change applies to:");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-size"), "16px");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-weight"), "700");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertNotEquals(selectLCEError.getText(), "Event date required");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(selectLCEMemberError.getText(), "Seleccione la persona a quien aplica este cambio:");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-size"), "16px");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("font-weight"), "700");
-                softAssert.assertEquals(selectLCEMemberError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertNotEquals(selectLCEError.getText(), "La fecha del evento es obligatoria");
                 softAssert.assertAll();
                 break;
             default:
@@ -624,19 +675,19 @@ public class LifeChangeEventsCoCoPage {
     public void verifyLCEDateError(String language){
         switch (language) {
             case "English":
-                softAssert.assertEquals(selectLCEDateError.getText(), "Event date required");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(selectLCEError.getText(), "Event date required");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(selectLCEDateError.getText(), "La fecha del evento es obligatoria");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("font-weight"), "400");
-                softAssert.assertEquals(selectLCEDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(selectLCEError.getText(), "La fecha del evento es obligatoria");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertAll();
                 break;
             default:

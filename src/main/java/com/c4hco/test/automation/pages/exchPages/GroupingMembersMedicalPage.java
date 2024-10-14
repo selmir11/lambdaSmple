@@ -15,22 +15,26 @@ import org.testng.asserts.SoftAssert;
 import java.util.*;
 
 public class GroupingMembersMedicalPage {
-    @FindBy(css = ".container .header-1")
+    @FindBy(id = "SOL-ViewGroupingMembers-MedicalEnrollmentTitle")
     WebElement medicalEnrollmentGroupPageTitle;
-    @FindBy(css = ".container .body-text-1")
-    List<WebElement> groupingPageText;
-    @FindBy(css = ".th-title")
-    WebElement medicalGroup1;
+    @FindBy(id = "SOL-ViewGroupingMembers-GroupsMedicalTitle")
+    WebElement medicalEnrollmentGroupTitle;
+    @FindBy(id = "SOL-ViewGroupingMembers-EnrollmentGroups1stParagraph")
+    WebElement groupingPagePara1;
+    @FindBy(id = "SOL-ViewGroupingMembers-EnrollmentGroups2ndParagraph")
+    WebElement groupingPagePara2;
+    @FindBy(css = ".c4-type-header-sm")
+    List<WebElement> medicalGroupTitle;
     @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
     List<WebElement> noOfGroups;
     @FindBy(id="SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
     WebElement editMyEnrollmentGroupsButton;
-    @FindBy(css = ".row .btn-secondary")
-    List<WebElement> backAndSaveAndExitButtons;
     @FindBy(id = "SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
+    @FindBy(id = "SOL-ViewGroupingMembers-SaveAndExit")
+    WebElement saveAndExitBtn;
     @FindBy(id = "globe-image")
-    WebElement glodeImageDropdown;
+    WebElement globeImageDropdown;
     @FindBy(css = ".mt-3 .table tbody")
     List<WebElement> membersInGroups;
 
@@ -62,7 +66,13 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBePresent( goBackButton,20 );
         basicActions.scrollToElement( goBackButton );
         goBackButton.click();;
+    }
 
+    public void clickSaveAndExit(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( saveAndExitBtn,20 );
+        basicActions.scrollToElement( saveAndExitBtn );
+        saveAndExitBtn.click();;
     }
 
     public void clickOnEditMedicalGroupinglink() {
@@ -73,6 +83,7 @@ public class GroupingMembersMedicalPage {
     }
 
     public void noOfMedicalGroups(int totalGroups) {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
         if(SharedData.getScenarioDetails()!=null){
@@ -171,15 +182,16 @@ public class GroupingMembersMedicalPage {
 //--------------------------validations------------------------
     public void verifyMedicalGroupingPageVerbiage() {
         basicActions.waitForElementToBePresent(medicalEnrollmentGroupPageTitle, 10);
-        softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText(), "Medical Enrollment Groups");
-        softAssert.assertEquals(groupingPageText.get(0).getText(), "It may be cheaper to separate your household into groups and enroll in different plans. We suggest the following groups, but you can use what works best for you.");
-        softAssert.assertEquals(groupingPageText.get(1).getText(), "Remember: Costs within a group count towards each group's deductible and out of pocket maximum.");
-         softAssert.assertEquals(medicalGroup1.getText(),"Medical Group #1");
-        softAssert.assertEquals(editMyEnrollmentGroupsButton, "Edit my enrollment groups");
-        softAssert.assertEquals(backAndSaveAndExitButtons.get(0).getText(), "Go Back");
-        softAssert.assertEquals(backAndSaveAndExitButtons.get(1).getText(), "Save and Exit");
+        softAssert.assertEquals(medicalEnrollmentGroupPageTitle.getText()+" "+medicalEnrollmentGroupTitle.getText(), "Medical Enrollment Groups");
+        softAssert.assertEquals(groupingPagePara1.getText(), "Enrollment groups let you choose who enrolls in the same plan together. Remember that costs within a group count towards each group’s deductible and out-of-pocket maximum. In some cases, changing your enrollment groups may make coverage more affordable for your household.");
+        softAssert.assertEquals(groupingPagePara2.getText(), "We\u2019ve set up suggested groups based on who is in your family, where they live, and what they\u2019re eligible for, but you can choose to move them into groups of your choice.");
+        softAssert.assertEquals(medicalGroupTitle.get(0).getText(),"Medical Group #1");
+
+        softAssert.assertEquals(editMyEnrollmentGroupsButton.getText(), "Edit my suggested groups");
+        softAssert.assertEquals(goBackButton.getText(), "Go back");
+        softAssert.assertEquals(saveAndExitBtn.getText(), "Save and Exit");
         softAssert.assertEquals(continueButton.getText(), "Continue");
-        softAssert.assertTrue(glodeImageDropdown.isEnabled());
+        softAssert.assertTrue(globeImageDropdown.isEnabled());
         softAssert.assertAll();
     }
 

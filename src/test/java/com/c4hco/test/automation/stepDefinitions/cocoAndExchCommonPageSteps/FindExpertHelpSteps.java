@@ -131,6 +131,11 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.clickRemoveBrokerPopUp(removalOption);
         }
 
+        @And("I verify the remove broker text in {string}")
+        public void iVerifyRemoveBrokerPopUpText(String language){
+                findExpertHelpPage.verifyRemoveBrokerPopUpText(language);
+        }
+
         @And("I validate the Previous Broker Assister text")
         public void iValidatePreviousBrokerAssisterText(){
                 findExpertHelpPage.validatePreviousBrokerAssisterText();

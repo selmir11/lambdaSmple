@@ -20,7 +20,8 @@ Feature: Medical Plan Compare page related tests
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+    # LCE option page doesn't appear in Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
@@ -64,6 +65,7 @@ Feature: Medical Plan Compare page related tests
     And I click on the compare links on the first 2 medical plans
     Then I click on the compare button
 
+     Then I validate I am on the "Medical Plan Results" page
     Then I validate I am on the "Medical Plan Compare" page
     And I click Go Back on the Compare page
 

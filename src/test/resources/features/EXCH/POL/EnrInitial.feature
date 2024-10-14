@@ -1,6 +1,6 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
   @SLER-106
-  Scenario: Family of 4  FA Application Enrolls in a plan Admin Portal OBO
+  Scenario: EXCH Initial Application - Family of 4  FA (Admin Portal OBO)
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
@@ -41,7 +41,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "01011980" date of birth
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
     |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
@@ -66,7 +65,6 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "05012015" date of birth
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "05012015", "Male" and applying "Yes"
     |Primary:Son|
     |Spouse:Son |
