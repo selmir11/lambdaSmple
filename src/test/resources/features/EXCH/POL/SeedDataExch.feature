@@ -3,10 +3,10 @@ Feature: All the Seed Data - Exchange
 
 #  Scenario: Test Only Scenario-edi999
 #  And I read the edi999 file locally
-#
+
 #  Scenario: Test Only scenario- edi file in local location
 #    And I read the edi file locally
-#
+
   @SLER-289
   Scenario: Seed 01 For Exchange
     Given I open the login page on the "login" portal

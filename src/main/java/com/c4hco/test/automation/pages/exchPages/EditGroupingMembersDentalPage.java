@@ -90,8 +90,8 @@ public class EditGroupingMembersDentalPage {
     public void createNewDentalGroups(List<String> groupingList) {
         basicActions.waitForElementToDisappear(spinner, 20);
         for(String group: groupingList){
-            createNewGroupLink.click();
             basicActions.scrollToElement(createNewGroupLink);
+            createNewGroupLink.click();
             String[] groupDetail =  group.split(":");
             String[] Names = groupDetail[0].split(",");
             for(String Name: Names){
