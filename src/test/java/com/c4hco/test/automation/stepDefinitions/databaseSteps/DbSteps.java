@@ -18,9 +18,9 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate the member details from policy tables with coverage start date {string} and end date {string}")
-   public void validateFromPolicyTables(String startDate, String endDate){
-      policyTableDBValidations.validateDataFromPolicyTables(startDate, endDate);
+   @And("I validate the member details from policy tables")
+   public void validateFromPolicyTables(){
+      policyTableDBValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")
