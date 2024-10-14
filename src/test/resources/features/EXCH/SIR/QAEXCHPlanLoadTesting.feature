@@ -65,6 +65,7 @@ Feature: Medical Plan Verification test
      And I click continue on start shopping page
 
      Then I validate I am on the "Medical Plan Results" page
+     Then I validate I am on the "Start Shopping" page
 
   @SelectVerifyCarrierFilterResults-PlanLoadTest
  Scenario Outline: SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, - SelectVerifyCarrierfilterResults

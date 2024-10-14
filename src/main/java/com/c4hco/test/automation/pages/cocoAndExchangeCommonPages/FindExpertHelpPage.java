@@ -129,6 +129,12 @@ public class FindExpertHelpPage {
     @FindBy(xpath ="//button[@class='btn btn-lg secondary-action-button']")
     WebElement removeBrokerCancel;
 
+    @FindBy(id ="save-close-header")
+    WebElement removeCurrentBrokerTitleText;
+
+    @FindBy(xpath ="//div[@class='body-text-1 justify-content-center']")
+    WebElement removeCurrentBrokerText;
+
     @FindBy(id = "previous-helper-title")
     WebElement previousBrokerAssisterText;
 
@@ -480,6 +486,25 @@ public class FindExpertHelpPage {
                 removeBrokerCancel.click();
                 break;
         }
+    }
+
+    public void verifyRemoveBrokerPopUpText(String language) {
+        basicActions.waitForElementToBePresent(removeCurrentBrokerTitleText, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(removeCurrentBrokerTitleText.getText(), "Remove Broker");
+                softAssert.assertEquals(removeCurrentBrokerText.getText(), "Are you sure you want to remove this Broker from your account?");
+                softAssert.assertEquals(removeBrokerOkay.getText(), "Okay");
+                softAssert.assertEquals(removeBrokerCancel.getText(), "Cancel");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(removeCurrentBrokerTitleText.getText(), "Retirar Agente");
+                softAssert.assertEquals(removeCurrentBrokerText.getText(), "\u00BFEst\u00E1 seguro que desea eliminar este Agente de su cuenta?");
+                softAssert.assertEquals(removeBrokerOkay.getText(), "Okay");
+                softAssert.assertEquals(removeBrokerCancel.getText(), "Cancel");
+                break;
+        }
+        softAssert.assertAll();
     }
 
     public void validatePreviousBrokerAssisterText(){
