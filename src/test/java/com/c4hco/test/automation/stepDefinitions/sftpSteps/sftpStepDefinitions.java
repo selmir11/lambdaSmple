@@ -3,7 +3,6 @@ package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
-import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
@@ -137,6 +136,11 @@ public class sftpStepDefinitions {
             System.out.println("***********Validating Dental ib999 File:: "+SharedData.getDentalIb999FileName()+"***********");
             ib999FileValidations.validateib999File(entry);
         }
+    }
+
+    @And("I validate the ib999 files should have the values")
+    public void validateIb999Records() {
+        sftpUtil.readIb999File(SharedData.getMedicalFileName());
     }
 
 }
