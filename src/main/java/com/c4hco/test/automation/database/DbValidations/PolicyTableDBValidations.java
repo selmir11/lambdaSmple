@@ -20,22 +20,11 @@ public class PolicyTableDBValidations {
     BasicActions basicActions = new BasicActions();
 
     public void validateDataFromPolicyTables(List<Map<String, String>> expectedValues){
-        String coverageStartDate = expectedValues.get(0).get("CoverageStartDate");
-        String coverageEndDate = expectedValues.get(0).get("CoverageEndDate");
-        String financialStartDate = expectedValues.get(0).get("FinancialStartDate");
-        String financialEndDate = expectedValues.get(0).get("FinancialEndDate");
-
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<PolicyTablesEntity> policyEntities = exchDbDataProvider.getDataFromPolicyTables();
         SharedData.setPolicyTablesEntities(policyEntities);
         exchDbDataProvider.setDataFromDb();
         DbData dbData = SharedData.getDbData();
-
-
-        String covBeginDate = basicActions.getDateBasedOnRequirement(coverageStartDate);
-        String covEndDate = basicActions.getDateBasedOnRequirement(coverageEndDate);
-        String finBeginDate = basicActions.getDateBasedOnRequirement(financialStartDate);
-        String finEndDate = basicActions.getDateBasedOnRequirement(financialEndDate);
 
         for(PolicyTablesEntity policyTablesEntity: policyEntities){
             if(policyTablesEntity.getCoverage_type().equals("1")){
