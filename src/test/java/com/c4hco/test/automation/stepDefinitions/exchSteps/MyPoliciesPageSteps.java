@@ -7,12 +7,12 @@ import io.cucumber.java.en.And;
 public class MyPoliciesPageSteps {
     MyPoliciesPage myPoliciesPage = new MyPoliciesPage(WebDriverManager.getDriver());
 
-    @And("I validate med details on my policies page with policy and financial start date {string} and end date {string}")
+    @And("I validate medical details on my policies page")
     public void validateMedPlanDetails(){
         myPoliciesPage.validateEnrolledMedicalPlanDetails();
     }
 
-    @And("I validate den details on my policies page with policy and financial start date {string} and end date {string}")
+    @And("I validate dental details on my policies page")
     public void validateDentalPlanDetails() {
         myPoliciesPage.validateDentalPlanDetails();
     }
