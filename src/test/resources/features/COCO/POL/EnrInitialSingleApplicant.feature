@@ -1,6 +1,6 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
   @SLCR-297
-  Scenario: Simple NFA flow with Single Applicant(Silver Enhanced)
+  Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -9,6 +9,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     Then I enter general mandatory data for "coco" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page

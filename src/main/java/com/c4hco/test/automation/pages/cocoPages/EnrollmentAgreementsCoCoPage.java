@@ -39,6 +39,7 @@ public class EnrollmentAgreementsCoCoPage {
 
     @FindBy(id = "SOL-EnrollmentAgreements-UnderstandElectronicSignature")
     WebElement understandSigChckbx;
+
     @FindBy(id="SOL-EnrollmentAgreements-SubmitEnrollment")
     WebElement submitEnrollmentBtn;
 

@@ -1,6 +1,8 @@
+@SIRRegression
+  #SLER-1093
 Feature: Premium is not $0 when 4+ children
   @SLER-1093
-  Scenario: : Premium is not $0 when 4+ children are on plan together scenario 3
+  Scenario: SLER-1093 - Premium is not $0 when 4+ children are on plan together scenario 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page

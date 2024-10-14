@@ -110,5 +110,17 @@ public class AdminPortalManagePlansSteps {
     public void iSelectMemberNameFromPolicyDropdown(String MemberName){
         adminPortalManagePlansPage.selectMemberNameFromPolicyDropdown( MemberName);
     }
+
+    @Then("I update the coverage end date")
+    public void iUpdateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
+        adminPortalManagePlansPage.updateTheCoverageEndDate(memberCoverageEndDTList);
+    }
+
+    @And("I update the financial end date")
+    public void iUpdateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
+        adminPortalManagePlansPage.updateTheFinancialEndDate(memberFinancialEndDTList);
+    }
+
+
 }
 
