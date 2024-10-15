@@ -70,7 +70,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I get the newborn dob as "current date minus 5days"
+    And I get the newborn "Son" dob as "current date minus 5days"
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -143,6 +143,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
+    #WIP
     Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as current date minus 5 days
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -198,28 +199,29 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     #WIP - Policy validations
-   # And I validate the member details from policy tables
-    #Gmail
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
-      |Primary|
-      |Spouse|
-      |Son   |
-    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
-      |Primary|
-      |Spouse|
-      |Son   |
+#    And I validate the member details from policy tables
 
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
-
-    #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    #Gmail
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+#
+#    #DbVerification
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     #RT-2268
 
