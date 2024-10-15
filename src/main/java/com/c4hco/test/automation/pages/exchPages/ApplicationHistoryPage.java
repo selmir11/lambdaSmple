@@ -17,10 +17,10 @@ public class ApplicationHistoryPage {
     WebElement lblAPTCValue;
     @FindBy(xpath = "//button[@name= 'viewResults']")
     WebElement viewResultsAndShop;
-    @FindBy(css = "table tbody  #align-right")
-    List<WebElement> applicationSummary;
     @FindBy(id = "price-background")
     WebElement aptcSection;
+    @FindBy(css = "table tbody  #align-right")
+    List<WebElement> applicationSummary;
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -29,12 +29,10 @@ public class ApplicationHistoryPage {
     }
 
     public void clickViewResults(){
+        setApplicationId();
         viewResultsAndShop.click();
     }
-    public void iSetData(){
-        iSetApplicationId();
-    }
-    public void iSetApplicationId(){
+    private void setApplicationId(){
         String applicationid = applicationSummary.get(0).getText();
         SharedData.getPrimaryMember().setApplication_id(applicationid);
         System.out.println("Application Id : "+ applicationid);

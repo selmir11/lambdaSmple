@@ -182,14 +182,12 @@ public class ApplicationResultsPage {
                 validateEachMemberResults(name, result.trim());
             }
         }
-
         softAssert.assertAll();
     }
 
     private void validateEachMemberResults(String name, String resultExpected) {
         String xpath = String.format("//*[contains(text(),'%s')]//following::tr/td[contains(text(),'%s')]", name, resultExpected);
         WebElement memberResults = basicActions.getDriver().findElement(By.xpath(xpath));
-
         softAssert.assertEquals(memberResults.getText(), resultExpected, "Mismatch for: " + name + " -> " + resultExpected);
     }
 
