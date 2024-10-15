@@ -506,13 +506,15 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
+    And I select "Yes" to claim dependents
+    And I select the second dependent
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
