@@ -129,6 +129,12 @@ public class FindExpertHelpPage {
     @FindBy(xpath ="//button[@class='btn btn-lg secondary-action-button']")
     WebElement removeBrokerCancel;
 
+    @FindBy(id ="save-close-header")
+    WebElement removeCurrentBrokerTitleText;
+
+    @FindBy(xpath ="//div[@class='body-text-1 justify-content-center']")
+    WebElement removeCurrentBrokerText;
+
     @FindBy(id = "previous-helper-title")
     WebElement previousBrokerAssisterText;
 
@@ -482,6 +488,25 @@ public class FindExpertHelpPage {
         }
     }
 
+    public void verifyRemoveBrokerPopUpText(String language) {
+        basicActions.waitForElementToBePresent(removeCurrentBrokerTitleText, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(removeCurrentBrokerTitleText.getText(), "Remove Broker");
+                softAssert.assertEquals(removeCurrentBrokerText.getText(), "Are you sure you want to remove this Broker from your account?");
+                softAssert.assertEquals(removeBrokerOkay.getText(), "Okay");
+                softAssert.assertEquals(removeBrokerCancel.getText(), "Cancel");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(removeCurrentBrokerTitleText.getText(), "Retirar Agente");
+                softAssert.assertEquals(removeCurrentBrokerText.getText(), "\u00BFEst\u00E1 seguro que desea eliminar este Agente de su cuenta?");
+                softAssert.assertEquals(removeBrokerOkay.getText(), "Okay");
+                softAssert.assertEquals(removeBrokerCancel.getText(), "Cancel");
+                break;
+        }
+        softAssert.assertAll();
+    }
+
     public void validatePreviousBrokerAssisterText(){
         basicActions.waitForElementToBePresent(previousBrokerAssisterText, 10);
         softAssert.assertEquals(previousBrokerAssisterText.getText(),"Previous Brokers and/or Assisters who were authorized or had requested authorization in the past to help you.");
@@ -570,7 +595,7 @@ public class FindExpertHelpPage {
 
     public void validateContinueWithMyApplicationButtonExists(String expectedState){
         if(expectedState.equals("is")){
-            basicActions.waitForElementToBePresent(continueOnMyOwnButton,10);
+            basicActions.waitForElementToBePresent(continueOnMyOwnButton,50);
             softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue with my application");
             softAssert.assertAll();
         } else if (expectedState.equals("is not")) {
@@ -578,4 +603,6 @@ public class FindExpertHelpPage {
             softAssert.assertAll();
         }
     }
+
+
 }

@@ -69,7 +69,6 @@ public class Edi999Util {
         JSONArray ak9Seg = ib999SegJsonObj.getJSONArray("AK9");
         JSONArray ik5Seg = ib999SegJsonObj.getJSONArray("IK5");
 
-
         JSONArray isaSegment = (JSONArray) isaSeg.get(0);
         JSONArray ieaSegment = (JSONArray) ieaSeg.get(0);
 
@@ -85,29 +84,5 @@ public class Edi999Util {
         ib999Segments.setIK5(ik5Seg);
 
         SharedData.setIb999Segments(ib999Segments);
-       System.out.println( "ISA"+SharedData.getIb999Segments().getISA());
-        System.out.println( "IEA"+SharedData.getIb999Segments().getIEA());
-
-        // check the count - always should be 1 and get the 0th index.
-        System.out.println( "GS"+SharedData.getIb999Segments().getGS().get(0));
-        System.out.println( "GE"+SharedData.getIb999Segments().getGE().get(0));
-
-        System.out.println( "ST"+SharedData.getIb999Segments().getST());
-        System.out.println( "SE"+SharedData.getIb999Segments().getSE());
-
-        System.out.println( "AK1"+SharedData.getIb999Segments().getAK1());
-        System.out.println( "AK2"+SharedData.getIb999Segments().getAK2());
-        System.out.println( "AK9"+SharedData.getIb999Segments().getAK9());
-        System.out.println( "IK5"+SharedData.getIb999Segments().getIK5());
-
-
-
-
-
-
-
-
-
-
     }
 }

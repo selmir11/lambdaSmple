@@ -30,4 +30,9 @@ public class RaceAndEthnicityPageSteps {
     public void validateTextBoxAndCheckboxSelection() {
         RaceAndEthnicityPage.validateTextBoxInputAndCheckboxSelection();
     }
+
+    @And("I select Not listed for race and ethnicity and enter {string} in the text box")
+    public void selectNotListedAndEnterText(String customText) {
+        RaceAndEthnicityPage.selectNotListedAndEnterText(customText);
+    }
   }

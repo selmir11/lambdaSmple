@@ -83,6 +83,7 @@ public class GroupingMembersMedicalPage {
     }
 
     public void noOfMedicalGroups(int totalGroups) {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
         if(SharedData.getScenarioDetails()!=null){

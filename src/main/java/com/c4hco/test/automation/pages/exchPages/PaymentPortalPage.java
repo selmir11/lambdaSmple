@@ -57,9 +57,10 @@ public class PaymentPortalPage {
         basicActions.scrollToElement( allDone );
         basicActions.waitForElementToBeClickable(allDone,10);
         basicActions.wait(1000);
-        if(recomendC4HCOToFriendPopUp.isDisplayed()){
+        if(recomendC4HCOToFriendPopUp.isDisplayed()) {
             recomendC4HCOToFriendPopUp.click();
         }
+        basicActions.scrollToElement( allDone );
         basicActions.clickElementWithRetries(allDone, 30);
     }
 

@@ -3,7 +3,6 @@ package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
-import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
@@ -17,7 +16,6 @@ import java.util.Map;
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
      Ob834FileValidations ob834Validations = new Ob834FileValidations();
-    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
     @And("I download the file(s) from sftp server with location {string}")
     public void downloadFiles(String remoteLocation)  {
@@ -97,8 +95,7 @@ public class sftpStepDefinitions {
         @And("I get I999 medical file name from DB and download it from sftp server location {string}")
         public void getI999MedicalFileToLocal(String inbound999FolderPath){
         try {
-            List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
-            SharedData.setIb999MedDetailsEntities(ib999MedEntity); //setting ib999 med entity in shared data
+            List<Ib999Entity> ib999MedEntity = SharedData.getIb999MedDetailsEntities();
             for (Ib999Entity entry : ib999MedEntity) {
                 String ib999MedFileName = entry.getFilename();
                 SharedData.setMedicalIb999FileName(ib999MedFileName);
@@ -113,7 +110,7 @@ public class sftpStepDefinitions {
     @And("I get I999 dental file name from DB and download it from sftp server location {string}")
     public void getI999DentalFileToLocal(String inbound999FolderPath) {
         try {
-            List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
+            List<Ib999Entity> ib999DenEntity = SharedData.getIb999DenDetailsEntities();
             for (Ib999Entity entry : ib999DenEntity) {
                 String ib999DenFileName = entry.getFilename();
                 SharedData.setDentalIb999FileName(ib999DenFileName);
@@ -126,8 +123,7 @@ public class sftpStepDefinitions {
     }
     @And("I validate the contents of ib999 medical file")
     public void validateMedIb999Records() {
-        String medGrpCtlNum = SharedData.getMedGroupCtlNumber();
-        List<Ib999Entity> ib999MedEntries = exchDbDataProvider.getIb999Details(medGrpCtlNum);
+        List<Ib999Entity> ib999MedEntries = SharedData.getIb999MedDetailsEntities();
         for (Ib999Entity entry : ib999MedEntries) {
                System.out.println("***********Validating Medical ib999 File:: "+SharedData.getMedicalIb999FileName()+"***********");
                 ib999FileValidations.validateib999File(entry);
@@ -135,12 +131,16 @@ public class sftpStepDefinitions {
     }
     @And("I validate the contents of ib999 dental file")
     public void validateDenIb999Records() {
-        String denGrpCtlNum = SharedData.getDenGroupCtlNumber();
-        List<Ib999Entity> ib999DenEntries = exchDbDataProvider.getIb999Details(denGrpCtlNum);
+        List<Ib999Entity> ib999DenEntries = SharedData.getIb999DenDetailsEntities();
         for (Ib999Entity entry : ib999DenEntries) {
             System.out.println("***********Validating Dental ib999 File:: "+SharedData.getDentalIb999FileName()+"***********");
             ib999FileValidations.validateib999File(entry);
         }
+    }
+
+    @And("I validate the ib999 files should have the values")
+    public void validateIb999Records() {
+        sftpUtil.readIb999File(SharedData.getMedicalFileName());
     }
 
 }

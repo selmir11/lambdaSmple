@@ -4,20 +4,17 @@ import com.c4hco.test.automation.pages.exchPages.MyPoliciesPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 
-import java.util.List;
-import java.util.Map;
-
 public class MyPoliciesPageSteps {
     MyPoliciesPage myPoliciesPage = new MyPoliciesPage(WebDriverManager.getDriver());
 
-    @And("I validate medical plan details from my policies page")
-    public void validateMedPlanDetails(List<Map<String, String>> expectedResult){
-        myPoliciesPage.validateEnrolledMedicalPlanDetails(expectedResult);
+    @And("I validate medical details on my policies page")
+    public void validateMedPlanDetails(){
+        myPoliciesPage.validateEnrolledMedicalPlanDetails();
     }
 
-    @And("I validate dental plan details from my policies page")
-    public void validateDentalPlanDetails(List<Map<String, String>> expectedResult) {
-        myPoliciesPage.validateDentalPlanDetails(expectedResult);
+    @And("I validate dental details on my policies page")
+    public void validateDentalPlanDetails() {
+        myPoliciesPage.validateDentalPlanDetails();
     }
 
     @And("I click View Plan History link from medical plan card")
@@ -54,13 +51,13 @@ public class MyPoliciesPageSteps {
     public void clickMedicalPlansCancelButton(String btnDetail){
         myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
-    @And ("Validate medical plan details from my policies page with start date {string}")
 
+    @And ("Validate medical plan details from my policies page")
     public void medicalPlanValidationsOnMypoliciesPage(String startDate){
-        myPoliciesPage.validateMedPolicyFinancialStartDate(startDate);
+        myPoliciesPage.medicalValidations();
     }
-    @And ("Validate dental plan details from my policies page with start date {string}")
-    public void dentalPlanValidationsOnMypoliciesPage(String startDate){
-        myPoliciesPage.validateDentPolicyFinancialStartDate(startDate);
+    @And ("Validate dental plan details from my policies page")
+    public void dentalPlanValidationsOnMypoliciesPage(){
+        myPoliciesPage.dentalValidations();
     }
 }

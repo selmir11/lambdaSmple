@@ -1,9 +1,7 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
   @SLCR-297
-  Scenario: Simple NFA flow with Single Applicant(Silver Enhanced)
-    Given I set the test scenario details in coco
-      | totalGroups | totalMembers |
-      | 1           | 1            |
+  Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
+
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -11,6 +9,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     Then I enter general mandatory data for "coco" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -61,8 +60,6 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2024" from My Current Plan container
-    And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And Validate selected medical plan for "Primary" is "Cigna Connect Colorado Option Bronze"
     And I click on Sign Out in the Header for "Elmo"

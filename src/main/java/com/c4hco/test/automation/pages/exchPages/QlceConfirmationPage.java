@@ -51,7 +51,7 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Death')]")
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
-    WebElement deathEventDate;
+    List<WebElement> deathEventDate;
     //Moved to Colorado
     @FindBy(id="changeOfAddress")
     WebElement addressChangeLce;
@@ -156,6 +156,16 @@ public class QlceConfirmationPage {
                     allMembersGainedTribalStatusCheckbox.get(i).click();
                     tribalStatusEventDate.get(i).click();
                     tribalStatusEventDate.get(i).sendKeys(getCurrentDate());
+                }
+                break;
+            case "Death":
+                basicActions.waitForElementToBeClickable(deathLce,10);
+                deathLce.click();
+                for (var i = 0; i < allmemberDeathcheckbox.size(); i++) {
+                    allmemberDeathcheckbox.get(i).click();
+                    deathEventDate.get(i).click();
+                    deathEventDate.get(i).sendKeys(getCurrentDate());
+
                 }
                 break;
             case "NoneOfThese":
