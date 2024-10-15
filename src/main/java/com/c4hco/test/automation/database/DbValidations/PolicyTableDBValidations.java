@@ -6,69 +6,58 @@ import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
-import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 
 public class PolicyTableDBValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
-    BasicActions basicActions = new BasicActions();
 
-    public void validateDataFromPolicyTables(String startDate, String endDate){
+    public void validateDataFromPolicyTables(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<PolicyTablesEntity> policyEntities = exchDbDataProvider.getDataFromPolicyTables();
         SharedData.setPolicyTablesEntities(policyEntities);
         exchDbDataProvider.setDataFromDb();
         DbData dbData = SharedData.getDbData();
-        String covBeginDate = basicActions.getDateBasedOnRequirement(startDate);
-        String covEndDate = basicActions.getDateBasedOnRequirement(endDate);
 
         for(PolicyTablesEntity policyTablesEntity: policyEntities){
             if(policyTablesEntity.getCoverage_type().equals("1")){
                 exchDbDataProvider.setMedicalPlanDataFromDb(subscriber.getMedicalPlan());
                 PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get(0); // works for 1 member only
                 medicalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
-                validateMedicalPolicyDataFromDB(policyTablesEntity,dbData, medicalPlanDbData, covBeginDate, covEndDate);
+                validateMedicalPolicyDataFromDB(policyTablesEntity,dbData, medicalPlanDbData);
             } else{
                 exchDbDataProvider.setDentalPlanDataFromDb(subscriber.getDentalPlan());
                 PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0); // // works for 1 member only
                 dentalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
-                validateDentalPolicyDataFromDB(policyTablesEntity,dbData, dentalPlanDbData, covBeginDate, covEndDate);
+                validateDentalPolicyDataFromDB(policyTablesEntity,dbData, dentalPlanDbData );
             }
               validateMedicalDentalPolicyDataFromDB(policyTablesEntity, dbData);
         }
     }
 
-    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity,DbData dbData, PlanDbData medicalPlanDbData, String covStartDate, String covEndDate){
+    public void validateMedicalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity,DbData dbData, PlanDbData medicalPlanDbData){
         //This method works for members in single group
         // validate MEDICAL specific details
         // WIP - We need medicalPlanDbData/Dental only for hios id - seperate that and validate for all members.
 
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        String policyStartDate = SharedData.getPrimaryMember().getMedicalFinancialStartDate();
-        String startDateFormatted = policyStartDate.substring(6,10)+"-" + policyStartDate.substring(0, 2)+"-" + policyStartDate.substring(3, 5);
-        String policyEndDate = SharedData.getPrimaryMember().getMedicalFinancialEndDate();
-        String endDateFormatted = policyEndDate.substring(6,10)+"-" + policyEndDate.substring(0, 2)+"-" + policyEndDate.substring(3, 5);
 
         if(policyTablesEntity.getSubscriber_ind().equals("1")){
             //Subscriber
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId()+"-"+dbData.getCsrLevel(), "Hios id does not match");
-            softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 1, Policy start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 1, Policy end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(),  SharedData.getExpectedCalculatedDates().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
 
             softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
 
-            softAssert.assertEquals(policyTablesEntity.getCoverage_start_date(), covStartDate,"policy member coverage start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getCoverage_end_date(), covEndDate, "policy member coverage end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(),startDateFormatted, "Medical financial start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(),endDateFormatted, "Medical financial end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(),startDateFormatted, "Medical member financial start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(),endDateFormatted, "Medical member financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getCoverage_start_date(), SharedData.getExpectedCalculatedDates().getCoverageStartDate(),"policy member coverage start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getCoverage_end_date(), SharedData.getExpectedCalculatedDates().getCoverageEndDate(), "policy member coverage end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "Medical financial start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates().getFinancialEndDate(), "Medical financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "Medical member financial start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates().getFinancialEndDate(), "Medical member financial end date does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), SharedData.getPrimaryMember().getMedicalPremiumAmt(), "Medical Policy total plan premium amount does not match");
 
             softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(),
@@ -88,11 +77,11 @@ public class PolicyTableDBValidations {
                 for (int i = 0; i < memberslist.size(); i++) {
                     softAssert.assertEquals(policyTablesEntity.getFirst_name(), memberslist.get(i).getFirstName(), "Member first name does not matches.");
                     softAssert.assertEquals(policyTablesEntity.getLast_name(), memberslist.get(i).getLastName(), "Member Last name does not matches.");
-                    softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), startDateFormatted, "Member FInancial start date does not match");
-                    softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), endDateFormatted, "Member financial end date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(),  SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "Member FInancial start date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(),  SharedData.getExpectedCalculatedDates().getFinancialEndDate(), "Member financial end date does not match");
 
-                    softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Policy start date does not match");
-                    softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Policy end date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(),  SharedData.getExpectedCalculatedDates().getPolicyStartDate(), "Policy start date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(),  SharedData.getExpectedCalculatedDates().getPolicyEndDate(), "Policy end date does not match");
                     softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), memberslist.get(i).getMedicalPremiumAmt(), "Total medical premium amount without APTC does not match");
                     softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), memberslist.get(i).getMedicalAptcAmt(), "Dental APTC amount does not match" );
                     softAssert.assertEquals(policyTablesEntity.getResponsible_amt(), memberslist.get(i).getTotalMedAmtAfterReduction(), "Total medical responsible premium amount does not match");
@@ -109,25 +98,22 @@ public class PolicyTableDBValidations {
         softAssert.assertAll();
     }
 
-    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity,DbData dbData, PlanDbData dentalPlanDbData, String covStartDate, String covEndDate){
+    public void validateDentalPolicyDataFromDB(PolicyTablesEntity policyTablesEntity,DbData dbData, PlanDbData dentalPlanDbData){
         //This method works for members in single group
         // validate DENTAL specific details
-        String policyStartDate = SharedData.getPrimaryMember().getDentalFinancialStartDate();
-        String startDateFormatted = policyStartDate.substring(6,10)+"-" + policyStartDate.substring(0, 2)+"-" + policyStartDate.substring(3, 5);
-        String policyEndDate = SharedData.getPrimaryMember().getDentalFinancialEndDate();
-        String endDateFormatted = policyEndDate.substring(6,10)+"-" + policyEndDate.substring(0, 2)+"-" + policyEndDate.substring(3, 5);
-
         if(policyTablesEntity.getSubscriber_ind().equals("1")){
             //Subscriber
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbData.getBaseId()+"-"+dbData.getCsrLevel(), "Subscriber Hios id does not match");
-            softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Coverage type 2, Policy start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Coverage type 2, Policy end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), startDateFormatted, "Dental financial start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), endDateFormatted, "Dental financial end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(),startDateFormatted, "Medical member financial start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(),endDateFormatted, "Medical member financial end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getCoverage_start_date(), covStartDate,"Dental member coverage start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getCoverage_end_date(), covEndDate, "Dental member coverage end date does not match");
+
+            softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates().getPolicyStartDate(), "Coverage type 2, Policy start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates().getPolicyEndDate(), "Coverage type 2, Policy end date does not match");
+
+            softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "Dental financial start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates().getFinancialEndDate(), "Dental financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(),SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "Dental member financial start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(),SharedData.getExpectedCalculatedDates().getFinancialEndDate(), "Dental member financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getCoverage_start_date(),  SharedData.getExpectedCalculatedDates().getCoverageStartDate(),"Dental member coverage start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getCoverage_end_date(),  SharedData.getExpectedCalculatedDates().getCoverageEndDate(), "Dental member coverage end date does not match");
 
             softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", ""), "En member dental plan premium amount does not match");
             softAssert.assertEquals(policyTablesEntity.getPremium_reduction_amt(), SharedData.getPrimaryMember().getDentalAptcAmt().replace("$", "")+".00", "Dental aptc amount does not match");
@@ -145,14 +131,15 @@ public class PolicyTableDBValidations {
             List<MemberDetails> memberslist = SharedData.getMembers();
             if (memberslist != null) {
                 for (int i = 0; i < memberslist.size(); i++) {
+                    // WIP - why are we not validating the coverage start and end dates for members?
                     softAssert.assertEquals(policyTablesEntity.getFirst_name(), memberslist.get(i).getFirstName(), "Member first name matches.");
                     softAssert.assertEquals(policyTablesEntity.getLast_name(), memberslist.get(i).getLastName(), "Member Last name does not matches.");
-                    softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), startDateFormatted, "Member FInancial start date does not match");
-                    softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), endDateFormatted, "Member financial end date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "Member FInancial start date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates().getFinancialEndDate(), "Member financial end date does not match");
                     softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "member status does not match");
 
-                    softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), startDateFormatted, "Policy start date does not match");
-                    softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), endDateFormatted, "Policy end date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates().getPolicyStartDate(), "Policy start date does not match");
+                    softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates().getPolicyEndDate(), "Policy end date does not match");
                     softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), memberslist.get(i).getDentalPremiumAmt().replace("$",""), "Total Dental premium amount does not match");
                     softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), memberslist.get(i).getDentalAptcAmt(), "Dental APTC amount does not match" );
                     softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "CSR level does not match");
@@ -215,27 +202,4 @@ public class PolicyTableDBValidations {
                 "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
         );
     }
-    public String firstDateOfNextMonthFormatted(){
-        // WIP - Move this to basicActions
-        LocalDate today = LocalDate.now();
-        LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
-        // Format the dates
-        DateTimeFormatter reqDateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String reqFormattedStartDate = firstDayOfNextMonth.format(reqDateformat);
-        return reqFormattedStartDate;
-    }
-    public void setMedCoverageStartDateFirstOfNextMonth(){
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        primaryMember.setMedicalCoverageStartDate(firstDateOfNextMonthFormatted());
-        primaryMember.setMedicalCoverageEndDate("2024-12-31"); // WIP - pass year dynamically
-        SharedData.setPrimaryMember(primaryMember);
-    }
-    public void setDenCoverageStartDateFirstOfNextMonth(){
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        primaryMember.setDentalCoverageStartDate(firstDateOfNextMonthFormatted());
-        primaryMember.setDentalCoverageEndDate("2024-12-31"); // WIP - pass year dynamically
-        SharedData.setPrimaryMember(primaryMember);
-    }
-
 }
-

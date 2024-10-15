@@ -50,7 +50,6 @@ Feature: Page Validation-OHI HRA Elmo Page
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I change the C4 url to "Elmo Other Health Coverage Page"
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page

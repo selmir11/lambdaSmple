@@ -58,7 +58,7 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     And I report "Birth" and click continue
 
     Then I verify Manage who helps you header text in "English"
-    Then I click Continue on my own button from Manage who helps you page
+    And I click Continue with my application
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying

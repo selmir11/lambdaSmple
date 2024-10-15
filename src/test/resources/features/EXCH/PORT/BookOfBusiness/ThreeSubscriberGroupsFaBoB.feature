@@ -1,4 +1,4 @@
-@BrokerPortalBOB @port
+@BrokerPortalBOB @port @BOB
 Feature: Broker Portal OBO - Three Subscriber Groups FA policy submission
 
   @SLER-1011

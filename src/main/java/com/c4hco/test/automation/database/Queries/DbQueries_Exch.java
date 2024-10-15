@@ -93,7 +93,8 @@ public class DbQueries_Exch {
     }
     public String csrLevel(){
         return "SELECT csr_level FROM "+dbName+".en_member_coverage_financial_ah\n" +
-                "\twhere application_id='"+applicationId+"' limit 1";
+                "where application_id='"+applicationId+"' \n"+
+                "and current_ind = 1 limit 1";
     }
     public String brokerId() {
         return "SELECT agency_tin_ein FROM "+dbName+".bp_agency where agency_name = '"+agencyName+"'";
@@ -161,6 +162,12 @@ public class DbQueries_Exch {
     public String verifyExchHouseholdIdBOB(){
         return "select ehc.household_id from "+dbName+".es_household_contact ehc\n" +
                 "join "+dbName+".es_member em on em.household_id  = ehc.household_id \n" +
+                "where ehc.email = '"+SharedData.getPrimaryMember().getEmailId()+"';";
+    }
+
+    public String verifyBrokerAuthorizationStatusBOB(){
+        return "select bca.authorization_status from "+dbName+".es_household_contact ehc\n" +
+                "join "+dbName+".bp_client_authorization bca on bca.household_id  = ehc.household_id \n" +
                 "where ehc.email = '"+SharedData.getPrimaryMember().getEmailId()+"';";
     }
 

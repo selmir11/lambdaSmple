@@ -143,3 +143,90 @@ Feature: Page validation - Life Change Event page
     Then I verify "Event date" error "does" exist in "English"
     And I check "Move" life change event checkbox
     Then I verify "Please select option" error "does not" exist in "English"
+
+  @SLCR-359
+  Scenario: SLCR-359 Verify error states of LCE page in Spanish.
+    And I change the language from header to "Spanish"
+    Then I verify "AllSingle" life change event "is not" selected
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select option" error "does" exist in "Spanish"
+    # Insurance loss check
+    And I check "InsuranceLoss" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "Spanish"
+    Then I verify "Event date" error "does not" exist in "Spanish"
+    And I select all members of "InsuranceLoss" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "Spanish"
+    And I check "InsuranceLoss" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+    # Birth check
+    And I check "Birth" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "Spanish"
+    Then I verify "Event date" error "does not" exist in "Spanish"
+    And I select all members of "Birth" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "Spanish"
+    And I check "Birth" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+    # Pregnancy check
+    And I check "Pregnancy" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "Spanish"
+    Then I verify "Event date" error "does not" exist in "Spanish"
+    And I select all members of "Pregnancy" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "Spanish"
+    And I check "Pregnancy" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+    # Marriage check
+    And I check "Marriage" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "Spanish"
+    Then I verify "Event date" error "does not" exist in "Spanish"
+    And I select all members of "Marriage" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "Spanish"
+    And I check "Marriage" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+    # Divorce check
+    And I check "Divorce" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "Spanish"
+    Then I verify "Event date" error "does not" exist in "Spanish"
+    And I select all members of "Divorce" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "Spanish"
+    And I check "Divorce" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+    # Move check
+    And I check "Move" life change event checkbox
+    Then I verify "Please select member" error "does not" exist in "Spanish"
+    And I select continue on the LCE page
+    Then I verify "Please select member" error "does" exist in "Spanish"
+    Then I verify "Event date" error "does not" exist in "Spanish"
+    And I select all members of "Move" Life Change Event
+    And I select continue on the LCE page
+    Then I verify "Event date" error "does" exist in "Spanish"
+    And I check "Move" life change event checkbox
+    Then I verify "Please select option" error "does not" exist in "Spanish"
+
+  @SLCR-352
+  Scenario: LCE page saves "None of these" after saving previous entry
+    And I select "Divorce" life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I select Go Back on the Declarations and Signature page
+    Then I verify "Divorce" life change event "is" selected
+    And I select None of these life change event
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I select Go Back on the Declarations and Signature page
+    Then I verify "NoneOfThese" life change event "is" selected

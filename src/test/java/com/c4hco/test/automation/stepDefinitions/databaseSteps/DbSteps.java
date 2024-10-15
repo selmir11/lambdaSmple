@@ -18,9 +18,9 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate the member details from policy tables with coverage start date {string} and end date {string}")
-   public void validateFromPolicyTables(String startDate, String endDate){
-      policyTableDBValidations.validateDataFromPolicyTables(startDate, endDate);
+   @And("I validate the member details from policy tables")
+   public void validateFromPolicyTables(){
+      policyTableDBValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")
@@ -86,6 +86,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify the new Exchange individual account's household ID in the database")
    public void iVerifyExchHouseholdIdDb() {
       dbValidations.verifyExchHouseholdIdDb();
+   }
+
+   @And("I verify broker deauthorization in the database")
+   public void iVerifyBrokerAuthorizationStatusDb() {
+      dbValidations.verifyBrokerAuthorizationStatusDb();
    }
 
 //   @And("I validate Individual member policy table queries")

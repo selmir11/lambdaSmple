@@ -10,6 +10,8 @@ Feature: Seed05 - COCO
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    # Comment below line if you are running in staging 10/11
+    And I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -160,16 +162,6 @@ Feature: Seed05 - COCO
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I validate I am on the "Manage Plans" page
-    And I select "Primary" from the SelectPolicy Dropdown to update the dates
-    Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      |1:01012024|
-      |2:01012024|
-    And I update the Financial Start date of member
-      |1:01012024|
-      |2:01012024|
-    And I click Save Button Medical
-    And I select the reason to confirm the changes
     And I select "DIL" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
@@ -180,6 +172,18 @@ Feature: Seed05 - COCO
       |2:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
-    And I validate title and labels on Manage page Coco account
+    Then I close current tab and switch back to previous tab
+    Then I click on "Manage Plans" user dashboard button
+    Then I validate I am on the "Manage Plans" page
+    And I select "Primary" from the SelectPolicy Dropdown to update the dates
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal

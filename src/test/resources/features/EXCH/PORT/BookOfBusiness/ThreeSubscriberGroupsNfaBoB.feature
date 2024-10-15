@@ -1,4 +1,4 @@
-@BrokerPortalBOB @port
+@BrokerPortalBOB @port @BOB
 Feature: Broker Portal BOB - Three Subscriber Groups NFA policy submission
 
   @SLER-971

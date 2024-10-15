@@ -1,3 +1,5 @@
+@SIRRegression
+# SLER-1092
 Feature: Skipping Medical and Dental Plan pages
 
   Background:
@@ -5,7 +7,7 @@ Feature: Skipping Medical and Dental Plan pages
     And I validate I am on the "Login" page
 
    @SLER-1092
-  Scenario: EXCH UI Page Validation - Skipping Medical and Dental Plan pages will lead to a Inactive Continue button on the Plan Summary
+  Scenario: SLER-1092 - EXCH UI Page Validation - Skipping Medical and Dental Plan pages will lead to a Inactive Continue button on the Plan Summary
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

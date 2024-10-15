@@ -40,16 +40,19 @@ public class TellUsAboutYourselfPage {
 
     @FindBy(id = "genderFemale")
     WebElement rdobtnSexFemale;
+
     @FindBy(id = "genderMale")
     WebElement rdobtnSexMale;
 
     @FindBy(id = "coverageYes")
     WebElement rdobtnApplyingYes;
+
     @FindBy(id = "coverageNo")
     WebElement rdobtnApplyingNo;
 
     @FindBy(id = "ssn")
     WebElement ssn;
+
     @FindBy(css = "#addMember #continueButton")
     WebElement btnSaveAndContinue;
 
@@ -58,6 +61,8 @@ public class TellUsAboutYourselfPage {
 
     @FindBy(css = "isPregnantTrue")
     WebElement rdobtnPregnantYes;
+
+    
 
     public void userPregnantQuestion(String Pregnant) {
         switch (Pregnant){

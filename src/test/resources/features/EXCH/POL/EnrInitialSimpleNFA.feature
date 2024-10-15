@@ -1,6 +1,6 @@
  @SLER-34-WIP @SLER-1069
 Feature: Simple NFA - Single Applicant
-  Background: Simple NFA flow with single applicant
+  Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -78,7 +78,6 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "My Policies" page
     And Validate medical plan details from my policies page with start date "First Of Next Month"
     And Validate dental plan details from my policies page with start date "First Of Next Month"
-
     And I click View Plan History link from medical plan card
     And I validate medical plan details from plan history
     And I click on to Back to Current Plan Details button
