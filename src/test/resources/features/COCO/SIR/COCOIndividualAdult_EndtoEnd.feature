@@ -219,7 +219,7 @@ Feature: Individual adult - End to End Test
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -424,7 +424,7 @@ Feature: Individual adult - End to End Test
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
