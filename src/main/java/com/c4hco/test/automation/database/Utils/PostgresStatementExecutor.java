@@ -1,15 +1,13 @@
 package com.c4hco.test.automation.database.Utils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import static org.testng.Assert.fail;
 
 
 public class PostgresStatementExecutor {
     Connection connection = PostgresSQLConnection.getInstance();
+
     public ResultSet executeQuery(String sql) {
         ResultSet resultSet = null;
         try {
@@ -22,6 +20,44 @@ public class PostgresStatementExecutor {
             // for example, in a higher-level module or test class.
          //   PostgresSQLConnection.closeConnection();
         }
+        return resultSet;
+    }
+
+    // Method to execute a parameterized query and handle null values
+    public ResultSet executeQueryPs(String sql, Object[] parameters) {
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            // Prepare the SQL statement
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Set parameters dynamically, including handling null values
+            if (parameters != null) {
+                for (int i = 0; i < parameters.length; i++) {
+                    if (parameters[i] == null) {
+                        preparedStatement.setObject(i + 1, null);  // Set SQL NULL
+                    } else {
+                        preparedStatement.setObject(i + 1, parameters[i]);  // Set the parameter value
+                    }
+                }
+            }
+            // Execute the query
+            resultSet = preparedStatement.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the prepared statement to avoid memory leaks
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         return resultSet;
     }
 

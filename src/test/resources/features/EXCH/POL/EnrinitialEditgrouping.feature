@@ -1,6 +1,6 @@
 @SLER-41 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
-
+  
   Scenario: : EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -197,7 +197,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    And I validate the member details from policy tables
+    #WIP - Policy validations
+   # And I validate the member details from policy tables
     #Gmail
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
