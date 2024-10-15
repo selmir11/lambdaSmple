@@ -6,17 +6,13 @@ import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
-import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PolicyTableDBValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
-    BasicActions basicActions = new BasicActions();
 
     public void validateDataFromPolicyTables(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
@@ -206,27 +202,4 @@ public class PolicyTableDBValidations {
                 "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
         );
     }
-    public String firstDateOfNextMonthFormatted(){
-        // WIP - Move this to basicActions
-        LocalDate today = LocalDate.now();
-        LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
-        // Format the dates
-        DateTimeFormatter reqDateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String reqFormattedStartDate = firstDayOfNextMonth.format(reqDateformat);
-        return reqFormattedStartDate;
-    }
-    public void setMedCoverageStartDateFirstOfNextMonth(){
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        primaryMember.setMedicalCoverageStartDate(firstDateOfNextMonthFormatted());
-        primaryMember.setMedicalCoverageEndDate("2024-12-31"); // WIP - pass year dynamically
-        SharedData.setPrimaryMember(primaryMember);
-    }
-    public void setDenCoverageStartDateFirstOfNextMonth(){
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        primaryMember.setDentalCoverageStartDate(firstDateOfNextMonthFormatted());
-        primaryMember.setDentalCoverageEndDate("2024-12-31"); // WIP - pass year dynamically
-        SharedData.setPrimaryMember(primaryMember);
-    }
-
 }
-
