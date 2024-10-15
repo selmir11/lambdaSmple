@@ -463,7 +463,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "Yes" for Disability option
-    And I select "No" to the recently denied medicaid question
+   And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -476,15 +476,45 @@ Feature: UI Page Validation - Grouping Members (Medical)
 
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
-    And I Apply for no financial help
-    Then I validate I am on the "Tell us about life changes" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "101 New dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "2500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "101 Main dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "1000000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
-    Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
     Then I click on view results and shop
     And I click continue on application results page
     And I wait for hold on content to disappear
