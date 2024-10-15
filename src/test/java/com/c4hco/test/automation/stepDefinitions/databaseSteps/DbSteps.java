@@ -116,4 +116,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify the HRA options selected in the DB after Application Results")
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
 
+
+   @And("I validate the medical plan market names in the DB")
+   public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
+   }
+
+
+
 }

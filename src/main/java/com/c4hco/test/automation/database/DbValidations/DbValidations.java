@@ -535,4 +535,13 @@ public class DbValidations {
         System.out.println("Database Email "+actualResult.getEmail());
         softAssert.assertAll();
     }
+    
+    public void validateDatabaseMedicalPlanList() {
+        List<String> medicalPlanList = exchDbDataProvider.getDBMedicalPlanList();
+        List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
+        softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
+        softAssert.assertAll();
+    }
+
+
 }
