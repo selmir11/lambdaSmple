@@ -163,16 +163,16 @@ public class MyPoliciesPage {
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
 
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()));
-        softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()));
-        softAssert.assertTrue(tableRecord.get(2).getText().equals("$"+primaryMember.getTotalMedAmtAfterReduction()));
+        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()),"Signature mismatch");
+        softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
+        softAssert.assertTrue(tableRecord.get(2).getText().equals("$"+primaryMember.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
         if(primaryMember.getMedicalAptcAmt().equals("0")){
-            softAssert.assertTrue(tableRecord.get(3).getText().equals("$"+primaryMember.getMedicalAptcAmt()+".00"));
+            softAssert.assertTrue(tableRecord.get(3).getText().equals("$"+primaryMember.getMedicalAptcAmt()+".00"),"Medical APTC amount mismatch");
         }else {
-            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + primaryMember.getMedicalAptcAmt()));
+            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + primaryMember.getMedicalAptcAmt()), "Medical APTC amount mismatch");
         }
-        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getPlanStartDate()));
-        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getPlanEndDate()));
+        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getPlanStartDate()), "plan start date mismatch");
+        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
     }
 
@@ -184,10 +184,10 @@ public class MyPoliciesPage {
     public void validateDentalPlanDetailsFromPlanHistory(){
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()));
+        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()), "Primary signature mismatch");
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
-        softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00")); //  financial help
+        softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
         softAssert.assertEquals(tableRecord.get(4).getText(), primaryMember.getPlanStartDate(), "dental plan start date did not match");
         softAssert.assertEquals(tableRecord.get(5).getText(), primaryMember.getPlanEndDate(), "dental plan end date did not match");
         softAssert.assertAll();
