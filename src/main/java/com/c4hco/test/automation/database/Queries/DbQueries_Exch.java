@@ -93,7 +93,8 @@ public class DbQueries_Exch {
     }
     public String csrLevel(){
         return "SELECT csr_level FROM "+dbName+".en_member_coverage_financial_ah\n" +
-                "where application_id='"+applicationId+"' limit 1";
+                "where application_id='"+applicationId+"' \n"+
+                "and current_ind = 1 limit 1";
     }
     public String brokerId() {
         return "SELECT agency_tin_ein FROM "+dbName+".bp_agency where agency_name = '"+agencyName+"'";
