@@ -138,6 +138,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option
@@ -234,6 +235,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
 
