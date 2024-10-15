@@ -33,6 +33,7 @@ public class ApplicationHistoryPage {
         viewResultsAndShop.click();
     }
     private void setApplicationId(){
+        basicActions.waitForElementListToBePresent(applicationSummary, 10);
         String applicationid = applicationSummary.get(0).getText();
         SharedData.getPrimaryMember().setApplication_id(applicationid);
         System.out.println("Application Id : "+ applicationid);

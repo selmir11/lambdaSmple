@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
@@ -10,11 +9,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HouseholdPage {
     private BasicActions basicActions;
@@ -81,9 +79,7 @@ public class HouseholdPage {
         Matcher matcher = Pattern.compile("\\d+").matcher(accountIdTxt.getText());
         String accId = matcher.find() ? matcher.group() : null;
 
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setAccount_id(new BigDecimal(accId));
-        SharedData.setPrimaryMember(subscriber);
+        SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accId));
         System.out.println("Account_id : " + new BigDecimal(accId));
     }
 
