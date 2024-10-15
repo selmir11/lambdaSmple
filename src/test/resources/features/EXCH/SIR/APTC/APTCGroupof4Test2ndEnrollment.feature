@@ -1,5 +1,5 @@
 @APTC,@APTC-SIR
-  #  SLER-1150, SLER-1151,
+  #  SLER-1107, SLER-1108, SLER-1150, SLER-1151,
 Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
   Background: I go the login portal
@@ -8,7 +8,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @SLER-1151
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 2  - two different zip codes - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
+  Scenario: SLER-1151 - APTCRules - group of 2  - two different zip codes - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -209,7 +209,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-1150
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 1 - same address - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
+  Scenario: SLER-1150 - APTCRules - group of 1 - same address - 43k and 30K  - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -402,7 +402,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @SLER-GroupOf4-WIP-PASS
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - group of 4  - 60K to 80K
+  Scenario: GroupOf4 - APTCRules - group of 4  - 60K to 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -802,7 +802,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @Group6ReEnroll-WIP-PASS
- Scenario: ELIG-APTC Eligible over 400% FPL- APTCRules - group of 6 - 4 under 21 with 2 adult
+ Scenario: Group6ReEnroll - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1297,7 +1297,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-1107 @Group9Enroll-SIR-2810
-  Scenario: SLER-1107 - ELIG- APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
+  Scenario: SLER-1107 - APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1831,7 +1831,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-1108 @Group9-2adults-3youngAdults-4minors 
-  Scenario: SLER-1108 - ELIG- APTCRules - group of 9 Variable 2 - 4 under 19, 3 young adults - with 2 adult parents - ages are different
+  Scenario: SLER-1108 - APTCRules - group of 9 Variable 2 - 4 under 19, 3 young adults - with 2 adult parents - ages are different
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

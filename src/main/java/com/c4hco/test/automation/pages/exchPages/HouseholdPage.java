@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
@@ -12,9 +11,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HouseholdPage {
-    // Family Overview Page - IMPORTANT - REFACTOR THE ENTIRE PAGE - SO MANY DUPLICATES AND NOT WORKING CODE
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -24,7 +24,6 @@ public class HouseholdPage {
     }
 
     // update locators to ids and rename methods
-
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
     @FindBy(id = "submitButton_ContinueIncome")
@@ -38,15 +37,6 @@ public class HouseholdPage {
 
     @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
-
-    @FindBy(xpath = "//input[@class = 'linkButton]")
-    WebElement linkMember;
-
-    @FindBy(xpath = "//*[@class = 'linkButton']")
-    WebElement secondlinkMember;
-
-    @FindBy(xpath = "//*[@id = 'submitButton_Income']")
-    WebElement editPrimaryMemberRedIcon;
 
     @FindBy(css = ".memberBasicRow  #editBasicInfo")
     List<WebElement> memberBasicInformation;
@@ -66,37 +56,31 @@ public class HouseholdPage {
     @FindBy(css = "#accountID")
     WebElement accountIdTxt;
 
-    @FindBy (css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
+    @FindBy(css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
     List<WebElement> basicMemberList;
 
-    @FindBy (name = "hhDeleteMember")
+    @FindBy(name = "hhDeleteMember")
     WebElement removeMemberLnk;
 
-    @FindBy(tagName = "iframe")
-    WebElement RemoveMemberIframe;
-
     public void clickAddMember() {
-        basicActions.waitForElementToBeClickable( addAdditionalMember,15 );
+        basicActions.waitForElementToBeClickable(addAdditionalMember, 15);
         addAdditionalMember.click();
     }
 
     public void clickContinue() {
-        basicActions.waitForElementToBePresent(saveAndContinue,15);
+        basicActions.waitForElementToBePresent(saveAndContinue, 15);
         getAccountId();
         saveAndContinue.click();
     }
 
     public void getAccountId() {
-        basicActions.waitForElementToBePresent(accountIdTxt,15);
-        String accId;
-        if (accountIdTxt.getText().contains("Account ID")) {
-            accId = accountIdTxt.getText().replace("Account ID: ", "");
-        }else {
-            accId = accountIdTxt.getText().replace("Identificaci\u00F3n de la cuenta ", "");
-        }
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setAccount_id(new BigDecimal(accId));
-        System.out.println("Account_id : "+new BigDecimal(accId));
+        basicActions.waitForElementToBePresent(accountIdTxt, 15);
+
+        Matcher matcher = Pattern.compile("\\d+").matcher(accountIdTxt.getText());
+        String accId = matcher.find() ? matcher.group() : null;
+
+        SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accId));
+        System.out.println("Account_id : " + new BigDecimal(accId));
     }
 
 
@@ -108,49 +92,34 @@ public class HouseholdPage {
 
 
     public void iEditPrimaryMember(int index) {
-        basicActions.waitForElementToBePresent(editPrimaryMember,15);
-        basicActions.waitForElementToBeClickableWithRetries( editPrimaryMember,15 );
+        basicActions.waitForElementToBePresent(editPrimaryMember, 15);
+        basicActions.waitForElementToBeClickableWithRetries(editPrimaryMember, 15);
         index -= 1;
         editPrimaryMember.click();
     }
 
-    public void iClickMemberLink (int index) {
-        //linkName - aiming to use a different locator to activate the different rows
-        basicActions.waitForElementToDisappear( spinner,15 );
-        basicActions.waitForElementToBePresent(linkMember, 10);
-        softAssert.assertTrue( linkMember.isDisplayed());
-        basicActions.waitForElementToBeClickable( linkMember,15 );
+    public void iClickTableItem(int index) {
+        basicActions.waitForElementToBePresent(editPrimaryMember, 30);
+        basicActions.waitForElementListToBePresent(tableDropdown, 30);
         index -= 1;
-        linkMember.click();
-    }
-
-    public void iEditPrimaryMemberRedIcon(int index) {
-        basicActions.waitForElementToBePresent(editPrimaryMemberRedIcon, 15 );
-        basicActions.waitForElementToBeClickable( editPrimaryMemberRedIcon,15 );
-       editPrimaryMemberRedIcon.click();
-    }
-
-    public void iClickTableItem(int index){
-        basicActions.waitForElementToBePresent(editPrimaryMember,30);
-        basicActions.waitForElementListToBePresent(tableDropdown,30);
-        index-= 1;
         tableDropdown.get(index).click();
     }
+
     public void clickBasicInfoMember1Button(int member) {
         basicActions.waitForElementListToBePresent(memberBasicInformation, 15);
         memberBasicInformation.get(member).click();
     }
 
     public void iClickEditIncomeLink(int index) {
-        basicActions.waitForElementToBePresent(editIncomeLink,15);
+        basicActions.waitForElementToBePresent(editIncomeLink, 15);
         editIncomeLink.isDisplayed();
         editIncomeLink.click();
     }
 
-    public void clickMember(String memNameToClick){
+    public void clickMember(String memNameToClick) {
         basicActions.waitForElementListToBePresent(memberNamesLinks, 10);
-        for(WebElement memNameLink:memberNamesLinks){
-            if(memNameLink.getAttribute("value").contains(memNameToClick)){
+        for (WebElement memNameLink : memberNamesLinks) {
+            if (memNameLink.getAttribute("value").contains(memNameToClick)) {
                 memNameLink.click();
                 break;
             }
@@ -158,20 +127,20 @@ public class HouseholdPage {
     }
 
 
-    public void iEditMember(int memberIndex){
+    public void iEditMember(int memberIndex) {
         basicActions.waitForElementListToBePresent(basicMemberList, 20);
-        basicMemberList.get(memberIndex-1).click();
+        basicMemberList.get(memberIndex - 1).click();
     }
 
-    public void clickRemoveMember(){
+    public void clickRemoveMember() {
         basicActions.waitForElementToBePresent(removeMemberLnk, 20);
         basicActions.scrollToElement(removeMemberLnk);
         removeMemberLnk.click();
     }
 
-    public void clickOptionOnRemoveWindow(String option)  {
+    public void clickOptionOnRemoveWindow(String option) {
         Alert alert = basicActions.getDriver().switchTo().alert();
-        switch (option){
+        switch (option) {
             case "OK":
                 alert.accept();
                 break;
@@ -183,5 +152,4 @@ public class HouseholdPage {
         }
     }
 
-
-    }
+}

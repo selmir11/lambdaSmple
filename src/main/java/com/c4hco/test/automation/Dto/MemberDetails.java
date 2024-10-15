@@ -28,11 +28,9 @@ public class MemberDetails {
     String gender;
     String race;
     String medicalPlan;
-    String medicalPlanStartDate;
-    String medicalPlanEndDate;
+    String planStartDate; // policy start date
+    String planEndDate; // policy end date
     String dentalPlan;
-    String dentalPlanStartDate;
-    String dentalPlanEndDate;
     String medicalFinancialStartDate;
     String medicalFinancialEndDate;
     String dentalFinancialStartDate;

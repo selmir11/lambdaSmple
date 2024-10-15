@@ -1,6 +1,6 @@
 @APTC,@APTC-SIR, @APTC-SIR-Single
 
-  # SLER-1036,
+  # SLER-1006, SLER-1036,
 Feature: UI Tests related to APTC after initial enrollment
 
   Background: I go the login portal
@@ -8,7 +8,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I validate I am on the "Login" page
 
   @SLER-1036
-  Scenario: ELIG-APTCRules - verify initial APTC calculation - linked to EXCH Plan Load SIR-2505 - 10k - Good News path
+  Scenario: SLER-1036 - ELIG-APTCRules - verify initial APTC calculation - linked to EXCH Plan Load SIR-2505 - 10k - Good News path
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -123,7 +123,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-1006
-  Scenario Outline: ELIG -APTCRules - SLER-1006 - linked to EXCH Plan Load SIR-2505 - verify initial APTC calculations
+  Scenario Outline: SLER-1006 - ELIG -APTCRules - SLER-1006 - linked to EXCH Plan Load SIR-2505 - verify initial APTC calculations
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
