@@ -71,7 +71,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId());
     }
     public String getCSRLevel(){
-        return postgresHandler.getResult(exchDbQueries.csrLevel(), "csr_level");
+        return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
     }
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());

@@ -1,7 +1,8 @@
-@SLER-41 @E2E_EXCH
+@E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
-  
-  Scenario: : EXCH Initial Application w/BirthLCE (FAMILY OF 3)
+
+ @SLER-41
+ Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 3            | 1                 | 2                |   3             |
@@ -50,7 +51,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
       |Primary:Spouse|
-
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address

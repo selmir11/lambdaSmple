@@ -30,24 +30,6 @@ public class PostgresHandler {
         return result;
     }
 
-    public String getResult(String columnValue, String query) {
-        String result = "";
-        try {
-            ResultSet rs = executor.executeQueryPs(query);
-            if (rs.next()) {
-                result = rs.getString(columnValue);
-            } else {
-                return result;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Assert.fail("Error with db occurred: " + e.getMessage());
-        }
-        return result;
-    }
-
-
-
     public List<String> getResultListFor(String columnValue, String query) {
         List<String> resultList = new ArrayList<>();
 
