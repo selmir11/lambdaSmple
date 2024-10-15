@@ -34,6 +34,7 @@ Feature: Verify text in Medical Plan Summary Page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -102,9 +103,10 @@ Feature: Verify text in Medical Plan Summary Page
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
