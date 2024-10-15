@@ -520,12 +520,15 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click continue on the ELMO health coverage page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
     Then I click on view results and shop
     And I click continue on application results page
     And I wait for hold on content to disappear
