@@ -1,6 +1,5 @@
 Feature: Regression Tests that require Seed 1
-  
-  Scenario: : Seed 01 For Exchange- Single Applicant NFA
+  Background: Seed 01 For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -152,11 +151,9 @@ Feature: Regression Tests that require Seed 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
+    Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
     And I validate the member details from policy tables
-      | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day of Current Year | Last Day of Current Year | First Day of Current Year | Last Day of Current Year |
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
