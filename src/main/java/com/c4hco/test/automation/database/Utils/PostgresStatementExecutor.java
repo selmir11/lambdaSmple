@@ -24,40 +24,28 @@ public class PostgresStatementExecutor {
     }
 
     // Method to execute a parameterized query and handle null values
-    public ResultSet executeQueryPs(String sql, Object[] parameters) {
+    public ResultSet executeQueryPs(String sql, Object... params) {
         ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-
         try {
-            // Prepare the SQL statement
-            preparedStatement = connection.prepareStatement(sql);
+            // Use a PreparedStatement to prevent SQL injection and handle nulls
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            // Set parameters dynamically, including handling null values
-            if (parameters != null) {
-                for (int i = 0; i < parameters.length; i++) {
-                    if (parameters[i] == null) {
-                        preparedStatement.setObject(i + 1, null);  // Set SQL NULL
-                    } else {
-                        preparedStatement.setObject(i + 1, parameters[i]);  // Set the parameter value
-                    }
+            // Set parameters in the prepared statement
+            for (int i = 0; i < params.length; i++) {
+                if (params[i] == null) {
+                    // If parameter is null, use setNull with the appropriate SQL type (e.g., Types.INTEGER)
+                    preparedStatement.setNull(i + 1, java.sql.Types.NULL); // Use proper SQL type based on the column
+                } else {
+                    // Otherwise, set the parameter normally
+                    preparedStatement.setObject(i + 1, params[i]);
                 }
             }
+
             // Execute the query
             resultSet = preparedStatement.executeQuery();
-
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            // Close the prepared statement to avoid memory leaks
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-
         return resultSet;
     }
 

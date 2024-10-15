@@ -179,7 +179,6 @@ public class AccountOverviewPage {
         scenarioDetails.setDependents(totalDependents);
         scenarioDetails.setEnrollees(totalEnrollees);
         SharedData.setScenarioDetails(scenarioDetails);
-
    }
 
     public void setDates(List<Map<String, String>> expectedResult) {
