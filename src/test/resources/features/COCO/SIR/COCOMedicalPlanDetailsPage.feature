@@ -1,4 +1,4 @@
-@COCOMedicalPlanDetailsPage
+@COCO
   # SLCR-301,
 Feature: Verify COCO Medical Plan Detail page
 
