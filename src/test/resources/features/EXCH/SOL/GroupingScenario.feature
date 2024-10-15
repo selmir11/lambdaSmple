@@ -506,6 +506,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
