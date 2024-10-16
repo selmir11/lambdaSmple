@@ -24,7 +24,7 @@ public class PolicyTableDBValidations {
         for(PolicyTablesEntity policyTablesEntity: policyEntities){
             if(policyTablesEntity.getCoverage_type().equals("1")){
                 exchDbDataProvider.setMedicalPlanDataFromDb(subscriber.getMedicalPlan());
-                PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get(0); // works for 1 member only
+                PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1"); // works for 1 member only
                 medicalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
                 validateMedicalPolicyDataFromDB(policyTablesEntity,dbData, medicalPlanDbData);
             } else{
