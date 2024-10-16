@@ -541,11 +541,12 @@ public class BasicActions {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
         LocalDate date = LocalDate.parse(dateString, inputFormatter);
+
         return date.format(outputFormatter);
     }
 
     public String  getDateBasedOnRequirement(String dateRequirement) {
-        String date = null;
+        String date;
         switch (dateRequirement) {
             case "First Day Of Current Year":
                date = getFirstOfJanCurrYr();
@@ -553,8 +554,9 @@ public class BasicActions {
             case "Last Day Of Current Year": 
                date = getLastDayOfCurrYr();
                 break;
-            case "Birth Date":
-
+            case "getFromSharedData":
+                String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
+                date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
                 break;
             case "First Of Next Month":
                 date =  firstDateOfNextMonth();
@@ -584,8 +586,8 @@ public class BasicActions {
         }
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(dobCalculator);
-
         Map<String, String> nameAndDob = new HashMap<>();
+        SharedData.setBirthLceIndividual(namePrefix);
         nameAndDob.put(namePrefix, actualdob);
         SharedData.setCalculatedDob(nameAndDob);
     }
