@@ -586,7 +586,6 @@ public class BasicActions {
         }
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(dobCalculator);
-    System.out.println("actualDOB:::========"+actualdob);
         Map<String, String> nameAndDob = new HashMap<>();
         SharedData.setBirthLceIndividual(namePrefix);
         nameAndDob.put(namePrefix, actualdob);
