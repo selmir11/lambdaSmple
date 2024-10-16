@@ -171,6 +171,14 @@ public class DbQueries_Exch {
                 "where ehc.email = '"+SharedData.getPrimaryMember().getEmailId()+"';";
     }
 
+    public String verifyBrokerAuthorizationTypeBOB(){
+        return "select bs.staff_type from "+dbName+".es_member em\n" +
+                "join "+dbName+".es_household_contact hc on hc.household_id = em.household_id\n" +
+                "join "+dbName+".bp_client_authorization bca on bca.household_id = em.household_id\n" +
+                "join "+dbName+".bp_staff bs on bs.staff_id = bca.staff_id\n" +
+                "where hc.username = '"+SharedData.getPrimaryMember().getEmailId()+"' and bca.authorization_status = 'APPROVED';";
+    }
+
     //Policy table queries
     public String enPolicyAh(){
         return "select eph.policy_id, eph.application_id, eph.plan_id, eph.plan_year, eph.coverage_type, eph.rating_area_id, eph.policy_status, eph.current_ind, eph.effectuated_ind, eph.policy_start_date, eph.policy_end_date from "+dbName+".en_policy_ah eph " +
@@ -234,5 +242,46 @@ public class DbQueries_Exch {
                 "where member_id = '"+SharedData.getPrimaryMemberId()+"' \n" +
                 "order by updated_ts asc limit 1";
     }
+
+    public String getDBMedicalPlanList(){
+        return "SELECT p.plan_marketing_name " +
+                "FROM "+dbName+".en_plan p " +
+                "INNER JOIN "+dbName+".en_issuer i ON i.issuer_id=p.issuer_id " +
+                "WHERE p.plan_year='2024' " +
+                "AND p.level_of_coverage IN('Platinum','Gold','Silver','Silver Enhanced','Bronze','Expanded Bronze','LOW','HIGH') " +
+                "AND p.market_coverage=1 " +
+                "AND i.active=TRUE " +
+                "AND p.coverage_type=1 " +
+                "AND p.plan_source_id='1' " +
+                "AND p.csr_level='01' " +
+                "AND p.service_area_id IN( " +
+                "SELECT sa.service_area_id " +
+                "FROM "+dbName+".en_issuer_service_area sa " +
+                "WHERE sa.plan_year=CAST(p.plan_year AS INTEGER) " +
+                "AND sa.hios_issuer_id=p.hios_issuer_id " +
+                "AND sa.fips='08001' " +
+                "AND(sa.partial_county_ind=FALSE OR sa.zip='80030') " +
+                ") " +
+                "AND NOT EXISTS( " +
+                "SELECT 1 " +
+                "FROM "+dbName+".en_plan p2 " +
+                "INNER JOIN "+dbName+".en_plan_source ps ON ps.plan_source_id=p.plan_source_id " +
+                "INNER JOIN "+dbName+".en_issuer i2 ON i2.issuer_id=p2.issuer_id " +
+                "WHERE p2.coverage_type=p.coverage_type " +
+                "AND p2.plan_year=p.plan_year " +
+                "AND p2.csr_level NOT IN('01','00','07') " +
+                "AND p2.market_coverage=p.market_coverage " +
+                "AND i2.active=TRUE " +
+                "AND p2.plan_source_id=p.plan_source_id " +
+                "AND p2.service_area_id IN( " +
+                "SELECT sa1.service_area_id " +
+                "FROM "+dbName+".en_issuer_service_area sa1 " +
+                "WHERE p2.hios_issuer_id=sa1.hios_issuer_id " +
+                "AND p2.plan_year='2024' " +
+                "AND(sa1.entire_state_ind=TRUE OR(sa1.fips='08001' AND (NOT sa1.partial_county_ind=TRUE OR sa1.zip='80030'))) " +
+                ") " +
+                ");";
+    }
+
 
 }

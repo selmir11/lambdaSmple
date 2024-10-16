@@ -93,6 +93,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyBrokerAuthorizationStatusDb();
    }
 
+   @And("I verify the broker authorization type in the database is {string}")
+   public void iVerifyBrokerAuthorizationTypeDb(String expectedBrokerType) {
+      dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //
@@ -115,5 +120,12 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 
    @And("I verify the HRA options selected in the DB after Application Results")
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
+
+
+   @And("I validate the medical plan market names in the DB")
+   public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
+   }
+
+
 
 }

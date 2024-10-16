@@ -1,6 +1,6 @@
 Feature: Tests related to medical plans
 
- @SLER-1123-WIP
+ @SLER-1123-WIP  
 Scenario:  set of medical plan results with plans was consistent through the year - all pages in the results were checked
 
   Given I open the login page on the "login" portal
@@ -63,6 +63,12 @@ Then I click on view results and shop
 Then I validate I am on the "Application Results" page
 Then I click continue on application results page
 Then I click continue on start shopping page
-
-And I validate I am on the "Medical Plan Results" page
+   And I validate I am on the "Medical Plan Results" page
 And I store the medical plan market names from results page
+   And I validate the medical plan market names in the DB
+
+
+
+
+
+

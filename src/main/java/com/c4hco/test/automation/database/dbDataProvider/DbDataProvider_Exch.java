@@ -228,6 +228,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
     }
 
+    public List<String> getBrokerAuthorizationTypeBoB() {
+
+        return postgresHandler.getResultListFor("staff_type", exchDbQueries.verifyBrokerAuthorizationTypeBOB());
+    }
+
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }
@@ -260,5 +265,8 @@ public class DbDataProvider_Exch {
     public EsMemberHraAhEntity getOptionsFromHraAhDbTables(){
         return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
 
+    }
+    public List<String> getDBMedicalPlanList(){
+        return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
     }
 }
