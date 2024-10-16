@@ -26,6 +26,7 @@ public class PolicyTableDBValidations {
                 exchDbDataProvider.setMedicalPlanDataFromDb(subscriber.getMedicalPlan());
                 PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1"); // works for 1 member only
                 medicalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
+                SharedData.getMedicalPlanDbData().put("group1",medicalPlanDbData);
                 validateMedicalPolicyDataFromDB(policyTablesEntity,dbData, medicalPlanDbData);
             } else{
                 exchDbDataProvider.setDentalPlanDataFromDb(subscriber.getDentalPlan());
