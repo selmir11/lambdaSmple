@@ -44,8 +44,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @Then("I enter member details with age as {int}")
     public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}
 
-    @And("I get the newborn dob as {string}")
-    public void iGetMemberDOB(String dob){tellUsAboutAdditionalMemberPage.getDob(dob);}
+    @And("I get the newborn {string} dob as {string}")
+    public void iGetMemberDOB(String namePrefix, String dob){tellUsAboutAdditionalMemberPage.getDob(namePrefix, dob);}
 
     @Then("I enter details on tell us about additional members of your household exch page and continue with {string}, {string}, {string} and applying {string}")
     public void EnterspecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {

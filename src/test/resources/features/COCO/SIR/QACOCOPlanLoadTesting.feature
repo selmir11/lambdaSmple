@@ -39,9 +39,10 @@ Feature: Verify COCO Medical Plan results
   And I click continue on the Add info for yourself page
 
   Then I validate I am on the "Elmo Race and Ethnicity" page
-  And I select "Prefer not to answer" for race and ethnicity option
+  And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
   And I click save and continue on the Race and Ethnicity page
 
+  Then I validate I am on the "CoCo Employment Income" page
   And I select "Yes" employment option
   And I enter "1000000" income amount
   And I select "Annually" income frequency option
@@ -114,11 +115,12 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I click continue on the Add info for yourself page
 
   Then I validate I am on the "Elmo Race and Ethnicity" page
-  And I select "Prefer not to answer" for race and ethnicity option
+  And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
   And I click save and continue on the Race and Ethnicity page
 
+  Then I validate I am on the "CoCo Employment Income" page
   And I select "Yes" employment option
-  And I enter "1000000" income amount
+  And I enter "100000" income amount
   And I select "Annually" income frequency option
   And I select "No" income seasonal option
   And I select "No" income changes option
@@ -189,7 +191,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
@@ -280,9 +282,10 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "1000000" income amount
     And I select "Annually" income frequency option
@@ -316,7 +319,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the plan totals are "25" on the COCO Medical Plan Results page
+    And I validate the plan totals are "24" on the COCO Medical Plan Results page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
     And I validate the SES plan totals are "6" on the COCO Medical Plan Results page
@@ -340,7 +343,6 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
-
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -444,9 +446,10 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -471,6 +474,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
+
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
@@ -480,6 +484,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
+
     Then I validate I am on the "Grouping Members Medical" page
     And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
@@ -547,9 +552,10 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
     And I select "Annually" income frequency option
@@ -608,9 +614,10 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
 
@@ -742,9 +749,10 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option
@@ -900,9 +908,10 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option

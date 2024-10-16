@@ -14,10 +14,6 @@ public class ApplicationHistoryPageSteps {
     public void clickViewResultsNSHop(){
         applicationHistoryPage.clickViewResults();
     }
-    @Then("I set data from application history page")
-    public void setData(){
-        applicationHistoryPage.iSetData();
-    }
 
     @Then("I validate that {string} text displays on the Application History page")
     public void validateText(String Text){applicationHistoryPage.validateTextOnPage(Text);}
