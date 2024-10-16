@@ -198,12 +198,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101975" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051975", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -223,12 +219,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10102001" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012001", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -249,13 +242,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10102002" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Brother" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012002", "Male" and applying "Yes"
+      | Primary:Son    |
+      | Spouse:Son     |
+      | SonTwo:Brother |
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -425,12 +415,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101967" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051967", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -450,12 +436,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101994" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01011994", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
