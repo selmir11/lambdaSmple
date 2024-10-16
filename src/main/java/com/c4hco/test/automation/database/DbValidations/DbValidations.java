@@ -80,7 +80,7 @@ public class DbValidations {
     public void validateMedDenRec_ob834Detail(MemberDetails subscriber, Ob834DetailsEntity ob834Entity, DbData dbData) {
 
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
-        softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getMember_id(), "Member Id did not match");
+        softAssert.assertEquals(subscriber.getMemberId(), ob834Entity.getMember_id(), "Member Id did not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getEnrollees(), ob834Entity.getTotal_enrollees(), "total enrollees does not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match");
@@ -88,7 +88,7 @@ public class DbValidations {
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
-        softAssert.assertEquals(dbData.getExchPersonId(), ob834Entity.getSubscriber_id(), "subscriber id did not match");
+        softAssert.assertEquals(SharedData.getExchPersonId().get(subscriber.getFirstName()), ob834Entity.getSubscriber_id(), "subscriber id did not match");
         softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalGroups()), ob834Entity.getMember_group(), "member group did not match");
         softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalMembers()), ob834Entity.getTotal_enrollees(), "Total members mismatch");
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");

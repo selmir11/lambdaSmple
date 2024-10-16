@@ -31,7 +31,7 @@ public class SharedData {
     @Getter @Setter private static Ib999Segments ib999Segments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
-    @Getter @Setter private static List<PlanDbData> medicalPlanDbData;
+    @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
     @Getter @Setter private static List<PlanDbData> dentalPlanDbData;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
@@ -53,6 +53,7 @@ public class SharedData {
     @Getter @Setter private static List<String> medicalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
+    @Getter @Setter private static Map<String, String> exchPersonId;
 
 
     public static void reset(){
@@ -80,5 +81,6 @@ public class SharedData {
         medicalPlansList=null;
         calculatedDob = null;
         expectedCalculatedDates = null;
+        exchPersonId=null;
     }
 }
