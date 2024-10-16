@@ -1,4 +1,4 @@
-@SIR @COCO @COCOMedicalResults @SES
+@COCO @COCOMedicalResults @SES
   #SLCR-85, SLCR-195, SLCR-278, SLCR-162, SLCR-262, SLCR-266, SLCR-273,
 Feature: Verify COCO Medical Plan results
 
@@ -45,6 +45,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   And I select "Prefer not to answer" for race and ethnicity option
   And I click save and continue on the Race and Ethnicity page
 
+  Then I validate I am on the "CoCo Employment Income" page
   And I select "Yes" employment option
   And I enter "1000000" income amount
   And I select "Annually" income frequency option

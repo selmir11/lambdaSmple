@@ -1,4 +1,4 @@
-@SIR @COCO @EndToEndTestGroup
+@COCO
   #SLCR-279, SLCR-264, SLCR-280, SLCR-281, SLCR-337
 Feature: CoupleWithChildrens - End to End Test
 

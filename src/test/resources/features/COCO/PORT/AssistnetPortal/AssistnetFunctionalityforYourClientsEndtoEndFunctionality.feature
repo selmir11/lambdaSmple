@@ -1,4 +1,4 @@
-@coocassistnet @SLCR-364
+@portCOCO @SLCR-364
 Feature: Assistnet_Functionality for Your Clients -End to End functionality
 
 Scenario: Authorizing an assister for an individual account

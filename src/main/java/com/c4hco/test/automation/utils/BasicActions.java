@@ -573,7 +573,7 @@ public class BasicActions {
         return endOfMonth.format(formatter);
     }
 
-    public void getDob(String dob){
+    public void getDob(String namePrefix, String dob){
         LocalDate currentDate = LocalDate.now();
         LocalDate dobCalculator = currentDate;
         switch(dob){
@@ -584,7 +584,10 @@ public class BasicActions {
         }
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(dobCalculator);
-        SharedData.setCalculatedDob(actualdob);
+
+        Map<String, String> nameAndDob = new HashMap<>();
+        nameAndDob.put(namePrefix, actualdob);
+        SharedData.setCalculatedDob(nameAndDob);
     }
 
 
