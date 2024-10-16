@@ -93,6 +93,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyBrokerAuthorizationStatusDb();
    }
 
+   @And("I verify the broker authorization type in the database is {string}")
+   public void iVerifyBrokerAuthorizationTypeDb(String expectedBrokerType) {
+      dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //
