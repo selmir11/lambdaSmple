@@ -49,6 +49,9 @@ public class AccountOverviewPage {
     @FindBy(css = "option[selected='selected']")
     WebElement planYearOnWelcomeBackPage;
 
+    @FindBy(xpath = "(//h1/span)[2]")
+    WebElement txtUserName;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -210,6 +213,13 @@ public class AccountOverviewPage {
         SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
 
+    }
+
+
+    public void validateFirstMemberName(){
+    basicActions.waitForElementToBePresent(txtUserName,20);
+    softAssert.assertEquals(txtUserName.getText(),SharedData.getMembers().get(0).getFirstName()+"!");
+    softAssert.assertAll();
     }
 
 }

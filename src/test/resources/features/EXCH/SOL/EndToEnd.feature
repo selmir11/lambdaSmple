@@ -887,9 +887,18 @@ Feature: End to End Tests
     Then I click all done from payment portal page
     And I wait for hold on content to disappear
     Then I validate I am on the "Account Overview" page
-    Then I click on "My Profile" link on welcome page
+    Then I click on ClickHere link for "My Profile"
     And I wait for hold on content to disappear
     And I click change primary contact on my profile page
+    Then I select the second household member as primary contact
+    And I wait for hold on content to disappear
+    Then I validate I am on the "My Profile" page
+    Then I click on Go back to Welcome page Button on My Profile Exch
+    And Validate first member name displayed in Account Overview Page
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
 
 
 
