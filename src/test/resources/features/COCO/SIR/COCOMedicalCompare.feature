@@ -1,4 +1,4 @@
-@SIR @COCO @COCOMedicalResults
+@COCO
   #SLCR-90, SLCR-91, SLCR-93, SLCR-131, SLCR-272, SLCR-276, SLCR-277, SLCR-286, SLCR-287, SCLR-360
 Feature: Verify COCO Medical Plan results
 
@@ -31,9 +31,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -103,7 +104,7 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -168,7 +169,6 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "CoCo Family Overview" page
     Then I click Primary EditUpdate on the Family Overview page
 
-
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -176,9 +176,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -247,9 +248,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -318,9 +320,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -392,9 +395,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -467,9 +471,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -536,9 +541,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -626,9 +632,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -695,9 +702,10 @@ Feature: Verify COCO Medical Plan results
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option

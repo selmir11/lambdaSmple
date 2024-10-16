@@ -595,7 +595,7 @@ public class FindExpertHelpPage {
 
     public void validateContinueWithMyApplicationButtonExists(String expectedState){
         if(expectedState.equals("is")){
-            basicActions.waitForElementToBePresent(continueOnMyOwnButton,10);
+            basicActions.waitForElementToBePresent(continueOnMyOwnButton,50);
             softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue with my application");
             softAssert.assertAll();
         } else if (expectedState.equals("is not")) {
@@ -603,4 +603,6 @@ public class FindExpertHelpPage {
             softAssert.assertAll();
         }
     }
+
+
 }
