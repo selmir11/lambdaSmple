@@ -43,7 +43,7 @@ public class DbValidations {
                 validateMedicalDbRecord_ob834Detail(subscriber, ob834Entity, medicalDbData, expectedValues);
             } else {
                 exchDbDataProvider.setDentalPlanDataFromDb(subscriber.getDentalPlan());
-                PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get(0);
+                PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
                 validateDentalDbRecord_ob834Detail(subscriber, ob834Entity, dentalPlanDbData);
             }
             validateMedDenRec_ob834Detail(subscriber, ob834Entity, dbData);

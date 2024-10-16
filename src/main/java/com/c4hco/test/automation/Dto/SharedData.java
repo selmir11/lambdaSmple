@@ -32,7 +32,7 @@ public class SharedData {
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
-    @Getter @Setter private static List<PlanDbData> dentalPlanDbData;
+    @Getter @Setter private static Map<String, PlanDbData> dentalPlanDbData;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;

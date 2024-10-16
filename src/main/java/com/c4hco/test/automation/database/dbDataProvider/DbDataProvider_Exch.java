@@ -6,7 +6,6 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,9 +134,9 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmt =csrMap.get("2"); //Dental
-        List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
+        Map<String, PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
         if(dentalPlanDetailsFromDb==null) {
-            dentalPlanDetailsFromDb = new ArrayList<>();
+            dentalPlanDetailsFromDb = new HashMap<>();
         }
         PlanDbData planDbData = new PlanDbData();
 
@@ -147,7 +146,7 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmt);
-        dentalPlanDetailsFromDb.add(planDbData);
+        dentalPlanDetailsFromDb.put("group1", planDbData);
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
