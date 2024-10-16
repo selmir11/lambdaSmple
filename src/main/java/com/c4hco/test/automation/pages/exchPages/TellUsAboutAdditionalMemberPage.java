@@ -198,8 +198,8 @@ public class TellUsAboutAdditionalMemberPage {
         enterMemberDetails(actualdob);
     }
 
-    public void getDob(String dob){
-        basicActions.getDob(dob);
+    public void getDob(String namePrefix, String dob){
+        basicActions.getDob(namePrefix, dob);
     }
 
     public void specificAdditionalMemberDetailsExch(String name, String dob, String gender, List<String> relations, String applying){
@@ -212,7 +212,7 @@ public class TellUsAboutAdditionalMemberPage {
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
         if(dob.equals("getFromSharedData")){
-            dob = SharedData.getCalculatedDob();
+            dob = SharedData.getCalculatedDob().get(name);
         }
         txtdateOfBirth.sendKeys(dob);
         txtSSN.sendKeys("653035280");
