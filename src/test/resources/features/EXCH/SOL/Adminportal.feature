@@ -417,8 +417,8 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-    @SLER-2000
-    Scenario: Account creation, shopping and enrolling in a plan through Admin Portal "OBO"
+    @SLER-2000-WIP
+    Scenario: AdminLCE Happy Path 2 'No' into 2 'Yes'
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page
