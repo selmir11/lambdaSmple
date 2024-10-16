@@ -98,6 +98,8 @@ public class CreateAccountPage {
 
     @FindBy(id = "English")
      WebElement preferredLanguageButtonEnglish;
+    @FindBy(id = "Spanish")
+     WebElement preferredLanguageButtonSpanish;
 
     @FindBy(xpath = "//lib-list-error[@id='ahp-mf-error']//span[@class='error-message']")
     WebElement accountHolderPreferencesErrorMessage;
@@ -267,6 +269,10 @@ public class CreateAccountPage {
                 onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            case "coco Spanish":
+                cocoTermsOfUseCheckbox.click();
+                preferredLanguageButtonSpanish.click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);
 
@@ -383,6 +389,7 @@ public class CreateAccountPage {
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
         preferredLanguageButtonEnglish.click();
+
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);

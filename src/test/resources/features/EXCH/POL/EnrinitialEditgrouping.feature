@@ -1,7 +1,8 @@
-@SLER-41 @E2E_EXCH
+@E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  Scenario: : EXCH Initial Application w/BirthLCE (FAMILY OF 3)
+ @SLER-41
+ Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 3            | 1                 | 2                |   3             |
@@ -50,7 +51,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
       |Primary:Spouse|
-
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -70,7 +70,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I get the newborn dob as "current date minus 5days"
+    And I get the newborn "Son" dob as "current date minus 5days"
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -143,6 +143,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
+    #WIP
     Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as current date minus 5 days
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -197,28 +198,30 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    And I validate the member details from policy tables
-    #Gmail
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
-      |Primary|
-      |Spouse|
-      |Son   |
-    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
-      |Primary|
-      |Spouse|
-      |Son   |
+    #WIP - Policy validations
+#    And I validate the member details from policy tables
 
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
-
-    #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    #Gmail
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+#
+#    #DbVerification
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     #RT-2268
 

@@ -1,15 +1,13 @@
 package com.c4hco.test.automation.database.Utils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import static org.testng.Assert.fail;
 
 
 public class PostgresStatementExecutor {
     Connection connection = PostgresSQLConnection.getInstance();
+
     public ResultSet executeQuery(String sql) {
         ResultSet resultSet = null;
         try {

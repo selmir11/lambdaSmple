@@ -7,7 +7,6 @@ public class DbData {
     String fipcode;
     String ratingAreaName;
     String ratingAreaId;
-    String exchPersonId;
     String brokerTinNum;
     String csrLevel;
 }
