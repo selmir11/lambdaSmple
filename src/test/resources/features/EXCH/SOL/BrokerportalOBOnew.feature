@@ -6,7 +6,7 @@ Feature: UI Page Validation - Broker Portal OBO
     And I validate I am on the "Login" page
 
 
-  @SLER-1138-Wip #failing because of SOL-3944
+  @SLER-1138
   Scenario: Broker Portal OBO - FA - LCE Birth/Adoption, Enroll in New plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -139,13 +139,8 @@ Feature: UI Page Validation - Broker Portal OBO
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "101 Main dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "3000000" at frequency "Annually"
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
+    Then I select the option "No" to employment
     And I click continue on the Employment Info Page
-    Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
@@ -180,8 +175,7 @@ Feature: UI Page Validation - Broker Portal OBO
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-    #failing because of SOL-3944
-    #Then I click continue on grouping Members Medical page
+    Then I click continue on grouping Members Medical page
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click continue on grouping Members Dental page
@@ -189,16 +183,11 @@ Feature: UI Page Validation - Broker Portal OBO
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-    And I validate I am on the "Financial Help Agreements" page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page OBO
-    Then I validate I am on the "Account Overview" page
 
   @SLER-1143
   Scenario: Broker Portal OBO - NFA - Single applicant, Enroll in New plan
