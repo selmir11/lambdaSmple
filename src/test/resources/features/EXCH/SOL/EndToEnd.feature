@@ -595,7 +595,7 @@ Feature: End to End Tests
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1153
+  @SLER-1153 @test
   Scenario: FA Flow: EXCH Large household with primary contact change and existing enrollment (QLCE)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
