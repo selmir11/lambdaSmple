@@ -262,4 +262,7 @@ public class DbDataProvider_Exch {
         return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
 
     }
+    public List<String> getDBMedicalPlanList(){
+        return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
+    }
 }
