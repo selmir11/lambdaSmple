@@ -1,4 +1,4 @@
-@SIR @COCO
+@COCO
  # SLCR-328, SLCR-329
 Feature: Verify text in Medical Plan Summary Page
 
