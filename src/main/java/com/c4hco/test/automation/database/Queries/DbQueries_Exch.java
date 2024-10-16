@@ -236,9 +236,9 @@ public class DbQueries_Exch {
     }
 
     public String getDBMedicalPlanList(){
-        return "SELECT p.plan_marketing_name,p.plan_short_name " +
-                "FROM en_plan p " +
-                "INNER JOIN en_issuer i ON i.issuer_id=p.issuer_id " +
+        return "SELECT p.plan_marketing_name " +
+                "FROM "+dbName+".en_plan p " +
+                "INNER JOIN "+dbName+".en_issuer i ON i.issuer_id=p.issuer_id " +
                 "WHERE p.plan_year='2024' " +
                 "AND p.level_of_coverage IN('Platinum','Gold','Silver','Silver Enhanced','Bronze','Expanded Bronze','LOW','HIGH') " +
                 "AND p.market_coverage=1 " +
@@ -248,17 +248,17 @@ public class DbQueries_Exch {
                 "AND p.csr_level='01' " +
                 "AND p.service_area_id IN( " +
                 "SELECT sa.service_area_id " +
-                "FROM en_issuer_service_area sa " +
-                "WHERE sa.plan_year=CAST(p.plan_year AS INTEGER) " + // Corrected here
+                "FROM "+dbName+".en_issuer_service_area sa " +
+                "WHERE sa.plan_year=CAST(p.plan_year AS INTEGER) " +
                 "AND sa.hios_issuer_id=p.hios_issuer_id " +
                 "AND sa.fips='08001' " +
                 "AND(sa.partial_county_ind=FALSE OR sa.zip='80030') " +
                 ") " +
                 "AND NOT EXISTS( " +
                 "SELECT 1 " +
-                "FROM en_plan p2 " +
-                "INNER JOIN en_plan_source ps ON ps.plan_source_id=p.plan_source_id " +
-                "INNER JOIN en_issuer i2 ON i2.issuer_id=p2.issuer_id " +
+                "FROM "+dbName+".en_plan p2 " +
+                "INNER JOIN "+dbName+".en_plan_source ps ON ps.plan_source_id=p.plan_source_id " +
+                "INNER JOIN "+dbName+".en_issuer i2 ON i2.issuer_id=p2.issuer_id " +
                 "WHERE p2.coverage_type=p.coverage_type " +
                 "AND p2.plan_year=p.plan_year " +
                 "AND p2.csr_level NOT IN('01','00','07') " +
@@ -267,14 +267,13 @@ public class DbQueries_Exch {
                 "AND p2.plan_source_id=p.plan_source_id " +
                 "AND p2.service_area_id IN( " +
                 "SELECT sa1.service_area_id " +
-                "FROM en_issuer_service_area sa1 " +
+                "FROM "+dbName+".en_issuer_service_area sa1 " +
                 "WHERE p2.hios_issuer_id=sa1.hios_issuer_id " +
                 "AND p2.plan_year='2024' " +
                 "AND(sa1.entire_state_ind=TRUE OR(sa1.fips='08001' AND (NOT sa1.partial_county_ind=TRUE OR sa1.zip='80030'))) " +
                 ") " +
                 ");";
     }
-
 
 
 }
