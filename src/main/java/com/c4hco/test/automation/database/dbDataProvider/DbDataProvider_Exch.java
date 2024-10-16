@@ -228,6 +228,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
     }
 
+    public List<String> getBrokerAuthorizationTypeBoB() {
+
+        return postgresHandler.getResultListFor("staff_type", exchDbQueries.verifyBrokerAuthorizationTypeBOB());
+    }
+
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }
