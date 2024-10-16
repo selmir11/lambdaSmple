@@ -69,7 +69,10 @@ public class PlanSummaryMedicalDentalCoCoPage {
 
     @FindBy(xpath ="((//div[@class='plan-card plan-summary-card']/div)[4] //span)[1]")
     WebElement txtAmountyouPay;
-
+    @FindBy(id = "PlanSummary-TotalAmountYouPay")
+    WebElement totalAmountYouPay;
+    @FindBy(id = "PlanSummary-TotalPremiumBeforeSavings")
+    WebElement premiumBeforeSaving;
     @FindBy(xpath = "//*[contains(text(),\"Medical Plans\")]")
     WebElement planSummaryMedicalplanheading;
 
@@ -114,7 +117,6 @@ public class PlanSummaryMedicalDentalCoCoPage {
 
 
     public void continueButton(){
-        setPlansPremiumAmtCoco();
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
@@ -184,20 +186,22 @@ public class PlanSummaryMedicalDentalCoCoPage {
     public void setPlansPremiumAmtCoco() {
         basicActions.waitForElementToDisappear(spinner, 20);
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        List<MemberDetails> memberslist = SharedData.getMembers();
         basicActions.waitForElementToDisappear(spinner, 25);
         basicActions.waitForElementToBePresent(txtPremiumsBeforeSaving, 40);
         String  ses = SharedData.getSes();
-        if(ses.equals("no")){
-            subscriber.setMedicalAptcAmt("0");
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
-            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
-            if (memberslist != null) {
-                for (int i = 0; i < memberslist.size(); i++) {
-                    memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
-                }
-            }
+        String openEnrolment = SharedData.getIsOpenEnrollment();
+        if(ses.equals("yes") && openEnrolment.equals("yes")){
+            String amountYouPay = totalAmountYouPay.getText().replace("$", "");
+            softAssert.assertEquals(totalAmountYouPay.getText(), medicalPremiumAfterAPTCAmt.getText(), "Amount doesn't match");
+            amountYouPay.equals("0.00");
+            subscriber.setMedicalPremiumAmt(amountYouPay);
+        }else {
+            subscriber.setAptcAmt("0");
+            String amountYouPay = totalAmountYouPay.getText().replace("$", "");
+            softAssert.assertEquals(totalAmountYouPay.getText(), premiumBeforeSaving.getText(), "Amount doesn't match");
+            subscriber.setMedicalPremiumAmt(amountYouPay);
         }
+        softAssert.assertAll();
         SharedData.setPrimaryMember(subscriber);
     }
 }

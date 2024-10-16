@@ -1,7 +1,9 @@
 Feature: Initial Application Family of 4(Silver Enhanced)
   @SLCR-292
   Scenario: COCO Initial Application with Family of 4 (Silver Enhanced)
-
+      Given I set the test scenario details in coco
+          | totalGroups | totalMembers |
+          | 1           | 4            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -113,6 +115,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I validate medical primium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -121,6 +124,8 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    And I select year "2024" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And Validate selected medical plan for "Son" is "Elevate Health Plans Colorado Option Bronze"
     And Validate selected medical plan for "Daughter" is "Elevate Health Plans Colorado Option Bronze"
