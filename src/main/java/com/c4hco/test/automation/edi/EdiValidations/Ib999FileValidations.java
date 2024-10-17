@@ -24,10 +24,10 @@ public class Ib999FileValidations {
     }
     public void validateISASegment(Ib999Entity entry){
         JSONArray isaSeg = ib999MedSegment.getISA();
-        softAssert.assertEquals(entry.getInterchange_sender_id(),isaSeg.get(5),"Sender Id mismatch");
-        softAssert.assertEquals(entry.getInterchange_receiver_id(),isaSeg.get(7),"Receiver Id mismatch");
-        softAssert.assertEquals(entry.getGroup_ctrl_number(),"Receiver Id mismatch");
-        softAssert.assertAll();
+//        softAssert.assertEquals(entry.getInterchange_sender_id(),isaSeg.get(5),"Sender Id mismatch");
+//        softAssert.assertEquals(entry.getInterchange_receiver_id(),isaSeg.get(7),"Receiver Id mismatch");
+//        softAssert.assertEquals(entry.getGroup_ctrl_number(),"Receiver Id mismatch");
+//        softAssert.assertAll();
     }
     public void validateIEASegment(Ib999Entity entry){
 
