@@ -74,7 +74,7 @@ public class Ib999Handler {
                     break;
                 }
                 System.out.println("---- Waiting for the ib999 file ---- ");
-            } while (dbDataList.size() == 0);
+            } while (dbDataList.isEmpty());
         } catch (Exception e) {
             e.printStackTrace();
         }

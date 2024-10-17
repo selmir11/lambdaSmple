@@ -31,6 +31,10 @@ public class DbDataProvider_Exch {
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
 
+    public List<PolicyTablesEntity> getMedicalRecordsDataFromPolicyTables(){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesMedicalRecordsQuery());
+    }
+
     public List<Ob834DetailsEntity> getOb83Db4Details(){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
     }
@@ -226,6 +230,11 @@ public class DbDataProvider_Exch {
     public List<String> getBrokerAuthorizationStatusBoB() {
 
         return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
+    }
+
+    public List<String> getBrokerAuthorizationTypeBoB() {
+
+        return postgresHandler.getResultListFor("staff_type", exchDbQueries.verifyBrokerAuthorizationTypeBOB());
     }
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
