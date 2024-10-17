@@ -560,15 +560,14 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101975" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051975", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "New" for Residential Address
+    And I enter the new residential address details
+      | addressLine1           | addressLine2 | city    | state | zipcode | county  |
+      | 15143 Laplace Point Ct | Unit 23      | Boulder | CO    | 80305   | BOULDER |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -585,15 +584,15 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter member details with "10102001" date of birth
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012001", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
+    Then I select "New" for Residential Address
+    And I enter the new residential address details
+      | addressLine1           | addressLine2 | city    | state | zipcode | county  |
+      | 15143 Laplace Point Ct | Unit 23      | Boulder | CO    | 80305   | BOULDER |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
