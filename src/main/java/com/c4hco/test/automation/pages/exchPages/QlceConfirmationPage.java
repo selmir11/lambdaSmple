@@ -1,6 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -176,28 +179,33 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
-    public void selectBirthLCEForLastMember(String QLCEType, int days) {
-        switch (QLCEType) {
-            case "Birth":
-                try {
-                    basicActions.waitForElementToBeClickable(birthQLCE, 10);
-                    birthQLCE.click();
-                    int lastIndex = allmembersBirthcheckbox.size() - 1;
-                    allmembersBirthcheckbox.get(lastIndex).click();
-                    birthEventDate.get(lastIndex).click();
-                    LocalDate currentDate = LocalDate.now();
-                    LocalDate DOBCalculate = currentDate.minusDays(days);
-                    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                    String actualdob = dateFormat.format(DOBCalculate);
-                    birthEventDate.get(lastIndex).sendKeys(actualdob);
-                } catch (Exception e) {
-                    // Handle exceptions appropriately
-                    System.err.println("An error occurred: " + e.getMessage());
+    public void selectBirthLCEForLastMember() {
+        basicActions.waitForElementToBeClickable(birthQLCE, 20);
+        birthQLCE.click();
+        String newbornFullName =null;
+            for(int i=0; i<SharedData.getMembers().size();i++) {
+                if (SharedData.getMembers().get(i).getFullName().contains("Son")) {
+                    newbornFullName = SharedData.getMembers().get(i).getFullName();
+                    break;
                 }
+
+            }
+        WebElement checkbox = basicActions.getDriver().findElement(By.xpath(  "//span[contains(text(),'"+newbornFullName+"')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
+         checkbox.click();
+        for (WebElement eventDateElement : birthEventDate) {
+            if (eventDateElement.isDisplayed()) {
+                eventDateElement.sendKeys(getDobminusfivedays());
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + QLCEType);
+            }
         }
+    }
+
+    public String getDobminusfivedays() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dobCalculator = currentDate;
+        dobCalculator = currentDate.minusDays(5);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return dateFormat.format(dobCalculator);
     }
 
 
