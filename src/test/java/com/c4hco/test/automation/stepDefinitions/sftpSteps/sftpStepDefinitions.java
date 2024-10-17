@@ -125,16 +125,22 @@ public class sftpStepDefinitions {
     public void validateMedIb999Records() {
         List<Ib999Entity> ib999MedEntries = SharedData.getIb999MedDetailsEntities();
         for (Ib999Entity entry : ib999MedEntries) {
-               System.out.println("***********Validating Medical ib999 File:: "+SharedData.getMedicalIb999FileName()+"***********");
+            if(entry.getAk1_group_ctrl_number().equals(SharedData.getMedGroupCtlNumber())) {
+                System.out.println("***********Validating Medical Ib999 File:: " + SharedData.getMedicalIb999FileName() + "***********");
+                sftpUtil.readIb999File(SharedData.getMedicalIb999FileName());
                 ib999FileValidations.validateib999File(entry);
+            }
         }
     }
     @And("I validate the contents of ib999 dental file")
     public void validateDenIb999Records() {
         List<Ib999Entity> ib999DenEntries = SharedData.getIb999DenDetailsEntities();
         for (Ib999Entity entry : ib999DenEntries) {
-            System.out.println("***********Validating Dental ib999 File:: "+SharedData.getDentalIb999FileName()+"***********");
-            ib999FileValidations.validateib999File(entry);
+            System.out.println("***********Validating Dental Ib999 File:: "+SharedData.getDentalIb999FileName()+"***********");
+            if(entry.getAk1_group_ctrl_number().equals(SharedData.getDenGroupCtlNumber())){
+                sftpUtil.readIb999File(SharedData.getDentalIb999FileName());
+                ib999FileValidations.validateib999File(entry);
+            }
         }
     }
 
