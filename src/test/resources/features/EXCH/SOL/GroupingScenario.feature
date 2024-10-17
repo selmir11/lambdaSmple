@@ -566,8 +566,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
     And I enter the new residential address details
-      | addressLine1           | addressLine2 | city    | state | zipcode | county  |
-      | 15143 Laplace Point Ct | Unit 23      | Boulder | CO    | 80305   | BOULDER |
+      | addressLine1           | addressLine2 | city   | state | zipcode | county |
+      | 15143 Laplace Point Ct | Unit 23      | Denver | CO    | 80305   | DENVER |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
