@@ -543,7 +543,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    Then I enter generic mailing address details
+    Then I enter member with address line1 "1234 Street" in city "Tucson" in state "AZ" with zipcode "85003" and county "MARICOPA"
     And I select "No" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -565,9 +565,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
-      | addressLine1           | addressLine2 | city   | state | zipcode | county |
-      | 15143 Laplace Point Ct | Unit 23      | Denver | CO    | 80205   | DENVER |
+    Then I enter a new member address with city "Aurora" state "CO" zip "80011" and county "ADAMS"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -590,9 +588,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
-      | addressLine1           | addressLine2 | city    | state | zipcode | county  |
-      | 15143 Laplace Point Ct | Unit 23      | Boulder | CO    | 80305   | BOULDER |
+    Then I enter a new member address with city "Aurora" state "CO" zip "80011" and county "ADAMS"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
