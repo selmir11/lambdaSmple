@@ -32,6 +32,31 @@ public class DbQueries_Exch {
                 "and eph.current_ind = '1'";
     }
 
+    public String policyTablesMedicalRecordsQuery() {
+        return "select eph.account_id, eph.application_id,em.exch_person_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
+                "eph.policy_status, eph.current_ind, eph.effectuated_ind as effectuated_ind_eph, eph.policy_start_date, eph.policy_end_date, epfh.csr_level as csr_level_epfh, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
+                "epfh.total_premium_reduction_amt, epfh.total_responsible_amt, epfh.premium_reduction_type as premium_reduction_type_epfh, epfh.total_csr_amt, epmch.policy_member_coverage_status,epmh.member_id, epmh.responsible_adult_ind, epmh.subscriber_ind, epmh.created_by, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
+                "emcfh.csr_level as csr_level_emcfh, emcfh.member_financial_start_date, emcfh.member_financial_end_date,  emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh, emcfh.responsible_amt, eph.policy_submitted_ts, eph.policy_submitted_by\n" +
+                "from "+dbName+".es_household eh, "+dbName+".es_application ea,  "+dbName+".es_member em,  "+dbName+".en_policy_ah eph,  "+dbName+".en_plan ep2,  "+dbName+".en_policy_member_ah epmh,\n" +
+                " "+dbName+".en_policy_member_coverage_ah epmch,  "+dbName+".en_member_coverage_financial_ah emcfh,  "+dbName+".en_policy_financial_ah epfh,  "+dbName+".en_policy ep\n" +
+                "where eh.household_id = ea.household_id\n" +
+                "and ea.application_id = eph.application_id\n" +
+                "and ep.plan_id = ep2.plan_id\n" +
+                "and em.member_id = epmh.member_id\n" +
+                "and em.household_id = eh.household_id\n" +
+                "and em.exch_person_id = epmh.exch_person_id\n" +
+                "and epmh.policy_member_id = epmch.policy_member_id\n" +
+                "and eph.policy_id = epmh.policy_id\n" +
+                "and epmch.policy_member_coverage_id = emcfh.policy_member_coverage_id\n" +
+                "and ep.policy_id = eph.policy_id\n" +
+                "and ep.policy_id = epfh.policy_id\n" +
+                "and eh.account_id = '"+acctId+"'\n" +
+                "and eph.current_ind = '1'\n"+
+                "and eph.coverage_type= '1'";
+    }
+
+
+
     public String ob834Details(){
      return "select * from  "+dbName+".ob834_detail\n "+
              "where account_id = '"+acctId+"'\n "+

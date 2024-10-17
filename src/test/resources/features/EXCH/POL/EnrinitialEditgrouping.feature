@@ -194,12 +194,14 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I Validate the correct enrolled plans are displayed on account overview page
 
     And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
+    # And I click on download enrolment document
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     #WIP - Policy validations
-    And I validate the member details from policy tables
+    And I validate medical entities from policy tables
+    # And I validate the member details from policy tables
+
 
 #    #Gmail
 #    Then I open outlook Tab

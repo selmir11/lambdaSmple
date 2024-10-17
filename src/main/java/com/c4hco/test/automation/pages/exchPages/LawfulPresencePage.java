@@ -234,6 +234,10 @@ public class LawfulPresencePage {
         }
     }
 
+    private void setExchPersonId(){
+
+    }
+
     // WIP - Do we need a switch case here if it is same for both cases?
     public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language, List<String> data) {
         switch (language) {
