@@ -96,11 +96,15 @@ public class DbDataProvider_Exch {
         dbData.setCsrLevel(csrLevel);
         SharedData.setDbData(dbData);
     }
-
-    public void setExchPersonId(String memId){
-       getExchPersonId(memId);
+    public void setExchPersonId(MemberDetails mem, String memberId){
+        String exchPersnId =  getExchPersonId(memberId);
+        Map<String, String> exchPersonId = SharedData.getExchPersonId();
+        if(exchPersonId==null){
+            exchPersonId = new HashMap<>();
+        }
+        exchPersonId.put(mem.getFirstName(), exchPersnId );
+        SharedData.setExchPersonId(exchPersonId);
     }
-
     public void setMedicalPlanDataFromDb(String planName){
         String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
         String baseId = baseIdAndHiosIssuerId[0];
@@ -222,6 +226,11 @@ public class DbDataProvider_Exch {
     public List<String> getBrokerAuthorizationStatusBoB() {
 
         return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
+    }
+
+    public List<String> getBrokerAuthorizationTypeBoB() {
+
+        return postgresHandler.getResultListFor("staff_type", exchDbQueries.verifyBrokerAuthorizationTypeBOB());
     }
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){

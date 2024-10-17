@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class LawfulPresencePage {
@@ -225,27 +222,16 @@ public class LawfulPresencePage {
         if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
             SharedData.setPrimaryMemberId(memberId);
             subscriber.setMemberId(memberId);
-            setExchPersonId(subscriber, memberId );
         }
         if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
             for (MemberDetails member : memberDetailsList) {
                 if (nameFromHeader.equals(member.getFullName())) {
                     member.setMemberId(memberId);
-                    setExchPersonId(member, memberId);
                     break;
                 }
             }
             SharedData.setMembers(memberDetailsList);
         }
-    }
-
-    private void setExchPersonId(MemberDetails mem, String memberId){
-        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
-        String exchPersonId_primary =  exchDbDataProvider.getExchPersonId(memberId);
-        Map<String, String> exchPersonId = new HashMap<>();
-        exchPersonId.put(mem.getFirstName(), exchPersonId_primary );
-        SharedData.setExchPersonId(exchPersonId);
-
     }
 
     // WIP - Do we need a switch case here if it is same for both cases?

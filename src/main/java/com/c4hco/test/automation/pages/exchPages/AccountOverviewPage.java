@@ -187,7 +187,6 @@ public class AccountOverviewPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
 
-
         String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
         String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
         String coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
