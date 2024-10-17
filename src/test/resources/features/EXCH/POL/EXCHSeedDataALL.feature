@@ -1,5 +1,5 @@
 
-Feature: ALL Seed Data for Exchange
+Feature: EXCH Seed Data ALL
 
   Scenario:  Seed 01 For Exchange- Single Applicant NFA
     Given I set the test scenario details
