@@ -567,7 +567,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I select "New" for Residential Address
     And I enter the new residential address details
       | addressLine1           | addressLine2 | city   | state | zipcode | county |
-      | 15143 Laplace Point Ct | Unit 23      | Denver | CO    | 80305   | DENVER |
+      | 15143 Laplace Point Ct | Unit 23      | Denver | CO    | 80205   | DENVER |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
