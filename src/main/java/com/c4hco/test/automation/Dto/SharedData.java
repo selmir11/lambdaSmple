@@ -54,6 +54,7 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> calculatedDob;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
     @Getter @Setter private static Map<String, String> exchPersonId;
+    @Getter @Setter private static String birthLceIndividual;
 
 
     public static void reset(){
@@ -82,5 +83,6 @@ public class SharedData {
         calculatedDob = null;
         expectedCalculatedDates = null;
         exchPersonId=null;
+        birthLceIndividual = null;
     }
 }

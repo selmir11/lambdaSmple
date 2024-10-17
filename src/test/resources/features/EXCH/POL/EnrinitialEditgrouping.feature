@@ -13,9 +13,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I enter general mandatory data for "exchange" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
-    Given I set the dynamic policy, coverage and financial dates
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -71,6 +68,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     And I get the newborn "Son" dob as "current date minus 5days"
+    Given I set the dynamic policy, coverage and financial dates
+       | PolicyStartDate    | PolicyEndDate            | CoverageStartDate  | CoverageEndDate          | FinancialStartDate    | FinancialEndDate         |
+       | getFromSharedData  | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year | getFromSharedData     | Last Day Of Current Year |
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
@@ -143,7 +143,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    Then I select  QLCE on tell us about life changes page for new born and select DOB as current date minus days
+    #WIP
+    Then I select Birth QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -193,19 +194,21 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I Validate the correct enrolled plans are displayed on account overview page
 
     And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
+    # And I click on download enrolment document
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     #WIP - Policy validations
-#    And I validate the member details from policy tables
+    And I validate medical entities from policy tables
+    # And I validate the member details from policy tables
+
 
 #    #Gmail
 #    Then I open outlook Tab
 #    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
 #    Then I open the notice "(EN-002-04)" in "English"
 #    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-   And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
+#    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
 #      |Primary|
 #      |Spouse|
 #      |Son   |

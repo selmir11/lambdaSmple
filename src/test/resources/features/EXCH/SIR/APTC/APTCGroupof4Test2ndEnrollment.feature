@@ -418,7 +418,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I click on continue with  application button on Before you begin page
     # LCE is removed during Open Enrollment
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011990" in county "Rio Grande" with zipcode "81144"

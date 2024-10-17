@@ -1,9 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +20,7 @@ public class QlceConfirmationPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id="birth")
+    @FindBy(id = "birth")
     WebElement birthQLCE;
 
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
@@ -31,7 +29,7 @@ public class QlceConfirmationPage {
     List<WebElement> birthEventDate;
 
     //Marriage
-    @FindBy(id ="marriage")
+    @FindBy(id = "marriage")
     WebElement marriageLce;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Marriage')]")
     List<WebElement> allmemberMarriagecheckbox;
@@ -40,7 +38,7 @@ public class QlceConfirmationPage {
     List<WebElement> marriageEventDate;
 
     //Divorce
-    @FindBy(id ="divorce")
+    @FindBy(id = "divorce")
     WebElement divorceLce;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Divorce')]")
     List<WebElement> allmemberDivorcecheckbox;
@@ -49,16 +47,16 @@ public class QlceConfirmationPage {
     List<WebElement> divorceEventDate;
 
     //Death
-    @FindBy(id ="death")
+    @FindBy(id = "death")
     WebElement deathLce;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Death')]")
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
     List<WebElement> deathEventDate;
     //Moved to Colorado
-    @FindBy(id="changeOfAddress")
+    @FindBy(id = "changeOfAddress")
     WebElement addressChangeLce;
-    @FindBy(xpath="//input[contains(@class,'checkbox')and contains(@id,'ChangeOfResidence')]")
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'ChangeOfResidence')]")
     List<WebElement> memberCheckboxChangeOfAddress;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'ChangeOfResidence')]")
     List<WebElement> changeOfAddressEventDate;
@@ -67,16 +65,16 @@ public class QlceConfirmationPage {
     List<WebElement> movedToColoradoCheckbox;
 
     //Gain Lawful Immigration Status
-    @FindBy(id= "gainedLawfulPresence")
+    @FindBy(id = "gainedLawfulPresence")
     WebElement LawfulPresenceLCE;
 
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForGainedLawfulPresence')]")
     List<WebElement> allmemberLawfulPresencecheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForGainedLawfulPresence')]")
-    List<WebElement>  LawfulPresenceEventDate;
+    List<WebElement> LawfulPresenceEventDate;
 
     //Lost Coverage
-    @FindBy(id ="loseOrLostHealthInsurance")
+    @FindBy(id = "loseOrLostHealthInsurance")
     WebElement lostCoverageLCE;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> allMemberLostCoverageCheckbox;
@@ -91,12 +89,12 @@ public class QlceConfirmationPage {
     List<WebElement> tribalStatusEventDate;
 
     //None of These
-    @FindBy(id ="noneOfThese")
+    @FindBy(id = "noneOfThese")
     WebElement noneOfTheseLCE;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
 
-    public String getCurrentDate(){
+    public String getCurrentDate() {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate currentDate = LocalDate.now();
         // Now format the date
@@ -106,7 +104,7 @@ public class QlceConfirmationPage {
     public void selectQLCE(String QLCEType) {
         switch (QLCEType) {
             case "Birth":
-                basicActions.waitForElementToBeClickable(birthQLCE,10);
+                basicActions.waitForElementToBeClickable(birthQLCE, 10);
                 birthQLCE.click();
                 for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
                     allmembersBirthcheckbox.get(i).click();
@@ -115,7 +113,7 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "Marriage":
-                basicActions.waitForElementToBeClickable(marriageLce,10);
+                basicActions.waitForElementToBeClickable(marriageLce, 10);
                 marriageLce.click();
                 for (var i = 0; i < allmemberMarriagecheckbox.size(); i++) {
                     allmemberMarriagecheckbox.get(i).click();
@@ -124,7 +122,7 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "MoveToCO":
-                basicActions.waitForElementToBeClickable(addressChangeLce,10);
+                basicActions.waitForElementToBeClickable(addressChangeLce, 10);
                 addressChangeLce.click();
                 for (var i = 0; i < memberCheckboxChangeOfAddress.size(); i++) {
                     memberCheckboxChangeOfAddress.get(i).click();
@@ -135,7 +133,7 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "GainedLawfulPresence":
-                basicActions.waitForElementToBeClickable(LawfulPresenceLCE,10);
+                basicActions.waitForElementToBeClickable(LawfulPresenceLCE, 10);
                 LawfulPresenceLCE.click();
                 for (var i = 0; i < allmemberLawfulPresencecheckbox.size(); i++) {
                     allmemberLawfulPresencecheckbox.get(i).click();
@@ -144,7 +142,7 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "LostCoverage":
-                basicActions.waitForElementToBeClickable(lostCoverageLCE,10);
+                basicActions.waitForElementToBeClickable(lostCoverageLCE, 10);
                 lostCoverageLCE.click();
                 for (var i = 0; i < allMemberLostCoverageCheckbox.size(); i++) {
                     allMemberLostCoverageCheckbox.get(i).click();
@@ -162,7 +160,7 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "Death":
-                basicActions.waitForElementToBeClickable(deathLce,10);
+                basicActions.waitForElementToBeClickable(deathLce, 10);
                 deathLce.click();
                 for (var i = 0; i < allmemberDeathcheckbox.size(); i++) {
                     allmemberDeathcheckbox.get(i).click();
@@ -172,44 +170,26 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "NoneOfThese":
-                basicActions.waitForElementToBeClickable(noneOfTheseLCE,10);
+                basicActions.waitForElementToBeClickable(noneOfTheseLCE, 10);
                 noneOfTheseLCE.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
-    public void selectBirthLCEForLastMember() {
-        basicActions.waitForElementToBeClickable(birthQLCE, 20);
+
+    public void selectBirthLCE() {
+        // WIP - Instead of last index - can we do it with namePrefix??
+        basicActions.waitForElementToBeClickable(birthQLCE, 10);
         birthQLCE.click();
-        String newbornFullName =null;
-            for(int i=0; i<SharedData.getMembers().size();i++) {
-                if (SharedData.getMembers().get(i).getFullName().contains("Son")) {
-                    newbornFullName = SharedData.getMembers().get(i).getFullName();
-                    break;
-                }
-
-            }
-        WebElement checkbox = basicActions.getDriver().findElement(By.xpath(  "//span[contains(text(),'"+newbornFullName+"')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
-         checkbox.click();
-        for (WebElement eventDateElement : birthEventDate) {
-            if (eventDateElement.isDisplayed()) {
-                eventDateElement.sendKeys(getDobminusfivedays());
-                break;
-            }
-        }
+        int lastIndex = allmembersBirthcheckbox.size() - 1;
+        allmembersBirthcheckbox.get(lastIndex).click();
+        birthEventDate.get(lastIndex).click();
+        birthEventDate.get(lastIndex).sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()));
     }
 
-    public String getDobminusfivedays() {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate dobCalculator = currentDate;
-        dobCalculator = currentDate.minusDays(5);
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        return dateFormat.format(dobCalculator);
-    }
-
-
-    public void saveAndContinue(){
+    public void saveAndContinue() {
         saveAndContinue.click();
     }
+
 }
