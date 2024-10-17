@@ -190,17 +190,16 @@ public class PlanSummaryMedicalDentalCoCoPage {
         basicActions.waitForElementToBePresent(txtPremiumsBeforeSaving, 40);
         String  ses = SharedData.getSes();
         String openEnrolment = SharedData.getIsOpenEnrollment();
+        String amountYouPay = totalAmountYouPay.getText().replace("$", "");
         if(ses.equals("yes") && openEnrolment.equals("yes")){
-            String amountYouPay = totalAmountYouPay.getText().replace("$", "");
+            //assuming we have budget for allocation - WIP
             softAssert.assertEquals(totalAmountYouPay.getText(), medicalPremiumAfterAPTCAmt.getText(), "Amount doesn't match");
-            amountYouPay.equals("0.00");
-            subscriber.setMedicalPremiumAmt(amountYouPay);
+            softAssert.assertEquals(amountYouPay, "0.00", "Amount is not equal to zero");
         }else {
             subscriber.setAptcAmt("0");
-            String amountYouPay = totalAmountYouPay.getText().replace("$", "");
             softAssert.assertEquals(totalAmountYouPay.getText(), premiumBeforeSaving.getText(), "Amount doesn't match");
-            subscriber.setMedicalPremiumAmt(amountYouPay);
         }
+        subscriber.setMedicalPremiumAmt(amountYouPay);
         softAssert.assertAll();
         SharedData.setPrimaryMember(subscriber);
     }
