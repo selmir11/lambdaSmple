@@ -143,8 +143,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    #WIP
-    Then I select Birth QLCE on tell us about life changes page
+    Then I select  QLCE on tell us about life changes page for new born and select DOB as current date minus days
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
