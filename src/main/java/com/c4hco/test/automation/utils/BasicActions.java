@@ -593,14 +593,14 @@ public class BasicActions {
     }
 
     public String getFullNameWithPrefix(String prefix){
-        String completeFullName = null;
+        String fullName = null;
       List<MemberDetails> allMem = getAllMem();
       for(MemberDetails mem: allMem){
           if(mem.getFirstName().contains(prefix)){
-              completeFullName =  mem.getFullName();
+              fullName =  mem.getFullName();
           }
         }
-      return completeFullName;
+      return fullName;
     }
 
     public List<MemberDetails> getAllMem(){
