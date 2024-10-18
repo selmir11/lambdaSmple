@@ -206,13 +206,17 @@ public class CreateAccountPage {
     }
 
     public void createGeneralAccount(String appType){
-        // Creates the primary user/Account holder
         addDetails();
         selectBasedOnApp(appType);
     }
 
     public void createSpecificAccount(String fName, String lName, String appType){
         addSpecificDetails(fName, lName);
+        selectBasedOnApp(appType);
+    }
+
+    public void createGeneralAccountOutlook(String appType, String emailBase){
+        addDetailsOutlook(emailBase);
         selectBasedOnApp(appType);
     }
 
@@ -244,13 +248,7 @@ public class CreateAccountPage {
         submitButton.click();
     }
 
-    public void createGeneralAccountOutlook(String appType, String emailBase){
-        // Creates the primary user/Account holder
-        addDetailsOutlook(emailBase);
-        selectBasedOnApp(appType);
-
-    }
-
+    // WIP - Remove from here. We already have this in basicActions
     public String capitalizeFirstLetter(String input) {
         if (input == null || input.isEmpty()) {
             return input;
@@ -321,8 +319,9 @@ public class CreateAccountPage {
         preferredLanguageButtonEnglish.click();
         subscriber.setSpokenLanguage("English");
         subscriber.setWrittenLanguage("English");
-        primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
+        primaryUserCheckbox.click();
+
         SharedData.setPrimaryMember(subscriber);
     }
 

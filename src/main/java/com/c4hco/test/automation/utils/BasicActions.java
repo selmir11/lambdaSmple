@@ -592,6 +592,19 @@ public class BasicActions {
         SharedData.setCalculatedDob(nameAndDob);
     }
 
+    public List<MemberDetails> getAllMem(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> allMembers = new ArrayList<>();
+        if(dependents!=null){
+            for(MemberDetails dependent: dependents){
+                allMembers.add(dependent);
+            }
+        }
+        allMembers.add(primaryMem);
+        return allMembers;
+    }
+
 
 }
 

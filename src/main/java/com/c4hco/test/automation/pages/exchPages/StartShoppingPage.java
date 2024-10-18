@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -77,15 +79,27 @@ public class StartShoppingPage {
     public void enterTobaccoUsageInfo(String tobaccoUsageDetails) {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
+        
+        String[] nameDetails = tobaccoUsageDetails.split(",");
 
-        String[] NameDetails = tobaccoUsageDetails.split(",");
-
-        for (String Name : NameDetails) {
-            WebElement tobaccoUsageYes = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'" + Name + "')]/parent::p/following-sibling::label)[1]"));
-
-
+        for (String name : nameDetails) {
+            WebElement tobaccoUsageYes = basicActions.getDriver().findElement(By.xpath("(//Strong[contains(text(),'" + name + "')]/parent::p/following-sibling::label)[1]"));
             tobaccoUsageYes.click();
+            setTobaccoUser(name);
         }
 
+    }
+
+    private void setTobaccoUser(String name){
+        if(name.contains("primary")){
+            SharedData.getPrimaryMember().setTobacco_user("Yes");
+        } else {
+            List<MemberDetails> dependents = SharedData.getMembers();
+            for(MemberDetails mem: dependents){
+                if(mem.getFirstName().contains(name)){
+                    mem.setTobacco_user("Yes");
+                }
+            }
+        }
     }
 }
