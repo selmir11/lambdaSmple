@@ -35,16 +35,14 @@ public class PolicyDbValidations_new {
     }
     private void validateMedDenForSubscriber(PolicyTablesEntity policyTablesEntity, DbData dbData) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        validateTobaccoUse(policyTablesEntity);
         validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
         softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "Subscriber account id does not match");
         softAssert.assertEquals(policyTablesEntity.getApplication_id(), subscriber.getApplication_id(), "Subscriber application id does not match");
         String subscriberdob = getSubscriberDOB();
+        softAssert.assertNull( policyTablesEntity.getTobacco_use(), "Tobacco use field is obsolete in policy tables. So, it should be null always. We got a non-null value");
         softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(subscriberdob), "Subscriber DOB does not match");
-        //tobacco usage is empty in policy table query
-        softAssert.assertEquals(SharedData.getPrimaryMember().getTobacco_user(), "No", "Subscriber tobacco usage matches"); // wip
 
         softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
@@ -54,7 +52,7 @@ public class PolicyDbValidations_new {
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "epfh CSR level does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
-        softAssert.assertEquals(policyTablesEntity.getResponsible_adult_ind(), "1", "Responsible adult indicator is not zero");
+        softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
         softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
         softAssert.assertAll();
     }
@@ -62,12 +60,6 @@ public class PolicyDbValidations_new {
     private String getSubscriberDOB() {
         String dobData = SharedData.getPrimaryMember().getDob();
         return dobData.substring(4, 8) + "-" + dobData.substring(0, 2) + "-" + dobData.substring(2, 4);
-    }
-
-    private void validateTobaccoUse(PolicyTablesEntity policyTablesEntity) {
-        if (policyTablesEntity.getTobacco_use() == null) {
-            softAssert.assertEquals(SharedData.getPrimaryMember().getTobacco_user(), "No", "Tobacco usage for subscriber does not match");
-        }
     }
 
     private void validateSubmittedBy(PolicyTablesEntity policyTablesEntity) {
@@ -81,7 +73,6 @@ public class PolicyDbValidations_new {
 
     private void validateMedDenForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member){
         // WIP
-        validateTobaccoUse(policyTablesEntity);
         validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), member.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), member.getLastName(), "Subscriber last name matches");
@@ -167,7 +158,6 @@ public class PolicyDbValidations_new {
 
     private void setPlanPremiumAmt(PolicyTablesEntity policyTablesEntity, PlanDbData medicalPlanDbData) {
         // To compare with ob834 entities
-        // WIP - set from UI if possible
             medicalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
             SharedData.getMedicalPlanDbData().put("group1", medicalPlanDbData);
     }
