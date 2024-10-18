@@ -38,9 +38,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -154,7 +156,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -269,9 +272,11 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
+      Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
@@ -388,7 +393,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -414,8 +420,9 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity option
-      And I click save and continue on the Race and Ethnicity page
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+      And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
@@ -548,9 +555,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -669,8 +678,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -695,7 +705,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -831,9 +842,11 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
+      Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
@@ -944,8 +957,9 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity option
-      And I click save and continue on the Race and Ethnicity page
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+      And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
@@ -971,7 +985,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1108,9 +1123,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -1223,7 +1240,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1250,7 +1268,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1348,7 +1367,7 @@ Feature: UI Tests related to APTC after second enrollment change
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
 
-  @SLER-1007-WIP @sirtest
+  @SLER-1007
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2411
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1361,7 +1380,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+    # LCE is available if not in Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
@@ -1383,9 +1403,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -1404,6 +1426,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
@@ -1436,9 +1461,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
 
-    #Then I validate I am on the "Good News" page
-    #And I click on No Thanks on good news page
-
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
 
@@ -1451,7 +1473,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1462,6 +1484,11 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "<aptc1>"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
@@ -1501,7 +1528,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    # race and ethnicity function response skipped for initial enrollee
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1528,8 +1556,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1557,7 +1586,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1587,7 +1617,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1595,27 +1626,11 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    # edit income information
+    #member2
     Then I validate I am on the "Family Overview" page
-    Then I click continue on family overview page
-
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-
-    Then I validate I am on the "Employment Info" page
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Employment Summary" page
-    And I click continue on the Employment Summary Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-
-    Then I validate I am on the "Income Summary" page
-    Then I select the projected income option "No" and continue
+    And I click on the table dropdown 2
+    And I click the edit income 3
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
@@ -1630,6 +1645,12 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
+    # added member 2
+    Then I validate I am on the "Family Overview" page
+    And I click on the table dropdown 3
+    And I click the edit income 6
+
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -1642,6 +1663,12 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
+
+    # added member 3
+    Then I validate I am on the "Family Overview" page
+    And I click on the table dropdown 4
+    And I click the edit income 9
+
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
@@ -1667,18 +1694,22 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the third dependent
     And I click save and continue on tax status page
 
+    # member 1
+    And I validate I am on the "Elmo Other Health Coverage" page
+    #The question is skipped here because the primary member answered the question in initial enrollment
+    Then I click continue on the ELMO health coverage page
+
+    # member 2
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 
+    # member 3
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-
+    # member 4
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1710,7 +1741,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1722,14 +1753,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "<aptc2>"
+    And I validate the APTC Credit on the Summary page is "<planSummaryaptc2>"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
     Examples:
-      |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
-      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
+      |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2    |planSummaryaptc2       |DOBmember2 |
+      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$1100.40/mo      |-$1,100.40               | 01012011  |
 
 
   @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
@@ -1776,12 +1807,14 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
-      And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
 
-      Then I select "Yes" for Citizen option
-      And I select "No" for Naturalized Immigrant option
-      And I click continue on the Citizenship page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
@@ -1885,7 +1918,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1913,7 +1947,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page

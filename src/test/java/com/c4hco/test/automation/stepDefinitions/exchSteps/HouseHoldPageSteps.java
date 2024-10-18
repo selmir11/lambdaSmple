@@ -9,14 +9,15 @@ public class HouseHoldPageSteps {
     HouseholdPage houseHoldPage = new HouseholdPage( WebDriverManager.getDriver() );
 
     @Then("I click continue on family overview page")
-    public void iClickContinue() {
-        houseHoldPage.clickContinue();
-    }
+    public void iClickContinue() {houseHoldPage.clickContinue();    }
 
     @Then("I click Add Another Family Member")
     public void iClickAddFamilyMember() {
         houseHoldPage.clickAddMember();
     }
+
+
+    // edit entry information
 
     @Then("I click edit basic information icon for member {int}")
     public void iclickBasicInformationIcon(int index) {
@@ -28,14 +29,12 @@ public class HouseHoldPageSteps {
         houseHoldPage.iVerifyFamilyOverviewTablePresent();
     }
 
+
     // WIP need to modify step. int we are passing is not being used.
     @And("I click the edit income {int}")
     public void iClickEditIncomeLink(int index) {
         houseHoldPage.iClickEditIncomeLink( index );
     }
-
-    @Then("I click on Member Row {int}")
-    public void iEditMember(int index) {houseHoldPage.iEditMember(index); }
 
     @And("I click on the table dropdown {int}")
     public void iClickTableItem(int index) {
@@ -47,18 +46,20 @@ public class HouseHoldPageSteps {
         houseHoldPage.clickMember(memName);
     }
 
-    // This one is used by others - retaining until we can get them moved off to the one above
-    @Then("I click on the Member Row {int}")
-    public void iEditPrimaryMember(int index) {houseHoldPage.iEditPrimaryMember(index);
-    }
-
     @Then("I click on Remove this Member")
-    public void iClickRemoveMember() {houseHoldPage.clickRemoveMember();
-    }
+    public void iClickRemoveMember() {houseHoldPage.clickRemoveMember(); }
 
     @Then("I click on {string} in the Remove Member frame")
-    public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option);
-    }
+    public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option); }
+
+    // this function works only with the initial member row - issue with the element and list -
+    @Then("I click on the Member Row {int}")
+    public void iEditPrimaryMember(int index) {houseHoldPage.iEditPrimaryMember(index);     }
+
+    // this function works only with the initial member row - issue with the element and list -
+    @Then("I click on Member Row {int}")
+    public void iEditMember(int index) {houseHoldPage.iEditMember(index); }
+
 }
 
 

@@ -26,6 +26,7 @@ public class HouseholdPage {
     // update locators to ids and rename methods
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
@@ -33,7 +34,7 @@ public class HouseholdPage {
     WebElement addAdditionalMember;
 
     @FindBy(id = "submitButton_Income")
-    WebElement editIncomeLink;
+    List<WebElement> editIncomeLink;
 
     @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
@@ -111,9 +112,9 @@ public class HouseholdPage {
     }
 
     public void iClickEditIncomeLink(int index) {
-        basicActions.waitForElementToBePresent(editIncomeLink, 15);
-        editIncomeLink.isDisplayed();
-        editIncomeLink.click();
+        basicActions.waitForElementListToBePresent(editIncomeLink, 15);
+        index -= 1;
+        editIncomeLink.get( index ).click();
     }
 
     public void clickMember(String memNameToClick) {
