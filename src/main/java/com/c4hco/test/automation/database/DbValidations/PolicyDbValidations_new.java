@@ -44,7 +44,7 @@ public class PolicyDbValidations_new {
         String subscriberdob = getSubscriberDOB();
         softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(subscriberdob), "Subscriber DOB does not match");
         //tobacco usage is empty in policy table query
-        softAssert.assertEquals(SharedData.getPrimaryMember().getTobacco_user(), "No", "Subscriber tobacco usage matches");
+        softAssert.assertEquals(SharedData.getPrimaryMember().getTobacco_user(), "No", "Subscriber tobacco usage matches"); // wip
 
         softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
@@ -54,18 +54,14 @@ public class PolicyDbValidations_new {
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "epfh CSR level does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
-        //  softAssert.assertEquals(policyTablesEntity.getResponsible_adult_ind(), "0", "Responsible adult indicator is not zero");
+        softAssert.assertEquals(policyTablesEntity.getResponsible_adult_ind(), "1", "Responsible adult indicator is not zero");
         softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
         softAssert.assertAll();
     }
 
     private String getSubscriberDOB() {
         String dobData = SharedData.getPrimaryMember().getDob();
-        String month = dobData.substring(0, 2);
-        String day = dobData.substring(2, 4);
-        String year = dobData.substring(4, 8);
-        String formattedDOB = year + "-" + month + "-" + day;
-        return formattedDOB;
+        return dobData.substring(4, 8) + "-" + dobData.substring(0, 2) + "-" + dobData.substring(2, 4);
     }
 
     private void validateTobaccoUse(PolicyTablesEntity policyTablesEntity) {
