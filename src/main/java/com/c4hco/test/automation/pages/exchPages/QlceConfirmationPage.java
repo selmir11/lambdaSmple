@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -178,15 +179,35 @@ public class QlceConfirmationPage {
         }
     }
 
-    public void selectBirthLCE() {
-        // WIP - Instead of last index - can we do it with namePrefix??
-        basicActions.waitForElementToBeClickable(birthQLCE, 10);
+    public void selectBirthLCEForLastMember() {
+        basicActions.waitForElementToBeClickable(birthQLCE, 20);
         birthQLCE.click();
-        int lastIndex = allmembersBirthcheckbox.size() - 1;
-        allmembersBirthcheckbox.get(lastIndex).click();
-        birthEventDate.get(lastIndex).click();
-        birthEventDate.get(lastIndex).sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()));
+        String newbornFullName =null;
+        for(int i=0; i<SharedData.getMembers().size();i++) {
+            if (SharedData.getMembers().get(i).getFullName().contains("Son")) {
+                newbornFullName = SharedData.getMembers().get(i).getFullName();
+                break;
+            }
+
+        }
+        WebElement checkbox = basicActions.getDriver().findElement(By.xpath(  "//span[contains(text(),'"+newbornFullName+"')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
+        checkbox.click();
+        for (WebElement eventDateElement : birthEventDate) {
+            if (eventDateElement.isDisplayed()) {
+                eventDateElement.sendKeys(getDobminusfivedays());
+                break;
+            }
+        }
     }
+
+    public String getDobminusfivedays() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dobCalculator = currentDate;
+        dobCalculator = currentDate.minusDays(5);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return dateFormat.format(dobCalculator);
+    }
+
 
     public void saveAndContinue() {
         saveAndContinue.click();
