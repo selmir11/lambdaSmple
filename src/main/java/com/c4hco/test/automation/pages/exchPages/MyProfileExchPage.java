@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import net.bytebuddy.asm.Advice;
@@ -466,7 +467,7 @@ public class MyProfileExchPage {
         InputEmail.sendKeys(newEmail);
     }
 
-    public void SelectTheSecondHouseholdMemberAsPrimaryContact() {
+    public void SelectTheSecondHouseholdMemberAsPrimaryContact2() {
         basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
         String firstName = SharedData.getMembers().get(0).getFirstName();
@@ -474,6 +475,24 @@ public class MyProfileExchPage {
         primaryContactDRP.sendKeys(Keys.ENTER);
         savePrimaryContact.click();
         basicActions.wait(60);
+    }
+
+    public void SelectTheSecondHouseholdMemberAsPrimaryContact(String memberName) {
+        basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
+        primaryContactDRP.click();
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRP.sendKeys(firstName);
+        primaryContactDRP.sendKeys(Keys.ENTER);
+        savePrimaryContact.click();
+        basicActions.wait(60);
+        String setMemberName = basicActions.getFullNameByPrefix(memberName);
+        MemberDetails subscriber = new MemberDetails();
+        subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
+        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
+        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void verifyPasswordPopupTextOnMyProfileExchPage(String language) {

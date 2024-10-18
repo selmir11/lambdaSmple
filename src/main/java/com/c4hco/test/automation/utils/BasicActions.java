@@ -592,6 +592,20 @@ public class BasicActions {
         SharedData.setCalculatedDob(nameAndDob);
     }
 
+    public static String getFullNameByPrefix(String prefix) {
+        // Filtering the list to find the value that starts with the prefix
+        String memberName=null;
+        for(MemberDetails memberDetail:SharedData.getMembers()){
+            String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
+            if (memberFullName.contains(prefix)){
+                System.out.println(memberDetail.getCompleteFullName());
+                memberName = memberFullName;
+                break;
+            }
+        }
+        return memberName;
+    }
+
 
 }
 

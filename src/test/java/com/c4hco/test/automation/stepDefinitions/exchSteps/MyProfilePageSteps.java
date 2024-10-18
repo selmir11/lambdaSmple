@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.pages.exchPages.MyProfileExchPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
@@ -104,9 +105,9 @@ public class MyProfilePageSteps {
         myProfileExchPage.UpdateContactEmailAddress();
     }
 
-    @Then("I select the second household member as primary contact")
-    public void iSelectTheSecondHouseholdMemberAsPrimaryContact() {
-        myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact();
+    @Then("I Change {string} as primary member from household member")
+    public void iSelectTheSecondHouseholdMemberAsPrimaryContact(MemberDetails memberName) {
+        myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact(memberName);
     }
 
     @And("I validate Email error message in {string} on my Profile Page")

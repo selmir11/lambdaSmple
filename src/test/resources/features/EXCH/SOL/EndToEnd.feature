@@ -890,7 +890,7 @@ Feature: End to End Tests
     Then I click on ClickHere link for "My Profile"
     And I wait for hold on content to disappear
     And I click change primary contact on my profile page
-    Then I select the second household member as primary contact
+    Then I Change "Spouse" as primary member from household member
     And I wait for hold on content to disappear
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
