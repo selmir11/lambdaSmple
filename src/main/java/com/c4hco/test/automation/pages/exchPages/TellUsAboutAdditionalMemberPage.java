@@ -76,9 +76,6 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "continueButton")
     WebElement btnsaveAndContinue;
 
-    @FindBy(xpath = "//span[contains(text(),'Primary')]/parent::label/parent::div //select")
-    WebElement selectRelationshipToPrimary;
-
     SoftAssert softAssert = new SoftAssert();
 
     public static String getUniqueString(int length) {
@@ -229,6 +226,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setLastName(lastName);
         member.setMiddleName(mdlName);
         member.setDob(dob);
+        member.setGender(gender);
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
         member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
@@ -254,18 +252,14 @@ public class TellUsAboutAdditionalMemberPage {
         return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
-    public void RelationshipToPrimary(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToPrimary, 15);
-        Select dropdown = new Select(selectRelationshipToPrimary);
-        dropdown.selectByVisibleText(Relation);
-    }
-
     public void selectRelationship(String Relationship){
         String[] parts = Relationship.split(":");
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
 
         try {
+           List<MemberDetails> members = SharedData.getMembers();
+
             basicActions.waitForElementToBePresent(selectRelationship, 40);
             WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+Name+"')]/ancestor-or-self::label/parent::div //select"));
             basicActions.waitForElementToBePresent(element,10);
@@ -277,6 +271,19 @@ public class TellUsAboutAdditionalMemberPage {
             dropdown.selectByVisibleText(Relation);
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
+
+            for(MemberDetails member: members){
+                if(member.getFirstName().contains(Relation)){
+                    if(Relation.equals("Spouse") && member.getGender().equals("Female")){
+                        Relation = "Wife";
+                    } else if(Relation.equals("Spouse")&&member.getGender().equals("Male")){
+                        Relation = "Husband";
+                    }
+                    member.setRelation_to_subscriber(Relation.toUpperCase());
+                    break;
+                }
+            }
+            SharedData.setMembers(members);
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + e.getMessage());
             // Handle the exception as needed

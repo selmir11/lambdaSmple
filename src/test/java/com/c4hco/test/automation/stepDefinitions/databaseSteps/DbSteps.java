@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
 import com.c4hco.test.automation.database.DbValidations.PolicyTableDBValidations;
 import com.c4hco.test.automation.database.DbValidations.PolicyTableValidations;
+import com.c4hco.test.automation.database.DbValidations.PolicyDbValidations_new;
 import io.cucumber.java.en.And;
 
 import java.util.List;
@@ -12,10 +13,16 @@ public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
 private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
+private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyDbValidations_new();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
+   }
+
+   @And("I validate medical entities from policy tables")
+   public void validateMedicalRecords(){
+      policyTableDBValidations_new.policyRecordValidations();
    }
 
    @And("I validate the member details from policy tables")
