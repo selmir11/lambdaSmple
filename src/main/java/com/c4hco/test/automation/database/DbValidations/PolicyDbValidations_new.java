@@ -24,7 +24,7 @@ public class PolicyDbValidations_new {
         setData();
     }
 
-    public void policyRecordValidations() {
+    public void medicalRecordsValidations() {
         for (PolicyTablesEntity policyTablesEntity : policyEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                 setPlanPremiumAmt(policyTablesEntity); // works for one group
