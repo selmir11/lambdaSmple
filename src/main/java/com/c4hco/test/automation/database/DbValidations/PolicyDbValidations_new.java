@@ -24,10 +24,10 @@ public class PolicyDbValidations_new {
         for (PolicyTablesEntity policyTablesEntity : policyEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                 setPlanPremiumAmt(policyTablesEntity, medicalPlanDbData); // works for one group
-                validateSubscriberMedDetails(policyTablesEntity);
+                validateSubscriberMedDetails(policyTablesEntity, medicalPlanDbData);
                 validateMedDenForSubscriber(policyTablesEntity, dbData);
             } else {
-                validateDependentMedDetails(policyTablesEntity);
+                validateDependentMedDetails(policyTablesEntity, medicalPlanDbData);
             }
             medValidationsCommonForAllMembers(policyTablesEntity, dbData, medicalPlanDbData);
         }
@@ -108,7 +108,7 @@ public class PolicyDbValidations_new {
         softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
     }
 
-    private void validateDependentMedDetails(PolicyTablesEntity policyTablesEntity){
+    private void validateDependentMedDetails(PolicyTablesEntity policyTablesEntity, PlanDbData medicalPlanDbData){
         List<MemberDetails> members = SharedData.getMembers();
         for(MemberDetails member: members){
             if(member.getFirstName().equals(policyTablesEntity.getFirst_name())){
@@ -119,16 +119,13 @@ public class PolicyDbValidations_new {
                 softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()),SharedData.getPrimaryMember().getFinancialHelp() ? "APTC" : "null", "Subscriber Medical Policy premium reduction type does not match");
                 softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()),  SharedData.getPrimaryMember().getFinancialHelp() ? "APTC" : "null", "premium reduction type in en policy financial ah table does not match");
                 softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), member.getTotalMedAmtAfterReduction(), "--Medical Policy total responsible amount does not match");
-                softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00", "Medical Policy total CSR amount does not match");
-
-
-
+                softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt() , medicalPlanDbData.getCsrAmt() , "Medical Policy total CSR amount does not match");
                 softAssert.assertAll();
             }
         }
     }
 
-    private void validateSubscriberMedDetails(PolicyTablesEntity policyTablesEntity) {
+    private void validateSubscriberMedDetails(PolicyTablesEntity policyTablesEntity, PlanDbData medicalPlanDbData) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getMedicalPremiumAmt(), "Medical Policy total plan premium amount does not match");
@@ -136,7 +133,7 @@ public class PolicyDbValidations_new {
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), subscriber.getFinancialHelp() ? "APTC" : "null", "Subscriber Medical Policy premium reduction type does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()),  subscriber.getFinancialHelp() ? "APTC" : "null", "premium reduction type in en policy financial ah table does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getTotalMedAmtAfterReduction(), "--Medical Policy total responsible amount does not match");
-        softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), "0.00", "Medical Policy total CSR amount does not match");
+        softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbData.getCsrAmt(), "Medical Policy total CSR amount does not match");
         softAssert.assertAll();
         System.out.println("***********************SUBSCRIBER MED DETAILS PASSED****************************");
     }
