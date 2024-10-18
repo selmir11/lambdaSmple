@@ -597,7 +597,7 @@ public class BasicActions {
       List<MemberDetails> allMem = getAllMem();
       for(MemberDetails mem: allMem){
           if(mem.getFirstName().contains(prefix)){
-              completeFullName =  mem.getCompleteFullName();
+              completeFullName =  mem.getFullName();
           }
         }
       return completeFullName;
