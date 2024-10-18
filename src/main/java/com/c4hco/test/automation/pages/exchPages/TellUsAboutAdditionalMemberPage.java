@@ -210,6 +210,7 @@ public class TellUsAboutAdditionalMemberPage {
         txtlastName.sendKeys(lastName);
         if(dob.equals("getFromSharedData")){
             dob = SharedData.getCalculatedDob().get(name);
+          dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
         }
         txtdateOfBirth.sendKeys(dob);
         txtSSN.sendKeys("653035280");

@@ -22,7 +22,7 @@ private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyD
 
    @And("I validate medical entities from policy tables")
    public void validateMedicalRecords(){
-      policyTableDBValidations_new.policyRecordValidations();
+      policyTableDBValidations_new.medicalRecordsValidations();
    }
 
    @And("I validate the member details from policy tables")
