@@ -85,5 +85,6 @@ public class SharedData {
         expectedCalculatedDates = null;
         exchPersonId=null;
         birthLceIndividual = null;
+        allMembers = null;
     }
 }
