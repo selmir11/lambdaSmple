@@ -592,6 +592,17 @@ public class BasicActions {
         SharedData.setCalculatedDob(nameAndDob);
     }
 
+    public String getFullNameWithPrefix(String prefix){
+        String completeFullName = null;
+      List<MemberDetails> allMem = getAllMem();
+      for(MemberDetails mem: allMem){
+          if(mem.getFirstName().contains(prefix)){
+              completeFullName =  mem.getCompleteFullName();
+          }
+        }
+      return completeFullName;
+    }
+
     public List<MemberDetails> getAllMem(){
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         List<MemberDetails> dependents = SharedData.getMembers();
