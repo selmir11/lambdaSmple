@@ -7,7 +7,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I validate I am on the "Login" page
 
   @SLER-100 @VerifyMedicalDentalPlanSummaryResults
-  Scenario: VerifyMedicalDentalPlanSummaryResults - used to be RT-1693
+  Scenario: SLER-100 - VerifyMedicalDentalPlanSummaryResults - used to be RT-1693
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -22,10 +22,14 @@ Feature: Medical and Dental Plan Summary Verification test
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
+
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    # remove below line with Open Enrollment
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -101,9 +105,11 @@ Feature: Medical and Dental Plan Summary Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011975" in county "DENVER" with zipcode "80205"

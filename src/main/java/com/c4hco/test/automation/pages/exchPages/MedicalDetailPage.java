@@ -369,7 +369,7 @@ public class MedicalDetailPage {
         softAssert.assertEquals(inNineHeader.getText(), "Dispositivos m\u00e9dicos");
         softAssert.assertEquals(inTenHeader.getText(), "Servicios de habilitaci\u00f3n y rehabilitaci\u00f3n");
         softAssert.assertEquals(inElevenHeader.getText(), "Atenci\u00f3n a domicilio y a pacientes con enfermedades terminales");
-        softAssert.assertEquals(inTwelveHeader.getText(), "Beneficios esenciales de salud adicionales");
+        softAssert.assertEquals(inTwelveHeader.getText(), "Beneficios esenciales");
         softAssert.assertAll();
     }
 
@@ -386,7 +386,7 @@ public class MedicalDetailPage {
         softAssert.assertEquals(outNineHeader.getText(), "Dispositivos m\u00e9dicos");
         softAssert.assertEquals(outTenHeader.getText(), "Servicios de habilitaci\u00f3n y rehabilitaci\u00f3n");
         softAssert.assertEquals(outElevenHeader.getText(), "Atenci\u00f3n a domicilio y a pacientes con enfermedades terminales");
-        softAssert.assertEquals(outTwelveHeader.getText(), "Beneficios esenciales de salud adicionales");
+        softAssert.assertEquals(outTwelveHeader.getText(), "Beneficios esenciales");
         softAssert.assertAll();
     }
 }

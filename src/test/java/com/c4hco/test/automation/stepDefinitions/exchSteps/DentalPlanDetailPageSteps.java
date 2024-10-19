@@ -14,20 +14,36 @@ public class DentalPlanDetailPageSteps {
         dentalPlanDetailPage.clickGoBackDetail();
     }
 
-    @And("I select the OutNetwork link on the Dental Detail page")
+    @And("I select the English OutNetwork link on the Dental Detail page")
     public void clickOutNetworkDentalDetail() {dentalPlanDetailPage.clickOutNetworkDental();
     }
 
-    @And("I select the InNetwork link on the Dental Detail page")
+    @And("I select the Spanish OutNetwork link on the Dental Detail page")
+    public void clickOutNetworkDentalSpanish() {dentalPlanDetailPage.clickOutNetworkDentalSpanish();
+    }
+
+    @And("I select the English InNetwork link on the Dental Detail page")
     public void clickInNetworkDentalDetail(){dentalPlanDetailPage.clickInNetworkDental();
     }
 
-    @And( "I validate the text headers and subheaders for the InNetwork Dental Detail page" )
-    public void validateInNetworkDentalDetail(){dentalPlanDetailPage.validateInNetworkDentalDetail();
+    @And("I select the Spanish InNetwork link on the Dental Detail page")
+    public void clickSpanishInNetworkDental(){dentalPlanDetailPage.clickSpanishInNetworkDental();
     }
 
-    @And( "I validate the text headers and subheaders for the OutNetwork Dental Detail page" )
-    public void validateOutNetworkDentalDetail(){dentalPlanDetailPage.validateOutNetworkDentalDetail();
+    @And( "I validate the English text headers and subheaders for the InNetwork Dental Detail page" )
+    public void validateInNetworkDentalDetailEnglish(){dentalPlanDetailPage.validateInNetworkDentalDetailEnglish();
+    }
+
+    @And( "I validate the Spanish text headers and subheaders for the InNetwork Dental Detail page" )
+    public void validateInNetworkDentalDetailSpanish(){dentalPlanDetailPage.validateInNetworkDentalDetailSpanish();
+    }
+
+    @And( "I validate the English text headers and subheaders for the OutNetwork Dental Detail page" )
+    public void validateOutNetworkDentalDetailEnglish(){dentalPlanDetailPage.validateOutNetworkDentalDetailEnglish();
+    }
+
+    @And( "I validate the Spanish text headers and subheaders for the OutNetwork Dental Detail page" )
+    public void validateOutNetworkDentalDetailSpanish(){dentalPlanDetailPage.validateOutNetworkDentalDetailSpanish();
     }
 
 }

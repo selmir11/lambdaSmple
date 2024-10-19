@@ -1,5 +1,6 @@
 @dentalPlanDetail @SIR
   # contains SLER-955,
+  # WIPS - SLER-995, SLER-996,
 Feature: Dental Plan Verification test
 
   Background:
@@ -22,7 +23,10 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "DENVER" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
@@ -79,7 +83,6 @@ Feature: Dental Plan Verification test
     And I click on Sign Out in the Header for "Elmo"
 
 
-
   @SLER-995-WIP @VerifyDentalDetailTextEnglish
   Scenario: SLER-995 - VerifyDentalDetailTextEnglish
     When I click create a new account on login page
@@ -96,7 +99,10 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
@@ -148,10 +154,10 @@ Feature: Dental Plan Verification test
     Then I click on the First Dental Detail button
 
     Then I validate I am on the "Dental Plan Detail" page
-    And I select the InNetwork link on the Dental Detail page
-    And I validate the text headers and subheaders for the InNetwork Dental Detail page
-    And I select the OutNetwork link on the Dental Detail page
-    And I validate the text headers and subheaders for the OutNetwork Dental Detail page
+    And I select the English InNetwork link on the Dental Detail page
+    And I validate the English text headers and subheaders for the InNetwork Dental Detail page
+    And I select the English OutNetwork link on the Dental Detail page
+    And I validate the English text headers and subheaders for the OutNetwork Dental Detail page
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -168,9 +174,12 @@ Feature: Dental Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -223,10 +232,11 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     Then I click on the First Dental Detail button
 
-    Then I validate I am on the "Dental Plan Details" page
-
-
-    # validate that pediatric plan appears due to minor age under 19 - we will verify from the plan title
+    Then I validate I am on the "Dental Plan Detail" page
+    And I select the Spanish InNetwork link on the Dental Detail page
+    And I validate the Spanish text headers and subheaders for the InNetwork Dental Detail page
+    And I select the Spanish OutNetwork link on the Dental Detail page
+    And I validate the Spanish text headers and subheaders for the OutNetwork Dental Detail page
 
     And I click on Sign Out in the Header for "Elmo"
 
