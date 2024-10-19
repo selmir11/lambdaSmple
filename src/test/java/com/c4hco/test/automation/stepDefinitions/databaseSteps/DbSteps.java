@@ -20,9 +20,9 @@ private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyD
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate medical entities from policy tables")
-   public void validateMedicalRecords(){
-      policyTableDBValidations_new.medicalRecordsValidations();
+   @And("I validate {string} entities from policy tables")
+   public void validateMedicalRecords(String recordType){
+      policyTableDBValidations_new.recordsValidations(recordType);
    }
 
    @And("I validate the member details from policy tables")

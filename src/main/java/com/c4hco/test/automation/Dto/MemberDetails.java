@@ -73,7 +73,6 @@ public class MemberDetails {
     String incorrect_middle_name ;
     String incorrect_last_name ;
     String employerName;
-    String dependentCountTag;
     String prior_subscriber_id;
     Boolean csrEligible=false;
 }
