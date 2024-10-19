@@ -211,10 +211,10 @@ public class PlanSummaryMedicalDentalPage {
             if(memberslist !=null){
             for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
                 memberslist.get(i).setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
-                memberslist.get(i).setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
+                memberslist.get(i).setDentalPremiumAmt(dentalPlanPremiumAmt.getText().replace("$", ""));
                 memberslist.get(i).setMedicalAptcAmt(medAPTCAmt);
                 memberslist.get(i).setTotalMedAmtAfterReduction(String.valueOf(bigDecimalmedPremiumMinusAPTC));
-                memberslist.get(i).setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText());
+                memberslist.get(i).setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText().replace("$", ""));
                 memberslist.get(i).setDentalAptcAmt("0.00");
             }
             }
