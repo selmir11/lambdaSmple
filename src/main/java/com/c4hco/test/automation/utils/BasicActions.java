@@ -592,6 +592,29 @@ public class BasicActions {
         SharedData.setCalculatedDob(nameAndDob);
     }
 
+    public String getFullNameWithPrefix(String memPrefix){
+      List<MemberDetails> allMem = getAllMem();
+      return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getCompleteFullNameWithPrefix(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public List<MemberDetails> getAllMem(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> allMembers = new ArrayList<>();
+        if(dependents!=null){
+            for(MemberDetails dependent: dependents){
+                allMembers.add(dependent);
+            }
+        }
+        allMembers.add(primaryMem);
+        return allMembers;
+    }
+
 
 }
 

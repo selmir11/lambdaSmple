@@ -16,9 +16,12 @@ public class SharedData {
     @Getter @Setter private static String appType;
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
+    @Getter @Setter private static List<MemberDetails> allMembers;
     @Getter @Setter private static String primaryMemberId;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities;
-    @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities;
+    @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities; // Should be removed
+    @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
+    @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
     @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
@@ -84,5 +87,8 @@ public class SharedData {
         expectedCalculatedDates = null;
         exchPersonId=null;
         birthLceIndividual = null;
+        allMembers = null;
+        medicalPolicyTablesEntities = null;
+        dentalPolicyTablesEntities = null;
     }
 }
