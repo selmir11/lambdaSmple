@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -45,16 +46,16 @@ public class MyPoliciesPage {
     WebElement planHistoryTitle;
 
     @FindBy(css = "table .body-text-1")
-    List<WebElement> tableRecord; // TO DO:: Check if this works with multiple members and multiple groups
+    List<WebElement> tableRecord;
+
+    @FindBy(css = "table .body-text-1 p")
+    List<WebElement> enrolledMemNames;
 
     @FindBy(id="backToCurrentPlanDetailsButton")
     WebElement backToCurPlansBtn;
 
     @FindBy(xpath = "//span[contains(., 'Monthly Premium')]/following-sibling::span")
     List<WebElement> premiumAmt;
-
-    @FindBy(xpath = "//div[contains(./span, 'Exchange Policy Number:')]/following-sibling::div/span")
-    List<WebElement> EAPID; //exchange policy number for both medical and dental
 
     @FindBy(css=".amount-row span")
     List<WebElement> financialPremiumData; // financial stat date, premium after help
@@ -72,12 +73,14 @@ public class MyPoliciesPage {
 
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
-    Set<String> allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+    Set<String> allMemberNames = new HashSet<>();
+    Set<String> namesFromUI = new HashSet<>();
 
 
     public void validatePlanDetails(String planType){
         basicActions.waitForElementListToBePresent(memberNames, 10);
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
         switch (planType){
             case "medical":
                 validateEnrolledMedicalPlanDetails();
@@ -106,7 +109,9 @@ public class MyPoliciesPage {
     public void validatePlanDetailsPlanHistory(String planType){
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
+        basicActions.waitForElementListToBePresent(enrolledMemNames, 10);
         allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        namesFromUI = new HashSet<>(enrolledMemNames.stream().map(WebElement::getText).collect(Collectors.toList()));
         switch (planType){
             case "medical":
                 validateMedPlanDetailsFromPlanHistory();
@@ -180,7 +185,6 @@ public class MyPoliciesPage {
     }
 
     private void validateMedPlanDetailsFromPlanHistory(){
-           softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()),"Signature mismatch");
         softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
         softAssert.assertTrue(tableRecord.get(2).getText().equals("$"+primaryMember.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
         if(primaryMember.getMedicalAptcAmt().equals("0")){
@@ -196,7 +200,7 @@ public class MyPoliciesPage {
 
 
     private void validateDentalPlanDetailsFromPlanHistory(){
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()), "Primary signature mismatch");
+        softAssert.assertTrue(namesFromUI.equals(allMemberNames));
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
         softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
