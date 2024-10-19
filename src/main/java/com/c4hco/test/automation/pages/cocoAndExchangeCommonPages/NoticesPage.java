@@ -472,35 +472,32 @@ public class NoticesPage {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         String formattedDate = currentDate.format(formatter);
         softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
-        System.out.println(formattedDate);
         softAssert.assertTrue(EmailDate.getText().contains(formattedDate), "Email generated date mismatch");
         softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
         softAssert.assertAll();
     }
+
     public void clickThePasswordResetLink() {
         basicActions.waitForElementToBePresent(resetPWLink,20);
         resetPWLink.click();
     }
 
-    public void validateDetailsFromEmailPolicy(String planType, String startDate, List<String> membersOnPolicy) {
-       String coverageStartDate = basicActions.getDateBasedOnRequirement(startDate);
-        LocalDate date = LocalDate.parse(coverageStartDate);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
-        String emailFormattedDate = date.format(formatter);
-        // Validating plan name and member names and coverage start date
-        String planName = "";
+    public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
+        // Validating plan name, member names and coverage start date from email notice
+
+       String coverageStartDate = SharedData.getExpectedCalculatedDates().getCoverageStartDate();
+        String formattedCoverageDt = basicActions.changeDateFormat(coverageStartDate, "yyyy-MM-dd", "MMMM-dd-yyyy");
+
         switch(planType){
             case "medical":
-                planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
-                validatePlanDetails("4", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(emailFormattedDate), "Medical coverage date mismatch");
+                validatePlanDetails("4", SharedData.getPrimaryMember().getMedicalPlan());
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(formattedCoverageDt), "Medical coverage date mismatch");
                 break;
             case "dental":
-                planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
-                validatePlanDetails("1", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(emailFormattedDate), "Dental coverage date mismatch");
+                validatePlanDetails("1", SharedData.getPrimaryMember().getDentalPlan());
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(formattedCoverageDt), "Dental coverage date mismatch");
                 break;
         }
         softAssert.assertAll();
@@ -524,14 +521,15 @@ public class NoticesPage {
 
     private void validatePlanDetails(String locatorByPlan, String planName){
         WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorByPlan+"] //*[contains(text(),'" + planName + "')]"));
-        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
+        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Plan Name is not found in the email Notice");
         softAssert.assertAll();
     }
 
     private String getMemFullName(String memPrefix){
+        // WIP - move to or use from sharedData
         String memFullName = null;
         if (memPrefix.equals("Primary")) {
-            memFullName = SharedData.getPrimaryMember().getFullName(); // WIP - Check if this is name is with full middle name or not
+            memFullName = SharedData.getPrimaryMember().getFullName(); //only first letter of middle name
         } else {
             List<MemberDetails> memberDetailsList = SharedData.getMembers();
             memFullName = memberDetailsList.stream().map(MemberDetails::getCompleteFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
