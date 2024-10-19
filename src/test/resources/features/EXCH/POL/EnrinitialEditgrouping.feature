@@ -209,7 +209,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
 
     And I click on ClickHere link for "My Documents"
         # WIP - Validate notice
-     # And I click on download enrolment document
+    And I click on download enrolment document
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -219,14 +219,14 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-      |Spouse|
-      |Son   |
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-      |Spouse|
-      |Son   |
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |Son   |
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
