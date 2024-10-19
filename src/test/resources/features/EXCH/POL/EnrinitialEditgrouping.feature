@@ -198,8 +198,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     # WIP - Validate notice
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-    #WIP - Policy validations
-    And I validate medical entities from policy tables
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
     # And I validate the member details from policy tables
 
 
