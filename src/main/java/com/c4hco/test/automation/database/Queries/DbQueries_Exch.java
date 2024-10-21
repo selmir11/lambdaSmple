@@ -77,13 +77,18 @@ public class DbQueries_Exch {
                 "and eph.current_ind = '1'\n"+
                 "and eph.coverage_type= '2'";
     }
-
-
-
     public String ob834Details(){
+        return "select * from  "+dbName+".ob834_detail\n "+
+                "where account_id = '"+acctId+"'\n "+
+                "and current_ind = '1'";
+    }
+
+
+    public String ob834DetailsRecords(String insurance_line_code){
      return "select * from  "+dbName+".ob834_detail\n "+
              "where account_id = '"+acctId+"'\n "+
-             "and current_ind = '1'";
+             "and current_ind = '1'\n"+
+             "and insurance_line_code = '"+insurance_line_code+"'";
     }
     public String ib999Details(String grpCtlNum){
         return "SELECT * FROM "+dbName+".ib999_detail \n" +

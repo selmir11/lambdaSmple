@@ -244,8 +244,8 @@ public class PolicyDbValidations_new {
 
     private void setDentalPlanPremiumAmt(PolicyTablesEntity dentalEntity) {
         // To compare with ob834 entities
-        medicalPlanDbData.setPremiumAmt(dentalEntity.getPlan_premium_amt());
-        SharedData.getMedicalPlanDbData().put("group1", dentalPlanDbData);
+        dentalPlanDbData.setPremiumAmt(dentalEntity.getPlan_premium_amt());
+        SharedData.getDentalPlanDbData().put("group1", dentalPlanDbData);
     }
 
 }
