@@ -186,7 +186,6 @@ public class AccountOverviewPage {
 
     public void setDates(List<Map<String, String>> expectedResult) {
         // These details are same for medical and dental. If dental plan has different values, then we should rely on a different step.
-        // WIP - Set for all members
         MemberDetails subscriber = SharedData.getPrimaryMember();
         ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
 

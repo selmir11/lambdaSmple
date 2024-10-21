@@ -592,18 +592,37 @@ public class BasicActions {
         SharedData.setCalculatedDob(nameAndDob);
     }
 
-    public static String getFullNameByPrefix(String prefix) {
-        // Filtering the list to find the value that starts with the prefix
-        String memberName=null;
-        for(MemberDetails memberDetail:SharedData.getMembers()){
-            String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
-            if (memberFullName.contains(prefix)){
-                System.out.println(memberDetail.getCompleteFullName());
-                memberName = memberFullName;
-                break;
+    public String getFullNameWithPrefix(String memPrefix){
+      List<MemberDetails> allMem = getAllMem();
+      return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getCompleteFullNameWithPrefix(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public List<MemberDetails> getAllMem(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> allMembers = new ArrayList<>();
+        if(dependents!=null){
+            for(MemberDetails dependent: dependents){
+                allMembers.add(dependent);
             }
         }
-        return memberName;
+        allMembers.add(primaryMem);
+        return allMembers;
+    }
+
+    public List<String> getAllMemNames(){
+        // returns first and last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+           firstAndLastName.add(mem.getSignature());
+        }
+        return firstAndLastName;
     }
 
 
