@@ -274,6 +274,7 @@ public class MyDocumentsPage {
         switch(docType){
             case "EN-002-04 English":
                 validateEnr00204Notice();
+                break;
             default: Assert.fail("Illegal argument Exception");
         }
     }
