@@ -18,7 +18,6 @@ import java.util.Map;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Ob834PreEdiDbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
