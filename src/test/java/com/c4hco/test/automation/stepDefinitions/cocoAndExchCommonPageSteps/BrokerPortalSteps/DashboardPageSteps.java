@@ -58,4 +58,24 @@ public class DashboardPageSteps {
         dashboardPage.clickViewYourClientsButton();
     }
 
+    @And("I search Client Information for my client")
+    public void clientInformationSearch(){
+        dashboardPage.clientInformationSearch();
+    }
+
+    @Then("I verify my client's name is displayed in Client Information")
+    public void verifyClientNameClientInformation(){
+        dashboardPage.clientNameClientInformation();
+    }
+
+    @Then("I verify the currently assigned broker is {string}")
+    public void verifyCurrentAssignedBroker(String assignedBroker){
+        dashboardPage.currentAssignedBroker(assignedBroker);
+    }
+
+    @Then("I change the assigned broker to {string}")
+    public void updateAssignedBroker(String assignedBroker){
+        dashboardPage.changeAssignedBroker(assignedBroker);
+    }
+
 }

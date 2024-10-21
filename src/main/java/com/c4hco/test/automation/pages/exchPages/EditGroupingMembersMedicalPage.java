@@ -181,10 +181,10 @@ public class EditGroupingMembersMedicalPage {
         switch (Grouping) {
             case "Create Group":
                 basicActions.waitForElementToBePresent(groupingMembers.get(2), 10);
-                basicActions.waitForElementToBePresent(dragAMemberHere.get(2), 10);
+                basicActions.waitForElementToBePresent(dragAMemberHere.get(1), 10);
                 builder.clickAndHold(groupingMembers.get(2))
-                        .moveToElement(dragAMemberHere.get(2))
-                        .release(dragAMemberHere.get(2)).build()
+                        .moveToElement(dragAMemberHere.get(1))
+                        .release(dragAMemberHere.get(1)).build()
                         .perform();
                 basicActions.wait(3000);
                 break;

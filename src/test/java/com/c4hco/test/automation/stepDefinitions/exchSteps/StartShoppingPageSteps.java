@@ -4,8 +4,6 @@ import com.c4hco.test.automation.pages.exchPages.StartShoppingPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.Then;
 
-import java.util.List;
-
 public class StartShoppingPageSteps {
     StartShoppingPage startShoppingPage = new StartShoppingPage(WebDriverManager.getDriver());
 
@@ -31,7 +29,7 @@ public class StartShoppingPageSteps {
 
     @Then("I click Yes to the Tobacco usage question on start shopping page")
     public void clickYestoTobaccoQuestion(String tobaccoUsageUserDetails){
-        startShoppingPage.tobaccoPage(tobaccoUsageUserDetails);
+        startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageUserDetails);
     }
 
 }

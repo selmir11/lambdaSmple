@@ -36,6 +36,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -58,13 +59,17 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "1000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+
     Then I click continue on the Employment Summary Page
+
+    Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
 
     Then I validate I am on the "Deductions" page

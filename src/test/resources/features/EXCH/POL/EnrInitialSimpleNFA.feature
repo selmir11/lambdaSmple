@@ -11,6 +11,9 @@ Feature: Simple NFA - Single Applicant
     And I enter general mandatory data for "exchange" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Given I set the dynamic policy, coverage and financial dates
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -53,7 +56,6 @@ Feature: Simple NFA - Single Applicant
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -74,10 +76,11 @@ Feature: Simple NFA - Single Applicant
 
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
     And I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And Validate medical plan details from my policies page with start date "First Of Next Month"
-    And Validate dental plan details from my policies page with start date "First Of Next Month"
+    And I validate medical details on my policies page
+    And I validate dental details on my policies page
     And I click View Plan History link from medical plan card
     And I validate medical plan details from plan history
     And I click on to Back to Current Plan Details button
@@ -109,30 +112,30 @@ Feature: Simple NFA - Single Applicant
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     # WIP - Validate financial sstart/end dates, coverage start/end dates and all of policy table validations
-    And I validate the member details from policy tables with coverage start date "First Of Next Month" and end date "Last Day Of Current Year"
+    And I validate the member details from policy tables
 
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
-#    And I validate member details from ob834_details table
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-#      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-#    And I download the files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 files should not be empty
-#    And I validate the ob834 files should have the values
-#      | LX | N1 75              | REF       | REFDEN    |
-#      | 1  | PRE AMT 1          | 291.02    | 21.00     |
-#      | 2  | APTC AMT           | 0.00      | 0.00      |
-#      | 3  | CSR AMT            | 0.00      | 0.00      |
-#      | 4  | RATING AREA        | 3         | 3         |
-#      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
-#      | 6  | TOT RES AMT        | 291.02    | 21.00     |
-#      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
-#      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
+    And I validate member details from ob834_details table
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the files from sftp server with location "/outboundedi/"
+    And I validate the ob834 files should not be empty
+    And I validate the ob834 files should have the values
+      | LX | N1 75              | REF       | REFDEN    |
+      | 1  | PRE AMT 1          | 291.02    | 21.00     |
+      | 2  | APTC AMT           | 0.00      | 0.00      |
+      | 3  | CSR AMT            | 0.00      | 0.00      |
+      | 4  | RATING AREA        | 3         | 3         |
+      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
+      | 6  | TOT RES AMT        | 291.02    | 21.00     |
+      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
+      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
 
       # RT-1276
-#    And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-#    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
-#    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
-#    And I set ib999 entites for both medical and dental files
-#    And I validate the contents of ib999 medical file
-#    And I validate the contents of ib999 dental file
+    And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I set ib999 entites for both medical and dental files
+    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
+    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
+    And I validate the contents of ib999 medical file
+    And I validate the contents of ib999 dental file

@@ -196,20 +196,20 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( metalTierDropdown,30 );
         metalTierDropdown.click();
 
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(hsaDropdown, 30);
         hsaDropdown.click();
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(hsaOption, 100);
         hsaOption.click();
 

@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 import com.c4hco.test.automation.database.DbValidations.DbValidations;
 import com.c4hco.test.automation.database.DbValidations.PolicyTableDBValidations;
 import com.c4hco.test.automation.database.DbValidations.PolicyTableValidations;
+import com.c4hco.test.automation.database.DbValidations.PolicyDbValidations_new;
 import io.cucumber.java.en.And;
 
 import java.util.List;
@@ -12,15 +13,21 @@ public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
 private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
+private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyDbValidations_new();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate the member details from policy tables with coverage start date {string} and end date {string}")
-   public void validateFromPolicyTables(String startDate, String endDate){
-      policyTableDBValidations.validateDataFromPolicyTables(startDate, endDate);
+   @And("I validate {string} entities from policy tables")
+   public void validateMedicalRecords(String recordType){
+      policyTableDBValidations_new.recordsValidations(recordType);
+   }
+
+   @And("I validate the member details from policy tables")
+   public void validateFromPolicyTables(){
+      policyTableDBValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")
@@ -93,6 +100,11 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyBrokerAuthorizationStatusDb();
    }
 
+   @And("I verify the broker authorization type in the database is {string}")
+   public void iVerifyBrokerAuthorizationTypeDb(String expectedBrokerType) {
+      dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);
+   }
+
 //   @And("I validate Individual member policy table queries")
 //   public void ivalidateIndPolicyTableQueries(){
 //
@@ -115,5 +127,12 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
 
    @And("I verify the HRA options selected in the DB after Application Results")
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
+
+
+   @And("I validate the medical plan market names in the DB")
+   public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
+   }
+
+
 
 }
