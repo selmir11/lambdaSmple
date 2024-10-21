@@ -20,9 +20,11 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
 
     Then I select "member" from the who are you question
   # location change
@@ -122,7 +124,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1006
+  @SLER-1006 @sirtest
   Scenario Outline: SLER-1006 - ELIG -APTCRules - SLER-1006 - linked to EXCH Plan Load SIR-2505 - verify initial APTC calculations
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -133,10 +135,12 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #need to remove LCE step during OE
-    And I report "MovedToColorado" and click continue
+      # Question not asked during Open Enrollment
+      #And I report "Birth" and click continue
 
     Then I select "member" from the who are you question
   # location change
@@ -245,8 +249,8 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
     Examples:
-      | City    | State | DOB      | County   | Zipcode | income   | applicationHistoryAPTC | applicationResultAPTC | planSummaryAPTC |
-      | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $848.24/mo            | $848.24/mo             | -$848.24        |
+      | City    | State | DOB      | County   | Zipcode | income   | applicationHistoryAPTC| applicationResultAPTC  | planSummaryAPTC |
+      | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $728.11/mo            | $728.11/mo             | -$728.11/mo     |
       | NewTown | CO    | 01011958 | LARIMER  | 80524   | $8710000 | $414.00/mo            | $414.00/mo             | -$414.00        |
       | NewTown | CO    | 01011958 | WELD     | 80634   | $6997000 | $504.52/mo            | $504.52/mo             | -$504.52        |
       | NewTown | CO    | 01011958 | PARK     | 80449   | $6000000 | $554.32/mo            | $554.32/mo             | -$554.32        |
@@ -267,10 +271,11 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #need to remove LCE step during OE
-    And I report "MovedToColorado" and click continue
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
 
     Then I select "member" from the who are you question
   # location change

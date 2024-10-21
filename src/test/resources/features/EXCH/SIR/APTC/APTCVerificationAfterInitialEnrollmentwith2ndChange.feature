@@ -18,9 +18,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    And I report "Marriage" and click continue
+     # Question not asked during Open Enrollment
+     #And I report "Marriage" and click continue
+
 
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
@@ -246,8 +250,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
     Then I answer all Id proofing questions and click continue
@@ -470,7 +479,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click all done from payment portal page
 
     @SLER-319
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-319 - formerly RT-2351 - 60 year old
+  Scenario: ELIG - APTCRules - SLER-319 - formerly RT-2351 - 60 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -480,8 +489,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011961" in county "Lake" with zipcode "80461"
     Then I answer all Id proofing questions and click continue
@@ -692,7 +706,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-320
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-320 - formerly RT-2352 - 62 year old
+  Scenario: ELIG - SLER-320 - formerly RT-2352 - 62 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -702,8 +716,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011959" in county "Garfield" with zipcode "81650"
     Then I answer all Id proofing questions and click continue
@@ -922,8 +941,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011972" in county "Routt" with zipcode "80487"
     Then I answer all Id proofing questions and click continue
@@ -943,9 +967,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-      Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity option
-      And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1134,7 +1158,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-323
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-323 - formerly RT-2354 - 40 year old //born in 1976
+  Scenario: ELIG - SLER-323 - formerly RT-2354 - 40 year old //born in 1976
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1144,8 +1168,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Marriage" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011976" in county "Park" with zipcode "80470"
     Then I answer all Id proofing questions and click continue
@@ -1355,7 +1384,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
 @SLER-375
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-375 - formerly RT-2355 - 40 year old
+  Scenario:  SLER-375 - ELIG - APTCRules -  formerly RT-2355 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1365,8 +1394,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011962" in county "Mesa" with zipcode "81504"
     Then I answer all Id proofing questions and click continue
@@ -1578,7 +1612,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-324
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-324 -formerly RT-2356 - 65 year old
+  Scenario: SLER-324 - ELIG - APTCRules  - formerly RT-2356 - 65 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1588,8 +1622,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
@@ -1798,7 +1837,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-691
-  Scenario: ELIG-APTC Eligible-APTCRules - SLER-691 - formerly RT-2340 - income change from 10K to 100K
+  Scenario: SLER-691 - ELIG - APTCRules - formerly RT-2340 - income change from 10K to 100K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1808,8 +1847,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2017,7 +2061,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-690
-  Scenario: ELIG-APTC Eligible-APTCRules - SLER-690 - formerly RT-2341- income change from 100K to 10K
+  Scenario: SLER-690 - APTCRules - formerly RT-2341- income change from 100K to 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2027,8 +2071,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2236,7 +2285,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-689
-  Scenario: ELIG-APTC Eligible-APTCRules - SLER-689 - formerly RT-2342- income change from 50K to 35K
+  Scenario: SLER-689 - APTCRules - formerly RT-2342- income change from 50K to 35K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2246,8 +2295,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2455,7 +2509,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-692
-  Scenario: ELIG-APTC Eligible-APTCRules - SLER-692 -formerly RT-2343- income change from 50K to 65K
+  Scenario: SLEr-692 - APTCRules - formerly RT-2343- income change from 50K to 65K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2465,8 +2519,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2597,8 +2656,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    #2nd round of Ethnicity is skipped as its prefilled from initial enrollment
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
