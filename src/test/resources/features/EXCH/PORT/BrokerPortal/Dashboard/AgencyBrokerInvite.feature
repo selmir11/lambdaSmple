@@ -1,4 +1,4 @@
-@BrokerPortalManageBrokers @port
+@BrokerPortalManageBrokers @port @Dashboard
 Feature: Verify agency owner broker invite in Broker Portal
 
   @SLER-696

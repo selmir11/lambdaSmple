@@ -1,4 +1,4 @@
-@BrokerPortalDashboard @port
+@BrokerPortalDashboard @port @Dashboard
 Feature: Verify broker access to the C4U link on the Dashboard page
 
   @SLER-544

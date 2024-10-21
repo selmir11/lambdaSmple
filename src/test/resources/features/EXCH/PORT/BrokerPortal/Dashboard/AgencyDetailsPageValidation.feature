@@ -1,4 +1,4 @@
-@BrokerPortalProfile @port
+@BrokerPortalProfile @port @Dashboard
 Feature: Verify the Agency Details page of Broker Portal
 
   @SLER-623
