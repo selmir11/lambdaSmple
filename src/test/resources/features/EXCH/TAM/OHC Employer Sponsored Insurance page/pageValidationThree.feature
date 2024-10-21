@@ -907,6 +907,75 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that my Tax Household's 1 APTC value is "$836.01/mo"
 
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-1165 @PageValidationOhiEsiElmo
+  Scenario: SLER-1165 I want errors cleared on the family ESI page so that I don't continue to see errors when I answer questions
+    #step1 - verify errors are cleared after job is selected
+    And I verify the "No Job Section" ESI page data in "English"
+    Then I click continue on the ESI page
+    And I verify "Which Job" error in "English" on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    And I verify "Which Job" error does not show for ESI page
+    And I verify "Min Value" error does not show for ESI page
+    And I verify "Amount" error does not show for ESI page
+    And I verify "Currently Enrolled" error does not show for ESI page
+
+    #step2 - verify errors are cleared after Currently Enrolled question is answered
+    Then I click continue on the ESI page
+    And I verify "Currently Enrolled" error in "English" on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    And I verify "Currently Enrolled" error does not show for ESI page
+    And I verify "Insurance Ending" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Insurance Ending" error in "English" on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    #And I verify "Insurance Ending" error does not show for ESI page
+
+    #step3 - verify errors are cleared after Will Insurance End question is answered
+    #Then I click continue on the ESI page
+    And I verify "Insurance Ending" error in "English" on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    And I verify "Insurance Ending" error does not show for ESI page
+    And I verify "Input Date" error does not show for ESI page
+    And I verify "Voluntary End" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Input Date" error in "English" on the ESI page
+    And I verify "Voluntary End" error in "English" on the ESI page
+    Then I select the Will Insurance End "No" button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    #And I verify "Insurance Ending" error does not show for ESI page
+    #And I verify "Input Date" error does not show for ESI page
+
+    #step4 - verify errors are cleared after family question is answered
+    And I verify "Family Offered" error in "English" on the ESI page
+    Then I click "Yes" for offer family plans question
+    And I verify "Family Offered" error does not show for ESI page
+    And I verify "Family Amount" error does not show for ESI page
+    And I verify "Family Status" error does not show for ESI page
+    Then I click continue on the ESI page
+    And I verify "Family Amount" error in "English" on the ESI page
+    And I verify "Family Status" error in "English" on the ESI page
+    Then I click "No" for offer family plans question
+    Then I click "Yes" for offer family plans question
+    #And I verify "Family Offered" error does not show for ESI page
+    #And I verify "Family Amount" error does not show for ESI page
+
+    #step5 - verify you are able to submit a valid form
+    Then I select "I don't know" for meet the Minimum Value Standard on the ESI page
+    Then I enter "200.00" for employee amount question on the ESI page
+    Then I enter the end date as "Current Month" on the ESI page
+    Then I select the Are you voluntarily ending "No" button on the ESI page
+    Then I enter "300.00" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:Enrolled    |
+    And I verify "Family Status" error in "English" on the ESI page
+    Then I click enrollment status for the members
+      |      Kid:Enrolled    |
+    Then I click continue on the ESI page
+    And I validate I am on the "Elmo Other Health Coverage" page
+
+    And I click on Sign Out in the Header for "Elmo"
     
 
 
