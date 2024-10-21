@@ -34,9 +34,8 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
     And I validate I am on the "Broker Portal Your Clients" page
     And I click on "colorado Connect" tab
+    And I search for clients
     And I click on first client search result
-#    And I search for clients
-#    And I click on first client search result
     And I click "manage" the client
 
     Then I validate I am on the "CoCo Welcome" page
