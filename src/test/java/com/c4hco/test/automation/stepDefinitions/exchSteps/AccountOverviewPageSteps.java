@@ -50,9 +50,9 @@ public class AccountOverviewPageSteps {
        gmailNotices.verifyNotices();
     }
 
-    @Then("Validate first member name displayed in Account Overview Page")
-    public void ivalidateFirstMemberName(){
-        accountOverviewPage.validateFirstMemberName();
+    @Then("Validate {string} displayed as Primary person in Account Overview Page")
+    public void ivalidateFirstMemberName(String memberName){
+        accountOverviewPage.validateFirstMemberName(memberName );
     }
 }
 

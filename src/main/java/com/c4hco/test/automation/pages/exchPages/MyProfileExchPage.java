@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.google.common.eventbus.Subscribe;
 import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.concurrent.Flow;
 
 public class MyProfileExchPage {
 
@@ -480,19 +482,12 @@ public class MyProfileExchPage {
     public void SelectTheSecondHouseholdMemberAsPrimaryContact(String memberName) {
         basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
-        String firstName = SharedData.getMembers().get(0).getFirstName();
+        replacePrimaryMember(memberName);
+        String firstName = SharedData.getPrimaryMember().getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
         savePrimaryContact.click();
         basicActions.wait(60);
-        String setMemberName = basicActions.getFullNameByPrefix(memberName);
-        MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
-        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
-        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
-        subscriber.setIsSubscriber("Y");
-        SharedData.setPrimaryMember(subscriber);
     }
 
     public void verifyPasswordPopupTextOnMyProfileExchPage(String language) {
@@ -964,5 +959,42 @@ public class MyProfileExchPage {
         softAssert.assertEquals(termsOfUse.getText(), "T\u00E9rminos de uso");
         savePrimaryContact.click();
         softAssert.assertAll();
+    }
+
+    public void replacePrimaryMember(String memberName){
+        for(MemberDetails memberDetail:SharedData.getMembers()){
+            String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
+            System.out.println(memberFullName);
+            if (memberFullName.contains(memberName)){
+                List<MemberDetails> memberList = SharedData.getMembers();
+                MemberDetails member = new MemberDetails();
+                member.setFirstName(SharedData.getPrimaryMember().getFirstName());
+                member.setLastName(SharedData.getPrimaryMember().getLastName());
+                member.setMiddleName(SharedData.getPrimaryMember().getMiddleName());
+                member.setDob(SharedData.getPrimaryMember().getDob());
+                member.setGender(SharedData.getPrimaryMember().getGender());
+                member.setSignature(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+                member.setFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getMiddleName().charAt(0)+". "+SharedData.getPrimaryMember().getLastName());
+                member.setCompleteFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getMiddleName()+" "+SharedData.getPrimaryMember().getLastName());
+                member.setDependentCountTag("member"+(SharedData.getMembers().size()+1));
+                memberList.add(member);
+
+                SharedData.setMembers(memberList);
+
+                MemberDetails subscriber = SharedData.getPrimaryMember();
+
+                subscriber.setFirstName(memberDetail.getFirstName());
+                subscriber.setMiddleName(memberDetail.getMiddleName());
+                subscriber.setLastName(memberDetail.getLastName());
+                subscriber.setEmailId(memberDetail.getEmailId());
+                subscriber.setFullName(memberDetail.getFirstName()+" "+memberDetail.getMiddleName().charAt(0)+" "+memberDetail.getLastName());
+                subscriber.setCompleteFullName(memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName());
+                subscriber.setSignature(memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName());
+                subscriber.setMemberId(memberDetail.getMemberId());
+                subscriber.setIsSubscriber("Y");
+                SharedData.setPrimaryMember(subscriber);
+                break;
+            }
+        }
     }
 }

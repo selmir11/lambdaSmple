@@ -894,7 +894,7 @@ Feature: End to End Tests
     And I wait for hold on content to disappear
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
-    And Validate first member name displayed in Account Overview Page
+    And Validate "Spouse" displayed as Primary person in Account Overview Page
     And I click on Sign Out in the Header for "Elmo"
 
 

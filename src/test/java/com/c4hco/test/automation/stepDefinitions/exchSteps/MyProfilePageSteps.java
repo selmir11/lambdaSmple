@@ -106,7 +106,7 @@ public class MyProfilePageSteps {
     }
 
     @Then("I Change {string} as primary member from household member")
-    public void iSelectTheSecondHouseholdMemberAsPrimaryContact(MemberDetails memberName) {
+    public void iSelectTheSecondHouseholdMemberAsPrimaryContact(String memberName) {
         myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact(memberName);
     }
 
