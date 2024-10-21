@@ -208,11 +208,13 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "My Account Overview" page
 
     And I click on ClickHere link for "My Documents"
-        # WIP - Validate notice
-  #  And I click on download enrolment document - Try to use the existing step if possible.
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
+
+    # WIP - Validate notice
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
 
     #Email Notice Validation
 #    Then I open outlook Tab
