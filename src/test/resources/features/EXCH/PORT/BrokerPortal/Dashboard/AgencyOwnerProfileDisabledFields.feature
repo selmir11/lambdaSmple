@@ -1,4 +1,4 @@
-@BrokerPortalProfile @port
+@BrokerPortalProfile @port @Dashboard
 Feature: Verify completed agency owner profile disabled fields in Broker Portal
 
   @SLER-704
