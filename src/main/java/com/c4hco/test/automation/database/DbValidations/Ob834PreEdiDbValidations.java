@@ -61,12 +61,11 @@ public class Ob834PreEdiDbValidations {
     }
 
     private void validateMedDenForSubscriber(Ob834DetailsEntity ob834Entity){
-     //   MemberDetails subscriber = SharedData.getPrimaryMember();
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(SharedData.getExchPersonId().get(subscriber.getFirstName()), ob834Entity.getMember_id(), "Member Id did not match");
-        softAssert.assertEquals(SharedData.getScenarioDetails().getEnrollees(), ob834Entity.getTotal_enrollees(), "total enrollees does not match");
+        softAssert.assertTrue(SharedData.getScenarioDetails().getEnrollees().equals(ob834Entity.getTotal_enrollees()), "total enrollees does not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
-        softAssert.assertEquals(SharedData.getScenarioDetails().getDependents(), ob834Entity.getTotal_dependents(), "total dependents did not match");
+        softAssert.assertTrue(SharedData.getScenarioDetails().getDependents().equals(ob834Entity.getTotal_dependents()), "total dependents did not match");
         softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
@@ -77,7 +76,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         softAssert.assertEquals(ob834Entity.getCsr_level(), dbData.getCsrLevel(), "CSR level does not match");
         softAssert.assertEquals(subscriber.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match");
-
         validateSponsorId(ob834Entity);
         validateConstantFields(ob834Entity);
         validatePersonalDetails(ob834Entity);
@@ -254,17 +252,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getHd_maint_type_code(), expectedValues.get("hd_maint_type_code"), "hd_maint_type_code mismatched");
         softAssert.assertEquals(ob834Entity.getMaintenance_reas_code(), expectedValues.get("maintenance_reas_code"), "maintenance_reas_code mismatched");
         softAssert.assertEquals(ob834Entity.getAddl_maint_reason(), expectedValues.get("addl_maint_reason"), "addl_maint_reason mismatched");
-        validateSepReason(ob834Entity, expectedValues);
-    }
-
-    private void validateSepReason(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {
-        // If expectedSepReason is null and actualSepReason is blank
-        if (expectedValues.get("sep_reason") == null) {
-            softAssert.assertTrue(ob834Entity.getSep_reason().isEmpty(), "Expected sep_reason to be blank, but was: " + ob834Entity.getSep_reason());
-        } else { //else, checking if they are equal
-            softAssert.assertEquals(ob834Entity.getSep_reason(), expectedValues.get("sep_reason"), "Sep_reason mismatch");
-        }
-
+        softAssert.assertEquals(expectedValues.get("sep_reason") == null ? ob834Entity.getSep_reason().isEmpty() : ob834Entity.getSep_reason(), expectedValues.get("sep_reason"), "Sep_reason mismatch or expected blank but was: " + ob834Entity.getSep_reason());
     }
 
     private void ob834DenRecordsValidations(){
