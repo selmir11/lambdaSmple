@@ -45,6 +45,7 @@ public class Ob834PreEdiDbValidations {
             default:
                 Assert.fail("Record Type entered is not valid");
         }
+        softAssert.assertAll();
     }
 
     private void ob834MedRecordsValidations(List<Map<String, String>> expectedValues){
@@ -63,9 +64,11 @@ public class Ob834PreEdiDbValidations {
     private void validateMedDenForSubscriber(Ob834DetailsEntity ob834Entity){
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(SharedData.getExchPersonId().get(subscriber.getFirstName()), ob834Entity.getMember_id(), "Member Id did not match");
-        softAssert.assertTrue(SharedData.getScenarioDetails().getEnrollees().equals(ob834Entity.getTotal_enrollees()), "total enrollees does not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
-        softAssert.assertTrue(SharedData.getScenarioDetails().getDependents().equals(ob834Entity.getTotal_dependents()), "total dependents did not match");
+        softAssert.assertEquals(Integer.parseInt(SharedData.getScenarioDetails().getEnrollees().trim()),
+                Integer.parseInt(ob834Entity.getTotal_enrollees().trim()),
+                "Total enrollees does not match");
+        softAssert.assertEquals(SharedData.getScenarioDetails().getDependents().toString().trim(), ob834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
         softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match");
@@ -84,7 +87,7 @@ public class Ob834PreEdiDbValidations {
         validateIncorrectEntities(ob834Entity);
         validateMailingAddress(ob834Entity);
         // validateRelCode(subscriber, ob834Entity);   //WIP
-        validateMemberCountDetails(ob834Entity); // WIP
+      //  validateMemberCountDetails(ob834Entity); // WIP-Remove
         validateResidentialAddress(ob834Entity);
     }
 
@@ -101,22 +104,22 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(dbData.getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
     }
 
-    private void validateMemberCountDetails(Ob834DetailsEntity ob834Entity) {
-        // WIP - refactor
-        int totalGroups = SharedData.getScenarioDetails().getTotalGroups();
-        List<MemberDetails> memberList = SharedData.getMembers();
-        if (totalGroups == 1 && memberList != null) {
-            softAssert.assertEquals(memberList.size() + 1, ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
-            softAssert.assertEquals(memberList.size(), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
-            softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
-        } else if (totalGroups == 1 && memberList == null) {
-            softAssert.assertEquals("1", ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
-            softAssert.assertEquals("0", ob834Entity.getTotal_dependents(), "Total dependents does not match.");
-            softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
-        } else {
-            //WIP
-        }
-    }
+//    private void validateMemberCountDetails(Ob834DetailsEntity ob834Entity) {
+//        // WIP - refactor
+//        int totalGroups = SharedData.getScenarioDetails().getTotalGroups();
+//        List<MemberDetails> memberList = SharedData.getMembers();
+//        if (totalGroups == 1 && memberList != null) {
+//            softAssert.assertEquals(memberList.size() + 1, ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
+//            softAssert.assertEquals(memberList.size(), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+//            softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
+//        } else if (totalGroups == 1 && memberList == null) {
+//            softAssert.assertEquals("1", ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
+//            softAssert.assertEquals("0", ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+//            softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
+//        } else {
+//            //WIP
+//        }
+//    }
 
     private void validateMailingAddress(Ob834DetailsEntity ob834Entity) {
         softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");

@@ -213,8 +213,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "dental" entities from policy tables
 
     # WIP - Validate notice
-#    And I click on download "EN-002-04" document
-#    Then I validate "EN-002-04 English" notice content
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
 
     #Email Notice Validation
 #    Then I open outlook Tab
