@@ -96,13 +96,13 @@ Feature: Regression Tests that require Seed 1
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I validate medical details on my policies page
-    And I validate dental details on my policies page
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+    And I validate "medical" plan details from plan history
     And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
     And I validate the member details from policy tables
     And I validate member details from ob834_details table

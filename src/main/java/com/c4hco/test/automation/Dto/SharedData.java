@@ -19,6 +19,8 @@ public class SharedData {
     @Getter @Setter private static List<MemberDetails> allMembers;
     @Getter @Setter private static String primaryMemberId;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities;
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsMedEntities;
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsDenEntities;
     @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities; // Should be removed
     @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
     @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
@@ -90,5 +92,7 @@ public class SharedData {
         allMembers = null;
         medicalPolicyTablesEntities = null;
         dentalPolicyTablesEntities = null;
+        ob834DetailsMedEntities = null;
+        ob834DetailsDenEntities = null;
     }
 }
