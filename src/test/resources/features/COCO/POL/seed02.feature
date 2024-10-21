@@ -69,7 +69,8 @@ Feature: Seed02 - Coco
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
-    And I click Continue on the Tobacco Usage Page CoCo
+  Then I validate I am on the "Start Shopping" page
+  Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
