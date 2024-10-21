@@ -24,7 +24,7 @@ public class PolicyDbValidations_new {
     PlanDbData dentalPlanDbData = new PlanDbData();
 
     public PolicyDbValidations_new() {
-      //  setData();
+        setData();
     }
 
     public void recordsValidations(String recordType) {

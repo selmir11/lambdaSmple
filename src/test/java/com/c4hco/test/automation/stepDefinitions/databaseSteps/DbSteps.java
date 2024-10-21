@@ -10,27 +10,15 @@ public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
 private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
-private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyDbValidations_new();
-private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate {string} entities from policy tables")
-   public void validateMedicalRecords(String recordType){
-      policyTableDBValidations_new.recordsValidations(recordType);
-   }
-
    @And("I validate the member details from policy tables")
    public void validateFromPolicyTables(){
       policyTableDBValidations.validateDataFromPolicyTables();
-   }
-
-   @And("I validate {string} entities from pre edi db tables")
-   public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
-      ob834PreEdiDbValidations.recordsValidations(recordType, expectedValues);
    }
 
    @And("I validate member details from ob834_details table")
