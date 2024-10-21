@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -177,15 +178,16 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
-
-    public void selectBirthLCE() {
-        // WIP - Instead of last index - can we do it with namePrefix??
+    public void selectBirthLCE(){
         basicActions.waitForElementToBeClickable(birthQLCE, 10);
+        String newbornFullName =basicActions.getFullNameWithPrefix(SharedData.getBirthLceIndividual());
         birthQLCE.click();
-        int lastIndex = allmembersBirthcheckbox.size() - 1;
-        allmembersBirthcheckbox.get(lastIndex).click();
-        birthEventDate.get(lastIndex).click();
-        birthEventDate.get(lastIndex).sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()));
+        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'"+newbornFullName+"')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
+        birthLceMemCheckbox.click();
+        birthEventDate.stream()
+                .filter(WebElement::isDisplayed)
+                .findFirst()
+                .ifPresent(eventDateElement -> eventDateElement.sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual())));
     }
 
     public void saveAndContinue() {
