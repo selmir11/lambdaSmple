@@ -116,23 +116,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(dbData.getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
     }
 
-    private void validateMemberCountDetails(Ob834DetailsEntity ob834Entity) {
-        // WIP - refactor
-        int totalGroups = SharedData.getScenarioDetails().getTotalGroups();
-        List<MemberDetails> memberList = SharedData.getMembers();
-        if (totalGroups == 1 && memberList != null) {
-            softAssert.assertEquals(String.valueOf(memberList.size() + 1), ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
-            softAssert.assertEquals(String.valueOf(memberList.size()), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
-            softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
-        } else if (totalGroups == 1 && memberList == null) {
-            softAssert.assertEquals("1", ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
-            softAssert.assertEquals("0", ob834Entity.getTotal_dependents(), "Total dependents does not match.");
-            softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
-        } else {
-            //WIP
-        }
-    }
-
     private void validateMailingAddress(Ob834DetailsEntity ob834Entity) {
         softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
         if (subscriber.getMailingAddress().getAddressLine2() != null) {
