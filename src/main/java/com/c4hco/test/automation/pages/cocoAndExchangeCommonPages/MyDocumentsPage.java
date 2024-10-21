@@ -385,11 +385,9 @@ public class MyDocumentsPage {
             String pdfText = extractTextFromPDF(Path.of(pathAndName));
 
             // WIP - append text for coverage start date, welcome text, Dear tag, refactor household members validation
-            String policyId = "Your Colorado Connect\u00AE Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db()+".";
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getCoverageStartDate(), "yyyy-MM-dd", "MMMM d, yyyy")), "coverage start date failed");
             softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "current date is not matching");
-            softAssert.assertTrue(pdfText.contains(policyId), "policy id is not matching");
             validateMemNames(pdfText);
             validatePlanDetails(pdfText);
             softAssert.assertAll();
@@ -400,15 +398,19 @@ public class MyDocumentsPage {
 
     private void validatePlanDetails(String pdfText){
         PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1");
+        String medicalPolicyId = "Your Connect for Health Colorado\u00AE Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db()+".";
 
       softAssert.assertTrue(pdfText.contains(medicalPlanDbData.getPlanName()), "medical plan name doesn't match");
       softAssert.assertTrue(pdfText.contains("Monthly Premium: $"+SharedData.getPrimaryMember().getTotalMedAmtAfterReduction()), "medical premium amt doesn't match");
+      softAssert.assertTrue(pdfText.contains(medicalPolicyId), "policy id is not matching");
 
-      if(SharedData.getAppType().equals("exchange")){
-          PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
+        if(SharedData.getAppType().equals("exchange")){
+            String dentalPolicyId = "Your Connect for Health Colorado\u00AE Policy ID is " + SharedData.getPrimaryMember().getDentalEapid_db()+".";
+            PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
           softAssert.assertTrue(pdfText.contains(dentalPlanDbData.getPlanName()), "dental plan name doesn't match");
           softAssert.assertTrue(pdfText.contains("Monthly Premium: $"+SharedData.getPrimaryMember().getTotalDentalPremAfterReduction()), "dental premium amt doesn't match");
-      }
+          softAssert.assertTrue(pdfText.contains(dentalPolicyId), "policy id is not matching");
+        }
 
     }
     private void validateMemNames(String pdfText){
