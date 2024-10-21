@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Ob834PreEdiDbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
@@ -106,8 +107,8 @@ public class Ob834PreEdiDbValidations {
         int totalGroups = SharedData.getScenarioDetails().getTotalGroups();
         List<MemberDetails> memberList = SharedData.getMembers();
         if (totalGroups == 1 && memberList != null) {
-            softAssert.assertEquals(memberList.size() + 1, ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
-            softAssert.assertEquals(memberList.size(), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
+            softAssert.assertEquals(String.valueOf(memberList.size() + 1), ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
+            softAssert.assertEquals(String.valueOf(memberList.size()), ob834Entity.getTotal_dependents(), "Total dependents does not match.");
             softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "Total subscribers does not match.");
         } else if (totalGroups == 1 && memberList == null) {
             softAssert.assertEquals("1", ob834Entity.getTotal_enrollees(), "Total Enrollees does not match.");
@@ -245,6 +246,7 @@ public class Ob834PreEdiDbValidations {
             softAssert.assertEquals(medicalDbData.getCsrAmt() != null ? medicalDbData.getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
             softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+
     }
 
     private void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {
