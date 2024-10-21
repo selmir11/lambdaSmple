@@ -31,7 +31,7 @@ public class Ob834PreEdiDbValidations {
     DbData dbData = SharedData.getDbData();
 
     public Ob834PreEdiDbValidations() {
-        setData();
+      //  setData();
     }
 
     public void recordsValidations(String recordType, List<Map<String, String>> expectedValues) {
