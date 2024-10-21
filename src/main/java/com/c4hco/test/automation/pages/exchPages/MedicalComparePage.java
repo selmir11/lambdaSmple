@@ -23,16 +23,16 @@ public class MedicalComparePage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "SHP-MedicalComparePlans-GoBacktoPlans")
+    @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     WebElement goBackCompare;
 
     @FindBy(xpath = "//a[@id = 'SHP-MedicalComparePlans-DownloadSummaryOfThisPage']")
     WebElement pdfCompareSummary;
 
-    @FindBy(id = "SHP-MedicalComparePlans-InNetworkTier1")
+    @FindBy(id = "MedicalPlanCompare_InNetworkTab")
     WebElement inNetwork1;
 
-    @FindBy(id = "SHP-MedicalComparePlans-OutOfNetwork")
+    @FindBy(id = "MedicalPlanCompare_OutOfNetworkTab")
     WebElement outNetwork;
 
     @FindBy(xpath = "//div[@class = 'disclaimer body-text-2']")
@@ -173,7 +173,9 @@ public class MedicalComparePage {
     }
 
     public void clickGoBackCompare(){
-        basicActions.waitForElementToBeClickable( goBackCompare,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent( goBackCompare,15 );
+        basicActions.scrollToElement( goBackCompare );
         goBackCompare.click();
     }
 
