@@ -219,7 +219,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "Please select option" error "does not" exist in "Spanish"
 
   @SLCR-352
-  Scenario: LCE page saves "None of these" after saving previous entry
+  Scenario: SLCR-352 LCE page saves "None of these" after saving previous entry
     And I select "Divorce" life change event
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page

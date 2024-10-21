@@ -4,7 +4,7 @@ Feature: Page Text-Welcome Page
   Background: I go the login portal
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
-    And I enter valid credential STG username "waterstaging111@test.com" PW "ALaska12!" QA username "qatestusercoco@test.com" PW "ALaska12!" for individual user without sign in any env
+    And I enter valid credential STG username "MGC4Test+apindayejkkzapeliz@gmail.com" PW "ALaska12!" QA username "qatestusercoco@test.com" PW "ALaska12!" for individual user without sign in any env
     When I click on sign in on login page
     Then I validate I am on the "CAC Screener" page
 
