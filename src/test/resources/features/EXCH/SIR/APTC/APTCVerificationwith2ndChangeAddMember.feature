@@ -1084,9 +1084,12 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
@@ -1368,8 +1371,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      Then I validate I am on the "Report a life change" page
-      And I report "MovedToColorado" and click continue
+      #Then I validate I am on the "Report a life change" page
+      #nd I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
