@@ -2,7 +2,7 @@
   # SLER-778 formerly RT-1618
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-  @SLER-778
+  @SLER-778 @sirtest
   Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
 
     Given I open the login page on the "admin" portal
@@ -245,7 +245,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
-    Then I click all done from payment portal page
+    Then I click all done from payment portal page OBO
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
