@@ -117,6 +117,7 @@ public class OtherHealthCoveragePage_Elmo {
                 break;
             case "None of these":
                 basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 10);
+                basicActions.scrollToElement(insuranceOptionsCheckBox.get(11));
                 insuranceOptionsCheckBox.get(11).click();
                 break;
             default:

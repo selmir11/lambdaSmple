@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -197,7 +196,8 @@ public class PlanSummaryMedicalDentalPage {
                     memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
                 }
             }
-        }else {//FA
+        }else {
+            //FA
             basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
             String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
@@ -211,16 +211,17 @@ public class PlanSummaryMedicalDentalPage {
             if(memberslist !=null){
             for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
                 memberslist.get(i).setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
-                memberslist.get(i).setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
+                memberslist.get(i).setDentalPremiumAmt(dentalPlanPremiumAmt.getText().replace("$", ""));
                 memberslist.get(i).setMedicalAptcAmt(medAPTCAmt);
                 memberslist.get(i).setTotalMedAmtAfterReduction(String.valueOf(bigDecimalmedPremiumMinusAPTC));
-                memberslist.get(i).setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText());
+                memberslist.get(i).setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText().replace("$", ""));
                 memberslist.get(i).setDentalAptcAmt("0.00");
             }
             }
         }
         subscriber.setDentalAptcAmt("$0");
-        subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText());
+        subscriber.setDentalPremiumAmt(dentalPlanPremiumAmt.getText().replace("$", ""));
+        subscriber.setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText().replace("$", ""));
         SharedData.setPrimaryMember(subscriber);
     }
 
