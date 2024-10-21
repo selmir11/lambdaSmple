@@ -1,4 +1,4 @@
-@BrokerPortalProfile @port
+@BrokerPortalProfile @port @Dashboard
 Feature: Verify the Your Information page of Broker Portal
 
   @SLER-593

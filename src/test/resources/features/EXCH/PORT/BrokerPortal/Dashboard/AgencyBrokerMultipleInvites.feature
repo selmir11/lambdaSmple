@@ -1,4 +1,4 @@
-@BrokerPortalManageBrokers @port
+@BrokerPortalManageBrokers @port @Dashboard
 Feature: Verify associated broker can't accept more than one invite from an agency in Broker Portal
 
   @SLER-697
