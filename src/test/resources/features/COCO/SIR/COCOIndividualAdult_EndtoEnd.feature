@@ -853,7 +853,9 @@ Feature: Individual adult - End to End Test
 
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
-    # By default 3 groups are displaying
+
+    # By default 3 groups are displaying, if not we need to uncomment the Steps
+
     #Then I click on edit enrollment groups link in coco page
     #Then I create new group in edit medical grouping coco page and drag members to the new group
     #  | Primary:Group1    |
@@ -1340,7 +1342,9 @@ Feature: Individual adult - End to End Test
 
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
-    # By default we ave 3 Groups
+
+    # By default 3 groups are displaying, if not we need to uncomment the Steps
+
     #Then I click on edit enrollment groups link in coco page
     #Then I create new group in edit medical grouping coco page and drag members to the new group
       #| Primary:Group1    |
