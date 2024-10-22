@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -67,7 +69,10 @@ public class PlanSummaryMedicalDentalCoCoPage {
 
     @FindBy(xpath ="((//div[@class='plan-card plan-summary-card']/div)[4] //span)[1]")
     WebElement txtAmountyouPay;
-
+    @FindBy(id = "PlanSummary-TotalAmountYouPay")
+    WebElement totalAmountYouPay;
+    @FindBy(id = "PlanSummary-TotalPremiumBeforeSavings")
+    WebElement premiumBeforeSaving;
     @FindBy(xpath = "//*[contains(text(),\"Medical Plans\")]")
     WebElement planSummaryMedicalplanheading;
 
@@ -177,5 +182,25 @@ public class PlanSummaryMedicalDentalCoCoPage {
         softAssert.assertEquals(planSummaryMedicalSaveExit.getText(),"Guardar y Salir");
         softAssert.assertEquals(continueBtnOnPlanSummary.getText(),"Continuar");
         softAssert.assertAll();
+    }
+    public void setPlansPremiumAmtCoco() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToDisappear(spinner, 25);
+        basicActions.waitForElementToBePresent(txtPremiumsBeforeSaving, 40);
+        String  ses = SharedData.getSes();
+        String openEnrolment = SharedData.getIsOpenEnrollment();
+        String amountYouPay = totalAmountYouPay.getText().replace("$", "");
+        if(ses.equals("yes") && openEnrolment.equals("yes")){
+            //assuming we have budget for allocation - WIP
+            softAssert.assertEquals(totalAmountYouPay.getText(), medicalPremiumAfterAPTCAmt.getText(), "Amount doesn't match");
+            softAssert.assertEquals(amountYouPay, "0.00", "Amount is not equal to zero");
+        }else {
+            subscriber.setAptcAmt("0");
+            softAssert.assertEquals(totalAmountYouPay.getText(), premiumBeforeSaving.getText(), "Amount doesn't match");
+        }
+        subscriber.setMedicalPremiumAmt(amountYouPay);
+        softAssert.assertAll();
+        SharedData.setPrimaryMember(subscriber);
     }
 }
