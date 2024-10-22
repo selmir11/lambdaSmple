@@ -124,7 +124,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1006 @sirtest
+  @SLER-1006
   Scenario Outline: SLER-1006 - ELIG -APTCRules - SLER-1006 - linked to EXCH Plan Load SIR-2505 - verify initial APTC calculations
     When I click create a new account on login page
     Then I click create my account from pre-screen page
