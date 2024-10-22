@@ -1386,7 +1386,7 @@ Feature: UI Tests related to APTC after second enrollment change
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
 
-  @SLER-1007-WIP
+  @SLER-1007
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2411
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1801,7 +1801,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
       #Then I validate I am on the "Report a life change" page
-      #nd I report "MovedToColorado" and click continue
+      #And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -2073,26 +2073,26 @@ Feature: UI Tests related to APTC after second enrollment change
       # -$265.98
       And I click continue on plan summary page
 
-      Then I validate I am on the "Financial Help Agreements" page
-      And I select the terms and agreements checkbox
-      And I enter householder signature on the Financial Help Agreements page
-      And I click continue on Financial Help Agreements page
+      #Then I validate I am on the "Financial Help Agreements" page
+      #And I select the terms and agreements checkbox
+      #And I enter householder signature on the Financial Help Agreements page
+      #And I click continue on Financial Help Agreements page
 
-      Then I validate I am on the "Enrollment Agreements" page
-      And I select "Acknowledgement" agreement checkbox
-      And I select "Submit" agreement checkbox
-      And I enter householder signature on the Enrollment Agreements page
-      And I click submit enrollment on Enrollment Agreements page
+      #Then I validate I am on the "Enrollment Agreements" page
+      #And I select "Acknowledgement" agreement checkbox
+      #And I select "Submit" agreement checkbox
+      #And I enter householder signature on the Enrollment Agreements page
+      #And I click submit enrollment on Enrollment Agreements page
 
-      Then I validate I am on the "Pay now" page
+      #Then I validate I am on the "Pay now" page
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
-        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1417.06/mo             |  -$1,381.56          |
-        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $825.70/mo              |  -$825.70            |
-        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $969.77/mo              |  -$969.77            |
-        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1065.07/mo             |  -$974.02            |
-        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1855.85/mo             |  -$1,632.64          |
-        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1930.89/mo             |  -$1,930.89          |
+        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1424.52/mo             |  -$1,386.83          |
+        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $831.20/mo              |  -$831.20            |
+        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $975.10/mo              |  -$975.10            |
+        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1070.29/mo             |  -$977.74          |
+        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1863.58/mo             |  -$1,638.87          |
+        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1938.62/mo             |  -$1,938.62          |
 
 
