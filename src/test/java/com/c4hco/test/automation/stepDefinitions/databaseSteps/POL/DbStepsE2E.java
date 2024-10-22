@@ -21,4 +21,15 @@ public class DbStepsE2E {
     public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidations.recordsValidations(recordType, expectedValues);
     }
+
+    //   @And("I validate Individual member policy table queries")
+//   public void ivalidateIndPolicyTableQueries(){
+//
+//      policyTableValidations.validateEnPolicyTableDetails();
+//      policyTableValidations.validateEnMemberCoverageFinancialAh();
+//      policyTableValidations.validateEnPolicyMemberCoverageAh();
+//      policyTableValidations.validateEnPolicyFinancialAh();
+//      policyTableValidations.validateEnPolicyMemberAh();
+//
+//   }
 }

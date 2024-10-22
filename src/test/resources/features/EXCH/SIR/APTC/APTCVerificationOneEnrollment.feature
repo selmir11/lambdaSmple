@@ -23,10 +23,10 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "Birth" and click continue
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
 
-    Then I select "member" from the who are you question
+    Then I validate I am on the "Who Are You" page
   # location change
     And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
     Then I answer all Id proofing questions and click continue
@@ -34,6 +34,7 @@ Feature: UI Tests related to APTC after initial enrollment
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -124,13 +125,14 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1006 @sirtest
+  @SLER-1006
   Scenario Outline: SLER-1006 - ELIG -APTCRules - SLER-1006 - linked to EXCH Plan Load SIR-2505 - verify initial APTC calculations
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -142,6 +144,7 @@ Feature: UI Tests related to APTC after initial enrollment
       # Question not asked during Open Enrollment
       #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
   # location change
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
@@ -250,8 +253,8 @@ Feature: UI Tests related to APTC after initial enrollment
     And I click on Sign Out in the Header for "Portal"
     Examples:
       | City    | State | DOB      | County   | Zipcode | income   | applicationHistoryAPTC| applicationResultAPTC  | planSummaryAPTC |
-      | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $728.11/mo            | $728.11/mo             | -$728.11/mo     |
-      | NewTown | CO    | 01011958 | LARIMER  | 80524   | $8710000 | $414.00/mo            | $414.00/mo             | -$414.00        |
+      | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $728.11/mo            | $728.11/mo             | -$728.11        |
+      | NewTown | CO    | 01011958 | LARIMER  | 80524   | $8710000 | $440.49/mo            | $440.49/mo             | -$440.49        |
       | NewTown | CO    | 01011958 | WELD     | 80634   | $6997000 | $504.52/mo            | $504.52/mo             | -$504.52        |
       | NewTown | CO    | 01011958 | PARK     | 80449   | $6000000 | $554.32/mo            | $554.32/mo             | -$554.32        |
       | NewTown | CO    | 01011958 | PROWERS  | 81052   | $5000000 | $1154.84/mo           | $1154.84/mo            | -$1,028.25      |
