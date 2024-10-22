@@ -6,6 +6,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
@@ -29,6 +30,8 @@ public class Ob834PreEdiDbValidations {
     PlanDbData dentalDbData = SharedData.getDentalPlanDbData().get("group1");
     MemberDetails subscriber = new MemberDetails();
     DbData dbData = SharedData.getDbData();
+    List<PolicyTablesEntity> medicalPolicyEnitities = SharedData.getMedicalPolicyTablesEntities();
+    List<PolicyTablesEntity> dentalPolicyEnitities = SharedData.getDentalPolicyTablesEntities();
 
     public Ob834PreEdiDbValidations() {
         setData();
@@ -40,7 +43,7 @@ public class Ob834PreEdiDbValidations {
                 ob834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
-              //  ob834DenRecordsValidations(expectedValues);
+                ob834DenRecordsValidations(expectedValues);
                 break;
             default:
                 Assert.fail("Record Type entered is not valid");
@@ -48,6 +51,20 @@ public class Ob834PreEdiDbValidations {
 
         softAssert.assertAll();
     }
+
+    private void ob834DenRecordsValidations(List<Map<String, String>> expectedValues){
+        for (Ob834DetailsEntity ob834DetailsEntity : ob834DetailsMedEntities) {
+            if (ob834DetailsEntity.getSubscriber_indicator().equals("Y")) {
+                subscriberOnlyMedValidations(ob834DetailsEntity);
+                validateMedForSubscriberAndMem(ob834DetailsEntity, subscriber);
+            } else {
+                validateDependentMedDetails(ob834DetailsEntity);
+            }
+            medValidationsCommonForAllMembers(ob834DetailsEntity, expectedValues);
+        }
+        softAssert.assertAll();
+    }
+
 
     private void ob834MedRecordsValidations(List<Map<String, String>> expectedValues){
         for (Ob834DetailsEntity ob834DetailsEntity : ob834DetailsMedEntities) {
@@ -67,10 +84,8 @@ public class Ob834PreEdiDbValidations {
         for(MemberDetails member: members){
             if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
                 System.out.println("VALIDATING FOR THE MEMBER - MEMBER's FIRST NAME::"+ob834Entity.getMember_first_name());
-               // softAssert.assertEquals(medicalDbData.getPremiumAmt(), ob834Entity.getPremium_amount(), "Member Medical Plan premium amount does not match for subscriber.");
                 validateMemberOnlyMedDenFields(ob834Entity);
                 validateMedForSubscriberAndMem(ob834Entity, member);
-
             }
         }
     }
@@ -251,26 +266,41 @@ public class Ob834PreEdiDbValidations {
         validateConstantFields(ob834Entity);
         validateBrokerDetails(ob834Entity);
         validateResponsiblePersonDetails(ob834Entity);
+        validateIndivPremAmt(ob834Entity);
     }
 
     private void subscriberOnlyMedValidations(Ob834DetailsEntity ob834Entity) {
         // Subscriber Only Fields
         double amt = Double.parseDouble(SharedData.getPrimaryMember().getMedicalAptcAmt());
         String ExpectedPMMedicalAptcAmt = String.format("%.2f", amt);
-            softAssert.assertEquals(ExpectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
-            softAssert.assertEquals(medicalDbData.getCsrAmt() != null ? medicalDbData.getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
-            softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
-            softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        softAssert.assertEquals(ExpectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");softAssert.assertEquals(medicalDbData.getCsrAmt() != null ? medicalDbData.getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
-        softAssert.assertEquals(medicalDbData.getPremiumAmt(), ob834Entity.getPremium_amount(), "Medical Plan premium amount does not match for subscriber.");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
         validateMailingAddress(ob834Entity, subscriber);
-        softAssert.assertAll();
+    }
 
+//    private void subscriberOnlyDenValidations(Ob834DetailsEntity ob834Entity) {
+//        // Subscriber Only Fields
+//        softAssert.assertEquals(null, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");softAssert.assertEquals(medicalDbData.getCsrAmt() != null ? medicalDbData.getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+//        softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
+//        softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
+//        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
+//        softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
+//        validateSponsorId(ob834Entity);
+//        validateResidentialAddress(ob834Entity, subscriber);
+//        validateMailingAddress(ob834Entity, subscriber);
+//    }
+
+    private void validateIndivPremAmt(Ob834DetailsEntity ob834Entity){
+         for(PolicyTablesEntity medEntity: medicalPolicyEnitities){
+             if(medEntity.getFirst_name().equals(ob834Entity.getMember_first_name())){
+                 softAssert.assertEquals(medEntity.getPlan_premium_amt(), ob834Entity.getPremium_amount(), "Medical Plan premium amount does not match for subscriber.");
+             }
+         }
     }
 
     private void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {

@@ -43,7 +43,6 @@ public class PolicyDbValidations_new {
     private void dentalRecordsValidations() {
         for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
             if (dentalEntity.getSubscriber_ind().equals("1")) {
-                setDentalPlanPremiumAmt(dentalEntity); // works for one group
                 validateSubscriberDenDetails(dentalEntity);
                 validateMedDenForSubscriber(dentalEntity);
             } else {
@@ -56,7 +55,6 @@ public class PolicyDbValidations_new {
     private void medicalRecordsValidations() {
         for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
-                setMedicalPlanPremiumAmt(policyTablesEntity); // works for one group
                 validateSubscriberMedDetails(policyTablesEntity);
                 validateMedDenForSubscriber(policyTablesEntity);
             } else {
@@ -234,18 +232,6 @@ public class PolicyDbValidations_new {
         softAssert.assertTrue(submittedBy.equals(primaryMemberEmail) || submittedBy.equals("SYSTEM"),
                 "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
         );
-    }
-
-    private void setMedicalPlanPremiumAmt(PolicyTablesEntity policyTablesEntity) {
-        // To compare with ob834 entities
-        medicalPlanDbData.setPremiumAmt(policyTablesEntity.getPlan_premium_amt());
-        SharedData.getMedicalPlanDbData().put("group1", medicalPlanDbData);
-    }
-
-    private void setDentalPlanPremiumAmt(PolicyTablesEntity dentalEntity) {
-        // To compare with ob834 entities
-        dentalPlanDbData.setPremiumAmt(dentalEntity.getPlan_premium_amt());
-        SharedData.getDentalPlanDbData().put("group1", dentalPlanDbData);
     }
 
 }
