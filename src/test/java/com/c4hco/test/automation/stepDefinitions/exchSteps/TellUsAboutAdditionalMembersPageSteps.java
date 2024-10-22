@@ -38,8 +38,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @And("I click continue on Tell us about additional members page")
     public void clickSaveAndContinue(){tellUsAboutAdditionalMemberPage.clickSaveAndContinue();}
 
-    @And("I select no SSN")
-    public void selectNoSSn(){tellUsAboutAdditionalMemberPage.selectNoSSn();}
+    @And("I select no SSN for {string}")
+    public void selectNoSSn(String memberPrefix){tellUsAboutAdditionalMemberPage.selectNoSSn(memberPrefix);}
 
     @Then("I enter member details with age as {int}")
     public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}

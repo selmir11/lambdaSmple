@@ -74,7 +74,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
-    And I select no SSN
+    And I select no SSN for "Son"
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address

@@ -243,16 +243,14 @@ Feature: UI Page Validation - Grouping Members (Medical)
 
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012002", "Male" and applying "Yes"
-      | Primary:Son    |
-      | Spouse:Son     |
-      | SonTwo:Brother |
+      | Primary:Son  |
+      | Spouse:Son   |
+      | SonOne:Brother |
     Then I validate I am on the "Add Member" page
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
-      | addressLine1           | addressLine2 | city    | state | zipcode | county  |
-      | 15143 Laplace Point Ct | Unit 23      | Boulder | CO    | 80305   | BOULDER |
+    Then I enter a new member address with city "Boulder" state "CO" zip "80305" and county "BOULDER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
