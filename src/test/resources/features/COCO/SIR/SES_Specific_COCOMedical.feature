@@ -416,25 +416,25 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -612,25 +612,22 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -778,19 +775,18 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
