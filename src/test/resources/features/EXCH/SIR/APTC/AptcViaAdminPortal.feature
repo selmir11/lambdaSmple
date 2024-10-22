@@ -245,7 +245,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
-    Then I click all done from payment portal page
+    Then I click all done from payment portal page OBO
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
