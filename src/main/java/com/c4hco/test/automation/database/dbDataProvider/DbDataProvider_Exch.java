@@ -42,6 +42,10 @@ public class DbDataProvider_Exch {
     public List<Ob834DetailsEntity> getOb83Db4Details(){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
     }
+
+    public List<Ob834DetailsEntity> getOb834Details(String insurance_line_code){
+        return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834DetailsRecords(insurance_line_code));
+    }
     public List<Ib999Entity> getIb999Details(String ak1grp_ctrl_number){
         return ib999Handler.getIbDetailsAfterCompleted(exchDbQueries.ib999Details(ak1grp_ctrl_number));
     }

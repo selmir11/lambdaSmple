@@ -188,7 +188,7 @@ public class BasicSteps {
                 pageUrl = "WelcomePortal/declarationsAndSignature";
                 break;
             case "Medical Plan Compare":
-                pageUrl = "PlanSelectionPortal/compare";
+                pageUrl = "PlanSelectionPortal/medicalCompare";
                 break;
             case "Tell us about life changes":
                 pageUrl = "nes/qlceConfirmation";

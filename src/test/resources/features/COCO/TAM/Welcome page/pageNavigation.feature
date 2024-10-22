@@ -8,6 +8,7 @@ Feature: Navigation-Welcome Page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I validate I am on the "CAC Screener" page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
 
@@ -74,6 +75,7 @@ Feature: Navigation-Welcome Page
 
   @SLCR-40 @PageNavigationWelcomePage @TAMSmoke
   Scenario: SLCR-40 I check navigation from CoCo Welcome page - Spanish
+    Then I wait for 200 milliseconds
     And I change the language from header to "Spanish"
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
@@ -167,6 +169,7 @@ Feature: Navigation-Welcome Page
   @SLCR-148 @PageNavigationWelcomePage
   Scenario: SLCR-148 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Welcome portal
     #Step1
+    Then I wait for 200 milliseconds
     And I change the C4 url to "Welcome portal Error CoCo"
     Then I validate I am on the "Error" page
     And I click Back to Welcome page Button on error CoCo page

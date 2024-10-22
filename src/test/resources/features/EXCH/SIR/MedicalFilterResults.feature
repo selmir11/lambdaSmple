@@ -83,7 +83,7 @@ Feature: Medical Plan Verification test
       | Rocky Mountain Health Plans / UHC   | RMHP Colorado Doctors Plan Colorado Option Bronze                 |
       | Select Health                       | Select Health Value Bronze $6900 Medical Deductible               |
 
-  @SLER-25 @SelectVerifyMetalFilterResults @sirtest
+  @SLER-25 @SelectVerifyMetalFilterResults
   Scenario Outline: SLER-25 - SelectVerifyMetalFilterResults
     When I click create a new account on login page
     Then I click create my account from pre-screen page

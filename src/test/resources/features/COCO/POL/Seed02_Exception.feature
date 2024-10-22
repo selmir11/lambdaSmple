@@ -13,7 +13,7 @@ Feature: Seed02 with exception - Coco
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    Then I Search authorized Broker "ENR"
+    Then I Search authorized Broker "Mister Broker"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -68,7 +68,8 @@ Feature: Seed02 with exception - Coco
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
-    And I click Continue on the Tobacco Usage Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
