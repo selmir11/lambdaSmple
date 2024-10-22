@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-325
-  Scenario: ELIG- APTCRules - SLER-325- formerly RT-2397 - born 1982 and 2011
+  Scenario: SLER-325- ELIG- APTCRules - formerly RT-2397 - born 1982 and 2011
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -20,9 +20,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
 
+     # Question not asked during Open Enrollment
+     #And I report "Marriage" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
@@ -44,6 +48,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -160,7 +165,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    #And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -250,11 +256,14 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I apply for the current year
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
+
+      Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Not available during Open Enrollment
-      And I report "MovedToColorado" and click continue
+     # Question not asked during Open Enrollment
+     #And I report "MovedToColorado" and click continue
 
+      Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
       And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
       Then I answer all Id proofing questions and click continue
@@ -275,6 +284,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
+      Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
@@ -342,7 +352,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Medical Plan Results" page
       And I select the Insurance Company dropdown
-      And I select "Cigna" to filter for desired plan provider
+      And I select "Cigna Healthcare" to filter for desired plan provider
       And I select the first medical plan
       And I click continue on medical plan results page
 
@@ -394,7 +404,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      #And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -420,6 +431,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
+      Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity option
       And I click save and continue on the Race and Ethnicity page
 
@@ -496,7 +508,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Medical Plan Results" page
       And I select the Insurance Company dropdown
-      And I select "Cigna" to filter for desired plan provider
+      And I select "Cigna Healthcare" to filter for desired plan provider
       And I select the first medical plan
       And I click continue on medical plan results page
 
@@ -529,11 +541,14 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
     #Not available during Open Enrollment
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -554,6 +569,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -618,7 +634,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Cigna" to filter for desired plan provider
+    And I select "Cigna Healthcare" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -675,7 +691,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    Then I validate I am on the "Ethnicity and Race" page
+    #And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -701,6 +718,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -778,7 +796,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Cigna" to filter for desired plan provider
+    And I select "Cigna Healthcare" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -813,10 +831,14 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I apply for the current year
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
+
+      Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      And I report "MovedToColorado" and click continue
+      #Not available during Open Enrollment
+      #And I report "MovedToColorado" and click continue
 
+      Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
       And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
       Then I answer all Id proofing questions and click continue
@@ -837,6 +859,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
+      Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
@@ -900,7 +923,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Medical Plan Results" page
       And I select the Insurance Company dropdown
-      And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+      And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
       And I select the first medical plan
       And I click continue on medical plan results page
 
@@ -950,7 +973,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity option
+      Then I validate I am on the "Ethnicity and Race" page
+      #And I select "Prefer not to answer" for race and ethnicity option
       And I click save and continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -977,6 +1001,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
+      Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
@@ -1058,7 +1083,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Medical Plan Results" page
       And I select the Insurance Company dropdown
-      And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+      And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
       And I select the first medical plan
       And I click continue on medical plan results page
 
@@ -1090,10 +1115,14 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
     Then I answer all Id proofing questions and click continue
@@ -1114,6 +1143,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1179,7 +1209,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1229,7 +1259,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    #And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1256,6 +1287,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1333,7 +1365,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1354,21 +1386,26 @@ Feature: UI Tests related to APTC after second enrollment change
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
 
-  @SLER-1007-WIP @sirtest
+  @SLER-1007-WIP
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2411
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+
     Then I validate I am on the "Account Overview" page
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    And I report "MovedToColorado" and click continue
+     # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
     Then I answer all Id proofing questions and click continue
@@ -1389,6 +1426,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1457,7 +1495,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1507,7 +1545,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    #And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1534,6 +1573,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
@@ -1563,6 +1603,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1593,6 +1634,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
 
@@ -1716,7 +1758,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plan" to filter for desired plan provider
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -1758,8 +1800,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      Then I validate I am on the "Report a life change" page
-      And I report "MovedToColorado" and click continue
+      #Then I validate I am on the "Report a life change" page
+      #nd I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -1782,6 +1824,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
+      Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
@@ -1891,7 +1934,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      And I select "Prefer not to answer" for race and ethnicity
+      Then I validate I am on the "Ethnicity and Race" page
+      #And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1919,6 +1963,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
+      Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity
       And I click continue on the Race and Ethnicity page
 

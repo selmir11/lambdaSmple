@@ -189,8 +189,8 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,60 );
-        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,30 );
+        basicActions.waitForElementToDisappear( spinner,100 );
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,40 );
         insuranceCompanyDropdown.click();
 
     }

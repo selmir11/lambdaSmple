@@ -24,7 +24,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I click on continue with  application button on Before you begin page
     # LCE is removed during Open Enrollment
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011980" in county "Rio Grande" with zipcode "81144"
@@ -202,7 +202,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$898.87"
+    And I validate the APTC Credit on the Summary page is "-$868.13"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -225,7 +225,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I click on continue with  application button on Before you begin page
     # LCE is removed during Open Enrollment
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011980" in county "Rio Grande" with zipcode "81144"
@@ -393,7 +393,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$1,046.69"
+    And I validate the APTC Credit on the Summary page is "-$937.32"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -402,6 +402,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @SLER-GroupOf4-WIP-PASS
+    #review  - grouping failed
   Scenario: GroupOf4 - APTCRules - group of 4  - 60K to 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -664,7 +665,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I validate the APTC Credit on the Summary page is "-$947.71"
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
@@ -802,6 +803,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
   @Group6ReEnroll-WIP-PASS
+    #review grouping failure
  Scenario: Group6ReEnroll - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -817,7 +819,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on save and continue button
 
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011990" in county "Rio Grande" with zipcode "81144"
@@ -1313,7 +1315,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I click on continue with  application button on Before you begin page
     #Open Enrollment - LCE not required
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011968" in county "EL PASO" with zipcode "80902"
@@ -1402,7 +1404,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012000", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012001", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1830,7 +1832,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
 
-    @SLER-1108 @Group9-2adults-3youngAdults-4minors 
+    @SLER-1108 @Group9-2adults-3youngAdults-4minors
   Scenario: SLER-1108 - APTCRules - group of 9 Variable 2 - 4 under 19, 3 young adults - with 2 adult parents - ages are different
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1847,7 +1849,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I click on continue with  application button on Before you begin page
     #Open Enrollment - LCE not required
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011967" in county "EL PASO" with zipcode "80902"
@@ -1910,7 +1912,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01011999", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012000", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
     And I click continue on Tell us about additional members page

@@ -69,7 +69,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "PlanResults-MetalTier_0-input")
+    @FindBy(id = "PlanResults-MetalTier_1-input")
     WebElement silverEnhancedBox;
 
     @FindBy(xpath = "//*[@class = 'col-12 col-xl-5 responsive-text-align-left ng-star-inserted']")

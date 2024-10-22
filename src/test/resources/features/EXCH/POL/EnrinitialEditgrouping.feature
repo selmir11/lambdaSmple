@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
- @SLER-41
+ @SLER-41-WIP
  Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -208,17 +208,19 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "My Account Overview" page
 
     And I click on ClickHere link for "My Documents"
-        # WIP - Validate notice
-  #  And I click on download enrolment document - Try to use the existing step if possible.
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
+    # WIP - Validate notice
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
     #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
 #    And I validate additional details for "medical" plan on email notice
 #      |Primary|
 #      |Spouse|
@@ -227,20 +229,19 @@ Feature: Enroll a in a plan (FAMILY OF 3)
 #      |Primary|
 #      |Spouse|
 #      |Son   |
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-    #RT-2268
-
-
-
-
-
-
-
+    #SLER-1170-WIP
+    And I validate "medical" entities from pre edi db tables
+       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
+#    And I validate "dental" entities from pre edi db tables
+#       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+#       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
 
 

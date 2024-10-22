@@ -1,12 +1,11 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import com.jcraft.jsch.JSchException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
@@ -16,17 +15,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import java.awt.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MyDocumentsPage {
 
@@ -49,7 +44,7 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//button[normalize-space()='Go back to Welcome page']")
     WebElement goBackWelcomePage;
-    @FindBy(xpath = "(//div[@class='document-notice-name-right']//span)[1]")//"(//div[@class='document-notice-name']//child::div//following::div/span)[1]")
+    @FindBy(xpath = "(//div[@class='document-notice-name-right']//span)[1]")
     WebElement expandDownloadEnrolmentDocument;
     @FindBy(css = "a.btn-second-action-button.download-button")
     WebElement downloadEnrolmentDoc;
@@ -131,17 +126,17 @@ public class MyDocumentsPage {
         accountOverviewPage.clickHereLinks("My Documents");
     }
 
-    public  void downloadDocument(String docType) throws AWTException, JSchException {
-//        docType example "Application Results"
+    public void downloadDocument(String docType) {
+        // docType example "Application Results", EN-002-04
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
         WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::span[1]"));
         pastDocCarrot.click();
         WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::a[1]"));
         downloadButton.click();
-
         waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
+
 
     public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
         File dir = new File(localPath);
@@ -275,9 +270,16 @@ public class MyDocumentsPage {
     }
 
                 //============================VALIDATION STEPS==============//
+    public void validateNoticeText(String docType) {
+        switch(docType){
+            case "EN-002-04 English":
+                validateEnr00204Notice();
+                break;
+            default: Assert.fail("Illegal argument Exception");
+        }
+    }
 
-    public void verifyPageText(String language)
-    {
+    public void verifyPageText(String language) {
         switch (language) {
             case "English":
                 basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
@@ -374,13 +376,49 @@ public class MyDocumentsPage {
         softAssert.assertAll();
     }
 
-    public  void downloadEnrolmentDocument() {
-        basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 50);
-        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
-        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
-        expandDownloadEnrolmentDocument.click();
-        basicActions.waitForElementToBePresent(downloadEnrolmentDoc, 20);
-        basicActions.waitForElementToBeClickable(downloadEnrolmentDoc, 20);
-        downloadEnrolmentDoc.click();
+    private void validateEnr00204Notice(){
+        try {
+            String filePath = SharedData.getLocalPathToDownloadFile();
+            String fileName = SharedData.getNoticeFileName();
+            String pathAndName = filePath + "//" + fileName;
+            System.out.println("File path and name is " + pathAndName);
+
+            String pdfText = extractTextFromPDF(Path.of(pathAndName));
+
+            // WIP - append text for coverage start date, welcome text, Dear tag, refactor household members validation
+            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getCoverageStartDate(), "yyyy-MM-dd", "MMMM d, yyyy")), "coverage start date failed");
+            softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
+            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "current date is not matching");
+            validateMemNames(pdfText);
+            validatePlanDetails(pdfText);
+            softAssert.assertAll();
+        } catch(IOException e){
+
+        }
+    }
+
+    private void validatePlanDetails(String pdfText){
+        PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1");
+        String medicalPolicyId = "Your Connect for Health Colorado\u00AE Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db()+".";
+
+      softAssert.assertTrue(pdfText.contains(medicalPlanDbData.getPlanName()), "medical plan name doesn't match");
+      softAssert.assertTrue(pdfText.contains("Monthly Premium: $"+SharedData.getPrimaryMember().getTotalMedAmtAfterReduction()), "medical premium amt doesn't match");
+      softAssert.assertTrue(pdfText.contains(medicalPolicyId), "policy id is not matching");
+
+        if(SharedData.getAppType().equals("exchange")){
+            String dentalPolicyId = "Your Connect for Health Colorado\u00AE Policy ID is " + SharedData.getPrimaryMember().getDentalEapid_db()+".";
+            PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
+          softAssert.assertTrue(pdfText.contains(dentalPlanDbData.getPlanName()), "dental plan name doesn't match");
+          softAssert.assertTrue(pdfText.contains("Monthly Premium: $"+SharedData.getPrimaryMember().getTotalDentalPremAfterReduction()), "dental premium amt doesn't match");
+          softAssert.assertTrue(pdfText.contains(dentalPolicyId), "policy id is not matching");
+        }
+
+    }
+    private void validateMemNames(String pdfText){
+        List<String> allMemNames = basicActions.getAllMemCompleteNames();
+        for(String memName : allMemNames) {
+            System.out.println(memName);
+            softAssert.assertTrue((pdfText.contains(memName)),memName+" text not exist in downloaded pdf file");
+        }
     }
 }
