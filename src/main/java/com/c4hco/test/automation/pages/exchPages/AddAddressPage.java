@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.Address;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -9,12 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -120,6 +117,7 @@ public class AddAddressPage {
             case "Household":
                 rdobtnHouseholdResidentialAddress.get(0).click();
                 setResidentialAddress();
+                setMailingAddAsResAdd();
                 break;
             case "SecondHousehold":
                 rdobtnHouseholdResidentialAddress.get(1).click();
@@ -158,7 +156,27 @@ public class AddAddressPage {
             MemberDetails member =  (MemberDetails) requiredMem.get();
             // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
             member.setResAddress(primaryMemAddress);
+
         }
+    }
+
+    private void setMailingAddAsResAdd(){
+        String name = getMemberName();
+
+        Address primaryMemAddress = SharedData.getPrimaryMember().getResAddress();
+
+        List<MemberDetails>  membersList = SharedData.getMembers();
+        Optional requiredMem =  membersList.stream().filter(mem ->
+                mem.getSignature().contains(name)
+        ).findFirst();
+
+        if(requiredMem.isPresent()){
+            MemberDetails member =  (MemberDetails) requiredMem.get();
+            // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
+            member.setMailingAddress(primaryMemAddress);
+
+        }
+
     }
 
     public void mailingAddress(){
