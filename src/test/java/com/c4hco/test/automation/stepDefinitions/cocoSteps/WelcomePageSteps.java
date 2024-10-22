@@ -41,8 +41,7 @@ public class WelcomePageSteps {
     public void verifyCacBannerText(String language)  { welcomePage.validateCacBannerText(language); }
     @And("I Validate the correct enrolled plans are displayed on coco welcome page")
     public void validatePlanDetails() {
-        welcomePage.verifyMemberNamesOnWelcomePage();
-        welcomePage.verifyMyPlanDetails();
+        welcomePage.validateMemAndPlanInfo();
     }
     @And("I set the test scenario details in coco")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult) {

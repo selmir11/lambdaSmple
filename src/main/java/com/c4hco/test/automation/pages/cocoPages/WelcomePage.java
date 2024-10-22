@@ -408,32 +408,27 @@ public class WelcomePage {
         }
     }
 
-    public void verifyMemberNamesOnWelcomePage() {
+    private void verifyMemberNamesOnWelcomePage() {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-        List<String> memberNamesList = new ArrayList<>();
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        memberNamesList.add(primaryMember.getFullName());
-        if (SharedData.getScenarioDetails().getTotalMembers()>1){
-            List<MemberDetails> memberDetailsList = SharedData.getMembers();
-            for (MemberDetails memName : memberDetailsList) {
-                memberNamesList.add(memName.getCompleteFullName());
-            }
-        }
+        List<String> memberNamesList = basicActions.getAllMemCompleteNames();
         List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
         Collections.sort(memberNamesList);
         Collections.sort(memberNamesListWelcomePage);
         softAssert.assertEquals(memberNamesListWelcomePage.size(), memberNamesList.size(), "total names count from sharedData and UI did not match");
         softAssert.assertEquals(memberNamesListWelcomePage, memberNamesList, "Names of members did not match");
-        softAssert.assertAll();
     }
 
-    public void verifyMyPlanDetails() {
+    private void verifyMyPlanDetails() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(planYearSelectorOptions.get(1).getText(), SharedData.getPlanYear(), "Plan Year does not match");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText().substring(0, 7), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
+    }
+    public void validateMemAndPlanInfo(){
+        verifyMemberNamesOnWelcomePage();
+        verifyMyPlanDetails();
         softAssert.assertAll();
     }
 
