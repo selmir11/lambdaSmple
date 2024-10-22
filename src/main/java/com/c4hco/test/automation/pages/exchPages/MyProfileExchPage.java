@@ -479,7 +479,7 @@ public class MyProfileExchPage {
         basicActions.wait(60);
     }
 
-    public void SelectTheSecondHouseholdMemberAsPrimaryContact(String memberName) {
+    public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
         replacePrimaryMember(memberName);
@@ -964,19 +964,20 @@ public class MyProfileExchPage {
     public void replacePrimaryMember(String memberName){
         for(MemberDetails memberDetail:SharedData.getMembers()){
             String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
-            System.out.println(memberFullName);
             if (memberFullName.contains(memberName)){
                 List<MemberDetails> memberList = SharedData.getMembers();
                 MemberDetails member = new MemberDetails();
                 member.setFirstName(SharedData.getPrimaryMember().getFirstName());
                 member.setLastName(SharedData.getPrimaryMember().getLastName());
-                member.setMiddleName(SharedData.getPrimaryMember().getMiddleName());
+                if(SharedData.getPrimaryMember().getMiddleName()==null){
+                    member.setMiddleName("");
+                }
                 member.setDob(SharedData.getPrimaryMember().getDob());
                 member.setGender(SharedData.getPrimaryMember().getGender());
                 member.setSignature(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
-                member.setFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getMiddleName().charAt(0)+". "+SharedData.getPrimaryMember().getLastName());
+                member.setFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
                 member.setCompleteFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getMiddleName()+" "+SharedData.getPrimaryMember().getLastName());
-                member.setDependentCountTag("member"+(SharedData.getMembers().size()+1));
+                //member.setDependentCountTag("member"+(SharedData.getMembers().size()+1));
                 memberList.add(member);
 
                 SharedData.setMembers(memberList);

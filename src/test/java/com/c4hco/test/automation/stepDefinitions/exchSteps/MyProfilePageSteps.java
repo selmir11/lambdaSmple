@@ -106,8 +106,8 @@ public class MyProfilePageSteps {
     }
 
     @Then("I Change {string} as primary member from household member")
-    public void iSelectTheSecondHouseholdMemberAsPrimaryContact(String memberName) {
-        myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact(memberName);
+    public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
+        myProfileExchPage.SelectTheHouseholdMemberAsPrimaryContact(memberName);
     }
 
     @And("I validate Email error message in {string} on my Profile Page")

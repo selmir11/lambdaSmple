@@ -895,7 +895,6 @@ Feature: End to End Tests
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile Exch
     And Validate "Spouse" displayed as Primary person in Account Overview Page
-    And I click on Sign Out in the Header for "Elmo"
 
 
 
