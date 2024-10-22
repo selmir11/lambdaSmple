@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
- @SLER-41-WIP
+ @SLER-41
  Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -143,7 +143,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    #WIP
     Then I select Birth QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -212,26 +211,26 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-    # WIP - Validate notice
+    # PDF Notice Validation
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
     #Email Notice Validation
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-#    And I validate additional details for "medical" plan on email notice
-#      |Primary|
-#      |Spouse|
-#      |Son   |
-#    And I validate additional details for "dental" plan on email notice
-#      |Primary|
-#      |Spouse|
-#      |Son   |
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate additional details for "medical" plan on email notice
+      |Primary|
+      |Spouse|
+      |Son   |
+    And I validate additional details for "dental" plan on email notice
+      |Primary|
+      |Spouse|
+      |Son   |
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
