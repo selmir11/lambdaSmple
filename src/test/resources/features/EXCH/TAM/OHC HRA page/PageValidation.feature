@@ -260,7 +260,6 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I select "QSEHRA" for HRA type
     Then I click continue on the Elmo OHI HRA page
     Then I click continue on family overview page
-    Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I Declare as Tax Household 1

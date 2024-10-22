@@ -195,8 +195,8 @@ public class TellUsAboutAdditionalMemberPage {
     }
 
     public void specificAdditionalMemberDetailsExch(String name, String dob, String gender, List<String> relations, String applying){
-        String frstName = name+getUniqueString(5);
-        String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(5));
+        String frstName = name+getUniqueString(8);
+        String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
         String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
         basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
