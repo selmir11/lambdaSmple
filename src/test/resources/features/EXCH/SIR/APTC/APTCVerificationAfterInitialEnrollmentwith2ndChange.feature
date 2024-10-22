@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-131
-  Scenario: ELIG-APTCRules - SLER-131 - formerly RT-2349 - 40 year old - lost coverage
+  Scenario: SLER-131 - ELIG-APTCRules -  formerly RT-2349 - 40 year old - lost coverage
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -25,7 +25,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Marriage" and click continue
 
-
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -240,7 +240,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-322 - formerly RT-2350 - 40 year old
+  Scenario: SLER-322 - ELIG-  -APTCRules -  formerly RT-2350 - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -257,6 +257,7 @@ Feature: UI Tests related to APTC after second enrollment change
     # Question not asked during Open Enrollment
     #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
     Then I answer all Id proofing questions and click continue
@@ -479,7 +480,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click all done from payment portal page
 
     @SLER-319
-  Scenario: ELIG - APTCRules - SLER-319 - formerly RT-2351 - 60 year old
+  Scenario: SLER-319 - ELIG - APTCRules - formerly RT-2351 - 60 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -496,6 +497,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011961" in county "Lake" with zipcode "80461"
     Then I answer all Id proofing questions and click continue
@@ -706,7 +708,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-320
-  Scenario: ELIG - SLER-320 - formerly RT-2352 - 62 year old
+  Scenario: SLER-320 - ELIG - APTC Rules - formerly RT-2352 - 62 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -723,6 +725,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011959" in county "Garfield" with zipcode "81650"
     Then I answer all Id proofing questions and click continue
@@ -931,7 +934,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-321
-  Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules - SLER-321 - formerly RT-2353 - 50 year old
+  Scenario: SLER-321 - ELIG - APTCRules -  formerly RT-2353 - 50 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -948,6 +951,7 @@ Feature: UI Tests related to APTC after second enrollment change
     # Question not asked during Open Enrollment
     #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011972" in county "Routt" with zipcode "80487"
     Then I answer all Id proofing questions and click continue
@@ -1158,7 +1162,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-323
-  Scenario: ELIG - SLER-323 - formerly RT-2354 - 40 year old //born in 1976
+  Scenario: SLER-323 - ELIG -  formerly RT-2354 - 40 year old //born in 1976
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1175,6 +1179,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Marriage" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011976" in county "Park" with zipcode "80470"
     Then I answer all Id proofing questions and click continue
@@ -1629,6 +1634,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011958" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
@@ -1854,6 +1860,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2078,6 +2085,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2302,6 +2310,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
@@ -2526,6 +2535,7 @@ Feature: UI Tests related to APTC after second enrollment change
      # Question not asked during Open Enrollment
      #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "TELLER" with zipcode "80863"
     Then I answer all Id proofing questions and click continue
