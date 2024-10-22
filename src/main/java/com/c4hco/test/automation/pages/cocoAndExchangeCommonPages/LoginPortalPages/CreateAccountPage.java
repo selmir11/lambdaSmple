@@ -316,12 +316,12 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
         preferredLanguageButtonEnglish.click();
         subscriber.setSpokenLanguage("English");
         subscriber.setWrittenLanguage("English");
         subscriber.setRelation_to_subscriber("SELF");
         primaryUserCheckbox.click();
-
         SharedData.setPrimaryMember(subscriber);
     }
 
@@ -339,14 +339,13 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
-        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getMiddleName()+" "+subscriber.getLastName());
+        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
         preferredLanguageButtonEnglish.click();
         subscriber.setSpokenLanguage("English");
         subscriber.setWrittenLanguage("English");
         primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
         SharedData.setPrimaryMember(subscriber);
-
     }
 
     public void addSpecificDetails(String fName, String lName){
@@ -361,6 +360,7 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
         preferredLanguageButtonEnglish.click();
 
         primaryUserCheckbox.click();

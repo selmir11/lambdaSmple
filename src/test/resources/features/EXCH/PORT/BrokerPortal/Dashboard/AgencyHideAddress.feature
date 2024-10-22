@@ -1,4 +1,4 @@
-@BrokerPortalProfile@port
+@BrokerPortalProfile @port @Dashboard
 Feature: Verify the agency owner's ability to hide their address on the Find a Certified Broker page
 
   @SLER-712

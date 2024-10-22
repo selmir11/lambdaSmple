@@ -1,4 +1,4 @@
-@SIRRegression @APTC-SIR
+@SIRRegression @APTC-SIR @APTC
   # SLER-778 formerly RT-1618
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
@@ -17,8 +17,13 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+      # Question not asked during Open Enrollment
+      #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
   #Husband
     And I am a member with City "Denver" in State "CO" with dob "01011991" in county "DENVER" with zipcode "80205"
@@ -240,7 +245,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
-    Then I click all done from payment portal page
+    Then I click all done from payment portal page OBO
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
