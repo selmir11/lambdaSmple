@@ -53,6 +53,7 @@ public class Ob834PreEdiDbValidations {
         for (Ob834DetailsEntity ob834DetailsEntity : ob834DetailsMedEntities) {
             if (ob834DetailsEntity.getSubscriber_indicator().equals("Y")) {
                 subscriberOnlyMedValidations(ob834DetailsEntity);
+                validateMedForSubscriberAndMem(ob834DetailsEntity, subscriber);
             } else {
                 validateDependentMedDetails(ob834DetailsEntity);
             }
@@ -92,6 +93,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertNull(ob834Entity.getResidence_st(), "Residential address state does not match");
         softAssert.assertNull(ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
         softAssert.assertNull(ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
+        softAssert.assertNull(ob834Entity.getPremium_reduction_type(),"Plan premium reduction type does not match");
         softAssert.assertAll();
     }
 
@@ -240,9 +242,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalGroups()), ob834Entity.getMember_group(), "member group did not match");
         softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalMembers()), ob834Entity.getTotal_enrollees(), "Total members mismatch");
-        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         softAssert.assertEquals(ob834Entity.getCsr_level(), dbData.getCsrLevel(), "CSR level does not match");
-        softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(subscriber.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
         softAssert.assertEquals(subscriber.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
@@ -264,10 +264,11 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(subscriber.getFullName(), ob834Entity.getPlan_sponsor_name(), "plan sponsor name did not match");
         softAssert.assertEquals(medicalDbData.getPremiumAmt(), ob834Entity.getPremium_amount(), "Medical Plan premium amount does not match for subscriber.");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
+        softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
+        softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
         validateMailingAddress(ob834Entity, subscriber);
-        validateMedForSubscriberAndMem(ob834Entity, subscriber);
         softAssert.assertAll();
 
     }
