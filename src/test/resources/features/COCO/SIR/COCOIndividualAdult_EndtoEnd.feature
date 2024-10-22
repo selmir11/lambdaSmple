@@ -1339,16 +1339,14 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
 
-    # By default 3 groups are displaying, if not we need to uncomment the Steps
-
-    #Then I click on edit enrollment groups link in coco page
-    #Then I create new group in edit medical grouping coco page and drag members to the new group
-      #| Primary:Group1    |
-     # | MinorTwo:Group2   |
-     # | MinorThree:Group3 |
-    #Then I click save button to save the groups in CoCo Page
-    #And I validated message on success enrollment grouping pop-up in CoCo Page
-    #Then I click on continue button on success pop-up in CoCo Page
+    Then I click on edit enrollment groups link in coco page
+    Then I create new group in edit medical grouping coco page and drag members to the new group
+      | Primary:Group1    |
+      | MinorTwo:Group2   |
+      | MinorThree:Group3 |
+    Then I click save button to save the groups in CoCo Page
+    And I validated message on success enrollment grouping pop-up in CoCo Page
+    Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
