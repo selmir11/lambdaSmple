@@ -39,7 +39,7 @@ public class MemberDetails {
     String medicalCoverageEndDate;
     String dentalCoverageStartDate;
     String dentalCoverageEndDate;
-    String medicalPremiumAmt;
+    String medicalPremiumAmt; // total premium amount
     String dentalPremiumAmt;
     String aptcAmt;
     String medicalAptcAmt;

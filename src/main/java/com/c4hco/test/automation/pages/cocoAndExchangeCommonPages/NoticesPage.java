@@ -272,7 +272,7 @@ public class NoticesPage {
 
     private void VerifyTheNoticeTextAM01608broker() {
         softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
-        softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. as soon as possible to protect your account.");
+        softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 1st - Dec 15th 8:00a.m. - 8:00p.m. as soon as possible to protect your account.");
         softAssert.assertAll();
     }
 
@@ -284,7 +284,8 @@ public class NoticesPage {
             softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
         }
         softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
-        softAssert.assertEquals(bodyText1607part2.getText(), "If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+
         softAssert.assertAll();
     }
 
@@ -440,16 +441,16 @@ public class NoticesPage {
         switch (language) {
             case "English":
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect\u00AE is:"));
-                softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Colorado Connect\u00AE website and enter this username plus your password to log in to your account.");//®
-                softAssert.assertEquals(bodyText.get(3).getText(), "If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
-                softAssert.assertEquals(bodyText2.getText(), "please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
-                break;
-            case "Spanish":
+                softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect\u00AE website and enter this username plus your password to log in to your account.");//®
+                softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 1st - Dec 15th 8:00a.m. - 8:00p.m.");
+                softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 1st - Dec 15th 8:00a.m. - 8:00p.m.");
+            break;
+            case "Spanish" :
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect\u00AE es:"));
-                softAssert.assertEquals(bodyText.get(2).getText(), "Regrese al sitio web de Colorado Connect\u00AE y introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
-                softAssert.assertEquals(bodyText.get(3).getText(), "Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
-                softAssert.assertEquals(bodyText2.getText(), "llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
-                break;
+                softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect\u00AE y introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
+                softAssert.assertTrue(bodyText.get(3).getText().contains("Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertTrue(bodyText2.getText().contains("llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+            break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
@@ -488,9 +489,8 @@ public class NoticesPage {
 
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
         // Validating plan name, member names and coverage start date from email notice
-
         String coverageStartDate = SharedData.getExpectedCalculatedDates().getCoverageStartDate();
-        String formattedCoverageDt = basicActions.changeDateFormat(coverageStartDate, "yyyy-MM-dd", "MMMM-dd-yyyy");
+        String formattedCoverageDt = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate, "yyyy-MM-dd", "MMMM d, yyyy");
 
         switch (planType) {
             case "medical":

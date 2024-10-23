@@ -9,8 +9,8 @@ public class RaceAndEthnicityPageSteps {
 
     RaceAndEthnicityPage RaceAndEthnicityPage = new RaceAndEthnicityPage(WebDriverManager.getDriver());
 
-    @And("I select {string} for race and ethnicity")
-    public void iSelectMemberRaceEthnicity(String memberRaceEthnicity){RaceAndEthnicityPage.raceEthnicitySelection(memberRaceEthnicity);}
+    @And("I select {string} for race and ethnicity for {string}")
+    public void selectRaceEthnicity(String memberRaceEthnicity, String memPrefix){RaceAndEthnicityPage.raceEthnicitySelection(memberRaceEthnicity, memPrefix);}
 
     @And("I click continue on the Race and Ethnicity page")
     public void clickContinue(){RaceAndEthnicityPage.clickSaveAndContinueButton();}

@@ -23,9 +23,11 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+      # Question not asked during Open Enrollment
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -90,9 +92,11 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+      # Question not asked during Open Enrollment
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -163,9 +167,11 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+      # Question not asked during Open Enrollment
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue

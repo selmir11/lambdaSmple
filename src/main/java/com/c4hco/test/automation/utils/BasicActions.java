@@ -615,6 +615,26 @@ public class BasicActions {
         return allMembers;
     }
 
+    public List<String> getAllMemNames(){
+        // returns first and last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+           firstAndLastName.add(mem.getSignature());
+        }
+        return firstAndLastName;
+    }
+
+    public List<String> getAllMemCompleteNames(){
+        // returns first, middle, last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+            firstAndLastName.add(mem.getCompleteFullName());
+        }
+        return firstAndLastName;
+    }
+
 
 }
 

@@ -73,13 +73,13 @@ Feature: Verify COCO Medical Plan results
     And I validate the COCO plan option 1 has text "<planText>"
     And I click on Sign Out in the Header for "Elmo"
     Examples:
-      | carrierOption              | planText                                                             |
-      | Anthem                     | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std    |
-      | Cigna                      | Cigna Connect Colorado Option Silver Enhanced Off Exchange           |
-      | Denver Health              | Elevate Health Plans Colorado Option Silver Enhanced Off Exchange    |
-      | Kaiser Permanente          | KP Colorado Option Silver Enhanced 94% AV                            |
-      | Rocky Mountain Health Plan | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%       |
-      | Select Health              | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange |
+      | carrierOption                       | planText                                                             |
+      | Anthem                              | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std    |
+      | Cigna Healthcare                    | Cigna Connect Colorado Option Silver Enhanced Off Exchange           |
+      | Denver Health                       | Elevate Health Plans Colorado Option Silver Enhanced Off Exchange    |
+      | Kaiser Permanente                   | KP Colorado Option Silver Enhanced 94% AV                            |
+      | Rocky Mountain Health Plans / UHC   | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%       |
+      | Select Health                       | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange |
 
 
   @SLCR-284 @CoCo_RegressionTest

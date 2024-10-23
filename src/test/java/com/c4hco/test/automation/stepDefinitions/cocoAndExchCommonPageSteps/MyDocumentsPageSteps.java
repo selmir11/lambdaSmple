@@ -2,12 +2,9 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-import java.awt.*;
-import java.util.List;
 import java.io.IOException;
 
 public class MyDocumentsPageSteps {
@@ -31,14 +28,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateWelcomeBackButtonNavigatesToWelcomePage() {
         myDocumentsPage.goBackToWelcomePage();
     }
-    @And("I click on download enrolment document")
-    public void iClickOnEnrolmentDocumentTodownload(){
-        myDocumentsPage.downloadEnrolmentDocument();
-    }
 
     @And("I click on download {string} document")
-    public void iDownloadDocument(String docType) throws AWTException, JSchException {
+    public void iDownloadDocument(String docType) {
         myDocumentsPage.downloadDocument(docType);
+    }
+
+    @Then("I validate {string} notice content")
+    public void validateNotice(String docType) {
+        myDocumentsPage.validateNoticeText(docType);
     }
 
     @Then("I validate {string}: {string} notice in {string} for {string} members")
