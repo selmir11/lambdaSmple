@@ -38,7 +38,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Middle Eastern or North African" for race and ethnicity
+    And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -59,7 +59,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -86,7 +86,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Middle Eastern or North African" for race and ethnicity
+    And I select "Middle Eastern or North African" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -211,7 +211,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-    # PDF Notice Validation
+#    # PDF Notice Validation
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
@@ -243,4 +243,26 @@ Feature: Enroll a in a plan (FAMILY OF 3)
        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
        | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
 
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+
+#    And I validate the ob834 "medical" file should have the values
+#       | LX | N1 75              | REF                                      |
+#       | 1  | PRE AMT 1          | 303.84                                   |
+#       | 2  | APTC AMT           | 671.69                                   |
+#       | 3  | CSR AMT            | 0.00                                     |
+#       | 4  | RATING AREA        | 3                                        |
+#       | 5  | SOURCE EXCHANGE ID | COHBE                                    |
+#       | 6  | TOT RES AMT        | 119.81                                   |
+#       | 7  | PRE AMT TOT        | 791.50                                   |
+#       | 8  | SEP REASON         | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+#    And I validate the ob834 "dental" file should have the values
+#       | LX | N1 75              | REFDEN                                   |
+#       | 1  | PRE AMT 1          | 23.00                                    |
+#       | 2  | APTC AMT           | 0.00                                     |
+#       | 3  | CSR AMT            | 0.00                                     |
+#       | 4  | RATING AREA        | 3                                        |
+#       | 5  | SOURCE EXCHANGE ID | COHBE                                    |
+#       | 6  | TOT RES AMT        | 62.00                                    |
+#       | 7  | PRE AMT TOT        | 62.00                                    |
+#       | 8  | SEP REASON         | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
 

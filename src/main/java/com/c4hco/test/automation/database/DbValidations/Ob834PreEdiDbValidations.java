@@ -18,6 +18,8 @@ import java.util.Map;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
+import static com.c4hco.test.automation.utils.Race.getCodeForRace;
+
 
 public class Ob834PreEdiDbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
@@ -208,7 +210,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I", "Marital Status did not match for "+member.getFirstName());
         softAssert.assertEquals(getCodeForRelationship(member.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "RelationshipCode did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getSsn()!=null? member.getSsn(): "000000000", ob834Entity.getMember_ssn(), "ssn did not match for "+member.getFirstName());
-        //  softAssert.assertEquals(subscriber.getRace() != null ? getCodeForRace(subscriber.getRace()) : "7", ob834Entity.getMember_race(), "Race did not match");
+        softAssert.assertEquals(getCodeForRace(member.getRace()), ob834Entity.getMember_race(), "Race did not match");
         softAssert.assertAll("Personal Details for Member::"+member.getFirstName()+" did not match");
     }
 
@@ -296,6 +298,7 @@ public class Ob834PreEdiDbValidations {
         // Subscriber Only Fields
         double amt = Double.parseDouble(SharedData.getPrimaryMember().getMedicalAptcAmt());
         String ExpectedPMMedicalAptcAmt = String.format("%.2f", amt);
+        SharedData.setMedicalFileName(ob834Entity.getFilename());
         softAssert.assertEquals(ExpectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
         softAssert.assertEquals(medicalDbData.getCsrAmt() != null ? medicalDbData.getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
         softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
@@ -305,6 +308,7 @@ public class Ob834PreEdiDbValidations {
 
     private void subscriberOnlyDenValidations(Ob834DetailsEntity ob834Entity) {
         // Subscriber Only Fields
+        SharedData.setDentalFileName(ob834Entity.getFilename());
         softAssert.assertEquals("0.00", ob834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
         softAssert.assertEquals("0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
         softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");

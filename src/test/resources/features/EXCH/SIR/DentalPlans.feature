@@ -42,7 +42,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
