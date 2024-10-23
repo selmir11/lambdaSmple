@@ -45,12 +45,8 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select "No" for Naturalized Immigrant option
   And I click continue on the Citizenship page
   Then I click Add Another Family Member
-  Then I validate I am on the "Add Member" page
-  Then I enter member details with "03051989" date of birth
-  And I select "Female" as sex option
-  And I select "No" as pregnancy option
-  And I select "Spouse" as relationship option
-  And I select "Yes" to Is Member Applying
+  Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
+    | Primary:Spouse |
   And I click continue on Tell us about additional members page
   Then I validate I am on the "Add Address" page
   Then I select "Household" for Residential Address
@@ -69,12 +65,9 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select "No" for Naturalized Immigrant option
   And I click continue on the Citizenship page
   Then I click Add Another Family Member
-  Then I validate I am on the "Add Member" page
-  Then I enter member details with age as 10
-  And I select "Male" as sex option
-  And I select "Son" as relationship option
-  And I select "Son" as relationship one option
-  And I select "Yes" to Is Member Applying
+  Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012014", "Male" and applying "Yes"
+    | Primary:Son |
+    | Spouse:Son  |
   And I click continue on Tell us about additional members page
   Then I validate I am on the "Add Address" page
   Then I select "Household" for Residential Address
@@ -322,11 +315,8 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I click continue on the Citizenship page
   #Spouse
     Then I click Add Another Family Member
-    Then I enter member details with "10101996" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051986", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
