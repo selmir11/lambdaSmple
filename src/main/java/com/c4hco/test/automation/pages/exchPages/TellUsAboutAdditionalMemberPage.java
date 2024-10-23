@@ -209,6 +209,8 @@ public class TellUsAboutAdditionalMemberPage {
         if(dob.equals("getFromSharedData")){
             dob = SharedData.getCalculatedDob().get(name);
           dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
+        } else if(dob.contains("Age")){
+            memberDetailswithAge(Integer.parseInt(dob.replaceAll("\\D", "")));
         }
         txtdateOfBirth.sendKeys(dob);
         txtSSN.sendKeys("653035280");
