@@ -8,7 +8,9 @@ public enum Race {
     Caucasian("C"),
     NativeAmerican("G"),
     White("O"),
-    NotProvided("7")
+    PreferNotToAnswer("7"),
+    MiddleEasternorNorthAfrican("E"),
+    NativeHawaiianorPacificIslander("J");
     ;
 
     private final String RaceCode;
@@ -18,7 +20,7 @@ public enum Race {
 
     public static String getCodeForRace(String RaceName){
         for (Race race : Race.values()){
-            if (race.name().equalsIgnoreCase((RaceName))) {
+            if (race.name().equalsIgnoreCase((RaceName.replace(" ", "")))) {
                 return race.getRaceCode();
             }
         }
