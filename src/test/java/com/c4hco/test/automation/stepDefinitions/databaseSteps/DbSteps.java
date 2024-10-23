@@ -113,4 +113,9 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
    }
 
+   @And("I validate {string} race and {string} other text in the database")
+   public void iValidateRaceAndOtherTextInDatabase(String expectedRaceEthnicity, String expectedRaceOtherText) {
+      dbValidations.validateDatabaseRaceEthnicity(expectedRaceEthnicity, expectedRaceOtherText);
+   }
+
 }

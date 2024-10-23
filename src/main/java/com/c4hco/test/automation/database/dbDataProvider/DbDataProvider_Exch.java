@@ -26,6 +26,7 @@ public class DbDataProvider_Exch {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
+    EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -281,4 +282,7 @@ public class DbDataProvider_Exch {
     public List<String> getDBMedicalPlanList(){
         return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
     }
+
+    public EsMemberEntity getEsMemberRaceEthnicityDetails() {
+        return esMemberDbHandler.getEsMemberDetails(exchDbQueries.getRaceEthnicityStored());}
 }
