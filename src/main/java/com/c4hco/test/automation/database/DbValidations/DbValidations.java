@@ -546,18 +546,14 @@ public class DbValidations {
     }
 
     public void validateDatabaseRaceEthnicity(String expectedRaceEthnicity, String expectedRaceOtherText) {
-        EsMemberEntity actualResult = exchDbDataProvider.getEsMemberRaceEthnicityDetails();
+        String[] dbValues = exchDbDataProvider.getEsMemberRaceEthnicityDetails();
+        softAssert.assertEquals(dbValues[0], expectedRaceEthnicity, "Race/Ethnicity mismatch");
 
-        softAssert.assertEquals(actualResult.getRace_ethnicity(), expectedRaceEthnicity, "Race/Ethnicity mismatch");
-        if ("null".equals(expectedRaceOtherText)) {
-            softAssert.assertNull(actualResult.getRace_other_text(), "Race Other Text is null");
+        if (expectedRaceOtherText.equals("null")) {
+            softAssert.assertNull(dbValues[1], "Race Other Text is null");
         } else {
-            softAssert.assertEquals(actualResult.getRace_other_text(), expectedRaceOtherText, "Race Other Text mismatch");
+            softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
         }
-        System.out.println("Expected Race/Ethnicity: " + expectedRaceEthnicity);
-        System.out.println("Database Race/Ethnicity: " + actualResult.getRace_ethnicity());
-        System.out.println("Expected Other Text: " + expectedRaceOtherText);
-        System.out.println("Database Other Text: " + actualResult.getRace_other_text());
         softAssert.assertAll();
     }
 }
