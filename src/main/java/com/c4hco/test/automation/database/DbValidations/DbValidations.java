@@ -545,5 +545,15 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateDatabaseRaceEthnicity(String expectedRaceEthnicity, String expectedRaceOtherText) {
+        String[] dbValues = exchDbDataProvider.getEsMemberRaceEthnicityDetails();
+        softAssert.assertEquals(dbValues[0], expectedRaceEthnicity, "Race/Ethnicity mismatch");
 
+        if (expectedRaceOtherText.equals("null")) {
+            softAssert.assertNull(dbValues[1], "Race Other Text is null");
+        } else {
+            softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
+        }
+        softAssert.assertAll();
+    }
 }
