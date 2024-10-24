@@ -260,3 +260,19 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-377
+  Scenario: SLCR-377 I want to see a pencil icon rather than the Edit/Update link
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
+    Then I verify the edit icon
+    And I click on the edit "Income" icon on the Income Summary CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    And I click on the edit "Deductions" icon on the Income Summary CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
