@@ -101,11 +101,10 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
 
-
-    public String getOhiRecords(){
+    public String getOhiRecordsAll(String memberId){
         return "select ohi.*\n" +
                 "From  "+dbName+".es_member_other_health_ins ohi\n" +
-                "where member_id = '"+SharedData.getPrimaryMemberId()+"'";
+                "where member_id = '"+memberId+"'";
     }
 
     public String getPrimaryHraRecords(){
