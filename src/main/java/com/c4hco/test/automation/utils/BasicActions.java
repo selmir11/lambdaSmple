@@ -635,6 +635,22 @@ public class BasicActions {
         return firstAndLastName;
     }
 
+    public String getMemberId(String memPrefix){
+        String memId = "";
+        if (memPrefix.equals("Primary")) {
+            memId = SharedData.getPrimaryMemberId();
+        }
+        else {
+            List<MemberDetails> members = SharedData.getMembers();
+            for(MemberDetails mem: members){
+                if(mem.getFirstName().contains(memPrefix)){
+                    memId = mem.getMemberId();
+                }
+            }
+        }
+        return memId;
+    }
+
 
 }
 
