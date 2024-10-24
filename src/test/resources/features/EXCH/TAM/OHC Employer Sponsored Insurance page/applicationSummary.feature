@@ -33,7 +33,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -280,7 +280,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -299,7 +299,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Kid"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -319,7 +319,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -977,7 +977,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1356,7 +1356,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1375,7 +1375,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Kid"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1395,7 +1395,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

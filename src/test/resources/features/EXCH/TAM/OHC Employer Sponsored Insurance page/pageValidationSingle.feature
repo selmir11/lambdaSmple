@@ -32,7 +32,7 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -392,7 +392,7 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -455,7 +455,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 4
     And I verify the OHI options selected in the DB
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                                     |                               |            0            |            0            |                                |                                |
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                                     |                               |            0            |            1            |                                |                                |
 #    Step 5
     And I click on the table dropdown 1
     And I click the edit income 1
@@ -507,7 +507,7 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -560,7 +560,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 14
     And I verify the OHI options selected in the DB
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                  1                  |           174.80              |            0            |            0            |               0                |               0                |
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                  1                  |           174.80              |            0            |            1            |               0                |               1                |
 #    Step 15
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page

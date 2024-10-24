@@ -11,5 +11,5 @@ public class PlanDbData {
     String issuerName;
     String issuerId;
     String csrAmt;
-    String premiumAmt;
+    String premiumAmt; // WIP - should be removed.
 }

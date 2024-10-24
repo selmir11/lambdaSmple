@@ -1,20 +1,16 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.Address;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -110,20 +106,12 @@ public class AddAddressPage {
     WebElement tribeName;
 
 
-    @FindBy(css= ".addressradioGrp.radioGrp")
-    List<WebElement> selectspecificaddress;
-
-
     public void selectResidentialAddress(String index){
         basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
         switch(index){
             case "Household":
+                // selects same residential address as primary person
                 rdobtnHouseholdResidentialAddress.get(0).click();
-                setResidentialAddress();
-                break;
-            case "SecondHousehold":
-                rdobtnHouseholdResidentialAddress.get(1).click();
-                setResidentialAddress();
                 break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
@@ -137,30 +125,14 @@ public class AddAddressPage {
 
     }
 
-    public String getMemberName(){
+    private String getMemberName(){
         String getHeader = getNameFromHeader.getText();
         String[] memNameSubstring = getHeader.split(" ");
         String memFName = memNameSubstring[memNameSubstring.length-1];
         return memFName;
     }
 
-    public void setResidentialAddress(){
-        String name = getMemberName();
-
-        Address primaryMemAddress = SharedData.getPrimaryMember().getResAddress();
-
-        List<MemberDetails>  membersList = SharedData.getMembers();
-        Optional requiredMem =  membersList.stream().filter(mem ->
-                mem.getSignature().contains(name)
-        ).findFirst();
-
-        if(requiredMem.isPresent()){
-            MemberDetails member =  (MemberDetails) requiredMem.get();
-            // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-            member.setResAddress(primaryMemAddress);
-        }
-    }
-
+    // WIP - should be removed.
     public void mailingAddress(){
         // Should not use this method anymore- should use genericMailingAddress method
         basicActions.waitForElementToBePresent(headerAdditionalInfo,50);
@@ -180,7 +152,6 @@ public class AddAddressPage {
     }
 
     public void Addtribedetails(){
-
         basicActions.waitForElementToBePresent(tribestate,20);
         basicActions.waitForElementToBePresent(tribeName, 20);
         tribestate.sendKeys("Colorado");
@@ -212,7 +183,8 @@ public class AddAddressPage {
         dropdown.selectByValue(county);
     }
 
-    public void genericMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
+    public void specificMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
+        // Mailing Address - Only for primary member
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
         txtMailingAddrLine1.sendKeys(AddrLine1);
@@ -232,30 +204,10 @@ public class AddAddressPage {
         mailinglAddress.setAddressZipcode(zipcode);
         mailinglAddress.setAddressCounty(county);
 
-        List<MemberDetails> membersList = SharedData.getMembers();
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        String getHeader = getNameFromHeader.getText();
-        String name = getMemberName();
-        if (getHeader.contains("yourself")) {
-            //set data for subscriber
-            subscriber.setMailingAddress(mailinglAddress);
-        }else if(membersList != null && getHeader.contains(name)){
-            Optional<MemberDetails> requiredMem =  membersList.stream().filter(mem -> mem.getSignature().contains(name)
-            ).findFirst();
-
-            if(requiredMem.isPresent()){
-                MemberDetails member = requiredMem.get();
-                // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-                member.setMailingAddress(mailinglAddress);
-            }
-            else{
-                Assert.fail("Member with this name is not found!!");
-            }
-        }
+        SharedData.getPrimaryMember().setMailingAddress(mailinglAddress);
     }
 
     public void addNewResidentialAddress(List<Map<String, String>> addDetails){
-
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
         String addressLine1 = addDetails.get(0).get("addressLine1");
         String city = addDetails.get(0).get("city");
@@ -412,21 +364,6 @@ public class AddAddressPage {
     }
 
     public void saveContinue(){btnSaveContinue.click();}
-
-    public  void selectSpecificAddress(String SpecificAddress){
-
-        for(int i = 0; i < selectspecificaddress.size(); i++)
-
-        {
-            String address = selectspecificaddress.get(i).getText();
-            if (address.contains(SpecificAddress)){
-                WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+SpecificAddress+"')]/parent::label/parent::div /input"));
-                radioElement.click();
-                break;
-            }
-        }
-    }
-
 
 }
 

@@ -164,13 +164,13 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click on Sign Out in the Header for "Elmo"
 
     Examples:
-      | carrierOption               | planText                                                                  |
-      | Anthem                      | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std         |
-      | Cigna                       | Cigna Colorado Option Silver Enhanced 94%                                 |
-      | Denver Health               | Elevate Health Plans Colorado Option Silver Off Exchange                  |
-      | Kaiser Permanente           | KP Colorado Option Silver Enhanced 94% AV                                 |
-      | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94% AV         |
-      | Select Health               | Select Health Value Colorado Option Silver Off Exchange                   |
+      | carrierOption                         | planText                                                                  |
+      | Anthem                                | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std         |
+      | Cigna Healthcare                      | Cigna Colorado Option Silver Enhanced 94%                                 |
+      | Denver Health                         | Elevate Health Plans Colorado Option Silver Off Exchange                  |
+      | Kaiser Permanente                     | KP Colorado Option Silver Enhanced 94% AV                                 |
+      | Rocky Mountain Health Plans / UHC     | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94% AV         |
+      | Select Health                         | Select Health Value Colorado Option Silver Off Exchange                   |
 
    @SLCR-273 @COCOVerifyPlanTotalSilverEnhanced
   Scenario: SLCR-273 - This will verify the existence of the COCO Silver Enhanced metal filter and verify total available SES plans in area - CCRT-630
@@ -245,7 +245,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the plan totals are "24" on the COCO Medical Plan Results page
+    And I validate the plan totals are "18" on the COCO Medical Plan Results page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
     And I validate the SES plan totals are "6" on the COCO Medical Plan Results page
@@ -416,25 +416,25 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -612,25 +612,22 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -778,19 +775,18 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
