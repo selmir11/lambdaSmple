@@ -41,11 +41,9 @@ Feature: UI Page Validation - Enrollment Agreement
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
-    Then I enter member details with "10101990" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101990", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
