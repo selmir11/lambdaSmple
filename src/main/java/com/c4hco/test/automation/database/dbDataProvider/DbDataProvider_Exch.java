@@ -166,12 +166,12 @@ public class DbDataProvider_Exch {
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
-    public Boolean getDataFromOhiTables(){
-        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecords());
+    public Boolean getDataFromOhiTables(String memberId){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
-    public EsMemberOhiEntity getOptionsFromOhiDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
+    public EsMemberOhiEntity getOptionsFromOhiDbTables(String memberId) {
+        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
     public EsMemberHraEntity getOptionsFromHraDbTables(){
@@ -280,5 +280,9 @@ public class DbDataProvider_Exch {
     }
     public List<String> getDBMedicalPlanList(){
         return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
+    }
+
+    public String[] getEsMemberRaceEthnicityDetails() {
+        return postgresHandler.getResultForTwoColumnValues("race_ethnicity", "race_other_text", exchDbQueries.getRaceEthnicityStored());
     }
 }

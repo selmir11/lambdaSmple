@@ -22,8 +22,8 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    # Open Enrollment deactivates this page
+    #And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -48,8 +48,8 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -124,7 +124,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -233,7 +233,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page

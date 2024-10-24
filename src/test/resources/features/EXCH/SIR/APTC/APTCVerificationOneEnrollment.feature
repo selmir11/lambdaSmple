@@ -48,7 +48,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -165,7 +165,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -304,7 +304,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -438,7 +438,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -464,7 +464,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -491,7 +491,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -519,7 +519,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -548,7 +548,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "SonThree"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -578,7 +578,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "SonFour"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page

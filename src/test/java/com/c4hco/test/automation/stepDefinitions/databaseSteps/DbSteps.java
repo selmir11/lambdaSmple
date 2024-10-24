@@ -30,15 +30,14 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.setIb999DetailsEntity();
    }
 
-   @And("I verify the OHI info in the DB")
-   public void validateOhiInfo(){dbValidations.validateOhiDetails();}
+   @And("I verify the OHI info in the DB for {string}")
+   public void validateOhiInfo(String memberId){dbValidations.validateOhiDetails(memberId);}
 
-   @And("I verify the OHI options selected in the DB")
-   public void iValidateOhiOptions(List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(expectedValues);}
+   @And("I verify the OHI options selected in the DB for {string}")
+   public void iValidateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(memPrefix, expectedValues);}
 
    @And("I verify the HRA options selected in the DB")
    public void iValidateHraOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraOptions(expectedValues);}
-
 
    @And("I verify the policy data quality check with Policy Ah keyset size {int}")
    public void iValidatePolicyDqCheck(int keysetSize){dbValidations.validatePolicyDqCheck(keysetSize);}
@@ -96,17 +95,6 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);
    }
 
-//   @And("I validate Individual member policy table queries")
-//   public void ivalidateIndPolicyTableQueries(){
-//
-//      policyTableValidations.validateEnPolicyTableDetails();
-//      policyTableValidations.validateEnMemberCoverageFinancialAh();
-//      policyTableValidations.validateEnPolicyMemberCoverageAh();
-//      policyTableValidations.validateEnPolicyFinancialAh();
-//      policyTableValidations.validateEnPolicyMemberAh();
-//
-//   }
-
    @And("I verify Person ID is unique in the DB")
    public void iValidateUniquePersonId(){policyTableValidations.validateUniquePersonId();}
 
@@ -124,6 +112,9 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
    }
 
-
+   @And("I validate {string} race and {string} other text in the database")
+   public void iValidateRaceAndOtherTextInDatabase(String expectedRaceEthnicity, String expectedRaceOtherText) {
+      dbValidations.validateDatabaseRaceEthnicity(expectedRaceEthnicity, expectedRaceOtherText);
+   }
 
 }

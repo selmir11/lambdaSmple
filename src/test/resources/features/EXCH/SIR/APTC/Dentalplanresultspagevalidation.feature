@@ -48,7 +48,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

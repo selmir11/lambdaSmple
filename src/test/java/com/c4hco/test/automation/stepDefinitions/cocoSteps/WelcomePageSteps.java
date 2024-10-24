@@ -3,9 +3,13 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 import com.c4hco.test.automation.pages.cocoPages.WelcomePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-    public class WelcomePageSteps {
+import java.util.List;
+import java.util.Map;
+
+public class WelcomePageSteps {
         WelcomePage welcomePage = new WelcomePage(WebDriverManager.getDriver());
 
         @And("I apply for the current year in CoCo")
@@ -36,8 +40,17 @@ import io.cucumber.java.en.Then;
 
     @Then("I validate CAC Screener banner text on welcome page in {string}")
     public void verifyCacBannerText(String language)  { welcomePage.validateCacBannerText(language); }
-
-
+    @And("I Validate the correct enrolled plans are displayed on coco welcome page")
+    public void validatePlanDetails() {
+        welcomePage.validateMemAndPlanInfo();
+    }
+    @And("I set the test scenario details in coco")
+    public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult) {
+    welcomePage.setScenarioDetailsCoco(expectedResult);}
+    @Given("I set the dynamic policy, coverage and financial dates in coco")
+    public void iSetDates(List<Map<String, String>> expectedResult){
+        welcomePage.setDates(expectedResult);
+    }
 
 
 

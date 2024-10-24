@@ -1,4 +1,4 @@
- @SLER-34-WIP @SLER-1069
+ @SLER-34 @SLER-1069
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
@@ -39,7 +39,7 @@ Feature: Simple NFA - Single Applicant
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "White or European" for race and ethnicity
+    And I select "White or European" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -76,33 +76,39 @@ Feature: Simple NFA - Single Applicant
 
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
-    And I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate medical details on my policies page
-    And I validate dental details on my policies page
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
-    And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
-#    validate the downloaded document -WIP
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
+    And I click submit enrollment on Enrollment Agreements page
+
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    #Gmail
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+
+    And I click on ClickHere link for "My Documents"
+    #    # PDF Notice Validation
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
+      #Email Notice Validation
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
+    And I validate additional details for "medical" plan on email notice
       |Primary|
-    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
+    And I validate additional details for "dental" plan on email notice
       |Primary|
     Then I delete the open notice
     And I sign out of Outlook
@@ -111,9 +117,8 @@ Feature: Simple NFA - Single Applicant
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-    # WIP - Validate financial sstart/end dates, coverage start/end dates and all of policy table validations
-    And I validate the member details from policy tables
 
+    And I validate the member details from policy tables
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
     And I validate member details from ob834_details table

@@ -24,5 +24,6 @@ public class PlanSummaryMedicalDentalPageCoCoStep {
     @And ("I validate the {string} text on the Plan Summary COCO page")
     public void validateTextPlanSummaryCOCOPage(String language) {planSummaryMedicalDentalCoCoPage.validateTextPlanSummaryCOCOPage(language);
     }
-
+    @And("I validate medical premium amount")
+    public void validateMadiacalPremiumAmount(){planSummaryMedicalDentalCoCoPage.setPlansPremiumAmtCoco();}
     }

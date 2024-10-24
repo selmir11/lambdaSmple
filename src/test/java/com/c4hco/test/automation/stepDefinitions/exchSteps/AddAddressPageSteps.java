@@ -24,7 +24,7 @@ public class AddAddressPageSteps {
 
     @Then("I enter member with address line1 {string} in city {string} in state {string} with zipcode {string} and county {string}")
     public void mailingAddress(String addrLine1,String city,String state,String zipcode,String county){
-        addAddressPage.genericMailingAddress(addrLine1, city, state, zipcode,county);}
+        addAddressPage.specificMailingAddress(addrLine1, city, state, zipcode,county);}
 
     @Then("I enter generic mailing address details")
     public void addMailingAddressDetails(){addAddressPage.mailingAddress();}
@@ -53,7 +53,6 @@ public class AddAddressPageSteps {
     @Then("I select {string} for Fulltime Student option")
     public void isMemberStudent(String YNStudent){addAddressPage.isMemberStudent(YNStudent);}
 
-
     @Then("I select {string} for Foster care in state of Colorado")
     public void isMemberInFosterCare(String YNFosterCare){
          addAddressPage.isUserInFosterCare(YNFosterCare);
@@ -64,9 +63,6 @@ public class AddAddressPageSteps {
 
     @Then("I add the tribe details")
     public void Addtribedetails(){addAddressPage.Addtribedetails();}
-
-    @Then("I select {string} specific Address")
-    public  void selectspecificaddress(String SpecificAddress){addAddressPage.selectSpecificAddress(SpecificAddress); }
 
 }
 

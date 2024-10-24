@@ -810,7 +810,7 @@ public class OtherHealthCoveragePage_Elmo {
     public void verifyHeadersOtherHealthCoveragePage(String member, String language) {
         basicActions.waitForElementToDisappear( spinner, 30 );
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 15);
+        basicActions.waitForElementToBePresent(saveAndContinueBtn, 15);
 
         String expectedText = "";
         switch (language) {
