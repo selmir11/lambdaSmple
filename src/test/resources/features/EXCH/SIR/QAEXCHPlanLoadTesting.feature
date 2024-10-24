@@ -21,7 +21,7 @@ Feature: Medical Plan Verification test
      Then I click on continue with  application button on Before you begin page
 
     #LCE page is disabled here for OE
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
      Then I validate I am on the "Who Are You" page
      Then I select "member" from the who are you question
@@ -44,7 +44,7 @@ Feature: Medical Plan Verification test
      And I click continue on the Add Address page
 
 
-     And I select "Prefer not to answer" for race and ethnicity
+     And I select "Prefer not to answer" for race and ethnicity for "Primary"
      And I click continue on the Race and Ethnicity page
 
      Then I select "Yes" for Citizen option
@@ -65,6 +65,7 @@ Feature: Medical Plan Verification test
      And I click continue on start shopping page
 
      Then I validate I am on the "Medical Plan Results" page
+     Then I validate I am on the "Start Shopping" page
 
   @SelectVerifyCarrierFilterResults-PlanLoadTest
  Scenario Outline: SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, - SelectVerifyCarrierfilterResults
@@ -105,7 +106,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -178,7 +179,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -244,7 +245,7 @@ Feature: Medical Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -305,7 +306,7 @@ Feature: Medical Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -368,7 +369,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -484,7 +485,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

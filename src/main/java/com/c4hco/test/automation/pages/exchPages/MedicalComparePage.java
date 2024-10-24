@@ -23,16 +23,16 @@ public class MedicalComparePage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "SHP-MedicalComparePlans-GoBacktoPlans")
+    @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     WebElement goBackCompare;
 
     @FindBy(xpath = "//a[@id = 'SHP-MedicalComparePlans-DownloadSummaryOfThisPage']")
     WebElement pdfCompareSummary;
 
-    @FindBy(id = "SHP-MedicalComparePlans-InNetworkTier1")
+    @FindBy(id = "MedicalPlanCompare_InNetworkTab")
     WebElement inNetwork1;
 
-    @FindBy(id = "SHP-MedicalComparePlans-OutOfNetwork")
+    @FindBy(id = "MedicalPlanCompare_OutOfNetworkTab")
     WebElement outNetwork;
 
     @FindBy(xpath = "//div[@class = 'disclaimer body-text-2']")
@@ -120,6 +120,13 @@ public class MedicalComparePage {
     WebElement outThirteenHeader;
 
 
+    @FindBy(xpath = "//*[contains(text(), 'Plan Details')]")
+    WebElement clickPlanDetailLink;
+
+    public void clickPlanDetailLink(){
+        basicActions.waitForElementToBePresent(header, 20);
+        clickPlanDetailLink.click();
+    }
 
     public void validateInNetworkTextHeaders() {
         basicActions.waitForElementToBePresent(header, 10);
@@ -161,22 +168,24 @@ public class MedicalComparePage {
 
 
     public void clickPDFSummary(){
-        basicActions.waitForElementToBeClickable( pdfCompareSummary,15);
-        pdfCompareSummary.click();
+        basicActions.waitForElementToBePresent( pdfCompareSummary,15);
+        pdfCompareSummary.isEnabled();
     }
 
     public void clickGoBackCompare(){
-        basicActions.waitForElementToBeClickable( goBackCompare,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent( goBackCompare,15 );
+        basicActions.scrollToElement( goBackCompare );
         goBackCompare.click();
     }
 
     public void clickInNetworkLink(){
-        basicActions.waitForElementToBeClickable( inNetwork1,15 );
+        basicActions.waitForElementToBePresent( inNetwork1,15 );
         inNetwork1.click();
     }
 
     public void clickOutNetworkLink(){
-        basicActions.waitForElementToBeClickable( outNetwork, 15 );
+        basicActions.waitForElementToBePresent( outNetwork, 15 );
         outNetwork.click();
     }
 

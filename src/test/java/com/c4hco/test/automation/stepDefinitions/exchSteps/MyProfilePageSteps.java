@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.exchSteps;
+
 import com.c4hco.test.automation.pages.exchPages.MyProfileExchPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
@@ -22,6 +23,11 @@ public class MyProfilePageSteps {
     @And("I click on Save Button")
     public void iclickSaveButton() {
         myProfileExchPage.clickSaveButton();
+    }
+
+    @And("I click on the My Profile Save Button while OBO")
+    public void iclickSaveButtonObo() {
+        myProfileExchPage.clickSaveButtonObO();
     }
 
     @And("I click on Cancel Button on password pop on My Profile page Exch")
@@ -94,9 +100,14 @@ public class MyProfilePageSteps {
         myProfileExchPage.ClickChangePrimaryContactOnMyProfilePage();
     }
 
-    @Then("I select the second household member as primary contact")
-    public void iSelectTheSecondHouseholdMemberAsPrimaryContact() {
-        myProfileExchPage.SelectTheSecondHouseholdMemberAsPrimaryContact();
+    @And("I update the contact email address")
+    public void iUpdateContactEmailAddress() {
+        myProfileExchPage.UpdateContactEmailAddress();
+    }
+
+    @Then("I update {string} as primary member")
+    public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
+        myProfileExchPage.SelectTheHouseholdMemberAsPrimaryContact(memberName);
     }
 
     @And("I validate Email error message in {string} on my Profile Page")
@@ -104,5 +115,8 @@ public class MyProfilePageSteps {
 
     @And("I validate timeout session popup {string} on My Profile page")
     public void iVerifyTimeoutPopup(String language)  { myProfileExchPage.VerifyTimeoutPopup(language); }
+
+    @Then("I validate Primary Contact Change Popup {string} on My profile page")
+    public void ivalidateChangePrimaryContactpopop(String language)  { myProfileExchPage.validateChangePrimaryContactpopop(language); }
 }
 

@@ -89,4 +89,9 @@ public class EditGroupingMembersMedicalPageSteps {
         editGroupingMembersMedicalPage.createNewGroup(grouping);
     }
 
+    @Then("I validate the text on the edit medical grouping page")
+    public void validateTxtOnPage(){
+        editGroupingMembersMedicalPage.validatePageText();
+    }
+
 }

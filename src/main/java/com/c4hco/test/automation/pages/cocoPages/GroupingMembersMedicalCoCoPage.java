@@ -15,7 +15,7 @@ public class GroupingMembersMedicalCoCoPage {
 
     private BasicActions basicActions;
 
-    @FindBy(id = "SOL-ViewGroupingMembers-Continue")
+    @FindBy(css = "#SOL-ViewGroupingMembers-Continue")
     WebElement continueButton;
 
     @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
@@ -56,10 +56,12 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void clickContinue() {
-        basicActions.waitForElementToDisappear( spinner,25 );
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent(goBackBtn, 10);
+        basicActions.waitForElementToBePresent(saveAndExitBtn, 10);
         basicActions.waitForElementToBePresent(continueButton, 20);
-        basicActions.waitForElementToBeClickable(continueButton, 30);
-        continueButton.click();
+        basicActions.waitForElementToBeClickableWithRetries(continueButton, 30);
+        basicActions.click(continueButton);
     }
 
     public void noOfMedicalGroups(int totalGroups) {
@@ -79,7 +81,7 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void clickOnEditMedicalGroupinglink() {
-        basicActions.waitForElementToDisappear( spinner,50 );
+        basicActions.waitForElementToDisappear( spinner,70 );
         basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 40);
         editMyEnrollmentGroupsButton.click();
     }

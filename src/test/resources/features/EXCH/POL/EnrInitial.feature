@@ -1,6 +1,6 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
   @SLER-106
-  Scenario: Create Account & Submit FA Application & Enroll in a plan
+  Scenario: EXCH Initial Application - Family of 4  FA (Admin Portal OBO)
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
@@ -32,18 +32,18 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "01011980" date of birth
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
     |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -54,13 +54,15 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "05012015" date of birth
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "05012015", "Male" and applying "Yes"
     |Primary:Son|
     |Spouse:Son |
@@ -75,6 +77,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity for "SonOne"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -96,6 +101,9 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Black or African American" for race and ethnicity for "Daughter"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -188,31 +196,52 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on ClickHere link for "My Plans"
+    And I Validate the correct enrolled plans are displayed on account overview page
+
+    Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+
     And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+#    # PDF Notice Validation
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
     And I close current tab and switch back to previous tab
     Then I click on manage plan button on admin portal Individual dashboard
     And I initiate incoming page
+    #WIP - we have the plans stored already. Can be removed from the step.
     And I Validate the correct enrolled plans are displayed on admin portal individual page
       | Manage Plans                                         |
       | Anthem Colorado Option Bronze Pathway Essentials Std |
       | Anthem Dental Family                                 |
     Then logout from Admin Portal
 
-    #Gmail
+    #Email Notice Validation
     Then I open outlook Tab
-    And  I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan
+    And I validate additional details for "medical" plan on email notice
       |Primary|
       |Spouse|
       |SonOne|
       |Daughter|
-    And I validate the email notice details for "medical" plan
+    And I validate additional details for "dental" plan on email notice
       |Primary|
       |Spouse|
       |SonOne|
@@ -221,9 +250,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I sign out of Outlook
     And I switch to the tab number 0
 
-        #DbVerification
-
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 

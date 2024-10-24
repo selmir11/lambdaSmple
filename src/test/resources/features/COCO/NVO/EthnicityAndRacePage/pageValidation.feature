@@ -10,6 +10,8 @@ Feature: Page Validation-Ethnicity And Race page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -19,9 +21,10 @@ Feature: Page Validation-Ethnicity And Race page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
     Then I validate the error messages on the Ethnicity and Race page in "English"
-    And I validate the selection options of the 'Ethnicity' question
-    And I validate the selection options of the 'Race' question
+    Then I validate the text box input and checkbox selection behavior
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

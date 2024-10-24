@@ -1,4 +1,4 @@
-@CreateAccount @port
+@CreateAccount @port @LoginPortal
 Feature: Verify the broker account already exists error message on the Create your Account page
 
   @SLER-694

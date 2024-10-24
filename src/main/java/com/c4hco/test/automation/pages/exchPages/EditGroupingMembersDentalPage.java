@@ -13,6 +13,34 @@ import java.util.List;
 
 public class EditGroupingMembersDentalPage {
 
+
+    @FindBy(id = "SOL-ManageGroupingMembers-EditDentalTitle")
+    WebElement pageTitle1;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditDentalGroupsTitle")
+    WebElement pageTitle2;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentGroups1stParagraph")
+    WebElement para1;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentGroups2ndParagraph")
+    WebElement para2;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentGroupedTogetherQuestion")
+    WebElement groupingQtn;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentGroupedTogether")
+    WebElement groupingTxt;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentTheyAreAll")
+    WebElement theyAreAllText;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentImmediateFamily")
+    WebElement immFamilyMemTxt;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentTheyAll")
+    WebElement theyAllText;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentPhysicalAddress")
+    WebElement physicalAddressTxt;
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentZipcode")
+    WebElement sameZipTxt;
+    @FindBy(css = ".cdk-drop-list .c4-type-header-sm")
+    List<WebElement> containerTxtList;
+    @FindBy(id = "SOL-ManageGroupingMembers-DragAMemberNotEnrolling")
+    List<WebElement> dragAMemberNotEnrolling;
+
     @FindBy(css = ".container div:nth-child(2) div span u")
     WebElement whatWorksBestLink;
 
@@ -22,17 +50,23 @@ public class EditGroupingMembersDentalPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id ="SHP-EditDentalGroupingMembers-CreateANewGroup")
-    WebElement createNewGroupLink;
-
-    @FindBy(xpath = "//div[@class='dragHere']/parent::div")
+    @FindBy(id = "SOL-ManageGroupingMembers-DragAMember")
     List<WebElement> dragAMemberHere;
 
-    @FindBy(id ="SHP-EditDentalGroupingMembers-Save")
+    @FindBy(id ="SOL-ManageGroupingMembers-CreateANewGroup")
+    WebElement createNewGroupLink;
+
+    @FindBy(id ="SOL-ManageGroupingMembers-SaveGroups")
     WebElement saveButtonOnEditDentalGroupingPage;
 
-    @FindBy(id = "SHP-EditDentalGroupingMembers-Continue")
+    @FindBy(id = "SOL-ManageGroupingMembers-PopUp-Continue")
     WebElement ctnBtnSuccessModal;
+
+    @FindBy(id="SOL-ManageGroupingMembers-ResetTheGroups")
+    WebElement resetButtonOnEditDentalGroupingPage;
+
+    @FindBy(id="SOL-ManageGroupingMembers-GoBack")
+    WebElement goBackButtononEditDentalGroupingPage;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -56,12 +90,12 @@ public class EditGroupingMembersDentalPage {
     public void createNewDentalGroups(List<String> groupingList) {
         basicActions.waitForElementToDisappear(spinner, 20);
         for(String group: groupingList){
-            createNewGroupLink.click();
             basicActions.scrollToElement(createNewGroupLink);
+            createNewGroupLink.click();
             String[] groupDetail =  group.split(":");
             String[] Names = groupDetail[0].split(",");
             for(String Name: Names){
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + Name + "')]"));
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + Name + "')]"));
                 WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size()-1);
                 basicActions.wait(3000);
                 basicActions.scrollToElement(dragElement);
@@ -87,6 +121,26 @@ public class EditGroupingMembersDentalPage {
     public void iClickContinueOnSuccessPopup(){
         basicActions.waitForElementToBePresent(ctnBtnSuccessModal, 20);
         ctnBtnSuccessModal.click();
+    }
+
+    public void validatePageText() {
+        basicActions.waitForElementToBePresent(pageTitle1, 10);
+        softAssert.assertEquals(pageTitle1.getText() + " " + pageTitle2.getText(), "Edit Dental Enrollment Groups");
+        softAssert.assertEquals(para1.getText(), "In some cases, households may benefit from separating members into different groups. This may be the case if your household members have different coverage needs or different eligibility. We suggest the following groups, but you can use what works best for you.");
+        softAssert.assertEquals(para2.getText(), "Drag and drop your household members into groups of your choice. You can also place them in the Not Enrolling box if you no longer want that person to enroll in a plan.");
+        softAssert.assertEquals(groupingQtn.getText(), "Which household members can be grouped together?");
+        softAssert.assertEquals(groupingTxt.getText(), "Household members can be grouped together if:");
+        softAssert.assertEquals(theyAreAllText.getText() + " " + immFamilyMemTxt.getText(), "They are all immediate family members.");
+        softAssert.assertEquals(theyAllText.getText() + " " + physicalAddressTxt.getText() + " " + sameZipTxt.getText(), "They all live at the same physical address or within the same zip code.");
+        softAssert.assertEquals(containerTxtList.get(0).getText(), "Dental Group #1");
+        softAssert.assertEquals(containerTxtList.get(containerTxtList.size() - 1).getText(), "Not Enrolling");
+        softAssert.assertEquals(dragAMemberHere.get(0).getText(), "Drag a member here to add to the group");
+        softAssert.assertEquals(dragAMemberNotEnrolling.get(0).getText(), "Drag a member here to mark them as not enrolling");
+        softAssert.assertEquals(resetButtonOnEditDentalGroupingPage.getText(), "Reset to suggested groups");
+        softAssert.assertEquals(createNewGroupLink.getText(), "Create a new group");
+        softAssert.assertEquals(goBackButtononEditDentalGroupingPage.getText(), "Go back");
+        softAssert.assertEquals(saveButtonOnEditDentalGroupingPage.getText(), "Save groups");
+        softAssert.assertAll();
     }
 }
 

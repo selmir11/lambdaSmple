@@ -1,7 +1,8 @@
-@SLER-41 @E2E_EXCH
+@E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  Scenario: : EXCH Initial Application
+ @SLER-41
+ Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 3            | 1                 | 2                |   3             |
@@ -36,10 +37,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -48,7 +48,6 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
       |Primary:Spouse|
-
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -59,7 +58,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -67,12 +67,14 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter new born with minus 5 days as DOB
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
-    And I select no SSN
+    And I get the newborn "Son" dob as "current date minus 5days"
+    Given I set the dynamic policy, coverage and financial dates
+       | PolicyStartDate    | PolicyEndDate            | CoverageStartDate  | CoverageEndDate          | FinancialStartDate    | FinancialEndDate         |
+       | getFromSharedData  | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year | getFromSharedData     | Last Day Of Current Year |
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son |
+    And I select no SSN for "Son"
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -83,7 +85,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Middle Eastern or North African" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -140,7 +143,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page for last member and select DOB as current date minus 5 days
+    Then I select Birth QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -187,26 +190,41 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
-    # WIP - Validate notice
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    And I validate policy tables with medical coverage start date as "First Of Next Month"
-    And I validate policy tables with dental coverage start date as "First Of Next Month"
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
 
-    #Gmail
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+
+    And I click on ClickHere link for "My Documents"
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+#    # PDF Notice Validation
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
+    #Email Notice Validation
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "medical" plan
+    And I validate additional details for "medical" plan on email notice
       |Primary|
       |Spouse|
       |Son   |
-    And I validate the email notice details for "dental" plan
+    And I validate additional details for "dental" plan on email notice
       |Primary|
       |Spouse|
       |Son   |
@@ -214,17 +232,37 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I sign out of Outlook
     And I switch to the tab number 0
 
-    #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-    #RT-2268
+    #SLER-1170-WIP
+    And I validate "medical" entities from pre edi db tables
+       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
+    And I validate "dental" entities from pre edi db tables
+       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
 
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
 
-
-
-
-
-
-
+#    And I validate the ob834 "medical" file should have the values
+#       | LX | N1 75              | REF                                      |
+#       | 1  | PRE AMT 1          | 303.84                                   |
+#       | 2  | APTC AMT           | 671.69                                   |
+#       | 3  | CSR AMT            | 0.00                                     |
+#       | 4  | RATING AREA        | 3                                        |
+#       | 5  | SOURCE EXCHANGE ID | COHBE                                    |
+#       | 6  | TOT RES AMT        | 119.81                                   |
+#       | 7  | PRE AMT TOT        | 791.50                                   |
+#       | 8  | SEP REASON         | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+#    And I validate the ob834 "dental" file should have the values
+#       | LX | N1 75              | REFDEN                                   |
+#       | 1  | PRE AMT 1          | 23.00                                    |
+#       | 2  | APTC AMT           | 0.00                                     |
+#       | 3  | CSR AMT            | 0.00                                     |
+#       | 4  | RATING AREA        | 3                                        |
+#       | 5  | SOURCE EXCHANGE ID | COHBE                                    |
+#       | 6  | TOT RES AMT        | 62.00                                    |
+#       | 7  | PRE AMT TOT        | 62.00                                    |
+#       | 8  | SEP REASON         | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
 

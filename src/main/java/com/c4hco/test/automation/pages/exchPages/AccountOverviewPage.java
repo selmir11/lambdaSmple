@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.ExpectedCalculatedDates;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -34,7 +35,7 @@ public class AccountOverviewPage {
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
 
-    @FindBy(id = "submit-curr-yr-6")
+    @FindBy(id = "submit-curr-yr-4")
     WebElement makeChangesButton;
 
     @FindBy(css = ".c4PageHeader-large")
@@ -45,8 +46,11 @@ public class AccountOverviewPage {
 
     @FindBy(css = ".table-bordered tr:nth-child(1) td:nth-child(2) span b")
     List<WebElement> medicalMemberNames;
-    @FindBy(css = "p select option:nth-child(1)")
+    @FindBy(css = "option[selected='selected']")
     WebElement planYearOnWelcomeBackPage;
+
+    @FindBy(xpath = "(//h1/span)[2]")
+    WebElement txtUserName;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -63,7 +67,7 @@ public class AccountOverviewPage {
 
     public void clickApplyForCurrentYear(){
         basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBePresent(header, 10);
+        basicActions.waitForElementToBePresent(header, 30);
         WebElement applyForYr;
 
         if(SharedData.getIsOpenEnrollment().equals("yes")){
@@ -153,18 +157,15 @@ public class AccountOverviewPage {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
         int totalDependents = Integer.parseInt(SharedData.getScenarioDetails().getDependents());
-        // only the locator for the plan details change but the value will stay same for the entire group. Hence comparing with primary member.
+        // only the locator for the plan details change but the value will stay same for the entire group. Hence, comparing with primary member.
         softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
 
         softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
         softAssert.assertEquals(planInformationTable.get(totalDependents+4).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
-
-
+        //Dental
         softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
-
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText()+".00", primaryMember.getDentalPremiumAmt(), "Primary Dental Premium amount does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
-
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText(), "$"+basicActions.doubleAmountFormat(primaryMember.getDentalPremiumAmt()), "Primary Dental Premium amount does not match");
+        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), primaryMember.getDentalAptcAmt(), "Dental APTC amount on account overview page mismatch");
         softAssert.assertAll();
     }
 
@@ -181,7 +182,42 @@ public class AccountOverviewPage {
         scenarioDetails.setDependents(totalDependents);
         scenarioDetails.setEnrollees(totalEnrollees);
         SharedData.setScenarioDetails(scenarioDetails);
-
    }
+
+    public void setDates(List<Map<String, String>> expectedResult) {
+        // These details are same for medical and dental. If dental plan has different values, then we should rely on a different step.
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
+
+        String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
+        String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
+        String coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
+        String coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
+        String financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
+        String financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
+        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
+
+        expectedCalculatedDates.setPolicyStartDate(policyStartDate);
+        expectedCalculatedDates.setPolicyEndDate(policyEndDate);
+        expectedCalculatedDates.setCoverageStartDate(coverageStartDate);
+        expectedCalculatedDates.setCoverageEndDate(coverageEndDate);
+        expectedCalculatedDates.setFinancialStartDate(financialStartDate);
+        expectedCalculatedDates.setFinancialEndDate(financialEndDate);
+
+        subscriber.setPlanStartDate(planStartDate);
+        subscriber.setPlanEndDate(planEndDate);
+
+        SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+        SharedData.setPrimaryMember(subscriber);
+
+    }
+
+
+    public void validateUsername(String memberName){
+    basicActions.waitForElementToBePresent(txtUserName,20);
+    softAssert.assertTrue(txtUserName.getText().contains(memberName));
+    softAssert.assertAll();
+    }
 
 }

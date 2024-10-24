@@ -6,7 +6,7 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +27,25 @@ public class DbDataProvider_Exch {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
-    String fipcode;
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
 
+    public List<PolicyTablesEntity> getMedicalRecordsDataFromPolicyTables(){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesMedicalRecordsQuery());
+    }
+
+    public List<PolicyTablesEntity> getDentalRecordsDataFromPolicyTables(){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesDentalRecordsQuery());
+    }
+
     public List<Ob834DetailsEntity> getOb83Db4Details(){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
+    }
+
+    public List<Ob834DetailsEntity> getOb834Details(String insurance_line_code){
+        return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834DetailsRecords(insurance_line_code));
     }
     public List<Ib999Entity> getIb999Details(String ak1grp_ctrl_number){
         return ib999Handler.getIbDetailsAfterCompleted(exchDbQueries.ib999Details(ak1grp_ctrl_number));
@@ -68,8 +79,8 @@ public class DbDataProvider_Exch {
     public String[] getBaseIdAndHiosIssuerForPlan(String planName){
         return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_plan(planName));
     }
-    public String getExchPersonId(){
-        return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId());
+    public String getExchPersonId(String memId){
+        return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId(memId));
     }
     public String getCSRLevel(){
         return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
@@ -87,7 +98,6 @@ public class DbDataProvider_Exch {
         String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
-        String exchPersonId = getExchPersonId();
         String brokerTinNum = getTinNumForBroker();
         String csrLevel = getCSRLevel();
         DbData dbData = new DbData();
@@ -95,12 +105,19 @@ public class DbDataProvider_Exch {
         dbData.setFipcode(fipcode);
         dbData.setRatingAreaName(ratingAreaName);
         dbData.setRatingAreaId(ratingAreaId);
-        dbData.setExchPersonId(exchPersonId);
         dbData.setBrokerTinNum(brokerTinNum);
         dbData.setCsrLevel(csrLevel);
         SharedData.setDbData(dbData);
     }
-
+    public void setExchPersonId(MemberDetails mem, String memberId){
+        String exchPersnId =  getExchPersonId(memberId);
+        Map<String, String> exchPersonId = SharedData.getExchPersonId();
+        if(exchPersonId==null){
+            exchPersonId = new HashMap<>();
+        }
+        exchPersonId.put(mem.getFirstName(), exchPersnId );
+        SharedData.setExchPersonId(exchPersonId);
+    }
     public void setMedicalPlanDataFromDb(String planName){
         String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
         String baseId = baseIdAndHiosIssuerId[0];
@@ -110,19 +127,18 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
-        List<PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
+        Map<String, PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
-            medicalPlanDetailsFromDb = new ArrayList<>();
+            medicalPlanDetailsFromDb = new HashMap<>();
         }
             PlanDbData planDbData = new PlanDbData();
-
             planDbData.setBaseId(baseId);
             planDbData.setPlanName(planName);
             planDbData.setIssuerName(issuerName);
             planDbData.setIssuerId(issuerId);
             planDbData.setHiosIssuerId(hiosIssuerId);
             planDbData.setCsrAmt(csrAmtMed);
-            medicalPlanDetailsFromDb.add(planDbData);
+            medicalPlanDetailsFromDb.put("group1", planDbData);
             SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
     }
 
@@ -135,9 +151,9 @@ public class DbDataProvider_Exch {
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmt =csrMap.get("2"); //Dental
-        List<PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
+        Map<String, PlanDbData> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbData();
         if(dentalPlanDetailsFromDb==null) {
-            dentalPlanDetailsFromDb = new ArrayList<>();
+            dentalPlanDetailsFromDb = new HashMap<>();
         }
         PlanDbData planDbData = new PlanDbData();
 
@@ -147,16 +163,16 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmt);
-        dentalPlanDetailsFromDb.add(planDbData);
+        dentalPlanDetailsFromDb.put("group1", planDbData);
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
-    public Boolean getDataFromOhiTables(){
-        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecords());
+    public Boolean getDataFromOhiTables(String memberId){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
-    public EsMemberOhiEntity getOptionsFromOhiDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
+    public EsMemberOhiEntity getOptionsFromOhiDbTables(String memberId) {
+        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
     public EsMemberHraEntity getOptionsFromHraDbTables(){
@@ -183,6 +199,11 @@ public class DbDataProvider_Exch {
 
        return postgresHandler.getResultListFor("Acct_holder_fn", exchDbQueries.getAcct_holder_fnFromBOB());}
 
+    public List<String> getClientEmailInBoB() {
+
+       return postgresHandler.getResultListFor("email", exchDbQueries.getClientEmailFromBOB());
+    }
+
     public List<String> getBrokerAuthorizationInBoB(String clientFirstName) {
 
        return postgresHandler.getResultListFor("broker_name", exchDbQueries.verifyBrokerAuthorizationInBOB(clientFirstName));
@@ -201,6 +222,26 @@ public class DbDataProvider_Exch {
     public Boolean getNoMedicalPolicySubmissionInBoB() {
 
         return postgresHandler.dbRecordsExisting(exchDbQueries.verifyPolicySubmissionInBOB(1));
+    }
+
+    public List<String> getAgencyCommissionTinDb() {
+
+        return postgresHandler.getResultListFor("commission_tin", exchDbQueries.verifyAgencyCommissionTinDb());
+    }
+
+    public Boolean getExchHouseholdIdBoB() {
+
+        return postgresHandler.dbRecordsExisting(exchDbQueries.verifyExchHouseholdIdBOB());
+    }
+
+    public List<String> getBrokerAuthorizationStatusBoB() {
+
+        return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
+    }
+
+    public List<String> getBrokerAuthorizationTypeBoB() {
+
+        return postgresHandler.getResultListFor("staff_type", exchDbQueries.verifyBrokerAuthorizationTypeBOB());
     }
 
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
@@ -243,5 +284,12 @@ public class DbDataProvider_Exch {
     public EsMemberHraAhEntity getOptionsFromHraAhDbTables(){
         return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
 
+    }
+    public List<String> getDBMedicalPlanList(){
+        return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
+    }
+
+    public String[] getEsMemberRaceEthnicityDetails() {
+        return postgresHandler.getResultForTwoColumnValues("race_ethnicity", "race_other_text", exchDbQueries.getRaceEthnicityStored());
     }
 }

@@ -49,6 +49,7 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     Then I verify that my client's current status is "NO ELIGIBILITY"
     And I click "manage" the client
 
+
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -57,7 +58,7 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     And I report "Birth" and click continue
 
     Then I verify Manage who helps you header text in "English"
-    Then I click Continue on my own button from Manage who helps you page
+    And I click Continue with my application
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -73,6 +74,9 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     Then I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page

@@ -32,7 +32,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -142,12 +142,12 @@ Feature: Page Validation-OHI Medicare Elmo Page
   Scenario: SLER-711 I validate save, update and remove on Medicare are updated in the DB
     And I verify Currently eligible is "Not Selected" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |                        |                            |                            |
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |            0           |                            |                            |
     And I click on the table dropdown 1
@@ -165,7 +165,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     Then I enter end date of end of current month for Medicare part "A"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |                  |        250.00         |                            |            1           |             1              |                            |
     And I click on the table dropdown 1
@@ -183,7 +183,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     Then I enter end date of end of current month for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |        1         |                       |                            |            1           |                            |              1             |
     And I click on the table dropdown 1
@@ -202,7 +202,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I enter end date of end of current month for Medicare part "A"
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         1        |        300.00         |                            |            0           |             1              |               0            |
     And I click on the table dropdown 1
@@ -219,7 +219,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
     Then I check checkbox for Part "B"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         0        |                       |              1             |            1           |             0              |                            |
     And I click on the table dropdown 1
@@ -233,8 +233,53 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I validate I am on the "Elmo Ohi Medicare" page
     Then I check checkbox for Part "A"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |         0        |                       |                            |            1           |                            |                            |
 
     And I click on Sign Out in the Header for "NonElmo"
+
+
+  @SLER-1161 @PageValidationOhiMedicareElmo
+  Scenario: SLER-1161 Errors cleared so that I don't continue to see errors when I answer questions
+    #step1 - verify the initial state of the Medicare page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
+    And I verify initial questions on the Medicare page in "English"
+    And I verify Part A "is not" and Part B "is not" checked on the Medicare page
+
+    #step2 - verify errors are cleared for part A
+    Then I click continue on the Elmo OHC Medicare page
+    Then I check checkbox for Part "A"
+    And I verify "Part A Amount Required" error does not show for Medicare page
+    And I verify "Part A" error does not show for Medicare page
+    Then I click continue on the Elmo OHC Medicare page
+    And I verify "Part A Amount Required" error in "English" on the Medicare page
+    And I verify "Part A" error in "English" on the Medicare page
+    Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
+    And I verify "Part A Date" error does not show for Medicare page
+    Then I click continue on the Elmo OHC Medicare page
+    And I verify "Part A Date" error in "English" on the Medicare page
+    Then I check checkbox for Part "A"
+    And I verify Part A "is not" and Part B "is not" checked on the Medicare page
+    Then I check checkbox for Part "A"
+    And I verify Part A "is" and Part B "is not" checked on the Medicare page
+    And I verify "Part A Amount Required" error does not show for Medicare page
+    And I verify "Part A" error does not show for Medicare page
+    And I verify "Part A Date" error does not show for Medicare page
+
+    #step3 - verify errors are cleared for part B
+    Then I check checkbox for Part "B"
+    And I verify "Part B" error does not show for Medicare page
+    Then I click continue on the Elmo OHC Medicare page
+    And I verify "Part B" error in "English" on the Medicare page
+    Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
+    And I verify "Part B Date" error does not show for Medicare page
+    Then I click continue on the Elmo OHC Medicare page
+    Then I check checkbox for Part "B"
+    And I verify Part A "is" and Part B "is not" checked on the Medicare page
+    Then I check checkbox for Part "B"
+    And I verify Part A "is" and Part B "is" checked on the Medicare page
+    And I verify "Part B" error does not show for Medicare page
+    And I verify "Part B Date" error does not show for Medicare page
+
+    And I click on Sign Out in the Header for "Elmo"

@@ -10,6 +10,8 @@ Feature: Seed05 - COCO
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    # Comment below line if you are running in staging 10/11
+    And I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -20,9 +22,9 @@ Feature: Seed05 - COCO
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Native Hawaiian/Other Pacific Islander" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -47,10 +49,9 @@ Feature: Seed05 - COCO
     And I enter residential address details for additional member "105 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Native Hawaiian/Other Pacific Islander" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -73,10 +74,9 @@ Feature: Seed05 - COCO
     And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Not listed" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -103,10 +103,9 @@ Feature: Seed05 - COCO
     And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "Not listed" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -162,8 +161,9 @@ Feature: Seed05 - COCO
     And I select "coco" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
+    Then I validate I am on the "Manage Plans" page
+    And I select "DIL" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
-    # WIP - Update the below steps to update coverage based on member name/prefix
     And I update the Coverage Start date of member
       |1:01012024|
       |2:01012024|
@@ -172,16 +172,18 @@ Feature: Seed05 - COCO
       |2:01012024|
     And I click Save Button Medical
     And I select the reason to confirm the changes
-    # need to select group from selectPolicy Dropdown to update the dates - WIP
-#    Then I click Make Changes Medical button
-#    And I update the Coverage Start date of member
-#      |1:01012024|
-#      |2:01012024|
-#    And I update the Financial Start date of member
-#      |1:01012024|
-#      |2:01012024|
-#    And I click Save Button Medical
-#    And I select the reason to confirm the changes
-#    Then I close current tab and switch back to previous tab
-#    And logout from Admin Portal
-
+    Then I close current tab and switch back to previous tab
+    Then I click on "Manage Plans" user dashboard button
+    Then I validate I am on the "Manage Plans" page
+    And I select "Primary" from the SelectPolicy Dropdown to update the dates
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+      |2:01012024|
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I close current tab and switch back to previous tab
+    And logout from Admin Portal

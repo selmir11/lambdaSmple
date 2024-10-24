@@ -1,6 +1,6 @@
 Feature: Coco Initial Application Multi group
   @SLCR-146
-  Scenario: Huband-wife,Son-Dil MULTI-GROUP (DIFFERENT RATING AREAS)
+  Scenario: COCO Initial Application - MULTI-GROUP (Husband+wife & Son+DIL)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -9,6 +9,7 @@ Feature: Coco Initial Application Multi group
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -20,8 +21,8 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
     And I select "Annually" income frequency option
@@ -47,8 +48,8 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
@@ -72,7 +73,7 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select Not listed for race and ethnicity option and enter "Kitsune" in the text box
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
@@ -101,7 +102,7 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select Not listed for race and ethnicity option and enter "Kitsune" in the text box
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page

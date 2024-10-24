@@ -16,10 +16,15 @@ public class SharedData {
     @Getter @Setter private static String appType;
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
+    @Getter @Setter private static List<MemberDetails> allMembers;
     @Getter @Setter private static String primaryMemberId;
-    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities;
-    @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities;
-    @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities; // Should be removed
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsMedEntities;
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsDenEntities;
+    @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities; // Should be removed
+    @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
+    @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
+    @Getter @Setter private static String medicalFileName;
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
@@ -31,15 +36,15 @@ public class SharedData {
     @Getter @Setter private static Ib999Segments ib999Segments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
-    @Getter @Setter private static List<PlanDbData> medicalPlanDbData;
-    @Getter @Setter private static List<PlanDbData> dentalPlanDbData;
+    @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
+    @Getter @Setter private static Map<String, PlanDbData> dentalPlanDbData;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
     @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static String ses;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
-    @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
+    @Getter @Setter private static Map<String, String> memIdAndDentalFileName;
     @Getter @Setter private static Boolean hasBroker = false;
     @Getter @Setter private static BrokerDetails agencyOwner;
     @Getter @Setter private static BrokerDetails broker;
@@ -50,7 +55,11 @@ public class SharedData {
     @Getter @Setter private static ScenarioDetails scenarioDetails;
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
-
+    @Getter @Setter private static List<String> medicalPlansList;
+    @Getter @Setter private static Map<String, String> calculatedDob;
+    @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
+    @Getter @Setter private static Map<String, String> exchPersonId;
+    @Getter @Setter private static String birthLceIndividual;
 
 
     public static void reset(){
@@ -75,7 +84,15 @@ public class SharedData {
         ses = null;
         scenarioDetails = null;
         ib999Segments = null;
+        medicalPlansList=null;
+        calculatedDob = null;
+        expectedCalculatedDates = null;
+        exchPersonId=null;
+        birthLceIndividual = null;
+        allMembers = null;
+        medicalPolicyTablesEntities = null;
+        dentalPolicyTablesEntities = null;
+        ob834DetailsMedEntities = null;
+        ob834DetailsDenEntities = null;
     }
-
-
 }

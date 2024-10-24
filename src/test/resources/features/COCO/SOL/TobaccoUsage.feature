@@ -13,6 +13,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -28,6 +29,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -77,6 +79,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page

@@ -24,8 +24,7 @@ public class MedicalPlanResultsPageSteps {
     }
 
     @Then("I click continue on medical plan results page")
-    public void selectContinueOnMedicalPlanResultsPage() {
-        medPlanResultsPage.clickContinue();
+    public void selectContinueOnMedicalPlanResultsPage() {medPlanResultsPage.clickContinue();
     }
 
     @Then("I click skip on medical plan results page")
@@ -53,6 +52,7 @@ public class MedicalPlanResultsPageSteps {
     public void clickFirstFourCompareButtons() {
         medPlanResultsPage.clickFirstFourCompareButtons();
     }
+
     @And( "I validate the Compare Warning Box" )
     public void validateCompareBoxWarningTxt(){
         medPlanResultsPage.validateCompareBoxWarningTxt();
@@ -81,6 +81,11 @@ public class MedicalPlanResultsPageSteps {
     @And("I validate the plan option {int} has text {string}")
     public void validatePlanText(int Index, String planText) {
         medPlanResultsPage.validatePlanResults(Index, planText);
+    }
+
+    @And("I store the medical plan market names from results page")
+    public void getMedicalPlanMarketNames() {
+        medPlanResultsPage.getMedicalPlanMarketNames();
     }
 
     @And("I click the HSA dropdown")
@@ -112,6 +117,10 @@ public class MedicalPlanResultsPageSteps {
     @And("I select the {string} medical plan but skip for {string}")
     public void selectMedicalPlanForMember(String specificPlan, String member) {
         medPlanResultsPage.SelectSpecificMedicalPlanPerGrp(specificPlan, member);
+    }
+    @And("I validate medical premium amount is not zero")
+    public void verifypremiumamountisnotzero() {
+        medPlanResultsPage.verifyPremiumAmountIsNotZero();
     }
 
 

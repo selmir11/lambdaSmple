@@ -97,23 +97,23 @@ public class LawfulPresencePage {
     @FindBy(css = "#NonCitizenTable .c4BodyText1")
     WebElement textDocumentType;
 
-    @FindBy (css = ".back-button-link")
+    @FindBy(css = ".back-button-link")
     WebElement btnBack;
 
-    public void isMemberCitizen(String YNCitizen){
-        switch(YNCitizen){
+    public void isMemberCitizen(String YNCitizen) {
+        switch (YNCitizen) {
             case "Yes":
-                basicActions.waitForElementToBePresent(rdobtnCitizenYes,50);
+                basicActions.waitForElementToBePresent(rdobtnCitizenYes, 50);
                 rdobtnCitizenYes.click();
                 break;
             case "No":
-                basicActions.waitForElementToBePresent(rdobtnCitizenNo,50);
+                basicActions.waitForElementToBePresent(rdobtnCitizenNo, 50);
                 rdobtnCitizenNo.click();
         }
     }
 
-    public void isMemberNaturalized(String YNNaturalized){
-        switch(YNNaturalized){
+    public void isMemberNaturalized(String YNNaturalized) {
+        switch (YNNaturalized) {
             case "Yes":
                 rdobtnNaturalizedYes.click();
                 break;
@@ -125,8 +125,8 @@ public class LawfulPresencePage {
         }
     }
 
-    public void isMemberHaveEligibleImmigrationStatus(String YNEligibleImmigrationStatus){
-        switch(YNEligibleImmigrationStatus){
+    public void isMemberHaveEligibleImmigrationStatus(String YNEligibleImmigrationStatus) {
+        switch (YNEligibleImmigrationStatus) {
             case "Yes":
                 rdobtnEligibleImmigrantYes.click();
                 break;
@@ -138,26 +138,26 @@ public class LawfulPresencePage {
         }
     }
 
-    public void selectDocumentType(String documentType){
+    public void selectDocumentType(String documentType) {
         basicActions.waitForElementToBePresent(selectDocType, 15);
 
         Select dropdown = new Select(selectDocType);
         dropdown.selectByVisibleText(documentType);
     }
 
-    public static String generateUSCISNumber(){
+    public static String generateUSCISNumber() {
         Random rand = new Random();
         int USCISNumber = 100_000_000 + rand.nextInt(900_000_000);
         return String.valueOf(USCISNumber);
     }
 
-    public void enterUSCISNumber(){
+    public void enterUSCISNumber() {
         String USCISNumberValue = generateUSCISNumber();
         alienNumberNonCitizen.sendKeys(USCISNumberValue);
     }
 
-    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996){
-        switch(YNLivedInUSSince1996){
+    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
+        switch (YNLivedInUSSince1996) {
             case "Yes":
                 livedSince1996Yes.click();
                 break;
@@ -169,8 +169,8 @@ public class LawfulPresencePage {
         }
     }
 
-    public void selectActiveDutyMilitaryOrHonorablyDischargedVeterans(String memberOptions){
-        switch(memberOptions){
+    public void selectActiveDutyMilitaryOrHonorablyDischargedVeterans(String memberOptions) {
+        switch (memberOptions) {
             case "Me":
                 chkBoxMyselfMilitary.click();
                 break;
@@ -188,8 +188,8 @@ public class LawfulPresencePage {
         }
     }
 
-    public void selectNameMatchesDocument(String YNNameMatchesDocument){
-        switch(YNNameMatchesDocument){
+    public void selectNameMatchesDocument(String YNNameMatchesDocument) {
+        switch (YNNameMatchesDocument) {
             case "Yes":
                 NameMatchesYes.click();
                 break;
@@ -201,18 +201,22 @@ public class LawfulPresencePage {
         }
     }
 
-    public  void clickContinue(){
+    public void clickContinue() {
         basicActions.waitForElementToBeClickable(saveContinue, 20);
         getMemberId();
-        saveContinue.click();}
+        saveContinue.click();
+    }
 
-    public  void clickGoBack(){
+    public void clickGoBack() {
         basicActions.waitForElementToBeClickable(btnBack, 20);
-        btnBack.click();}
+        btnBack.click();
+    }
 
     public void getMemberId() {
+
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
         MemberDetails subscriber = SharedData.getPrimaryMember();
+
         String currentUrl = basicActions.getCurrentUrl();
         String headerText = citizenshipImmigrationStatusHeader.getText();
         String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
@@ -232,6 +236,7 @@ public class LawfulPresencePage {
         }
     }
 
+    // WIP - Do we need a switch case here if it is same for both cases?
     public void validateVerbiageOnCitizenshipAndImmigratioStatusPage(String language, List<String> data) {
         switch (language) {
             case "English", "Spanish":
@@ -255,7 +260,7 @@ public class LawfulPresencePage {
 
     public void validateVerbageForNaturalizedCitizenIn(String language, List<String> data) {
         switch (language) {
-            case "English","Spanish":
+            case "English", "Spanish":
                 validateVerbiageNaturalizedCitizen(data);
                 break;
             default:
@@ -264,7 +269,7 @@ public class LawfulPresencePage {
 
     }
 
-    private void validateVerbiageNaturalizedCitizen(List <String> data) {
+    private void validateVerbiageNaturalizedCitizen(List<String> data) {
 
         softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), data.get(0), "Naturalized Citizen Question text mismatch");
         softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), data.get(1), "Naturalized Citizen - Yes RadioButton text mismatch");
@@ -283,7 +288,7 @@ public class LawfulPresencePage {
         }
     }
 
-    private void validateVerbiageEligibleImmigrationStaus(List <String> data) {
+    private void validateVerbiageEligibleImmigrationStaus(List<String> data) {
 
         softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), data.get(0), "Immigration status Question text mismatch");
         softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), data.get(1), "Immigration status - Yes RadioButton text mismatch");
@@ -322,7 +327,7 @@ public class LawfulPresencePage {
         }
     }
 
-    private void validateDocumentTypeTextIn(List <String> data) {
+    private void validateDocumentTypeTextIn(List<String> data) {
 
         softAssert.assertEquals(textDocumentType.getText(), data.get(0), "Document Type text mismatch");
 

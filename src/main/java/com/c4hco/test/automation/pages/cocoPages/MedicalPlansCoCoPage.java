@@ -69,7 +69,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "PlanResults-MetalTier_0-input")
+    @FindBy(id = "PlanResults-MetalTier_1-input")
     WebElement silverEnhancedBox;
 
     @FindBy(xpath = "//*[@class = 'col-12 col-xl-5 responsive-text-align-left ng-star-inserted']")
@@ -120,9 +120,10 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectContinueMedicalPlansCoCo() {
-        basicActions.waitForElementToDisappear(spinner, 20);
-        basicActions.waitForElementToBeClickableWithRetries(continueButton, 20);
-        continueButton.click();
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(continueButton,20);
+        basicActions.waitForElementToBeClickableWithRetries(continueButton, 30);
+        basicActions.click(continueButton);
     }
 
     public void clickInsuranceCompanyDropdown() {
@@ -210,8 +211,9 @@ public class MedicalPlansCoCoPage {
     private void clickPlanButton(int index) {
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
+        basicActions.waitForElementToBePresent(ePlanID,20);
         basicActions.waitForElementToBeClickable(ePlanID, 10);
-        ePlanID.click();
+        basicActions.click(ePlanID);
     }
 
     private void paginateRight() {

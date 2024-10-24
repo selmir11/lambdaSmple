@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+
 
 public class MyProfileExchPage {
 
@@ -73,11 +74,11 @@ public class MyProfileExchPage {
 
     @FindBy(css = "span.change-password-msg")
     WebElement PasswordMessage;
-    @FindBy(xpath = "//span[.=' Change ']")
+    @FindBy(css = ".action-link.col-sm-2.float-end.ng-star-inserted")
     WebElement changePrimaryContact;
     @FindBy(id = "contactNames")
     WebElement primaryContactDRP;
-    @FindBy(xpath = "//button[.='Save']")
+    @FindBy(css = ".btn.btn-lg.btn-md.btn-sml.primary-action-button.mb-1.ms-3")
     WebElement savePrimaryContact;
 
     @FindBy(css = "#userPassword")
@@ -122,8 +123,26 @@ public class MyProfileExchPage {
     @FindBy(css = "button[class='btn-second-action-button ng-tns-c1380103175-0']\n")
     WebElement NoTimeout;
 
+    @FindBy(css = ".row.header-2.popup-page-header")
+    WebElement headerChangePrimary;
 
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+   WebElement cancelPrimaryPopup;
 
+    @FindBy(xpath = "//button[normalize-space()='Cancelar'] ")
+    WebElement getCancelPrimaryPopupSp;
+
+    @FindBy(css = "a#privacyPolicyLink.action-link1")
+    WebElement privacyPolicy;
+
+    @FindBy(css = "a#termsOfUseLink.action-link1")
+    WebElement termsOfUse;
+
+    @FindBy(xpath = "//*[@id='contactNames']/option[1]")
+    WebElement dpdPrimaryChangeOpt1;
+
+    @FindBy(xpath = "//*[@id='contactNames']/option[2]")
+    WebElement dpdPrimaryChangeOpt2;
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -152,6 +171,15 @@ public class MyProfileExchPage {
         PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
         basicActions.waitForElementToBePresent(PasswordSaveChanges, 40);
         PasswordSaveChanges.click();
+    }
+
+    public void clickSaveButtonObO() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        MyProfileButtonExch.get(1).click();
+
+        basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
+        softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
     }
 
     public void clickChangePasswordButton() {
@@ -430,10 +458,20 @@ public class MyProfileExchPage {
         changePrimaryContact.click();
     }
 
-    public void SelectTheSecondHouseholdMemberAsPrimaryContact() {
+    public void UpdateContactEmailAddress() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmail = "Updated"+SharedData.getPrimaryMember().getEmailId();
+        SharedData.getPrimaryMember().setEmailId(newEmail);
+        InputEmail.clear();
+        InputEmail.sendKeys(newEmail);
+    }
+    
+    public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
-        String firstName = SharedData.getMembers().get(0).getFirstName();
+        updatePrimaryMemInSharedData(memberName);
+        String firstName = SharedData.getPrimaryMember().getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
         savePrimaryContact.click();
@@ -663,7 +701,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1023@test.com";
+        String newEmail = "updated.automation1025@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();
@@ -674,7 +712,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementToBePresent(SuccessfulBanner, 10);
         softAssert.assertEquals(SuccessfulBanner.getText(), "Your changes have been successfully saved!");
         // Revert email address/////////
-        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 100);
         MyProfileButtonExch.get(1).click();
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(SharedData.getPrimaryMember().getEmailId());
@@ -791,7 +829,7 @@ public class MyProfileExchPage {
 
     public void ValidateEmailinuseErrorEnglish() {
         // Update email address/////////
-        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40000);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
         String newEmail =  "testlraccount@test.com";
@@ -841,7 +879,7 @@ public class MyProfileExchPage {
 
     public void verifyTimeoutPopupEnglish() {
         basicActions.wait(900000);
-        //basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        basicActions.waitForElementToBePresent(Headertimeout, 2000000);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
@@ -860,5 +898,67 @@ public class MyProfileExchPage {
         YesTimeout.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
+    }
+
+    public void validateChangePrimaryContactpopop(String language) {
+        switch (language) {
+            case "English":
+                validateChangePrimaryContactpopopEnglish();
+                break;
+            case "Spanish":
+                validateChangePrimaryContactpopopSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void validateChangePrimaryContactpopopEnglish() {
+        basicActions.waitForElementToBePresent(headerChangePrimary, 2000);
+        softAssert.assertEquals(headerChangePrimary.getText(), "Change Primary Contact");
+        primaryContactDRP.click();
+        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getPrimaryMember().getFullName());
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRP.sendKeys(firstName);
+        primaryContactDRP.sendKeys(Keys.ENTER);
+        softAssert.assertEquals(cancelPrimaryPopup.getText(), "Cancel");
+        softAssert.assertEquals(savePrimaryContact.getText(), "Save");
+        softAssert.assertEquals(privacyPolicy.getText(), "Privacy Policy");
+        softAssert.assertEquals(termsOfUse.getText(), "Terms Of Use");
+        cancelPrimaryPopup.click();
+        softAssert.assertAll();
+    }
+
+
+    public void validateChangePrimaryContactpopopSpanish() {
+        basicActions.waitForElementToBePresent(headerChangePrimary, 2000);
+        softAssert.assertEquals(headerChangePrimary.getText(), "Cambiar el contacto principal");
+        primaryContactDRP.click();
+        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getPrimaryMember().getFullName());
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRP.sendKeys(firstName);
+        primaryContactDRP.sendKeys(Keys.ENTER);
+        softAssert.assertEquals(getCancelPrimaryPopupSp.getText(), "Cancelar");
+        softAssert.assertEquals(savePrimaryContact.getText(), "Guardar");
+        softAssert.assertEquals(privacyPolicy.getText(), "Pol\u00EDtica de privacidad");
+        softAssert.assertEquals(termsOfUse.getText(), "T\u00E9rminos de uso");
+        savePrimaryContact.click();
+        softAssert.assertAll();
+    }
+
+    private void updatePrimaryMemInSharedData(String memPrefix){
+        List<MemberDetails> memberList = SharedData.getMembers();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        memberList.add(primaryMem);
+
+        memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            memberList.remove(newPrimaryMem);
+            SharedData.setPrimaryMember(newPrimaryMem);
+        });
+        SharedData.setMembers(memberList);
+
     }
 }

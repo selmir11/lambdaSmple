@@ -37,9 +37,6 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "lastName")
     WebElement txtlastName;
 
-    @FindBy(id = "nameSuffix")
-    WebElement selectSuffix;
-
     @FindBy(id = "dateOfBirth")
     WebElement txtdateOfBirth;
 
@@ -60,59 +57,6 @@ public class TellUsAboutAdditionalMemberPage {
     WebElement selectRelationship2;
     @FindBy(id = "memberRelationship3")
     WebElement selectRelationship3;
-   
-    @FindBy(css = "#memberRelationship1 > option:nth-child(2)")
-    WebElement selectBrother;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(3)")
-    WebElement selectCousin;
-
-    @FindBy(xpath = "#memberRelationship1 > option:nth-child(4)")
-    WebElement selectFather;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(5)")
-    WebElement selectGrandfather;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(6)")
-    WebElement selectGrandson;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(7)")
-    WebElement selectHalfBrother;
-
-
-    SoftAssert softAssert = new SoftAssert();
-    @FindBy(css= "#memberRelationship1 > option:nth-child(8)")
-    WebElement selectSpouse;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(9)")
-    WebElement selectInLaw;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(10)")
-    WebElement selectNephew;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(11)")
-    WebElement selectPartner;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(12)")
-    WebElement selectStepBrother;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(13)")
-    WebElement selectStepFather;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(14)")
-    WebElement selectSon;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(15)")
-    WebElement selectStepSon;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(16)")
-    WebElement selectUncle;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(17)")
-    WebElement selectUnrelated;
-
-    @FindBy(css = "#memberRelationship1 > option:nth-child(18)")
-    WebElement selectOther;
 
     @FindBy(id = "coverageYes")
     WebElement rdobtnIsMemberApplingYes;
@@ -132,26 +76,16 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "continueButton")
     WebElement btnsaveAndContinue;
 
-    @FindBy(xpath = "//span[contains(text(),'Primary')]/parent::label/parent::div //select")
-    WebElement selectRelationshipToPrimary;
-
-    @FindBy(xpath = "//span[contains(text(),'Spouse')]/parent::label/parent::div //select")
-    WebElement selectRelationshipToSpouse;
-
-    @FindBy(xpath = "//span[contains(text(),'Daughter')]/parent::label/parent::div //select")
-    WebElement selectRelationshipToDaughter;
-
-    @FindBy(xpath = "//span[contains(text(),'Son')]/parent::label/parent::div //select")
-    WebElement selectRelationshipToSon;
+    SoftAssert softAssert = new SoftAssert();
 
     public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
     public void enterMemberDetails(String DOB){
-        String frstName = capitalizeFirstLetter(getUniqueString(20));
-        String mdlName = capitalizeFirstLetter(getUniqueString(8));
-        String lastName = capitalizeFirstLetter(getUniqueString(13));
+        String frstName = basicActions.capitalizeFirstLetter(getUniqueString(20));
+        String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
+        String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
         basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
@@ -160,13 +94,9 @@ public class TellUsAboutAdditionalMemberPage {
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
         List<MemberDetails> memberList = SharedData.getMembers();
-        int memberCount =0;
         if (memberList == null) {
             memberList = new ArrayList<>();
-        }else{
-            memberCount = memberList.size();
         }
-        memberCount++;
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -175,49 +105,20 @@ public class TellUsAboutAdditionalMemberPage {
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
         member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
-        member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
     }
-    private void memDetailsWithoutSsn(String DOB){
-        String frstName = "Son"+getUniqueString(8);
-        String mdlName = capitalizeFirstLetter(getUniqueString(8));
-        String lastName = capitalizeFirstLetter(getUniqueString(13));
-        basicActions.waitForElementToBePresent(txtheader,1);
-        basicActions.waitForElementToBePresent(txtfirstName,30);
-        txtfirstName.sendKeys(frstName);
-        txtmiddleName.sendKeys(mdlName);
-        txtlastName.sendKeys(lastName);
-        txtdateOfBirth.sendKeys(DOB);
-        List<MemberDetails> memberList = SharedData.getMembers();
-        int memberCount =0;
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }else{
-            memberCount = memberList.size();
-        }
-        memberCount++;
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
-        member.setDependentCountTag("member"+memberCount);
-        memberList.add(member);
 
-        SharedData.setMembers(memberList);
-
-       }
-    public  void selectNoSSn(){
+    public  void selectNoSSn(String memberPrefix){
+        List<MemberDetails> members = SharedData.getMembers();
         basicActions.waitForElementToBePresent(rdbhaveSsn,1);
         rdbhaveSsn.click();
         basicActions.waitForElementToBePresent(rdbhaveAppliedForSSNYes,1);
         rdbhaveAppliedForSSNYes.click();
+        members.stream().filter(member -> member.getFirstName().contains(memberPrefix)).findFirst().ifPresent(member -> member.setSsn(null));
     }
+
     public void selectSex(String Sex){
         switch(Sex){
             case "Female":
@@ -291,85 +192,58 @@ public class TellUsAboutAdditionalMemberPage {
         String actualdob=dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
-    public void newbornDob(int Days) {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate DOBCalculate = currentDate.minusDays(Days);
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String actualdob = dateFormat.format(DOBCalculate);
-        memDetailsWithoutSsn(actualdob);
+
+    public void getDob(String namePrefix, String dob){
+        basicActions.getDob(namePrefix, dob);
     }
 
-    public void specificAdditionalMemberDetailsExch(String Name, String DOB, String gender, List<String> Relations, String applying){
-        String frstName = Name+getUniqueString(8);
-        String mdlName = capitalizeFirstLetter(getUniqueString(8));
-        String lastName = capitalizeFirstLetter(getUniqueString(13));
+    public void specificAdditionalMemberDetailsExch(String name, String dob, String gender, List<String> relations, String applying){
+        String frstName = name+getUniqueString(8);
+        String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
+        String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
         basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
-        txtdateOfBirth.sendKeys(DOB);
-        txtSSN.sendKeys("653035280");
-        List<MemberDetails> memberList = SharedData.getMembers();
-        int memberCount =0;
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }else{
-            memberCount = memberList.size();
+        if(dob.equals("getFromSharedData")){
+            dob = SharedData.getCalculatedDob().get(name);
+          dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
+        } else if(dob.contains("Age")){
+            memberDetailswithAge(Integer.parseInt(dob.replaceAll("\\D", "")));
         }
-        memberCount++;
-        MemberDetails member = new MemberDetails();
-        member.setFirstName(frstName);
-        member.setLastName(lastName);
-        member.setMiddleName(mdlName);
-        member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
-        member.setDependentCountTag("member"+memberCount);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
-
+        txtdateOfBirth.sendKeys(dob);
+        txtSSN.sendKeys("653035280");
         selectSex(gender);
+
         if(IsPersonPregnentNo.isDisplayed() ){
             selectIsPersonPregnant("No");
         }
-        for(String Relation : Relations) {
+        setMember(frstName, lastName, mdlName, dob, gender);
+
+        for(String Relation : relations) {
             selectRelationship(Relation);
         }
         isMemberApplyingForInsurance(applying);
     }
 
-    public String capitalizeFirstLetter(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
+    private void setMember(String frstName, String lastName, String mdlName, String dob, String gender){
+        List<MemberDetails> memberList = SharedData.getMembers();
+        if (memberList == null) {
+            memberList = new ArrayList<>();
         }
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
-    }
-
-    public void RelationshipToPrimary(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToPrimary, 15);
-        Select dropdown = new Select(selectRelationshipToPrimary);
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToSpouse(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToSpouse, 15);
-        Select dropdown = new Select(selectRelationshipToSpouse);
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToDauhter(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToDaughter, 15);
-        Select dropdown = new Select(selectRelationshipToDaughter);
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToSon(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToSon, 15);
-        Select dropdown = new Select(selectRelationshipToSon);
-        dropdown.selectByVisibleText(Relation);
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(dob);
+        member.setGender(gender);
+        member.setSignature(frstName+" "+lastName);
+        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
+        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
+        member.setSsn("653035280");
+        memberList.add(member);
+        SharedData.setMembers(memberList);
     }
 
     public void selectRelationship(String Relationship){
@@ -378,6 +252,8 @@ public class TellUsAboutAdditionalMemberPage {
         String Relation = parts[1]; // "Spouse"
 
         try {
+           List<MemberDetails> members = SharedData.getMembers();
+
             basicActions.waitForElementToBePresent(selectRelationship, 40);
             WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+Name+"')]/ancestor-or-self::label/parent::div //select"));
             basicActions.waitForElementToBePresent(element,10);
@@ -389,6 +265,19 @@ public class TellUsAboutAdditionalMemberPage {
             dropdown.selectByVisibleText(Relation);
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
+
+            for(MemberDetails member: members){
+                if(member.getFirstName().contains(Relation)){
+                    if(Relation.equals("Spouse") && member.getGender().equals("Female")){
+                        Relation = "Wife";
+                    } else if(Relation.equals("Spouse")&&member.getGender().equals("Male")){
+                        Relation = "Husband";
+                    }
+                    member.setRelation_to_subscriber(Relation.toUpperCase());
+                    break;
+                }
+            }
+            SharedData.setMembers(members);
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + e.getMessage());
             // Handle the exception as needed

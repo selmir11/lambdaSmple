@@ -117,7 +117,7 @@ public class OtherHealthCoveragePage_Elmo {
                 break;
             case "None of these":
                 basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 10);
-                insuranceOptionsCheckBox.get(11).click();
+                basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(11), 10);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
@@ -810,7 +810,7 @@ public class OtherHealthCoveragePage_Elmo {
     public void verifyHeadersOtherHealthCoveragePage(String member, String language) {
         basicActions.waitForElementToDisappear( spinner, 30 );
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 15);
+        basicActions.waitForElementToBePresent(saveAndContinueBtn, 15);
 
         String expectedText = "";
         switch (language) {

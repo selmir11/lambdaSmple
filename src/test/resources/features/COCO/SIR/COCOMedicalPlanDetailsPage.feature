@@ -1,17 +1,21 @@
-@COCOMedicalPlanDetailsPage
+@COCO
+  # SLCR-301,
 Feature: Verify COCO Medical Plan Detail page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-301 @CoCo_RegressionTest
-  Scenario: This will verify Text and Dropdown in COCO Plan Details page from medical plan page
+  Scenario: SLCR-301 - This will verify Text and Dropdown in COCO Plan Details page from medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page

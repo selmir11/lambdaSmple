@@ -10,6 +10,8 @@ import org.testng.Assert;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +44,7 @@ public class BasicActions {
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
     public void clickBackButtonFromBrowser() {
-        getDriver().navigate().back();
+       getDriver().navigate().back();
     }
 
     private static class LazyHolder {
@@ -131,7 +133,7 @@ public class BasicActions {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException ignore) {
+        } catch (TimeoutException|NoSuchElementException ignore) {
             Log.info("Element is not present");
             return false;
         }
@@ -338,46 +340,6 @@ public class BasicActions {
         String primaryMemId = SharedData.getPrimaryMemberId();
         String newUrl = "";
         switch(page){
-            case "Elmo Other Health Coverage Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage";
-                newUrl = currentUrl.replace("nes/otherHealthInsuranceBegin", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo COBRA Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/cobra";
-                newUrl = currentUrl.replace("nes/cobra", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Retiree Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/retiree";
-                newUrl = currentUrl.replace("nes/retireeHealth", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Medicare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/medicare";
-                newUrl = currentUrl.replace("nes/medicare", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi VA Healthcare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/va";
-                newUrl = currentUrl.replace("nes/vaHealth", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Individual Insurance Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/individual";
-                newUrl = currentUrl.replace("nes/individualInsurance", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Elmo Ohi Peace Corps Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/peaceCorps";
-                newUrl = currentUrl.replace("nes/peaceCorps", newUrl);
-                getDriver().navigate().to(newUrl);
-				break;
-            case "Elmo Ohi Tricare Page":
-                newUrl = "OtherHealthCoveragePortal/members/"+primaryMemId+"/otherHealthCoverage/tricare";
-                newUrl = currentUrl.replace("nes/tricare", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
             case "Income portal Error CoCo":
                 newUrl = "income-portal/error";
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
@@ -546,5 +508,149 @@ public class BasicActions {
         }
         return true;
     }
+    public String doubleAmountFormat(String amountText){
+        String formattedAmt = amountText.replaceAll("[^\\d.]", "");
+        // Parse the amount string to a double
+        double amount = Double.parseDouble(formattedAmt);
+        // Check if the amount is a whole number
+        if (amount % 1 == 0) {
+            return String.format("%.0f", amount); // No decimals for whole numbers
+        } else {
+            return String.format("%.2f", amount); // Two decimals for fractional amounts
+        }
+    }
+    public String getFirstOfJanCurrYr() { // January 1st of current year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear(), 1, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+    public String getLastDayOfCurrYr() {// December 31st of the current year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear(), 12, 31);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+    public String firstDateOfNextMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfNextMonth.format(formatter);
+    }
+    public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
+        LocalDate date = LocalDate.parse(dateString, inputFormatter);
+
+        return date.format(outputFormatter);
+    }
+
+    public String  getDateBasedOnRequirement(String dateRequirement) {
+        String date;
+        switch (dateRequirement) {
+            case "First Day Of Current Year":
+               date = getFirstOfJanCurrYr();
+                break;
+            case "Last Day Of Current Year": 
+               date = getLastDayOfCurrYr();
+                break;
+            case "getFromSharedData":
+                String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
+                date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
+                break;
+            case "First Of Next Month":
+                date =  firstDateOfNextMonth();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dateRequirement);
+
+        }
+        return date;
+    }
+
+    public String endOfMonthDate() {
+        LocalDate today = LocalDate.now();
+        LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return endOfMonth.format(formatter);
+    }
+
+    public void getDob(String namePrefix, String dob){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dobCalculator = currentDate;
+        switch(dob){
+            case "current date minus 5days":
+                dobCalculator = currentDate.minusDays(5);
+                break;
+            default: Assert.fail("Did not find the case entered");
+        }
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String actualdob = dateFormat.format(dobCalculator);
+        Map<String, String> nameAndDob = new HashMap<>();
+        SharedData.setBirthLceIndividual(namePrefix);
+        nameAndDob.put(namePrefix, actualdob);
+        SharedData.setCalculatedDob(nameAndDob);
+    }
+
+    public String getFullNameWithPrefix(String memPrefix){
+      List<MemberDetails> allMem = getAllMem();
+      return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getCompleteFullNameWithPrefix(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public List<MemberDetails> getAllMem(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> allMembers = new ArrayList<>();
+        if(dependents!=null){
+            for(MemberDetails dependent: dependents){
+                allMembers.add(dependent);
+            }
+        }
+        allMembers.add(primaryMem);
+        return allMembers;
+    }
+
+    public List<String> getAllMemNames(){
+        // returns first and last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+           firstAndLastName.add(mem.getSignature());
+        }
+        return firstAndLastName;
+    }
+
+    public List<String> getAllMemCompleteNames(){
+        // returns first, middle, last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+            firstAndLastName.add(mem.getCompleteFullName());
+        }
+        return firstAndLastName;
+    }
+
+    public String getMemberId(String memPrefix){
+        String memId = "";
+        if (memPrefix.equals("Primary")) {
+            memId = SharedData.getPrimaryMemberId();
+        }
+        else {
+            List<MemberDetails> members = SharedData.getMembers();
+            for(MemberDetails mem: members){
+                if(mem.getFirstName().contains(memPrefix)){
+                    memId = mem.getMemberId();
+                }
+            }
+        }
+        return memId;
+    }
+
+
 }
 

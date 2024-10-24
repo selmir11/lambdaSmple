@@ -4,7 +4,7 @@ Feature: Page Text-Race And Ethnicity page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-917-WIP @PageTextRaceAndEthnicity @NVOExchRegression
+  @SLER-917 @PageTextRaceAndEthnicity @NVOExchRegression
   Scenario: Check Race And Ethnicity Page Text in English
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -34,10 +34,13 @@ Feature: Page Text-Race And Ethnicity page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Not listed" for race and ethnicity for "Primary"
+    Then I verify text on the Race and Ethnicity page in "English"
+    And I select "Not listed" for race and ethnicity for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-    Then I click continue on family overview page
-    Then I validate I am on the "Financial Help" page
+    Then I click Go back on the Citizenship page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

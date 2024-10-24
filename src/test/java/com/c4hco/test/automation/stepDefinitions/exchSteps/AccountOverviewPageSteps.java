@@ -40,11 +40,19 @@ public class AccountOverviewPageSteps {
         accountOverviewPage.setScenarioDetails(expectedResult);
     }
 
+    @Given("I set the dynamic policy, coverage and financial dates")
+    public void iSetDates(List<Map<String, String>> expectedResult){
+        accountOverviewPage.setDates(expectedResult);
+    }
+
     @And("I verify the gmail Notices")
     public void GmailNotices() {
        gmailNotices.verifyNotices();
     }
 
-
+    @Then("Validate {string} displayed as Primary person in Account Overview Page")
+    public void ivalidateFirstMemberName(String memberName){
+        accountOverviewPage.validateUsername(memberName );
+    }
 }
 

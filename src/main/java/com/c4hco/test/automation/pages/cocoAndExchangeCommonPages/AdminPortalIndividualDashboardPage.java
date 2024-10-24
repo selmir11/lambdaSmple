@@ -93,7 +93,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalsYear;
     @FindBy(xpath = "//div[.='There is no Renewal data for this year']")
     WebElement noRenewalsText;
-    @FindBy(id = "username")
+    @FindBy(xpath = "//td[@id='username']")
     WebElement pmUsername;
     @FindBy(xpath = "//input[@id='program-manager-email-input']")
     WebElement emailProgramManager;
@@ -129,6 +129,21 @@ public class AdminPortalIndividualDashboardPage {
     WebElement orgName;
     @FindBy(xpath = "//th[normalize-space()='First Name']")
     WebElement clientFirstName;
+    @FindBy(xpath = "//div[.='Renewal Status: PENDING']")
+    WebElement renewalsStatus;
+    @FindBy(css = "#medicalData > span")
+    WebElement renewalMed;
+    @FindBy(css = "#medicalData > div > span.body-text-coverage")
+    WebElement renewalMedCoverage;
+    @FindBy(css = "#medicalData > div > span.body-text-1")
+    WebElement coverageMedPlan;
+    @FindBy(css = "#dentalData > span")
+    WebElement renewalDental;
+    @FindBy(css = "#dentalData > div > span.body-text-coverage")
+    WebElement renewalDentalCoverage;
+    @FindBy(css = "#dentalData > div > span.body-text-1")
+    WebElement coverageDentalPlan;
+
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -152,7 +167,7 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     public void verifyContainerTitle() {
-        basicActions.waitForElementToBePresent(reportsTitle, 10);
+        basicActions.waitForElementToBePresent(reportsTitle, 20);
         softAssert.assertTrue(reportsTitle.isDisplayed());
         softAssert.assertAll();     }
     public void viewReportLinks(String searchText) {
@@ -268,12 +283,13 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(renewalsYear.getText(), defaultYear);
         softAssert.assertAll();    }
     public void VerifyProgramManagerInformationAccountSummary() {
+        basicActions.waitForElementToBePresent(pmUsername,20);
         if (SharedData.getEnv().equals("qa")) {
             softAssert.assertEquals(pmUsername.getText(), "profile@test.com");
             softAssert.assertEquals(pmPhone.getText(), "333-333-3333 ext12345");
         } else {
-            softAssert.assertEquals(pmUsername.getText(), "c4assistorportal+tKSVkjcxB@gmail.com");
-            softAssert.assertEquals(pmPhone.getText(), "335-580-8300");
+            softAssert.assertEquals(pmUsername.getText(), "c4assistorportal+d0GLweQ7R@gmail.com");
+            softAssert.assertEquals(pmPhone.getText(), "236-521-3426");
         }
             softAssert.assertAll(); }
     public void validateProgramManagerDashboardContainerTitles() {
@@ -316,5 +332,18 @@ public class AdminPortalIndividualDashboardPage {
     public void clickGoBackONAdminPortalProgramManager() {
         basicActions.waitForElementToBePresent(goBack,20);
         goBack.click(); }
+    public void verifyStatusIsDisplayed(String containerStatus) {
+        basicActions.waitForElementToBePresent(renewalsStatus, 10);
+        softAssert.assertEquals(renewalsStatus.getText(), containerStatus);
+        softAssert.assertAll();    }
+    public void validateMedicalAndDentalPlans(String renewalMedical, String medicalCoverage, String medPlanData, String renewalDent, String dentalCoverage, String dentPlanData) {
+        basicActions.waitForElementToBePresent(renewalMed, 10);
+        softAssert.assertEquals(renewalMed.getText(), renewalMedical);
+        softAssert.assertEquals(renewalMedCoverage.getText(), medicalCoverage);
+        softAssert.assertEquals(coverageMedPlan.getText(), medPlanData);
+        softAssert.assertEquals(renewalDental.getText(), renewalDent);
+        softAssert.assertEquals(renewalDentalCoverage.getText(), dentalCoverage);
+        softAssert.assertEquals(coverageDentalPlan.getText(), dentPlanData);
+        softAssert.assertAll();    }
 }
 

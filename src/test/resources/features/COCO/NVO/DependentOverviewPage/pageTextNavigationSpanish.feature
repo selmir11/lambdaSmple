@@ -10,6 +10,8 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
@@ -18,9 +20,9 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Asian or Asian American" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
     And I select "Annually" income frequency option
@@ -46,10 +48,9 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "I prefer not to answer" ethnicity option
-    And I select "I prefer not to answer" race option
-    And I click continue on the Ethnicity and race page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Asian or Asian American" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option

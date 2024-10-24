@@ -42,6 +42,7 @@ public class IncomeOptOutPage {
     }
 
     public void chooseNoFinancialHelp(){
+        basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBeClickable(noThanks,10);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setAptcAmt("$0");
@@ -51,10 +52,10 @@ public class IncomeOptOutPage {
     }
 
     public void chooseApply(){
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 40);
         basicActions.waitForElementToBePresent(headerText, 50);
         basicActions.waitForElementToBePresent(noThanks, 50);
-        basicActions.waitForElementToBeClickableWithRetries(apply, 50);
+        basicActions.waitForElementToBeClickableWithRetries(apply, 60);
         basicActions.scrollToElement(apply);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setFinancialHelp(true);

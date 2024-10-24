@@ -10,6 +10,8 @@ Feature: Navigation - Dependent Overview page
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I click Primary EditUpdate on the Family Overview page
@@ -18,6 +20,7 @@ Feature: Navigation - Dependent Overview page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Indigenous or Native American" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -45,7 +48,7 @@ Feature: Navigation - Dependent Overview page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Asian or Asian American" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

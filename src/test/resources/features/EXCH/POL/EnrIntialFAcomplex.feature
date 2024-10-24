@@ -1,6 +1,6 @@
 Feature: Enroll a in a plan 8 HH
   @SLER-832  
-  Scenario: : EXCH intial application
+  Scenario: : EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -25,7 +25,6 @@ Feature: Enroll a in a plan 8 HH
     And I click Authorized broker
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-
     Then I select "Female" as sex option
     And I select "No" as pregnancy option
     And I select "Yes" to Are You Applying
@@ -39,12 +38,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Asian or Asian American" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #1Member
+    #1Member (spouse)
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -59,9 +61,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Asian or Asian American" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
 
-
-    #2Member (spouse)
+    #2Member (son1)
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "06281996", "Male" and applying "Yes"
       |Primary:Son|
@@ -81,12 +89,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" to the recently denied medicaid question
     And I select "Yes" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Asian or Asian American" for race and ethnicity for "Son"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #member3
+    #member3 (son2)
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -105,13 +116,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Asian or Asian American" for race and ethnicity for "SonTwo"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #member 4
+    #member 4 (daughter)
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -125,7 +138,6 @@ Feature: Enroll a in a plan 8 HH
     Then I select "1234 Road" specific Address
     And I select "Yes" for CO Resident option
     And I select "Yes" for Federally Recognized Tribe option
-#Tribe Selection to be added
     Then I add the tribe details
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
@@ -133,13 +145,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Indigenous or Native American" for race and ethnicity for "Daughter"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #Member 5
+    #Member 5 (nephew)
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -159,13 +173,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-    #member6
+    #member6 (neice)
 
 
     Then I click Add Another Family Member
@@ -187,16 +203,15 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
+    And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
-
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I select the option "Yes" to employment
@@ -215,7 +230,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "600000.00" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "60000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -269,7 +284,6 @@ Feature: Enroll a in a plan 8 HH
     And I select "Married filing jointly" tax filing status
     And I select spouse to file taxes jointly
     And I select "Yes" to claim dependents
-    And I select the first dependent
     And I select the second dependent
     And I select the third dependent
     And I select the fourth dependent

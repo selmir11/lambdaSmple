@@ -118,8 +118,7 @@ public class FindExpertHelpSteps {
         }
 
         @Then("I click Continue on my own button from Manage who helps you page")
-        public void iClickContinueOnOwnButton() {
-                findExpertHelpPage.clickContinueOnMyOwnButton();
+        public void iClickContinueOnOwnButton() {findExpertHelpPage.clickContinueOnMyOwnButton();
         }
 
         @Then("I Remove my current Broker")
@@ -130,6 +129,11 @@ public class FindExpertHelpSteps {
         @And("I {string} my decision to remove my current broker")
         public void iClickRemoveBrokerPopUp(String removalOption){
                 findExpertHelpPage.clickRemoveBrokerPopUp(removalOption);
+        }
+
+        @And("I verify the remove broker text in {string}")
+        public void iVerifyRemoveBrokerPopUpText(String language){
+                findExpertHelpPage.verifyRemoveBrokerPopUpText(language);
         }
 
         @And("I validate the Previous Broker Assister text")

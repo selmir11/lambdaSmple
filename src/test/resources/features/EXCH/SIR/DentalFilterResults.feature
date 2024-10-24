@@ -1,4 +1,5 @@
 @dentalPlanFilterResults @SIR
+  # contains SLER-81, SLER-96, SLER-837, SLERR-862, SLER-863
 Feature: Dental Plan Verification test
 
   Background:
@@ -21,13 +22,16 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
+
     Then I validate I am on the "Identify Proofing - Congratulations" page
     And I click continue button on Congratulations page
 
@@ -45,13 +49,15 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -121,7 +127,8 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -149,11 +156,11 @@ Feature: Dental Plan Verification test
     And I select "<insuranceCompany>" to filter for a Dental Insurance Company
     And I validate the Dental Plan option 1 has a plan result "<dentalPlanText>"
     Examples:
-    |insuranceCompany    |dentalPlanText                                          |
-    |Anthem Dental       |Anthem Dental Family Value                              |
-    |Cigna               |Cigna Dental Pediatric                                  |
-    |Delta Dental        |Delta Dental of Colorado Pediatric Comprehensive Plan   |
-    |Solstice Health     |EssentialSmile Colorado - Total Care                    |
+    |insuranceCompany               |dentalPlanText                                          |
+    |Anthem Dental                  |Anthem Dental Family Value                              |
+    |Cigna                          |Cigna Dental Pediatric                                  |
+    |Delta Dental                   |Delta Dental of Colorado Pediatric Comprehensive Plan   |
+    |Solstice Healthplans / UHC     |EssentialSmile Colorado - Total Care                    |
 
   @SLER-837 @SelectVerifyDentalPediatricPlansOnlyMinor
   Scenario: SLER-837 - SelectVerifyDentalPediatricPlansOnlyMinor
@@ -197,13 +204,15 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -260,6 +269,7 @@ Feature: Dental Plan Verification test
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -269,13 +279,17 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
+
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -296,7 +310,7 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     # validate that pediatric plans do not appear for someone over 19 in the same area as before in minor test- we will verify from the plan title
     And I validate that Pediatric Dental Plans are not available
-    And I click on Sign Out in the Header for "Elmo"
+    #And I click on Sign Out in the Header for "Elmo"
 
   @SLER-863 @SelectVerifyDentalPediatricPlansAdultWithMinor
   Scenario: SLER-863 - Verify Pediatric plans available for group of two
@@ -337,6 +351,10 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -345,13 +363,8 @@ Feature: Dental Plan Verification test
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    #Then I enter details on tell us about additional members of your household exch page and continue with Name "Son", DOB "10102010", Gender "Male" and applying status "Yes"
-    #  |Primary:Son|
-
-    Then I enter member details with "10102010" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "10102010", "Male" and applying "Yes"
+      |Primary:Son|
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -364,7 +377,8 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page

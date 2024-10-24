@@ -12,6 +12,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -22,6 +23,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -46,7 +48,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+   Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -76,6 +78,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate the text on "Go back" "Save and Exit" and "Continue" buttons on medical grouping page coco
     Then I validate text on the medical grouping page coco
+
     Then I click Go Back on the Medical Grouping page coco
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
@@ -92,6 +95,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -102,11 +106,9 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -126,12 +128,10 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -152,12 +152,9 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "CoCo Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -180,7 +177,6 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate text on the medical grouping page coco
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
@@ -214,7 +210,6 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate text on the medical grouping page coco
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
@@ -235,6 +230,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -245,6 +241,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Elmo Race and Ethnicity" page

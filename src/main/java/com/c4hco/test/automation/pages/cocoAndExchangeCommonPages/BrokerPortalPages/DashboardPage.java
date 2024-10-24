@@ -1,11 +1,15 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 
 public class DashboardPage {
@@ -39,6 +43,21 @@ public class DashboardPage {
 
     @FindBy(id = "agency-manage-account-button")
     WebElement editAccountSummary;
+
+    @FindBy(id = "client-info-search-input")
+    WebElement clientInformationSearchBox;
+
+    @FindBy(id = "client-first-0")
+    WebElement clientInformationClientFirstName;
+
+    @FindBy(id = "client-last-0")
+    WebElement clientInformationClientLastName;
+
+    @FindBy(id = "broker-select-0")
+    WebElement clientInformationCurrentBrokerAssignment;
+
+    @FindBy(id = "broker-submit-0")
+    WebElement clientInformationBrokerAssignmentSubmit;
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -98,5 +117,37 @@ public class DashboardPage {
         basicActions.waitForElementToBePresent(editAccountSummary, 10);
         softAssert.assertEquals(editAccountSummary.getText(), "Edit");
         editAccountSummary.click();
+    }
+
+    public void clientInformationSearch(){
+        basicActions.waitForElementToBePresent(clientInformationSearchBox, 10);
+        String firstName = SharedData.getPrimaryMember().getFirstName();
+        clientInformationSearchBox.sendKeys(firstName);
+    }
+
+    public void clientNameClientInformation(){
+        basicActions.waitForElementToBePresent(clientInformationClientFirstName, 10);
+        softAssert.assertEquals(clientInformationClientFirstName.getText(),SharedData.getPrimaryMember().getFirstName());
+        softAssert.assertEquals(clientInformationClientLastName.getText(),SharedData.getPrimaryMember().getLastName());
+        softAssert.assertAll();
+    }
+
+    public void currentAssignedBroker(String assignedBroker){
+        basicActions.waitForElementToBePresent(clientInformationCurrentBrokerAssignment, 10);
+        String currentBroker = clientInformationCurrentBrokerAssignment.getText().split("\n")[0].trim();
+
+        softAssert.assertEquals(currentBroker,assignedBroker);
+        softAssert.assertAll();
+    }
+
+    public void changeAssignedBroker(String assignedBroker){
+        basicActions.waitForElementToBePresent(clientInformationCurrentBrokerAssignment, 10);
+
+        Select brokerDropdown = new Select(clientInformationCurrentBrokerAssignment);
+        clientInformationCurrentBrokerAssignment.click();
+        brokerDropdown.selectByVisibleText(assignedBroker);
+        clientInformationCurrentBrokerAssignment.click();
+
+        clientInformationBrokerAssignmentSubmit.click();
     }
 }

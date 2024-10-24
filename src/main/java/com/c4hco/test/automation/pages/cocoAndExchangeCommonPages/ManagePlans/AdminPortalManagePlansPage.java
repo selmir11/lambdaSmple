@@ -1,5 +1,4 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
-        import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
         import org.openqa.selenium.*;
         import org.openqa.selenium.support.FindBy;
@@ -7,7 +6,8 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import org.testng.Assert;
         import org.testng.asserts.SoftAssert;
         import java.util.List;
-        import java.util.Optional;
+
+
 
 public class AdminPortalManagePlansPage{
 
@@ -62,9 +62,9 @@ public class AdminPortalManagePlansPage{
     WebElement btnMedSave;
     @FindBy(id = "Manage Plans-Save Button Dental")
     WebElement btnDentalSave;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div")
+    @FindBy(xpath = "//div[text()='Previous Financial Periods - Medical']")
     WebElement previousFinancialMed;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[2]/div[2]/app-previous-plan/div")
+    @FindBy(xpath = "//div[text()='Previous Financial Periods - Dental']")
     WebElement previousFinancialDental;
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div/div[2]")
     WebElement previousFinancialNoMed;
@@ -78,8 +78,18 @@ public class AdminPortalManagePlansPage{
     WebElement secondYearInList;
     @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
     WebElement coverageStartdate;
+    @FindBy(xpath= "//div[@id='coverageEndDate_2']//input[1]")
+    WebElement coverageEndDate;
     @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
     WebElement financialStartDate;
+
+    @FindBy(xpath= "//div[@id='financialEndDate_1']//input[1]")
+    WebElement financialEndDate;
+    @FindBy(id= "financialEndDate_1")
+    WebElement financialEndDateText;
+    @FindBy(xpath= "//div[@id='financialEndDate_2']//input[1]")
+    WebElement financialEndDateSecondMember;
+
     @FindBy(xpath = "//app-drop-down-select[@id='change-reason']//div[@class='drop-down-option drop-down-option-selected']")
     WebElement reasonForTheChange;
     @FindBy(xpath = "//span[normalize-space()='Recon']")
@@ -94,10 +104,16 @@ public class AdminPortalManagePlansPage{
     List<WebElement> currentMedicalData;
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
     List<WebElement> currentDentalData;
-    @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected']")
+    @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy' and contains(@class,'dropdown-container')]")
     WebElement selectPolicyDropdown;
-    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span[@id='option_3']")
-    WebElement selectGroup2PolicyDropdown;
+    @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[1]/div[1]/app-current-plan/div/div[1]/div/p[2]")
+    WebElement selectPolicyDropdownOptions;
+    @FindBy(id = "premium_1")
+    WebElement financialPremiumData;
+    @FindBy(id = "status_1")
+    WebElement coverageStatusData;
+    @FindBy(id = "id='planAPTC_1")
+    WebElement financialAptcData;
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -225,7 +241,6 @@ public class AdminPortalManagePlansPage{
 
             boolean elementUpdated = false;
             int attempts = 0;
-
             while(!elementUpdated && attempts < 3) {
                 try {
                     WebElement coverageStartdateMem = basicActions.getDriver()
@@ -265,13 +280,16 @@ public class AdminPortalManagePlansPage{
     }
 
     public void selectReasonForTheChange(){
+        basicActions.waitForElementToBePresent(additionalReasonText, 20);
         basicActions.waitForElementToBeClickable(reasonForTheChange,10);
         reasonForTheChange.click();
         basicActions.waitForElementToBeClickable(optionRecon, 10);
         optionRecon.click();
         basicActions.waitForElementToBePresent(additionalReasonText, 10);
         additionalReasonText.sendKeys("Testing");
+        basicActions.waitForElementToBePresent(confirmChangesButton, 20);
         confirmChangesButton.click();
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(coverageStatusData,30));
     }
 
     public void verifyLabelsDataMedical() {
@@ -298,6 +316,57 @@ public class AdminPortalManagePlansPage{
         basicActions.waitForElementToBePresent(yearsDpdArrow, 10);
         yearsDpdArrow.click();
         basicActions.switchtoactiveTab();       }
+
+    public void selectMemberNameFromPolicyDropdown(String Membername){
+        basicActions.waitForElementToBePresent(chkMedical,20);
+        basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdown,30);
+        basicActions.scrollToElement(selectPolicyDropdown);
+        basicActions.click(selectPolicyDropdown);
+        WebElement dropdown = selectPolicyDropdownOptions.findElement(By.xpath(".//span[contains(text(),'"+ Membername+ "')]/parent::div"));
+        basicActions.waitForElementToBePresentWithRetries(dropdown,30);
+        basicActions.clickElementWithRetries(dropdown,20);
+        basicActions.waitForElementToBePresentWithRetries(coverageStatusData,20);
+        basicActions.waitForElementToBePresentWithRetries(financialPremiumData,20);
+        basicActions.waitForElementToBePresentWithRetries(financialAptcData,20);
+   }
+
+    public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
+        for(String memberFinancialEndDate:memberCoverageEndDTList ){
+            String[] parts = memberFinancialEndDate.split(":");
+            String memberNo = parts[0];
+            String coverageEndDateValue = "";
+            if(parts[1].equals("end of month")){
+                coverageEndDateValue=basicActions.endOfMonthDate();
+            }else{
+                coverageEndDateValue =parts[1];
+            }
+            basicActions.scrollToElement( coverageEndDate );
+            basicActions.waitForElementToBePresent(coverageEndDate,30);
+
+            WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_"+memberNo+"']//input[1]"));
+            financialEndDateMem.sendKeys(coverageEndDateValue);
+        }
+    }
+
+
+    public void updateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
+        for(String memberFinancialEndDate:memberFinancialEndDTList ){
+            String[] parts = memberFinancialEndDate.split(":");
+            String memberNo = parts[0];
+            String financialStartDateValue = "";
+                   if(parts[1].equals("end of month")){
+                    financialStartDateValue=basicActions.endOfMonthDate();
+            }else{
+                       financialStartDateValue =parts[1];
+                   }
+            basicActions.scrollToElement( financialEndDate );
+            basicActions.waitForElementToBePresent(financialEndDate,30);
+            basicActions.waitForElementToBeClickable(financialEndDate,30);
+
+            WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_"+memberNo+"']//input[1]"));
+            financialEndDateMem.sendKeys(financialStartDateValue);
+        }
+    }
 
 }
 

@@ -1,4 +1,5 @@
-@medicalDentalPlanSummary @test
+@medicalDentalPlanSummary
+  # SLER-100, SLER-515
 Feature: Medical and Dental Plan Summary Verification test
 
   Background:
@@ -47,7 +48,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -84,7 +85,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-515 @VerifyUnassignedMedicalPlanSummaryResultsMultiple
-   Scenario: SLER-515 - Validate grouping members: 2 groups - one group is unassigned to medical plans
+  Scenario: SLER-515 - Validate grouping members: 2 groups - one group is unassigned to medical plans
     When I click create a new account on login page
     Then I validate I am on the "Prescreen" page
     Then I click create my account from pre-screen page
@@ -126,8 +127,8 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -136,7 +137,7 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "Mother", DOB "10101945", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Mother", "10101945", "Female" and applying "Yes"
       |Primary:Mother|
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
@@ -152,8 +153,8 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Mother"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -162,7 +163,7 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonOne", DOB "10102001", Gender "Male" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "10102001", "Male" and applying "Yes"
       |Primary:Son    |
       |Mother:Grandson|
 
@@ -181,8 +182,8 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "SonOne"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -191,7 +192,7 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "SonTwo", DOB "10102007", Gender "Male" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "10102007", "Male" and applying "Yes"
       |Primary:Son    |
       |Mother:Grandson|
       |SonOne:Brother |
@@ -209,8 +210,8 @@ Feature: Medical and Dental Plan Summary Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

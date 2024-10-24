@@ -30,7 +30,6 @@ public class TellUsAboutYourselfPageSteps {
     @Then("I update SSN number to new SSN number {string}")
     public void updateSSN(String newSsn) {
         tellUsAboutYourselfPage.iUpdateSSN(newSsn);
-
     }
 
     @Then("I update Full Name to new Name")

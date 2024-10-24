@@ -1,11 +1,12 @@
 @Dental @DentalCompare
+  # SLER-80, SLER-727, SLER-1037
 Feature: Medical Plan Results page related tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @CompareDentalPlansLink @SLER-80
+   @SLER-80 @CompareDentalPlansLink
   Scenario: SLER-80 - Validate the Navigation and Functionality of Compare Plans Link (Dental) - formerly RT-1980
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -18,8 +19,13 @@ Feature: Medical Plan Results page related tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     # Question not asked during Open Enrollment
+     #And I report "Birth" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -39,7 +45,7 @@ Feature: Medical Plan Results page related tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -70,7 +76,7 @@ Feature: Medical Plan Results page related tests
     And I click Go Back on the Dental Compare page
     Then I click on Sign Out in the Header for "DentalPlanResults"
 
-  @DentalCompareTextValidation @SLER-727
+  @SLER-727 @DentalCompareTextValidation
   Scenario: SLER-727 - Validate the Text on Compare Plans page (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -82,8 +88,13 @@ Feature: Medical Plan Results page related tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -103,7 +114,7 @@ Feature: Medical Plan Results page related tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -140,7 +151,7 @@ Feature: Medical Plan Results page related tests
     Then I validate I am on the "Dental Plan Results" page
     Then I click on Sign Out in the Header for "DentalPlanResults"
 
-  @DentalCompareNavigation @SLER-1037
+   @SLER-1037 @DentalCompareNavigation
   Scenario: SLER-1037- formerly RT- 1980 - Validate the Navigation from the Dental Plan Results page to the Compare Plans page (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -153,8 +164,13 @@ Feature: Medical Plan Results page related tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+     Then I validate I am on the "Before you begin" page
+     Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+     #And I report "MovedToColorado" and click continue
+
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -174,7 +190,7 @@ Feature: Medical Plan Results page related tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

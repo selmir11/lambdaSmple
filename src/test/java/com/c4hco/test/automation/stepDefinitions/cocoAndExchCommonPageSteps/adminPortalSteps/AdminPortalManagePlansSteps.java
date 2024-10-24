@@ -105,5 +105,22 @@ public class AdminPortalManagePlansSteps {
     @And("I collapse year dropdown")
     public void iCollapsYearDropdown() {
         adminPortalManagePlansPage.collapsYearDropdown();       }
+
+    @And("I select {string} from the SelectPolicy Dropdown to update the dates")
+    public void iSelectMemberNameFromPolicyDropdown(String MemberName){
+        adminPortalManagePlansPage.selectMemberNameFromPolicyDropdown( MemberName);
+    }
+
+    @Then("I update the coverage end date")
+    public void iUpdateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
+        adminPortalManagePlansPage.updateTheCoverageEndDate(memberCoverageEndDTList);
+    }
+
+    @And("I update the financial end date")
+    public void iUpdateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
+        adminPortalManagePlansPage.updateTheFinancialEndDate(memberFinancialEndDTList);
+    }
+
+
 }
 

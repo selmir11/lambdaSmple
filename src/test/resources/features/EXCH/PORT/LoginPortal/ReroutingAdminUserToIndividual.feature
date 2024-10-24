@@ -1,4 +1,4 @@
-@SLER-1033
+@SLER-1033 @LoginPortal
 Feature: Rerouting Admin Users to Individual sign in page when they sign out and they can see the dropdown options
 
   @SLER-1033
@@ -51,7 +51,7 @@ Feature: Rerouting Admin Users to Individual sign in page when they sign out and
     And I validate I am on the "Admin Login" page
 
   @SLER-1033
-  Scenario: Admin user should
+  Scenario: Admin user should be able to click ‘Cuenta del gerente de programa’ option and navigate to the assistnet portal (Spanish)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     And I change the language from header to "Spanish Login"
@@ -64,7 +64,7 @@ Feature: Rerouting Admin Users to Individual sign in page when they sign out and
     And I validate I am on the "Program Manager Login" page
 
   @SLER-1033
-  Scenario: Admin user should
+  Scenario: Admin user should be able to click ‘Portal del agente’ option and navigate to the broker portal (Spanish)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     And I change the language from header to "Spanish Login"

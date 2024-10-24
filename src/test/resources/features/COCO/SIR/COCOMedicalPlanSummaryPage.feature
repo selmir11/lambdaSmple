@@ -1,18 +1,21 @@
-@SIR @COCO
-
+@COCO
+ # SLCR-328, SLCR-329
 Feature: Verify text in Medical Plan Summary Page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
   @SLCR-328
-  Scenario: SLCR-328 - This will create Individual adult and verify text in Medical Plan Summary Page
+  Scenario: SLCR-328 - This will create an Individual adult profile and verify English text in Medical Plan Summary Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -31,6 +34,7 @@ Feature: Verify text in Medical Plan Summary Page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -70,31 +74,20 @@ Feature: Verify text in Medical Plan Summary Page
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I validate text on coco plan summary page
-      | Download PDF            |
-      | Here are your plans     |
-      | and what they will cost |
-      | Medical Plans           |
-      | Change Plan             |
-      | View Plan Details       |
-      | / month                 |
-      | Total of Medical Plans  |
-      | Premiums Before Savings |
-      | Money you save          |
-      | Amount you pay          |
-      | Go Back                 |
-      | Save and Exit           |
-      | Continue                |
+    And I validate the "English" text on the Plan Summary COCO page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-329
-  Scenario: SLCR-329 - This will create Individual adult and verify spanish text in Medical Plan Summary Page
+  Scenario: SLCR-329 - This will create an Individual adult profile and verify Spanish text in Medical Plan Summary Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -110,9 +103,10 @@ Feature: Verify text in Medical Plan Summary Page
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -153,19 +147,5 @@ Feature: Verify text in Medical Plan Summary Page
 
     Then I validate I am on the "planSummaryMedicalDental" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I validate text on coco plan summary page
-      | Descargar PDF                     |
-      | Aquí están sus planes             |
-      | y lo que costarán                 |
-      | Planes médicos                    |
-      | Cambiar de Plan                   |
-      | Ver los detalles del plan         |
-      | / mes                             |
-      | Costo Total de los Planes Médicos |
-      | Primas Antes de los Descuentos    |
-      | Dinero que ahorra                 |
-      | Cantidad que paga                 |
-      | Volver                            |
-      | Guardar y Salir                   |
-      | Continuar                         |
+    And I validate the "Spanish" text on the Plan Summary COCO page
     And I click on Sign Out in the Header for "Elmo"

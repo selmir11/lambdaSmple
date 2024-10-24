@@ -1,11 +1,12 @@
-@SIR @COCO @COCOMedicalResults @SES
+@COCO @COCOMedicalResults @SES
+  #SLCR-85, SLCR-195, SLCR-278, SLCR-162, SLCR-262, SLCR-266, SLCR-273,
 Feature: Verify COCO Medical Plan results
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-@COCOFilterMedicalResultsWithSilverEnhanced @SLCR-85
-Scenario Outline: This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results - SLCR-85
+ @SLCR-85 @COCOFilterMedicalResultsWithSilverEnhanced
+Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver Enhanced metal filter and related medical plan results - SLCR-85
   # Only available during SES Open Enrollment - 2023 had this option available for 1 week due to enrollment max limits reached
   # SES plans appear when the income total is below 20K for each individual - or 10K if its a couple
   When I click create a new account on login page
@@ -14,6 +15,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
   Then I validate I am on the "Login" page
   And  I enter valid credentials to login
+  Then I click continue signing in on the CAC Screener page
+
+  Then I validate I am on the "CoCo Welcome" page
   And I apply for the current year in CoCo
 
   Then I validate I am on the "Find Expert Help" page
@@ -41,6 +45,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I select "Prefer not to answer" for race and ethnicity option
   And I click save and continue on the Race and Ethnicity page
 
+  Then I validate I am on the "CoCo Employment Income" page
   And I select "Yes" employment option
   And I enter "1000000" income amount
   And I select "Annually" income frequency option
@@ -87,14 +92,17 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
 
 
-  @COCOFilterMedicalResults_SilverEnhanced_Only @SLCR-278
-  Scenario Outline: This will validate the different SES carrier plan results after COCO filters are set for Silver Enhanced
+   @SLCR-278 @COCOFilterMedicalResults_SilverEnhanced_Only
+  Scenario Outline: SLCR-278 - This will validate the different SES carrier plan results after COCO filters are set for Silver Enhanced
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -156,16 +164,16 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click on Sign Out in the Header for "Elmo"
 
     Examples:
-      | carrierOption               | planText                                                                  |
-      | Anthem                      | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std         |
-      | Cigna                       | Cigna Colorado Option Silver Enhanced 94%                                 |
-      | Denver Health               | Elevate Health Plans Colorado Option Silver Off Exchange                  |
-      | Kaiser Permanente           | KP Colorado Option Silver Enhanced 94% AV                                 |
-      | Rocky Mountain Health Plan  | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94% AV         |
-      | Select Health               | Select Health Value Colorado Option Silver Off Exchange                   |
+      | carrierOption                         | planText                                                                  |
+      | Anthem                                | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std         |
+      | Cigna Healthcare                      | Cigna Colorado Option Silver Enhanced 94%                                 |
+      | Denver Health                         | Elevate Health Plans Colorado Option Silver Off Exchange                  |
+      | Kaiser Permanente                     | KP Colorado Option Silver Enhanced 94% AV                                 |
+      | Rocky Mountain Health Plans / UHC     | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94% AV         |
+      | Select Health                         | Select Health Value Colorado Option Silver Off Exchange                   |
 
-  @COCOVerifyPlanTotalSilverEnhanced @SLCR-273
-  Scenario: This will verify the existence of the COCO Silver Enhanced metal filter and verify total available SES plans in area - CCRT-630
+   @SLCR-273 @COCOVerifyPlanTotalSilverEnhanced
+  Scenario: SLCR-273 - This will verify the existence of the COCO Silver Enhanced metal filter and verify total available SES plans in area - CCRT-630
   # Only available during SES Open Enrollment - 2023 had this option available for 1 week due to enrollment max limits reached
   # Once established only a filter change like due to a filter change will change the result
     When I click create a new account on login page
@@ -174,6 +182,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -234,19 +245,23 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I validate the plan totals are "24" on the COCO Medical Plan Results page
+    And I validate the plan totals are "18" on the COCO Medical Plan Results page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
     And I validate the SES plan totals are "6" on the COCO Medical Plan Results page
     Then I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-162 @EndToEndTest
-  Scenario: This will create Family of 4 members Couple and their children with multiple groups
+  @SLCR-162
+  Scenario: SLCR-162 - This will create Family of 4 members Couple and their children with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -401,25 +416,25 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -434,13 +449,17 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-262 @EndToEndTest
-  Scenario: This will create Family of 4 members Couple and their children with multiple groups with income as 35k
+  @SLCR-262
+  Scenario: SLCR-262 - This will create Family of 4 members Couple and their children with multiple groups with income as 35k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -593,25 +612,22 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -626,13 +642,17 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-266 @EndToEndTest
-  Scenario: This will create Family of 4 members Couple and their children with multiple groups $0 income
+  @SLCR-266
+  Scenario: SLCR-266 - This will create Family of 4 members Couple and their children with multiple groups $0 income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
+
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -755,19 +775,18 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
+
     And I select Silver Enhanced option
-    And I select "Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -782,14 +801,17 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-195 @EndToEndTest
-  Scenario: This will create Individual Minor with no assistance annually salary of 10K
+  @SLCR-195
+  Scenario: SLCR-195 - This will create Individual Minor with no assistance annually salary of 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+
+    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page

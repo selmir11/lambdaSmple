@@ -1,6 +1,6 @@
- @SLER-34-WIP @SLER-1069
+ @SLER-34 @SLER-1069
 Feature: Simple NFA - Single Applicant
-  Background: Simple NFA flow with single applicant
+  Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -11,6 +11,9 @@ Feature: Simple NFA - Single Applicant
     And I enter general mandatory data for "exchange" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Given I set the dynamic policy, coverage and financial dates
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -35,6 +38,9 @@ Feature: Simple NFA - Single Applicant
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "White or European" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -50,7 +56,6 @@ Feature: Simple NFA - Single Applicant
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -71,33 +76,39 @@ Feature: Simple NFA - Single Applicant
 
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And Validate medical plan details from my policies page with start date "First Of Next Month"
-    And Validate dental plan details from my policies page with start date "First Of Next Month"
+    And I click submit enrollment on Enrollment Agreements page
 
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
-    And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
-#    validate the downloaded document -WIP
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    #Gmail # Add all the validations -WIP
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+
+    And I click on ClickHere link for "My Documents"
+    #    # PDF Notice Validation
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
+      #Email Notice Validation
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan with coverage start date "First Of Next Month"
+    And I validate additional details for "medical" plan on email notice
       |Primary|
-    And I validate the email notice details for "medical" plan with coverage start date "First Of Next Month"
+    And I validate additional details for "dental" plan on email notice
       |Primary|
     Then I delete the open notice
     And I sign out of Outlook
@@ -106,10 +117,8 @@ Feature: Simple NFA - Single Applicant
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-    # WIP - Validate financial sstart/end dates, coverage start/end dates and all of policy table validations
-    And I validate policy tables with medical coverage start date as "First Of Next Month"
-    And I validate policy tables with dental coverage start date as "First Of Next Month"
 
+    And I validate the member details from policy tables
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
     And I validate member details from ob834_details table
@@ -130,6 +139,7 @@ Feature: Simple NFA - Single Applicant
 
       # RT-1276
     And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I set ib999 entites for both medical and dental files
     And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I validate the contents of ib999 medical file
