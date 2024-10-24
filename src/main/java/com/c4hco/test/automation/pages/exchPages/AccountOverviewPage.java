@@ -218,7 +218,6 @@ public class AccountOverviewPage {
     basicActions.waitForElementToBePresent(txtUserName,20);
     softAssert.assertTrue(txtUserName.getText().contains(memberName));
     softAssert.assertAll();
-    System.out.println(SharedData.getPrimaryMember().getCompleteFullName());
     }
 
 }

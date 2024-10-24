@@ -12,6 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
+
 public class MyProfileExchPage {
 
 
@@ -949,10 +950,10 @@ public class MyProfileExchPage {
     }
 
     public void replacePrimaryMember(String memberName){
+        List<MemberDetails> memberList = SharedData.getMembers();
         for(MemberDetails memberDetail:SharedData.getMembers()){
             String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
             if (memberFullName.contains(memberName)){
-                List<MemberDetails> memberList = SharedData.getMembers();
                 MemberDetails member = new MemberDetails();
                 member.setFirstName(SharedData.getPrimaryMember().getFirstName());
                 member.setLastName(SharedData.getPrimaryMember().getLastName());
@@ -964,7 +965,6 @@ public class MyProfileExchPage {
                 member.setSignature(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
                 member.setFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
                 member.setCompleteFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getMiddleName()+" "+SharedData.getPrimaryMember().getLastName());
-                //member.setDependentCountTag("member"+(SharedData.getMembers().size()+1));
                 memberList.add(member);
 
                 SharedData.setMembers(memberList);
@@ -981,6 +981,7 @@ public class MyProfileExchPage {
                 subscriber.setMemberId(memberDetail.getMemberId());
                 subscriber.setIsSubscriber("Y");
                 SharedData.setPrimaryMember(subscriber);
+                memberList.remove(memberDetail);
                 break;
             }
         }
