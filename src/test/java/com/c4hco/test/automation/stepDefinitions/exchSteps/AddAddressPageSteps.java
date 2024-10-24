@@ -53,7 +53,6 @@ public class AddAddressPageSteps {
     @Then("I select {string} for Fulltime Student option")
     public void isMemberStudent(String YNStudent){addAddressPage.isMemberStudent(YNStudent);}
 
-
     @Then("I select {string} for Foster care in state of Colorado")
     public void isMemberInFosterCare(String YNFosterCare){
          addAddressPage.isUserInFosterCare(YNFosterCare);
