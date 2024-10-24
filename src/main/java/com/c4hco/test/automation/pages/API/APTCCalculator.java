@@ -16,7 +16,6 @@ public class APTCCalculator {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String effectiveDate = "2025-01-01";
-            //LocalDate.now().format(formatter);
 
     public void getAPIEnvConnection(){
         if(ApplicationProperties.getInstance().getProperty("env").equals("staging")){

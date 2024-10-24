@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 public class CRMContactPageSteps {
     CRMContactPage crmContactPage = new CRMContactPage(WebDriverManager.getDriver());
 
-    @Then("I open the MVR/DVR Tab on contact page")
+    @Then("I open the MVRDVR Tab on contact page")
     public void openMVRDVRTab(){crmContactPage.openMVRDVRTab();}
 
     @Then("I open the {string} MVR")

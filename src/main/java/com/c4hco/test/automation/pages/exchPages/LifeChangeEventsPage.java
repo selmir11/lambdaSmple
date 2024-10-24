@@ -126,7 +126,8 @@ public class LifeChangeEventsPage {
             }
         String currentUrl = basicActions.getCurrentUrl();
         if (currentUrl.contains("https://staging")) {
-            saveAndContinueButton.get(0).click();
+            //saveAndContinueButton.get(0).click();
+            saveAndContinueOnlyButton.click();
         } else if (currentUrl.contains("https://qa")) {
             basicActions.scrollToElement(saveAndContinueOnlyButton);
             saveAndContinueOnlyButton.click();
