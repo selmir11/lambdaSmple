@@ -214,7 +214,7 @@ public class AccountOverviewPage {
     }
 
 
-    public void validateFirstMemberName(String memberName){
+    public void validateUsername(String memberName){
     basicActions.waitForElementToBePresent(txtUserName,20);
     softAssert.assertTrue(txtUserName.getText().contains(memberName));
     softAssert.assertAll();

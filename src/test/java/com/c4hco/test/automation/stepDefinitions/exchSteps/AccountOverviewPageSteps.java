@@ -52,7 +52,7 @@ public class AccountOverviewPageSteps {
 
     @Then("Validate {string} displayed as Primary person in Account Overview Page")
     public void ivalidateFirstMemberName(String memberName){
-        accountOverviewPage.validateFirstMemberName(memberName );
+        accountOverviewPage.validateUsername(memberName );
     }
 }
 
