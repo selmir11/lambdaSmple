@@ -16,8 +16,14 @@ Then I validate I am on the "Account Overview" page
 And I apply for the current year
 Then I select "No" option on the Let us guide you page
 And I click on save and continue button
+
+Then I validate I am on the "Before you begin" page
 Then I click on continue with  application button on Before you begin page
-And I report "Birth" and click continue
+
+# Question not asked during Open Enrollment
+#And I report "MovedToColorado" and click continue
+
+Then I validate I am on the "Who Are You" page
 Then I select "member" from the who are you question
 And I am a member with City "Denver" in State "CO" with dob "11281986" in county "DENVER" with zipcode "80205"
 Then I answer all Id proofing questions and click continue
@@ -63,9 +69,9 @@ Then I click on view results and shop
 Then I validate I am on the "Application Results" page
 Then I click continue on application results page
 Then I click continue on start shopping page
-   And I validate I am on the "Medical Plan Results" page
+And I validate I am on the "Medical Plan Results" page
 And I store the medical plan market names from results page
-   And I validate the medical plan market names in the DB
+And I validate the medical plan market names in the DB
 
 
 
