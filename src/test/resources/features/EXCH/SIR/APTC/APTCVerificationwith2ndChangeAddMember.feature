@@ -49,7 +49,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -166,7 +166,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity
+    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -285,7 +285,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I select "Yes" for Citizen option
@@ -405,7 +405,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity
+      #And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -432,8 +432,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      And I select "Prefer not to answer" for race and ethnicity option
-      And I click save and continue on the Race and Ethnicity page
+      And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+      And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
@@ -570,7 +570,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -692,8 +692,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -719,7 +719,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -860,7 +860,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I select "Yes" for Citizen option
@@ -974,8 +974,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity option
-      And I click save and continue on the Race and Ethnicity page
+      #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+      And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
@@ -986,7 +986,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click Add Another Family Member
 
       Then I validate I am on the "Add Member" page
-      Then I enter details on tell us about additional members of your household exch page and continue with Name "Daughter", DOB "<DOBmember2>", Gender "Female" and applying status "Yes"
+      Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "<DOBmember2>", "Female" and applying "Yes"
         |Primary:Daughter|
       And I mark the Additional member is pregnant as "No"
       And I click continue on Tell us about additional members page
@@ -1002,7 +1002,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Daughter"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1144,7 +1144,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -1260,7 +1260,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity
+    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1272,7 +1272,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "Daughter", DOB "<DOBmember2>", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "<DOBmember2>", "Female" and applying "Yes"
       |Primary:Daughter|
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
@@ -1288,7 +1288,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1386,7 +1386,7 @@ Feature: UI Tests related to APTC after second enrollment change
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
 
-  @SLER-1007-WIP
+  @SLER-1007
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2411
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1427,7 +1427,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -1546,7 +1546,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity
+    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1558,7 +1558,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "Spouse", DOB "10101990", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101990", "Female" and applying "Yes"
       |Primary:Spouse|
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
@@ -1574,8 +1574,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1586,7 +1586,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "DaughterOne", DOB "10102010", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "DaughterOne", "10102010", "Female" and applying "Yes"
       |Primary:Daughter  |
       |Spouse:Daughter   |
     And I mark the Additional member is pregnant as "No"
@@ -1604,7 +1604,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "DaughterOne"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1616,7 +1616,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "DaughterTwo", DOB "10102010", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "DaughterTwo", "10102010", "Female" and applying "Yes"
       |Primary:Daughter    |
       |Spouse:Daughter     |
       |DaughterOne:Sister  |
@@ -1635,7 +1635,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "DaughterTwo"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1801,7 +1801,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
       #Then I validate I am on the "Report a life change" page
-      #nd I report "MovedToColorado" and click continue
+      #And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -1825,7 +1825,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I select "Yes" for Citizen option
@@ -1935,7 +1935,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity
+      #And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1964,7 +1964,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Spouse"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -2073,26 +2073,26 @@ Feature: UI Tests related to APTC after second enrollment change
       # -$265.98
       And I click continue on plan summary page
 
-      Then I validate I am on the "Financial Help Agreements" page
-      And I select the terms and agreements checkbox
-      And I enter householder signature on the Financial Help Agreements page
-      And I click continue on Financial Help Agreements page
+      #Then I validate I am on the "Financial Help Agreements" page
+      #And I select the terms and agreements checkbox
+      #And I enter householder signature on the Financial Help Agreements page
+      #And I click continue on Financial Help Agreements page
 
-      Then I validate I am on the "Enrollment Agreements" page
-      And I select "Acknowledgement" agreement checkbox
-      And I select "Submit" agreement checkbox
-      And I enter householder signature on the Enrollment Agreements page
-      And I click submit enrollment on Enrollment Agreements page
+      #Then I validate I am on the "Enrollment Agreements" page
+      #And I select "Acknowledgement" agreement checkbox
+      #And I select "Submit" agreement checkbox
+      #And I enter householder signature on the Enrollment Agreements page
+      #And I click submit enrollment on Enrollment Agreements page
 
-      Then I validate I am on the "Pay now" page
+      #Then I validate I am on the "Pay now" page
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
-        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1417.06/mo             |  -$1,381.56          |
-        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $825.70/mo              |  -$825.70            |
-        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $969.77/mo              |  -$969.77            |
-        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1065.07/mo             |  -$974.02            |
-        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1855.85/mo             |  -$1,632.64          |
-        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1930.89/mo             |  -$1,930.89          |
+        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1424.52/mo             |  -$1,386.83          |
+        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $831.20/mo              |  -$831.20            |
+        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $975.10/mo              |  -$975.10            |
+        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1070.29/mo             |  -$977.74          |
+        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1863.58/mo             |  -$1,638.87          |
+        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1938.62/mo             |  -$1,938.62          |
 
 

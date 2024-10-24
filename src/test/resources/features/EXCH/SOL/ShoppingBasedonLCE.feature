@@ -110,11 +110,9 @@ Feature: Initial Payment Page test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03021995" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -126,7 +124,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -135,11 +133,9 @@ Feature: Initial Payment Page test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with age as 17
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "Age17", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -151,7 +147,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -277,17 +273,15 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03051980" date of birth
-    And I select "Male" as sex option
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051980", "Male" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -299,7 +293,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -307,11 +301,9 @@ Feature: Initial Payment Page test
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with age as 27
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "Age27", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -323,7 +315,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -423,7 +415,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -432,11 +424,9 @@ Feature: Initial Payment Page test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03021995" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03031995", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -448,7 +438,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -457,11 +447,9 @@ Feature: Initial Payment Page test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with age as 17
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "01012007", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -473,7 +461,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -543,7 +531,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -552,11 +540,9 @@ Feature: Initial Payment Page test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03021995" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051995", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -568,7 +554,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -577,11 +563,9 @@ Feature: Initial Payment Page test
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with age as 17
-    And I select "Male" as sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "01012007", "Male" and applying "Yes"
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -593,7 +577,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

@@ -50,8 +50,8 @@ Feature: Dental Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -128,8 +128,8 @@ Feature: Dental Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -205,8 +205,8 @@ Feature: Dental Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -280,8 +280,8 @@ Feature: Dental Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -352,8 +352,8 @@ Feature: Dental Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -363,13 +363,8 @@ Feature: Dental Plan Verification test
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    #Then I enter details on tell us about additional members of your household exch page and continue with Name "Son", DOB "10102010", Gender "Male" and applying status "Yes"
-    #  |Primary:Son|
-
-    Then I enter member details with "10102010" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "10102010", "Male" and applying "Yes"
+      |Primary:Son|
     And I click continue on Tell us about additional members page
 
     Then I validate I am on the "Add Address" page
@@ -383,8 +378,8 @@ Feature: Dental Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

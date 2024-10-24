@@ -336,5 +336,12 @@ public class DbQueries_Exch {
                 ");";
     }
 
+    public String getRaceEthnicityStored(){
+        return "select em.race_ethnicity, em.race_other_text " +
+                "from " + dbName + ".es_member em " +
+                "join " + dbName + ".es_household eh on eh.household_id = em.household_id " +
+                "where eh.account_id = '" + acctId + "' " +
+                "order by em.member_id";
+    }
 
 }
