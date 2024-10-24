@@ -12,6 +12,9 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Of Next Month       | Last Day Of Current Year | First Of Next Month       | Last Day Of Current Year | First Of Next Month       | Last Day Of Current Year |
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -127,8 +130,5 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select year "2024" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
-    And Validate selected medical plan for "Son" is "Elevate Health Plans Colorado Option Bronze"
-    And Validate selected medical plan for "Daughter" is "Elevate Health Plans Colorado Option Bronze"
-    And Validate selected medical plan for "Spouse" is "Elevate Health Plans Colorado Option Bronze"
-    And Validate selected medical plan for "Primary" is "Elevate Health Plans Colorado Option Bronze"
+    And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
