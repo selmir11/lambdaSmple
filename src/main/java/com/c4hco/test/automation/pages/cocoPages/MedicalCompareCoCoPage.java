@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import lombok.experimental.FieldNameConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,23 +21,88 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         PageFactory.initElements( basicActions.getDriver(), this );
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
-    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
-    public WebElement firstplan;
+    @FindBy(xpath="//*[class = 'c4-type-header-lg header-container']")
+    public WebElement compareTopHeader;
 
-    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
-    public WebElement secondplan;
+    @FindBy(id = "MedicalComparePlans-TopGoBackToPlans")
+    public WebElement goBackToPlansCompareLink;
 
-    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
-    public WebElement thirdplan;
+    @FindBy(id = "SHP-MedicalComparePlans-DownloadSummaryOfThisPage")
+    public WebElement downloadPDF;
+
+    @FindBy(id= "PlanCompare-PlanDetails_1")
+    public WebElement linkViewDetails1;
+
+    @FindBy(id= "PlanCompare-PlanDetails_2")
+    public WebElement linkViewDetails2;
+
+    @FindBy(id= "PlanCompare-PlanDetails_3")
+    public WebElement linkViewDetails3;
+
+    @FindBy(id= "PlanCompare-PlanDetails_4")
+    public WebElement linkViewDetails4;
+
+    @FindBy(css = ".pt-5")
+    public WebElement planHeaderdetails;
+
+
+    @FindBy(id = "PlanCompare-SelectThisPlan_1")
+    public WebElement selectfirstplan;
+
+    @FindBy(id = "PlanCompare-SelectThisPlan_2")
+    public WebElement selectSecondplan;
+
+    @FindBy(id = "PlanCompare-SelectThisPlan_3")
+    public WebElement selectThirdplan;
+
+    @FindBy(id = "PlanCompare-SelectThisPlan_4")
+    public WebElement fourthPlan;
 
     @FindBy(xpath = "//p[normalize-space()='There are no plans selected to compare']")
     public WebElement noTextPlan;
 
+    @FindBy(id = "MedicalPlanCompare_InNetworkTab")
+    public WebElement selectInNetworkTier1Link;
 
-    //Monthly Premium header
+    @FindBy(id = "MedicalPlanCompare_InNetworkTier2Tab")
+    public WebElement selectInNetworkTier2Link;
+
+    @FindBy(id = "MedicalPlanCompare_OutOfNetworkTab")
+    public WebElement selectOutofNetworkLink;
+
+    @FindBy(xpath = "//div[@id='SHP-MedicalComparePlans-InNetworkTier1-panel'] //button")
+    public List<WebElement> drpDwnPlanDetails;
+
+
+    ////////////////////
+    //Highlights  header
+
+    @FindBy(xpath = "//*[class = 'accordion-header c4-type-header-sm']")
+    public WebElement headerHighlights;
+
+
+    @FindBy(xpath = "//span[normalize-space()='Monthly Cost']")
+    public WebElement txtCompareHeaderMonthlyCost;
+
+    @FindBy(xpath = "//span[normalize-space()='Deductible']")
+    public WebElement txtCompareHeaderDeductible;
+
+    @FindBy(xpath = "//span[normalize-space()='Coinsurance']")
+    public WebElement txtCompareHeaderCoinsurance;
+
+    @FindBy(xpath = "//span[normalize-space()='Out-of-Pocket Max']")
+    public WebElement txtCompareHeaderOutOfPocket;
+
+    @FindBy(xpath = "//span[normalize-space()='Overall Quality Rating']")
+    public WebElement txtCompareHeaderOverallQualityRating;
+
+    /// remove ///////////////
     @FindBy(id="ngb-accordion-item-0-toggle")
     public WebElement txtCompareHeaderMonthlyPremium;
 
@@ -48,34 +114,55 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     @FindBy(id = "ngb-accordion-item-14-toggle")
     public WebElement getTxtCompareHeaderGeneralDetailsOut;
+    /////////////////////////
 
-    //General Details header
-    @FindBy(id = "ngb-accordion-item-2-toggle")
-    public WebElement getTxtCompareHeaderProviderOfficeVisits;
+    // Plan Documents
+    @FindBy(xpath = "//span[normalize-space()='Plan Documents']")
+    public WebElement getTxtHeaderPlanDocuments;
 
-    @FindBy(id = "ngb-accordion-item-15-toggle")
-    public WebElement getTxtCompareHeaderProviderOfficeVisitsOut;
+    @FindBy(xpath = "//span[normalize-space()='Plan Documents\n" +
+            "(En español)']")
+    public WebElement getTxtPlanDocumentsEnglish;
 
-    @FindBy(xpath = "//td[normalize-space()='Preventive Care/Screening/Immunization']")
+    @FindBy(xpath = "//span[normalize-space()='Plan Documents\n" +
+            "(En español)']")
+    public WebElement getTxtPlanDocumentsSpanish;
+
+    //Doctor Visits header
+    @FindBy(xpath = "//div[normalize-space()='Doctor Visits']")
+    public WebElement getTxtSubheaderDoctorVisits;
+
+    @FindBy(xpath = "//div[normalize-space()='Preventive Care/ Screening/ Immunization']")
+    public WebElement getTxtCompareCategoryHeaderPrevCare;
+
+    @FindBy(xpath = "//div[normalize-space()='Primary Care Visit to Treat an Injury or Illness']")
     public WebElement getTxtPreventativeCare;
 
-    @FindBy(xpath = "//td[normalize-space()='Primary Care Visit to Treat an Injury or Illness']")
-    public WebElement getTxtPrimaryCare;
-
-    @FindBy(xpath = "//td[normalize-space()='Specialist Visit']")
+    @FindBy(xpath = "//div[normalize-space()='Specialist Visit']")
     public WebElement getTxtSpecialistVisit;
 
-    @FindBy(xpath = "//td[normalize-space()='Telehealth PCP']")
+    @FindBy(xpath = "//div[normalize-space()='Telehealth PCP']")
     public WebElement getTxtTelehealthPCP;
 
-    @FindBy(xpath = "//td[normalize-space()='Telehealth Specialist']")
+    @FindBy(xpath = "//div[normalize-space()='Telehealth Specialist']")
     public WebElement getTxtTelehealthSpecialist;
 
+    /// remove /////
+    // @FindBy(xpath = "//div[normalize-space()='Primary Care Visit to Treat an Injury or Illness']")
+    // public WebElement getTxtPrimaryCare;
+    //  @FindBy(id = "ngb-accordion-item-15-toggle")
+    //    public WebElement getTxtCompareHeaderProviderOfficeVisitsOut;
+
     //Prescription Drugs header
-    @FindBy(id = "ngb-accordion-item-3-toggle")
+    //@FindBy(id = "ngb-accordion-item-3-toggle")
+
+   ////////////////
+
+    @FindBy(id ="MedicalPlanCompare_Drugs")
     public WebElement getTxtCompareHeaderPrescriptionDrugs;
 
-    @FindBy(id = "ngb-accordion-item-16-toggle")
+    //@FindBy(id = "ngb-accordion-item-16-toggle")
+    @FindBy(id ="MedicalPlanCompare_Drugs")
     public WebElement getTxtCompareHeaderPrescriptionDrugsOut;
 
 
@@ -89,10 +176,12 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtSpecialtyDrugs;
 
     //Facilities header
-    @FindBy(id = "ngb-accordion-item-4-toggle")
+    //@FindBy(id = "ngb-accordion-item-4-toggle")
+    @FindBy(id = "MedicalPlanCompare_Facilities")
     public WebElement getTxtCompareHeaderFacilities;
 
-    @FindBy(id = "ngb-accordion-item-17-toggle")
+    //@FindBy(id = "ngb-accordion-item-4-toggle")
+    @FindBy(id = "MedicalPlanCompare_Facilities")
     public WebElement getTxtCompareHeaderFacilitiesOut;
 
     @FindBy(xpath = "//td[normalize-space()='Outpatient Facility Fee (e.g., Ambulatory Surgery Center)']")
@@ -104,16 +193,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//td[normalize-space()='Inpatient Physician and Surgical Services']")
     public WebElement getTxtInPatientPhysician;
 
-    //Maternity header
-    @FindBy(id = "ngb-accordion-item-5-toggle")
-    public WebElement getTxtCompareHeaderMaternity;
-    @FindBy(id = "ngb-accordion-item-18-toggle")
-    public WebElement getTxtCompareHeaderMaternityOut;
-
-    @FindBy(xpath = "//td[normalize-space()='Prenatal and Postnatal Care']")
-    public WebElement getTxtPrenatal;
-    @FindBy(xpath = "//td[normalize-space()='Delivery and All Inpatient Services for Maternity Care']")
-    public WebElement getTxtDelivery;
 
     //Emergency Care header
     @FindBy(id = "ngb-accordion-item-6-toggle")
@@ -143,6 +222,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//td[normalize-space()='Substance Abuse Disorder Inpatient Services']")
     public WebElement getTxtSubstanceAbuseInpatient;
 
+
     //Testing Header
     @FindBy(id = "ngb-accordion-item-8-toggle")
     public WebElement getTxtCompareHeaderTesting;
@@ -156,25 +236,15 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//td[normalize-space()='Imaging (CT/PET Scans, MRIs)']")
     public WebElement getTxtImaging;
 
-
-    //Medical Devices Header
-    @FindBy(id = "ngb-accordion-item-9-toggle")
-    public WebElement getTxtCompareHeaderMedicalDevices;
-
-    @FindBy(id = "ngb-accordion-item-22-toggle")
-    public WebElement getTxtCompareHeaderMedicalDevicesOut;
-    @FindBy(xpath = "//td[normalize-space()='Durable Medical Equipment']")
-    public WebElement getTxtDurableMedical;
-    @FindBy(xpath = "//td[normalize-space()='Prosthetic Devices']")
-    public WebElement getTxtProstheticDevices;
-
-
     // Habilitative and Rehabilitiative Header
-    @FindBy(id = "ngb-accordion-item-10-toggle")
+    //@FindBy(id = "ngb-accordion-item-10-toggle")
+    @FindBy(id = "MedicalPlanCompare_HabilitativeAndRehabilitativeServices")
     public WebElement getTxtCompareHeaderHabRehab;
 
-    @FindBy(id = "ngb-accordion-item-23-toggle")
+    //@FindBy(id = "ngb-accordion-item-23-toggle")
+    @FindBy(id = "MedicalPlanCompare_HabilitativeAndRehabilitativeServices")
     public WebElement getTxtCompareHeaderHabRehabOut;
+
     @FindBy(xpath = "//td[normalize-space()='Habilitation Services']")
     public WebElement getTxtHAbServices;
     @FindBy(xpath = "//td[normalize-space()='Rehabilitative Speech Therapy']")
@@ -185,63 +255,192 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtRehabPhysical;
 
 
+    //Medical Devices Header
+    //@FindBy(id = "ngb-accordion-item-9-toggle")
+    @FindBy(id="MedicalPlanCompare_MedicalDevices")
+    public WebElement getTxtCompareHeaderMedicalDevices;
+
+    //@FindBy(id = "ngb-accordion-item-22-toggle")
+    @FindBy(id="MedicalPlanCompare_MedicalDevices")
+    public WebElement getTxtCompareHeaderMedicalDevicesOut;
+
+    @FindBy(xpath = "//td[normalize-space()='Durable Medical Equipment']")
+    public WebElement getTxtDurableMedical;
+
+    @FindBy(xpath = "//td[normalize-space()='Prosthetic Devices']")
+    public WebElement getTxtProstheticDevices;
+
+
+    //Maternity header
+    //@FindBy(id = "ngb-accordion-item-5-toggle")
+    @FindBy(id = "MedicalPlanCompare_Maternity")
+    public WebElement getTxtCompareHeaderMaternity;
+
+    //@FindBy(id = "ngb-accordion-item-18-toggle")
+    @FindBy(id = "MedicalPlanCompare_Maternity")
+    public WebElement getTxtCompareHeaderMaternityOut;
+
+    @FindBy(xpath = "//td[normalize-space()='Prenatal and Postnatal Care']")
+    public WebElement getTxtPrenatal;
+    @FindBy(xpath = "//td[normalize-space()='Delivery and All Inpatient Services for Maternity Care']")
+    public WebElement getTxtDelivery;
+
+
 
     // Home Care and Hospice Header
-    @FindBy(id = "ngb-accordion-item-11-toggle")
+    //@FindBy(id = "ngb-accordion-item-11-toggle")
+    @FindBy(id ="MedicalPlanCompare_HomeCareAndHospice")
     public WebElement getTxtCompareHeaderHomeCare;
 
     @FindBy(id = "ngb-accordion-item-24-toggle")
     public WebElement getTxtCompareHeaderHomeCareOut;
+
     @FindBy(xpath = "//td[normalize-space()='Home Health Care Services']")
     public WebElement getTxtHomeCare;
+
     @FindBy(xpath = "//td[normalize-space()='Hospice Services']")
     public WebElement getTxtHospiceServices;
 
 
     // Additional EHB Benefits
-    @FindBy(id = "ngb-accordion-item-12-toggle")
+    //@FindBy(id = "ngb-accordion-item-12-toggle")
+    @FindBy(id="MedicalPlanCompare_AdditionalBenefits")
     public WebElement getTxtCompareHeaderAddEHB;
 
     @FindBy(id = "ngb-accordion-item-25-toggle")
     public WebElement getTxtCompareHeaderAddEHBOut;
+
     @FindBy(xpath = "//td[normalize-space()='Chiropractic Care']")
     public WebElement getTxtIChiroCare;
+
     @FindBy(xpath = "//td[normalize-space()='Bariatric Surgery']")
     public WebElement getTxtBarCare;
+
     @FindBy(xpath = "//td[normalize-space()='Infertility Treatment']")
     public WebElement getTxtInfertilityTreatment;
 
-    @FindBy(id = "MedicalPlanCompare_OutOfNetworkTab")
-    public WebElement selectOutofNetworkLink;
+    @FindBy(id= "MedicalComparePlans-GoBackToPlans")
+    public WebElement goBackToPlansCompareButton;
 
-    @FindBy(xpath = "//div[@id='SHP-MedicalComparePlans-InNetworkTier1-panel'] //button")
-    public List<WebElement> drpDwnPlanDetails;
+    @FindBy(xpath = "//*[contains(text(), 'Plan Details')]")
+    WebElement clickPlanDetailLink;
 
-    @FindBy(id = "MedicalPlanCompare_InNetworkTab")
-    public WebElement selectInNetworkTier1Link;
+    public void clickPlanDetailLink(){
+        basicActions.waitForElementToDisappear(spinner, 20);
+        clickPlanDetailLink.click();
+    }
 
-    @FindBy(css = ".pt-5")
-    public WebElement planHeaderdetails;
 
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
-    WebElement spinner;
+    public void validateTextComparePlanCoCoPage(String language){
+    basicActions.waitForElementToBePresent( spinner,20 );
+    switch(language){
+        case "English":
+            verifyEnglishTextPlanCompareCoCoPage();
+            break;
+        case "Spanish":
+            verifySpanishTextPlanCompareCoCoPage();
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid option: " + language);
+    }
+}
 
-    public void  clickMedicalCompareGoBack() {
+
+    public void verifyEnglishTextPlanCompareCoCoPage(){
+            basicActions.waitForElementToDisappear( spinner,30 );
+            basicActions.waitForElementToBePresent(compareTopHeader,20);
+            softAssert.assertEquals( compareTopHeader.getText(), "Compare Medical Plans" );
+            softAssert.assertEquals( downloadPDF.getText(), "Download PDF");
+            softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Go Back to Plans");
+            softAssert.assertEquals( linkViewDetails1.getText(), "Plan Details" );
+            softAssert.assertEquals( linkViewDetails2.getText(), "Plan Details" );
+            softAssert.assertEquals( linkViewDetails3.getText(), "Plan Details" );
+            softAssert.assertEquals( selectfirstplan.getText(), "Select Plan" );
+            softAssert.assertEquals( selectSecondplan.getText(), "Select Plan" );
+            softAssert.assertEquals( selectThirdplan.getText(), "Select Plan" );
+            softAssert.assertEquals( selectInNetworkTier1Link.getText(),"In-Network" );
+            softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
+            softAssert.assertEquals( selectOutofNetworkLink.getText(),"Out-of-Network" );
+
+            softAssert.assertEquals( headerHighlights.getText(),"Highlights" );
+            softAssert.assertEquals( txtCompareHeaderMonthlyCost.getText(),"Monthly Cost" );
+            softAssert.assertEquals( txtCompareHeaderDeductible.getText(),"Deductible" );
+            softAssert.assertEquals( txtCompareHeaderCoinsurance.getText(), "Coinsurance" );
+            softAssert.assertEquals( txtCompareHeaderOutOfPocket.getText(),"Out-of-Pocket Max" );
+
+            softAssert.assertEquals( txtCompareHeaderOverallQualityRating.getText(), "Overall Quality Rating");
+
+            softAssert.assertEquals( getTxtHeaderPlanDocuments.getText(), "Plan Documents" );
+            softAssert.assertEquals( getTxtPlanDocumentsEnglish.getText(), "Plan Documents\n" + "(English)" );
+            softAssert.assertEquals( getTxtPlanDocumentsSpanish.getText(), "Plan Documents\n" + "(En español)" );
+
+            softAssert.assertEquals( getTxtSubheaderDoctorVisits.getText(),"Doctor Visits" );
+            softAssert.assertEquals( getTxtPreventativeCare.getText(), "Preventive Care/ Screening/ Immunization");
+            softAssert.assertEquals( getTxtCompareCategoryHeaderPrevCare.getText(), "Primary Care Visit to Treat an Injury or Illness");
+            softAssert.assertEquals( getTxtSpecialistVisit.getText(),"Specialist Visit" );
+            softAssert.assertEquals( getTxtTelehealthPCP.getText(),"Telehealth PCP" );
+            softAssert.assertEquals( getTxtTelehealthSpecialist.getText(),"Telehealth Specialist" );
+
+            softAssert.assertEquals( getTxtCompareHeaderEmergencyCare.getText(),"Emergency Care" );
+
+            softAssert.assertEquals( getTxtCompareHeaderPrescriptionDrugs.getText(), "Drugs" );
+
+            softAssert.assertEquals( getTxtCompareHeaderTesting.getText(), "Testing" );
+
+            softAssert.assertEquals( getTxtCompareHeaderMentalHealth.getText(), "Mental Health Benefits" );
+            softAssert.assertEquals( getTxtCompareHeaderHabRehab.getText(),"Habilitative and Rehabilitative Services" );
+            softAssert.assertEquals( getTxtCompareHeaderMedicalDevices.getText(),"Medical Devices" );
+            softAssert.assertEquals( getTxtCompareHeaderMaternity.getText(), "Maternity"  );
+            softAssert.assertEquals( getTxtCompareHeaderHomeCare.getText(), "Home Care & Hospice"  );
+            softAssert.assertEquals( getTxtCompareHeaderAddEHB.getText(),"Additional Benefits");
+            softAssert.assertEquals( goBackToPlansCompareButton.getText(),"Go Back to Plans");
+            softAssert.assertAll();
+        }
+
+    public void verifySpanishTextPlanCompareCoCoPage(){
+            basicActions.waitForElementToDisappear( spinner,30 );
+            basicActions.waitForElementToBePresent(compareTopHeader,20);
+            softAssert.assertEquals( compareTopHeader.getText(), "Compare Medical Plans" );
+            softAssert.assertEquals( downloadPDF.getText(), "Download PDF");
+            softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Go Back to Plans");
+            softAssert.assertEquals( linkViewDetails1.getText(), "Plan Details" );
+            softAssert.assertEquals( linkViewDetails2.getText(), "Plan Details" );
+            softAssert.assertEquals( linkViewDetails3.getText(), "Plan Details" );
+            softAssert.assertEquals( selectfirstplan.getText(), "Select Plan" );
+            softAssert.assertEquals( selectSecondplan.getText(), "Select Plan" );
+            softAssert.assertEquals( selectThirdplan.getText(), "Select Plan" );
+            softAssert.assertEquals( selectInNetworkTier1Link.getText(),"In-Network" );
+            softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
+            softAssert.assertEquals( selectOutofNetworkLink.getText(),"Out-of-Network" );
+            softAssert.assertEquals( headerHighlights.getText(),"Highlights" );
+            softAssert.assertEquals(goBackToPlansCompareButton.getText(),"Go Back to Plans");
+
+            softAssert.assertAll();
+        }
+
+
+
+    public void  clickMedicalCompareGoBackLink() {
         basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBePresent(medicalCompareGoBack, 20);
-        medicalCompareGoBack.click();}
+        basicActions.waitForElementToBePresent(goBackToPlansCompareLink, 20);
+            goBackToPlansCompareLink.click();}
 
-    public void verifyPlanDeselectionOne() {
-        basicActions.waitForElementToBeClickable( firstplan,15 );
-        firstplan.click();}
+    public void  clickMedicalCompareGoBackButton() {
+            basicActions.waitForElementToDisappear( spinner, 30 );
+            basicActions.waitForElementToBePresent(goBackToPlansCompareButton, 20);
+            goBackToPlansCompareButton.click();}
 
-    public void verifyPlanDeselectionTwo() {
-        basicActions.waitForElementToBeClickable( secondplan,15 );
-        secondplan.click();}
+    public void selectPlanDeselectionOne() {
+        basicActions.waitForElementToBeClickable( selectfirstplan,15 );
+            selectfirstplan.click();}
 
-    public void verifyPlanDeselectionThree(){
-        basicActions.waitForElementToBeClickable( thirdplan,15 );
-        thirdplan.click();}
+    public void selectPlanDeselectionTwo() {
+        basicActions.waitForElementToBeClickable( selectSecondplan,15 );
+            selectSecondplan.click();}
+
+    public void selectPlanDeselectionThree(){
+        basicActions.waitForElementToBeClickable( selectThirdplan,15 );
+            selectThirdplan.click();}
 
     public void verifyNoPlansSelectedTxt(){
         basicActions.waitForElementToBePresent( noTextPlan,15 );
@@ -256,10 +455,10 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue(getTxtCompareHeaderGeneralDetails.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderGeneralDetails.click();
 
-        softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisits.isDisplayed(),"Incorrect Header");
-        getTxtCompareHeaderProviderOfficeVisits.click();
+        //softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisits.isDisplayed(),"Incorrect Header");
+        //getTxtCompareHeaderProviderOfficeVisits.click();
         softAssert.assertTrue(getTxtPreventativeCare.isDisplayed(),"Incorrect Header");
-        softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
+        //softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtSpecialistVisit.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthPCP.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthSpecialist.isDisplayed(),"Incorrect Header");
@@ -328,6 +527,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     }
 
+
+
+
     public void verifyTxtOutofNetworkCompareHeader(){
         basicActions.waitForElementToBePresent(selectOutofNetworkLink, 10 );
         selectOutofNetworkLink.click();
@@ -338,10 +540,10 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue(getTxtCompareHeaderGeneralDetailsOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderGeneralDetailsOut.click();
 
-        softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisitsOut.isDisplayed(),"Incorrect Header");
-        getTxtCompareHeaderProviderOfficeVisitsOut.click();
+        //softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisitsOut.isDisplayed(),"Incorrect Header");
+        //getTxtCompareHeaderProviderOfficeVisitsOut.click();
         softAssert.assertTrue(getTxtPreventativeCare.isDisplayed(),"Incorrect Header");
-        softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
+        //softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtSpecialistVisit.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthPCP.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthSpecialist.isDisplayed(),"Incorrect Header");

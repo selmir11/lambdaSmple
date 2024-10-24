@@ -12,11 +12,17 @@ public class MedicalCompareCoCoPageSteps {
 
     MedicalCompareCoCoPage medicalCompareCoCoPage = new MedicalCompareCoCoPage(WebDriverManager.getDriver());
 
+    @And( "I validate the Plan Detail link and click" )
+    public void validateComparePlanDetailLink(){medicalCompareCoCoPage.clickPlanDetailLink();}
+
     @And("I select the Go Back button on the Medical Plan Compare page")
-    public void clickMedicalCompareGoBack(){medicalCompareCoCoPage.clickMedicalCompareGoBack();}
+    public void clickMedicalCompareGoBackButton(){medicalCompareCoCoPage.clickMedicalCompareGoBackButton();}
 
     @And( "I verify the Medical Compare page In-Network headers and subheaders" )
     public void verifyTxtCompareHeader(){medicalCompareCoCoPage.verifyTxtCompareHeader();}
+
+    @And ("I validate the {string} text on the Medical Compare COCO page")
+    public void validateTextComparePlanCOCOPage(String language) {medicalCompareCoCoPage.validateTextComparePlanCoCoPage(language);}
 
     @And( "I verify the Medical Compare page Out-Network headers and subheaders" )
     public void verifyTxtOutofNetworkHeader(){medicalCompareCoCoPage.verifyTxtOutofNetworkCompareHeader();}
