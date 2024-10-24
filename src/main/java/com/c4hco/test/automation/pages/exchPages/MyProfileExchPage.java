@@ -470,7 +470,7 @@ public class MyProfileExchPage {
     public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
-        replacePrimaryMember(memberName);
+        updatePrimaryMemInSharedData(memberName);
         String firstName = SharedData.getPrimaryMember().getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
@@ -949,41 +949,16 @@ public class MyProfileExchPage {
         softAssert.assertAll();
     }
 
-    public void replacePrimaryMember(String memberName){
+    private void updatePrimaryMemInSharedData(String memPrefix){
         List<MemberDetails> memberList = SharedData.getMembers();
-        for(MemberDetails memberDetail:SharedData.getMembers()){
-            String memberFullName = memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName();
-            if (memberFullName.contains(memberName)){
-                MemberDetails member = new MemberDetails();
-                member.setFirstName(SharedData.getPrimaryMember().getFirstName());
-                member.setLastName(SharedData.getPrimaryMember().getLastName());
-                if(SharedData.getPrimaryMember().getMiddleName()==null){
-                    member.setMiddleName("");
-                }
-                member.setDob(SharedData.getPrimaryMember().getDob());
-                member.setGender(SharedData.getPrimaryMember().getGender());
-                member.setSignature(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
-                member.setFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
-                member.setCompleteFullName(SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getMiddleName()+" "+SharedData.getPrimaryMember().getLastName());
-                memberList.add(member);
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        memberList.add(primaryMem);
 
-                SharedData.setMembers(memberList);
+        memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            memberList.remove(newPrimaryMem);
+            SharedData.setPrimaryMember(newPrimaryMem);
+        });
+        SharedData.setMembers(memberList);
 
-                MemberDetails subscriber = SharedData.getPrimaryMember();
-
-                subscriber.setFirstName(memberDetail.getFirstName());
-                subscriber.setMiddleName(memberDetail.getMiddleName());
-                subscriber.setLastName(memberDetail.getLastName());
-                subscriber.setEmailId(memberDetail.getEmailId());
-                subscriber.setFullName(memberDetail.getFirstName()+" "+memberDetail.getMiddleName().charAt(0)+" "+memberDetail.getLastName());
-                subscriber.setCompleteFullName(memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName());
-                subscriber.setSignature(memberDetail.getFirstName()+" "+memberDetail.getMiddleName()+" "+memberDetail.getLastName());
-                subscriber.setMemberId(memberDetail.getMemberId());
-                subscriber.setIsSubscriber("Y");
-                SharedData.setPrimaryMember(subscriber);
-                memberList.remove(memberDetail);
-                break;
-            }
-        }
     }
 }
