@@ -105,7 +105,7 @@ public class MyProfilePageSteps {
         myProfileExchPage.UpdateContactEmailAddress();
     }
 
-    @Then("I Change {string} as primary member from household member")
+    @Then("I update {string} as primary member")
     public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         myProfileExchPage.SelectTheHouseholdMemberAsPrimaryContact(memberName);
     }
