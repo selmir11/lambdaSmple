@@ -1,4 +1,4 @@
-@TAM @pageVal @TamCoCo @test
+@TAM @pageVal @TamCoCo
 Feature: Page validation - Life Change Event page
 
   Background: I go to the login portal

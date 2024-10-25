@@ -528,7 +528,7 @@ Feature: Individual adult - End to End Test
     And Validate selected medical plan for "MinorThree" is "KP Colorado Option Silver X"
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-256 @EndToEndTest @test
+  @SLCR-256 @EndToEndTest
   Scenario: SLCR-256 - This will create Individual adult with no assistance annually salary of 19K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
