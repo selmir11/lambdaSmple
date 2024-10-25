@@ -8,21 +8,19 @@ import io.cucumber.java.en.Then;
 public class LifeChangeEventsCoCoPageSteps {
     LifeChangeEventsCoCoPage lifeChangeEventsCoCoPage = new LifeChangeEventsCoCoPage(WebDriverManager.getDriver());
 
-    @And("I select {string} life change event")
-    public void selectQLCEOption(String lceOption){
-        lifeChangeEventsCoCoPage.selectLCE(lceOption);
+    @And("I select {string} life change event with event date of {string}")
+    public void selectQLCEOption(String lceOption, String dateType){
+        lifeChangeEventsCoCoPage.selectLCE(lceOption, dateType);
     }
 
     @And("I check {string} life change event checkbox")
-    public void selectQLCEOptionCheckbox(String lceOption){
-        lifeChangeEventsCoCoPage.selectLCECheckbox(lceOption);
-    }
+    public void selectQLCEOptionCheckbox(String lceOption){lifeChangeEventsCoCoPage.selectLCECheckbox(lceOption);}
 
     @And("I select all members of {string} Life Change Event")
     public void selectMemberForLCEOption(String lifeChangeEvent){lifeChangeEventsCoCoPage.selectMemberForLCE(lifeChangeEvent);}
 
-    @And("I select None of these life change event")
-    public void selectNoneOfTheseLCEOption(){lifeChangeEventsCoCoPage.selectNoneOfThese();}
+    @And("I set date for all members of {string} Life Change Event to event date of {string}")
+    public void iSetDateForLCE(String lifeChangeEvent, String dateType){lifeChangeEventsCoCoPage.setDateForLCE(lifeChangeEvent, dateType);}
 
     @And("I select continue on the LCE page")
     public void selectSaveAndContinue(){lifeChangeEventsCoCoPage.saveAndContinue();}

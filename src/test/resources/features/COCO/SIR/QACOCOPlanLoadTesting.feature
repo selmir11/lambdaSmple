@@ -62,7 +62,7 @@ Feature: Verify COCO Medical Plan results
   And I select continue on the Family Overview page
 
   Then I validate I am on the "CoCo life change event" page
-  And I select "MoveToCO" life change event
+  And I select "MoveToCO" life change event with event date of "Today"
   And I select continue on the LCE page
 
   Then I validate I am on the "CoCo Declarations and Signature" page
@@ -138,7 +138,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I select continue on the Family Overview page
 
   Then I validate I am on the "CoCo life change event" page
-  And I select "MoveToCO" life change event
+  And I select "MoveToCO" life change event with event date of "Today"
   And I select continue on the LCE page
 
   Then I validate I am on the "CoCo Declarations and Signature" page
@@ -215,7 +215,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Marriage" life change event
+    And I select "Marriage" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -305,7 +305,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -463,7 +463,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -661,7 +661,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -827,7 +827,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -933,7 +933,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
