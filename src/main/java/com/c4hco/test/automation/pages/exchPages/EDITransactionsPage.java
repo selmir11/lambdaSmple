@@ -93,7 +93,7 @@ public class EDITransactionsPage {
     }
 
 
-    public <Map> void validateInsuranceRecordsDisplay(String InsuranceType) {
+    public void validateInsuranceRecordsDisplay(String InsuranceType) {
         searchButton.click();
         basicActions.waitForElementListToBePresentWithRetries(carrierName, 2000);
         List<String> expectedNames = new ArrayList<>();
