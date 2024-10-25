@@ -1,5 +1,4 @@
 package com.c4hco.test.automation.database.DbValidations;
-
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -7,11 +6,9 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
@@ -537,13 +534,38 @@ public class DbValidations {
         System.out.println("Database Email " + actualResult.getEmail());
         softAssert.assertAll();
     }
+
     
     public void validateDatabaseMedicalPlanList() {
         List<String> medicalPlanList = exchDbDataProvider.getDBMedicalPlanList();
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
+        softAssert.assertAll();}
+    public void validateCurrentDentalPlanNameForTheYear(String year) {
+        String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
+        softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
+        softAssert.assertAll();
+
+    }
+
+    public void validateCurrentDentalPolicyStartAndEndDateForTheYearDB() {
+        String [] policyDate = exchDbDataProvider.getDentalPolicyDate();
+
+        String dateStr = policyDate[0];
+        String dateEnd = policyDate[1];
+
+        LocalDate date = LocalDate.parse(dateStr);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDateSTR = date.format(formatter);
+        LocalDate dateE = LocalDate.parse(dateEnd);
+        DateTimeFormatter formatterE = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDateEnd = dateE.format(formatterE);
+
+        String coverageDate = formattedDateSTR+" to "+formattedDateEnd;
+        softAssert.assertTrue(SharedData.getManagePlanDentalMedicalPlan().getPolicyCoverageDate().contains(coverageDate));
         softAssert.assertAll();
     }
+
 
     public void validateDatabaseRaceEthnicity(String expectedRaceEthnicity, String expectedRaceOtherText) {
         String[] dbValues = exchDbDataProvider.getEsMemberRaceEthnicityDetails();
@@ -553,7 +575,41 @@ public class DbValidations {
             softAssert.assertNull(dbValues[1], "Race Other Text is null");
         } else {
             softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
-        }
+        }}
+
+    public void validateTheLatestApplicationDateForTheYearDB() {
+       String medLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
+       softAssert.assertTrue(medLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getMedLatestAppDate()));
+        softAssert.assertAll();
+    }
+
+    public void validateTheSecondMedicalPoliciyForTheYearDB(String year) {
+        String[] medSecondPolicy = exchDbDataProvider.getMedSecondPolicy(year);
+        String inputDate = medSecondPolicy[1];
+
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(inputDate, inputFormatter);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = date.format(outputFormatter);
+
+        System.out.println("Formatted Date: " + formattedDate);
+        String SecondMedicalPolicyDB = medSecondPolicy[0]+ " - " + formattedDate +" - " +medSecondPolicy[2];
+        softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectMedSecondPolicyDrp());
+        softAssert.assertAll();
+    }
+
+    public void validateTheSecondDentalPoliciyForTheYearDB(String year) {
+        String[] denSecondPolicy = exchDbDataProvider.getDentSecondPolicy(year);
+        String inputDate = denSecondPolicy[1];
+
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(inputDate, inputFormatter);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = date.format(outputFormatter);
+
+        System.out.println("Formatted Date: " + formattedDate);
+        String SecondMedicalPolicyDB = denSecondPolicy[0]+ " - " + formattedDate +" - " +denSecondPolicy[2];
+        softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectDenSecondPolicyDrp());
         softAssert.assertAll();
     }
 }
