@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.database.Queries;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import net.bytebuddy.asm.Advice;
 
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
@@ -364,10 +363,9 @@ public class DbQueries_Exch {
                 "LIMIT 1;";
     }
 
-    public String getExchangeAssignedPolicyId(){
-        return "Select exchange_assigned_policy_id From "+dbName+".en_policy_ah ESH Where ESH.account_id = '8721217600' and coverage_type = '1' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";
+    public String getEAPIdPolicyStatusNotCanceled(){ //WIP COVERAGE_tYPE
+        return "Select exchange_assigned_policy_id From "+dbName+".en_policy_ah ESH Where ESH.account_id = '"+acctId+"' and coverage_type = '1' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";
     }
-
 
     public String getMedSecondPolicyDB(String year) {
         return "SELECT EPH.exchange_assigned_policy_id,EPH.policy_start_date, ESH.first_name \n" +

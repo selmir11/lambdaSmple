@@ -25,7 +25,7 @@ Feature: Manage Plans:Current Dent Container verification (order)
     And I select Plans Med Active Policy
     Then I select the 1 "Dental" policy Plan
     And I select Plans Dental Active Policy
-    Then I update my account_id any Env "2163002375" "9075763090"
+    Then I update my account_id any Env STG "2163002375" QA "9075763090"
     Then I wait for 500 milliseconds
     And I update the second medical and dental policy for the year UI
     And I validate the second medical policy for the year "2022" DB

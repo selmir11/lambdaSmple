@@ -124,7 +124,7 @@ public class AdminPortalManagePlansSteps {
     public void iSelectThePlanYearOnManagePlan(String planYear) {
         adminPortalManagePlansPage.selectThePlanYearOnManagePlan(planYear);
     }
-    @Then("I update my account_id any Env {string} {string}")
+    @Then("I update my account_id any Env STG {string} QA {string}")
     public void iUpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
         adminPortalManagePlansPage.UpdateMyAccount_idAnyEnv(stgAccountId,qaAccountId);
     }
