@@ -818,9 +818,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
+
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011990" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
@@ -1313,10 +1317,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    #Open Enrollment - LCE not required
+
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011968" in county "EL PASO" with zipcode "80902"
     Then I answer all Id proofing questions and click continue
@@ -1847,10 +1854,13 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    #Open Enrollment - LCE not required
+
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011967" in county "EL PASO" with zipcode "80902"
     Then I answer all Id proofing questions and click continue

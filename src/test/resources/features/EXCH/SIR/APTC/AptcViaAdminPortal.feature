@@ -21,9 +21,10 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      # Question not asked during Open Enrollment
-      #And I report "Birth" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
   #Husband
     And I am a member with City "Denver" in State "CO" with dob "01011991" in county "DENVER" with zipcode "80205"

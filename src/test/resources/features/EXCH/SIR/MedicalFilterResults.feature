@@ -169,6 +169,7 @@ Feature: Medical Plan Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
@@ -233,6 +234,7 @@ Feature: Medical Plan Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
