@@ -1,6 +1,6 @@
 @SLCR-137
 Feature: Regression Tests that require Seed 1
-# verification WIP @test
+ @test137
   Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
 
     Given I open the login page on the "login" portal
