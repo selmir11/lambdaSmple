@@ -427,27 +427,17 @@ public class AdminPortalManagePlansPage{
         SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
 
         String pnlMedLatestAppDate = medLatestAppDateUI.getText();
-
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate date = LocalDate.parse(pnlMedLatestAppDate, inputFormatter);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        pnlMedLatestAppDate = date.format(outputFormatter);
+        pnlMedLatestAppDate =basicActions.changeDateFormat(pnlMedLatestAppDate,"MM/dd/yyyy","MM/dd/yyyy");
         managePlanDentalMedicalPlan.setMedLatestAppDate(pnlMedLatestAppDate);
         SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
 
-    }
 
+    }
 
     public void validateTheTextOfTheMedicalContainer() {
         softAssert.assertEquals(currentMedicalDentalPlan.get(0).getText(),"Current Medical Plan:");
         List<String> existingList = Arrays.asList("Current Medical Plan:", "Latest Application Date:","Financial Start Date:", "EHB Premium:", "Financial End Date:","CSR Amount:", "Plan Premium:","Latest LCE and Date:","Plan APTC:","Rating Area:","Premium after Subsidy:","Service Area:","Plan AV:","Policy ID:","HIOS ID:");
         List<String> resultList = new ArrayList<>(existingList.subList(0, Math.min(existingList.size(), 15)));
-
-        for (int i = 0; i < existingList.size(); i++) {
-            if (!existingList.get(i).equals(resultList.get(i))) {
-                throw new AssertionError("Lists differ at index " + i + ": expected '" + existingList.get(i) + "', but got '" + resultList.get(i) + "'");
-            }
-        }
         softAssert.assertEquals(existingList, resultList);
         softAssert.assertAll();
     }

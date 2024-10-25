@@ -588,12 +588,7 @@ public class DbValidations {
     public void validateTheSecondMedicalPoliciyForTheYearDB(String year) {
         String[] medSecondPolicy = exchDbDataProvider.getMedSecondPolicy(year);
         String inputDate = medSecondPolicy[1];
-
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(inputDate, inputFormatter);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDate = date.format(outputFormatter);
-
+        String formattedDate = basicActions.changeDateFormat(inputDate,"yyyy-MM-dd","MM/dd/yyyy");
         System.out.println("Formatted Date: " + formattedDate);
         String SecondMedicalPolicyDB = medSecondPolicy[0]+ " - " + formattedDate +" - " +medSecondPolicy[2];
         softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectMedSecondPolicyDrp());
@@ -603,12 +598,7 @@ public class DbValidations {
     public void validateTheSecondDentalPoliciyForTheYearDB(String year) {
         String[] denSecondPolicy = exchDbDataProvider.getDentSecondPolicy(year);
         String inputDate = denSecondPolicy[1];
-
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(inputDate, inputFormatter);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDate = date.format(outputFormatter);
-
+        String formattedDate = basicActions.changeDateFormat(inputDate,"yyyy-MM-dd","MM/dd/yyyy");
         System.out.println("Formatted Date: " + formattedDate);
         String SecondMedicalPolicyDB = denSecondPolicy[0]+ " - " + formattedDate +" - " +denSecondPolicy[2];
         softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectDenSecondPolicyDrp());
