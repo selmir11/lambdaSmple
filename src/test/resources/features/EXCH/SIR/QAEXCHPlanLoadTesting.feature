@@ -18,9 +18,10 @@ Feature: Medical Plan Verification test
      Then I select "No" option on the Let us guide you page
      And I click on save and continue button
 
+     Then I validate I am on the "Before you begin" page
      Then I click on continue with  application button on Before you begin page
 
-    #LCE page is disabled here for OE
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
      Then I validate I am on the "Who Are You" page
@@ -44,7 +45,7 @@ Feature: Medical Plan Verification test
      And I click continue on the Add Address page
 
 
-     And I select "Prefer not to answer" for race and ethnicity
+     And I select "Prefer not to answer" for race and ethnicity for "Primary"
      And I click continue on the Race and Ethnicity page
 
      Then I select "Yes" for Citizen option
@@ -80,9 +81,10 @@ Feature: Medical Plan Verification test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #LCE page is disabled here for OE
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
@@ -106,7 +108,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -155,8 +157,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -179,7 +185,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -222,8 +228,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -245,7 +255,7 @@ Feature: Medical Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -283,8 +293,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -306,7 +320,7 @@ Feature: Medical Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -345,8 +359,14 @@ Feature: Medical Plan Verification test
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
   # location change
     And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
@@ -369,7 +389,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -459,11 +479,14 @@ Feature: Medical Plan Verification test
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #need to remove LCE step during OE
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
   # location change
     And I am a member with City "<City>" in State "<State>" with dob "<DOB>" in county "<County>" with zipcode "<Zipcode>"
@@ -485,7 +508,7 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

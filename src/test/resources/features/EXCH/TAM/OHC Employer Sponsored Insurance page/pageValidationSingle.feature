@@ -32,7 +32,7 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -87,7 +87,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 2
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          1           |           1             |           220.03            |             0           |             0           |
 #    Step 3
@@ -118,7 +118,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 5
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          0           |           0             |           80.95             |             1           |             1           |
 #    Step 6
@@ -149,7 +149,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 8
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          0           |           2             |           111.46            |             1           |             1           |
 #    Step 9
@@ -178,7 +178,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 11
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |             1           |           73.03             |             1           |             1           |
 #    Step 12
@@ -205,7 +205,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 14
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           0             |           230.01            |             0           |             0           |
 #    Step 15
@@ -232,7 +232,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 17
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           2             |           120.87            |             1           |             1           |
 #    Step 18
@@ -259,7 +259,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 20
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           1             |           221.03            |             0           |             0           |
 #    Step 21
@@ -285,7 +285,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 23
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           506.03            |             0           |             0           |
 #    Step 24
@@ -310,7 +310,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 26
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |           257.00            |             0           |             0           |
 #    Step 27
@@ -335,7 +335,7 @@ Feature: Page Text-Other Health Coverage Page
 #    Step 29
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           2             |           475.00            |             0           |             0           |
 #    Step 30
@@ -351,14 +351,37 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for Primary Member on the ESI page in "English"
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
-    Then I enter "50.00" for employee amount question on the ESI page
-    Then I select the Are you currently enrolled "Yes" button on the ESI page
-    Then I select the Will Insurance End "No" button on the ESI page
+    Then I enter "174.79" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           50.00             |                                     |                               |            1            |            1            |                                |                                |
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           174.79            |                                     |                               |            1            |            1            |                                |                                |
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text does not display on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate the aptc section doesn't exist on the application history page
 #    Step 2
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Citizenship page
     And I click on the table dropdown 1
     And I click the edit income 1
     Then I click continue on the Employment Summary Page
@@ -370,14 +393,38 @@ Feature: Page Text-Other Health Coverage Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "500.00" for employee amount question on the ESI page
-    Then I select the Are you currently enrolled "Yes" button on the ESI page
-    Then I select the Will Insurance End "No" button on the ESI page
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "174.79" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          500.00             |                                     |                               |            0            |            0            |                                |                                |
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |              0             |                          |                      |           0             |          174.79             |                                     |                               |            1            |            1            |                                |                                |
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
+    Then I validate that my APTC value is "437.72/mo"
 #    Step 3
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101975", "Female" and applying "Yes"
@@ -392,7 +439,7 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -401,8 +448,13 @@ Feature: Page Text-Other Health Coverage Page
     And I click on "Spouse" to edit information from household page
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
-    Then I select the option "No" to employment
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "2500000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
@@ -412,35 +464,165 @@ Feature: Page Text-Other Health Coverage Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "50.00" for employee amount question on the ESI page
-    Then I select the Are you currently enrolled "Yes" button on the ESI page
-    Then I select the Will Insurance End "No" button on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "349.58" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    Then I enter "150.00" for offer family amount question
+    Then I enter "349.58" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:Enrolled    |
+      |      Spouse:TypeAccess    |
     Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB for "Primary"
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           349.58            |                1                    |           349.58              |            1            |            1            |                1               |                 1              |
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    And I verify the OHI options selected in the DB
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           50.00             |                1                    |           150.00              |            1            |            1            |                1               |                 1              |
-#    Step 4
-    Then I click Go back on the ELMO health coverage page
-    Then I enter "550.00" for employee amount question on the ESI page
-    Then I select the Are you currently enrolled "Yes" button on the ESI page
-    Then I select the Will Insurance End "No" button on the ESI page
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    Then I select the "0" employer for "Secondary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "349.58" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    Then I enter "550.00" for offer family amount question
+    Then I enter "349.58" for offer family amount question
+    Then I click enrollment status for the members
+      |      Primary:TypeAccess    |
     Then I click continue on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Spouse"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          550.00             |                1                    |           550.00              |            0            |            0            |                0               |                 0              |
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           349.58            |                1                    |           349.58              |            1            |            1            |                1               |                 1              |
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text does not display on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate the aptc section doesn't exist on the application history page
+#    Step 4
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "349.58" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "349.58" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:NoAccess    |
+    Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB for "Primary"
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |          349.58             |                1                    |           349.58              |            1            |            1            |                1               |                 1              |
+    Then I click continue on the ELMO health coverage page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "349.58" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "349.58" for offer family amount question
+    Then I click enrollment status for the members
+      |      Primary:NoAccess    |
+    Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB for "Spouse"
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |          349.58             |                1                    |           349.58              |            1            |            1            |                1               |                 1              |
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text displays on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate that my APTC value is "839.42/mo"
+#    Step 5
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Citizenship page
+    And I click on the table dropdown 1
+    And I click the edit income 1
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I validate I am on the "Deductions" page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    Then I select "No" for meet the Minimum Value Standard on the ESI page
+    Then I enter "349.58" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "349.58" for offer family amount question
+    Then I click enrollment status for the members
+      |      Spouse:NoAccess    |
+    Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB for "Primary"
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |          349.58             |                1                    |           349.58              |            1            |            1            |                1               |                 1              |
+    Then I click continue on the ELMO health coverage page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "349.58" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "No" button on the ESI page
+    Then I click "Yes" for offer family plans question
+    Then I enter "349.58" for offer family amount question
+    Then I click enrollment status for the members
+      |      Primary:TypeAccess    |
+    Then I click continue on the ESI page
+    And I verify the OHI options selected in the DB for "Spouse"
+      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
+      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |          349.58             |                1                    |           349.58              |            1            |            1            |                1               |                 1              |
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I validate I am on the "Application History" page
+    Then I validate that "Qualified Health Plan" text displays on the Application History page
+    Then I validate that "Premium Tax Credit" text does not display on the Application History page
+    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
+    Then I validate the aptc section doesn't exist on the application history page
 
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-1063 @PageValidationOhiEsiElmo
   Scenario: SLER-1063 I want to have my affordability calculated so that it can be used to determine insurance eligibility
@@ -453,7 +635,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
 #    Step 4
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                                     |                               |            0            |            1            |                                |                                |
 #    Step 5
@@ -471,7 +653,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "174.79" for employee amount question on the ESI page
     Then I click continue on the ESI page
 #    Step 6
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.79             |                                     |                               |            1            |            1            |                                |                                |
 #    Step 7
@@ -489,7 +671,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "375.67" for employee amount question on the ESI page
     Then I click continue on the ESI page
 #    Step 8
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          375.67             |                                     |                               |            0            |            0            |                                |                                |
 #    Step 9
@@ -507,7 +689,7 @@ Feature: Page Text-Other Health Coverage Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -540,7 +722,7 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
 #    Step 12
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.79             |                  1                  |           174.79              |            1            |            1            |               1                |               1                |
 #    Step 13
@@ -558,7 +740,7 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
 #    Step 14
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                  1                  |           174.80              |            0            |            1            |               0                |               1                |
 #    Step 15
@@ -573,7 +755,7 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
 #    Step 16
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          100.67             |                  1                  |           375.67              |            1            |            1            |               0                |               0                |
 

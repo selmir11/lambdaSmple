@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -22,6 +23,7 @@ public class DbValidations {
     String formattedDate; //formatted in YYYY-MM-DD
     Calendar calendar = Calendar.getInstance();
     int currentYear = calendar.get(Calendar.YEAR);
+    BasicActions basicActions = new BasicActions();
 
     public void setIb999DetailsEntity() {
         // WIP - move this to a new file ib999Validations
@@ -340,14 +342,14 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateOhiDetails() {
-        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables();
+    public void validateOhiDetails(String memberId) {
+        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(memberId);
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
-    public void validateOhiOptions(List<Map<String, String>> expectedValues) {
-        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables();
+    public void validateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues) {
+        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables(basicActions.getMemberId(memPrefix));
         System.out.println(actualResult);
 
         softAssert.assertEquals(actualResult.getEmp_sponsored_covg_ind(), expectedValues.get(0).get("emp_sponsored_covg_ind"));
@@ -545,5 +547,15 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateDatabaseRaceEthnicity(String expectedRaceEthnicity, String expectedRaceOtherText) {
+        String[] dbValues = exchDbDataProvider.getEsMemberRaceEthnicityDetails();
+        softAssert.assertEquals(dbValues[0], expectedRaceEthnicity, "Race/Ethnicity mismatch");
 
+        if (expectedRaceOtherText.equals("null")) {
+            softAssert.assertNull(dbValues[1], "Race Other Text is null");
+        } else {
+            softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
+        }
+        softAssert.assertAll();
+    }
 }

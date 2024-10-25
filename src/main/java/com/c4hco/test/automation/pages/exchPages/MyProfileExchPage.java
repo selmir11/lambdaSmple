@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+
 
 public class MyProfileExchPage {
 
@@ -465,11 +466,12 @@ public class MyProfileExchPage {
         InputEmail.clear();
         InputEmail.sendKeys(newEmail);
     }
-
-    public void SelectTheSecondHouseholdMemberAsPrimaryContact() {
+    
+    public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
         primaryContactDRP.click();
-        String firstName = SharedData.getMembers().get(0).getFirstName();
+        updatePrimaryMemInSharedData(memberName);
+        String firstName = SharedData.getPrimaryMember().getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
         savePrimaryContact.click();
@@ -945,5 +947,18 @@ public class MyProfileExchPage {
         softAssert.assertEquals(termsOfUse.getText(), "T\u00E9rminos de uso");
         savePrimaryContact.click();
         softAssert.assertAll();
+    }
+
+    private void updatePrimaryMemInSharedData(String memPrefix){
+        List<MemberDetails> memberList = SharedData.getMembers();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        memberList.add(primaryMem);
+
+        memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            memberList.remove(newPrimaryMem);
+            SharedData.setPrimaryMember(newPrimaryMem);
+        });
+        SharedData.setMembers(memberList);
+
     }
 }
