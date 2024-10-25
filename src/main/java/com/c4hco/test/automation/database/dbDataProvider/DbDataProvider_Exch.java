@@ -26,7 +26,7 @@ public class DbDataProvider_Exch {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
-    
+
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
@@ -166,12 +166,12 @@ public class DbDataProvider_Exch {
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
-    public Boolean getDataFromOhiTables(){
-        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecords());
+    public Boolean getDataFromOhiTables(String memberId){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
-    public EsMemberOhiEntity getOptionsFromOhiDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
+    public EsMemberOhiEntity getOptionsFromOhiDbTables(String memberId) {
+        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
     public EsMemberHraEntity getOptionsFromHraDbTables(){

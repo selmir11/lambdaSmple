@@ -26,6 +26,12 @@ public class IncomeSummaryCoCoPage {
     @FindBy(css = ".header-2")
     WebElement hdr_IncomeSummary;
 
+    @FindBy(css = "#edit-income-button > svg")
+    WebElement incomeEditIcon;
+
+    @FindBy(css = "#edit-deductions-button > svg")
+    WebElement deductionsEditIcon;
+
     @FindBy(css = "div.total-income-width div span")
     WebElement totalAnnualIncome;
 
@@ -80,6 +86,20 @@ public class IncomeSummaryCoCoPage {
         projectedIncomeInput.sendKeys(amount);
     }
 
+    public void selectEditIcon(String type){
+        basicActions.waitForElementToBePresent(incomeEditIcon, 15);
+        switch(type){
+            case "Income":
+                incomeEditIcon.click();
+                break;
+            case "Deductions":
+                deductionsEditIcon.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + projectedIncomeButtons);
+        }
+    }
+
     
     
     //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
@@ -115,6 +135,22 @@ public class IncomeSummaryCoCoPage {
         basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
         basicActions.waitForElementToDisappear(spinner, 15);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
+        softAssert.assertAll();
+    }
+
+    public void verifyEditIcon(){
+        basicActions.waitForElementToBePresent(incomeEditIcon, 10);
+        basicActions.waitForElementToDisappear(spinner, 15);
+        softAssert.assertEquals(incomeEditIcon.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(incomeEditIcon.getCssValue("width"), "14px");
+        softAssert.assertEquals(incomeEditIcon.getCssValue("height"), "14px");
+        softAssert.assertEquals(incomeEditIcon.getCssValue("top"), "auto");
+        softAssert.assertEquals(incomeEditIcon.getCssValue("left"), "auto");
+        softAssert.assertEquals(deductionsEditIcon.getCssValue("color"), "rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(deductionsEditIcon.getCssValue("width"), "14px");
+        softAssert.assertEquals(deductionsEditIcon.getCssValue("height"), "14px");
+        softAssert.assertEquals(deductionsEditIcon.getCssValue("top"), "auto");
+        softAssert.assertEquals(deductionsEditIcon.getCssValue("left"), "auto");
         softAssert.assertAll();
     }
     

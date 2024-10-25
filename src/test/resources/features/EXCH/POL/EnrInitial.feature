@@ -196,31 +196,52 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on ClickHere link for "My Plans"
+    And I Validate the correct enrolled plans are displayed on account overview page
+
+    Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+
     And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+#    # PDF Notice Validation
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
     And I close current tab and switch back to previous tab
     Then I click on manage plan button on admin portal Individual dashboard
     And I initiate incoming page
+    #WIP - we have the plans stored already. Can be removed from the step.
     And I Validate the correct enrolled plans are displayed on admin portal individual page
       | Manage Plans                                         |
       | Anthem Colorado Option Bronze Pathway Essentials Std |
       | Anthem Dental Family                                 |
     Then logout from Admin Portal
 
-    #Gmail
+    #Email Notice Validation
     Then I open outlook Tab
-    And  I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan
+    And I validate additional details for "medical" plan on email notice
       |Primary|
       |Spouse|
       |SonOne|
       |Daughter|
-    And I validate the email notice details for "medical" plan
+    And I validate additional details for "dental" plan on email notice
       |Primary|
       |Spouse|
       |SonOne|
@@ -229,9 +250,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I sign out of Outlook
     And I switch to the tab number 0
 
-        #DbVerification
-
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
