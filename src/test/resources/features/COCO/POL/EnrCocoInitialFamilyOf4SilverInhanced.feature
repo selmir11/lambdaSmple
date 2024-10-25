@@ -27,7 +27,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -50,7 +50,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -70,7 +70,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -91,7 +91,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -131,4 +131,6 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And I validate enrolled medical plans details on my policies page coco
+    And I click view Plan History link from medical plan card in coco
+    And I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
