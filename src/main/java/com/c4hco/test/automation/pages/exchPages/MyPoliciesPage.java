@@ -112,6 +112,7 @@ public class MyPoliciesPage {
         basicActions.waitForElementListToBePresent(enrolledMemNames, 10);
         allMemberNames = new HashSet<>(basicActions.getAllMemNames());
         namesFromUI = new HashSet<>(enrolledMemNames.stream().map(WebElement::getText).collect(Collectors.toList()));
+        softAssert.assertTrue(namesFromUI.equals(allMemberNames),"Member names did not match");
         switch (planType){
             case "medical":
                 validateMedPlanDetailsFromPlanHistory();
@@ -200,7 +201,7 @@ public class MyPoliciesPage {
 
 
     private void validateDentalPlanDetailsFromPlanHistory(){
-        softAssert.assertTrue(namesFromUI.equals(allMemberNames));
+
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
         softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help

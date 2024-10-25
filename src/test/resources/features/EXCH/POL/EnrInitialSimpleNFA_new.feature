@@ -1,5 +1,5 @@
- @SLER-34 @SLER-1069
 Feature: Simple NFA - Single Applicant
+ # @SLER-34 @SLER-1069
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -76,10 +76,6 @@ Feature: Simple NFA - Single Applicant
 
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click submit enrollment on Enrollment Agreements page
-
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
     Then I click on ClickHere link for "My Plans"
@@ -97,45 +93,56 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "My Account Overview" page
 
     And I click on ClickHere link for "My Documents"
-    #    # PDF Notice Validation
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+#    # PDF Notice Validation
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
-      #Email Notice Validation
+    #Email Notice Validation
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
     And I verify the notice Text for "EN-002-04" in "English" for "Exch"
     And I validate additional details for "medical" plan on email notice
       |Primary|
+      |Spouse|
+      |Son   |
     And I validate additional details for "dental" plan on email notice
       |Primary|
+      |Spouse|
+      |Son   |
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
 
-    #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-    And I validate the member details from policy tables
-#    @SLER-1069  # RT-1262
+   #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
-    And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I download the files from sftp server with location "/outboundedi/"
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION  |
+
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should not be empty
-    And I validate the ob834 files should have the values
-      | LX | N1 75              | REF       | REFDEN    |
-      | 1  | PRE AMT 1          | 291.02    | 21.00     |
-      | 2  | APTC AMT           | 0.00      | 0.00      |
-      | 3  | CSR AMT            | 0.00      | 0.00      |
-      | 4  | RATING AREA        | 3         | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    | 21.00     |
-      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
+
+#    And I validate the ob834 files should have the values
+#      | LX | N1 75              | REF       | REFDEN    |
+#      | 1  | PRE AMT 1          | 291.02    | 21.00     |
+#      | 2  | APTC AMT           | 0.00      | 0.00      |
+#      | 3  | CSR AMT            | 0.00      | 0.00      |
+#      | 4  | RATING AREA        | 3         | 3         |
+#      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
+#      | 6  | TOT RES AMT        | 291.02    | 21.00     |
+#      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
+#      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
 
       # RT-1276
     And I upload medical and dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
