@@ -1,5 +1,5 @@
 @MedicalDetail @SIR @sirtest
-  # contains SLER-834, SLER-835
+  # contains SLER-769, SLER-834, SLER-835
 Feature: Medical Plan Detail page related tests
 
   Background:
@@ -23,8 +23,8 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -91,14 +91,15 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     And I select "Male" as sex option
@@ -165,8 +166,8 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question

@@ -101,11 +101,10 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'"+ " and policy_status='SUBMITTED'";
     }
 
-
-    public String getOhiRecords(){
+    public String getOhiRecordsAll(String memberId){
         return "select ohi.*\n" +
                 "From  "+dbName+".es_member_other_health_ins ohi\n" +
-                "where member_id = '"+SharedData.getPrimaryMemberId()+"'";
+                "where member_id = '"+memberId+"'";
     }
 
     public String getPrimaryHraRecords(){
@@ -336,5 +335,12 @@ public class DbQueries_Exch {
                 ");";
     }
 
+    public String getRaceEthnicityStored(){
+        return "select em.race_ethnicity, em.race_other_text " +
+                "from " + dbName + ".es_member em " +
+                "join " + dbName + ".es_household eh on eh.household_id = em.household_id " +
+                "where eh.account_id = '" + acctId + "' " +
+                "order by em.member_id";
+    }
 
 }

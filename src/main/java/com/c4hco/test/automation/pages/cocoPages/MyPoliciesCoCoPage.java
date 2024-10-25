@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +13,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MyPoliciesCoCoPage {
 
@@ -72,13 +80,57 @@ public class MyPoliciesCoCoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+    String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+    MemberDetails primaryMember = SharedData.getPrimaryMember();
+    Set<String> allMemberNames = new HashSet<>();
 
-    public void VerifyPlanDetails(String memberName,String planName){
-        basicActions.waitForElementToDisappear(spinner,30);
-        basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical,10);
-        WebElement planDetails = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+memberName+"')]/ancestor::div[@class='current-policy-data']/parent::div  //div[@class='header-3']"));
-        basicActions.waitForElementToBeClickable(planDetails,30) ;
-        softAssert.assertEquals(planDetails.getText(),planName);
+    Set<String> namesFromUI = new HashSet<>();
+
+    public void validateEnrolledPlanDetails() {
+        // Validating Names
+        basicActions.waitForElementListToBePresent(memberNames, 10);
+        basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        Set<String> namesFromUi = new HashSet<>(Arrays.asList(memberNames.get(0).getText().replace(" and ", ", ").split(", ")));
+        softAssert.assertTrue(allMemberNames.equals(namesFromUi));
+
+        softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getPlanStartDate(), "medical plan date did not match");
+        softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getPlanEndDate(), "medical plan end date did not match");
+        softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
+        softAssert.assertEquals(premiumAmt.get(0).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
+        softAssert.assertTrue(policyNumSubscriber.get(2).getText().equals("Subscriber:"));
+        softAssert.assertEquals(policyNumSubscriber.get(3).getText(), primaryMember.getSignature(), "Subscriber Name did not match on medical card");
+        softAssert.assertTrue(policyNumSubscriber.get(4).getText().equals("Last Updated On:"));
+        softAssert.assertEquals(policyNumSubscriber.get(5).getText(), lastUpdated, "Last Updated Date did not match");
+
+        //Validating Total Premium without SES
+        String totalAmtAfterZeroFinancialHelp = primaryMember.getMedicalPremiumAmt();
+        String premiumWithoutSes = financialPremiumData.get(5).getText();
+        softAssert.assertEquals(premiumWithoutSes, "$"+totalAmtAfterZeroFinancialHelp+"/mo", "Total Premium amount does not match");
+        softAssert.assertAll();
+    }
+    public void clickViewPlanHistoryLink(){
+        basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical, 10);
+        viewPlanHistoryLinkMedical.click();
+    }
+    public void validateMedPlanDetailsFromPlanHistoryCoco(){
+        basicActions.waitForElementToBePresent(planHistoryTitle, 10);
+        basicActions.waitForElementListToBePresent(tableRecord, 10);
+        basicActions.waitForElementListToBePresent(memberNames, 10);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        namesFromUI = new HashSet<>(memberNames.stream().map(WebElement::getText).collect(Collectors.toList()));
+        softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
+        String  ses = SharedData.getSes();
+        String openEnrolment = SharedData.getIsOpenEnrollment();
+        if(ses.equals("yes") && openEnrolment.equals("yes")){
+            softAssert.assertTrue(tableRecord.get(2).getText().equals("$" + "0.00"), "Medical amount mismatch");
+            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + primaryMember.getMedicalPremiumAmt()), "Medical amount mismatch");
+        }else {
+            softAssert.assertTrue(tableRecord.get(2).getText().equals("$" + primaryMember.getMedicalPremiumAmt()), "Medical amount mismatch");
+            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + "0.00"), "Medical amount mismatch");
+        }
+        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getPlanStartDate()), "plan start date mismatch");
+        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
     }
 
