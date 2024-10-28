@@ -109,24 +109,6 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    private String calculateDate(String dateType) {
-        LocalDate date;
-        switch (dateType) {
-            case "Today":
-                date = LocalDate.now();
-                break;
-            case "Future":
-                date = LocalDate.now().plusDays(61);
-                break;
-            case "Past":
-                date = LocalDate.now().minusDays(61);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid date type: " + dateType);
-        }
-        return date.format(DateTimeFormatter.ofPattern("MM/dd"));
-    }
-
     public void selectLCE(String LCEType, String dateType) {
         basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
@@ -159,7 +141,7 @@ public class LifeChangeEventsCoCoPage {
     private void handleLCESelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
-        String dateValue = calculateDate(dateType);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -173,7 +155,7 @@ public class LifeChangeEventsCoCoPage {
         List<WebElement> memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
         List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
 
-        String dateValue = calculateDate(dateType);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
 
         for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
             basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
@@ -289,7 +271,7 @@ public class LifeChangeEventsCoCoPage {
     }
 
     private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
-        String dateValue = calculateDate(dateType);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
             eventDates.get(i).sendKeys(dateValue);

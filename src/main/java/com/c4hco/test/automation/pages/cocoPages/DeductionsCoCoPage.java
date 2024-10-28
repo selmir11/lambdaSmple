@@ -145,21 +145,9 @@ public class DeductionsCoCoPage {
         optionToIndex.put("None of these", 10);
 
         Integer index = optionToIndex.get(deductionOption);
-        if (index == null) {
-            throw new IllegalArgumentException("Invalid option: " + deductionOption);
-        }
-
-        for (int attempt = 0; attempt < 3; attempt++) {
-            try {
-                List<WebElement> updatedDeductionButtons = basicActions.getDriver().findElements(By.cssSelector("app-show-options button"));
-                updatedDeductionButtons.get(index).click();
-                return;
-            } catch (StaleElementReferenceException e) {
-                if (attempt == 2) {
-                    throw e;
-                }
-            }
-        }
+        List<WebElement> updatedDeductionButtons = basicActions.getDriver().findElements(By.cssSelector("app-show-options button"));
+        basicActions.waitForElementListToBePresentWithRetries(updatedDeductionButtons,10);
+        basicActions.clickElementWithRetries(updatedDeductionButtons.get(index),5);
     }
 
     private void enterAmount(String deductionOption, String amount) {

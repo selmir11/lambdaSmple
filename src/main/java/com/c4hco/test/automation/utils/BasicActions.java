@@ -537,6 +537,23 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+    public String getTodayDate() {// Today
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        return date.format(formatter);
+    }
+    public String getFutureDate() {// 61 days from today
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.now().plusDays(61);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        return date.format(formatter);
+    }
+    public String getPastDate() {// 61 days before today
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.now().minusDays(61);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        return date.format(formatter);
+    }
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
@@ -551,7 +568,7 @@ public class BasicActions {
             case "First Day Of Current Year":
                date = getFirstOfJanCurrYr();
                 break;
-            case "Last Day Of Current Year": 
+            case "Last Day Of Current Year":
                date = getLastDayOfCurrYr();
                 break;
             case "getFromSharedData":
@@ -560,6 +577,15 @@ public class BasicActions {
                 break;
             case "First Of Next Month":
                 date =  firstDateOfNextMonth();
+                break;
+            case "Today":
+                date =  getTodayDate();
+                break;
+            case "Future":
+                date =  getFutureDate();
+                break;
+            case "Past":
+                date =  getPastDate();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dateRequirement);
