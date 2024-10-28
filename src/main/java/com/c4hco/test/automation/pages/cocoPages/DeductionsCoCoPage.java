@@ -126,6 +126,7 @@ public class DeductionsCoCoPage {
     }
 
     public void selectDeductionOptionOnly(String deductionOption) {
+        basicActions.waitForElementListToBePresentWithRetries(deductionButton, 10);
         switch (deductionOption) {
             case "Alimony":
                 deductionButton.get(0).click();
