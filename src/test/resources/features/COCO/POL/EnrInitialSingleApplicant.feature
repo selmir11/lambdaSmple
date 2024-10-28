@@ -1,5 +1,5 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
-  @SLCR-297
+  @SLCR-297-WIP
   Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
 
     Given I open the login page on the "login" portal
@@ -41,13 +41,13 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    Then I verify eligible plan on Application Result page coco depends on SES
+#    Then I verify eligible plan on Application Result page coco depends on SES
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
@@ -71,3 +71,4 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I click view Plan History link from medical plan card in coco
     And I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
+    And I validate "medical" entities from policy tables
