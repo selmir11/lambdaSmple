@@ -34,7 +34,7 @@ Feature: Initial Application Minor only with Birth LCE(Admin OBO)
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -53,7 +53,7 @@ Feature: Initial Application Minor only with Birth LCE(Admin OBO)
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page

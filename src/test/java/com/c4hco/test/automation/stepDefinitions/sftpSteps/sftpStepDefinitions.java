@@ -113,19 +113,15 @@ public class sftpStepDefinitions {
         sftpUtil.readEdi999FromLocal();
     }
 
-    @And("I upload medical and dental ob834 edi files to sftp server with location {string}")
-    public void uploadAfileToSftp(String remoteFilePath) throws JSchException {
-        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
-
-        for (Ob834DetailsEntity entry : ob834Entries) {
-            if (entry.getInsurance_line_code().equals("HLT")) {
+    @And("I upload medical ob834 edi files to sftp server with location {string}")
+    public void uploadMedOb834fileToSftp(String remoteFilePath) throws JSchException {
                 String fileName = SharedData.getMedicalFileName();
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
-            } else if (entry.getInsurance_line_code().equals("DEN")) {
+    }
+    @And("I upload dental ob834 edi files to sftp server with location {string}")
+    public void uploadDenOb834fileToSftp(String remoteFilePath) throws JSchException {
                 String fileName = SharedData.getDentalFileName();
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
-            }
-        }
     }
 
     @And("I get I999 medical file name from DB and download it from sftp server location {string}")

@@ -46,7 +46,7 @@ Feature: Verify text in Medical Plan Summary Page
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -118,7 +118,7 @@ Feature: Verify text in Medical Plan Summary Page
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
