@@ -203,6 +203,7 @@ public class AdminPortalIndividualDashboardPage {
     public void clickManagePlan() {
         basicActions.waitForElementToBeClickable(managePlanButton, 10);
         basicActions.click(managePlanButton);
+        basicActions.switchtoactiveTab();
     }
     public void verifyPlanDetails(List<String> data) {
         basicActions.waitForElementToBePresent(managePlanHeader, 20);
@@ -223,14 +224,14 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(memberDob.isDisplayed());
         softAssert.assertTrue(memberAddress.isDisplayed());
         softAssert.assertAll(); }
-    public void validateIndividualDashboardContainerTitles() {
+    public void validateIndividualDashboardContainerTitles(String PlansContainer,String summaryContainer ,String eligibilityContainer,String renewalsContainer,String reportsContainer,String payloadsContainer) {
         basicActions.waitForElementToBePresent(plansTitle, 30);
-        softAssert.assertEquals(plansTitle.getText(), plansTitle);
-        softAssert.assertEquals(summaryTitle.getText(), summaryTitle);
-        softAssert.assertEquals(eligibilityTitle.getText(), eligibilityTitle);
-        softAssert.assertEquals(renewalsTitle.getText(), renewalsTitle);
-        softAssert.assertEquals(reportsTitle.getText(), reportsTitle);
-        softAssert.assertEquals(payloadsTitle.getText(), payloadsTitle);
+        softAssert.assertEquals(plansTitle.getText(),PlansContainer);
+        softAssert.assertEquals(summaryTitle.getText(), summaryContainer);
+        softAssert.assertEquals(eligibilityTitle.getText(), eligibilityContainer);
+        softAssert.assertEquals(renewalsTitle.getText(), renewalsContainer);
+        softAssert.assertEquals(reportsTitle.getText(), reportsContainer);
+        softAssert.assertEquals(payloadsTitle.getText(), payloadsContainer);
         softAssert.assertAll();
     }
     public void verifyPayloadsContainer() {
