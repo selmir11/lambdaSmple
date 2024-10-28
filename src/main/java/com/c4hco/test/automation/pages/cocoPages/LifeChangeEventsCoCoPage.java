@@ -1,7 +1,5 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
-import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,11 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class LifeChangeEventsCoCoPage {
 
@@ -113,203 +107,173 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    public String getCurrentDate(){
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd");
-        Date date = new Date();
-        // Now format the date
-        return dateFormat.format(date);
-    }
-
-    public void selectLCE(String LCEType) {
-        basicActions.waitForElementToDisappear(spinner,20);
+    public void selectLCE(String LCEType, String dateType) {
+        basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
             case "InsuranceLoss":
-                basicActions.waitForElementToBeClickable(insuranceLossLCE,10);
-                insuranceLossLCE.click();
-                for (var i = 0; i < allMemberInsuranceLossCheckbox.size(); i++) {
-                    allMemberInsuranceLossCheckbox.get(i).click();
-                    insuranceLossEventDate.get(i).sendKeys(getCurrentDate());
-                }
+                handleLCESelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType);
                 break;
             case "Birth":
-                basicActions.waitForElementToBeClickable(birthLCE,10);
-                birthLCE.click();
-                for (var i = 0; i < allMembersBirthCheckbox.size(); i++) {
-                    allMembersBirthCheckbox.get(i).click();
-                    birthEventDate.get(i).sendKeys(getCurrentDate());
-                }
+                handleLCESelection(birthLCE, allMembersBirthCheckbox, birthEventDate, dateType);
                 break;
             case "Pregnancy":
-                basicActions.waitForElementToBeClickable(pregnancyLCE,10);
-                pregnancyLCE.click();
-                for (var i = 0; i < allMembersPregnancyCheckbox.size(); i++) {
-                    allMembersPregnancyCheckbox.get(i).click();
-                    pregnancyEventDate.get(i).sendKeys(getCurrentDate());
-                }
+                handleLCESelection(pregnancyLCE, allMembersPregnancyCheckbox, pregnancyEventDate, dateType);
                 break;
             case "Marriage":
-                basicActions.waitForElementToBeClickable(marriageLCE,10);
-                marriageLCE.click();
-                for (var i = 0; i < allMembersMarriageCheckbox.size(); i++) {
-                    allMembersMarriageCheckbox.get(i).click();
-                    marriageEventDate.get(i).sendKeys(getCurrentDate());
-                }
+                handleLCESelection(marriageLCE, allMembersMarriageCheckbox, marriageEventDate, dateType);
                 break;
             case "Divorce":
-                basicActions.waitForElementToBeClickable(divorceLCE,10);
-                divorceLCE.click();
-                for (var i = 0; i < allMembersDivorceCheckbox.size(); i++) {
-                    allMembersDivorceCheckbox.get(i).click();
-                    divorceEventDate.get(i).sendKeys(getCurrentDate());
-                }
+                handleLCESelection(divorceLCE, allMembersDivorceCheckbox, divorceEventDate, dateType);
                 break;
             case "Death":
-                basicActions.waitForElementToBeClickable(deathLCE,10);
-                deathLCE.click();
-                for (var i = 0; i < allMembersDeathCheckbox.size(); i++) {
-                    allMembersDeathCheckbox.get(i).click();
-                    deathEventDate.get(i).sendKeys(getCurrentDate());
-                }
+                handleLCESelection(deathLCE, allMembersDeathCheckbox, deathEventDate, dateType);
                 break;
             case "MoveToCO":
-                basicActions.waitForElementToBeClickable(addressChangeLCE,10);
-                addressChangeLCE.click();
-                List<WebElement> memberChangeOfAddressCheckbox = null;
-                List<WebElement> changeOfAddressEventDate = null;
-
-                memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
-                changeOfAddressEventDate = qachangeOfAddressEventDate;
-
-
-                for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
-                    basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);
-                    memberChangeOfAddressCheckbox.get(i).click();
-                    basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i),10);
-                    changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
-                    movedToColoradoCheckbox.get(i).click();
-                }
+                handleMoveToCO(dateType);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
+        }
+    }
+
+    private void handleLCESelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
+        basicActions.waitForElementToBeClickable(lceElement, 10);
+        lceElement.click();
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+
+        for (int i = 0; i < checkboxes.size(); i++) {
+            checkboxes.get(i).click();
+            eventDates.get(i).sendKeys(dateValue);
+        }
+    }
+
+    private void handleMoveToCO(String dateType) {
+        basicActions.waitForElementToBeClickable(addressChangeLCE, 10);
+        addressChangeLCE.click();
+        List<WebElement> memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
+        List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
+
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+
+        for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
+            basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
+            memberChangeOfAddressCheckbox.get(i).click();
+            basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i), 10);
+            changeOfAddressEventDate.get(i).sendKeys(dateValue);
+            movedToColoradoCheckbox.get(i).click();
         }
     }
 
     public void selectLCECheckbox(String LCEType) {
-        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
             case "InsuranceLoss":
-                basicActions.waitForElementToBeClickable(insuranceLossLCE,10);
-                insuranceLossLCE.click();
+                clickLCE(insuranceLossLCE);
                 break;
             case "Birth":
-                basicActions.waitForElementToBeClickable(birthLCE,10);
-                birthLCE.click();
+                clickLCE(birthLCE);
                 break;
             case "Pregnancy":
-                basicActions.waitForElementToBeClickable(pregnancyLCE,10);
-                pregnancyLCE.click();
+                clickLCE(pregnancyLCE);
                 break;
             case "Marriage":
-                basicActions.waitForElementToBeClickable(marriageLCE,10);
-                marriageLCE.click();
+                clickLCE(marriageLCE);
                 break;
             case "Divorce":
-                basicActions.waitForElementToBeClickable(divorceLCE,10);
-                divorceLCE.click();
+                clickLCE(divorceLCE);
                 break;
             case "Death":
-                basicActions.waitForElementToBeClickable(deathLCE,10);
-                deathLCE.click();
+                clickLCE(deathLCE);
                 break;
             case "Move":
-                basicActions.waitForElementToBeClickable(addressChangeLCE,10);
-                addressChangeLCE.click();
+                clickLCE(addressChangeLCE);
                 break;
-            case "MoveToCO":
-                basicActions.waitForElementToBeClickable(addressChangeLCE,10);
-                addressChangeLCE.click();
-                List<WebElement> memberChangeOfAddressCheckbox = null;
-                List<WebElement> changeOfAddressEventDate = null;
-
-                memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
-                changeOfAddressEventDate = qachangeOfAddressEventDate;
-
-
-                for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
-                    basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);
-                    memberChangeOfAddressCheckbox.get(i).click();
-                    basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i),10);
-                    changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
-                    movedToColoradoCheckbox.get(i).click();
-                }
+            case "None of these":
+                clickLCE(noneOfTheseLCE);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
         }
+    }
+
+    private void clickLCE(WebElement lceElement) {
+        basicActions.waitForElementToBeClickable(lceElement, 10);
+        lceElement.click();
     }
 
     public void selectMemberForLCE(String LCEType) {
-        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
             case "InsuranceLoss":
-                for (WebElement memberInsuranceLossCheckbox : allMemberInsuranceLossCheckbox) {
-                    memberInsuranceLossCheckbox.click();
-                }
+                clickAllMembers(allMemberInsuranceLossCheckbox);
                 break;
             case "Birth":
-                for (WebElement membersBirthCheckbox : allMembersBirthCheckbox) {
-                    membersBirthCheckbox.click();
-                }
+                clickAllMembers(allMembersBirthCheckbox);
                 break;
             case "Pregnancy":
-                for (WebElement membersPregnancyCheckbox : allMembersPregnancyCheckbox) {
-                    membersPregnancyCheckbox.click();
-                }
+                clickAllMembers(allMembersPregnancyCheckbox);
                 break;
             case "Marriage":
-                for (WebElement membersMarriageCheckbox : allMembersMarriageCheckbox) {
-                    membersMarriageCheckbox.click();
-                }
+                clickAllMembers(allMembersMarriageCheckbox);
                 break;
             case "Divorce":
-                for (WebElement membersDivorceCheckbox : allMembersDivorceCheckbox) {
-                    membersDivorceCheckbox.click();
-                }
+                clickAllMembers(allMembersDivorceCheckbox);
                 break;
             case "Death":
-                for (WebElement membersDeathCheckbox : allMembersDeathCheckbox) {
-                    membersDeathCheckbox.click();
-                }
+                clickAllMembers(allMembersDeathCheckbox);
                 break;
             case "Move":
-                List<WebElement> memberChangeOfAddressCheckbx = null;
-
-                memberChangeOfAddressCheckbx = qamemberChangeOfAddressCheckbox;
-                for (WebElement changeOfAddressCheckbx : memberChangeOfAddressCheckbx) {
-                    basicActions.waitForElementToBeClickable(changeOfAddressCheckbx, 10);
-                    changeOfAddressCheckbx.click();
-                }
+                clickAllMembers(qamemberChangeOfAddressCheckbox);
                 break;
             case "MoveToCO":
-                List<WebElement> memberChangeOfAddressCheckbox = null;
-
-                memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
-
-
-                for (var i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
-                    basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i),10);
-                    memberChangeOfAddressCheckbox.get(i).click();
-                    movedToColoradoCheckbox.get(i).click();
-                }
+                clickAllMembers(qamemberChangeOfAddressCheckbox);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
         }
     }
 
-    public void selectNoneOfThese(){
-        basicActions.waitForElementToBeClickableWithRetries(noneOfTheseLCE,10);
-        noneOfTheseLCE.click();
+    private void clickAllMembers(List<WebElement> checkboxes) {
+        for (WebElement checkbox : checkboxes) {
+            basicActions.waitForElementToBeClickable(checkbox, 10);
+            checkbox.click();
+        }
+    }
+
+    public void setDateForLCE(String LCEType, String dateType) {
+        switch (LCEType) {
+            case "InsuranceLoss":
+                setDateForCheckboxes(insuranceLossEventDate, dateType);
+                break;
+            case "Birth":
+                setDateForCheckboxes(birthEventDate, dateType);
+                break;
+            case "Pregnancy":
+                setDateForCheckboxes(pregnancyEventDate, dateType);
+                break;
+            case "Marriage":
+                setDateForCheckboxes(marriageEventDate, dateType);
+                break;
+            case "Divorce":
+                setDateForCheckboxes(divorceEventDate, dateType);
+                break;
+            case "Death":
+                setDateForCheckboxes(deathEventDate, dateType);
+                break;
+            case "Move":
+                setDateForCheckboxes(stgchangeOfAddressEventDate, dateType);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + LCEType);
+        }
+    }
+
+    private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        for (int i = 0; i < eventDates.size(); i++) {
+            basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
+            eventDates.get(i).sendKeys(dateValue);
+        }
     }
 
     public void saveAndContinue(){
@@ -512,33 +476,50 @@ public class LifeChangeEventsCoCoPage {
 
         }
     }
-    public void verifyErrorMessage(String errorType, String exist, String language) {
+
+    public void verifyNoErrorMessage(String errorType, String language) {
         switch (errorType) {
             case "Please select option":
-                verifySelectOptionError(language, exist);
+                verifySelectOptionErrorNotPresent(language);
                 break;
             case "Please select member":
-                verifySelectMemberError(language, exist);
+                verifyLCEMemberErrorNotPresent(language);
                 break;
             case "Event date":
-                verifyEnterDateError(language, exist);
+                verifySelectDateErrorNotPresent(language);
+                break;
+            case "Event date Past":
+                verifySelectDateErrorNotPresent(language);
+                break;
+            case "Event date Future":
+                verifySelectDateErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
         }
     }
 
-    public void verifySelectOptionError(String language, String exist){
-        switch (exist){
-            case "does":
+    public void verifyErrorMessage(String errorType, String language) {
+        switch (errorType) {
+            case "Please select option":
                 basicActions.waitForElementPresence(selectLCEError, 1);
                 verifyLCEError(language);
                 break;
-            case "does not":
-                verifySelectOptionErrorNotPresent(language);
+            case "Please select member":
+                basicActions.waitForElementPresence(selectLCEError, 1);
+                verifyLCEMemberError(language);
+                break;
+            case "Event date":
+                verifyLCEDateError(language);
+                break;
+            case "Event date Past":
+                verifyLCEDatePastError(language);
+                break;
+            case "Event date Future":
+                verifyLCEDateFutureError(language);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
+                throw new IllegalArgumentException("Invalid option: " + errorType);
         }
     }
 
@@ -558,20 +539,6 @@ public class LifeChangeEventsCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifySelectMemberError(String language, String exist){
-        switch (exist){
-            case "does":
-                basicActions.waitForElementPresence(selectLCEError, 1);
-                verifyLCEMemberError(language);
-                break;
-            case "does not":
-                verifyLCEMemberErrorNotPresent(language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 
@@ -640,19 +607,6 @@ public class LifeChangeEventsCoCoPage {
         }
     }
 
-    public void verifyEnterDateError(String language, String exist){
-        switch (exist){
-            case "does":
-                verifyLCEDateError(language);
-                break;
-            case "does not":
-                verifySelectDateErrorNotPresent(language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
-        }
-    }
-
     public void verifySelectDateErrorNotPresent(String language){
         // Check if there are any error messages on page.  Return if there aren't any.
         if (!basicActions.waitForElementToBePresent(selectLCEError,1)){
@@ -661,10 +615,14 @@ public class LifeChangeEventsCoCoPage {
         switch (language){
             case "English":
                 softAssert.assertNotEquals(selectLCEError.getText(), "Event date required");
+                softAssert.assertNotEquals(selectLCEError.getText(), "This event cannot be reported in the future");
+                softAssert.assertNotEquals(selectLCEError.getText(), "Date cannot be more than 60 days in the past");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertNotEquals(selectLCEError.getText(), "La fecha del evento es obligatoria");
+                softAssert.assertNotEquals(selectLCEError.getText(), "No se podr\u00E1 reportar este evento en el futuro");
+                softAssert.assertNotEquals(selectLCEError.getText(), "La fecha a seleccionar no puede ser 60 d\u00EDas previos a la fecha actual");
                 softAssert.assertAll();
                 break;
             default:
@@ -684,6 +642,52 @@ public class LifeChangeEventsCoCoPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(selectLCEError.getText(), "La fecha del evento es obligatoria");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCEDateFutureError(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(selectLCEError.getText(), "This event cannot be reported in the future");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(selectLCEError.getText(), "No se podr\u00E1 reportar este evento en el futuro");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCEDatePastError(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(selectLCEError.getText(), "Date cannot be more than 60 days in the past");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
+                softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(selectLCEError.getText(), "La fecha a seleccionar no puede ser 60 d\u00EDas previos a la fecha actual");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
