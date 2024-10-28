@@ -39,8 +39,8 @@ public class EDITransactionsPage {
     @FindBy(xpath = "//app-drop-down-select[@id='plan-year']//div[@class='drop-down-option drop-down-option-selected']")
     WebElement planyeardropdown;
 
-   @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span")
-   List<WebElement> selectYear;
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span")
+    List<WebElement> selectYear;
 
     @FindBy(xpath = "//button[normalize-space()='Search']")
     WebElement searchButton;
@@ -67,11 +67,11 @@ public class EDITransactionsPage {
     List<WebElement> carrierName;
 
     public void verifyEDITransactionHeaders() {
-       basicActions.waitForElementToBePresent(txtDetailedEdiReportPrimary, 1500);
+        basicActions.waitForElementToBePresent(txtDetailedEdiReportPrimary, 2000);
         basicActions.waitForElementToBePresent(txtDetailedEdiReportAccount, 1500);
         basicActions.waitForElementToBePresent(reportTitle, 1500);
         if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(txtDetailedEdiReportPrimary.getText(),"Primary Account Holder: TestSubscribernltzytxtdj Usernltzytxtdj");
+            softAssert.assertEquals(txtDetailedEdiReportPrimary.getText(), "Primary Account Holder: TestSubscribernltzytxtdj Usernltzytxtdj");
             softAssert.assertEquals(txtDetailedEdiReportAccount.getText(), "Account ID: 1103056956 , 174934661");
         } else {
             softAssert.assertEquals(txtDetailedEdiReportPrimary.getText(), "Primary Account Holder: Natalie Rushman");
@@ -80,14 +80,13 @@ public class EDITransactionsPage {
         softAssert.assertAll();
     }
 
-
-    public void SelectCoveragetypedropdowns(String text){
+    public void SelectCoveragetypedropdowns(String text) {
         basicActions.selectValueFromDropdown(coverageTypeDropdown, selectCoverageType, text);
         searchButton.click();
     }
 
     public void selectYearToAnyENV(String year) {
-      basicActions.selectValueFromDropdown(planyeardropdown, selectYear,year);
+        basicActions.selectValueFromDropdown(planyeardropdown, selectYear, year);
     }
 
 
@@ -132,94 +131,123 @@ public class EDITransactionsPage {
 
         softAssert.assertAll();
     }
-    public void validatemedicalanddentalrecords() {
 
+    public void validateMedicalAndDentalRecords(String validationOption) {
         basicActions.waitForElementListToBePresent(OutboundEDIHeaders, 5000);
-            String[] expectedOutboundHeaders = {
-                    "Date Sent", "Carrier Name", "Member Name", "Date of Birth", "Person ID",
-                    "Assigned Policy ID", "Relationship", "Plan ID", "Total Premium",
-                    "Total APTC", "Maint. Type", "Maint. Reason Code", "Plan Start Date",
-                    "Plan End Date", "File Name"
-            };
-        String[] expectedInboundHeaders = {
-                "Date Received", "Carrier Name", "Member Name", "Date of Birth", "Person ID",
-                 "Plan ID", "Maint. Type", "Maint. Reason Code", "Plan Start Date",
-                 "Plan End Date", "File Name"
-        };
-            verifyElements(OutboundEDIHeaders, expectedOutboundHeaders, softAssert, "Outbound Header mismatch");
-            verifyElements(InboundEDIHeaders, expectedInboundHeaders, softAssert, "Inbound Header mismatch");
 
-           String[] outboundfirstRow;
-           String[] outboundsecondRow;
-           String[] InboundfirstRow;
-           String[] InboundsecondRow;
-           
-            if(SharedData.getEnv().equals("staging")) {
-                outboundfirstRow = new String[]{
-                        "10/04/2024", "Delta Dental", "Natalie Rushman", "12/03/1995",
-                        "6407972338", "7066290002", "SELF", "28052CO0020004",
-                        "37.75", "0.00", "ADD", "INITIAL_ENROLLM..", "01/01/2025",
-                        "12/31/2025", "834_DELTADENTAL.."
-                };
-                outboundsecondRow = new String[]{
-                        "10/17/2024", "Kaiser Permanen..", "Natalie Rushman", "12/03/1995",
-                        "6407972338", "9002206070", "SELF", "21032CO0410065",
-                        "770.79", "0.00", "CHANGE", "NO_REASON_GIVEN", "01/01/2025",
-                        "12/31/2025", "834_KPCONNECTOR.."
-                };
-                InboundfirstRow = new String[]{
-                        "10/11/2024", "Kaiser Foundati..", "NATALIE RUSHMAN", "12/03/1995",
-                        "6407972338", "21032CO0410065", "ADD", "EFFECTUATED", "01/01/2025",
-                        "12/31/2025", "834_KPCONNECTOR.."
-                };
-                InboundsecondRow = new String[]{
-                        "10/22/2024", "Kaiser Foundati..", "NATALIE RUSHMAN", "12/03/1995",
-                        "6407972338", "21032CO0410065", "ADD", "EFFECTUATED", "01/01/2025",
-                        "12/31/2025", "834_KPCONNECTOR.."
-                };
-            }
-            else {
-                outboundfirstRow = new String[]{
-                        "10/24/2024", "Delta Dental", "TestSonnltzytxtdj Us..", "08/28/1999",
-                        "3526021750", "1901030135", "SELF", "28052CO0020006",
-                        "50.50", "28.00", "ADD", "RENEWAL", "01/01/2025",
-                        "12/31/2025", "834_DELTADENTAL.."
-                };
-                outboundsecondRow = new String[]{
-                        "10/24/2024", "Kaiser Permanen..", "TestDILnltzytxtdj Us..", "05/05/2001",
-                        "4207592595", "8061331000", "SPOUSE", "21032CO0410052",
-                        "0.00", "0.00", "ADD", "RENEWAL", "01/01/2025",
-                        "12/31/2025", "834_KPCONNECTOR.."
-                };
-                InboundfirstRow = new String[]{
-                        "10/24/2024", "Delta Dental", "TestSonnltzytxtdj Us..", "08/28/1999",
-                        "3526021750", "28052CO0020006", "ADD", "EFFECTUATED", "01/01/2025",
-                        "12/31/2025", "834_DELTADENTAL.."
-                };
+        switch (validationOption) {
+            case "Outbound Header":
+                validateHeaders(OutboundEDIHeaders, List.of(
+                        "Date Sent", "Carrier Name", "Member Name", "Date of Birth", "Person ID",
+                        "Assigned Policy ID", "Relationship", "Plan ID", "Total Premium",
+                        "Total APTC", "Maint. Type", "Maint. Reason Code", "Plan Start Date",
+                        "Plan End Date", "File Name"));
+                break;
 
-                InboundsecondRow = new String[]{
-                        "10/24/2024", "Delta Dental","TestDILnltzytxtdj Us..", "05/05/2001",
-                        "4207592595", "28052CO0020006", "ADD", "EFFECTUATED", "01/01/2025",
-                        "12/31/2025", "834_DELTADENTAL.."
-                };
+            case "Inbound headers":
+                validateHeaders(InboundEDIHeaders, List.of(
+                        "Date Received", "Carrier Name", "Member Name", "Date of Birth", "Person ID",
+                        "Plan ID", "Maint. Type", "Maint. Reason Code", "Plan Start Date",
+                        "Plan End Date", "File Name"));
+                break;
 
-            }
-            verifyElements(FirstRowoutboundEDI, outboundfirstRow, softAssert, "outbound Row 1st mismatch");
-            verifyElements(SecondRowoutboundEDI, outboundsecondRow, softAssert, "outbound Row 2nd mismatch");
-            verifyElements(firstRowInboundEDI, InboundfirstRow, softAssert, "Inbound Row 1st mismatch");
-            verifyElements(SecondRowInboundEDI, InboundsecondRow, softAssert, "Inbound Row 2nd mismatch");
-            softAssert.assertAll();
+            case "outboundfirstRow":
+                validateRow("outboundfirstRow", FirstRowoutboundEDI, getOutboundFirstRowData());
+                break;
+
+            case "outboundsecondRow":
+                validateRow("outboundsecondRow", SecondRowoutboundEDI, getOutboundSecondRowData());
+                break;
+
+            case "InboundfirstRow":
+                validateRow("InboundfirstRow", firstRowInboundEDI, getInboundFirstRowData());
+                break;
+
+            case "InboundsecondRow":
+                validateRow("InboundsecondRow", SecondRowInboundEDI, getInboundSecondRowData());
+                break;
+
+            default:
+                softAssert.fail("Unexpected insurance type: " + validationOption);
+                return;
         }
 
-        private void verifyElements (List < WebElement > actualElements, String[]expectedElements, SoftAssert
-        softAssert, String messagePrefix){
-            int minSize = Math.min(actualElements.size(), expectedElements.length);
-            for (int i = 0; i < minSize; i++) {
-                String actualText = actualElements.get(i).getText().trim();
-                softAssert.assertEquals(actualText, expectedElements[i],
-                        messagePrefix + " at index " + i + ": Expected '" + expectedElements[i] + "', but got '" + actualText + "'");
-            }
+        softAssert.assertAll();
+    }
+
+    private void validateHeaders(List<WebElement> actualHeaders, List<String> expectedHeaders) {
+        List<String> optionsList = actualHeaders.stream().map(WebElement::getText).toList();
+        softAssert.assertEquals(optionsList, expectedHeaders, "Header mismatch!");
+    }
+
+    private void validateRow(String validationOption, List<WebElement> actualRow, List<String> expectedRow) {
+        List<String> rowText = actualRow.stream().map(WebElement::getText).toList();
+        softAssert.assertEquals(rowText, expectedRow, "Mismatch for " + validationOption);
+    }
+
+    private List<String> getOutboundFirstRowData() {
+        if (SharedData.getEnv().equals("staging")) {
+            return List.of(
+                    "10/04/2024", "Delta Dental", "Natalie Rushman", "12/03/1995",
+                    "6407972338", "7066290002", "SELF", "28052CO0020004",
+                    "37.75", "0.00", "ADD", "INITIAL_ENROLLM..", "01/01/2025",
+                    "12/31/2025", "834_DELTADENTAL..");
+        } else {
+            return List.of(
+                    "10/24/2024", "Delta Dental", "TestSonnltzytxtdj Us..", "08/28/1999",
+                    "3526021750", "1901030135", "SELF", "28052CO0020006",
+                    "50.50", "28.00", "ADD", "RENEWAL", "01/01/2025",
+                    "12/31/2025", "834_DELTADENTAL..");
         }
     }
+
+    private List<String> getOutboundSecondRowData() {
+        if (SharedData.getEnv().equals("staging")) {
+            return List.of(
+                    "10/17/2024", "Kaiser Permanen..", "Natalie Rushman", "12/03/1995",
+                    "6407972338", "9002206070", "SELF", "21032CO0410065",
+                    "770.79", "0.00", "CHANGE", "NO_REASON_GIVEN", "01/01/2025",
+                    "12/31/2025", "834_KPCONNECTOR..");
+        } else {
+            return List.of(
+                    "10/24/2024", "Kaiser Permanen..", "TestDILnltzytxtdj Us..", "05/05/2001",
+                    "4207592595", "8061331000", "SPOUSE", "21032CO0410052",
+                    "0.00", "0.00", "ADD", "RENEWAL", "01/01/2025",
+                    "12/31/2025", "834_KPCONNECTOR..");
+        }
+    }
+
+    private List<String> getInboundFirstRowData() {
+        if (SharedData.getEnv().equals("staging")) {
+            return List.of(
+                    "10/11/2024", "Kaiser Foundati..", "NATALIE RUSHMAN", "12/03/1995",
+                    "6407972338", "21032CO0410065", "ADD", "EFFECTUATED", "01/01/2025",
+                    "12/31/2025", "834_KPCONNECTOR..");
+        } else {
+            return List.of(
+                    "10/24/2024", "Delta Dental", "TestSonnltzytxtdj Us..", "08/28/1999",
+                    "3526021750", "28052CO0020006", "ADD", "EFFECTUATED", "01/01/2025",
+                    "12/31/2025", "834_DELTADENTAL..");
+        }
+    }
+
+    private List<String> getInboundSecondRowData() {
+        if (SharedData.getEnv().equals("staging")) {
+            return List.of(
+                    "10/22/2024", "Kaiser Foundati..", "NATALIE RUSHMAN", "12/03/1995",
+                    "6407972338", "21032CO0410065", "ADD", "EFFECTUATED", "01/01/2025",
+                    "12/31/2025", "834_KPCONNECTOR..");
+        } else {
+            return List.of(
+                    "10/24/2024", "Delta Dental", "TestDILnltzytxtdj Us..", "05/05/2001",
+                    "4207592595", "28052CO0020006", "ADD", "EFFECTUATED", "01/01/2025",
+                    "12/31/2025", "834_DELTADENTAL..");
+        }
+    }
+}
+
+
+
+
 
 

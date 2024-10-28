@@ -18,10 +18,6 @@ public class EDITransactionsPageSteps {
         ediTransactionsPage.SelectCoveragetypedropdowns(text);
     }
 
-    @Then("I validate both records present for the user")
-    public void iValidateBothRecordsPresentForTheUser() {
-        ediTransactionsPage.validatemedicalanddentalrecords();
-    }
 
     @Then("I select {string} to search EDI transactions")
     public void iSelectToSearchEDITransactions(String year) {
@@ -31,6 +27,11 @@ public class EDITransactionsPageSteps {
     @Then("I validate only {string} records present for the user")
     public void iValidateOnlyRecordsPresentForTheUser(String InsuranceType) {
         ediTransactionsPage.validateInsuranceRecordsDisplay(InsuranceType);
+    }
+
+    @Then("I validate {string} transactions present for the user")
+    public void iValidateTransactionsPresentForTheUser(String validationOption) {
+        ediTransactionsPage.validateMedicalAndDentalRecords(validationOption);
     }
 }
 

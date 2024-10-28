@@ -12,6 +12,7 @@ Feature: EDI Detailed Outbound Transactions : Verify all data
     Then I select the first record from the search results
     Then I click on view button for "EDI Transactions" report
     Then I validate I am on the "EDI Transactions" page
+    Then I wait for 1000 milliseconds
     And I verify EDI Transactions headers data
     Then I select "2025" to search EDI transactions
     Then I select "MEDICAL" coverage type dropdown
@@ -19,4 +20,9 @@ Feature: EDI Detailed Outbound Transactions : Verify all data
     Then I select "DENTAL" coverage type dropdown
     Then I validate only "dental" records present for the user
     Then I select "BOTH" coverage type dropdown
-    Then I validate both records present for the user
+    Then I validate "Outbound Header" transactions present for the user
+    Then I validate "Inbound headers" transactions present for the user
+    Then I validate "outboundfirstRow" transactions present for the user
+    Then I validate "outboundsecondRow" transactions present for the user
+    Then I validate "InboundfirstRow" transactions present for the user
+    Then I validate "InboundsecondRow" transactions present for the user
