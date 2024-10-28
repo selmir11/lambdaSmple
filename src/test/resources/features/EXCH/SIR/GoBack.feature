@@ -108,8 +108,8 @@ Feature: Go Back tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -228,8 +228,8 @@ Feature: Go Back tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -418,12 +418,12 @@ Feature: Go Back tests
 
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-      
+
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question

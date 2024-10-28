@@ -32,7 +32,7 @@ Feature: Page Text-Dependent Overview page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -56,7 +56,7 @@ Feature: Page Text-Dependent Overview page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
