@@ -52,6 +52,21 @@ public class AccountOverviewPage {
     @FindBy(xpath = "(//h1/span)[2]")
     WebElement txtUserName;
 
+    @FindBy(css = "p.c4PageHeader")
+    WebElement txtHeaderVerifyYourInformation;
+
+    @FindBy(xpath = "//p[@class='c4PageHeader']/following-sibling::p")
+    WebElement txtContentVerifyYourInformation;
+
+    @FindBy(css = "#selfAttestation #submit")
+    WebElement btnVerifyYourInformation;
+
+    @FindBy(css = ".c4PageTitle")
+    List<WebElement> txtHeaderDetails;
+
+    @FindBy(css = "#planYear>option")
+    List<WebElement> dpdSelectPlanYear;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
