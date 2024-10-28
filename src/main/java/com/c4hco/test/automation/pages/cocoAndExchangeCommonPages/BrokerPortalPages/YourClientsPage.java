@@ -379,11 +379,8 @@ public class YourClientsPage {
         List<String> sortedList = new ArrayList<>(originalList);
         Collections.sort(sortedList);
 
-        if(originalList.equals(sortedList)){
-            System.out.println("The list is alphabetized");
-        } else {
-            System.out.println("The list is not alphabetized");
-        }
+        softAssert.assertEquals(sortedList,originalList);
+        softAssert.assertAll();
     }
 
     public void clickLeftPaginationArrowButton() {
@@ -391,45 +388,37 @@ public class YourClientsPage {
         yourClientPreviousPage.click();
     }
 
-    public void validateRemoveClientDisplayed(String expectedStatus) {
+    public void validateClientOptionsDisplayed(String clientOption){
         basicActions.waitForElementToBePresent(clientRow,100);
 
-        switch (expectedStatus) {
-            case "is displayed":
+        switch (clientOption) {
+            case "Remove Client":
                 basicActions.waitForElementToBePresent(removeClient,100);
                 softAssert.assertEquals(removeClient.getText(),"Remove Client");
                 break;
-            case "is not displayed":
-                softAssert.assertFalse(basicActions.waitForElementPresence(removeClient,30));
-                break;
-        }
-        softAssert.assertAll();
-    }
-
-    public void validateTransferDisplayed(String expectedStatus) {
-        basicActions.waitForElementToBePresent(clientRow,100);
-
-        switch (expectedStatus) {
-            case "is displayed":
+            case "Transfer":
                 basicActions.waitForElementToBePresent(transferClient,100);
                 softAssert.assertEquals(transferClient.getText(),"Transfer");
                 break;
-            case "is not displayed":
-                softAssert.assertFalse(basicActions.waitForElementPresence(transferClient,30));
+            case "Manage":
+                basicActions.waitForElementToBePresent(manageClient,100);
+                softAssert.assertEquals(manageClient.getText(),"Manage");
                 break;
         }
         softAssert.assertAll();
     }
 
-    public void validateManageDisplayed(String expectedStatus) {
+    public void validateClientOptionsNotDisplayed(String clientOption){
         basicActions.waitForElementToBePresent(clientRow,100);
 
-        switch (expectedStatus) {
-            case "is displayed":
-                basicActions.waitForElementToBePresent(manageClient,100);
-                softAssert.assertEquals(manageClient.getText(),"Manage");
+        switch (clientOption) {
+            case "Remove Client":
+                softAssert.assertFalse(basicActions.waitForElementPresence(removeClient,30));
                 break;
-            case "is not displayed":
+            case "Transfer":
+                softAssert.assertFalse(basicActions.waitForElementPresence(transferClient,30));
+                break;
+            case "Manage":
                 softAssert.assertFalse(basicActions.waitForElementPresence(manageClient,30));
                 break;
         }

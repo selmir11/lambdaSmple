@@ -163,19 +163,14 @@ public class YourClientsPageSteps {
         yourClientsPage.verifyClientsAlphabeticalOrder();
     }
 
-    @Then("I validate the Remove Client option {string}")
-    public void iValidateRemoveClientDisplayed(String expectedStatus) {
-        yourClientsPage.validateRemoveClientDisplayed(expectedStatus);
+    @Then("I validate the {string} option is displayed")
+    public void iValidateClientOptionsDisplayed(String clientOption) {
+        yourClientsPage.validateClientOptionsDisplayed(clientOption);
     }
 
-    @Then("I validate the Transfer option {string}")
-    public void iValidateTransferDisplayed(String expectedStatus) {
-        yourClientsPage.validateTransferDisplayed(expectedStatus);
-    }
-
-    @Then("I validate the Manage option {string}")
-    public void iValidateManageDisplayed(String expectedStatus) {
-        yourClientsPage.validateManageDisplayed(expectedStatus);
+    @Then("I validate the {string} option is not displayed")
+    public void iValidateClientOptionsNotDisplayed(String clientOption) {
+        yourClientsPage.validateClientOptionsNotDisplayed(clientOption);
     }
 }
 
