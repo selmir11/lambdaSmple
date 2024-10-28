@@ -543,13 +543,11 @@ public class BasicActions {
         return date.format(formatter);
     }
     public String getFutureDate() {// 61 days from today
-        LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.now().plusDays(61);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
     }
     public String getPastDate() {// 61 days before today
-        LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.now().minusDays(61);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
