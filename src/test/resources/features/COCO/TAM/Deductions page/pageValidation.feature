@@ -169,7 +169,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-387 @test
+  @SLCR-387
   Scenario: SLCR-387 I want amount and frequency errors cleared on the Deductions page so that I don't see errors when I select an option - English
     #Step3
     Then I select "Self-employment retirement" as deductions option
@@ -241,7 +241,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-388 @test
+  @SLCR-388
   Scenario: SLCR-388 I want amount and frequency errors cleared on the Deductions page so that I don't see errors when I select an option - Spanish
     And I change the language from header to "Spanish"
     #Step3
