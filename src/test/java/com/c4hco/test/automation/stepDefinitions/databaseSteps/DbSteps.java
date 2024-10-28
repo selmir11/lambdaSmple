@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.*;
+import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -11,6 +12,7 @@ public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
 private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
+private final Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
@@ -28,7 +30,7 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    }
    @And("I set ib999 entites for both medical and dental files")
    public void setib999(){
-      dbValidations.setIb999DetailsEntity();
+      ib999FileValidations.setIb999DetailsEntity();
    }
 
    @And("I verify the OHI info in the DB for {string}")

@@ -22,14 +22,6 @@ public class DbValidations {
     int currentYear = calendar.get(Calendar.YEAR);
     BasicActions basicActions = new BasicActions();
 
-    public void setIb999DetailsEntity() {
-        // WIP - move this to a new file ib999Validations
-        List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
-        SharedData.setIb999MedDetailsEntities(ib999MedEntity);
-        List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
-        SharedData.setIb999DenDetailsEntities(ib999DenEntity);
-    }
-
     public void validateOb834FromDb(List<Map<String, String>> expectedValues) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<Ob834DetailsEntity> ob834DetailsEntities = exchDbDataProvider.getOb83Db4Details();
