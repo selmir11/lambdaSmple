@@ -547,14 +547,8 @@ public class DbValidations {
 
         String dateStr = policyDate[0];
         String dateEnd = policyDate[1];
-
-        LocalDate date = LocalDate.parse(dateStr);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDateSTR = date.format(formatter);
-        LocalDate dateE = LocalDate.parse(dateEnd);
-        DateTimeFormatter formatterE = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDateEnd = dateE.format(formatterE);
-
+        String formattedDateSTR = basicActions.changeDateFormat(dateStr ,"yyyy-MM-dd","MM/dd/yyyy");
+        String formattedDateEnd = basicActions.changeDateFormat(dateEnd ,"yyyy-MM-dd","MM/dd/yyyy");
         String coverageDate = formattedDateSTR+" to "+formattedDateEnd;
         softAssert.assertTrue(SharedData.getManagePlanDentalMedicalPlan().getPolicyCoverageDate().contains(coverageDate));
         softAssert.assertAll();
