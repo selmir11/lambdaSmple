@@ -542,13 +542,13 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
     }
-    public String getFutureDate() {// 61 days from today
-        LocalDate date = LocalDate.now().plusDays(61);
+    public String getFutureDate(int daysToMove) {// 61 days from today
+        LocalDate date = LocalDate.now().plusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
     }
-    public String getPastDate() {// 61 days before today
-        LocalDate date = LocalDate.now().minusDays(61);
+    public String getPastDate(int daysToMove) {// 61 days before today
+        LocalDate date = LocalDate.now().minusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
     }
@@ -562,33 +562,43 @@ public class BasicActions {
 
     public String  getDateBasedOnRequirement(String dateRequirement) {
         String date;
-        switch (dateRequirement) {
-            case "First Day Of Current Year":
-               date = getFirstOfJanCurrYr();
-                break;
-            case "Last Day Of Current Year":
-               date = getLastDayOfCurrYr();
-                break;
-            case "getFromSharedData":
-                String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
-                date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
-                break;
-            case "First Of Next Month":
-                date =  firstDateOfNextMonth();
-                break;
-            case "Today":
-                date =  getTodayDate();
-                break;
-            case "Future":
-                date =  getFutureDate();
-                break;
-            case "Past":
-                date =  getPastDate();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + dateRequirement);
-
+        if(dateRequirement.contains("Future") ||dateRequirement.contains("Past")) {
+            String[] parts = dateRequirement.split(" ");
+            String dateRequirementPart = parts[0];
+            int daysToMove = Integer.parseInt(parts[1]);
+            switch (dateRequirementPart) {
+                case "Future":
+                    date = getFutureDate(daysToMove);
+                    break;
+                case "Past":
+                    date = getPastDate(daysToMove);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + dateRequirementPart);
+            }
         }
+        else{
+            switch (dateRequirement) {
+                    case "First Day Of Current Year":
+                        date = getFirstOfJanCurrYr();
+                        break;
+                    case "Last Day Of Current Year":
+                        date = getLastDayOfCurrYr();
+                        break;
+                    case "getFromSharedData":
+                        String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
+                        date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
+                        break;
+                    case "First Of Next Month":
+                        date = firstDateOfNextMonth();
+                        break;
+                    case "Today":
+                        date = getTodayDate();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + dateRequirement);
+                }
+            }
         return date;
     }
 

@@ -288,12 +288,12 @@ Feature: Page validation - Life Change Event page
     Then I verify "Please select member" error "does not" exist in "English"
     Then I verify "Event date" error "does" exist in "English"
     #Step5
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Past"
+    Then I set date for all members of "Marriage" Life Change Event to event date of "Past 61"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Past" error "does" exist in "English"
     #Step6
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Future"
+    Then I set date for all members of "Marriage" Life Change Event to event date of "Future 61"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Future" error "does" exist in "English"
@@ -322,12 +322,12 @@ Feature: Page validation - Life Change Event page
     Then I verify "Please select member" error "does not" exist in "Spanish"
     Then I verify "Event date" error "does" exist in "Spanish"
     #Step5
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Past"
+    Then I set date for all members of "Marriage" Life Change Event to event date of "Past 61"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Past" error "does" exist in "Spanish"
     #Step6
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Future"
+    Then I set date for all members of "Marriage" Life Change Event to event date of "Future 61"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Future" error "does" exist in "Spanish"
