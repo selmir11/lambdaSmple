@@ -60,6 +60,7 @@ public class SharedData {
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
+    @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
 
 
     public static void reset(){
@@ -95,4 +96,5 @@ public class SharedData {
         ob834DetailsMedEntities = null;
         ob834DetailsDenEntities = null;
     }
+
 }

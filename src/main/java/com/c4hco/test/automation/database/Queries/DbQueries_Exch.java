@@ -343,4 +343,51 @@ public class DbQueries_Exch {
                 "order by em.member_id";
     }
 
+
+    public String getPlan_marketing_name(String planYear){
+        return "SELECT P.plan_marketing_name FROM "+dbName+".en_policy_ah ESH JOIN "+ dbName+".en_plan P ON ESH.plan_id = P.plan_id WHERE ESH.account_id = '"+ acctId+"' " +
+                "AND ESH.plan_year = '"+planYear+"' AND ESH.coverage_type = '2' ORDER BY ESH.created_ts DESC LIMIT 1";
+    }
+
+    public String getDental_policy_date(){
+        return "Select policy_start_date , policy_end_date From "+dbName+".en_policy_ah ESH Where ESH.account_id = '"+ acctId+"' and coverage_type = '1' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";
+    }
+
+    public String getMedCurrentLatestAppDate(){
+        return "SELECT ESH.policy_submitted_ts\n" +
+                "FROM "+dbName+".en_policy_ah ESH\n" +
+                "JOIN "+dbName+".en_policy EP ON ESH.application_id = EP.application_id\n" +
+                "WHERE ESH.account_id = '"+acctId+"' \n" +
+                "  AND ESH.coverage_type = '1' \n" +
+                "ORDER BY ESH.created_ts DESC \n" +
+                "LIMIT 1;";
+    }
+
+    public String getMedSecondPolicyDB(String year) {
+        return "SELECT EPH.exchange_assigned_policy_id,EPH.policy_start_date, ESH.first_name \n" +
+                " FROM "+dbName+".es_member_ah ESH\n" +
+                "FULL JOIN "+dbName+".en_policy_ah EPH ON ESH.submission_id = EPH.submission_id\n" +
+                "WHERE EPH.account_id = '"+acctId+"'\n" +
+                "AND EPH.coverage_type = '1'\n" +
+                "AND EPH.policy_status != 'CANCELLED'\n" +
+                "AND EPH.plan_year ='"+year+"'\n" +
+                "ORDER BY EPH.exchange_assigned_policy_id ASC\n" +
+                "LIMIT 1;";
+    }
+
+    public String getDentalSecondPolicyDB(String year) {
+        return "SELECT ESH.exchange_assigned_policy_id, ESH.policy_start_date , EMH.first_name\n" +
+                "FROM "+dbName+".en_policy_ah ESH\n" +
+                "JOIN "+dbName+".en_policy_member_ah PMH ON PMH.policy_ah_id = ESH.policy_ah_id\n" +
+                "JOIN "+dbName+".en_policy_member_coverage_ah PMC ON PMC.policy_member_ah_id = PMH.policy_member_ah_id\n" +
+                "JOIN "+dbName+".en_member_coverage_financial_ah MCF ON MCF.policy_member_coverage_ah_id = PMC.policy_member_coverage_ah_id\n" +
+                "JOIN "+dbName+".es_member_ah EMH ON EMH.submission_id = MCF.submission_id AND EMH.household_contact = '1'\n" +
+                "WHERE \n" +
+                "    ESH.account_id = '"+acctId+"'\n" +
+                "    AND ESH.coverage_type = '2'\n" +
+                "    AND ESH.plan_year = '"+year+"'\n" +
+                "ORDER BY \n" +
+                "    ESH.created_ts DESC\n" +
+                "LIMIT 1;";
+    }
 }

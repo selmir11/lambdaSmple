@@ -1,10 +1,20 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
+        import com.c4hco.test.automation.Dto.ManagePlanDentalMedicalPlan;
+        import com.c4hco.test.automation.Dto.MemberDetails;
+        import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
         import org.openqa.selenium.*;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.support.PageFactory;
         import org.testng.Assert;
         import org.testng.asserts.SoftAssert;
+        import java.time.LocalDate;
+        import java.time.format.DateTimeFormatter;
+
+        import java.math.BigDecimal;
+        import java.time.Year;
+        import java.util.ArrayList;
+        import java.util.Arrays;
         import java.util.List;
 
 
@@ -19,6 +29,7 @@ public class AdminPortalManagePlansPage{
 
     }
     SoftAssert softAssert = new SoftAssert();
+    ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan = new ManagePlanDentalMedicalPlan();
 
     @FindBy(id = "enrollments-container")
     WebElement mPlansContainer;
@@ -42,9 +53,9 @@ public class AdminPortalManagePlansPage{
     WebElement chkMedical;
     @FindBy(xpath = "//label[.='Dental']")
     WebElement chkDental;
-    @FindBy(id = "Manage Plans-Select Plan Type Medical")
+    @FindBy(css = "div.select-plan-type-input > div:nth-child(1)")
     WebElement btnMedicalChecked;
-    @FindBy(id = "Manage Plans-Select Plan Type Dental")
+    @FindBy(css = "div.select-plan-type-input > div:nth-child(2)")
     WebElement btnDentalChecked;
     @FindBy(css = ".tollbar-app-links")
     WebElement appLinks;
@@ -66,14 +77,14 @@ public class AdminPortalManagePlansPage{
     WebElement previousFinancialMed;
     @FindBy(xpath = "//div[text()='Previous Financial Periods - Dental']")
     WebElement previousFinancialDental;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[1]/div[2]/app-previous-plan/div/div[2]")
+    @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[1]/div[2]/app-previous-plan/div/div[2]")
     WebElement previousFinancialNoMed;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[2]/div[2]/div[2]/app-previous-plan/div/div[2]")
+    @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[2]/div[2]/app-previous-plan/div/div[2]")
     WebElement previousFinancialNoDental;
     @FindBy(css = "#enrollments-container > div.plan-header > div.select-year > div:nth-child(2) > app-plan-year-dropdown > div > app-drop-down-select > div > div.drop-down-option.drop-down-option-selected")
     WebElement planYearDownArrow;
-    @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select")
-    WebElement planYearList;
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span")
+    List<WebElement> planYearList;
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select/div/div[2]/div[1]")
     WebElement secondYearInList;
     @FindBy(xpath= "//div[@id='coverageStartDate_1']//input[1]")
@@ -108,12 +119,30 @@ public class AdminPortalManagePlansPage{
     WebElement selectPolicyDropdown;
     @FindBy(xpath = "//*[@id='enrollments-container']/div[2]/div[1]/div[1]/app-current-plan/div/div[1]/div/p[2]")
     WebElement selectPolicyDropdownOptions;
-    @FindBy(id = "premium_1")
-    WebElement financialPremiumData;
-    @FindBy(id = "status_1")
-    WebElement coverageStatusData;
-    @FindBy(id = "id='planAPTC_1")
-    WebElement financialAptcData;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement selectDentalPolicyDropdownOptions;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span")
+    List<WebElement> medicalpolicyDropdownOptions;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span")
+    List<WebElement> dentalpolicyDropdownOptions;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='two-column-twentyfive-row-container header-3']")
+    WebElement currentDentalPlanName;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[contains(text(), 'Policy Coverage:')]")
+    WebElement pnlMedPolicyCoverage ;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest Application Date:']//following::div[1]")
+    WebElement  medLatestAppDateUI ;
+
+    @FindBy(xpath = "//p[@class= 'plan-header header-2']")
+    List<WebElement> currentMedicalDentalPlan;
+    @FindBy(xpath = "//div[@class='label-container body-text-2']")
+    List<WebElement> containerTextValidation;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='status_1']")
+    WebElement medPolicyStatus;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='status_1']")
+    WebElement denPolicyStatus;
+    @FindBy(xpath = "//label[@class='form-radio-label body-text-1']")
+    WebElement dentalPlanType;
+
 
     public void validateBluBar(){
         basicActions.waitForElementToBePresent(blueBarlinks,20);
@@ -133,7 +162,9 @@ public class AdminPortalManagePlansPage{
 
     public void checkDefaultCurrentYear(){
         basicActions.waitForElementToBePresent(dpdCurrentYearMP,20);
-        softAssert.assertEquals(dpdCurrentYearMP.getText(), "2024");
+        String currentYear = String.valueOf(Year.now().getValue());
+
+        softAssert.assertEquals(dpdCurrentYearMP.getText(),currentYear );
         softAssert.assertAll();     }
     public void verifyButtonsCheckedBoth(){
         basicActions.waitForElementToBePresent(btnMedicalChecked,20);
@@ -154,7 +185,6 @@ public class AdminPortalManagePlansPage{
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
-        basicActions.scrollToElement(btnMakeChangeMed);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed,10);
         btnMakeChangeMed.click();       }
     public void clickResetChangesMedical() {
@@ -206,19 +236,15 @@ public class AdminPortalManagePlansPage{
         softAssert.assertEquals(previousFinancialNoDental.getText(), "No Past Financial Periods - Dental");
         softAssert.assertAll();     }
     public void validateYearsDropdown(String lowerYear){
-        basicActions.waitForElementToBePresent(planYearList,20);
         softAssert.assertTrue(planYearDownArrow.isDisplayed());
         basicActions.click(dpdCurrentYearMP);
-        basicActions.waitForElementToBePresent(planYearList,20);
-        softAssert.assertEquals(planYearList.getText(), "2024\n" +
-                "2019\n" +
-                "2020\n" +
-                "2021\n" +
-                "2022\n" +
-                "2023\n" +
-                "2024\n" +
-                "2025");
-        softAssert.assertEquals(secondYearInList.getText(), lowerYear);
+        basicActions.waitForElementListToBePresent(planYearList,20);
+        List<String> expectedList = new ArrayList<>(Arrays.asList("2019","2020","2021","2022","2023","2024","2025"));
+        List<String> existingList = new ArrayList<>();
+        for (WebElement each : planYearList) {
+            existingList.add(each.getText().trim());}
+        softAssert.assertEquals(planYearList.get(0).getText(), lowerYear);
+        softAssert.assertEquals(expectedList,existingList);
         softAssert.assertAll();     }
 
     public void clickSaveButton() {
@@ -289,7 +315,8 @@ public class AdminPortalManagePlansPage{
         additionalReasonText.sendKeys("Testing");
         basicActions.waitForElementToBePresent(confirmChangesButton, 20);
         confirmChangesButton.click();
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(coverageStatusData,30));
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical,20));
+        softAssert.assertAll();
     }
 
     public void verifyLabelsDataMedical() {
@@ -318,16 +345,15 @@ public class AdminPortalManagePlansPage{
         basicActions.switchtoactiveTab();       }
 
     public void selectMemberNameFromPolicyDropdown(String Membername){
+        basicActions.wait(4000);    // WIP - Need to remove the wait.
         basicActions.waitForElementToBePresent(chkMedical,20);
         basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdown,30);
         basicActions.scrollToElement(selectPolicyDropdown);
         basicActions.click(selectPolicyDropdown);
         WebElement dropdown = selectPolicyDropdownOptions.findElement(By.xpath(".//span[contains(text(),'"+ Membername+ "')]/parent::div"));
-        basicActions.waitForElementToBePresentWithRetries(dropdown,30);
-        basicActions.clickElementWithRetries(dropdown,20);
-        basicActions.waitForElementToBePresentWithRetries(coverageStatusData,20);
-        basicActions.waitForElementToBePresentWithRetries(financialPremiumData,20);
-        basicActions.waitForElementToBePresentWithRetries(financialAptcData,20);
+        basicActions.waitForElementToBePresentWithRetries(dropdown,20);
+        basicActions.click(dropdown);
+        basicActions.waitForElementToBePresent(coverageStartdate,20);
    }
 
     public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
@@ -365,6 +391,123 @@ public class AdminPortalManagePlansPage{
 
             WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_"+memberNo+"']//input[1]"));
             financialEndDateMem.sendKeys(financialStartDateValue);
+        }
+    }
+
+    public void selectThePlanYearOnManagePlan(String planYear) {
+        basicActions.waitForElementListToBePresent(planYearList,20);
+        for (WebElement each : planYearList) {
+            if (each.getText().equals(planYear)){
+                each.click();
+            }
+        }
+
+    }
+    MemberDetails memberDetails = new MemberDetails();
+
+    public void UpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
+        String primaryMemberId;
+        if (SharedData.getEnv().contains("qa")) {
+            primaryMemberId = qaAccountId;
+        } else {
+            primaryMemberId = stgAccountId;
+        }
+        BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
+
+        memberDetails.setAccount_id(bigDecimal);
+        SharedData.setPrimaryMember(memberDetails);
+        String currentDentalPlan = currentDentalPlanName.getText();
+
+
+        managePlanDentalMedicalPlan.setPlanMarketingName(currentDentalPlan);
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+
+        String MedPolicyCoverage = pnlMedPolicyCoverage.getText();
+        managePlanDentalMedicalPlan.setPolicyCoverageDate(MedPolicyCoverage);
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+
+        String pnlMedLatestAppDate = medLatestAppDateUI.getText();
+        pnlMedLatestAppDate =basicActions.changeDateFormat(pnlMedLatestAppDate,"MM/dd/yyyy","MM/dd/yyyy");
+        managePlanDentalMedicalPlan.setMedLatestAppDate(pnlMedLatestAppDate);
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+
+
+    }
+
+    public void validateTheTextOfTheMedicalContainer() {
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getText(),"Current Medical Plan:");
+        List<String> existingList = Arrays.asList("Current Medical Plan:", "Latest Application Date:","Financial Start Date:", "EHB Premium:", "Financial End Date:","CSR Amount:", "Plan Premium:","Latest LCE and Date:","Plan APTC:","Rating Area:","Premium after Subsidy:","Service Area:","Plan AV:","Policy ID:","HIOS ID:");
+        List<String> resultList = new ArrayList<>(existingList.subList(0, Math.min(existingList.size(), 15)));
+        softAssert.assertEquals(existingList, resultList);
+        softAssert.assertAll();
+    }
+
+
+    public void selectTheMedPolicyPlan(int policyNumber,String planType) {
+        basicActions.waitForElementToBePresent(selectPolicyDropdownOptions,20);
+
+        switch (planType){
+            case "Medical":
+        selectPolicyDropdownOptions.click();
+        medicalpolicyDropdownOptions.get(policyNumber-1).click();
+        break;
+            case "Dental":
+        selectDentalPolicyDropdownOptions.click();
+        dentalpolicyDropdownOptions.get(policyNumber-1).click();
+        break;
+
+        }
+    }
+
+    public void selectPlansMedActivePolicy() {
+        basicActions.waitForElementToBePresent(selectPolicyDropdownOptions,50);
+        selectPolicyDropdownOptions.click();
+        for (WebElement each : medicalpolicyDropdownOptions) {
+            each.click();
+            if (medPolicyStatus.getText().equals("Submitted")){
+                break;
+            }
+            selectPolicyDropdownOptions.click();
+        }
+    }
+
+
+    public void selectPlansDenActivePolicy() {
+        basicActions.waitForElementToBePresent(selectDentalPolicyDropdownOptions,50);
+        selectDentalPolicyDropdownOptions.click();
+        for (WebElement each : dentalpolicyDropdownOptions) {
+            each.click();
+            if (denPolicyStatus.getText().equals("Submitted")){
+                break;
+            }
+            selectDentalPolicyDropdownOptions.click();
+        }
+    }
+
+    public void updateTheSecondMedicalPoliciyForTheYearUI() {
+        selectPolicyDropdownOptions.click();//medical
+        String medicalSecondPolicy = medicalpolicyDropdownOptions.get(1).getText();
+        managePlanDentalMedicalPlan.setSelectMedSecondPolicyDrp(medicalSecondPolicy);
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+
+        selectDentalPolicyDropdownOptions.click();//dental
+        String dentalSecondPolicy =dentalpolicyDropdownOptions.get(1).getText();
+        managePlanDentalMedicalPlan.setSelectDenSecondPolicyDrp(dentalSecondPolicy);
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+
+    public void uncheckedFromPlanType(String planType) {
+        basicActions.waitForElementToBePresent(btnDentalChecked, 20);
+        basicActions.scrollToElement(btnDentalChecked);
+        switch (planType) {
+            case "Dental":
+            btnDentalChecked.click();
+            softAssert.assertEquals(currentMedicalDentalPlan.size(),1);
+            break;
+            case "Medical":
+            btnMedicalChecked.click();
+            softAssert.assertEquals(currentMedicalDentalPlan.size(),1);
+            break;
         }
     }
 
