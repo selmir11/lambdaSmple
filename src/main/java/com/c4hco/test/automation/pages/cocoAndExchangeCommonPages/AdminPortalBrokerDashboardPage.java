@@ -117,7 +117,7 @@ public class AdminPortalBrokerDashboardPage {
         }else{
             softAssert.assertEquals(licenceStatus.getText(),"APPROVED");
             softAssert.assertEquals(StateLicense.getText(),"345676435");
-            softAssert.assertEquals(licenseValid.getText(),"10/01/2022");
+            softAssert.assertEquals(licenseValid.getText(),"10/10/2025");
             softAssert.assertEquals(certificationStatus.getText(),"APPROVED");
         }
         softAssert.assertAll();

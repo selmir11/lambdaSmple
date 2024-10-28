@@ -59,6 +59,10 @@ public class HouseHoldPageSteps {
     @Then("I click on {string} in the Remove Member frame")
     public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option);
     }
+
+    @Then("I validate no errors are displayed on family overview page")
+    public void iValidateNoErrosDisplayed() {houseHoldPage.verifyNoErrorMessage_Household();
+    }
 }
 
 
