@@ -71,10 +71,8 @@ public class EDITransactionsPage {
         basicActions.waitForElementToBePresent(txtDetailedEdiReportAccount, 1500);
         basicActions.waitForElementToBePresent(reportTitle, 1500);
         if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertTrue(txtDetailedEdiReportPrimary.isDisplayed(),"message should display");
             softAssert.assertEquals(txtDetailedEdiReportPrimary.getText(),"Primary Account Holder: TestSubscribernltzytxtdj Usernltzytxtdj");
             softAssert.assertEquals(txtDetailedEdiReportAccount.getText(), "Account ID: 1103056956 , 174934661");
-
         } else {
             softAssert.assertEquals(txtDetailedEdiReportPrimary.getText(), "Primary Account Holder: Natalie Rushman");
             softAssert.assertEquals(txtDetailedEdiReportAccount.getText(), "Account ID: 2002009179 , 210777727");
@@ -93,24 +91,26 @@ public class EDITransactionsPage {
     }
 
 
-    public void validateInsuranceRecordsDisplay(String InsuranceType) {
+    public void validateInsuranceRecordsDisplay(String insuranceType) {
         searchButton.click();
         basicActions.waitForElementListToBePresentWithRetries(carrierName, 2000);
         List<String> expectedNames = new ArrayList<>();
 
-        if ("medical".equalsIgnoreCase(InsuranceType)) {
-            if (SharedData.getEnv().equals("staging")) {
+        String environment = SharedData.getEnv();
+
+        switch (insuranceType.toLowerCase()) {
+            case "medical":
                 expectedNames.add("Kaiser Permanen..");
-                expectedNames.add("Kaiser Foundati..");
-            } else {
-                expectedNames.add("Kaiser Permanen..");
-            }
-        } else if ("dental".equalsIgnoreCase(InsuranceType)) {
-            if (SharedData.getEnv().equals("staging")) {
+                if ("staging".equals(environment)) {
+                    expectedNames.add("Kaiser Foundati..");
+                }
+                break;
+            case "dental":
                 expectedNames.add("Delta Dental");
-            } else {
-                expectedNames.add("Delta Dental");
-            }
+                break;
+            default:
+                softAssert.fail("Unexpected insurance type: " + insuranceType);
+                return;
         }
 
         List<String> actualNames = new ArrayList<>();
@@ -118,18 +118,18 @@ public class EDITransactionsPage {
             String rowText = row.getText().trim();
             actualNames.add(rowText);
         }
+
         HashMap<String, Integer> actualCountMap = new HashMap<>();
         for (String name : actualNames) {
             actualCountMap.put(name, actualCountMap.getOrDefault(name, 0) + 1);
         }
 
         for (String expectedName : expectedNames) {
-            int expectedCount = 1;
             int actualCount = actualCountMap.getOrDefault(expectedName, 0);
-
             softAssert.assertTrue(actualCount > 0,
                     "Expected name '" + expectedName + "' not found in actual names.");
         }
+
         softAssert.assertAll();
     }
     public void validatemedicalanddentalrecords() {
