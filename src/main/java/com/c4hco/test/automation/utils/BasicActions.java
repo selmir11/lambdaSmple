@@ -542,12 +542,12 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
     }
-    public String getFutureDate(int daysToMove) {// 61 days from today
+    public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);
     }
-    public String getPastDate(int daysToMove) {// 61 days before today
+    public String getPastDate(int daysToMove) {
         LocalDate date = LocalDate.now().minusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         return date.format(formatter);

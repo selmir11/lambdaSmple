@@ -476,39 +476,50 @@ public class LifeChangeEventsCoCoPage {
 
         }
     }
-    public void verifyErrorMessage(String errorType, String exist, String language) {
+
+    public void verifyNoErrorMessage(String errorType, String language) {
         switch (errorType) {
             case "Please select option":
-                verifySelectOptionError(language, exist);
+                verifySelectOptionErrorNotPresent(language);
                 break;
             case "Please select member":
-                verifySelectMemberError(language, exist);
+                verifyLCEMemberErrorNotPresent(language);
                 break;
             case "Event date":
-                verifyEnterDateError(language, exist);
+                verifySelectDateErrorNotPresent(language);
                 break;
             case "Event date Past":
-                verifyEnterDatePastError(language, exist);
+                verifySelectDateErrorNotPresent(language);
                 break;
             case "Event date Future":
-                verifyEnterDateFutureError(language, exist);
+                verifySelectDateErrorNotPresent(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
         }
     }
 
-    public void verifySelectOptionError(String language, String exist){
-        switch (exist){
-            case "does":
+    public void verifyErrorMessage(String errorType, String language) {
+        switch (errorType) {
+            case "Please select option":
                 basicActions.waitForElementPresence(selectLCEError, 1);
                 verifyLCEError(language);
                 break;
-            case "does not":
-                verifySelectOptionErrorNotPresent(language);
+            case "Please select member":
+                basicActions.waitForElementPresence(selectLCEError, 1);
+                verifyLCEMemberError(language);
+                break;
+            case "Event date":
+                verifyLCEDateError(language);
+                break;
+            case "Event date Past":
+                verifyLCEDatePastError(language);
+                break;
+            case "Event date Future":
+                verifyLCEDateFutureError(language);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
+                throw new IllegalArgumentException("Invalid option: " + errorType);
         }
     }
 
@@ -528,20 +539,6 @@ public class LifeChangeEventsCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifySelectMemberError(String language, String exist){
-        switch (exist){
-            case "does":
-                basicActions.waitForElementPresence(selectLCEError, 1);
-                verifyLCEMemberError(language);
-                break;
-            case "does not":
-                verifyLCEMemberErrorNotPresent(language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 
@@ -607,45 +604,6 @@ public class LifeChangeEventsCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifyEnterDateError(String language, String exist){
-        switch (exist){
-            case "does":
-                verifyLCEDateError(language);
-                break;
-            case "does not":
-                verifySelectDateErrorNotPresent(language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
-        }
-    }
-
-    public void verifyEnterDateFutureError(String language, String exist){
-        switch (exist){
-            case "does":
-                verifyLCEDateFutureError(language);
-                break;
-            case "does not":
-                verifySelectDateErrorNotPresent(language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
-        }
-    }
-
-    public void verifyEnterDatePastError(String language, String exist){
-        switch (exist){
-            case "does":
-                verifyLCEDatePastError(language);
-                break;
-            case "does not":
-                verifySelectDateErrorNotPresent(language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + exist);
         }
     }
 

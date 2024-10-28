@@ -40,7 +40,10 @@ public class LifeChangeEventsCoCoPageSteps {
     @Then("I verify {string} life change event {string} selected")
     public void iVerifyLCECheckboxState(String LCEType, String Selection){lifeChangeEventsCoCoPage.verifyLCECheckboxState(LCEType, Selection);}
 
-    @Then("I verify {string} error {string} exist in {string}")
-    public void iVerifyErrorMessage(String errorType, String exist,String language){lifeChangeEventsCoCoPage.verifyErrorMessage(errorType, exist, language);}
+    @Then("I verify {string} error does not exist in {string}")
+    public void iVerifyNoErrorMessage(String errorType, String language){lifeChangeEventsCoCoPage.verifyNoErrorMessage(errorType, language);}
+
+    @Then("I verify {string} error does exist in {string}")
+    public void iVerifyErrorMessage(String errorType, String language){lifeChangeEventsCoCoPage.verifyErrorMessage(errorType, language);}
 
 }
