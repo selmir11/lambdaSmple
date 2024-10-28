@@ -113,7 +113,7 @@ Feature: Header and Footer validation on Coco application pages
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "English"
     And I click Continue on the Dependent Overview Page CoCo
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -255,7 +255,7 @@ Feature: Header and Footer validation on Coco application pages
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I click Continue on the Dependent Overview Page CoCo
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -437,7 +437,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
