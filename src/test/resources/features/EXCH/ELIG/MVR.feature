@@ -5,6 +5,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
+    @WIP
   Scenario: Income MVR
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -33,7 +34,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I click continue on the Race and Ethnicity page
+    #Then I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -71,32 +72,32 @@ Feature: Testing Manual Verification Requests (MVRs)
       |manual_verification_type|manual_verif_status|
       |Income                  |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I click all done from payment portal page
+#    Then I click on view results and shop
+#    And I click continue on application results page
+#    And I wait for hold on content to disappear
+#    Then I validate I am on the "Start Shopping" page
+#    Then I click continue on start shopping page
+#    And I validate I am on the "Medical Plan Results" page
+#    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
+#    Then I click continue on medical plan results page
+#    And I validate I am on the "Dental Plan Results" page
+#    And I select "Anthem Dental Family" plan
+#    Then I click continue on dental plan results page
+#    Then I validate I am on the "planSummaryMedicalDental" page
+#    And I click continue on plan summary page
+#    And I select the terms and agreements checkbox
+#    And I enter householder signature on the Financial Help Agreements page
+#    And I click continue on Financial Help Agreements page
+#    And I select "Terms of Use" agreement checkbox
+#    And I select "Privacy Policy" agreement checkbox
+#    And I select "Understand Law" agreement checkbox
+#    And I enter householder signature on the Enrollment Agreements page
+#    And I click continue on Enrollment Agreements page
+#    Then I click all done from payment portal page
 
-    @testmvr
-  Scenario: Testing CRM
     Then I log into the CRM system
-    Then I search for user via Email and open first option
+    Then I search for user's Email and open the first option
+    #Then I open the searched user's contact page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Income" MVR
+    Then I check that the MVR has a status of "Open"

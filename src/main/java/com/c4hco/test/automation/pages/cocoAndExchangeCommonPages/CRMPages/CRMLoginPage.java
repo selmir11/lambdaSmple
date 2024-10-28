@@ -38,6 +38,7 @@ public class CRMLoginPage {
         txtCRMUsername.sendKeys("CRMQATestUser@connectforhealthco.com");
         btnCRMLoginNext.click();
 
+        basicActions.wait(5000);
         basicActions.waitForElementToBeClickable(txtCRMPassword, 30);
         txtCRMPassword.sendKeys("ALaska12!");
         btnCRMLoginSignIn.click();

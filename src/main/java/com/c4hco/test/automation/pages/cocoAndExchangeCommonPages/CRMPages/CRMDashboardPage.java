@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CRMPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -26,8 +27,9 @@ public class CRMDashboardPage {
     }
 
     public void CRMDashboardSearchUserEmailandOpenFirst(){
+        basicActions.wait(5000);
         basicActions.waitForElementToBePresent(txtCRMDashSearchBox, 30);
-        txtCRMDashSearchBox.sendKeys("AutomationUser.douggeahgx@test.com");
+        txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId());
 
         basicActions.wait(5000);
         txtCRMDashSearchBox.sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
