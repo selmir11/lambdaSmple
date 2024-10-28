@@ -41,7 +41,27 @@ public class Utils {
         return baseUrl;
     }
 
-    public String getdbName(){
-        return env.equals("qa") ? env + "_exch" : "exch";
+
+
+
+    public String getdbName() {
+        SharedData.setAppType("coco");
+        String appType = SharedData.getAppType();
+        if (appType == "coco") {
+            return env.equals("qa") ? env + "_coco" : "coco";
+        } else {
+            return env.equals("qa") ? env + "_exch" : "exch";
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
 }

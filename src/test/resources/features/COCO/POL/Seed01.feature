@@ -10,6 +10,7 @@ Feature: Regression Tests that require Seed 1
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -88,6 +89,9 @@ Feature: Regression Tests that require Seed 1
    # Then I validate I am on the "My Policies" page
    # And Validate selected medical plan for "Primary" is "Cigna Connect Colorado Option Bronze"
 
+
+   And I verify the policy data quality check with Policy Ah keyset size 3
+   And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
@@ -103,8 +107,7 @@ Feature: Regression Tests that require Seed 1
       | 5  | TOT RES AMT        | 322.00    |
       | 6  | PRE AMT TOT        | 322.00    |
 
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
 
 #  Then I select year "2024" from My Current Plan container
 #  And I Validate the correct enrolled plans are displayed on account overview page
