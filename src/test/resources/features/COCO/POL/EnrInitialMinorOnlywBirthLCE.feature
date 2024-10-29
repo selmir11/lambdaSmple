@@ -17,7 +17,7 @@ Feature: Initial Application Minor only with Birth LCE(Admin OBO)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "09052000", "Female", and applying "No"
     And I enter my residential address "104 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for mailing address option
