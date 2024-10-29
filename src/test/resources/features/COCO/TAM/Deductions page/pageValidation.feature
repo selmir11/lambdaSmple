@@ -168,3 +168,148 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-387
+  Scenario: SLCR-387 I want amount and frequency errors cleared on the Deductions page so that I don't see errors when I select an option - English
+    #Step3
+    Then I select "Self-employment retirement" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "English" CoCo page
+    Then I verify error for Deductions option with no frequency in "English" CoCo page
+    #Step4
+    Then I select "None of these" as deductions option
+    Then I select "Self-employment retirement" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    #Step5
+    Then I select "School tuition" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "English" CoCo page
+    Then I verify error for Deductions option with no frequency in "English" CoCo page
+    #Step6
+    Then I select "School tuition" as deductions option
+    Then I select "Self-employment retirement" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    #Step7
+    Then I select "None of these" as deductions option
+    Then I select "Student loan" as deduction option with "2500.00" amount at "Annually" frequency
+    Then I select "Alimony" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "English" CoCo page
+    Then I verify error for Deductions option with no frequency in "English" CoCo page
+    #Step8
+    Then I select "None of these" as deductions option
+    Then I select "Student loan" as deductions option
+    Then I select "Alimony" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    Then I verify "Student loan" as Deductions option with "2,500.00" amount at "1: Annually" frequency CoCo page
+    #Step9
+    Then I select "None of these" as deductions option
+    Then I select "Pre-tax retirement" as deduction option with "25.00" amount at "Weekly" frequency
+    Then I select "Domestic production" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "English" CoCo page
+    Then I verify error for Deductions option with no frequency in "English" CoCo page
+    Then I select "Pre-tax retirement" as deductions option
+    Then I select "Domestic production" as deductions option
+    Then I select "Pre-tax retirement" as deductions option
+    Then I select "Domestic production" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    Then I verify "Pre-tax retirement" as Deductions option with "25.00" amount at "5: Weekly" frequency CoCo page
+    #Step10
+    Then I select "Pre-tax retirement" as deductions option
+    Then I select "Domestic production" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions no option in "English" CoCo page
+    #Step11
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    #Step12
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions no option in "English" CoCo page
+    #Step13
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-388
+  Scenario: SLCR-388 I want amount and frequency errors cleared on the Deductions page so that I don't see errors when I select an option - Spanish
+    And I change the language from header to "Spanish"
+    #Step3
+    Then I select "Self-employment retirement" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "Spanish" CoCo page
+    Then I verify error for Deductions option with no frequency in "Spanish" CoCo page
+    #Step4
+    Then I select "None of these" as deductions option
+    Then I select "Self-employment retirement" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    #Step5
+    Then I select "School tuition" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "Spanish" CoCo page
+    Then I verify error for Deductions option with no frequency in "Spanish" CoCo page
+    #Step6
+    Then I select "School tuition" as deductions option
+    Then I select "Self-employment retirement" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    #Step7
+    Then I select "None of these" as deductions option
+    Then I select "Student loan" as deduction option with "2500.00" amount at "Anualmente" frequency
+    Then I select "Alimony" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "Spanish" CoCo page
+    Then I verify error for Deductions option with no frequency in "Spanish" CoCo page
+    #Step8
+    Then I select "None of these" as deductions option
+    Then I select "Student loan" as deductions option
+    Then I select "Alimony" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    Then I verify "Student loan" as Deductions option with "2,500.00" amount at "1: Annually" frequency CoCo page
+    #Step9
+    Then I select "None of these" as deductions option
+    Then I select "Pre-tax retirement" as deduction option with "25.00" amount at "Semanalmente" frequency
+    Then I select "Domestic production" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions option with no amount in "Spanish" CoCo page
+    Then I verify error for Deductions option with no frequency in "Spanish" CoCo page
+    Then I select "Pre-tax retirement" as deductions option
+    Then I select "Domestic production" as deductions option
+    Then I select "Pre-tax retirement" as deductions option
+    Then I select "Domestic production" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    Then I verify "Pre-tax retirement" as Deductions option with "25.00" amount at "5: Weekly" frequency CoCo page
+    #Step10
+    Then I select "Pre-tax retirement" as deductions option
+    Then I select "Domestic production" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions no option in "Spanish" CoCo page
+    #Step11
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    #Step12
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify error for Deductions no option in "Spanish" CoCo page
+    #Step13
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
