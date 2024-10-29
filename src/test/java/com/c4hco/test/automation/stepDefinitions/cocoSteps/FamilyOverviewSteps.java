@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 public class FamilyOverviewSteps {
     FamilyOverviewPage familyOverviewPage = new FamilyOverviewPage(WebDriverManager.getDriver());
 
-    @Then("I click {string} EditUpdate on the Family Overview page")
+    @Then("I click EditUpdate on Family Overview page for {string}")
     public void iClickEditUpdateLink(String name){ familyOverviewPage.clickEditUpdateLink(name); }
 
     @Then("I validate the Total Income on the Family Overview page equals {string}")

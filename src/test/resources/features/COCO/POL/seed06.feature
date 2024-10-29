@@ -13,7 +13,7 @@ Feature: Seed06 - COCO
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "07271983", "Female", and applying "No"
     And I enter my residential address "106 Coco Drive", "Englewood", "CO", "80113", "ARAPAHOE"
     And I select "Yes" for mailing address option

@@ -19,7 +19,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
     And I enter my residential address "103 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
