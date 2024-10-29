@@ -505,6 +505,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page
+      Then I click Back to App Results button on the pop up
       And I click on Sign Out in the Header for "Elmo"
 
       Given I open the login page on the "admin" portal
@@ -512,12 +513,8 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I validate I am on the "Login" page
       When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
       And I validate I am on the "Admin search" page
-      Then I enter an accountId in any Env "5910497910" "1506066573" to search user
-      Then I click create account on admin portal
-      And I enter general mandatory data for "exchange" account creation
-      And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
-      Then I enter an accountId in any Env "6802980497" "1506066573" to search user
+      Then I enter an accountId in any Env "5910497910" "1506066573" to search user
       And I click "On Behalf Of (OBO)" from application links dropdown
       And I initiate incoming page
 
