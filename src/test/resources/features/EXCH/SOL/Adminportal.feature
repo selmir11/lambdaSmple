@@ -517,5 +517,8 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I enter general mandatory data for "exchange" account creation
       And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
-      And I search for user and click email from search results
+      Then I enter an accountId in any Env {string} {string} to search user
+      And I click "On Behalf Of (OBO)" from application links dropdown
+      And I initiate incoming page
+
 
