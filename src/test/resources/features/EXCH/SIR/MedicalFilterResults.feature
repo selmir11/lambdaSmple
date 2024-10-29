@@ -75,13 +75,13 @@ Feature: Medical Plan Verification test
     And I click on Sign Out in the Header for "Portal"
 
     Examples:
-      | carrierOption                       | planText                                                          |
-      | Anthem                              | Anthem Bronze Pathway Essentials 9200 $0 Select Drugs             |
-      | Cigna Healthcare                    | Cigna Connect Colorado Option Bronze                              |
-      | Denver Health                       | Elevate Health Plans Bronze HDHP                                  |
-      | Kaiser Permanente                   | KP Select CO Bronze 8500/50                                       |
-      | Rocky Mountain Health Plans / UHC   | RMHP Colorado Doctors Plan Colorado Option Bronze                 |
-      | Select Health                       | Select Health Value Bronze $6900 Medical Deductible               |
+      | carrierOption                     | planText                                             |
+      | Anthem                            | Anthem Bronze Pathway Essentials HMO $0 Select Drugs |
+      | Cigna                             | Cigna Connect Colorado Option Bronze                 |
+      | Denver Health                     | Elevate Health Plans Bronze HDHP                     |
+      | Kaiser Permanente                 | KP Select CO Bronze 8500/50                          |
+      | Rocky Mountain Health Plans / UHC | RMHP Colorado Doctors Plan Colorado Option Bronze    |
+      | Select Health                     | Select Health Value Bronze $6900 Medical Deductible  |
 
   @SLER-25 @SelectVerifyMetalFilterResults
   Scenario Outline: SLER-25 - SelectVerifyMetalFilterResults
