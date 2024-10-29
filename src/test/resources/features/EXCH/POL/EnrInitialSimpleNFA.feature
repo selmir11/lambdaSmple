@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069
+ @SLER-34 @SLER-1069 #RT-1832
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
