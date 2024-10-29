@@ -262,7 +262,7 @@ public class Ob834PreEdiDbValidations {
         String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates().getPolicyEndDate().replaceAll("-", "");
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates().getFinancialStartDate().replaceAll("-", "");
 
-        SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
+        SharedData.setDenGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dentalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dentalDbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), dentalDbData.getIssuerId(), "Insurer Id did not match!");

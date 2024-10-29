@@ -56,7 +56,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   And I select continue on the Additional Income CoCO page
 
   Then I validate I am on the "CoCo Deductions" page
-  And I select None of these as deductions option
+  And I select "None of these" as deductions option
   And I select continue on the Deductions CoCo page
   Then I select the projected income option "No" on Income Summary CoCo page
   And I select continue on the income Summary CoCo page
@@ -65,7 +65,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   And I select continue on the Family Overview page
 
   Then I validate I am on the "CoCo life change event" page
-  And I select "MoveToCO" life change event
+  And I select "MoveToCO" life change event with event date of "Today"
   And I select continue on the LCE page
 
   Then I validate I am on the "CoCo Declarations and Signature" page
@@ -137,7 +137,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -146,7 +146,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Marriage" life change event
+    And I select "Marriage" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -226,7 +226,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -235,7 +235,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -295,7 +295,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -327,7 +327,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -356,7 +356,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -384,14 +384,14 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -494,7 +494,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -522,7 +522,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -551,7 +551,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -580,14 +580,14 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -687,7 +687,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -716,7 +716,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -744,14 +744,14 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -845,7 +845,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -855,7 +855,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page

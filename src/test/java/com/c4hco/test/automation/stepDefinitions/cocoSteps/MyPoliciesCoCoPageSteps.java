@@ -12,10 +12,6 @@ public class MyPoliciesCoCoPageSteps {
 
     MyPoliciesCoCoPage myPoliciesCoCoPage = new MyPoliciesCoCoPage(WebDriverManager.getDriver());
 
-    @And("Validate selected medical plan for {string} is {string}")
-    public void validateMedPlanDetails(String memberName, String planName){
-        myPoliciesCoCoPage.VerifyPlanDetails(memberName,planName);
-    }
     @And("I validate enrolled medical plans details on my policies page coco")
     public void validateMyPlans(){
         myPoliciesCoCoPage.validateEnrolledPlanDetails();

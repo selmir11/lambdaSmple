@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan 8 HH
-  @SLER-832  
+  @SLER-832
   Scenario: : EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -39,7 +39,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

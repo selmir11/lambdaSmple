@@ -86,14 +86,6 @@ public class MyPoliciesCoCoPage {
 
     Set<String> namesFromUI = new HashSet<>();
 
-    public void VerifyPlanDetails(String memberName,String planName){
-        basicActions.waitForElementToDisappear(spinner,30);
-        basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical,10);
-        WebElement planDetails = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+memberName+"')]/ancestor::div[@class='current-policy-data']/parent::div  //div[@class='header-3']"));
-        basicActions.waitForElementToBeClickable(planDetails,30) ;
-        softAssert.assertEquals(planDetails.getText(),planName);
-        softAssert.assertAll();
-    }
     public void validateEnrolledPlanDetails() {
         // Validating Names
         basicActions.waitForElementListToBePresent(memberNames, 10);

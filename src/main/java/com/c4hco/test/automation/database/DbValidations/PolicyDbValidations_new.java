@@ -68,7 +68,7 @@ public class PolicyDbValidations_new {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getDentalPremiumAmt(), "Dental Policy total plan premium amount does not match");
-        softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), subscriber.getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : basicActions.doubleAmountFormat(subscriber.getMedicalAptcAmt()) , "Subscriber Medical APTC amount does not match");
+        softAssert.assertEquals(basicActions.doubleAmountFormat(policyTablesEntity.getTotal_premium_reduction_amt()), basicActions.doubleAmountFormat(subscriber.getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : subscriber.getDentalAptcAmt()) , "Subscriber Dental APTC amount does not match");
         softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_emcfh(), "subscriber Dental Policy premium reduction type does not match");
         softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getTotalDentalPremAfterReduction(), "Dental Policy total responsible amount does not match");
@@ -145,7 +145,7 @@ public class PolicyDbValidations_new {
                 validateMedDenForDependents(policyTablesEntity, dbData, member);
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), member.getDentalPremiumAmt(), "Dental Policy total plan premium amount does not match");
-                softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), SharedData.getPrimaryMember().getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), "Subscriber Medical APTC amount does not match");
+                softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), SharedData.getPrimaryMember().getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), "Subscriber Dental APTC amount does not match");
                 softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_emcfh(), "Dental Policy premium reduction type does not match");
                 softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
                 softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), member.getTotalDentalPremAfterReduction(), "Dental Policy total responsible amount does not match");
@@ -159,7 +159,7 @@ public class PolicyDbValidations_new {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getMedicalPremiumAmt(), "Medical Policy total plan premium amount does not match");
-        softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), subscriber.getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : basicActions.doubleAmountFormat(subscriber.getMedicalAptcAmt()), "Subscriber Medical APTC amount does not match");
+        softAssert.assertEquals(basicActions.doubleAmountFormat(policyTablesEntity.getTotal_premium_reduction_amt()), basicActions.doubleAmountFormat(subscriber.getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : subscriber.getMedicalAptcAmt()), "Subscriber Medical APTC amount does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), subscriber.getFinancialHelp() ? "APTC" : "null", "Subscriber Medical Policy premium reduction type does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), subscriber.getFinancialHelp() ? "APTC" : "null", "premium reduction type in en policy financial ah table does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getTotalMedAmtAfterReduction(), "--Medical Policy total responsible amount does not match");

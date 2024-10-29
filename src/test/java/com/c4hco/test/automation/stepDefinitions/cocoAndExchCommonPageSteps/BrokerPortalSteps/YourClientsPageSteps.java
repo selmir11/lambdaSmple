@@ -39,6 +39,16 @@ public class YourClientsPageSteps {
         yourClientsPage.clickFirstClient();
     }
 
+    @And("I search for a client named {string}")
+    public void ISearchClientNamed(String clientName) {
+        yourClientsPage.searchClientNamed(clientName);
+    }
+
+    @And("I clear the client search box to reset my list")
+    public void IResetClientSearch() {
+        yourClientsPage.resetClientSearchBox();
+    }
+
     @Then("I verify that my client's current status is {string}")
     public void iVerifyCurrentClientStatus(String expectedClientStatus) {
         yourClientsPage.verifyCurrentClientStatus(expectedClientStatus);
@@ -131,6 +141,36 @@ public class YourClientsPageSteps {
     @Then("I validate spaces are not allowed in the search box")
     public void iVerifySearchBoxSpaces() {
         yourClientsPage.validateSpacesNotAllowedSearchBox();
+    }
+
+    @Then("I verify the current client list result page is {string}")
+    public void iVerifyCurrentClientListPage(String currentPage) {
+        yourClientsPage.verifyCurrentClientListPage(currentPage);
+    }
+
+    @And("I click the client list right pagination arrow button")
+    public void iClickRightPaginationArrowButton() {
+        yourClientsPage.clickRightPaginationArrowButton();
+    }
+
+    @And("I click the client list left pagination arrow button")
+    public void iClickLeftPaginationArrowButton() {
+        yourClientsPage.clickLeftPaginationArrowButton();
+    }
+
+    @Then("I verify the clients are listed in alphabetical order")
+    public void iVerifyClientsAlphabeticalOrder() {
+        yourClientsPage.verifyClientsAlphabeticalOrder();
+    }
+
+    @Then("I validate the {string} option is displayed")
+    public void iValidateClientOptionsDisplayed(String clientOption) {
+        yourClientsPage.validateClientOptionsDisplayed(clientOption);
+    }
+
+    @Then("I validate the {string} option is not displayed")
+    public void iValidateClientOptionsNotDisplayed(String clientOption) {
+        yourClientsPage.validateClientOptionsNotDisplayed(clientOption);
     }
 }
 

@@ -1,7 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.*;
+import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
 private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
+private final Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
@@ -27,7 +30,7 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    }
    @And("I set ib999 entites for both medical and dental files")
    public void setib999(){
-      dbValidations.setIb999DetailsEntity();
+      ib999FileValidations.setIb999DetailsEntity();
    }
 
    @And("I verify the OHI info in the DB for {string}")
@@ -107,7 +110,6 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
    @And("I verify the HRA options selected in the DB after Application Results")
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
 
-
    @And("I validate the medical plan market names in the DB")
    public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
    }
@@ -117,4 +119,29 @@ private final PolicyTableDBValidations policyTableDBValidations = new PolicyTabl
       dbValidations.validateDatabaseRaceEthnicity(expectedRaceEthnicity, expectedRaceOtherText);
    }
 
+   @Then("I validate current dental plan name for the account for the year {string} DB")
+   public void iValidateCurrentDentalPlanNameForTheAccountForTheYearDB(String year) {
+      dbValidations.validateCurrentDentalPlanNameForTheYear(year);
+   }
+
+
+   @And("I validate current Medical policy start and end date for the year DB")
+   public void iValidateCurrentMedicalPolicyStartAndEndDateForTheYearDB() {
+      dbValidations.validateCurrentDentalPolicyStartAndEndDateForTheYearDB();
+   }
+
+   @Then("I validate the Latest Application Date for the year DB")
+   public void iValidateTheLatestApplicationDateForTheYearDB() {
+      dbValidations.validateTheLatestApplicationDateForTheYearDB();
+   }
+
+   @And("I validate the second medical policy for the year {string} DB")
+   public void iValidateTheSecondMedicalPolicyForTheYearDB(String year) {
+      dbValidations.validateTheSecondMedicalPoliciyForTheYearDB(year);
+   }
+
+   @And("I validate the second dental policy for the year {string} DB")
+   public void iValidateTheSecondDentalPolicyForTheYearDB(String year) {
+      dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);
+   }
 }
