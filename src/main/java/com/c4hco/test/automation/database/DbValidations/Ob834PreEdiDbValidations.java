@@ -110,6 +110,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertNull(ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
         softAssert.assertNull(ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
         softAssert.assertNull(ob834Entity.getPremium_reduction_type(),"Plan premium reduction type does not match");
+        softAssert.assertNull(ob834Entity.getTotal_enrollees(), "Total enrollees does not match");
         softAssert.assertAll();
     }
 
@@ -286,7 +287,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalMembers()), ob834Entity.getTotal_enrollees(), "Total members mismatch");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(), "Plan Year is not correct");
         softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
-        softAssert.assertEquals(Integer.parseInt(SharedData.getScenarioDetails().getEnrollees().trim()), Integer.parseInt(ob834Entity.getTotal_enrollees().trim()), "Total enrollees does not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getDependents().toString().trim(), ob834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertTrue(dbData.getRatingAreaName().contains(ob834Entity.getRate_area()));
@@ -321,6 +321,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
+        softAssert.assertEquals(Integer.parseInt(SharedData.getScenarioDetails().getEnrollees().trim()), Integer.parseInt(ob834Entity.getTotal_enrollees().trim()), "Total enrollees does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
         validateMailingAddress(ob834Entity, subscriber);
