@@ -61,4 +61,10 @@ public class ApplicationResultsPageSteps {
 
     @Then("I validate the member application results")
     public void iValidateMemberResults(List<String> expectedValues){applicationResultsPage.validateMemberResults(expectedValues);}
+
+    @Then("I click the Verify My Information button")
+    public void iClickVerifyMyInfo(){applicationResultsPage.clickVerifyMyInfo();}
+
+//    @And("I confirm MVR notice is gone")
+//    public void iConfirmMVRNoticeIsGone() {applicationResultsPage.verifyButtonShouldNotBeDisplayed();}
 }

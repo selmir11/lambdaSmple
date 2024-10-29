@@ -442,6 +442,8 @@ public class BasicSteps {
             case "Manage Plans" :
                 pageUrl = "/policies";
                 break;
+            case "Self Attestation" :
+                pageUrl = "/ManualVerificationPortal/attestation-from-appresults";
             default:
                 System.out.println("undefined page ");
                 break;
