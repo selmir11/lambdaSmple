@@ -185,8 +185,8 @@ Feature: End to End Tests
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "03022010", "Male" and applying "Yes"
-      | Primary:Son     |
-      | Daughter:Brother|
+      | Primary:Son      |
+      | Daughter:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
@@ -209,9 +209,9 @@ Feature: End to End Tests
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "DaughterTwo", "05262015", "Female" and applying "Yes"
-      |Primary:Daughter|
-      |Daughter:Sister|
-      |SonOne:Sister|
+      | Primary:Daughter |
+      | Daughter:Sister  |
+      | SonOne:Sister    |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
@@ -311,7 +311,7 @@ Feature: End to End Tests
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -332,8 +332,8 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012008", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -354,9 +354,9 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "02012009", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
-      |SonOne:Brother|
+      | Primary:Son    |
+      | Spouse:Son     |
+      | SonOne:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -377,10 +377,10 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "03012010", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
-      |SonOne:Brother|
-      |SonTwo:Brother|
+      | Primary:Son    |
+      | Spouse:Son     |
+      | SonOne:Brother |
+      | SonTwo:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -401,11 +401,11 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "04012011", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
-      |SonOne:Brother|
-      |SonTwo:Brother|
-      |SonThree:Brother|
+      | Primary:Son      |
+      | Spouse:Son       |
+      | SonOne:Brother   |
+      | SonTwo:Brother   |
+      | SonThree:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -426,12 +426,12 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "05012012", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
-      |SonOne:Brother|
-      |SonTwo:Brother|
-      |SonThree:Brother|
-      |SonFour:Brother|
+      | Primary:Son      |
+      | Spouse:Son       |
+      | SonOne:Brother   |
+      | SonTwo:Brother   |
+      | SonThree:Brother |
+      | SonFour:Brother  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -587,7 +587,7 @@ Feature: End to End Tests
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1153 
+  @SLER-1153
   Scenario: FA Flow: EXCH Large household with primary contact change and existing enrollment (QLCE)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -625,7 +625,7 @@ Feature: End to End Tests
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "09051959", "Female" and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -646,8 +646,8 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "06282019", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -668,9 +668,9 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "03052020", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
-      |SonOne:Brother|
+      | Primary:Son    |
+      | Spouse:Son     |
+      | SonOne:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -691,10 +691,10 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "Nephew", "01152004", "Male" and applying "Yes"
-      |Primary:Nephew|
-      |Spouse:Other|
-      |SonOne:Cousin|
-      |SonTwo:Cousin|
+      | Primary:Nephew |
+      | Spouse:Other   |
+      | SonOne:Cousin  |
+      | SonTwo:Cousin  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -716,11 +716,11 @@ Feature: End to End Tests
     Then I click Add Another Family Member
 
     Then I enter details on tell us about additional members of your household exch page and continue with "Niece", "05051993", "Female" and applying "Yes"
-      |Primary:Niece|
-      |Spouse:Other|
-      |SonOne:Cousin|
-      |SonTwo:Cousin|
-      |Nephew:Sister|
+      | Primary:Niece |
+      | Spouse:Other  |
+      | SonOne:Cousin |
+      | SonTwo:Cousin |
+      | Nephew:Sister |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -892,7 +892,7 @@ Feature: End to End Tests
   Scenario: Simple FA: Husband & Wife and also Validate plan details and text in Account Overview page
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
-      | 1           | 2            | 1                 | 1                |   2             |
+      | 1           | 2            | 1                 | 1                | 2               |
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -997,7 +997,7 @@ Feature: End to End Tests
     And I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
+    And I continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -1008,6 +1008,32 @@ Feature: End to End Tests
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    Then Validate "Primary" displayed as Primary person in Account Overview Page
+    Then I validate text in Account Overview Page
+      | We need you to verify your information                                                                                                                                                                                                                                                                                                                                                     |
+      | We attempted to verify your application information but need you to confirm a few things. Don't worry, it will only take a minute or two!                                                                                                                                                                                                                                                  |
+      | Verify My Information                                                                                                                                                                                                                                                                                                                                                                      |
+      | Plan information for                                                                                                                                                                                                                                                                                                                                                                       |
+      | Make changes to your health insurance                                                                                                                                                                                                                                                                                                                                                      |
+      | Health insurance enrollment                                                                                                                                                                                                                                                                                                                                                                |
+      | More things you can do:                                                                                                                                                                                                                                                                                                                                                                    |
+      | Dental & vision coverage                                                                                                                                                                                                                                                                                                                                                                   |
+      | Additional resources                                                                                                                                                                                                                                                                                                                                                                       |
+      | Open                                                                                                                                                                                                                                                                                                                                                                                       |
+      | Closed                                                                                                                                                                                                                                                                                                                                                                                     |
+      | Enrollment for health insurance is currently open. Open enrollment runs from November through January 15. Click "Apply for 2025" to purchase a plan for next year. You may still be eligible to make changes to your current plan if you have a Qualifying Life Event, such as gaining new coverage, getting married or the birth of a child. Select "Make changes" button to get started. |
+      | If you enrolled in a 2025 plan and need to report a recent life change event, please use the Apply for 2025 option to report it and update your 2025 plan.                                                                                                                                                                                                                                 |
+      | You can apply for vision coverage at any time during the year. Click below to shop for coverage.                                                                                                                                                                                                                                                                                           |
+      | Shop for vision plans                                                                                                                                                                                                                                                                                                                                                                      |
+      | Make changes to my dental plan                                                                                                                                                                                                                                                                                                                                                             |
+      | Do you want to review your profile information?                                                                                                                                                                                                                                                                                                                                            |
+      | Do you want to review your eligibility results?                                                                                                                                                                                                                                                                                                                                            |
+      | Do you want to upload or review documents?                                                                                                                                                                                                                                                                                                                                                 |
+      | Do you want to review your plans?                                                                                                                                                                                                                                                                                                                                                          |
+      | Click here to access My Profile                                                                                                                                                                                                                                                                                                                                                            |
+      | Click here to access My Eligibility                                                                                                                                                                                                                                                                                                                                                        |
+      | Click here to access My Documents                                                                                                                                                                                                                                                                                                                                                          |
+      | Click here to access My Plans                                                                                                                                                                                                                                                                                                                                                              |
     And I Validate the correct enrolled plans are displayed on account overview page
     #And I click on Sign Out in the Header for "Elmo"
 
