@@ -343,6 +343,14 @@ public class MedicalPlanResultsPage {
         SharedData.setMedicalPlansList(medicalPlansList);
     }
 
+    public void validateTotalMedicalPlans(int expectedCount){
+        int medicalPlansListcount = SharedData.getMedicalPlansList().size();
+        softAssert.assertEquals(medicalPlansListcount, expectedCount, "The number of medical plans does not match the expected count");
+        softAssert.assertAll();
+
+    }
+
+
 }
 
 
