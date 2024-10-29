@@ -52,9 +52,9 @@ Feature: Navigation-Life Change Event Page
     Then I validate I am on the "CoCo life change event" page
 
     # Open enrollment test
-    #And I select None of these life change event
+    #And I check "None of these" life change event checkbox
     # Closed enrollment test
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I select Go Back on the Declarations and Signature page
