@@ -1035,7 +1035,7 @@ Feature: End to End Tests
       | Click here to access My Documents                                                                                                                                                                                                                                                                                                                                                          |
       | Click here to access My Plans                                                                                                                                                                                                                                                                                                                                                              |
     And I Validate the correct enrolled plans are displayed on account overview page
-    #And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "Elmo"
 
 
 
