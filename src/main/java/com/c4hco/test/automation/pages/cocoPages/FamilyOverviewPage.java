@@ -67,16 +67,7 @@ public class FamilyOverviewPage {
         getAccountId();
         continueButton.click();
     }
-    public void getAccountId() {
-        basicActions.waitForElementToBePresent(accountIdTxt, 15);
-
-        Matcher matcher = Pattern.compile("\\d+").matcher(accountIdTxt.getText());
-        String accId = matcher.find() ? matcher.group() : null;
-
-        SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accId));
-        System.out.println("Account_id : " + new BigDecimal(accId));
-    }
-
+    
     public void clickManageWhoHelpsYouButton() {
         basicActions.waitForElementToBeClickable(manageWhoHelpsYouButton, 30);
         manageWhoHelpsYouButton.click();
