@@ -498,14 +498,14 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
       Then I click continue on family overview page
-      Then I select "noneOfThese" QLCE on tell us about life changes page
+      Then I select "NoneOfThese" QLCE on tell us about life changes page
       Then I click on Save and Continue
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page
-      Then I click Back to App Results button on the pop up
+      And I click Back to App Results button on the pop up
       And I click on Sign Out in the Header for "Elmo"
 
       Given I open the login page on the "admin" portal
