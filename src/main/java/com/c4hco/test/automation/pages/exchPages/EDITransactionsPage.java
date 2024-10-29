@@ -94,13 +94,10 @@ public class EDITransactionsPage {
         searchButton.click();
         basicActions.waitForElementListToBePresentWithRetries(carrierName, 2000);
         List<String> expectedNames = new ArrayList<>();
-
-        String environment = SharedData.getEnv();
-
         switch (insuranceType.toLowerCase()) {
             case "medical":
                 expectedNames.add("Kaiser Permanen..");
-                if ("staging".equals(environment)) {
+                if ((SharedData.getEnv().equals("staging"))) {
                     expectedNames.add("Kaiser Foundati..");
                 }
                 break;
@@ -128,13 +125,12 @@ public class EDITransactionsPage {
             softAssert.assertTrue(actualCount > 0,
                     "Expected name '" + expectedName + "' not found in actual names.");
         }
-
         softAssert.assertAll();
     }
 
     public void validateMedicalAndDentalRecords(String validationOption) {
         basicActions.waitForElementListToBePresent(OutboundEDIHeaders, 5000);
-
+        
         switch (validationOption) {
             case "Outbound Header":
                 validateHeaders(OutboundEDIHeaders, List.of(
@@ -167,22 +163,22 @@ public class EDITransactionsPage {
                 validateRow("InboundsecondRow", SecondRowInboundEDI, getInboundSecondRowData());
                 break;
 
-            default:
-                softAssert.fail("Unexpected insurance type: " + validationOption);
-                return;
+            default: throw new IllegalArgumentException("Unexpected insurance type: " + validationOption);
+
         }
 
-        softAssert.assertAll();
     }
 
     private void validateHeaders(List<WebElement> actualHeaders, List<String> expectedHeaders) {
         List<String> optionsList = actualHeaders.stream().map(WebElement::getText).toList();
         softAssert.assertEquals(optionsList, expectedHeaders, "Header mismatch!");
+        softAssert.assertAll();
     }
 
     private void validateRow(String validationOption, List<WebElement> actualRow, List<String> expectedRow) {
         List<String> rowText = actualRow.stream().map(WebElement::getText).toList();
         softAssert.assertEquals(rowText, expectedRow, "Mismatch for " + validationOption);
+        softAssert.assertAll();
     }
 
     private List<String> getOutboundFirstRowData() {
