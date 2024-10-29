@@ -463,7 +463,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
-      #Then I click continue on family overview page
+      Then I click continue on family overview page
       And I Apply for financial help
       Then I select the option "Yes" to employment
       And I select the option "No" to self employment
@@ -498,14 +498,13 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
       Then I click continue on family overview page
-      Then I select "NoneOfThese" QLCE on tell us about life changes page
+      Then I select "Marriage" QLCE on tell us about life changes page
       Then I click on Save and Continue
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page
-      Then I click Back to App Results button on the pop up
       And I click on Sign Out in the Header for "Elmo"
 
       Given I open the login page on the "admin" portal
@@ -517,7 +516,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I enter general mandatory data for "exchange" account creation
       And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
-      Then I enter an accountId in any Env "{string} {string}" to search user
+      Then I enter an accountId in any Env "6802980497" to search user
       And I click "On Behalf Of (OBO)" from application links dropdown
       And I initiate incoming page
 
