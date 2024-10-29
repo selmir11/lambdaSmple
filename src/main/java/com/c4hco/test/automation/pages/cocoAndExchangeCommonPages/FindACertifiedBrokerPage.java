@@ -46,6 +46,9 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath ="//*[@id='agency-manage-account-button']")
     WebElement authorizeBrokerButton;
 
+    @FindBy(id ="terms-checkbox-input")
+    WebElement authorizeBrokerTermsCheckbox;
+
     @FindBy(css =".p-4")
     WebElement over50SearchResultsError;
 
@@ -138,6 +141,28 @@ public class FindACertifiedBrokerPage {
 
     @FindBy (id = "broker-exchangeId")
     WebElement currentAgencyName;
+
+    @FindBy(id= "container dashboard-card")
+    WebElement changeBrokerContainer;
+
+    @FindBy(xpath= "//div[@class='row justify-content-center header-2 mb-2']")
+    WebElement changeBrokerContainerTitle;
+
+    @FindBy(xpath= "//div[@class='mb-4 me-auto ms-auto ng-star-inserted']")
+    WebElement changeBrokerContainerWarningText;
+
+    @FindBy(xpath= "//div[@id='client-information-table']/div[2]")
+    WebElement brokerPermissionWarningText;
+
+    @FindBy(id= "terms-check-label")
+    WebElement brokerAuthorizationTermsText;
+
+    @FindBy(xpath= "//button[@class='col-lg-3 secondary-action-button m-2']")
+    WebElement keepCurrentBrokerBtn;
+
+    @FindBy(xpath= "//button[@class='btn col-lg-3 primary-action-button m-2']")
+    WebElement authorizeNewBrokerBtn;
+
     @FindBy (xpath = "//button[.='Continue with my application']")
     WebElement continueWithMyOwn;
 
@@ -440,6 +465,40 @@ public class FindACertifiedBrokerPage {
         broker.setBroker_lic_num(currentBrokerLicenceNumber.getText());
         broker.setAgencyName(currentAgencyName.getText());
         SharedData.setBroker(broker);
+    }
+
+    public void clickAuthorizeBrokerButton(){
+        basicActions.waitForElementToBePresent(authorizeBrokerButton,60);
+        authorizeBrokerButton.click();
+    }
+
+    public void validateChangeBrokerText (String newBrokerName, String newBrokerAgency, String currentBrokerName, String currentBrokerAgency){
+        basicActions.waitForElementToBePresent(changeBrokerContainer,10);
+        basicActions.waitForElementToBePresent(changeBrokerContainerWarningText,60);
+        softAssert.assertEquals(changeBrokerContainerTitle.getText(),"Interested in this Broker?");
+        softAssert.assertEquals(changeBrokerContainerWarningText.getText(),"By selecting Authorize New Broker, your current broker, " + currentBrokerName + " with " + currentBrokerAgency + " will be deauthorized and " + newBrokerName + " with " + newBrokerAgency + " will be authorized as your new broker.");
+        softAssert.assertEquals(brokerPermissionWarningText.getText(),"You need to grant permission before this broker can act on your behalf or access your information.");
+        softAssert.assertEquals(brokerAuthorizationTermsText.getText(),"I authorize this broker to have full access to my Colorado Connect accounts");
+        softAssert.assertEquals(keepCurrentBrokerBtn.getText(),"Keep Current Broker");
+        softAssert.assertEquals(authorizeNewBrokerBtn.getText(),"Authorize New Broker");
+        softAssert.assertTrue(keepCurrentBrokerBtn.isEnabled());
+        softAssert.assertFalse(authorizeNewBrokerBtn.isEnabled());
+        softAssert.assertAll();
+    }
+
+    public void clickChangeBrokerOption(String changeBrokerOption) {
+        basicActions.waitForElementToBePresent(changeBrokerContainer,10);
+        basicActions.waitForElementToBePresent(changeBrokerContainerWarningText,60);
+        authorizeBrokerTermsCheckbox.click();
+        
+        switch (changeBrokerOption){
+            case "Keep Current Broker" :
+                keepCurrentBrokerBtn.click();
+                break;
+            case "Authorize New Broker" :
+                authorizeNewBrokerBtn.click();
+                break;
+        }
     }
 
     public void ClickContinueWithMyApplication() {
