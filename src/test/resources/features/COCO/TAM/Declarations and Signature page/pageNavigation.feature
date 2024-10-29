@@ -36,7 +36,7 @@ Feature: Navigation-Declarations and Signature Page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
-    And I select None of these life change event
+    And I check "None of these" life change event checkbox
     And I select continue on the LCE page
 
     #Step1

@@ -14,7 +14,7 @@ Feature: Admin Portal Renewals container
     And I verify container "Renewals" and "Plan Year 2025" is displayed
     Then I verify Renewal status label and data "Renewal Status: PENDING" is displayed
     And I validate "Medical" "Auto-Renewal Plan:" as "Cigna Connect Flex Bronze 7200" and "Dental" "Auto-Renewal Plan:" as "Delta Dental of Colorado Family Value Plan"
-    And I verify container "Renewals" and "Plan Year 2024" is displayed
+    And I verify container "Renewals" and "Plan Year 2025" is displayed
     And I click Go Back on admin portal broker dashboard
     Then I validate I am on the "Admin search" page
     Then I logout from Admin Portal

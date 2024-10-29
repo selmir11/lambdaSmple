@@ -56,10 +56,12 @@ public class SharedData {
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
     @Getter @Setter private static List<String> medicalPlansList;
+    @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
+    @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
 
 
     public static void reset(){
@@ -85,6 +87,7 @@ public class SharedData {
         scenarioDetails = null;
         ib999Segments = null;
         medicalPlansList=null;
+        dentalPlansList=null;
         calculatedDob = null;
         expectedCalculatedDates = null;
         exchPersonId=null;
@@ -95,4 +98,5 @@ public class SharedData {
         ob834DetailsMedEntities = null;
         ob834DetailsDenEntities = null;
     }
+
 }

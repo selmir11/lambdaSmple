@@ -29,17 +29,18 @@ Feature: Seed10exception - Exchange
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
 #    //GRANDMA
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "07271963" date of birth
-    And I select "Female" as member's sex option
-    And I select "No" as pregnancy option
-    And I select "Spouse" as relationship option
-    And I select "No" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "07271963", "Female" and applying "No"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -47,18 +48,19 @@ Feature: Seed10exception - Exchange
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
 #    //GRAND DAUGHTER
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "04212013" date of birth
-    And I select "Female" as member's sex option
-    And I select "No" as pregnancy option
-    And I select "Granddaughter" as relationship option
-    And I select "Granddaughter" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Granddaughter", "04212013", "Female" and applying "Yes"
+      |Primary:Granddaughter|
+      |Spouse:Granddaughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -70,7 +72,7 @@ Feature: Seed10exception - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Granddaughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -80,12 +82,10 @@ Feature: Seed10exception - Exchange
 #    //GRANDSON
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "12222016" date of birth
-    And I select "Male" as member's sex option
-    And I select "Grandson" as relationship option
-    And I select "Grandson" as relationship one option
-    And I select "Brother" as relationship two option
-        And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Grandson", "12222016", "Male" and applying "Yes"
+      |Primary:Grandson|
+      |Spouse:Grandson|
+      |Granddaughter:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -97,7 +97,7 @@ Feature: Seed10exception - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Grandson"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option

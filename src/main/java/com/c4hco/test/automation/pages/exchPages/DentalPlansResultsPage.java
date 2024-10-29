@@ -101,6 +101,9 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-SaveAndExit")
     WebElement Saveandexit;
 
+    @FindBy(css = ".c4-type-header-sm")
+    List<WebElement> dentalPlanNamesList;
+
 
     public void DentalresultspagetextValidation(){
         basicActions.waitForElementToDisappear(spinner, 30);
@@ -327,6 +330,41 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent(txtpremiumamnt, 30);
         softAssert.assertEquals(txtpremiumamnt.getAttribute("innerText"), "0");
         softAssert.assertAll();
+    }
+
+    public void getDentalPlanMarketNames() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(dentalPlanNamesList, 20);
+        while (true) {
+            getPlanNamesFromPage();
+            if (checkIfLastPage()) {
+                break;
+            }
+            paginateRight();
+        }
+    }
+
+    private Boolean checkIfLastPage() {
+        basicActions.waitForElementListToBePresent(dentalPlanNamesList, 10);
+        return !basicActions.waitForElementToBePresent(nextPageArrow, 10);
+    }
+
+    private void getPlanNamesFromPage(){
+        List<String> dentalPlansList = SharedData.getDentalPlansList();
+        if(dentalPlansList==null){
+            dentalPlansList = new ArrayList<>();
+        }
+        for (WebElement planName : dentalPlanNamesList) {
+            dentalPlansList.add(planName.getText());
+        }
+        SharedData.setDentalPlansList(dentalPlansList);
+    }
+
+    public void validateTotalDentalPlans(int expectedCount){
+        int dentalPlansListcount = SharedData.getDentalPlansList().size();
+        softAssert.assertEquals(dentalPlansListcount, expectedCount, "The number of dentals plans does not match the expected count");
+        softAssert.assertAll();
+
     }
 
     

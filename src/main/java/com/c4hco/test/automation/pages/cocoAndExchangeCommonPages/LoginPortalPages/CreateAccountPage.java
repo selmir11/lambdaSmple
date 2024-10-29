@@ -246,6 +246,14 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + appType);
         }
         submitButton.click();
+        setdbName();
+    }
+
+    private void setdbName(){
+        String env = SharedData.getEnv();
+        String appType = SharedData.getAppType().substring(0, 4);
+        String dbName = env.equals("qa") ? env + "_"+appType : appType;
+        SharedData.setDbName(dbName);
     }
 
     public void createGeneralAccountSpecificLastName(String appType, String lName){
@@ -346,6 +354,7 @@ public class CreateAccountPage {
     public void sendDetails(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
+        basicActions.waitForElementToBePresent(phoneNumber, 60);
         firstName.sendKeys(subscriber.getFirstName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
