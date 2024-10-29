@@ -104,9 +104,7 @@ public class EDITransactionsPage {
             case "dental":
                 expectedNames.add("Delta Dental");
                 break;
-            default:
-                softAssert.fail("Unexpected insurance type: " + insuranceType);
-                return;
+            default: throw new IllegalArgumentException("Unexpected insurance type: " + insuranceType);
         }
 
         List<String> actualNames = new ArrayList<>();
@@ -130,7 +128,7 @@ public class EDITransactionsPage {
 
     public void validateMedicalAndDentalRecords(String validationOption) {
         basicActions.waitForElementListToBePresent(OutboundEDIHeaders, 5000);
-        
+
         switch (validationOption) {
             case "Outbound Header":
                 validateHeaders(OutboundEDIHeaders, List.of(
