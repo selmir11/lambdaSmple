@@ -16,49 +16,6 @@ public class EsManualVerifRequestDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
     private final BasicActions basicActions = new BasicActions();
 
-    public List<EsManualVerifRequestEntity> getDetailsFromMVRTable(String query)  {
-        List<EsManualVerifRequestEntity> esMVRResult = new ArrayList<>();
-        ResultSet rs;
-        try {
-            rs = executor.executeQuery(query);
-            while (rs.next()) {
-                EsManualVerifRequestEntity enManualVerifRequestEntity = new EsManualVerifRequestEntity();
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    String columnName = rs.getMetaData().getColumnName(i);
-                    Object columnValue = rs.getObject(i);
-
-                    // Set the field value using reflection
-                    try {
-                        Field field = EsManualVerifRequestEntity.class.getDeclaredField(columnName);
-                        field.setAccessible(true);
-                        if (columnValue != null) {
-                            // Perform type conversion based on field type
-                            if (field.getType() == String.class) {
-                                field.set(enManualVerifRequestEntity, columnValue.toString());
-                            } else if (field.getType() == BigDecimal.class && columnValue instanceof Number) {
-                                field.set(enManualVerifRequestEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
-                            } else {
-                                // Handle other types as needed
-                                field.set(enManualVerifRequestEntity, columnValue);
-                            }
-                        } else {
-                            // Handle the case where columnValue is null
-                            // For example, you could set a default value or leave the field uninitialized
-                            // field.set(policyTableEntity, defaultValue);
-                        }
-                    } catch (NoSuchFieldException e) {
-                        // Handle the case where the ResultSet column does not match a field in the object
-                        // You can ignore it or handle it according to your requirements
-                    }
-                }
-                esMVRResult.add(enManualVerifRequestEntity);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return esMVRResult;
-    }
-
     public EsManualVerifRequestEntity getOptionsFromMVRTables(String query)  {
         EsManualVerifRequestEntity esMVREntity = new EsManualVerifRequestEntity();
         ResultSet rs;

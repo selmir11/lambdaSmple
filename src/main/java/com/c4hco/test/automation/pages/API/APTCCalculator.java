@@ -4,17 +4,14 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import static io.restassured.RestAssured.*;
+
 public class APTCCalculator {
     String base_url;
     JSONObject requestBody= new JSONObject();
     Response response ;
     SoftAssert softAssert= new SoftAssert();
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String effectiveDate = "2025-01-01";
 
     public void getAPIEnvConnection(){

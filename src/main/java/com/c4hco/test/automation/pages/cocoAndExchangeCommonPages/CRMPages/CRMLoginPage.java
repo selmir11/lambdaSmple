@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import com.c4hco.test.automation.utils.ApplicationProperties;
 
 public class CRMLoginPage {
 
@@ -35,12 +36,12 @@ public class CRMLoginPage {
         basicActions.wait(5000);
 
         basicActions.waitForElementToBeClickable(txtCRMUsername, 30);
-        txtCRMUsername.sendKeys("CRMQATestUser@connectforhealthco.com");
+        txtCRMUsername.sendKeys(ApplicationProperties.getInstance().getProperty("crmAdmin_UN_QA"));
         btnCRMLoginNext.click();
 
         basicActions.wait(5000);
         basicActions.waitForElementToBeClickable(txtCRMPassword, 30);
-        txtCRMPassword.sendKeys("ALaska12!");
+        txtCRMPassword.sendKeys(ApplicationProperties.getInstance().getProperty("crmAdmin_PW_QA"));
         btnCRMLoginSignIn.click();
 
         basicActions.waitForElementToBeClickable(btnCRMLoginStayLoggedInNo, 30);

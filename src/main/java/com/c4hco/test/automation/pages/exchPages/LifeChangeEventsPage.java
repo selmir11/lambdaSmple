@@ -125,7 +125,6 @@ public class LifeChangeEventsPage {
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
 
-        String currentUrl = basicActions.getCurrentUrl();
         basicActions.scrollToElement(saveAndContinueOnlyButton);
         saveAndContinueOnlyButton.click();
     }

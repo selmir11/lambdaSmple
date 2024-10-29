@@ -261,9 +261,6 @@ public class DbDataProvider_Exch {
     public List<EnPolicyMemberAhEntity> getEnPol_mem_ah_details(){
         return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
 	}
-    public List<EsManualVerifRequestEntity> getEsMVR_details(){
-        return manualVerifRequestDbHandler.getDetailsFromMVRTable(exchDbQueries.esMVR());
-    }
 
     public EsManualVerifRequestEntity getEsMVR_options(){
         return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR());
