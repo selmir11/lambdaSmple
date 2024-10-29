@@ -69,7 +69,7 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     And I click Continue on the Dependent Overview Page CoCo
-    And I select None of these life change event
+    And I check "None of these" life change event checkbox
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

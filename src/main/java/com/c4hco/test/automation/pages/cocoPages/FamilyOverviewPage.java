@@ -129,4 +129,14 @@ public class FamilyOverviewPage {
         softAssert.assertEquals(noOneApplyingErrorText.getText(), "You\u2019ve indicated that no one is applying for health insurance.\nTo continue, please indicate which member(s) are applying by clicking the \u201CEdit/Update\u201D button in the table below");
         softAssert.assertAll();
     }
+
+    private void getAccountId() {
+        basicActions.waitForElementToBePresent(accountIdTxt, 15);
+
+        Matcher matcher = Pattern.compile("\\d+").matcher(accountIdTxt.getText());
+        String accId = matcher.find() ? matcher.group() : null;
+
+        SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accId));
+        System.out.println("Account_id : " + new BigDecimal(accId));
+    }
 }

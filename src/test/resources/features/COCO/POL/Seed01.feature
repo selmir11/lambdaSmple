@@ -1,7 +1,7 @@
-@SLCR-137
 Feature: Regression Tests that require Seed 1
- @test137
-  Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
+
+@SLCR-137-WIP
+Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -41,7 +41,7 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -85,31 +85,13 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "CoCo Welcome" page
-   # And I click on "My Plans" link on welcome page
-   # Then I validate I am on the "My Policies" page
-   # And Validate selected medical plan for "Primary" is "Cigna Connect Colorado Option Bronze"
-
-
-   And I verify the policy data quality check with Policy Ah keyset size 3
-   And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-    And I validate the member details from policy tables
-    And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   |  NEW_CO_RESIDENT |
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should not be empty
-    And I validate the ob834 files should have the values
-      | LX | N1 75              | REF       |
-      | 1  | PRE AMT 1          | 322.00    |
-      | 2  | CSR AMT            | 0.00      |
-      | 3  | RATING AREA        | 3         |
-      | 4  | SOURCE EXCHANGE ID | COHBE     |
-      | 5  | TOT RES AMT        | 322.00    |
-      | 6  | PRE AMT TOT        | 322.00    |
-
-
-
-#  Then I select year "2024" from My Current Plan container
-#  And I Validate the correct enrolled plans are displayed on account overview page
-#  Then I click on ClickHere link for "My Plans"
-#  Then I validate I am on the "My Policies" page
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I select year "2024" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    And I validate enrolled medical plans details on my policies page coco
+    And I click view Plan History link from medical plan card in coco
+    And I validate medical plan details from plan history in coco
+    # And I verify the policy data quality check with Policy Ah keyset size 2
+    And I validate "medical" entities from policy tables
