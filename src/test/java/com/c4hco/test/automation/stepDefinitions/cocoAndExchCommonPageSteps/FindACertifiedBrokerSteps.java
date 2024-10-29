@@ -150,6 +150,21 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.setCurrentBrokerContainerDetails();
     }
 
+    @Then ("I click the Authorize broker button")
+    public void iClickAuthorizeBrokerButton (){
+        findACertifiedBrokerPage.clickAuthorizeBrokerButton();
+    }
+
+    @And("I validate the text to authorize a new broker {string} with {string} or keep the same broker {string} with {string}")
+    public void iValidateChangeBrokerText(String newBrokerName, String newBrokerAgency, String currentBrokerName, String currentBrokerAgency) {
+        findACertifiedBrokerPage.validateChangeBrokerText(newBrokerName, newBrokerAgency, currentBrokerName, currentBrokerAgency);
+    }
+
+    @And("I click on {string} in the warning container to authorize new or keep the same broker")
+    public void iClickChangeBrokerOption(String changeBrokerOption) {
+        findACertifiedBrokerPage.clickChangeBrokerOption(changeBrokerOption);
+    }
+
     @Then("I click Continue with my application")
     public void iClickContinueWithMyApplication() {
         findACertifiedBrokerPage.ClickContinueWithMyApplication();
