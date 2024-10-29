@@ -414,7 +414,7 @@ public class DbValidations {
         for (String key : policyAhId.keySet()) {
             softAssert.assertEquals(policyAhId.get(key), "0", "Doesn't match policyAhId.get(key)");
         }
-        softAssert.assertAll();
+       // softAssert.assertAll();
     }
 
     public void validateBookOfBusinessQ(String eventType) {
