@@ -1,4 +1,4 @@
-@MedicalDetail @SIR @sirtest
+@MedicalDetail @SIR
   # contains SLER-769, SLER-834, SLER-835
 Feature: Medical Plan Detail page related tests
 

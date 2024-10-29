@@ -114,6 +114,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "planQualityRatings")
     WebElement planQualityRatingtxt;
 
+    @FindBy(xpath = "//div[@class='col-sm-12 text-start mt-3 body-text-1 csrtxt ng-star-inserted']")
+    WebElement silverPlanTopReferenceInformation;
+
     public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -238,6 +241,38 @@ public class MedicalPlansCoCoPage {
             }
         } while (optionalInt.isEmpty());
     }
+
+    public void validateSESCOCOFilterMessage(String language){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        switch(language){
+            case "English":
+                validateSESCOCOFilterMessageEnglish();
+                break;
+            case "Spanish":
+                validateSESCOCOFilterMessageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+        }
+
+    }
+
+    public void validateSESCOCOFilterMessageEnglish(){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBePresent( silverPlanTopReferenceInformation,30 );
+        Assert.assertTrue(silverPlanTopReferenceInformation.isDisplayed(), "Silver-level plans are shown first because you qualify for Cost-Sharing Reductions.");
+        silverPlanTopReferenceInformation.click();
+    }
+
+    public void validateSESCOCOFilterMessageSpanish(){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBePresent( silverPlanTopReferenceInformation,30 );
+        Assert.assertTrue(silverPlanTopReferenceInformation.isDisplayed(), "Se muestran primero los planes de nivel Plata porque usted califica para obtener reducciones en los costos compartidos.");
+        silverPlanTopReferenceInformation.click();
+    }
+
+
 
     public void clickSortingDropdown(String sortingValue) {
         basicActions.waitForElementToDisappear(spinner, 10);

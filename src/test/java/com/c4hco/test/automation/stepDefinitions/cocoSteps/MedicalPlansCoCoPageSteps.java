@@ -18,18 +18,13 @@ public class MedicalPlansCoCoPageSteps {
     public void selectContinueMedPlansCoCo(){medicalPlansCoCoPage.selectContinueMedicalPlansCoCo();}
 
     @And("I select the COCO Insurance Company dropdown")
-    public void clickInsuranceCompanyDropdown() {medicalPlansCoCoPage.clickInsuranceCompanyDropdown();
-    }
+    public void clickInsuranceCompanyDropdown() {medicalPlansCoCoPage.clickInsuranceCompanyDropdown(); }
 
     @And("I select the COCO Metal Tier dropdown")
-    public void clickMetalTierDropdown() {
-        medicalPlansCoCoPage.clickMetalTierDropdown();
-    }
+    public void clickMetalTierDropdown() { medicalPlansCoCoPage.clickMetalTierDropdown(); }
 
     @And("I select {string} to filter for a  COCO Metal Tier plan")
-    public void selectfromMetalTierList(String metalOption) {
-        medicalPlansCoCoPage.selectfromMetalTierList(metalOption);
-    }
+    public void selectfromMetalTierList(String metalOption) { medicalPlansCoCoPage.selectfromMetalTierList(metalOption); }
 
     @And ("I select Silver Enhanced option")
     public void selectSilverEnhanced(){
@@ -61,9 +56,11 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.clickSortingDropdown(sortingValue);
     }
 
+    @And ("I validate the top SES reference for default filter expectations in {string} language")
+    public void validateSilverLevelReference(String language){medicalPlansCoCoPage.validateSESCOCOFilterMessage(language);}
+
     @And("I validate the COCO plan option {int} has text {string}")
-    public void validatePlanText(int Index, String planText) {
-        medicalPlansCoCoPage.validatePlanResults( Index, planText );
+    public void validatePlanText(int Index, String planText) { medicalPlansCoCoPage.validatePlanResults( Index, planText );
     }
     @And ("I validate the COCO plan option {int} has a premium {string}")
     public void validateCOCOPlanIndividualPremium(int Index, String planPremium){

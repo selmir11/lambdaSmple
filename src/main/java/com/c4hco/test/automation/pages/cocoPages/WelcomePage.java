@@ -15,6 +15,9 @@ import java.util.*;
 
 public class WelcomePage {
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     @FindBy(css = ".header-1")
     WebElement welcomeToConnectText;
 
@@ -89,6 +92,7 @@ public class WelcomePage {
     }
 
     public void clickApplyForInsurance() {
+        basicActions.waitForElementToDisappear( spinner, 40 );
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         WebElement applyForYrCoco;
 

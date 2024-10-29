@@ -22,6 +22,9 @@ public class CacScreenerPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     @FindBy(css = "h1")
     WebElement cacScreenerHeader;
 
@@ -168,6 +171,7 @@ public class CacScreenerPage {
 
 
     public void clickSaveAndContinue(){
+        basicActions.waitForElementToDisappear( spinner, 40 );
         basicActions.waitForElementToBePresent(cacScreenerHeader, 40);
         basicActions.waitForElementToBeClickable(continueSignInBtn, 20);
         basicActions.scrollToElement(continueSignInBtn);

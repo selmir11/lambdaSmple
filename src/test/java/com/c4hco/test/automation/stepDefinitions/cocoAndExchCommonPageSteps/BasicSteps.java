@@ -122,7 +122,8 @@ public class BasicSteps {
                 pageUrl = "medicalPlanCarrierDetails";
                 break;
             case "Medical Plan Detail CoCo":
-                pageUrl = "/PlanSelectionPortal/medicalPlanCarrierDetails/";
+                basicActions.wait(8000);
+                pageUrl = "coco/PlanSelectionPortal/medicalPlanCarrierDetails";
                 break;
             case "Grouping Members Medical":
                 pageUrl = "viewGroupingMembers";
