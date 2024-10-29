@@ -319,7 +319,7 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertEquals(whenYouPayTxt.getText(), "Cuando paga su seguro de salud utilizando las Provisiones de reembolso de salud (HRA) proporcionadas a trav\u00E9s de su empleador, es posible que deba adquirir un plan fuera de Connect for Health Colorado. Confirme con su empleador si tiene una provisi\u00F3n de reducci\u00F3n de salario, ya que podr\u00EDa afectar su capacidad para inscribirse en un plan a trav\u00E9s del Mercado.");
         softAssert.assertEquals(hraQuestionTxt.get(0).getText(),"Seleccione el a\u00F1o del plan para su cobertura HRA.");
-        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024");
+        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024\n2025");
         softAssert.assertEquals(hraQuestionTxt.get(1).getText(),"Ingrese la cantidad que aporta su empleador cada mes a las Provisiones de reembolso de salud (HRA) por su cobertura.");
         softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
         softAssert.assertEquals(hraQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 tipo de Provisiones de reembolso de salud (HRA) ofrece su empleador?");
@@ -335,7 +335,7 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
         softAssert.assertTrue(whenYouPayTxt.getText().equalsIgnoreCase("When " + SharedData.getMembers().get(0).getFullName() + " pays for their health insurance using a Health Reimbursement Arrangement (HRA) provided through their employer, they may be required to buy a plan outside of Connect for Health Colorado. Confirm with " + SharedData.getMembers().get(0).getFullName() + "'s employer whether they have a salary reduction arrangement, as it could affect their ability to sign up for a plan through our Marketplace."));
         softAssert.assertTrue(hraQuestionTxt.get(0).getText().equalsIgnoreCase("Select a plan year for " + SharedData.getMembers().get(0).getFullName() + "'s coverage."));
-        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024");
+        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024\n2025");
         softAssert.assertTrue(hraQuestionTxt.get(1).getText().equalsIgnoreCase("Enter the amount " + SharedData.getMembers().get(0).getFullName() + "'s employer contributes each month to an HRA for their coverage."));
         softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
         softAssert.assertTrue(hraQuestionTxt.get(2).getText().equalsIgnoreCase("What type of HRA is " + SharedData.getMembers().get(0).getFullName() + "'s employer offering?"));
@@ -351,7 +351,7 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertTrue(whenYouPayTxt.getText().equalsIgnoreCase("Cuando " + SharedData.getMembers().get(0).getFullName() + " paga su seguro de salud utilizando las Provisiones de reembolso de salud (HRA) proporcionadas a trav\u00E9s por su empleador, es posible que deba adquirir un plan fuera de Connect for Health Colorado. Confirme con el empleador de " + SharedData.getMembers().get(0).getFullName() + " si tiene una provisi\u00F3n de reducci\u00F3n de salario, ya que podr\u00EDa afectar su capacidad para inscribirse en un plan a trav\u00E9s del Mercado."));
         softAssert.assertTrue(hraQuestionTxt.get(0).getText().equalsIgnoreCase("Seleccione el a\u00F1o del plan para la cobertura HRA de " + SharedData.getMembers().get(0).getFullName() + "."));
-        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024");
+        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024\n2025");
         softAssert.assertTrue(hraQuestionTxt.get(1).getText().equalsIgnoreCase("Ingrese la cantidad que el empleador de " + SharedData.getMembers().get(0).getFullName() + " aporta cada mes a las Provisiones de reembolso de salud (HRA) por su cobertura."));
         softAssert.assertEquals(amountInput.getAttribute("value"), expectedIncome);
         softAssert.assertTrue(hraQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 tipo de Provisiones de reembolso de salud (HRA) ofrece el empleador de " + SharedData.getMembers().get(0).getFullName() + "?"));
@@ -728,7 +728,7 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
         softAssert.assertEquals(whenYouPayTxt.getText(), "When you pay for your health insurance using a Health Reimbursement Arrangement (HRA) provided through your employer, you may be required to buy a plan outside of Connect for Health Colorado. Confirm with your employer whether you have a salary reduction arrangement, as it could affect your ability to sign up for a plan through our Marketplace.");
         softAssert.assertEquals(hraQuestionTxt.get(0).getText(),"Select the plan year for your HRA coverage.");
-        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024");
+        softAssert.assertEquals(planYeardpd.getText(),"Select a year\n2024\n2025");
         softAssert.assertEquals(hraQuestionTxt.get(1).getText(),"Enter the amount your employer contributes each month to an HRA for your coverage.");
         softAssert.assertEquals(amountInput.getText(),"");
         softAssert.assertEquals(hraQuestionTxt.get(2).getText(),"What type of HRA is your employer offering?");
@@ -772,7 +772,7 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
         softAssert.assertEquals(whenYouPayTxt.getText(), "Cuando paga su seguro de salud utilizando las Provisiones de reembolso de salud (HRA) proporcionadas a trav\u00E9s de su empleador, es posible que deba adquirir un plan fuera de Connect for Health Colorado. Confirme con su empleador si tiene una provisi\u00F3n de reducci\u00F3n de salario, ya que podr\u00EDa afectar su capacidad para inscribirse en un plan a trav\u00E9s del Mercado.");
         softAssert.assertEquals(hraQuestionTxt.get(0).getText(),"Seleccione el a\u00F1o del plan para su cobertura HRA.");
-        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024");
+        softAssert.assertEquals(planYeardpd.getText(),"Selecciona un a\u00F1o\n2024\n2025");
         softAssert.assertEquals(hraQuestionTxt.get(1).getText(),"Ingrese la cantidad que aporta su empleador cada mes a las Provisiones de reembolso de salud (HRA) por su cobertura.");
         softAssert.assertEquals(amountInput.getText(),"");
         softAssert.assertEquals(hraQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 tipo de Provisiones de reembolso de salud (HRA) ofrece su empleador?");

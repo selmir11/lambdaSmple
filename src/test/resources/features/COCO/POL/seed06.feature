@@ -31,7 +31,7 @@ Feature: Seed06 - COCO
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
@@ -55,7 +55,7 @@ Feature: Seed06 - COCO
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
@@ -80,7 +80,7 @@ Feature: Seed06 - COCO
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
@@ -106,7 +106,7 @@ Feature: Seed06 - COCO
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
@@ -114,8 +114,8 @@ Feature: Seed06 - COCO
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
     #  --OPEN ENROLLMENT ONLY--
-    #    And I select None of these life change event  --OPEN ENROLLMENT ONLY--
-    And I select "MoveToCO" life change event
+    #    And I check "None of these" life change event checkbox  --OPEN ENROLLMENT ONLY--
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

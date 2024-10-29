@@ -1,5 +1,5 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
-  @SLER-626 
+  @SLER-626
   Scenario: : EXCH Initial Application -  Broker OBO -  Minor Only
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -57,7 +57,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Hispanic or Latino" for race and ethnicity
+    And I select "Hispanic or Latino" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -78,7 +78,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Hispanic or Latino" for race and ethnicity
+    And I select "Hispanic or Latino" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -118,7 +118,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
     Then I validate I am on the "Account Overview" page
     And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
+    And I click on download "EN-002-04" document
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page

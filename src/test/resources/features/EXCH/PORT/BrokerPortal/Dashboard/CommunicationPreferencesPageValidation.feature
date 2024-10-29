@@ -1,4 +1,4 @@
-@BrokerPortalProfile @port
+@BrokerPortalProfile @port @Dashboard
 Feature: Verify the Communication Preferences page of Broker Portal
 
   @SLER-613

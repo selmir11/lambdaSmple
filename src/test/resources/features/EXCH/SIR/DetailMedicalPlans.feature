@@ -1,5 +1,5 @@
-@MedicalDetail @SIR
-  # contains SLER-834, SLER-835
+@MedicalDetail @SIR @sirtest
+  # contains SLER-769, SLER-834, SLER-835
 Feature: Medical Plan Detail page related tests
 
   Background:
@@ -19,8 +19,14 @@ Feature: Medical Plan Detail page related tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "Marriage" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -40,7 +46,7 @@ Feature: Medical Plan Detail page related tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -81,12 +87,19 @@ Feature: Medical Plan Detail page related tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     And I select "Male" as sex option
@@ -101,7 +114,7 @@ Feature: Medical Plan Detail page related tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -149,8 +162,14 @@ Feature: Medical Plan Detail page related tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -170,7 +189,7 @@ Feature: Medical Plan Detail page related tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

@@ -15,7 +15,6 @@ public class Utils {
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
         SharedData.setEnv(env);
-        SharedData.setDbName(getdbName());
         SharedData.setIsOpenEnrollment(isOpenEnrollment);
         SharedData.setSes(ses);
     }
@@ -41,7 +40,4 @@ public class Utils {
         return baseUrl;
     }
 
-    public String getdbName(){
-        return env.equals("qa") ? env + "_exch" : "exch";
-    }
 }

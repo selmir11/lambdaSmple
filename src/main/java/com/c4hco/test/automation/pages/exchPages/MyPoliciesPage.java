@@ -12,7 +12,11 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -33,25 +37,25 @@ public class MyPoliciesPage {
     List<WebElement> planNames; // Both medical and dental plan names for all members
 
     @FindBy(id = "viewPlanHistoryLink_0")
-    WebElement viewPlanHistoryLinkMedical; // To DO:: Update the locators in this file
+    WebElement viewPlanHistoryLinkMedical;
 
     @FindBy(id = "viewPlanHistoryLink_1")
-    WebElement viewPlanHistoryLinkDental; // Update locator - will only work when we have 1medical, 1dental and 1 memeber
+    WebElement viewPlanHistoryLinkDental;
 
     @FindBy(css = "app-plan-details .container .header-2")
     WebElement planHistoryTitle;
 
     @FindBy(css = "table .body-text-1")
-    List<WebElement> tableRecord; // TO DO:: Check if this works with multiple members and multiple groups
+    List<WebElement> tableRecord;
+
+    @FindBy(css = "table .body-text-1 p")
+    List<WebElement> enrolledMemNames;
 
     @FindBy(id="backToCurrentPlanDetailsButton")
     WebElement backToCurPlansBtn;
 
     @FindBy(xpath = "//span[contains(., 'Monthly Premium')]/following-sibling::span")
     List<WebElement> premiumAmt;
-
-    @FindBy(xpath = "//div[contains(./span, 'Exchange Policy Number:')]/following-sibling::div/span")
-    List<WebElement> EAPID; //exchange policy number for both medical and dental
 
     @FindBy(css=".amount-row span")
     List<WebElement> financialPremiumData; // financial stat date, premium after help
@@ -69,29 +73,87 @@ public class MyPoliciesPage {
 
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
+    Set<String> allMemberNames = new HashSet<>();
+    Set<String> namesFromUI = new HashSet<>();
 
-    public void validateEnrolledMedicalPlanDetails() {
-        // WIP
-        // **** Works when only one member with one medical plan **** //
-        //Validating member names from table - medical
+
+    public void validatePlanDetails(String planType){
         basicActions.waitForElementListToBePresent(memberNames, 10);
-        List<MemberDetails> memberDetailsList = SharedData.getMembers();
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        String[] medMemnames = memberNames.get(0).getText().split("\\s*(,|and)\\s*");
-        for (String memName : medMemnames) {
-            String memFirstLastName = memName.trim();
-            String[] memFullNames = memFirstLastName.split(" ");
-            String memFirstName = memFullNames[0];
-            String memLastName = memFullNames[memFullNames.length - 1];
-            if (subscriber.getFirstName().equals(memFirstName) && subscriber.getLastName().equals(memLastName)) {
-                softAssert.assertEquals(memFirstName+" "+memLastName, primaryMember.getSignature(),"Primary member name from current medical plans does not match-my policies page");
-            }else if (memberDetailsList !=null) {
-                for (int i = 0; i < memberDetailsList.size(); i++) {
-                    MemberDetails member = SharedData.getMembers().get(i);
-                    softAssert.assertEquals(memFirstName+" "+memLastName, member.getSignature(), "Member names from current medical plans does not match- my policies page");
-                }
-            }
+        basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        switch (planType){
+            case "medical":
+                validateEnrolledMedicalPlanDetails();
+                break;
+            case "dental":
+                validateEnrolledDentalPlanDetails();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
         }
+    }
+
+    public void clickViewPlanHistory(String planType){
+        switch(planType){
+            case "medical":
+                clickViewPlanHistoryFromMed();
+                break;
+            case "dental":
+                clickViewPlanHistoryFromDental();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+    }
+
+    public void validatePlanDetailsPlanHistory(String planType){
+        basicActions.waitForElementToBePresent(planHistoryTitle, 10);
+        basicActions.waitForElementListToBePresent(tableRecord, 10);
+        basicActions.waitForElementListToBePresent(enrolledMemNames, 10);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        namesFromUI = new HashSet<>(enrolledMemNames.stream().map(WebElement::getText).collect(Collectors.toList()));
+        softAssert.assertTrue(namesFromUI.equals(allMemberNames),"Member names did not match");
+        switch (planType){
+            case "medical":
+                validateMedPlanDetailsFromPlanHistory();
+                break;
+            case "dental":
+                validateDentalPlanDetailsFromPlanHistory();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+    }
+
+    private void validateEnrolledDentalPlanDetails(){
+        // Validating Names
+        Set<String> namesFromUi = new HashSet<>(Arrays.asList(memberNames.get(1).getText().replace(" and ", ", ").split(", ")));
+        softAssert.assertTrue(allMemberNames.equals(namesFromUi));
+
+        softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getPlanStartDate(), "Dental start date didn't match");
+        softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getPlanEndDate(), "Dental end date didnt match");
+        softAssert.assertEquals(planNames.get(1).getText(), primaryMember.getDentalPlan(),"dental plan name did not match. Actual on page::"+planNames.get(1).getText()+"::Expected::"+primaryMember.getDentalPlan());
+        softAssert.assertEquals(premiumAmt.get(1).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$", ""), "Dental premium did not match");
+        softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
+        softAssert.assertEquals(policyNumSubscriber.get(9).getText(), primaryMember.getSignature(),"Subscriber name mismatch");
+        softAssert.assertTrue(policyNumSubscriber.get(10).getText().equals("Last Updated On:"));
+        softAssert.assertEquals(policyNumSubscriber.get(11).getText(), lastUpdated, "Last updated date on dental tile does not match");
+
+        // Validating dental EAP_ID
+        softAssert.assertTrue(policyNumSubscriber.get(6).getText().equals("Exchange Policy Number:"));
+        softAssert.assertEquals(primaryMember.getDentalEapid_db(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
+
+        String dentalPremAfterAPTC = financialPremiumData.get(11).getText();
+        String dentalPremiumFromSharedData = primaryMember.getDentalPremiumAmt();
+        softAssert.assertEquals(dentalPremAfterAPTC, "$"+dentalPremiumFromSharedData+"/mo", "Total dental Premium amount after APTC reduction does not match from UI and DB");
+        softAssert.assertAll();
+    }
+
+    private void validateEnrolledMedicalPlanDetails(){
+            // Validating Names
+        Set<String> namesFromUi = new HashSet<>(Arrays.asList(memberNames.get(0).getText().replace(" and ", ", ").split(", ")));
+        softAssert.assertTrue(allMemberNames.equals(namesFromUi));
+
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getPlanStartDate(), "medical plan date did not match");
         softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getPlanEndDate(), "medical plan end date did not match");
         softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
@@ -100,13 +162,10 @@ public class MyPoliciesPage {
         softAssert.assertEquals(policyNumSubscriber.get(3).getText(), primaryMember.getSignature(), "Subscriber Name did not match on medical card");
         softAssert.assertTrue(policyNumSubscriber.get(4).getText().equals("Last Updated On:"));
         softAssert.assertEquals(policyNumSubscriber.get(5).getText(), lastUpdated, "Last Updated Date did not match");
-        softAssert.assertEquals(financialPremiumData.get(0).getText(), "Applicable From: "+basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getFinancialStartDate(), "yyyy-MM-dd", "MM/dd/yyyy"), "medical financial start date did not match");        softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
 
         //Validating medical EAP_ID
         exchDbDataProvider.getEap_id();
-        basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
         softAssert.assertEquals(primaryMember.getMedicalEapid_db(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
-
 
         //Validating Total Premium after APTC amount reduction
         String totalAmtAfterReduction = primaryMember.getTotalMedAmtAfterReduction();
@@ -115,55 +174,18 @@ public class MyPoliciesPage {
         softAssert.assertAll();
     }
 
-    public void validateDentalPlanDetails(){
-        // WIP
-        // **** Works when only one member with one medical plan and one dental plan **** //
 
-        basicActions.waitForElementListToBePresent(memberNames, 10);
-        //softAssert.assertEquals(memberNames.get(1).getText(), primaryMember.getSignature(), "member name on dental card did not match");
-        softAssert.assertEquals(planNames.get(1).getText(), primaryMember.getDentalPlan() ,
-                "dental plan name did not match. Actual on page::"+planNames.get(1).getText()+"::Expected::"+primaryMember.getDentalPlan());
-        softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getPlanStartDate(), "Dental start date didn't match");
-        softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getPlanEndDate(), "Dental end date didnt match");
-        softAssert.assertEquals(premiumAmt.get(1).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$", ""), "Dental premium did not match");
-        softAssert.assertTrue(policyNumSubscriber.get(6).getText().equals("Exchange Policy Number:"));
-        softAssert.assertEquals(policyNumSubscriber.get(7).getText(), primaryMember.getDentalEapid_db(), "Dental EAPID mismatch");
-        softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
-        softAssert.assertEquals(policyNumSubscriber.get(9).getText(), primaryMember.getSignature(),"Subscriber name mismatch");
-        softAssert.assertTrue(policyNumSubscriber.get(10).getText().equals("Last Updated On:"));
-        softAssert.assertEquals(policyNumSubscriber.get(11).getText(), lastUpdated, "Last updated date on dental tile does not match");
-
-        String totalDenPremAmtAfterTrim = null;
-        //Validating dental EAP_ID
-        basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        softAssert.assertEquals(primaryMember.getDentalEapid_db(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
-
-        if(primaryMember.getDentalAptcAmt().equals("$0")){
-            String dentalPremiumAmt = primaryMember.getDentalPremiumAmt();
-            totalDenPremAmtAfterTrim = dentalPremiumAmt.replace("$", "");
-        } else{
-            // TO DO:: Add more when needed
-        }
-
-        String dentalPremAfterAPTC = financialPremiumData.get(11).getText();
-        primaryMember.setTotalDentalPremAfterReduction(dentalPremAfterAPTC);
-        SharedData.setPrimaryMember(primaryMember);
-
-        String dentalPremiumFromSharedData = primaryMember.getDentalPremiumAmt();
-        softAssert.assertEquals(dentalPremAfterAPTC, dentalPremiumFromSharedData+"/mo", "Total dental Premium amount after APTC reduction does not match from UI and DB");
-        softAssert.assertAll();
-    }
-
-    public void clickViewPlanHistoryFromMed(){
+    private void clickViewPlanHistoryFromMed(){
         basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical, 10);
         viewPlanHistoryLinkMedical.click();
     }
 
-    public void validateMedPlanDetailsFromPlanHistory(){
-        basicActions.waitForElementToBePresent(planHistoryTitle, 10);
-        basicActions.waitForElementListToBePresent(tableRecord, 10);
+    private void clickViewPlanHistoryFromDental(){
+        basicActions.waitForElementToBePresent(viewPlanHistoryLinkDental, 10);
+        viewPlanHistoryLinkDental.click();
+    }
 
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()),"Signature mismatch");
+    private void validateMedPlanDetailsFromPlanHistory(){
         softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
         softAssert.assertTrue(tableRecord.get(2).getText().equals("$"+primaryMember.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
         if(primaryMember.getMedicalAptcAmt().equals("0")){
@@ -176,15 +198,10 @@ public class MyPoliciesPage {
         softAssert.assertAll();
     }
 
-    public void clickViewPlanHistoryFromDental(){
-        basicActions.waitForElementToBePresent(viewPlanHistoryLinkDental, 10);
-        viewPlanHistoryLinkDental.click();
-    }
 
-    public void validateDentalPlanDetailsFromPlanHistory(){
-        basicActions.waitForElementToBePresent(planHistoryTitle, 10);
-        basicActions.waitForElementListToBePresent(tableRecord, 10);
-        softAssert.assertTrue(tableRecord.get(0).getText().equals(primaryMember.getSignature()), "Primary signature mismatch");
+
+    private void validateDentalPlanDetailsFromPlanHistory(){
+
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
         softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
@@ -213,75 +230,4 @@ public class MyPoliciesPage {
         }
 
     }
-
-    public void medicalValidations(){//for single member - my policies page
-        String[] medMemnames = memberNames.get(0).getText().split("\\s*(,|and)\\s*");
-        for (String memName : medMemnames) {
-            String memFirstLastName = memName.trim();
-            String[] memFullNames = memFirstLastName.split(" ");
-            String memFirstName = memFullNames[0];
-            String memLastName = memFullNames[memFullNames.length - 1];
-            softAssert.assertEquals(memFirstName + " " + memLastName, primaryMember.getSignature(), "Primary member name from current medical plans does not match-my policies page");
-        }
-        softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getPlanStartDate(), "medical plan start date did not match");
-        softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getPlanEndDate(), "medical plan end date did not match");
-        softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
-        softAssert.assertEquals(premiumAmt.get(0).getText(), "$"+primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
-        softAssert.assertTrue(policyNumSubscriber.get(2).getText().equals("Subscriber:"));
-        softAssert.assertEquals(policyNumSubscriber.get(3).getText(), primaryMember.getSignature(), "Subscriber Name did not match on medical card");
-        softAssert.assertTrue(policyNumSubscriber.get(4).getText().equals("Last Updated On:"));
-        softAssert.assertEquals(policyNumSubscriber.get(5).getText(), lastUpdated, "Last Updated Date did not match");
-        softAssert.assertEquals(financialPremiumData.get(0).getText(), "Applicable From: "+primaryMember.getMedicalFinancialStartDate(), "medical applicable from date did not match");
-        softAssert.assertEquals(financialPremiumData.get(3).getText(), "After $"+primaryMember.getMedicalAptcAmt()+" Financial Help", "financial help amount did not match");
-        softAssert.assertTrue(policyNumSubscriber.get(0).getText().equals("Exchange Policy Number:"));
-
-        //Validating medical EAP_ID
-        exchDbDataProvider.getEap_id();
-        basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        softAssert.assertEquals(primaryMember.getMedicalEapid_db(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
-        //Validating Total Premium after APTC amount reduction
-        String totalAmtAfterReduction = primaryMember.getTotalMedAmtAfterReduction();
-        String premiumAfterAPTC = financialPremiumData.get(5).getText();
-        softAssert.assertEquals(premiumAfterAPTC, "$"+totalAmtAfterReduction+"/mo", "Total Premium amount after APTC reduction does not match from UI and DB");
-        softAssert.assertAll();
-    }
-
-    public void dentalValidations(){ //for single member - my policies page
-        basicActions.waitForElementListToBePresent(memberNames, 10);
-        softAssert.assertEquals(planNames.get(1).getText(), primaryMember.getDentalPlan() ,
-                "dental plan name did not match. Actual on page::"+planNames.get(1).getText()+"::Expected::"+primaryMember.getDentalPlan());
-        softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getPlanStartDate(), "Dental plan start date didn't match");
-        softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getPlanEndDate(), "Dental plan end date didnt match");
-
-        softAssert.assertEquals(premiumAmt.get(1).getText(), primaryMember.getDentalPremiumAmt(), "Dental premium did not match");
-        softAssert.assertTrue(policyNumSubscriber.get(6).getText().equals("Exchange Policy Number:"));
-        softAssert.assertEquals(policyNumSubscriber.get(7).getText(), primaryMember.getDentalEapid_db(), "Eapid mismatch on dental tile");
-        softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
-        softAssert.assertEquals(policyNumSubscriber.get(9).getText(),primaryMember.getSignature(), "Subscriber name mismatch on Dental tile");
-        softAssert.assertTrue(policyNumSubscriber.get(10).getText().equals("Last Updated On:"));
-        softAssert.assertEquals(policyNumSubscriber.get(11).getText(), lastUpdated, "Last updated on date mismatch on dental tile");
-        softAssert.assertEquals(financialPremiumData.get(6).getText(), "Applicable From: "+primaryMember.getDentalFinancialStartDate(), "Dental applicable from date did not match");
-
-        String totalDenPremAmtAfterTrim = null;
-        //Validating dental EAP_ID
-        basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
-        softAssert.assertEquals(primaryMember.getDentalEapid_db(),policyNumSubscriber.get(7).getText(), "Dental EAP_ID from My Policies page does not match with EAP_ID from DB");
-
-        if(primaryMember.getDentalAptcAmt().equals("$0")){
-            String dentalPremiumAmt = primaryMember.getDentalPremiumAmt();
-            totalDenPremAmtAfterTrim = dentalPremiumAmt.replace("$", "");
-            softAssert.assertEquals(totalDenPremAmtAfterTrim, dentalPremiumAmt.replace("$",""), "Dental premium amount does not match");
-        } else{
-            // TO DO:: Add more when needed
-        }
-
-        String dentalPremAfterAPTC = financialPremiumData.get(11).getText();
-        primaryMember.setTotalDentalPremAfterReduction(dentalPremAfterAPTC);
-        SharedData.setPrimaryMember(primaryMember);
-
-        String dentalPremiumFromSharedData = primaryMember.getDentalPremiumAmt();
-        softAssert.assertEquals(dentalPremAfterAPTC, dentalPremiumFromSharedData+"/mo", "Total dental Premium amount after APTC reduction does not match from UI and DB");
-        softAssert.assertAll();
-    }
-
 }

@@ -537,6 +537,21 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+    public String getTodayDate() {// Today
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        return date.format(formatter);
+    }
+    public String getFutureDate(int daysToMove) {
+        LocalDate date = LocalDate.now().plusDays(daysToMove);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        return date.format(formatter);
+    }
+    public String getPastDate(int daysToMove) {
+        LocalDate date = LocalDate.now().minusDays(daysToMove);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        return date.format(formatter);
+    }
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
@@ -547,24 +562,43 @@ public class BasicActions {
 
     public String  getDateBasedOnRequirement(String dateRequirement) {
         String date;
-        switch (dateRequirement) {
-            case "First Day Of Current Year":
-               date = getFirstOfJanCurrYr();
-                break;
-            case "Last Day Of Current Year": 
-               date = getLastDayOfCurrYr();
-                break;
-            case "getFromSharedData":
-                String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
-                date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
-                break;
-            case "First Of Next Month":
-                date =  firstDateOfNextMonth();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + dateRequirement);
-
+        if(dateRequirement.contains("Future") ||dateRequirement.contains("Past")) {
+            String[] parts = dateRequirement.split(" ");
+            String dateRequirementPart = parts[0];
+            int daysToMove = Integer.parseInt(parts[1]);
+            switch (dateRequirementPart) {
+                case "Future":
+                    date = getFutureDate(daysToMove);
+                    break;
+                case "Past":
+                    date = getPastDate(daysToMove);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + dateRequirementPart);
+            }
         }
+        else{
+            switch (dateRequirement) {
+                    case "First Day Of Current Year":
+                        date = getFirstOfJanCurrYr();
+                        break;
+                    case "Last Day Of Current Year":
+                        date = getLastDayOfCurrYr();
+                        break;
+                    case "getFromSharedData":
+                        String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
+                        date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
+                        break;
+                    case "First Of Next Month":
+                        date = firstDateOfNextMonth();
+                        break;
+                    case "Today":
+                        date = getTodayDate();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + dateRequirement);
+                }
+            }
         return date;
     }
 
@@ -590,6 +624,65 @@ public class BasicActions {
         SharedData.setBirthLceIndividual(namePrefix);
         nameAndDob.put(namePrefix, actualdob);
         SharedData.setCalculatedDob(nameAndDob);
+    }
+
+    public String getFullNameWithPrefix(String memPrefix){
+      List<MemberDetails> allMem = getAllMem();
+      return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getCompleteFullNameWithPrefix(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public List<MemberDetails> getAllMem(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> allMembers = new ArrayList<>();
+        if(dependents!=null){
+            for(MemberDetails dependent: dependents){
+                allMembers.add(dependent);
+            }
+        }
+        allMembers.add(primaryMem);
+        return allMembers;
+    }
+
+    public List<String> getAllMemNames(){
+        // returns first and last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+           firstAndLastName.add(mem.getSignature());
+        }
+        return firstAndLastName;
+    }
+
+    public List<String> getAllMemCompleteNames(){
+        // returns first, middle, last name
+        List<String> firstAndLastName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+            firstAndLastName.add(mem.getCompleteFullName());
+        }
+        return firstAndLastName;
+    }
+
+    public String getMemberId(String memPrefix){
+        String memId = "";
+        if (memPrefix.equals("Primary")) {
+            memId = SharedData.getPrimaryMemberId();
+        }
+        else {
+            List<MemberDetails> members = SharedData.getMembers();
+            for(MemberDetails mem: members){
+                if(mem.getFirstName().contains(memPrefix)){
+                    memId = mem.getMemberId();
+                }
+            }
+        }
+        return memId;
     }
 
 

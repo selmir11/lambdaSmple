@@ -102,10 +102,8 @@ Feature: UI Tests related to APTC
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
-    And I enter member details with "01012010" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "01012010", "Male" and applying "Yes"
+      | Primary:Son |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -195,10 +193,8 @@ Feature: UI Tests related to APTC
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
-    And I enter member details with "01011990" date of birth
-    And I select "Male" as member's sex option
-    And I select "Other" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Other", "01011990", "Male" and applying "Yes"
+      | Primary:Other |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -416,10 +412,8 @@ Feature: UI Tests related to APTC
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
-    And I enter member details with "01012010" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "01012010", "Male" and applying "Yes"
+      | Primary:Son |
     And I click continue on Tell us about additional members page
     Then I select "New" for Residential Address
     And I enter a new member address with city "Denver" state "CO" zip "80840" and county "EL PASO"

@@ -1,10 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
-import com.c4hco.test.automation.database.DbValidations.DbValidations;
-import com.c4hco.test.automation.database.DbValidations.PolicyTableDBValidations;
-import com.c4hco.test.automation.database.DbValidations.PolicyTableValidations;
-import com.c4hco.test.automation.database.DbValidations.PolicyDbValidations_new;
+import com.c4hco.test.automation.database.DbValidations.*;
+import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 import java.util.List;
 import java.util.Map;
@@ -13,16 +12,11 @@ public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
 private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
-private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyDbValidations_new();
+private final Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
-   }
-
-   @And("I validate medical entities from policy tables")
-   public void validateMedicalRecords(){
-      policyTableDBValidations_new.policyRecordValidations();
    }
 
    @And("I validate the member details from policy tables")
@@ -36,18 +30,17 @@ private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyD
    }
    @And("I set ib999 entites for both medical and dental files")
    public void setib999(){
-      dbValidations.setIb999DetailsEntity();
+      ib999FileValidations.setIb999DetailsEntity();
    }
 
-   @And("I verify the OHI info in the DB")
-   public void validateOhiInfo(){dbValidations.validateOhiDetails();}
+   @And("I verify the OHI info in the DB for {string}")
+   public void validateOhiInfo(String memberId){dbValidations.validateOhiDetails(memberId);}
 
-   @And("I verify the OHI options selected in the DB")
-   public void iValidateOhiOptions(List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(expectedValues);}
+   @And("I verify the OHI options selected in the DB for {string}")
+   public void iValidateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(memPrefix, expectedValues);}
 
    @And("I verify the HRA options selected in the DB")
    public void iValidateHraOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraOptions(expectedValues);}
-
 
    @And("I verify the policy data quality check with Policy Ah keyset size {int}")
    public void iValidatePolicyDqCheck(int keysetSize){dbValidations.validatePolicyDqCheck(keysetSize);}
@@ -105,17 +98,6 @@ private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyD
       dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);
    }
 
-//   @And("I validate Individual member policy table queries")
-//   public void ivalidateIndPolicyTableQueries(){
-//
-//      policyTableValidations.validateEnPolicyTableDetails();
-//      policyTableValidations.validateEnMemberCoverageFinancialAh();
-//      policyTableValidations.validateEnPolicyMemberCoverageAh();
-//      policyTableValidations.validateEnPolicyFinancialAh();
-//      policyTableValidations.validateEnPolicyMemberAh();
-//
-//   }
-
    @And("I verify Person ID is unique in the DB")
    public void iValidateUniquePersonId(){policyTableValidations.validateUniquePersonId();}
 
@@ -128,11 +110,38 @@ private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyD
    @And("I verify the HRA options selected in the DB after Application Results")
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
 
-
    @And("I validate the medical plan market names in the DB")
    public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
    }
 
+   @And("I validate {string} race and {string} other text in the database")
+   public void iValidateRaceAndOtherTextInDatabase(String expectedRaceEthnicity, String expectedRaceOtherText) {
+      dbValidations.validateDatabaseRaceEthnicity(expectedRaceEthnicity, expectedRaceOtherText);
+   }
+
+   @Then("I validate current dental plan name for the account for the year {string} DB")
+   public void iValidateCurrentDentalPlanNameForTheAccountForTheYearDB(String year) {
+      dbValidations.validateCurrentDentalPlanNameForTheYear(year);
+   }
 
 
+   @And("I validate current Medical policy start and end date for the year DB")
+   public void iValidateCurrentMedicalPolicyStartAndEndDateForTheYearDB() {
+      dbValidations.validateCurrentDentalPolicyStartAndEndDateForTheYearDB();
+   }
+
+   @Then("I validate the Latest Application Date for the year DB")
+   public void iValidateTheLatestApplicationDateForTheYearDB() {
+      dbValidations.validateTheLatestApplicationDateForTheYearDB();
+   }
+
+   @And("I validate the second medical policy for the year {string} DB")
+   public void iValidateTheSecondMedicalPolicyForTheYearDB(String year) {
+      dbValidations.validateTheSecondMedicalPoliciyForTheYearDB(year);
+   }
+
+   @And("I validate the second dental policy for the year {string} DB")
+   public void iValidateTheSecondDentalPolicyForTheYearDB(String year) {
+      dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);
+   }
 }

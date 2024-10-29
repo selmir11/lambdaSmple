@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -205,10 +206,23 @@ public class CreateAccountPage {
     }
 
     public void createGeneralAccount(String appType){
-        // Creates the primary user/Account holder
-        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
-        SharedData.setAppType(appType);
         addDetails();
+        selectBasedOnApp(appType);
+    }
+
+    public void createSpecificAccount(String fName, String lName, String appType){
+        addSpecificDetails(fName, lName);
+        selectBasedOnApp(appType);
+    }
+
+    public void createGeneralAccountOutlook(String appType, String emailBase){
+        addDetailsOutlook(emailBase);
+        selectBasedOnApp(appType);
+    }
+
+    private void selectBasedOnApp(String appType){
+        SharedData.setAppType(appType);
+        basicActions.waitForElementToBePresent(cocoTermsOfUseCheckbox,10);
         switch(appType){
             case "coco":
                 cocoTermsOfUseCheckbox.click();
@@ -224,62 +238,25 @@ public class CreateAccountPage {
                 onBehalfOfPrimaryUserCheckbox.click();
                 cocoTermsOfUseCheckbox.click();
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-
-        }
-        submitButton.click();
-    }
-
-    public void createSpecificAccount(String fName, String lName, String appType){
-        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
-        SharedData.setAppType(appType);
-        addSpecificDetails(fName, lName);
-        switch(appType){
-            case "coco":
-                cocoTermsOfUseCheckbox.click();
-                break;
-            case "exchange":
-                exchangeTermsOfUseCheckbox.click();
-                break;
-            case "Admin exchange":
-                onBehalfOfPrimaryUserCheckbox.click();
-                exchangeTermsOfUseCheckbox.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-
-        }
-        submitButton.click();
-    }
-
-    public void createGeneralAccountOutlook(String appType, String emailBase){
-        // Creates the primary user/Account holder
-        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
-        SharedData.setAppType(appType);
-        addDetailsOutlook(emailBase);
-        switch(appType){
-            case "coco":
-                cocoTermsOfUseCheckbox.click();
-                break;
-            case "exchange":
-                exchangeTermsOfUseCheckbox.click();
-                break;
-            case "Admin exchange":
-                onBehalfOfPrimaryUserCheckbox.click();
-                exchangeTermsOfUseCheckbox.click();
-                break;
             case "coco Spanish":
                 cocoTermsOfUseCheckbox.click();
                 preferredLanguageButtonSpanish.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + appType);
-
         }
         submitButton.click();
+        setdbName();
     }
 
+    private void setdbName(){
+        String env = SharedData.getEnv();
+        String appType = SharedData.getAppType().substring(0, 4);
+        String dbName = env.equals("qa") ? env + "_"+appType : appType;
+        SharedData.setDbName(dbName);
+    }
+
+    // WIP - Remove from here. We already have this in basicActions
     public String capitalizeFirstLetter(String input) {
         if (input == null || input.isEmpty()) {
             return input;
@@ -318,12 +295,15 @@ public class CreateAccountPage {
 
     public void initializeSpecificData(String fName, String lName){
         MemberDetails subscriber = new MemberDetails();
+        List<MemberDetails> allMembersList = new ArrayList<>();
         subscriber.setFirstName(fName);
         subscriber.setLastName(lName);
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+getUniqueString(6)+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
+        allMembersList.add(subscriber);
+        SharedData.setAllMembers(allMembersList);
     }
 
     public void addDetails(){
@@ -334,6 +314,7 @@ public class CreateAccountPage {
     public void sendDetails(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
+        basicActions.waitForElementToBePresent(phoneNumber, 60);
         firstName.sendKeys(subscriber.getFirstName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
@@ -344,11 +325,12 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
         preferredLanguageButtonEnglish.click();
         subscriber.setSpokenLanguage("English");
         subscriber.setWrittenLanguage("English");
-        primaryUserCheckbox.click();
         subscriber.setRelation_to_subscriber("SELF");
+        primaryUserCheckbox.click();
         SharedData.setPrimaryMember(subscriber);
     }
 
@@ -366,6 +348,7 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
         preferredLanguageButtonEnglish.click();
         subscriber.setSpokenLanguage("English");
         subscriber.setWrittenLanguage("English");
@@ -386,6 +369,7 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
         subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
+        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
         preferredLanguageButtonEnglish.click();
 
         primaryUserCheckbox.click();
@@ -395,21 +379,8 @@ public class CreateAccountPage {
 
     public void createGeneralAccountGmail(String appType, String emailBase){
         // Creates the primary user/Account holder
-        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
-        SharedData.setAppType(appType);
         addGmailDetails(emailBase);
-        switch(appType){
-            case "coco":
-                cocoTermsOfUseCheckbox.click();
-                break;
-            case "exchange":
-                exchangeTermsOfUseCheckbox.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-
-        }
-        submitButton.click();
+        selectBasedOnApp(appType);
     }
     public void addGmailDetails(String emailBase){
             initializeDataGmail(emailBase);

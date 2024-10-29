@@ -19,8 +19,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -43,8 +47,8 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -65,6 +69,7 @@ Feature: Medical Plan Verification test
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the Insurance Company dropdown
+
     And I select "<carrierOption>" to filter for desired plan provider
     And I validate the plan option 1 has text "<planText>"
     And I click on Sign Out in the Header for "Portal"
@@ -90,8 +95,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -114,8 +123,8 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -138,11 +147,12 @@ Feature: Medical Plan Verification test
     And I select the Metal Tier dropdown
     And I select "<metalOption>" to filter for a Metal Tier plan
     And I validate the plan option 1 has text "<metalPlanText>"
+
     Examples:
-    |metalOption      |metalPlanText                              |
-    |Bronze           |Elevate Health Plans Bronze HDHP           |
-    |Silver           |Cigna Connect Colorado Option Silver       |
-    |Gold             |Elevate Health Plans Colorado Option Gold  |
+    |metalOption      |metalPlanText                                              |
+    |Bronze           |Elevate Health Plans Bronze HDHP                           |
+    |Silver           |Anthem Silver Pathway Essentials 5500 $0 Select Drugs      |
+    |Gold             |Elevate Health Plans Colorado Option Gold                  |
 
 
   @SLER-72 @SelectVerifyHSAResults
@@ -158,8 +168,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -182,8 +196,8 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -204,7 +218,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I click the HSA dropdown
     And I select the HSA option
-    And I validate the plan option 2 has text "KP Select CO Bronze 6500/35%/HSA"
+    And I validate the plan option 2 has text "Anthem Bronze Pathway Essentials 8000 for HSA"
 
   @SLER-74  @SelectVerifyColoradoOptionResults
   Scenario: SLER-74 - SelectVerifyColoradoOptionResults
@@ -219,8 +233,12 @@ Feature: Medical Plan Verification test
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -243,8 +261,8 @@ Feature: Medical Plan Verification test
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -265,7 +283,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I click the Colorado Option dropdown
     And I select the Colorado Option
-    And I validate the plan option 3 has text "RMHP Colorado Doctors Plan Colorado Option Bronze"
+    And I validate the plan option 3 has text "KP Colorado Option Bronze"
 
 
 

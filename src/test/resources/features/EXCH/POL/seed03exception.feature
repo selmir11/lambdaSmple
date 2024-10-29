@@ -39,7 +39,7 @@ Feature: Seed03exception - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -61,7 +61,7 @@ Feature: Seed03exception - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -79,7 +79,7 @@ Feature: Seed03exception - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
+#    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page

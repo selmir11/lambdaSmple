@@ -20,7 +20,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         PageFactory.initElements( basicActions.getDriver(), this );
     }
 
-    @FindBy(id = "SHP-MedicalComparePlans-GoBacktoPlans")
+    @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
     @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
@@ -211,21 +211,25 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//td[normalize-space()='Infertility Treatment']")
     public WebElement getTxtInfertilityTreatment;
 
-    @FindBy(id = "SHP-MedicalComparePlans-OutOfNetwork")
+    @FindBy(id = "MedicalPlanCompare_OutOfNetworkTab")
     public WebElement selectOutofNetworkLink;
 
     @FindBy(xpath = "//div[@id='SHP-MedicalComparePlans-InNetworkTier1-panel'] //button")
     public List<WebElement> drpDwnPlanDetails;
 
-    @FindBy(id = "SHP-MedicalComparePlans-InNetworkTier1")
+    @FindBy(id = "MedicalPlanCompare_InNetworkTab")
     public WebElement selectInNetworkTier1Link;
 
     @FindBy(css = ".pt-5")
     public WebElement planHeaderdetails;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void  clickMedicalCompareGoBack() {
-          basicActions.waitForElementToBeClickable(medicalCompareGoBack, 20);
-          medicalCompareGoBack.click();}
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        basicActions.waitForElementToBePresent(medicalCompareGoBack, 20);
+        medicalCompareGoBack.click();}
 
     public void verifyPlanDeselectionOne() {
         basicActions.waitForElementToBeClickable( firstplan,15 );

@@ -36,16 +36,14 @@ Feature: Tobacco Usage page related tests
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
       Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
       Then I click Add Another Family Member
-      And I enter member details with "01012010" date of birth
-      And I select "Male" as member's sex option
-      And I select "Son" as relationship option
-      And I select "Yes" to Is Member Applying
+      Then I enter details on tell us about additional members of your household exch page and continue with "Son", "01012010", "Male" and applying "Yes"
+        | Primary:Son |
       And I click continue on Tell us about additional members page
       Then I select "Household" for Residential Address
       And I select "Yes" for CO Resident option
@@ -56,7 +54,7 @@ Feature: Tobacco Usage page related tests
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
       Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Son"
       And I click continue on the Race and Ethnicity page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option

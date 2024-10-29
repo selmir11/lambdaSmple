@@ -7,34 +7,19 @@ import io.cucumber.java.en.And;
 public class MyPoliciesPageSteps {
     MyPoliciesPage myPoliciesPage = new MyPoliciesPage(WebDriverManager.getDriver());
 
-    @And("I validate medical details on my policies page")
-    public void validateMedPlanDetails(){
-        myPoliciesPage.validateEnrolledMedicalPlanDetails();
+    @And("I validate {string} details on my policies page")
+    public void validateMedPlanDetails(String planType){
+        myPoliciesPage.validatePlanDetails(planType);
     }
 
-    @And("I validate dental details on my policies page")
-    public void validateDentalPlanDetails() {
-        myPoliciesPage.validateDentalPlanDetails();
+    @And("I click View Plan History link from {string} plan card")
+    public void clickViewPlanHistory(String planType){
+        myPoliciesPage.clickViewPlanHistory(planType);
     }
 
-    @And("I click View Plan History link from medical plan card")
-    public void clickViewPlanHistory(){
-        // To DO: Update this step -
-        // get total links for all memebers - only 2 cards always? 1med and 1 -dental?
-        // click on all the links and validate you go to a diff page, validate details and come back.
-        myPoliciesPage.clickViewPlanHistoryFromMed();
-    }
-
-    @And("I click View Plan History link from dental plan card")
-    public void clickViewPlanHistoryDental(){
-        // To DO: Update this step -
-        // click on all the links and validate you go to a diff page, validate details and come back.
-        myPoliciesPage.clickViewPlanHistoryFromDental();
-    }
-
-    @And("I validate medical plan details from plan history")
-    public void medPlanDetailsPlanHistory(){
-            myPoliciesPage.validateMedPlanDetailsFromPlanHistory();
+    @And("I validate {string} plan details from plan history")
+    public void medPlanDetailsPlanHistory(String planType){
+            myPoliciesPage.validatePlanDetailsPlanHistory(planType);
     }
 
     @And("I click on to Back to Current Plan Details button")
@@ -42,22 +27,9 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.clickBackButton();
     }
 
-    @And("I validate dental plan details from plan history")
-    public void dentalPlanDetailsPlanHistory(){
-        myPoliciesPage.validateDentalPlanDetailsFromPlanHistory();
-    }
-
     @And("I click on {string} button")
     public void clickMedicalPlansCancelButton(String btnDetail){
         myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
 
-    @And ("Validate medical plan details from my policies page")
-    public void medicalPlanValidationsOnMypoliciesPage(String startDate){
-        myPoliciesPage.medicalValidations();
-    }
-    @And ("Validate dental plan details from my policies page")
-    public void dentalPlanValidationsOnMypoliciesPage(){
-        myPoliciesPage.dentalValidations();
-    }
 }

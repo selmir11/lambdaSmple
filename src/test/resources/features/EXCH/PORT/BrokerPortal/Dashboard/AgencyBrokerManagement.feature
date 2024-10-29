@@ -1,4 +1,4 @@
-@BrokerPortalManageBrokers @port
+@BrokerPortalManageBrokers @port @Dashboard
 Feature: Verify associated broker management in Broker Portal
 
   @SLER-693

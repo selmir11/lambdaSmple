@@ -1,13 +1,11 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
@@ -20,15 +18,16 @@ public class NoticesPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, YYYY");
-    DateTimeFormatter formatterSpanish = DateTimeFormatter.ofPattern("d 'de' MMMM 'del' yyyy",new Locale("es", "ES"));
+    DateTimeFormatter formatterSpanish = DateTimeFormatter.ofPattern("d 'de' MMMM 'del' yyyy", new Locale("es", "ES"));
     String effectiveDateSpanish = formatterSpanish.format(LocalDate.now());
     String effectiveDate = LocalDate.now().format(formatter);
-    public NoticesPage(WebDriver webDriver){
+
+    public NoticesPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css= "#i0116")
+    @FindBy(css = "#i0116")
     WebElement email;
     @FindBy(xpath = "//a[@aria-label='Sign in to Microsoft Outlook']")
     WebElement loginMail;
@@ -51,34 +50,34 @@ public class NoticesPage {
     @FindBy(id = "verificationCode")
     WebElement boxVerificationCode;
     @FindBy(xpath = "//div[@class='col-11 mb-3 body-text1']")
-     WebElement errorMsgText;
+    WebElement errorMsgText;
     @FindBy(id = "main-sign-in")
-     WebElement btnVerify;
-    @FindBy(id= "x_verification-code")
-     WebElement mfaCode;
-    @FindBy(id= "id__30")
-     WebElement deleteBtn;
-    @FindBy(xpath= "//li[1]//span[1]")
-     WebElement verifySpamText;
-    @FindBy(xpath= "//ul/li[1]/span/u")
-     WebElement verifyMfaEmail;
-    @FindBy(css= "ul > li:nth-child(2) > span > strong")
-     WebElement requestNewCodeBtn;
-    @FindBy(id= "x_generationDateTime")
-     WebElement EmailDate;
+    WebElement btnVerify;
+    @FindBy(id = "x_verification-code")
+    WebElement mfaCode;
+    @FindBy(id = "id__30")
+    WebElement deleteBtn;
+    @FindBy(xpath = "//li[1]//span[1]")
+    WebElement verifySpamText;
+    @FindBy(xpath = "//ul/li[1]/span/u")
+    WebElement verifyMfaEmail;
+    @FindBy(css = "ul > li:nth-child(2) > span > strong")
+    WebElement requestNewCodeBtn;
+    @FindBy(id = "x_generationDateTime")
+    WebElement EmailDate;
     @FindBy(xpath = "//*[@id='O365_MainLink_MePhoto']/div/div/div/div/div[2]/img")
     WebElement outlookLogOutIcon;
     @FindBy(id = "mectrl_body_signOut")
     WebElement outlookLogOut;
-    @FindBy(xpath= "//div[@id='x_individualUsernameReminderBody']//p")
+    @FindBy(xpath = "//div[@id='x_individualUsernameReminderBody']//p")
     List<WebElement> bodyText;
-    @FindBy(xpath= "//*[@id='x_individualUsernameReminderBody']/p[3]/span/span")
+    @FindBy(xpath = "//*[@id='x_individualUsernameReminderBody']/p[3]/span/span")
     WebElement bodyText2;
-    @FindBy(xpath="//*[@id='x_programManagerLoginReminderBody']/p")
+    @FindBy(xpath = "//*[@id='x_programManagerLoginReminderBody']/p")
     List<WebElement> bodyTextAM1605;
-    @FindBy(xpath="//div[@id='x_individualAccountCreationNoticeBody']//div")
+    @FindBy(xpath = "//div[@id='x_individualAccountCreationNoticeBody']//div")
     List<WebElement> bodyTextAM00101;
-    @FindBy(xpath="//*[@id='x_individualAccountCreationNoticeBody']/p")
+    @FindBy(xpath = "//*[@id='x_individualAccountCreationNoticeBody']/p")
     List<WebElement> body2TextAM00101;
     @FindBy(css = ".x_emailHeader p")
     List<WebElement> emailHdrtxt;
@@ -86,136 +85,138 @@ public class NoticesPage {
     WebElement emailDeartxt;
     @FindBy(css = "#x_initialEligibilityNoticeBody p")
     List<WebElement> initialEligibilityBodyTxt;
-    @FindBy(xpath= "//div[@id='x_brokerLoginReminderBody']//p")
+    @FindBy(xpath = "//div[@id='x_brokerLoginReminderBody']//p")
     List<WebElement> bodyText1603;
-    @FindBy(xpath= "//p[@id='x_receivedEmailinErrorStatementForBroker']")
+    @FindBy(xpath = "//p[@id='x_receivedEmailinErrorStatementForBroker']")
     WebElement bodyText1603part2;
-    @FindBy(xpath= "//div[@id='x_enrollmentConfirmationNoticeBody']/p")
+    @FindBy(xpath = "//div[@id='x_enrollmentConfirmationNoticeBody']/p")
     List<WebElement> bodyTextEN00204;
-    @FindBy(xpath= "(//p[@class='x_body'])[2]")
+    @FindBy(xpath = "(//p[@class='x_body'])[2]")
     WebElement bodyText1607;
-    @FindBy(xpath= "(//p[@class='x_body'])[3]")
+    @FindBy(xpath = "(//p[@class='x_body'])[3]")
     WebElement bodyText1607part2;
-    @FindBy(xpath= "//a[@target='_blank']")
+    @FindBy(xpath = "//a[@target='_blank']")
     WebElement resetPWLink;
-    @FindBy(xpath= "//*[@id='x_passwordResetConfirmationBody']/p")
+    @FindBy(xpath = "//*[@id='x_passwordResetConfirmationBody']/p")
     List<WebElement> bodyConfirmationPW;
 
     @FindBy(id = "x_policyInformation")
     WebElement policyinformation;
-    @FindBy(css ="#x_policyInformation .x_body dl dt")
+    @FindBy(css = "#x_policyInformation .x_body dl dt")
     List<WebElement> emailPolicyDetails;
 
 
     public String MFACode = "";
-    public void openOutlookTab(){
-        JavascriptExecutor jse = (JavascriptExecutor)basicActions.getDriver();
+
+    public void openOutlookTab() {
+        JavascriptExecutor jse = (JavascriptExecutor) basicActions.getDriver();
         jse.executeScript("window.open()");
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
         }
         basicActions.getDriver().get(Constants.Outlook);
-        }
-        public void openPasswordResetTab(){
-        JavascriptExecutor jse = (JavascriptExecutor)basicActions.getDriver();
+    }
+
+    public void openPasswordResetTab() {
+        JavascriptExecutor jse = (JavascriptExecutor) basicActions.getDriver();
         jse.executeScript("window.open()");
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
         }
-        basicActions.getDriver().get("https://"+ SharedData.getEnv()+"-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken%3DdrpfwFOIdEDTp9l6rBO8%26lang%3Den=");
-        }
+        basicActions.getDriver().get("https://" + SharedData.getEnv() + "-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken%3DdrpfwFOIdEDTp9l6rBO8%26lang%3Den=");
+    }
 
-    public void signInEmail(String Gmail,String password) {
-       loginMail.click();
+    public void signInEmail(String Gmail, String password) {
+        loginMail.click();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
-            }
-        basicActions.waitForElementToBePresent(email,20);
+        }
+        basicActions.waitForElementToBePresent(email, 20);
         email.sendKeys(Gmail);
-        basicActions.waitForElementToBePresent(nextButton,20);
+        basicActions.waitForElementToBePresent(nextButton, 20);
         nextButton.click();
-       basicActions.waitForElementToBePresent(passwordEmail,20);
-       passwordEmail.sendKeys(password);
-       passwordEmail.sendKeys(Keys.ENTER );
-       basicActions.waitForElementToBeClickable(btnStayNo,20);
-       btnStayNo.click();
-        }
+        basicActions.waitForElementToBePresent(passwordEmail, 20);
+        passwordEmail.sendKeys(password);
+        passwordEmail.sendKeys(Keys.ENTER);
+        basicActions.waitForElementToBeClickable(btnStayNo, 20);
+        btnStayNo.click();
+    }
 
-        public void signOutEmail(){
-            basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
-            outlookLogOutIcon.click();
-            basicActions.waitForElementPresence(outlookLogOut,20);
-            basicActions.clickById("mectrl_body_signOut");
-            basicActions.wait(500);
-            basicActions.closeBrowserTab();
-            basicActions.switchtoactiveTab();
-            basicActions.closeBrowserTab();
-        }
+    public void signOutEmail() {
+        basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
+        outlookLogOutIcon.click();
+        basicActions.waitForElementPresence(outlookLogOut, 20);
+        basicActions.clickById("mectrl_body_signOut");
+        basicActions.wait(500);
+        basicActions.closeBrowserTab();
+        basicActions.switchtoactiveTab();
+        basicActions.closeBrowserTab();
+    }
 
-        public void verbiageValidation(){
-        basicActions.waitForElementToBePresent(MFAHeader,20);
-            softAssert.assertEquals(MFAHeader.getText(), "A code has been emailed to t*****@outlook.com" );
-            softAssert.assertEquals(MFAText.getText(),"Check your email and enter the code below.");
-            softAssert.assertEquals(MFASubText.getText(), "Verification Code");
-            softAssert.assertEquals(sendNewCode.getText(), "Didn't receive an email?");
-            softAssert.assertAll();
-        }
+    public void verbiageValidation() {
+        basicActions.waitForElementToBePresent(MFAHeader, 20);
+        softAssert.assertEquals(MFAHeader.getText(), "A code has been emailed to t*****@outlook.com");
+        softAssert.assertEquals(MFAText.getText(), "Check your email and enter the code below.");
+        softAssert.assertEquals(MFASubText.getText(), "Verification Code");
+        softAssert.assertEquals(sendNewCode.getText(), "Didn't receive an email?");
+        softAssert.assertAll();
+    }
 
-    public void enterInvalidMFACode(){
-        basicActions.waitForElementToBePresent(boxVerificationCode,20);
+    public void enterInvalidMFACode() {
+        basicActions.waitForElementToBePresent(boxVerificationCode, 20);
         boxVerificationCode.sendKeys("invalid");
-        basicActions.waitForElementToBePresent(btnVerify,20);
+        basicActions.waitForElementToBePresent(btnVerify, 20);
         btnVerify.click();
     }
 
-    public void verifyErrorText(){
-        basicActions.waitForElementToBePresent(errorMsgText,20);
-        softAssert.assertEquals(errorMsgText.getText(),"Your passcode doesn't match our records. Please try again.");
+    public void verifyErrorText() {
+        basicActions.waitForElementToBePresent(errorMsgText, 20);
+        softAssert.assertEquals(errorMsgText.getText(), "Your passcode doesn't match our records. Please try again.");
         softAssert.assertAll();
 
     }
-    public void openMFANotice(){
-        basicActions.waitForElementToBePresentWithRetries(noticeOkta,20);
+
+    public void openMFANotice() {
+        basicActions.waitForElementToBePresentWithRetries(noticeOkta, 20);
         noticeOkta.click();
     }
 
     public void sendNewCode() {
-        basicActions.waitForElementToBePresent(sendNewCode,20);
+        basicActions.waitForElementToBePresent(sendNewCode, 20);
         sendNewCode.click();
     }
 
-    public String getMfaCode(){
-        basicActions.waitForElementToBePresent(mfaCode,20);
+    public String getMfaCode() {
+        basicActions.waitForElementToBePresent(mfaCode, 20);
         MFACode = mfaCode.getText();
-       return  MFACode;
+        return MFACode;
 
     }
 
 
-
-    public void enterValidMfaCode(){
+    public void enterValidMfaCode() {
         basicActions.switchToParentPage("LoginPortalUi");
-        basicActions.waitForElementToBePresent(boxVerificationCode,20);
+        basicActions.waitForElementToBePresent(boxVerificationCode, 20);
         boxVerificationCode.sendKeys(MFACode);
         btnVerify.click();
     }
 
     public void deleteOpenNotice() {
-        basicActions.waitForElementToBePresent(deleteBtn,20);
+        basicActions.waitForElementToBePresent(deleteBtn, 20);
         deleteBtn.click();
     }
 
 
     public void VerifyRequestNewOptionIsDisplayed() {
-        basicActions.waitForElementToBePresent(verifySpamText,20);
-        softAssert.assertEquals(verifySpamText.getText(),"Check your spam folder for an email from noreply@okta.com");
-        softAssert.assertEquals(verifyMfaEmail.getText(),"noreply@okta.com");
-        softAssert.assertEquals(requestNewCodeBtn.getText(),"Request a new code");
+        basicActions.waitForElementToBePresent(verifySpamText, 20);
+        softAssert.assertEquals(verifySpamText.getText(), "Check your spam folder for an email from noreply@okta.com");
+        softAssert.assertEquals(verifyMfaEmail.getText(), "noreply@okta.com");
+        softAssert.assertEquals(requestNewCodeBtn.getText(), "Request a new code");
         softAssert.assertAll();
     }
 
     public void clickRequestNewCode() {
-        basicActions.waitForElementToBeClickable(requestNewCodeBtn,30);
+        basicActions.waitForElementToBeClickable(requestNewCodeBtn, 30);
         softAssert.assertTrue(requestNewCodeBtn.isEnabled());
         requestNewCodeBtn.click();
         softAssert.assertAll();
@@ -223,11 +224,11 @@ public class NoticesPage {
 
     public void openAllNotices(String noticeNumber, String language) {
         basicActions.waitForElementToBePresent(EmailDate, 30);
-        basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '"+noticeNumber+"')]")).click();
-        basicActions.waitForElementToBePresent(EmailDate,30);
-        String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '"+noticeNumber+"')]")).getText();
+        basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '" + noticeNumber + "')]")).click();
+        basicActions.waitForElementToBePresent(EmailDate, 30);
+        String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
-        switch (language){
+        switch (language) {
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
                 break;
@@ -240,81 +241,82 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    public void VerifyTheNoticeText(String noticeNumber, String language,String typeAPP) {
-        switch (typeAPP){
+    public void VerifyTheNoticeText(String noticeNumber, String language, String typeAPP) {
+        switch (typeAPP) {
             case "Exch":
-            verifyTheNoticeEXCH(noticeNumber,language);
-            break;
+                verifyTheNoticeEXCH(noticeNumber, language);
+                break;
             case "Coco":
-            verifyTheNoticeCoco(noticeNumber,language);
-            break;
+                verifyTheNoticeCoco(noticeNumber, language);
+                break;
             case "Broker":
-            verifyTheNoticeBroker(noticeNumber,language);
-            break;
-        default:
+                verifyTheNoticeBroker(noticeNumber, language);
+                break;
+            default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber + typeAPP);
         }
     }
 
     private void verifyTheNoticeBroker(String noticeNumber, String language) {
-        switch (noticeNumber){
+        switch (noticeNumber) {
             case "AM-016-07":
                 VerifyTheNoticeTextAM01607broker();
                 break;
             case "AM-016-08":
                 VerifyTheNoticeTextAM01608broker();
                 break;
-        default:
-                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber );
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
     }
 
     private void VerifyTheNoticeTextAM01608broker() {
         softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
-        softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. as soon as possible to protect your account.");
+        softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 1st - Dec 15th 8:00a.m. - 8:00p.m. as soon as possible to protect your account.");
         softAssert.assertAll();
     }
 
     private void VerifyTheNoticeTextAM01607broker() {
         if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
+            softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
 
         } else if (SharedData.getEnv().equals("staging")) {
-            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
+            softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
         }
         softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
-        softAssert.assertEquals(bodyText1607part2.getText(),"If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+
         softAssert.assertAll();
     }
 
-    public void verifyTheNoticeEXCH(String noticeNumber, String language){
-        switch (noticeNumber){
-            case "AM-016-01" :
+    public void verifyTheNoticeEXCH(String noticeNumber, String language) {
+        switch (noticeNumber) {
+            case "AM-016-01":
                 VerifyTheNoticeTextAM01601Exch();
                 break;
-            case "ELG-101-01" :
+            case "ELG-101-01":
                 VerifyTheELG10101NoticeText(language);
                 break;
-            case "AM-016-03" :
+            case "AM-016-03":
                 VerifyTheNoticeTextAM01603();
                 break;
-            case "AM-016-05" :
+            case "AM-016-05":
                 VerifyTheNoticeTextAM01605();
                 break;
-            case "AM-001-01" :
+            case "AM-001-01":
                 VerifyTheNoticeTextAM00101();
                 break;
-            case "EN-002-04" :
+            case "EN-002-04":
                 VerifyTheNoticeTextEN00204();
                 break;
-            case "AM-016-07" :
+            case "AM-016-07":
                 VerifyTheNoticeTextAM01607(language);
                 break;
-            case "AM-016-08" :
+            case "AM-016-08":
                 VerifyTheNoticeTextAM01608(language);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
     }
 
@@ -322,11 +324,11 @@ public class NoticesPage {
         switch (language) {
             case "English":
                 softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
-                softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. as soon as possible to protect your account.");
+                softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains( "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
                 break;
             case "Spanish":
                 softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "La contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE fue cambiada recientemente.");
-                softAssert.assertEquals(bodyConfirmationPW.get(1).getText(), "Si usted no hizo este cambio, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m. lo m\u00E1s pronto posible para proteger su cuenta.");
+                softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("Si usted no hizo este cambio, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
                 break;
 
             default:
@@ -334,65 +336,67 @@ public class NoticesPage {
         }
         softAssert.assertAll();
     }
+
     private void VerifyTheNoticeTextAM01607(String language) {
-        switch (language){
-            case "English" :
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
-
-        } else if (SharedData.getEnv().equals("staging")) {
-            softAssert.assertTrue(bodyText1607.getText().contains( "Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
-        }
-        softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
-        softAssert.assertEquals(bodyText1607part2.getText(),"If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
-
-        break;
-            case "Spanish":
+        switch (language) {
+            case "English":
                 if (SharedData.getEnv().equals("qa")) {
-                    softAssert.assertTrue(bodyText1607.getText().contains( "Ha solicitado restablecer la contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE. Para restablecerla, haga clic en este enlace: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
+                    softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
 
                 } else if (SharedData.getEnv().equals("staging")) {
-                    softAssert.assertTrue(bodyText1607.getText().contains( "Ha solicitado restablecer la contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE. Para restablecerla, haga clic en este enlace: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
+                    softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
+                }
+                softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
+                softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+
+                break;
+            case "Spanish":
+                if (SharedData.getEnv().equals("qa")) {
+                    softAssert.assertTrue(bodyText1607.getText().contains("Ha solicitado restablecer la contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE. Para restablecerla, haga clic en este enlace: https://qa-aws.connectforhealthco.com/login-portal/createPassword"));
+
+                } else if (SharedData.getEnv().equals("staging")) {
+                    softAssert.assertTrue(bodyText1607.getText().contains("Ha solicitado restablecer la contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE. Para restablecerla, haga clic en este enlace: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
                 }
                 softAssert.assertTrue(bodyText1607.getText().contains("Este enlace vencer\u00E1 despu\u00E9s de 60 minutos. Si no sigue el enlace durante el tiempo permitido, tendr\u00E1 que solicitar uno nuevo."));
-                softAssert.assertEquals(bodyText1607part2.getText(),"Si no solicit\u00F3 el restablecimiento de su contrase\u00F1a o si necesita m\u00E1s ayuda para hacerlo, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                softAssert.assertTrue(bodyText1607part2.getText().contains("Si no solicit\u00F3 el restablecimiento de su contrase\u00F1a o si necesita m\u00E1s ayuda para hacerlo, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
                 break;
-        default:
-        throw new IllegalArgumentException("Invalid option: " + language );
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
     }
-        softAssert.assertAll();}
 
-    public void verifyTheNoticeCoco(String noticeNumber,String language){
+    public void verifyTheNoticeCoco(String noticeNumber, String language) {
         switch (noticeNumber) {
             case "AM-016-01":
                 VerifyTheNoticeTextAM01601coco(language);
                 break;
-            case "EN-002-04" :
+            case "EN-002-04":
                 VerifyTheNoticeTextEN00204();
                 break;
-            case "AM-001-01" :
+            case "AM-001-01":
                 VerifyTheNoticeTextAM00101Coco(language);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + language +noticeNumber);
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
     }
 
     private void VerifyTheNoticeTextAM00101Coco(String language) {
 
-        switch (language){
-            case "English" :
-        softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
-        softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Colorado Connect\u00AE . An account was opened for you on"));
-        softAssert.assertEquals(body2TextAM00101.get(0).getText(),"You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
-        softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to"));
-        break;
-            case "Spanish" :
-        softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Apreciable"));
-        softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Le damos la bienvenida a Colorado Connect\u00AE. Se le cre\u00F3 una cuenta el"));
-        softAssert.assertTrue(body2TextAM00101.get(0).getText().contains("Ya puede elegir el plan de seguro de salud que mejor se ajuste a sus necesidades. Para empezar, haga clic en el enlace que aparece a continuaci\u00F3n"));
-        softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("Usted eligi\u00F3 el correo electr\u00F3nico como medio de comunicaci\u00F3n preferido. Todas las comunicaciones futuras se enviar\u00E1n por correo electr\u00F3nico"));
-        break;
+        switch (language) {
+            case "English":
+                softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
+                softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Colorado Connect\u00AE . An account was opened for you on"));
+                softAssert.assertEquals(body2TextAM00101.get(0).getText(), "You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
+                softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to"));
+                break;
+            case "Spanish":
+                softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Apreciable"));
+                softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Le damos la bienvenida a Colorado Connect\u00AE. Se le cre\u00F3 una cuenta el"));
+                softAssert.assertTrue(body2TextAM00101.get(0).getText().contains("Ya puede elegir el plan de seguro de salud que mejor se ajuste a sus necesidades. Para empezar, haga clic en el enlace que aparece a continuaci\u00F3n"));
+                softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("Usted eligi\u00F3 el correo electr\u00F3nico como medio de comunicaci\u00F3n preferido. Todas las comunicaciones futuras se enviar\u00E1n por correo electr\u00F3nico"));
+                break;
         }
         softAssert.assertAll();
     }
@@ -400,51 +404,52 @@ public class NoticesPage {
     private void VerifyTheNoticeTextAM00101() {
         softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
         softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
-        softAssert.assertEquals(body2TextAM00101.get(0).getText(),"You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
+        softAssert.assertEquals(body2TextAM00101.get(0).getText(), "You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
         softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
         softAssert.assertAll();
     }
 
     private void VerifyTheNoticeTextAM01605() {
         softAssert.assertTrue(bodyTextAM1605.get(0).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
-        softAssert.assertEquals(bodyTextAM1605.get(1).getText(),"Follow the link to Login at https://connectforhealthco.com/for-certified-assisters/.");
-        softAssert.assertEquals(bodyTextAM1605.get(2).getText(),"If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m. If you have questions about your Program Manager account, please email [AssistanceNetwork@c4hco.com]AssistanceNetwork@c4hco.com.");
+        softAssert.assertEquals(bodyTextAM1605.get(1).getText(), "Follow the link to Login at https://connectforhealthco.com/for-certified-assisters/.");
+        softAssert.assertEquals(bodyTextAM1605.get(2).getText(), "If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m. If you have questions about your Program Manager account, please email [AssistanceNetwork@c4hco.com]AssistanceNetwork@c4hco.com.");
         softAssert.assertAll();
     }
 
     public void VerifyTheELG10101NoticeText(String language) {
-        switch (language){
-            case "English" :
+        switch (language) {
+            case "English":
                 softAssert.assertTrue(emailHdrtxt.get(0).getText().contains("ELG-101-01"));
-                softAssert.assertEquals(emailHdrtxt.get(2).getText(),SharedData.getPrimaryMember().getEmailId());
-                softAssert.assertEquals(emailDeartxt.getText(),SharedData.getPrimaryMember().getFullName());
-                softAssert.assertEquals(initialEligibilityBodyTxt.get(1).getText(),"Account Number: "+SharedData.getPrimaryMember().getAccount_id());
+                softAssert.assertEquals(emailHdrtxt.get(2).getText(), SharedData.getPrimaryMember().getEmailId());
+                softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
+                softAssert.assertEquals(initialEligibilityBodyTxt.get(1).getText(), "Account Number: " + SharedData.getPrimaryMember().getAccount_id());
                 softAssert.assertAll();
                 break;
-            case "Spanish" :
+            case "Spanish":
                 softAssert.assertTrue(emailHdrtxt.get(0).getText().contains("ELG-101-01"));
-                softAssert.assertEquals(emailHdrtxt.get(2).getText(),SharedData.getPrimaryMember().getEmailId());
-                softAssert.assertEquals(emailDeartxt.getText(),SharedData.getPrimaryMember().getFullName());
-                softAssert.assertEquals(initialEligibilityBodyTxt.get(1).getText(),"N\u00FAmero de Cuenta: "+SharedData.getPrimaryMember().getAccount_id());
+                softAssert.assertEquals(emailHdrtxt.get(2).getText(), SharedData.getPrimaryMember().getEmailId());
+                softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
+                softAssert.assertEquals(initialEligibilityBodyTxt.get(1).getText(), "N\u00FAmero de Cuenta: " + SharedData.getPrimaryMember().getAccount_id());
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + language);}
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
 
     public void VerifyTheNoticeTextAM01601coco(String language) {
-        switch (language){
-            case "English" :
+        switch (language) {
+            case "English":
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect\u00AE is:"));
                 softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect\u00AE website and enter this username plus your password to log in to your account.");//®
-                softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
-                softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+                softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 1st - Dec 15th 8:00a.m. - 8:00p.m.");
+                softAssert.assertEquals(bodyText2.getText(),"please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 1st - Dec 15th 8:00a.m. - 8:00p.m.");
             break;
             case "Spanish" :
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect\u00AE es:"));
                 softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect\u00AE y introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
-                softAssert.assertEquals(bodyText.get(3).getText(),"Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
-                softAssert.assertEquals(bodyText2.getText(),"llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                softAssert.assertTrue(bodyText.get(3).getText().contains("Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertTrue(bodyText2.getText().contains("llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
             break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -452,18 +457,18 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    public void VerifyTheNoticeTextAM01601Exch(){
+    public void VerifyTheNoticeTextAM01601Exch() {
         softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
-        softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
-        softAssert.assertEquals(bodyText.get(3).getText(),"If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
-        softAssert.assertEquals(bodyText2.getText(),"please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
+        softAssert.assertEquals(bodyText.get(3).getText(), "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertEquals(bodyText2.getText(), "please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
         softAssert.assertAll();
     }
 
     public void VerifyTheNoticeTextAM01603() {
         softAssert.assertTrue(bodyText1603.get(1).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
-        softAssert.assertEquals(bodyText1603.get(2).getText(),"If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
-        softAssert.assertEquals(bodyText1603part2.getText(),"If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertEquals(bodyText1603.get(2).getText(), "If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertEquals(bodyText1603part2.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
         softAssert.assertAll();
     }
 
@@ -472,72 +477,52 @@ public class NoticesPage {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         String formattedDate = currentDate.format(formatter);
         softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
-        System.out.println(formattedDate);
         softAssert.assertTrue(EmailDate.getText().contains(formattedDate), "Email generated date mismatch");
         softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
         softAssert.assertAll();
     }
+
     public void clickThePasswordResetLink() {
-        basicActions.waitForElementToBePresent(resetPWLink,20);
+        basicActions.waitForElementToBePresent(resetPWLink, 20);
         resetPWLink.click();
     }
 
-    public void validateDetailsFromEmailPolicy(String planType, String startDate, List<String> membersOnPolicy) {
-       String coverageStartDate = basicActions.getDateBasedOnRequirement(startDate);
-        LocalDate date = LocalDate.parse(coverageStartDate);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
-        String emailFormattedDate = date.format(formatter);
-        // Validating plan name and member names and coverage start date
-        String planName = "";
-        switch(planType){
+    public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
+        // Validating plan name, member names and coverage start date from email notice
+        String coverageStartDate = SharedData.getExpectedCalculatedDates().getCoverageStartDate();
+        String formattedCoverageDt = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate, "yyyy-MM-dd", "MMMM d, yyyy");
+
+        switch (planType) {
             case "medical":
-                planName =  SharedData.getPrimaryMember().getMedicalPlan();
                 validateMembers("4", membersOnPolicy);
-                validatePlanDetails("4", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(emailFormattedDate), "Medical coverage date mismatch");
+                validatePlanDetails("4", SharedData.getPrimaryMember().getMedicalPlan());
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(formattedCoverageDt), "Medical coverage date mismatch");
                 break;
             case "dental":
-                planName =  SharedData.getPrimaryMember().getDentalPlan();
                 validateMembers("1", membersOnPolicy);
-                validatePlanDetails("1", planName);
-                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(emailFormattedDate), "Dental coverage date mismatch");
+                validatePlanDetails("1", SharedData.getPrimaryMember().getDentalPlan());
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(formattedCoverageDt), "Dental coverage date mismatch");
                 break;
         }
         softAssert.assertAll();
     }
 
 
-    private void validateMembers(String locatorStringByPlan, List<String> membersOnPolicy){
+    private void validateMembers(String locatorStringByPlan, List<String> membersOnPolicy) {
         for (String memPrefix : membersOnPolicy) {
-            String memberName = getMemFullName(memPrefix);
-
-           WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorStringByPlan+"] //*[contains(text(),'" + memPrefix + "')]"));
-
-            if(memberName!=null){
-                basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-                softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
-            } else {
-                Assert.fail("Member name is set to null");
-            }
+            String memberName = basicActions.getCompleteFullNameWithPrefix(memPrefix);
+            WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[" + locatorStringByPlan + "] //*[contains(text(),'" + memPrefix + "')]"));
+            basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
+            softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
+            softAssert.assertAll();
         }
     }
 
-    private void validatePlanDetails(String locatorByPlan, String planName){
-        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])["+locatorByPlan+"] //*[contains(text(),'" + planName + "')]"));
-        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Dental Plan Name is not found in the email Notice");
+    private void validatePlanDetails(String locatorByPlan, String planName) {
+        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[" + locatorByPlan + "] //*[contains(text(),'" + planName + "')]"));
+        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Plan Name is not found in the email Notice");
         softAssert.assertAll();
     }
 
-    private String getMemFullName(String memPrefix){
-        String memFullName = null;
-        if (memPrefix.equals("Primary")) {
-            memFullName = SharedData.getPrimaryMember().getFullName(); // WIP - Check if this is name is with full middle name or not
-        } else {
-            List<MemberDetails> memberDetailsList = SharedData.getMembers();
-            memFullName = memberDetailsList.stream().map(MemberDetails::getCompleteFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
-
-        }
-        return memFullName;
-    }
 
 }

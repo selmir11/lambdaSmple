@@ -83,9 +83,9 @@ public class TellUsAboutAdditionalMemberPage {
     }
 
     public void enterMemberDetails(String DOB){
-        String frstName = capitalizeFirstLetter(getUniqueString(20));
-        String mdlName = capitalizeFirstLetter(getUniqueString(8));
-        String lastName = capitalizeFirstLetter(getUniqueString(13));
+        String frstName = basicActions.capitalizeFirstLetter(getUniqueString(20));
+        String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
+        String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
         basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
@@ -94,13 +94,9 @@ public class TellUsAboutAdditionalMemberPage {
         txtdateOfBirth.sendKeys(DOB);
         txtSSN.sendKeys("653035280");
         List<MemberDetails> memberList = SharedData.getMembers();
-        int memberCount =0;
         if (memberList == null) {
             memberList = new ArrayList<>();
-        }else{
-            memberCount = memberList.size();
         }
-        memberCount++;
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -109,18 +105,20 @@ public class TellUsAboutAdditionalMemberPage {
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
         member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
-        member.setDependentCountTag("member"+memberCount);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
     }
 
-    public  void selectNoSSn(){
+    public  void selectNoSSn(String memberPrefix){
+        List<MemberDetails> members = SharedData.getMembers();
         basicActions.waitForElementToBePresent(rdbhaveSsn,1);
         rdbhaveSsn.click();
         basicActions.waitForElementToBePresent(rdbhaveAppliedForSSNYes,1);
         rdbhaveAppliedForSSNYes.click();
+        members.stream().filter(member -> member.getFirstName().contains(memberPrefix)).findFirst().ifPresent(member -> member.setSsn(null));
     }
+
     public void selectSex(String Sex){
         switch(Sex){
             case "Female":
@@ -200,9 +198,9 @@ public class TellUsAboutAdditionalMemberPage {
     }
 
     public void specificAdditionalMemberDetailsExch(String name, String dob, String gender, List<String> relations, String applying){
-        String frstName = name+getUniqueString(5);
-        String mdlName = capitalizeFirstLetter(getUniqueString(5));
-        String lastName = capitalizeFirstLetter(getUniqueString(13));
+        String frstName = name+getUniqueString(8);
+        String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
+        String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
         basicActions.waitForElementToBePresent(txtheader,1);
         basicActions.waitForElementToBePresent(txtfirstName,30);
         txtfirstName.sendKeys(frstName);
@@ -210,17 +208,30 @@ public class TellUsAboutAdditionalMemberPage {
         txtlastName.sendKeys(lastName);
         if(dob.equals("getFromSharedData")){
             dob = SharedData.getCalculatedDob().get(name);
+          dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
+        } else if(dob.contains("Age")){
+            memberDetailswithAge(Integer.parseInt(dob.replaceAll("\\D", "")));
         }
         txtdateOfBirth.sendKeys(dob);
         txtSSN.sendKeys("653035280");
+        selectSex(gender);
+
+        if(IsPersonPregnentNo.isDisplayed() ){
+            selectIsPersonPregnant("No");
+        }
+        setMember(frstName, lastName, mdlName, dob, gender);
+
+        for(String Relation : relations) {
+            selectRelationship(Relation);
+        }
+        isMemberApplyingForInsurance(applying);
+    }
+
+    private void setMember(String frstName, String lastName, String mdlName, String dob, String gender){
         List<MemberDetails> memberList = SharedData.getMembers();
-        int memberCount =0;
         if (memberList == null) {
             memberList = new ArrayList<>();
-        }else{
-            memberCount = memberList.size();
         }
-        memberCount++;
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -230,26 +241,9 @@ public class TellUsAboutAdditionalMemberPage {
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
         member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
-        member.setDependentCountTag("member"+memberCount);
+        member.setSsn("653035280");
         memberList.add(member);
-
         SharedData.setMembers(memberList);
-
-        selectSex(gender);
-        if(IsPersonPregnentNo.isDisplayed() ){
-            selectIsPersonPregnant("No");
-        }
-        for(String Relation : relations) {
-            selectRelationship(Relation);
-        }
-        isMemberApplyingForInsurance(applying);
-    }
-
-    public String capitalizeFirstLetter(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
-        }
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
     public void selectRelationship(String Relationship){

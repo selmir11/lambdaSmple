@@ -134,6 +134,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         member.setDob(DOB);
         member.setSignature(frstName + " " + lastName);
         member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
+        member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
         memberList.add(member);
 
         SharedData.setMembers(memberList);

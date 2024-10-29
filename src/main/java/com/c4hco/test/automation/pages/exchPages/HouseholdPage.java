@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
@@ -151,6 +152,10 @@ public class HouseholdPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + option);
         }
+    }
+
+    public void verifyNoErrorMessage_Household() {
+        Assert.assertTrue(basicActions.waitForElementToDisappear(redIcon, 30), "Error is displayed");
     }
 
 }

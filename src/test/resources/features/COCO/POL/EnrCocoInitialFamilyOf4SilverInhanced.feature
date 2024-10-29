@@ -1,7 +1,9 @@
 Feature: Initial Application Family of 4(Silver Enhanced)
   @SLCR-292
   Scenario: COCO Initial Application with Family of 4 (Silver Enhanced)
-
+      Given I set the test scenario details in coco
+          | totalGroups | totalMembers |
+          | 1           | 4            |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -10,6 +12,9 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Of Next Month       | Last Day Of Current Year | First Of Next Month       | Last Day Of Current Year | First Of Next Month       | Last Day Of Current Year |
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -22,7 +27,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -32,7 +37,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -45,13 +50,13 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -65,13 +70,13 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -86,19 +91,19 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity
+    And I select "Asian or Asian American" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -113,6 +118,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I validate medical premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -121,9 +127,10 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    And I select year "2024" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
-    And Validate selected medical plan for "Son" is "Elevate Health Plans Colorado Option Bronze"
-    And Validate selected medical plan for "Daughter" is "Elevate Health Plans Colorado Option Bronze"
-    And Validate selected medical plan for "Spouse" is "Elevate Health Plans Colorado Option Bronze"
-    And Validate selected medical plan for "Primary" is "Elevate Health Plans Colorado Option Bronze"
+    And I validate enrolled medical plans details on my policies page coco
+    And I click view Plan History link from medical plan card in coco
+    And I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"

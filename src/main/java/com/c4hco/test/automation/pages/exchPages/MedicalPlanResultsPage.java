@@ -189,27 +189,27 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,60 );
-        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,30 );
+        basicActions.waitForElementToDisappear( spinner,100 );
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,40 );
         insuranceCompanyDropdown.click();
 
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( metalTierDropdown,30 );
         metalTierDropdown.click();
 
     }
 
     public void clickHSADropdown() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(hsaDropdown, 30);
         hsaDropdown.click();
     }
 
     public void selectHSAOption() {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(hsaOption, 100);
         hsaOption.click();
 
@@ -342,6 +342,14 @@ public class MedicalPlanResultsPage {
         }
         SharedData.setMedicalPlansList(medicalPlansList);
     }
+
+    public void validateTotalMedicalPlans(int expectedCount){
+        int medicalPlansListcount = SharedData.getMedicalPlansList().size();
+        softAssert.assertEquals(medicalPlansListcount, expectedCount, "The number of medical plans does not match the expected count");
+        softAssert.assertAll();
+
+    }
+
 
 }
 

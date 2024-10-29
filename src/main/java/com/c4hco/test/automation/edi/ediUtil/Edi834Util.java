@@ -118,6 +118,9 @@ public class Edi834Util {
                                     memberObject.set("Member-" + previousIndex, jsonNode);
                                     memberArrayNode = objectMapper.createArrayNode();
                                     memberSegmentData = new ArrayListValuedHashMap<>();
+                                    memberArrayNode.add(currentSegmentArray);
+                                    memberSegmentData.put(currentSegmentName, currentSegmentArray);
+
                                     previousIndex = insCount;
                                 }
                             } else{

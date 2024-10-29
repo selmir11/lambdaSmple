@@ -18,8 +18,14 @@ Feature: Go Back tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -39,8 +45,8 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -98,8 +104,14 @@ Feature: Go Back tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -120,19 +132,16 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I enter member details with "10101981" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101981", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -144,8 +153,8 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -215,8 +224,14 @@ Feature: Go Back tests
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -237,19 +252,16 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I enter member details with "10101981" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101981", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -261,20 +273,17 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I enter member details with "10101981" date of birth
-    And I select "Male" as sex option
-    And I select "Other" as relationship option
-    And I select "Other" as relationship one option
-
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Brother", "10101981", "Male" and applying "Yes"
+      | Primary:Other |
+      | Spouse:Other |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -286,23 +295,17 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Brother"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
     Then I click Add Another Family Member
-    Then I enter member details with "10101981" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-
-    And I select "Other" as relationship option
-    And I select "Other" as relationship one option
-    And I select "Other" as relationship two option
-
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Sister", "10101981", "Female" and applying "Yes"
+      | Primary:Other |
+      | Spouse:Other  |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -314,8 +317,8 @@ Feature: Go Back tests
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Sister"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -416,10 +419,13 @@ Feature: Go Back tests
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
+    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    # LCE is removed during Open Enrollment
-    And I report "MovedToColorado" and click continue
 
+    # Question not asked during Open Enrollment
+    #And I report "MovedToColorado" and click continue
+
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Example" in State "CO" with dob "01011980" in county "Rio Grande" with zipcode "81144"
     Then I answer all Id proofing questions and click continue
@@ -442,8 +448,8 @@ Feature: Go Back tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Ethnicity and Race" page  
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Ethnicity and Race" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -455,7 +461,7 @@ Feature: Go Back tests
 
     Then I validate I am on the "Add Member" page
     #Age 23
-    Then I enter details on tell us about additional members of your household exch page and continue with Name "Daughter", DOB "10102000", Gender "Female" and applying status "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "10102000", "Female" and applying "Yes"
       |Primary:Daughter|
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
@@ -472,8 +478,8 @@ Feature: Go Back tests
     And I select "No" for Foster care in state of Colorado
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

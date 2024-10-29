@@ -60,6 +60,12 @@ public class HouseHoldPageSteps {
     @Then("I click on Member Row {int}")
     public void iEditMember(int index) {houseHoldPage.iEditMember(index); }
 
+    public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option);
+    }
+
+    @Then("I validate no errors are displayed on family overview page")
+    public void iValidateNoErrosDisplayed() {houseHoldPage.verifyNoErrorMessage_Household();
+    }
 }
 
 

@@ -39,7 +39,7 @@ public class MemberDetails {
     String medicalCoverageEndDate;
     String dentalCoverageStartDate;
     String dentalCoverageEndDate;
-    String medicalPremiumAmt;
+    String medicalPremiumAmt; // total premium amount
     String dentalPremiumAmt;
     String aptcAmt;
     String medicalAptcAmt;
@@ -73,7 +73,6 @@ public class MemberDetails {
     String incorrect_middle_name ;
     String incorrect_last_name ;
     String employerName;
-    String dependentCountTag;
     String prior_subscriber_id;
     Boolean csrEligible=false;
 }

@@ -11,38 +11,16 @@ public class TellUsAboutAdditionalMembersPageSteps {
 
     TellUsAboutAdditionalMemberPage tellUsAboutAdditionalMemberPage = new TellUsAboutAdditionalMemberPage(WebDriverManager.getDriver());
 
-
-    @Then("I enter member details with {string} date of birth")
-    public void iEnterMemberDetailsDOB(String DOB){tellUsAboutAdditionalMemberPage.enterMemberDetails(DOB);}
-
-
-    @And("I select {string} as member's sex option")
-    public void selectSexOption(String sexOption){tellUsAboutAdditionalMemberPage.selectSex(sexOption);}
     @And("I mark the Additional member is pregnant as {string}")
     public void selectPersonIsPregnant(String pregnant){
         tellUsAboutAdditionalMemberPage.selectIsPersonPregnant(pregnant);
     }
-    @And("I select {string} as relationship option")
-    public void selectRelationship(String Relationship){tellUsAboutAdditionalMemberPage.setSelectRelationship(Relationship);}
-
-    @And("I select {string} as relationship one option")
-    public void selectRelationship1(String Relationship1){tellUsAboutAdditionalMemberPage.setSelectRelationship1(Relationship1);}
-    @And("I select {string} as relationship two option")
-    public void selectRelationship2(String Relationship2){tellUsAboutAdditionalMemberPage.setSelectRelationship2(Relationship2);}
-    @And("I select {string} as relationship three option")
-    public void selectRelationship3(String Relationship3){tellUsAboutAdditionalMemberPage.setSelectRelationship3(Relationship3);}
-
-    @And("I select {string} to Is Member Applying")
-    public void isMemberApplying(String isApplying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(isApplying);}
 
     @And("I click continue on Tell us about additional members page")
     public void clickSaveAndContinue(){tellUsAboutAdditionalMemberPage.clickSaveAndContinue();}
 
-    @And("I select no SSN")
-    public void selectNoSSn(){tellUsAboutAdditionalMemberPage.selectNoSSn();}
-
-    @Then("I enter member details with age as {int}")
-    public void iEnterMemberDetailsAge(int Age){tellUsAboutAdditionalMemberPage.memberDetailswithAge(Age);}
+    @And("I select no SSN for {string}")
+    public void selectNoSSn(String memberPrefix){tellUsAboutAdditionalMemberPage.selectNoSSn(memberPrefix);}
 
     @And("I get the newborn {string} dob as {string}")
     public void iGetMemberDOB(String namePrefix, String dob){tellUsAboutAdditionalMemberPage.getDob(namePrefix, dob);}
@@ -51,12 +29,4 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void EnterspecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {
         tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch(Name, DOB, gender, Relations, applying);
     }
-
-    @Then("I enter details on tell us about additional members of your household exch page and continue with Name {string}, DOB {string}, Gender {string} and applying status {string}")
-    public void setSpecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {
-        tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch( Name, DOB, gender, Relations, applying );
-    }
-
-
-
 }

@@ -1,4 +1,4 @@
-@SLER-594
+@SLER-594 @FindExpertHelp
 Feature: Validate access the Find expert help/Manage who helps you page from top header on all pages that show the Customer portal header
 
 @SLER-594
@@ -34,6 +34,9 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   And I select "No" to the recently denied medicaid question
   And I select "No" for Incarceration option
   And I click continue on the Add Address page
+  Then I validate I am on the "Ethnicity and Race" page
+  And I select "Prefer not to answer" for race and ethnicity
+  And I click continue on the Race and Ethnicity page
   Then I select "Yes" for Citizen option
   And I select "No" for Naturalized Immigrant option
   And I click continue on the Citizenship page
@@ -53,13 +56,8 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   And I click on Get Assistance in the "Exch" Header
   And I click on Find Expert Assistance in the "Exch" Header
   Then I click Go Back button from chrome browser
-  Then I click continue on application results page
   And I click continue on start shopping page
   Then I validate I am on the "Start Shopping" page
-  And I click on Get Assistance in the "Exch" Header
-  And I click on Find Expert Assistance in the "Exch" Header
-  Then I click Go Back button from chrome browser
-
   And I select the first medical plan
   And I click continue on medical plan results page
   Then I validate I am on the "Dental Plan Results" page
@@ -76,11 +74,6 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   And I select "Submit" agreement checkbox
   And I enter householder signature on the Enrollment Agreements page
   Then I click submit enrollment on Enrollment Agreements page
-  #And I click continue on Enrollment Agreements page
-  #Then I validate I am on the "Pay now" page
-  #Then I click all done from payment portal page
-  #Then I validate I am on the "Account Overview" page
-  #And I click on Sign Out in the Header for "NonElmo"
 
 
 

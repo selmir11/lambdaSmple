@@ -1,4 +1,4 @@
-@BrokerPortalDashboard @port
+@BrokerPortalDashboard @port @Dashboard
 Feature: Verifying the current broker assignment in Client Information
 
   @SLER-1159
@@ -22,7 +22,7 @@ Feature: Verifying the current broker assignment in Client Information
     Then I click Authorized broker
     Then I verify Manage who helps you header text in "English"
 
-    And I validate my broker details in the current broker table are "Harrison Andersen", "Harrison Andersen Agency", "99524863", "80205", "303-159-7538", "BROKER", "Active"
+    And I validate my broker details in the current broker table are "Harrison Andersen", "Harrison Andersen Agency", "28548247", "80205", "303-931-7516", "BROKER", "Active"
 
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
 
