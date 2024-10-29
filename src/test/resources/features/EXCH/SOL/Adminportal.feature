@@ -498,7 +498,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
       Then I click continue on family overview page
-      Then I select "None of these" QLCE on tell us about life changes page
+      Then I select "noneOfThese" QLCE on tell us about life changes page
       Then I click on Save and Continue
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
@@ -514,7 +514,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
       And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
-      Then I enter an accountId in any Env "5910497910" "1506066573" to search user
+      Then I enter an accountId in any Env "5910497910" "4007973601" to search user
       And I click "On Behalf Of (OBO)" from application links dropdown
       And I initiate incoming page
 
