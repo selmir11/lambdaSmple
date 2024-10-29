@@ -1,5 +1,5 @@
 Feature: Enroll a in a plan 8 HH
-  @SLER-832 #RT-1838
+  @SLER-832
   Scenario: : EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
