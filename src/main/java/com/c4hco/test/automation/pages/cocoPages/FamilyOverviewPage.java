@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
 
 public class FamilyOverviewPage {
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
@@ -27,7 +30,7 @@ public class FamilyOverviewPage {
     @FindBy (css = ".container .family-overview-household-income")
     WebElement totalIncomeAmount;
 
-    @FindBy (css = "div.family-overview-add-link")
+    @FindBy (xpath = "//app-family-overview//div[2]/a")
     WebElement addAnotherMemberButton;
 
     @FindBy(id = "familyOverview-SaveAndContinue")
@@ -51,9 +54,11 @@ public class FamilyOverviewPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void clickPrimaryEditUpdateLink() {
+    public void clickEditUpdateLink(String name) {
         basicActions.waitForElementListToBePresentWithRetries(editUpdateLink, 30);
-        editUpdateLink.get(0).click();
+        String xpath = String.format("//*[contains(text(),'"+name+"')]//following::a[1]");
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
     }
 
     public void clickaddAnotherMemberButton() {
