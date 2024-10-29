@@ -463,7 +463,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
-      Then I click continue on family overview page
+      #Then I click continue on family overview page
       And I Apply for financial help
       Then I select the option "Yes" to employment
       And I select the option "No" to self employment
@@ -517,7 +517,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I enter general mandatory data for "exchange" account creation
       And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
-      Then I enter an accountId in any Env {string} {string} to search user
+      Then I enter an accountId in any Env "{string} {string}" to search user
       And I click "On Behalf Of (OBO)" from application links dropdown
       And I initiate incoming page
 
