@@ -11,6 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -60,6 +62,9 @@ public class YourClientsPage {
     @FindBy(css = ".mat-content #client-data-title-row")
     List<WebElement> clientsList;
 
+    @FindBy(xpath = "//div[@id='client-data-title-row']/span[@class='col-2 body-text-1 text-align-center ow']")
+    List<WebElement> clientNamesList;
+
     @FindBy(xpath = "(//mat-expansion-panel-header[contains(@id, 'mat-expansion-panel-header')])[2]")
     WebElement clientSecondRow;
 
@@ -85,6 +90,15 @@ public class YourClientsPage {
     WebElement clientFullName;
     @FindBy(xpath = "//*[@id='elem']/app-view-clients/div/div[1]")
     WebElement yourClientsTitle;
+
+    @FindBy(id = "pagination-curr-page")
+    WebElement yourClientCurrentPage;
+
+    @FindBy(id = "pagination-next-page-btn")
+    WebElement yourClientNextPage;
+
+    @FindBy(id = "pagination-prev-page-btn")
+    WebElement yourClientPreviousPage;
 
     public void validateYourClientsPageTitle(){
         basicActions.waitForElementToBePresent(yourClientsTitle, 10);
@@ -148,6 +162,23 @@ public class YourClientsPage {
         WebElement firstClientResult = basicActions.getDriver().findElement(By.xpath("//*[@id='plan-year']"));
         basicActions.waitForElementToBePresent(firstClientResult,100);
         actions.click(firstClientResult).perform();
+    }
+
+    public void searchClientNamed(String clientName) {
+        basicActions.waitForElementListToBePresentWithRetries(clientsList, 1000);
+        basicActions.waitForElementToBePresentWithRetries(searchClient, 1000);
+
+        searchClient.sendKeys(clientName);
+        searchClient.sendKeys(Keys.ENTER);
+    }
+
+    public void resetClientSearchBox() {
+        basicActions.waitForElementListToBePresent(clientsList, 1000);
+        basicActions.waitForElementToBePresent(searchClient, 1000);
+
+        searchClient.clear();
+        searchClient.sendKeys(" ");
+        searchClient.sendKeys(Keys.ENTER);
     }
 
     public void verifyCurrentClientStatus(String expectedClientStatus){
@@ -321,6 +352,76 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(searchClient,20);
         searchClient.sendKeys("FirstName LastName");
         softAssert.assertEquals(searchClient.getAttribute("value"), "FirstNameLastName");
+        softAssert.assertAll();
+    }
+
+    public void verifyCurrentClientListPage(String currentPage) {
+        basicActions.waitForElementToBePresent(yourClientCurrentPage,30);
+        softAssert.assertEquals(yourClientCurrentPage.getText(), currentPage);
+        softAssert.assertAll();
+    }
+
+    public void clickRightPaginationArrowButton() {
+        basicActions.waitForElementToBePresent(yourClientNextPage,30);
+        yourClientNextPage.click();
+    }
+
+    public void verifyClientsAlphabeticalOrder() {
+        basicActions.waitForElementListToBePresentWithRetries(clientNamesList, 1000);
+
+        List<String> originalList = new ArrayList<>();
+        System.out.println("The following list of clients was found");
+        for(WebElement clientName : clientNamesList){
+            System.out.println(clientName.getText());
+            originalList.add(clientName.getText());
+        }
+
+        List<String> sortedList = new ArrayList<>(originalList);
+        Collections.sort(sortedList);
+
+        softAssert.assertEquals(sortedList,originalList);
+        softAssert.assertAll();
+    }
+
+    public void clickLeftPaginationArrowButton() {
+        basicActions.waitForElementToBePresent(yourClientPreviousPage,30);
+        yourClientPreviousPage.click();
+    }
+
+    public void validateClientOptionsDisplayed(String clientOption){
+        basicActions.waitForElementToBePresent(clientRow,100);
+
+        switch (clientOption) {
+            case "Remove Client":
+                basicActions.waitForElementToBePresent(removeClient,100);
+                softAssert.assertEquals(removeClient.getText(),"Remove Client");
+                break;
+            case "Transfer":
+                basicActions.waitForElementToBePresent(transferClient,100);
+                softAssert.assertEquals(transferClient.getText(),"Transfer");
+                break;
+            case "Manage":
+                basicActions.waitForElementToBePresent(manageClient,100);
+                softAssert.assertEquals(manageClient.getText(),"Manage");
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateClientOptionsNotDisplayed(String clientOption){
+        basicActions.waitForElementToBePresent(clientRow,100);
+
+        switch (clientOption) {
+            case "Remove Client":
+                softAssert.assertFalse(basicActions.waitForElementPresence(removeClient,30));
+                break;
+            case "Transfer":
+                softAssert.assertFalse(basicActions.waitForElementPresence(transferClient,30));
+                break;
+            case "Manage":
+                softAssert.assertFalse(basicActions.waitForElementPresence(manageClient,30));
+                break;
+        }
         softAssert.assertAll();
     }
 }

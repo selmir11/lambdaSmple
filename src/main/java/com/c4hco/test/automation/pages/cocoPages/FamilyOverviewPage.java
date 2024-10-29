@@ -67,7 +67,7 @@ public class FamilyOverviewPage {
         getAccountId();
         continueButton.click();
     }
-
+    
     public void clickManageWhoHelpsYouButton() {
         basicActions.waitForElementToBeClickable(manageWhoHelpsYouButton, 30);
         manageWhoHelpsYouButton.click();

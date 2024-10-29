@@ -314,6 +314,7 @@ public class CreateAccountPage {
     public void sendDetails(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
+        basicActions.waitForElementToBePresent(phoneNumber, 60);
         firstName.sendKeys(subscriber.getFirstName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());

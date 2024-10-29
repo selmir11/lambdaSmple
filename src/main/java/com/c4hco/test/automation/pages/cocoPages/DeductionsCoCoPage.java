@@ -2,12 +2,15 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
+import org.openqa.selenium.*;
+import java.util.*;
 
 import java.util.List;
 
@@ -127,43 +130,24 @@ public class DeductionsCoCoPage {
 
     public void selectDeductionOptionOnly(String deductionOption) {
         basicActions.waitForElementListToBePresentWithRetries(deductionButton, 10);
-        switch (deductionOption) {
-            case "Alimony":
-                deductionButton.get(0).click();
-                break;
-            case "Domestic production":
-                deductionButton.get(1).click();
-                break;
-            case "HSA":
-                deductionButton.get(2).click();
-                break;
-            case "Pre-tax retirement":
-                deductionButton.get(3).click();
-                break;
-            case "School tuition":
-                deductionButton.get(4).click();
-                break;
-            case "Self-employment tax":
-                deductionButton.get(5).click();
-                break;
-            case "Student loan":
-                deductionButton.get(6).click();
-                break;
-            case "Self-employment health insurance":
-                deductionButton.get(7).click();
-                break;
-            case "Self-employment retirement":
-                deductionButton.get(8).click();
-                break;
-            case "Moving expenses":
-                deductionButton.get(9).click();
-                break;
-            case "None of these":
-                deductionButton.get(10).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + deductionOption);
-        }
+
+        Map<String, Integer> optionToIndex = new HashMap<>();
+        optionToIndex.put("Alimony", 0);
+        optionToIndex.put("Domestic production", 1);
+        optionToIndex.put("HSA", 2);
+        optionToIndex.put("Pre-tax retirement", 3);
+        optionToIndex.put("School tuition", 4);
+        optionToIndex.put("Self-employment tax", 5);
+        optionToIndex.put("Student loan", 6);
+        optionToIndex.put("Self-employment health insurance", 7);
+        optionToIndex.put("Self-employment retirement", 8);
+        optionToIndex.put("Moving expenses", 9);
+        optionToIndex.put("None of these", 10);
+
+        Integer index = optionToIndex.get(deductionOption);
+        List<WebElement> updatedDeductionButtons = basicActions.getDriver().findElements(By.cssSelector("app-show-options button"));
+        basicActions.waitForElementListToBePresentWithRetries(updatedDeductionButtons,10);
+        basicActions.clickElementWithRetries(updatedDeductionButtons.get(index),5);
     }
 
     private void enterAmount(String deductionOption, String amount) {
@@ -346,7 +330,7 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyDeductionsEnteredData(String addtlIncomeOption, String Amount, String Frequency){
-//        Frequency will have a number ex: "3: Monthly"
+//        Frequency will have a number ex: "1: Annually", "3: Monthly", "5: Weekly"
         switch (addtlIncomeOption) {
             case "Domestic production":
                 basicActions.waitForElementToBePresent(domesticProductionAmount,20);
@@ -358,6 +342,18 @@ public class DeductionsCoCoPage {
                 basicActions.waitForElementToBePresent(schoolTuitionAmount,20);
                 softAssert.assertEquals(schoolTuitionAmount  .getAttribute("value"), Amount);
                 softAssert.assertEquals(schoolTuitionFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            case "Student loan":
+                basicActions.waitForElementToBePresent(studentLoanAmount,20);
+                softAssert.assertEquals(studentLoanAmount  .getAttribute("value"), Amount);
+                softAssert.assertEquals(studentLoanFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            case "Pre-tax retirement":
+                basicActions.waitForElementToBePresent(pretaxRetirementAmount,20);
+                softAssert.assertEquals(pretaxRetirementAmount  .getAttribute("value"), Amount);
+                softAssert.assertEquals(pretaxRetirementFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
             default:

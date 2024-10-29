@@ -56,6 +56,7 @@ public class SharedData {
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
     @Getter @Setter private static List<String> medicalPlansList;
+    @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
     @Getter @Setter private static Map<String, String> exchPersonId;
@@ -86,6 +87,7 @@ public class SharedData {
         scenarioDetails = null;
         ib999Segments = null;
         medicalPlansList=null;
+        dentalPlansList=null;
         calculatedDob = null;
         expectedCalculatedDates = null;
         exchPersonId=null;
