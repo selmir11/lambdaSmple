@@ -47,6 +47,11 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateChangeBrokerButtonExists(expectedState);
         }
 
+        @Then("I click on change the existing broker")
+        public void iClickChangeBrokerButton(){
+                findExpertHelpPage.clickChangeBrokerButton();
+        }
+
         @Then("I validate the Have a Broker call you button is displayed")
         public void iValidateTheHaveABrokerCallYouButtonExists(){
                 findExpertHelpPage.validateHaveABrokerCallYouButtonExists();
@@ -158,6 +163,11 @@ public class FindExpertHelpSteps {
         @And("I validate the Previous Broker Assister table is not displayed")
         public void iValidatePreviousBrokerAssisterTableAbsent(){
                 findExpertHelpPage.validatePreviousBrokerAssisterTableAbsent();
+        }
+
+        @Then("I verify the previous brokers and assisters are listed in alphabetical order")
+        public void iValidatePreviousBrokerAssisterTableAlphabeticalOrder(){
+                findExpertHelpPage.validatePreviousBrokerAssisterTableAlphabeticalOrder();
         }
 
         @And("I validate no broker is authorized")
