@@ -157,6 +157,7 @@ Feature:  Unable to shop (not eligible for QHP)
       And I click continue on application results page
       And I verify pop up text on the application results page "English"
       And I click Back to App Results button on the pop up
+      And I wait for 9000 milliseconds
       When I change the language from header to "Spanish NonElmo"
       And I click continue on application results page
       And I verify pop up text on the application results page "Spanish"
