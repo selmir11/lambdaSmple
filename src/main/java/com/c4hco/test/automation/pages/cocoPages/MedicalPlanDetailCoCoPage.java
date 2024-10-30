@@ -32,7 +32,7 @@ public class MedicalPlanDetailCoCoPage {
     @FindBy(id = "MedicalCarrierDetails-InNetworkTier1")
     public WebElement selectInNetworkTier1Link;
 
-    @FindBy(id = "MedicalCarrierDetails-GoBacktoPlans")
+    @FindBy(css = "#MedicalCarrierDetails-GoBacktoPlans")
     public WebElement medicalCompareGoBack;
 
     @FindBy(css = "span.float-start")
@@ -79,7 +79,9 @@ public class MedicalPlanDetailCoCoPage {
     }
 
     public void  clickMedicalDetailGoBack() {
-        basicActions.waitForElementToBeClickable(medicalCompareGoBack, 20);
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresent(medicalCompareGoBack, 40);
+        basicActions.scrollToElement( medicalCompareGoBack );
         medicalCompareGoBack.click();}
 
 

@@ -42,6 +42,7 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
+
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
     WebElement selectFirstComparebox;
 
@@ -196,7 +197,9 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectPlanstoCompare() {
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
+        basicActions.waitForElementToDisappear( spinner,20 );
         selectFirstComparebox.click();
         selectSecondComparebox.click();
         selectSThirdComparebox.click();
