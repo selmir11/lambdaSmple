@@ -183,9 +183,4 @@ public class sftpStepDefinitions {
         sftpUtil.readIb999File(SharedData.getMedicalFileName());
     }
 
-    @And("I download medical Ib834 file to local from sftp server location {string}")
-    public void downloadIb834FileToTarget(String remoteLocation) throws JSchException {
-        sftpUtil.downloadFileWithSftp(remoteLocation, SharedData.getMedicalIb834FileName());
-            }
-
 }
