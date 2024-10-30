@@ -488,11 +488,11 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1084 @PageValidationOhiEsiElmo
+  @SLER-1084 @PageValidationOhiEsiElmo @test
   Scenario: SLER-1084 I want the family of 3 affordability flags aggregated on submitted application
     Then I select the Go Back button on the ESI page
     Then I click Go back on the ELMO health coverage page
-    Then I click on Member Row 2
+    And I click on "Spouse" to edit information from household page
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
     Then I select the option "Yes" to employment
@@ -509,7 +509,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click save and continue on tax status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I click Go back on the ELMO health coverage page
-    Then I click on Member Row 3
+    And I click on "Kid" to edit information from household page
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
     Then I select the option "Yes" to employment

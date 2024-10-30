@@ -61,7 +61,7 @@ Feature: Page Navigation-OHI ESI Page
     And I validate I am on the "ESI" page
 
 
-  @SLER-687 @PageNavigationESI
+  @SLER-687 @PageNavigationESI @test
   Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHI Portal, Exchange
     #Step1
     And I change the C4 url to "Other Health Coverage portal Error Exch"
@@ -85,7 +85,7 @@ Feature: Page Navigation-OHI ESI Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    Then I click on the Member Row 0
+    And I click + next to member on household page for "Primary"
     Then I select the Edit Income link
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
@@ -110,7 +110,7 @@ Feature: Page Navigation-OHI ESI Page
   Scenario: SLER-958 Delete employer from Employer Summary and ESI is removed from DB
     Then I select the Go Back button on the ESI page
     Then I click Go back on the ELMO health coverage page
-    Then I click on the Member Row 0
+    And I click + next to member on household page for "Primary"
     Then I select the Edit Income link
     And I validate I am on the "Employment Summary" page
     Then I click on Add job or self-employment on the Employment Summary Page
@@ -138,7 +138,7 @@ Feature: Page Navigation-OHI ESI Page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    Then I click on the Member Row 0
+    And I click + next to member on household page for "Primary"
     Then I select the Edit Income link
 
     And I validate I am on the "Employment Summary" page
@@ -162,7 +162,7 @@ Feature: Page Navigation-OHI ESI Page
   Scenario: SLER-963 Delete employer from Employer Summary and ESI is not removed from DB
     Then I select the Go Back button on the ESI page
     Then I click Go back on the ELMO health coverage page
-    Then I click on the Member Row 0
+    And I click + next to member on household page for "Primary"
     Then I select the Edit Income link
     And I validate I am on the "Employment Summary" page
     Then I click on Add job or self-employment on the Employment Summary Page
@@ -190,7 +190,7 @@ Feature: Page Navigation-OHI ESI Page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    Then I click on the Member Row 0
+    And I click + next to member on household page for "Primary"
     Then I select the Edit Income link
 
     And I validate I am on the "Employment Summary" page
