@@ -24,7 +24,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   And I click Continue on my own button from Manage who helps you page
 
   Then I validate I am on the "CoCo Family Overview" page
-  Then I click Primary EditUpdate on the Family Overview page
+  Then I click EditUpdate on Family Overview page for "Primay"
   And I click Go Back on the tell us about yourself page
 
   Then I validate I am on the "CoCo Family Overview" page
@@ -34,7 +34,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   Then I validate I am on the "Find Expert Help" page
   And I click Continue on my own button from Manage who helps you page
 
-  Then I click Primary EditUpdate on the Family Overview page
+  Then I click EditUpdate on Family Overview page for "Primay"
   Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
   And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
   And I select "Yes" for mailing address option
@@ -109,7 +109,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -191,7 +191,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     And I click Go Back on the tell us about yourself page
 
     Then I validate I am on the "CoCo Family Overview" page
@@ -201,7 +201,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
 
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -268,7 +268,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -466,7 +466,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
@@ -659,7 +659,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
@@ -818,7 +818,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01162010", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"

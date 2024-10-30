@@ -211,7 +211,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-#    # PDF Notice Validation
+    # PDF Notice Validation
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
