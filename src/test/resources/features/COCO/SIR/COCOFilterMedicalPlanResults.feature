@@ -22,7 +22,7 @@ Feature: Verify COCO Medical Plan results
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -45,7 +45,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -54,7 +54,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Marriage" life change event
+    And I select "Marriage" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -73,13 +73,13 @@ Feature: Verify COCO Medical Plan results
     And I validate the COCO plan option 1 has text "<planText>"
     And I click on Sign Out in the Header for "Elmo"
     Examples:
-      | carrierOption              | planText                                                             |
-      | Anthem                     | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std    |
-      | Cigna                      | Cigna Connect Colorado Option Silver Enhanced Off Exchange           |
-      | Denver Health              | Elevate Health Plans Colorado Option Silver Enhanced Off Exchange    |
-      | Kaiser Permanente          | KP Colorado Option Silver Enhanced 94% AV                            |
-      | Rocky Mountain Health Plan | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%       |
-      | Select Health              | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange |
+      | carrierOption                       | planText                                                             |
+      | Anthem                              | Anthem Colorado Option Silver Enhanced 94% Pathway Essentials Std    |
+      | Cigna Healthcare                    | Cigna Connect Colorado Option Silver Enhanced Off Exchange           |
+      | Denver Health                       | Elevate Health Plans Colorado Option Silver Enhanced Off Exchange    |
+      | Kaiser Permanente                   | KP Colorado Option Silver Enhanced 94% AV                            |
+      | Rocky Mountain Health Plans / UHC   | RMHP Colorado Doctors Plan Colorado Option Silver Enhanced 94%       |
+      | Select Health                       | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange |
 
 
   @SLCR-284 @CoCo_RegressionTest
@@ -99,7 +99,7 @@ Feature: Verify COCO Medical Plan results
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -122,7 +122,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -132,7 +132,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -168,7 +168,7 @@ Feature: Verify COCO Medical Plan results
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -191,7 +191,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -201,7 +201,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -279,7 +279,7 @@ Feature: Verify COCO Medical Plan results
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "05101977", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -302,7 +302,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -336,7 +336,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -371,7 +371,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -407,7 +407,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -444,7 +444,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -453,7 +453,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page

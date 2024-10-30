@@ -42,6 +42,7 @@ Feature: Broker Assisted - End to End Test
 
     And I validate I am on the "Agency Dashboard" page
     And I click on "colorado Connect" tab
+    And I search for clients
     And I click on first client search result
     And I click "manage" the client
 
@@ -51,7 +52,7 @@ Feature: Broker Assisted - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -64,28 +65,24 @@ Feature: Broker Assisted - End to End Test
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
-    And I enter "4000000" income amount
+    And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
 
-    Then I validate I am on the "CoCo Deductions" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-
-    Then I validate I am on the "CoCo Additional Income" page
-    And I select None of these as deductions option
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
-
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
-
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -110,9 +107,7 @@ Feature: Broker Assisted - End to End Test
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-
-    Then I click all done from payment portal page coco
-
+    Then I click all done obo from payment portal page coco
     And I validate I am on the "Agency Dashboard" page
     And I click on Sign Out in the Header for "NonElmo"
 
@@ -151,6 +146,7 @@ Feature: Broker Assisted - End to End Test
 
     And I validate I am on the "Agency Dashboard" page
     And I click on "colorado Connect" tab
+    And I search for clients
     And I click on first client search result
     And I click "manage" the client
 
@@ -161,7 +157,7 @@ Feature: Broker Assisted - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "09051959", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -174,7 +170,7 @@ Feature: Broker Assisted - End to End Test
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
-    And I enter "4500000" income amount
+    And I enter "45000.00" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -184,7 +180,7 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -214,7 +210,7 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -249,7 +245,7 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -280,14 +276,14 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -328,8 +324,7 @@ Feature: Broker Assisted - End to End Test
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-
-    Then I click all done from payment portal page coco
+    Then I click all done obo from payment portal page coco
 
     Then I validate I am on the "Agency Dashboard" page
     And I click on Sign Out in the Header for "NonElmo"
@@ -366,7 +361,7 @@ Feature: Broker Assisted - End to End Test
     And I sign out of Outlook
     Then I enter the MFA code and click Verify
 
-    Then I validate I am on the "Broker Portal Your Clients" page
+    And I validate I am on the "Agency Dashboard" page
     And I click on "colorado Connect" tab
     And I search for clients
     And I click on first client search result
@@ -378,7 +373,7 @@ Feature: Broker Assisted - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -390,7 +385,7 @@ Feature: Broker Assisted - End to End Test
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
-    And I enter "1000000" income amount
+    And I enter "10000.00" income amount
     And I select "Annually" income frequency option
     And I select "No" income seasonal option
     And I select "No" income changes option
@@ -400,7 +395,7 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -434,7 +429,7 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -464,7 +459,7 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -495,14 +490,14 @@ Feature: Broker Assisted - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page

@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -59,7 +60,7 @@ public class RaceAndEthnicityPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
-    public void raceEthnicitySelection(String raceEthnicity){
+    public void raceEthnicitySelection(String raceEthnicity, String memPrefix){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
         switch (raceEthnicity) {
             case "Asian or Asian American":
@@ -91,6 +92,19 @@ public class RaceAndEthnicityPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
+        }
+        setRaceAndEthnicity(raceEthnicity, memPrefix);
+    }
+
+    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        if(primaryMem.getFirstName().contains(memPrefix)){
+            primaryMem.setRace(raceEthnicity);
+            SharedData.setPrimaryMember(primaryMem);
+        } else{
+            List<MemberDetails> members = SharedData.getMembers();
+            members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
+            SharedData.setMembers(members);
         }
     }
 

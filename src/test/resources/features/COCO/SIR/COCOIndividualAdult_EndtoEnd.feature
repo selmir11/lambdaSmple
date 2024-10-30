@@ -23,7 +23,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -46,7 +46,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -56,7 +56,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -101,7 +101,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -124,7 +124,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -134,7 +134,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -179,7 +179,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -202,7 +202,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -234,7 +234,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -243,7 +243,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -305,7 +305,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01162010", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -328,7 +328,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -338,7 +338,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -384,7 +384,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "11282011", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -407,7 +407,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -439,7 +439,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -467,14 +467,14 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -545,7 +545,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01162005", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -568,7 +568,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -578,7 +578,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -624,7 +624,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -647,7 +647,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -679,7 +679,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -689,7 +689,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -756,7 +756,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01012010", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -779,7 +779,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -807,7 +807,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -834,13 +834,13 @@ Feature: Individual adult - End to End Test
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -858,7 +858,7 @@ Feature: Individual adult - End to End Test
       | MinorTwo:Group2   |
       | MinorThree:Group3 |
     Then I click save button to save the groups in CoCo Page
-    And I validated message on success enrollment grouping pop-up in CoCo Page
+   And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -912,7 +912,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01012010", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -931,7 +931,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -959,7 +959,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -987,14 +987,14 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1065,7 +1065,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01162005", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -1088,7 +1088,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -1098,7 +1098,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1151,7 +1151,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01162005", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -1174,7 +1174,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -1184,7 +1184,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1238,7 +1238,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "11282011", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -1261,7 +1261,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -1290,7 +1290,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -1319,14 +1319,14 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1338,6 +1338,7 @@ Feature: Individual adult - End to End Test
 
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
+
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       | Primary:Group1    |
@@ -1399,7 +1400,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
     Then I enter details on tell us about yourself page and continue with "01162010", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -1422,7 +1423,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
     And I select the No projected Income button on the Income Summary page
@@ -1432,7 +1433,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Birth" life change event
+    And I select "Birth" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page

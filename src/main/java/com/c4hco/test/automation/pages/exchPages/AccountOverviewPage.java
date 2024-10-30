@@ -11,6 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +50,45 @@ public class AccountOverviewPage {
     List<WebElement> medicalMemberNames;
     @FindBy(css = "option[selected='selected']")
     WebElement planYearOnWelcomeBackPage;
+
+    @FindBy(xpath = "(//h1/span)[2]")
+    WebElement txtUserName;
+
+    @FindBy(css = "p.c4PageHeader")
+    WebElement txtHeaderVerifyYourInformation;
+
+    @FindBy(xpath = "//p[@class='c4PageHeader']/following-sibling::p")
+    WebElement txtContentVerifyYourInformation;
+
+    @FindBy(css = "#selfAttestation #submit")
+    WebElement btnVerifyYourInformation;
+
+    @FindBy(css = ".c4PageTitle")
+    List<WebElement> txtHeaderDetails;
+
+    @FindBy(css = "#planYear>option")
+    List<WebElement> dpdSelectPlanYear;
+
+    @FindBy(css=".btn-group-toggle>label")
+    List<WebElement> btnOpenClosedToggle;
+
+    @FindBy(xpath = "//div[@data-toggle='buttons']/parent::div/following-sibling::p")
+    List<WebElement> txtEnrollmentTextInfo;
+
+    @FindBy(xpath = "//*[contains(text(),'You can apply for vision coverage')]")
+    WebElement txtApplyForVisionCoverage;
+
+    @FindBy(xpath = "//button[@id='medicalDentalButton']/parent::p/a")
+    WebElement btnShopForVisionPlans;
+
+    @FindBy(xpath = "//button[@id='medicalDentalButton']")
+    WebElement btnMakeChangesToMyDentalPlan;
+
+    @FindBy(xpath = "//*[contains(text(),'Do you want to')]")
+    List<WebElement> txtAdditionalResourcesDetails;
+
+    @FindBy(xpath = "//a[@class='linkButton']/parent::p")
+    List<WebElement> txtlinkButton;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -208,6 +249,45 @@ public class AccountOverviewPage {
         SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
 
+    }
+
+
+    public void validateUsername(String memberName){
+    basicActions.waitForElementToBePresent(txtUserName,20);
+    softAssert.assertTrue(txtUserName.getText().contains(memberName));
+    softAssert.assertAll();
+    }
+
+    public void validateText(List<String> textToVerify){
+        basicActions.waitForElementToDisappear(spinner,20);
+        softAssert.assertEquals(txtHeaderVerifyYourInformation.getText(),textToVerify.get(0));
+        softAssert.assertEquals(txtContentVerifyYourInformation.getText(),textToVerify.get(1));
+        softAssert.assertEquals(btnVerifyYourInformation.getText(),textToVerify.get(2));
+        softAssert.assertEquals(txtHeaderDetails.get(0).getText(),textToVerify.get(3));
+        softAssert.assertEquals(txtHeaderDetails.get(1).getText(),textToVerify.get(4));
+        softAssert.assertEquals(txtHeaderDetails.get(2).getText(),textToVerify.get(5));
+        softAssert.assertEquals(txtHeaderDetails.get(3).getText(),textToVerify.get(6));
+        softAssert.assertEquals(txtHeaderDetails.get(4).getText(),textToVerify.get(7));
+        softAssert.assertEquals(txtHeaderDetails.get(5).getText(),textToVerify.get(8));
+        softAssert.assertEquals(dpdSelectPlanYear.get(0).getText(), LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yyyy")));
+        softAssert.assertEquals(dpdSelectPlanYear.get(1).getText(), LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy")));
+        softAssert.assertEquals(dpdSelectPlanYear.get(2).getText(), LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yyyy")));
+        softAssert.assertEquals(btnOpenClosedToggle.get(0).getText(), textToVerify.get(9));
+        softAssert.assertEquals(btnOpenClosedToggle.get(1).getText(), textToVerify.get(10));
+        softAssert.assertEquals(txtEnrollmentTextInfo.get(0).getText(), textToVerify.get(11));
+        softAssert.assertEquals(txtEnrollmentTextInfo.get(1).getText(), textToVerify.get(12));
+        softAssert.assertEquals(txtApplyForVisionCoverage.getText(), textToVerify.get(13));
+        softAssert.assertEquals(btnShopForVisionPlans.getText(), textToVerify.get(14));
+        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText(), textToVerify.get(15));
+        softAssert.assertEquals(txtAdditionalResourcesDetails.get(0).getText(), textToVerify.get(16));
+        softAssert.assertEquals(txtAdditionalResourcesDetails.get(1).getText(), textToVerify.get(17));
+        softAssert.assertEquals(txtAdditionalResourcesDetails.get(2).getText(), textToVerify.get(18));
+        softAssert.assertEquals(txtAdditionalResourcesDetails.get(3).getText(), textToVerify.get(19));
+        softAssert.assertEquals(txtlinkButton.get(0).getText(), textToVerify.get(20));
+        softAssert.assertEquals(txtlinkButton.get(1).getText(), textToVerify.get(21));
+        softAssert.assertEquals(txtlinkButton.get(2).getText(), textToVerify.get(22));
+        softAssert.assertEquals(txtlinkButton.get(3).getText(), textToVerify.get(23));
+        softAssert.assertAll();
     }
 
 }

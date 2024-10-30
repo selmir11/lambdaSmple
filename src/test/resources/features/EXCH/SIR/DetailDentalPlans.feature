@@ -50,7 +50,7 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -126,7 +126,7 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
@@ -177,6 +177,7 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
+    # Question not asked during Open Enrollment
     #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
@@ -203,7 +204,7 @@ Feature: Dental Plan Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

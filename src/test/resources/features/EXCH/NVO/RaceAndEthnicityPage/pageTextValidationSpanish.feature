@@ -36,13 +36,13 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I change the language from header to "Spanish"
-    And I select "Not listed" for race and ethnicity
+    And I select "Not listed" for race and ethnicity for "Primary"
     Then I verify text on the Race and Ethnicity page in "Spanish"
-    And I select "Not listed" for race and ethnicity
+    And I select "Not listed" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate the error messages on the Race and Ethnicity in "Spanish"
     Then I validate the text box input and checkbox selection
-    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I click Go back on the Citizenship page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -57,11 +57,9 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "10101945" date of birth
-    And I select "Female" as sex option
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "10101945", "Female" and applying "Yes"
+      | Primary:Spouse |
     And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -78,12 +76,12 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I click Go back on the Race and Ethnicity page
     Then I validate I am on the "Additional Information for Yourself" page
     And I click continue on the Add Address page
-    And I select "White or European" for race and ethnicity
+    And I select "White or European" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I click Go back on the Citizenship page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
-    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

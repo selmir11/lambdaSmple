@@ -12,7 +12,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -24,7 +24,7 @@ Feature: Tests related to the Deductions page
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I validate I am on the "CoCo Income Summary" page
 
@@ -38,7 +38,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -51,7 +51,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -66,7 +66,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -80,7 +80,7 @@ Feature: Tests related to the Deductions page
     And I click on Apply for Coverage in the "Elmo" Header
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -100,7 +100,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -115,7 +115,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -149,7 +149,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -164,7 +164,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -181,7 +181,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -197,7 +197,7 @@ Feature: Tests related to the Deductions page
     And I click on Apply for Coverage in the "Elmo" Header
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -220,7 +220,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -236,7 +236,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page
@@ -257,6 +257,22 @@ Feature: Tests related to the Deductions page
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Income Summary" page
 
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-377
+  Scenario: SLCR-377 I want to see a pencil icon rather than the Edit/Update link
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
+    Then I verify the edit icon
+    And I click on the edit "Income" icon on the Income Summary CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    And I click on the edit "Deductions" icon on the Income Summary CoCo page
+    Then I validate I am on the "CoCo Deductions" page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

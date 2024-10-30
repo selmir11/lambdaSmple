@@ -42,7 +42,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "Yes"
     And I enter my residential address "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for mailing address option
@@ -59,7 +59,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -78,7 +78,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -86,7 +86,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a OBO signature on the Declarations And Signature Page CoCo

@@ -47,8 +47,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -163,7 +163,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -278,8 +278,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
 
     Then I select "Yes" for Citizen option
@@ -392,7 +392,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -518,8 +518,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
 
     Then I select "Yes" for Citizen option
@@ -632,7 +632,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -746,8 +746,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -858,7 +858,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -972,8 +972,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1086,7 +1086,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -1200,8 +1200,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1313,7 +1313,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -1426,8 +1426,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1541,7 +1541,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -1655,8 +1655,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1767,7 +1767,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -1881,8 +1881,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1992,7 +1992,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -2106,8 +2106,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -2217,7 +2217,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -2331,8 +2331,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -2442,7 +2442,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #Primary
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -2556,8 +2556,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -2668,7 +2668,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     #2nd round of Ethnicity is skipped as its prefilled from initial enrollment
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option

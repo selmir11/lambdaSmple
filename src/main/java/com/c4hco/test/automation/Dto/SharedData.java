@@ -18,13 +18,13 @@ public class SharedData {
     @Getter @Setter private static List<MemberDetails> members;
     @Getter @Setter private static List<MemberDetails> allMembers;
     @Getter @Setter private static String primaryMemberId;
-    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities;
+    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities; // Should be removed
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsMedEntities;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsDenEntities;
     @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities; // Should be removed
     @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
     @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
-    @Getter @Setter private static String medicalFileName; // Should the file names go to Member Details?
+    @Getter @Setter private static String medicalFileName;
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
@@ -44,7 +44,7 @@ public class SharedData {
     @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static String ses;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
-    @Getter @Setter private static Map<String, String> memIdAndDentalFileName;;
+    @Getter @Setter private static Map<String, String> memIdAndDentalFileName;
     @Getter @Setter private static Boolean hasBroker = false;
     @Getter @Setter private static BrokerDetails agencyOwner;
     @Getter @Setter private static BrokerDetails broker;
@@ -56,10 +56,12 @@ public class SharedData {
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
     @Getter @Setter private static List<String> medicalPlansList;
+    @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
+    @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
 
 
     public static void reset(){
@@ -85,6 +87,7 @@ public class SharedData {
         scenarioDetails = null;
         ib999Segments = null;
         medicalPlansList=null;
+        dentalPlansList=null;
         calculatedDob = null;
         expectedCalculatedDates = null;
         exchPersonId=null;
@@ -95,4 +98,5 @@ public class SharedData {
         ob834DetailsMedEntities = null;
         ob834DetailsDenEntities = null;
     }
+
 }

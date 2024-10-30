@@ -32,7 +32,7 @@ Feature: Page Navigation-OHI ESI Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -142,11 +142,11 @@ Feature: Page Navigation-OHI ESI Page
     Then I select the Edit Income link
 
     And I validate I am on the "Employment Summary" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |             1           |             1           |
     Then I click on Remove job "Second" entered for Primary on the Employment Summary Page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            0         |                            |                          |                      |                         |                             |                                     |                               |        1           |            0           |                        |                         |                         |
     Then I click continue on the Employment Summary Page
@@ -194,12 +194,12 @@ Feature: Page Navigation-OHI ESI Page
     Then I select the Edit Income link
 
     And I validate I am on the "Employment Summary" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |             1           |             1           |
     Then I click on Remove job "First" entered for Primary on the Employment Summary Page
     And I validate I am on the "Employment Summary" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |             1           |             1           |
     Then I click continue on the Employment Summary Page
@@ -263,7 +263,7 @@ Feature: Page Navigation-OHI ESI Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option

@@ -110,12 +110,15 @@ public class TellUsAboutAdditionalMemberPage {
         SharedData.setMembers(memberList);
     }
 
-    public  void selectNoSSn(){
+    public  void selectNoSSn(String memberPrefix){
+        List<MemberDetails> members = SharedData.getMembers();
         basicActions.waitForElementToBePresent(rdbhaveSsn,1);
         rdbhaveSsn.click();
         basicActions.waitForElementToBePresent(rdbhaveAppliedForSSNYes,1);
         rdbhaveAppliedForSSNYes.click();
+        members.stream().filter(member -> member.getFirstName().contains(memberPrefix)).findFirst().ifPresent(member -> member.setSsn(null));
     }
+
     public void selectSex(String Sex){
         switch(Sex){
             case "Female":
@@ -206,6 +209,8 @@ public class TellUsAboutAdditionalMemberPage {
         if(dob.equals("getFromSharedData")){
             dob = SharedData.getCalculatedDob().get(name);
           dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
+        } else if(dob.contains("Age")){
+            memberDetailswithAge(Integer.parseInt(dob.replaceAll("\\D", "")));
         }
         txtdateOfBirth.sendKeys(dob);
         txtSSN.sendKeys("653035280");
@@ -236,6 +241,7 @@ public class TellUsAboutAdditionalMemberPage {
         member.setSignature(frstName+" "+lastName);
         member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
         member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
+        member.setSsn("653035280");
         memberList.add(member);
         SharedData.setMembers(memberList);
     }

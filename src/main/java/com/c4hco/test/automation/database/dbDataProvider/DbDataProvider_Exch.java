@@ -166,12 +166,12 @@ public class DbDataProvider_Exch {
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
 
-    public Boolean getDataFromOhiTables(){
-        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecords());
+    public Boolean getDataFromOhiTables(String memberId){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
-    public EsMemberOhiEntity getOptionsFromOhiDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecords());
+    public EsMemberOhiEntity getOptionsFromOhiDbTables(String memberId) {
+        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecordsAll(memberId));
     }
 
     public EsMemberHraEntity getOptionsFromHraDbTables(){
@@ -278,7 +278,33 @@ public class DbDataProvider_Exch {
         return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
 
     }
+
     public List<String> getDBMedicalPlanList(){
         return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
+    }
+
+    public String[] getEsMemberRaceEthnicityDetails() {
+        return postgresHandler.getResultForTwoColumnValues("race_ethnicity", "race_other_text", exchDbQueries.getRaceEthnicityStored());}
+
+
+    public String getPlanMarketingName(String year){
+        return postgresHandler.getResultFor("plan_marketing_name",exchDbQueries.getPlan_marketing_name(year));
+    }
+
+    public String[] getDentalPolicyDate() {
+        return postgresHandler.getResultForTwoColumnValues("policy_start_date","policy_end_date",exchDbQueries.getDental_policy_date());}
+
+    public String getMedLatestApplicationDate() {
+        return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedCurrentLatestAppDate());
+
+    }
+
+    public String[] getMedSecondPolicy(String year) {
+        return postgresHandler.getResultForThreeColumnValues("exchange_assigned_policy_id","policy_start_date","first_name",exchDbQueries.getMedSecondPolicyDB(year));
+    }
+
+
+    public String[] getDentSecondPolicy(String year) {
+        return postgresHandler.getResultForThreeColumnValues("exchange_assigned_policy_id","policy_start_date","first_name",exchDbQueries.getDentalSecondPolicyDB(year));
     }
 }

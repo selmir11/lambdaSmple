@@ -32,7 +32,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -127,17 +127,17 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
   @SLER-717 @PageValidationOhiVaHealthcareElmo
   Scenario: SLER-717 I validate save, update and remove on VA Healthcare are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |                 |                     |                     |
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |                 |                     |                     |
     Then I click "No" for currently enrolled in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        0        |                     |                     |
     And I click on the table dropdown 1
@@ -152,12 +152,12 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        0        |                     |                     |
     Then I click "No" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        1        |          0          |                     |
     And I click on the table dropdown 1
@@ -173,7 +173,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     Then I enter the end date as "Current Month" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        1        |          1          |          0          |
     And I click on the table dropdown 1
@@ -187,7 +187,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     Then I click "Yes" for insurance ending voluntary for VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        1        |          1          |          1          |
     And I click on the table dropdown 1
@@ -201,7 +201,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     Then I click "No" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        1        |          0          |                     |
     And I click on the table dropdown 1
@@ -215,7 +215,7 @@ Feature: Page Validation-OHI VA Healthcare Elmo Page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
     Then I click "No" for currently enrolled in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|retiree_health_plan_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_health_care_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|va_end_voluntary_ind3|
       |         0            |      0     |         0             |     0   |     0     |       0       |        0           |             0            |            0           |   0   |          1       |        0        |                     |                     |
 

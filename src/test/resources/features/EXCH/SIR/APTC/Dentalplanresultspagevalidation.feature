@@ -26,6 +26,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     # Question not asked during Open Enrollment
     #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
 
@@ -47,7 +48,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

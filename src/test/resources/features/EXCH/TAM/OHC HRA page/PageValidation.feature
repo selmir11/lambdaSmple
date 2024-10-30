@@ -32,7 +32,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -101,7 +101,7 @@ Feature: Page Validation-OHI HRA Elmo Page
   @SLER-811 @PageValidationOhiHraElmo @TAMSmoke
   Scenario: SLER-811 I validate save, update and remove on HRA are updated in the DB
     And I verify year is "Not Selected", amount is "Not Selected", type is "Not Selected", "Without" APTC question "" on the HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
@@ -111,7 +111,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I enter "500.00" amount on the Elmo OHI HRA page
     Then I select "QSEHRA" for HRA type
     Then I click continue on the Elmo OHI HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
@@ -129,7 +129,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     And I validate I am on the "Elmo HRA" page
     Then I enter "60.00" amount on the Elmo OHI HRA page
     Then I click continue on the Elmo OHI HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
@@ -149,7 +149,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I select "ICHRA" for HRA type
     Then I select "Yes" for opt out on the Elmo OHI HRA page
     Then I click continue on the Elmo OHI HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
@@ -169,7 +169,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I select "ICHRA" for HRA type
     Then I select "Yes" for opt out on the Elmo OHI HRA page
     Then I click continue on the Elmo OHI HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
@@ -188,7 +188,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I enter "45.00" amount on the Elmo OHI HRA page
     Then I select "Yes" for opt out on the Elmo OHI HRA page
     Then I click continue on the Elmo OHI HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
@@ -206,7 +206,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     And I validate I am on the "Elmo HRA" page
     Then I enter "450.00" amount on the Elmo OHI HRA page
     Then I click continue on the Elmo OHI HRA page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB

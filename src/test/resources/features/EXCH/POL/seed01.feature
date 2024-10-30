@@ -39,7 +39,7 @@ Feature: Regression Tests that require Seed 1
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -256,7 +256,6 @@ Feature: Regression Tests that require Seed 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -272,7 +271,7 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan"
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
@@ -289,10 +288,3 @@ Feature: Regression Tests that require Seed 1
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-#    And I validate the member details from policy tables
-#    And I validate member details from ob834_details table
-#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code|  addl_maint_reason                      |
-#      |          001          | 021                 | AI                   | FINANCIAL_CHANGE                        |
-#      |          021          | 021                 | EC                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
-#    And I download the files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 files should have the values

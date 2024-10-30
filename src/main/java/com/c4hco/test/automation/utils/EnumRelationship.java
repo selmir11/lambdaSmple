@@ -6,9 +6,10 @@ import lombok.Getter;
 public enum EnumRelationship {
     Mother("03"),
     Father("03"),
-    Child("19"),
+    Son("19"),
     Self("18"),
-    Spouse("01"),
+    Husband("01"),
+    Wife("01"),
     GrandChild("05"),
     Brother("14"),
     Sister("14");
