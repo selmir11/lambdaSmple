@@ -506,7 +506,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I click on view results and shop
       And I click continue on application results page
       Then I click Back to App Results button on the pop up
-      And I click on Sign Out in the Header for "Elmo"
+      And I click on Sign Out in the Header for "NonElmo"
 
       Given I open the login page on the "admin" portal
       And I refresh the page
