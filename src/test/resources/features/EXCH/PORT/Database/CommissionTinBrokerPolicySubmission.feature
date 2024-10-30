@@ -92,7 +92,7 @@ Feature: Agency commission TIN update for associated broker policy submission
     Then I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

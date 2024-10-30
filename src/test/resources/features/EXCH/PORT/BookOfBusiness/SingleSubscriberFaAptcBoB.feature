@@ -21,19 +21,19 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
+    Then I Search authorized Broker "PORT BoB-Testing"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
 
-    And I verify the broker authorization in BoB DB is "Maggie Walker"
+    And I verify the broker authorization in BoB DB is "PORT BoB-Testing"
 
     #Agency owner working OBO to submit an FA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "C4PortTesting+MWalkerSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MaggieWalker@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "carrimautomation+BoB@gmail.com" password "ALaska12!" and "carrimautomation+BoBQA@gmail.com" password "ALaska12!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
@@ -49,7 +49,6 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     Then I verify that my client's current status is "NO ELIGIBILITY"
     And I click "manage" the client
 
-
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -58,7 +57,7 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     And I report "Birth" and click continue
 
     Then I verify Manage who helps you header text in "English"
-    And I click Continue with my application
+    Then I click Continue on my own button from Manage who helps you page
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -75,7 +74,7 @@ Feature: Broker Portal OBO - Single subscriber FA APTC policy submission
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
