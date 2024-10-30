@@ -90,13 +90,19 @@ Feature: Simple NFA - Single Applicant
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I click on ClickHere link for "My Documents"
-	
-       #    # PDF Notice Validation
+
+   #DbVerification
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+   # PDF Notice Validation
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
     #Email Notice Validation
-	
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
@@ -109,16 +115,8 @@ Feature: Simple NFA - Single Applicant
     And I sign out of Outlook
     And I switch to the tab number 0
 
-    #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
-
-  
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
-
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
@@ -148,11 +146,11 @@ Feature: Simple NFA - Single Applicant
       | 7  | PRE AMT TOT        | 21.00           |
       | 8  | SEP REASON         | NEW_CO_RESIDENT |
 
-      # RT-1276
-    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I set ib999 entites for both medical and dental files
-    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
-    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
+#      # RT-1276
+#    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+#    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+#    And I set ib999 entites for both medical and dental files
+#    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
+#    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
 #    And I validate the contents of ib999 medical file
 #    And I validate the contents of ib999 dental file

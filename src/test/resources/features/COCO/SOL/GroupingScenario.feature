@@ -17,7 +17,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
 
 
   @SLCR-161 @groupingbysiblingswithoutparents
@@ -140,7 +140,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -244,7 +244,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -351,7 +351,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
       And I select continue on the Family Overview page
 
       Then I validate I am on the "CoCo life change event" page
-      And I select "MoveToCO" life change event
+      And I select "MoveToCO" life change event with event date of "Today"
       And I select continue on the LCE page
 
       Then I validate I am on the "CoCo Declarations and Signature" page
@@ -466,7 +466,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page

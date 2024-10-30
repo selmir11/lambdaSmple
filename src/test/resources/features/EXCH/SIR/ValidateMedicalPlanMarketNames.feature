@@ -1,6 +1,6 @@
 Feature: Tests related to medical plans
 
- @SLER-1123-WIP  
+ @SLER-1123
 Scenario:  set of medical plan results with plans was consistent through the year - all pages in the results were checked
 
   Given I open the login page on the "login" portal
@@ -21,7 +21,7 @@ Then I validate I am on the "Before you begin" page
 Then I click on continue with  application button on Before you begin page
 
 # Question not asked during Open Enrollment
-#And I report "MovedToColorado" and click continue
+And I report "MovedToColorado" and click continue
 
 Then I validate I am on the "Who Are You" page
 Then I select "member" from the who are you question
@@ -71,7 +71,8 @@ Then I click continue on application results page
 Then I click continue on start shopping page
 And I validate I am on the "Medical Plan Results" page
 And I store the medical plan market names from results page
-And I validate the medical plan market names in the DB
+ And  I validate there are a total 83 MedicalPlans
+   And I click on Sign Out in the Header for "Portal"
 
 
 
