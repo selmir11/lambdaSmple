@@ -107,5 +107,14 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.verifyPremiumAmountIsZero();
     }
 
+    @And("I store the Dental plan market names from results page")
+    public void getMedicalPlanMarketNames() {dentalPlansResultsPage.getDentalPlanMarketNames();
+    }
+
+    @And("I validate there are a total {int} dentalPlans")
+    public void validateTotalMedicalPlans(int expectedCount) {dentalPlansResultsPage.validateTotalDentalPlans(expectedCount);
+    }
+
+
 
 }

@@ -44,10 +44,6 @@ public class AdminPortalIndividualDashboardSteps {
     public void iverifyPlanDetails(List<String> data) {
         adminPortalIndividualDashboardPage.verifyPlanDetails(data);
     }
-    @And("I validate individual dashboard container titles are displayed")
-    public void iValidateIndividualDashboardContainerTitles() {
-        adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles();
-    }
     @Then("I validate Selected Member data on the far left side")
     public void iValidateSelectedMemberData() {
         adminPortalIndividualDashboardPage.validateSelectedMemberData();    }
@@ -87,5 +83,10 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I validate {string} {string} as {string} and {string} {string} as {string}")
     public void iValidateMedicalAndDentalPlans(String renewalMedical, String medicalCoverage, String medPlanData, String renewalDental, String dentalCoverage, String dentPlanData) {
         adminPortalIndividualDashboardPage.validateMedicalAndDentalPlans(renewalMedical, medicalCoverage, medPlanData, renewalDental, dentalCoverage, dentPlanData);    }
+
+    @And("I validate individual dashboard container titles: {string} {string} {string} {string} {string} {string} are displayed")
+    public void iValidateIndividualDashboardContainerTitlesAreDisplayed(String PlansContainer,String summaryContainer ,String eligibilityContainer,String renewalsContainer,String reportsContainer,String payloadsContainer) {
+        adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(PlansContainer,summaryContainer ,eligibilityContainer,renewalsContainer,reportsContainer,payloadsContainer);
+    }
 }
 

@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 
 public class FamilyOverviewPage {
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
@@ -23,7 +30,7 @@ public class FamilyOverviewPage {
     @FindBy (css = ".container .family-overview-household-income")
     WebElement totalIncomeAmount;
 
-    @FindBy (css = "div.family-overview-add-link")
+    @FindBy (xpath = "//app-family-overview//div[2]/a")
     WebElement addAnotherMemberButton;
 
     @FindBy(id = "familyOverview-SaveAndContinue")
@@ -35,6 +42,9 @@ public class FamilyOverviewPage {
     @FindBy(css = ".errorMessage.smaller")
     WebElement noOneApplyingErrorText;
 
+    @FindBy(css = ".household-account-id")
+    WebElement accountIdTxt;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -44,9 +54,11 @@ public class FamilyOverviewPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void clickPrimaryEditUpdateLink() {
+    public void clickEditUpdateLink(String name) {
         basicActions.waitForElementListToBePresentWithRetries(editUpdateLink, 30);
-        editUpdateLink.get(0).click();
+        String xpath = String.format("//*[contains(text(),'"+name+"')]//following::a[1]");
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
     }
 
     public void clickaddAnotherMemberButton() {
@@ -57,9 +69,10 @@ public class FamilyOverviewPage {
 
     public void clickContinueButton() {
         basicActions.waitForElementToBeClickable(continueButton, 30);
+        getAccountId();
         continueButton.click();
     }
-
+    
     public void clickManageWhoHelpsYouButton() {
         basicActions.waitForElementToBeClickable(manageWhoHelpsYouButton, 30);
         manageWhoHelpsYouButton.click();
@@ -111,5 +124,15 @@ public class FamilyOverviewPage {
         basicActions.waitForElementToBePresent(noOneApplyingErrorText, 30);
         softAssert.assertEquals(noOneApplyingErrorText.getText(), "You\u2019ve indicated that no one is applying for health insurance.\nTo continue, please indicate which member(s) are applying by clicking the \u201CEdit/Update\u201D button in the table below");
         softAssert.assertAll();
+    }
+
+    private void getAccountId() {
+        basicActions.waitForElementToBePresent(accountIdTxt, 15);
+
+        Matcher matcher = Pattern.compile("\\d+").matcher(accountIdTxt.getText());
+        String accId = matcher.find() ? matcher.group() : null;
+
+        SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accId));
+        System.out.println("Account_id : " + new BigDecimal(accId));
     }
 }

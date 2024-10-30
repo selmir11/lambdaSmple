@@ -19,7 +19,7 @@ Feature: Seed02 - Coco
     And I click more details from the first broker result container
     Then I click Authorized broker
     Then I click Continue with my application
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "Yes"
     And I enter my residential address "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for mailing address option
@@ -62,7 +62,7 @@ Feature: Seed02 - Coco
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

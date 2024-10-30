@@ -69,7 +69,7 @@ Feature: Broker Portal BOB - Secondary Subscriber Only NFA policy submission
     And I select "No" for Federally Recognized Tribe option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -79,11 +79,8 @@ Feature: Broker Portal BOB - Secondary Subscriber Only NFA policy submission
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "01011980" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -95,7 +92,7 @@ Feature: Broker Portal BOB - Secondary Subscriber Only NFA policy submission
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page

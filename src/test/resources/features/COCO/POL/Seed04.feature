@@ -14,7 +14,7 @@ Feature: Regression Tests that require Seed 4
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primay"
     Then I enter details on tell us about yourself page and continue with "09052000", "Female", and applying "No"
     And I enter my residential address "104 Coco Drive", "Colorado Springs", "CO", "80919", "El Paso"
     And I select "Yes" for mailing address option
@@ -58,7 +58,7 @@ Feature: Regression Tests that require Seed 4
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
