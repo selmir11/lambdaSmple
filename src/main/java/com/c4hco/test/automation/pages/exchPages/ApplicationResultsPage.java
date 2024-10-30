@@ -199,6 +199,9 @@ public class ApplicationResultsPage {
     }
 
     public void clickVerifyMyInfo() {
+        WebElement textBox = basicActions.getDriver().findElement(By.xpath("/html/body/div[1]/div[2]/div[3]/form/div[1]/div/div[3]/div[1]"));
+        String expectedText = "Before you continue… We tried to verify your application but we need you to answer a few  questions to confirm your income and tax information.";
+        softAssert.assertEquals(textBox.getText(), expectedText, "Verify My Info Button Text Incorrect");
         verifyMyInfoButton.click();
     }
 

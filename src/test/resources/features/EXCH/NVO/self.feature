@@ -1,4 +1,4 @@
-@NVO
+@NVO @SELF
 Feature: Self Attestation
 
   Background:
@@ -11,7 +11,7 @@ Feature: Self Attestation
     And  I enter valid credentials to login
     And I validate I am on the "Account Overview" page
 
-    @MFReady
+    @SLER-1208 @MFReady
     Scenario: Self Attestation from App Results Page: YYY
     Then I apply for the current year
     Then I validate I am on the "Let us guide you" page
@@ -113,7 +113,7 @@ Feature: Self Attestation
     Then I validate I am on the "Application Results" page
 #    And I confirm MVR notice is gone
 
-  @MFReady
+  @SLER-1209 @MFReady
   Scenario: Self Attestation from App Results Page: YY(NWF)
     Then I apply for the current year
     Then I validate I am on the "Let us guide you" page
@@ -215,7 +215,7 @@ Feature: Self Attestation
     Then I validate I am on the "Application Results" page
 #    And I confirm MVR notice is gone
 
-  @MFReady
+  @SLER-1210 @MFReady
   Scenario: Self Attestation from App Results Page: YYN
     Then I apply for the current year
     Then I validate I am on the "Let us guide you" page
@@ -317,7 +317,7 @@ Feature: Self Attestation
     Then I validate I am on the "Application Results" page
 #    And I confirm MVR notice is gone
 
-  @MFReady
+  @SLER-1211 @MFReady
   Scenario: Self Attestation from App Results Page: YN
     Then I apply for the current year
     Then I validate I am on the "Let us guide you" page
