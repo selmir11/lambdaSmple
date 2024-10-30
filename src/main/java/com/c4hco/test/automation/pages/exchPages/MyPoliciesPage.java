@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -109,10 +108,7 @@ public class MyPoliciesPage {
     public void validatePlanDetailsPlanHistory(String planType){
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
-        basicActions.waitForElementListToBePresent(enrolledMemNames, 10);
-        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
-        namesFromUI = new HashSet<>(enrolledMemNames.stream().map(WebElement::getText).collect(Collectors.toList()));
-        softAssert.assertTrue(namesFromUI.equals(allMemberNames),"Member names did not match");
+        validateNamesOnPlanHistory();
         switch (planType){
             case "medical":
                 validateMedPlanDetailsFromPlanHistory();
@@ -123,6 +119,17 @@ public class MyPoliciesPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + planType);
         }
+    }
+
+    private void validateNamesOnPlanHistory(){
+        if(basicActions.waitForElementListToBePresent(enrolledMemNames, 10)){
+            allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+            enrolledMemNames.stream().forEach(element-> namesFromUI.add(element.getText()));
+            softAssert.assertTrue(namesFromUI.equals(allMemberNames),"Member names  from plan history page did not match");
+        } else {
+            softAssert.assertTrue(tableRecord.get(0).getText().equals(SharedData.getPrimaryMember().getSignature()));
+        }
+        softAssert.assertAll();
     }
 
     private void validateEnrolledDentalPlanDetails(){
