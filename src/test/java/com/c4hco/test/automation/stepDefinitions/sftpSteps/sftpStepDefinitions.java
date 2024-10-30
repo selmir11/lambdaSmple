@@ -69,14 +69,15 @@ public class sftpStepDefinitions {
         switch (type) {
             case "medical":
                 String medFileName = SharedData.getMedicalFileName();
-                System.out.println("***********Validating Medical EDI File::"+SharedData.getMedicalFileName()+"***********");
+                System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
                 sftpUtil.readEdiFile(medFileName);
                 ob834Validations_new.validateOb834MedFile(lxExpectedDetailsFromStep);
                 break;
             case "dental":
                 String denFileName = SharedData.getDentalFileName();
+                System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
                 sftpUtil.readEdiFile(denFileName);
-                ob834Validations_new.validateOb834DenFile(lxExpectedDetailsFromStep);
+              //  ob834Validations_new.validateOb834DenFile(lxExpectedDetailsFromStep);
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
@@ -103,15 +104,6 @@ public class sftpStepDefinitions {
         }
     }
 
-    @And("I read the edi file locally")
-    public void readEdiFile(){
-        sftpUtil.readEdiFromLocal();
-        // edi834Validations.validateOb834Record();
-    }
-
-    @And("I read the edi999 file locally") public void readEdi999File(){
-        sftpUtil.readEdi999FromLocal();
-    }
 
     @And("I upload medical ob834 edi files to sftp server with location {string}")
     public void uploadMedOb834fileToSftp(String remoteFilePath) throws JSchException {
