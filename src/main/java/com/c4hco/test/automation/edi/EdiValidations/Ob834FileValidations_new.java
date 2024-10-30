@@ -2,6 +2,7 @@ package com.c4hco.test.automation.edi.EdiValidations;
 
 import com.c4hco.test.automation.Dto.Edi.CommonEDISegments;
 import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.Member;
 import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
@@ -20,19 +21,32 @@ public class Ob834FileValidations_new {
     Ob834DetailsEntity subscriberDenEntity = new Ob834DetailsEntity();
 
     public Ob834FileValidations_new(){
-        getOb834SubscriberMedEntity();
-        getOb834SubscriberDenEntity();
+        getOb834MedEntityForSubscriber();
+        getOb834DenEntityForSubscriber();
     }
 
     public void validateOb834MedFile(List<Map<String, String>> lxExpectedDetailsFromStep){
         getDataByEmailAndAccNum();
-        validateSegments(subscriberMedEntity);
+        validateSubscriberSegments(subscriberMedEntity);
+        validateMemSeg();
         validateMed_LXREFSeg(lxExpectedDetailsFromStep);
     }
 
-    public void validateOb834DenFile(List<Map<String, String>> lxExpectedDetailsFromStep){
-        validateSegments(subscriberDenEntity);
-        validateDen_LXREFSeg(lxExpectedDetailsFromStep);
+//    public void validateOb834DenFile(List<Map<String, String>> lxExpectedDetailsFromStep){
+//        getDataByEmailAndAccNum();
+//        // validateSegments(subscriberDenEntity);
+//        validateDen_LXREFSeg(lxExpectedDetailsFromStep);
+//    }
+
+    private void validateSubscriberSegments(Ob834DetailsEntity entry){
+        validateCtrlFnGrpSegment(entry);
+        validateSponsorPayerDetails(entry);
+        validatePerSeg(entry);
+        validateBgnSeg(entry);
+        validateQtySeg(entry);
+        validateLUISeg(entry);
+        validateN3N4Segments(entry);
+        validateTrnSeg(entry);
     }
 
     private void validateMed_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
@@ -81,35 +95,27 @@ public class Ob834FileValidations_new {
         softAssert.assertAll();
     }
 
-    private void validateSegments(Ob834DetailsEntity entry) {
-        validateCtrlFnGrpSegment(entry);
-        validateLSLESegment();
-        validateSponsorPayerDetails(entry);
-        validateAddlMaintReason(entry);
-        validateInsSegment(entry);
-        validateDtpSegment(entry);
-        validateHierarchyLevelSeg(entry);
-        validateNM1Seg(entry);
-        validatePerSeg(entry);
-        validateBgnSeg(entry);
-        validateQtySeg(entry);
-        validateHLHSeg(entry);
-        validateLUISeg(entry);
-        validateN3N4Segments(entry);
-        validateDMGSegment(entry);
-        validateTrnSeg(entry);
+    private void validateSegments(Member member, Ob834DetailsEntity entry) {
+        validateDMGSegment(member,entry);
+        validateHLHSeg(member, entry);
+        validateInsSegment(member, entry);
+        validateNM1Seg(member, entry);
+        validateAddlMaintReason(member, entry);
+        validateDtpSegment(member, entry);
+        validateHierarchyLevelSeg(member, entry);
+        validateLSLESegment(member);
         softAssert.assertAll();
     }
 
-    private void validateHLHSeg(Ob834DetailsEntity entry){
-        List<String> HLHSeg = transaction.getMembersList().get(0).getHLH().get(0);
+    private void validateHLHSeg(Member member, Ob834DetailsEntity entry){
+        List<String> HLHSeg = member.getHLH().get(0);
         softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use());
         softAssert.assertAll();
     }
 
-    private void validateLSLESegment(){
-        List<String> lsSegment = transaction.getMembersList().get(0).getLS().get(0);
-        List<String> leSegment = transaction.getMembersList().get(0).getLE().get(0);
+    private void validateLSLESegment(Member member){
+        List<String> lsSegment = member.getLS().get(0);
+        List<String> leSegment = member.getLE().get(0);
         softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");
         softAssert.assertEquals(leSegment.get(0), "2700", "Loop trailer, The loop ID number given on the transaction set does not match");
         softAssert.assertAll();
@@ -170,8 +176,8 @@ public class Ob834FileValidations_new {
         softAssert.assertAll();
     }
 
-    private void validateAddlMaintReason(Ob834DetailsEntity entry){
-        List<List<String>> refSegList = transaction.getMembersList().get(0).getREF();
+    private void validateAddlMaintReason(Member member,Ob834DetailsEntity entry){
+        List<List<String>> refSegList = member.getREF();
         for (List<String> refSeg : refSegList) {
             if (refSeg.get(0).equals("LX1") && refSeg.get(1).equals("17")){
                 softAssert.assertEquals(refSeg.get(3), entry.getAddl_maint_reason(),"Additional Maintenance reason does not match");
@@ -180,21 +186,23 @@ public class Ob834FileValidations_new {
         softAssert.assertAll();
     }
 
-    private void validateInsSegment(Ob834DetailsEntity entry){
-        List<String> insSegment  = transaction.getMembersList().get(0).getINS().get(0);
+    private void validateInsSegment(Member member,Ob834DetailsEntity entry){
+        List<String> insSegment  = member.getINS().get(0);
 
         softAssert.assertEquals(insSegment.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
         softAssert.assertEquals(insSegment.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
         softAssert.assertEquals(insSegment.get(2), entry.getMaintenance_type_code(), "In INS segment, Maintenance type code does not match");
         softAssert.assertEquals(insSegment.get(3), entry.getMaintenance_reas_code(), "In INS segment, Maintenance reason code does not match");
         softAssert.assertEquals(insSegment.get(4), "A", "Active does not match");
-        softAssert.assertEquals(insSegment.get(7), "AC", "Active does not match");
+        if(insSegment.get(0).equals("Y")){
+            softAssert.assertEquals(insSegment.get(7), "AC", "Active does not match");
+        }
         softAssert.assertAll();
     }
 
-    private void validateDtpSegment(Ob834DetailsEntity entry){
-        System.out.println("DTP::"+transaction.getMembersList().get(0).getDTP());
-        List<List<String>> dtpSegList = transaction.getMembersList().get(0).getDTP();
+    private void validateDtpSegment(Member member,Ob834DetailsEntity entry){
+       // System.out.println("DTP::"+member.getDTP());
+        List<List<String>> dtpSegList = member.getDTP();
         for(List<String> dtpSeg: dtpSegList){
             if(dtpSeg.get(0).contains("348")){
                 softAssert.assertEquals(dtpSeg.get(2),entry.getBenefit_begin_date(),"DTP 348 does not match with benefit start date.");
@@ -207,16 +215,16 @@ public class Ob834FileValidations_new {
         softAssert.assertAll();
     }
 
-    private void validateHierarchyLevelSeg(Ob834DetailsEntity entry){
-        List<String> hdSeg = transaction.getMembersList().get(0).getHD().get(0);
+    private void validateHierarchyLevelSeg(Member member,Ob834DetailsEntity entry){
+        List<String> hdSeg = member.getHD().get(0);
         softAssert.assertEquals(hdSeg.get(0), entry.getHd_maint_type_code(), "HD maintenance type code does not match");
         softAssert.assertEquals(hdSeg.get(1), "", "Empty");
         softAssert.assertEquals(hdSeg.get(2), entry.getInsurance_line_code(),"Insurance line code does not match");
         softAssert.assertAll();
     }
 
-    private void validateNM1Seg(Ob834DetailsEntity entry){
-        List<List<String>> nm1Seg1  = transaction.getMembersList().get(0).getNM1();
+    private void validateNM1Seg(Member member,Ob834DetailsEntity entry){
+        List<List<String>> nm1Seg1  = member.getNM1();
         if(SharedData.getPrimaryMember().getHasIncorrectEntities()){
             softAssert.assertEquals(nm1Seg1.get(0).get(0),"74","Entity Identifier Code does not match");
             softAssert.assertEquals(nm1Seg1.get(2).get(0),"31","NM1 segment with value 31");
@@ -228,9 +236,14 @@ public class Ob834FileValidations_new {
             softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"3" , "NM1 segment size is not equal to 3");
         }else{
             softAssert.assertEquals(nm1Seg1.get(0).get(0),"IL","Entity Identifier Code does not match");
+        }
+
+        if(nm1Seg1.get(0).get(3).toLowerCase().contains("primary")){
             softAssert.assertEquals(nm1Seg1.get(1).get(0),"31","NM1 segment with value 31");
             softAssert.assertEquals(nm1Seg1.get(1).get(1),"1","NM1 segment with value 1");
-            softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"2" , "NM1 segment size is not equal to 2");
+            softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"2" , "NM1 segment size for subscriber is not equal to 2");
+        } else{
+            softAssert.assertEquals(String.valueOf(nm1Seg1.size()),"1" , "NM1 segment size for member is not equal to 1");
         }
         softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(),"Member Last name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
@@ -262,7 +275,6 @@ public class Ob834FileValidations_new {
     }
 
     private void validateTrnSeg(Ob834DetailsEntity entry){
-        // WIP
         // ST Segment
         List<String> stSeg  = transaction.getCommonSegments().getST().get(0);
         softAssert.assertEquals(stSeg.get(0), "834", "Transaction Set Identifier Code does not match");
@@ -318,11 +330,12 @@ public class Ob834FileValidations_new {
         softAssert.assertAll();
     }
 
-    private void validateDMGSegment(Ob834DetailsEntity entry){
-        List<List<String>> dmgSeg = transaction.getMembersList().get(0).getDMG();
-        softAssert.assertEquals(dmgSeg.get(0).get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
-        softAssert.assertEquals(dmgSeg.get(0).get(1), entry.getMember_dob(), "Member date of birth does not match");
-        softAssert.assertEquals(dmgSeg.get(0).get(2), entry.getMember_gender(), "Member gender does not match");
+    private void validateDMGSegment(Member member, Ob834DetailsEntity entry){
+        List<String> dmgSeg = member.getDMG().get(0);
+        softAssert.assertEquals(dmgSeg.get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
+        softAssert.assertEquals(dmgSeg.get(1), entry.getMember_dob(), "Member date of birth does not match");
+        softAssert.assertEquals(dmgSeg.get(2), entry.getMember_gender(), "Member gender does not match");
+        // validate raceCode as well
         softAssert.assertAll();
     }
 
@@ -352,20 +365,36 @@ public class Ob834FileValidations_new {
                 transaction.getCommonSegments().getBGN().size();
     }
 
-    private void getOb834SubscriberMedEntity(){
+    private void validateMemSeg(){
         List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
-        for(Ob834DetailsEntity medEntity:medicalEntityList){
-            if(medEntity.getMember_first_name().toLowerCase().contains("primary")){
-                subscriberMedEntity = medEntity;
+        for( Ob834DetailsEntity medEntity: medicalEntityList){
+           List<Member> memberSegmentsList = transaction.getMembersList();
+            for(Member member: memberSegmentsList){
+                if(medEntity.getMember_first_name().contains(member.getNM1().get(0).get(3))){
+                    System.out.println("validating the member segments for :::::::::::::"+member.getNM1().get(0).get(3));
+                    validateSegments(member, medEntity);
+                    break;
+                }
             }
         }
     }
 
-    private void getOb834SubscriberDenEntity(){
+    private void getOb834MedEntityForSubscriber(){
+        List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
+        for(Ob834DetailsEntity medEntity:medicalEntityList){
+            if(medEntity.getMember_first_name().toLowerCase().contains("primary")){
+                subscriberMedEntity = medEntity;
+                break;
+            }
+        }
+    }
+
+    private void getOb834DenEntityForSubscriber(){
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         for(Ob834DetailsEntity denEntity:dentalEntityList){
             if(denEntity.getMember_first_name().toLowerCase().contains("primary")){
                 subscriberDenEntity = denEntity;
+                break;
             }
         }
     }
