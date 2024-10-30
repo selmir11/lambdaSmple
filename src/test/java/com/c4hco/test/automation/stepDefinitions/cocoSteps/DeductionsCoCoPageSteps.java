@@ -45,4 +45,9 @@ public class DeductionsCoCoPageSteps {
     @Then("I verify {string} as Deductions option with {string} amount at {string} frequency CoCo page")
     public void iVerifyDeductionsEnteredData(String deductionsOption, String Amount, String Frequency) {deductionsCoCoPage.verifyDeductionsEnteredData(deductionsOption, Amount, Frequency);}
 
+    @Then("I verify the text on the deductions coco page in {string}")
+    public void iVerifyDeductionsText(String language) {deductionsCoCoPage.verifyDeductionsText(language);}
+
+    @Then("I verify the navigation buttons on the deductions coco page in {string}")
+    public void iVerifyDeductionsNavigationButtons(String language) {deductionsCoCoPage.verifyDeductionsNavigationButtons(language);}
 }

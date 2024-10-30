@@ -245,3 +245,17 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-369
+  Scenario:  SLCR-369 I verify the text on the CoCo Deductions page - English
+    And I change the language from Elmo header to "English" if it isn't already in that language
+    Then I verify the header for Primary Member on the CoCo Deductions page in "English"
+    Then I verify the text on the deductions coco page in "English"
+    Then I verify the navigation buttons on the deductions coco page in "English"
+
+  @SLCR-393
+  Scenario:  SLCR-369 I verify the text on the CoCo Deductions page - Spanish
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify the header for Primary Member on the CoCo Deductions page in "Spanish"
+    Then I verify the text on the deductions coco page in "Spanish"
+    Then I verify the navigation buttons on the deductions coco page in "Spanish"

@@ -30,6 +30,8 @@ public class SharedData {
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
     @Getter @Setter private static String medicalIb999FileName;
     @Getter @Setter private static String dentalIb999FileName;
+    @Getter @Setter private static String medicalIb834FileName;
+    @Getter @Setter private static String dentalIb834FileName;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
