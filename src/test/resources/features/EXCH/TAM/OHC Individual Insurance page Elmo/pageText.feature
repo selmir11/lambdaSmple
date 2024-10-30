@@ -54,7 +54,7 @@ Feature: Page Text-OHI Individual Insurance Elmo Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
 
-  @SLER-275 @PageTextOhiIndividualInsuranceElmo @test
+  @SLER-275 @PageTextOhiIndividualInsuranceElmo
   Scenario: SLER-275 I can see Individual Insurance's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"

@@ -61,7 +61,7 @@ Feature: Page Navigation-OHI ESI Page
     And I validate I am on the "ESI" page
 
 
-  @SLER-687 @PageNavigationESI @test
+  @SLER-687 @PageNavigationESI
   Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHI Portal, Exchange
     #Step1
     And I change the C4 url to "Other Health Coverage portal Error Exch"

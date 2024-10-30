@@ -488,7 +488,7 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1084 @PageValidationOhiEsiElmo @test
+  @SLER-1084 @PageValidationOhiEsiElmo
   Scenario: SLER-1084 I want the family of 3 affordability flags aggregated on submitted application
     Then I select the Go Back button on the ESI page
     Then I click Go back on the ELMO health coverage page
