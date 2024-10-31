@@ -57,6 +57,8 @@ public class Ob834FileValidations_new {
     }
 
     private void validateLxRefN1Seg(Member member, Ob834DetailsEntity entry){
+        // size = 8 for Subscriber and 2 for members
+        // LX size is equal to n1 size
         List<List<String>> lxSegment = member.getLX();
         List<List<String>> n1SegListOfList = member.getN1();
         List<List<String>> refSegListOfList = member.getREF();
