@@ -7,11 +7,12 @@ import com.c4hco.test.automation.Dto.Edi.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.json.JSONArray;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class Ob834FileValidations_new {
     SoftAssert softAssert = new SoftAssert();
@@ -19,24 +20,30 @@ public class Ob834FileValidations_new {
     Transaction transaction = null;
     Ob834DetailsEntity subscriberMedEntity = new Ob834DetailsEntity();
     Ob834DetailsEntity subscriberDenEntity = new Ob834DetailsEntity();
+    List<String> n1ListWithSepReason = new ArrayList<>();
+    List<String> n1ListWithAddtlMaintReas = new ArrayList<>();
+    List<String> n1ListWithSepReasonMem = new ArrayList<>();
+    List<String> n1ListWithAddtlMaintReasMem = new ArrayList<>();
 
     public Ob834FileValidations_new(){
         getOb834MedEntityForSubscriber();
         getOb834DenEntityForSubscriber();
+        setN1SegList();
     }
 
-    public void validateOb834MedFile(List<Map<String, String>> lxExpectedDetailsFromStep){
+    public void validateOb834MedFile(){
+        List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
         getDataByEmailAndAccNum();
         validateSubscriberSegments(subscriberMedEntity);
-        validateMemSeg();
-        validateMed_LXREFSeg(lxExpectedDetailsFromStep);
+        validateMemSeg(medicalEntityList);
     }
 
-//    public void validateOb834DenFile(List<Map<String, String>> lxExpectedDetailsFromStep){
-//        getDataByEmailAndAccNum();
-//        // validateSegments(subscriberDenEntity);
-//        validateDen_LXREFSeg(lxExpectedDetailsFromStep);
-//    }
+    public void validateOb834DenFile(){
+        List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
+        getDataByEmailAndAccNum();
+        validateSubscriberSegments(subscriberDenEntity);
+        validateMemSeg(dentalEntityList);
+    }
 
     private void validateSubscriberSegments(Ob834DetailsEntity entry){
         validateCtrlFnGrpSegment(entry);
@@ -49,50 +56,69 @@ public class Ob834FileValidations_new {
         validateTrnSeg(entry);
     }
 
-    private void validateMed_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
-        //LX segement
-        List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
-        int lxSegmentSize = lxSegment.size();
-        softAssert.assertEquals(String.valueOf(lxSegmentSize), "8", "LX segment size 8 mismatch");
-        //REF Segment
-        for (Map<String, String> segment : lxExpectedDetailsFromStep) {
+    private void validateLxRefN1Seg(Member member, Ob834DetailsEntity entry){
+        List<List<String>> lxSegment = member.getLX();
+        List<List<String>> n1SegListOfList = member.getN1();
+        List<List<String>> refSegListOfList = member.getREF();
+        List<String> n1SegList = new ArrayList<>();
+        int lxSegCount = 1;
 
-            List<List<String>> refSegListOfList = transaction.getMembersList().get(0).getREF();
-            List<List<String>> n1SegListOfList = transaction.getMembersList().get(0).getN1();
-            int lx = Integer.parseInt(segment.get("LX"));
-            String n1Expected = segment.get("N1 75");
-            String refExpected = segment.get("REF");
+        for(List<String> lxSeg: lxSegment){
+            Assert.assertEquals(String.valueOf(lxSeg.get(0)).replaceAll(String.valueOf(lxSegCount), ""), "LX");
+            Assert.assertEquals(Integer.parseInt(lxSeg.get(1)), lxSegCount, "lxSeg.get(1)::"+lxSeg.get(1)+"  lxSegCount::"+lxSegCount);
 
-            if (refSegListOfList.get(lx + 5).get(0).equals("LX" + lx)) {
-                softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ", N1 segment mismatch for LX " + lx);
-                softAssert.assertEquals(refSegListOfList.get(lx + 5).get(3), refExpected, "REF segment, " + n1Expected + " mismatch for LX " + lx);
+            for(List<String> n1SegLst: n1SegListOfList ){
+                if(String.valueOf(n1SegLst.get(0)).equals("LX"+lxSegCount)){
+                    Assert.assertEquals(String.valueOf(n1SegLst.get(1)), "75");
+                    n1SegList.add(n1SegLst.get(3));
+                    break;
+                }
             }
+
+            for(List<String> refSegList: refSegListOfList){
+                if(String.valueOf(refSegList.get(0)).equals("LX"+lxSegCount)){
+                    switch("LX"+lxSegCount){
+                        // WIP
+                        case "LX1":
+                            refSegList.get(3); // compare with specific entity value
+                            refSegList.get(1); // 9x or 9v or 17 ?? hardcode
+                            break;
+                        case "LX2":
+                            break;
+                        case "LX3":
+                            break;
+                        case "LX4":
+                            break;
+                        case "LX5":
+                            break;
+                        case "LX6":
+                            break;
+                        case "LX7":
+                            break;
+                        case "LX8":
+                            break;
+                        default: Assert.fail("Incorrect LX Case");
+
+                    }
+                    break;
+                }
+
+            }
+
+            lxSegCount++;
         }
-        softAssert.assertAll();
+        validateMemN1Seg(entry, n1SegList);
     }
 
-    private void validateDen_LXREFSeg(List<Map<String, String>> lxExpectedDetailsFromStep){
-        edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        transaction = edi834TransactionDetails.getTransactionList().get(0);
-        //LX segement
-        List<List<String>> lxSegment = transaction.getMembersList().get(0).getLX();
-        int lxSegmentSize = lxSegment.size();
-        softAssert.assertEquals(String.valueOf(lxSegmentSize), "8", "LX segment size 8 mismatch");
-        //REF Segment
-        for (Map<String, String> segment : lxExpectedDetailsFromStep) {
+    private void validateMemN1Seg(Ob834DetailsEntity entry, List<String> n1SegList){
+        List<String> expectedN1List;
 
-            List<List<String>> refSegListOfList = transaction.getMembersList().get(0).getREF();
-            List<List<String>> n1SegListOfList = transaction.getMembersList().get(0).getN1();
-            int lx = Integer.parseInt(segment.get("LX"));
-            String n1Expected = segment.get("N1 75");
-            String refDenExpected = segment.get("REFDEN");
-
-            if (refSegListOfList.get(lx + 5).get(0).equals("LX" + lx)) {
-                softAssert.assertEquals(n1SegListOfList.get(lx - 1).get(3), n1Expected, n1Expected + ",Den N1 segment mismatch for LX " + lx);
-                softAssert.assertEquals(refSegListOfList.get(lx + 5).get(3), refDenExpected, "DEN REF segment, " + n1Expected + " mismatch for LX " + lx);
-            }
+        if (entry.getSubscriber_indicator().equals("Y")) {
+            expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReason : n1ListWithAddtlMaintReas;
+        } else {
+            expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReasonMem : n1ListWithAddtlMaintReasMem;
         }
-        softAssert.assertAll();
+        Assert.assertEquals(n1SegList, expectedN1List);
     }
 
     private void validateSegments(Member member, Ob834DetailsEntity entry) {
@@ -104,6 +130,7 @@ public class Ob834FileValidations_new {
         validateDtpSegment(member, entry);
         validateHierarchyLevelSeg(member, entry);
         validateLSLESegment(member);
+        validateLxRefN1Seg(member, entry);
         softAssert.assertAll();
     }
 
@@ -365,14 +392,13 @@ public class Ob834FileValidations_new {
                 transaction.getCommonSegments().getBGN().size();
     }
 
-    private void validateMemSeg(){
-        List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
-        for( Ob834DetailsEntity medEntity: medicalEntityList){
+    private void validateMemSeg(List<Ob834DetailsEntity> entityList){
+        for( Ob834DetailsEntity entity: entityList){
            List<Member> memberSegmentsList = transaction.getMembersList();
             for(Member member: memberSegmentsList){
-                if(medEntity.getMember_first_name().contains(member.getNM1().get(0).get(3))){
+                if(entity.getMember_first_name().contains(member.getNM1().get(0).get(3))){
                     System.out.println("validating the member segments for :::::::::::::"+member.getNM1().get(0).get(3));
-                    validateSegments(member, medEntity);
+                    validateSegments(member, entity);
                     break;
                 }
             }
@@ -417,5 +443,12 @@ public class Ob834FileValidations_new {
 
         transactionList = edi834TransactionDetails.getTransactionList();
         transaction = transactionList.get(0); // 1 group will have only 1 transaction after updating with accNum and emailId
+    }
+
+    private void setN1SegList(){
+        Collections.addAll(n1ListWithSepReason, "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT", "SEP REASON");
+        Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON", "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT");
+        Collections.addAll(n1ListWithSepReasonMem, "PRE AMT 1", "SEP REASON");
+        Collections.addAll(n1ListWithAddtlMaintReasMem, "ADDL MAINT REASON", "PRE AMT 1");
     }
 }
