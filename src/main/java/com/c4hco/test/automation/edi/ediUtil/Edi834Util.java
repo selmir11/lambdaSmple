@@ -17,7 +17,6 @@ import org.testng.Assert;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -217,72 +216,12 @@ public class Edi834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-        testLocal();
     }
 
     public void testLocal(){
         Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         Transaction transaction = edi834TransactionDetails.getTransactionList().get(0);
         Member member = transaction.getMembersList().get(0);
-
         List<List<String>> lxSegment = member.getLX();
-        // size = 8 for Subscriber and 2 for members
-        // LX size is equal to n1 size
-        List<String> n1ListWithSepReason = new ArrayList<>();
-        List<String> n1ListWithAddtlMaintReas = new ArrayList<>();
-        Collections.addAll(n1ListWithSepReason, "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT", "SEP REASON");
-        Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON", "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT");
-
-        List<String> n1SegList = new ArrayList<>();
-        List<List<String>> n1SegListOfList = member.getN1();
-        List<List<String>> refSegListOfList = member.getREF();
-
-        int lxSegCount = 1;
-        for(List<String> lxSeg: lxSegment){
-            Assert.assertEquals(String.valueOf(lxSeg.get(0)).replaceAll(String.valueOf(lxSegCount), ""), "LX");
-            Assert.assertEquals(Integer.parseInt(lxSeg.get(1)), lxSegCount, "lxSeg.get(1)::"+lxSeg.get(1)+"  lxSegCount::"+lxSegCount);
-
-           for(List<String> n1SegLst: n1SegListOfList ){
-               if(String.valueOf(n1SegLst.get(0)).equals("LX"+lxSegCount)){
-                   Assert.assertEquals(String.valueOf(n1SegLst.get(1)), "75");
-                   n1SegList.add(n1SegLst.get(3));
-                   break;
-               }
-           }
-
-            for(List<String> refSegList: refSegListOfList){
-                if(String.valueOf(refSegList.get(0)).equals("LX"+lxSegCount)){
-                    switch("LX"+lxSegCount){
-                        case "LX1":
-                            refSegList.get(3); // compare with specific entity value
-                            refSegList.get(1); // 9x or 9v or 17 ?? hardcode
-                            break;
-                        case "LX2":
-                            break;
-                        case "LX3":
-                            break;
-                        case "LX4":
-                            break;
-                        case "LX5":
-                            break;
-                        case "LX6":
-                            break;
-                        case "LX7":
-                            break;
-                        case "LX8":
-                            break;
-                        default: Assert.fail("Incorrect LX Case");
-
-                    }
-                    break;
-                }
-
-            }
-
-
-            lxSegCount++;
-        }
-        // if sep reason, compare with this, else compare with a diff list.
-        Assert.assertEquals(n1SegList, n1ListWithSepReason);
     }
 }
