@@ -12,7 +12,7 @@ Feature: Tests related to the Additional Income page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -201,6 +201,16 @@ Feature: Tests related to the Additional Income page
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Additional Income" page
     Then I verify error for additional income no option in "Spanish" CoCo page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-394
+  Scenario: SLCR-394 I verify that income-portal-ui uses common components from ng-common on the Additional Income page in COCO
+    Then I verify Additional Income checkbox COCO in "Not Selected" state
+    Then I verify Additional Income checkbox COCO in "Selected" state
+    Then I verify Additional Income checkbox COCO in "Focus" state
+    Then I verify Additional Income checkbox COCO in "Hover" state
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
