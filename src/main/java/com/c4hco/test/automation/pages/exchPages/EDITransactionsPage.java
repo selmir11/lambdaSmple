@@ -117,6 +117,15 @@ public class EDITransactionsPage {
         for (String name : actualNames) {
             actualCountMap.put(name, actualCountMap.getOrDefault(name, 0) + 1);
         }
+   // without get or dafault
+//        HashMap<String, Integer> actualCountMap = new HashMap<>();
+//        for (String name : actualNames) {
+//            if (actualCountMap.containsKey(name)) {
+//                actualCountMap.put(name, actualCountMap.get(name) + 1);
+//            } else {
+//                actualCountMap.put(name, 1);
+//            }
+//        }
 
         for (String expectedName : expectedNames) {
             int actualCount = actualCountMap.getOrDefault(expectedName, 0);
