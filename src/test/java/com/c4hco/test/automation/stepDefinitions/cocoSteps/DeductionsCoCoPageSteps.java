@@ -30,6 +30,9 @@ public class DeductionsCoCoPageSteps {
     @And("I verify the header for Primary Member on the CoCo Deductions page in {string}")
     public void iVerifyTextOnDeductionsPage(String language){deductionsCoCoPage.verifyHeadersDeductionsPage(language);}
 
+    @And("I verify the header for additional member on the CoCo Deductions page in {string}")
+    public void iVerifyAdditionalMemberTextOnDeductionsPage(String language) {deductionsCoCoPage.verifyAddtlMemHeadersDeductionsPage(language);}
+
     @Then("I verify error for Deductions no option in {string} CoCo page")
     public void iVerifyDeductionsOptionHdrError(String language){deductionsCoCoPage.verifyDeductionsOptionHdrError(language);}
 
