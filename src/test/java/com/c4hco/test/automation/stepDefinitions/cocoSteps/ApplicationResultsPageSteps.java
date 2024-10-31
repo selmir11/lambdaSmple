@@ -23,7 +23,6 @@ public class ApplicationResultsPageSteps {
     @Then("I verify text that the member don't qualify for a health plan on the App Results Page CoCo")
     public void verifyTextDoNotQualifyForHealthPlan(){applicationResultsCoCoPage.verifyTextNotQualifyForPlanOnAppResultsPage();
     }
-
     @Then("I verify text that the member qualifies for SES limited {string} on the Application Results Page CoCo")
     public void verifySESlimitedOnAppResultsPage(String language){applicationResultsCoCoPage.verifySESlimitedOnAppResultsPage(language);
     }
