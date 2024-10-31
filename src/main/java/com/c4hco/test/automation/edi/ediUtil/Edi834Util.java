@@ -216,7 +216,12 @@ public class Edi834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-
     }
 
+    public void testLocal(){
+        Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        Transaction transaction = edi834TransactionDetails.getTransactionList().get(0);
+        Member member = transaction.getMembersList().get(0);
+        List<List<String>> lxSegment = member.getLX();
+    }
 }
