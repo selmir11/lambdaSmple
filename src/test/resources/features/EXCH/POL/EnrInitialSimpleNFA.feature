@@ -1,6 +1,5 @@
  @SLER-34 @SLER-1069
 Feature: Simple NFA - Single Applicant
-  @test
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
