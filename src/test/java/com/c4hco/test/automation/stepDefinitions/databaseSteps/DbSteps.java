@@ -63,6 +63,9 @@ private final Ib999FileValidations ib999FileValidations = new Ib999FileValidatio
       dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
    }
 
+   @And("I validate MVR details for account")
+   public void iValidateMVRDetails(List<Map<String, String>> expectedValues){dbValidations.validateMVR(expectedValues);}
+
    @And("I verify the client application submission in BoB DB")
    public void iVerifyApplicationSubmissionBobDb() {
       dbValidations.validateApplicationSubmissionBob();
@@ -145,3 +148,4 @@ private final Ib999FileValidations ib999FileValidations = new Ib999FileValidatio
       dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);
    }
 }
+
