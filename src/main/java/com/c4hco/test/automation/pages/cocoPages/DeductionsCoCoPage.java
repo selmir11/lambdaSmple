@@ -2,9 +2,11 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class DeductionsCoCoPage {
     private BasicActions basicActions;
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -35,6 +39,9 @@ public class DeductionsCoCoPage {
 
     @FindBy(css = "div.parent-position > div:nth-child(2)")
     WebElement selectSentence;
+
+    @FindBy(css = "lib-checkbox-control label")
+    List<WebElement> deductionOptionBox;
 
     @FindBy(css = "app-show-options button")
     List<WebElement> deductionButton;
@@ -527,6 +534,102 @@ public class DeductionsCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyDeductionsOptionCheckboxCOCO(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfCheckboxesCOCO();
+                break;
+            case "Hover":
+                verifyHoverStateOfCheckboxesCOCO();
+                break;
+            case "Focus":
+                verifyFocusStateOfCheckboxesCOCO();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfCheckboxesCOCO();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
+
+    public void verifyNotSelectedStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(deductionButton, 15);
+        for (int i = 0; i < deductionButton.size(); i++) {
+            WebElement element1 = deductionButton.get(i);
+            WebElement element2 = deductionOptionBox.get(i);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyFocusStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(deductionButton, 15);
+        for (int i = 0; i < deductionButton.size(); i++) {
+            WebElement element = deductionButton.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            hdr_Deductions.click();
+        }
+    }
+
+    public void verifyHoverStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(deductionButton, 15);
+        for (int i = 0; i < deductionButton.size(); i++) {
+            WebElement element = deductionButton.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            hdr_Deductions.click();
+        }
+    }
+
+    public void verifySelectedStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(deductionButton, 15);
+        for (int i = 0; i < deductionButton.size(); i++) {
+            WebElement element1 = deductionButton.get(i);
+            WebElement element2 = deductionOptionBox.get(i);
+            element1.click();
+            hdr_Deductions.click();
+            basicActions.wait(300);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element1.click();
+            hdr_Deductions.click();
         }
     }
 }

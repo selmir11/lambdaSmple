@@ -12,7 +12,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -310,6 +310,16 @@ Feature: Tests related to the Deductions page
     #Step13
     Then I select "None of these" as deductions option
     Then I verify no errors show for Deductions options CoCo page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-395
+  Scenario: SLCR-395 I verify that income-portal-ui uses common components from ng-common on the Deductions page in COCO
+    Then I verify Deductions checkbox COCO in "Not Selected" state
+    Then I verify Deductions checkbox COCO in "Selected" state
+    Then I verify Deductions checkbox COCO in "Focus" state
+    Then I verify Deductions checkbox COCO in "Hover" state
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
