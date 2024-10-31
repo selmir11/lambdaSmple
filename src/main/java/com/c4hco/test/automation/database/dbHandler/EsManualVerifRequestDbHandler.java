@@ -1,16 +1,12 @@
 package com.c4hco.test.automation.database.dbHandler;
 
-import com.c4hco.test.automation.database.EntityObj.EnPolicyAhEntity;
 import com.c4hco.test.automation.database.EntityObj.EsManualVerifRequestEntity;
-import com.c4hco.test.automation.database.EntityObj.EsMemberOhiEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.BasicActions;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EsManualVerifRequestDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();

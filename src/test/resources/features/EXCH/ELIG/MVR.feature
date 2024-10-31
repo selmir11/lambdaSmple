@@ -34,9 +34,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary Member"
-
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -100,7 +98,15 @@ Feature: Testing Manual Verification Requests (MVRs)
 
     Then I log into the CRM system
     Then I search for user's Email and open the first option
-    #Then I open the searched user's contact page
+    Then I open the searched user's contact page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Income" MVR
     Then I check that the MVR has a status of "Open"
+
+Scenario: CRM Test
+   Then I log into the CRM system
+   Then I search for user's Email and open the first option
+   Then I open the searched user's contact page
+   Then I open the MVRDVR Tab on contact page
+   Then I open the "Income" MVR
+   Then I check that the MVR has a status of "Open"

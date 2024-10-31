@@ -9,5 +9,4 @@ public class EsManualVerifRequestEntity {
     String manual_verification_type;
     String created_by;
     String manual_verif_status;
-
 }

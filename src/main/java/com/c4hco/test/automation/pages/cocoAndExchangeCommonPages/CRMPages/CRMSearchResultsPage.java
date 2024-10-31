@@ -18,7 +18,8 @@ public class CRMSearchResultsPage {
     }
 
     public void openResultByName(){
-        basicActions.wait(5000);
+        //basicActions.wait(5000);
+        basicActions.waitForElementToBeClickableWithRetries(basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName()+"')]")), 30);
         WebElement linkOpenContact = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName()+"')]"));
         linkOpenContact.click();
 

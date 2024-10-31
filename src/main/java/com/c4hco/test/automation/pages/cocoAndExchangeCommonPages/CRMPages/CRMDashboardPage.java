@@ -5,6 +5,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,9 +17,6 @@ public class CRMDashboardPage {
     @FindBy(id = "GlobalSearchBox")
     WebElement txtCRMDashSearchBox;
 
-    @FindBy(xpath = "//div[2]/div[2]/div[2]//div[2]/div[1]/div[1]/div[1]/div[2]//button[1]/div[1]")
-    WebElement btnFirstContactOption;
-
     private BasicActions basicActions;
 
     public CRMDashboardPage(WebDriver webDriver){
@@ -27,11 +25,9 @@ public class CRMDashboardPage {
     }
 
     public void CRMDashboardSearchUserEmailandOpenFirst(){
-        basicActions.wait(5000);
-        basicActions.waitForElementToBePresent(txtCRMDashSearchBox, 30);
-        txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId());
+        basicActions.wait(10000);
 
-        basicActions.wait(5000);
-        txtCRMDashSearchBox.sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
+        basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 30);
+        txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId(), Keys.RETURN);
     }
 }

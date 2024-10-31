@@ -277,6 +277,7 @@ public class CreateAccountPage {
 
         }
         submitButton.click();
+        setdbName();
     }
 
     // WIP - Remove from here. We already have this in basicActions
