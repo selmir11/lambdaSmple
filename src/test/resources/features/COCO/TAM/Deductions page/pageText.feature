@@ -12,7 +12,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -246,16 +246,66 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-369
+  @SLCR-369 @TAMSmoke
   Scenario:  SLCR-369 I verify the text on the CoCo Deductions page - English
     And I change the language from Elmo header to "English" if it isn't already in that language
     Then I verify the header for Primary Member on the CoCo Deductions page in "English"
     Then I verify the text on the deductions coco page in "English"
     Then I verify the navigation buttons on the deductions coco page in "English"
 
-  @SLCR-393
-  Scenario:  SLCR-369 I verify the text on the CoCo Deductions page - Spanish
+  @SLCR-393 @TAMSmoke
+  Scenario:  SLCR-393 I verify the text on the CoCo Deductions page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify the header for Primary Member on the CoCo Deductions page in "Spanish"
+    Then I verify the text on the deductions coco page in "Spanish"
+    Then I verify the navigation buttons on the deductions coco page in "Spanish"
+
+  @SLCR-396 @TAMSmoke
+  Scenario:  SLCR-396 I verify the text on the CoCo Additional Member Deductions page - English
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "09151985", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I change the language from Elmo header to "English" if it isn't already in that language
+    And I verify the header for additional member on the CoCo Deductions page in "English"
+    Then I verify the text on the deductions coco page in "English"
+    Then I verify the navigation buttons on the deductions coco page in "English"
+
+  @SLCR-397 @TAMSmoke
+  Scenario:  SLCR-397 I verify the text on the CoCo Additional Member Deductions page - Spanish
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "09151985", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for additional member on the CoCo Deductions page in "Spanish"
     Then I verify the text on the deductions coco page in "Spanish"
     Then I verify the navigation buttons on the deductions coco page in "Spanish"
