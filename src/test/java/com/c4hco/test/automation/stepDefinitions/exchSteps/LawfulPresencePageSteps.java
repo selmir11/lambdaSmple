@@ -79,4 +79,9 @@ public class LawfulPresencePageSteps {
     public void iValidateTheVerbiageOnTheCurrentPage(String language,List<String> data) {
         lawfulPresencePage.validateDocumentTypeText(language, data);
     }
+
+    @And("I verify the text for undocumented citizen information in {string}")
+    public void verifyTextForUndocumentedCitizenInfo(String language) {
+        lawfulPresencePage.validateUndocumentedCitizenInfoText(language);
+    }
 }
