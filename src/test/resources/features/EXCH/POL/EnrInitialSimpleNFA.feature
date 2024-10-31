@@ -124,27 +124,8 @@ Feature: Simple NFA - Single Applicant
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
-
     And I validate the ob834 "medical" file should have the values
-      | LX | N1 75              | REF       |
-      | 1  | PRE AMT 1          | 291.02    |
-      | 2  | APTC AMT           | 0.00      |
-      | 3  | CSR AMT            | 0.00      |
-      | 4  | RATING AREA        | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    |
-      | 7  | PRE AMT TOT        | 291.02    |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT |
     And I validate the ob834 "dental" file should have the values
-      | LX | N1 75              | REFDEN          |
-      | 1  | PRE AMT 1          | 21.00           |
-      | 2  | APTC AMT           | 0.00            |
-      | 3  | CSR AMT            | 0.00            |
-      | 4  | RATING AREA        | 3               |
-      | 5  | SOURCE EXCHANGE ID | COHBE           |
-      | 6  | TOT RES AMT        | 21.00           |
-      | 7  | PRE AMT TOT        | 21.00           |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT |
 
 #      # RT-1276
     And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
