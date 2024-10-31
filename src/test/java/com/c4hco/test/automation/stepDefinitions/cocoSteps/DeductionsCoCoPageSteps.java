@@ -50,4 +50,9 @@ public class DeductionsCoCoPageSteps {
 
     @Then("I verify the navigation buttons on the deductions coco page in {string}")
     public void iVerifyDeductionsNavigationButtons(String language) {deductionsCoCoPage.verifyDeductionsNavigationButtons(language);}
+
+    @Then("I verify Deductions checkbox COCO in {string} state")
+    public void iVerifyStateOfDeductionsCheckbox(String state){
+        deductionsCoCoPage.verifyDeductionsOptionCheckboxCOCO(state);}
+
 }
