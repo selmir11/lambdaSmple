@@ -32,6 +32,9 @@ public class DeductionsPage {
     @FindBy(css = "app-deductions .additional-income-row button")
     List<WebElement> addtlDeductionOptionsCheckbox;
 
+    @FindBy(css = "lib-checkbox-control label")
+    List<WebElement> addtlDeductionBox;
+
     @FindBy(id = "ELIG-Deductions-AOSS-amountInput")
     WebElement txtAOSSAmount;
 
@@ -920,8 +923,103 @@ public class DeductionsPage {
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
-    
-    
+
+    public void verifyDeductionsOptionCheckbox(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfDeductionCheckboxes();
+                break;
+            case "Hover":
+                verifyHoverStateOfDeductionCheckboxes();
+                break;
+            case "Focus":
+                verifyFocusStateOfDeductionCheckboxes();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfDeductionCheckboxes();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
+
+    public void verifyNotSelectedStateOfDeductionCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 15);
+        for (int i = 0; i < addtlDeductionOptionsCheckbox.size(); i++) {
+            WebElement element1 = addtlDeductionOptionsCheckbox.get(i);
+            WebElement element2 = addtlDeductionBox.get(i);
+            basicActions.wait(300);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyFocusStateOfDeductionCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 15);
+        for (int i = 0; i < addtlDeductionOptionsCheckbox.size(); i++) {
+            WebElement element = addtlDeductionOptionsCheckbox.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            DeductionSummaryHeader.click();
+        }
+    }
+
+    public void verifyHoverStateOfDeductionCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 15);
+        for (int i = 0; i < addtlDeductionOptionsCheckbox.size(); i++) {
+            WebElement element = addtlDeductionOptionsCheckbox.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            DeductionSummaryHeader.click();
+        }
+    }
+
+    public void verifySelectedStateOfDeductionCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 15);
+        for (int i = 0; i < addtlDeductionOptionsCheckbox.size(); i++) {
+            WebElement element1 = addtlDeductionOptionsCheckbox.get(i);
+            WebElement element2 = addtlDeductionBox.get(i);
+            element1.click();
+            DeductionSummaryHeader.click();
+            basicActions.wait(300);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element1.click();
+            DeductionSummaryHeader.click();
+        }
+    }
     
     
     
