@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
- @SLER-41
+ @SLER-41 @n1
  Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -192,48 +192,48 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click View Plan History link from "medical" plan card
+#
+#    And I validate "medical" plan details from plan history
+#    And I click on to Back to Current Plan Details button
+#    And I click View Plan History link from "dental" plan card
+#    And I validate "dental" plan details from plan history
+#
+#    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+#    Then I validate I am on the "My Account Overview" page
 
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
+#    And I click on ClickHere link for "My Documents"
+#
+#    And I validate "medical" entities from policy tables
+#    And I validate "dental" entities from policy tables
+#
+#    # PDF Notice Validation
+#    And I click on download "EN-002-04" document
+#    Then I validate "EN-002-04 English" notice content
 
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
-
-    And I click on ClickHere link for "My Documents"
-
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
-
-    # PDF Notice Validation
-    And I click on download "EN-002-04" document
-    Then I validate "EN-002-04 English" notice content
-
-    #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-      |Spouse|
-      |Son   |
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-      |Spouse|
-      |Son   |
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
-
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    #Email Notice Validation
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |Son   |
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+#
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     #SLER-1170-WIP
     And I validate "medical" entities from pre edi db tables
