@@ -1,5 +1,6 @@
  @SLER-34 @SLER-1069
 Feature: Simple NFA - Single Applicant
+  @test
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -147,10 +148,10 @@ Feature: Simple NFA - Single Applicant
       | 8  | SEP REASON         | NEW_CO_RESIDENT |
 
 #      # RT-1276
-#    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-#    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-#    And I set ib999 entites for both medical and dental files
-#    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
-#    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
-#    And I validate the contents of ib999 medical file
+    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I set ib999 entites for both medical and dental files
+    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
+    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
+    And I validate the contents of ib999 medical file
 #    And I validate the contents of ib999 dental file
