@@ -11,7 +11,7 @@ Feature: Page validation - Life Change Event page
     Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -331,6 +331,19 @@ Feature: Page validation - Life Change Event page
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Future" error does exist in "Spanish"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-398
+  Scenario: SLCR-398 I verify that income-portal-ui uses common components from ng-common on the LCE page in COCO
+    Then I verify LCE checkbox COCO in "Not Selected" state
+    And I refresh the page
+    Then I verify LCE checkbox COCO in "Selected" state
+    And I refresh the page
+    Then I verify LCE checkbox COCO in "Focus" state
+    And I refresh the page
+    Then I verify LCE checkbox COCO in "Hover" state
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
