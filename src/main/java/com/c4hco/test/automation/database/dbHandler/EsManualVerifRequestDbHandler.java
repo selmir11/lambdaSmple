@@ -40,16 +40,10 @@ public class EsManualVerifRequestDbHandler {
                                 field.set(esMVREntity, columnValue);
                             }
                         } else {
-                            // Handle the case where columnValue is null
-                            // For example, you could set a default value or leave the field uninitialized
-                            // field.set(esMemberOhiEntity, defaultValue);
                         }
                     } catch (NoSuchFieldException e) {
-                        // Handle the case where the ResultSet column does not match a field in the object
-                        // You can ignore it or handle it according to your requirements
                     }
                 }
-//                dbDataList.add(esMVREntity);
             }
         }
         catch(Exception e){

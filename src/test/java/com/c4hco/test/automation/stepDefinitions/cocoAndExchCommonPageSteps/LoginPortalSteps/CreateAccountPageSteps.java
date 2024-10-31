@@ -20,14 +20,8 @@ public class CreateAccountPageSteps {
         createAccountPage.createGeneralAccount(appType);
     }
 
-    @Then("I enter general mandatory data for {string} account creation with {string} last name")
-    public void iEnterDataForAccCreationLastName(String appType, String lastName){
-        createAccountPage.createGeneralAccountSpecificLastName(appType, lastName);
-    }
-
     @Then("I enter first name {string} last name {string} and general mandatory data for {string} account creation")
     public void iEnterSpecificDataForAccCreation(String fName, String lName, String appType){createAccountPage.createSpecificAccount(fName, lName,appType);}
-
 
     @Then("I enter general mandatory data for {string} account creation with email {string}@outlook.com")
     public void iCreateGeneralAccountOutlook(String appType, String emailBase){

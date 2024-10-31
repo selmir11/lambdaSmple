@@ -10,4 +10,8 @@ public class CRMSearchResultsPageSteps {
 
     @Then("I open the searched user's contact page")
     public void openContactByName(){crmSearchResultsPage.openResultByName();}
+
+    //This function is used to select the first search results IF the search results page is displayed after searching from the dashboard. Since it does not always display, we needed a way to work around it.
+    @Then("I handle the search results page")
+    public void openContactIfSearchResultsDisplays(){crmSearchResultsPage.handleSearchResultsPage();}
 }

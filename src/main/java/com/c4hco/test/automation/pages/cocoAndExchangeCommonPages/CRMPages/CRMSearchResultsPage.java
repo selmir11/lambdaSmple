@@ -10,6 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CRMSearchResultsPage {
 
+    @FindBy(xpath = "//h1[@title='Search results']")
+    WebElement lblSearchHeader;
+
     private BasicActions basicActions;
 
     public CRMSearchResultsPage(WebDriver webDriver) {
@@ -18,10 +21,17 @@ public class CRMSearchResultsPage {
     }
 
     public void openResultByName(){
-        //basicActions.wait(5000);
-        basicActions.waitForElementToBeClickableWithRetries(basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName()+"')]")), 30);
         WebElement linkOpenContact = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName()+"')]"));
         linkOpenContact.click();
+    }
+
+    public void handleSearchResultsPage(){
+        //This function is specifically for handling the Search Results page IF it displays when searching from the dashboard page. Sometimes it does, sometimes it does not.
+        basicActions.wait(5000);
+        if(lblSearchHeader.isDisplayed()){
+            openResultByName();
+        }
 
     }
+
 }

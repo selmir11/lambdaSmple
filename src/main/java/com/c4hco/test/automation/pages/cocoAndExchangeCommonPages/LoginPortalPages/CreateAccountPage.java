@@ -256,30 +256,6 @@ public class CreateAccountPage {
         SharedData.setDbName(dbName);
     }
 
-    public void createGeneralAccountSpecificLastName(String appType, String lName){
-        // Creates the primary user/Account holder with specific last name for MVR testing
-        basicActions.waitForElementToBePresent( cocoTermsOfUseCheckbox,20 );
-        SharedData.setAppType(appType);
-        addDetailsSpecificLastName(lName);
-        switch(appType){
-            case "coco":
-                cocoTermsOfUseCheckbox.click();
-                break;
-            case "exchange":
-                exchangeTermsOfUseCheckbox.click();
-                break;
-            case "Admin exchange":
-                onBehalfOfPrimaryUserCheckbox.click();
-                exchangeTermsOfUseCheckbox.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-
-        }
-        submitButton.click();
-        setdbName();
-    }
-
     // WIP - Remove from here. We already have this in basicActions
     public String capitalizeFirstLetter(String input) {
         if (input == null || input.isEmpty()) {
@@ -299,16 +275,6 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    //Uses Specific Last Name for testing MVR types
-    public void initializeData_SpecificLastName(String lName){
-        MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
-        subscriber.setLastName(lName);
-        subscriber.setEmailId("AutomationUser."+getUniqueString(10)+"@test.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
-        subscriber.setIsSubscriber("Y");
-        SharedData.setPrimaryMember(subscriber);
-    }
 
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
@@ -344,11 +310,6 @@ public class CreateAccountPage {
 
     public void addDetails(){
         initializeData();
-        sendDetails();
-    }
-
-    public void addDetailsSpecificLastName(String lName){
-        initializeData_SpecificLastName(lName);
         sendDetails();
     }
 

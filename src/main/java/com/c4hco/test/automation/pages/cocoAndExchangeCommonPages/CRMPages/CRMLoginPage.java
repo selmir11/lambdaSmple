@@ -41,10 +41,6 @@ public class CRMLoginPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
     public void openCRM(){
-//        basicActions.getDriver().get("https://c4hcodev.crm.dynamics.com/");
-//        basicActions.refreshPage();
-//
-//        String env = ApplicationProperties.getInstance().getProperty("env");
 
         if(Objects.equals(ApplicationProperties.getInstance().getProperty("env"), "staging")){
             basicActions.getDriver().get("https://c4hcostg.crm.dynamics.com/");
@@ -72,6 +68,7 @@ public class CRMLoginPage {
             basicActions.getDriver().switchTo().frame(iframeCRMLandingPage);
             basicActions.waitForElementToBeClickableWithRetries(btnCRMCSHub, 30);
             btnCRMCSHub.click();
+            basicActions.getDriver().switchTo().defaultContent();
         }
     }
 }

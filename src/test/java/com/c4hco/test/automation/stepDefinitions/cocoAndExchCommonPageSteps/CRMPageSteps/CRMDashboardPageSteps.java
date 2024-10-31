@@ -7,6 +7,6 @@ import io.cucumber.java.en.Then;
 public class CRMDashboardPageSteps {
     CRMDashboardPage crmDashboardPage = new CRMDashboardPage(WebDriverManager.getDriver());
 
-    @Then("I search for user's Email and open the first option")
+    @Then("I search for user's Email")
     public void searchUserViaEmail(){crmDashboardPage.CRMDashboardSearchUserEmailandOpenFirst();}
 }

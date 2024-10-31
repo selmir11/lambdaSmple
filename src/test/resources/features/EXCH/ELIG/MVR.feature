@@ -5,11 +5,11 @@ Feature: Testing Manual Verification Requests (MVRs)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-    @WIP
+    @MVRWIP
   Scenario: Income MVR
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation with "OPENINCOMEMVR" last name
+    And I enter first name "MVRAutomationTest" last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -34,7 +34,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
     Then I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -97,16 +97,8 @@ Feature: Testing Manual Verification Requests (MVRs)
 #    Then I click all done from payment portal page
 
     Then I log into the CRM system
-    Then I search for user's Email and open the first option
-    Then I open the searched user's contact page
+    Then I search for user's Email
+    Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Income" MVR
     Then I check that the MVR has a status of "Open"
-
-Scenario: CRM Test
-   Then I log into the CRM system
-   Then I search for user's Email and open the first option
-   Then I open the searched user's contact page
-   Then I open the MVRDVR Tab on contact page
-   Then I open the "Income" MVR
-   Then I check that the MVR has a status of "Open"
