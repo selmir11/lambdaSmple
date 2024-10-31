@@ -51,7 +51,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -287,7 +287,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
-
+      Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
@@ -572,7 +572,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -862,7 +862,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page
@@ -1146,7 +1146,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -1429,7 +1429,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Ethnicity and Race" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -1448,7 +1448,8 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
-
+    Then I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
 
@@ -1506,7 +1507,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "<aptc1>"
     And I click continue on plan summary page
-
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -1642,19 +1646,15 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
+    # edit income information
+    #member2
     Then I validate I am on the "Family Overview" page
-    Then I click continue on family overview page
-
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
+    And I click on the table dropdown 2
+    And I click the edit income 3
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Employment Summary" page
-    And I click continue on the Employment Summary Page
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
@@ -1677,6 +1677,10 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
+        # added member 3
+    Then I validate I am on the "Family Overview" page
+    And I click on the table dropdown 4
+    And I click the edit income 9
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
@@ -1714,9 +1718,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the second dependent
     And I select the third dependent
     And I click save and continue on tax status page
-
+# member 1
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
+    #The question is skipped here because the primary member answered the question in initial enrollment
     Then I click continue on the ELMO health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -1770,14 +1774,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "<aptc2>"
+    And I validate the APTC Credit on the Summary page is "<planSummaryaptc2>"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
     Examples:
-      |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
-      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
+      | City   | State | DOB      | County | Zipcode | income1 | aptc1 | income2 | expectedAptc2 | planSummaryaptc2 | DOBmember2 |
+      | Granby | CO    | 01011990 | Grand  | 80446   | 1500000 | $0.00 | 7500000 | $1100.40/mo   | -$1100.40        | 01012011   |
 
 
   @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
@@ -1827,7 +1831,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Ethnicity and Race" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
-
+    Then I validate I am on the "Citizenship" page
       Then I select "Yes" for Citizen option
       And I select "No" for Naturalized Immigrant option
       And I click continue on the Citizenship page

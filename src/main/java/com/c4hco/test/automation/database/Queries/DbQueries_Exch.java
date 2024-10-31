@@ -95,6 +95,11 @@ public class DbQueries_Exch {
                 "where ak1_group_ctrl_number = '"+grpCtlNum+"'\n " +
                 "ORDER BY created_ts DESC";
     }
+    public String ib834Details(String grpCtlNum){
+        return "SELECT * FROM "+dbName+".ib834_detail \n " +
+                "where group_ctrl_number = '"+grpCtlNum+"'\n " +
+                "ORDER BY created_ts DESC";
+    }
 
     public String getEAPID(){
         return "select exchange_assigned_policy_id, coverage_type from  "+dbName+".en_policy_ah\n" +

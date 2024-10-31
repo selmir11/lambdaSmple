@@ -57,8 +57,8 @@ public class ApplicationResultsPage {
     @FindBy(css = "b.popup-body-text-2")
     WebElement popUpText;
 
-    @FindBy(css = ".btn-info")
-    WebElement popUpBackButton;
+    @FindBy(xpath = "//*[@id=\"continueButtonPopup\"]/div/div/div[2]/button")
+    WebElement  popUpBackButton;
 
     @FindBy(css = ".tot-sav")
     WebElement totalSavingsSection;
