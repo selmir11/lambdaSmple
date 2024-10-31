@@ -234,7 +234,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I verify the text on the Citizenship and Immigration Status page in "English"
@@ -250,9 +250,10 @@ Feature: Verify all English and Spanish Text on ELIG pages
     | No |
     Then I select "No" for Citizen option
     And I verify the text for Eligible Immigration Status in "English"
-    | Do you have an eligible immigration status? |
-    | Yes |
-    | No |
+      | Do you have an eligible immigration status or are you authorized to work in the U.S.?                                                                                                         |
+      | Starting November 1, 2024, DACA status is considered an eligible immigration status. People with DACA status will be able to enroll in a plan and get financial help through the marketplace. |
+      | Yes                                                                                                                                                                                           |
+      | No                                                                                                                                                                                            |
     Then I select "Yes" for Eligible Immigration Status option
     Then I verify the text Document Type in "English"
       | Document type |
@@ -269,7 +270,8 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | I-20 (Certificate of Eligibility for Nonimmigrant (F-1) Student Status) |
       | DS2019 (Certificate of Eligibility for Exchange Visitor (J-1) Status) |
       | Other |
-
+    Then I select "No" for Eligible Immigration Status option
+    And I verify the text for undocumented citizen information in 'English'
 
   @SLER-253 @PageText
   Scenario: Verify Spanish Text on the Citizenship and immigration status page
@@ -299,7 +301,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     When I change the language from header to "Spanish NonElmo"
@@ -318,9 +320,10 @@ Feature: Verify all English and Spanish Text on ELIG pages
     | No |
     Then I select "No" for Citizen option
     And I verify the text for Eligible Immigration Status in "Spanish"
-    | ¿Tiene un estatus migratorio elegible? |
-    | Sí |
-    | No |
+      | ¿Tiene un estatus migratorio elegible o tiene autorización para trabajar en los Estados Unidos?                                                                                                                               |
+      | A partir del 1º de noviembre de 2024, el estatus de DACA se considera como un estatus migratorio elegible. Las personas con el estatus de DACA podrán inscribirse en un plan y recibir ayuda financiera a través del Mercado. |
+      | Sí                                                                                                                                                                                                                            |
+      | No                                                                                                                                                                                                                            |
     Then I select "Yes" for Eligible Immigration Status option
     Then  I verify the text Document Type in "Spanish"
       | Tipo de documento |
@@ -337,6 +340,8 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | I-20 (Certificado de elegibilidad para estatus de estudiante no inmigrante; F-1) |
       | DS2019 (Certificado de elegibilidad para estatus de visitante de intercambio; J-1) |
       | Otro |
+    Then I select "No" for Eligible Immigration Status option
+    And I verify the text for undocumented citizen information in 'Spanish'
 
     @SLER-541 @PageText
     Scenario: Verify the help drawer text and urls on Report a life change page

@@ -301,6 +301,40 @@ public class DeductionsCoCoPage {
         }
     }
 
+    public void verifyAddtlMemHeadersDeductionsPage(String language){
+        switch (language){
+            case "English":
+                basicActions.waitForElementToBePresent(hdr_Deductions,15);
+                softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Deductions.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_Deductions2.getText(), "Deductions");
+                softAssert.assertEquals(hdr_Deductions2.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_Deductions2.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Deductions2.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(hdr_Deductions,90);
+                basicActions.waitForElementToBePresent(hdr_Deductions2,90);
+                basicActions.waitForElementToBePresent(saveAndContinueButton,90);
+                basicActions.waitForElementToBePresent(backButton,90);
+                softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase("Ingresos: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Deductions.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_Deductions2.getText(), "Deducciones");
+                softAssert.assertEquals(hdr_Deductions2.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_Deductions2.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Deductions2.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyHeadersDeductionsPageEnglish(){
         basicActions.waitForElementToBePresent(hdr_Deductions,15);
         softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
