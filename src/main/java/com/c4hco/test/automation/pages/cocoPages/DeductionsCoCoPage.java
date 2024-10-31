@@ -330,7 +330,7 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyDeductionsEnteredData(String addtlIncomeOption, String Amount, String Frequency){
-//        Frequency will have a number ex: "3: Monthly"
+//        Frequency will have a number ex: "1: Annually", "3: Monthly", "5: Weekly"
         switch (addtlIncomeOption) {
             case "Domestic production":
                 basicActions.waitForElementToBePresent(domesticProductionAmount,20);
@@ -342,6 +342,18 @@ public class DeductionsCoCoPage {
                 basicActions.waitForElementToBePresent(schoolTuitionAmount,20);
                 softAssert.assertEquals(schoolTuitionAmount  .getAttribute("value"), Amount);
                 softAssert.assertEquals(schoolTuitionFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            case "Student loan":
+                basicActions.waitForElementToBePresent(studentLoanAmount,20);
+                softAssert.assertEquals(studentLoanAmount  .getAttribute("value"), Amount);
+                softAssert.assertEquals(studentLoanFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            case "Pre-tax retirement":
+                basicActions.waitForElementToBePresent(pretaxRetirementAmount,20);
+                softAssert.assertEquals(pretaxRetirementAmount  .getAttribute("value"), Amount);
+                softAssert.assertEquals(pretaxRetirementFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
             default:
