@@ -102,18 +102,6 @@ Feature: Simple NFA - Single Applicant
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
-    #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
 
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
@@ -130,7 +118,23 @@ Feature: Simple NFA - Single Applicant
 #      # RT-1276
     And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I set ib999 entites for both medical and dental files
+
+    #Email Notice Validation
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate additional details for "medical" plan on email notice
+      |Primary|
+    And I validate additional details for "dental" plan on email notice
+      |Primary|
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+#    Ib999 file validation
+    And I validate ib999 "medical" details in database
+    And I validate ib999 "dental" details in database
     And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I validate the contents of ib999 medical file
