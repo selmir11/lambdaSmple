@@ -277,6 +277,11 @@ public class DbQueries_Exch {
                 "where account_id = '"+acctId+"'";
     }
 
+    public String enMemberEffectiveDates(){
+        return "select * from "+dbName+".en_member_effective_dates \n" +
+                "where application_id = '"+applicationId+"'";
+    }
+
     public String countOfPersonIds(){
         return "Select count(exch_person_id)\n" +
                 "From "+dbName+".ES_MEMBER\n" +

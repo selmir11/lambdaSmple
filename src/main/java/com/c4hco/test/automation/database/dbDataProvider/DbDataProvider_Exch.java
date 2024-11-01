@@ -15,6 +15,9 @@ public class DbDataProvider_Exch {
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
     EnPolicyMemberAhHandler enPolicyMemberAhHandler = new EnPolicyMemberAhHandler();
+
+    EnMemberEffectiveDatesHandler enMemberEffectiveDatesHandler = new EnMemberEffectiveDatesHandler();
+
     EnPolicyFinancialAhHandler enPolicyFinancialAhHandler = new EnPolicyFinancialAhHandler();
     EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
     EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
@@ -28,6 +31,7 @@ public class DbDataProvider_Exch {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
+
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -268,6 +272,10 @@ public class DbDataProvider_Exch {
 
     public EsManualVerifRequestEntity getEsMVR_options(){
         return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR());
+    }
+
+    public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){
+        return enMemberEffectiveDatesHandler.getEnMemberEffectiveDatesDetails(exchDbQueries.enMemberEffectiveDates());
     }
 
     public List<EsMemberHouseholdEntity> getCountOfPersonIds(){
