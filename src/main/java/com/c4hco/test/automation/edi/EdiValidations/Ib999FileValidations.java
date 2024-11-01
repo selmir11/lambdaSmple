@@ -7,19 +7,13 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.json.JSONArray;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ib999FileValidations {
     Ib999Segments ib999MedSegment= null;
     SoftAssert softAssert = new SoftAssert();
-    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
 
-    public void setIb999DetailsEntity() {
-        List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
-        SharedData.setIb999MedDetailsEntities(ib999MedEntity);
-        List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
-        SharedData.setIb999DenDetailsEntities(ib999DenEntity);
-    }
     public void validateib999File(Ib999Entity entry){
         ib999MedSegment = SharedData.getIb999Segments();
         validateISASegment(entry);
@@ -105,7 +99,7 @@ public class Ib999FileValidations {
     }
     public void validateSESegment(Ib999Entity entry){
         JSONArray seSeg = ib999MedSegment.getSE().getJSONArray(0);
-        softAssert.assertEquals(seSeg.get(0), entry.getTs_control_number(), "Ts control number mismatch");
+        softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number mismatch");
         softAssert.assertAll();
     }
     public void validateGESegment(Ib999Entity entry){
