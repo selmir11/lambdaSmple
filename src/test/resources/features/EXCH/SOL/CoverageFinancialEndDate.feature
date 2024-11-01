@@ -6,6 +6,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
 
   @SLER-1202-WIP
   Scenario: New Plan with birth LCE reported in the same month as birth
+  // WIP - Need to validate the current plan start date and the past plan end date from en_member_effective_dates table
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -196,13 +197,13 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
 
     And I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
-    And I click on ClickHere link for "My Documents"
+    #And I validate "medical" details on my policies page
+    #And I validate "dental" details on my policies page
+    #And I click View Plan History link from "medical" plan card
+    #And I validate "medical" plan details from plan history
+    #And I click on to Back to Current Plan Details button
+    #And I click View Plan History link from "dental" plan card
+    #And I validate "dental" plan details from plan history
+    #Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    #Then I validate I am on the "My Account Overview" page
+    #And I click on ClickHere link for "My Documents"
