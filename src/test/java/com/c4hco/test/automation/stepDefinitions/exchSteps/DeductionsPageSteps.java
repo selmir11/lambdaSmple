@@ -58,7 +58,9 @@ public class DeductionsPageSteps {
     @Then("I validate Deductions help drawer {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){deductionsPage.validateHelpVerbiage(helpText, language);}
 
-
+    @Then("I verify Deductions checkbox in {string} state")
+    public void iVerifyStateOfDeductionsCheckbox(String state){
+        deductionsPage.verifyDeductionsOptionCheckbox(state);}
 
 
 
