@@ -515,8 +515,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
       Then I enter an accountId in any Env "5910497910" "4007973601" to search user
-      And I select "individual" checkbox on Admin Portal Dashboard
-      Then I click on Search button in AP dashboard page
+      And I click on Search button in AP dashboard page
       Then I select the first record from the search results
       And I click "On Behalf Of (OBO)" from application links dropdown
       And I initiate incoming page
