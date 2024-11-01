@@ -1,5 +1,4 @@
 Feature: COCO Seed Data With Exception ALL
-  @teresa
 
   Scenario: Seed 01 With Exception For COCO- Single Applicant with Income of $19k
     Given I open the login page on the "login" portal
