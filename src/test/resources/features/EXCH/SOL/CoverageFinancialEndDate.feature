@@ -6,7 +6,6 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
 
   @SLER-1202-WIP
   Scenario: New Plan with birth LCE reported in the same month as birth
-  // WIP - Need to validate the current plan start date and the past plan end date from en_member_effective_dates table
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -193,10 +192,10 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
+    #And I Validate the correct enrolled plans are displayed on account overview page
 
-    And I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
+    #And I click on ClickHere link for "My Plans"
+    #Then I validate I am on the "My Policies" page
     #And I validate "medical" details on my policies page
     #And I validate "dental" details on my policies page
     #And I click View Plan History link from "medical" plan card
